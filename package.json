@@ -21,7 +21,14 @@
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:a11y": "playwright test --grep @a11y"
+    "test:a11y": "playwright test --grep @a11y",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "db:lint": "supabase db lint --local --schema public --fail-on warning",
+    "db:types": "supabase gen types --local > packages/domain/src/database.types.ts",
+    "db:types:check": "npm run db:types && git diff --exit-code -- packages/domain/src/database.types.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
@@ -34,6 +41,7 @@
     "eslint": "^9.39.5",
     "globals": "^17.11.0",
     "jsdom": "^29.1.1",
+    "supabase": "^2.114.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.67.0",
     "vitest": "^4.1.10"

@@ -79,3 +79,36 @@ jobs:
 
       - name: npm audit (high and critical)
         run: npm audit --audit-level=high
+
+  database:
+    name: Supabase local database (migrations, pgTAP, types)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies (reproducible)
+        run: npm ci
+
+      - name: Start local Supabase stack
+        run: npx supabase start
+
+      - name: Reset database (apply migrations + seed from repository state)
+        run: npx supabase db reset
+
+      - name: pgTAP database tests
+        run: npm run db:test
+
+      - name: Database lint (public schema)
+        run: npm run db:lint
+
+      - name: Regenerate database types and verify no diff
+        run: npm run db:types:check
+
+      - name: Stop local Supabase stack
+        if: always()
+        run: npx supabase stop

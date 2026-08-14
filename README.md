@@ -61,6 +61,23 @@ Other root commands: `npm run build`, `npm run typecheck`, `npm run lint`, `npm 
 
 The Next.js application lives in [`apps/web`](apps/web). Framework-independent packages (`domain`, `calculation-engine`, `evidence-engine`, `diagnostic-engine`, `learning-engine`, `content-schema`, `ui`, `test-fixtures`) live in [`packages/`](packages). See [`docs/development/DEVELOPMENT-WORKFLOW.md`](docs/development/DEVELOPMENT-WORKFLOW.md) for the task/review/checkpoint process.
 
+## Local database (Supabase)
+
+Local Postgres/Supabase requires [Docker](https://www.docker.com/) to be running. The Supabase CLI is a project-scoped dev dependency, invoked through the scripts below; no globally installed CLI or remote/production Supabase project is required for local development.
+
+```bash
+npm run db:start   # start the local Supabase stack (Postgres, Auth, Studio, ...)
+npm run db:reset   # rebuild the schema from supabase/migrations and load supabase/seed.sql
+npm run db:test    # run pgTAP database tests (supabase/tests/database)
+npm run db:lint    # lint the local database schema
+npm run db:types   # regenerate packages/domain/src/database.types.ts from the local schema
+npm run db:stop    # stop the local Supabase stack
+```
+
+Schema changes live only in version-controlled SQL migrations under [`supabase/migrations`](supabase/migrations) — never edit the schema by hand in Supabase Studio. `npm run db:reset` must always reconstruct the full schema and seed data from repository state alone; if it doesn't, the migrations are incomplete. Seed data in [`supabase/seed.sql`](supabase/seed.sql) is synthetic/fictional development-fixture data, not real proving-slice content.
+
+Row Level Security is enabled on every governed knowledge/provenance/curriculum table with no policies yet defined, so the local `anon`/`authenticated` API roles can read and write nothing on them. This is the intended CC-02 deny-by-default posture, not a bug — learner-facing read policies and learner-owned RLS arrive with authentication in CC-03 and later content-delivery packages.
+
 ## Development model
 
 ```text
