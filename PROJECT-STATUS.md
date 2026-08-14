@@ -3,9 +3,9 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-01 — Repository Foundation  
+**Current implementation stage:** CC-02 — Local Supabase + Database Baseline  
 **Status:** ACTIVE  
-**Next coding package:** CC-02 — Local Supabase + Database Baseline  
+**Next coding package:** CC-03 — Authentication + Learner Isolation  
 **Last updated:** 2026-08-14
 
 ## Purpose of this file
@@ -78,15 +78,23 @@ CC-00 created, reviewed and placed the durable project/governance/handover docum
 
 This baseline is committed and pushed to `origin/main` (`https://github.com/Dan-Spencer-UK/adaptive-learning-platform.git`).
 
+## CC-01 — Repository Foundation
+
+**Status:** COMPLETE / APPROVED
+
+CC-01 established the npm workspace, the Next.js application (`apps/web`), strict shared TypeScript configuration, Tailwind design tokens, the eight approved framework-independent package skeletons under `packages/`, unit/component/e2e/accessibility testing infrastructure and a GitHub Actions CI workflow. The repository now contains real application infrastructure rather than documentation-only planning; no learner-domain behaviour, Supabase, authentication or runtime AI was implemented.
+
+**Approved CC-01 commit:** `8a678715a8eb300422615f4cb4f1ceba31086cc3`, pushed to `origin/main`. GitHub Actions CI passed for this commit (typecheck, lint, unit tests, build, Playwright e2e/accessibility, dependency audit).
+
 ## Current task
 
-> **CC-01 — Repository Foundation**
+> **CC-02 — Local Supabase + Database Baseline**
 
-CC-01 establishes the repository/application foundation on the approved technical baseline in [`docs/architecture/ARCHITECTURE-OVERVIEW.md`](docs/architecture/ARCHITECTURE-OVERVIEW.md).
+CC-02 establishes local Supabase-backed persistence on the approved technical baseline in [`docs/architecture/ARCHITECTURE-OVERVIEW.md`](docs/architecture/ARCHITECTURE-OVERVIEW.md).
 
-In scope: npm workspace foundation, Next.js application scaffold, strict TypeScript configuration, Tailwind CSS foundation, project design-token foundation, framework-independent package skeletons where required by the approved architecture, testing foundation, CI skeleton and basic development scripts/tooling required for the above.
+In scope: Supabase CLI local development environment, initial SQL migrations, seed/test data, generated TypeScript database types, the minimum source/curriculum/assertion schema, RLS scaffolding and pgTAP tests. Acceptance: `supabase db reset` reconstructs the local database successfully; no production Supabase project is needed yet.
 
-Out of scope: Supabase implementation, database schema/migrations, authentication, learner accounts, lessons/content implementation, learner evidence engine behaviour, diagnostic engine behaviour, remediation behaviour, production deployment, runtime AI and feature expansion beyond repository/application foundation.
+Out of scope: authentication and learner isolation (CC-03), populating real Electrical/Foundational Maths knowledge-graph content (CC-04), deterministic calculation/evidence/diagnostic/learning-engine behaviour, lesson/content implementation, a production Supabase project and production deployment.
 
 ## Known blockers
 
@@ -94,17 +102,17 @@ None.
 
 ## Last accepted implementation commit
 
-CC-00 baseline: `50ab9b1e820bd9155e32b33669e852ec4f59059f`, pushed to `origin/main`. No CC-01 application-foundation commit yet.
+CC-01: `8a678715a8eb300422615f4cb4f1ceba31086cc3`, pushed to `origin/main`, GitHub Actions CI passed.
 
-## Exact next task after CC-01
+## Exact next task after CC-02
 
-> **CC-02 — Local Supabase + Database Baseline**
+> **CC-03 — Authentication + Learner Isolation**
 
 See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
 ## Cold-handover gate
 
-Before CC-01 begins, a fresh contributor with no chat history must be able to determine from the repository:
+Before each CC package begins, a fresh contributor with no chat history must be able to determine from the repository:
 
 1. What is the product?
 2. Who is the initial learner/market?
