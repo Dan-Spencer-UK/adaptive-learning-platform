@@ -40,10 +40,11 @@ pnpm-debug.log*
 Thumbs.db
 desktop.ini
 
-# Editor files
+# Editor / local tool files
 .vscode/*
 !.vscode/extensions.json
 .idea/
+.claude/
 *.swp
 *.swo
 *~
@@ -51,6 +52,10 @@ desktop.ini
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Next.js dev-server-regenerated coding-agent notices (see node_modules/next/dist/server/lib/generate-agent-files.js)
+apps/web/AGENTS.md
+apps/web/CLAUDE.md
 
 # Misc
 *.tmp

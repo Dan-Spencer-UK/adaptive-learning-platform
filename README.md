@@ -46,6 +46,21 @@ The first implementation proves the architecture through a deliberately narrow E
 
 The platform is built on the approved TypeScript/Next.js/Supabase stack, with a deterministic, no-runtime-AI learner engine. The full technical baseline — languages, frameworks, hosting, testing tools and internal package structure — is owned by [`docs/architecture/ARCHITECTURE-OVERVIEW.md`](docs/architecture/ARCHITECTURE-OVERVIEW.md); this README does not maintain an independent copy.
 
+## Development setup
+
+Prerequisites: Node.js 24 (see [`.nvmrc`](.nvmrc)) and npm 11+.
+
+```bash
+npm install
+npm run dev
+```
+
+The web app runs at http://localhost:3000.
+
+Other root commands: `npm run build`, `npm run typecheck`, `npm run lint`, `npm run test:unit`, `npm run test:e2e`, `npm run test:a11y`.
+
+The Next.js application lives in [`apps/web`](apps/web). Framework-independent packages (`domain`, `calculation-engine`, `evidence-engine`, `diagnostic-engine`, `learning-engine`, `content-schema`, `ui`, `test-fixtures`) live in [`packages/`](packages). See [`docs/development/DEVELOPMENT-WORKFLOW.md`](docs/development/DEVELOPMENT-WORKFLOW.md) for the task/review/checkpoint process.
+
 ## Development model
 
 ```text
