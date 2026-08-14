@@ -3,9 +3,9 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-00 — Repository Operating System  
+**Current implementation stage:** CC-01 — Repository Foundation  
 **Status:** ACTIVE  
-**Next coding package:** CC-01 — Repository Foundation  
+**Next coding package:** CC-02 — Local Supabase + Database Baseline  
 **Last updated:** 2026-08-14
 
 ## Purpose of this file
@@ -68,11 +68,25 @@ wrong V-I-R calculation
 → return to original lesson
 ```
 
+## CC-00 — Repository Operating System
+
+**Status:** COMPLETE / APPROVED
+
+CC-00 created, reviewed and placed the durable project/governance/handover documentation and passed the cold-handover test before application scaffolding began.
+
+**Baseline checkpoint commit:** `50ab9b1e820bd9155e32b33669e852ec4f59059f`
+
+This baseline is committed and pushed to `origin/main` (`https://github.com/Dan-Spencer-UK/adaptive-learning-platform.git`).
+
 ## Current task
 
-> **CC-00 — Repository Operating System**
+> **CC-01 — Repository Foundation**
 
-Create, review and place durable project/governance/handover documentation before application scaffolding. No application feature coding should begin until CC-00 passes the cold-handover test.
+CC-01 establishes the repository/application foundation on the approved technical baseline in [`docs/architecture/ARCHITECTURE-OVERVIEW.md`](docs/architecture/ARCHITECTURE-OVERVIEW.md).
+
+In scope: npm workspace foundation, Next.js application scaffold, strict TypeScript configuration, Tailwind CSS foundation, project design-token foundation, framework-independent package skeletons where required by the approved architecture, testing foundation, CI skeleton and basic development scripts/tooling required for the above.
+
+Out of scope: Supabase implementation, database schema/migrations, authentication, learner accounts, lessons/content implementation, learner evidence engine behaviour, diagnostic engine behaviour, remediation behaviour, production deployment, runtime AI and feature expansion beyond repository/application foundation.
 
 ## Known blockers
 
@@ -80,13 +94,13 @@ None.
 
 ## Last accepted implementation commit
 
-No application implementation commit yet.
+CC-00 baseline: `50ab9b1e820bd9155e32b33669e852ec4f59059f`, pushed to `origin/main`. No CC-01 application-foundation commit yet.
 
-## Exact next task after CC-00
+## Exact next task after CC-01
 
-> **CC-01 — Repository Foundation**
+> **CC-02 — Local Supabase + Database Baseline**
 
-CC-01 establishes the npm workspace, Next.js application, strict TypeScript, Tailwind, project directories, testing skeleton, CI skeleton and initial design tokens. It does **not** include Supabase, authentication, lessons, learner evidence or diagnosis.
+See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
 ## Cold-handover gate
 
