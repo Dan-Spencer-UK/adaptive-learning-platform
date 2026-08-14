@@ -3,9 +3,9 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-02 — Local Supabase + Database Baseline  
+**Current implementation stage:** CC-03 — Authentication + Learner Isolation  
 **Status:** ACTIVE  
-**Next coding package:** CC-03 — Authentication + Learner Isolation  
+**Next coding package:** CC-04 — Minimum Ohm's-Law Knowledge Graph  
 **Last updated:** 2026-08-14
 
 ## Purpose of this file
@@ -86,15 +86,25 @@ CC-01 established the npm workspace, the Next.js application (`apps/web`), stric
 
 **Approved CC-01 commit:** `8a678715a8eb300422615f4cb4f1ceba31086cc3`, pushed to `origin/main`. GitHub Actions CI passed for this commit (typecheck, lint, unit tests, build, Playwright e2e/accessibility, dependency audit).
 
+## CC-02 — Local Supabase + Database Baseline
+
+**Status:** COMPLETE / APPROVED
+
+CC-02 established local Supabase-backed persistence on the approved technical baseline: project-scoped Supabase CLI tooling, version-controlled SQL migrations, synthetic seed data, generated TypeScript database types, the governed source/curriculum/assertion schema and a deny-by-default RLS baseline. Product Owner / Project Architect review (CC-02A, CC-02B) corrected assertion identity/version separation, curriculum parent/version integrity and provenance-to-version binding before approval. The final approved model: `assertions` is the stable canonical identity; `assertion_versions` holds versioned governed content; `assertion_relationships` and `assertion_curriculum_mappings` reference stable `assertions.id`; `assertion_provenance_links` reference the specific `assertion_versions.id` they support. No authentication, learner isolation, runtime AI or production Supabase project was implemented.
+
+The local database is reproducible from migrations + seed alone (`supabase db reset`); pgTAP database verification (84 assertions) passed; generated database TypeScript types are mechanically reproducible from the local schema.
+
+**Approved CC-02 checkpoint:** `b075fddc295e0cf32090ee6c6e4c553462c56933`, pushed to `origin/main`; local and remote HEAD matched at approval. GitHub Actions CI passed for this commit, including the Supabase database job (start, reset, pgTAP, lint, generated-type diff check, stop) on a clean GitHub-hosted runner.
+
 ## Current task
 
-> **CC-02 — Local Supabase + Database Baseline**
+> **CC-03 — Authentication + Learner Isolation**
 
-CC-02 establishes local Supabase-backed persistence on the approved technical baseline in [`docs/architecture/ARCHITECTURE-OVERVIEW.md`](docs/architecture/ARCHITECTURE-OVERVIEW.md).
+CC-03 builds Supabase Auth on the CC-02 database baseline.
 
-In scope: Supabase CLI local development environment, initial SQL migrations, seed/test data, generated TypeScript database types, the minimum source/curriculum/assertion schema, RLS scaffolding and pgTAP tests. Acceptance: `supabase db reset` reconstructs the local database successfully; no production Supabase project is needed yet.
+In scope: Supabase Auth configuration, passwordless email-OTP development sign-in flow, a protected learner route, a learner profile record, one learner-owned test table protected by RLS, cross-user isolation tests (User A cannot access User B's row; unauthenticated access to protected data is denied), logout/session handling. Acceptance: two test users cannot access each other's rows; unauthenticated protected access is denied.
 
-Out of scope: authentication and learner isolation (CC-03), populating real Electrical/Foundational Maths knowledge-graph content (CC-04), deterministic calculation/evidence/diagnostic/learning-engine behaviour, lesson/content implementation, a production Supabase project and production deployment.
+Out of scope: populating real Electrical/Foundational Maths knowledge-graph content (CC-04), deterministic calculation/evidence/diagnostic/learning-engine behaviour, lesson/content implementation, production SMTP/email provider, a production Supabase project, production deployment and runtime AI.
 
 ## Known blockers
 
@@ -102,11 +112,11 @@ None.
 
 ## Last accepted implementation commit
 
-CC-01: `8a678715a8eb300422615f4cb4f1ceba31086cc3`, pushed to `origin/main`, GitHub Actions CI passed.
+CC-02: `b075fddc295e0cf32090ee6c6e4c553462c56933`, pushed to `origin/main`, GitHub Actions CI passed.
 
-## Exact next task after CC-02
+## Exact next task after CC-03
 
-> **CC-03 — Authentication + Learner Isolation**
+> **CC-04 — Minimum Ohm's-Law Knowledge Graph**
 
 See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
