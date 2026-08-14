@@ -10,3 +10,5 @@
 export const packageId = "domain" as const;
 
 export type PackageId = typeof packageId;
+
+export type { Database } from "./database.types";

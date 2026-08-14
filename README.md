@@ -76,7 +76,23 @@ npm run db:stop    # stop the local Supabase stack
 
 Schema changes live only in version-controlled SQL migrations under [`supabase/migrations`](supabase/migrations) — never edit the schema by hand in Supabase Studio. `npm run db:reset` must always reconstruct the full schema and seed data from repository state alone; if it doesn't, the migrations are incomplete. Seed data in [`supabase/seed.sql`](supabase/seed.sql) is synthetic/fictional development-fixture data, not real proving-slice content.
 
-Row Level Security is enabled on every governed knowledge/provenance/curriculum table with no policies yet defined, so the local `anon`/`authenticated` API roles can read and write nothing on them. This is the intended CC-02 deny-by-default posture, not a bug — learner-facing read policies and learner-owned RLS arrive with authentication in CC-03 and later content-delivery packages.
+Row Level Security is enabled on every governed knowledge/provenance/curriculum table with no policies yet defined, so the local `anon`/`authenticated` API roles can read and write nothing on them. This is the intended CC-02 deny-by-default posture, not a bug — learner-facing read policies for this content arrive with later content-delivery packages. CC-03 added the first learner-owned tables (`learner_profiles`, `learner_isolation_probe`) with self-only RLS; see below.
+
+## Local authentication (CC-03)
+
+Sign-in uses Supabase Auth passwordless email one-time codes. No password, no social login and no production email provider are required locally.
+
+```bash
+npm run db:start   # local Supabase Auth runs as part of the standard stack
+npm run dev         # starts the Next.js app at http://localhost:3000
+```
+
+1. Copy [`apps/web/.env.example`](apps/web/.env.example) to `apps/web/.env.local` and fill in `NEXT_PUBLIC_SUPABASE_URL`/`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` from the `npx supabase start` (or `npx supabase status`) output. Never put the secret/service-role key or JWT secret in this file.
+2. Visit [`/sign-in`](http://localhost:3000/sign-in), enter any address at a reserved test domain (e.g. `you@example.test`) and request a code.
+3. Local emails are never actually sent — open Mailpit at the `MAILPIT_URL` printed by `supabase start` (typically <http://127.0.0.1:54324>) to read the 6-digit code, then enter it on the sign-in page.
+4. A signed-in session grants access to the protected [`/learn`](http://localhost:3000/learn) route, which also proves the learner's own profile row is readable under RLS. Signing out revokes the session server-side.
+
+Database-level auth/isolation tests (`supabase/tests/database/07_learner_schema.sql`, `08_learner_isolation.sql`) run via `npm run db:test`. Browser-level auth tests (`tests/e2e/sign-in.spec.ts`) run via `npm run test:e2e` and drive the real OTP flow through the local Mailpit API — no test-only authentication backdoor exists in application code.
 
 ## Development model
 

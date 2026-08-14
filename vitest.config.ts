@@ -5,8 +5,11 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "jsdom",
-    include: ["packages/**/src/**/*.test.{ts,tsx}"],
-    exclude: ["**/node_modules/**", "**/dist/**"],
+    include: [
+      "packages/**/src/**/*.test.{ts,tsx}",
+      "apps/**/*.test.{ts,tsx}",
+    ],
+    exclude: ["**/node_modules/**", "**/dist/**", "**/.next/**"],
     setupFiles: ["./vitest.setup.ts"],
     css: false,
   },

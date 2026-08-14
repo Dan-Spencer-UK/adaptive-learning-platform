@@ -380,6 +380,56 @@ export type Database = {
         }
         Relationships: []
       }
+      learner_isolation_probe: {
+        Row: {
+          created_at: string
+          id: string
+          learner_id: string
+          note: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          learner_id: string
+          note: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          learner_id?: string
+          note?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learner_isolation_probe_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learner_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learner_profiles: {
+        Row: {
+          created_at: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       source_locators: {
         Row: {
           chapter: string | null

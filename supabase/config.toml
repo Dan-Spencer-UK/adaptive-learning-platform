@@ -248,6 +248,14 @@ otp_expiry = 3600
 # subject = "You have been invited"
 # content_path = "./supabase/templates/invite.html"
 
+# CC-03: local passwordless email OTP sign-in. Includes {{ .Token }} (a
+# numeric code) instead of {{ .ConfirmationURL }} so signInWithOtp() sends a
+# code the learner types in, not a magic link. Local dev/test email only —
+# view sent messages at the Mailpit URL printed by `supabase status`.
+[auth.email.template.magic_link]
+subject = "Your Adaptive Learning Platform sign-in code"
+content_path = "./supabase/templates/magic_link.html"
+
 # Uncomment to customize notification email template
 # [auth.email.notification.password_changed]
 # enabled = true
