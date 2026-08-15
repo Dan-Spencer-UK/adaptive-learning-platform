@@ -3,7 +3,7 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-04M — Mobile-Native-First Architecture Transition  
+**Current implementation stage:** CC-04N — Mobile Foundation Implementation  
 **Status:** ACTIVE  
 **Last updated:** 2026-08-15
 
@@ -117,16 +117,36 @@ CC-04, corrected and expanded through CC-04A (real City & Guilds 2365-02 curricu
 
 ## CC-04M — Mobile-Native-First Architecture Transition
 
-**Status:** ACTIVE — architecture package received final Product Owner / Project Architect approval; committing and verifying CI before closure
+**Status:** COMPLETE / APPROVED
 
-CC-04M is a **governance/evaluation stage**, not an implementation stage. Its first sub-task corrected durable product-principle/architecture documentation to state native iOS/Android are primary and web is secondary. Its second sub-task produced the mobile-native technology decision and its supporting architecture, refined through a bounded correction pass (CC-04M-C) and now finally approved:
+CC-04M was a **governance/evaluation stage**, not an implementation stage. It corrected durable product-principle/architecture documentation to state native iOS/Android are primary and web is secondary, then produced and formally accepted the mobile-native technology decision and its supporting architecture (refined through a bounded correction pass, CC-04M-C, before final approval):
 
 - [`docs/architecture/adr/ADR-0001-mobile-client-technology.md`](docs/architecture/adr/ADR-0001-mobile-client-technology.md) — **status: accepted**. Decision: **Expo + React Native** (New Architecture), with alternatives (Flutter, Kotlin/Compose Multiplatform, separate native) evaluated and rejected primarily on TypeScript domain-engine reuse, offline-storage maturity, and managed release-pipeline completeness.
 - [`docs/architecture/MOBILE-ARCHITECTURE.md`](docs/architecture/MOBILE-ARCHITECTURE.md) — **status: approved**. Target client/backend topology, offline/content-sync architecture, auth/session/lifecycle/push/observability architecture, security integration, testing/build/release architecture, CC-05 constraints, and implementation sequencing.
 - [`docs/product/MOBILE-UX-ENGINEERING-STANDARD.md`](docs/product/MOBILE-UX-ENGINEERING-STANDARD.md) — **status: approved**. The durable native UX quality bar (responsiveness, motion, haptics, accessibility, low-end-Android performance).
 - [`docs/architecture/evidence/CC-04M-STALE-ASSUMPTION-AUDIT.md`](docs/architecture/evidence/CC-04M-STALE-ASSUMPTION-AUDIT.md) — repository-wide audit for durable statements assuming web is the sole/primary learner client; 47 findings classified, 11 corrected, 0 unresolved contradictions, 0 remaining STALE_UPDATE after a second pass.
 
-Out of scope (unchanged): implementing React Native/Expo or any native client; beginning CC-05; any product-code behaviour change. No mobile app, dependency, or app-store/signing credential exists yet.
+**Approved CC-04M architecture commit:** `3d9c370ee001dc80924cc259bbbd809ef70e018f`, pushed to `origin/main`. GitHub Actions CI run `31888986084` passed fully green (`conclusion: success`) across all four jobs — install/typecheck/lint/unit-test/build, dependency security audit, Supabase local database (migrations, pgTAP, generated-type diff), and Playwright smoke tests (end-to-end + accessibility) against local Supabase Auth.
+
+No mobile app, dependency, or app-store/signing credential was created as part of CC-04M; it remained documentation/comment-only throughout.
+
+## CC-04N — Mobile Foundation Implementation
+
+**Status:** ACTIVE (current task)
+
+CC-04N is the first real mobile **implementation** task, building on the CC-04M architecture. It must establish/prove:
+
+- `apps/mobile` — an Expo + React Native application (New Architecture/Hermes) boots on both iOS and Android;
+- monorepo/workspace integration alongside the existing `apps/web`;
+- the shared framework-independent TypeScript packages (`@alp/domain`, `@alp/calculation-engine`, `@alp/evidence-engine`, `@alp/diagnostic-engine`, `@alp/learning-engine`) actually import and execute inside the real Hermes runtime (not just proven portable under Node/Vitest — see `MOBILE-ARCHITECTURE.md` §8);
+- a native Supabase auth/session foundation (OS secure storage, not cookies);
+- an Expo SQLite / local-persistence foundation;
+- a basic offline/pending-sync outbox architecture proof;
+- basic native navigation;
+- a native test/build/CI pipeline (EAS);
+- first real performance baselines on the reference low-end-Android device class, to calibrate `MOBILE-UX-ENGINEERING-STANDARD.md` §9's acceptance thresholds.
+
+Explicitly **not** in scope for CC-04N: the CC-05 deterministic calculation/question engine; production learner lessons; adaptive diagnosis; the production published-content projection; full production sync; broad product feature work.
 
 ## Known blockers
 
@@ -134,13 +154,13 @@ None.
 
 ## Last accepted implementation commit
 
-CC-04/04A/04B (implementation): `c67c56746977e3fd78cfa8abb0bb0461806874ce`, pushed to `origin/main`, GitHub Actions CI run `31882580990` passed (all four jobs).
+CC-04/04A/04B (implementation): `c67c56746977e3fd78cfa8abb0bb0461806874ce`, pushed to `origin/main`, GitHub Actions CI run `31882580990` passed (all four jobs). (CC-04M's architecture commit is recorded separately above; CC-04M was documentation/comment-only, not a product-behaviour implementation checkpoint.)
 
-## Exact next task after CC-04M
+## Exact next task after CC-04N
 
-> **CC-04N — Mobile Foundation Implementation** (recommended by [`MOBILE-ARCHITECTURE.md`](docs/architecture/MOBILE-ARCHITECTURE.md) §Implementation sequencing), then **CC-05 — Deterministic Calculation/Question Engine**
+> **CC-05 — Deterministic Calculation/Question Engine**
 
-CC-04M closes once this architecture package is reviewed/approved. CC-04N is the first real mobile implementation task (Expo/React Native app boots on iOS + Android, native Supabase auth/session, shared-package consumption, local persistence, basic navigation, CI/build pipeline, baseline performance measurement) — a bounded implementation task with its own review cycle, deliberately not started by this governance-only package. CC-05 follows CC-04N. See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
+CC-05 follows CC-04N once the mobile foundation is proven, per `MOBILE-ARCHITECTURE.md` §Implementation sequencing and its CC-05 constraints (§9). See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
 ## Cold-handover gate
 
