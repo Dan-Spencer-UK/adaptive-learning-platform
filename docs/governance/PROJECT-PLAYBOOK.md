@@ -1,7 +1,7 @@
 # PROJECT-PLAYBOOK.md
 
-**Working version:** 0.11 (draft for Product Owner review)\
-**Last revised:** 2026-08-13
+**Working version:** 0.12 (draft for Product Owner review)\
+**Last revised:** 2026-08-15
 
 ## Purpose
 
@@ -703,14 +703,20 @@ suggested session, repeat an explanation, report a question, see
 progress and understand which qualification/version they are working
 against.
 
-## 6.19 Mobile-first, fast and low-friction
+## 6.19 Native-mobile-first, fast and low-friction
 
-Many learners will revise in short sessions on a phone.
+Many learners will revise in short sessions on a phone. Native iOS and
+Android are the primary learner platforms; web is secondary (see
+`docs/product/PRODUCT-PRINCIPLES.md` and
+`docs/governance/PROJECT-CONSTITUTION.md`). The Phase 1 proving slice is
+implemented as a web client to prove the deterministic domain engines
+quickly; this is a proving-slice implementation choice, not a decision
+that web is the durable primary learner surface.
 
 Design for quick entry into a useful session, readable
 questions/diagrams, easy numerical input, clear progress, responsive
-interaction, accessibility and good desktop/tablet use as well as
-mobile.
+interaction, accessibility and good tablet/desktop use as well as
+phone.
 
 The application should feel like a purpose-built learning product, not a
 database administration screen or reskinned chatbot. Performance

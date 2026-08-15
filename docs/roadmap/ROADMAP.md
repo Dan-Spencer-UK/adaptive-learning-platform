@@ -2,7 +2,7 @@
 id: PROD-ROADMAP-001
 status: approved
 owner: product-owner
-last_reviewed: 2026-08-14
+last_reviewed: 2026-08-15
 ---
 
 # Roadmap
@@ -33,6 +33,8 @@ CC-01 Repository Foundation
 CC-02 Local Supabase + Database Baseline
 CC-03 Authentication + Learner Isolation
 CC-04 Minimum Ohm's-Law Knowledge Graph
+CC-04M Mobile-Native-First Architecture Transition (governance/evaluation; no
+        native client implementation and no CC-05 work occurs inside it)
 CC-05 Deterministic Calculation / Question Engine
 CC-06 First Governed Lesson
 CC-07 Evidence + Learner State

@@ -3,7 +3,7 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-04 — Minimum Ohm's-Law Knowledge Graph  
+**Current implementation stage:** CC-04M — Mobile-Native-First Architecture Transition  
 **Status:** ACTIVE  
 **Last updated:** 2026-08-15
 
@@ -42,7 +42,7 @@ The approved technical baseline is defined by [`docs/architecture/ARCHITECTURE-O
 7. Mastery, readiness, strategy success and diagnostic confidence remain distinct.
 8. Initial learner runtime is deterministic-first and has zero runtime AI dependency.
 9. Theory learning is never represented as digitally verified practical competence.
-10. Mobile-first usability and WCAG 2.2 AA are implementation requirements.
+10. Native iOS/Android are the primary learner platforms; web is secondary. WCAG 2.2 AA is a minimum accessibility requirement on every platform.
 11. Security is designed in from the first implementation slice.
 12. Proprietary source material is not a production learner asset unless separately licensed/approved.
 
@@ -107,15 +107,23 @@ CC-03 built Supabase Auth on the CC-02 database baseline: passwordless email-OTP
 
 Both commits are pushed to `origin/main`; local and `origin/main` matched at approval, with a clean working tree. GitHub Actions CI (run `31852486647`) passed fully green at the corrective checkpoint across all four jobs — install/typecheck/lint/unit/build, dependency security audit, Supabase local database (migrations/pgTAP/types), and Playwright smoke tests against local Supabase Auth (the auth job actually ran, not skipped). Authentication and learner isolation are now proven both locally and in CI.
 
-## Current task
+## CC-04 — Minimum Ohm's-Law Knowledge Graph
 
-> **CC-04 — Minimum Ohm's-Law Knowledge Graph**
+**Status:** COMPLETE / APPROVED
 
-CC-04 populates the CC-02 governed schema with the first real Ohm's-law knowledge neighbourhood.
+CC-04, corrected and expanded through CC-04A (real City & Guilds 2365-02 curriculum grounding and genuine external provenance) and CC-04B (vocational-corpus expansion and source-governance tightening), populated the CC-02 governed schema with a curriculum-grounded proving-slice knowledge graph: City & Guilds Level 2 Diploma in Electrical Installations (2365-02), Qualification Handbook Version 1.12 (April 2026), Unit 202 — Principles of Electrical Science, spanning Learning Outcomes 1, 2, 3, 4 and 5. The corpus contains 176 assertions (146 Electrical, plus 30 reusable Foundational Maths/Physics assertions retained as horizontal knowledge even where not yet consumed by the Electrical slice), 268 assertion relationships spanning six qualitatively distinct diagnostic root-cause paths, 166 curriculum mappings, 20 misconceptions with 44 conflict links, and 288 provenance links to genuinely external, rights-classified sources (BIPM SI Brochure, UK DfE GCSE Maths subject content, OpenStax University Physics Vols 1–2, and the City & Guilds handbook as a cited proprietary reference — no assertion relies solely on internal `ORIGINAL` provenance). Content is authored as validated manifests (`@alp/content-schema`) and deterministically compiled to idempotent seed SQL. Graph health (zero cycles, zero duplicate/self/broken edges, zero unmapped Electrical assertions, zero approved-without-provenance assertions) and the full corpus are mechanically proven by 41 pgTAP assertions (`supabase/tests/database/10_unit202_knowledge_graph.sql`) plus schema-level tests, all under the same deny-by-default RLS/grant posture as every other governed table.
 
-In scope: Foundational Maths assertions, Electrical assertions, assertion relationships, source/version/locator records, curriculum mappings and misconceptions for the first Ohm's-law neighbourhood; a seed/import path for this content. Acceptance: the graph can answer required dependency queries; provenance is traceable; mappings are versioned.
+**Approved CC-04/04A/04B implementation commit:** `c67c56746977e3fd78cfa8abb0bb0461806874ce`, pushed to `origin/main`. GitHub Actions CI run `31882580990` passed fully green (`conclusion: success`) across all four jobs — install/typecheck/lint/unit-test/build, dependency security audit, Supabase local database (migrations, pgTAP, generated-type diff), and Playwright smoke tests (end-to-end + accessibility) against local Supabase Auth.
 
-Out of scope: deterministic calculation/question engine behaviour (CC-05), lesson/content implementation, learner evidence/mastery/attempts/diagnostic/remediation state, production SMTP/email provider, a production Supabase project, production deployment and runtime AI.
+## CC-04M — Mobile-Native-First Architecture Transition
+
+**Status:** ACTIVE (current task)
+
+CC-04M is a **governance/evaluation stage**, not an implementation stage. It exists because product and architecture documentation to date implicitly frames the web/Next.js client as the primary (in places, sole) learner surface, while the durable product intent is that native iOS/Android are the primary learner platforms and web is secondary. No accepted ADR yet establishes a specific mobile-native technology (React Native/Expo or otherwise), so no such technology choice is made in this stage.
+
+In scope: correcting durable product-principle/architecture documentation so it no longer implies web-first/web-only; making explicit that native quality and parity are hard release requirements and that the product must not be architected as a wrapped responsive website; recording the platform-priority decision in the governance decision log; sequencing this stage ahead of CC-05 in the roadmap.
+
+Out of scope: implementing React Native/Expo or any native client; beginning CC-05 (deterministic calculation/question engine); any product-code change; selecting or locking a specific mobile-native technology (that decision requires its own future ADR, prepared as part of completing this stage).
 
 ## Known blockers
 
@@ -123,13 +131,13 @@ None.
 
 ## Last accepted implementation commit
 
-CC-03B (corrective): `977257d73401f14914868c434625ed8f418f2514`, pushed to `origin/main`, GitHub Actions CI passed (all four jobs, including the Playwright/auth job).
+CC-04/04A/04B (implementation): `c67c56746977e3fd78cfa8abb0bb0461806874ce`, pushed to `origin/main`, GitHub Actions CI run `31882580990` passed (all four jobs).
 
-## Exact next task after CC-04
+## Exact next task after CC-04M
 
 > **CC-05 — Deterministic Calculation/Question Engine**
 
-See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
+CC-05 remains the next build-content task once CC-04M's governance/evaluation work closes. See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
 ## Cold-handover gate
 

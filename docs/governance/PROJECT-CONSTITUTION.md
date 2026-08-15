@@ -2,7 +2,7 @@
 id: GOV-001
 status: approved
 owner: product-owner
-last_reviewed: 2026-08-14
+last_reviewed: 2026-08-15
 ---
 
 # Project Constitution
@@ -57,7 +57,11 @@ Initial learner runtime has **no AI dependency**. Core teaching, question genera
 
 ## Product quality principle
 
-Backend sophistication is insufficient. The learner product must be class-leading within the narrow supported scope. Mobile UX, accessibility, clear navigation, preserved context and fast deterministic interaction are release concerns, not later polish.
+Backend sophistication is insufficient. The learner product must be class-leading within the narrow supported scope. Native mobile UX, accessibility, clear navigation, preserved context and fast deterministic interaction are release concerns, not later polish.
+
+## Client platform principle
+
+Native iOS and Android are the primary learner platforms; web is secondary. The product must not be architected as a wrapped responsive website. Shared business/domain logic must remain platform-independent so any client consumes the same governed services. The specific native client technology is not fixed by this document and requires an accepted ADR before implementation.
 
 ## Practical competence boundary
 

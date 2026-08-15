@@ -2,7 +2,7 @@
 id: ARCH-001
 status: approved
 owner: project-architect
-last_reviewed: 2026-08-14
+last_reviewed: 2026-08-15
 ---
 
 # Architecture Overview
@@ -11,8 +11,10 @@ last_reviewed: 2026-08-14
 
 The initial product is a **modular monolith**: one deployable application with strong internal module boundaries, rather than separately deployed microservices.
 
+Native iOS/Android are the primary learner platforms; web is secondary (see [`docs/product/PRODUCT-PRINCIPLES.md`](../product/PRODUCT-PRINCIPLES.md)). The Phase 1 proving slice is implemented against the web client below because it is the fastest path to proving the deterministic domain engines end-to-end; this is a proving-slice implementation choice, not a statement that the web client is the durable primary learner surface. The specific mobile-native client technology is not yet decided and requires an accepted ADR (CC-04M) before implementation begins. Whatever client(s) exist, they must consume the same application services and domain engines below rather than duplicating business logic.
+
 ```text
-Learner browser
+Learner browser (Phase 1 proving-slice client)
       ↓
 Next.js application
       ↓
@@ -31,6 +33,8 @@ Supabase PostgreSQL
       ↓
 RLS / governed persistence
 ```
+
+A future native client is expected to sit alongside or in place of the browser at the top of this diagram, consuming the same application services/domain engines/persistence layer without duplicating business logic in the client.
 
 ## Technical baseline
 

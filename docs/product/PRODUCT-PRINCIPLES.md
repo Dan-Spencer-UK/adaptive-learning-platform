@@ -2,7 +2,7 @@
 id: PROD-002
 status: approved
 owner: product-owner
-last_reviewed: 2026-08-14
+last_reviewed: 2026-08-15
 ---
 
 # Product Principles
@@ -23,7 +23,7 @@ last_reviewed: 2026-08-14
 14. **Preserve context.** Adaptive branching must make clear why the learner moved, what is being fixed and how to return.
 15. **Every interruption earns its interruption.** Do not derail learning for low-value noise.
 16. **Stable interaction, adaptive content.** Content/sequence may adapt; navigation and interaction behaviour should remain predictable.
-17. **Mobile-first.** Critical flows are designed for narrow screens first.
+17. **Native-mobile-first.** iOS and Android are the primary learner platforms; web is secondary. Native quality and parity are release requirements, not a later port. The product must not be architected as a wrapped responsive website. Critical flows are designed for native mobile first.
 18. **Accessible by default.** WCAG 2.2 AA is the minimum target.
 19. **Deterministic actions should feel immediate.** No runtime AI belongs in the launch critical path.
 20. **No unnecessary gamification.** Avoid childish mechanics, shame or decorative scoring without learning value.
