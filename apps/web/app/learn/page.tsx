@@ -8,6 +8,15 @@ export const metadata = {
   title: "Learn — Adaptive Learning Platform",
 };
 
+// This route is inherently session-dependent (reads the caller's cookies
+// via the Supabase server client) and must never be statically generated
+// or cached. `force-dynamic` makes that explicit rather than relying on
+// Next's implicit dynamic-API detection, which requires actually reaching
+// the `cookies()` call inside createClient() -- something that never
+// happens if env validation throws first during a build-time prerender
+// attempt. See apps/web/lib/supabase/env.ts.
+export const dynamic = "force-dynamic";
+
 /**
  * CC-03 protected-route proof. This is infrastructure evidence, not the
  * learner product: it exists to demonstrate that an authenticated session

@@ -10,6 +10,13 @@ export const metadata = {
   title: "Sign in — Adaptive Learning Platform",
 };
 
+// Reads the caller's cookies via the Supabase server client (to redirect
+// an already-authenticated learner straight to /learn) and must never be
+// statically generated or cached. See apps/web/app/learn/page.tsx for why
+// this must be explicit rather than relying on implicit dynamic-API
+// detection.
+export const dynamic = "force-dynamic";
+
 export default async function SignInPage({
   searchParams,
 }: {
