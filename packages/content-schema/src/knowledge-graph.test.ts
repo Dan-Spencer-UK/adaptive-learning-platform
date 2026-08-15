@@ -1,0 +1,286 @@
+import { describe, expect, it } from "vitest";
+
+import { knowledgeGraphManifestSchema, type KnowledgeGraphManifest } from "./knowledge-graph";
+
+function minimalValidManifest(): KnowledgeGraphManifest {
+  return {
+    domains: [{ code: "EL", name: "Electrical" }],
+    sources: [{ key: "src-1", title: "Original Governed Statements" }],
+    sourceVersions: [
+      {
+        key: "sv-1",
+        sourceKey: "src-1",
+        status: "CURRENT" as const,
+        rightsClassification: "ORIGINAL" as const,
+      },
+    ],
+    sourceLocators: [
+      {
+        key: "loc-1",
+        sourceVersionKey: "sv-1",
+        locatorSummary: "Electrical — Ohm's law",
+      },
+    ],
+    curricula: [{ code: "2365-02", name: "City & Guilds 2365-02" }],
+    curriculumVersions: [
+      {
+        key: "cv-1",
+        curriculumCode: "2365-02",
+        versionLabel: "proving-slice reference",
+        status: "CURRENT" as const,
+      },
+    ],
+    curriculumNodes: [
+      {
+        key: "node-qual",
+        curriculumVersionKey: "cv-1",
+        nodeType: "QUALIFICATION" as const,
+        code: "2365-02",
+        title: "City & Guilds 2365-02",
+      },
+      {
+        key: "node-unit",
+        curriculumVersionKey: "cv-1",
+        parentKey: "node-qual",
+        nodeType: "UNIT" as const,
+        code: "UNIT-202",
+        title: "Unit 202",
+      },
+    ],
+    assertions: [{ identifier: "EL-OHM-RELATIONSHIP-001", domainCode: "EL" }],
+    assertionVersions: [
+      {
+        assertionIdentifier: "EL-OHM-RELATIONSHIP-001",
+        version: 1,
+        statement: "V = I x R",
+        status: "APPROVED" as const,
+      },
+    ],
+    assertionProvenanceLinks: [
+      {
+        assertionIdentifier: "EL-OHM-RELATIONSHIP-001",
+        assertionVersion: 1,
+        sourceLocatorKey: "loc-1",
+        provenanceRole: "DEFINES" as const,
+      },
+    ],
+    assertionRelationships: [],
+    assertionCurriculumMappings: [
+      {
+        assertionIdentifier: "EL-OHM-RELATIONSHIP-001",
+        curriculumNodeKey: "node-unit",
+        mappingType: "REQUIRED_FOR" as const,
+      },
+    ],
+    misconceptions: [
+      { identifier: "MIS-EL-OHM-001", description: "Treats V, I, R as unrelated." },
+    ],
+    misconceptionConflicts: [
+      {
+        misconceptionIdentifier: "MIS-EL-OHM-001",
+        assertionIdentifier: "EL-OHM-RELATIONSHIP-001",
+      },
+    ],
+  };
+}
+
+describe("knowledgeGraphManifestSchema", () => {
+  it("accepts a minimal internally-consistent manifest", () => {
+    const result = knowledgeGraphManifestSchema.safeParse(minimalValidManifest());
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects an assertion referencing an unknown domain", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertions[0]!.domainCode = "MISSING";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues.some((i) => i.message.includes("unknown domain"))).toBe(true);
+  });
+
+  it("rejects a relationship referencing an unknown assertion", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionRelationships = [
+      {
+        fromIdentifier: "EL-OHM-RELATIONSHIP-001",
+        toIdentifier: "DOES-NOT-EXIST",
+        relationshipType: "PREREQUISITE_OF",
+      },
+    ];
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(
+      result.error?.issues.some((i) => i.message.includes("unknown assertion DOES-NOT-EXIST")),
+    ).toBe(true);
+  });
+
+  it("rejects a self-referencing relationship", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionRelationships = [
+      {
+        fromIdentifier: "EL-OHM-RELATIONSHIP-001",
+        toIdentifier: "EL-OHM-RELATIONSHIP-001",
+        relationshipType: "PREREQUISITE_OF",
+      },
+    ];
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues.some((i) => i.message.includes("self-references"))).toBe(true);
+  });
+
+  it("rejects a provenance link referencing an unknown assertion version", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionProvenanceLinks[0]!.assertionVersion = 99;
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(
+      result.error?.issues.some((i) => i.message.includes("unknown assertion version")),
+    ).toBe(true);
+  });
+
+  it("rejects a curriculum mapping referencing an unknown curriculum node", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionCurriculumMappings[0]!.curriculumNodeKey = "missing-node";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(
+      result.error?.issues.some((i) => i.message.includes("unknown curriculum node")),
+    ).toBe(true);
+  });
+
+  it("rejects a curriculum node whose parent belongs to a different curriculum version", () => {
+    const manifest = minimalValidManifest();
+    manifest.curriculumVersions.push({
+      key: "cv-2",
+      curriculumCode: "2365-02",
+      versionLabel: "another version",
+      status: "CURRENT",
+    });
+    manifest.curriculumNodes.push({
+      key: "node-other-version",
+      curriculumVersionKey: "cv-2",
+      parentKey: "node-unit",
+      nodeType: "LEARNING_OUTCOME",
+      code: "LO1",
+      title: "Learning outcome 1",
+    });
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(
+      result.error?.issues.some((i) => i.message.includes("different curriculum versions")),
+    ).toBe(true);
+  });
+
+  it("rejects a misconception conflict referencing an unknown misconception", () => {
+    const manifest = minimalValidManifest();
+    manifest.misconceptionConflicts[0]!.misconceptionIdentifier = "MISSING-MIS";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(
+      result.error?.issues.some((i) => i.message.includes("unknown misconception")),
+    ).toBe(true);
+  });
+
+  it("rejects a source_versions.rightsClassification value of UNKNOWN", () => {
+    const manifest = minimalValidManifest();
+    // @ts-expect-error -- UNKNOWN is deliberately not part of the permitted enum
+    manifest.sourceVersions[0]!.rightsClassification = "UNKNOWN";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects a duplicate assertion version", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionVersions.push({ ...manifest.assertionVersions[0]! });
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues.some((i) => i.message.includes("duplicate assertion version"))).toBe(
+      true,
+    );
+  });
+
+  it("rejects a duplicate stable assertion identifier", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertions.push({ ...manifest.assertions[0]! });
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(
+      result.error?.issues.some((i) => i.message.includes("duplicate assertion identifier")),
+    ).toBe(true);
+  });
+
+  it("rejects an APPROVED assertion version with no provenance link", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionProvenanceLinks = [];
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues.some((i) => i.message.includes("has no provenance link"))).toBe(
+      true,
+    );
+  });
+
+  it("accepts a CANDIDATE assertion version with no provenance link", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionProvenanceLinks = [];
+    manifest.assertionVersions[0]!.status = "CANDIDATE";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects a CURRENT source version whose edition looks like an unconfirmed placeholder", () => {
+    const manifest = minimalValidManifest();
+    manifest.sourceVersions[0]!.edition = "edition unconfirmed";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(
+      result.error?.issues.some((i) => i.message.includes("unconfirmed placeholder")),
+    ).toBe(true);
+  });
+
+  it("rejects a CURRENT curriculum version whose label looks like a placeholder", () => {
+    const manifest = minimalValidManifest();
+    manifest.curriculumVersions[0]!.versionLabel = "proving-slice reference (edition unconfirmed)";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(
+      result.error?.issues.some((i) => i.message.includes("unconfirmed placeholder")),
+    ).toBe(true);
+  });
+
+  it("accepts a CURRENT curriculum version with a real confirmed edition label", () => {
+    const manifest = minimalValidManifest();
+    manifest.curriculumVersions[0]!.versionLabel = "Version 1.12 (April 2026)";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+});

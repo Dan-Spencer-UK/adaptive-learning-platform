@@ -68,7 +68,13 @@ schema_paths = []
 enabled = true
 # Specifies an ordered list of seed files to load during db reset.
 # Supports glob patterns relative to supabase directory: "./seeds/*.sql"
-sql_paths = ["./seed.sql"]
+#
+# seed.sql: synthetic CC-02 structural fixtures only.
+# seed-content/*.sql: real governed proving-slice content, generated
+# deterministically by scripts/content/generate-seed.ts (CC-04 onward).
+# Kept as separate files/paths so fixtures and governed content remain
+# conceptually distinct while both load automatically on `db reset`.
+sql_paths = ["./seed.sql", "./seed-content/*.sql"]
 
 [db.network_restrictions]
 # Enable management of network restrictions.

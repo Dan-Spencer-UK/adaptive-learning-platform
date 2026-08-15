@@ -42,10 +42,18 @@ select throws_ok(
 );
 
 -- 3: two different stable assertion identities may each independently
--- have their own version 1.
+-- have their own version 1. Scoped to the two CC-02 fixture identities
+-- specifically (rather than every version-1 row in the table) because
+-- CC-04 onward legitimately adds many more real assertions that also
+-- start at version 1; the invariant under test is per-identity
+-- independence, not exclusivity of the whole table.
 select results_eq(
   $$ select assertion_id::text from public.assertion_versions
      where version = 1
+       and assertion_id in (
+         '00000000-0000-0000-0000-00000000000b',
+         '00000000-0000-0000-0000-00000000000c'
+       )
      order by assertion_id::text $$,
   $$ values
       ('00000000-0000-0000-0000-00000000000b'),

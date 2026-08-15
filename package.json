@@ -15,8 +15,8 @@
   "scripts": {
     "dev": "npm run dev --workspace apps/web",
     "build": "npm run build --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc --noEmit -p scripts/content/tsconfig.json",
+    "lint": "npm run lint --workspaces --if-present && eslint scripts/content -c eslint.config.mjs",
     "test": "npm run test:unit",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
@@ -28,7 +28,10 @@
     "db:test": "supabase test db",
     "db:lint": "supabase db lint --local --schema public --fail-on warning",
     "db:types": "supabase gen types --local > packages/domain/src/database.types.ts",
-    "db:types:check": "npm run db:types && git diff --exit-code -- packages/domain/src/database.types.ts"
+    "db:types:check": "npm run db:types && git diff --exit-code -- packages/domain/src/database.types.ts",
+    "content:generate": "node scripts/content/generate-seed.ts",
+    "content:check": "npm run content:generate && git diff --exit-code -- supabase/seed-content",
+    "content:review": "node scripts/content/generate-corpus-review.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

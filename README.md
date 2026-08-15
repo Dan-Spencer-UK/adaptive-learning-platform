@@ -76,7 +76,15 @@ npm run db:stop    # stop the local Supabase stack
 
 Schema changes live only in version-controlled SQL migrations under [`supabase/migrations`](supabase/migrations) — never edit the schema by hand in Supabase Studio. `npm run db:reset` must always reconstruct the full schema and seed data from repository state alone; if it doesn't, the migrations are incomplete. Seed data in [`supabase/seed.sql`](supabase/seed.sql) is synthetic/fictional development-fixture data, not real proving-slice content.
 
-Row Level Security is enabled on every governed knowledge/provenance/curriculum table with no policies yet defined, so the local `anon`/`authenticated` API roles can read and write nothing on them. This is the intended CC-02 deny-by-default posture, not a bug — learner-facing read policies for this content arrive with later content-delivery packages. CC-03 added the first learner-owned tables (`learner_profiles`, `learner_isolation_probe`) with self-only RLS; see below.
+Row Level Security is enabled on every governed knowledge/provenance/curriculum table with no policies yet defined, so the local `anon`/`authenticated` API roles can read and write nothing on them. This is the intended CC-02 deny-by-default posture, not a bug — learner-facing read policies for this content arrive with later content-delivery packages. CC-03 added the first learner-owned tables (`learner_profiles`, `learner_isolation_probe`) with self-only RLS; see below. CC-04/CC-04A/CC-04B populated the governed schema with a curriculum-grounded proving-slice knowledge graph (City & Guilds 2365-02 Unit 202 — Principles of Electrical Science, spanning Learning Outcomes 1, 2, 3, 4 and 5, plus reusable Foundational Maths/Physics prerequisites); it remains under the same deny-by-default posture as every other governed table.
+
+Governed knowledge-graph content is authored as structured, validated manifests under [`scripts/content/data`](scripts/content/data) and deterministically compiled to SQL under [`supabase/seed-content`](supabase/seed-content), which loads automatically on `db:reset` alongside `seed.sql`:
+
+```bash
+npm run content:generate  # validate a manifest and (re)write its supabase/seed-content/*.sql
+npm run content:check     # regenerate and fail if the committed .sql is stale
+npm run content:review    # (re)write the human-reviewable corpus inventory under scripts/content/evidence
+```
 
 ## Local authentication (CC-03)
 

@@ -430,6 +430,66 @@ export type Database = {
         }
         Relationships: []
       }
+      misconception_assertion_conflicts: {
+        Row: {
+          assertion_id: string
+          created_at: string
+          id: string
+          misconception_id: string
+        }
+        Insert: {
+          assertion_id: string
+          created_at?: string
+          id?: string
+          misconception_id: string
+        }
+        Update: {
+          assertion_id?: string
+          created_at?: string
+          id?: string
+          misconception_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "misconception_assertion_conflicts_assertion_id_fkey"
+            columns: ["assertion_id"]
+            isOneToOne: false
+            referencedRelation: "assertions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "misconception_assertion_conflicts_misconception_id_fkey"
+            columns: ["misconception_id"]
+            isOneToOne: false
+            referencedRelation: "misconceptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      misconceptions: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          identifier: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          id?: string
+          identifier: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          identifier?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       source_locators: {
         Row: {
           chapter: string | null
