@@ -3,8 +3,8 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-04N — Mobile Foundation Implementation  
-**Status:** ACTIVE  
+**Current implementation stage:** CC-05 — Deterministic Calculation / Question Engine  
+**Status:** ACTIVE (not yet implemented — governance-open only)  
 **Last updated:** 2026-08-15
 
 ## Purpose of this file
@@ -132,9 +132,11 @@ No mobile app, dependency, or app-store/signing credential was created as part o
 
 ## CC-04N — Mobile Foundation Implementation
 
-**Status:** ACTIVE — implementation complete and locally validated; **SECURITY BLOCKER RESOLVED BY EXPLICIT TEMPORARY RISK ACCEPTANCE** (see below); pending final pre-commit validation, then commit/push and CI verification before this stage can be marked COMPLETE
+**Status:** COMPLETE / APPROVED
 
 CC-04N is the first real mobile **implementation** task, building on the CC-04M architecture. Full evidence: [`docs/architecture/evidence/CC-04N-MOBILE-FOUNDATION-EVIDENCE.md`](docs/architecture/evidence/CC-04N-MOBILE-FOUNDATION-EVIDENCE.md) (implementation) and [`docs/architecture/evidence/CC-04N-IMPLEMENTATION-CONSISTENCY-AUDIT.md`](docs/architecture/evidence/CC-04N-IMPLEMENTATION-CONSISTENCY-AUDIT.md) (staleness follow-up).
+
+**Approved CC-04N implementation commit:** `43bf28287374287c63c6b054436771038a1fc456`, pushed to `origin/main`. GitHub Actions CI run [`31900574774`](https://github.com/Dan-Spencer-UK/adaptive-learning-platform/actions/runs/31900574774) passed fully green (`conclusion: success`) across all four jobs — install/typecheck/lint/unit-test/build (including the new mobile boundary check, mobile Jest tests, `expo-doctor`, and Metro bundle validation for both platforms), dependency security audit (`npm run security:audit`, NORMAL mode — the governed gate, not review mode), Supabase local database (migrations, pgTAP, generated-type diff), and Playwright smoke tests (end-to-end + accessibility) against local Supabase Auth.
 
 **What was established/proven** (see the evidence document for exact detail on which tier each result belongs to):
 
@@ -151,9 +153,15 @@ CC-04N is the first real mobile **implementation** task, building on the CC-04M 
 
 Explicitly **not** in scope for CC-04N (and not implemented): the CC-05 deterministic calculation/question engine; production learner lessons; adaptive diagnosis; the production published-content projection; full production sync; broad product feature work.
 
+**Truthfully deferred qualification items** (not waived, not fabricated, tracked for whoever next has the hardware/account access):
+- Low-end Android physical-device build and performance: **PENDING PRODUCT OWNER DEVICE QUALIFICATION**.
+- iOS physical-device/simulator build and performance: **PENDING** — requires Apple hardware and an EAS account (external prerequisite, not created as part of CC-04N).
+- On-device/emulator Hermes execution (Tier 2c): **NOT_RUN** — no Android SDK/emulator/device or macOS/Xcode exists in this environment; Metro/Hermes bytecode compilation (Tier 2b) is proven instead, which is real but distinct evidence.
+- Native E2E (Maestro): tool selected, not installed/run — no device to validate against yet.
+
 ## Known blockers
 
-None currently open. The former CC-04N security-risk-acceptance blocker was resolved on 2026-08-15 when Product Owner / Project Architect explicitly accepted `SEC-EXC-001`/`SEC-EXC-002` through 2026-09-14 (see `SECURITY-VERIFICATION-MATRIX.md` SEC-M-006b). CC-04N itself remains ACTIVE (not yet COMPLETE) pending final validation, commit/push, and green CI on the exact implementation commit.
+None currently open. The former CC-04N security-risk-acceptance blocker was resolved on 2026-08-15 when Product Owner / Project Architect explicitly accepted `SEC-EXC-001`/`SEC-EXC-002` through 2026-09-14 (see `SECURITY-VERIFICATION-MATRIX.md` SEC-M-006b), and the implementation commit's CI (run `31900574774`) passed fully green, including the security gate in NORMAL mode.
 
 ## Mandatory future review trigger
 
@@ -161,13 +169,27 @@ None currently open. The former CC-04N security-risk-acceptance blocker was reso
 
 ## Last accepted implementation commit
 
-CC-04/04A/04B (implementation): `c67c56746977e3fd78cfa8abb0bb0461806874ce`, pushed to `origin/main`, GitHub Actions CI run `31882580990` passed (all four jobs). (CC-04M's architecture commit is recorded separately above; CC-04M was documentation/comment-only, not a product-behaviour implementation checkpoint.)
+CC-04N (implementation): `43bf28287374287c63c6b054436771038a1fc456`, pushed to `origin/main`, GitHub Actions CI run `31900574774` passed (all four jobs, including the governed security gate in NORMAL mode). (CC-04/04A/04B remains the last accepted *product-domain* implementation checkpoint: `c67c56746977e3fd78cfa8abb0bb0461806874ce`, CI run `31882580990`. CC-04M's architecture commit is recorded separately above; CC-04M was documentation/comment-only.)
 
-## Exact next task after CC-04N
+## CC-05 — Deterministic Calculation / Question Engine
 
-> **CC-05 — Deterministic Calculation/Question Engine**
+**Status:** ACTIVE / CURRENT — **not yet implemented**. This section records the bounded purpose and inherited constraints for whoever picks up CC-05 next; it does not itself begin implementation.
 
-CC-05 follows CC-04N once the mobile foundation is proven, per `MOBILE-ARCHITECTURE.md` §Implementation sequencing and its CC-05 constraints (§9). See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
+CC-05 follows CC-04N now that the mobile foundation is proven, per `MOBILE-ARCHITECTURE.md` §Implementation sequencing and its CC-05 constraints (§9). See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
+
+**Bounded purpose**: a deterministic calculation/question engine — question presentation, numerical/formula answer marking, tolerance/unit handling, and distractor/misconception-aware evaluation for the existing Unit 202 knowledge graph — with zero runtime AI dependency, consistent with product invariant 8.
+
+**Inherited constraints** (from `MOBILE-ARCHITECTURE.md` §9, binding on CC-05 because native mobile is the primary learner platform):
+- Framework-independent TypeScript — no React/Next.js/DOM dependency in the engine core.
+- No Node-only runtime dependency anywhere the engine must run on-device.
+- Hermes-compatible (the engine must be loadable and executable under the same Metro/Hermes pipeline `apps/mobile` already proves, not just under Node/Vitest).
+- Deterministic: identical inputs (including any random-seed input) produce identical outputs regardless of which client/runtime calls it.
+- Inputs and outputs must be serialisable plain data — no client-runtime-specific objects.
+- No assumption of round-trip server latency inside the engine's own logic — must be safely callable from an offline mobile session.
+- Question/evidence outputs must be compatible with the versioned published-content model, attributable to a specific content-release version.
+- No mobile-UI logic, native navigation, or presentation concerns belong inside the engine — it produces data, not screens.
+
+**Explicitly not implemented by this governance entry**: no learner-facing questions, formula parsing, numerical marking, tolerance/unit rules, distractors, misconception diagnosis, lessons, published-content projection, or production sync. Implementation begins only once Product Owner / Project Architect issues a bounded CC-05 implementation task brief.
 
 ## Cold-handover gate
 
