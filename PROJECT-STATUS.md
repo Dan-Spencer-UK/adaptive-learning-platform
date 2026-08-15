@@ -3,10 +3,9 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-03 — Authentication + Learner Isolation  
+**Current implementation stage:** CC-04 — Minimum Ohm's-Law Knowledge Graph  
 **Status:** ACTIVE  
-**Next coding package:** CC-04 — Minimum Ohm's-Law Knowledge Graph  
-**Last updated:** 2026-08-14
+**Last updated:** 2026-08-15
 
 ## Purpose of this file
 
@@ -96,15 +95,27 @@ The local database is reproducible from migrations + seed alone (`supabase db re
 
 **Approved CC-02 checkpoint:** `b075fddc295e0cf32090ee6c6e4c553462c56933`, pushed to `origin/main`; local and remote HEAD matched at approval. GitHub Actions CI passed for this commit, including the Supabase database job (start, reset, pgTAP, lint, generated-type diff check, stop) on a clean GitHub-hosted runner.
 
+## CC-03 — Authentication + Learner Isolation
+
+**Status:** COMPLETE / APPROVED
+
+CC-03 built Supabase Auth on the CC-02 database baseline: passwordless email-OTP sign-in (local Mailpit mail catcher), server-side session verification via `auth.getClaims()`, a protected `/learn` route, a self-owned `learner_profiles` record and a dedicated `learner_isolation_probe` table proving cross-user RLS isolation. Product Owner / Project Architect review (CC-03A) corrected profile creation to be idempotent (`ON CONFLICT DO NOTHING`, no UPDATE privilege granted) and error-aware (unexpected DB errors are surfaced, never silently swallowed). A follow-up correction (CC-03B) made the `/learn` and `/sign-in` routes explicitly `force-dynamic` to fix a CI build regression caused by build-time env validation running against Next.js's static-prerender probe; no auth, RLS, environment-validation or secret-handling behaviour was weakened by this fix.
+
+**Primary CC-03 implementation checkpoint:** `ce9c8bb4c3581d17245d78cc247ea24cdf01857f`
+
+**Corrective CC-03B checkpoint:** `977257d73401f14914868c434625ed8f418f2514`
+
+Both commits are pushed to `origin/main`; local and `origin/main` matched at approval, with a clean working tree. GitHub Actions CI (run `31852486647`) passed fully green at the corrective checkpoint across all four jobs — install/typecheck/lint/unit/build, dependency security audit, Supabase local database (migrations/pgTAP/types), and Playwright smoke tests against local Supabase Auth (the auth job actually ran, not skipped). Authentication and learner isolation are now proven both locally and in CI.
+
 ## Current task
 
-> **CC-03 — Authentication + Learner Isolation**
+> **CC-04 — Minimum Ohm's-Law Knowledge Graph**
 
-CC-03 builds Supabase Auth on the CC-02 database baseline.
+CC-04 populates the CC-02 governed schema with the first real Ohm's-law knowledge neighbourhood.
 
-In scope: Supabase Auth configuration, passwordless email-OTP development sign-in flow, a protected learner route, a learner profile record, one learner-owned test table protected by RLS, cross-user isolation tests (User A cannot access User B's row; unauthenticated access to protected data is denied), logout/session handling. Acceptance: two test users cannot access each other's rows; unauthenticated protected access is denied.
+In scope: Foundational Maths assertions, Electrical assertions, assertion relationships, source/version/locator records, curriculum mappings and misconceptions for the first Ohm's-law neighbourhood; a seed/import path for this content. Acceptance: the graph can answer required dependency queries; provenance is traceable; mappings are versioned.
 
-Out of scope: populating real Electrical/Foundational Maths knowledge-graph content (CC-04), deterministic calculation/evidence/diagnostic/learning-engine behaviour, lesson/content implementation, production SMTP/email provider, a production Supabase project, production deployment and runtime AI.
+Out of scope: deterministic calculation/question engine behaviour (CC-05), lesson/content implementation, learner evidence/mastery/attempts/diagnostic/remediation state, production SMTP/email provider, a production Supabase project, production deployment and runtime AI.
 
 ## Known blockers
 
@@ -112,11 +123,11 @@ None.
 
 ## Last accepted implementation commit
 
-CC-02: `b075fddc295e0cf32090ee6c6e4c553462c56933`, pushed to `origin/main`, GitHub Actions CI passed.
+CC-03B (corrective): `977257d73401f14914868c434625ed8f418f2514`, pushed to `origin/main`, GitHub Actions CI passed (all four jobs, including the Playwright/auth job).
 
-## Exact next task after CC-03
+## Exact next task after CC-04
 
-> **CC-04 — Minimum Ohm's-Law Knowledge Graph**
+> **CC-05 — Deterministic Calculation/Question Engine**
 
 See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
