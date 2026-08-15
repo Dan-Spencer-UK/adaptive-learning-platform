@@ -62,7 +62,7 @@ Initial runtime: **NO LLM**. Core learner behaviour works with no model-provider
 
 ## Core internal packages
 
-Recommended framework-independent packages, intended to be consumed unmodified by both the web and the future native mobile client (confirmed 2026-08-15: none currently depend on React, Next.js, the DOM or a Node built-in module):
+Recommended framework-independent packages, intended to be consumed unmodified by both the web client and the primary native mobile client (confirmed 2026-08-15: none currently depend on React, Next.js, the DOM or a Node built-in module; CC-04N proved real consumption from `apps/mobile` under the RN/Jest pipeline and Metro/Hermes bytecode compilation):
 
 ```text
 packages/domain
@@ -73,7 +73,7 @@ packages/learning-engine
 packages/content-schema
 ```
 
-`packages/ui` is a separate, existing package that is **not** framework-independent — it is the web client's own DOM/Tailwind component package and is not consumed by a native client. A native equivalent (conceptually `packages/mobile-ui`) is expected during mobile-foundation implementation; see [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md) §Client/backend topology. Neither package is renamed by this document.
+`packages/ui` is a separate, existing package that is **not** framework-independent — it is the web (secondary) client's own DOM/Tailwind component package and is not consumed by the native mobile client. CC-04N (2026-08-15) deliberately did not create a separate `packages/mobile-ui` package at this foundation scale — native design-token/UI constants currently live directly in `apps/mobile/src/lib/tokens.ts`, explicitly labelled as not the final design system; a dedicated shared native UI package remains a candidate for later extraction if and when duplication across native screens justifies it, per [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md) §Client/backend topology. Neither package is renamed by this document.
 
 Optional internal development tooling later: `packages/content-ai`. It must not be imported by learner-runtime domain engines.
 

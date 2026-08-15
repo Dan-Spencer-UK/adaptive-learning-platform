@@ -8,8 +8,14 @@ export default defineConfig({
     include: [
       "packages/**/src/**/*.test.{ts,tsx}",
       "apps/**/*.test.{ts,tsx}",
+      "scripts/**/*.test.{ts,tsx}",
     ],
-    exclude: ["**/node_modules/**", "**/dist/**", "**/.next/**"],
+    // apps/mobile uses Jest (jest-expo), not Vitest -- see
+    // docs/architecture/MOBILE-ARCHITECTURE.md §8 tier distinction. Its
+    // *.test.ts(x) files use Jest-only globals/RN Flow syntax that Vitest
+    // cannot parse; excluded explicitly rather than narrowing the "apps/**"
+    // include pattern, so future apps are picked up by default.
+    exclude: ["**/node_modules/**", "**/dist/**", "**/.next/**", "apps/mobile/**"],
     setupFiles: ["./vitest.setup.ts"],
     css: false,
   },

@@ -55,11 +55,11 @@ npm install
 npm run dev
 ```
 
-The web app runs at http://localhost:3000.
+`npm run dev` starts the secondary web client at http://localhost:3000. For the primary native mobile client, see [`apps/mobile/README.md`](apps/mobile/README.md) and the "Local mobile app" section below.
 
-Other root commands: `npm run build`, `npm run typecheck`, `npm run lint`, `npm run test:unit`, `npm run test:e2e`, `npm run test:a11y`.
+Other root commands: `npm run build`, `npm run typecheck`, `npm run lint`, `npm run test:unit`, `npm run test:e2e`, `npm run test:a11y`. Mobile-specific commands: `npm run dev:mobile`, `npm run mobile:android`, `npm run mobile:ios`, `npm run mobile:test`, `npm run check:mobile-boundary`.
 
-The Next.js application lives in [`apps/web`](apps/web). Framework-independent packages (`domain`, `calculation-engine`, `evidence-engine`, `diagnostic-engine`, `learning-engine`, `content-schema`, `ui`, `test-fixtures`) live in [`packages/`](packages). See [`docs/development/DEVELOPMENT-WORKFLOW.md`](docs/development/DEVELOPMENT-WORKFLOW.md) for the task/review/checkpoint process.
+The Next.js (secondary) web application lives in [`apps/web`](apps/web); the Expo/React Native (primary) native application lives in [`apps/mobile`](apps/mobile) (CC-04N — see [`docs/architecture/evidence/CC-04N-MOBILE-FOUNDATION-EVIDENCE.md`](docs/architecture/evidence/CC-04N-MOBILE-FOUNDATION-EVIDENCE.md) for exactly what it currently proves). Framework-independent packages (`domain`, `calculation-engine`, `evidence-engine`, `diagnostic-engine`, `learning-engine`, `content-schema`, `ui`, `test-fixtures`) live in [`packages/`](packages) and are shared by both clients (`ui` is web/DOM-specific and consumed only by `apps/web`). See [`docs/development/DEVELOPMENT-WORKFLOW.md`](docs/development/DEVELOPMENT-WORKFLOW.md) for the task/review/checkpoint process.
 
 ## Local database (Supabase)
 
@@ -101,6 +101,18 @@ npm run dev         # starts the Next.js app at http://localhost:3000
 4. A signed-in session grants access to the protected [`/learn`](http://localhost:3000/learn) route, which also proves the learner's own profile row is readable under RLS. Signing out revokes the session server-side.
 
 Database-level auth/isolation tests (`supabase/tests/database/07_learner_schema.sql`, `08_learner_isolation.sql`) run via `npm run db:test`. Browser-level auth tests (`tests/e2e/sign-in.spec.ts`) run via `npm run test:e2e` and drive the real OTP flow through the local Mailpit API — no test-only authentication backdoor exists in application code.
+
+## Local mobile app (CC-04N)
+
+The primary native learner client (Expo + React Native, [`ADR-0001`](docs/architecture/adr/ADR-0001-mobile-client-technology.md)) lives in [`apps/mobile`](apps/mobile). It shares the same local Supabase backend as the web client, using its own native Supabase client and secure session storage (not cookies).
+
+```bash
+npm run db:start     # local Supabase, shared with the web client
+npm run dev:mobile    # starts Expo; press "a" for Android or scan the QR code
+npm run mobile:test   # mobile Jest suite (shared-package proof, SQLite/outbox, component tests)
+```
+
+See [`apps/mobile/README.md`](apps/mobile/README.md) for the full Windows developer workflow (Android emulator/physical-device connectivity, where logs appear, how to stop services) and [`docs/architecture/evidence/CC-04N-MOBILE-FOUNDATION-EVIDENCE.md`](docs/architecture/evidence/CC-04N-MOBILE-FOUNDATION-EVIDENCE.md) for exactly what has and has not been verified so far (this machine has no Android SDK/emulator or macOS/Xcode; native builds are configuration-verified only, not device-verified, until that hardware is available).
 
 ## Development model
 

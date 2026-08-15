@@ -132,25 +132,32 @@ No mobile app, dependency, or app-store/signing credential was created as part o
 
 ## CC-04N — Mobile Foundation Implementation
 
-**Status:** ACTIVE (current task)
+**Status:** ACTIVE — implementation complete and locally validated; **SECURITY BLOCKER RESOLVED BY EXPLICIT TEMPORARY RISK ACCEPTANCE** (see below); pending final pre-commit validation, then commit/push and CI verification before this stage can be marked COMPLETE
 
-CC-04N is the first real mobile **implementation** task, building on the CC-04M architecture. It must establish/prove:
+CC-04N is the first real mobile **implementation** task, building on the CC-04M architecture. Full evidence: [`docs/architecture/evidence/CC-04N-MOBILE-FOUNDATION-EVIDENCE.md`](docs/architecture/evidence/CC-04N-MOBILE-FOUNDATION-EVIDENCE.md) (implementation) and [`docs/architecture/evidence/CC-04N-IMPLEMENTATION-CONSISTENCY-AUDIT.md`](docs/architecture/evidence/CC-04N-IMPLEMENTATION-CONSISTENCY-AUDIT.md) (staleness follow-up).
 
-- `apps/mobile` — an Expo + React Native application (New Architecture/Hermes) boots on both iOS and Android;
-- monorepo/workspace integration alongside the existing `apps/web`;
-- the shared framework-independent TypeScript packages (`@alp/domain`, `@alp/calculation-engine`, `@alp/evidence-engine`, `@alp/diagnostic-engine`, `@alp/learning-engine`) actually import and execute inside the real Hermes runtime (not just proven portable under Node/Vitest — see `MOBILE-ARCHITECTURE.md` §8);
-- a native Supabase auth/session foundation (OS secure storage, not cookies);
-- an Expo SQLite / local-persistence foundation;
-- a basic offline/pending-sync outbox architecture proof;
-- basic native navigation;
-- a native test/build/CI pipeline (EAS);
-- first real performance baselines on the reference low-end-Android device class, to calibrate `MOBILE-UX-ENGINEERING-STANDARD.md` §9's acceptance thresholds.
+**What was established/proven** (see the evidence document for exact detail on which tier each result belongs to):
 
-Explicitly **not** in scope for CC-04N: the CC-05 deterministic calculation/question engine; production learner lessons; adaptive diagnosis; the production published-content projection; full production sync; broad product feature work.
+- `apps/mobile` exists (Expo `57.0.13` / React Native `0.86.2`, New Architecture and Hermes mandatory by default at this SDK, Expo Router navigation);
+- monorepo/workspace integration alongside `apps/web`, one root lockfile, zero Metro customisation needed;
+- the shared framework-independent TypeScript packages (`@alp/domain`, `@alp/calculation-engine`, `@alp/evidence-engine`, `@alp/diagnostic-engine`, `@alp/learning-engine`, `@alp/content-schema`) resolve and execute under the RN/Jest pipeline, **and** the whole app (1823/1735 modules) compiles to real Hermes bytecode via Metro (`file` confirms "Hermes JavaScript bytecode, version 98" on the exported Android/iOS bundles) — genuine on-device Hermes *execution* remains PENDING (no device/emulator in this environment);
+- a native Supabase auth/session foundation using `LargeSecureStore` (Supabase's own documented Expo/RN pattern: AES-256 key in `expo-secure-store`, encrypted session in AsyncStorage) — not cookies, not bespoke cryptography;
+- an Expo SQLite / local-persistence foundation with `PRAGMA user_version` schema versioning and a pending→synced outbox state machine, proven at the logic level (the real native SQLite binding was mechanically confirmed unavailable under Jest in this environment — `NativeDatabase is not a constructor` — so a clearly-labelled in-memory mock provides logic-level coverage; real on-device persistence remains PENDING);
+- basic native navigation (`Stack.Protected` auth boundary), a sign-in/home/dev-diagnostics shell respecting native accessibility basics;
+- CI extended with mobile boundary/Jest/expo-doctor/Metro-bundle-validation steps (fast tier only — no native cloud build added to every commit, per cost/economics guidance); `eas.json` build profiles created, no EAS account/credentials (external prerequisite);
+- performance instrumentation harness built and exercised on dev-machine timings only; low-end-Android and iOS physical-device performance are explicitly **PENDING PRODUCT OWNER DEVICE QUALIFICATION** (not waived, not substituted with a flagship emulator).
+
+**Security risk acceptance (resolved 2026-08-15)**: implementing this surfaced two genuine HIGH-severity dependency advisories (`image-size`, transitive via Expo/Metro's own toolchain, GHSA-w3rx-r6r6-pgpr and GHSA-5p2g-fcmc-qvqq) that `npm audit fix --force` can only resolve by downgrading React Native to `0.72.17` (rejected — violates ADR-0001). CC-04N-S (bounded security correction pass, 2026-08-15) confirmed **no patched image-size release exists at all** for either advisory (both GHSA records list "Patched versions: None"), and implemented a governed, tested audit-gate script (`scripts/security/check-npm-audit.mjs`, `scripts/security/npm-audit-exceptions.json`) that independently re-derives the actual dependency path from `npm ls` on every run (path drift or an additional unexpected path both fail the gate). CC-04N-S1 (hardening pass, same day) split this into two explicit modes: `npm run security:audit` (NORMAL mode, the only mode CI ever calls) permits **only `status: "accepted"`** exceptions; `npm run security:audit:review` (REVIEW mode, never used by CI) permits proposed exceptions to prove they would work once accepted. On 2026-08-15, Product Owner / Project Architect **explicitly accepted** both `SEC-EXC-001` and `SEC-EXC-002` through **2026-09-14** (not extended) — see `SECURITY-VERIFICATION-MATRIX.md` SEC-M-006b. `npm run security:audit` (NORMAL mode) now PASSES. **The underlying vulnerability itself is not resolved** — `image-size@1.2.1` is unchanged and raw `npm audit --json` remains fully unfiltered; only the risk-acceptance decision is resolved, and only for these two exact advisory/package/version/path tuples until 2026-09-14.
+
+Explicitly **not** in scope for CC-04N (and not implemented): the CC-05 deterministic calculation/question engine; production learner lessons; adaptive diagnosis; the production published-content projection; full production sync; broad product feature work.
 
 ## Known blockers
 
-None.
+None currently open. The former CC-04N security-risk-acceptance blocker was resolved on 2026-08-15 when Product Owner / Project Architect explicitly accepted `SEC-EXC-001`/`SEC-EXC-002` through 2026-09-14 (see `SECURITY-VERIFICATION-MATRIX.md` SEC-M-006b). CC-04N itself remains ACTIVE (not yet COMPLETE) pending final validation, commit/push, and green CI on the exact implementation commit.
+
+## Mandatory future review trigger
+
+- **2026-09-14 — accepted security-exception expiry**: `SEC-EXC-001` and `SEC-EXC-002` (`image-size` HIGH-severity advisories, `scripts/security/npm-audit-exceptions.json`) expire on this date and are not auto-renewed. `npm run security:audit` (NORMAL mode, what CI runs) will automatically fail again once expired, an upstream patch changes the dependency tree, or the dependency path drifts. Requires a fresh, explicit Product Owner / Project Architect risk-acceptance decision (or an upstream fix, or a directed alternative) at or before that date — see `SECURITY-VERIFICATION-MATRIX.md` SEC-M-006b.
 
 ## Last accepted implementation commit
 

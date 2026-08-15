@@ -36,6 +36,22 @@ jobs:
       - name: Unit tests
         run: npm run test:unit
 
+      - name: Mobile/web UI boundary check
+        run: npm run check:mobile-boundary
+
+      - name: Mobile unit/component tests (Jest)
+        run: npm run mobile:test
+
+      - name: Mobile Expo config sanity (expo-doctor)
+        working-directory: apps/mobile
+        run: npx expo-doctor
+
+      - name: Mobile Metro bundle validation (Android + iOS, no native SDK required)
+        working-directory: apps/mobile
+        run: |
+          npx expo export --platform android --output-dir /tmp/expo-export-android
+          npx expo export --platform ios --output-dir /tmp/expo-export-ios
+
       - name: Build
         run: npm run build
 
@@ -96,8 +112,8 @@ jobs:
       - name: Install dependencies (reproducible)
         run: npm ci
 
-      - name: npm audit (high and critical)
-        run: npm audit --audit-level=high
+      - name: npm audit (high and critical, governed exception gate)
+        run: npm run security:audit
 
   database:
     name: Supabase local database (migrations, pgTAP, types)
