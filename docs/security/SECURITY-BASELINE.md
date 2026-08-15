@@ -32,7 +32,7 @@ Authentication proves identity; authorisation decides access. Protected reads/mu
 
 ## Secrets
 
-No production secrets in Git. Never expose service-role keys, SMTP credentials, AI provider keys, auth tokens or privileged DB credentials to browser bundles.
+No production secrets in Git. Never expose service-role keys, SMTP credentials, AI provider keys, auth tokens or privileged DB credentials to any client bundle — browser (web) or app (native mobile) alike.
 
 ## Input and resource control
 
@@ -48,7 +48,7 @@ Lock dependencies, use reproducible CI install, scan dependencies/secrets, keep 
 
 ## Production browser/application controls
 
-No debug/admin bypasses or default credentials. Deliberately configure HTTPS/HSTS where appropriate, CSP, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, frame protection and framework-appropriate CSRF/XSS protections.
+This section's specific controls (HTTPS/HSTS, CSP, CSRF/XSS protections) are web-client controls. No debug/admin bypasses or default credentials, on any client. For the web client: deliberately configure HTTPS/HSTS where appropriate, CSP, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, frame protection and framework-appropriate CSRF/XSS protections. For the native mobile client, the equivalent controls (secure on-device credential storage, deep-link target validation, no service-role credential in the app bundle) are in [`docs/architecture/MOBILE-ARCHITECTURE.md`](../architecture/MOBILE-ARCHITECTURE.md) §Security integration — the underlying principles (deny by default, no debug bypass, no client-side authorisation) are the same baseline, applied per client type.
 
 ## Privacy
 

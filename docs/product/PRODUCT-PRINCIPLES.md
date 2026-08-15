@@ -24,7 +24,7 @@ last_reviewed: 2026-08-15
 15. **Every interruption earns its interruption.** Do not derail learning for low-value noise.
 16. **Stable interaction, adaptive content.** Content/sequence may adapt; navigation and interaction behaviour should remain predictable.
 17. **Native-mobile-first.** iOS and Android are the primary learner platforms; web is secondary. Native quality and parity are release requirements, not a later port. The product must not be architected as a wrapped responsive website. Critical flows are designed for native mobile first.
-18. **Accessible by default.** WCAG 2.2 AA is the minimum target.
+18. **Accessible by default.** WCAG 2.2 AA is the minimum target for the web client; the native clients meet the equivalent native-platform accessibility standard (screen reader, Dynamic Type/scaling, focus order, contrast, reduced motion — see [`docs/product/MOBILE-UX-ENGINEERING-STANDARD.md`](MOBILE-UX-ENGINEERING-STANDARD.md)). Accessibility is required on every platform; the specific standard cited differs because WCAG is a web-content standard.
 19. **Deterministic actions should feel immediate.** No runtime AI belongs in the launch critical path.
 20. **No unnecessary gamification.** Avoid childish mechanics, shame or decorative scoring without learning value.
 21. **Calm adult tone.** Wrong answers are evidence, not failure theatre.

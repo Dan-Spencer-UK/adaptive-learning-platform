@@ -35,6 +35,9 @@ CC-03 Authentication + Learner Isolation
 CC-04 Minimum Ohm's-Law Knowledge Graph
 CC-04M Mobile-Native-First Architecture Transition (governance/evaluation; no
         native client implementation and no CC-05 work occurs inside it)
+CC-04N Mobile Foundation Implementation (first native app build/boot on the
+        architecture CC-04M establishes; see docs/architecture/MOBILE-ARCHITECTURE.md
+        §Implementation sequencing; still not CC-05)
 CC-05 Deterministic Calculation / Question Engine
 CC-06 First Governed Lesson
 CC-07 Evidence + Learner State
@@ -65,7 +68,9 @@ Broader Electrical qualifications; post-qualified electrician learning; Engineer
 
 ## Anti-scope-creep before Phase 1 exit
 
-Do not build every Electrical qualification, Engineering product, full Functional Skills Maths product, native mobile app, enterprise SSO, employer HR tooling, full LMS/ePortfolio, social features, unrestricted AI tutor, proprietary content library, microservices, Kubernetes or dedicated graph DB.
+Do not build every Electrical qualification, Engineering product, full Functional Skills Maths product, enterprise SSO, employer HR tooling, full LMS/ePortfolio, social features, unrestricted AI tutor, proprietary content library, microservices, Kubernetes or dedicated graph DB.
+
+The native mobile app is no longer scope-creep: native iOS/Android are the primary learner platforms (CC-04M, [`ADR-0001`](../architecture/adr/ADR-0001-mobile-client-technology.md)) and a bounded mobile-foundation implementation package is expected in this sequence, per `PROJECT-STATUS.md`. This section still governs premature *scope* (e.g. building out full native feature breadth ahead of the proving slice), not whether a native client exists at all.
 
 ## Current work
 

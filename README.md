@@ -44,7 +44,7 @@ The first implementation proves the architecture through a deliberately narrow E
 
 ## Technical baseline
 
-The platform is built on the approved TypeScript/Next.js/Supabase stack, with a deterministic, no-runtime-AI learner engine. The full technical baseline — languages, frameworks, hosting, testing tools and internal package structure — is owned by [`docs/architecture/ARCHITECTURE-OVERVIEW.md`](docs/architecture/ARCHITECTURE-OVERVIEW.md); this README does not maintain an independent copy.
+Native iOS/Android are the primary learner platforms; this repository's current implementation is the secondary web client (TypeScript/Next.js) plus the shared Supabase backend, with a deterministic, no-runtime-AI learner engine. The full technical baseline — languages, frameworks, hosting, testing tools and internal package structure for both the web client and the native mobile client — is owned by [`docs/architecture/ARCHITECTURE-OVERVIEW.md`](docs/architecture/ARCHITECTURE-OVERVIEW.md) and [`docs/architecture/MOBILE-ARCHITECTURE.md`](docs/architecture/MOBILE-ARCHITECTURE.md); this README does not maintain an independent copy.
 
 ## Development setup
 

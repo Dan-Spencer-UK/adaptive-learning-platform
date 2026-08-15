@@ -864,7 +864,7 @@ satisfied that the following are true.
 
 ### User experience
 
--   The product is polished and coherent on mobile and desktop.
+-   The product is polished and coherent across native iOS/Android (primary) and the secondary web client (mobile and desktop web).
 -   Common journeys are fast and low-friction.
 -   Accessibility has been considered and tested.
 -   Users do not need to understand the underlying knowledge
@@ -1124,7 +1124,7 @@ Primary responsibilities include:
 -   optional AI tutoring;
 -   progress and readiness views;
 -   learner control over adaptive recommendations;
--   mobile and desktop experience;
+-   native mobile experience (primary) and web experience (secondary);
 -   accessibility;
 -   interaction design;
 -   perceived speed and clarity;
@@ -2317,7 +2317,7 @@ governed documents as the project matures.
 
 ## UX engineering and interaction quality baseline
 
-The learner-facing product must not treat UX as post-build polish.
+The learner-facing product must not treat UX as post-build polish. The durable rules below are written for the web client (they use web-specific units/mechanisms such as CSS pixels and page reflow). The native mobile client — the primary learner platform — has its own equivalent standard in `docs/product/MOBILE-UX-ENGINEERING-STANDARD.md`, which is stricter, not looser, than what follows.
 
 Durable rules:
 
@@ -2325,7 +2325,8 @@ Durable rules:
 - target WCAG 2.2 AA as the minimum accessibility baseline;
 - ordinary learner content must reflow without horizontal scrolling;
 - frequent standalone touch targets should be approximately 44×44 CSS
-  pixels or larger where practical;
+  pixels or larger where practical (web client; the native client's
+  touch-target rule is in `docs/product/MOBILE-UX-ENGINEERING-STANDARD.md`);
 - adaptive intelligence may change content/sequence but interaction
   patterns must remain stable and predictable;
 - preserve learner context through diagnostic/remediation branches;
@@ -2454,6 +2455,10 @@ providers are unavailable.
 
 
 ## Open-source UI primitives and governed development environment
+
+This section describes the web client. It does not apply to the native
+mobile client, whose UI/design-system rules are in
+`docs/product/MOBILE-UX-ENGINEERING-STANDARD.md`.
 
 The project should not waste founder/AI development effort rebuilding
 solved commodity UI mechanics.

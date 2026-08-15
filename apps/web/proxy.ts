@@ -18,6 +18,10 @@ const SIGN_IN_PATH = "/sign-in";
  *
  * This is defence-in-depth only. The authoritative authorization check for
  * `/learn` happens again, server-side, in that route's own page component.
+ *
+ * This cookie-based session refresh is specific to this Next.js web client.
+ * The native mobile client's session persistence is a different mechanism
+ * (OS secure storage, not cookies) -- see docs/architecture/MOBILE-ARCHITECTURE.md.
  */
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({

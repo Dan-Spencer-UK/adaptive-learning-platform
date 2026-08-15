@@ -86,7 +86,9 @@ Initial learner runtime has no LLM dependency. Do not add model API calls to lea
 
 ## UI implementation
 
-Use semantic HTML first, selective official shadcn/ui primitives, project design tokens and approved accessibility/mobile rules. Do not import entire themes or generic dashboard templates.
+**Web client:** use semantic HTML first, selective official shadcn/ui primitives, project design tokens and approved accessibility/mobile rules. Do not import entire themes or generic dashboard templates.
+
+**Native mobile client:** these HTML/shadcn-specific rules do not apply. Follow `docs/product/MOBILE-UX-ENGINEERING-STANDARD.md` and `docs/architecture/MOBILE-ARCHITECTURE.md` instead.
 
 ## Completion
 

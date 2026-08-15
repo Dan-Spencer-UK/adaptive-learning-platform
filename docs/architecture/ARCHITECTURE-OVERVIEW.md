@@ -11,7 +11,7 @@ last_reviewed: 2026-08-15
 
 The initial product is a **modular monolith**: one deployable application with strong internal module boundaries, rather than separately deployed microservices.
 
-Native iOS/Android are the primary learner platforms; web is secondary (see [`docs/product/PRODUCT-PRINCIPLES.md`](../product/PRODUCT-PRINCIPLES.md)). The Phase 1 proving slice is implemented against the web client below because it is the fastest path to proving the deterministic domain engines end-to-end; this is a proving-slice implementation choice, not a statement that the web client is the durable primary learner surface. The specific mobile-native client technology is not yet decided and requires an accepted ADR (CC-04M) before implementation begins. Whatever client(s) exist, they must consume the same application services and domain engines below rather than duplicating business logic.
+Native iOS/Android are the primary learner platforms; web is secondary (see [`docs/product/PRODUCT-PRINCIPLES.md`](../product/PRODUCT-PRINCIPLES.md)). The Phase 1 proving slice is implemented against the web client below because it is the fastest path to proving the deterministic domain engines end-to-end; this is a proving-slice implementation choice, not a statement that the web client is the durable primary learner surface. The mobile-native client technology is decided in [`ADR-0001`](adr/ADR-0001-mobile-client-technology.md) (Expo + React Native; status: accepted); the resulting target topology, offline/sync architecture and testing/release architecture are in [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md) (status: approved). Whatever client(s) exist, they must consume the same application services and domain engines below rather than duplicating business logic.
 
 ```text
 Learner browser (Phase 1 proving-slice client)
@@ -38,21 +38,23 @@ A future native client is expected to sit alongside or in place of the browser a
 
 ## Technical baseline
 
+This is the baseline for the current web client and shared backend. The native mobile client's baseline (Expo + React Native) is decided separately in [`ADR-0001`](adr/ADR-0001-mobile-client-technology.md) (accepted) and detailed in [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md); the two are not the same list, though they share TypeScript, Zod, Supabase and the underlying domain-engine packages.
+
 - TypeScript strict mode
-- Next.js App Router + React
-- Tailwind CSS v4
+- Next.js App Router + React (web client)
+- Tailwind CSS v4 (web client)
 - project-owned design tokens/components
-- semantic HTML first
-- selective shadcn/ui open-code primitives
-- Supabase PostgreSQL + Auth + RLS
-- SQL migrations + generated TypeScript DB types
+- semantic HTML first (web client)
+- selective shadcn/ui open-code primitives (web client)
+- Supabase PostgreSQL + Auth + RLS (shared backend, both clients)
+- SQL migrations + generated TypeScript DB types (shared backend)
 - no ORM initially
-- Vercel hosting
-- Zod v4
-- Vitest + React Testing Library
-- Playwright + axe
-- pgTAP
-- GitHub Actions
+- Vercel hosting (web client)
+- Zod v4 (shared)
+- Vitest + React Testing Library (web client unit/component tests)
+- Playwright + axe (web client E2E/accessibility; not a mobile test strategy — see `MOBILE-ARCHITECTURE.md` §Testing/build/release)
+- pgTAP (shared backend)
+- GitHub Actions (web client CI; mobile CI is a separate target, see `MOBILE-ARCHITECTURE.md`)
 
 ## Learner-runtime AI boundary
 
@@ -60,7 +62,7 @@ Initial runtime: **NO LLM**. Core learner behaviour works with no model-provider
 
 ## Core internal packages
 
-Recommended framework-independent packages:
+Recommended framework-independent packages, intended to be consumed unmodified by both the web and the future native mobile client (confirmed 2026-08-15: none currently depend on React, Next.js, the DOM or a Node built-in module):
 
 ```text
 packages/domain
@@ -70,6 +72,8 @@ packages/diagnostic-engine
 packages/learning-engine
 packages/content-schema
 ```
+
+`packages/ui` is a separate, existing package that is **not** framework-independent — it is the web client's own DOM/Tailwind component package and is not consumed by a native client. A native equivalent (conceptually `packages/mobile-ui`) is expected during mobile-foundation implementation; see [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md) §Client/backend topology. Neither package is renamed by this document.
 
 Optional internal development tooling later: `packages/content-ai`. It must not be imported by learner-runtime domain engines.
 
@@ -82,10 +86,10 @@ calculation / evidence / diagnosis / learning
   ↓
 application services
   ↓
-Next.js API/UI
+Next.js API/UI  (web)   |   native mobile UI  (mobile)
 ```
 
-UI is not the source of business rules. Domain engines do not import Next.js.
+UI is not the source of business rules, on either client. Domain engines do not import Next.js, React Native, or any client framework.
 
 ## Knowledge model
 
@@ -155,7 +159,7 @@ Do not add Redis/Kafka/etc. initially. If durable async work becomes necessary, 
 
 ## UI architecture
 
-Open-source primitives solve mechanics, not product design. Use shadcn/ui selectively. The project owns lesson UX, adaptive branching, remediation return, progress/readiness, visual identity and accessibility. Do not import a wholesale SaaS theme.
+This section describes the web client. Open-source primitives solve mechanics, not product design. Use shadcn/ui selectively. The project owns lesson UX, adaptive branching, remediation return, progress/readiness, visual identity and accessibility. Do not import a wholesale SaaS theme. The equivalent native mobile UI architecture is [`MOBILE-UX-ENGINEERING-STANDARD.md`](../product/MOBILE-UX-ENGINEERING-STANDARD.md) and [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md) — it is a separate, native-specific design system, not a shadcn/ui port.
 
 ## Architecture-change rule
 
