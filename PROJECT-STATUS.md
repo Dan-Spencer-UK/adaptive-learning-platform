@@ -169,7 +169,7 @@ None currently open. The former CC-04N security-risk-acceptance blocker was reso
 
 ## Last accepted implementation commit
 
-CC-05A (implementation): `9133c4fc2665114193fa1363baff90e0b25ac5e8`, pushed to `origin/main`, GitHub Actions CI run `31946117054` passed (all four jobs, including the new `content:pedagogy:check` gate and the governed security gate in NORMAL mode). (CC-04N remains the last accepted *mobile-foundation* implementation checkpoint: `43bf28287374287c63c6b054436771038a1fc456`, CI run `31900574774`. CC-04/04A/04B remains the last accepted *product-domain knowledge-graph* checkpoint: `c67c56746977e3fd78cfa8abb0bb0461806874ce`, CI run `31882580990`. CC-04M's architecture commit is recorded separately above; CC-04M was documentation/comment-only.)
+CC-05B (implementation): `47e4448028cc6a7466140af6e087a328f4f6afc0`, pushed to `origin/main`, GitHub Actions CI run `31952530269` passed (all four jobs, including the two new engine-consistency gate steps `engine:prove:check`/`engine:dimensions:check`, the pre-existing `content:pedagogy:check` gate, and the governed security gate in NORMAL mode). (CC-05A remains the last accepted *pedagogical knowledge structure* checkpoint: `9133c4fc2665114193fa1363baff90e0b25ac5e8`, CI run `31946117054`. CC-04N remains the last accepted *mobile-foundation* implementation checkpoint: `43bf28287374287c63c6b054436771038a1fc456`, CI run `31900574774`. CC-04/04A/04B remains the last accepted *product-domain knowledge-graph* checkpoint: `c67c56746977e3fd78cfa8abb0bb0461806874ce`, CI run `31882580990`. CC-04M's architecture commit is recorded separately above; CC-04M was documentation/comment-only.)
 
 ## CC-05 — Deterministic Calculation / Question Engine
 
@@ -220,7 +220,7 @@ CC-05B implements the framework-independent deterministic engine that consumes C
 - 140 automated tests (packages/calculation-engine + scripts/content, all Vitest, up from 110) plus 2 mobile Jest tests — full repository `npm run test:unit` at 230/230 (Vitest) and mobile Jest at 11/11.
 - **Not implemented** (CC-05C scope, not started): no diagram/formula renderer, no native lesson UI, no adaptive scheduling, no production sync, no learner-runtime AI.
 
-**Implementation commit / CI**: to be recorded once the reviewed implementation is committed, pushed, and its CI run confirmed green (this closeout task). `engine:prove:check` and `engine:dimensions:check` are wired into CI (`.github/workflows/ci.yml`) as durable engine-consistency gates, immediately after `content:pedagogy:check`.
+**Implementation commit / CI**: `47e4448028cc6a7466140af6e087a328f4f6afc0`, pushed to `origin/main`, GitHub Actions CI run [`31952530269`](https://github.com/Dan-Spencer-UK/adaptive-learning-platform/actions/runs/31952530269) passed fully green (`conclusion: success`) across all four jobs, including the two new durable engine-consistency gate steps (`engine:prove:check`, `engine:dimensions:check`, wired into `.github/workflows/ci.yml` immediately after `content:pedagogy:check`), the mobile/boundary/Expo-doctor/Metro-export steps, the web build, and the governed dependency-security gate in NORMAL mode.
 
 ## Cold-handover gate
 
