@@ -1,6 +1,6 @@
 # CC-05A Pedagogical Blueprint Backfill — Evidence
 
-**Status: APPROVED / COMPLETE** (Product Owner / Project Architect, 2026-08-16). See `PROJECT-STATUS.md`'s CC-05A section for the implementation commit SHA and CI run once pushed.
+**Status: APPROVED / COMPLETE** (Product Owner / Project Architect, 2026-08-16). Implementation commit `9133c4fc2665114193fa1363baff90e0b25ac5e8`, GitHub Actions CI run [`31946117054`](https://github.com/Dan-Spencer-UK/adaptive-learning-platform/actions/runs/31946117054) passed fully green, including the `content:pedagogy:check` CI gate. See `PROJECT-STATUS.md`'s CC-05A section for full detail.
 
 Implementation evidence for CC-05A — Pedagogical Knowledge Structure & Blueprint Backfill, the first bounded sub-package of CC-05, built on the approved design specification [`docs/architecture/CC-05-PEDAGOGICAL-KNOWLEDGE-AND-QUESTION-ARCHITECTURE.md`](../CC-05-PEDAGOGICAL-KNOWLEDGE-AND-QUESTION-ARCHITECTURE.md).
 

@@ -3,7 +3,7 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-05 — Deterministic Calculation / Question Engine (sub-package CC-05A: review-ready, uncommitted)  
+**Current implementation stage:** CC-05 — Deterministic Calculation / Question Engine (sub-package CC-05A: APPROVED / COMPLETE; CC-05B next, NOT STARTED)  
 **Status:** ACTIVE  
 **Last updated:** 2026-08-16
 
@@ -169,11 +169,11 @@ None currently open. The former CC-04N security-risk-acceptance blocker was reso
 
 ## Last accepted implementation commit
 
-CC-04N (implementation): `43bf28287374287c63c6b054436771038a1fc456`, pushed to `origin/main`, GitHub Actions CI run `31900574774` passed (all four jobs, including the governed security gate in NORMAL mode). (CC-04/04A/04B remains the last accepted *product-domain* implementation checkpoint: `c67c56746977e3fd78cfa8abb0bb0461806874ce`, CI run `31882580990`. CC-04M's architecture commit is recorded separately above; CC-04M was documentation/comment-only.)
+CC-05A (implementation): `9133c4fc2665114193fa1363baff90e0b25ac5e8`, pushed to `origin/main`, GitHub Actions CI run `31946117054` passed (all four jobs, including the new `content:pedagogy:check` gate and the governed security gate in NORMAL mode). (CC-04N remains the last accepted *mobile-foundation* implementation checkpoint: `43bf28287374287c63c6b054436771038a1fc456`, CI run `31900574774`. CC-04/04A/04B remains the last accepted *product-domain knowledge-graph* checkpoint: `c67c56746977e3fd78cfa8abb0bb0461806874ce`, CI run `31882580990`. CC-04M's architecture commit is recorded separately above; CC-04M was documentation/comment-only.)
 
 ## CC-05 — Deterministic Calculation / Question Engine
 
-**Status:** ACTIVE / CURRENT. CC-05A (pedagogical knowledge structure & blueprint backfill) is **APPROVED / COMPLETE** (Product Owner / Project Architect approval recorded 2026-08-16; implementation commit pending in this same task — see §CC-05A below for the exact commit SHA and CI run once pushed). CC-05B (deterministic engine) is the next authorised sub-package and has **NOT STARTED**. CC-05C (native integration) has **NOT STARTED**.
+**Status:** ACTIVE / CURRENT. CC-05A (pedagogical knowledge structure & blueprint backfill) is **APPROVED / COMPLETE** (Product Owner / Project Architect approval recorded 2026-08-16; implementation commit `9133c4fc2665114193fa1363baff90e0b25ac5e8`, CI run `31946117054` green — see §CC-05A below for full detail). CC-05B (deterministic engine) is the next authorised sub-package and has **NOT STARTED**. CC-05C (native integration) has **NOT STARTED**.
 
 CC-05 follows CC-04N now that the mobile foundation is proven, per `MOBILE-ARCHITECTURE.md` §Implementation sequencing and its CC-05 constraints (§9). See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
@@ -203,7 +203,7 @@ CC-05A adds a governed pedagogical layer between the existing CC-04/CC-04A/CC-04
 - **No assertion wording, provenance, rights, curriculum mapping, relationship or identifier in the CC-04 corpus was modified** — mechanically confirmed (zero diff in `cc04-unit202-electrical-science.ts`) and test-asserted.
 - **Not implemented** (CC-05B/C scope, not started): no runtime question-generation engine, no deterministic PRNG, no formula calculation engine, no marking engine, no diagram/formula renderer, no native learner-facing integration/UI, no adaptive diagnosis.
 
-**Implementation commit / CI**: recorded once pushed — see the "Last accepted implementation commit" section below.
+**Implementation commit / CI**: `9133c4fc2665114193fa1363baff90e0b25ac5e8`, pushed to `origin/main`, GitHub Actions CI run [`31946117054`](https://github.com/Dan-Spencer-UK/adaptive-learning-platform/actions/runs/31946117054) passed fully green (`conclusion: success`) across all four jobs, including the new `content:pedagogy:check` gate step and the governed dependency-security gate in NORMAL mode.
 
 ## Cold-handover gate
 
