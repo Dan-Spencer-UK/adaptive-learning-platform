@@ -3,9 +3,9 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-05 — Deterministic Calculation / Question Engine  
-**Status:** ACTIVE (not yet implemented — governance-open only)  
-**Last updated:** 2026-08-15
+**Current implementation stage:** CC-05 — Deterministic Calculation / Question Engine (sub-package CC-05A: review-ready, uncommitted)  
+**Status:** ACTIVE  
+**Last updated:** 2026-08-16
 
 ## Purpose of this file
 
@@ -173,7 +173,7 @@ CC-04N (implementation): `43bf28287374287c63c6b054436771038a1fc456`, pushed to `
 
 ## CC-05 — Deterministic Calculation / Question Engine
 
-**Status:** ACTIVE / CURRENT — **not yet implemented**. This section records the bounded purpose and inherited constraints for whoever picks up CC-05 next; it does not itself begin implementation.
+**Status:** ACTIVE / CURRENT. CC-05A (pedagogical knowledge structure & blueprint backfill) is **APPROVED / COMPLETE** (Product Owner / Project Architect approval recorded 2026-08-16; implementation commit pending in this same task — see §CC-05A below for the exact commit SHA and CI run once pushed). CC-05B (deterministic engine) is the next authorised sub-package and has **NOT STARTED**. CC-05C (native integration) has **NOT STARTED**.
 
 CC-05 follows CC-04N now that the mobile foundation is proven, per `MOBILE-ARCHITECTURE.md` §Implementation sequencing and its CC-05 constraints (§9). See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
@@ -190,6 +190,20 @@ CC-05 follows CC-04N now that the mobile foundation is proven, per `MOBILE-ARCHI
 - No mobile-UI logic, native navigation, or presentation concerns belong inside the engine — it produces data, not screens.
 
 **Explicitly not implemented by this governance entry**: no learner-facing questions, formula parsing, numerical marking, tolerance/unit rules, distractors, misconception diagnosis, lessons, published-content projection, or production sync. Implementation begins only once Product Owner / Project Architect issues a bounded CC-05 implementation task brief.
+
+### CC-05A — Pedagogical Knowledge Structure & Blueprint Backfill
+
+**Status:** APPROVED / COMPLETE (Product Owner / Project Architect, 2026-08-16).
+
+CC-05A adds a governed pedagogical layer between the existing CC-04/CC-04A/CC-04B Unit 202 corpus and the future CC-05B engine, per the approved [`CC-05-PEDAGOGICAL-KNOWLEDGE-AND-QUESTION-ARCHITECTURE.md`](docs/architecture/CC-05-PEDAGOGICAL-KNOWLEDGE-AND-QUESTION-ARCHITECTURE.md) design. Full evidence: [`docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md`](docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md).
+
+- New schema: `packages/content-schema/src/pedagogy.ts` (`AssertionFamily`, `Capability`, `FormulaFamily`, `DiagramBlueprint`, `QuestionBlueprint` and 12 further governed content types).
+- New content: `scripts/content/data/cc05a-pedagogy-unit202.ts` — a one-time backfill of the existing 176-assertion corpus into 23 assertion families (17 assessable, 6 explicitly teaching-only with documented reasons), 9 formula families, 7 diagram blueprints, and 84 pedagogically exhaustive, normalised question blueprints. **176/176 assertions classified** (172 with family membership, 4 explicitly standalone).
+- Mechanical gate `npm run content:pedagogy:check` (`scripts/content/validate-pedagogy.ts`) is wired into CI (`.github/workflows/ci.yml`) and independently recomputes coverage from the live corpus + pedagogy manifests on every commit. **0 mechanical coverage gaps**: unclassified learner assertions, formula families missing required forms, unresolved required diagram references, assessable families with zero question blueprints, required capabilities without assessment coverage.
+- **No assertion wording, provenance, rights, curriculum mapping, relationship or identifier in the CC-04 corpus was modified** — mechanically confirmed (zero diff in `cc04-unit202-electrical-science.ts`) and test-asserted.
+- **Not implemented** (CC-05B/C scope, not started): no runtime question-generation engine, no deterministic PRNG, no formula calculation engine, no marking engine, no diagram/formula renderer, no native learner-facing integration/UI, no adaptive diagnosis.
+
+**Implementation commit / CI**: recorded once pushed — see the "Last accepted implementation commit" section below.
 
 ## Cold-handover gate
 

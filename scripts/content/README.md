@@ -37,6 +37,27 @@ assertion with its statement, version/status, direct prerequisites/
 dependents, curriculum mapping(s), provenance and any misconception
 links. Development/review evidence only, never rendered to learners.
 
+## Pedagogical blueprint backfill (CC-05A onward)
+
+`data/cc05a-pedagogy-unit202.ts` holds the governed pedagogical layer that
+sits between the knowledge graph above and the future CC-05B deterministic
+engine -- assertion families, capabilities, formula families, teaching/
+diagram/mnemonic representations and question blueprints, typed against
+`@alp/content-schema`'s `pedagogyManifestSchema`
+(`packages/content-schema/src/pedagogy.ts`). It never redefines an
+assertion's statement/provenance/rights/curriculum mapping; it only
+references governed assertion identifiers by string.
+
+`validate-pedagogy.ts` independently recomputes coverage from the live
+knowledge-graph and pedagogy manifests (never trusts either manifest's own
+claims) and reports/enforces the mechanical gates described in
+`docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md`:
+
+```bash
+npm run content:pedagogy:report   # print the coverage report
+npm run content:pedagogy:check    # same, exit non-zero if any gate is non-zero
+```
+
 Future content-production tooling (e.g. the CC-10 AI content pipeline
 proof: candidate generation, independent verification) belongs here too
 when its owning CC package is implemented.

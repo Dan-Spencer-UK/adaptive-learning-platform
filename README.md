@@ -86,6 +86,13 @@ npm run content:check     # regenerate and fail if the committed .sql is stale
 npm run content:review    # (re)write the human-reviewable corpus inventory under scripts/content/evidence
 ```
 
+CC-05A (see [`docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md`](docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md)) adds a governed pedagogical layer -- assertion families, capabilities, formula families, diagram blueprints, question blueprints -- on top of the knowledge graph, under [`scripts/content/data/cc05a-pedagogy-unit202.ts`](scripts/content/data/cc05a-pedagogy-unit202.ts):
+
+```bash
+npm run content:pedagogy:report  # print the coverage report (families, formula/diagram/question-blueprint counts, gaps)
+npm run content:pedagogy:check   # same computation, exits non-zero if any coverage gate is non-zero
+```
+
 ## Local authentication (CC-03)
 
 Sign-in uses Supabase Auth passwordless email one-time codes. No password, no social login and no production email provider are required locally.

@@ -38,7 +38,9 @@
     "db:types:check": "npm run db:types && git diff --exit-code -- packages/domain/src/database.types.ts",
     "content:generate": "node scripts/content/generate-seed.ts",
     "content:check": "npm run content:generate && git diff --exit-code -- supabase/seed-content",
-    "content:review": "node scripts/content/generate-corpus-review.ts"
+    "content:review": "node scripts/content/generate-corpus-review.ts",
+    "content:pedagogy:report": "node scripts/content/validate-pedagogy.ts",
+    "content:pedagogy:check": "node scripts/content/validate-pedagogy.ts --check"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

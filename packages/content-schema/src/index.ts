@@ -8,8 +8,12 @@
  * source/source-version/source-locator, curriculum/curriculum-version/
  * curriculum-node, assertion/assertion-version, assertion relationship,
  * assertion<->curriculum mapping, misconception -- used to validate
- * scripts/content/data manifests before SQL generation. Question
- * families and lessons remain later CC packages.
+ * scripts/content/data manifests before SQL generation. CC-05A added the
+ * pedagogical layer built on top of that knowledge graph (./pedagogy.ts)
+ * -- assertion families, capabilities, formula families, teaching/
+ * diagram/mnemonic representations, question blueprints -- consumed by
+ * the future CC-05B deterministic engine. Lessons and the full learner-
+ * runtime content-publication pipeline remain later CC packages.
  */
 
 import { z } from "zod";
@@ -26,3 +30,4 @@ export const packageManifestSchema = z.object({
 export type PackageManifest = z.infer<typeof packageManifestSchema>;
 
 export * from "./knowledge-graph.ts";
+export * from "./pedagogy.ts";

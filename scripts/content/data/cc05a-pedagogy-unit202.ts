@@ -1,0 +1,2901 @@
+/**
+ * CC-05A: one-time governed pedagogical backfill of the CC-04/CC-04A/
+ * CC-04B Unit 202 proving-slice corpus (scripts/content/data/
+ * cc04-unit202-electrical-science.ts), per docs/architecture/
+ * CC-05-PEDAGOGICAL-KNOWLEDGE-AND-QUESTION-ARCHITECTURE.md.
+ *
+ * This file does NOT modify a single assertion's wording, provenance,
+ * rights, curriculum mapping, relationship or identifier. It adds a new
+ * pedagogical layer *around* the existing corpus: assertion families,
+ * capabilities, formula families, teaching/visual representations,
+ * diagram blueprints and question blueprints, validated by
+ * @alp/content-schema's `pedagogyManifestSchema`
+ * (packages/content-schema/src/pedagogy.ts) and cross-checked against the
+ * real corpus manifest by scripts/content/validate-pedagogy.ts.
+ *
+ * Every assertion identifier referenced below is copied verbatim from
+ * cc04-unit202-electrical-science.ts -- never invented. Family groupings
+ * follow the corpus's own existing topic clustering (ID prefixes, source
+ * ordering, and the already-governed PREREQUISITE_OF/SUPPORTS graph),
+ * not a new topic taxonomy layered on top.
+ *
+ * Scope: the 17 Electrical assertion families below are the assessable
+ * "proving corpus" this task's exhaustive question-blueprint requirement
+ * targets. One Electrical family (AC reactive-quantity concepts) and all
+ * 5 Foundational Maths/Physics families are explicitly marked
+ * `teaching_only` with a documented reason -- see the corpus's own header
+ * comment (cc04-unit202-electrical-science.ts lines 43-49) for why AC
+ * reactive quantities were deliberately not decomposed into calculation
+ * capabilities, and the CC-04B corpus review for why 7 Foundational
+ * Physics assertions do not currently reach an Electrical target. Neither
+ * is a defect; both are pre-existing, documented, Product-Owner-approved
+ * corpus design choices that this backfill respects rather than
+ * silently overrides.
+ */
+
+import type {
+  AnswerContract,
+  AssertionFamily,
+  AssertionFamilyMembership,
+  Capability,
+  DiagramBlueprint,
+  EvidenceTarget,
+  FamilyTeachingRepresentation,
+  FormulaFamily,
+  MarkingContract,
+  PedagogyManifest,
+  QuestionBlueprint,
+  StandaloneAssertion,
+  VisualAidBlueprint,
+  WorkedExampleBlueprint,
+} from "@alp/content-schema";
+
+// =======================================================================
+// Small local builders (reduce repetition; every field remains explicit
+// at the call site that matters -- these do not hide any governed data).
+// =======================================================================
+
+type MembershipRole = AssertionFamilyMembership["role"];
+
+function mem(familyId: string, assertionIdentifier: string, role: MembershipRole): AssertionFamilyMembership {
+  return { familyId, assertionIdentifier, role };
+}
+
+function membersOf(
+  familyId: string,
+  entries: ReadonlyArray<readonly [string, MembershipRole]>,
+): AssertionFamilyMembership[] {
+  return entries.map(([assertionIdentifier, role]) => mem(familyId, assertionIdentifier, role));
+}
+
+function evidence(
+  familyId: string,
+  primaryCapabilityId: string,
+  assertionIdentifiers: string[],
+  opts: Partial<Omit<EvidenceTarget, "familyId" | "primaryCapabilityId" | "assertionIdentifiers">> = {},
+): EvidenceTarget {
+  return {
+    familyId,
+    primaryCapabilityId,
+    assertionIdentifiers,
+    supportingCapabilityIds: opts.supportingCapabilityIds ?? [],
+    representationDependency: opts.representationDependency ?? [],
+    misconceptionTargets: opts.misconceptionTargets ?? [],
+  };
+}
+
+const quantityAnswer = (quantity: string, canonicalUnit: string): AnswerContract => ({
+  type: "quantity",
+  quantity,
+  canonicalUnit,
+});
+
+const tolerance = (tolerancePercent = 2): MarkingContract => ({
+  type: "numeric_tolerance",
+  tolerancePercent,
+});
+
+const exact = (): MarkingContract => ({ type: "exact" });
+const enumMarking = (): MarkingContract => ({ type: "enum" });
+
+// =======================================================================
+// 1. Assertion families
+// =======================================================================
+
+const assertionFamilies: AssertionFamily[] = [
+  // --- Foundational Maths (teaching-only support technique) ------------
+  {
+    id: "foundational.algebraic_technique",
+    title: "Algebraic technique: equality, inverse operations, transposition, substitution",
+    learningIntent:
+      "Rearrange and evaluate simple formulae correctly -- the general algebraic technique every electrical formula-family rearrangement relies on.",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.algebraic_technique.apply"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason:
+      "Reusable horizontal Foundational Maths technique (GCSE Maths subject content), not a Unit 202 syllabus statement. Its assessment happens in context: every Electrical formula-family solve/rearrange question blueprint (Ohm's law, power, energy, charge, resistivity, waveforms) inherently exercises this technique. Authoring a standalone abstract-algebra question blueprint disconnected from an electrical quantity would be outside the Electrical proving-slice scope this backfill targets.",
+  },
+  {
+    id: "foundational.arithmetic_technique",
+    title: "Arithmetic technique: reciprocals, fractions, percentages",
+    learningIntent:
+      "Apply reciprocal, fraction and percentage arithmetic correctly -- required for parallel-resistance and efficiency calculations.",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.arithmetic_technique.apply"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason:
+      "Reusable horizontal Foundational Maths technique. Reciprocal-sum/invert technique is directly assessed in context by the parallel-resistance family's calculate_total blueprints; percentage technique is directly assessed in context by the efficiency family's calculate_efficiency blueprint.",
+  },
+  {
+    id: "foundational.proportion_and_units",
+    title: "Direct/inverse proportion and SI-prefix unit conversion",
+    learningIntent:
+      "Recognise direct and inverse proportion, and convert between SI-prefixed units -- required to interpret Ohm's-law proportionality and to work with electrical quantities across unit prefixes (mA, kΩ, etc).",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.proportion_and_units.apply"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason:
+      "Reusable horizontal Foundational Maths technique. Proportion reasoning is directly assessed in context by EL-OHM-PROPORTIONALITY-001-derived blueprints; SI-prefix conversion is exercised by every Ohm's-law numeric blueprint's answer/parameter ranges.",
+  },
+  // --- Foundational Physics (teaching-only support concepts) -----------
+  {
+    id: "foundational.mechanics_work_energy_power",
+    title: "Mechanics: force, work, energy, power (general physics)",
+    learningIntent:
+      "Understand force, work, energy and power as general mechanical concepts before their electrical specialisation.",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.mechanics.recognise"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason:
+      "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3, general mechanics). The electrical specialisations of these concepts (electrical power, electrical energy, electrical efficiency) are directly assessed by the electrical.power_relationships and electrical.energy_and_efficiency families; the general-mechanics form is prerequisite/contextual only within this Electrical proving slice.",
+  },
+  {
+    id: "foundational.mass_weight",
+    title: "Mass and weight (general physics)",
+    learningIntent: "Understand mass, weight and their relationship (W = mg).",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.mass_weight.recognise"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason:
+      "Reusable horizontal Foundational Physics knowledge that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice (see cc04-unit202-corpus-review.md, 'Foundational Maths/Physics: used vs currently-unused-but-retained'); retained per explicit Product Owner direction as future-reusable knowledge, not a defect. Out of the Electrical proving-slice scope this backfill targets.",
+  },
+
+  // --- Electrical: units and core quantities ----------------------------
+  {
+    id: "electrical.si_units",
+    title: "SI units for electrical quantities",
+    learningIntent:
+      "Identify the correct SI base or derived unit for each electrical quantity, and distinguish base units from derived units.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.si_units.identify_unit",
+        "cap.si_units.distinguish_base_derived",
+        "cap.si_units.diagnose_unit_confusion",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.core_quantities",
+    title: "Voltage, current and resistance: core definitions",
+    learningIntent:
+      "State what voltage, current and resistance are, as the conceptual foundation Ohm's law formalises.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: ["cap.core_quantities.recognise", "cap.core_quantities.distinguish"],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.ohms_law",
+    title: "Ohm's Law",
+    learningIntent:
+      "Understand and apply the relationship between voltage, current and resistance (V = I x R), including every rearrangement, and recognise common rearrangement/unit errors.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.ohms_law.recognise_relationship",
+        "cap.ohms_law.solve_for_voltage",
+        "cap.ohms_law.solve_for_current",
+        "cap.ohms_law.solve_for_resistance",
+        "cap.ohms_law.select_rearrangement",
+        "cap.ohms_law.apply_correct_unit",
+        "cap.ohms_law.check_plausibility",
+        "cap.ohms_law.diagnose_rearrangement_error",
+        "cap.ohms_law.diagnose_wrong_operation",
+        "cap.ohms_law.diagnose_unrelated_symbols",
+        "cap.ohms_law.apply_substitution",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.resistivity",
+    title: "Resistance, resistivity and the factors affecting conductor resistance",
+    learningIntent:
+      "Understand what resistivity is, how conductor length/area/material affect resistance, and compare materials by resistivity.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.resistivity.recognise",
+        "cap.resistivity.compare_materials",
+        "cap.resistivity.predict_length_effect",
+        "cap.resistivity.predict_area_effect",
+        "cap.resistivity.calculate",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+
+  // --- Electrical: series/parallel circuits -----------------------------
+  {
+    id: "electrical.series_circuits",
+    title: "Series D.C. circuits",
+    learningIntent:
+      "Understand and calculate current, resistance, voltage drop and power in series D.C. circuits, and predict the effect of circuit changes.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.series.recognise_structure",
+        "cap.series.calculate_total_resistance",
+        "cap.series.calculate_supply_current",
+        "cap.series.calculate_voltage_drop",
+        "cap.series.calculate_power",
+        "cap.series.predict_add_component",
+        "cap.series.predict_open_circuit",
+        "cap.series.check_plausibility",
+        "cap.series.identify_dominant_component",
+        "cap.series.solve_missing_component",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.parallel_circuits",
+    title: "Parallel D.C. circuits",
+    learningIntent:
+      "Understand and calculate current, resistance, branch voltage/current and power in parallel D.C. circuits, and predict the effect of circuit changes.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.parallel.recognise_structure",
+        "cap.parallel.calculate_total_resistance",
+        "cap.parallel.solve_missing_branch",
+        "cap.parallel.calculate_branch_current",
+        "cap.parallel.calculate_power",
+        "cap.parallel.predict_add_branch",
+        "cap.parallel.predict_open_branch",
+        "cap.parallel.check_plausibility",
+        "cap.parallel.diagnose_reciprocal_error",
+        "cap.parallel.diagnose_missing_final_inversion",
+        "cap.parallel.identify_dominant_branch",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.series_vs_parallel_comparison",
+    title: "Series versus parallel: topology, tracing and comparison",
+    learningIntent:
+      "Identify whether a circuit is series, parallel or mixed; trace current paths; and compare resistance, current, voltage, power and energy behaviour between the two topologies.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.comparison.identify_topology",
+        "cap.comparison.recognise_mixed_circuit",
+        "cap.comparison.trace_current_path",
+        "cap.comparison.compare_resistance",
+        "cap.comparison.compare_current_voltage",
+        "cap.comparison.compare_power_energy",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+
+  // --- Electrical: power, energy, efficiency ----------------------------
+  {
+    id: "electrical.power_relationships",
+    title: "Electrical power",
+    learningIntent:
+      "Understand and calculate electrical power from voltage/current, current/resistance, or voltage/resistance, and find total circuit power.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.power.recognise_relationship",
+        "cap.power.select_form",
+        "cap.power.calculate_from_vi",
+        "cap.power.calculate_from_ir",
+        "cap.power.calculate_from_vr",
+        "cap.power.calculate_total",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.energy_and_efficiency",
+    title: "Electrical energy and efficiency",
+    learningIntent:
+      "Calculate electrical energy transferred (including kWh billing units) from power and time, and calculate the efficiency of an electrical device.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.energy.calculate_energy",
+        "cap.energy.calculate_energy_kwh",
+        "cap.energy.rearrange",
+        "cap.energy.calculate_efficiency",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+
+  // --- Electrical: charge, thermal/chemical effects, conductors ---------
+  {
+    id: "electrical.charge_and_current",
+    title: "Electric charge and its relationship to current",
+    learningIntent: "Understand electric charge and calculate charge or current using I = Q / t.",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.charge.recognise", "cap.charge.calculate"] },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.thermal_and_chemical_effects",
+    title: "Thermal and chemical effects of current",
+    learningIntent:
+      "Describe the thermal and chemical effects of electric current and recognise their practical applications and contributing factors.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: ["cap.thermal_chemical.recognise_effect", "cap.thermal_chemical.recognise_application"],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.conductors_and_insulators",
+    title: "Conductors and insulators",
+    learningIntent:
+      "Distinguish conductors from insulators via electron theory, identify common examples, and recognise insulation breakdown.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: ["cap.conductors.classify_material", "cap.conductors.recognise_breakdown"],
+    },
+    assessmentRequirement: "assessable",
+  },
+
+  // --- Electrical: instrumentation, fault conditions/protection ---------
+  {
+    id: "electrical.instrumentation",
+    title: "Electrical measuring instruments",
+    learningIntent:
+      "Select the correct instrument (voltmeter, ammeter, ohmmeter, multimeter, clamp meter, oscilloscope) for a given measurement task, and connect it correctly.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.instrumentation.select_instrument",
+        "cap.instrumentation.recognise_connection",
+        "cap.instrumentation.recognise_internal_resistance_property",
+        "cap.instrumentation.recognise_purpose",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.fault_conditions_protection",
+    title: "Fault conditions and protective devices",
+    learningIntent:
+      "Recognise short-circuit and open-circuit conditions, predict their effects, and understand how fuses and circuit breakers protect a circuit.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.fault.recognise_condition",
+        "cap.fault.predict_effect",
+        "cap.fault.select_protective_device",
+        "cap.fault.compare_fuse_breaker",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+
+  // --- Electrical: magnetism, EMF/generation, AC/DC waveforms -----------
+  {
+    id: "electrical.magnetism_and_electromagnetism",
+    title: "Magnetism, electromagnetism and the motor principle",
+    learningIntent:
+      "Understand magnetic flux/flux density, the magnetic field around a current-carrying conductor, the force on a conductor in a field, and the motor principle.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.magnetism.recognise_concept",
+        "cap.magnetism.interpret_field_direction",
+        "cap.magnetism.interpret_force_direction",
+        "cap.magnetism.compare_permanent_electromagnet",
+        "cap.magnetism.compare_motor_generator",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.emf_and_generation",
+    title: "EMF, terminal voltage and A.C. generation",
+    learningIntent:
+      "Understand electromotive force, terminal voltage, and the basic principle of a rotating-loop A.C. generator.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: ["cap.emf.recognise_emf_terminal_voltage", "cap.emf.describe_ac_generation"],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.ac_dc_waveforms",
+    title: "A.C./D.C. distinction and sine-wave characteristics",
+    learningIntent:
+      "Distinguish A.C. from D.C., and identify/calculate sine-wave characteristics: periodic time, amplitude, peak-to-peak, RMS, average value and frequency.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.waveform.recognise_ac_dc",
+        "cap.waveform.identify_characteristic",
+        "cap.waveform.calculate_rms_peak",
+        "cap.waveform.calculate_frequency_period",
+        "cap.waveform.interpret_rated_value",
+        "cap.waveform.compare_ac_dc_behaviour",
+      ],
+    },
+    assessmentRequirement: "assessable",
+  },
+  {
+    id: "electrical.ac_reactive_quantities",
+    title: "AC reactive-quantity concepts (frequency-dependent opposition, inductance, capacitance)",
+    learningIntent:
+      "Describe reactance, impedance, inductance, capacitance and power factor as conceptual/definitional AC quantities.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: ["cap.ac_reactive.recognise"],
+    },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason:
+      "Per the corpus's own documented design decision (cc04-unit202-electrical-science.ts header comment, lines 43-49): 'AC circuit calculation (reactance/impedance arithmetic, phasor addition) is deliberately NOT decomposed into calculation capabilities here -- only the conceptual/definitional knowledge... is modelled', consistent with LO2's 'identify and determine values of... SI units' framing rather than LO4's deeper 'calculate' framing (which Unit 202 restricts to D.C. circuits). No numeric AC reactive-quantity calculation engine exists or is planned in this proving slice, so no question blueprint requiring one was authored.",
+  },
+];
+
+// =======================================================================
+// 2. Standalone assertions (explicitly not grouped into a family)
+// =======================================================================
+
+const standaloneAssertions: StandaloneAssertion[] = [
+  {
+    assertionIdentifier: "FP-CALC-POWER-001",
+    reason:
+      "Foundational Physics general-mechanics calculation (P = W/t) that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice (see cc04-unit202-corpus-review.md); retained reusable horizontal knowledge, not a defect, per explicit Product Owner direction. Out of Electrical proving-slice scope.",
+  },
+  {
+    assertionIdentifier: "FP-CALC-EFFICIENCY-001",
+    reason:
+      "Foundational Physics general-mechanics calculation that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice; the Electrical specialisation (EL-CALC-ELECTRICAL-EFFICIENCY-001) is separately assessed by electrical.energy_and_efficiency. Retained reusable horizontal knowledge, not a defect.",
+  },
+  {
+    assertionIdentifier: "FP-REL-WEIGHT-MASS-001",
+    reason:
+      "Foundational Physics mechanics relationship (W = mg) that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice. Retained reusable horizontal knowledge, not a defect.",
+  },
+  {
+    assertionIdentifier: "FP-CALC-WEIGHT-001",
+    reason:
+      "Foundational Physics mechanics calculation that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice. Retained reusable horizontal knowledge, not a defect.",
+  },
+];
+
+// =======================================================================
+// 3. Assertion-family memberships
+// =======================================================================
+
+const assertionFamilyMemberships: AssertionFamilyMembership[] = [
+  // --- Foundational Maths -------------------------------------------------
+  ...membersOf("foundational.algebraic_technique", [
+    ["FM-ALG-INVERSE-OPS-MULT-001", "prerequisite_concept"],
+    ["FM-ALG-INVERSE-OPS-ADD-001", "prerequisite_concept"],
+    ["FM-ALG-EQUALITY-MULT-001", "prerequisite_concept"],
+    ["FM-ALG-EQUALITY-ADD-001", "prerequisite_concept"],
+    ["FM-ALG-TRANSPOSE-MULT-001", "canonical_form"],
+    ["FM-ALG-TRANSPOSE-ADD-001", "canonical_form"],
+    ["FM-ALG-SUBSTITUTION-001", "canonical_form"],
+  ]),
+  ...membersOf("foundational.arithmetic_technique", [
+    ["FM-ARITH-RECIPROCAL-001", "prerequisite_concept"],
+    ["FM-ARITH-FRACTION-OPS-001", "prerequisite_concept"],
+    ["FM-ARITH-RECIPROCAL-SUM-001", "canonical_form"],
+    ["FM-ARITH-RECIPROCAL-INVERT-001", "canonical_form"],
+    ["FM-ARITH-PERCENTAGE-001", "canonical_form"],
+  ]),
+  ...membersOf("foundational.proportion_and_units", [
+    ["FM-ALG-PROPORTION-DIRECT-001", "canonical_form"],
+    ["FM-ALG-PROPORTION-INVERSE-001", "canonical_form"],
+    ["FM-NUM-SI-PREFIX-001", "prerequisite_concept"],
+    ["FM-NUM-STANDARD-FORM-001", "prerequisite_concept"],
+    ["FM-NUM-SI-PREFIX-CONVERT-001", "canonical_form"],
+  ]),
+
+  // --- Foundational Physics -------------------------------------------------
+  ...membersOf("foundational.mechanics_work_energy_power", [
+    ["FP-CONCEPT-FORCE-001", "prerequisite_concept"],
+    ["FP-CONCEPT-WORK-001", "prerequisite_concept"],
+    ["FP-CONCEPT-ENERGY-001", "prerequisite_concept"],
+    ["FP-CONCEPT-ENERGY-CONSERVATION-001", "prerequisite_concept"],
+    ["FP-CONCEPT-POWER-001", "canonical_form"],
+    ["FP-REL-POWER-WORK-TIME-001", "canonical_form"],
+    ["FP-CONCEPT-EFFICIENCY-001", "canonical_form"],
+  ]),
+  ...membersOf("foundational.mass_weight", [
+    ["FP-CONCEPT-MASS-001", "prerequisite_concept"],
+    ["FP-CONCEPT-WEIGHT-001", "canonical_form"],
+  ]),
+
+  // --- electrical.si_units ---------------------------------------------------
+  ...membersOf("electrical.si_units", [
+    ["EL-UNIT-VOLT-001", "canonical_form"],
+    ["EL-UNIT-AMPERE-001", "canonical_form"],
+    ["EL-UNIT-OHM-001", "canonical_form"],
+    ["EL-UNIT-WATT-001", "canonical_form"],
+    ["EL-UNIT-JOULE-001", "canonical_form"],
+    ["EL-UNIT-OHM-METRE-001", "canonical_form"],
+    ["EL-UNIT-BASE-VS-DERIVED-001", "consequence"],
+    ["EL-UNIT-HERTZ-001", "canonical_form"],
+  ]),
+
+  // --- electrical.core_quantities ---------------------------------------------
+  ...membersOf("electrical.core_quantities", [
+    ["EL-CONCEPT-VOLTAGE-001", "canonical_form"],
+    ["EL-CONCEPT-CURRENT-001", "canonical_form"],
+    ["EL-CONCEPT-RESISTANCE-001", "canonical_form"],
+  ]),
+
+  // --- electrical.ohms_law ---------------------------------------------------
+  ...membersOf("electrical.ohms_law", [
+    ["EL-OHM-RELATIONSHIP-001", "canonical_form"],
+    ["EL-OHM-PROPORTIONALITY-001", "consequence"],
+    ["EL-OHM-REARRANGE-001", "rearranged_form"],
+    ["EL-OHM-SOLVE-V-001", "rearranged_form"],
+    ["EL-OHM-SOLVE-I-001", "rearranged_form"],
+    ["EL-OHM-SOLVE-R-001", "rearranged_form"],
+    ["EL-OHM-SELECT-RELATIONSHIP-001", "consequence"],
+  ]),
+
+  // --- electrical.resistivity ---------------------------------------------------
+  ...membersOf("electrical.resistivity", [
+    ["EL-CONCEPT-RESISTIVITY-001", "canonical_form"],
+    ["EL-RESISTIVITY-RELATIONSHIP-001", "canonical_form"],
+    ["EL-CONDUCTOR-RESISTANCE-FACTORS-001", "prerequisite_concept"],
+    ["EL-RESISTIVITY-COMPARE-MATERIALS-001", "consequence"],
+    ["EL-RESISTIVITY-LENGTH-EFFECT-001", "consequence"],
+    ["EL-RESISTIVITY-AREA-EFFECT-001", "consequence"],
+  ]),
+
+  // --- electrical.series_circuits ---------------------------------------------------
+  ...membersOf("electrical.series_circuits", [
+    ["EL-CIRCUIT-SERIES-STRUCTURE-001", "canonical_form"],
+    ["EL-SERIES-CURRENT-001", "consequence"],
+    ["EL-SERIES-RESISTANCE-001", "canonical_form"],
+    ["EL-SERIES-RESISTANCE-CALC-001", "consequence"],
+    ["EL-INTERPRET-SERIES-RESULT-001", "misconception_guard"],
+    ["EL-VOLTAGE-DROP-001", "prerequisite_concept"],
+    ["EL-SERIES-VOLTAGE-001", "canonical_form"],
+    ["EL-SERIES-VOLTAGE-CALC-001", "consequence"],
+    ["EL-SERIES-DOMINANT-RESISTOR-001", "consequence"],
+    ["EL-SERIES-PREDICT-OPEN-001", "consequence"],
+    ["EL-SERIES-PREDICT-ADD-RESISTOR-001", "consequence"],
+    ["EL-SERIES-VOLTAGE-DIVIDER-001", "contextual_application"],
+    ["EL-CIRCUIT-SUPPLY-CURRENT-SERIES-001", "consequence"],
+    ["EL-SERIES-POWER-CALC-001", "consequence"],
+    ["EL-SERIES-POWER-DISTRIBUTION-001", "consequence"],
+  ]),
+
+  // --- electrical.parallel_circuits ---------------------------------------------------
+  ...membersOf("electrical.parallel_circuits", [
+    ["EL-CIRCUIT-PARALLEL-STRUCTURE-001", "canonical_form"],
+    ["EL-PARALLEL-VOLTAGE-001", "consequence"],
+    ["EL-PARALLEL-CURRENT-001", "canonical_form"],
+    ["EL-PARALLEL-RESISTANCE-001", "canonical_form"],
+    ["EL-PARALLEL-RESISTANCE-CALC-001", "consequence"],
+    ["EL-INTERPRET-PARALLEL-RESULT-001", "misconception_guard"],
+    ["EL-PARALLEL-CURRENT-CALC-001", "consequence"],
+    ["EL-PARALLEL-DOMINANT-RESISTOR-001", "consequence"],
+    ["EL-PARALLEL-PREDICT-OPEN-001", "consequence"],
+    ["EL-PARALLEL-PREDICT-ADD-RESISTOR-001", "consequence"],
+    ["EL-PARALLEL-CURRENT-DIVIDER-001", "contextual_application"],
+    ["EL-CIRCUIT-SUPPLY-CURRENT-PARALLEL-001", "consequence"],
+    ["EL-PARALLEL-POWER-CALC-001", "consequence"],
+    ["EL-PARALLEL-POWER-DISTRIBUTION-001", "consequence"],
+  ]),
+
+  // --- electrical.series_vs_parallel_comparison ---------------------------------------------------
+  ...membersOf("electrical.series_vs_parallel_comparison", [
+    ["EL-CIRCUIT-SELECT-CONFIGURATION-001", "canonical_form"],
+    ["EL-CIRCUIT-EQUIVALENT-RESISTANCE-DEFINITION-001", "prerequisite_concept"],
+    ["EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001", "consequence"],
+    ["EL-CIRCUIT-TRACE-CURRENT-PATH-001", "consequence"],
+    ["EL-CIRCUIT-COMPARE-RESISTANCE-001", "consequence"],
+    ["EL-CIRCUIT-COMPARE-CURRENT-001", "consequence"],
+    ["EL-CIRCUIT-COMPARE-VOLTAGE-001", "consequence"],
+    ["EL-CIRCUIT-COMPARE-POWER-001", "consequence"],
+    ["EL-CIRCUIT-COMPARE-ENERGY-001", "consequence"],
+  ]),
+
+  // --- electrical.power_relationships ---------------------------------------------------
+  ...membersOf("electrical.power_relationships", [
+    ["EL-CONCEPT-POWER-001", "prerequisite_concept"],
+    ["EL-POWER-RATING-001", "contextual_application"],
+    ["EL-POWER-RELATIONSHIP-001", "canonical_form"],
+    ["EL-POWER-REARRANGE-001", "rearranged_form"],
+    ["EL-POWER-SOLVE-001", "consequence"],
+    ["EL-POWER-DERIVED-VIR-001", "rearranged_form"],
+    ["EL-POWER-SOLVE-IR-001", "consequence"],
+    ["EL-POWER-DERIVED-V2R-001", "rearranged_form"],
+    ["EL-POWER-SOLVE-V2R-001", "consequence"],
+    ["EL-CIRCUIT-POWER-TOTAL-001", "consequence"],
+  ]),
+
+  // --- electrical.energy_and_efficiency ---------------------------------------------------
+  ...membersOf("electrical.energy_and_efficiency", [
+    ["EL-CONCEPT-ENERGY-001", "prerequisite_concept"],
+    ["EL-UNIT-KWH-001", "prerequisite_concept"],
+    ["EL-CONCEPT-ELECTRICAL-EFFICIENCY-001", "canonical_form"],
+    ["EL-CALC-ELECTRICAL-EFFICIENCY-001", "consequence"],
+    ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001", "canonical_form"],
+    ["EL-ENERGY-REARRANGE-001", "rearranged_form"],
+    ["EL-ENERGY-CALC-001", "consequence"],
+    ["EL-ENERGY-KWH-CALC-001", "consequence"],
+  ]),
+
+  // --- electrical.charge_and_current ---------------------------------------------------
+  ...membersOf("electrical.charge_and_current", [
+    ["EL-CONCEPT-CHARGE-001", "canonical_form"],
+    ["EL-UNIT-COULOMB-001", "prerequisite_concept"],
+    ["EL-CURRENT-CHARGE-RELATIONSHIP-001", "canonical_form"],
+    ["EL-CURRENT-CHARGE-CALC-001", "consequence"],
+  ]),
+
+  // --- electrical.thermal_and_chemical_effects ---------------------------------------------------
+  ...membersOf("electrical.thermal_and_chemical_effects", [
+    ["EL-CURRENT-THERMAL-EFFECT-001", "canonical_form"],
+    ["EL-CURRENT-CHEMICAL-EFFECT-001", "canonical_form"],
+    ["EL-THERMAL-EFFECT-APPLICATION-001", "contextual_application"],
+    ["EL-THERMAL-EFFECT-FACTORS-001", "consequence"],
+  ]),
+
+  // --- electrical.conductors_and_insulators ---------------------------------------------------
+  ...membersOf("electrical.conductors_and_insulators", [
+    ["EL-CONCEPT-ELECTRON-THEORY-001", "prerequisite_concept"],
+    ["EL-CONCEPT-CONDUCTOR-001", "canonical_form"],
+    ["EL-CONCEPT-INSULATOR-001", "canonical_form"],
+    ["EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001", "contextual_application"],
+    ["EL-INSULATOR-BREAKDOWN-001", "consequence"],
+  ]),
+
+  // --- electrical.instrumentation ---------------------------------------------------
+  ...membersOf("electrical.instrumentation", [
+    ["EL-INSTRUMENT-VOLTMETER-001", "canonical_form"],
+    ["EL-INSTRUMENT-AMMETER-001", "canonical_form"],
+    ["EL-INSTRUMENT-OHMMETER-001", "canonical_form"],
+    ["EL-INSTRUMENT-MULTIMETER-001", "consequence"],
+    ["EL-INSTRUMENT-SELECT-001", "consequence"],
+    ["EL-INSTRUMENT-VOLTMETER-INTERNAL-RESISTANCE-001", "consequence"],
+    ["EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001", "consequence"],
+    ["EL-INSTRUMENT-CONTINUITY-TEST-001", "contextual_application"],
+    ["EL-INSTRUMENT-CLAMP-METER-001", "canonical_form"],
+    ["EL-INSTRUMENT-OSCILLOSCOPE-001", "canonical_form"],
+  ]),
+
+  // --- electrical.fault_conditions_protection ---------------------------------------------------
+  ...membersOf("electrical.fault_conditions_protection", [
+    ["EL-CIRCUIT-RECOGNISE-SHORT-CIRCUIT-001", "canonical_form"],
+    ["EL-CIRCUIT-RECOGNISE-OPEN-CIRCUIT-001", "canonical_form"],
+    ["EL-CIRCUIT-PREDICT-SHORT-EFFECT-001", "consequence"],
+    ["EL-PROTECTIVE-DEVICE-PURPOSE-001", "canonical_form"],
+    ["EL-FUSE-OPERATION-001", "consequence"],
+    ["EL-CIRCUIT-BREAKER-VS-FUSE-001", "consequence"],
+    ["EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001", "prerequisite_concept"],
+    ["EL-CIRCUIT-OPEN-CIRCUIT-RESISTANCE-INTERPRETATION-001", "prerequisite_concept"],
+  ]),
+
+  // --- electrical.magnetism_and_electromagnetism ---------------------------------------------------
+  ...membersOf("electrical.magnetism_and_electromagnetism", [
+    ["EL-CONCEPT-MAGNETISM-001", "canonical_form"],
+    ["EL-CONCEPT-MAGNETIC-FLUX-001", "prerequisite_concept"],
+    ["EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", "prerequisite_concept"],
+    ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "canonical_form"],
+    ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001", "canonical_form"],
+    ["EL-CONCEPT-ELECTROMAGNETISM-001", "consequence"],
+    ["EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001", "consequence"],
+    ["EL-CONCEPT-MOTOR-PRINCIPLE-001", "consequence"],
+    ["EL-MOTOR-GENERATOR-COMPARE-001", "consequence"],
+  ]),
+
+  // --- electrical.emf_and_generation ---------------------------------------------------
+  ...membersOf("electrical.emf_and_generation", [
+    ["EL-CONCEPT-EMF-001", "canonical_form"],
+    ["EL-CONCEPT-TERMINAL-VOLTAGE-001", "consequence"],
+    ["EL-CONCEPT-AC-GENERATOR-001", "canonical_form"],
+    ["EL-CONCEPT-SINE-WAVE-001", "consequence"],
+  ]),
+
+  // --- electrical.ac_dc_waveforms ---------------------------------------------------
+  ...membersOf("electrical.ac_dc_waveforms", [
+    ["EL-CONCEPT-FREQUENCY-001", "prerequisite_concept"],
+    ["EL-CONCEPT-AC-DC-DISTINCTION-001", "canonical_form"],
+    ["EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001", "contextual_application"],
+    ["EL-WAVEFORM-PERIODIC-TIME-001", "canonical_form"],
+    ["EL-WAVEFORM-AMPLITUDE-001", "canonical_form"],
+    ["EL-WAVEFORM-PEAK-TO-PEAK-001", "canonical_form"],
+    ["EL-WAVEFORM-RMS-001", "canonical_form"],
+    ["EL-WAVEFORM-AVERAGE-VALUE-001", "canonical_form"],
+    ["EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001", "misconception_guard"],
+    ["EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001", "canonical_form"],
+    ["EL-WAVEFORM-RMS-CALC-001", "consequence"],
+    ["EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001", "misconception_guard"],
+    ["EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001", "canonical_form"],
+    ["EL-WAVEFORM-FREQUENCY-CALC-001", "consequence"],
+    ["EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001", "consequence"],
+  ]),
+
+  // --- electrical.ac_reactive_quantities (teaching-only) ---------------------------------------------------
+  ...membersOf("electrical.ac_reactive_quantities", [
+    ["EL-CONCEPT-REACTANCE-001", "canonical_form"],
+    ["EL-CONCEPT-IMPEDANCE-001", "canonical_form"],
+    ["EL-UNIT-HENRY-001", "prerequisite_concept"],
+    ["EL-CONCEPT-INDUCTANCE-001", "canonical_form"],
+    ["EL-UNIT-FARAD-001", "prerequisite_concept"],
+    ["EL-CONCEPT-CAPACITANCE-001", "canonical_form"],
+    ["EL-CONCEPT-POWER-FACTOR-001", "canonical_form"],
+  ]),
+];
+
+// =======================================================================
+// 4. Capabilities
+// =======================================================================
+
+function cap(
+  id: string,
+  familyId: string,
+  operationType: Capability["operationType"],
+  description: string,
+): Capability {
+  return { id, familyId, operationType, description };
+}
+
+const capabilities: Capability[] = [
+  // --- Foundational (teaching-only) -----------------------------------
+  cap(
+    "cap.foundational.algebraic_technique.apply",
+    "foundational.algebraic_technique",
+    "rearrange",
+    "Rearrange and substitute into a simple formula correctly.",
+  ),
+  cap(
+    "cap.foundational.arithmetic_technique.apply",
+    "foundational.arithmetic_technique",
+    "calculate",
+    "Apply reciprocal, fraction and percentage arithmetic correctly.",
+  ),
+  cap(
+    "cap.foundational.proportion_and_units.apply",
+    "foundational.proportion_and_units",
+    "apply_unit",
+    "Recognise direct/inverse proportion and convert between SI-prefixed units.",
+  ),
+  cap(
+    "cap.foundational.mechanics.recognise",
+    "foundational.mechanics_work_energy_power",
+    "recognise",
+    "Recognise force, work, energy and power as general mechanical concepts.",
+  ),
+  cap(
+    "cap.foundational.mass_weight.recognise",
+    "foundational.mass_weight",
+    "recognise",
+    "Recognise mass and weight and their relationship.",
+  ),
+
+  // --- electrical.si_units ----------------------------------------------
+  cap("cap.si_units.identify_unit", "electrical.si_units", "identify", "Identify the correct SI unit for a given electrical quantity."),
+  cap(
+    "cap.si_units.distinguish_base_derived",
+    "electrical.si_units",
+    "compare",
+    "Distinguish an SI base unit from an SI derived unit.",
+  ),
+  cap(
+    "cap.si_units.diagnose_unit_confusion",
+    "electrical.si_units",
+    "diagnose_error",
+    "Diagnose confusion between two similarly-presented electrical units.",
+  ),
+
+  // --- electrical.core_quantities -----------------------------------------
+  cap(
+    "cap.core_quantities.recognise",
+    "electrical.core_quantities",
+    "recognise",
+    "Recognise voltage, current or resistance from its definition.",
+  ),
+  cap(
+    "cap.core_quantities.distinguish",
+    "electrical.core_quantities",
+    "compare",
+    "Distinguish current from voltage where the two are commonly confused.",
+  ),
+
+  // --- electrical.ohms_law -----------------------------------------------
+  cap("cap.ohms_law.recognise_relationship", "electrical.ohms_law", "recognise", "Recognise that V, I and R are related by V = I x R."),
+  cap("cap.ohms_law.solve_for_voltage", "electrical.ohms_law", "calculate", "Calculate voltage from known current and resistance."),
+  cap("cap.ohms_law.solve_for_current", "electrical.ohms_law", "calculate", "Calculate current from known voltage and resistance."),
+  cap("cap.ohms_law.solve_for_resistance", "electrical.ohms_law", "calculate", "Calculate resistance from known voltage and current."),
+  cap(
+    "cap.ohms_law.select_rearrangement",
+    "electrical.ohms_law",
+    "select_relationship",
+    "Select the correct rearrangement of V = I x R for the quantity being solved.",
+  ),
+  cap("cap.ohms_law.apply_correct_unit", "electrical.ohms_law", "apply_unit", "Match each Ohm's-law variable to its correct SI unit."),
+  cap(
+    "cap.ohms_law.apply_substitution",
+    "electrical.ohms_law",
+    "calculate",
+    "Substitute known values into a chosen Ohm's-law rearrangement and show intermediate working.",
+  ),
+  cap(
+    "cap.ohms_law.check_plausibility",
+    "electrical.ohms_law",
+    "check_plausibility",
+    "Judge whether a calculated Ohm's-law result is physically plausible.",
+  ),
+  cap(
+    "cap.ohms_law.diagnose_rearrangement_error",
+    "electrical.ohms_law",
+    "diagnose_error",
+    "Diagnose an incorrect algebraic rearrangement of V = I x R.",
+  ),
+  cap(
+    "cap.ohms_law.diagnose_wrong_operation",
+    "electrical.ohms_law",
+    "diagnose_error",
+    "Diagnose use of the wrong arithmetic operation (multiply instead of divide, or vice versa) when applying V = I x R.",
+  ),
+  cap(
+    "cap.ohms_law.diagnose_unrelated_symbols",
+    "electrical.ohms_law",
+    "diagnose_error",
+    "Diagnose substitution of an unrelated quantity's value for V, I or R.",
+  ),
+
+  // --- electrical.resistivity ----------------------------------------------
+  cap("cap.resistivity.recognise", "electrical.resistivity", "recognise", "Recognise resistivity as a material property independent of a conductor's dimensions."),
+  cap("cap.resistivity.calculate", "electrical.resistivity", "calculate", "Calculate resistance from resistivity, length and cross-sectional area."),
+  cap(
+    "cap.resistivity.compare_materials",
+    "electrical.resistivity",
+    "compare",
+    "Compare the resistivity of different materials to determine the better conductor.",
+  ),
+  cap(
+    "cap.resistivity.predict_length_effect",
+    "electrical.resistivity",
+    "predict",
+    "Predict the effect of increasing conductor length on resistance.",
+  ),
+  cap(
+    "cap.resistivity.predict_area_effect",
+    "electrical.resistivity",
+    "predict",
+    "Predict the effect of increasing conductor cross-sectional area on resistance.",
+  ),
+
+  // --- electrical.series_circuits -----------------------------------------
+  cap("cap.series.recognise_structure", "electrical.series_circuits", "recognise", "Recognise a series circuit from a description or diagram."),
+  cap(
+    "cap.series.calculate_total_resistance",
+    "electrical.series_circuits",
+    "calculate",
+    "Calculate total resistance of resistors connected in series.",
+  ),
+  cap(
+    "cap.series.solve_missing_component",
+    "electrical.series_circuits",
+    "calculate",
+    "Calculate an unknown individual component resistance from the series total and the other known components.",
+  ),
+  cap(
+    "cap.series.calculate_supply_current",
+    "electrical.series_circuits",
+    "calculate",
+    "Calculate the supply current in a series circuit from supply voltage and total resistance.",
+  ),
+  cap(
+    "cap.series.calculate_voltage_drop",
+    "electrical.series_circuits",
+    "calculate",
+    "Calculate an individual voltage drop across a component in a series circuit.",
+  ),
+  cap("cap.series.calculate_power", "electrical.series_circuits", "calculate", "Calculate the power dissipated by an individual component in a series circuit."),
+  cap(
+    "cap.series.predict_add_component",
+    "electrical.series_circuits",
+    "predict",
+    "Predict the effect on supply current of adding a component in series.",
+  ),
+  cap(
+    "cap.series.predict_open_circuit",
+    "electrical.series_circuits",
+    "predict",
+    "Predict the effect on current if a series circuit is broken at any point.",
+  ),
+  cap(
+    "cap.series.check_plausibility",
+    "electrical.series_circuits",
+    "check_plausibility",
+    "Judge whether a calculated series total resistance is plausible.",
+  ),
+  cap(
+    "cap.series.identify_dominant_component",
+    "electrical.series_circuits",
+    "compare",
+    "Identify which component has the greatest voltage drop/power dissipation in a series circuit.",
+  ),
+
+  // --- electrical.parallel_circuits ---------------------------------------
+  cap("cap.parallel.recognise_structure", "electrical.parallel_circuits", "recognise", "Recognise a parallel circuit from a description or diagram."),
+  cap(
+    "cap.parallel.calculate_total_resistance",
+    "electrical.parallel_circuits",
+    "calculate",
+    "Calculate total resistance of resistors connected in parallel.",
+  ),
+  cap(
+    "cap.parallel.solve_missing_branch",
+    "electrical.parallel_circuits",
+    "calculate",
+    "Calculate an unknown individual branch resistance from the parallel total and the other known branches.",
+  ),
+  cap(
+    "cap.parallel.calculate_branch_current",
+    "electrical.parallel_circuits",
+    "calculate",
+    "Calculate an individual branch current in a parallel circuit.",
+  ),
+  cap("cap.parallel.calculate_power", "electrical.parallel_circuits", "calculate", "Calculate the power dissipated by an individual branch in a parallel circuit."),
+  cap(
+    "cap.parallel.predict_add_branch",
+    "electrical.parallel_circuits",
+    "predict",
+    "Predict the effect on supply current of adding a branch in parallel.",
+  ),
+  cap(
+    "cap.parallel.predict_open_branch",
+    "electrical.parallel_circuits",
+    "predict",
+    "Predict the effect on the remaining branches if one parallel branch is broken.",
+  ),
+  cap(
+    "cap.parallel.check_plausibility",
+    "electrical.parallel_circuits",
+    "check_plausibility",
+    "Judge whether a calculated parallel total resistance is plausible.",
+  ),
+  cap(
+    "cap.parallel.diagnose_reciprocal_error",
+    "electrical.parallel_circuits",
+    "diagnose_error",
+    "Diagnose the error of adding branch resistances directly instead of using the reciprocal relationship.",
+  ),
+  cap(
+    "cap.parallel.diagnose_missing_final_inversion",
+    "electrical.parallel_circuits",
+    "diagnose_error",
+    "Diagnose the error of leaving the result as a reciprocal-of-total instead of inverting it back.",
+  ),
+  cap(
+    "cap.parallel.identify_dominant_branch",
+    "electrical.parallel_circuits",
+    "compare",
+    "Identify which branch carries the largest current/dissipates the most power in a parallel circuit.",
+  ),
+
+  // --- electrical.series_vs_parallel_comparison ---------------------------
+  cap(
+    "cap.comparison.identify_topology",
+    "electrical.series_vs_parallel_comparison",
+    "identify",
+    "Identify whether a given circuit is connected in series or parallel.",
+  ),
+  cap(
+    "cap.comparison.recognise_mixed_circuit",
+    "electrical.series_vs_parallel_comparison",
+    "recognise",
+    "Recognise a circuit combining both series- and parallel-connected sections.",
+  ),
+  cap(
+    "cap.comparison.trace_current_path",
+    "electrical.series_vs_parallel_comparison",
+    "interpret_diagram",
+    "Trace the path(s) current takes through a series or parallel circuit diagram.",
+  ),
+  cap(
+    "cap.comparison.compare_resistance",
+    "electrical.series_vs_parallel_comparison",
+    "compare",
+    "Compare total resistance of the same resistor set connected in series versus parallel.",
+  ),
+  cap(
+    "cap.comparison.compare_current_voltage",
+    "electrical.series_vs_parallel_comparison",
+    "compare",
+    "Compare current and voltage behaviour between series and parallel circuits.",
+  ),
+  cap(
+    "cap.comparison.compare_power_energy",
+    "electrical.series_vs_parallel_comparison",
+    "compare",
+    "Compare total power/energy of the same resistor set connected in series versus parallel.",
+  ),
+
+  // --- electrical.power_relationships --------------------------------------
+  cap(
+    "cap.power.recognise_relationship",
+    "electrical.power_relationships",
+    "recognise",
+    "Recognise that electrical power is related to voltage and current by P = V x I.",
+  ),
+  cap(
+    "cap.power.select_form",
+    "electrical.power_relationships",
+    "select_relationship",
+    "Select which form of the power relationship to use, based on which two quantities are known.",
+  ),
+  cap("cap.power.calculate_from_vi", "electrical.power_relationships", "calculate", "Calculate power from known voltage and current."),
+  cap("cap.power.calculate_from_ir", "electrical.power_relationships", "calculate", "Calculate power from known current and resistance."),
+  cap("cap.power.calculate_from_vr", "electrical.power_relationships", "calculate", "Calculate power from known voltage and resistance."),
+  cap(
+    "cap.power.calculate_total",
+    "electrical.power_relationships",
+    "calculate",
+    "Calculate total circuit power as the sum of individual component powers.",
+  ),
+
+  // --- electrical.energy_and_efficiency ------------------------------------
+  cap("cap.energy.calculate_energy", "electrical.energy_and_efficiency", "calculate", "Calculate electrical energy transferred from power and time."),
+  cap(
+    "cap.energy.calculate_energy_kwh",
+    "electrical.energy_and_efficiency",
+    "calculate",
+    "Calculate electrical energy used in kilowatt-hours from power rating in kW and time in hours.",
+  ),
+  cap("cap.energy.rearrange", "electrical.energy_and_efficiency", "rearrange", "Rearrange E = P x t to make power or time the subject."),
+  cap(
+    "cap.energy.calculate_efficiency",
+    "electrical.energy_and_efficiency",
+    "calculate",
+    "Calculate the efficiency of an electrical device as a percentage.",
+  ),
+
+  // --- electrical.charge_and_current ---------------------------------------
+  cap("cap.charge.recognise", "electrical.charge_and_current", "recognise", "Recognise electric charge and its relationship to current and time."),
+  cap("cap.charge.calculate", "electrical.charge_and_current", "calculate", "Calculate charge or current using I = Q / t."),
+
+  // --- electrical.thermal_and_chemical_effects -----------------------------
+  cap(
+    "cap.thermal_chemical.recognise_effect",
+    "electrical.thermal_and_chemical_effects",
+    "recognise",
+    "Recognise the thermal or chemical effect of current flowing through a circuit.",
+  ),
+  cap(
+    "cap.thermal_chemical.recognise_application",
+    "electrical.thermal_and_chemical_effects",
+    "identify",
+    "Identify a practical application of the thermal effect of current.",
+  ),
+
+  // --- electrical.conductors_and_insulators --------------------------------
+  cap(
+    "cap.conductors.classify_material",
+    "electrical.conductors_and_insulators",
+    "identify",
+    "Classify a given material as a conductor or an insulator.",
+  ),
+  cap(
+    "cap.conductors.recognise_breakdown",
+    "electrical.conductors_and_insulators",
+    "recognise",
+    "Recognise insulation breakdown as a consequence of excessive voltage.",
+  ),
+
+  // --- electrical.instrumentation -------------------------------------------
+  cap(
+    "cap.instrumentation.select_instrument",
+    "electrical.instrumentation",
+    "select_relationship",
+    "Select the correct instrument to measure a given electrical quantity.",
+  ),
+  cap(
+    "cap.instrumentation.recognise_connection",
+    "electrical.instrumentation",
+    "interpret_diagram",
+    "Recognise the correct connection method (series or parallel) for a given instrument.",
+  ),
+  cap(
+    "cap.instrumentation.recognise_internal_resistance_property",
+    "electrical.instrumentation",
+    "recognise",
+    "Recognise the ideal internal-resistance property of a voltmeter or ammeter.",
+  ),
+  cap(
+    "cap.instrumentation.recognise_purpose",
+    "electrical.instrumentation",
+    "identify",
+    "Identify the purpose of a specialised instrument (clamp meter, oscilloscope, continuity tester).",
+  ),
+
+  // --- electrical.fault_conditions_protection -------------------------------
+  cap(
+    "cap.fault.recognise_condition",
+    "electrical.fault_conditions_protection",
+    "recognise",
+    "Recognise a short-circuit or open-circuit condition from its description.",
+  ),
+  cap("cap.fault.predict_effect", "electrical.fault_conditions_protection", "predict", "Predict the effect of a short circuit or open circuit on a circuit."),
+  cap(
+    "cap.fault.select_protective_device",
+    "electrical.fault_conditions_protection",
+    "select_relationship",
+    "Select a protective device appropriate to a fault scenario.",
+  ),
+  cap(
+    "cap.fault.compare_fuse_breaker",
+    "electrical.fault_conditions_protection",
+    "compare",
+    "Compare fuse and circuit-breaker operation and reuse.",
+  ),
+
+  // --- electrical.magnetism_and_electromagnetism ----------------------------
+  cap(
+    "cap.magnetism.recognise_concept",
+    "electrical.magnetism_and_electromagnetism",
+    "recognise",
+    "Recognise magnetic flux, flux density or electromagnetism from its definition.",
+  ),
+  cap(
+    "cap.magnetism.interpret_field_direction",
+    "electrical.magnetism_and_electromagnetism",
+    "interpret_diagram",
+    "Interpret the direction of the magnetic field produced by a current-carrying conductor.",
+  ),
+  cap(
+    "cap.magnetism.interpret_force_direction",
+    "electrical.magnetism_and_electromagnetism",
+    "interpret_diagram",
+    "Interpret the direction of the force on a current-carrying conductor in a magnetic field.",
+  ),
+  cap(
+    "cap.magnetism.compare_permanent_electromagnet",
+    "electrical.magnetism_and_electromagnetism",
+    "compare",
+    "Compare a permanent magnet with an electromagnet.",
+  ),
+  cap(
+    "cap.magnetism.compare_motor_generator",
+    "electrical.magnetism_and_electromagnetism",
+    "compare",
+    "Compare the motor principle with the generator principle.",
+  ),
+
+  // --- electrical.emf_and_generation -----------------------------------------
+  cap(
+    "cap.emf.recognise_emf_terminal_voltage",
+    "electrical.emf_and_generation",
+    "compare",
+    "Distinguish EMF from terminal voltage.",
+  ),
+  cap(
+    "cap.emf.describe_ac_generation",
+    "electrical.emf_and_generation",
+    "recognise",
+    "Describe the basic principle of a rotating-loop A.C. generator.",
+  ),
+
+  // --- electrical.ac_dc_waveforms ---------------------------------------------
+  cap("cap.waveform.recognise_ac_dc", "electrical.ac_dc_waveforms", "compare", "Distinguish A.C. from D.C. supply behaviour."),
+  cap(
+    "cap.waveform.identify_characteristic",
+    "electrical.ac_dc_waveforms",
+    "identify",
+    "Identify a named sine-wave characteristic (periodic time, amplitude, peak-to-peak, RMS, average value, frequency).",
+  ),
+  cap(
+    "cap.waveform.calculate_rms_peak",
+    "electrical.ac_dc_waveforms",
+    "calculate",
+    "Calculate RMS value from peak value, or peak value from RMS value.",
+  ),
+  cap(
+    "cap.waveform.calculate_frequency_period",
+    "electrical.ac_dc_waveforms",
+    "calculate",
+    "Calculate frequency from periodic time, or periodic time from frequency.",
+  ),
+  cap(
+    "cap.waveform.interpret_rated_value",
+    "electrical.ac_dc_waveforms",
+    "check_plausibility",
+    "Interpret whether a quoted AC supply rating refers to RMS or peak value.",
+  ),
+  cap(
+    "cap.waveform.compare_ac_dc_behaviour",
+    "electrical.ac_dc_waveforms",
+    "compare",
+    "Compare how a resistor, inductor and capacitor behave under AC versus DC supply.",
+  ),
+
+  // --- electrical.ac_reactive_quantities (teaching-only) ----------------------
+  cap(
+    "cap.ac_reactive.recognise",
+    "electrical.ac_reactive_quantities",
+    "recognise",
+    "Recognise reactance, impedance, inductance, capacitance or power factor from its definition.",
+  ),
+];
+
+// =======================================================================
+// 5. Family teaching representations
+// =======================================================================
+
+function familyRep(
+  familyId: string,
+  representationType: FamilyTeachingRepresentation["representationType"],
+  requirement: FamilyTeachingRepresentation["requirement"],
+  opts: { role?: FamilyTeachingRepresentation["role"]; diagramBlueprintId?: string } = {},
+): FamilyTeachingRepresentation {
+  return { familyId, representationType, requirement, role: opts.role, diagramBlueprintId: opts.diagramBlueprintId };
+}
+
+const familyTeachingRepresentations: FamilyTeachingRepresentation[] = [
+  familyRep("electrical.ohms_law", "formula_family", "required"),
+  familyRep("electrical.ohms_law", "mnemonic", "recommended", { role: "supporting" }),
+  familyRep("electrical.ohms_law", "worked_example", "required"),
+
+  familyRep("electrical.resistivity", "concept_card", "required"),
+
+  familyRep("electrical.series_circuits", "technical_diagram", "required", {
+    role: "essential",
+    diagramBlueprintId: "circuit.series_resistors",
+  }),
+  familyRep("electrical.series_circuits", "worked_example", "required"),
+
+  familyRep("electrical.parallel_circuits", "technical_diagram", "required", {
+    role: "essential",
+    diagramBlueprintId: "circuit.parallel_resistors",
+  }),
+  familyRep("electrical.parallel_circuits", "worked_example", "required"),
+  familyRep("electrical.parallel_circuits", "misconception_warning", "recommended"),
+
+  familyRep("electrical.series_vs_parallel_comparison", "technical_diagram", "required", {
+    role: "essential",
+    diagramBlueprintId: "circuit.series_parallel_mixed",
+  }),
+  familyRep("electrical.series_vs_parallel_comparison", "comparison", "required"),
+
+  familyRep("electrical.power_relationships", "formula_family", "required"),
+  familyRep("electrical.power_relationships", "mnemonic", "recommended", { role: "supporting" }),
+
+  familyRep("electrical.energy_and_efficiency", "formula_family", "required"),
+
+  familyRep("electrical.instrumentation", "technical_diagram", "required", {
+    role: "essential",
+    diagramBlueprintId: "instrument.measurement_connection",
+  }),
+
+  familyRep("electrical.fault_conditions_protection", "concept_card", "recommended"),
+
+  familyRep("electrical.magnetism_and_electromagnetism", "technical_diagram", "required", {
+    role: "essential",
+    diagramBlueprintId: "magnetic.field_conductor_direction",
+  }),
+
+  familyRep("electrical.emf_and_generation", "technical_diagram", "optional", {
+    role: "supporting",
+    diagramBlueprintId: "motor.force_field_current",
+  }),
+
+  familyRep("electrical.ac_dc_waveforms", "technical_diagram", "required", {
+    role: "essential",
+    diagramBlueprintId: "graph.waveform_sine",
+  }),
+];
+
+// =======================================================================
+// 6. Diagram blueprints
+// =======================================================================
+
+function diagramAccessibility(labelPattern: string) {
+  return {
+    semanticDescriptionRequired: true as const,
+    colourOnlyEncodingProhibited: true as const,
+    identifierLabelPattern: labelPattern,
+  };
+}
+
+const diagramBlueprints: DiagramBlueprint[] = [
+  {
+    id: "circuit.series_resistors",
+    type: "electrical_circuit",
+    renderer: "svg",
+    parameters: [
+      { name: "component_count", kind: "enum", allowed: [2, 3, 4] },
+      { name: "show_values", kind: "boolean" },
+      { name: "show_current_arrow", kind: "boolean" },
+    ],
+    accessibility: diagramAccessibility("R{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "circuit.parallel_resistors",
+    type: "electrical_circuit",
+    renderer: "svg",
+    parameters: [
+      { name: "branch_count", kind: "enum", allowed: [2, 3, 4] },
+      { name: "show_values", kind: "boolean" },
+      { name: "show_branch_current_arrows", kind: "boolean" },
+    ],
+    accessibility: diagramAccessibility("R{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "circuit.series_parallel_mixed",
+    type: "electrical_circuit",
+    renderer: "svg",
+    parameters: [
+      { name: "branch_arrangement", kind: "enum", allowed: ["series_of_parallel", "parallel_of_series"] },
+      { name: "show_values", kind: "boolean" },
+    ],
+    accessibility: diagramAccessibility("R{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "magnetic.field_conductor_direction",
+    type: "magnetic_field",
+    renderer: "svg",
+    parameters: [
+      { name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page", "left_to_right"] },
+      { name: "show_field_arrows", kind: "boolean" },
+    ],
+    accessibility: diagramAccessibility("arrow-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "motor.force_field_current",
+    type: "magnetic_field",
+    renderer: "svg",
+    parameters: [
+      { name: "pole_labels", kind: "enum", allowed: ["N_S_horizontal", "N_S_vertical"] },
+      { name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page"] },
+      { name: "show_force_arrow", kind: "boolean" },
+    ],
+    accessibility: diagramAccessibility("arrow-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "graph.waveform_sine",
+    type: "waveform",
+    renderer: "svg",
+    parameters: [
+      { name: "show_peak_line", kind: "boolean" },
+      { name: "show_rms_line", kind: "boolean" },
+      { name: "show_period_marker", kind: "boolean" },
+      { name: "cycles_shown", kind: "number_range", min: 1, max: 3 },
+    ],
+    accessibility: diagramAccessibility("marker-{index}"),
+    valueEmbedding: "values_when_assessed",
+  },
+  {
+    id: "instrument.measurement_connection",
+    type: "instrument_connection",
+    renderer: "svg",
+    parameters: [
+      { name: "instrument_type", kind: "enum", allowed: ["voltmeter", "ammeter", "ohmmeter"] },
+      { name: "connection_style", kind: "enum", allowed: ["series", "parallel"] },
+    ],
+    accessibility: diagramAccessibility("instrument-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+];
+
+// =======================================================================
+// 7. Formula families, worked examples and mnemonic visual aids
+// =======================================================================
+
+const formulaFamilies: FormulaFamily[] = [
+  {
+    id: "formula.ohms_law",
+    assertionFamilyId: "electrical.ohms_law",
+    canonicalTarget: "V",
+    variables: [
+      { symbol: "V", name: "voltage", quantity: "voltage", unitName: "volt", unitSymbol: "V" },
+      { symbol: "I", name: "current", quantity: "current", unitName: "ampere", unitSymbol: "A" },
+      { symbol: "R", name: "resistance", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+    ],
+    forms: [
+      {
+        target: "V",
+        expression: { operation: "multiply", operands: ["I", "R"] },
+        instruction: "To find voltage, multiply current by resistance.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "I",
+        expression: { operation: "divide", numerator: "V", denominator: "R" },
+        instruction: "To find current, divide voltage by resistance.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "R",
+        expression: { operation: "divide", numerator: "V", denominator: "I" },
+        instruction: "To find resistance, divide voltage by current.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["V", "I", "R"],
+    mnemonicId: "mnemonic.vir_triangle",
+  },
+  {
+    id: "formula.series_resistance",
+    assertionFamilyId: "electrical.series_circuits",
+    canonicalTarget: "Rt",
+    variables: [
+      { symbol: "Rt", name: "total resistance", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "R1", name: "resistance of component 1", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "R2", name: "resistance of component 2", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "R3", name: "resistance of component 3", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "R4", name: "resistance of component 4", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+    ],
+    forms: [
+      {
+        target: "Rt",
+        expression: { operation: "add", operands: ["R1", "R2", "R3", "R4"] },
+        instruction:
+          "To find total series resistance, add the individual component resistances (using as many of R1..R4 as the circuit actually has).",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["Rt"],
+  },
+  {
+    id: "formula.parallel_resistance",
+    assertionFamilyId: "electrical.parallel_circuits",
+    canonicalTarget: "Rt",
+    variables: [
+      { symbol: "Rt", name: "total resistance", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "R1", name: "resistance of branch 1", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "R2", name: "resistance of branch 2", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "R3", name: "resistance of branch 3", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "R4", name: "resistance of branch 4", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+    ],
+    forms: [
+      {
+        target: "Rt",
+        expression: { operation: "reciprocal_of_sum_of_reciprocals", operands: ["R1", "R2", "R3", "R4"] },
+        instruction:
+          "To find total parallel resistance, sum the reciprocals of the individual branch resistances, then take the reciprocal of that total (using as many of R1..R4 as the circuit actually has).",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["Rt"],
+  },
+  {
+    id: "formula.electrical_power",
+    assertionFamilyId: "electrical.power_relationships",
+    canonicalTarget: "P",
+    variables: [
+      { symbol: "P", name: "power", quantity: "power", unitName: "watt", unitSymbol: "W" },
+      { symbol: "V", name: "voltage", quantity: "voltage", unitName: "volt", unitSymbol: "V" },
+      { symbol: "I", name: "current", quantity: "current", unitName: "ampere", unitSymbol: "A" },
+      { symbol: "R", name: "resistance", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+    ],
+    forms: [
+      {
+        target: "P",
+        expression: { operation: "multiply", operands: ["V", "I"] },
+        instruction: "To find power, multiply voltage by current.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "V",
+        expression: { operation: "divide", numerator: "P", denominator: "I" },
+        instruction: "To find voltage, divide power by current.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "I",
+        expression: { operation: "divide", numerator: "P", denominator: "V" },
+        instruction: "To find current, divide power by voltage.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "P",
+        expression: {
+          operation: "multiply",
+          operands: [{ operation: "square", operand: "I" }, "R"],
+        },
+        instruction: "Power can also be found by multiplying current squared by resistance: P = I^2 x R.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "P",
+        expression: {
+          operation: "divide",
+          numerator: { operation: "square", operand: "V" },
+          denominator: "R",
+        },
+        instruction: "Power can also be found by dividing voltage squared by resistance: P = V^2 / R.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["P", "V", "I"],
+    mnemonicId: "mnemonic.power_triangle",
+  },
+  {
+    id: "formula.electrical_energy",
+    assertionFamilyId: "electrical.energy_and_efficiency",
+    canonicalTarget: "E",
+    variables: [
+      { symbol: "E", name: "energy", quantity: "energy", unitName: "joule", unitSymbol: "J" },
+      { symbol: "P", name: "power", quantity: "power", unitName: "watt", unitSymbol: "W" },
+      { symbol: "t", name: "time", quantity: "time", unitName: "second", unitSymbol: "s" },
+    ],
+    forms: [
+      {
+        target: "E",
+        expression: { operation: "multiply", operands: ["P", "t"] },
+        instruction: "To find energy transferred, multiply power by time.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "P",
+        expression: { operation: "divide", numerator: "E", denominator: "t" },
+        instruction: "To find power, divide energy by time.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "t",
+        expression: { operation: "divide", numerator: "E", denominator: "P" },
+        instruction: "To find time, divide energy by power.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["E", "P", "t"],
+  },
+  {
+    id: "formula.electrical_efficiency",
+    assertionFamilyId: "electrical.energy_and_efficiency",
+    canonicalTarget: "eta",
+    variables: [
+      { symbol: "eta", name: "efficiency", quantity: "efficiency", unitName: "percent", unitSymbol: "%" },
+      { symbol: "Pout", name: "useful power output", quantity: "power", unitName: "watt", unitSymbol: "W" },
+      { symbol: "Pin", name: "power input", quantity: "power", unitName: "watt", unitSymbol: "W" },
+    ],
+    forms: [
+      {
+        target: "eta",
+        expression: { operation: "ratio_percentage", numerator: "Pout", denominator: "Pin" },
+        instruction: "To find efficiency, divide useful power output by power input and express as a percentage.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["eta"],
+  },
+  {
+    id: "formula.charge_current",
+    assertionFamilyId: "electrical.charge_and_current",
+    canonicalTarget: "I",
+    variables: [
+      { symbol: "I", name: "current", quantity: "current", unitName: "ampere", unitSymbol: "A" },
+      { symbol: "Q", name: "charge", quantity: "charge", unitName: "coulomb", unitSymbol: "C" },
+      { symbol: "t", name: "time", quantity: "time", unitName: "second", unitSymbol: "s" },
+    ],
+    forms: [
+      {
+        target: "I",
+        expression: { operation: "divide", numerator: "Q", denominator: "t" },
+        instruction: "To find current, divide charge by time.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "Q",
+        expression: { operation: "multiply", operands: ["I", "t"] },
+        instruction: "To find charge, multiply current by time.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "t",
+        expression: { operation: "divide", numerator: "Q", denominator: "I" },
+        instruction: "To find time, divide charge by current.",
+        requiresWorkedExample: false,
+      },
+    ],
+    requiredTargets: ["I", "Q"],
+  },
+  {
+    id: "formula.resistivity",
+    assertionFamilyId: "electrical.resistivity",
+    canonicalTarget: "R",
+    variables: [
+      { symbol: "R", name: "resistance", quantity: "resistance", unitName: "ohm", unitSymbol: "Ω" },
+      { symbol: "rho", name: "resistivity", quantity: "resistivity", unitName: "ohm-metre", unitSymbol: "Ω·m" },
+      { symbol: "L", name: "conductor length", quantity: "length", unitName: "metre", unitSymbol: "m" },
+      { symbol: "A", name: "cross-sectional area", quantity: "area", unitName: "square metre", unitSymbol: "m²" },
+    ],
+    forms: [
+      {
+        target: "R",
+        expression: {
+          operation: "divide",
+          numerator: { operation: "multiply", operands: ["rho", "L"] },
+          denominator: "A",
+        },
+        instruction: "To find resistance, multiply resistivity by length, then divide by cross-sectional area.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["R"],
+  },
+  {
+    id: "formula.ac_waveform_relationships",
+    assertionFamilyId: "electrical.ac_dc_waveforms",
+    canonicalTarget: "rms",
+    variables: [
+      { symbol: "rms", name: "RMS value", quantity: "voltage_or_current", unitName: "volt or ampere", unitSymbol: "V/A" },
+      { symbol: "peak", name: "peak value", quantity: "voltage_or_current", unitName: "volt or ampere", unitSymbol: "V/A" },
+      { symbol: "f", name: "frequency", quantity: "frequency", unitName: "hertz", unitSymbol: "Hz" },
+      { symbol: "T", name: "periodic time", quantity: "time", unitName: "second", unitSymbol: "s" },
+    ],
+    forms: [
+      {
+        target: "rms",
+        expression: { operation: "divide", numerator: "peak", denominator: { operation: "sqrt", operand: 2 } },
+        instruction: "To find the RMS value, divide the peak value by the square root of two.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "peak",
+        expression: { operation: "multiply", operands: ["rms", { operation: "sqrt", operand: 2 }] },
+        instruction: "To find the peak value, multiply the RMS value by the square root of two.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "f",
+        expression: { operation: "divide", numerator: 1, denominator: "T" },
+        instruction: "To find frequency, divide one by the periodic time.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "T",
+        expression: { operation: "divide", numerator: 1, denominator: "f" },
+        instruction: "To find periodic time, divide one by the frequency.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["rms", "peak", "f", "T"],
+  },
+];
+
+const workedExampleBlueprints: WorkedExampleBlueprint[] = [
+  {
+    id: "worked.ohms_law.solve_voltage",
+    formulaFamilyId: "formula.ohms_law",
+    target: "V",
+    knownVariables: ["I", "R"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.ohms_law.solve_current",
+    formulaFamilyId: "formula.ohms_law",
+    target: "I",
+    knownVariables: ["V", "R"],
+    steps: ["show_formula", "show_rearrangement", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.ohms_law.solve_resistance",
+    formulaFamilyId: "formula.ohms_law",
+    target: "R",
+    knownVariables: ["V", "I"],
+    steps: ["show_formula", "show_rearrangement", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.series_resistance.calculate_total",
+    formulaFamilyId: "formula.series_resistance",
+    target: "Rt",
+    knownVariables: ["R1", "R2", "R3"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit", "sanity_check_result"],
+  },
+  {
+    id: "worked.parallel_resistance.calculate_total",
+    formulaFamilyId: "formula.parallel_resistance",
+    target: "Rt",
+    knownVariables: ["R1", "R2", "R3"],
+    steps: [
+      "show_formula",
+      "substitute_values",
+      "calculate",
+      "show_answer_with_unit",
+      "sanity_check_result",
+    ],
+  },
+  {
+    id: "worked.power.calculate_from_vi",
+    formulaFamilyId: "formula.electrical_power",
+    target: "P",
+    knownVariables: ["V", "I"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.power.calculate_from_ir",
+    formulaFamilyId: "formula.electrical_power",
+    target: "P",
+    knownVariables: ["I", "R"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.energy.calculate_energy",
+    formulaFamilyId: "formula.electrical_energy",
+    target: "E",
+    knownVariables: ["P", "t"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.efficiency.calculate",
+    formulaFamilyId: "formula.electrical_efficiency",
+    target: "eta",
+    knownVariables: ["Pout", "Pin"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.charge.calculate_current",
+    formulaFamilyId: "formula.charge_current",
+    target: "I",
+    knownVariables: ["Q", "t"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.resistivity.calculate_resistance",
+    formulaFamilyId: "formula.resistivity",
+    target: "R",
+    knownVariables: ["rho", "L", "A"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.waveform.calculate_rms",
+    formulaFamilyId: "formula.ac_waveform_relationships",
+    target: "rms",
+    knownVariables: ["peak"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  {
+    id: "worked.waveform.calculate_frequency",
+    formulaFamilyId: "formula.ac_waveform_relationships",
+    target: "f",
+    knownVariables: ["T"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+];
+
+const visualAidBlueprints: VisualAidBlueprint[] = [
+  {
+    id: "mnemonic.vir_triangle",
+    type: "mnemonic",
+    formulaFamilyId: "formula.ohms_law",
+    renderer: "svg",
+    regions: { top: "V", bottom_left: "I", bottom_right: "R" },
+    accessibleDescription:
+      "A triangle divided into three regions labelled V (top), I (bottom left) and R (bottom right). Covering V shows I x R; covering I shows V / R; covering R shows V / I. The triangle is a learning aid only -- the authoritative relationship is formula.ohms_law.",
+  },
+  {
+    id: "mnemonic.power_triangle",
+    type: "mnemonic",
+    formulaFamilyId: "formula.electrical_power",
+    renderer: "svg",
+    regions: { top: "P", bottom_left: "V", bottom_right: "I" },
+    accessibleDescription:
+      "A triangle divided into three regions labelled P (top), V (bottom left) and I (bottom right). Covering P shows V x I; covering V shows P / I; covering I shows P / V. The triangle is a learning aid only -- the authoritative relationship is formula.electrical_power.",
+  },
+];
+
+// =======================================================================
+// 8. Question blueprints -- pedagogically exhaustive, normalised
+//    inventory per assessable family (design doc §17-§19).
+// =======================================================================
+
+interface QuestionBlueprintSpec {
+  id: string;
+  familyId: string;
+  capabilityId: string;
+  title: string;
+  difficultyBand: QuestionBlueprint["difficultyBand"];
+  answer: AnswerContract;
+  marking: MarkingContract;
+  assertionIdentifiers: string[];
+  representation?: QuestionBlueprint["representation"];
+  variantDimensions?: QuestionBlueprint["variantDimensions"];
+  parameterGenerators?: QuestionBlueprint["parameterGenerators"];
+  supportingCapabilityIds?: string[];
+  representationDependency?: string[];
+  misconceptionTargets?: EvidenceTarget["misconceptionTargets"];
+  normalisationNote?: string;
+}
+
+function qb(spec: QuestionBlueprintSpec): QuestionBlueprint {
+  return {
+    id: spec.id,
+    assertionFamilyId: spec.familyId,
+    capabilityId: spec.capabilityId,
+    title: spec.title,
+    representation: spec.representation ?? {},
+    variantDimensions: spec.variantDimensions ?? {},
+    parameterGenerators: spec.parameterGenerators ?? [],
+    answer: spec.answer,
+    marking: spec.marking,
+    difficultyBand: spec.difficultyBand,
+    normalisationNote: spec.normalisationNote,
+    evidence: evidence(spec.familyId, spec.capabilityId, spec.assertionIdentifiers, {
+      supportingCapabilityIds: spec.supportingCapabilityIds,
+      representationDependency: spec.representationDependency,
+      misconceptionTargets: spec.misconceptionTargets,
+    }),
+  };
+}
+
+const questionBlueprints: QuestionBlueprint[] = [
+  // ===================================================================
+  // electrical.si_units (3)
+  // ===================================================================
+  qb({
+    id: "si_units.identify_unit",
+    familyId: "electrical.si_units",
+    capabilityId: "cap.si_units.identify_unit",
+    title: "Identify the SI unit for a given electrical quantity",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["V", "A", "Ω", "W", "J", "Hz"] },
+    marking: exact(),
+    assertionIdentifiers: [
+      "EL-UNIT-VOLT-001",
+      "EL-UNIT-AMPERE-001",
+      "EL-UNIT-OHM-001",
+      "EL-UNIT-WATT-001",
+      "EL-UNIT-JOULE-001",
+      "EL-UNIT-HERTZ-001",
+    ],
+    variantDimensions: { quantity: { allowed: ["voltage", "current", "resistance", "power", "energy", "frequency"] } },
+  }),
+  qb({
+    id: "si_units.distinguish_base_derived",
+    familyId: "electrical.si_units",
+    capabilityId: "cap.si_units.distinguish_base_derived",
+    title: "Distinguish an SI base unit from an SI derived unit",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["base", "derived"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-UNIT-BASE-VS-DERIVED-001"],
+  }),
+  qb({
+    id: "si_units.diagnose_unit_confusion",
+    familyId: "electrical.si_units",
+    capabilityId: "cap.si_units.diagnose_unit_confusion",
+    title: "Diagnose confusion between similarly-presented electrical units",
+    difficultyBand: "diagnostic",
+    answer: { type: "worked_error_classification" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-UNIT-VOLT-001", "EL-UNIT-OHM-001"],
+    misconceptionTargets: [
+      { misconceptionIdentifier: "MIS-EL-UNIT-CONFUSION-001", evidenceStrength: "direct" },
+      { misconceptionIdentifier: "MIS-EL-SI-PREFIX-ERROR-001", evidenceStrength: "suggestive" },
+    ],
+  }),
+
+  // ===================================================================
+  // electrical.core_quantities (2)
+  // ===================================================================
+  qb({
+    id: "core_quantities.recognise_from_definition",
+    familyId: "electrical.core_quantities",
+    capabilityId: "cap.core_quantities.recognise",
+    title: "Recognise voltage, current or resistance from its definition",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["voltage", "current", "resistance"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-VOLTAGE-001", "EL-CONCEPT-CURRENT-001", "EL-CONCEPT-RESISTANCE-001"],
+  }),
+  qb({
+    id: "core_quantities.diagnose_current_voltage_confusion",
+    familyId: "electrical.core_quantities",
+    capabilityId: "cap.core_quantities.distinguish",
+    title: "Diagnose confusion between current and voltage",
+    difficultyBand: "diagnostic",
+    answer: { type: "worked_error_classification" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-CONCEPT-VOLTAGE-001", "EL-CONCEPT-CURRENT-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-CURRENT-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" }],
+  }),
+
+  // ===================================================================
+  // electrical.ohms_law (10)
+  // ===================================================================
+  qb({
+    id: "ohms_law.solve_for_voltage",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.solve_for_voltage",
+    title: "Solve for voltage given current and resistance",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("voltage", "volt"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-OHM-SOLVE-V-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
+    supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
+  }),
+  qb({
+    id: "ohms_law.solve_for_current",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.solve_for_current",
+    title: "Solve for current given voltage and resistance",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("current", "ampere"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-OHM-SOLVE-I-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
+    supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
+  }),
+  qb({
+    id: "ohms_law.solve_for_resistance",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.solve_for_resistance",
+    title: "Solve for resistance given voltage and current",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("resistance", "ohm"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-OHM-SOLVE-R-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
+    supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
+  }),
+  qb({
+    id: "ohms_law.select_rearrangement",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.select_rearrangement",
+    title: "Select the correct rearrangement of V = I x R for the target quantity",
+    difficultyBand: "intermediate",
+    answer: { type: "formula_selection" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-OHM-SELECT-RELATIONSHIP-001"],
+    supportingCapabilityIds: ["cap.ohms_law.recognise_relationship"],
+    variantDimensions: { target_variable: { allowed: ["V", "I", "R"] } },
+    normalisationNote:
+      "One blueprint with target_variable as a variant dimension, rather than three separate select-rearrangement blueprints, since the selection skill being assessed is identical regardless of which variable is unknown.",
+  }),
+  qb({
+    id: "ohms_law.match_variables_units",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.apply_correct_unit",
+    title: "Match each Ohm's-law variable to its correct SI unit",
+    difficultyBand: "introductory",
+    answer: { type: "multi_select" },
+    marking: { type: "set_equality" },
+    assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
+    supportingCapabilityIds: ["cap.si_units.identify_unit"],
+  }),
+  qb({
+    id: "ohms_law.substitution",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.apply_substitution",
+    title: "Substitute known values into a chosen Ohm's-law rearrangement, showing intermediate working",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("voltage", "volt"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["FM-ALG-SUBSTITUTION-001", "EL-OHM-SOLVE-V-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
+    representationDependency: ["worked_example"],
+  }),
+  qb({
+    id: "ohms_law.diagnose_rearrangement_error",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.diagnose_rearrangement_error",
+    title: "Diagnose an incorrect algebraic rearrangement of V = I x R",
+    difficultyBand: "diagnostic",
+    answer: { type: "worked_error_classification" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-OHM-REARRANGE-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-OHM-REARRANGE-ERROR-001", evidenceStrength: "direct" }],
+  }),
+  qb({
+    id: "ohms_law.diagnose_wrong_operation",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.diagnose_wrong_operation",
+    title: "Diagnose use of the wrong arithmetic operation when applying V = I x R",
+    difficultyBand: "diagnostic",
+    answer: { type: "worked_error_classification" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-OHM-WRONG-OPERATION-001", evidenceStrength: "direct" }],
+  }),
+  qb({
+    id: "ohms_law.diagnose_unrelated_symbols",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.diagnose_unrelated_symbols",
+    title: "Diagnose substitution of an unrelated quantity's value into V = I x R",
+    difficultyBand: "diagnostic",
+    answer: { type: "worked_error_classification" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-OHM-UNRELATED-SYMBOLS-001", evidenceStrength: "direct" }],
+  }),
+  qb({
+    id: "ohms_law.plausibility_check",
+    familyId: "electrical.ohms_law",
+    capabilityId: "cap.ohms_law.check_plausibility",
+    title: "Judge whether a calculated Ohm's-law result is physically plausible",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["plausible", "too_high", "too_low"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
+  }),
+
+  // ===================================================================
+  // electrical.resistivity (5)
+  // ===================================================================
+  qb({
+    id: "resistivity.recognise",
+    familyId: "electrical.resistivity",
+    capabilityId: "cap.resistivity.recognise",
+    title: "Recognise resistivity as a material property independent of conductor dimensions",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["resistance", "resistivity"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-RESISTIVITY-001"],
+  }),
+  qb({
+    id: "resistivity.calculate_resistance",
+    familyId: "electrical.resistivity",
+    capabilityId: "cap.resistivity.calculate",
+    title: "Calculate resistance from resistivity, length and cross-sectional area",
+    difficultyBand: "advanced",
+    answer: quantityAnswer("resistance", "ohm"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-RESISTIVITY-RELATIONSHIP-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.resistivity" } },
+  }),
+  qb({
+    id: "resistivity.compare_materials",
+    familyId: "electrical.resistivity",
+    capabilityId: "cap.resistivity.compare_materials",
+    title: "Compare the resistivity of different materials to determine the better conductor",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["material_a", "material_b"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-RESISTIVITY-COMPARE-MATERIALS-001"],
+  }),
+  qb({
+    id: "resistivity.predict_length_effect",
+    familyId: "electrical.resistivity",
+    capabilityId: "cap.resistivity.predict_length_effect",
+    title: "Predict the effect of increasing conductor length on resistance",
+    difficultyBand: "intermediate",
+    answer: { type: "direction", canonicalUnit: undefined },
+    marking: exact(),
+    assertionIdentifiers: ["EL-RESISTIVITY-LENGTH-EFFECT-001"],
+  }),
+  qb({
+    id: "resistivity.predict_area_effect",
+    familyId: "electrical.resistivity",
+    capabilityId: "cap.resistivity.predict_area_effect",
+    title: "Predict the effect of increasing conductor cross-sectional area on resistance",
+    difficultyBand: "intermediate",
+    answer: { type: "direction" },
+    marking: exact(),
+    assertionIdentifiers: ["EL-RESISTIVITY-AREA-EFFECT-001"],
+  }),
+
+  // ===================================================================
+  // electrical.series_circuits (10)
+  // ===================================================================
+  qb({
+    id: "series.calculate_total_resistance",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.calculate_total_resistance",
+    title: "Calculate total resistance of resistors connected in series",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("resistance", "ohm"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-SERIES-RESISTANCE-CALC-001"],
+    representation: {
+      formula: { required: true, formulaFamilyId: "formula.series_resistance" },
+      diagram: { required: true, blueprintId: "circuit.series_resistors" },
+    },
+    variantDimensions: { component_count: { allowed: [2, 3, 4] } },
+    parameterGenerators: [{ variable: "R1", min: 1, max: 100, constraints: ["positive", "pedagogically_sensible"] }],
+  }),
+  qb({
+    id: "series.solve_missing_component",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.solve_missing_component",
+    title: "Solve for a missing series component resistance given the total and the other components",
+    difficultyBand: "advanced",
+    answer: quantityAnswer("resistance", "ohm"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-SERIES-RESISTANCE-001", "FM-ALG-TRANSPOSE-ADD-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.series_resistors" } },
+    variantDimensions: { component_count: { allowed: [2, 3, 4] }, target: { allowed: ["choose_from_components"] } },
+    normalisationNote:
+      "A single blueprint with the unknown component chosen by the generator, rather than a separate find_R1/find_R2/find_R3 blueprint per component -- the assessed skill is identical regardless of which component is unknown.",
+  }),
+  qb({
+    id: "series.calculate_supply_current",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.calculate_supply_current",
+    title: "Calculate supply current in a series circuit from supply voltage and total resistance",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("current", "ampere"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-CIRCUIT-SUPPLY-CURRENT-SERIES-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
+  }),
+  qb({
+    id: "series.calculate_voltage_drop",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.calculate_voltage_drop",
+    title: "Calculate an individual voltage drop across a component in a series circuit",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("voltage", "volt"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-SERIES-VOLTAGE-CALC-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.series_resistors" } },
+  }),
+  qb({
+    id: "series.calculate_power",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.calculate_power",
+    title: "Calculate the power dissipated by an individual component in a series circuit",
+    difficultyBand: "advanced",
+    answer: quantityAnswer("power", "watt"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-SERIES-POWER-CALC-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+  }),
+  qb({
+    id: "series.predict_add_component_effect",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.predict_add_component",
+    title: "Predict the effect on supply current of adding a component in series",
+    difficultyBand: "intermediate",
+    answer: { type: "direction" },
+    marking: exact(),
+    assertionIdentifiers: ["EL-SERIES-PREDICT-ADD-RESISTOR-001"],
+  }),
+  qb({
+    id: "series.predict_open_circuit_effect",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.predict_open_circuit",
+    title: "Predict the effect on current if a series circuit is broken at any point",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["current_stops_everywhere", "current_continues_elsewhere", "no_effect"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-SERIES-PREDICT-OPEN-001"],
+  }),
+  qb({
+    id: "series.detect_incorrect_total",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.check_plausibility",
+    title: "Detect an implausible series total-resistance result",
+    difficultyBand: "diagnostic",
+    answer: { type: "multiple_choice", options: ["plausible", "implausible"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-INTERPRET-SERIES-RESULT-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-SERIES-PARALLEL-CONFUSION-001", evidenceStrength: "suggestive" }],
+  }),
+  qb({
+    id: "series.identify_dominant_component",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.identify_dominant_component",
+    title: "Identify which series component has the greatest voltage drop/power dissipation",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["R1", "R2", "R3"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-SERIES-DOMINANT-RESISTOR-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.series_resistors" } },
+  }),
+  qb({
+    id: "series.interpret_diagram",
+    familyId: "electrical.series_circuits",
+    capabilityId: "cap.series.recognise_structure",
+    title: "Recognise a series circuit from a circuit diagram",
+    difficultyBand: "introductory",
+    answer: { type: "diagram_region" },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-SERIES-STRUCTURE-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.series_resistors" } },
+  }),
+
+  // ===================================================================
+  // electrical.parallel_circuits (11)
+  // ===================================================================
+  qb({
+    id: "parallel.calculate_total",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.calculate_total_resistance",
+    title: "Calculate total resistance of resistors connected in parallel",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("resistance", "ohm"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-CALC-001"],
+    representation: {
+      formula: { required: true, formulaFamilyId: "formula.parallel_resistance" },
+      diagram: { required: true, blueprintId: "circuit.parallel_resistors" },
+    },
+    variantDimensions: { branch_count: { allowed: [2, 3, 4] } },
+    parameterGenerators: [{ variable: "R1", min: 1, max: 100, constraints: ["positive", "pedagogically_sensible"] }],
+  }),
+  qb({
+    id: "parallel.solve_missing_branch",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.solve_missing_branch",
+    title: "Solve for a missing parallel branch resistance given the total and the other branches",
+    difficultyBand: "advanced",
+    answer: quantityAnswer("resistance", "ohm"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-001", "FM-ARITH-RECIPROCAL-SUM-001", "FM-ARITH-RECIPROCAL-INVERT-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.parallel_resistors" } },
+    variantDimensions: { branch_count: { allowed: [2, 3] }, target: { allowed: ["choose_from_branches"] } },
+    normalisationNote:
+      "A single blueprint with the unknown branch chosen by the generator (design doc §18), rather than a separate find_R1_given_Rt_R2 / find_R2_given_Rt_R1 blueprint pair -- the assessed skill is identical regardless of which branch is unknown.",
+  }),
+  qb({
+    id: "parallel.identify_topology",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.recognise_structure",
+    title: "Recognise a parallel circuit from a circuit diagram",
+    difficultyBand: "introductory",
+    answer: { type: "diagram_region" },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-PARALLEL-STRUCTURE-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.parallel_resistors" } },
+  }),
+  qb({
+    id: "parallel.predict_add_branch_effect",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.predict_add_branch",
+    title: "Predict the effect on supply current of adding a branch in parallel",
+    difficultyBand: "intermediate",
+    answer: { type: "direction" },
+    marking: exact(),
+    assertionIdentifiers: ["EL-PARALLEL-PREDICT-ADD-RESISTOR-001"],
+  }),
+  qb({
+    id: "parallel.predict_open_branch_effect",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.predict_open_branch",
+    title: "Predict the effect on the remaining branches if one parallel branch is broken",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["other_branches_unaffected", "all_current_stops", "other_branches_stop"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-PARALLEL-PREDICT-OPEN-001"],
+  }),
+  qb({
+    id: "parallel.calculate_branch_current",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.calculate_branch_current",
+    title: "Calculate an individual branch current in a parallel circuit",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("current", "ampere"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-PARALLEL-CURRENT-CALC-001"],
+    representation: {
+      formula: { required: true, formulaFamilyId: "formula.ohms_law" },
+      diagram: { required: true, blueprintId: "circuit.parallel_resistors" },
+    },
+  }),
+  qb({
+    id: "parallel.calculate_power",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.calculate_power",
+    title: "Calculate the power dissipated by an individual branch in a parallel circuit",
+    difficultyBand: "advanced",
+    answer: quantityAnswer("power", "watt"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-PARALLEL-POWER-CALC-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+  }),
+  qb({
+    id: "parallel.identify_dominant_branch",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.identify_dominant_branch",
+    title: "Identify which parallel branch carries the largest current/dissipates the most power",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["R1", "R2", "R3"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-PARALLEL-DOMINANT-RESISTOR-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.parallel_resistors" } },
+  }),
+  qb({
+    id: "parallel.detect_impossible_total",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.check_plausibility",
+    title: "Detect an impossible parallel total-resistance result",
+    difficultyBand: "diagnostic",
+    answer: { type: "multiple_choice", options: ["plausible", "impossible"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-INTERPRET-PARALLEL-RESULT-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-PARALLEL-RESISTANCE-ADDITION-001", evidenceStrength: "suggestive" }],
+  }),
+  qb({
+    id: "parallel.diagnose_reciprocal_error",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.diagnose_reciprocal_error",
+    title: "Diagnose the error of adding parallel branch resistances directly",
+    difficultyBand: "diagnostic",
+    answer: { type: "worked_error_classification" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-PARALLEL-RESISTANCE-ADDITION-001", evidenceStrength: "direct" }],
+  }),
+  qb({
+    id: "parallel.diagnose_missing_final_inversion",
+    familyId: "electrical.parallel_circuits",
+    capabilityId: "cap.parallel.diagnose_missing_final_inversion",
+    title: "Diagnose the error of leaving the parallel-resistance result as a reciprocal instead of inverting it back",
+    difficultyBand: "diagnostic",
+    answer: { type: "worked_error_classification" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-CALC-001", "FM-ARITH-RECIPROCAL-INVERT-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-RECIPROCAL-FORGOTTEN-INVERT-001", evidenceStrength: "direct" }],
+  }),
+
+  // ===================================================================
+  // electrical.series_vs_parallel_comparison (6)
+  // ===================================================================
+  qb({
+    id: "comparison.identify_topology",
+    familyId: "electrical.series_vs_parallel_comparison",
+    capabilityId: "cap.comparison.identify_topology",
+    title: "Identify whether a given circuit is connected in series or parallel",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["series", "parallel"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-SELECT-CONFIGURATION-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.series_parallel_mixed" } },
+  }),
+  qb({
+    id: "comparison.recognise_mixed_circuit",
+    familyId: "electrical.series_vs_parallel_comparison",
+    capabilityId: "cap.comparison.recognise_mixed_circuit",
+    title: "Recognise a circuit combining both series and parallel sections",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["series", "parallel", "mixed"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.series_parallel_mixed" } },
+  }),
+  qb({
+    id: "comparison.trace_current_path",
+    familyId: "electrical.series_vs_parallel_comparison",
+    capabilityId: "cap.comparison.trace_current_path",
+    title: "Trace the path(s) current takes through a circuit diagram",
+    difficultyBand: "intermediate",
+    answer: { type: "diagram_region" },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-TRACE-CURRENT-PATH-001"],
+    representation: { diagram: { required: true, blueprintId: "circuit.series_parallel_mixed" } },
+  }),
+  qb({
+    id: "comparison.compare_resistance",
+    familyId: "electrical.series_vs_parallel_comparison",
+    capabilityId: "cap.comparison.compare_resistance",
+    title: "Compare total resistance of the same resistor set connected in series versus parallel",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["series_higher", "parallel_higher", "equal"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-COMPARE-RESISTANCE-001"],
+  }),
+  qb({
+    id: "comparison.compare_current_voltage",
+    familyId: "electrical.series_vs_parallel_comparison",
+    capabilityId: "cap.comparison.compare_current_voltage",
+    title: "Compare current and voltage behaviour between series and parallel circuits",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["series_behaviour", "parallel_behaviour"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-COMPARE-CURRENT-001", "EL-CIRCUIT-COMPARE-VOLTAGE-001"],
+  }),
+  qb({
+    id: "comparison.compare_power_energy",
+    familyId: "electrical.series_vs_parallel_comparison",
+    capabilityId: "cap.comparison.compare_power_energy",
+    title: "Compare total power/energy of the same resistor set connected in series versus parallel",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["series_higher", "parallel_higher", "equal"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-COMPARE-POWER-001", "EL-CIRCUIT-COMPARE-ENERGY-001"],
+  }),
+
+  // ===================================================================
+  // electrical.power_relationships (6)
+  // ===================================================================
+  qb({
+    id: "power.recognise_relationship",
+    familyId: "electrical.power_relationships",
+    capabilityId: "cap.power.recognise_relationship",
+    title: "Recognise that electrical power is related to voltage and current by P = V x I",
+    difficultyBand: "introductory",
+    answer: { type: "formula_selection" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-POWER-RELATIONSHIP-001"],
+  }),
+  qb({
+    id: "power.select_form",
+    familyId: "electrical.power_relationships",
+    capabilityId: "cap.power.select_form",
+    title: "Select which form of the power relationship to use, based on which quantities are known",
+    difficultyBand: "intermediate",
+    answer: { type: "formula_selection" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-POWER-REARRANGE-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+  }),
+  qb({
+    id: "power.calculate_from_vi",
+    familyId: "electrical.power_relationships",
+    capabilityId: "cap.power.calculate_from_vi",
+    title: "Calculate power from known voltage and current",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("power", "watt"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-POWER-SOLVE-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+  }),
+  qb({
+    id: "power.calculate_from_ir",
+    familyId: "electrical.power_relationships",
+    capabilityId: "cap.power.calculate_from_ir",
+    title: "Calculate power from known current and resistance",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("power", "watt"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-POWER-SOLVE-IR-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+  }),
+  qb({
+    id: "power.calculate_from_vr",
+    familyId: "electrical.power_relationships",
+    capabilityId: "cap.power.calculate_from_vr",
+    title: "Calculate power from known voltage and resistance",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("power", "watt"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-POWER-SOLVE-V2R-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+  }),
+  qb({
+    id: "power.calculate_total",
+    familyId: "electrical.power_relationships",
+    capabilityId: "cap.power.calculate_total",
+    title: "Calculate total circuit power as the sum of individual component powers",
+    difficultyBand: "advanced",
+    answer: quantityAnswer("power", "watt"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-CIRCUIT-POWER-TOTAL-001"],
+  }),
+
+  // ===================================================================
+  // electrical.energy_and_efficiency (4)
+  // ===================================================================
+  qb({
+    id: "energy.calculate_energy",
+    familyId: "electrical.energy_and_efficiency",
+    capabilityId: "cap.energy.calculate_energy",
+    title: "Calculate electrical energy transferred from power and time",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("energy", "joule"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-ENERGY-CALC-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_energy" } },
+  }),
+  qb({
+    id: "energy.calculate_energy_kwh",
+    familyId: "electrical.energy_and_efficiency",
+    capabilityId: "cap.energy.calculate_energy_kwh",
+    title: "Calculate electrical energy used in kilowatt-hours from power rating and time",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("energy", "kilowatt-hour"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-ENERGY-KWH-CALC-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_energy" } },
+  }),
+  qb({
+    id: "energy.rearrange",
+    familyId: "electrical.energy_and_efficiency",
+    capabilityId: "cap.energy.rearrange",
+    title: "Rearrange E = P x t to make power or time the subject",
+    difficultyBand: "intermediate",
+    answer: { type: "formula_selection" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-ENERGY-REARRANGE-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_energy" } },
+  }),
+  qb({
+    id: "energy.calculate_efficiency",
+    familyId: "electrical.energy_and_efficiency",
+    capabilityId: "cap.energy.calculate_efficiency",
+    title: "Calculate the efficiency of an electrical device as a percentage",
+    difficultyBand: "advanced",
+    answer: { type: "quantity", quantity: "efficiency", canonicalUnit: "percent" },
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-CALC-ELECTRICAL-EFFICIENCY-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.electrical_efficiency" } },
+  }),
+
+  // ===================================================================
+  // electrical.charge_and_current (2)
+  // ===================================================================
+  qb({
+    id: "charge.recognise",
+    familyId: "electrical.charge_and_current",
+    capabilityId: "cap.charge.recognise",
+    title: "Recognise the relationship between current and the rate of flow of charge",
+    difficultyBand: "introductory",
+    answer: { type: "formula_selection" },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-CURRENT-CHARGE-RELATIONSHIP-001"],
+  }),
+  qb({
+    id: "charge.calculate",
+    familyId: "electrical.charge_and_current",
+    capabilityId: "cap.charge.calculate",
+    title: "Calculate charge or current using I = Q / t",
+    difficultyBand: "intermediate",
+    answer: { type: "quantity", quantity: "charge_or_current", canonicalUnit: "coulomb_or_ampere" },
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-CURRENT-CHARGE-CALC-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.charge_current" } },
+    variantDimensions: { target_variable: { allowed: ["I", "Q"] } },
+  }),
+
+  // ===================================================================
+  // electrical.thermal_and_chemical_effects (2)
+  // ===================================================================
+  qb({
+    id: "thermal_chemical.recognise_effect",
+    familyId: "electrical.thermal_and_chemical_effects",
+    capabilityId: "cap.thermal_chemical.recognise_effect",
+    title: "Recognise the thermal or chemical effect of current flowing through a circuit",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["thermal", "chemical"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CURRENT-THERMAL-EFFECT-001", "EL-CURRENT-CHEMICAL-EFFECT-001", "EL-THERMAL-EFFECT-FACTORS-001"],
+  }),
+  qb({
+    id: "thermal_chemical.recognise_application",
+    familyId: "electrical.thermal_and_chemical_effects",
+    capabilityId: "cap.thermal_chemical.recognise_application",
+    title: "Identify a practical application of the thermal effect of current",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["heating_element", "filament_lamp", "relay_coil"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-THERMAL-EFFECT-APPLICATION-001"],
+  }),
+
+  // ===================================================================
+  // electrical.conductors_and_insulators (2)
+  // ===================================================================
+  qb({
+    id: "conductors.classify_material",
+    familyId: "electrical.conductors_and_insulators",
+    capabilityId: "cap.conductors.classify_material",
+    title: "Classify a given material as a conductor or an insulator",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["conductor", "insulator"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-CONDUCTOR-INSULATOR-CONFUSION-001", evidenceStrength: "suggestive" }],
+  }),
+  qb({
+    id: "conductors.recognise_breakdown",
+    familyId: "electrical.conductors_and_insulators",
+    capabilityId: "cap.conductors.recognise_breakdown",
+    title: "Recognise insulation breakdown as a consequence of excessive voltage",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["breaks_down_and_conducts", "remains_insulating"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-INSULATOR-BREAKDOWN-001"],
+  }),
+
+  // ===================================================================
+  // electrical.instrumentation (4)
+  // ===================================================================
+  qb({
+    id: "instrumentation.select_instrument",
+    familyId: "electrical.instrumentation",
+    capabilityId: "cap.instrumentation.select_instrument",
+    title: "Select the correct instrument to measure a given electrical quantity",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["voltmeter", "ammeter", "ohmmeter", "multimeter"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-INSTRUMENT-SELECT-001"],
+  }),
+  qb({
+    id: "instrumentation.recognise_connection",
+    familyId: "electrical.instrumentation",
+    capabilityId: "cap.instrumentation.recognise_connection",
+    title: "Recognise the correct connection method for a voltmeter or ammeter",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["series", "parallel"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001"],
+    representation: { diagram: { required: true, blueprintId: "instrument.measurement_connection" } },
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001", evidenceStrength: "direct" }],
+  }),
+  qb({
+    id: "instrumentation.recognise_internal_resistance_property",
+    familyId: "electrical.instrumentation",
+    capabilityId: "cap.instrumentation.recognise_internal_resistance_property",
+    title: "Recognise the ideal internal-resistance property of a voltmeter or ammeter",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["very_high", "very_low"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-INSTRUMENT-VOLTMETER-INTERNAL-RESISTANCE-001", "EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001"],
+  }),
+  qb({
+    id: "instrumentation.recognise_purpose",
+    familyId: "electrical.instrumentation",
+    capabilityId: "cap.instrumentation.recognise_purpose",
+    title: "Identify the purpose of a specialised instrument (clamp meter, oscilloscope, continuity tester)",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["clamp_meter", "oscilloscope", "continuity_tester"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-INSTRUMENT-CLAMP-METER-001", "EL-INSTRUMENT-OSCILLOSCOPE-001", "EL-INSTRUMENT-CONTINUITY-TEST-001"],
+  }),
+
+  // ===================================================================
+  // electrical.fault_conditions_protection (4)
+  // ===================================================================
+  qb({
+    id: "fault.recognise_condition",
+    familyId: "electrical.fault_conditions_protection",
+    capabilityId: "cap.fault.recognise_condition",
+    title: "Recognise a short-circuit or open-circuit condition from its description",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["short_circuit", "open_circuit"] },
+    marking: exact(),
+    assertionIdentifiers: [
+      "EL-CIRCUIT-RECOGNISE-SHORT-CIRCUIT-001",
+      "EL-CIRCUIT-RECOGNISE-OPEN-CIRCUIT-001",
+      "EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001",
+      "EL-CIRCUIT-OPEN-CIRCUIT-RESISTANCE-INTERPRETATION-001",
+    ],
+  }),
+  qb({
+    id: "fault.predict_short_effect",
+    familyId: "electrical.fault_conditions_protection",
+    capabilityId: "cap.fault.predict_effect",
+    title: "Predict the effect of a short circuit occurring across a component",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["current_increases_sharply", "current_decreases", "no_effect"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-PREDICT-SHORT-EFFECT-001"],
+  }),
+  qb({
+    id: "fault.select_protective_device",
+    familyId: "electrical.fault_conditions_protection",
+    capabilityId: "cap.fault.select_protective_device",
+    title: "Select a protective device appropriate to a fault scenario",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["fuse", "circuit_breaker"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-PROTECTIVE-DEVICE-PURPOSE-001", "EL-FUSE-OPERATION-001"],
+  }),
+  qb({
+    id: "fault.compare_fuse_breaker",
+    familyId: "electrical.fault_conditions_protection",
+    capabilityId: "cap.fault.compare_fuse_breaker",
+    title: "Compare fuse and circuit-breaker operation and reuse",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["fuse", "circuit_breaker"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-BREAKER-VS-FUSE-001"],
+  }),
+
+  // ===================================================================
+  // electrical.magnetism_and_electromagnetism (5)
+  // ===================================================================
+  qb({
+    id: "magnetism.recognise_concept",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.recognise_concept",
+    title: "Recognise magnetic flux or flux density from its definition",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["flux", "flux_density"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-MAGNETIC-FLUX-001", "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", "EL-CONCEPT-ELECTROMAGNETISM-001"],
+  }),
+  qb({
+    id: "magnetism.interpret_field_direction",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.interpret_field_direction",
+    title: "Interpret the direction of the magnetic field produced by a current-carrying conductor",
+    difficultyBand: "advanced",
+    answer: { type: "direction" },
+    marking: { type: "direction_match" },
+    assertionIdentifiers: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"],
+    representation: { diagram: { required: true, blueprintId: "magnetic.field_conductor_direction" } },
+  }),
+  qb({
+    id: "magnetism.interpret_force_direction",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.interpret_force_direction",
+    title: "Interpret the direction of the force on a current-carrying conductor in a magnetic field",
+    difficultyBand: "advanced",
+    answer: { type: "direction" },
+    marking: { type: "direction_match" },
+    assertionIdentifiers: ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001", "EL-CONCEPT-MOTOR-PRINCIPLE-001"],
+    representation: { diagram: { required: true, blueprintId: "motor.force_field_current" } },
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "suggestive" }],
+  }),
+  qb({
+    id: "magnetism.compare_permanent_electromagnet",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.compare_permanent_electromagnet",
+    title: "Compare a permanent magnet with an electromagnet",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["permanent_magnet", "electromagnet"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"],
+  }),
+  qb({
+    id: "magnetism.compare_motor_generator",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.compare_motor_generator",
+    title: "Compare the motor principle with the generator principle",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["motor", "generator"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-MOTOR-GENERATOR-COMPARE-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "suggestive" }],
+  }),
+
+  // ===================================================================
+  // electrical.emf_and_generation (2)
+  // ===================================================================
+  qb({
+    id: "emf.distinguish_emf_terminal_voltage",
+    familyId: "electrical.emf_and_generation",
+    capabilityId: "cap.emf.recognise_emf_terminal_voltage",
+    title: "Distinguish EMF from terminal voltage",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["emf", "terminal_voltage"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" }],
+  }),
+  qb({
+    id: "emf.describe_ac_generation",
+    familyId: "electrical.emf_and_generation",
+    capabilityId: "cap.emf.describe_ac_generation",
+    title: "Describe the basic principle of a rotating-loop A.C. generator",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["sine_wave", "constant_dc", "square_wave"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-AC-GENERATOR-001", "EL-CONCEPT-SINE-WAVE-001"],
+    representation: { diagram: { required: false, blueprintId: "motor.force_field_current" } },
+  }),
+
+  // ===================================================================
+  // electrical.ac_dc_waveforms (6)
+  // ===================================================================
+  qb({
+    id: "waveform.recognise_ac_dc",
+    familyId: "electrical.ac_dc_waveforms",
+    capabilityId: "cap.waveform.recognise_ac_dc",
+    title: "Distinguish A.C. from D.C. supply behaviour",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["ac", "dc"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-AC-DC-DISTINCTION-001", "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-AC-DC-CONFUSION-001", evidenceStrength: "suggestive" }],
+  }),
+  qb({
+    id: "waveform.identify_characteristic",
+    familyId: "electrical.ac_dc_waveforms",
+    capabilityId: "cap.waveform.identify_characteristic",
+    title: "Identify a named sine-wave characteristic from a waveform graph",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["periodic_time", "amplitude", "peak_to_peak", "rms", "average_value"] },
+    marking: exact(),
+    assertionIdentifiers: [
+      "EL-WAVEFORM-PERIODIC-TIME-001",
+      "EL-WAVEFORM-AMPLITUDE-001",
+      "EL-WAVEFORM-PEAK-TO-PEAK-001",
+      "EL-WAVEFORM-RMS-001",
+      "EL-WAVEFORM-AVERAGE-VALUE-001",
+      "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001",
+    ],
+    representation: { diagram: { required: true, blueprintId: "graph.waveform_sine" } },
+  }),
+  qb({
+    id: "waveform.calculate_rms_from_peak",
+    familyId: "electrical.ac_dc_waveforms",
+    capabilityId: "cap.waveform.calculate_rms_peak",
+    title: "Calculate RMS value from peak value, or peak value from RMS value",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("voltage_or_current", "volt_or_ampere"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-WAVEFORM-RMS-CALC-001", "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001"],
+    representation: {
+      formula: { required: true, formulaFamilyId: "formula.ac_waveform_relationships" },
+      diagram: { required: false, blueprintId: "graph.waveform_sine" },
+    },
+    variantDimensions: { target_variable: { allowed: ["rms", "peak"] } },
+  }),
+  qb({
+    id: "waveform.calculate_frequency_from_period",
+    familyId: "electrical.ac_dc_waveforms",
+    capabilityId: "cap.waveform.calculate_frequency_period",
+    title: "Calculate frequency from periodic time, or periodic time from frequency",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("frequency_or_time", "hertz_or_second"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["EL-WAVEFORM-FREQUENCY-CALC-001", "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.ac_waveform_relationships" } },
+    variantDimensions: { target_variable: { allowed: ["f", "T"] } },
+  }),
+  qb({
+    id: "waveform.interpret_rated_value",
+    familyId: "electrical.ac_dc_waveforms",
+    capabilityId: "cap.waveform.interpret_rated_value",
+    title: "Interpret whether a quoted AC supply rating (e.g. 230 V) refers to RMS or peak value",
+    difficultyBand: "diagnostic",
+    answer: { type: "multiple_choice", options: ["rms", "peak"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-PEAK-RMS-CONFUSION-001", evidenceStrength: "direct" }],
+  }),
+  qb({
+    id: "waveform.compare_ac_dc_behaviour",
+    familyId: "electrical.ac_dc_waveforms",
+    capabilityId: "cap.waveform.compare_ac_dc_behaviour",
+    title: "Compare how a resistor, inductor and capacitor behave under AC versus DC supply",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["same_both", "differs_by_frequency"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"],
+  }),
+];
+
+// =======================================================================
+// 9. Final assembled manifest
+// =======================================================================
+
+const cc05aPedagogyUnit202: PedagogyManifest = {
+  assertionFamilies,
+  assertionFamilyMemberships,
+  standaloneAssertions,
+  capabilities,
+  familyTeachingRepresentations,
+  formulaFamilies,
+  workedExampleBlueprints,
+  visualAidBlueprints,
+  diagramBlueprints,
+  questionBlueprints,
+};
+
+export {
+  assertionFamilies,
+  standaloneAssertions,
+  assertionFamilyMemberships,
+  capabilities,
+  familyTeachingRepresentations,
+  diagramBlueprints,
+  formulaFamilies,
+  workedExampleBlueprints,
+  visualAidBlueprints,
+  questionBlueprints,
+  cc05aPedagogyUnit202,
+};

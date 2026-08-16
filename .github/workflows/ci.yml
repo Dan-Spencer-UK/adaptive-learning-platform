@@ -36,6 +36,9 @@ jobs:
       - name: Unit tests
         run: npm run test:unit
 
+      - name: Pedagogical content coverage gate (CC-05A)
+        run: npm run content:pedagogy:check
+
       - name: Mobile/web UI boundary check
         run: npm run check:mobile-boundary
 
