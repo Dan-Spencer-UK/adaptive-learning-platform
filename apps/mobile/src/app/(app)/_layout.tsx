@@ -12,7 +12,9 @@ export default function AppGroupLayout(): React.JSX.Element {
       }}
     >
       <Stack.Screen name="index" options={{ title: "Adaptive Learning Platform" }} />
+      <Stack.Screen name="learn" options={{ headerShown: false }} />
       <Stack.Screen name="dev-proof" options={{ title: "Foundation diagnostics" }} />
+      <Stack.Screen name="dev-proving-visuals" options={{ title: "Proving-slice visual QA" }} />
     </Stack>
   );
 }

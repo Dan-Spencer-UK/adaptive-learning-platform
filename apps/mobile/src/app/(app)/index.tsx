@@ -63,6 +63,16 @@ export default function HomeScreen(): React.JSX.Element {
           )}
         </View>
 
+        <Link href="/learn" asChild>
+          <Pressable
+            style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}
+            accessibilityRole="button"
+            accessibilityLabel="Open Learn"
+          >
+            <Text style={styles.primaryButtonText}>Learn</Text>
+          </Pressable>
+        </Link>
+
         {__DEV__ ? (
           <Link href="/dev-proof" asChild>
             <Pressable
@@ -71,6 +81,18 @@ export default function HomeScreen(): React.JSX.Element {
               accessibilityLabel="Open foundation diagnostics"
             >
               <Text style={styles.secondaryButtonText}>Foundation diagnostics (dev only)</Text>
+            </Pressable>
+          </Link>
+        ) : null}
+
+        {__DEV__ ? (
+          <Link href="/dev-proving-visuals" asChild>
+            <Pressable
+              style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}
+              accessibilityRole="button"
+              accessibilityLabel="Open proving-slice visual QA"
+            >
+              <Text style={styles.secondaryButtonText}>Proving-slice visual QA (dev only)</Text>
             </Pressable>
           </Link>
         ) : null}
@@ -118,6 +140,18 @@ const styles = StyleSheet.create({
     ...typography.caption,
     color: color.accent,
     textTransform: "uppercase",
+  },
+  primaryButton: {
+    minHeight: minTouchTarget,
+    borderRadius: radius.md,
+    backgroundColor: color.accent,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  primaryButtonText: {
+    ...typography.body,
+    color: "#fff",
+    fontWeight: "700",
   },
   secondaryButton: {
     minHeight: minTouchTarget,
