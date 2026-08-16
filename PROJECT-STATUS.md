@@ -3,7 +3,7 @@
 **Project:** Adaptive Learning Platform  
 **Current phase:** Phase 1 — Architecture & End-to-End Proving Slice  
 **Current work package:** WP1.10 — Build the Proving Slice  
-**Current implementation stage:** CC-05 — Deterministic Calculation / Question Engine (sub-package CC-05A: APPROVED / COMPLETE; CC-05B next, NOT STARTED)  
+**Current implementation stage:** CC-05 — Deterministic Calculation / Question Engine (CC-05A: APPROVED / COMPLETE; CC-05B: APPROVED / COMPLETE; CC-05C: NOT STARTED)  
 **Status:** ACTIVE  
 **Last updated:** 2026-08-16
 
@@ -173,7 +173,7 @@ CC-05A (implementation): `9133c4fc2665114193fa1363baff90e0b25ac5e8`, pushed to `
 
 ## CC-05 — Deterministic Calculation / Question Engine
 
-**Status:** ACTIVE / CURRENT. CC-05A (pedagogical knowledge structure & blueprint backfill) is **APPROVED / COMPLETE** (Product Owner / Project Architect approval recorded 2026-08-16; implementation commit `9133c4fc2665114193fa1363baff90e0b25ac5e8`, CI run `31946117054` green — see §CC-05A below for full detail). CC-05B (deterministic engine) is the next authorised sub-package and has **NOT STARTED**. CC-05C (native integration) has **NOT STARTED**.
+**Status:** ACTIVE / CURRENT. CC-05A (pedagogical knowledge structure & blueprint backfill) is **APPROVED / COMPLETE** (Product Owner / Project Architect approval recorded 2026-08-16; implementation commit `9133c4fc2665114193fa1363baff90e0b25ac5e8`, CI run `31946117054` green — see §CC-05A below). CC-05B (deterministic engine, full 84/84 governed blueprint coverage) is **APPROVED / COMPLETE** (Product Owner / Project Architect approval recorded 2026-08-16 — see §CC-05B below). CC-05C (native integration) is next and has **NOT STARTED**.
 
 CC-05 follows CC-04N now that the mobile foundation is proven, per `MOBILE-ARCHITECTURE.md` §Implementation sequencing and its CC-05 constraints (§9). See [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) for the full WP1.10 implementation sequence.
 
@@ -204,6 +204,23 @@ CC-05A adds a governed pedagogical layer between the existing CC-04/CC-04A/CC-04
 - **Not implemented** (CC-05B/C scope, not started): no runtime question-generation engine, no deterministic PRNG, no formula calculation engine, no marking engine, no diagram/formula renderer, no native learner-facing integration/UI, no adaptive diagnosis.
 
 **Implementation commit / CI**: `9133c4fc2665114193fa1363baff90e0b25ac5e8`, pushed to `origin/main`, GitHub Actions CI run [`31946117054`](https://github.com/Dan-Spencer-UK/adaptive-learning-platform/actions/runs/31946117054) passed fully green (`conclusion: success`) across all four jobs, including the new `content:pedagogy:check` gate step and the governed dependency-security gate in NORMAL mode.
+
+### CC-05B — Deterministic Calculation / Question Engine (APPROVED / COMPLETE)
+
+**Status:** APPROVED / COMPLETE (Product Owner / Project Architect, 2026-08-16). Includes both the original deterministic-engine proving slice and the CC-05B2 completion pass (36/84 → 84/84 governed executable question blueprints).
+
+CC-05B implements the framework-independent deterministic engine that consumes CC-05A's governed blueprints, entirely inside `packages/calculation-engine` (the package CC-01 reserved for this purpose). A follow-up completion pass (CC-05B2) extended the original 36-blueprint proving subset to **full governed coverage**, using the same, unmodified engine architecture. Full evidence: [`docs/architecture/evidence/CC-05B-DETERMINISTIC-QUESTION-ENGINE.md`](docs/architecture/evidence/CC-05B-DETERMINISTIC-QUESTION-ENGINE.md).
+
+- Deterministic seed derivation (FNV-1a over the full `blueprintId/blueprintVersion/contentRelease/seed` tuple) + mulberry32 PRNG — no `Math.random()`/`Date.now()`/locale/network/DB/process-state anywhere in generation or marking (mechanically proven).
+- A generic structured `FormulaExpression` evaluator (all 9 CC-05A operation types, including nested expressions such as `P = I² × R` and `rms = peak / √2`), a generic answer-marking module (`exact`/`numeric_tolerance`/`enum`/`set_equality`/`direction_match`, numeric comparisons never string-based), and generic educational parameter-generation helpers. Unchanged by the CC-05B2 completion pass — every new family is a thin, additive caller of this same machinery.
+- Executors for **all 84 governed, learner-assessable question blueprints** in the live CC-05A Unit 202 manifest — the original 36 (Ohm's law, series/parallel resistance, magnetism/electromagnetism) plus 48 added by CC-05B2 (si_units, core_quantities, resistivity, series-vs-parallel comparison, power, energy/efficiency, charge, thermal/chemical effects, conductors/insulators, instrumentation, fault conditions, EMF/generation, AC/DC waveforms) — every one mechanically proven (via `npm run engine:prove`, importing the real CC-05A content) to generate, survive JSON round-trip, grade correct/incorrect answers correctly, reproduce deterministically, and satisfy its declared representation/evidence contracts. **Total governed blueprints: 84. Executable: 84. Unsupported: 0. Failed generation: 0. Failed marking: 0. Representation gaps: 0. Evidence gaps: 0.** The 6 CC-05A `teaching_only` families declare zero question blueprints by design, so there is nothing further to implement.
+- Variant-dimension coverage mechanically proven: all 9 governed blueprints with a declared `variantDimensions` entry (11 entries) have every permitted value exercised by a 60-seed sweep (`npm run engine:dimensions`).
+- Deterministic, non-rendered diagram/formula/worked-example representation specifications (symbolic labels by default, per CC-05A's `valueEmbedding` policy) and structured evidence emission (`emitEvidence`) for the future CC-07 evidence-engine — CC-05B does not implement mastery/adaptive logic itself.
+- Mobile/Hermes proof (re-verified after the completion pass): the native-proof file (`apps/mobile/src/lib/native-proof/engine-proof.ts`) exercises the real engine under `jest-expo` (5/5 steps pass) and is wired into the existing dev-only diagnostics screen so the engine code path is genuinely reachable; `expo export` for both Android and iOS produced real Hermes bytecode (`file` confirms "Hermes JavaScript bytecode, version 98") including the expanded engine. `check:mobile-boundary` and `expo-doctor` (21/21) both still pass.
+- 140 automated tests (packages/calculation-engine + scripts/content, all Vitest, up from 110) plus 2 mobile Jest tests — full repository `npm run test:unit` at 230/230 (Vitest) and mobile Jest at 11/11.
+- **Not implemented** (CC-05C scope, not started): no diagram/formula renderer, no native lesson UI, no adaptive scheduling, no production sync, no learner-runtime AI.
+
+**Implementation commit / CI**: to be recorded once the reviewed implementation is committed, pushed, and its CI run confirmed green (this closeout task). `engine:prove:check` and `engine:dimensions:check` are wired into CI (`.github/workflows/ci.yml`) as durable engine-consistency gates, immediately after `content:pedagogy:check`.
 
 ## Cold-handover gate
 

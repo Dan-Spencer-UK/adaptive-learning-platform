@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { runEngineProof, type EngineProofResult } from "@/lib/native-proof/engine-proof";
 import {
   runSharedPackageProof,
   type SharedPackageProofResult,
@@ -42,6 +43,7 @@ export default function DevProofScreen(): React.JSX.Element {
   const [sharedPackageResults, setSharedPackageResults] = useState<
     readonly SharedPackageProofResult[] | null
   >(null);
+  const [engineProofResults, setEngineProofResults] = useState<readonly EngineProofResult[] | null>(null);
   const [outboxProof, setOutboxProof] = useState<OutboxProofState | null>(null);
   const [performanceSamples, setPerformanceSamples] = useState<readonly PerformanceSample[]>([]);
   const [hapticFired, setHapticFired] = useState(false);
@@ -54,6 +56,12 @@ export default function DevProofScreen(): React.JSX.Element {
     ).then((result) => {
       if (cancelled) return;
       setSharedPackageResults(result);
+      setPerformanceSamples(getPerformanceSamples());
+    });
+
+    void measure("engine-proof", "dev-machine-metro-jest", () => runEngineProof()).then((result) => {
+      if (cancelled) return;
+      setEngineProofResults(result);
       setPerformanceSamples(getPerformanceSamples());
     });
 
@@ -89,6 +97,16 @@ export default function DevProofScreen(): React.JSX.Element {
           ) : (
             sharedPackageResults.map((r) => (
               <Row key={r.package} label={r.package} value={r.pass ? "PASS" : "FAIL"} ok={r.pass} />
+            ))
+          )}
+        </Section>
+
+        <Section title="Deterministic engine proof (CC-05B)">
+          {engineProofResults === null ? (
+            <Text style={styles.body}>Running...</Text>
+          ) : (
+            engineProofResults.map((r) => (
+              <Row key={r.step} label={r.step} value={r.pass ? "PASS" : "FAIL"} ok={r.pass} />
             ))
           )}
         </Section>

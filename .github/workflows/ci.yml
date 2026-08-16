@@ -39,6 +39,12 @@ jobs:
       - name: Pedagogical content coverage gate (CC-05A)
         run: npm run content:pedagogy:check
 
+      - name: Deterministic engine full-blueprint coverage gate (CC-05B)
+        run: npm run engine:prove:check
+
+      - name: Deterministic engine variant-dimension coverage gate (CC-05B)
+        run: npm run engine:dimensions:check
+
       - name: Mobile/web UI boundary check
         run: npm run check:mobile-boundary
 

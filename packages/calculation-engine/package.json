@@ -14,5 +14,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "lint": "eslint . -c ../../eslint.config.mjs"
+  },
+  "dependencies": {
+    "@alp/content-schema": "*"
   }
 }

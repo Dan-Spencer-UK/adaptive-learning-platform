@@ -1,7 +1,7 @@
 # CC-05 Pedagogical Knowledge Structure, Question Blueprinting, Formula Rendering, and Diagram Architecture
 
 **Project:** Adaptive Learning Platform  
-**Status:** Approved durable design specification (Product Owner / Project Architect). CC-05A implements this document's §37 deliverables and is **APPROVED / COMPLETE** (2026-08-16); see [`docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md`](evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md). CC-05B (§38) is the next authorised sub-package and has not started; CC-05C (§39) has not started.  
+**Status:** Approved durable design specification (Product Owner / Project Architect). CC-05A implements this document's §37 deliverables and is **APPROVED / COMPLETE** (2026-08-16); see [`docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md`](evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md). CC-05B (§38) implements the deterministic engine against the full 84/84 governed Unit 202 question-blueprint inventory and is **APPROVED / COMPLETE** (2026-08-16); see [`docs/architecture/evidence/CC-05B-DETERMINISTIC-QUESTION-ENGINE.md`](evidence/CC-05B-DETERMINISTIC-QUESTION-ENGINE.md). CC-05C (§39) is the next authorised sub-package and has not started.  
 **Applies to:** CC-05A, CC-05B, CC-05C and future corpus-ingestion / learner-runtime work  
 **Primary learner client:** Native mobile app (`apps/mobile`)  
 **Secondary client:** Web  

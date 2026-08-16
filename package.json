@@ -40,7 +40,12 @@
     "content:check": "npm run content:generate && git diff --exit-code -- supabase/seed-content",
     "content:review": "node scripts/content/generate-corpus-review.ts",
     "content:pedagogy:report": "node scripts/content/validate-pedagogy.ts",
-    "content:pedagogy:check": "node scripts/content/validate-pedagogy.ts --check"
+    "content:pedagogy:check": "node scripts/content/validate-pedagogy.ts --check",
+    "engine:prove": "node scripts/content/prove-cc05b-engine.ts",
+    "engine:prove:check": "node scripts/content/prove-cc05b-engine.ts --check",
+    "engine:dimensions": "node scripts/content/report-cc05b-dimension-coverage.ts",
+    "engine:dimensions:check": "node scripts/content/report-cc05b-dimension-coverage.ts --check",
+    "engine:perf": "node scripts/content/measure-cc05b-performance.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
