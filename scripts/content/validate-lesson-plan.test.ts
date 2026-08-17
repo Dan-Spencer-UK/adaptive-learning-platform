@@ -19,6 +19,7 @@ function cleanReport(): LessonPlanReport {
     unreachableConditionalSteps: [],
     circularRemediationRoutes: [],
     lessonsWithNoExitStep: [],
+    ambiguousPrimaryFamilyTargets: [],
   };
 }
 
@@ -58,6 +59,10 @@ describe("isReportClean", () => {
   it("returns false for a lesson with no exit_completion step", () => {
     expect(isReportClean({ ...cleanReport(), lessonsWithNoExitStep: ["lesson.x"] })).toBe(false);
   });
+
+  it("returns false for an ambiguous primary family target", () => {
+    expect(isReportClean({ ...cleanReport(), ambiguousPrimaryFamilyTargets: ["content release 'r.1': assertion family 'f' is targeted by 2 lessons"] })).toBe(false);
+  });
 });
 
 describe("buildReport (against the real canonical Ohm's Law lesson and live CC-05A/CC-04 corpus)", () => {
@@ -81,6 +86,7 @@ describe("buildReport (against the real canonical Ohm's Law lesson and live CC-0
     expect(report.unreachableConditionalSteps).toEqual([]);
     expect(report.circularRemediationRoutes).toEqual([]);
     expect(report.lessonsWithNoExitStep).toEqual([]);
+    expect(report.ambiguousPrimaryFamilyTargets).toEqual([]);
   });
 
   it("the full report is clean", () => {
@@ -102,6 +108,16 @@ describe("buildReport detects real defect classes when introduced synthetically"
     const dirty = { ...cleanReport(), unreachableConditionalSteps: ["lesson.electrical.ohms-law.remediation_rearrangement is never reached"] };
     expect(isReportClean(dirty)).toBe(false);
   });
+
+  it("would flag two lessons in the same content release both targeting the same assertion family (the manifest uniqueness invariant @alp/learning-engine's prerequisite resolution depends on)", () => {
+    const dirty = {
+      ...cleanReport(),
+      ambiguousPrimaryFamilyTargets: [
+        "content release 'r.1': assertion family 'foundational.example' is targeted by 2 lessons (lesson.a, lesson.b) -- must be at most 1 for deterministic prerequisite-remediation resolution",
+      ],
+    };
+    expect(isReportClean(dirty)).toBe(false);
+  });
 });
 
 describe("formatReport", () => {
@@ -113,5 +129,6 @@ describe("formatReport", () => {
     expect(text).toContain("Unreachable conditional steps");
     expect(text).toContain("Circular remediation routes");
     expect(text).toContain("Lessons with no exit_completion step");
+    expect(text).toContain("Ambiguous primary family targets");
   });
 });

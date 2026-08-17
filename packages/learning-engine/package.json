@@ -11,6 +11,10 @@
       "default": "./src/index.ts"
     }
   },
+  "dependencies": {
+    "@alp/calculation-engine": "*",
+    "@alp/content-schema": "*"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "lint": "eslint . -c ../../eslint.config.mjs"

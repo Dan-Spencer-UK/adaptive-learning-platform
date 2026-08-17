@@ -41,6 +41,7 @@ interface LessonPlanReport {
   unreachableConditionalSteps: string[];
   circularRemediationRoutes: string[];
   lessonsWithNoExitStep: string[];
+  ambiguousPrimaryFamilyTargets: string[];
 }
 
 /**
@@ -84,6 +85,7 @@ function buildReport(): LessonPlanReport {
   const unreachableConditionalSteps: string[] = [];
   const circularRemediationRoutes: string[] = [];
   const lessonsWithNoExitStep: string[] = [];
+  const ambiguousPrimaryFamilyTargets: string[] = [];
 
   let totalSteps = 0;
 
@@ -190,6 +192,32 @@ function buildReport(): LessonPlanReport {
     for (const step of lesson.steps) detectCycle(step.id, []);
   }
 
+  // Manifest uniqueness invariant (@alp/learning-engine's
+  // resolvePrerequisiteCandidate resolution rule, see
+  // packages/learning-engine/src/prerequisite-resolution.ts): for a
+  // given content release, at most one lesson may declare a given
+  // assertion family among its targetAssertionFamilyIds -- otherwise a
+  // learner whose evidence shows that family as weak has no
+  // deterministic single remediation lesson to route to. The engine
+  // re-verifies this defensively at runtime and throws rather than
+  // guessing, but a valid manifest should never reach that path.
+  const familyTargetsByReleaseAndFamily = new Map<string, string[]>();
+  for (const lesson of manifest.lessons) {
+    for (const familyId of lesson.targetAssertionFamilyIds) {
+      const key = `${lesson.contentRelease}::${familyId}`;
+      if (!familyTargetsByReleaseAndFamily.has(key)) familyTargetsByReleaseAndFamily.set(key, []);
+      familyTargetsByReleaseAndFamily.get(key)!.push(lesson.id);
+    }
+  }
+  for (const [key, lessonIds] of familyTargetsByReleaseAndFamily) {
+    if (lessonIds.length > 1) {
+      const [contentRelease, familyId] = key.split("::");
+      ambiguousPrimaryFamilyTargets.push(
+        `content release '${contentRelease}': assertion family '${familyId}' is targeted by ${lessonIds.length} lessons (${lessonIds.join(", ")}) -- must be at most 1 for deterministic prerequisite-remediation resolution`,
+      );
+    }
+  }
+
   return {
     totalLessons: manifest.lessons.length,
     totalSteps,
@@ -207,6 +235,7 @@ function buildReport(): LessonPlanReport {
     unreachableConditionalSteps,
     circularRemediationRoutes,
     lessonsWithNoExitStep,
+    ambiguousPrimaryFamilyTargets,
   };
 }
 
@@ -230,6 +259,7 @@ function formatReport(report: LessonPlanReport): string {
     ["Unreachable conditional steps", report.unreachableConditionalSteps],
     ["Circular remediation routes", report.circularRemediationRoutes],
     ["Lessons with no exit_completion step", report.lessonsWithNoExitStep],
+    ["Ambiguous primary family targets (prerequisite-resolution uniqueness)", report.ambiguousPrimaryFamilyTargets],
   ];
   for (const [label, items] of gateGroups) {
     lines.push(`${label} (target 0): ${items.length}`);
@@ -253,7 +283,8 @@ export function isReportClean(report: LessonPlanReport): boolean {
     report.teachingStepsWithNoGovernedReference.length === 0 &&
     report.unreachableConditionalSteps.length === 0 &&
     report.circularRemediationRoutes.length === 0 &&
-    report.lessonsWithNoExitStep.length === 0
+    report.lessonsWithNoExitStep.length === 0 &&
+    report.ambiguousPrimaryFamilyTargets.length === 0
   );
 }
 
