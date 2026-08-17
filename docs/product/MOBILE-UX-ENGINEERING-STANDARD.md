@@ -2,7 +2,7 @@
 id: PROD-003
 status: approved
 owner: project-architect
-last_reviewed: 2026-08-15
+last_reviewed: 2026-08-17
 ---
 
 # Mobile UX Engineering Standard
@@ -12,6 +12,8 @@ last_reviewed: 2026-08-15
 Native iOS and Android are the primary learner platforms (see [`PRODUCT-PRINCIPLES.md`](PRODUCT-PRINCIPLES.md) and [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md)). "Native-mobile-first" is not satisfied by a responsive layout. This document is the durable, testable quality bar the native learner app must meet. It is an acceptance criterion, not aspirational polish to add later.
 
 This document does not select a client framework; see [`docs/architecture/adr/ADR-0001-mobile-client-technology.md`](../architecture/adr/ADR-0001-mobile-client-technology.md) for that decision. It applies regardless of which framework implements it.
+
+This document sets the measurable performance/polish bar; it does not define lesson *structure* or progression model. See [`docs/architecture/LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md`](../architecture/LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md) for the step-based lesson-progression architecture the future lesson player must implement while meeting this standard.
 
 ## Reference bar, not a copy target
 

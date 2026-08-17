@@ -2,7 +2,7 @@
 id: PROD-002
 status: approved
 owner: product-owner
-last_reviewed: 2026-08-15
+last_reviewed: 2026-08-17
 ---
 
 # Product Principles
@@ -31,3 +31,7 @@ last_reviewed: 2026-08-15
 22. **Measure what changes decisions.** Collect signals that improve content, UX, diagnosis or commercial decisions.
 23. **Feature maturity follows content maturity.** Do not expose paths whose underlying content/engine is incomplete.
 24. **Narrow commercial quality beats broad rough coverage.** The proving slice should feel like something a learner might choose to pay for.
+25. **Lessons are structured sequences of discrete learning interactions, not scrolling documents.** Progression should feel continuous and frictionless rather than paginated. Vertical scrolling is permitted within a step where content genuinely requires it, but the learner advances through the lesson one purposeful step at a time. See [`docs/architecture/LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md`](../architecture/LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md).
+26. **Every lesson is derived from an explicit machine-readable lesson plan** identifying its objectives, prerequisite knowledge, target knowledge assertions/capabilities, instructional sequence, assessment points, misconception checks, branching/remediation rules and completion criteria — not merely a collection of UI components/content.
+27. **A canonical lesson plan defines the pedagogically valid intervention; the actual learner lesson instance may be adaptively assembled from that plan using governed learner evidence.** Runtime adaptation remains deterministic and must not depend on an LLM.
+28. **Learn mode is interaction-first and directed; review/reference mode may present the same governed knowledge in a concise continuous-scroll format.** The two modes must not be conflated.
