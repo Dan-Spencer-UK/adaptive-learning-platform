@@ -16,8 +16,13 @@
  * visual governance/semantic-QA layer (./visual-governance.ts) -- visual
  * semantic contracts, canonical variants, two-pass semantic-review
  * records, human-review decisions -- which sits beside, not inside,
- * ./pedagogy.ts. Lessons and the full learner-runtime content-publication
- * pipeline remain later CC packages.
+ * ./pedagogy.ts. The Lesson Plan package (ARCH-003) added the
+ * instructional-orchestration layer (./lesson-plan.ts) -- canonical
+ * lesson plans and their ordered lesson steps -- which sits ABOVE the
+ * pedagogical chain, referencing governed assertion/family/capability/
+ * representation/question-blueprint/misconception ids rather than
+ * duplicating them. The learner-specific adaptive assembler and the full
+ * learner-runtime content-publication pipeline remain later packages.
  */
 
 import { z } from "zod";
@@ -36,3 +41,4 @@ export type PackageManifest = z.infer<typeof packageManifestSchema>;
 export * from "./knowledge-graph.ts";
 export * from "./pedagogy.ts";
 export * from "./visual-governance.ts";
+export * from "./lesson-plan.ts";
