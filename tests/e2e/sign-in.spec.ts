@@ -95,7 +95,26 @@ async function signInWithFreshOtp(
   await page.getByLabel("Email address").fill(email);
   await page.getByRole("button", { name: "Send code" }).click();
 
-  await expect(page.getByLabel("6-digit code")).toBeVisible();
+  // Explicit 10s wait (vs. Playwright's 5s default) for the code step to
+  // appear. Investigated 2026-08-17 after a CI-only failure on the
+  // returning-learner test (which calls this helper twice per test, so is
+  // more exposed to a single slow round trip than the single-call tests):
+  // ruled out Supabase Auth email rate-limiting (supabase/config.toml has
+  // no [auth.email.smtp] section, so `[auth.rate_limit] email_sent` does
+  // not apply to the local Mailpit-based mailer this suite uses -- and 6
+  // back-to-back local reproduction attempts, deliberately run to stress
+  // that exact hypothesis, all passed) and ruled out cross-test state
+  // leakage (playwright.config.ts sets no shared `storageState`; CI's
+  // `workers: 1` means tests run serially, each with Playwright's normal
+  // fresh browser context). The most plausible remaining explanation is
+  // CI-runner performance variance on the Next.js dev-server Server
+  // Action round trip -- not a product defect (the OTP-step visibility
+  // gate itself, apps/web/app/sign-in/actions.ts's `requestOtp`, is a
+  // straightforward "no error from signInWithOtp -> step: 'code'" switch
+  // with no rate limiting or extra logic on a second call for the same
+  // address). This value stays in the same order of magnitude as this
+  // file's own `fetchLatestOtpCode` polling deadline just below.
+  await expect(page.getByLabel("6-digit code")).toBeVisible({ timeout: 10_000 });
 
   const code = await fetchLatestOtpCode(email);
   await page.getByLabel("6-digit code").fill(code);
