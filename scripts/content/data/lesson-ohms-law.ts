@@ -40,6 +40,10 @@ export const LESSON_OHMS_LAW: LessonPlan = {
     "electrical.core_quantities",
   ],
   targetAssertionFamilyIds: ["electrical.ohms_law"],
+  // This lesson is not (yet) a remediation candidate for anything -- no
+  // governed foundational remediation lesson exists in the corpus yet
+  // (a recorded, honest real-content gap; see PROJECT-STATUS.md).
+  remediationEligibility: [],
   targetAssertionIdentifiers: [
     "EL-OHM-RELATIONSHIP-001",
     "EL-OHM-PROPORTIONALITY-001",

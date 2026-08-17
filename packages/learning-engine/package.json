@@ -12,8 +12,8 @@
     }
   },
   "dependencies": {
-    "@alp/calculation-engine": "*",
-    "@alp/content-schema": "*"
+    "@alp/content-schema": "*",
+    "@noble/hashes": "^1.8.0"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",

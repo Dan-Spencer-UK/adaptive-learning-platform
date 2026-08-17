@@ -19,7 +19,7 @@ function cleanReport(): LessonPlanReport {
     unreachableConditionalSteps: [],
     circularRemediationRoutes: [],
     lessonsWithNoExitStep: [],
-    ambiguousPrimaryFamilyTargets: [],
+    ambiguousRemediationCandidates: [],
   };
 }
 
@@ -60,8 +60,8 @@ describe("isReportClean", () => {
     expect(isReportClean({ ...cleanReport(), lessonsWithNoExitStep: ["lesson.x"] })).toBe(false);
   });
 
-  it("returns false for an ambiguous primary family target", () => {
-    expect(isReportClean({ ...cleanReport(), ambiguousPrimaryFamilyTargets: ["content release 'r.1': assertion family 'f' is targeted by 2 lessons"] })).toBe(false);
+  it("returns false for an ambiguous remediation candidate finding", () => {
+    expect(isReportClean({ ...cleanReport(), ambiguousRemediationCandidates: ["content release 'r.1': assertion family 'f' has 2 remediation-eligible lessons but none is designated the default"] })).toBe(false);
   });
 });
 
@@ -86,7 +86,7 @@ describe("buildReport (against the real canonical Ohm's Law lesson and live CC-0
     expect(report.unreachableConditionalSteps).toEqual([]);
     expect(report.circularRemediationRoutes).toEqual([]);
     expect(report.lessonsWithNoExitStep).toEqual([]);
-    expect(report.ambiguousPrimaryFamilyTargets).toEqual([]);
+    expect(report.ambiguousRemediationCandidates).toEqual([]);
   });
 
   it("the full report is clean", () => {
@@ -109,14 +109,28 @@ describe("buildReport detects real defect classes when introduced synthetically"
     expect(isReportClean(dirty)).toBe(false);
   });
 
-  it("would flag two lessons in the same content release both targeting the same assertion family (the manifest uniqueness invariant @alp/learning-engine's prerequisite resolution depends on)", () => {
+  it("would flag two remediation-eligible lessons for the same family/content release with no unique default (the deterministic-selection invariant @alp/learning-engine's prerequisite resolution depends on)", () => {
     const dirty = {
       ...cleanReport(),
-      ambiguousPrimaryFamilyTargets: [
-        "content release 'r.1': assertion family 'foundational.example' is targeted by 2 lessons (lesson.a, lesson.b) -- must be at most 1 for deterministic prerequisite-remediation resolution",
+      ambiguousRemediationCandidates: [
+        "content release 'r.1': assertion family 'foundational.example' has 2 remediation-eligible lessons (lesson.a, lesson.b) but none is designated the default -- deterministic selection requires exactly one default when more than one candidate exists",
       ],
     };
     expect(isReportClean(dirty)).toBe(false);
+  });
+
+  it("would flag two lessons BOTH marked as the default remediation candidate for the same family/content release", () => {
+    const dirty = {
+      ...cleanReport(),
+      ambiguousRemediationCandidates: [
+        "content release 'r.1': assertion family 'foundational.example' has 2 lessons marked as the default remediation candidate (lesson.a, lesson.b) -- exactly one default is required when multiple lessons are remediation-eligible for this family",
+      ],
+    };
+    expect(isReportClean(dirty)).toBe(false);
+  });
+
+  it("does NOT flag two ordinary lessons merely sharing the same targetAssertionFamilyIds -- general instructional overlap is allowed; only the separate remediationEligibility relationship is checked", () => {
+    expect(isReportClean(cleanReport())).toBe(true);
   });
 });
 
@@ -129,6 +143,6 @@ describe("formatReport", () => {
     expect(text).toContain("Unreachable conditional steps");
     expect(text).toContain("Circular remediation routes");
     expect(text).toContain("Lessons with no exit_completion step");
-    expect(text).toContain("Ambiguous primary family targets");
+    expect(text).toContain("Ambiguous remediation candidates");
   });
 });

@@ -146,13 +146,13 @@ export type LessonAssemblyResult =
   | { readonly status: "prerequisite_required"; readonly prerequisiteInstance: LessonInstance; readonly unmetFamilyId: string; readonly mainLessonPending: LessonPlan }
   | { readonly status: "prerequisite_unresolved"; readonly unresolved: readonly UnresolvedPrerequisite[] };
 
-/** Thrown, never silently resolved, when the governed manifest contains more than one candidate remediation lesson for the same prerequisite family (task brief §8: "fail assembly deterministically rather than choosing arbitrarily"). A valid manifest cannot reach this -- see the uniqueness gate added to scripts/content/validate-lesson-plan.ts -- but the assembler re-verifies defensively rather than trusting that upstream gate ran. */
+/** Thrown, never silently resolved, when more than one lesson is `remediationEligibility`-eligible for the same prerequisite family and no exactly-one of them is marked `isDefaultRemediation` for it (task brief §8, corrected by the Package B remediation-selection correction: "fail assembly deterministically rather than choosing arbitrarily"). A valid manifest cannot reach this -- see scripts/content/validate-lesson-plan.ts's `ambiguousRemediationCandidates` gate -- but the assembler re-verifies defensively rather than trusting that upstream gate ran. */
 export class AmbiguousPrerequisiteCandidatesError extends Error {
   readonly assertionFamilyId: string;
   readonly candidateLessonIds: readonly string[];
 
   constructor(assertionFamilyId: string, candidateLessonIds: readonly string[]) {
-    super(`Ambiguous prerequisite remediation candidates for family '${assertionFamilyId}': ${candidateLessonIds.join(", ")}. Exactly one lesson must target this family per content release.`);
+    super(`Ambiguous prerequisite remediation candidates for family '${assertionFamilyId}': ${candidateLessonIds.join(", ")}. When more than one lesson is remediation-eligible for a family within a content release, exactly one must be designated the default remediation lesson for deterministic selection.`);
     this.name = "AmbiguousPrerequisiteCandidatesError";
     this.assertionFamilyId = assertionFamilyId;
     this.candidateLessonIds = candidateLessonIds;

@@ -36,6 +36,7 @@ function minimalLesson(overrides: Partial<LessonPlan> = {}): LessonPlan {
     targetAssertionFamilyIds: ["electrical.ohms_law"],
     targetAssertionIdentifiers: [],
     targetCapabilityIds: ["cap.ohms_law.recognise_relationship"],
+    remediationEligibility: [],
     estimatedDurationMinutes: 15,
     instructionalStrategy: "Concept, then guided calculation, then independent application.",
     steps: [minimalStep()],
@@ -76,6 +77,31 @@ describe("lessonStepSchema (via lessonPlanSchema)", () => {
   it("rejects an invalid step type", () => {
     const step = { ...minimalStep(), type: "blue_card_with_button" };
     const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step as never] }));
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts a lesson with no remediationEligibility declared (the default -- most lessons are not remediation candidates)", () => {
+    const result = lessonPlanSchema.safeParse(minimalLesson());
+    expect(result.success).toBe(true);
+    if (result.success) expect(result.data.remediationEligibility).toEqual([]);
+  });
+
+  it("accepts a lesson declaring itself remediation-eligible for a family", () => {
+    const result = lessonPlanSchema.safeParse(
+      minimalLesson({ remediationEligibility: [{ assertionFamilyId: "foundational.example", isDefaultRemediation: true }] }),
+    );
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects duplicate remediationEligibility entries for the same assertion family within one lesson", () => {
+    const result = lessonPlanSchema.safeParse(
+      minimalLesson({
+        remediationEligibility: [
+          { assertionFamilyId: "foundational.example", isDefaultRemediation: true },
+          { assertionFamilyId: "foundational.example", isDefaultRemediation: false },
+        ],
+      }),
+    );
     expect(result.success).toBe(false);
   });
 

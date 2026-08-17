@@ -167,6 +167,10 @@ export const SYNTHETIC_PREREQ_REMEDIATION: LessonPlan = {
   curriculumUnit: "synthetic.proving-fixtures",
   prerequisiteKnowledge: [],
   targetAssertionFamilyIds: ["foundational.algebraic_technique"],
+  // Declares itself eligible to remediate the family (the SEPARATE,
+  // narrower relationship prerequisite-resolution.ts actually resolves
+  // against -- targetAssertionFamilyIds alone is not enough).
+  remediationEligibility: [{ assertionFamilyId: "foundational.algebraic_technique", isDefaultRemediation: true }],
   targetAssertionIdentifiers: [],
   targetCapabilityIds: ["cap.synthetic.algebraic_technique"],
   estimatedDurationMinutes: 5,
@@ -310,6 +314,7 @@ export function buildSyntheticSkipLesson(): LessonPlan {
     curriculumUnit: "synthetic.proving-fixtures",
     prerequisiteKnowledge: [],
     targetAssertionFamilyIds: ["synthetic.skip_family"],
+    remediationEligibility: [],
     targetAssertionIdentifiers: [],
     targetCapabilityIds: ["cap.synthetic.skip_target"],
     estimatedDurationMinutes: 5,
@@ -397,6 +402,7 @@ export function buildSyntheticRetrievalLesson(): LessonPlan {
     curriculumUnit: "synthetic.proving-fixtures",
     prerequisiteKnowledge: [],
     targetAssertionFamilyIds: ["synthetic.retrieval_family"],
+    remediationEligibility: [],
     targetAssertionIdentifiers: [],
     targetCapabilityIds: ["cap.synthetic.retrieval_target"],
     estimatedDurationMinutes: 5,

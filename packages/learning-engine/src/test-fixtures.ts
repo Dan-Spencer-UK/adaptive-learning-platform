@@ -59,6 +59,7 @@ export function buildLesson(overrides: Partial<LessonPlan> & Pick<LessonPlan, "i
     curriculumUnit: "synthetic.fixtures",
     prerequisiteKnowledge: [],
     targetAssertionIdentifiers: [],
+    remediationEligibility: [],
     estimatedDurationMinutes: 10,
     instructionalStrategy: "synthetic fixture strategy",
     misconceptionTargets: [],
@@ -158,21 +159,62 @@ export const SYNTHETIC_MAIN_LESSON: LessonPlan = buildLesson({
   }),
 });
 
-/** The sole valid remediation candidate for SYNTH_PREREQ_FAMILY in the "exactly one candidate" scenario. */
+/**
+ * The sole `remediationEligibility` candidate for SYNTH_PREREQ_FAMILY in
+ * the "exactly one candidate" scenario -- deliberately NOT marked
+ * `isDefaultRemediation` to prove the default flag is irrelevant when
+ * there is only one candidate to begin with.
+ */
 export const SYNTHETIC_PREREQ_LESSON: LessonPlan = buildMinimalLesson("lesson.synthetic.prereq", {
-  targetAssertionFamilyIds: [SYNTH_PREREQ_FAMILY],
   targetCapabilityIds: ["cap.synth.prereq"],
+  remediationEligibility: [{ assertionFamilyId: SYNTH_PREREQ_FAMILY, isDefaultRemediation: false }],
 });
 
-/** A second lesson also targeting SYNTH_PREREQ_FAMILY -- used only in the ambiguous-candidates scenario. */
+/** A second lesson, also `remediationEligibility`-eligible for SYNTH_PREREQ_FAMILY but not marked default -- combined with SYNTHETIC_PREREQ_LESSON (also non-default), two eligible candidates with no unique default is ambiguous. */
 export const SYNTHETIC_PREREQ_LESSON_DUPLICATE: LessonPlan = buildMinimalLesson("lesson.synthetic.prereq-duplicate", {
-  targetAssertionFamilyIds: [SYNTH_PREREQ_FAMILY],
   targetCapabilityIds: ["cap.synth.prereq"],
+  remediationEligibility: [{ assertionFamilyId: SYNTH_PREREQ_FAMILY, isDefaultRemediation: false }],
 });
 
-/** Same family, but a different content release -- must never be treated as a candidate for a lesson in a different release. */
+/** Same family, eligible and marked default, but a different content release -- must never be treated as a candidate for a lesson in a different release. */
 export const SYNTHETIC_PREREQ_LESSON_OTHER_RELEASE: LessonPlan = buildMinimalLesson("lesson.synthetic.prereq-other-release", {
-  targetAssertionFamilyIds: [SYNTH_PREREQ_FAMILY],
   targetCapabilityIds: ["cap.synth.prereq"],
+  remediationEligibility: [{ assertionFamilyId: SYNTH_PREREQ_FAMILY, isDefaultRemediation: true }],
   contentRelease: "synthetic-content-release.2",
+});
+
+/** One of two candidates, marked as THE default remediation lesson for the family -- with SYNTHETIC_PREREQ_LESSON_NONDEFAULT_CANDIDATE present too, this must resolve deterministically to this lesson. */
+export const SYNTHETIC_PREREQ_LESSON_DEFAULT: LessonPlan = buildMinimalLesson("lesson.synthetic.prereq-default", {
+  targetCapabilityIds: ["cap.synth.prereq"],
+  remediationEligibility: [{ assertionFamilyId: SYNTH_PREREQ_FAMILY, isDefaultRemediation: true }],
+});
+
+/** A second, non-default candidate for the same family -- paired with SYNTHETIC_PREREQ_LESSON_DEFAULT to prove the default flag is the deterministic tiebreak. */
+export const SYNTHETIC_PREREQ_LESSON_NONDEFAULT_CANDIDATE: LessonPlan = buildMinimalLesson("lesson.synthetic.prereq-nondefault-candidate", {
+  targetCapabilityIds: ["cap.synth.prereq"],
+  remediationEligibility: [{ assertionFamilyId: SYNTH_PREREQ_FAMILY, isDefaultRemediation: false }],
+});
+
+/** Two lessons BOTH marked default for the same family/content release -- genuinely ambiguous, must throw rather than pick either. */
+export const SYNTHETIC_PREREQ_LESSON_CONFLICTING_DEFAULT_A: LessonPlan = buildMinimalLesson("lesson.synthetic.prereq-conflicting-default-a", {
+  targetCapabilityIds: ["cap.synth.prereq"],
+  remediationEligibility: [{ assertionFamilyId: SYNTH_PREREQ_FAMILY, isDefaultRemediation: true }],
+});
+export const SYNTHETIC_PREREQ_LESSON_CONFLICTING_DEFAULT_B: LessonPlan = buildMinimalLesson("lesson.synthetic.prereq-conflicting-default-b", {
+  targetCapabilityIds: ["cap.synth.prereq"],
+  remediationEligibility: [{ assertionFamilyId: SYNTH_PREREQ_FAMILY, isDefaultRemediation: true }],
+});
+
+/**
+ * Two ORDINARY lessons that merely target the same family as their own
+ * main instructional content (an introduction, a refresher, ...) --
+ * neither declares `remediationEligibility`. General instructional
+ * overlap on `targetAssertionFamilyIds` must never create ambiguity or
+ * be mistaken for a remediation candidate.
+ */
+export const SYNTHETIC_ORDINARY_LESSON_A: LessonPlan = buildMinimalLesson("lesson.synthetic.ordinary-a", {
+  targetAssertionFamilyIds: [SYNTH_PREREQ_FAMILY],
+});
+export const SYNTHETIC_ORDINARY_LESSON_B: LessonPlan = buildMinimalLesson("lesson.synthetic.ordinary-b", {
+  targetAssertionFamilyIds: [SYNTH_PREREQ_FAMILY],
 });

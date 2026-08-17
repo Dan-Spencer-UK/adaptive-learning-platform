@@ -62,6 +62,17 @@ describe("computeEvidenceDigest", () => {
     const b = evidence({ learnerId: "learner.002" });
     expect(computeEvidenceDigest(a)).toBe(computeEvidenceDigest(b));
   });
+
+  it("changes when retrievalDue changes but nothing else does", () => {
+    const base = evidence();
+    const changed = evidence({ retrievalDue: new Set(["some.tag"]) });
+    expect(computeEvidenceDigest(base)).not.toBe(computeEvidenceDigest(changed));
+  });
+
+  it("is a full SHA-256 hex digest (64 hex chars / 256 bits) -- durable, not a weak internal checksum, since it feeds computeInstanceIdentity", () => {
+    const digest = computeEvidenceDigest(evidence());
+    expect(digest).toMatch(/^[0-9a-f]{64}$/);
+  });
 });
 
 describe("computeInstanceIdentity", () => {
@@ -96,5 +107,23 @@ describe("computeInstanceIdentity", () => {
 
   it("changes when learnerId changes", () => {
     expect(computeInstanceIdentity(base)).not.toBe(computeInstanceIdentity({ ...base, learnerId: "learner.002" }));
+  });
+
+  it("uses the versioned 'li1_' identity-format prefix followed by a full SHA-256 hex digest -- substantially larger than the old 8-hex-char/32-bit identity space", () => {
+    const id = computeInstanceIdentity(base);
+    expect(id).toMatch(/^li1_[0-9a-f]{64}$/);
+    expect(id.length).toBeGreaterThan(8);
+  });
+
+  it("reordering the input object's own keys does not change the identity (canonical key ordering)", () => {
+    const reordered = {
+      evidenceDigest: base.evidenceDigest,
+      learnerId: base.learnerId,
+      assemblyPolicyVersion: base.assemblyPolicyVersion,
+      contentRelease: base.contentRelease,
+      lessonVersion: base.lessonVersion,
+      lessonId: base.lessonId,
+    };
+    expect(computeInstanceIdentity(base)).toBe(computeInstanceIdentity(reordered));
   });
 });

@@ -1,15 +1,34 @@
 /**
- * Deterministic identity/digest utilities. Mirrors the existing
- * `deriveSeed`/`fnv1a32` precedent in
- * packages/calculation-engine/src/seed.ts (pure bitwise arithmetic, no
- * `crypto`, no external dependency -- Hermes-portable, since assembly
- * must be able to run on-device per task brief §18) rather than the
- * Node-`crypto`-based `sha256Hex` pattern in
- * scripts/visual-governance/audit-cache.ts, which is tooling-only.
+ * Deterministic identity/digest utilities.
+ *
+ * Corrected (Package B "bounded architecture correction" brief §10-§13)
+ * from an earlier revision that used 32-bit FNV-1a: `LessonInstance`
+ * identity is intended to be a DURABLE identifier -- used for session
+ * restoration, offline persistence, evidence association, and audit,
+ * potentially across millions of learner lesson instances -- and a
+ * 32-bit space is far too small a collision-resistance budget for that
+ * role, even though FNV-1a remains perfectly appropriate where it is
+ * still used purely for deterministic PRNG seeding
+ * (packages/calculation-engine/src/seed.ts).
+ *
+ * Uses `@noble/hashes`'s SHA-256 implementation instead: audited,
+ * zero-dependency, pure JS/TS (no native bindings, no Node `crypto`),
+ * synchronous, and already proven portable across browser/Node/React
+ * Native-Hermes -- so the assembler stays synchronous and
+ * framework-independent (deliberately NOT `expo-crypto`, which is
+ * async and would tie this framework-independent package to Expo).
  */
 
-import { fnv1a32 } from "@alp/calculation-engine";
+import { sha256 } from "@noble/hashes/sha2";
+import { bytesToHex, utf8ToBytes } from "@noble/hashes/utils";
 import type { LearnerEvidenceSnapshot } from "./types.ts";
+
+/** Version/format prefix on `instanceId` so a future identity-format migration is distinguishable rather than ambiguous with the current one. */
+const INSTANCE_IDENTITY_FORMAT = "li1";
+
+function sha256Hex(input: string): string {
+  return bytesToHex(sha256(utf8ToBytes(input)));
+}
 
 function sortKeysDeep(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(sortKeysDeep);
@@ -43,6 +62,12 @@ function toSortedArray(set: ReadonlySet<string>): string[] {
  * order-of-construction or Map/Set insertion order still digest
  * identically; a snapshot with materially different capability status,
  * misconceptions, or retrieval-due state digests differently.
+ *
+ * Full SHA-256 (64 hex chars / 256 bits), not merely an internal
+ * checksum: this digest is itself an input to `computeInstanceIdentity`,
+ * so if it were weak it would silently bottleneck the durable
+ * instanceId's own collision resistance no matter how strong the outer
+ * hash is.
  */
 export function computeEvidenceDigest(snapshot: LearnerEvidenceSnapshot): string {
   const canonical = {
@@ -50,7 +75,7 @@ export function computeEvidenceDigest(snapshot: LearnerEvidenceSnapshot): string
     misconceptionsEvidenced: toSortedArray(snapshot.misconceptionsEvidenced),
     retrievalDue: toSortedArray(snapshot.retrievalDue),
   };
-  return fnv1a32(canonicalJson(canonical)).toString(16).padStart(8, "0");
+  return sha256Hex(canonicalJson(canonical));
 }
 
 export interface InstanceIdentityInput {
@@ -63,11 +88,15 @@ export interface InstanceIdentityInput {
 }
 
 /**
- * The Lesson Instance's own deterministic identity. Same inputs always
- * produce the same id; a change to any one of lesson version, content
- * release, policy version, learner, or evidence digest changes it
- * (task brief §15's required test matrix).
+ * The Lesson Instance's own durable deterministic identity. Same inputs
+ * always produce the same id; a change to any one of lesson version,
+ * content release, policy version, learner, or evidence digest changes
+ * it (task brief §15's required test matrix). Formatted as
+ * `li1_<64-hex-char SHA-256>` -- the `li1` prefix identifies both "this
+ * is a Lesson Instance id" and the identity-format version, so a future
+ * algorithm change is a new prefix, never a silent reinterpretation of
+ * old ids.
  */
 export function computeInstanceIdentity(input: InstanceIdentityInput): string {
-  return fnv1a32(canonicalJson(input)).toString(16).padStart(8, "0");
+  return `${INSTANCE_IDENTITY_FORMAT}_${sha256Hex(canonicalJson(input))}`;
 }

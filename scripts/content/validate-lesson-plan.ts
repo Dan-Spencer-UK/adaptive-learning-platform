@@ -41,7 +41,7 @@ interface LessonPlanReport {
   unreachableConditionalSteps: string[];
   circularRemediationRoutes: string[];
   lessonsWithNoExitStep: string[];
-  ambiguousPrimaryFamilyTargets: string[];
+  ambiguousRemediationCandidates: string[];
 }
 
 /**
@@ -85,7 +85,7 @@ function buildReport(): LessonPlanReport {
   const unreachableConditionalSteps: string[] = [];
   const circularRemediationRoutes: string[] = [];
   const lessonsWithNoExitStep: string[] = [];
-  const ambiguousPrimaryFamilyTargets: string[] = [];
+  const ambiguousRemediationCandidates: string[] = [];
 
   let totalSteps = 0;
 
@@ -107,6 +107,7 @@ function buildReport(): LessonPlanReport {
     for (const assertionId of lesson.targetAssertionIdentifiers) checkAssertion(assertionId, `${lesson.id}.targetAssertionIdentifiers`);
     for (const capabilityId of lesson.targetCapabilityIds) checkCapability(capabilityId, `${lesson.id}.targetCapabilityIds`);
     for (const familyId of lesson.prerequisiteKnowledge) checkFamily(familyId, `${lesson.id}.prerequisiteKnowledge`);
+    for (const entry of lesson.remediationEligibility) checkFamily(entry.assertionFamilyId, `${lesson.id}.remediationEligibility`);
     for (const m of lesson.misconceptionTargets) checkMisconception(m.misconceptionIdentifier, `${lesson.id}.misconceptionTargets`);
     for (const capabilityId of lesson.completionCriteria.requiredCapabilityEvidence) {
       checkCapability(capabilityId, `${lesson.id}.completionCriteria.requiredCapabilityEvidence`);
@@ -192,28 +193,40 @@ function buildReport(): LessonPlanReport {
     for (const step of lesson.steps) detectCycle(step.id, []);
   }
 
-  // Manifest uniqueness invariant (@alp/learning-engine's
+  // Deterministic remediation-selection invariant (@alp/learning-engine's
   // resolvePrerequisiteCandidate resolution rule, see
-  // packages/learning-engine/src/prerequisite-resolution.ts): for a
-  // given content release, at most one lesson may declare a given
-  // assertion family among its targetAssertionFamilyIds -- otherwise a
-  // learner whose evidence shows that family as weak has no
-  // deterministic single remediation lesson to route to. The engine
-  // re-verifies this defensively at runtime and throws rather than
-  // guessing, but a valid manifest should never reach that path.
-  const familyTargetsByReleaseAndFamily = new Map<string, string[]>();
+  // packages/learning-engine/src/prerequisite-resolution.ts). This is
+  // NOT about targetAssertionFamilyIds -- many ordinary lessons (an
+  // introduction, a refresher, exam revision, retrieval practice, ...)
+  // may freely share the same target family with no ambiguity at all,
+  // and that overlap must never be flagged here. It is about the
+  // separate, narrower, opt-in `remediationEligibility` relationship: for
+  // a given (contentRelease, assertionFamilyId), zero or one eligible
+  // lesson resolves trivially; two or more eligible lessons require
+  // EXACTLY ONE of them to be marked `isDefaultRemediation` for that
+  // family, or the assembler has no deterministic way to choose. This
+  // mirrors (recomputes independently of, never trusts) the engine's own
+  // resolution algorithm so authoring-time feedback matches runtime
+  // behaviour exactly.
+  const remediationCandidatesByReleaseAndFamily = new Map<string, Array<{ lessonId: string; isDefault: boolean }>>();
   for (const lesson of manifest.lessons) {
-    for (const familyId of lesson.targetAssertionFamilyIds) {
-      const key = `${lesson.contentRelease}::${familyId}`;
-      if (!familyTargetsByReleaseAndFamily.has(key)) familyTargetsByReleaseAndFamily.set(key, []);
-      familyTargetsByReleaseAndFamily.get(key)!.push(lesson.id);
+    for (const entry of lesson.remediationEligibility) {
+      const key = `${lesson.contentRelease}::${entry.assertionFamilyId}`;
+      if (!remediationCandidatesByReleaseAndFamily.has(key)) remediationCandidatesByReleaseAndFamily.set(key, []);
+      remediationCandidatesByReleaseAndFamily.get(key)!.push({ lessonId: lesson.id, isDefault: entry.isDefaultRemediation });
     }
   }
-  for (const [key, lessonIds] of familyTargetsByReleaseAndFamily) {
-    if (lessonIds.length > 1) {
-      const [contentRelease, familyId] = key.split("::");
-      ambiguousPrimaryFamilyTargets.push(
-        `content release '${contentRelease}': assertion family '${familyId}' is targeted by ${lessonIds.length} lessons (${lessonIds.join(", ")}) -- must be at most 1 for deterministic prerequisite-remediation resolution`,
+  for (const [key, candidates] of remediationCandidatesByReleaseAndFamily) {
+    if (candidates.length < 2) continue;
+    const [contentRelease, familyId] = key.split("::");
+    const defaults = candidates.filter((c) => c.isDefault);
+    if (defaults.length > 1) {
+      ambiguousRemediationCandidates.push(
+        `content release '${contentRelease}': assertion family '${familyId}' has ${defaults.length} lessons marked as the default remediation candidate (${defaults.map((d) => d.lessonId).join(", ")}) -- exactly one default is required when multiple lessons are remediation-eligible for this family`,
+      );
+    } else if (defaults.length === 0) {
+      ambiguousRemediationCandidates.push(
+        `content release '${contentRelease}': assertion family '${familyId}' has ${candidates.length} remediation-eligible lessons (${candidates.map((c) => c.lessonId).join(", ")}) but none is designated the default -- deterministic selection requires exactly one default when more than one candidate exists`,
       );
     }
   }
@@ -235,7 +248,7 @@ function buildReport(): LessonPlanReport {
     unreachableConditionalSteps,
     circularRemediationRoutes,
     lessonsWithNoExitStep,
-    ambiguousPrimaryFamilyTargets,
+    ambiguousRemediationCandidates,
   };
 }
 
@@ -259,7 +272,7 @@ function formatReport(report: LessonPlanReport): string {
     ["Unreachable conditional steps", report.unreachableConditionalSteps],
     ["Circular remediation routes", report.circularRemediationRoutes],
     ["Lessons with no exit_completion step", report.lessonsWithNoExitStep],
-    ["Ambiguous primary family targets (prerequisite-resolution uniqueness)", report.ambiguousPrimaryFamilyTargets],
+    ["Ambiguous remediation candidates (no unique default among multiple eligible lessons)", report.ambiguousRemediationCandidates],
   ];
   for (const [label, items] of gateGroups) {
     lines.push(`${label} (target 0): ${items.length}`);
@@ -284,7 +297,7 @@ export function isReportClean(report: LessonPlanReport): boolean {
     report.unreachableConditionalSteps.length === 0 &&
     report.circularRemediationRoutes.length === 0 &&
     report.lessonsWithNoExitStep.length === 0 &&
-    report.ambiguousPrimaryFamilyTargets.length === 0
+    report.ambiguousRemediationCandidates.length === 0
   );
 }
 

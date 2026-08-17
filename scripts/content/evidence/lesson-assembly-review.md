@@ -6,7 +6,7 @@ Generated from `@alp/learning-engine`'s deterministic assembler against the live
 
 No prior evidence at all. Every required real step is included; the misconception-triggered remediation step is correctly excluded from the pre-session sequence (it is only reachable via within-session branching).
 
-Status: **ready** -- instance `5665ca1f` (15/16 steps included)
+Status: **ready** -- instance `li1_032c3f0fca97021baf3dd0b553e65a0985a554a8cf7f0a250d054e3de07b3f7c` (15/16 steps included)
 
 | Step | Included | Reason | Detail |
 |---|---|---|---|
@@ -48,7 +48,7 @@ Status: **prerequisite_unresolved** -- `foundational.algebraic_technique` (no_ca
 
 Status: **prerequisite_required** -- unmet family `foundational.algebraic_technique`; main lesson `lesson.electrical.ohms-law` deferred until the prerequisite is cleared.
 
-Prerequisite instance `788f79e3` (lesson `lesson.synthetic.prove-lesson-assembly.algebraic-technique-remediation`):
+Prerequisite instance `li1_c32922e8b85cb5a1df9be211e4d16d031570cbd565a33872802e2f24a3cbd454` (lesson `lesson.synthetic.prove-lesson-assembly.algebraic-technique-remediation`):
 
 | Step | Included | Reason | Detail |
 |---|---|---|---|
@@ -57,7 +57,7 @@ Prerequisite instance `788f79e3` (lesson `lesson.synthetic.prove-lesson-assembly
 
 ## Scenario G -- same-input replay (REAL content)
 
-Two independent assemblies of the same lesson with identical evidence: same instance id `bf905a40` both times.
+Two independent assemblies of the same lesson with identical evidence: same instance id `li1_71685ca0dc3e8b74066acbb1de07b40b56fa168b33d360a910efa777e3ec7c89` both times.
 
 ## Scenario B -- skip-if-mastered (SYNTHETIC ONLY)
 
@@ -65,7 +65,7 @@ The real Ohm's Law lesson has no `conditional_skip_if_mastered` step (task brief
 
 Strong returning learner (`TRANSFER_SECURE`):
 
-Status: **ready** -- instance `08c7e416` (1/2 steps included)
+Status: **ready** -- instance `li1_a38fdae370369a2d7a8854b87fe7cc085dc3e68be8ebdb6ffdb2e65bc2b9cb29` (1/2 steps included)
 
 | Step | Included | Reason | Detail |
 |---|---|---|---|
@@ -74,7 +74,7 @@ Status: **ready** -- instance `08c7e416` (1/2 steps included)
 
 Not-yet-mastered learner (`EMERGING`):
 
-Status: **ready** -- instance `58d3e4cf` (2/2 steps included)
+Status: **ready** -- instance `li1_8619dd210019a94e3e7e5eda0b5739d29224dcae3f37386e9552203cfecdf9df` (2/2 steps included)
 
 | Step | Included | Reason | Detail |
 |---|---|---|---|
@@ -87,7 +87,7 @@ The real lesson's `retrieval_check` step is deliberately `required` (uncondition
 
 Retrieval tag due:
 
-Status: **ready** -- instance `de419c27` (2/2 steps included)
+Status: **ready** -- instance `li1_96c276d92fc9d526ebab399b3303a7b9356f2acdb22d12248cc8f1aa14dd8a07` (2/2 steps included)
 
 | Step | Included | Reason | Detail |
 |---|---|---|---|
@@ -96,7 +96,7 @@ Status: **ready** -- instance `de419c27` (2/2 steps included)
 
 Nothing due:
 
-Status: **ready** -- instance `1de4db83` (1/2 steps included)
+Status: **ready** -- instance `li1_6d98c21a8d220be2161350cac971d3a412f8b97d15e4ac41b02d8bb92d97114b` (1/2 steps included)
 
 | Step | Included | Reason | Detail |
 |---|---|---|---|

@@ -203,6 +203,30 @@ export const lessonCompletionCriteriaSchema = z.object({
 export type LessonCompletionCriteria = z.infer<typeof lessonCompletionCriteriaSchema>;
 
 // ---------------------------------------------------------------------
+// Remediation eligibility -- a SEPARATE, purpose-specific relationship
+// from `targetAssertionFamilyIds` (task brief, Package B correction
+// §4/§5). `targetAssertionFamilyIds` means "this lesson's own main
+// instructional content"; many lessons (an introduction, a refresher,
+// exam revision, retrieval practice, ...) may freely share the same
+// target family with no ambiguity at all -- that overlap must never be
+// prohibited. `remediationEligibility` is the much narrower, opt-in
+// declaration "this lesson is a candidate a learner can be routed to
+// when a specific prerequisite family is evidenced as weak/conflicting".
+// Semantic metadata on the candidate lesson itself, deliberately not a
+// brittle `remediationLessonId` pointer stored on the family or on the
+// lesson that assumes the prerequisite (see
+// prerequisite-resolution.ts's header comment for the resolution rule
+// this enables).
+// ---------------------------------------------------------------------
+
+export const remediationEligibilitySchema = z.object({
+  assertionFamilyId: stableId,
+  /** At most one lesson per (contentRelease, assertionFamilyId) may set this true -- the deterministic tiebreak when more than one lesson is remediation-eligible for the same family (enforced by scripts/content/validate-lesson-plan.ts's ambiguousRemediationCandidates gate and re-verified defensively by the assembler). With only one eligible candidate, this flag is irrelevant -- it only matters once there is more than one. */
+  isDefaultRemediation: z.boolean().default(false),
+});
+export type RemediationEligibility = z.infer<typeof remediationEligibilitySchema>;
+
+// ---------------------------------------------------------------------
 // Lesson Plan
 // ---------------------------------------------------------------------
 
@@ -219,6 +243,8 @@ export const lessonPlanSchema = z.object({
   targetAssertionFamilyIds: z.array(stableId).min(1),
   targetAssertionIdentifiers: z.array(stableId).default([]),
   targetCapabilityIds: z.array(stableId).min(1),
+  /** Families this lesson is eligible to remediate a learner into -- see the module-level comment above `remediationEligibilitySchema`. Empty by default: most lessons are not remediation candidates for anything. */
+  remediationEligibility: z.array(remediationEligibilitySchema).default([]),
 
   estimatedDurationMinutes: z.number().positive(),
   instructionalStrategy: z.string().min(1),
@@ -236,6 +262,18 @@ export const lessonPlanSchema = z.object({
   contentRelease: stableId,
 })
   .superRefine((lesson, ctx) => {
+    const remediationFamilyIds = new Set<string>();
+    for (const [index, entry] of lesson.remediationEligibility.entries()) {
+      if (remediationFamilyIds.has(entry.assertionFamilyId)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["remediationEligibility", index, "assertionFamilyId"],
+          message: `duplicate remediationEligibility entry for assertion family '${entry.assertionFamilyId}' within lesson '${lesson.id}'`,
+        });
+      }
+      remediationFamilyIds.add(entry.assertionFamilyId);
+    }
+
     const stepIds = new Set<string>();
     for (const [index, step] of lesson.steps.entries()) {
       if (stepIds.has(step.id)) {
