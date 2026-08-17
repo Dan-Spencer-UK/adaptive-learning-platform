@@ -95,26 +95,28 @@ async function signInWithFreshOtp(
   await page.getByLabel("Email address").fill(email);
   await page.getByRole("button", { name: "Send code" }).click();
 
-  // Explicit 10s wait (vs. Playwright's 5s default) for the code step to
-  // appear. Investigated 2026-08-17 after a CI-only failure on the
-  // returning-learner test (which calls this helper twice per test, so is
-  // more exposed to a single slow round trip than the single-call tests):
-  // ruled out Supabase Auth email rate-limiting (supabase/config.toml has
-  // no [auth.email.smtp] section, so `[auth.rate_limit] email_sent` does
-  // not apply to the local Mailpit-based mailer this suite uses -- and 6
-  // back-to-back local reproduction attempts, deliberately run to stress
-  // that exact hypothesis, all passed) and ruled out cross-test state
-  // leakage (playwright.config.ts sets no shared `storageState`; CI's
-  // `workers: 1` means tests run serially, each with Playwright's normal
-  // fresh browser context). The most plausible remaining explanation is
-  // CI-runner performance variance on the Next.js dev-server Server
-  // Action round trip -- not a product defect (the OTP-step visibility
-  // gate itself, apps/web/app/sign-in/actions.ts's `requestOtp`, is a
-  // straightforward "no error from signInWithOtp -> step: 'code'" switch
-  // with no rate limiting or extra logic on a second call for the same
-  // address). This value stays in the same order of magnitude as this
-  // file's own `fetchLatestOtpCode` polling deadline just below.
-  await expect(page.getByLabel("6-digit code")).toBeVisible({ timeout: 10_000 });
+  // Waits for whichever real UI-state transition the "Send code" request
+  // actually produces, not merely for the hoped-for one. Previously this
+  // only waited for the code input (see git history for the 2026-08-17
+  // rate-limiting/state-leakage investigation that first widened this to
+  // 10s) -- if `requestOtp` ever returns an error instead (a rate limit,
+  // a transient local-Supabase hiccup, anything), that path stays on the
+  // email step and renders the app's own `#email-error` alert (see
+  // sign-in-form.tsx), and this would previously just time out after 10s
+  // with a generic "element not visible" message that says nothing about
+  // why. Racing both real outcomes means any future recurrence fails
+  // immediately with the actual error text instead of another opaque
+  // timeout. Deliberately scoped to the app's own error element by id,
+  // not `page.getByRole("alert")` -- Next.js dev mode injects its own
+  // dev-tools UI with an (empty, always-technically-present) role="alert"
+  // element, which a bare role query matches spuriously.
+  const codeInput = page.getByLabel("6-digit code");
+  const errorAlert = page.locator("#email-error");
+  await expect(codeInput.or(errorAlert)).toBeVisible({ timeout: 10_000 });
+  if (await errorAlert.isVisible()) {
+    const errorText = await errorAlert.textContent();
+    throw new Error(`Sign-in code request failed for ${email}: "${errorText}"`);
+  }
 
   const code = await fetchLatestOtpCode(email);
   await page.getByLabel("6-digit code").fill(code);
