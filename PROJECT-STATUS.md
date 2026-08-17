@@ -13,6 +13,8 @@ This is the **sole authoritative home for live project state**.
 
 Other documents may link here but should not independently maintain copies of the current task, current blocker, exact next task or last accepted implementation checkpoint.
 
+**Governance process note (2026-08-17):** development governance is now explicitly risk-proportionate (Class A/architecture, Class B/feature, Class C/routine-maintenance) — see [`docs/development/DEVELOPMENT-WORKFLOW.md`](docs/development/DEVELOPMENT-WORKFLOW.md#risk-proportionate-governance-change-classes). This changes process ceremony only, not any product/architecture/security control.
+
 ## Approved Phase 1 work
 
 - WP1.1 — Proving Slice Definition & Acceptance Criteria — APPROVED

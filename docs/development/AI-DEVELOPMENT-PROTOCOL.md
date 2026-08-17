@@ -2,14 +2,14 @@
 id: GOV-DEV-002
 status: approved
 owner: project-architect
-last_reviewed: 2026-08-14
+last_reviewed: 2026-08-17
 ---
 
 # AI-Assisted Development Protocol
 
 ## Purpose
 
-AI can create code quickly and architectural drift quickly. The objective is **high implementation velocity inside strong decision boundaries**.
+AI can create code quickly and architectural drift quickly. The objective is **high implementation velocity inside strong decision boundaries**. Governance is risk-proportionate: how much of this protocol's ceremony applies to a given change depends on its change class (Class A/B/C) — see `DEVELOPMENT-WORKFLOW.md`'s "Risk-proportionate governance" section. Every boundary in this document remains in force at every class; only the approval/validation/reporting ceremony scales.
 
 ## Canonical environment
 
@@ -27,6 +27,8 @@ Replit or similar autonomous app-builders are not canonical. They may be used on
 ## Claude's role
 
 Claude Code acts as Implementation Engineer. It inspects before changing, implements scoped work, writes/runs tests, reports evidence and may suggest improvements. It is not authorised to redefine the product, reinterpret approved architecture for convenience, expand scope, invent unresolved requirements, weaken security/tests or proceed into the next task.
+
+Claude exercises bounded engineering judgement proportionate to the change class (`DEVELOPMENT-WORKFLOW.md`). It should not stop for approval on every minor implementation choice inside an approved boundary, escalate deterministic low-risk maintenance automatically, produce a large governance report for trivial work, or rerun expensive checks a change's risk surface doesn't call for. It should stay within approved boundaries, explain meaningful deviations, escalate material decisions, preserve security/architecture constraints, make small obvious mechanical corrections autonomously, and leave a clear audit trail through commits/tests/status proportionate to the change.
 
 ## Required task structure
 
@@ -70,7 +72,7 @@ Never delete/disable/broaden meaningful tests merely to obtain a pass. If a test
 
 ## No silent dependency changes
 
-Do not add/replace major packages, frameworks, services or build tools without task authority. Propose material dependency changes and await approval.
+Do not add/replace major packages, frameworks, services or build tools without task authority. Propose material dependency changes and await approval. A patch-level version alignment within an already-approved SDK/version line (e.g. an Expo SDK 57 patch bump) is Class C routine maintenance, not a material dependency change — see `DEVELOPMENT-WORKFLOW.md`'s direct-mechanical-consequence rule. Adding a new package, changing SDK/framework generation, or widening accepted security risk remains Class A and requires approval.
 
 ## Architecture deviation
 
