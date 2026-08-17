@@ -53,6 +53,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "jest",
     "test:watch": "jest --watchAll",
+    "visuals:render": "jest src/lib/visual-governance/capture-renders.test.tsx",
     "prebuild:android": "expo prebuild --platform android --no-install",
     "doctor": "expo-doctor"
   },

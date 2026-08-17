@@ -1,0 +1,578 @@
+[
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.522Z",
+      "imageHash": "f51951211b6290f59cc54a8c727133c490ab4df3fa017d35d0c58521ea2ec2e6",
+      "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.527Z",
+      "imageHash": "38f6166e991991de85b9d7c8778c69d7d665492b45b03c21f96984653feb025b",
+      "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.528Z",
+      "imageHash": "70d67e65d8099088a21d6f4641f77d2d2626219752e8192d39671e77ac8f70ca",
+      "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.529Z",
+      "imageHash": "fc53c7a2035d542b020b3c204c72c91ba1f2d60c71e22c108078b10c01f3e966",
+      "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=right,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.530Z",
+      "imageHash": "76623599d92170b8e8c75b14f52dfd5b11fa36e5102e5a1139c15f1a322e45cf",
+      "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=up,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.531Z",
+      "imageHash": "5ee7b1cf3fa472e6f992e600f8f8e3a3751c804a38ac32507595d85b04879498",
+      "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.531Z",
+      "imageHash": "d09ef4b5ef838c4639181a2b3d55d74ce5ffa85d17e7544d70ee1548ab96db8e",
+      "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.531Z",
+      "imageHash": "0a39005fe153e3a7dc78464617042bb64754cb6fef4d0837236e2e87395cb187",
+      "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=2,mode=both,show_branch_current_arrows=true,show_values=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.532Z",
+      "imageHash": "c06f123ad6a9604e9c96d45f206108afdd4d430d5c87e1009a6465320339ccb4",
+      "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=3,mode=both,show_branch_current_arrows=true,show_values=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.533Z",
+      "imageHash": "da14cd2df5fdc1cf77a6d1b08f211fa30e6650ee3c58ee7bc566e6a85d598f12",
+      "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=4,mode=both,show_branch_current_arrows=true,show_values=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.534Z",
+      "imageHash": "3c28408909d8ade91a82e6ef211f3bbc0909d4c805377bc16c0a140a8af6a410",
+      "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,field_rotation=clockwise,mode=teaching,show_field_arrows=true::teaching",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.534Z",
+      "imageHash": "cb046dde3a6d326155f665706beecc835219696f1fdc5c5cb5b46c849cf7fc10",
+      "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,mode=assessment,show_field_arrows=true::assessment",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.535Z",
+      "imageHash": "131fa597d113d2e755c72922008f2bc0b12edcb8ebe6ff6fd2c6e2b56e0f8361",
+      "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,field_rotation=counterclockwise,mode=teaching,show_field_arrows=true::teaching",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.535Z",
+      "imageHash": "6bee02e386bbaf8533941a981e9103390428ef663624075c41a4f094e1af6cfb",
+      "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,mode=assessment,show_field_arrows=true::assessment",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.536Z",
+      "imageHash": "877e669438e34e85175034752b144bdbdceca55bf2925af3440d36e718f0c6e9",
+      "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.series-circuit-current-direction@1::component_count=2,mode=both,show_current_arrow=true,show_values=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.536Z",
+      "imageHash": "13f73839faafa0f5b35b6ea4f1c4547a0192ac3dc05fe6457142232ce3e8c23f",
+      "contractHash": "855e45f52e52ec82194ecc77f377b4b935311a01286930b310d32c9b27d92705"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.series-circuit-current-direction@1::component_count=3,mode=both,show_current_arrow=true,show_values=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.537Z",
+      "imageHash": "e3b3599b9d7fde56d9d6c35987cbdc0a9d95c0dc0c93568224b46731fb2263cf",
+      "contractHash": "855e45f52e52ec82194ecc77f377b4b935311a01286930b310d32c9b27d92705"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.series-circuit-current-direction@1::component_count=4,mode=both,show_current_arrow=true,show_values=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-17T02:36:06.537Z",
+      "imageHash": "67463fe37841c068a176d4596ecbcb7a41a9c0fe194e55823896e79435f66d9f",
+      "contractHash": "855e45f52e52ec82194ecc77f377b4b935311a01286930b310d32c9b27d92705"
+    },
+    "cacheHit": true
+  }
+]

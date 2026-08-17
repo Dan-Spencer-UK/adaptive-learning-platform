@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-08-17T04:03:28.686Z",
+  "contentRelease": "cc05d-visual-governance-pilot-v1",
+  "artifacts": [
+    {
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
+      "contractId": "visual-contract.motor-principle-force",
+      "diagramBlueprintId": "motor.force_field_current",
+      "mode": "teaching",
+      "svgRelativePath": "renders/visual-contract.motor-principle-force@1_current_direction_into_page_force_direction_down_mode_teaching_pole_labels_N_S_horizontal_show_force_arrow_true_teaching.svg",
+      "imageHash": "f51951211b6290f59cc54a8c727133c490ab4df3fa017d35d0c58521ea2ec2e6"
+    },
+    {
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+      "contractId": "visual-contract.motor-principle-force",
+      "diagramBlueprintId": "motor.force_field_current",
+      "mode": "teaching",
+      "svgRelativePath": "renders/visual-contract.motor-principle-force@1_current_direction_into_page_force_direction_left_mode_teaching_pole_labels_N_S_vertical_show_force_arrow_true_teaching.svg",
+      "imageHash": "38f6166e991991de85b9d7c8778c69d7d665492b45b03c21f96984653feb025b"
+    },
+    {
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+      "contractId": "visual-contract.motor-principle-force",
+      "diagramBlueprintId": "motor.force_field_current",
+      "mode": "assessment",
+      "svgRelativePath": "renders/visual-contract.motor-principle-force@1_current_direction_into_page_mode_assessment_pole_labels_N_S_horizontal_show_force_arrow_true_assessment.svg",
+      "imageHash": "70d67e65d8099088a21d6f4641f77d2d2626219752e8192d39671e77ac8f70ca"
+    },
+    {
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+      "contractId": "visual-contract.motor-principle-force",
+      "diagramBlueprintId": "motor.force_field_current",
+      "mode": "assessment",
+      "svgRelativePath": "renders/visual-contract.motor-principle-force@1_current_direction_into_page_mode_assessment_pole_labels_N_S_vertical_show_force_arrow_true_assessment.svg",
+      "imageHash": "fc53c7a2035d542b020b3c204c72c91ba1f2d60c71e22c108078b10c01f3e966"
+    },
+    {
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=right,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+      "contractId": "visual-contract.motor-principle-force",
+      "diagramBlueprintId": "motor.force_field_current",
+      "mode": "teaching",
+      "svgRelativePath": "renders/visual-contract.motor-principle-force@1_current_direction_out_of_page_force_direction_right_mode_teaching_pole_labels_N_S_vertical_show_force_arrow_true_teaching.svg",
+      "imageHash": "76623599d92170b8e8c75b14f52dfd5b11fa36e5102e5a1139c15f1a322e45cf"
+    },
+    {
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=up,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
+      "contractId": "visual-contract.motor-principle-force",
+      "diagramBlueprintId": "motor.force_field_current",
+      "mode": "teaching",
+      "svgRelativePath": "renders/visual-contract.motor-principle-force@1_current_direction_out_of_page_force_direction_up_mode_teaching_pole_labels_N_S_horizontal_show_force_arrow_true_teaching.svg",
+      "imageHash": "5ee7b1cf3fa472e6f992e600f8f8e3a3751c804a38ac32507595d85b04879498"
+    },
+    {
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+      "contractId": "visual-contract.motor-principle-force",
+      "diagramBlueprintId": "motor.force_field_current",
+      "mode": "assessment",
+      "svgRelativePath": "renders/visual-contract.motor-principle-force@1_current_direction_out_of_page_mode_assessment_pole_labels_N_S_horizontal_show_force_arrow_true_assessment.svg",
+      "imageHash": "d09ef4b5ef838c4639181a2b3d55d74ce5ffa85d17e7544d70ee1548ab96db8e"
+    },
+    {
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+      "contractId": "visual-contract.motor-principle-force",
+      "diagramBlueprintId": "motor.force_field_current",
+      "mode": "assessment",
+      "svgRelativePath": "renders/visual-contract.motor-principle-force@1_current_direction_out_of_page_mode_assessment_pole_labels_N_S_vertical_show_force_arrow_true_assessment.svg",
+      "imageHash": "0a39005fe153e3a7dc78464617042bb64754cb6fef4d0837236e2e87395cb187"
+    },
+    {
+      "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=2,mode=both,show_branch_current_arrows=true,show_values=false::both",
+      "contractId": "visual-contract.parallel-circuit-branches",
+      "diagramBlueprintId": "circuit.parallel_resistors",
+      "mode": "both",
+      "svgRelativePath": "renders/visual-contract.parallel-circuit-branches@1_branch_count_2_mode_both_show_branch_current_arrows_true_show_values_false_both.svg",
+      "imageHash": "c06f123ad6a9604e9c96d45f206108afdd4d430d5c87e1009a6465320339ccb4"
+    },
+    {
+      "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=3,mode=both,show_branch_current_arrows=true,show_values=false::both",
+      "contractId": "visual-contract.parallel-circuit-branches",
+      "diagramBlueprintId": "circuit.parallel_resistors",
+      "mode": "both",
+      "svgRelativePath": "renders/visual-contract.parallel-circuit-branches@1_branch_count_3_mode_both_show_branch_current_arrows_true_show_values_false_both.svg",
+      "imageHash": "da14cd2df5fdc1cf77a6d1b08f211fa30e6650ee3c58ee7bc566e6a85d598f12"
+    },
+    {
+      "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=4,mode=both,show_branch_current_arrows=true,show_values=false::both",
+      "contractId": "visual-contract.parallel-circuit-branches",
+      "diagramBlueprintId": "circuit.parallel_resistors",
+      "mode": "both",
+      "svgRelativePath": "renders/visual-contract.parallel-circuit-branches@1_branch_count_4_mode_both_show_branch_current_arrows_true_show_values_false_both.svg",
+      "imageHash": "3c28408909d8ade91a82e6ef211f3bbc0909d4c805377bc16c0a140a8af6a410"
+    },
+    {
+      "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,field_rotation=clockwise,mode=teaching,show_field_arrows=true::teaching",
+      "contractId": "visual-contract.right-hand-grip-rule",
+      "diagramBlueprintId": "magnetic.field_conductor_direction",
+      "mode": "teaching",
+      "svgRelativePath": "renders/visual-contract.right-hand-grip-rule@1_current_direction_into_page_field_rotation_clockwise_mode_teaching_show_field_arrows_true_teaching.svg",
+      "imageHash": "cb046dde3a6d326155f665706beecc835219696f1fdc5c5cb5b46c849cf7fc10"
+    },
+    {
+      "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,mode=assessment,show_field_arrows=true::assessment",
+      "contractId": "visual-contract.right-hand-grip-rule",
+      "diagramBlueprintId": "magnetic.field_conductor_direction",
+      "mode": "assessment",
+      "svgRelativePath": "renders/visual-contract.right-hand-grip-rule@1_current_direction_into_page_mode_assessment_show_field_arrows_true_assessment.svg",
+      "imageHash": "131fa597d113d2e755c72922008f2bc0b12edcb8ebe6ff6fd2c6e2b56e0f8361"
+    },
+    {
+      "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,field_rotation=counterclockwise,mode=teaching,show_field_arrows=true::teaching",
+      "contractId": "visual-contract.right-hand-grip-rule",
+      "diagramBlueprintId": "magnetic.field_conductor_direction",
+      "mode": "teaching",
+      "svgRelativePath": "renders/visual-contract.right-hand-grip-rule@1_current_direction_out_of_page_field_rotation_counterclockwise_mode_teaching_show_field_arrows_true_teaching.svg",
+      "imageHash": "6bee02e386bbaf8533941a981e9103390428ef663624075c41a4f094e1af6cfb"
+    },
+    {
+      "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,mode=assessment,show_field_arrows=true::assessment",
+      "contractId": "visual-contract.right-hand-grip-rule",
+      "diagramBlueprintId": "magnetic.field_conductor_direction",
+      "mode": "assessment",
+      "svgRelativePath": "renders/visual-contract.right-hand-grip-rule@1_current_direction_out_of_page_mode_assessment_show_field_arrows_true_assessment.svg",
+      "imageHash": "877e669438e34e85175034752b144bdbdceca55bf2925af3440d36e718f0c6e9"
+    },
+    {
+      "variantId": "visual-contract.series-circuit-current-direction@1::component_count=2,mode=both,show_current_arrow=true,show_values=false::both",
+      "contractId": "visual-contract.series-circuit-current-direction",
+      "diagramBlueprintId": "circuit.series_resistors",
+      "mode": "both",
+      "svgRelativePath": "renders/visual-contract.series-circuit-current-direction@1_component_count_2_mode_both_show_current_arrow_true_show_values_false_both.svg",
+      "imageHash": "13f73839faafa0f5b35b6ea4f1c4547a0192ac3dc05fe6457142232ce3e8c23f"
+    },
+    {
+      "variantId": "visual-contract.series-circuit-current-direction@1::component_count=3,mode=both,show_current_arrow=true,show_values=false::both",
+      "contractId": "visual-contract.series-circuit-current-direction",
+      "diagramBlueprintId": "circuit.series_resistors",
+      "mode": "both",
+      "svgRelativePath": "renders/visual-contract.series-circuit-current-direction@1_component_count_3_mode_both_show_current_arrow_true_show_values_false_both.svg",
+      "imageHash": "e3b3599b9d7fde56d9d6c35987cbdc0a9d95c0dc0c93568224b46731fb2263cf"
+    },
+    {
+      "variantId": "visual-contract.series-circuit-current-direction@1::component_count=4,mode=both,show_current_arrow=true,show_values=false::both",
+      "contractId": "visual-contract.series-circuit-current-direction",
+      "diagramBlueprintId": "circuit.series_resistors",
+      "mode": "both",
+      "svgRelativePath": "renders/visual-contract.series-circuit-current-direction@1_component_count_4_mode_both_show_current_arrow_true_show_values_false_both.svg",
+      "imageHash": "67463fe37841c068a176d4596ecbcb7a41a9c0fe194e55823896e79435f66d9f"
+    }
+  ]
+}

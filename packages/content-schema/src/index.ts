@@ -12,8 +12,12 @@
  * pedagogical layer built on top of that knowledge graph (./pedagogy.ts)
  * -- assertion families, capabilities, formula families, teaching/
  * diagram/mnemonic representations, question blueprints -- consumed by
- * the future CC-05B deterministic engine. Lessons and the full learner-
- * runtime content-publication pipeline remain later CC packages.
+ * the future CC-05B deterministic engine. CC-05D added the instructional-
+ * visual governance/semantic-QA layer (./visual-governance.ts) -- visual
+ * semantic contracts, canonical variants, two-pass semantic-review
+ * records, human-review decisions -- which sits beside, not inside,
+ * ./pedagogy.ts. Lessons and the full learner-runtime content-publication
+ * pipeline remain later CC packages.
  */
 
 import { z } from "zod";
@@ -31,3 +35,4 @@ export type PackageManifest = z.infer<typeof packageManifestSchema>;
 
 export * from "./knowledge-graph.ts";
 export * from "./pedagogy.ts";
+export * from "./visual-governance.ts";

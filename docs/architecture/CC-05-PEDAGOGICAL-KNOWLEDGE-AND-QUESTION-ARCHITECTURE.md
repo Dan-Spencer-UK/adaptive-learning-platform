@@ -1,8 +1,8 @@
 # CC-05 Pedagogical Knowledge Structure, Question Blueprinting, Formula Rendering, and Diagram Architecture
 
 **Project:** Adaptive Learning Platform  
-**Status:** Approved durable design specification (Product Owner / Project Architect). CC-05A implements this document's §37 deliverables and is **APPROVED / COMPLETE** (2026-08-16); see [`docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md`](evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md). CC-05B (§38) implements the deterministic engine against the full 84/84 governed Unit 202 question-blueprint inventory and is **APPROVED / COMPLETE** (2026-08-16); see [`docs/architecture/evidence/CC-05B-DETERMINISTIC-QUESTION-ENGINE.md`](evidence/CC-05B-DETERMINISTIC-QUESTION-ENGINE.md). CC-05C (§39) is the next authorised sub-package and has not started.  
-**Applies to:** CC-05A, CC-05B, CC-05C and future corpus-ingestion / learner-runtime work  
+**Status:** Approved durable design specification (Product Owner / Project Architect). CC-05A implements this document's §37 deliverables and is **APPROVED / COMPLETE** (2026-08-16); see [`docs/architecture/evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md`](evidence/CC-05A-PEDAGOGICAL-BLUEPRINT-BACKFILL.md). CC-05B (§38) implements the deterministic engine against the full 84/84 governed Unit 202 question-blueprint inventory and is **APPROVED / COMPLETE** (2026-08-16); see [`docs/architecture/evidence/CC-05B-DETERMINISTIC-QUESTION-ENGINE.md`](evidence/CC-05B-DETERMINISTIC-QUESTION-ENGINE.md). CC-05C (§39) is **APPROVED / COMPLETE** (2026-08-17); see [`docs/architecture/evidence/CC-05C-NATIVE-LEARNER-PROVING-SLICE.md`](evidence/CC-05C-NATIVE-LEARNER-PROVING-SLICE.md). CC-05D (§45) is a visual-governance/semantic-QA layer on top of CC-05A/B/C's instructional visuals, specified in its own dedicated document; see [`docs/architecture/CC-05D-INSTRUCTIONAL-VISUAL-GOVERNANCE-AND-SEMANTIC-QA.md`](CC-05D-INSTRUCTIONAL-VISUAL-GOVERNANCE-AND-SEMANTIC-QA.md).  
+**Applies to:** CC-05A, CC-05B, CC-05C, CC-05D and future corpus-ingestion / learner-runtime work  
 **Primary learner client:** Native mobile app (`apps/mobile`)  
 **Secondary client:** Web  
 **Design intent:** Convert governed atomic knowledge into a deterministic, visually rich, diagnostically useful learning and assessment system without introducing learner-runtime AI dependency.
@@ -1642,3 +1642,23 @@ answer / diagnosis / evidence
 ```
 
 That is the learning architecture CC-05 must establish.
+
+---
+
+## 45. CC-05D — Instructional Visual Governance, Semantic QA & Human-Readable Audit (bounded amendment)
+
+CC-05C proved this document's model end-to-end in the native app, and in doing so surfaced a gap the model above does not close: nothing between "diagram blueprint" and "rendered question/lesson interaction" (§1's chain) ever asks whether the *rendered image itself* correctly teaches the concept it claims to. A diagram can satisfy every check this document defines — correct blueprint reference, correct parameters, correct structural render — and still be pedagogically or visually wrong, as CC-05C's own Product-Owner review found twice and its own on-device correction pass found a third time.
+
+CC-05D adds a visual-governance/semantic-QA layer that sits beside, not inside, this document's model:
+
+```text
+Diagram Blueprint (this document, §11-13, §34)
+  ↓
+Visual Semantic Contract (CC-05D)
+  ↓
+Canonical Rendered Variant (CC-05D)
+  ↓
+Mechanical + Two-Pass Semantic + Human QA Evidence (CC-05D)
+```
+
+This is a bounded amendment, not a rewrite: no field, type, or behaviour defined elsewhere in this document changes. `DiagramBlueprint` (§30) remains exactly what it always was — a rendering parameter contract — and CC-05D's `VisualSemanticContract` is a separate, additively-referenced governed artefact, never a modification to it. Full specification: [`docs/architecture/CC-05D-INSTRUCTIONAL-VISUAL-GOVERNANCE-AND-SEMANTIC-QA.md`](CC-05D-INSTRUCTIONAL-VISUAL-GOVERNANCE-AND-SEMANTIC-QA.md).

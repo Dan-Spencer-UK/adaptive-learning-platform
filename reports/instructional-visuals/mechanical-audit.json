@@ -1,0 +1,92 @@
+[
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=right,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=up,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=2,mode=both,show_branch_current_arrows=true,show_values=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=3,mode=both,show_branch_current_arrows=true,show_values=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=4,mode=both,show_branch_current_arrows=true,show_values=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,field_rotation=clockwise,mode=teaching,show_field_arrows=true::teaching",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,mode=assessment,show_field_arrows=true::assessment",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,field_rotation=counterclockwise,mode=teaching,show_field_arrows=true::teaching",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,mode=assessment,show_field_arrows=true::assessment",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.series-circuit-current-direction@1::component_count=2,mode=both,show_current_arrow=true,show_values=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.series-circuit-current-direction@1::component_count=3,mode=both,show_current_arrow=true,show_values=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.series-circuit-current-direction@1::component_count=4,mode=both,show_current_arrow=true,show_values=false::both",
+    "passed": true,
+    "failures": []
+  }
+]

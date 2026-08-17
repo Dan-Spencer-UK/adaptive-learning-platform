@@ -1,0 +1,27 @@
+[
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+    "reason": "sampled",
+    "status": "pass"
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+    "reason": "sampled",
+    "status": "pass"
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+    "reason": "sampled",
+    "status": "pass"
+  },
+  {
+    "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=4,mode=both,show_branch_current_arrows=true,show_values=false::both",
+    "reason": "sampled",
+    "status": "pass"
+  },
+  {
+    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,field_rotation=counterclockwise,mode=teaching,show_field_arrows=true::teaching",
+    "reason": "sampled",
+    "status": "pass"
+  }
+]
