@@ -86,6 +86,18 @@ export default function HomeScreen(): React.JSX.Element {
         ) : null}
 
         {__DEV__ ? (
+          <Link href="/dev-lesson-qa" asChild>
+            <Pressable
+              style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}
+              accessibilityRole="button"
+              accessibilityLabel="Open Lesson Player QA"
+            >
+              <Text style={styles.secondaryButtonText}>Lesson Player QA (dev only)</Text>
+            </Pressable>
+          </Link>
+        ) : null}
+
+        {__DEV__ ? (
           <Link href="/dev-proving-visuals" asChild>
             <Pressable
               style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}

@@ -46,3 +46,30 @@ export const minTouchTarget = 44;
 // See MOBILE-UX-ENGINEERING-STANDARD.md §3 -- the governed motion-token
 // system is future work, not established by this foundation.
 export const motionDurationMs = 180;
+
+/**
+ * The Lesson Player's motion vocabulary (MOBILE-UX-ENGINEERING-STANDARD.md
+ * §3's minimum semantic categories) -- governed durations, not per-screen
+ * improvisation. Deliberately restrained (hundreds of milliseconds, not
+ * seconds; see task brief §9) and respects the system reduce-motion
+ * preference (see useReducedMotion in lib/motion.ts, which callers should
+ * consult before applying any of these).
+ */
+export const motion = {
+  /** Press/tap acknowledgement -- effectively instant. */
+  press: 80,
+  /** A selection changing (e.g. picking an answer option before submitting). */
+  selection: 120,
+  /** An answer being accepted/locked in. */
+  answerAccepted: 150,
+  /** Correct-feedback entrance. */
+  correct: 220,
+  /** Incorrect-feedback entrance -- intentionally the same duration as correct (calm, not punitive; Product Principles 20-21). */
+  incorrect: 220,
+  /** Progress bar fill movement. */
+  progress: 260,
+  /** One lesson step transitioning out and the next settling in. */
+  stepTransition: 240,
+  /** A milestone (e.g. remediation cleared) -- still restrained, never blocking. */
+  milestone: 300,
+} as const;

@@ -16,6 +16,17 @@ export default function LearnIndexScreen(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.safeArea} edges={["bottom"]}>
       <ScrollView contentContainerStyle={styles.container}>
+        <Link href="/learn/lesson-player" asChild>
+          <Pressable
+            style={({ pressed }) => [styles.card, styles.lessonPlayerCard, pressed && styles.pressed]}
+            accessibilityRole="button"
+            accessibilityLabel="Open the Ohm's Law lesson"
+          >
+            <Text style={styles.cardTitle}>Ohm&apos;s Law (full lesson)</Text>
+            <Text style={styles.cardBody}>The step-based Lesson Player -- teaching, guided practice and adaptive remediation together.</Text>
+          </Pressable>
+        </Link>
+
         <Text style={styles.intro}>
           A proving slice across four governed Unit 202 topics: pick one to see teaching, generated questions, local
           marking and evidence end-to-end.
@@ -54,6 +65,7 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   pressed: { opacity: 0.85 },
+  lessonPlayerCard: { borderColor: color.accent, backgroundColor: "#16223A" },
   cardTitle: { ...typography.title, fontSize: 18, color: color.text },
   cardBody: { ...typography.body, color: color.textSecondary },
   cardMeta: { marginTop: spacing.xs },

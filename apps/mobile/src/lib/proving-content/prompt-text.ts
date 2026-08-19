@@ -74,6 +74,21 @@ export function promptLinesFor(instance: GeneratedQuestionInstance): readonly st
     case "magnetism.interpret_force_direction":
       return ["Determine the direction of the force on the current-carrying conductor."];
 
+    case "ohms_law.select_rearrangement":
+      return [`V = ${num(parameters, "V")} V`, `I = ${num(parameters, "I")} A`, `R = ${num(parameters, "R")} Ω`];
+
+    case "ohms_law.match_variables_units":
+      return [`V = ${num(parameters, "V")} V`, `I = ${num(parameters, "I")} A`, `R = ${num(parameters, "R")} Ω`];
+
+    case "ohms_law.diagnose_wrong_operation":
+      return ["A learner was asked to find current (I) from a known voltage and resistance:", `V = ${num(parameters, "V")} V`, `R = ${num(parameters, "R")} Ω`];
+
+    case "ohms_law.diagnose_rearrangement_error":
+      return ["A learner was asked to find resistance (R) from a known voltage and current:", `V = ${num(parameters, "V")} V`, `I = ${num(parameters, "I")} A`];
+
+    case "ohms_law.plausibility_check":
+      return [`I = ${num(parameters, "I")} A`, `R = ${num(parameters, "R")} Ω`, `A calculated voltage of ${num(parameters, "shown_V")} V was reported.`];
+
     default:
       throw new Error(`prompt-text: no prompt-line formatter registered for "${instance.identity.blueprintId}"`);
   }

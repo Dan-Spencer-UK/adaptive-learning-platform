@@ -53,6 +53,10 @@ class MockSQLiteDatabase {
       const rows = this.tables.get("foundation_outbox") ?? [];
       return (rows.find((r) => r.id === params[0]) as T) ?? null;
     }
+    if (/FROM local_lesson_content WHERE content_key = \?/i.test(sql)) {
+      const rows = this.tables.get("local_lesson_content") ?? [];
+      return (rows.find((r) => r.content_key === params[0]) as T) ?? null;
+    }
     return null;
   }
 
@@ -110,6 +114,28 @@ class MockSQLiteDatabase {
         row.synced_at = syncedAt;
       }
       return { changes: row ? 1 : 0 };
+    }
+    if (/INSERT INTO local_lesson_content/i.test(sql)) {
+      const [contentKey, lessonId, lessonVersion, contentRelease, status, missingDependencies, preparedAt, updatedAt] = params;
+      const rows = this.tables.get("local_lesson_content") ?? [];
+      const existing = rows.find((r) => r.content_key === contentKey);
+      const values = {
+        content_key: contentKey,
+        lesson_id: lessonId,
+        lesson_version: lessonVersion,
+        content_release: contentRelease,
+        status,
+        missing_dependencies: missingDependencies,
+        prepared_at: preparedAt,
+        updated_at: updatedAt,
+      };
+      if (existing) {
+        Object.assign(existing, values);
+      } else {
+        rows.push(values);
+      }
+      this.tables.set("local_lesson_content", rows);
+      return { changes: 1 };
     }
     return { changes: 0 };
   }

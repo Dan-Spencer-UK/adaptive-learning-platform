@@ -25,3 +25,4 @@ export * from "./identity.ts";
 export * from "./prerequisite-resolution.ts";
 export * from "./assembler.ts";
 export * from "./branching.ts";
+export * from "./content-dependencies.ts";

@@ -1,0 +1,118 @@
+/**
+ * Pure Lesson session state machine (task brief §23/§24): once a learner
+ * begins a `LessonInstance`, this module governs how the session's
+ * position moves forward, including within-session branch jumps
+ * (@alp/learning-engine's `resolveWithinSessionBranch`) -- never a
+ * silent whole-lesson reassembly (ARCH-003 §17). No React, no SQLite, no
+ * I/O -- session/controller tests (task brief §39.C) exercise this
+ * directly; ../lesson-session-store.ts is the thin persistence wrapper
+ * around it.
+ *
+ * Branch-jump semantics: `advanceSession`'s optional
+ * `branchDestinationStepId` (the real `destinationStepId` a governed
+ * `branchRoute` names) is honoured literally. If that step is not yet in
+ * `stepSequence` (true of every `conditional_remediation_only` step,
+ * since the pre-session assembler never includes them), it is spliced in
+ * immediately after the current position. If it is already present (true
+ * of a `remediation_cleared` route's destination, always a `required`
+ * step the assembler already included), the pointer jumps directly to
+ * its existing position -- steps between the jump origin and destination
+ * are not visited on this path. This is a deliberate, literal reading of
+ * the governed branch route's own authored intent (its `description`
+ * field states exactly where it resumes); the Lesson Player does not
+ * second-guess or reinterpret it. See this package's completion-report
+ * notes on why `completionCriteria.requiredStepIds` is therefore treated
+ * as descriptive completion-summary input, not a hard step-visitation
+ * gate blocking `exit_completion` -- @alp/learning-engine's own
+ * `LessonInstance.completionCriteria` is carried through unmodified and
+ * this package does not redefine completion/mastery semantics.
+ */
+import type { LessonInstance } from "@alp/learning-engine";
+
+export interface LessonSessionState {
+  readonly instanceId: string;
+  readonly lessonId: string;
+  readonly lessonVersion: number;
+  readonly contentRelease: string;
+  readonly assemblyPolicyVersion: number;
+  readonly learnerId: string;
+  /** The step sequence the learner actually walks -- starts as the assembled instance's includedStepIds, may grow via branch-insertions. Immutable content-release/lesson identity; only this ordering/position mutates. */
+  readonly stepSequence: readonly string[];
+  /** Index into stepSequence of the step currently being shown. */
+  readonly currentIndex: number;
+  /** Step ids completed so far, in completion order (never contains duplicates). */
+  readonly completedStepIds: readonly string[];
+  readonly startedAt: string;
+  readonly updatedAt: string;
+  readonly completedAt: string | null;
+}
+
+/** Begins a new session from a freshly-assembled `ready` LessonInstance. */
+export function startSession(instance: LessonInstance, learnerId: string, nowIso: string): LessonSessionState {
+  return {
+    instanceId: instance.instanceId,
+    lessonId: instance.lessonId,
+    lessonVersion: instance.lessonVersion,
+    contentRelease: instance.contentRelease,
+    assemblyPolicyVersion: instance.assemblyPolicyVersion,
+    learnerId,
+    stepSequence: instance.includedStepIds,
+    currentIndex: 0,
+    completedStepIds: [],
+    startedAt: nowIso,
+    updatedAt: nowIso,
+    completedAt: null,
+  };
+}
+
+export function currentStepId(state: LessonSessionState): string | null {
+  return state.stepSequence[state.currentIndex] ?? null;
+}
+
+export function isSessionComplete(state: LessonSessionState): boolean {
+  return state.completedAt !== null;
+}
+
+/** How far through the (possibly still-growing) step sequence the learner has progressed -- a simple proportional figure, deliberately not a precise denominator (task brief §8: branching means the true count isn't stable in advance). */
+export function sessionProgress(state: LessonSessionState): { readonly completed: number; readonly total: number } {
+  return { completed: state.completedStepIds.length, total: state.stepSequence.length };
+}
+
+/**
+ * Marks the current step completed and moves to the next one. If
+ * `branchDestinationStepId` is provided, jumps there (inserting it into
+ * the sequence if new); otherwise advances linearly. Reaching the end of
+ * the sequence marks the session complete.
+ */
+export function advanceSession(state: LessonSessionState, nowIso: string, branchDestinationStepId?: string | null): LessonSessionState {
+  if (isSessionComplete(state)) return state;
+
+  const justCompleted = currentStepId(state);
+  const completedStepIds = justCompleted && !state.completedStepIds.includes(justCompleted) ? [...state.completedStepIds, justCompleted] : state.completedStepIds;
+
+  let stepSequence = state.stepSequence;
+  let nextIndex: number;
+
+  if (branchDestinationStepId) {
+    const existingIndex = stepSequence.indexOf(branchDestinationStepId);
+    if (existingIndex >= 0) {
+      nextIndex = existingIndex;
+    } else {
+      const insertAt = state.currentIndex + 1;
+      stepSequence = [...stepSequence.slice(0, insertAt), branchDestinationStepId, ...stepSequence.slice(insertAt)];
+      nextIndex = insertAt;
+    }
+  } else {
+    nextIndex = state.currentIndex + 1;
+  }
+
+  const reachedEnd = nextIndex >= stepSequence.length;
+  return {
+    ...state,
+    stepSequence,
+    currentIndex: reachedEnd ? state.currentIndex : nextIndex,
+    completedStepIds,
+    updatedAt: nowIso,
+    completedAt: reachedEnd ? nowIso : null,
+  };
+}

@@ -1,12 +1,14 @@
 /**
  * Local durable-storage foundation (Expo SQLite), per
  * docs/architecture/MOBILE-ARCHITECTURE.md §2 (Local storage and session
- * state). Deliberately small: two foundation tables only --
- * `foundation_state` (minimal session/local-state key-value record) and
- * `foundation_outbox` (minimal pending-sync/outbox proof). This is NOT the
- * future learner/content schema and does NOT mirror any Supabase table --
- * see MOBILE-ARCHITECTURE.md §2's "published learner-runtime projection"
- * boundary, which CC-04N does not implement.
+ * state). Deliberately small: `foundation_state` (minimal session/
+ * local-state key-value record), `foundation_outbox` (minimal
+ * pending-sync/outbox proof), and (from version 2) `local_lesson_content`
+ * (the Lesson Player's local content-availability record -- see
+ * ./lesson-content/local-content-store.ts). This is NOT the future
+ * learner/content schema and does NOT mirror any Supabase table -- see
+ * MOBILE-ARCHITECTURE.md §2's "published learner-runtime projection"
+ * boundary, still not fully implemented.
  *
  * Schema is versioned via SQLite's own `PRAGMA user_version`, the pattern
  * documented by Expo SQLite itself (https://docs.expo.dev/versions/latest/sdk/sqlite/,
@@ -15,7 +17,7 @@
 import * as SQLite from "expo-sqlite";
 
 const DATABASE_NAME = "alp-foundation.db";
-export const DATABASE_VERSION = 1;
+export const DATABASE_VERSION = 2;
 
 type Migration = {
   readonly version: number;
@@ -40,6 +42,30 @@ const migrations: readonly Migration[] = [
           status TEXT NOT NULL CHECK (status IN ('pending', 'synced')),
           created_at TEXT NOT NULL,
           synced_at TEXT
+        );
+      `);
+    },
+  },
+  {
+    // Lesson Player local content library (task brief §25J): tracks, per
+    // (lesson, version, content release), whether that lesson's governed
+    // content dependencies have been validated as locally available --
+    // the persistence half of ./lesson-content/content-availability.ts's
+    // pure completeness check. Deliberately its own table, not a
+    // foundation_state blob: this is structured, queryable-by-key content
+    // metadata, not opaque session state.
+    version: 2,
+    apply: async (db) => {
+      await db.execAsync(`
+        CREATE TABLE IF NOT EXISTS local_lesson_content (
+          content_key TEXT PRIMARY KEY NOT NULL,
+          lesson_id TEXT NOT NULL,
+          lesson_version INTEGER NOT NULL,
+          content_release TEXT NOT NULL,
+          status TEXT NOT NULL CHECK (status IN ('ready', 'invalid')),
+          missing_dependencies TEXT NOT NULL,
+          prepared_at TEXT,
+          updated_at TEXT NOT NULL
         );
       `);
     },
