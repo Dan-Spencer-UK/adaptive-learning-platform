@@ -22,4 +22,5 @@ export * from "./parameter-generation.ts";
 export * from "./marking.ts";
 export * from "./types.ts";
 export * from "./engine.ts";
+export * from "./presentation.ts";
 export type { GenerationContext, QuestionExecutor } from "./families/shared.ts";

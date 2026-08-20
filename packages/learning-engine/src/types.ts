@@ -47,19 +47,39 @@ export const MASTERY_STATES = [
 ] as const;
 export type MasteryState = (typeof MASTERY_STATES)[number];
 
+/** Stable id of a governed Capability (@alp/content-schema pedagogy layer). Documentation alias -- the namespace separation below is what actually prevents cross-keyspace queries. */
+export type CapabilityId = string;
+/** Stable id of a governed AssertionFamily (@alp/content-schema pedagogy layer). */
+export type AssertionFamilyId = string;
+/** A free-form retrieval hook tag (LessonPlan.retrievalTags). */
+export type RetrievalTag = string;
+
 /**
- * A capability status not present in `capabilityStatus` is treated as
- * `NOT_ASSESSED` (WP1.3 §39.1: "NOT_ASSESSED is ... a valid starting
- * state for teaching" -- a learner with zero evidence must still be
- * assembled a complete lesson, never an assembly failure).
+ * A status not present in its map is treated as `NOT_ASSESSED` (WP1.3
+ * §39.1: "NOT_ASSESSED is ... a valid starting state for teaching" -- a
+ * learner with zero evidence must still be assembled a complete lesson,
+ * never an assembly failure).
+ *
+ * NAMESPACES (CC-06D, Correction F): capability-level and
+ * assertion-family-level mastery state are conceptually distinct
+ * keyspaces and are carried in SEPARATE maps -- it must never again be
+ * possible to ask "what is the capability status of assertion-family id
+ * X?" by silently sharing one map. Likewise retrieval dueness is split
+ * into its two real keyspaces (lesson retrieval tags vs capability ids)
+ * rather than one conflated Set.
  */
 export interface LearnerEvidenceSnapshot {
   readonly learnerId: string;
-  readonly capabilityStatus: ReadonlyMap<string, MasteryState>;
+  /** Capability-keyed mastery state (WP1.3 §12) -- capability ids ONLY. */
+  readonly capabilityStatus: ReadonlyMap<CapabilityId, MasteryState>;
+  /** Assertion-family-keyed prerequisite/mastery state -- family ids ONLY. Prerequisite gating consumes this map, never `capabilityStatus`. */
+  readonly familyStatus: ReadonlyMap<AssertionFamilyId, MasteryState>;
   /** Misconception identifiers with direct or suggestive supporting evidence (WP1.3 §5's SUPPORTS_MISCONCEPTION direction), per QuestionEvidenceRecord.misconceptionIdentifier already emitted by the calculation engine. */
   readonly misconceptionsEvidenced: ReadonlySet<string>;
-  /** Retrieval tags (LessonPlan.retrievalTags) currently due, as decided by an external scheduler this package never implements (task brief §12: "the assembler's job is: given that retrieval IS due, decide how it participates"). */
-  readonly retrievalDue: ReadonlySet<string>;
+  /** Retrieval hook tags (LessonPlan.retrievalTags) currently due, as decided by an external scheduler this package never implements. Tags ONLY -- never capability ids. */
+  readonly retrievalDueTags: ReadonlySet<RetrievalTag>;
+  /** Capability ids whose retrieval practice is currently due. Capability ids ONLY -- never tags. */
+  readonly retrievalDueCapabilityIds: ReadonlySet<CapabilityId>;
 }
 
 /** Mastery states strong enough to justify omitting a `conditional_skip_if_mastered` step -- WP1.3 §12's two "secure" tiers, both meaning reliable, not merely emerging, capability. */

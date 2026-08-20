@@ -1,18 +1,28 @@
 import { fireEvent, render } from "@testing-library/react-native";
 import type { GeneratedQuestionInstance } from "@alp/calculation-engine";
 
-import { FORMULA_OHMS_LAW, LESSON_QUESTION_BLUEPRINTS } from "./lesson-ohms-law-content-fixture";
+import { bundledContentReleaseId, getLocalLesson } from "./local-content-registry";
+
+const record = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentRelease: bundledContentReleaseId() });
+const FORMULA_OHMS_LAW = record.lookup.formulaFamilies.find((f) => f.id === "formula.ohms_law")!;
 import { generateLessonQuestion } from "./generate-lesson-question";
 import { AnswerInputDispatch } from "./answer-input-dispatch";
 
 function blueprintFor(id: string) {
-  const blueprint = LESSON_QUESTION_BLUEPRINTS.find((b) => b.id === id);
-  if (!blueprint) throw new Error(`missing test fixture blueprint ${id}`);
+  const blueprint = record.lookup.questionBlueprints.find((b) => b.id === id);
+  if (!blueprint) throw new Error(`missing governed blueprint ${id}`);
   return blueprint;
 }
 
 function instanceFor(id: string): GeneratedQuestionInstance {
-  return generateLessonQuestion({ blueprintId: id, instanceId: "li1_t", stepId: id });
+  return generateLessonQuestion({
+    blueprint: blueprintFor(id),
+    formulaFamilies: record.lookup.formulaFamilies,
+    contentRelease: record.contentRelease,
+    blueprintVersion: record.questionBlueprintVersion,
+    instanceId: "li1_t",
+    stepId: id,
+  });
 }
 
 describe("AnswerInputDispatch", () => {

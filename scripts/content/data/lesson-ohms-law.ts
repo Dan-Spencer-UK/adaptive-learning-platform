@@ -459,7 +459,7 @@ export const LESSON_OHMS_LAW: LessonPlan = {
       "The learner has calculated voltage, current and resistance from V = I x R, selected the correct rearrangement for an unknown quantity, judged the plausibility of a result, and -- if either governed misconception was detected -- cleared the remediation route before completion.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "lesson-plan-pilot-v1",
+  contentRelease: "release.unit202.v1",
 };
 
 export const lessons = [LESSON_OHMS_LAW];

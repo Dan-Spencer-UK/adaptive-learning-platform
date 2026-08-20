@@ -1,16 +1,10 @@
+import { resolvePromptLines } from "@alp/calculation-engine";
+
 import { promptLinesFor } from "./prompt-text";
 import { generateProvingQuestion } from "@/lib/proving-engine/proving-engine";
-import { generateLessonQuestion } from "@/lib/lesson-content/generate-lesson-question";
+import { getProvingFamily } from "./unit202-proving-fixture";
 
-describe("promptLinesFor", () => {
-  it("shows the two known values for ohms_law.solve_for_voltage, never the target itself", () => {
-    const instance = generateProvingQuestion({ familyId: "electrical.ohms_law", blueprintId: "ohms_law.solve_for_voltage", seed: 1 });
-    const lines = promptLinesFor(instance);
-    expect(lines.some((l) => l.startsWith("I ="))).toBe(true);
-    expect(lines.some((l) => l.startsWith("R ="))).toBe(true);
-    expect(lines.some((l) => l.startsWith("V ="))).toBe(false);
-  });
-
+describe("promptLinesFor (legacy formatter for not-yet-migrated proving families)", () => {
   it("lists every component for series.calculate_total_resistance, matching component_count", () => {
     const instance = generateProvingQuestion({
       familyId: "electrical.series_circuits",
@@ -44,29 +38,26 @@ describe("promptLinesFor", () => {
     expect(lines.some((l) => /right-hand grip rule/i.test(l))).toBe(true);
   });
 
-  it("shows all three known values for ohms_law.select_rearrangement", () => {
-    const instance = generateLessonQuestion({ blueprintId: "ohms_law.select_rearrangement", instanceId: "li1_t", stepId: "s" });
-    const lines = promptLinesFor(instance);
-    expect(lines.some((l) => l.startsWith("V ="))).toBe(true);
-    expect(lines.some((l) => l.startsWith("I ="))).toBe(true);
-    expect(lines.some((l) => l.startsWith("R ="))).toBe(true);
-  });
-
-  it("describes the flawed working context for ohms_law.diagnose_wrong_operation without revealing the classification", () => {
-    const instance = generateLessonQuestion({ blueprintId: "ohms_law.diagnose_wrong_operation", instanceId: "li1_t", stepId: "s" });
-    const lines = promptLinesFor(instance);
-    expect(lines.some((l) => /find current/i.test(l))).toBe(true);
-  });
-
-  it("reports the calculated voltage under scrutiny for ohms_law.plausibility_check", () => {
-    const instance = generateLessonQuestion({ blueprintId: "ohms_law.plausibility_check", instanceId: "li1_t", stepId: "s" });
-    const lines = promptLinesFor(instance);
-    expect(lines.some((l) => /calculated voltage/i.test(l))).toBe(true);
+  it("no longer has ANY Ohm's-law case -- Ohm prompt copy is governed presentation content, not app switch logic (CC-06D)", () => {
+    const instance = generateProvingQuestion({ familyId: "electrical.ohms_law", blueprintId: "ohms_law.solve_for_voltage", seed: 1 });
+    expect(() => promptLinesFor(instance)).toThrow(/no prompt-line formatter/);
   });
 
   it("throws for a blueprint id with no registered prompt-line formatter", () => {
-    const instance = generateProvingQuestion({ familyId: "electrical.ohms_law", blueprintId: "ohms_law.solve_for_voltage", seed: 1 });
+    const instance = generateProvingQuestion({ familyId: "electrical.series_circuits", blueprintId: "series.calculate_total_resistance", seed: 1 });
     const bogus = { ...instance, identity: { ...instance.identity, blueprintId: "nonexistent.blueprint" } };
     expect(() => promptLinesFor(bogus)).toThrow();
+  });
+});
+
+describe("governed presentation supersedes the legacy formatter for migrated blueprints", () => {
+  it("ohms_law.solve_for_voltage renders its prompt from the GOVERNED presentation contract", () => {
+    const family = getProvingFamily("electrical.ohms_law");
+    const blueprint = family!.questionBlueprints.find((b) => b.id === "ohms_law.solve_for_voltage")!;
+    const instance = generateProvingQuestion({ familyId: "electrical.ohms_law", blueprintId: "ohms_law.solve_for_voltage", seed: 1 });
+    const lines = resolvePromptLines(blueprint, instance);
+    expect(lines.some((l) => l.startsWith("I ="))).toBe(true);
+    expect(lines.some((l) => l.startsWith("R ="))).toBe(true);
+    expect(lines.some((l) => l.startsWith("V ="))).toBe(false);
   });
 });

@@ -1,30 +1,21 @@
 /**
  * Native error-classification answer entry for `worked_error_classification`
- * question blueprints (the two Ohm's-law misconception-discrimination
- * blueprints: diagnose_wrong_operation, diagnose_rearrangement_error).
- * Shows the flawed worked calculation the learner must diagnose (built
- * from the real generated instance's own parameters, never fabricated),
- * then a fixed four-way classification choice. The classification
- * vocabulary itself mirrors
- * packages/calculation-engine/src/families/ohms-law.ts's
- * `OhmsLawErrorClassification` union -- not declared in the governed
- * blueprint's `answer.options` (there is none), so, like
- * DirectionAnswerInput's blueprint-specific option set, it is a
- * deliberate small UI-layer constant, not calculation logic.
+ * question blueprints. Shows the flawed worked calculation the learner
+ * must diagnose (rendered from the blueprint's governed presentation
+ * templates by the caller, never fabricated), then the classification
+ * choices. CC-06D (Correction C): the classification vocabulary AND its
+ * learner-facing labels are governed content (`answer.options` +
+ * `presentation.answerOptionLabels`) supplied via `options` -- this
+ * component owns layout/interaction only, never factual copy.
  */
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
 
-const CLASSIFICATIONS: readonly { value: string; label: string }[] = [
-  { value: "wrong_operation", label: "Used the wrong operation (multiplied instead of divided, or vice versa)" },
-  { value: "rearrangement_error", label: "Rearranged the formula incorrectly" },
-  { value: "unrelated_symbols", label: "Substituted an unrelated value" },
-  { value: "no_error", label: "The working shown is actually correct" },
-];
-
 export interface WorkedErrorClassificationAnswerInputProps {
   readonly shownWorkingLines: readonly string[];
+  /** Governed classification options in governed order: value submitted to marking, label shown to the learner. */
+  readonly options: readonly { readonly value: string; readonly label: string }[];
   readonly onSubmit: (value: string) => void;
   readonly disabled?: boolean;
   readonly testID?: string;
@@ -32,6 +23,7 @@ export interface WorkedErrorClassificationAnswerInputProps {
 
 export function WorkedErrorClassificationAnswerInput({
   shownWorkingLines,
+  options,
   onSubmit,
   disabled,
   testID,
@@ -47,7 +39,7 @@ export function WorkedErrorClassificationAnswerInput({
       </View>
       <Text style={styles.prompt}>What went wrong?</Text>
       <View style={styles.list} accessibilityRole="radiogroup">
-        {CLASSIFICATIONS.map((c) => (
+        {options.map((c) => (
           <Pressable
             key={c.value}
             style={({ pressed }) => [styles.button, pressed && styles.pressed, disabled && styles.disabled]}

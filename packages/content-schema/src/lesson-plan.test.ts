@@ -49,7 +49,7 @@ function minimalLesson(overrides: Partial<LessonPlan> = {}): LessonPlan {
       exitSummary: "Learner has recognised the relationship.",
     },
     presentationModes: ["learn"],
-    contentRelease: "lesson-plan-pilot-v1",
+    contentRelease: "release.synthetic-schema-test.v1",
     ...overrides,
   };
 }
@@ -236,5 +236,66 @@ describe("lessonPlanManifestSchema", () => {
   it("accepts two lessons with the same id but different versions", () => {
     const result = lessonPlanManifestSchema.safeParse({ lessons: [minimalLesson(), minimalLesson({ version: 2 })] });
     expect(result.success).toBe(true);
+  });
+});
+
+describe("masteryGateCapabilityId placement (CC-06D, Correction F §10.3)", () => {
+  it("REQUIRES the field on a non-retrieval conditional_skip_if_mastered step", () => {
+    const lesson = minimalLesson({
+      steps: [
+        minimalStep({
+          id: "skip_step",
+          type: "guided_interaction",
+          requirement: "conditional_skip_if_mastered",
+          capabilityIds: ["cap.x"],
+          evidenceEmitted: ["cap.x"],
+        }),
+        minimalStep(),
+      ],
+    });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/masteryGateCapabilityId/);
+  });
+
+  it("accepts an explicit masteryGateCapabilityId on a conditional_skip_if_mastered step", () => {
+    const lesson = minimalLesson({
+      steps: [
+        minimalStep({
+          id: "skip_step",
+          type: "guided_interaction",
+          requirement: "conditional_skip_if_mastered",
+          capabilityIds: ["cap.x"],
+          masteryGateCapabilityId: "cap.x",
+        }),
+        minimalStep(),
+      ],
+    });
+    expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
+  });
+
+  it("does NOT require the field on a conditional_skip_if_mastered retrieval_check step (gated by retrieval dueness, not capability mastery)", () => {
+    const lesson = minimalLesson({
+      steps: [
+        minimalStep({ id: "retrieval", type: "retrieval_check", requirement: "conditional_skip_if_mastered", capabilityIds: ["cap.x"] }),
+        minimalStep(),
+      ],
+    });
+    expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
+  });
+
+  it("REJECTS the field where it has no semantic purpose (a required step)", () => {
+    const lesson = minimalLesson({
+      steps: [minimalStep({ id: "ordinary", masteryGateCapabilityId: "cap.x" })],
+      completionCriteria: {
+        requiredStepIds: ["ordinary"],
+        requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+        requiresRemediationClearance: true,
+        exitSummary: "s",
+      },
+    });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/no semantic purpose/);
   });
 });

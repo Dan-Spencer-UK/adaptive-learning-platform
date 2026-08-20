@@ -16,7 +16,7 @@ export default function LearnIndexScreen(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.safeArea} edges={["bottom"]}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Link href="/learn/lesson-player" asChild>
+        <Link href={{ pathname: "/learn/lesson-player", params: { lessonId: "lesson.electrical.ohms-law" } }} asChild>
           <Pressable
             style={({ pressed }) => [styles.card, styles.lessonPlayerCard, pressed && styles.pressed]}
             accessibilityRole="button"

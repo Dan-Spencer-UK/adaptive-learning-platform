@@ -15,8 +15,10 @@ function evidence(overrides: Partial<LearnerEvidenceSnapshot> = {}): LearnerEvid
   return {
     learnerId: "learner.001",
     capabilityStatus: new Map(),
+    familyStatus: new Map(),
     misconceptionsEvidenced: new Set(),
-    retrievalDue: new Set(),
+    retrievalDueTags: new Set(),
+    retrievalDueCapabilityIds: new Set(),
     ...overrides,
   };
 }
@@ -95,7 +97,7 @@ describe("assembleLessonInstance -- capability mastery skip", () => {
 
 describe("assembleLessonInstance -- retrieval participation", () => {
   it("includes the retrieval_check step, with reason retrieval_due, when a relevant tag is due", () => {
-    const result = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidence({ retrievalDue: new Set(["synth.retrieval_tag"]) }), context());
+    const result = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidence({ retrievalDueTags: new Set(["synth.retrieval_tag"]) }), context());
     if (result.status !== "ready") throw new Error("expected ready");
     expect(result.instance.includedStepIds).toContain("retrieval_step");
     expect(result.instance.stepDecisions.find((d) => d.stepId === "retrieval_step")?.reason).toBe("retrieval_due");
@@ -109,7 +111,7 @@ describe("assembleLessonInstance -- retrieval participation", () => {
   });
 
   it("also participates when a capability id (not just a retrievalTag) is due", () => {
-    const result = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidence({ retrievalDue: new Set([SYNTH_CORE_CAPABILITY]) }), context());
+    const result = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidence({ retrievalDueCapabilityIds: new Set([SYNTH_CORE_CAPABILITY]) }), context());
     if (result.status !== "ready") throw new Error("expected ready");
     expect(result.instance.includedStepIds).toContain("retrieval_step");
   });
@@ -119,7 +121,7 @@ describe("assembleLessonInstance -- prerequisite resolution", () => {
   it("returns prerequisite_required with the prerequisite lesson's own assembled instance when exactly one candidate exists and the family is WEAK", () => {
     const result = assembleLessonInstance(
       SYNTHETIC_MAIN_LESSON,
-      evidence({ capabilityStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
+      evidence({ familyStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
       context([SYNTHETIC_MAIN_LESSON, SYNTHETIC_PREREQ_LESSON]),
     );
     expect(result.status).toBe("prerequisite_required");
@@ -132,7 +134,7 @@ describe("assembleLessonInstance -- prerequisite resolution", () => {
   it("also gates on CONFLICTING prerequisite evidence", () => {
     const result = assembleLessonInstance(
       SYNTHETIC_MAIN_LESSON,
-      evidence({ capabilityStatus: new Map([[SYNTH_PREREQ_FAMILY, "CONFLICTING"]]) }),
+      evidence({ familyStatus: new Map([[SYNTH_PREREQ_FAMILY, "CONFLICTING"]]) }),
       context([SYNTHETIC_MAIN_LESSON, SYNTHETIC_PREREQ_LESSON]),
     );
     expect(result.status).toBe("prerequisite_required");
@@ -142,7 +144,7 @@ describe("assembleLessonInstance -- prerequisite resolution", () => {
     for (const status of ["NOT_ASSESSED", "INSUFFICIENT_EVIDENCE", "EMERGING"] as const) {
       const result = assembleLessonInstance(
         SYNTHETIC_MAIN_LESSON,
-        evidence({ capabilityStatus: new Map([[SYNTH_PREREQ_FAMILY, status]]) }),
+        evidence({ familyStatus: new Map([[SYNTH_PREREQ_FAMILY, status]]) }),
         context([SYNTHETIC_MAIN_LESSON, SYNTHETIC_PREREQ_LESSON]),
       );
       expect(result.status).toBe("ready");
@@ -152,7 +154,7 @@ describe("assembleLessonInstance -- prerequisite resolution", () => {
   it("returns prerequisite_unresolved (never proceeds as if the weakness did not exist) when zero remediation candidates exist", () => {
     const result = assembleLessonInstance(
       SYNTHETIC_MAIN_LESSON,
-      evidence({ capabilityStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
+      evidence({ familyStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
       context([SYNTHETIC_MAIN_LESSON]),
     );
     expect(result).toEqual({
@@ -165,7 +167,7 @@ describe("assembleLessonInstance -- prerequisite resolution", () => {
     expect(() =>
       assembleLessonInstance(
         SYNTHETIC_MAIN_LESSON,
-        evidence({ capabilityStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
+        evidence({ familyStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
         context([SYNTHETIC_MAIN_LESSON, SYNTHETIC_PREREQ_LESSON, SYNTHETIC_PREREQ_LESSON_DUPLICATE]),
       ),
     ).toThrow(AmbiguousPrerequisiteCandidatesError);
@@ -194,14 +196,16 @@ describe("assembleLessonInstance -- determinism and identity", () => {
         [SYNTH_CORE_CAPABILITY, "EMERGING"],
         [SYNTH_PREREQ_FAMILY, "PROVISIONALLY_SECURE"],
       ]),
-      retrievalDue: new Set(["a", "b"]),
+      retrievalDueTags: new Set(["a", "b"]),
+      retrievalDueCapabilityIds: new Set(),
     });
     const evidenceB = evidence({
       capabilityStatus: new Map([
         [SYNTH_PREREQ_FAMILY, "PROVISIONALLY_SECURE"],
         [SYNTH_CORE_CAPABILITY, "EMERGING"],
       ]),
-      retrievalDue: new Set(["b", "a"]),
+      retrievalDueTags: new Set(["b", "a"]),
+      retrievalDueCapabilityIds: new Set(),
     });
     const resultA = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidenceA, context());
     const resultB = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidenceB, context());
@@ -250,9 +254,82 @@ describe("assembleLessonInstance -- determinism and identity", () => {
   });
 
   it("round-trips through JSON with no loss (plain serializable data, task brief §18)", () => {
-    const result = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidence({ retrievalDue: new Set(["synth.retrieval_tag"]) }), context());
+    const result = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidence({ retrievalDueTags: new Set(["synth.retrieval_tag"]) }), context());
     if (result.status !== "ready") throw new Error("expected ready");
     const roundTripped = JSON.parse(JSON.stringify(result.instance));
     expect(roundTripped).toEqual(result.instance);
+  });
+});
+
+describe("assembleLessonInstance -- evidence namespace separation (CC-06D, Correction F)", () => {
+  it("a prerequisite FAMILY id placed in capabilityStatus does NOT trigger prerequisite remediation (family ids cannot silently operate as capability ids)", () => {
+    const result = assembleLessonInstance(
+      SYNTHETIC_MAIN_LESSON,
+      evidence({ capabilityStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
+      context([SYNTHETIC_MAIN_LESSON, SYNTHETIC_PREREQ_LESSON]),
+    );
+    expect(result.status).toBe("ready");
+  });
+
+  it("a CAPABILITY id placed in familyStatus does NOT influence the conditional skip mastery gate", () => {
+    const result = assembleLessonInstance(
+      SYNTHETIC_MAIN_LESSON,
+      evidence({ familyStatus: new Map([[SYNTH_CORE_CAPABILITY, "TRANSFER_SECURE"]]) }),
+      context(),
+    );
+    if (result.status !== "ready") throw new Error("expected ready");
+    expect(result.instance.includedStepIds).toContain("skip_if_mastered_practice");
+  });
+
+  it("a capability id placed in retrievalDueTags does NOT make a retrieval step due (tag and capability keyspaces are separate)", () => {
+    const result = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidence({ retrievalDueTags: new Set([SYNTH_CORE_CAPABILITY]) }), context());
+    if (result.status !== "ready") throw new Error("expected ready");
+    expect(result.instance.includedStepIds).not.toContain("retrieval_step");
+  });
+
+  it("a lesson retrieval tag placed in retrievalDueCapabilityIds does NOT make a retrieval step due", () => {
+    const result = assembleLessonInstance(SYNTHETIC_MAIN_LESSON, evidence({ retrievalDueCapabilityIds: new Set(["synth.retrieval_tag"]) }), context());
+    if (result.status !== "ready") throw new Error("expected ready");
+    expect(result.instance.includedStepIds).not.toContain("retrieval_step");
+  });
+
+  it("mastery gating uses the explicit masteryGateCapabilityId, never authored array order", () => {
+    // A skip step whose evidenceEmitted[0]/capabilityIds[0] name a DIFFERENT
+    // (mastered) capability than the explicit gate: the step must still be
+    // included, because only the declared gate capability controls the skip.
+    const decoyCapability = "cap.synth.decoy_first_in_array";
+    const lesson = {
+      ...SYNTHETIC_MAIN_LESSON,
+      steps: SYNTHETIC_MAIN_LESSON.steps.map((step) =>
+        step.id === "skip_if_mastered_practice"
+          ? { ...step, capabilityIds: [decoyCapability, SYNTH_CORE_CAPABILITY], evidenceEmitted: [decoyCapability, SYNTH_CORE_CAPABILITY] }
+          : step,
+      ),
+    };
+    const result = assembleLessonInstance(lesson, evidence({ capabilityStatus: new Map([[decoyCapability, "TRANSFER_SECURE"]]) }), {
+      assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION,
+      allLessons: [lesson],
+    });
+    if (result.status !== "ready") throw new Error("expected ready");
+    expect(result.instance.includedStepIds).toContain("skip_if_mastered_practice");
+
+    // And when the DECLARED gate capability is mastered, the skip happens
+    // even though it is not first in either authored array.
+    const gateMastered = assembleLessonInstance(lesson, evidence({ capabilityStatus: new Map([[SYNTH_CORE_CAPABILITY, "TRANSFER_SECURE"]]) }), {
+      assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION,
+      allLessons: [lesson],
+    });
+    if (gateMastered.status !== "ready") throw new Error("expected ready");
+    expect(gateMastered.instance.includedStepIds).not.toContain("skip_if_mastered_practice");
+  });
+
+  it("fails loudly on a non-retrieval conditional_skip_if_mastered step with no masteryGateCapabilityId (defensive check behind the schema gate)", () => {
+    const lesson = {
+      ...SYNTHETIC_MAIN_LESSON,
+      steps: SYNTHETIC_MAIN_LESSON.steps.map((step) => (step.id === "skip_if_mastered_practice" ? { ...step, masteryGateCapabilityId: undefined } : step)),
+    };
+    expect(() =>
+      assembleLessonInstance(lesson, evidence(), { assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION, allLessons: [lesson] }),
+    ).toThrow(/masteryGateCapabilityId/);
   });
 });

@@ -318,6 +318,16 @@ export const workedExampleBlueprintManifestSchema = z.object({
   target: z.string().min(1),
   knownVariables: z.array(z.string().min(1)).min(1),
   steps: z.array(workedExampleStepSchema).min(1),
+  /**
+   * Governed fixed illustrative values for TEACHING display of this
+   * worked example (never for generated/assessed questions, which always
+   * come from deterministic seeded generation). Keyed by variable
+   * symbol; must cover `knownVariables`. Required for any worked example
+   * a governed lesson step presents -- the learner runtime fails loudly
+   * rather than falling back to app-side value constants (CC-06D,
+   * Correction C).
+   */
+  teachingValues: z.record(z.string().min(1), z.number()).optional(),
 });
 
 export const visualAidBlueprintManifestSchema = z.object({
@@ -422,6 +432,29 @@ export const evidenceTargetManifestSchema = z.object({
   misconceptionTargets: z.array(misconceptionMappingManifestSchema).default([]),
 });
 
+/**
+ * Governed learner-facing presentation copy for a question blueprint
+ * (CC-06D, Correction C). The words a learner reads when answering a
+ * question are governed instructional content -- they must never live in
+ * app-side per-blueprint switch statements, where correcting them would
+ * require an app-store code release.
+ *
+ * Deliberately NOT a templating language: each line is plain text with
+ * simple deterministic `{parameterName}` substitution against the
+ * generated question instance's own engine-computed parameters (see
+ * @alp/calculation-engine's presentation module for the single renderer).
+ * Interface microcopy ("Check", "Continue", "Try again", "Choose an
+ * answer") remains app-owned; factual/pedagogical copy does not.
+ */
+export const questionPresentationManifestSchema = z.object({
+  /** Learner-facing prompt lines shown above the answer input, in order. `{param}` placeholders substitute generated parameter values. */
+  promptLines: z.array(z.string().min(1)).min(1),
+  /** For diagnostic/classification questions: the flawed shown-working lines the learner must analyse. Same `{param}` substitution. */
+  shownWorkingLines: z.array(z.string().min(1)).optional(),
+  /** Learner-facing labels for governed `answer.options` values, where those labels are pedagogical content (not derivable from other governed structure such as formula-family variables). */
+  answerOptionLabels: z.record(z.string().min(1), z.string().min(1)).optional(),
+});
+
 export const questionBlueprintManifestSchema = z.object({
   id: stableId,
   assertionFamilyId: stableId,
@@ -435,6 +468,8 @@ export const questionBlueprintManifestSchema = z.object({
   evidence: evidenceTargetManifestSchema,
   difficultyBand: difficultyBandSchema,
   normalisationNote: z.string().min(1).optional(),
+  /** Optional until a blueprint is used by a governed lesson's learner runtime -- the Lesson Player fails loudly on a blueprint without it (CC-06D migrates the 8 real Ohm's Law lesson blueprints; the mini-unit migrates more as real need is proven). */
+  presentation: questionPresentationManifestSchema.optional(),
 });
 
 // ---------------------------------------------------------------------
@@ -743,6 +778,7 @@ export type VisualAidBlueprint = z.infer<typeof visualAidBlueprintManifestSchema
 export type DiagramBlueprint = z.infer<typeof diagramBlueprintManifestSchema>;
 export type FamilyTeachingRepresentation = z.infer<typeof familyTeachingRepresentationManifestSchema>;
 export type QuestionBlueprint = z.infer<typeof questionBlueprintManifestSchema>;
+export type QuestionPresentation = z.infer<typeof questionPresentationManifestSchema>;
 export type VariantDimension = z.infer<typeof variantDimensionManifestSchema>;
 export type ParameterGenerator = z.infer<typeof parameterGeneratorManifestSchema>;
 export type AnswerContract = z.infer<typeof answerContractManifestSchema>;

@@ -118,6 +118,22 @@ export function generateQuestionInstance(inputs: GenerationInputs): GeneratedQue
  * permits). When more than one misconception target is declared, the
  * first is used; no proving-slice blueprint currently declares more than
  * one (see the CC-05B evidence document's "limitations" section).
+ *
+ * KNOWN LIMITATION -- EXPLICIT CC-07/MINI-UNIT CONTRACT REQUIREMENT
+ * (CC-06D §14, deliberately NOT fixed here): on a blueprint that
+ * declares a misconception target, EVERY incorrect answer currently
+ * acquires that misconception id, even when the learner's actual wrong
+ * value/choice was never analysed and provides no discriminating
+ * evidence. The eventual evidence/mastery model (CC-07) MUST NOT treat
+ * "incorrect answer on a blueprint that names misconception X" as
+ * automatically equivalent to "direct evidence the learner holds
+ * misconception X" unless the interaction itself provides a governed
+ * discriminating basis for the classification (e.g. predicted
+ * wrong-value analysis, explicit error classification, or
+ * misconception-specific distractor selection). The general
+ * answer-analysis mechanism is intentionally deferred to be proven
+ * against the misconception-heavy mini-unit content, not invented
+ * abstractly here.
  */
 export function evaluateAnswer(instance: GeneratedQuestionInstance, given: AnswerValue): EvaluationResult {
   const outcome = markAnswer(instance.marking, instance.expected.value, given);

@@ -3,30 +3,46 @@
  * emit/record evidence -> resolve within-session branch -> advance/hold
  * session position -> persist. Ties together @alp/calculation-engine
  * (marking), @alp/learning-engine (branch resolution), and
- * ./lesson-session-store.ts (persistence) -- the real runtime chain task
- * brief §4 requires, never duplicated or reimplemented here. No React;
- * a thin hook (../../hooks/useLessonSession or the screen component
- * itself) calls this and holds only UI state (submitting lock, etc.).
+ * ./lesson-session-store.ts (persistence) -- no calculation/marking/
+ * branching logic duplicated here.
  *
- * Advancement rule (task brief §13 -- governed `completionCondition`
- * semantics, not a global policy):
+ * Advancement rule (governed `completionCondition` semantics):
  *  - A within-session branch destination (misconception detected, or a
  *    conditional_remediation_only step's own remediation_cleared route)
  *    always advances/jumps, regardless of correctness -- the branch IS
  *    the resolution.
  *  - Otherwise a `correct_answer_required` step only advances on a
  *    correct answer; an incorrect answer holds position so the learner
- *    can retry (evidence is still recorded either way -- evidence is
- *    evidence regardless of what happens next).
- *  - Any other completionCondition (`view_acknowledged`,
- *    `answer_submitted`) advances regardless of correctness, since
- *    correctness isn't the gate for those steps.
+ *    can retry (evidence is still recorded either way).
+ *  - Any other completionCondition advances regardless of correctness.
+ *
+ * Retry/reveal evidence integrity (CC-06D, Correction G):
+ *  - Every submission carries a deterministic attemptIndex within
+ *    (instanceId, stepId): first attempt = 1, retries increment. The
+ *    attempt counter is persisted even when the position holds, so a
+ *    restored session continues the same attempt sequence.
+ *  - The correct answer is REVEALED in feedback only when the step is
+ *    advancing (`result.revealCorrectAnswer`); while a retry is pending
+ *    it is withheld, so a retried correct answer is a genuine
+ *    independent attempt, not transcription of revealed feedback.
+ *  - When a reveal does happen it is recorded on the session state, and
+ *    every evidence event carries `answerRevealedBeforeAttempt` derived
+ *    from that state -- CC-07 can therefore never mistake a post-reveal
+ *    answer for independent first-attempt mastery evidence.
  */
 import { evaluateAnswer, emitEvidence, type AnswerValue, type EvaluationResult, type GeneratedQuestionInstance, type QuestionEvidenceRecord } from "@alp/calculation-engine";
 import { resolveWithinSessionBranch } from "@alp/learning-engine";
 import type { LessonPlan, LessonStep } from "@alp/content-schema";
 
-import { advanceSession, currentStepId, type LessonSessionState } from "./lesson-session-controller.ts";
+import {
+  advanceSession,
+  currentStepId,
+  markAnswerRevealed,
+  nextAttemptIndex,
+  recordStepAttempt,
+  wasAnswerRevealed,
+  type LessonSessionState,
+} from "./lesson-session-controller.ts";
 import { recordLessonEvidence, saveLessonSession } from "./lesson-session-store.ts";
 
 function findStep(lesson: LessonPlan, stepId: string): LessonStep {
@@ -60,9 +76,13 @@ export interface SubmitStepAnswerResult {
   readonly evidence: QuestionEvidenceRecord;
   readonly advanced: boolean;
   readonly nextState: LessonSessionState;
+  /** The attempt index this submission carried (1 = first attempt). */
+  readonly attemptIndex: number;
+  /** Whether the UI may display the correct answer in this submission's feedback -- false while a retry of the same question is pending (CC-06D, Correction G). */
+  readonly revealCorrectAnswer: boolean;
 }
 
-/** For a graded step (has a real `GeneratedQuestionInstance`). Always records evidence; advances/holds/branches per the rule above; always persists the resulting state. */
+/** For a graded step (has a real `GeneratedQuestionInstance`). Always records evidence with attempt identity; advances/holds/branches per the rule above; always persists the resulting state (including held-position attempt counts). */
 export async function submitStepAnswer(args: {
   readonly lesson: LessonPlan;
   readonly state: LessonSessionState;
@@ -77,20 +97,43 @@ export async function submitStepAnswer(args: {
   if (!stepId) throw new Error("Cannot submit an answer: the session has no current step (already complete?)");
   const step = findStep(lesson, stepId);
 
+  const attemptIndex = nextAttemptIndex(state, stepId);
+  const answerRevealedBeforeAttempt = wasAnswerRevealed(state, stepId);
+
   const evaluation = evaluateAnswer(questionInstance, given);
   const evidence = emitEvidence(questionInstance, evaluation);
-  await recordLessonEvidence(evidence, given, state.instanceId, stepId);
 
   const branchDestination = resolveBranchDestination(lesson, step, evaluation);
   const advanced = shouldAdvance(step, evaluation, branchDestination);
-  const nextState = advanced ? advanceSession(state, now(), branchDestination) : state;
+  // The correct answer may be shown only when this question will not be
+  // asked again: an incorrect answer that holds position keeps it hidden.
+  const revealCorrectAnswer = advanced;
 
-  if (advanced) await saveLessonSession(nextState);
+  let nextState = recordStepAttempt(state, stepId, now());
+  if (!evaluation.correct && revealCorrectAnswer) {
+    nextState = markAnswerRevealed(nextState, stepId, now());
+  }
 
-  return { evaluation, evidence, advanced, nextState };
+  await recordLessonEvidence({
+    evidence,
+    givenAnswer: given,
+    session: nextState,
+    stepId,
+    attemptIndex,
+    answerRevealedBeforeAttempt,
+  });
+
+  if (advanced) {
+    nextState = advanceSession(nextState, now(), branchDestination);
+  }
+  // Persist attempt/reveal bookkeeping even when holding position, so a
+  // restored session continues the same deterministic attempt sequence.
+  await saveLessonSession(nextState);
+
+  return { evaluation, evidence, advanced, nextState, attemptIndex, revealCorrectAnswer };
 }
 
-/** For a non-graded step (`view_acknowledged`, or an `answer_submitted` step with no machine-marked question, e.g. a predictive DO with no governed question blueprint). Always advances; persists the resulting state. */
+/** For a non-graded step (`view_acknowledged`, or an `answer_submitted` step with no machine-marked question). Always advances; persists the resulting state. */
 export async function acknowledgeStep(args: { readonly state: LessonSessionState; readonly now?: () => string }): Promise<LessonSessionState> {
   const now = args.now ?? (() => new Date().toISOString());
   const nextState = advanceSession(args.state, now());

@@ -1691,6 +1691,10 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "V",
     knownVariables: ["I", "R"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    // Governed fixed teaching values (V = 24 V, I = 4 A, R = 6 Ω -- V = I x R holds exactly),
+    // deliberately shared across all three Ohm's-law worked examples so the
+    // learner sees one relationship from multiple directions (design doc §9).
+    teachingValues: { I: 4, R: 6 },
   },
   {
     id: "worked.ohms_law.solve_current",
@@ -1698,6 +1702,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "I",
     knownVariables: ["V", "R"],
     steps: ["show_formula", "show_rearrangement", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { V: 24, R: 6 },
   },
   {
     id: "worked.ohms_law.solve_resistance",
@@ -1705,6 +1710,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "R",
     knownVariables: ["V", "I"],
     steps: ["show_formula", "show_rearrangement", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { V: 24, I: 4 },
   },
   {
     id: "worked.series_resistance.calculate_total",
@@ -1826,6 +1832,8 @@ interface QuestionBlueprintSpec {
   representationDependency?: string[];
   misconceptionTargets?: EvidenceTarget["misconceptionTargets"];
   normalisationNote?: string;
+  /** Governed learner-facing presentation copy (CC-06D, Correction C) -- required for any blueprint a governed lesson's learner runtime uses; see @alp/content-schema's questionPresentationManifestSchema. */
+  presentation?: QuestionBlueprint["presentation"];
 }
 
 function qb(spec: QuestionBlueprintSpec): QuestionBlueprint {
@@ -1841,6 +1849,7 @@ function qb(spec: QuestionBlueprintSpec): QuestionBlueprint {
     marking: spec.marking,
     difficultyBand: spec.difficultyBand,
     normalisationNote: spec.normalisationNote,
+    presentation: spec.presentation,
     evidence: evidence(spec.familyId, spec.capabilityId, spec.assertionIdentifiers, {
       supportingCapabilityIds: spec.supportingCapabilityIds,
       representationDependency: spec.representationDependency,
@@ -1935,6 +1944,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-OHM-SOLVE-V-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
     supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
+    presentation: { promptLines: ["I = {I} A", "R = {R} Ω"] },
   }),
   qb({
     id: "ohms_law.solve_for_current",
@@ -1947,6 +1957,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-OHM-SOLVE-I-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
     supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
+    presentation: { promptLines: ["V = {V} V", "R = {R} Ω"] },
   }),
   qb({
     id: "ohms_law.solve_for_resistance",
@@ -1959,6 +1970,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-OHM-SOLVE-R-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
     supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
+    presentation: { promptLines: ["V = {V} V", "I = {I} A"] },
   }),
   qb({
     id: "ohms_law.select_rearrangement",
@@ -1973,6 +1985,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     variantDimensions: { target_variable: { allowed: ["V", "I", "R"] } },
     normalisationNote:
       "One blueprint with target_variable as a variant dimension, rather than three separate select-rearrangement blueprints, since the selection skill being assessed is identical regardless of which variable is unknown.",
+    presentation: { promptLines: ["V = {V} V", "I = {I} A", "R = {R} Ω"] },
   }),
   qb({
     id: "ohms_law.match_variables_units",
@@ -1984,6 +1997,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: { type: "set_equality" },
     assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
     supportingCapabilityIds: ["cap.si_units.identify_unit"],
+    presentation: { promptLines: ["V = {V} V", "I = {I} A", "R = {R} Ω"] },
   }),
   qb({
     id: "ohms_law.substitution",
@@ -2003,10 +2017,20 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.ohms_law.diagnose_rearrangement_error",
     title: "Diagnose an incorrect algebraic rearrangement of V = I x R",
     difficultyBand: "diagnostic",
-    answer: { type: "worked_error_classification" },
+    answer: { type: "worked_error_classification", options: ["wrong_operation", "rearrangement_error", "unrelated_symbols", "no_error"] },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-OHM-REARRANGE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-OHM-REARRANGE-ERROR-001", evidenceStrength: "direct" }],
+    presentation: {
+      promptLines: ["A learner was asked to find resistance (R) from a known voltage and current:", "V = {V} V", "I = {I} A"],
+      shownWorkingLines: ["V = {V} V, I = {I} A", "R = I / V = {shown_R} Ω"],
+      answerOptionLabels: {
+        wrong_operation: "Used the wrong operation (multiplied instead of divided, or vice versa)",
+        rearrangement_error: "Rearranged the formula incorrectly",
+        unrelated_symbols: "Substituted an unrelated value",
+        no_error: "The working shown is actually correct",
+      },
+    },
   }),
   qb({
     id: "ohms_law.diagnose_wrong_operation",
@@ -2014,10 +2038,20 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.ohms_law.diagnose_wrong_operation",
     title: "Diagnose use of the wrong arithmetic operation when applying V = I x R",
     difficultyBand: "diagnostic",
-    answer: { type: "worked_error_classification" },
+    answer: { type: "worked_error_classification", options: ["wrong_operation", "rearrangement_error", "unrelated_symbols", "no_error"] },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-OHM-WRONG-OPERATION-001", evidenceStrength: "direct" }],
+    presentation: {
+      promptLines: ["A learner was asked to find current (I) from a known voltage and resistance:", "V = {V} V", "R = {R} Ω"],
+      shownWorkingLines: ["V = {V} V, R = {R} Ω", "I = V x R = {shown_I} A"],
+      answerOptionLabels: {
+        wrong_operation: "Used the wrong operation (multiplied instead of divided, or vice versa)",
+        rearrangement_error: "Rearranged the formula incorrectly",
+        unrelated_symbols: "Substituted an unrelated value",
+        no_error: "The working shown is actually correct",
+      },
+    },
   }),
   qb({
     id: "ohms_law.diagnose_unrelated_symbols",
@@ -2039,6 +2073,10 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["plausible", "too_high", "too_low"] },
     marking: exact(),
     assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
+    presentation: {
+      promptLines: ["I = {I} A", "R = {R} Ω", "A calculated voltage of {shown_V} V was reported."],
+      answerOptionLabels: { plausible: "Plausible", too_high: "Too high", too_low: "Too low" },
+    },
   }),
 
   // ===================================================================
@@ -2872,6 +2910,9 @@ const questionBlueprints: QuestionBlueprint[] = [
 // =======================================================================
 // 9. Final assembled manifest
 // =======================================================================
+
+/** Stable identity of this governed pedagogy-corpus snapshot module, referenced by governed ContentRelease manifests (scripts/content/data/content-releases.ts). */
+export const CC05A_PEDAGOGY_CORPUS_ID = "cc05a-pedagogy-unit202" as const;
 
 const cc05aPedagogyUnit202: PedagogyManifest = {
   assertionFamilies,

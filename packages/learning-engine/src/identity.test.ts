@@ -6,8 +6,10 @@ function evidence(overrides: Partial<LearnerEvidenceSnapshot> = {}): LearnerEvid
   return {
     learnerId: "learner.001",
     capabilityStatus: new Map([["cap.a", "EMERGING"]]),
+    familyStatus: new Map(),
     misconceptionsEvidenced: new Set(),
-    retrievalDue: new Set(),
+    retrievalDueTags: new Set(),
+    retrievalDueCapabilityIds: new Set(),
     ...overrides,
   };
 }
@@ -32,7 +34,7 @@ describe("computeEvidenceDigest", () => {
         ["cap.b", "WEAK"],
       ]),
       misconceptionsEvidenced: new Set(["MIS-1", "MIS-2"]),
-      retrievalDue: new Set(["tag.1", "tag.2"]),
+      retrievalDueTags: new Set(["tag.1", "tag.2"]),
     });
     const snapshotB = evidence({
       capabilityStatus: new Map([
@@ -40,7 +42,7 @@ describe("computeEvidenceDigest", () => {
         ["cap.a", "EMERGING"],
       ]),
       misconceptionsEvidenced: new Set(["MIS-2", "MIS-1"]),
-      retrievalDue: new Set(["tag.2", "tag.1"]),
+      retrievalDueTags: new Set(["tag.2", "tag.1"]),
     });
     expect(computeEvidenceDigest(snapshotA)).toBe(computeEvidenceDigest(snapshotB));
   });
@@ -63,9 +65,9 @@ describe("computeEvidenceDigest", () => {
     expect(computeEvidenceDigest(a)).toBe(computeEvidenceDigest(b));
   });
 
-  it("changes when retrievalDue changes but nothing else does", () => {
+  it("changes when retrievalDueTags changes but nothing else does", () => {
     const base = evidence();
-    const changed = evidence({ retrievalDue: new Set(["some.tag"]) });
+    const changed = evidence({ retrievalDueTags: new Set(["some.tag"]) });
     expect(computeEvidenceDigest(base)).not.toBe(computeEvidenceDigest(changed));
   });
 
@@ -125,5 +127,25 @@ describe("computeInstanceIdentity", () => {
       lessonId: base.lessonId,
     };
     expect(computeInstanceIdentity(base)).toBe(computeInstanceIdentity(reordered));
+  });
+});
+
+describe("computeEvidenceDigest -- namespace separation (CC-06D, Correction F)", () => {
+  it("distinguishes the same id/state pair placed in capabilityStatus vs familyStatus", () => {
+    const asCapability = evidence({ capabilityStatus: new Map([["shared.id", "WEAK"]]) });
+    const asFamily = evidence({ capabilityStatus: new Map(), familyStatus: new Map([["shared.id", "WEAK"]]) });
+    expect(computeEvidenceDigest(asCapability)).not.toBe(computeEvidenceDigest(asFamily));
+  });
+
+  it("distinguishes the same id placed in retrievalDueTags vs retrievalDueCapabilityIds", () => {
+    const asTag = evidence({ retrievalDueTags: new Set(["shared.key"]) });
+    const asCapability = evidence({ retrievalDueCapabilityIds: new Set(["shared.key"]) });
+    expect(computeEvidenceDigest(asTag)).not.toBe(computeEvidenceDigest(asCapability));
+  });
+
+  it("changes when familyStatus changes but nothing else does", () => {
+    const base = evidence();
+    const changed = evidence({ familyStatus: new Map([["fam.x", "WEAK"]]) });
+    expect(computeEvidenceDigest(base)).not.toBe(computeEvidenceDigest(changed));
   });
 });

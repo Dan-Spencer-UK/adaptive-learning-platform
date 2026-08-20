@@ -72,8 +72,10 @@ function toSortedArray(set: ReadonlySet<string>): string[] {
 export function computeEvidenceDigest(snapshot: LearnerEvidenceSnapshot): string {
   const canonical = {
     capabilityStatus: toSortedEntries(snapshot.capabilityStatus),
+    familyStatus: toSortedEntries(snapshot.familyStatus),
     misconceptionsEvidenced: toSortedArray(snapshot.misconceptionsEvidenced),
-    retrievalDue: toSortedArray(snapshot.retrievalDue),
+    retrievalDueTags: toSortedArray(snapshot.retrievalDueTags),
+    retrievalDueCapabilityIds: toSortedArray(snapshot.retrievalDueCapabilityIds),
   };
   return sha256Hex(canonicalJson(canonical));
 }

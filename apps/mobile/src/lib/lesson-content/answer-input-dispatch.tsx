@@ -1,11 +1,22 @@
 /**
  * Maps a governed `QuestionBlueprint.answer.type` to the right native
  * answer-input component and value encoding -- a compact reusable
- * dispatch (task brief §14: "Do NOT create eight bespoke screens. Create
- * a compact reusable interaction system driven by governed contracts"),
- * not one hand-wired branch per lesson step.
+ * dispatch, not one hand-wired branch per lesson step.
+ *
+ * CC-06D (Correction C): every piece of factual/pedagogical content this
+ * dispatch renders now comes from governed content --
+ *  - unit symbols resolve from the governed formula family's own
+ *    variable definitions (never a hard-coded quantity->symbol map);
+ *  - choice labels come from the blueprint's governed presentation
+ *    (`answerOptionLabels`) or from governed formula-family variables;
+ *  - diagnostic shown-working lines render from the blueprint's governed
+ *    presentation templates via @alp/calculation-engine's single
+ *    deterministic renderer.
+ * Missing governed content fails loudly -- no silent app-side fallback
+ * copy. Only the answer-TYPE dispatch itself is app logic.
  */
 import type { AnswerValue, GeneratedQuestionInstance } from "@alp/calculation-engine";
+import { resolveAnswerOptions, resolveShownWorkingLines } from "@alp/calculation-engine";
 import type { FormulaFamily, QuestionBlueprint } from "@alp/content-schema";
 
 import { DirectionAnswerInput, type Direction } from "@/components/question/DirectionAnswerInput";
@@ -14,29 +25,24 @@ import { MultipleChoiceAnswerInput, type MultipleChoiceOption } from "@/componen
 import { NumericAnswerInput } from "@/components/question/NumericAnswerInput";
 import { WorkedErrorClassificationAnswerInput } from "@/components/question/WorkedErrorClassificationAnswerInput";
 
-const QUANTITY_UNIT_SYMBOLS: Readonly<Record<string, string>> = { voltage: "V", current: "A", resistance: "Ω" };
-
-const MULTIPLE_CHOICE_LABELS: Readonly<Record<string, string>> = {
-  plausible: "Plausible",
-  too_high: "Too high",
-  too_low: "Too low",
-};
-
-function num(parameters: GeneratedQuestionInstance["parameters"], key: string): number {
-  const value = parameters[key];
-  if (typeof value !== "number") throw new Error(`answer-input-dispatch: parameter "${key}" is not a number`);
-  return value;
+function requireFormulaFamily(blueprint: QuestionBlueprint, formulaFamily: FormulaFamily | null): FormulaFamily {
+  if (!formulaFamily) {
+    throw new Error(
+      `answer-input-dispatch: blueprint "${blueprint.id}" (answer type "${blueprint.answer.type}") needs a governed formula family to present its answer input, but none was resolved for this step`,
+    );
+  }
+  return formulaFamily;
 }
 
-function shownWorkingLines(instance: GeneratedQuestionInstance): readonly string[] {
-  switch (instance.identity.blueprintId) {
-    case "ohms_law.diagnose_wrong_operation":
-      return [`V = ${num(instance.parameters, "V")} V, R = ${num(instance.parameters, "R")} Ω`, `I = V x R = ${num(instance.parameters, "shown_I")} A`];
-    case "ohms_law.diagnose_rearrangement_error":
-      return [`V = ${num(instance.parameters, "V")} V, I = ${num(instance.parameters, "I")} A`, `R = I / V = ${num(instance.parameters, "shown_R")} Ω`];
-    default:
-      return [];
+/** Unit symbol for the blueprint's answered quantity, from the governed formula family's own variable definitions. */
+export function unitSymbolForAnswer(blueprint: QuestionBlueprint, formulaFamily: FormulaFamily | null): string {
+  const quantity = blueprint.answer.quantity;
+  if (!quantity) return "";
+  const variable = requireFormulaFamily(blueprint, formulaFamily).variables.find((v) => v.quantity === quantity);
+  if (!variable) {
+    throw new Error(`answer-input-dispatch: governed formula family has no variable for quantity "${quantity}" (blueprint "${blueprint.id}")`);
   }
+  return variable.unitSymbol;
 }
 
 export interface AnswerInputDispatchProps {
@@ -51,23 +57,17 @@ export interface AnswerInputDispatchProps {
 /** Renders the answer input appropriate to this blueprint's governed `answer.type`, wired to submit an AnswerValue in the exact shape @alp/calculation-engine's evaluateAnswer expects. */
 export function AnswerInputDispatch({ blueprint, instance, formulaFamily, onSubmit, disabled, testID }: AnswerInputDispatchProps): React.JSX.Element {
   switch (blueprint.answer.type) {
-    case "quantity": {
-      const unitSymbol = blueprint.answer.canonicalUnit
-        ? (QUANTITY_UNIT_SYMBOLS[blueprint.answer.quantity ?? ""] ?? blueprint.answer.canonicalUnit)
-        : "";
-      return <NumericAnswerInput unitSymbol={unitSymbol} onSubmit={(value) => onSubmit(value)} disabled={disabled} testID={testID} />;
-    }
+    case "quantity":
+      return <NumericAnswerInput unitSymbol={unitSymbolForAnswer(blueprint, formulaFamily)} onSubmit={(value) => onSubmit(value)} disabled={disabled} testID={testID} />;
 
     case "multiple_choice": {
-      const options: readonly MultipleChoiceOption[] = (blueprint.answer.options ?? []).map((value) => ({
-        value,
-        label: MULTIPLE_CHOICE_LABELS[value] ?? value,
-      }));
+      const options: readonly MultipleChoiceOption[] = resolveAnswerOptions(blueprint);
       return <MultipleChoiceAnswerInput options={options} onSubmit={(value) => onSubmit(value)} disabled={disabled} testID={testID} />;
     }
 
     case "formula_selection": {
-      const options: readonly MultipleChoiceOption[] = (formulaFamily?.variables ?? []).map((v) => ({
+      const family = requireFormulaFamily(blueprint, formulaFamily);
+      const options: readonly MultipleChoiceOption[] = family.variables.map((v) => ({
         value: v.symbol,
         label: `${v.symbol} (${v.name})`,
       }));
@@ -75,7 +75,7 @@ export function AnswerInputDispatch({ blueprint, instance, formulaFamily, onSubm
     }
 
     case "multi_select": {
-      const variables = formulaFamily?.variables ?? [];
+      const variables = requireFormulaFamily(blueprint, formulaFamily).variables;
       const choices = variables.map((v) => ({ value: v.unitSymbol, label: v.unitSymbol }));
       const rows: readonly MatchRow[] = variables.map((v) => ({
         key: v.symbol,
@@ -89,7 +89,8 @@ export function AnswerInputDispatch({ blueprint, instance, formulaFamily, onSubm
     case "worked_error_classification":
       return (
         <WorkedErrorClassificationAnswerInput
-          shownWorkingLines={shownWorkingLines(instance)}
+          shownWorkingLines={resolveShownWorkingLines(blueprint, instance)}
+          options={resolveAnswerOptions(blueprint)}
           onSubmit={(value) => onSubmit(value)}
           disabled={disabled}
           testID={testID}

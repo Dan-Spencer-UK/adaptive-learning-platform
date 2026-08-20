@@ -42,6 +42,20 @@ export interface LessonSessionState {
   readonly currentIndex: number;
   /** Step ids completed so far, in completion order (never contains duplicates). */
   readonly completedStepIds: readonly string[];
+  /**
+   * Graded-answer attempts submitted per step id (CC-06D, Correction G):
+   * deterministic attempt identity so evidence can distinguish a first
+   * attempt from a retry. First attempt is 1.
+   */
+  readonly attemptCounts: Readonly<Record<string, number>>;
+  /**
+   * Step ids whose correct answer has been REVEALED to the learner
+   * (shown in feedback). Under the current retry policy this only happens
+   * when the step simultaneously advances (so the same question is never
+   * re-asked after reveal), but the state is recorded rather than assumed
+   * so evidence attribution stays honest by construction.
+   */
+  readonly revealedAnswerStepIds: readonly string[];
   readonly startedAt: string;
   readonly updatedAt: string;
   readonly completedAt: string | null;
@@ -59,10 +73,37 @@ export function startSession(instance: LessonInstance, learnerId: string, nowIso
     stepSequence: instance.includedStepIds,
     currentIndex: 0,
     completedStepIds: [],
+    attemptCounts: {},
+    revealedAnswerStepIds: [],
     startedAt: nowIso,
     updatedAt: nowIso,
     completedAt: null,
   };
+}
+
+/** Records one graded-answer submission for a step, returning the state with its attempt counter advanced. */
+export function recordStepAttempt(state: LessonSessionState, stepId: string, nowIso: string): LessonSessionState {
+  return {
+    ...state,
+    attemptCounts: { ...state.attemptCounts, [stepId]: nextAttemptIndex(state, stepId) },
+    updatedAt: nowIso,
+  };
+}
+
+/** The attempt index the NEXT submission on this step will carry (first attempt = 1). */
+export function nextAttemptIndex(state: LessonSessionState, stepId: string): number {
+  return (state.attemptCounts[stepId] ?? 0) + 1;
+}
+
+/** Whether this step's correct answer has already been revealed to the learner in feedback. */
+export function wasAnswerRevealed(state: LessonSessionState, stepId: string): boolean {
+  return state.revealedAnswerStepIds.includes(stepId);
+}
+
+/** Records that the correct answer for a step was displayed to the learner. */
+export function markAnswerRevealed(state: LessonSessionState, stepId: string, nowIso: string): LessonSessionState {
+  if (state.revealedAnswerStepIds.includes(stepId)) return state;
+  return { ...state, revealedAnswerStepIds: [...state.revealedAnswerStepIds, stepId], updatedAt: nowIso };
 }
 
 export function currentStepId(state: LessonSessionState): string | null {

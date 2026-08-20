@@ -92,7 +92,7 @@ class MockSQLiteDatabase {
       return { changes: 1 };
     }
     if (/INSERT INTO foundation_outbox/i.test(sql)) {
-      const [id, eventType, payload, createdAt] = params;
+      const [id, eventType, payload, createdAt, learnerId] = params;
       const rows = this.tables.get("foundation_outbox") ?? [];
       rows.push({
         id,
@@ -101,6 +101,7 @@ class MockSQLiteDatabase {
         status: "pending",
         created_at: createdAt,
         synced_at: null,
+        learner_id: learnerId ?? null,
       });
       this.tables.set("foundation_outbox", rows);
       return { changes: 1 };

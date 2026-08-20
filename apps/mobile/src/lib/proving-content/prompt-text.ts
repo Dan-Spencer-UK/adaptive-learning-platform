@@ -6,6 +6,13 @@
  * -- see SeriesCircuitDiagram.tsx / ParallelCircuitDiagram.tsx for the
  * symbolic-only convention this complements (design doc §2.8/§14, CC-05C
  * task brief §8).
+ *
+ * CC-06D (Correction C): blueprints with a GOVERNED presentation contract
+ * never reach this switch -- callers resolve their prompt lines via
+ * @alp/calculation-engine's resolvePromptLines. This legacy formatter
+ * remains only for the CC-05C proving-slice families not yet migrated
+ * (series/parallel/magnetism); every Ohm's-law case has been removed so
+ * no parallel copy of governed presentation content survives here.
  */
 import type { GeneratedQuestionInstance } from "@alp/calculation-engine";
 
@@ -33,13 +40,6 @@ function componentLines(
 export function promptLinesFor(instance: GeneratedQuestionInstance): readonly string[] {
   const { parameters } = instance;
   switch (instance.identity.blueprintId) {
-    case "ohms_law.solve_for_voltage":
-      return [`I = ${num(parameters, "I")} A`, `R = ${num(parameters, "R")} Ω`];
-    case "ohms_law.solve_for_current":
-      return [`V = ${num(parameters, "V")} V`, `R = ${num(parameters, "R")} Ω`];
-    case "ohms_law.solve_for_resistance":
-      return [`V = ${num(parameters, "V")} V`, `I = ${num(parameters, "I")} A`];
-
     case "series.calculate_total_resistance":
       return componentLines(parameters, num(parameters, "component_count"), "Ω");
 
@@ -73,21 +73,6 @@ export function promptLinesFor(instance: GeneratedQuestionInstance): readonly st
 
     case "magnetism.interpret_force_direction":
       return ["Determine the direction of the force on the current-carrying conductor."];
-
-    case "ohms_law.select_rearrangement":
-      return [`V = ${num(parameters, "V")} V`, `I = ${num(parameters, "I")} A`, `R = ${num(parameters, "R")} Ω`];
-
-    case "ohms_law.match_variables_units":
-      return [`V = ${num(parameters, "V")} V`, `I = ${num(parameters, "I")} A`, `R = ${num(parameters, "R")} Ω`];
-
-    case "ohms_law.diagnose_wrong_operation":
-      return ["A learner was asked to find current (I) from a known voltage and resistance:", `V = ${num(parameters, "V")} V`, `R = ${num(parameters, "R")} Ω`];
-
-    case "ohms_law.diagnose_rearrangement_error":
-      return ["A learner was asked to find resistance (R) from a known voltage and current:", `V = ${num(parameters, "V")} V`, `I = ${num(parameters, "I")} A`];
-
-    case "ohms_law.plausibility_check":
-      return [`I = ${num(parameters, "I")} A`, `R = ${num(parameters, "R")} Ω`, `A calculated voltage of ${num(parameters, "shown_V")} V was reported.`];
 
     default:
       throw new Error(`prompt-text: no prompt-line formatter registered for "${instance.identity.blueprintId}"`);

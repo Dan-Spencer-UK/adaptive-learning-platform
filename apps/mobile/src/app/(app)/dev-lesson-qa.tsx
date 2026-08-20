@@ -22,29 +22,35 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { computeLessonContentDependencies } from "@alp/learning-engine";
 
-import { LESSON_OHMS_LAW, OHMS_LAW_LOCAL_CONTENT_INVENTORY } from "@/lib/lesson-content/lesson-ohms-law-content-fixture";
+import { bundledContentReleaseId, getLocalLesson } from "@/lib/lesson-content/local-content-registry";
 import { getLessonContentRecord, prepareLessonContent, type LocalContentRecord } from "@/lib/lesson-content/local-content-store";
 import { getActiveLessonInstanceId, loadLessonSession } from "@/lib/lesson-session/lesson-session-store";
+import { useSession } from "@/lib/auth/session-context";
 import { setFoundationState } from "@/lib/storage/foundation-state";
 import { getFoundationDb } from "@/lib/storage/db";
 import { DEV_LESSON_DEBUG_OVERLAY_KEY, useLessonDebugOverlay } from "@/lib/lesson-content/dev-debug-overlay";
 import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
 
+const QA_LESSON_ID = 'lesson.electrical.ohms-law';
+
 export default function DevLessonQaScreen(): React.JSX.Element {
+  const qaLesson = getLocalLesson({ lessonId: QA_LESSON_ID, contentRelease: bundledContentReleaseId() });
+  const { session: authSession } = useSession();
+  const learnerId = authSession?.user.id ?? null;
   const [contentRecord, setContentRecord] = useState<LocalContentRecord | null>(null);
   const [sessionSummary, setSessionSummary] = useState<string>("(checking...)");
   const debugOverlayEnabled = useLessonDebugOverlay();
 
   async function refresh(): Promise<void> {
-    const record = await getLessonContentRecord(LESSON_OHMS_LAW.id, LESSON_OHMS_LAW.version, LESSON_OHMS_LAW.contentRelease);
+    const record = await getLessonContentRecord(qaLesson.lesson.id, qaLesson.lesson.version, qaLesson.contentRelease);
     setContentRecord(record);
 
-    const activeId = await getActiveLessonInstanceId();
+    const activeId = learnerId ? await getActiveLessonInstanceId(learnerId) : null;
     if (!activeId) {
       setSessionSummary("No active session.");
       return;
     }
-    const session = await loadLessonSession(activeId);
+    const session = learnerId ? await loadLessonSession(activeId, learnerId) : null;
     setSessionSummary(
       session
         ? `instance ${session.instanceId}\ncurrent index ${session.currentIndex} of ${session.stepSequence.length}\ncompleted: ${session.completedStepIds.join(", ") || "(none)"}`
@@ -55,17 +61,17 @@ export default function DevLessonQaScreen(): React.JSX.Element {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const record = await getLessonContentRecord(LESSON_OHMS_LAW.id, LESSON_OHMS_LAW.version, LESSON_OHMS_LAW.contentRelease);
+      const record = await getLessonContentRecord(qaLesson.lesson.id, qaLesson.lesson.version, qaLesson.contentRelease);
       if (cancelled) return;
       setContentRecord(record);
 
-      const activeId = await getActiveLessonInstanceId();
+      const activeId = learnerId ? await getActiveLessonInstanceId(learnerId) : null;
       if (cancelled) return;
       if (!activeId) {
         setSessionSummary("No active session.");
         return;
       }
-      const session = await loadLessonSession(activeId);
+      const session = learnerId ? await loadLessonSession(activeId, learnerId) : null;
       if (cancelled) return;
       setSessionSummary(
         session
@@ -78,7 +84,7 @@ export default function DevLessonQaScreen(): React.JSX.Element {
     };
   }, []);
 
-  const manifest = computeLessonContentDependencies(LESSON_OHMS_LAW);
+  const manifest = computeLessonContentDependencies(qaLesson.lesson);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["bottom"]}>
@@ -107,7 +113,7 @@ export default function DevLessonQaScreen(): React.JSX.Element {
             accessibilityRole="button"
             accessibilityLabel="Re-prepare local content (mark ready)"
             onPress={() =>
-              void prepareLessonContent(manifest, OHMS_LAW_LOCAL_CONTENT_INVENTORY).then(refresh)
+              void prepareLessonContent(manifest, qaLesson.inventory).then(refresh)
             }
           >
             <Text style={styles.secondaryButtonText}>Re-prepare local content (mark ready)</Text>
@@ -139,7 +145,7 @@ export default function DevLessonQaScreen(): React.JSX.Element {
             style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}
             accessibilityRole="button"
             accessibilityLabel="Clear active session pointer (next entry starts fresh)"
-            onPress={() => void setFoundationState("lesson_session.active_instance_id", JSON.stringify(null)).then(refresh)}
+            onPress={() => void (learnerId ? setFoundationState(`lesson_session.active_instance_id.${learnerId}`, JSON.stringify(null)).then(refresh) : refresh())}
           >
             <Text style={styles.secondaryButtonText}>Clear active session pointer</Text>
           </Pressable>
@@ -174,7 +180,7 @@ export default function DevLessonQaScreen(): React.JSX.Element {
           </Pressable>
         </View>
 
-        <Link href="/learn/lesson-player" asChild>
+        <Link href={{ pathname: "/learn/lesson-player", params: { lessonId: QA_LESSON_ID } }} asChild>
           <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]} accessibilityRole="button" accessibilityLabel="Open the Ohm's Law lesson">
             <Text style={styles.primaryButtonText}>Open the Ohm&apos;s Law lesson</Text>
           </Pressable>

@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildReport, formatReport, isReportClean, type LessonPlanReport } from "./validate-lesson-plan.ts";
+import { lessons as realLessons } from "./data/lesson-ohms-law.ts";
+import { contentReleases as realReleases } from "./data/content-releases.ts";
 
 function cleanReport(): LessonPlanReport {
   return {
@@ -20,6 +22,10 @@ function cleanReport(): LessonPlanReport {
     circularRemediationRoutes: [],
     lessonsWithNoExitStep: [],
     ambiguousRemediationCandidates: [],
+    undeclaredContentReleaseRefs: [],
+    releaseMembershipMismatches: [],
+    releaseCorpusMismatches: [],
+    danglingMasteryGateCapabilityRefs: [],
   };
 }
 
@@ -144,5 +150,60 @@ describe("formatReport", () => {
     expect(text).toContain("Circular remediation routes");
     expect(text).toContain("Lessons with no exit_completion step");
     expect(text).toContain("Ambiguous remediation candidates");
+  });
+});
+
+describe("content-release gates (CC-06D, Correction A)", () => {
+  it("returns false for an undeclared content-release reference", () => {
+    expect(isReportClean({ ...cleanReport(), undeclaredContentReleaseRefs: ["lesson.x: contentRelease 'r.unknown' is not a declared governed content release"] })).toBe(false);
+  });
+
+  it("returns false for a release membership mismatch", () => {
+    expect(isReportClean({ ...cleanReport(), releaseMembershipMismatches: ["lesson.x@1 claims release 'r.1' but is not in that release's membership"] })).toBe(false);
+  });
+
+  it("returns false for a release corpus mismatch", () => {
+    expect(isReportClean({ ...cleanReport(), releaseCorpusMismatches: ["release 'r.1' references knowledge corpus 'other'"] })).toBe(false);
+  });
+
+  it("returns false for a dangling mastery-gate capability reference", () => {
+    expect(isReportClean({ ...cleanReport(), danglingMasteryGateCapabilityRefs: ["lesson.x.step.y.masteryGateCapabilityId: unknown capability 'cap.z'"] })).toBe(false);
+  });
+
+  it("ACCEPTANCE: a deliberate one-character release-id mismatch on the real lesson fails mechanically", () => {
+    const [real] = realLessons;
+    const tampered = [{ ...real!, contentRelease: `${real!.contentRelease.slice(0, -1)}2` }];
+    const report = buildReport({ lessons: tampered });
+    expect(report.undeclaredContentReleaseRefs.length + report.releaseMembershipMismatches.length).toBeGreaterThan(0);
+    expect(isReportClean(report)).toBe(false);
+  });
+
+  it("a lesson claiming a declared release it is not a member of fails mechanically", () => {
+    const [real] = realLessons;
+    const impostor = [
+      real!,
+      { ...real!, id: "lesson.synthetic.not-a-member", title: "Synthetic impostor" },
+    ];
+    const report = buildReport({ lessons: impostor });
+    expect(report.releaseMembershipMismatches.length).toBeGreaterThan(0);
+    expect(isReportClean(report)).toBe(false);
+  });
+
+  it("a release declaring a member lesson that does not exist fails mechanically", () => {
+    const [release] = realReleases.releases;
+    const withGhost = {
+      releases: [{ ...release!, lessons: [...release!.lessons, { lessonId: "lesson.ghost", lessonVersion: 1 }] }],
+    };
+    const report = buildReport({ releases: withGhost });
+    expect(report.releaseMembershipMismatches.some((m) => m.includes("lesson.ghost"))).toBe(true);
+    expect(isReportClean(report)).toBe(false);
+  });
+
+  it("the real current manifest passes every release gate", () => {
+    const report = buildReport();
+    expect(report.undeclaredContentReleaseRefs).toEqual([]);
+    expect(report.releaseMembershipMismatches).toEqual([]);
+    expect(report.releaseCorpusMismatches).toEqual([]);
+    expect(report.danglingMasteryGateCapabilityRefs).toEqual([]);
   });
 });

@@ -14,7 +14,8 @@ import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens
 export interface FeedbackPanelProps {
   readonly correct: boolean;
   readonly detail: string;
-  readonly expectedAnswerText: string;
+  /** The correct answer to display -- pass null to withhold it (CC-06D, Correction G: the answer is never revealed while a retry of the same question is pending). */
+  readonly expectedAnswerText: string | null;
   readonly misconceptionMessage?: string;
   readonly onContinue: () => void;
   readonly continueLabel?: string;
@@ -37,10 +38,10 @@ export function FeedbackPanel({
       testID={testID}
       accessible
       accessibilityRole="alert"
-      accessibilityLabel={`${stateLabel}. ${correct ? "" : `The correct answer was ${expectedAnswerText}. `}${detail}`}
+      accessibilityLabel={`${stateLabel}. ${!correct && expectedAnswerText !== null ? `The correct answer was ${expectedAnswerText}. ` : ""}${detail}`}
     >
       <Text style={[styles.stateLabel, correct ? styles.correctText : styles.incorrectText]}>{stateLabel}</Text>
-      {!correct ? <Text style={styles.expectedText}>Correct answer: {expectedAnswerText}</Text> : null}
+      {!correct && expectedAnswerText !== null ? <Text style={styles.expectedText}>Correct answer: {expectedAnswerText}</Text> : null}
       <Text style={styles.detailText}>{detail}</Text>
       {misconceptionMessage ? <Text style={styles.misconceptionText}>{misconceptionMessage}</Text> : null}
       <Pressable

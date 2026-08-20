@@ -24,6 +24,8 @@ export type OutboxRecord = {
   readonly status: OutboxStatus;
   readonly createdAt: string;
   readonly syncedAt: string | null;
+  /** Stable learner ownership recorded at WRITE time (CC-06D, Correction E §9.3). Null only for legacy/diagnostic foundation events with no owning learner; learner evidence events always carry it, and ownership is never reassigned. */
+  readonly learnerId: string | null;
 };
 
 type OutboxRow = {
@@ -33,6 +35,7 @@ type OutboxRow = {
   status: OutboxStatus;
   created_at: string;
   synced_at: string | null;
+  learner_id: string | null;
 };
 
 function toRecord(row: OutboxRow): OutboxRecord {
@@ -43,6 +46,7 @@ function toRecord(row: OutboxRow): OutboxRecord {
     status: row.status,
     createdAt: row.created_at,
     syncedAt: row.synced_at,
+    learnerId: row.learner_id ?? null,
   };
 }
 
@@ -55,6 +59,7 @@ function toRecord(row: OutboxRow): OutboxRecord {
 export async function enqueueOutboxEvent(
   eventType: string,
   payload: Record<string, unknown>,
+  learnerId: string | null = null,
 ): Promise<OutboxRecord> {
   const db = await getFoundationDb();
   const id = randomId();
@@ -62,15 +67,16 @@ export async function enqueueOutboxEvent(
   const payloadJson = JSON.stringify(payload);
 
   await db.runAsync(
-    `INSERT INTO foundation_outbox (id, event_type, payload, status, created_at, synced_at)
-     VALUES (?, ?, ?, 'pending', ?, NULL)`,
+    `INSERT INTO foundation_outbox (id, event_type, payload, status, created_at, synced_at, learner_id)
+     VALUES (?, ?, ?, 'pending', ?, NULL, ?)`,
     id,
     eventType,
     payloadJson,
     createdAt,
+    learnerId,
   );
 
-  return { id, eventType, payload: payloadJson, status: "pending", createdAt, syncedAt: null };
+  return { id, eventType, payload: payloadJson, status: "pending", createdAt, syncedAt: null, learnerId };
 }
 
 /** Deterministic read of all pending events, oldest first. */

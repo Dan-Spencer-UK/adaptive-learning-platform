@@ -2103,6 +2103,9 @@ for (const [from, to] of unitSupportsConcept) {
   });
 }
 
+/** Stable identity of this governed knowledge-corpus snapshot module, referenced by governed ContentRelease manifests (scripts/content/data/content-releases.ts). */
+export const CC04_KNOWLEDGE_CORPUS_ID = "cc04-unit202-electrical-science" as const;
+
 export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
   domains: [
     { code: "FM", name: "Foundational Maths", description: "Reusable horizontal foundational mathematics domain (WP1.2 SS7)." },

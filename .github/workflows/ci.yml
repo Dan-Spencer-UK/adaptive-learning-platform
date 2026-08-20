@@ -36,6 +36,18 @@ jobs:
       - name: Unit tests
         run: npm run test:unit
 
+      - name: Governed content -> seed SQL currency gate (CC-04)
+        run: npm run content:check
+
+      - name: Governed content -> mobile projection currency gate (CC-06D)
+        run: npm run content:mobile:check
+
+      - name: Lesson plan / content-release governance gate (CC-06/CC-06D)
+        run: npm run lesson:validate:check
+
+      - name: Deterministic lesson assembly real-content gate (CC-06B)
+        run: npm run lesson:assembly:prove:check
+
       - name: Pedagogical content coverage gate (CC-05A)
         run: npm run content:pedagogy:check
 

@@ -44,8 +44,10 @@ function evidence(overrides: Partial<LearnerEvidenceSnapshot> = {}): LearnerEvid
   return {
     learnerId: "learner.review",
     capabilityStatus: new Map(),
+    familyStatus: new Map(),
     misconceptionsEvidenced: new Set(),
-    retrievalDue: new Set(),
+    retrievalDueTags: new Set(),
+    retrievalDueCapabilityIds: new Set(),
     ...overrides,
   };
 }
@@ -119,7 +121,7 @@ function buildReport(): string {
   lines.push("");
   lines.push("**[REAL]** With only the live corpus (no governed remediation lesson yet targets any of the real lesson's prerequisite families):");
   lines.push("");
-  lines.push(renderResult(assembleLessonInstance(LESSON_OHMS_LAW, evidence({ capabilityStatus: new Map([["foundational.algebraic_technique", "WEAK"]]) }), realContext)));
+  lines.push(renderResult(assembleLessonInstance(LESSON_OHMS_LAW, evidence({ familyStatus: new Map([["foundational.algebraic_technique", "WEAK"]]) }), realContext)));
   lines.push("");
   lines.push("**[SYNTHETIC]** With a synthetic remediation lesson added to the manifest (proves the mechanism resolves to an actual remediation lesson's own assembled sequence, not just reports the family id):");
   lines.push("");
@@ -127,7 +129,7 @@ function buildReport(): string {
     renderResult(
       assembleLessonInstance(
         LESSON_OHMS_LAW,
-        evidence({ capabilityStatus: new Map([["foundational.algebraic_technique", "WEAK"]]) }),
+        evidence({ familyStatus: new Map([["foundational.algebraic_technique", "WEAK"]]) }),
         { assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION, allLessons: [LESSON_OHMS_LAW, SYNTHETIC_PREREQ_REMEDIATION] },
       ),
     ),
@@ -168,7 +170,7 @@ function buildReport(): string {
   const retrievalContext: AssemblyContext = { assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION, allLessons: [retrievalLesson] };
   lines.push("Retrieval tag due:");
   lines.push("");
-  lines.push(renderResult(assembleLessonInstance(retrievalLesson, evidence({ retrievalDue: new Set(["synthetic.retrieval_tag"]) }), retrievalContext)));
+  lines.push(renderResult(assembleLessonInstance(retrievalLesson, evidence({ retrievalDueTags: new Set(["synthetic.retrieval_tag"]) }), retrievalContext)));
   lines.push("");
   lines.push("Nothing due:");
   lines.push("");

@@ -25,14 +25,6 @@ import {
 /** WP1.3 §12 states treated as genuine evidence of weakness -- NOT_ASSESSED/INSUFFICIENT_EVIDENCE/EMERGING never trigger mandatory prerequisite remediation (WP1.3 §39.1: teaching must not be gated behind a diagnostic). */
 const WEAK_PREREQUISITE_STATES = new Set(["WEAK", "CONFLICTING"]);
 
-function primaryCapabilityFor(step: LessonStep): string | undefined {
-  return step.evidenceEmitted[0] ?? step.capabilityIds[0];
-}
-
-function stepRetrievalKeys(lesson: LessonPlan, step: LessonStep): readonly string[] {
-  return [...lesson.retrievalTags, ...step.capabilityIds];
-}
-
 function decideStep(lesson: LessonPlan, step: LessonStep, evidence: LearnerEvidenceSnapshot): AssembledStepDecision {
   if (step.requirement === "required") {
     return { stepId: step.id, included: true, reason: "required", detail: "Step is unconditionally required by the canonical plan." };
@@ -49,14 +41,29 @@ function decideStep(lesson: LessonPlan, step: LessonStep, evidence: LearnerEvide
 
   // conditional_skip_if_mastered
   if (step.type === "retrieval_check") {
-    const due = stepRetrievalKeys(lesson, step).some((key) => evidence.retrievalDue.has(key));
+    // The two retrieval keyspaces are consulted separately and explicitly
+    // (CC-06D §10.4) -- a lesson retrieval TAG is only ever looked up in
+    // the tag due-set, a step CAPABILITY id only in the capability due-set.
+    const due =
+      lesson.retrievalTags.some((tag) => evidence.retrievalDueTags.has(tag)) ||
+      step.capabilityIds.some((capabilityId) => evidence.retrievalDueCapabilityIds.has(capabilityId));
     return due
       ? { stepId: step.id, included: true, reason: "retrieval_due", detail: "A retrieval tag/capability relevant to this step is currently due." }
       : { stepId: step.id, included: false, reason: "retrieval_not_due", detail: "No retrieval tag/capability relevant to this step is currently due." };
   }
 
-  const capabilityId = primaryCapabilityFor(step);
-  const status = capabilityId ? evidence.capabilityStatus.get(capabilityId) : undefined;
+  // The skip-controlling capability is the step's EXPLICIT governed
+  // masteryGateCapabilityId (CC-06D §10.3) -- never inferred from
+  // evidenceEmitted[0]/capabilityIds[0] array position. The schema
+  // requires the field on every non-retrieval conditional_skip_if_mastered
+  // step; a plan missing it is invalid content and fails loudly here.
+  const capabilityId = step.masteryGateCapabilityId;
+  if (!capabilityId) {
+    throw new Error(
+      `Lesson '${lesson.id}' step '${step.id}' is conditional_skip_if_mastered but declares no masteryGateCapabilityId -- the skip-controlling capability must be explicit (invalid governed content; the lesson-plan schema enforces this at authoring time).`,
+    );
+  }
+  const status = evidence.capabilityStatus.get(capabilityId);
   const mastered = status !== undefined && MASTERED_STATES.has(status);
   return mastered
     ? { stepId: step.id, included: false, reason: "capability_mastered_skip", detail: `Capability '${capabilityId}' status is '${status}' -- skip permitted.` }
@@ -64,7 +71,7 @@ function decideStep(lesson: LessonPlan, step: LessonStep, evidence: LearnerEvide
         stepId: step.id,
         included: true,
         reason: "capability_not_yet_mastered",
-        detail: capabilityId ? `Capability '${capabilityId}' status is '${status ?? "NOT_ASSESSED"}' -- not yet strong enough to skip.` : "Step has no capability to evaluate mastery against -- included by default.",
+        detail: `Capability '${capabilityId}' status is '${status ?? "NOT_ASSESSED"}' -- not yet strong enough to skip.`,
       };
 }
 
@@ -98,7 +105,9 @@ function assembleOwnSequence(lesson: LessonPlan, evidence: LearnerEvidenceSnapsh
 
 function findUnmetPrerequisite(lesson: LessonPlan, evidence: LearnerEvidenceSnapshot): string | undefined {
   for (const familyId of lesson.prerequisiteKnowledge) {
-    const status = evidence.capabilityStatus.get(familyId);
+    // prerequisiteKnowledge holds ASSERTION-FAMILY ids, so family-level
+    // state is consulted (CC-06D §10.2) -- never the capability map.
+    const status = evidence.familyStatus.get(familyId);
     if (status !== undefined && WEAK_PREREQUISITE_STATES.has(status)) {
       return familyId;
     }

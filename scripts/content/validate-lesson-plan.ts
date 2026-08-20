@@ -18,10 +18,11 @@
 
 import { fileURLToPath } from "node:url";
 
-import { knowledgeGraphManifestSchema, pedagogyManifestSchema, lessonPlanManifestSchema } from "@alp/content-schema";
+import { contentReleaseManifestSchema, knowledgeGraphManifestSchema, pedagogyManifestSchema, lessonPlanManifestSchema } from "@alp/content-schema";
 
-import { cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
-import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
+import { CC04_KNOWLEDGE_CORPUS_ID, cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
+import { CC05A_PEDAGOGY_CORPUS_ID, cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
+import { contentReleases } from "./data/content-releases.ts";
 import { lessons } from "./data/lesson-ohms-law.ts";
 
 interface LessonPlanReport {
@@ -42,6 +43,10 @@ interface LessonPlanReport {
   circularRemediationRoutes: string[];
   lessonsWithNoExitStep: string[];
   ambiguousRemediationCandidates: string[];
+  undeclaredContentReleaseRefs: string[];
+  releaseMembershipMismatches: string[];
+  releaseCorpusMismatches: string[];
+  danglingMasteryGateCapabilityRefs: string[];
 }
 
 /**
@@ -56,10 +61,21 @@ function requiresQuestionBlueprint(step: { completionCondition: string }): boole
   return step.completionCondition === "correct_answer_required";
 }
 
-function buildReport(): LessonPlanReport {
+/**
+ * Builds the full governance report against the live corpus. `overrides`
+ * exists ONLY for tests to inject deliberately-defective lesson/release
+ * inputs and prove the mechanical gates fire; production/CLI use never
+ * passes it.
+ */
+function buildReport(overrides?: {
+  readonly lessons?: typeof lessons;
+  readonly releases?: typeof contentReleases;
+}): LessonPlanReport {
   const corpus = knowledgeGraphManifestSchema.parse(cc04Unit202ElectricalScience);
   const pedagogy = pedagogyManifestSchema.parse(cc05aPedagogyUnit202);
-  const manifest = lessonPlanManifestSchema.parse({ lessons });
+  const lessonInputs = overrides?.lessons ?? lessons;
+  const manifest = lessonPlanManifestSchema.parse({ lessons: lessonInputs });
+  const releaseManifest = contentReleaseManifestSchema.parse(overrides?.releases ?? contentReleases);
 
   const realAssertionIds = new Set(corpus.assertions.map((a) => a.identifier));
   const realMisconceptionIds = new Set(corpus.misconceptions.map((m) => m.identifier));
@@ -86,6 +102,52 @@ function buildReport(): LessonPlanReport {
   const circularRemediationRoutes: string[] = [];
   const lessonsWithNoExitStep: string[] = [];
   const ambiguousRemediationCandidates: string[] = [];
+  const undeclaredContentReleaseRefs: string[] = [];
+  const releaseMembershipMismatches: string[] = [];
+  const releaseCorpusMismatches: string[] = [];
+  const danglingMasteryGateCapabilityRefs: string[] = [];
+
+  // ---- Content-release gates (CC-06D, Correction A) -------------------
+  // A lesson's `contentRelease` claim is never trusted: the release must
+  // be declared in the governed release manifest, the (lessonId, version)
+  // pair must appear in that release's own membership, every declared
+  // member must actually exist in the lesson manifest, and the release's
+  // corpus references must name the exact corpus snapshots this validator
+  // is running against.
+  const releasesById = new Map(releaseManifest.releases.map((r) => [r.id, r]));
+  for (const lesson of lessonInputs) {
+    const release = releasesById.get(lesson.contentRelease);
+    if (!release) {
+      undeclaredContentReleaseRefs.push(`${lesson.id}: contentRelease '${lesson.contentRelease}' is not a declared governed content release`);
+      continue;
+    }
+    const membership = release.lessons.find((m) => m.lessonId === lesson.id);
+    if (!membership) {
+      releaseMembershipMismatches.push(`${lesson.id}@${lesson.version} claims release '${release.id}' but is not in that release's membership`);
+    } else if (membership.lessonVersion !== lesson.version) {
+      releaseMembershipMismatches.push(
+        `${lesson.id}@${lesson.version} claims release '${release.id}' but that release declares version ${membership.lessonVersion} of this lesson`,
+      );
+    }
+  }
+  for (const release of releaseManifest.releases) {
+    for (const member of release.lessons) {
+      const lesson = lessonInputs.find((l) => l.id === member.lessonId);
+      if (!lesson) {
+        releaseMembershipMismatches.push(`release '${release.id}' declares member '${member.lessonId}@${member.lessonVersion}' but no such lesson exists in the lesson manifest`);
+      } else if (lesson.version !== member.lessonVersion || lesson.contentRelease !== release.id) {
+        releaseMembershipMismatches.push(
+          `release '${release.id}' declares member '${member.lessonId}@${member.lessonVersion}' but the authored lesson is '${lesson.id}@${lesson.version}' with contentRelease '${lesson.contentRelease}'`,
+        );
+      }
+    }
+    if (release.knowledgeCorpusId !== CC04_KNOWLEDGE_CORPUS_ID) {
+      releaseCorpusMismatches.push(`release '${release.id}' references knowledge corpus '${release.knowledgeCorpusId}' but the live corpus is '${CC04_KNOWLEDGE_CORPUS_ID}'`);
+    }
+    if (release.pedagogyCorpusId !== CC05A_PEDAGOGY_CORPUS_ID) {
+      releaseCorpusMismatches.push(`release '${release.id}' references pedagogy corpus '${release.pedagogyCorpusId}' but the live corpus is '${CC05A_PEDAGOGY_CORPUS_ID}'`);
+    }
+  }
 
   let totalSteps = 0;
 
@@ -132,6 +194,9 @@ function buildReport(): LessonPlanReport {
       for (const id of step.tests) checkAssertion(id, `${where}.tests`);
       for (const id of step.capabilityIds) checkCapability(id, `${where}.capabilityIds`);
       for (const id of step.evidenceEmitted) checkCapability(id, `${where}.evidenceEmitted`);
+      if (step.masteryGateCapabilityId && !realCapabilityIds.has(step.masteryGateCapabilityId)) {
+        danglingMasteryGateCapabilityRefs.push(`${where}.masteryGateCapabilityId: unknown capability '${step.masteryGateCapabilityId}'`);
+      }
       for (const m of step.misconceptionTargets) checkMisconception(m.misconceptionIdentifier, `${where}.misconceptionTargets`);
 
       if (step.representation.formulaFamilyId && !realFormulaFamilyIds.has(step.representation.formulaFamilyId)) {
@@ -249,6 +314,10 @@ function buildReport(): LessonPlanReport {
     circularRemediationRoutes,
     lessonsWithNoExitStep,
     ambiguousRemediationCandidates,
+    undeclaredContentReleaseRefs,
+    releaseMembershipMismatches,
+    releaseCorpusMismatches,
+    danglingMasteryGateCapabilityRefs,
   };
 }
 
@@ -273,6 +342,10 @@ function formatReport(report: LessonPlanReport): string {
     ["Circular remediation routes", report.circularRemediationRoutes],
     ["Lessons with no exit_completion step", report.lessonsWithNoExitStep],
     ["Ambiguous remediation candidates (no unique default among multiple eligible lessons)", report.ambiguousRemediationCandidates],
+    ["Undeclared content-release references", report.undeclaredContentReleaseRefs],
+    ["Release membership mismatches", report.releaseMembershipMismatches],
+    ["Release corpus mismatches", report.releaseCorpusMismatches],
+    ["Dangling mastery-gate capability references", report.danglingMasteryGateCapabilityRefs],
   ];
   for (const [label, items] of gateGroups) {
     lines.push(`${label} (target 0): ${items.length}`);
@@ -297,7 +370,11 @@ export function isReportClean(report: LessonPlanReport): boolean {
     report.unreachableConditionalSteps.length === 0 &&
     report.circularRemediationRoutes.length === 0 &&
     report.lessonsWithNoExitStep.length === 0 &&
-    report.ambiguousRemediationCandidates.length === 0
+    report.ambiguousRemediationCandidates.length === 0 &&
+    report.undeclaredContentReleaseRefs.length === 0 &&
+    report.releaseMembershipMismatches.length === 0 &&
+    report.releaseCorpusMismatches.length === 0 &&
+    report.danglingMasteryGateCapabilityRefs.length === 0
   );
 }
 

@@ -38,6 +38,7 @@ import { QuestionPromptCard } from "@/components/question/QuestionPromptCard";
 import { RotationAnswerInput, type Rotation } from "@/components/question/RotationAnswerInput";
 import { FormulaEquation } from "@/components/formula/FormulaExpressionView";
 import { getProvingFamily } from "@/lib/proving-content/unit202-proving-fixture";
+import { resolvePromptLines } from "@alp/calculation-engine";
 import { promptLinesFor } from "@/lib/proving-content/prompt-text";
 import { unitSymbolForQuantity } from "@/lib/proving-content/units";
 import { generateProvingQuestion, markProvingAnswer, emitProvingEvidence } from "@/lib/proving-engine/proving-engine";
@@ -171,7 +172,10 @@ export default function PracticeScreen(): React.JSX.Element {
     <SafeAreaView style={styles.safeArea} edges={["bottom"]}>
       <ScrollView contentContainerStyle={styles.container}>
         <ProgressIndicator current={current} total={total} />
-        <QuestionPromptCard title={blueprint.title} parameterLines={promptLinesFor(instance)}>
+        <QuestionPromptCard
+          title={blueprint.title}
+          parameterLines={blueprint.presentation ? resolvePromptLines(blueprint, instance) : promptLinesFor(instance)}
+        >
           {renderRepresentation(family.id, instance)}
         </QuestionPromptCard>
 

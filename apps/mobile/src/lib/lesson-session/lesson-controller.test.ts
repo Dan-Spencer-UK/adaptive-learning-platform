@@ -14,7 +14,7 @@ import * as mockExpoSqlite from "../storage/__mocks__/expo-sqlite-jest-mock";
 import { resetFoundationDbHandleForTests } from "../storage/db";
 import { acknowledgeStep, submitStepAnswer } from "./lesson-controller";
 import { currentStepId, isSessionComplete, startSession } from "./lesson-session-controller";
-import { listLessonEvidence } from "./lesson-session-store";
+import { listLessonEvidence, loadLessonSession } from "./lesson-session-store";
 
 jest.mock("expo-sqlite", () => mockExpoSqlite);
 
@@ -143,7 +143,7 @@ describe("submitStepAnswer -- correct_answer_required gating", () => {
     expect(result.evaluation.correct).toBe(false);
     expect(result.advanced).toBe(false);
     expect(currentStepId(result.nextState)).toBe("next_question");
-    expect((await listLessonEvidence())).toHaveLength(1);
+    expect(await listLessonEvidence("learner.1")).toHaveLength(1);
   });
 
   it("advances on a correct answer", async () => {
@@ -207,5 +207,90 @@ describe("submitStepAnswer -- correct_answer_required gating", () => {
     const state = startAt("transfer", ["next_question", "transfer"]);
     const result = await submitStepAnswer({ lesson: LESSON, state, questionInstance: questionInstance(), given: "correct", now: () => "t9" });
     expect(isSessionComplete(result.nextState)).toBe(true);
+  });
+});
+
+describe("submitStepAnswer -- retry/reveal evidence integrity (CC-06D, Correction G)", () => {
+  beforeEach(() => resetFoundationDbHandleForTests());
+
+  function startAt(stepId: string, includedStepIds: readonly string[]) {
+    const full = startSession(
+      { instanceId: "li1_retry", lessonId: LESSON.id, lessonVersion: 1, contentRelease: LESSON.contentRelease, assemblyPolicyVersion: 1, learnerId: "learner.1", stepDecisions: [], includedStepIds, completionCriteria: LESSON.completionCriteria, evidenceDigest: "d" },
+      "learner.1",
+      "t0",
+    );
+    return { ...full, currentIndex: includedStepIds.indexOf(stepId) };
+  }
+
+  const plainWrongInstance = () => questionInstance({ evidence: { ...questionInstance().evidence, misconceptionTargets: [] } });
+
+  it("does NOT reveal the correct answer while a retry of the same question is pending", async () => {
+    const state = startAt("next_question", ["next_question", "transfer"]);
+    const result = await submitStepAnswer({ lesson: LESSON, state, questionInstance: plainWrongInstance(), given: "wrong" });
+    expect(result.advanced).toBe(false);
+    expect(result.revealCorrectAnswer).toBe(false);
+  });
+
+  it("reveals the correct answer once the step advances (correct answer, or misconception branch)", async () => {
+    const state = startAt("next_question", ["next_question", "transfer"]);
+    const correct = await submitStepAnswer({ lesson: LESSON, state, questionInstance: questionInstance(), given: "correct" });
+    expect(correct.revealCorrectAnswer).toBe(true);
+  });
+
+  it("assigns deterministic attempt indices: first attempt 1, retry 2 -- and both are recorded on evidence", async () => {
+    const state = startAt("next_question", ["next_question", "transfer"]);
+    const first = await submitStepAnswer({ lesson: LESSON, state, questionInstance: plainWrongInstance(), given: "wrong" });
+    expect(first.attemptIndex).toBe(1);
+
+    const second = await submitStepAnswer({ lesson: LESSON, state: first.nextState, questionInstance: questionInstance(), given: "correct" });
+    expect(second.attemptIndex).toBe(2);
+
+    const evidenceList = await listLessonEvidence("learner.1");
+    expect(evidenceList).toHaveLength(2);
+    const [latest, earliest] = evidenceList;
+    expect(earliest?.attemptIndex).toBe(1);
+    expect(earliest?.evidence.correct).toBe(false);
+    expect(latest?.attemptIndex).toBe(2);
+    expect(latest?.evidence.correct).toBe(true);
+    // The retried correct answer is distinguishable from an untouched
+    // first attempt: attemptIndex > 1, and the answer was never revealed
+    // before it was given.
+    expect(latest?.answerRevealedBeforeAttempt).toBe(false);
+  });
+
+  it("persists attempt counts even when position holds, so a restored session continues the same attempt sequence", async () => {
+    const state = startAt("next_question", ["next_question", "transfer"]);
+    const first = await submitStepAnswer({ lesson: LESSON, state, questionInstance: plainWrongInstance(), given: "wrong" });
+    expect(first.nextState.attemptCounts["next_question"]).toBe(1);
+    const restored = await loadLessonSession("li1_retry", "learner.1");
+    expect(restored?.attemptCounts["next_question"]).toBe(1);
+  });
+
+  it("marks answerRevealedBeforeAttempt on evidence when the answer HAD been revealed for that step (reveal state is recorded, not assumed)", async () => {
+    // Force the recorded-reveal path: a misconception branch reveals the
+    // answer while advancing to remediation; if any future flow ever
+    // re-submits the same step, the evidence must carry the reveal flag.
+    const state = startAt("misconception_check", ["intro", "misconception_check", "next_question", "transfer"]);
+    const branched = await submitStepAnswer({
+      lesson: LESSON_WITH_REMEDIATION,
+      state,
+      questionInstance: questionInstance({
+        evidence: { ...questionInstance().evidence, misconceptionTargets: [{ misconceptionIdentifier: "MIS-TEST-001", evidenceStrength: "direct" }] },
+      }),
+      given: "wrong",
+    });
+    expect(branched.revealCorrectAnswer).toBe(true);
+    expect(branched.nextState.revealedAnswerStepIds).toContain("misconception_check");
+
+    // Hypothetical re-submission on the revealed step is tagged.
+    const resubmitted = await submitStepAnswer({
+      lesson: LESSON_WITH_REMEDIATION,
+      state: { ...branched.nextState, currentIndex: branched.nextState.stepSequence.indexOf("misconception_check") },
+      questionInstance: questionInstance(),
+      given: "correct",
+    });
+    const evidenceList = await listLessonEvidence("learner.1");
+    expect(resubmitted.attemptIndex).toBe(2);
+    expect(evidenceList[0]?.answerRevealedBeforeAttempt).toBe(true);
   });
 });

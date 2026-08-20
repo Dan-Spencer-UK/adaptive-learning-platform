@@ -114,6 +114,7 @@ export const SYNTHETIC_MAIN_LESSON: LessonPlan = buildLesson({
       requirement: "conditional_skip_if_mastered",
       capabilityIds: [SYNTH_CORE_CAPABILITY],
       evidenceEmitted: [SYNTH_CORE_CAPABILITY],
+      masteryGateCapabilityId: SYNTH_CORE_CAPABILITY,
       completionCondition: "correct_answer_required",
     }),
     buildStep({

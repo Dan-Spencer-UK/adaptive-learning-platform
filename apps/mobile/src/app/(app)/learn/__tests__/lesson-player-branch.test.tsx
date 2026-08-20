@@ -16,7 +16,21 @@ import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import * as mockExpoSqlite from "@/lib/storage/__mocks__/expo-sqlite-jest-mock";
 import { resetFoundationDbHandleForTests } from "@/lib/storage/db";
 import { generateLessonQuestion } from "@/lib/lesson-content/generate-lesson-question";
+import { bundledContentReleaseId, getLocalLesson, getQuestionBlueprintFrom } from "@/lib/lesson-content/local-content-registry";
+import { MOBILE_CONTENT_PROJECTION } from "@/lib/lesson-content/generated/mobile-content-projection";
 import { getActiveLessonInstanceId } from "@/lib/lesson-session/lesson-session-store";
+
+const contentRecord = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentRelease: bundledContentReleaseId() });
+function expectedAnswerFor(blueprintId: string, instanceId: string, stepId: string) {
+  return generateLessonQuestion({
+    blueprint: getQuestionBlueprintFrom(MOBILE_CONTENT_PROJECTION, blueprintId),
+    formulaFamilies: contentRecord.lookup.formulaFamilies,
+    contentRelease: contentRecord.contentRelease,
+    blueprintVersion: contentRecord.questionBlueprintVersion,
+    instanceId,
+    stepId,
+  }).expected.value;
+}
 
 jest.mock("expo-sqlite", () => mockExpoSqlite);
 jest.mock("expo-haptics", () => ({
@@ -26,8 +40,11 @@ jest.mock("expo-haptics", () => ({
   ImpactFeedbackStyle: { Light: "light" },
   NotificationFeedbackType: { Success: "success", Error: "error" },
 }));
+const mockRouter = { back: jest.fn(), replace: jest.fn(), push: jest.fn(), canGoBack: jest.fn(() => true) };
 jest.mock("expo-router", () => ({
   Link: ({ children }: { children: React.ReactNode }) => children,
+  useRouter: () => mockRouter,
+  useLocalSearchParams: () => ({ lessonId: "lesson.electrical.ohms-law" }),
 }));
 jest.mock("@/lib/auth/session-context", () => ({
   useSession: () => ({ session: { user: { id: "learner.test" } }, isLoading: false, requestOtp: jest.fn(), verifyOtp: jest.fn(), signOut: jest.fn() }),
@@ -72,9 +89,8 @@ describe("LessonPlayerScreen -- real governed misconception branch", () => {
       await advanceTo(screen, "Worked example"); // -> worked_example_solve_voltage
       await advanceTo(screen, "Try it"); // -> guided_calculation_current (graded, quantity)
 
-      const activeId = (await getActiveLessonInstanceId())!;
-      const currentInstance = generateLessonQuestion({ blueprintId: "ohms_law.solve_for_current", instanceId: activeId, stepId: "guided_calculation_current" });
-      await fireEvent.changeText(screen.getByLabelText("Your answer, in A"), String(currentInstance.expected.value));
+      const activeId = (await getActiveLessonInstanceId("learner.test"))!;
+      await fireEvent.changeText(screen.getByLabelText("Your answer, in A"), String(expectedAnswerFor("ohms_law.solve_for_current", activeId, "guided_calculation_current")));
       await submitAndAwaitFeedback(screen);
       expect(screen.getByLabelText(/^Correct\./)).toBeTruthy();
 
@@ -83,14 +99,13 @@ describe("LessonPlayerScreen -- real governed misconception branch", () => {
       // Submit a deliberately WRONG classification -- any incorrect answer here evidences the real governed misconception.
       await fireEvent.press(screen.getByLabelText("The working shown is actually correct"));
       await waitFor(() => expect(screen.getByLabelText(/^Not quite\./)).toBeTruthy(), WAIT_OPTS);
-      expect(screen.getByText(/wrong operation was used/i)).toBeTruthy();
+      expect(screen.getByText(/Selects the wrong arithmetic operation/i)).toBeTruthy();
 
       // The branch must land on the real governed remediation step, not the next linear step.
       await advanceTo(screen, "Let's revisit this");
 
       // Clear remediation with a correct answer -- must resume at the governed destination (plausibility_check_transfer), not the step that would naturally follow remediation in list order.
-      const remediationInstance = generateLessonQuestion({ blueprintId: "ohms_law.solve_for_resistance", instanceId: activeId, stepId: "remediation_rearrangement" });
-      await fireEvent.changeText(screen.getByLabelText("Your answer, in Ω"), String(remediationInstance.expected.value));
+      await fireEvent.changeText(screen.getByLabelText("Your answer, in Ω"), String(expectedAnswerFor("ohms_law.solve_for_resistance", activeId, "remediation_rearrangement")));
       await submitAndAwaitFeedback(screen);
       expect(screen.getByLabelText(/^Correct\./)).toBeTruthy();
 

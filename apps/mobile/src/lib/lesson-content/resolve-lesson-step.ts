@@ -25,6 +25,8 @@ export interface ContentLookup {
   readonly workedExampleBlueprints: readonly WorkedExampleBlueprint[];
   readonly visualAidBlueprints: readonly VisualAidBlueprint[];
   readonly assertionStatements: Readonly<Record<string, string>>;
+  /** Governed learner-facing misconception descriptions -- the feedback panel's misconception copy resolves from here, never from app-side strings (CC-06D, Correction C). */
+  readonly misconceptionDescriptions: Readonly<Record<string, string>>;
 }
 
 export interface RenderableLessonStep {
@@ -37,6 +39,8 @@ export interface RenderableLessonStep {
   readonly workedExample: WorkedExampleBlueprint | null;
   readonly visualAid: VisualAidBlueprint | null;
   readonly questionBlueprint: QuestionBlueprint | null;
+  /** Governed learner-facing misconception descriptions available to this step's feedback (CC-06D, Correction C). */
+  readonly misconceptionDescriptions: Readonly<Record<string, string>>;
 }
 
 const SECTION_LABELS: Readonly<Record<LessonStep["type"], string>> = {
@@ -82,5 +86,6 @@ export function resolveLessonStep(lesson: LessonPlan, stepId: string, lookup: Co
     workedExample: find(lookup.workedExampleBlueprints, step.representation.workedExampleBlueprintId),
     visualAid: find(lookup.visualAidBlueprints, step.representation.visualAidBlueprintId),
     questionBlueprint: find(lookup.questionBlueprints, step.questionBlueprintId),
+    misconceptionDescriptions: lookup.misconceptionDescriptions,
   };
 }

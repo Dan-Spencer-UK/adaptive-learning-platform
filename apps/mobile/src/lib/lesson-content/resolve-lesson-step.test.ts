@@ -1,22 +1,11 @@
-import {
-  ASSERTION_STATEMENTS,
-  FORMULA_OHMS_LAW,
-  LESSON_OHMS_LAW,
-  LESSON_QUESTION_BLUEPRINTS,
-  MNEMONIC_VIR_TRIANGLE,
-  WORKED_OHMS_LAW_SOLVE_VOLTAGE,
-} from "./lesson-ohms-law-content-fixture";
-import { resolveLessonStep, type ContentLookup } from "./resolve-lesson-step";
+import { bundledContentReleaseId, getLocalLesson } from "./local-content-registry";
+import { resolveLessonStep } from "./resolve-lesson-step";
 
-const LOOKUP: ContentLookup = {
-  questionBlueprints: LESSON_QUESTION_BLUEPRINTS,
-  formulaFamilies: [FORMULA_OHMS_LAW],
-  workedExampleBlueprints: [WORKED_OHMS_LAW_SOLVE_VOLTAGE],
-  visualAidBlueprints: [MNEMONIC_VIR_TRIANGLE],
-  assertionStatements: ASSERTION_STATEMENTS,
-};
+const record = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentRelease: bundledContentReleaseId() });
+const LESSON_OHMS_LAW = record.lesson;
+const LOOKUP = record.lookup;
 
-describe("resolveLessonStep (against the real Ohm's Law lesson)", () => {
+describe("resolveLessonStep (against the real Ohm's Law lesson, resolved from the generated projection)", () => {
   it("resolves orientation to the lesson's own learnerFacingDescription, never step.purpose", () => {
     const resolved = resolveLessonStep(LESSON_OHMS_LAW, "orientation", LOOKUP);
     expect(resolved.bodyStatements).toEqual([LESSON_OHMS_LAW.learnerFacingDescription]);
@@ -30,7 +19,7 @@ describe("resolveLessonStep (against the real Ohm's Law lesson)", () => {
 
   it("resolves introduce_relationship to the real EL-OHM-RELATIONSHIP-001 assertion statement", () => {
     const resolved = resolveLessonStep(LESSON_OHMS_LAW, "introduce_relationship", LOOKUP);
-    expect(resolved.bodyStatements).toEqual([ASSERTION_STATEMENTS["EL-OHM-RELATIONSHIP-001"]]);
+    expect(resolved.bodyStatements).toEqual([LOOKUP.assertionStatements["EL-OHM-RELATIONSHIP-001"]]);
     expect(resolved.formulaFamily?.id).toBe("formula.ohms_law");
   });
 
@@ -40,14 +29,20 @@ describe("resolveLessonStep (against the real Ohm's Law lesson)", () => {
     expect(resolved.visualAid?.id).toBe("mnemonic.vir_triangle");
   });
 
-  it("resolves worked_example_solve_voltage to its governed worked-example blueprint", () => {
+  it("resolves worked_example_solve_voltage to its governed worked-example blueprint, which carries governed teaching values", () => {
     const resolved = resolveLessonStep(LESSON_OHMS_LAW, "worked_example_solve_voltage", LOOKUP);
     expect(resolved.workedExample?.id).toBe("worked.ohms_law.solve_voltage");
+    expect(resolved.workedExample?.teachingValues).toEqual({ I: 4, R: 6 });
   });
 
   it("resolves misconception_check_wrong_operation to its real question blueprint", () => {
     const resolved = resolveLessonStep(LESSON_OHMS_LAW, "misconception_check_wrong_operation", LOOKUP);
     expect(resolved.questionBlueprint?.id).toBe("ohms_law.diagnose_wrong_operation");
+  });
+
+  it("carries the governed misconception descriptions for feedback resolution", () => {
+    const resolved = resolveLessonStep(LESSON_OHMS_LAW, "misconception_check_wrong_operation", LOOKUP);
+    expect(resolved.misconceptionDescriptions["MIS-EL-OHM-WRONG-OPERATION-001"]).toMatch(/wrong arithmetic operation/i);
   });
 
   it("every step resolves without throwing and has a non-empty section label", () => {

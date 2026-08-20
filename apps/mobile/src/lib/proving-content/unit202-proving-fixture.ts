@@ -35,13 +35,14 @@ import type {
 } from "@alp/content-schema";
 
 /**
- * Stands in for a real content-release identity until CC-06+ builds the
- * actual publication pipeline. Every generated instance/evidence record
- * carries this value (see docs/architecture/MOBILE-ARCHITECTURE.md §2:
- * "Each piece of learner evidence recorded against content must record the
- * content-version identity it was recorded against").
+ * The governed content release this proving fixture mirrors (CC-06D,
+ * Correction A: one coherent current release -- see
+ * scripts/content/data/content-releases.ts). Previously an inconsistent
+ * free-form string ("cc05c-proving-slice-fixture-v1") describing the same
+ * actual governed Unit 202 snapshot. Every generated instance/evidence
+ * record carries this value (docs/architecture/MOBILE-ARCHITECTURE.md §2).
  */
-export const PROVING_CONTENT_RELEASE = "cc05c-proving-slice-fixture-v1";
+export const PROVING_CONTENT_RELEASE = "release.unit202.v1";
 
 // =========================================================================
 // Formula families (verbatim from cc05a-pedagogy-unit202.ts)
@@ -217,6 +218,7 @@ export const WORKED_OHMS_LAW_SOLVE_VOLTAGE: WorkedExampleBlueprint = {
   target: "V",
   knownVariables: ["I", "R"],
   steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  teachingValues: { I: 4, R: 6 },
 };
 
 export const WORKED_OHMS_LAW_SOLVE_CURRENT: WorkedExampleBlueprint = {
@@ -225,6 +227,7 @@ export const WORKED_OHMS_LAW_SOLVE_CURRENT: WorkedExampleBlueprint = {
   target: "I",
   knownVariables: ["V", "R"],
   steps: ["show_formula", "show_rearrangement", "substitute_values", "calculate", "show_answer_with_unit"],
+  teachingValues: { V: 24, R: 6 },
 };
 
 export const WORKED_OHMS_LAW_SOLVE_RESISTANCE: WorkedExampleBlueprint = {
@@ -233,6 +236,7 @@ export const WORKED_OHMS_LAW_SOLVE_RESISTANCE: WorkedExampleBlueprint = {
   target: "R",
   knownVariables: ["V", "I"],
   steps: ["show_formula", "show_rearrangement", "substitute_values", "calculate", "show_answer_with_unit"],
+  teachingValues: { V: 24, I: 4 },
 };
 
 export const WORKED_SERIES_CALCULATE_TOTAL: WorkedExampleBlueprint = {
@@ -292,6 +296,7 @@ export const QB_OHMS_LAW_SOLVE_FOR_VOLTAGE: QuestionBlueprint = {
     supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
   }),
   difficultyBand: "introductory",
+  presentation: { promptLines: ["I = {I} A", "R = {R} Ω"] },
 };
 
 export const QB_OHMS_LAW_SOLVE_FOR_CURRENT: QuestionBlueprint = {
@@ -308,6 +313,7 @@ export const QB_OHMS_LAW_SOLVE_FOR_CURRENT: QuestionBlueprint = {
     supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
   }),
   difficultyBand: "introductory",
+  presentation: { promptLines: ["V = {V} V", "R = {R} Ω"] },
 };
 
 export const QB_OHMS_LAW_SOLVE_FOR_RESISTANCE: QuestionBlueprint = {
@@ -324,6 +330,7 @@ export const QB_OHMS_LAW_SOLVE_FOR_RESISTANCE: QuestionBlueprint = {
     supportingCapabilityIds: ["cap.ohms_law.apply_substitution"],
   }),
   difficultyBand: "intermediate",
+  presentation: { promptLines: ["V = {V} V", "I = {I} A"] },
 };
 
 export const QB_SERIES_CALCULATE_TOTAL_RESISTANCE: QuestionBlueprint = {

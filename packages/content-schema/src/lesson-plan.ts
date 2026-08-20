@@ -184,6 +184,16 @@ export const lessonStepSchema = z.object({
 
   /** Capability ids this step, if answered, may emit learner evidence for -- referenced, not computed; the evidence engine remains a separate, unmodified system. */
   evidenceEmitted: z.array(stableId).default([]),
+
+  /**
+   * The EXPLICIT capability whose mastery state controls a
+   * `conditional_skip_if_mastered` step's skip decision (CC-06D,
+   * Correction F §10.3). Required on every non-retrieval
+   * `conditional_skip_if_mastered` step and prohibited elsewhere --
+   * authored array order (`evidenceEmitted[0]`/`capabilityIds[0]`) must
+   * never silently decide mastery gating.
+   */
+  masteryGateCapabilityId: stableId.optional(),
 });
 export type LessonStep = z.infer<typeof lessonStepSchema>;
 
@@ -280,6 +290,29 @@ export const lessonPlanSchema = z.object({
         ctx.addIssue({ code: "custom", path: ["steps", index, "id"], message: `duplicate step id '${step.id}' within lesson '${lesson.id}'` });
       }
       stepIds.add(step.id);
+    }
+
+    // masteryGateCapabilityId placement (CC-06D §10.3): required exactly
+    // where conditional skip-if-mastered semantics consume it (non-retrieval
+    // conditional_skip_if_mastered steps -- retrieval_check steps are gated
+    // by retrieval dueness, not capability mastery), prohibited everywhere
+    // it has no semantic purpose, and never inferred from array order.
+    for (const [index, step] of lesson.steps.entries()) {
+      const requiresMasteryGate = step.requirement === "conditional_skip_if_mastered" && step.type !== "retrieval_check";
+      if (requiresMasteryGate && !step.masteryGateCapabilityId) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["steps", index, "masteryGateCapabilityId"],
+          message: `step '${step.id}' is conditional_skip_if_mastered but declares no masteryGateCapabilityId -- the skip-controlling capability must be explicit, never inferred from array order`,
+        });
+      }
+      if (!requiresMasteryGate && step.masteryGateCapabilityId) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["steps", index, "masteryGateCapabilityId"],
+          message: `step '${step.id}' declares masteryGateCapabilityId but is not a conditional_skip_if_mastered step -- the field has no semantic purpose here`,
+        });
+      }
     }
 
     for (const [index, step] of lesson.steps.entries()) {

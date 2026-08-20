@@ -17,7 +17,7 @@
 import * as SQLite from "expo-sqlite";
 
 const DATABASE_NAME = "alp-foundation.db";
-export const DATABASE_VERSION = 2;
+export const DATABASE_VERSION = 3;
 
 type Migration = {
   readonly version: number;
@@ -67,6 +67,21 @@ const migrations: readonly Migration[] = [
           prepared_at TEXT,
           updated_at TEXT NOT NULL
         );
+      `);
+    },
+  },
+  {
+    // CC-06D (Correction E §9.3): durable learner ownership on outbox
+    // events. Every learner evidence event queued for eventual
+    // synchronization carries stable learner attribution at write time --
+    // the eventual server must never have to infer ownership from
+    // "whoever happens to be authenticated when the queue flushes".
+    // Nullable only because pre-existing foundation/diagnostic rows have
+    // no owner; new lesson-evidence writes always set it.
+    version: 3,
+    apply: async (db) => {
+      await db.execAsync(`
+        ALTER TABLE foundation_outbox ADD COLUMN learner_id TEXT;
       `);
     },
   },

@@ -1,22 +1,28 @@
 /**
- * The first PRODUCTION-INTENT native Lesson Player slice: executes a real
- * assembled `LessonInstance` for the canonical Ohm's Law lesson, step by
- * step, DO -> RESPOND -> FEEDBACK -> NEXT (task brief §3), fully offline
- * once locally prepared (task brief §25). Replaces/extends (does not
- * remove) the CC-05C proving screens at ../[family]/index.tsx and
- * ../[family]/practice.tsx, which remain the proving-grade baseline for
- * the other three families.
+ * The production-intent native Lesson Player, parameterized by GOVERNED
+ * LESSON IDENTITY (CC-06D, Correction D): the screen enters with a
+ * `lessonId` route parameter (plus optional `contentRelease`/`version`
+ * overrides, defaulting to the bundled local release) and resolves all
+ * content through the generated local content projection via the typed
+ * local content registry -- it is structurally bound to no particular
+ * lesson. Unknown lesson identity fails explicitly; there is no
+ * first-lesson fallback.
  *
- * Runtime chain (task brief §4): local governed content fixture ->
- * canonical LessonPlan -> LearnerEvidenceSnapshot -> @alp/learning-engine
- * -> LessonInstance -> this screen -> governed step -> governed
- * representation/question blueprint -> @alp/calculation-engine ->
- * evaluation/feedback -> evidence emission -> within-session governed
- * branch -> next step. No calculation/marking/branching logic is
- * duplicated here -- see lib/lesson-session/lesson-controller.ts.
+ * Learner scoping (Correction E): the player fails closed when learner
+ * identity is unavailable -- no "unknown-learner" fallback ever reaches
+ * durable state -- and resume is only offered for a session owned by the
+ * signed-in learner AND matching the requested immutable lesson identity
+ * (lessonId + version + contentRelease).
+ *
+ * Runtime chain: generated local projection -> canonical LessonPlan ->
+ * LearnerEvidenceSnapshot -> @alp/learning-engine -> LessonInstance ->
+ * this screen -> governed step -> governed representation/question
+ * blueprint -> @alp/calculation-engine -> evaluation/feedback ->
+ * learner-owned evidence -> within-session governed branch -> next step.
  */
 import { ASSEMBLY_POLICY_VERSION, assembleLessonInstance, computeLessonContentDependencies, type AssemblyContext, type LearnerEvidenceSnapshot } from "@alp/learning-engine";
 import type { AnswerValue, EvaluationResult, GeneratedQuestionInstance } from "@alp/calculation-engine";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -28,71 +34,119 @@ import { triggerHaptic } from "@/lib/haptics";
 import { useSession } from "@/lib/auth/session-context";
 import { generateLessonQuestion } from "@/lib/lesson-content/generate-lesson-question";
 import {
-  ASSERTION_STATEMENTS,
-  FORMULA_OHMS_LAW,
-  LESSON_OHMS_LAW,
-  LESSON_QUESTION_BLUEPRINTS,
-  MNEMONIC_VIR_TRIANGLE,
-  OHMS_LAW_LOCAL_CONTENT_INVENTORY,
-  WORKED_OHMS_LAW_SOLVE_CURRENT,
-  WORKED_OHMS_LAW_SOLVE_RESISTANCE,
-  WORKED_OHMS_LAW_SOLVE_VOLTAGE,
-} from "@/lib/lesson-content/lesson-ohms-law-content-fixture";
+  bundledContentReleaseId,
+  getLocalLesson,
+  getLocalReleaseLessons,
+  UnknownLessonError,
+  type LocalLessonRecord,
+} from "@/lib/lesson-content/local-content-registry";
 import { prepareLessonContent, type LocalContentStatus } from "@/lib/lesson-content/local-content-store";
-import { resolveLessonStep, type ContentLookup } from "@/lib/lesson-content/resolve-lesson-step";
+import { resolveLessonStep } from "@/lib/lesson-content/resolve-lesson-step";
 import { useLessonDebugOverlay } from "@/lib/lesson-content/dev-debug-overlay";
 import { acknowledgeStep, submitStepAnswer } from "@/lib/lesson-session/lesson-controller";
 import { currentStepId, isSessionComplete, startSession, type LessonSessionState } from "@/lib/lesson-session/lesson-session-controller";
 import { getActiveLessonInstanceId, loadLessonSession, saveLessonSession } from "@/lib/lesson-session/lesson-session-store";
 import { color, radius, spacing, typography } from "@/lib/tokens";
 
-const CONTENT_LOOKUP: ContentLookup = {
-  questionBlueprints: LESSON_QUESTION_BLUEPRINTS,
-  formulaFamilies: [FORMULA_OHMS_LAW],
-  workedExampleBlueprints: [WORKED_OHMS_LAW_SOLVE_VOLTAGE, WORKED_OHMS_LAW_SOLVE_CURRENT, WORKED_OHMS_LAW_SOLVE_RESISTANCE],
-  visualAidBlueprints: [MNEMONIC_VIR_TRIANGLE],
-  assertionStatements: ASSERTION_STATEMENTS,
-};
-
 /** No real learner-evidence persistence exists yet (CC-07+ scope) -- a new learner with no prior evidence is the honest default for production entry. NOT_ASSESSED never gates teaching (WP1.3 §39.1). */
 function emptyEvidenceSnapshot(learnerId: string): LearnerEvidenceSnapshot {
-  return { learnerId, capabilityStatus: new Map(), misconceptionsEvidenced: new Set(), retrievalDue: new Set() };
+  return {
+    learnerId,
+    capabilityStatus: new Map(),
+    familyStatus: new Map(),
+    misconceptionsEvidenced: new Set(),
+    retrievalDueTags: new Set(),
+    retrievalDueCapabilityIds: new Set(),
+  };
 }
 
 type ScreenState =
   | { readonly kind: "loading" }
+  | { readonly kind: "identity_unavailable" }
+  | { readonly kind: "unknown_lesson"; readonly detail: string }
   | { readonly kind: "content_unavailable"; readonly missing: readonly { category: string; id: string }[] }
   | { readonly kind: "prerequisite_blocked"; readonly reason: string }
   | {
       readonly kind: "active";
+      readonly record: LocalLessonRecord;
       readonly displaySession: LessonSessionState;
       readonly pendingNextSession: LessonSessionState | null;
       readonly questionInstance: GeneratedQuestionInstance | null;
       readonly evaluation: EvaluationResult | null;
+      readonly revealCorrectAnswer: boolean;
       readonly submitting: boolean;
     }
-  | { readonly kind: "complete"; readonly session: LessonSessionState };
+  | { readonly kind: "complete"; readonly record: LocalLessonRecord; readonly session: LessonSessionState };
 
-function questionInstanceFor(session: LessonSessionState): GeneratedQuestionInstance | null {
+function questionInstanceFor(record: LocalLessonRecord, session: LessonSessionState): GeneratedQuestionInstance | null {
   const stepId = currentStepId(session);
   if (!stepId) return null;
-  const step = LESSON_OHMS_LAW.steps.find((s) => s.id === stepId);
+  const step = record.lesson.steps.find((s) => s.id === stepId);
   if (!step?.questionBlueprintId) return null;
-  return generateLessonQuestion({ blueprintId: step.questionBlueprintId, instanceId: session.instanceId, stepId });
+  const blueprint = record.lookup.questionBlueprints.find((b) => b.id === step.questionBlueprintId);
+  if (!blueprint) {
+    throw new UnknownLessonError(`question blueprint '${step.questionBlueprintId}' referenced by step '${stepId}' is not in local release '${record.contentRelease}'`);
+  }
+  return generateLessonQuestion({
+    blueprint,
+    formulaFamilies: record.lookup.formulaFamilies,
+    contentRelease: record.contentRelease,
+    blueprintVersion: record.questionBlueprintVersion,
+    instanceId: session.instanceId,
+    stepId,
+  });
 }
 
 export default function LessonPlayerScreen(): React.JSX.Element {
-  const { session: authSession } = useSession();
-  const learnerId = authSession?.user.id ?? "unknown-learner";
+  const router = useRouter();
+  const params = useLocalSearchParams<{ lessonId?: string; contentRelease?: string; version?: string }>();
+  const lessonId = typeof params.lessonId === "string" ? params.lessonId : undefined;
+  const requestedRelease = typeof params.contentRelease === "string" ? params.contentRelease : bundledContentReleaseId();
+  const requestedVersion = typeof params.version === "string" ? Number(params.version) : undefined;
+
+  const { session: authSession, isLoading: authLoading } = useSession();
+  const learnerId = authSession?.user.id ?? null;
   const [state, setState] = useState<ScreenState>({ kind: "loading" });
   const debugOverlayEnabled = useLessonDebugOverlay();
+
+  const exitToLearn = useCallback(() => {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace("/learn");
+    }
+  }, [router]);
 
   useEffect(() => {
     let cancelled = false;
 
     async function init(): Promise<void> {
-      const manifest = computeLessonContentDependencies(LESSON_OHMS_LAW);
-      const contentRecord = await prepareLessonContent(manifest, OHMS_LAW_LOCAL_CONTENT_INVENTORY);
+      if (authLoading) return;
+      // Fail closed on missing learner identity (Correction E §9.1): no
+      // durable unknown-learner state, and no destruction of any existing
+      // learner's offline data.
+      if (!learnerId) {
+        setState({ kind: "identity_unavailable" });
+        return;
+      }
+      if (!lessonId) {
+        setState({ kind: "unknown_lesson", detail: "No lesson was specified. The Lesson Player requires an explicit governed lesson id." });
+        return;
+      }
+
+      let record: LocalLessonRecord;
+      try {
+        record = getLocalLesson({ lessonId, contentRelease: requestedRelease, version: requestedVersion });
+      } catch (error) {
+        if (error instanceof UnknownLessonError) {
+          if (!cancelled) setState({ kind: "unknown_lesson", detail: error.message });
+          return;
+        }
+        throw error;
+      }
+
+      const manifest = computeLessonContentDependencies(record.lesson);
+      const contentRecord = await prepareLessonContent(manifest, record.inventory);
       if (cancelled) return;
       const status: LocalContentStatus = contentRecord.status;
       if (status !== "ready") {
@@ -100,18 +154,36 @@ export default function LessonPlayerScreen(): React.JSX.Element {
         return;
       }
 
-      const activeInstanceId = await getActiveLessonInstanceId();
+      // Resume only the SAME learner's session for the SAME immutable
+      // lesson identity (lessonId + version + contentRelease) -- never
+      // merely "a stored session that happens to exist" (Correction D §8.4).
+      const activeInstanceId = await getActiveLessonInstanceId(learnerId);
       if (activeInstanceId) {
-        const resumed = await loadLessonSession(activeInstanceId);
-        if (resumed && resumed.lessonId === LESSON_OHMS_LAW.id && !isSessionComplete(resumed)) {
+        const resumed = await loadLessonSession(activeInstanceId, learnerId);
+        if (
+          resumed &&
+          resumed.lessonId === record.lesson.id &&
+          resumed.lessonVersion === record.lesson.version &&
+          resumed.contentRelease === record.contentRelease &&
+          !isSessionComplete(resumed)
+        ) {
           if (cancelled) return;
-          setState({ kind: "active", displaySession: resumed, pendingNextSession: null, questionInstance: questionInstanceFor(resumed), evaluation: null, submitting: false });
+          setState({
+            kind: "active",
+            record,
+            displaySession: resumed,
+            pendingNextSession: null,
+            questionInstance: questionInstanceFor(record, resumed),
+            evaluation: null,
+            revealCorrectAnswer: false,
+            submitting: false,
+          });
           return;
         }
       }
 
-      const context: AssemblyContext = { assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION, allLessons: [LESSON_OHMS_LAW] };
-      const result = assembleLessonInstance(LESSON_OHMS_LAW, emptyEvidenceSnapshot(learnerId), context);
+      const context: AssemblyContext = { assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION, allLessons: getLocalReleaseLessons(record.contentRelease) };
+      const result = assembleLessonInstance(record.lesson, emptyEvidenceSnapshot(learnerId), context);
       if (cancelled) return;
 
       if (result.status === "prerequisite_unresolved") {
@@ -126,27 +198,46 @@ export default function LessonPlayerScreen(): React.JSX.Element {
       const fresh = startSession(result.instance, learnerId, new Date().toISOString());
       await saveLessonSession(fresh);
       if (cancelled) return;
-      setState({ kind: "active", displaySession: fresh, pendingNextSession: null, questionInstance: questionInstanceFor(fresh), evaluation: null, submitting: false });
+      setState({
+        kind: "active",
+        record,
+        displaySession: fresh,
+        pendingNextSession: null,
+        questionInstance: questionInstanceFor(record, fresh),
+        evaluation: null,
+        revealCorrectAnswer: false,
+        submitting: false,
+      });
     }
 
-    void init();
+    void init().catch((error: unknown) => {
+      // Fail loudly and visibly -- an initialization error must never
+      // leave the learner stranded on "Preparing lesson...".
+      console.error("Lesson Player initialization failed", error);
+      if (!cancelled) {
+        setState({ kind: "unknown_lesson", detail: error instanceof Error ? error.message : "The lesson could not be prepared." });
+      }
+    });
     return () => {
       cancelled = true;
     };
-  }, [learnerId]);
+  }, [learnerId, authLoading, lessonId, requestedRelease, requestedVersion]);
 
   const handleSubmit = useCallback(
     async (given: AnswerValue) => {
       if (state.kind !== "active" || !state.questionInstance || state.submitting) return;
       setState({ ...state, submitting: true });
-      const result = await submitStepAnswer({ lesson: LESSON_OHMS_LAW, state: state.displaySession, questionInstance: state.questionInstance, given });
+      const result = await submitStepAnswer({ lesson: state.record.lesson, state: state.displaySession, questionInstance: state.questionInstance, given });
       triggerHaptic(result.evaluation.correct ? "correct" : "incorrect");
       setState({
         kind: "active",
-        displaySession: state.displaySession,
+        record: state.record,
+        // When holding for a retry, the attempt bookkeeping still advanced -- keep it.
+        displaySession: result.advanced ? state.displaySession : result.nextState,
         pendingNextSession: result.advanced ? result.nextState : null,
         questionInstance: state.questionInstance,
         evaluation: result.evaluation,
+        revealCorrectAnswer: result.revealCorrectAnswer,
         submitting: false,
       });
     },
@@ -155,19 +246,29 @@ export default function LessonPlayerScreen(): React.JSX.Element {
 
   const handleContinue = useCallback(async () => {
     if (state.kind !== "active") return;
+    const record = state.record;
 
     if (state.evaluation) {
       // Feedback was shown for a graded step -- either apply the already-persisted advance, or (held position) retry the same step.
       const next = state.pendingNextSession;
       if (!next) {
-        setState({ ...state, evaluation: null });
+        setState({ ...state, evaluation: null, revealCorrectAnswer: false });
         return;
       }
       if (isSessionComplete(next)) {
-        setState({ kind: "complete", session: next });
+        setState({ kind: "complete", record, session: next });
         return;
       }
-      setState({ kind: "active", displaySession: next, pendingNextSession: null, questionInstance: questionInstanceFor(next), evaluation: null, submitting: false });
+      setState({
+        kind: "active",
+        record,
+        displaySession: next,
+        pendingNextSession: null,
+        questionInstance: questionInstanceFor(record, next),
+        evaluation: null,
+        revealCorrectAnswer: false,
+        submitting: false,
+      });
       return;
     }
 
@@ -175,10 +276,19 @@ export default function LessonPlayerScreen(): React.JSX.Element {
     const next = await acknowledgeStep({ state: state.displaySession });
     if (isSessionComplete(next)) {
       triggerHaptic("milestone");
-      setState({ kind: "complete", session: next });
+      setState({ kind: "complete", record, session: next });
       return;
     }
-    setState({ kind: "active", displaySession: next, pendingNextSession: null, questionInstance: questionInstanceFor(next), evaluation: null, submitting: false });
+    setState({
+      kind: "active",
+      record,
+      displaySession: next,
+      pendingNextSession: null,
+      questionInstance: questionInstanceFor(record, next),
+      evaluation: null,
+      revealCorrectAnswer: false,
+      submitting: false,
+    });
   }, [state]);
 
   if (state.kind === "loading") {
@@ -191,12 +301,43 @@ export default function LessonPlayerScreen(): React.JSX.Element {
     );
   }
 
+  if (state.kind === "identity_unavailable") {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.centered}>
+          <Text style={styles.title}>Sign-in required</Text>
+          <Text style={styles.bodyText}>Your account could not be confirmed. Please sign in again to continue learning. Your saved progress is kept on this device.</Text>
+          <Pressable accessibilityRole="button" accessibilityLabel="Back to Learn" style={styles.secondaryButton} onPress={exitToLearn}>
+            <Text style={styles.secondaryButtonText}>Back to Learn</Text>
+          </Pressable>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (state.kind === "unknown_lesson") {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.centered}>
+          <Text style={styles.title}>Lesson not available</Text>
+          <Text style={styles.bodyText}>{state.detail}</Text>
+          <Pressable accessibilityRole="button" accessibilityLabel="Back to Learn" style={styles.secondaryButton} onPress={exitToLearn}>
+            <Text style={styles.secondaryButtonText}>Back to Learn</Text>
+          </Pressable>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
   if (state.kind === "content_unavailable") {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.centered}>
           <Text style={styles.title}>This lesson hasn&apos;t been downloaded yet.</Text>
           <Text style={styles.bodyText}>{state.missing.length} piece(s) of required content are not available locally.</Text>
+          <Pressable accessibilityRole="button" accessibilityLabel="Back to Learn" style={styles.secondaryButton} onPress={exitToLearn}>
+            <Text style={styles.secondaryButtonText}>Back to Learn</Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     );
@@ -208,6 +349,9 @@ export default function LessonPlayerScreen(): React.JSX.Element {
         <View style={styles.centered}>
           <Text style={styles.title}>Not ready yet</Text>
           <Text style={styles.bodyText}>{state.reason}</Text>
+          <Pressable accessibilityRole="button" accessibilityLabel="Back to Learn" style={styles.secondaryButton} onPress={exitToLearn}>
+            <Text style={styles.secondaryButtonText}>Back to Learn</Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     );
@@ -216,7 +360,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
   if (state.kind === "complete") {
     return (
       <SafeAreaView style={styles.safeArea}>
-        <LessonCompletionView lesson={LESSON_OHMS_LAW} onContinue={() => setState({ kind: "loading" })} />
+        <LessonCompletionView lesson={state.record.lesson} onContinue={exitToLearn} />
       </SafeAreaView>
     );
   }
@@ -231,14 +375,14 @@ export default function LessonPlayerScreen(): React.JSX.Element {
       </SafeAreaView>
     );
   }
-  const resolved = resolveLessonStep(LESSON_OHMS_LAW, stepId, CONTENT_LOOKUP);
+  const resolved = resolveLessonStep(state.record.lesson, stepId, state.record.lookup);
   const progress = { completed: state.displaySession.completedStepIds.length, total: state.displaySession.stepSequence.length };
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
       <View style={styles.header}>
         <ProgressIndicator current={progress.completed} total={progress.total} testID="lesson-progress" />
-        <Pressable accessibilityRole="button" accessibilityLabel="Exit lesson" style={styles.exitButton} onPress={() => setState({ kind: "loading" })}>
+        <Pressable accessibilityRole="button" accessibilityLabel="Exit lesson" style={styles.exitButton} onPress={exitToLearn}>
           <Text style={styles.exitText}>Exit</Text>
         </Pressable>
       </View>
@@ -254,6 +398,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
           resolved={resolved}
           questionInstance={state.questionInstance}
           evaluation={state.evaluation}
+          revealCorrectAnswer={state.revealCorrectAnswer}
           onSubmit={(value) => void handleSubmit(value)}
           onContinue={() => void handleContinue()}
           submitting={state.submitting}
@@ -272,6 +417,17 @@ const styles = StyleSheet.create({
   container: { padding: spacing.lg, gap: spacing.md },
   title: { ...typography.title, fontSize: 18, color: color.text, textAlign: "center" },
   bodyText: { ...typography.body, color: color.textSecondary, textAlign: "center" },
+  secondaryButton: {
+    minHeight: 44,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: color.border,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: spacing.lg,
+    marginTop: spacing.md,
+  },
+  secondaryButtonText: { ...typography.body, color: color.text },
   debugBadge: { alignSelf: "flex-start", marginHorizontal: spacing.lg, marginTop: spacing.xs, paddingHorizontal: spacing.sm, paddingVertical: 2, borderRadius: radius.sm, backgroundColor: "#3A1620" },
   debugBadgeText: { ...typography.code, color: color.danger },
 });

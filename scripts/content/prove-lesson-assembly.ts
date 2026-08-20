@@ -80,8 +80,10 @@ function evidence(overrides: Partial<LearnerEvidenceSnapshot> = {}): LearnerEvid
   return {
     learnerId: "learner.proving",
     capabilityStatus: new Map(),
+    familyStatus: new Map(),
     misconceptionsEvidenced: new Set(),
-    retrievalDue: new Set(),
+    retrievalDueTags: new Set(),
+    retrievalDueCapabilityIds: new Set(),
     ...overrides,
   };
 }
@@ -223,7 +225,7 @@ export const SYNTHETIC_PREREQ_REMEDIATION: LessonPlan = {
 };
 
 function scenarioE(): ScenarioResult {
-  const weakEvidence = evidence({ capabilityStatus: new Map([["foundational.algebraic_technique", "WEAK"]]) });
+  const weakEvidence = evidence({ familyStatus: new Map([["foundational.algebraic_technique", "WEAK"]]) });
 
   const realResult = assembleLessonInstance(LESSON_OHMS_LAW, weakEvidence, realContext());
   const realHalfPassed =
@@ -285,6 +287,7 @@ export function buildSyntheticSkipLesson(): LessonPlan {
     completionCondition: "correct_answer_required" as const,
     branchRoutes: [],
     evidenceEmitted: ["cap.synthetic.skip_target"],
+    masteryGateCapabilityId: "cap.synthetic.skip_target",
   };
   const exitStep = {
     id: "end",
@@ -420,7 +423,7 @@ function scenarioF(): ScenarioResult {
   const lesson = buildSyntheticRetrievalLesson();
   const context: AssemblyContext = { assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION, allLessons: [lesson] };
 
-  const due = assembleLessonInstance(lesson, evidence({ retrievalDue: new Set(["synthetic.retrieval_tag"]) }), context);
+  const due = assembleLessonInstance(lesson, evidence({ retrievalDueTags: new Set(["synthetic.retrieval_tag"]) }), context);
   const notDue = assembleLessonInstance(lesson, evidence(), context);
 
   const passed =

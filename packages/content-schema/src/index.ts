@@ -42,3 +42,5 @@ export * from "./knowledge-graph.ts";
 export * from "./pedagogy.ts";
 export * from "./visual-governance.ts";
 export * from "./lesson-plan.ts";
+export * from "./content-release.ts";
+export * from "./runtime-projection.ts";

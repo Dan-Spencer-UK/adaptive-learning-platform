@@ -1,18 +1,27 @@
 /**
  * Renders one resolved Lesson Player step: representation (formula/
  * worked-example/mnemonic), real governed body copy, and -- for graded
- * steps -- the DO -> RESPOND -> FEEDBACK -> NEXT rhythm (task brief §3):
- * question prompt + answer input, then FeedbackPanel once evaluated, then
- * Continue. Non-graded steps (`view_acknowledged`, or an
- * `answer_submitted` step with no machine-marked question) render body
- * copy + a single Continue affordance.
+ * steps -- the DO -> RESPOND -> FEEDBACK -> NEXT rhythm: question prompt
+ * + answer input, then FeedbackPanel once evaluated, then Continue.
+ * Non-graded steps render body copy + a single Continue affordance.
  *
- * This component only renders; it never decides session
- * advancement/branching itself -- see lib/lesson-session/lesson-
- * controller.ts for that. `evaluation`/`onSubmit`/`onContinue` are all
- * provided by the caller.
+ * CC-06D: this component carries NO lesson-specific or factual content
+ * of its own. Question prompt lines and misconception feedback copy
+ * resolve from governed content (blueprint presentation via
+ * @alp/calculation-engine's deterministic renderer; misconception
+ * descriptions via the resolved content lookup); worked-example teaching
+ * values come from the governed worked-example blueprint. Only
+ * interface microcopy (section labels, "Continue", "Try again") is
+ * app-owned.
+ *
+ * This component only renders; it never decides session advancement/
+ * branching itself -- see lib/lesson-session/lesson-controller.ts.
+ * `revealCorrectAnswer` gates whether the correct answer may be shown in
+ * feedback (false while a retry of the same question is pending --
+ * CC-06D, Correction G).
  */
 import type { AnswerValue, EvaluationResult, GeneratedQuestionInstance } from "@alp/calculation-engine";
+import { resolvePromptLines } from "@alp/calculation-engine";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { FormulaEquation } from "@/components/formula/FormulaExpressionView";
@@ -23,27 +32,24 @@ import { QuestionPromptCard } from "@/components/question/QuestionPromptCard";
 import { AnswerInputDispatch } from "@/lib/lesson-content/answer-input-dispatch";
 import type { RenderableLessonStep } from "@/lib/lesson-content/resolve-lesson-step";
 import { buildTeachingWorkedExample } from "@/lib/formula-rendering/build-worked-example";
-import { OHMS_LAW_TEACHING_VALUES } from "@/lib/proving-content/teaching-examples";
 import { symbolicResolver } from "@/lib/formula-rendering/format-formula";
-import { promptLinesFor } from "@/lib/proving-content/prompt-text";
 import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
-
-const MISCONCEPTION_MESSAGES: Readonly<Record<string, string>> = {
-  "MIS-EL-OHM-WRONG-OPERATION-001": "This looks like the wrong operation was used -- check whether the step needed multiplying or dividing.",
-  "MIS-EL-OHM-REARRANGE-ERROR-001": "This looks like the formula was rearranged incorrectly -- check which variable ended up on which side.",
-  "MIS-EL-OHM-UNRELATED-SYMBOLS-001": "V, I and R are not independent facts to memorise -- they are one relationship, V = I x R.",
-};
 
 export interface LessonStepViewProps {
   readonly resolved: RenderableLessonStep;
   readonly questionInstance: GeneratedQuestionInstance | null;
   readonly evaluation: EvaluationResult | null;
+  /** Whether feedback may display the correct answer -- false while this same question is awaiting a retry. */
+  readonly revealCorrectAnswer: boolean;
   readonly onSubmit: (value: AnswerValue) => void;
   readonly onContinue: () => void;
   readonly submitting?: boolean;
 }
 
-export function LessonStepView({ resolved, questionInstance, evaluation, onSubmit, onContinue, submitting }: LessonStepViewProps): React.JSX.Element {
+export function LessonStepView({ resolved, questionInstance, evaluation, revealCorrectAnswer, onSubmit, onContinue, submitting }: LessonStepViewProps): React.JSX.Element {
+  const misconceptionMessage =
+    evaluation?.misconceptionIdentifier !== undefined ? resolved.misconceptionDescriptions[evaluation.misconceptionIdentifier] : undefined;
+
   return (
     <View style={styles.container}>
       <Text style={styles.sectionLabel} accessibilityRole="header">
@@ -66,10 +72,7 @@ export function LessonStepView({ resolved, questionInstance, evaluation, onSubmi
 
       {resolved.workedExample && resolved.formulaFamily ? (
         <View style={styles.representation}>
-          <WorkedSubstitution
-            formulaFamily={resolved.formulaFamily}
-            instance={buildTeachingWorkedExample(resolved.formulaFamily, resolved.workedExample, OHMS_LAW_TEACHING_VALUES)}
-          />
+          <WorkedSubstitution formulaFamily={resolved.formulaFamily} instance={buildTeachingWorkedExample(resolved.formulaFamily, resolved.workedExample)} />
         </View>
       ) : null}
 
@@ -80,7 +83,7 @@ export function LessonStepView({ resolved, questionInstance, evaluation, onSubmi
       ) : null}
 
       {resolved.questionBlueprint && questionInstance ? (
-        <QuestionPromptCard title={resolved.questionBlueprint.title} parameterLines={promptLinesFor(questionInstance)}>
+        <QuestionPromptCard title={resolved.questionBlueprint.title} parameterLines={resolvePromptLines(resolved.questionBlueprint, questionInstance)}>
           {evaluation ? null : (
             <AnswerInputDispatch
               blueprint={resolved.questionBlueprint}
@@ -96,11 +99,15 @@ export function LessonStepView({ resolved, questionInstance, evaluation, onSubmi
       {evaluation ? (
         <FeedbackPanel
           correct={evaluation.correct}
-          detail={evaluation.detail}
-          expectedAnswerText={String(questionInstance?.expected.value ?? "")}
-          misconceptionMessage={evaluation.misconceptionIdentifier ? MISCONCEPTION_MESSAGES[evaluation.misconceptionIdentifier] : undefined}
+          // The engine's marking detail states the expected answer -- while a
+          // retry of the same question is pending it must not surface either
+          // (CC-06D Correction G). The replacement line is interface
+          // microcopy, not factual content.
+          detail={revealCorrectAnswer ? evaluation.detail : "Have another look and try again."}
+          expectedAnswerText={revealCorrectAnswer ? String(questionInstance?.expected.value ?? "") : null}
+          misconceptionMessage={misconceptionMessage}
           onContinue={onContinue}
-          continueLabel={evaluation.correct || evaluation.misconceptionIdentifier ? "Continue" : "Try again"}
+          continueLabel={revealCorrectAnswer ? "Continue" : "Try again"}
         />
       ) : !resolved.questionBlueprint ? (
         <Pressable
