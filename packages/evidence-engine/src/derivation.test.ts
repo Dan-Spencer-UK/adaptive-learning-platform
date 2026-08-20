@@ -12,7 +12,6 @@ import {
   BP_CLASSIFY,
   BP_MCQ3,
   CAP_A,
-  CAP_B,
   CAP_DIAG,
   CAP_SUPPORTING,
   FAMILY_TARGET,
