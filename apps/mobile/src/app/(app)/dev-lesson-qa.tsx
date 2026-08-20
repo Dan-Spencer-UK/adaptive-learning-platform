@@ -22,9 +22,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { computeLessonContentDependencies } from "@alp/learning-engine";
 
+import { deriveLocalLearnerEvidence } from "@/lib/evidence-sync/derived-snapshot";
+import { syncPendingLessonEvidence, type EvidenceSyncResult } from "@/lib/evidence-sync/evidence-sync";
 import { bundledContentReleaseId, getLocalLesson } from "@/lib/lesson-content/local-content-registry";
 import { getLessonContentRecord, prepareLessonContent, type LocalContentRecord } from "@/lib/lesson-content/local-content-store";
-import { getActiveLessonInstanceId, loadLessonSession } from "@/lib/lesson-session/lesson-session-store";
+import { EVIDENCE_EVENT_TYPE, getActiveLessonInstanceId, loadLessonSession } from "@/lib/lesson-session/lesson-session-store";
+import { listOutboxEventsByLearner } from "@/lib/storage/outbox";
+import { getSupabaseClient } from "@/lib/supabase/client";
 import { useSession } from "@/lib/auth/session-context";
 import { setFoundationState } from "@/lib/storage/foundation-state";
 import { getFoundationDb } from "@/lib/storage/db";
@@ -39,11 +43,52 @@ export default function DevLessonQaScreen(): React.JSX.Element {
   const learnerId = authSession?.user.id ?? null;
   const [contentRecord, setContentRecord] = useState<LocalContentRecord | null>(null);
   const [sessionSummary, setSessionSummary] = useState<string>("(checking...)");
+  const [evidenceSummary, setEvidenceSummary] = useState<string>("(checking...)");
+  const [derivedSummary, setDerivedSummary] = useState<string>("(checking...)");
+  const [syncSummary, setSyncSummary] = useState<string>("(not yet run this visit)");
   const debugOverlayEnabled = useLessonDebugOverlay();
+
+  async function refreshEvidenceAndDerived(): Promise<void> {
+    if (!learnerId) {
+      setEvidenceSummary("(no authenticated learner)");
+      setDerivedSummary("(no authenticated learner)");
+      return;
+    }
+    const events = await listOutboxEventsByLearner(learnerId, EVIDENCE_EVENT_TYPE);
+    const pending = events.filter((e) => e.status === "pending").length;
+    const recent = events
+      .slice(-5)
+      .reverse()
+      .map((e) => {
+        try {
+          const p = JSON.parse(e.payload) as { stepId?: string; attemptIndex?: number; evidence?: { correct?: boolean }; answerRevealedBeforeAttempt?: boolean };
+          return `${e.status === "pending" ? "PENDING" : "SYNCED "} ${p.stepId ?? "?"} #${p.attemptIndex ?? "?"} ${p.evidence?.correct ? "correct" : "incorrect"}${p.answerRevealedBeforeAttempt ? " (post-reveal)" : ""}`;
+        } catch {
+          return `${e.status} (unparseable payload)`;
+        }
+      });
+    setEvidenceSummary(`${events.length} local event(s): ${pending} pending, ${events.length - pending} synced.\n${recent.join("\n") || "(none)"}`);
+
+    const { derived, excludedLegacyEvents } = await deriveLocalLearnerEvidence(learnerId);
+    const lines: string[] = [];
+    lines.push(`mastery policy v${derived.masteryPolicyVersion}; ${derived.attemptsConsidered} attempt(s) considered, ${derived.ignoredAttempts.length} ignored, ${excludedLegacyEvents} legacy excluded`);
+    lines.push("capabilities:");
+    for (const c of derived.capabilities) lines.push(`  ${c.capabilityId}: ${c.state} (${c.ruleApplied})`);
+    if (derived.capabilities.length === 0) lines.push("  (none -- NOT_ASSESSED everywhere)");
+    lines.push("families:");
+    for (const f of derived.families) lines.push(`  ${f.assertionFamilyId}: ${f.state} (${f.ruleApplied})`);
+    if (derived.families.length === 0) lines.push("  (none)");
+    lines.push("misconceptions:");
+    for (const m of derived.misconceptions) lines.push(`  ${m.misconceptionId}: ${m.currentlyEvidenced ? "CURRENTLY EVIDENCED" : "cleared"} (${m.events.length} event(s))`);
+    if (derived.misconceptions.length === 0) lines.push("  (none evidenced)");
+    setDerivedSummary(lines.join("\n"));
+  }
 
   async function refresh(): Promise<void> {
     const record = await getLessonContentRecord(qaLesson.lesson.id, qaLesson.lesson.version, qaLesson.contentRelease);
     setContentRecord(record);
+
+    await refreshEvidenceAndDerived();
 
     const activeId = learnerId ? await getActiveLessonInstanceId(learnerId) : null;
     if (!activeId) {
@@ -59,30 +104,15 @@ export default function DevLessonQaScreen(): React.JSX.Element {
   }
 
   useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const record = await getLessonContentRecord(qaLesson.lesson.id, qaLesson.lesson.version, qaLesson.contentRelease);
-      if (cancelled) return;
-      setContentRecord(record);
-
-      const activeId = learnerId ? await getActiveLessonInstanceId(learnerId) : null;
-      if (cancelled) return;
-      if (!activeId) {
-        setSessionSummary("No active session.");
-        return;
+    void (async () => {
+      try {
+        await refresh();
+      } catch (error) {
+        console.warn("Dev QA refresh failed", error);
       }
-      const session = learnerId ? await loadLessonSession(activeId, learnerId) : null;
-      if (cancelled) return;
-      setSessionSummary(
-        session
-          ? `instance ${session.instanceId}\ncurrent index ${session.currentIndex} of ${session.stepSequence.length}\ncompleted: ${session.completedStepIds.join(", ") || "(none)"}`
-          : `pointer set to ${activeId} but no session record found`,
-      );
     })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [learnerId]);
 
   const manifest = computeLessonContentDependencies(qaLesson.lesson);
 
@@ -168,6 +198,51 @@ export default function DevLessonQaScreen(): React.JSX.Element {
         </View>
 
         <View style={styles.card}>
+          <Text style={styles.cardLabel}>Local evidence events (CC-07)</Text>
+          <Text style={styles.mono}>{evidenceSummary}</Text>
+          <Pressable
+            style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}
+            accessibilityRole="button"
+            accessibilityLabel="Sync pending evidence to server now"
+            onPress={() =>
+              void (async () => {
+                if (!learnerId) {
+                  setSyncSummary("No authenticated learner -- nothing uploaded, nothing lost.");
+                  return;
+                }
+                try {
+                  const result: EvidenceSyncResult = await syncPendingLessonEvidence({ client: getSupabaseClient(), authenticatedLearnerId: learnerId });
+                  setSyncSummary(
+                    result.failed
+                      ? `FAILED (events remain pending): ${result.errorDetail ?? "unknown"}`
+                      : `uploaded ${result.uploaded}, skipped ${result.skippedOtherLearner} (other learner) + ${result.skippedUnsyncable} (unsyncable legacy)`,
+                  );
+                } catch (error) {
+                  setSyncSummary(`FAILED (events remain pending): ${error instanceof Error ? error.message : "unknown"}`);
+                }
+                await refresh();
+              })()
+            }
+          >
+            <Text style={styles.secondaryButtonText}>Sync pending evidence now</Text>
+          </Pressable>
+          <Text style={styles.body}>Last sync: {syncSummary}</Text>
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardLabel}>Derived learner state (deterministic, local, offline)</Text>
+          <Text style={styles.mono}>{derivedSummary}</Text>
+          <Pressable
+            style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}
+            accessibilityRole="button"
+            accessibilityLabel="Re-derive learner state from local evidence"
+            onPress={() => void refreshEvidenceAndDerived()}
+          >
+            <Text style={styles.secondaryButtonText}>Re-derive from local evidence</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.card}>
           <Text style={styles.cardLabel}>Debug overlay</Text>
           <Text style={styles.body}>When enabled, the Lesson Player shows the current step id/type in a small badge.</Text>
           <Pressable
@@ -195,6 +270,7 @@ const styles = StyleSheet.create({
   container: { padding: spacing.lg, gap: spacing.md },
   title: { ...typography.title, color: color.text },
   body: { ...typography.body, color: color.textSecondary },
+  mono: { ...typography.caption, color: color.textSecondary, fontFamily: "monospace" },
   card: { backgroundColor: color.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: color.border, padding: spacing.md, gap: spacing.sm },
   cardLabel: { ...typography.caption, color: color.accent, textTransform: "uppercase" },
   primaryButton: { minHeight: minTouchTarget, borderRadius: radius.md, backgroundColor: color.accent, alignItems: "center", justifyContent: "center" },

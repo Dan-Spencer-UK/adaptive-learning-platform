@@ -37,8 +37,8 @@ const stableId = z.string().min(1);
 
 export const mobileContentProjectionSchema = z
   .object({
-    /** Version of the projection shape itself. */
-    schemaVersion: z.literal(1),
+    /** Version of the projection shape itself. v2 (CC-07): adds `assertionFamilies` so the on-device evidence engine can derive family-level mastery from governed family->required-capability relationships instead of guessing from observed evidence alone. */
+    schemaVersion: z.literal(2),
     /** The single governed ContentRelease this projection was generated from. */
     contentRelease: z.object({
       id: stableId,
@@ -52,6 +52,20 @@ export const mobileContentProjectionSchema = z
     workedExampleBlueprints: z.array(workedExampleBlueprintManifestSchema),
     visualAidBlueprints: z.array(visualAidBlueprintManifestSchema),
     diagramBlueprints: z.array(diagramBlueprintManifestSchema),
+    /**
+     * Minimal governed assertion-family metadata for the release's lessons
+     * (target, prerequisite and step families): exactly what the runtime
+     * evidence engine needs to derive family-level status (WP1.3) --
+     * the family's required capability set -- never the full authoring
+     * record (learning intent, membership, teaching notes stay server-side).
+     */
+    assertionFamilies: z.array(
+      z.object({
+        id: stableId,
+        requiredCapabilityIds: z.array(stableId).min(1),
+        assessmentRequirement: z.enum(["assessable", "teaching_only"]),
+      }),
+    ),
     /** Learner-facing assertion statement text, keyed by assertion identifier -- only the assertions the release's lessons reference. */
     assertionStatements: z.record(stableId, z.string().min(1)),
     /** Learner-facing misconception description text, keyed by misconception identifier -- only the misconceptions the release's lessons reference. */

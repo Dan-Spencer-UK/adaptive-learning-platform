@@ -101,6 +101,7 @@ export function buildMobileContentProjection(args: {
   const union = (select: (d: (typeof dependencies)[number]) => readonly string[]): string[] =>
     [...new Set(dependencies.flatMap(select))].sort((a, b) => a.localeCompare(b));
 
+  const assertionFamilyIds = union((d) => d.assertionFamilyIds);
   const questionBlueprintIds = union((d) => d.questionBlueprintIds);
   const formulaFamilyIds = union((d) => d.formulaFamilyIds);
   const workedExampleIds = union((d) => d.workedExampleBlueprintIds);
@@ -125,10 +126,20 @@ export function buildMobileContentProjection(args: {
     misconceptionDescriptions[id] = description;
   }
 
+  // CC-07: minimal family metadata for on-device family-level mastery
+  // derivation -- required capability sets only, never the full governed
+  // authoring record.
+  const assertionFamilies = pickAll("assertion family", assertionFamilyIds, byId(pedagogy.assertionFamilies)).map((family) => ({
+    id: family.id,
+    requiredCapabilityIds: family.completeness.requiredCapabilityIds,
+    assessmentRequirement: family.assessmentRequirement,
+  }));
+
   const projection: MobileContentProjection = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     contentRelease: { id: release.id, questionBlueprintVersion: release.questionBlueprintVersion },
     lessons: memberLessons,
+    assertionFamilies,
     questionBlueprints: pickAll("question blueprint", questionBlueprintIds, byId(pedagogy.questionBlueprints)),
     formulaFamilies: pickAll("formula family", formulaFamilyIds, byId(pedagogy.formulaFamilies)),
     workedExampleBlueprints: pickAll("worked-example blueprint", workedExampleIds, byId(pedagogy.workedExampleBlueprints)),
@@ -187,6 +198,7 @@ if (isMainModule()) {
   console.log(`Generated ${PROJECTION_OUTPUT_FILE}`);
   console.log(`  release: ${projection.contentRelease.id}`);
   console.log(`  lessons: ${projection.lessons.length}`);
+  console.log(`  assertionFamilies: ${projection.assertionFamilies.length}`);
   console.log(`  questionBlueprints: ${projection.questionBlueprints.length}`);
   console.log(`  formulaFamilies: ${projection.formulaFamilies.length}`);
   console.log(`  workedExampleBlueprints: ${projection.workedExampleBlueprints.length}`);

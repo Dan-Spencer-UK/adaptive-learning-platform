@@ -380,6 +380,83 @@ export type Database = {
         }
         Relationships: []
       }
+      learner_attempt_events: {
+        Row: {
+          answer_revealed_before_attempt: boolean
+          attempt_index: number
+          client_correct: boolean
+          client_evidence_strength: string | null
+          client_misconception_identifier: string | null
+          client_recorded_at: string
+          content_release: string
+          given_answer: Json
+          id: string
+          learner_id: string
+          lesson_id: string
+          lesson_instance_id: string
+          lesson_version: number
+          question_blueprint_id: string
+          question_blueprint_version: number
+          question_seed: number
+          server_received_at: string
+          server_seq: number
+          session_key: string
+          step_id: string
+        }
+        Insert: {
+          answer_revealed_before_attempt: boolean
+          attempt_index: number
+          client_correct: boolean
+          client_evidence_strength?: string | null
+          client_misconception_identifier?: string | null
+          client_recorded_at: string
+          content_release: string
+          given_answer: Json
+          id?: string
+          learner_id: string
+          lesson_id: string
+          lesson_instance_id: string
+          lesson_version: number
+          question_blueprint_id: string
+          question_blueprint_version: number
+          question_seed: number
+          server_received_at?: string
+          server_seq?: never
+          session_key: string
+          step_id: string
+        }
+        Update: {
+          answer_revealed_before_attempt?: boolean
+          attempt_index?: number
+          client_correct?: boolean
+          client_evidence_strength?: string | null
+          client_misconception_identifier?: string | null
+          client_recorded_at?: string
+          content_release?: string
+          given_answer?: Json
+          id?: string
+          learner_id?: string
+          lesson_id?: string
+          lesson_instance_id?: string
+          lesson_version?: number
+          question_blueprint_id?: string
+          question_blueprint_version?: number
+          question_seed?: number
+          server_received_at?: string
+          server_seq?: never
+          session_key?: string
+          step_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learner_attempt_events_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learner_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learner_isolation_probe: {
         Row: {
           created_at: string

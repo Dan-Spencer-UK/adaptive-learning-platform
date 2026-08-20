@@ -51,6 +51,7 @@ function session(learnerId: string, instanceId = "li1_a", overrides: Partial<Les
     },
     learnerId,
     "t0",
+    "sess-test",
   );
   return { ...base, ...overrides };
 }
@@ -105,16 +106,23 @@ describe("lesson session store", () => {
     expect(await loadLessonSession("li1_c", LEARNER_A)).toBeNull();
   });
 
-  it("SESSION ENVELOPE: persisted state carries schemaVersion 1", async () => {
+  it("SESSION ENVELOPE: persisted state carries schemaVersion 2 (CC-07: sessionKey occurrence identity)", async () => {
     await saveLessonSession(session(LEARNER_A));
     const raw = await getFoundationState("lesson_session.li1_a");
     expect(raw).not.toBeNull();
-    const parsed = JSON.parse(raw!) as { schemaVersion: number };
-    expect(parsed.schemaVersion).toBe(1);
+    const parsed = JSON.parse(raw!) as { schemaVersion: number; state: { sessionKey: string } };
+    expect(parsed.schemaVersion).toBe(2);
+    expect(parsed.state.sessionKey).toBe("sess-test");
+  });
+
+  it("SESSION ENVELOPE: a v1 envelope (pre-CC-07, no sessionKey) fails safely to a fresh session", async () => {
+    const legacyState = { ...session(LEARNER_A, "li1_v1"), sessionKey: undefined };
+    await setFoundationState("lesson_session.li1_v1", JSON.stringify({ schemaVersion: 1, state: legacyState }));
+    expect(await loadLessonSession("li1_v1", LEARNER_A)).toBeNull();
   });
 
   it("SESSION ENVELOPE: a malformed persisted blob fails safely to null instead of being cast blindly", async () => {
-    await setFoundationState("lesson_session.li1_bad", JSON.stringify({ schemaVersion: 1, state: { instanceId: "li1_bad", nonsense: true } }));
+    await setFoundationState("lesson_session.li1_bad", JSON.stringify({ schemaVersion: 2, state: { instanceId: "li1_bad", nonsense: true } }));
     expect(await loadLessonSession("li1_bad", LEARNER_A)).toBeNull();
   });
 

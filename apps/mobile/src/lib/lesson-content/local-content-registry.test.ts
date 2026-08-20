@@ -72,9 +72,10 @@ function lesson(id: string): LessonPlan {
 }
 
 const twoLessonProjection: MobileContentProjection = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   contentRelease: { id: SYNTH_RELEASE, questionBlueprintVersion: 1 },
   lessons: [lesson("lesson.synth.alpha"), lesson("lesson.synth.beta")],
+  assertionFamilies: [{ id: "synth.family", requiredCapabilityIds: ["cap.synth.core"], assessmentRequirement: "assessable" }],
   questionBlueprints: [],
   formulaFamilies: [],
   workedExampleBlueprints: [],

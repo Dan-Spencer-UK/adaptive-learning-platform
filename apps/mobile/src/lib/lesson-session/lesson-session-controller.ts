@@ -31,6 +31,16 @@ import type { LessonInstance } from "@alp/learning-engine";
 
 export interface LessonSessionState {
   readonly instanceId: string;
+  /**
+   * Unique id of THIS session occurrence (CC-07). `instanceId` is
+   * deliberately deterministic (same lesson + same evidence digest =>
+   * same id), so a replayed lesson can legitimately reuse an instanceId;
+   * durable attempt-event identity therefore includes this key so
+   * replayed sessions can never collide with (and silently drop) each
+   * other's evidence. Generated once at startSession, stable across
+   * restore.
+   */
+  readonly sessionKey: string;
   readonly lessonId: string;
   readonly lessonVersion: number;
   readonly contentRelease: string;
@@ -61,10 +71,14 @@ export interface LessonSessionState {
   readonly completedAt: string | null;
 }
 
-/** Begins a new session from a freshly-assembled `ready` LessonInstance. */
-export function startSession(instance: LessonInstance, learnerId: string, nowIso: string): LessonSessionState {
+/** Begins a new session from a freshly-assembled `ready` LessonInstance. `sessionKey` must be a fresh unique id for this occurrence (the caller generates it -- this module stays pure). */
+export function startSession(instance: LessonInstance, learnerId: string, nowIso: string, sessionKey: string): LessonSessionState {
+  if (!sessionKey) {
+    throw new Error("Refusing to start a lesson session without a session occurrence key (CC-07 durable attempt identity).");
+  }
   return {
     instanceId: instance.instanceId,
+    sessionKey,
     lessonId: instance.lessonId,
     lessonVersion: instance.lessonVersion,
     contentRelease: instance.contentRelease,

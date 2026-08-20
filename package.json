@@ -54,6 +54,8 @@
     "lesson:assembly:prove": "node scripts/content/prove-lesson-assembly.ts",
     "lesson:assembly:prove:check": "node scripts/content/prove-lesson-assembly.ts --check",
     "lesson:assembly:review": "node scripts/content/generate-lesson-assembly-review.ts",
+    "evidence:prove": "node scripts/content/prove-evidence-derivation.ts",
+    "evidence:prove:check": "node scripts/content/prove-evidence-derivation.ts --check",
     "visuals:render": "npm run visuals:render --workspace apps/mobile",
     "visuals:check": "node scripts/visual-governance/check-visual-governance.ts",
     "visuals:check:strict": "node scripts/visual-governance/check-visual-governance.ts --check",

@@ -14,7 +14,7 @@
 import type { MobileContentProjection } from "@alp/content-schema";
 
 export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "contentRelease": {
     "id": "release.unit202.v1",
     "questionBlueprintVersion": 1
@@ -1242,6 +1242,63 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     }
   ],
   "diagramBlueprints": [],
+  "assertionFamilies": [
+    {
+      "id": "electrical.core_quantities",
+      "requiredCapabilityIds": [
+        "cap.core_quantities.recognise",
+        "cap.core_quantities.distinguish"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
+      "id": "electrical.ohms_law",
+      "requiredCapabilityIds": [
+        "cap.ohms_law.recognise_relationship",
+        "cap.ohms_law.solve_for_voltage",
+        "cap.ohms_law.solve_for_current",
+        "cap.ohms_law.solve_for_resistance",
+        "cap.ohms_law.select_rearrangement",
+        "cap.ohms_law.apply_correct_unit",
+        "cap.ohms_law.check_plausibility",
+        "cap.ohms_law.diagnose_rearrangement_error",
+        "cap.ohms_law.diagnose_wrong_operation",
+        "cap.ohms_law.diagnose_unrelated_symbols",
+        "cap.ohms_law.apply_substitution"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
+      "id": "electrical.si_units",
+      "requiredCapabilityIds": [
+        "cap.si_units.identify_unit",
+        "cap.si_units.distinguish_base_derived",
+        "cap.si_units.diagnose_unit_confusion"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
+      "id": "foundational.algebraic_technique",
+      "requiredCapabilityIds": [
+        "cap.foundational.algebraic_technique.apply"
+      ],
+      "assessmentRequirement": "teaching_only"
+    },
+    {
+      "id": "foundational.arithmetic_technique",
+      "requiredCapabilityIds": [
+        "cap.foundational.arithmetic_technique.apply"
+      ],
+      "assessmentRequirement": "teaching_only"
+    },
+    {
+      "id": "foundational.proportion_and_units",
+      "requiredCapabilityIds": [
+        "cap.foundational.proportion_and_units.apply"
+      ],
+      "assessmentRequirement": "teaching_only"
+    }
+  ],
   "assertionStatements": {
     "EL-CONCEPT-CURRENT-001": "Electric current is the rate of flow of electric charge through a conductor.",
     "EL-CONCEPT-RESISTANCE-001": "Electrical resistance is the opposition a component presents to the flow of electric current.",

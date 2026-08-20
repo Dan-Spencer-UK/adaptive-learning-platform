@@ -48,6 +48,9 @@ jobs:
       - name: Deterministic lesson assembly real-content gate (CC-06B)
         run: npm run lesson:assembly:prove:check
 
+      - name: Deterministic evidence/mastery derivation real-content gate (CC-07)
+        run: npm run evidence:prove:check
+
       - name: Pedagogical content coverage gate (CC-05A)
         run: npm run content:pedagogy:check
 

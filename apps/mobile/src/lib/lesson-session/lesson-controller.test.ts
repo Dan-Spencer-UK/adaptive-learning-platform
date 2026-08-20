@@ -113,6 +113,7 @@ describe("acknowledgeStep", () => {
       { instanceId: "li1_ack", lessonId: LESSON.id, lessonVersion: 1, contentRelease: LESSON.contentRelease, assemblyPolicyVersion: 1, learnerId: "learner.1", stepDecisions: [], includedStepIds: ["intro", "misconception_check"], completionCriteria: LESSON.completionCriteria, evidenceDigest: "d" },
       "learner.1",
       "t0",
+      "sess-test",
     );
     const next = await acknowledgeStep({ state, now: () => "t1" });
     expect(currentStepId(next)).toBe("misconception_check");
@@ -127,6 +128,7 @@ describe("submitStepAnswer -- correct_answer_required gating", () => {
       { instanceId: "li1_x", lessonId: lesson.id, lessonVersion: 1, contentRelease: lesson.contentRelease, assemblyPolicyVersion: 1, learnerId: "learner.1", stepDecisions: [], includedStepIds, completionCriteria: lesson.completionCriteria, evidenceDigest: "d" },
       "learner.1",
       "t0",
+      "sess-test",
     );
     const index = includedStepIds.indexOf(stepId);
     return { ...full, currentIndex: index };
@@ -218,6 +220,7 @@ describe("submitStepAnswer -- retry/reveal evidence integrity (CC-06D, Correctio
       { instanceId: "li1_retry", lessonId: LESSON.id, lessonVersion: 1, contentRelease: LESSON.contentRelease, assemblyPolicyVersion: 1, learnerId: "learner.1", stepDecisions: [], includedStepIds, completionCriteria: LESSON.completionCriteria, evidenceDigest: "d" },
       "learner.1",
       "t0",
+      "sess-test",
     );
     return { ...full, currentIndex: includedStepIds.indexOf(stepId) };
   }

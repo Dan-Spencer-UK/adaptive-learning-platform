@@ -20,7 +20,7 @@
  * blueprint -> @alp/calculation-engine -> evaluation/feedback ->
  * learner-owned evidence -> within-session governed branch -> next step.
  */
-import { ASSEMBLY_POLICY_VERSION, assembleLessonInstance, computeLessonContentDependencies, type AssemblyContext, type LearnerEvidenceSnapshot } from "@alp/learning-engine";
+import { ASSEMBLY_POLICY_VERSION, assembleLessonInstance, computeLessonContentDependencies, type AssemblyContext } from "@alp/learning-engine";
 import type { AnswerValue, EvaluationResult, GeneratedQuestionInstance } from "@alp/calculation-engine";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -32,6 +32,8 @@ import { LessonStepView } from "@/components/lesson/LessonStepView";
 import { ProgressIndicator } from "@/components/question/ProgressIndicator";
 import { triggerHaptic } from "@/lib/haptics";
 import { useSession } from "@/lib/auth/session-context";
+import { deriveLocalLearnerEvidence } from "@/lib/evidence-sync/derived-snapshot";
+import { randomId } from "@/lib/storage/random-id";
 import { generateLessonQuestion } from "@/lib/lesson-content/generate-lesson-question";
 import {
   bundledContentReleaseId,
@@ -47,18 +49,6 @@ import { acknowledgeStep, submitStepAnswer } from "@/lib/lesson-session/lesson-c
 import { currentStepId, isSessionComplete, startSession, type LessonSessionState } from "@/lib/lesson-session/lesson-session-controller";
 import { getActiveLessonInstanceId, loadLessonSession, saveLessonSession } from "@/lib/lesson-session/lesson-session-store";
 import { color, radius, spacing, typography } from "@/lib/tokens";
-
-/** No real learner-evidence persistence exists yet (CC-07+ scope) -- a new learner with no prior evidence is the honest default for production entry. NOT_ASSESSED never gates teaching (WP1.3 §39.1). */
-function emptyEvidenceSnapshot(learnerId: string): LearnerEvidenceSnapshot {
-  return {
-    learnerId,
-    capabilityStatus: new Map(),
-    familyStatus: new Map(),
-    misconceptionsEvidenced: new Set(),
-    retrievalDueTags: new Set(),
-    retrievalDueCapabilityIds: new Set(),
-  };
-}
 
 type ScreenState =
   | { readonly kind: "loading" }
@@ -182,8 +172,14 @@ export default function LessonPlayerScreen(): React.JSX.Element {
         }
       }
 
+      // The REAL evidence chain (CC-07): locally durable attempts ->
+      // deterministic evidence engine -> snapshot -> assembly. Entirely
+      // offline; a new learner with no evidence derives an empty snapshot
+      // (NOT_ASSESSED never gates teaching, WP1.3 §39.1).
+      const { snapshot } = await deriveLocalLearnerEvidence(learnerId);
+      if (cancelled) return;
       const context: AssemblyContext = { assemblyPolicyVersion: ASSEMBLY_POLICY_VERSION, allLessons: getLocalReleaseLessons(record.contentRelease) };
-      const result = assembleLessonInstance(record.lesson, emptyEvidenceSnapshot(learnerId), context);
+      const result = assembleLessonInstance(record.lesson, snapshot, context);
       if (cancelled) return;
 
       if (result.status === "prerequisite_unresolved") {
@@ -195,7 +191,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
         return;
       }
 
-      const fresh = startSession(result.instance, learnerId, new Date().toISOString());
+      const fresh = startSession(result.instance, learnerId, new Date().toISOString(), randomId());
       await saveLessonSession(fresh);
       if (cancelled) return;
       setState({

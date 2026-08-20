@@ -89,6 +89,24 @@ export async function listPendingOutboxEvents(): Promise<readonly OutboxRecord[]
 }
 
 /**
+ * Deterministic read of ONE learner's events of one type, regardless of
+ * sync status, oldest first (CC-07). Synced events remain the learner's
+ * durable local history -- local evidence derivation must keep seeing
+ * them after upload, so "pending" is a sync-queue state, not a lifetime.
+ */
+export async function listOutboxEventsByLearner(learnerId: string, eventType: string): Promise<readonly OutboxRecord[]> {
+  const db = await getFoundationDb();
+  // rowid tiebreak: created_at has second granularity, so same-second
+  // writes must still come back in insertion order deterministically.
+  const rows = await db.getAllAsync<OutboxRow>(
+    "SELECT * FROM foundation_outbox WHERE learner_id = ? AND event_type = ? ORDER BY created_at ASC, rowid ASC",
+    learnerId,
+    eventType,
+  );
+  return rows.map(toRecord);
+}
+
+/**
  * Marks an event as synced after a (simulated/controlled) acknowledgement.
  * No real network call happens here -- this proves the state-transition
  * shape only.

@@ -5,14 +5,41 @@
  * series resistance, parallel resistance, one directional/diagram-heavy
  * family).
  */
-import { Link } from "expo-router";
+import { Link, useFocusEffect } from "expo-router";
+import { useCallback } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { useSession } from "@/lib/auth/session-context";
+import { syncPendingLessonEvidence } from "@/lib/evidence-sync/evidence-sync";
 import { PROVING_FAMILIES } from "@/lib/proving-content/unit202-proving-fixture";
+import { getSupabaseClient } from "@/lib/supabase/client";
 import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
 
 export default function LearnIndexScreen(): React.JSX.Element {
+  const { session } = useSession();
+  const learnerId = session?.user.id ?? null;
+
+  // CC-07: opportunistic, fire-and-forget background evidence sync every
+  // time the Learn context gains focus (which includes returning from a
+  // lesson). Never blocks navigation or lesson launch; failures leave
+  // events pending for the next opportunity. The Lesson Player itself
+  // stays network-free.
+  useFocusEffect(
+    useCallback(() => {
+      if (!learnerId) return;
+      void syncPendingLessonEvidence({ client: getSupabaseClient(), authenticatedLearnerId: learnerId })
+        .then((result) => {
+          if (result.failed) {
+            console.warn(`Background lesson-evidence sync failed; events remain pending. ${result.errorDetail ?? ""}`);
+          }
+        })
+        .catch((error: unknown) => {
+          console.warn("Background lesson-evidence sync failed; events remain pending.", error);
+        });
+    }, [learnerId]),
+  );
+
   return (
     <SafeAreaView style={styles.safeArea} edges={["bottom"]}>
       <ScrollView contentContainerStyle={styles.container}>

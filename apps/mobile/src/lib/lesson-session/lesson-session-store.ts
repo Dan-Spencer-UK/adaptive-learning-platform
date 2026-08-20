@@ -34,15 +34,21 @@
 import type { AnswerValue, QuestionEvidenceRecord } from "@alp/calculation-engine";
 
 import { getFoundationState, setFoundationState } from "../storage/foundation-state.ts";
-import { enqueueOutboxEvent, listPendingOutboxEvents, type OutboxRecord } from "../storage/outbox.ts";
+import { enqueueOutboxEvent, listOutboxEventsByLearner, type OutboxRecord } from "../storage/outbox.ts";
 import type { LessonSessionState } from "./lesson-session-controller.ts";
 
 const SESSION_STATE_KEY_PREFIX = "lesson_session.";
 const ACTIVE_SESSION_POINTER_KEY_PREFIX = "lesson_session.active_instance_id.";
-const EVIDENCE_EVENT_TYPE = "lesson.evidence";
+export const EVIDENCE_EVENT_TYPE = "lesson.evidence";
 
-/** Version of the persisted-session envelope written by this module. */
-export const SESSION_ENVELOPE_SCHEMA_VERSION = 1;
+/**
+ * Version of the persisted-session envelope written by this module.
+ * v2 (CC-07): session state gained the required `sessionKey` occurrence
+ * id -- a v1 envelope without it fails safe to a fresh session (same
+ * deliberate no-migration-framework policy as CC-06D; no production
+ * learner data existed).
+ */
+export const SESSION_ENVELOPE_SCHEMA_VERSION = 2;
 
 interface PersistedSessionEnvelope {
   readonly schemaVersion: typeof SESSION_ENVELOPE_SCHEMA_VERSION;
@@ -72,6 +78,8 @@ function isValidSessionState(value: unknown): value is LessonSessionState {
   const s = value as Record<string, unknown>;
   return (
     typeof s.instanceId === "string" &&
+    typeof s.sessionKey === "string" &&
+    s.sessionKey.length > 0 &&
     typeof s.lessonId === "string" &&
     typeof s.lessonVersion === "number" &&
     typeof s.contentRelease === "string" &&
@@ -148,6 +156,8 @@ export interface RecordedLessonEvidence {
   /** Stable owning learner -- recorded at write time, never inferred at sync time, never reassigned (CC-06D §9.3/§9.4). */
   readonly learnerId: string;
   readonly instanceId: string;
+  /** Unique session-occurrence id (CC-07): part of the durable canonical attempt identity, because deterministic instanceIds legitimately recur across replays. */
+  readonly sessionKey: string;
   /** Immutable lesson identity of the session that produced this evidence. */
   readonly lessonId: string;
   readonly lessonVersion: number;
@@ -178,6 +188,7 @@ export async function recordLessonEvidence(args: {
     givenAnswer: args.givenAnswer,
     learnerId: session.learnerId,
     instanceId: session.instanceId,
+    sessionKey: session.sessionKey,
     lessonId: session.lessonId,
     lessonVersion: session.lessonVersion,
     contentRelease: session.contentRelease,
@@ -189,13 +200,11 @@ export async function recordLessonEvidence(args: {
   return enqueueOutboxEvent(EVIDENCE_EVENT_TYPE, payload as unknown as Record<string, unknown>, session.learnerId);
 }
 
-/** Lists the GIVEN LEARNER's locally-recorded lesson-evidence events (all pending -- see module header), most recent first. Another learner's events are never returned. */
+/** Lists the GIVEN LEARNER's locally-recorded lesson-evidence events (pending AND synced -- synced events remain durable local history, CC-07), most recent first. Another learner's events are never returned. */
 export async function listLessonEvidence(learnerId: string): Promise<readonly RecordedLessonEvidence[]> {
-  const events = await listPendingOutboxEvents();
+  const events = await listOutboxEventsByLearner(learnerId, EVIDENCE_EVENT_TYPE);
   const parsed: RecordedLessonEvidence[] = [];
   for (const event of events) {
-    if (event.eventType !== EVIDENCE_EVENT_TYPE) continue;
-    if (event.learnerId !== learnerId) continue;
     try {
       parsed.push(JSON.parse(event.payload) as RecordedLessonEvidence);
     } catch {

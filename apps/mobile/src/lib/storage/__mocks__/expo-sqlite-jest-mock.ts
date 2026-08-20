@@ -74,6 +74,15 @@ class MockSQLiteDatabase {
         String(a.created_at).localeCompare(String(b.created_at)),
       ) as T[];
     }
+    if (/FROM foundation_outbox WHERE learner_id = \? AND event_type = \?/i.test(sql)) {
+      const [learnerId, eventType] = params;
+      const rows = (this.tables.get("foundation_outbox") ?? []).filter(
+        (r) => r.learner_id === learnerId && r.event_type === eventType,
+      );
+      // Stable sort on created_at: insertion order breaks ties, mirroring
+      // the real query's `ORDER BY created_at ASC, rowid ASC`.
+      return [...rows].sort((a, b) => String(a.created_at).localeCompare(String(b.created_at))) as T[];
+    }
     return [];
   }
 

@@ -98,6 +98,22 @@ describe("generated mobile content projection", () => {
     }
   });
 
+  it("CC-07: carries minimal assertion-family metadata (required capability sets) for on-device family derivation, never the authoring record", () => {
+    const projection = buildMobileContentProjection(realInputs());
+    const ohm = projection.assertionFamilies.find((f) => f.id === "electrical.ohms_law");
+    expect(ohm).toBeDefined();
+    expect(ohm!.requiredCapabilityIds.length).toBeGreaterThan(0);
+    expect(ohm!.assessmentRequirement).toBe("assessable");
+    // Prerequisite families the lesson references must be present too.
+    for (const prereq of projection.lessons[0]!.prerequisiteKnowledge) {
+      expect(projection.assertionFamilies.some((f) => f.id === prereq)).toBe(true);
+    }
+    // Authoring-only family fields never ship.
+    const committed = readFileSync(join(REPO_ROOT, PROJECTION_OUTPUT_FILE), "utf8");
+    expect(committed).not.toContain("learningIntent");
+    expect(committed).not.toContain("teachingOnlyReason");
+  });
+
   it("does not leak authoring/governance data: no provenance, sources, curricula or review metadata ship to mobile", () => {
     const committed = readFileSync(join(REPO_ROOT, PROJECTION_OUTPUT_FILE), "utf8");
     for (const forbidden of ["provenance", "sourceLocator", "curriculumNode", "accessLocation", "QUALIFICATION_HANDBOOK"]) {
