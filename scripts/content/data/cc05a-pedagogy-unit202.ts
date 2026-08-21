@@ -461,6 +461,79 @@ const assertionFamilies: AssertionFamily[] = [
     teachingOnlyReason:
       "Per the corpus's own documented design decision (cc04-unit202-electrical-science.ts header comment, lines 43-49): 'AC circuit calculation (reactance/impedance arithmetic, phasor addition) is deliberately NOT decomposed into calculation capabilities here -- only the conceptual/definitional knowledge... is modelled', consistent with LO2's 'identify and determine values of... SI units' framing rather than LO4's deeper 'calculate' framing (which Unit 202 restricts to D.C. circuits). No numeric AC reactive-quantity calculation engine exists or is planned in this proving slice, so no question blueprint requiring one was authored.",
   },
+
+  // --- CC-09B: new Foundational families for LO1 Range items with no
+  // prior FM assertion (Indices; Triangles and trigonometry; Statistics),
+  // and LO2's generic (non-electrical) SI quantities -- teaching_only,
+  // matching the existing Foundational family pattern: no question-
+  // blueprint/lesson authoring in this knowledge-corpus package. ---------
+  {
+    id: "foundational.indices",
+    title: "Laws of indices",
+    learningIntent: "Apply the laws of indices when multiplying, dividing or taking roots of powers of the same base.",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.indices.apply"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason: "Reusable horizontal Foundational Maths knowledge (Unit 202 LO1 Range: Indices). No question blueprint authored in this knowledge-corpus package (CC-09B); lesson/assessment authoring is a later package.",
+  },
+  {
+    id: "foundational.trigonometry",
+    title: "Pythagoras' theorem and basic trigonometric ratios",
+    learningIntent: "Apply Pythagoras' theorem and the sine/cosine/tangent ratios to find unknown lengths and angles in right-angled triangles.",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.trigonometry.apply"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason: "Reusable horizontal Foundational Maths knowledge (Unit 202 LO1 Range: Triangles and trigonometry). No question blueprint authored in this knowledge-corpus package (CC-09B); lesson/assessment authoring is a later package.",
+  },
+  {
+    id: "foundational.statistics",
+    title: "Central tendency and spread (mean, range)",
+    learningIntent: "Interpret a data set's mean (central tendency) and range (spread).",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.statistics.interpret"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason: "Reusable horizontal Foundational Maths knowledge (Unit 202 LO1 Range: Statistics). No question blueprint authored in this knowledge-corpus package (CC-09B); lesson/assessment authoring is a later package.",
+  },
+  {
+    id: "foundational.levers_mechanical_advantage",
+    title: "Levers and mechanical advantage",
+    learningIntent: "Recognise how a lever provides mechanical advantage, and distinguish class I, II and III levers by the relative arrangement of pivot, effort and load.",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.levers.recognise"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason: "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3 AC3.2, previously entirely absent from the corpus). No question blueprint authored in this knowledge-corpus package (CC-09B); lesson/assessment authoring is a later package.",
+  },
+  {
+    id: "foundational.si_quantities_general",
+    title: "SI units for general (non-electrical) physical quantities",
+    learningIntent: "Identify the correct SI base or derived unit for a general physical quantity (length, area, volume, mass, density, time, temperature, velocity), distinct from electrical.si_units' electrical-quantity scope.",
+    teachFamilyTogether: true,
+    completeness: { requiredCapabilityIds: ["cap.foundational.si_quantities_general.identify_unit"] },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason: "Reusable horizontal Foundational Physics knowledge (Unit 202 LO2 AC2.1 Range: length, area, volume, mass, density, time, temperature, velocity -- generic quantities, distinct from AC2.2's electrical-quantity Range already covered by electrical.si_units). No question blueprint authored in this knowledge-corpus package (CC-09B); lesson/assessment authoring is a later package.",
+  },
+
+  // --- CC-09B: LO6 electronic components -- previously entirely absent.
+  // One family (not one per Range item / one per device): the Level 2
+  // knowledge model is coherent as a single teachable/diagnosable
+  // concept -- "recognise a component's basic operating principle and
+  // typical application" -- rather than 17 near-identical micro-families
+  // (task brief section 26: "do not arbitrarily make one family per AC").
+  {
+    id: "electrical.electronic_components",
+    title: "Electronic components: basic operating principles and applications",
+    learningIntent:
+      "Recognise the basic operating principle of common electronic components (rectifiers, diodes, Zener diodes, LEDs, photodiodes, thermistors, DIACs, TRIACs, transistors, thyristors, inverters, alongside capacitors/resistors already covered by electrical.ac_reactive_quantities/electrical.core_quantities) and identify which component is typically used for a given electrical-system application.",
+    teachFamilyTogether: true,
+    completeness: {
+      requiredCapabilityIds: [
+        "cap.electronic_components.recognise_principle",
+        "cap.electronic_components.identify_application",
+      ],
+    },
+    assessmentRequirement: "teaching_only",
+    teachingOnlyReason: "LO6 (previously entirely absent) is a knowledge-corpus package (CC-09B) only -- no question blueprint or lesson authored yet; both are later packages once this governed knowledge exists to author against.",
+  },
 ];
 
 // =======================================================================
@@ -688,6 +761,11 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["EL-INSTRUMENT-CONTINUITY-TEST-001", "contextual_application"],
     ["EL-INSTRUMENT-CLAMP-METER-001", "canonical_form"],
     ["EL-INSTRUMENT-OSCILLOSCOPE-001", "canonical_form"],
+    // CC-09B: LO2 AC2.3 Range ("Electrical quantities (measurement)")
+    // requires power and energy measurement alongside the pre-existing
+    // resistance/current/voltage instruments.
+    ["EL-INSTRUMENT-WATTMETER-001", "canonical_form"],
+    ["EL-INSTRUMENT-ENERGY-METER-001", "canonical_form"],
   ]),
 
   // --- electrical.fault_conditions_protection ---------------------------------------------------
@@ -751,6 +829,55 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["EL-UNIT-FARAD-001", "prerequisite_concept"],
     ["EL-CONCEPT-CAPACITANCE-001", "canonical_form"],
     ["EL-CONCEPT-POWER-FACTOR-001", "canonical_form"],
+  ]),
+
+  // --- CC-09B: new Foundational families -------------------------------
+  ...membersOf("foundational.indices", [["FM-NUM-INDICES-LAWS-001", "canonical_form"]]),
+  ...membersOf("foundational.trigonometry", [
+    ["FM-GEOM-PYTHAGORAS-001", "canonical_form"],
+    ["FM-GEOM-TRIG-RATIOS-001", "canonical_form"],
+  ]),
+  ...membersOf("foundational.statistics", [
+    ["FM-STATS-MEAN-001", "canonical_form"],
+    ["FM-STATS-RANGE-001", "canonical_form"],
+  ]),
+  ...membersOf("foundational.levers_mechanical_advantage", [
+    ["FP-CONCEPT-MECHANICAL-ADVANTAGE-001", "prerequisite_concept"],
+    ["FP-CONCEPT-LEVER-PRINCIPLE-001", "canonical_form"],
+    ["FP-LEVER-CLASS-I-001", "consequence"],
+    ["FP-LEVER-CLASS-II-001", "consequence"],
+    ["FP-LEVER-CLASS-III-001", "consequence"],
+  ]),
+  ...membersOf("foundational.si_quantities_general", [
+    ["FP-UNIT-METRE-001", "canonical_form"],
+    ["FP-UNIT-SQUARE-METRE-001", "canonical_form"],
+    ["FP-UNIT-CUBIC-METRE-001", "canonical_form"],
+    ["FP-UNIT-KILOGRAM-001", "canonical_form"],
+    ["FP-UNIT-DENSITY-001", "canonical_form"],
+    ["FP-UNIT-SECOND-001", "canonical_form"],
+    ["FP-UNIT-KELVIN-CELSIUS-001", "canonical_form"],
+    ["FP-UNIT-METRE-PER-SECOND-001", "canonical_form"],
+  ]),
+
+  // --- CC-09B: electrical.electronic_components -------------------------
+  ...membersOf("electrical.electronic_components", [
+    ["EL-COMPONENT-RECTIFIER-001", "canonical_form"],
+    ["EL-COMPONENT-DIODE-001", "canonical_form"],
+    ["EL-COMPONENT-ZENER-DIODE-001", "consequence"],
+    ["EL-COMPONENT-LED-001", "consequence"],
+    ["EL-COMPONENT-PHOTODIODE-001", "consequence"],
+    ["EL-COMPONENT-THERMISTOR-001", "canonical_form"],
+    ["EL-COMPONENT-DIAC-001", "canonical_form"],
+    ["EL-COMPONENT-THYRISTOR-SCR-001", "canonical_form"],
+    ["EL-COMPONENT-TRIAC-001", "consequence"],
+    ["EL-COMPONENT-TRANSISTOR-001", "canonical_form"],
+    ["EL-COMPONENT-INVERTER-001", "canonical_form"],
+    ["EL-APPLICATION-DIMMER-SWITCH-001", "contextual_application"],
+    ["EL-APPLICATION-MOTOR-CONTROL-001", "contextual_application"],
+    ["EL-APPLICATION-HEATING-BOILER-CONTROL-001", "contextual_application"],
+    ["EL-APPLICATION-SECURITY-ALARM-001", "contextual_application"],
+    ["EL-APPLICATION-TELEPHONE-001", "contextual_application"],
+    ["EL-APPLICATION-WIRELESS-CONTROL-001", "contextual_application"],
   ]),
 ];
 
@@ -1246,6 +1373,17 @@ const capabilities: Capability[] = [
     "recognise",
     "Recognise reactance, impedance, inductance, capacitance or power factor from its definition.",
   ),
+
+  // --- CC-09B: new Foundational capabilities (teaching-only) -----------
+  cap("cap.foundational.indices.apply", "foundational.indices", "calculate", "Apply the laws of indices when multiplying, dividing or taking roots of powers of the same base."),
+  cap("cap.foundational.trigonometry.apply", "foundational.trigonometry", "calculate", "Apply Pythagoras' theorem or a trigonometric ratio to find an unknown length or angle in a right-angled triangle."),
+  cap("cap.foundational.statistics.interpret", "foundational.statistics", "interpret_diagram", "Interpret the mean and range of a data set."),
+  cap("cap.foundational.levers.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a lever provides mechanical advantage, and distinguish class I, II and III levers."),
+  cap("cap.foundational.si_quantities_general.identify_unit", "foundational.si_quantities_general", "identify", "Identify the correct SI unit for a general (non-electrical) physical quantity."),
+
+  // --- CC-09B: electrical.electronic_components (teaching-only) --------
+  cap("cap.electronic_components.recognise_principle", "electrical.electronic_components", "recognise", "Recognise the basic operating principle of a common electronic component."),
+  cap("cap.electronic_components.identify_application", "electrical.electronic_components", "identify", "Identify which electronic component is typically used for a given electrical-system application."),
 ];
 
 // =======================================================================

@@ -181,11 +181,20 @@ function buildReport(manifest: KnowledgeGraphManifest): string {
 
   lines.push("## Provenance source / rights distribution");
   lines.push("");
-  lines.push("| Source | Rights classification |");
-  lines.push("|---|---|");
+  lines.push(
+    "Verification columns per ADR-0002 -- Verified/By/Fingerprint reflect the governed " +
+      "`sourceVersion` record mechanically, never hand-typed here. UNVERIFIED means exactly " +
+      "that: identifiable and usable as an authoring source, but not yet independently " +
+      "confirmed against the actual artefact by a verifier distinct from the authoring model.",
+  );
+  lines.push("");
+  lines.push("| Source | Rights classification | Verification | Verified by | Fingerprint |");
+  lines.push("|---|---|---|---|---|");
   for (const s of manifest.sources) {
     const sv = manifest.sourceVersions.find((v) => v.sourceKey === s.key);
-    lines.push(`| ${s.title} | ${sv?.rightsClassification ?? "(unknown)"} |`);
+    lines.push(
+      `| ${s.title} | ${sv?.rightsClassification ?? "(unknown)"} | ${sv?.verificationStatus ?? "UNVERIFIED"} | ${sv?.verifiedBy ?? "(none)"} | ${sv?.contentFingerprintSha256 ? "present" : "absent"} |`,
+    );
   }
   lines.push("");
   lines.push("Rights distribution: " + [...rightsDistribution.entries()].map(([k, v]) => `${k}: ${v}`).join(", "));

@@ -86,7 +86,12 @@ describe("buildReport (against the real CC-05A pedagogy manifest and CC-04 corpu
 
   it("has a non-trivial, genuinely exhaustive-scale inventory (not a token/placeholder backfill)", () => {
     expect(report.totalAssertionFamilies).toBeGreaterThanOrEqual(20);
-    expect(report.totalCorpusAssertions).toBe(176);
+    // CC-09B grew the corpus from 176 to 213 real assertions (LO1 indices/
+    // trig/statistics, LO2 generic SI quantities, LO3 levers, LO6
+    // electronic components) -- a lower-bound threshold, not a frozen
+    // exact count, so this test proves "still non-trivial" without
+    // requiring an update on every future legitimate corpus addition.
+    expect(report.totalCorpusAssertions).toBeGreaterThanOrEqual(176);
     expect(report.formulaFamilies).toBeGreaterThanOrEqual(5);
     expect(report.diagramBlueprints).toBeGreaterThanOrEqual(5);
     expect(report.questionBlueprints).toBeGreaterThanOrEqual(50);

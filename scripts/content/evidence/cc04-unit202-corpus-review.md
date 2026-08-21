@@ -6,10 +6,10 @@ Generated deterministically by `scripts/content/generate-corpus-review.ts` from
 only, never rendered to learners. Regenerate with:
 `node scripts/content/generate-corpus-review.ts`.
 
-Total assertions: 176
-- Foundational Maths (FM): 17
-- Foundational Physics (FP): 13
-- Electrical (EL): 146
+Total assertions: 213
+- Foundational Maths (FM): 22
+- Foundational Physics (FP): 26
+- Electrical (EL): 165
 
 The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150). Foundational Maths/Physics are additional reusable horizontal knowledge and do not count toward that target.
 
@@ -17,45 +17,97 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 
 | Assessment Criterion | Mapped Electrical assertions |
 |---|---|
-| Calculate the values of current, voltage and resistance in parallel and series D.C. circuits | 14 |
-| Calculate values of mechanical energy, power and efficiency | 1 |
-| Calculate values of power in parallel and series D.C. circuits | 14 |
-| Describe the basic principles of electron theory | 3 |
+| Calculate the values of current, voltage and resistance in parallel and series D.C. circuits | 28 |
+| Calculate values of mechanical energy, power and efficiency | 2 |
+| Calculate values of power in parallel and series D.C. circuits | 28 |
+| Characteristics of a sine-wave: Amplitude | 1 |
+| Characteristics of a sine-wave: Average value | 1 |
+| Characteristics of a sine-wave: Frequency | 2 |
+| Characteristics of a sine-wave: Peak to peak value | 1 |
+| Characteristics of a sine-wave: Periodic time | 1 |
+| Characteristics of a sine-wave: Root Mean Square (RMS) value | 1 |
+| Describe the basic principles of electron theory | 6 |
+| Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux | 6 |
 | Describe the basic principles of generating an A.C. supply | 6 |
-| Describe the chemical and thermal effects of electric currents | 8 |
-| Describe the effects of magnetism in terms of attraction and repulsion | 1 |
+| Describe the chemical and thermal effects of electric currents | 16 |
+| Describe the effects of magnetism in terms of attraction and repulsion | 2 |
+| Describe the function and application of electronic components that are used in electrical systems | 6 |
+| Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force | 7 |
 | Describe the magnetic effects of electrical currents | 7 |
 | Describe the main principles of force, work, energy, power and efficiency and their inter-relationships | 1 |
-| Describe what is meant by resistance and resistivity in relation to electrical circuits | 7 |
-| Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits | 28 |
-| Identify and apply appropriate mathematical principles which are relevant to electrical work tasks | 16 |
-| Identify and determine values of base and derived SI units which apply specifically to electrical quantities | 28 |
-| Identify and distinguish between materials which are good conductors and insulators | 4 |
-| Identify and use internationally recognised base and derived (SI) units of measurement | 3 |
-| Identify appropriate electrical instruments for the measurement of different electrical quantities | 9 |
-| Identify the characteristics of sine-waves | 12 |
-| State the difference between magnetic flux and flux density | 2 |
-| State what is meant by the term voltage drop in relation to electrical circuits | 2 |
+| Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency | 1 |
+| Describe what is meant by resistance and resistivity in relation to electrical circuits | 14 |
+| Electrical quantities (SI units): Capacitance and capacitive reactance | 2 |
+| Electrical quantities (SI units): Current | 1 |
+| Electrical quantities (SI units): Energy | 1 |
+| Electrical quantities (SI units): Frequency | 2 |
+| Electrical quantities (SI units): Impedance | 1 |
+| Electrical quantities (SI units): Inductance and inductive reactance | 2 |
+| Electrical quantities (SI units): Power factor | 1 |
+| Electrical quantities (SI units): Power | 1 |
+| Electrical quantities (SI units): Resistance | 2 |
+| Electrical quantities (SI units): Resistivity | 1 |
+| Electrical quantities (SI units): Voltage | 1 |
+| Electrical quantities (measurement): Current | 1 |
+| Electrical quantities (measurement): Energy | 1 |
+| Electrical quantities (measurement): Power | 1 |
+| Electrical quantities (measurement): Resistance | 1 |
+| Electrical quantities (measurement): Voltage | 1 |
+| Electrical systems: Dimmer switches | 1 |
+| Electrical systems: Heating/boiler controls | 1 |
+| Electrical systems: Motor control | 1 |
+| Electrical systems: Security alarms | 1 |
+| Electrical systems: Telephones | 1 |
+| Electrical systems: Wireless control systems | 1 |
+| Electronic components and devices: Capacitors | 1 |
+| Electronic components and devices: Diacs | 1 |
+| Electronic components and devices: Diodes | 1 |
+| Electronic components and devices: Invertors | 1 |
+| Electronic components and devices: LED | 1 |
+| Electronic components and devices: Photo | 1 |
+| Electronic components and devices: Rectifiers | 1 |
+| Electronic components and devices: Resistors | 1 |
+| Electronic components and devices: Thermistors | 1 |
+| Electronic components and devices: Thyristors | 1 |
+| Electronic components and devices: Transistors | 1 |
+| Electronic components and devices: Triacs | 1 |
+| Electronic components and devices: Zener | 1 |
+| Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits | 56 |
+| Identify and apply appropriate mathematical principles which are relevant to electrical work tasks | 32 |
+| Identify and determine values of base and derived SI units which apply specifically to electrical quantities | 56 |
+| Identify and distinguish between materials which are good conductors and insulators | 8 |
+| Identify and use internationally recognised base and derived (SI) units of measurement | 6 |
+| Identify appropriate electrical instruments for the measurement of different electrical quantities | 22 |
+| Identify the characteristics of sine-waves | 24 |
+| State the basic operating principles of electronic components and devices | 11 |
+| State the difference between magnetic flux and flux density | 4 |
+| State what is meant by the term voltage drop in relation to electrical circuits | 4 |
 
 ## Foundational Maths/Physics: used vs currently-unused-but-retained
 
-23 of 30 Foundational assertions currently reach an Electrical target via PREREQUISITE_OF; the remainder are retained as coherent, atomic, properly-sourced, non-speculative reusable horizontal knowledge for future Unit 202 expansion, other electrical qualifications, or other vocational verticals -- per explicit Product Owner direction, this is not treated as a defect.
+23 of 48 Foundational assertions currently reach an Electrical target via PREREQUISITE_OF; the remainder are retained as coherent, atomic, properly-sourced, non-speculative reusable horizontal knowledge for future Unit 202 expansion, other electrical qualifications, or other vocational verticals -- per explicit Product Owner direction, this is not treated as a defect.
 
 **Currently used (23):** FM-ALG-EQUALITY-ADD-001, FM-ALG-EQUALITY-MULT-001, FM-ALG-INVERSE-OPS-ADD-001, FM-ALG-INVERSE-OPS-MULT-001, FM-ALG-PROPORTION-DIRECT-001, FM-ALG-PROPORTION-INVERSE-001, FM-ALG-SUBSTITUTION-001, FM-ALG-TRANSPOSE-ADD-001, FM-ALG-TRANSPOSE-MULT-001, FM-ARITH-FRACTION-OPS-001, FM-ARITH-PERCENTAGE-001, FM-ARITH-RECIPROCAL-001, FM-ARITH-RECIPROCAL-INVERT-001, FM-ARITH-RECIPROCAL-SUM-001, FM-NUM-SI-PREFIX-001, FM-NUM-SI-PREFIX-CONVERT-001, FM-NUM-STANDARD-FORM-001, FP-CONCEPT-EFFICIENCY-001, FP-CONCEPT-ENERGY-001, FP-CONCEPT-ENERGY-CONSERVATION-001, FP-CONCEPT-FORCE-001, FP-CONCEPT-POWER-001, FP-CONCEPT-WORK-001
 
-**Currently unused but retained (7):** FP-CALC-EFFICIENCY-001, FP-CALC-POWER-001, FP-CALC-WEIGHT-001, FP-CONCEPT-MASS-001, FP-CONCEPT-WEIGHT-001, FP-REL-POWER-WORK-TIME-001, FP-REL-WEIGHT-MASS-001
+**Currently unused but retained (25):** FM-GEOM-PYTHAGORAS-001, FM-GEOM-TRIG-RATIOS-001, FM-NUM-INDICES-LAWS-001, FM-STATS-MEAN-001, FM-STATS-RANGE-001, FP-CALC-EFFICIENCY-001, FP-CALC-POWER-001, FP-CALC-WEIGHT-001, FP-CONCEPT-LEVER-PRINCIPLE-001, FP-CONCEPT-MASS-001, FP-CONCEPT-MECHANICAL-ADVANTAGE-001, FP-CONCEPT-WEIGHT-001, FP-LEVER-CLASS-I-001, FP-LEVER-CLASS-II-001, FP-LEVER-CLASS-III-001, FP-REL-POWER-WORK-TIME-001, FP-REL-WEIGHT-MASS-001, FP-UNIT-CUBIC-METRE-001, FP-UNIT-DENSITY-001, FP-UNIT-KELVIN-CELSIUS-001, FP-UNIT-KILOGRAM-001, FP-UNIT-METRE-001, FP-UNIT-METRE-PER-SECOND-001, FP-UNIT-SECOND-001, FP-UNIT-SQUARE-METRE-001
 
 ## Provenance source / rights distribution
 
-| Source | Rights classification |
-|---|---|
-| City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook | PROPRIETARY_REFERENCE |
-| The International System of Units (SI Brochure) | OPEN |
-| Mathematics GCSE subject content and assessment objectives | OFFICIAL_OGL |
-| University Physics Volume 1 | PUBLIC_RESTRICTED |
-| University Physics Volume 2 | PUBLIC_RESTRICTED |
+Verification columns per ADR-0002 -- Verified/By/Fingerprint reflect the governed `sourceVersion` record mechanically, never hand-typed here. UNVERIFIED means exactly that: identifiable and usable as an authoring source, but not yet independently confirmed against the actual artefact by a verifier distinct from the authoring model.
 
-Rights distribution: PROPRIETARY_REFERENCE: 1, OPEN: 1, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 2
+| Source | Rights classification | Verification | Verified by | Fingerprint |
+|---|---|---|---|---|
+| City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook | PROPRIETARY_REFERENCE | VERIFIED | project-architect | present |
+| The International System of Units (SI Brochure) | OPEN | UNVERIFIED | (none) | absent |
+| Mathematics GCSE subject content and assessment objectives | OFFICIAL_OGL | UNVERIFIED | (none) | absent |
+| University Physics Volume 1 | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| University Physics Volume 2 | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| University Physics Volume 3 | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| Electric Circuits III - Semiconductors (Kuphaldt) | OPEN | UNVERIFIED | (none) | absent |
+| NTC Thermistors Application Note | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| ELG4139: DC to AC Converters (course material) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+
+Rights distribution: PROPRIETARY_REFERENCE: 3, OPEN: 2, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 3
 
 ## OpenStax exact-book licence evidence (CC-04B hard requirement)
 
@@ -68,13 +120,13 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ## Graph health
 
-- Total relationships: 268
-  - CONTRASTS_WITH: 10
+- Total relationships: 299
+  - CONTRASTS_WITH: 12
   - DERIVED_FROM: 4
-  - PREREQUISITE_OF: 244
+  - PREREQUISITE_OF: 273
   - SUPPORTS: 10
-- Misconceptions: 20; conflict links: 44
-- Curriculum mappings: 166
+- Misconceptions: 21; conflict links: 45
+- Curriculum mappings: 429
 - Self edges, duplicate edges, unintended prerequisite cycles, broken relationship targets, unmapped Electrical assertions and approved-versions-without-provenance: all mechanically proven 0 -- see supabase/tests/database/10_unit202_knowledge_graph.sql and the CC-04B completion report for the live query evidence.
 
 ## Foundational Maths (FM)
@@ -85,6 +137,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FM-ALG-TRANSPOSE-MULT-001
+**Curriculum mapping(s):** Mathematical principles: Algebra (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Number: relationships between operations including inverse operations; conventional notation for priority of operations including brackets, powers, roots and reciprocals [DEFINES]
 
 ### FM-ALG-INVERSE-OPS-ADD-001
@@ -93,6 +146,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FM-ALG-TRANSPOSE-ADD-001
+**Curriculum mapping(s):** Mathematical principles: Algebra (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Number: relationships between operations including inverse operations; conventional notation for priority of operations including brackets, powers, roots and reciprocals [DEFINES]
 
 ### FM-ALG-EQUALITY-MULT-001
@@ -101,6 +155,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FM-ALG-TRANSPOSE-MULT-001
+**Curriculum mapping(s):** Mathematical principles: Algebra (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Algebra: understand and use the concepts and vocabulary of expressions, equations, formulae, identities [DEFINES]
 
 ### FM-ALG-EQUALITY-ADD-001
@@ -109,6 +164,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FM-ALG-TRANSPOSE-ADD-001
+**Curriculum mapping(s):** Mathematical principles: Algebra (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Algebra: understand and use the concepts and vocabulary of expressions, equations, formulae, identities [DEFINES]
 
 ### FM-ALG-TRANSPOSE-MULT-001
@@ -117,6 +173,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FM-ALG-INVERSE-OPS-MULT-001 (REQUIRED); FM-ALG-EQUALITY-MULT-001 (REQUIRED)
 **Direct dependents:** FP-CALC-WEIGHT-001; EL-OHM-REARRANGE-001; EL-POWER-REARRANGE-001; EL-CURRENT-CHARGE-CALC-001; EL-ENERGY-REARRANGE-001
+**Curriculum mapping(s):** Mathematical principles: Transposition (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Algebra: understand and use standard mathematical formulae; rearrange formulae to change the subject [SUPPORTS]
 
 ### FM-ALG-TRANSPOSE-ADD-001
@@ -124,7 +181,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Given a relationship of the form a = b + c, rearrange it algebraically to make b or c the subject.
 
 **Direct prerequisites:** FM-ALG-INVERSE-OPS-ADD-001 (REQUIRED); FM-ALG-EQUALITY-ADD-001 (REQUIRED)
-**Direct dependents:** EL-SERIES-VOLTAGE-001; EL-PARALLEL-CURRENT-001
+**Direct dependents:** EL-SERIES-VOLTAGE-001; EL-PARALLEL-CURRENT-001; EL-PARALLEL-RESISTANCE-CALC-001
+**Curriculum mapping(s):** Mathematical principles: Transposition (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Algebra: understand and use standard mathematical formulae; rearrange formulae to change the subject [SUPPORTS]
 
 ### FM-ALG-SUBSTITUTION-001
@@ -133,6 +191,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FP-CALC-POWER-001; FP-CALC-WEIGHT-001; EL-CALC-ELECTRICAL-EFFICIENCY-001; EL-OHM-SOLVE-V-001; EL-OHM-SOLVE-I-001; EL-OHM-SOLVE-R-001; EL-SERIES-RESISTANCE-CALC-001; EL-POWER-SOLVE-001; EL-POWER-SOLVE-IR-001; EL-CURRENT-CHARGE-CALC-001; EL-POWER-SOLVE-V2R-001; EL-ENERGY-CALC-001; EL-WAVEFORM-RMS-CALC-001; EL-WAVEFORM-FREQUENCY-CALC-001
+**Curriculum mapping(s):** Mathematical principles: Transposition (SUPPORTS)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Algebra: substitute numerical values into formulae and expressions, including scientific formulae [SUPPORTS]
 
 ### FM-ARITH-RECIPROCAL-001
@@ -149,6 +208,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FM-ARITH-RECIPROCAL-SUM-001
+**Curriculum mapping(s):** Mathematical principles: Fractions and percentages (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Number: apply the four operations, including formal written methods, to integers, decimals and simple fractions (proper and improper), and mixed numbers [DEFINES]
 
 ### FM-ARITH-RECIPROCAL-SUM-001
@@ -173,6 +233,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FP-CONCEPT-EFFICIENCY-001; FP-CALC-EFFICIENCY-001; EL-CALC-ELECTRICAL-EFFICIENCY-001
+**Curriculum mapping(s):** Mathematical principles: Fractions and percentages (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Ratio, proportion and rates of change: define percentage as 'number of parts per hundred'; interpret percentages and percentage changes [DEFINES]
 
 ### FM-ALG-PROPORTION-DIRECT-001
@@ -217,6 +278,51 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct dependents:** EL-OHM-SOLVE-V-001; EL-OHM-SOLVE-I-001; EL-OHM-SOLVE-R-001
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [SUPPORTS]
 
+### FM-NUM-INDICES-LAWS-001
+
+**Statement (v1, APPROVED):** When multiplying two powers of the same base, add the indices; when dividing, subtract the indices; a fractional index represents a root.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Mathematical principles: Indices (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Algebra: simplify and manipulate algebraic expressions... simplifying expressions involving sums, products and powers, including the laws of indices [DEFINES] | Mathematics GCSE subject content and assessment objectives — Number: calculate with roots, and with integer and fractional indices [SUPPORTS]
+
+### FM-GEOM-PYTHAGORAS-001
+
+**Statement (v1, APPROVED):** In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides: a squared plus b squared equals c squared.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** FM-GEOM-TRIG-RATIOS-001
+**Curriculum mapping(s):** Mathematical principles: Triangles and trigonometry (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Geometry and measures: know the formulae for Pythagoras' theorem a^2 + b^2 = c^2, and the trigonometric ratios sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse and tan(theta) = opposite/adjacent; apply them to find angles and lengths in right-angled triangles [DEFINES]
+
+### FM-GEOM-TRIG-RATIOS-001
+
+**Statement (v1, APPROVED):** In a right-angled triangle, the sine, cosine and tangent of an angle are defined as the ratios opposite/hypotenuse, adjacent/hypotenuse and opposite/adjacent respectively.
+
+**Direct prerequisites:** FM-GEOM-PYTHAGORAS-001 (SUPPORTING)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Mathematical principles: Triangles and trigonometry (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Geometry and measures: know the formulae for Pythagoras' theorem a^2 + b^2 = c^2, and the trigonometric ratios sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse and tan(theta) = opposite/adjacent; apply them to find angles and lengths in right-angled triangles [DEFINES]
+
+### FM-STATS-MEAN-001
+
+**Statement (v1, APPROVED):** The mean of a set of numerical values is found by dividing their sum by the number of values, and is a measure of the central tendency of the data.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Mathematical principles: Statistics (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [DEFINES]
+
+### FM-STATS-RANGE-001
+
+**Statement (v1, APPROVED):** The range of a set of numerical values is the difference between the largest and smallest values, and is a measure of the spread of the data.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Mathematical principles: Statistics (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [DEFINES]
+
 ## Foundational Physics (FP)
 
 ### FP-CONCEPT-FORCE-001
@@ -224,7 +330,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A force is a push or a pull that can change the motion, shape or state of rest of an object.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** FP-CONCEPT-WORK-001; FP-CONCEPT-WEIGHT-001; EL-CONCEPT-FORCE-ON-CONDUCTOR-001
+**Direct dependents:** FP-CONCEPT-WORK-001; FP-CONCEPT-WEIGHT-001; FP-CONCEPT-MECHANICAL-ADVANTAGE-001; EL-CONCEPT-FORCE-ON-CONDUCTOR-001
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [DEFINES]
 
 ### FP-CONCEPT-WORK-001
@@ -297,6 +403,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FP-CONCEPT-WEIGHT-001; FP-REL-WEIGHT-MASS-001
+**Curriculum mapping(s):** Specify what is meant by mass and weight (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [DEFINES]
 
 ### FP-CONCEPT-WEIGHT-001
@@ -305,6 +412,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FP-CONCEPT-FORCE-001 (STRONG); FP-CONCEPT-MASS-001 (STRONG)
 **Direct dependents:** FP-REL-WEIGHT-MASS-001
+**Curriculum mapping(s):** Specify what is meant by mass and weight (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [DEFINES]
 
 ### FP-REL-WEIGHT-MASS-001
@@ -313,6 +421,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FP-CONCEPT-MASS-001 (REQUIRED); FP-CONCEPT-WEIGHT-001 (REQUIRED)
 **Direct dependents:** FP-CALC-WEIGHT-001
+**Curriculum mapping(s):** Specify what is meant by mass and weight (SUPPORTS)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [SUPPORTS]
 
 ### FP-CALC-WEIGHT-001
@@ -323,6 +432,123 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct dependents:** (none — leaf capability)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [SUPPORTS]
 
+### FP-CONCEPT-MECHANICAL-ADVANTAGE-001
+
+**Statement (v1, APPROVED):** A simple machine such as a lever, gear or pulley provides mechanical advantage by changing the relationship between the effort (input force) applied and the load (output force) it moves.
+
+**Direct prerequisites:** FP-CONCEPT-FORCE-001 (STRONG)
+**Direct dependents:** FP-CONCEPT-LEVER-PRINCIPLE-001
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS]
+
+### FP-CONCEPT-LEVER-PRINCIPLE-001
+
+**Statement (v1, APPROVED):** A lever is a rigid bar that rotates about a fixed pivot (fulcrum); the mechanical advantage it provides depends on the ratio of the effort's distance from the pivot to the load's distance from the pivot.
+
+**Direct prerequisites:** FP-CONCEPT-MECHANICAL-ADVANTAGE-001 (REQUIRED)
+**Direct dependents:** FP-LEVER-CLASS-I-001; FP-LEVER-CLASS-II-001; FP-LEVER-CLASS-III-001
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS]
+
+### FP-LEVER-CLASS-I-001
+
+**Statement (v1, APPROVED):** In a class I lever, the pivot is positioned between the effort and the load (for example a see-saw or a pair of pliers).
+
+**Direct prerequisites:** FP-CONCEPT-LEVER-PRINCIPLE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Levers: Class I (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS]
+
+### FP-LEVER-CLASS-II-001
+
+**Statement (v1, APPROVED):** In a class II lever, the load is positioned between the pivot and the effort (for example a wheelbarrow).
+
+**Direct prerequisites:** FP-CONCEPT-LEVER-PRINCIPLE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Levers: Class II (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS]
+
+### FP-LEVER-CLASS-III-001
+
+**Statement (v1, APPROVED):** In a class III lever, the effort is positioned between the pivot and the load (for example a pair of tweezers or the human forearm).
+
+**Direct prerequisites:** FP-CONCEPT-LEVER-PRINCIPLE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Levers: Class III (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS]
+
+### FP-UNIT-METRE-001
+
+**Statement (v1, APPROVED):** The metre (m) is the SI base unit of length.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** FP-UNIT-SQUARE-METRE-001; FP-UNIT-CUBIC-METRE-001; FP-UNIT-METRE-PER-SECOND-001
+**Curriculum mapping(s):** (SI) Units of measurement for: Length (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure Table 1: the seven SI base units, including the metre (length), kilogram (mass), second (time) and kelvin (thermodynamic temperature) [DEFINES]
+
+### FP-UNIT-SQUARE-METRE-001
+
+**Statement (v1, APPROVED):** The square metre (m squared) is the SI derived unit of area, formed by multiplying two lengths.
+
+**Direct prerequisites:** FP-UNIT-METRE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** (SI) Units of measurement for: Area (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure Table 3: examples of SI coherent derived units expressed in terms of base units, including area (square metre), volume (cubic metre), speed/velocity (metre per second) and density (kilogram per cubic metre) [DEFINES]
+
+### FP-UNIT-CUBIC-METRE-001
+
+**Statement (v1, APPROVED):** The cubic metre (m cubed) is the SI derived unit of volume, formed by multiplying three lengths.
+
+**Direct prerequisites:** FP-UNIT-METRE-001 (REQUIRED)
+**Direct dependents:** FP-UNIT-DENSITY-001
+**Curriculum mapping(s):** (SI) Units of measurement for: Volume (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure Table 3: examples of SI coherent derived units expressed in terms of base units, including area (square metre), volume (cubic metre), speed/velocity (metre per second) and density (kilogram per cubic metre) [DEFINES]
+
+### FP-UNIT-KILOGRAM-001
+
+**Statement (v1, APPROVED):** The kilogram (kg) is the SI base unit of mass.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** FP-UNIT-DENSITY-001
+**Curriculum mapping(s):** (SI) Units of measurement for: Mass (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure Table 1: the seven SI base units, including the metre (length), kilogram (mass), second (time) and kelvin (thermodynamic temperature) [DEFINES]
+
+### FP-UNIT-DENSITY-001
+
+**Statement (v1, APPROVED):** Density is mass per unit volume, with SI derived unit the kilogram per cubic metre (kg/m cubed).
+
+**Direct prerequisites:** FP-UNIT-KILOGRAM-001 (REQUIRED); FP-UNIT-CUBIC-METRE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** (SI) Units of measurement for: Density (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure Table 3: examples of SI coherent derived units expressed in terms of base units, including area (square metre), volume (cubic metre), speed/velocity (metre per second) and density (kilogram per cubic metre) [DEFINES]
+
+### FP-UNIT-SECOND-001
+
+**Statement (v1, APPROVED):** The second (s) is the SI base unit of time.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** FP-UNIT-METRE-PER-SECOND-001
+**Curriculum mapping(s):** (SI) Units of measurement for: Time (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure Table 1: the seven SI base units, including the metre (length), kilogram (mass), second (time) and kelvin (thermodynamic temperature) [DEFINES]
+
+### FP-UNIT-KELVIN-CELSIUS-001
+
+**Statement (v1, APPROVED):** The kelvin (K) is the SI base unit of thermodynamic temperature; the degree Celsius (deg C) is a special name for the kelvin used to express everyday Celsius temperature.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** (SI) Units of measurement for: Temperature (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure Table 1: the seven SI base units, including the metre (length), kilogram (mass), second (time) and kelvin (thermodynamic temperature) [DEFINES] | The International System of Units (SI Brochure) — SI Brochure 2.3.3: the degree Celsius, a special name for the kelvin used to express Celsius temperature [DEFINES]
+
+### FP-UNIT-METRE-PER-SECOND-001
+
+**Statement (v1, APPROVED):** The metre per second (m/s) is the SI derived unit of speed/velocity, formed by dividing a length by a time.
+
+**Direct prerequisites:** FP-UNIT-METRE-001 (REQUIRED); FP-UNIT-SECOND-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** (SI) Units of measurement for: Velocity (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure Table 3: examples of SI coherent derived units expressed in terms of base units, including area (square metre), volume (cubic metre), speed/velocity (metre per second) and density (kilogram per cubic metre) [DEFINES]
+
 ## Electrical (EL)
 
 ### EL-UNIT-VOLT-001
@@ -331,7 +557,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-UNIT-BASE-VS-DERIVED-001
-**Curriculum mapping(s):** Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Voltage (REQUIRED_FOR); Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-UNIT-CONFUSION-001
 
@@ -341,7 +567,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-UNIT-BASE-VS-DERIVED-001
-**Curriculum mapping(s):** Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Current (REQUIRED_FOR); Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure Appendix 2: the ampere, SI base unit of electric current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-UNIT-CONFUSION-001
 
@@ -351,7 +577,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Resistance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-UNIT-CONFUSION-001
 
@@ -361,7 +587,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Power (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-UNIT-CONFUSION-001
 
@@ -371,7 +597,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-UNIT-KWH-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Energy (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-UNIT-CONFUSION-001, MIS-EL-ENERGY-UNIT-CONFUSION-001
 
@@ -381,7 +607,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Resistivity (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-VOLTAGE-001
@@ -390,7 +616,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FP-CONCEPT-ENERGY-001 (STRONG)
 **Direct dependents:** EL-INSTRUMENT-VOLTMETER-001; EL-OHM-RELATIONSHIP-001; EL-PARALLEL-VOLTAGE-001; EL-POWER-RELATIONSHIP-001; EL-CONCEPT-TERMINAL-VOLTAGE-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.4: Ohm's law, V = IR, and voltage/potential difference [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-CURRENT-VOLTAGE-CONFUSION-001
 
@@ -400,7 +626,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-INSTRUMENT-AMMETER-001; EL-CONCEPT-ELECTRON-THEORY-001; EL-OHM-RELATIONSHIP-001; EL-SERIES-CURRENT-001; EL-PARALLEL-CURRENT-001; EL-POWER-RELATIONSHIP-001; EL-CURRENT-CHEMICAL-EFFECT-001; EL-CURRENT-CHARGE-RELATIONSHIP-001; EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001; EL-CONCEPT-AC-DC-DISTINCTION-001; EL-INSTRUMENT-CLAMP-METER-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.4: Ohm's law, V = IR, and voltage/potential difference [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-CURRENT-VOLTAGE-CONFUSION-001
 
@@ -410,7 +636,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-CONCEPT-RESISTIVITY-001; EL-INSTRUMENT-OHMMETER-001; EL-CONCEPT-REACTANCE-001; EL-CONCEPT-IMPEDANCE-001; EL-RESISTIVITY-RELATIONSHIP-001; EL-OHM-RELATIONSHIP-001; EL-SERIES-RESISTANCE-001; EL-PARALLEL-RESISTANCE-001; EL-CURRENT-THERMAL-EFFECT-001; EL-CIRCUIT-RECOGNISE-SHORT-CIRCUIT-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR); Electrical quantities (SI units): Resistance (REQUIRED_FOR); Electronic components and devices: Resistors (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.3: resistance and resistivity, and R = rho L / A [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.3: describe what is meant by resistance and resistivity in relation to electrical circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-RESISTANCE-RESISTIVITY-CONFUSION-001
 
@@ -420,7 +646,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (STRONG)
 **Direct dependents:** EL-RESISTIVITY-RELATIONSHIP-001; EL-RESISTIVITY-COMPARE-MATERIALS-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.3: resistance and resistivity, and R = rho L / A [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.3: describe what is meant by resistance and resistivity in relation to electrical circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-RESISTANCE-RESISTIVITY-CONFUSION-001
 
@@ -429,8 +655,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Electrical power is the rate at which electrical energy is transferred or converted.
 
 **Direct prerequisites:** FP-CONCEPT-POWER-001 (REQUIRED)
-**Direct dependents:** EL-POWER-RATING-001; EL-CONCEPT-ELECTRICAL-EFFICIENCY-001; EL-POWER-RELATIONSHIP-001; EL-ENERGY-POWER-TIME-RELATIONSHIP-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Direct dependents:** EL-INSTRUMENT-WATTMETER-001; EL-POWER-RATING-001; EL-CONCEPT-ELECTRICAL-EFFICIENCY-001; EL-POWER-RELATIONSHIP-001; EL-ENERGY-POWER-TIME-RELATIONSHIP-001
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-POWER-ENERGY-CONFUSION-001
 
@@ -439,8 +665,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Electrical energy is the total amount of electrical work done, or energy transferred, over a period of time.
 
 **Direct prerequisites:** FP-CONCEPT-ENERGY-001 (REQUIRED)
-**Direct dependents:** EL-UNIT-KWH-001; EL-CURRENT-THERMAL-EFFECT-001; EL-ENERGY-POWER-TIME-RELATIONSHIP-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Direct dependents:** EL-INSTRUMENT-ENERGY-METER-001; EL-UNIT-KWH-001; EL-CURRENT-THERMAL-EFFECT-001; EL-ENERGY-POWER-TIME-RELATIONSHIP-001
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-POWER-ENERGY-CONFUSION-001
 
@@ -450,7 +676,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-VOLTAGE-001 (STRONG)
 **Direct dependents:** EL-INSTRUMENT-MULTIMETER-001; EL-INSTRUMENT-SELECT-001; EL-INSTRUMENT-VOLTMETER-INTERNAL-RESISTANCE-001
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Electrical quantities (measurement): Voltage (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001
 
@@ -460,7 +686,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-CURRENT-001 (STRONG)
 **Direct dependents:** EL-INSTRUMENT-MULTIMETER-001; EL-INSTRUMENT-SELECT-001; EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Electrical quantities (measurement): Current (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001
 
@@ -470,7 +696,25 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (STRONG)
 **Direct dependents:** EL-INSTRUMENT-MULTIMETER-001; EL-INSTRUMENT-SELECT-001; EL-INSTRUMENT-CONTINUITY-TEST-001
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Electrical quantities (measurement): Resistance (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
+**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
+
+### EL-INSTRUMENT-WATTMETER-001
+
+**Statement (v1, APPROVED):** A wattmeter measures electrical power, sensing both the current through a load and the voltage across it.
+
+**Direct prerequisites:** EL-CONCEPT-POWER-001 (STRONG)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Electrical quantities (measurement): Power (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
+**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
+
+### EL-INSTRUMENT-ENERGY-METER-001
+
+**Statement (v1, APPROVED):** An energy meter (kWh meter) measures the cumulative electrical energy consumed by a supply over time.
+
+**Direct prerequisites:** EL-CONCEPT-ENERGY-001 (STRONG)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Electrical quantities (measurement): Energy (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-MULTIMETER-001
@@ -479,7 +723,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-INSTRUMENT-VOLTMETER-001 (SUPPORTING); EL-INSTRUMENT-AMMETER-001 (SUPPORTING); EL-INSTRUMENT-OHMMETER-001 (SUPPORTING)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-POWER-RATING-001
@@ -488,7 +732,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-POWER-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-UNIT-KWH-001
@@ -497,7 +741,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-UNIT-JOULE-001 (STRONG); EL-CONCEPT-ENERGY-001 (STRONG)
 **Direct dependents:** EL-ENERGY-KWH-CALC-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-ENERGY-UNIT-CONFUSION-001
 
@@ -507,8 +751,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-UNIT-AMPERE-001 (STRONG); EL-UNIT-VOLT-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR)
-**Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.1: identify and use internationally recognised base and derived (SI) units of measurement [CURRICULUM_REQUIRES]
+**Curriculum mapping(s):** Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR); Identify and use internationally recognised base and derived (SI) units of measurement (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.1: identify and use internationally recognised base and derived (SI) units of measurement (Range: length, area, volume, mass, density, time, temperature, velocity) [CURRICULUM_REQUIRES]
 
 ### EL-UNIT-HERTZ-001
 
@@ -516,7 +760,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Frequency (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-FREQUENCY-001
@@ -525,7 +769,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-CONCEPT-REACTANCE-001; EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001; EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Frequency (REQUIRED_FOR); Characteristics of a sine-wave: Frequency (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-REACTANCE-001
@@ -534,7 +778,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (STRONG); EL-CONCEPT-FREQUENCY-001 (STRONG)
 **Direct dependents:** EL-CONCEPT-IMPEDANCE-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-IMPEDANCE-001
@@ -543,7 +787,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (REQUIRED); EL-CONCEPT-REACTANCE-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-POWER-FACTOR-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Impedance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-UNIT-HENRY-001
@@ -552,7 +796,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Inductance and inductive reactance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-INDUCTANCE-001
@@ -561,7 +805,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Inductance and inductive reactance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-UNIT-FARAD-001
@@ -570,7 +814,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Capacitance and capacitive reactance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-CAPACITANCE-001
@@ -579,7 +823,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Capacitance and capacitive reactance (REQUIRED_FOR); Electronic components and devices: Capacitors (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-POWER-FACTOR-001
@@ -588,7 +832,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-IMPEDANCE-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Power factor (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-ELECTRICAL-EFFICIENCY-001
@@ -597,7 +841,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FP-CONCEPT-EFFICIENCY-001 (REQUIRED); EL-CONCEPT-POWER-001 (REQUIRED)
 **Direct dependents:** EL-CALC-ELECTRICAL-EFFICIENCY-001
-**Curriculum mapping(s):** Describe the main principles of force, work, energy, power and efficiency and their inter-relationships (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the main principles of force, work, energy, power and efficiency and their inter-relationships (REQUIRED_FOR); Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.4: power as the rate at which work is done or energy is transferred, P = W / t [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC3.3: describe the main principles of force, work, energy, power and efficiency and their inter-relationships [CURRICULUM_REQUIRES]
 
 ### EL-CALC-ELECTRICAL-EFFICIENCY-001
@@ -606,7 +850,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-ELECTRICAL-EFFICIENCY-001 (REQUIRED); FM-ARITH-PERCENTAGE-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate values of mechanical energy, power and efficiency (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate values of mechanical energy, power and efficiency (REQUIRED_FOR); Calculate values of mechanical energy, power and efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.4: power as the rate at which work is done or energy is transferred, P = W / t [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC3.4: calculate values of mechanical energy, power and efficiency [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-ELECTRON-THEORY-001
@@ -615,7 +859,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-CURRENT-001 (STRONG)
 **Direct dependents:** EL-CONCEPT-CONDUCTOR-001; EL-CONCEPT-INSULATOR-001
-**Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR); Describe the basic principles of electron theory (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.1: describe the basic principles of electron theory [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001
 
@@ -625,7 +869,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-ELECTRON-THEORY-001 (STRONG)
 **Direct dependents:** EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001
-**Curriculum mapping(s):** Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR); Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.2: identify and distinguish between materials which are good conductors and insulators [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-CONDUCTOR-INSULATOR-CONFUSION-001
 
@@ -635,7 +879,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-ELECTRON-THEORY-001 (STRONG)
 **Direct dependents:** EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001; EL-INSULATOR-BREAKDOWN-001
-**Curriculum mapping(s):** Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR); Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.2: identify and distinguish between materials which are good conductors and insulators [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-CONDUCTOR-INSULATOR-CONFUSION-001
 
@@ -645,7 +889,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-RESISTIVITY-001 (REQUIRED); EL-CONCEPT-RESISTANCE-001 (REQUIRED)
 **Direct dependents:** EL-CONDUCTOR-RESISTANCE-FACTORS-001; EL-RESISTIVITY-LENGTH-EFFECT-001; EL-RESISTIVITY-AREA-EFFECT-001
-**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.3: resistance and resistivity, and R = rho L / A [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.3: describe what is meant by resistance and resistivity in relation to electrical circuits [CURRICULUM_REQUIRES]
 
 ### EL-OHM-RELATIONSHIP-001
@@ -654,7 +898,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-VOLTAGE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED); EL-CONCEPT-RESISTANCE-001 (REQUIRED)
 **Direct dependents:** EL-OHM-PROPORTIONALITY-001; EL-OHM-REARRANGE-001; EL-OHM-SOLVE-V-001; EL-VOLTAGE-DROP-001; EL-OHM-SELECT-RELATIONSHIP-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001; EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001; EL-CIRCUIT-OPEN-CIRCUIT-RESISTANCE-INTERPRETATION-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.4: Ohm's law, V = IR, and voltage/potential difference [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-OHM-UNRELATED-SYMBOLS-001
 
@@ -664,7 +908,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-RELATIONSHIP-001 (REQUIRED); FM-ALG-PROPORTION-DIRECT-001 (REQUIRED); FM-ALG-PROPORTION-INVERSE-001 (REQUIRED)
 **Direct dependents:** EL-SERIES-PREDICT-ADD-RESISTOR-001; EL-PARALLEL-PREDICT-ADD-RESISTOR-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.4: Ohm's law, V = IR, and voltage/potential difference [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-FM-PROPORTION-DIRECTION-CONFUSION-001
 
@@ -674,7 +918,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-RELATIONSHIP-001 (REQUIRED); FM-ALG-TRANSPOSE-MULT-001 (REQUIRED)
 **Direct dependents:** EL-OHM-SOLVE-I-001; EL-OHM-SOLVE-R-001
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-OHM-REARRANGE-ERROR-001
 
@@ -684,7 +928,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-RELATIONSHIP-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED); FM-NUM-SI-PREFIX-CONVERT-001 (STRONG)
 **Direct dependents:** EL-SERIES-VOLTAGE-CALC-001
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-SI-PREFIX-ERROR-001
 
@@ -694,7 +938,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-REARRANGE-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED); FM-NUM-SI-PREFIX-CONVERT-001 (STRONG)
 **Direct dependents:** EL-PARALLEL-CURRENT-CALC-001; EL-CIRCUIT-SUPPLY-CURRENT-SERIES-001; EL-CIRCUIT-SUPPLY-CURRENT-PARALLEL-001
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-OHM-WRONG-OPERATION-001, MIS-EL-SI-PREFIX-ERROR-001
 
@@ -704,7 +948,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-REARRANGE-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED); FM-NUM-SI-PREFIX-CONVERT-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-OHM-WRONG-OPERATION-001, MIS-EL-SI-PREFIX-ERROR-001
 
@@ -714,7 +958,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-SERIES-CURRENT-001; EL-SERIES-RESISTANCE-001; EL-SERIES-VOLTAGE-001; EL-CIRCUIT-SELECT-CONFIGURATION-001; EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001; EL-SERIES-PREDICT-OPEN-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-SERIES-PARALLEL-CONFUSION-001
 
@@ -724,7 +968,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-SERIES-STRUCTURE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (STRONG)
 **Direct dependents:** EL-CIRCUIT-COMPARE-CURRENT-001; EL-SERIES-PREDICT-OPEN-001; EL-SERIES-POWER-CALC-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-SERIES-RESISTANCE-001
@@ -733,7 +977,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-SERIES-STRUCTURE-001 (REQUIRED); EL-CONCEPT-RESISTANCE-001 (REQUIRED)
 **Direct dependents:** EL-SERIES-RESISTANCE-CALC-001; EL-CIRCUIT-COMPARE-RESISTANCE-001; EL-SERIES-PREDICT-ADD-RESISTOR-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-SERIES-RESISTANCE-CALC-001
@@ -742,7 +986,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-RESISTANCE-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** EL-INTERPRET-SERIES-RESULT-001; EL-CIRCUIT-SUPPLY-CURRENT-SERIES-001
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-INTERPRET-SERIES-RESULT-001
@@ -751,7 +995,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-RESISTANCE-CALC-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS]
 
 ### EL-VOLTAGE-DROP-001
@@ -760,7 +1004,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-RELATIONSHIP-001 (STRONG)
 **Direct dependents:** EL-SERIES-VOLTAGE-001; EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001
-**Curriculum mapping(s):** State what is meant by the term voltage drop in relation to electrical circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** State what is meant by the term voltage drop in relation to electrical circuits (REQUIRED_FOR); State what is meant by the term voltage drop in relation to electrical circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.4: Ohm's law, V = IR, and voltage/potential difference [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.7: state what is meant by the term voltage drop in relation to electrical circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-VOLTAGE-DROP-MISUNDERSTANDING-001
 
@@ -770,7 +1014,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-VOLTAGE-DROP-001 (REQUIRED); EL-CIRCUIT-SERIES-STRUCTURE-001 (REQUIRED); FM-ALG-TRANSPOSE-ADD-001 (STRONG)
 **Direct dependents:** EL-SERIES-VOLTAGE-CALC-001; EL-CIRCUIT-COMPARE-VOLTAGE-001; EL-SERIES-DOMINANT-RESISTOR-001; EL-SERIES-VOLTAGE-DIVIDER-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-VOLTAGE-DROP-MISUNDERSTANDING-001
 
@@ -780,7 +1024,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-VOLTAGE-001 (REQUIRED); EL-OHM-SOLVE-V-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-PARALLEL-STRUCTURE-001
@@ -789,7 +1033,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-PARALLEL-VOLTAGE-001; EL-PARALLEL-CURRENT-001; EL-PARALLEL-RESISTANCE-001; EL-CIRCUIT-SELECT-CONFIGURATION-001; EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001; EL-PARALLEL-PREDICT-OPEN-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-SERIES-PARALLEL-CONFUSION-001
 
@@ -799,7 +1043,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-PARALLEL-STRUCTURE-001 (REQUIRED); EL-CONCEPT-VOLTAGE-001 (STRONG)
 **Direct dependents:** EL-CIRCUIT-COMPARE-VOLTAGE-001; EL-PARALLEL-PREDICT-OPEN-001; EL-PARALLEL-POWER-CALC-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-PARALLEL-CURRENT-001
@@ -808,7 +1052,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-PARALLEL-STRUCTURE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED); FM-ALG-TRANSPOSE-ADD-001 (STRONG)
 **Direct dependents:** EL-PARALLEL-CURRENT-CALC-001; EL-CIRCUIT-COMPARE-CURRENT-001; EL-PARALLEL-DOMINANT-RESISTOR-001; EL-PARALLEL-CURRENT-DIVIDER-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-PARALLEL-RESISTANCE-001
@@ -817,7 +1061,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-PARALLEL-STRUCTURE-001 (REQUIRED); EL-CONCEPT-RESISTANCE-001 (REQUIRED); FM-ARITH-RECIPROCAL-001 (REQUIRED)
 **Direct dependents:** EL-PARALLEL-RESISTANCE-CALC-001; EL-CIRCUIT-COMPARE-RESISTANCE-001; EL-PARALLEL-PREDICT-ADD-RESISTOR-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-PARALLEL-RESISTANCE-ADDITION-001
 
@@ -825,9 +1069,9 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Statement (v1, APPROVED):** Calculate the total resistance of resistors connected in parallel.
 
-**Direct prerequisites:** EL-PARALLEL-RESISTANCE-001 (REQUIRED); FM-ARITH-RECIPROCAL-SUM-001 (REQUIRED); FM-ARITH-RECIPROCAL-INVERT-001 (REQUIRED)
+**Direct prerequisites:** EL-PARALLEL-RESISTANCE-001 (REQUIRED); FM-ARITH-RECIPROCAL-SUM-001 (REQUIRED); FM-ARITH-RECIPROCAL-INVERT-001 (REQUIRED); FM-ALG-TRANSPOSE-ADD-001 (REQUIRED)
 **Direct dependents:** EL-INTERPRET-PARALLEL-RESULT-001; EL-CIRCUIT-SUPPLY-CURRENT-PARALLEL-001
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES] | University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS]
 **Misconceptions targeting this assertion:** MIS-EL-PARALLEL-RESISTANCE-ADDITION-001, MIS-EL-RECIPROCAL-FORGOTTEN-INVERT-001
 
@@ -837,7 +1081,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-PARALLEL-RESISTANCE-CALC-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS]
 
 ### EL-PARALLEL-CURRENT-CALC-001
@@ -846,7 +1090,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-PARALLEL-CURRENT-001 (REQUIRED); EL-OHM-SOLVE-I-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-POWER-RELATIONSHIP-001
@@ -855,7 +1099,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-POWER-001 (REQUIRED); EL-CONCEPT-VOLTAGE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED)
 **Direct dependents:** EL-POWER-REARRANGE-001; EL-POWER-SOLVE-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-POWER-REARRANGE-001
@@ -864,7 +1108,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-POWER-RELATIONSHIP-001 (REQUIRED); FM-ALG-TRANSPOSE-MULT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-OHM-REARRANGE-ERROR-001
 
@@ -874,7 +1118,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-POWER-RELATIONSHIP-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** EL-CIRCUIT-POWER-TOTAL-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-POWER-DERIVED-VIR-001
@@ -883,7 +1127,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-POWER-SOLVE-IR-001; EL-SERIES-DOMINANT-RESISTOR-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS]
 
 ### EL-POWER-SOLVE-IR-001
@@ -892,7 +1136,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-POWER-DERIVED-VIR-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** EL-THERMAL-EFFECT-FACTORS-001; EL-SERIES-POWER-CALC-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-POWER-TOTAL-001
@@ -901,7 +1145,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-POWER-SOLVE-001 (REQUIRED)
 **Direct dependents:** EL-CIRCUIT-COMPARE-POWER-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CURRENT-THERMAL-EFFECT-001
@@ -910,7 +1154,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (STRONG); EL-CONCEPT-ENERGY-001 (STRONG)
 **Direct dependents:** EL-PROTECTIVE-DEVICE-PURPOSE-001; EL-FUSE-OPERATION-001; EL-THERMAL-EFFECT-APPLICATION-001; EL-WAVEFORM-RMS-001
-**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (REQUIRED_FOR); Describe the chemical and thermal effects of electric currents (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.8: describe the chemical and thermal effects of electric currents [CURRICULUM_REQUIRES]
 
 ### EL-CURRENT-CHEMICAL-EFFECT-001
@@ -919,7 +1163,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-CURRENT-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (REQUIRED_FOR); Describe the chemical and thermal effects of electric currents (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.8: describe the chemical and thermal effects of electric currents [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-CHARGE-001
@@ -928,7 +1172,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-CURRENT-CHARGE-RELATIONSHIP-001
-**Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR); Describe the basic principles of electron theory (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.1: describe the basic principles of electron theory [CURRICULUM_REQUIRES]
 
 ### EL-UNIT-COULOMB-001
@@ -937,7 +1181,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CURRENT-CHARGE-RELATIONSHIP-001
@@ -946,7 +1190,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-CHARGE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED)
 **Direct dependents:** EL-CURRENT-CHARGE-CALC-001
-**Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR); Describe the basic principles of electron theory (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.1: describe the basic principles of electron theory [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001
 
@@ -956,7 +1200,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CURRENT-CHARGE-RELATIONSHIP-001 (REQUIRED); FM-ALG-TRANSPOSE-MULT-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001
@@ -965,7 +1209,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-CONDUCTOR-001 (STRONG); EL-CONCEPT-INSULATOR-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR); Identify and distinguish between materials which are good conductors and insulators (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.2: identify and distinguish between materials which are good conductors and insulators [CURRICULUM_REQUIRES]
 
 ### EL-CONDUCTOR-RESISTANCE-FACTORS-001
@@ -974,7 +1218,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-RESISTIVITY-RELATIONSHIP-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.3: resistance and resistivity, and R = rho L / A [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.3: describe what is meant by resistance and resistivity in relation to electrical circuits [CURRICULUM_REQUIRES]
 
 ### EL-RESISTIVITY-COMPARE-MATERIALS-001
@@ -983,7 +1227,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-RESISTIVITY-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS)
+**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS); Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.3: resistance and resistivity, and R = rho L / A [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.3: describe what is meant by resistance and resistivity in relation to electrical circuits [CURRICULUM_REQUIRES]
 
 ### EL-RESISTIVITY-LENGTH-EFFECT-001
@@ -992,7 +1236,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-RESISTIVITY-RELATIONSHIP-001 (REQUIRED); FM-ALG-PROPORTION-DIRECT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS)
+**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS); Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.3: resistance and resistivity, and R = rho L / A [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.3: describe what is meant by resistance and resistivity in relation to electrical circuits [CURRICULUM_REQUIRES]
 
 ### EL-RESISTIVITY-AREA-EFFECT-001
@@ -1001,7 +1245,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-RESISTIVITY-RELATIONSHIP-001 (REQUIRED); FM-ALG-PROPORTION-INVERSE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS)
+**Curriculum mapping(s):** Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS); Describe what is meant by resistance and resistivity in relation to electrical circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.3: resistance and resistivity, and R = rho L / A [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.3: describe what is meant by resistance and resistivity in relation to electrical circuits [CURRICULUM_REQUIRES]
 
 ### EL-INSULATOR-BREAKDOWN-001
@@ -1010,7 +1254,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-INSULATOR-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and distinguish between materials which are good conductors and insulators (SUPPORTS)
+**Curriculum mapping(s):** Identify and distinguish between materials which are good conductors and insulators (SUPPORTS); Identify and distinguish between materials which are good conductors and insulators (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.2: identify and distinguish between materials which are good conductors and insulators [CURRICULUM_REQUIRES]
 
 ### EL-OHM-SELECT-RELATIONSHIP-001
@@ -1019,7 +1263,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-RELATIONSHIP-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-SELECT-CONFIGURATION-001
@@ -1028,7 +1272,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-SERIES-STRUCTURE-001 (REQUIRED); EL-CIRCUIT-PARALLEL-STRUCTURE-001 (REQUIRED)
 **Direct dependents:** EL-CIRCUIT-TRACE-CURRENT-PATH-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-EQUIVALENT-RESISTANCE-DEFINITION-001
@@ -1037,7 +1281,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001
@@ -1046,7 +1290,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-SERIES-STRUCTURE-001 (REQUIRED); EL-CIRCUIT-PARALLEL-STRUCTURE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-TRACE-CURRENT-PATH-001
@@ -1055,7 +1299,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-SELECT-CONFIGURATION-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-COMPARE-RESISTANCE-001
@@ -1064,7 +1308,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-RESISTANCE-001 (REQUIRED); EL-PARALLEL-RESISTANCE-001 (REQUIRED)
 **Direct dependents:** EL-CIRCUIT-COMPARE-POWER-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-COMPARE-CURRENT-001
@@ -1073,7 +1317,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-CURRENT-001 (REQUIRED); EL-PARALLEL-CURRENT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-COMPARE-VOLTAGE-001
@@ -1082,7 +1326,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-VOLTAGE-001 (REQUIRED); EL-PARALLEL-VOLTAGE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-COMPARE-POWER-001
@@ -1091,7 +1335,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-COMPARE-RESISTANCE-001 (STRONG); EL-CIRCUIT-POWER-TOTAL-001 (REQUIRED)
 **Direct dependents:** EL-CIRCUIT-COMPARE-ENERGY-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS); Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-COMPARE-ENERGY-001
@@ -1100,7 +1344,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-COMPARE-POWER-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS); Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-SERIES-DOMINANT-RESISTOR-001
@@ -1109,7 +1353,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-VOLTAGE-001 (REQUIRED); EL-POWER-DERIVED-VIR-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-PARALLEL-DOMINANT-RESISTOR-001
@@ -1118,7 +1362,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-PARALLEL-CURRENT-001 (REQUIRED); EL-POWER-DERIVED-V2R-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-SERIES-PREDICT-OPEN-001
@@ -1127,7 +1371,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-SERIES-STRUCTURE-001 (REQUIRED); EL-SERIES-CURRENT-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-PARALLEL-PREDICT-OPEN-001
@@ -1136,7 +1380,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-PARALLEL-STRUCTURE-001 (REQUIRED); EL-PARALLEL-VOLTAGE-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-SERIES-PREDICT-ADD-RESISTOR-001
@@ -1145,7 +1389,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-RESISTANCE-001 (REQUIRED); EL-OHM-PROPORTIONALITY-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-PARALLEL-PREDICT-ADD-RESISTOR-001
@@ -1154,7 +1398,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-PARALLEL-RESISTANCE-001 (REQUIRED); EL-OHM-PROPORTIONALITY-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-RECOGNISE-SHORT-CIRCUIT-001
@@ -1163,7 +1407,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (STRONG)
 **Direct dependents:** EL-CIRCUIT-PREDICT-SHORT-EFFECT-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-RECOGNISE-OPEN-CIRCUIT-001
@@ -1172,7 +1416,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-CIRCUIT-OPEN-CIRCUIT-RESISTANCE-INTERPRETATION-001
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-PREDICT-SHORT-EFFECT-001
@@ -1181,7 +1425,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-RECOGNISE-SHORT-CIRCUIT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (SUPPORTS)
+**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (SUPPORTS); Describe the chemical and thermal effects of electric currents (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.8: describe the chemical and thermal effects of electric currents [CURRICULUM_REQUIRES]
 
 ### EL-PROTECTIVE-DEVICE-PURPOSE-001
@@ -1190,7 +1434,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CURRENT-THERMAL-EFFECT-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (REQUIRED_FOR); Describe the chemical and thermal effects of electric currents (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.8: describe the chemical and thermal effects of electric currents [CURRICULUM_REQUIRES]
 
 ### EL-FUSE-OPERATION-001
@@ -1199,7 +1443,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CURRENT-THERMAL-EFFECT-001 (REQUIRED)
 **Direct dependents:** EL-CIRCUIT-BREAKER-VS-FUSE-001
-**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (REQUIRED_FOR); Describe the chemical and thermal effects of electric currents (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.8: describe the chemical and thermal effects of electric currents [CURRICULUM_REQUIRES]
 
 ### EL-THERMAL-EFFECT-APPLICATION-001
@@ -1208,7 +1452,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CURRENT-THERMAL-EFFECT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (SUPPORTS)
+**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (SUPPORTS); Describe the chemical and thermal effects of electric currents (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.8: describe the chemical and thermal effects of electric currents [CURRICULUM_REQUIRES]
 
 ### EL-THERMAL-EFFECT-FACTORS-001
@@ -1217,7 +1461,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-POWER-SOLVE-IR-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (SUPPORTS)
+**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (SUPPORTS); Describe the chemical and thermal effects of electric currents (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.8: describe the chemical and thermal effects of electric currents [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-BREAKER-VS-FUSE-001
@@ -1226,7 +1470,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-FUSE-OPERATION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (SUPPORTS)
+**Curriculum mapping(s):** Describe the chemical and thermal effects of electric currents (SUPPORTS); Describe the chemical and thermal effects of electric currents (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.8: describe the chemical and thermal effects of electric currents [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-SELECT-001
@@ -1235,7 +1479,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-INSTRUMENT-VOLTMETER-001 (REQUIRED); EL-INSTRUMENT-AMMETER-001 (REQUIRED); EL-INSTRUMENT-OHMMETER-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001
 
@@ -1245,7 +1489,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-INSTRUMENT-VOLTMETER-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS); Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001
@@ -1254,7 +1498,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-INSTRUMENT-AMMETER-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS); Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-CONTINUITY-TEST-001
@@ -1263,7 +1507,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-INSTRUMENT-OHMMETER-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS); Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-SERIES-VOLTAGE-DIVIDER-001
@@ -1272,7 +1516,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-VOLTAGE-001 (REQUIRED); FM-ALG-PROPORTION-DIRECT-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-PARALLEL-CURRENT-DIVIDER-001
@@ -1281,7 +1525,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-PARALLEL-CURRENT-001 (REQUIRED); FM-ALG-PROPORTION-INVERSE-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-SUPPLY-CURRENT-SERIES-001
@@ -1290,7 +1534,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-SOLVE-I-001 (REQUIRED); EL-SERIES-RESISTANCE-CALC-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-SUPPLY-CURRENT-PARALLEL-001
@@ -1299,7 +1543,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-OHM-SOLVE-I-001 (REQUIRED); EL-PARALLEL-RESISTANCE-CALC-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Calculate the values of current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-POWER-DERIVED-V2R-001
@@ -1308,7 +1552,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-PARALLEL-DOMINANT-RESISTOR-001; EL-POWER-SOLVE-V2R-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS]
 
 ### EL-POWER-SOLVE-V2R-001
@@ -1317,7 +1561,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-POWER-DERIVED-V2R-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** EL-PARALLEL-POWER-CALC-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-SERIES-POWER-CALC-001
@@ -1326,7 +1570,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-POWER-SOLVE-IR-001 (REQUIRED); EL-SERIES-CURRENT-001 (REQUIRED)
 **Direct dependents:** EL-SERIES-POWER-DISTRIBUTION-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-PARALLEL-POWER-CALC-001
@@ -1335,7 +1579,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-POWER-SOLVE-V2R-001 (REQUIRED); EL-PARALLEL-VOLTAGE-001 (REQUIRED)
 **Direct dependents:** EL-PARALLEL-POWER-DISTRIBUTION-001
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR); Calculate values of power in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-SERIES-POWER-DISTRIBUTION-001
@@ -1344,7 +1588,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-SERIES-POWER-CALC-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS); Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-PARALLEL-POWER-DISTRIBUTION-001
@@ -1353,7 +1597,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-PARALLEL-POWER-CALC-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS); Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-ENERGY-POWER-TIME-RELATIONSHIP-001
@@ -1362,7 +1606,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-POWER-001 (REQUIRED); EL-CONCEPT-ENERGY-001 (REQUIRED)
 **Direct dependents:** EL-ENERGY-REARRANGE-001; EL-ENERGY-CALC-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-ENERGY-REARRANGE-001
@@ -1371,7 +1615,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-ENERGY-POWER-TIME-RELATIONSHIP-001 (REQUIRED); FM-ALG-TRANSPOSE-MULT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-ENERGY-CALC-001
@@ -1380,7 +1624,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-ENERGY-POWER-TIME-RELATIONSHIP-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** EL-ENERGY-KWH-CALC-001
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and apply appropriate mathematical principles which are relevant to electrical work tasks (EXEMPLIFIES)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-ENERGY-KWH-CALC-001
@@ -1389,7 +1633,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-ENERGY-CALC-001 (REQUIRED); EL-UNIT-KWH-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (SUPPORTS)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-MAGNETISM-001
@@ -1398,7 +1642,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001; EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001
-**Curriculum mapping(s):** Describe the effects of magnetism in terms of attraction and repulsion (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the effects of magnetism in terms of attraction and repulsion (REQUIRED_FOR); Describe the effects of magnetism in terms of attraction and repulsion (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.11: magnetic attraction/repulsion; force on a current-carrying conductor in a magnetic field (11.4) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.1: describe the effects of magnetism in terms of attraction and repulsion [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-MAGNETIC-FLUX-001
@@ -1407,7 +1651,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001; EL-CONCEPT-EMF-001; EL-CONCEPT-AC-GENERATOR-001
-**Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR)
+**Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR); State the difference between magnetic flux and flux density (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.2: state the difference between magnetic flux and flux density [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001
@@ -1416,7 +1660,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR)
+**Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR); State the difference between magnetic flux and flux density (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.2: state the difference between magnetic flux and flux density [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001
@@ -1425,7 +1669,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-CURRENT-001 (REQUIRED); EL-CONCEPT-MAGNETISM-001 (STRONG)
 **Direct dependents:** EL-CONCEPT-FORCE-ON-CONDUCTOR-001; EL-CONCEPT-ELECTROMAGNETISM-001; EL-INSTRUMENT-CLAMP-METER-001
-**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.12: the magnetic field produced by a current-carrying conductor; electromagnetism [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-FORCE-ON-CONDUCTOR-001
@@ -1434,7 +1678,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001 (REQUIRED); FP-CONCEPT-FORCE-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-ELECTROMAGNETISM-001; EL-CONCEPT-MOTOR-PRINCIPLE-001
-**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.11: magnetic attraction/repulsion; force on a current-carrying conductor in a magnetic field (11.4) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-ELECTROMAGNETISM-001
@@ -1443,7 +1687,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001 (REQUIRED); EL-CONCEPT-FORCE-ON-CONDUCTOR-001 (REQUIRED)
 **Direct dependents:** EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001
-**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.12: the magnetic field produced by a current-carrying conductor; electromagnetism [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-EMF-001
@@ -1452,7 +1696,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (STRONG)
 **Direct dependents:** EL-CONCEPT-TERMINAL-VOLTAGE-001; EL-CONCEPT-AC-GENERATOR-001
-**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-EMF-VOLTAGE-CONFUSION-001
 
@@ -1462,7 +1706,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-EMF-001 (REQUIRED); EL-CONCEPT-VOLTAGE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (SUPPORTS)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (SUPPORTS); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-EMF-VOLTAGE-CONFUSION-001
 
@@ -1472,7 +1716,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-EMF-001 (REQUIRED); EL-CONCEPT-MAGNETIC-FLUX-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-SINE-WAVE-001; EL-MOTOR-GENERATOR-COMPARE-001
-**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-SINE-WAVE-001
@@ -1481,7 +1725,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-AC-GENERATOR-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-AC-DC-DISTINCTION-001; EL-WAVEFORM-PERIODIC-TIME-001; EL-WAVEFORM-AMPLITUDE-001; EL-WAVEFORM-RMS-001; EL-WAVEFORM-AVERAGE-VALUE-001
-**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-AC-DC-CONFUSION-001
 
@@ -1490,8 +1734,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Direct current (D.C.) flows in one direction with a constant value, while alternating current (A.C.) periodically reverses direction and varies in value, typically following a sine wave.
 
 **Direct prerequisites:** EL-CONCEPT-SINE-WAVE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED)
-**Direct dependents:** EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001
-**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR)
+**Direct dependents:** EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001; EL-COMPONENT-RECTIFIER-001; EL-COMPONENT-INVERTER-001
+**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-AC-DC-CONFUSION-001
 
@@ -1501,7 +1745,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-AC-DC-DISTINCTION-001 (REQUIRED); EL-CONCEPT-FREQUENCY-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001
-**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (SUPPORTS)
+**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (SUPPORTS); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES]
 
 ### EL-WAVEFORM-PERIODIC-TIME-001
@@ -1510,7 +1754,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-SINE-WAVE-001 (STRONG)
 **Direct dependents:** EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001; EL-INSTRUMENT-OSCILLOSCOPE-001
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Characteristics of a sine-wave: Periodic time (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-WAVEFORM-AMPLITUDE-001
@@ -1519,7 +1763,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-SINE-WAVE-001 (STRONG)
 **Direct dependents:** EL-WAVEFORM-PEAK-TO-PEAK-001; EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001; EL-INSTRUMENT-OSCILLOSCOPE-001
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Characteristics of a sine-wave: Amplitude (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-WAVEFORM-PEAK-TO-PEAK-001
@@ -1528,7 +1772,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-WAVEFORM-AMPLITUDE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Characteristics of a sine-wave: Peak to peak value (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-WAVEFORM-RMS-001
@@ -1537,7 +1781,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-SINE-WAVE-001 (REQUIRED); EL-CURRENT-THERMAL-EFFECT-001 (STRONG)
 **Direct dependents:** EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Characteristics of a sine-wave: Root Mean Square (RMS) value (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-PEAK-RMS-CONFUSION-001
 
@@ -1547,7 +1791,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-SINE-WAVE-001 (REQUIRED)
 **Direct dependents:** EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Characteristics of a sine-wave: Average value (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001
@@ -1556,7 +1800,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-WAVEFORM-AVERAGE-VALUE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (SUPPORTS)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (SUPPORTS); Identify the characteristics of sine-waves (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001
@@ -1565,7 +1809,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-WAVEFORM-RMS-001 (REQUIRED); EL-WAVEFORM-AMPLITUDE-001 (REQUIRED)
 **Direct dependents:** EL-WAVEFORM-RMS-CALC-001; EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-WAVEFORM-RMS-CALC-001
@@ -1574,7 +1818,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001
@@ -1583,7 +1827,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001 (REQUIRED); EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (SUPPORTS)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (SUPPORTS); Identify the characteristics of sine-waves (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-PEAK-RMS-CONFUSION-001
 
@@ -1593,7 +1837,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-FREQUENCY-001 (REQUIRED); EL-WAVEFORM-PERIODIC-TIME-001 (REQUIRED); FM-ARITH-RECIPROCAL-001 (REQUIRED)
 **Direct dependents:** EL-WAVEFORM-FREQUENCY-CALC-001
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Characteristics of a sine-wave: Frequency (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-WAVEFORM-FREQUENCY-CALC-001
@@ -1602,7 +1846,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
 
 ### EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001
@@ -1611,7 +1855,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-ELECTROMAGNETISM-001 (REQUIRED); EL-CONCEPT-MAGNETISM-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (SUPPORTS)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (SUPPORTS); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.12: the magnetic field produced by a current-carrying conductor; electromagnetism [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-CLAMP-METER-001
@@ -1620,7 +1864,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
+**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS); Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.12: the magnetic field produced by a current-carrying conductor; electromagnetism [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-MOTOR-PRINCIPLE-001
@@ -1629,7 +1873,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-FORCE-ON-CONDUCTOR-001 (REQUIRED)
 **Direct dependents:** EL-MOTOR-GENERATOR-COMPARE-001
-**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (SUPPORTS)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (SUPPORTS); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.11: magnetic attraction/repulsion; force on a current-carrying conductor in a magnetic field (11.4) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 
 ### EL-MOTOR-GENERATOR-COMPARE-001
@@ -1638,7 +1882,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-MOTOR-PRINCIPLE-001 (REQUIRED); EL-CONCEPT-AC-GENERATOR-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (SUPPORTS)
+**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (SUPPORTS); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-OSCILLOSCOPE-001
@@ -1647,7 +1891,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-WAVEFORM-AMPLITUDE-001 (STRONG); EL-WAVEFORM-PERIODIC-TIME-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (SUPPORTS)
+**Curriculum mapping(s):** Identify the characteristics of sine-waves (SUPPORTS); Identify the characteristics of sine-waves (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001
@@ -1656,7 +1900,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-AC-DC-DISTINCTION-001 (REQUIRED); EL-CONCEPT-REACTANCE-001 (REQUIRED); EL-OHM-RELATIONSHIP-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (SUPPORTS)
+**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (SUPPORTS); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001
@@ -1665,7 +1909,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-VOLTAGE-DROP-001 (REQUIRED); EL-OHM-RELATIONSHIP-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** State what is meant by the term voltage drop in relation to electrical circuits (SUPPORTS)
+**Curriculum mapping(s):** State what is meant by the term voltage drop in relation to electrical circuits (SUPPORTS); State what is meant by the term voltage drop in relation to electrical circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.4: Ohm's law, V = IR, and voltage/potential difference [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.7: state what is meant by the term voltage drop in relation to electrical circuits [CURRICULUM_REQUIRES]
 
 ### EL-CIRCUIT-OPEN-CIRCUIT-RESISTANCE-INTERPRETATION-001
@@ -1674,8 +1918,162 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CIRCUIT-RECOGNISE-OPEN-CIRCUIT-001 (REQUIRED); EL-OHM-RELATIONSHIP-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.4: Ohm's law, V = IR, and voltage/potential difference [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-RECTIFIER-001
+
+**Statement (v1, APPROVED):** A rectifier circuit uses one or more diodes to convert an alternating-current supply into a direct-current (or pulsating direct-current) output.
+
+**Direct prerequisites:** EL-CONCEPT-AC-DC-DISTINCTION-001 (STRONG)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Rectifiers (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A rectifier circuit uses one or more diodes to convert an alternating-current input into a direct-current (or pulsating direct-current) output [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-DIODE-001
+
+**Statement (v1, APPROVED):** A diode is a semiconductor device formed at a p-n junction that conducts current easily in one direction (forward bias, junction narrows) and blocks current in the other direction (reverse bias, junction widens).
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** EL-COMPONENT-ZENER-DIODE-001; EL-COMPONENT-LED-001; EL-COMPONENT-PHOTODIODE-001; EL-APPLICATION-TELEPHONE-001
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Diodes (REQUIRED_FOR)
+**Provenance:** University Physics Volume 3 — A p-n junction diode's depletion layer narrows under forward bias (allowing current to flow easily) and widens under reverse bias (significantly reducing current flow), giving the diode its one-way-conduction behaviour [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+**Misconceptions targeting this assertion:** MIS-EL-DIODE-DIRECTION-CONFUSION-001
+
+### EL-COMPONENT-ZENER-DIODE-001
+
+**Statement (v1, APPROVED):** A Zener diode is a special-purpose diode designed to be operated in reverse breakdown at a well-defined breakdown voltage without damage, so it maintains a substantially constant voltage across itself and can be used to regulate voltage.
+
+**Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Zener (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A Zener diode is a special-purpose diode designed to operate in reverse breakdown at a well-defined breakdown voltage without being damaged, so it maintains a substantially constant voltage across itself and can be used to regulate voltage [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-LED-001
+
+**Statement (v1, APPROVED):** A light-emitting diode (LED) produces light by electroluminescence: when forward-biased, recombination of electrons and holes at the junction releases energy as photons.
+
+**Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED)
+**Direct dependents:** EL-APPLICATION-SECURITY-ALARM-001; EL-APPLICATION-TELEPHONE-001
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: LED (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A light-emitting diode (LED) produces light by electroluminescence when forward-biased (recombination of electrons and holes in the junction yields photons); a photodiode is optimised to generate a photocurrent in response to incident light [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-PHOTODIODE-001
+
+**Statement (v1, APPROVED):** A photodiode is a diode optimised to generate a photocurrent in response to incident light falling on its junction, allowing it to detect or measure light.
+
+**Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED)
+**Direct dependents:** EL-APPLICATION-SECURITY-ALARM-001
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Photo (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A light-emitting diode (LED) produces light by electroluminescence when forward-biased (recombination of electrons and holes in the junction yields photons); a photodiode is optimised to generate a photocurrent in response to incident light [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-THERMISTOR-001
+
+**Statement (v1, APPROVED):** An NTC (negative-temperature-coefficient) thermistor's electrical resistance decreases as its temperature increases, allowing it to be used as a temperature-sensing component.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** EL-APPLICATION-HEATING-BOILER-CONTROL-001
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Thermistors (REQUIRED_FOR)
+**Provenance:** NTC Thermistors Application Note — An NTC (negative temperature coefficient) thermistor's electrical resistance decreases as its temperature increases; applications include temperature sensing/measurement, inrush-current limiting and temperature compensation [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-DIAC-001
+
+**Statement (v1, APPROVED):** A DIAC is a bidirectional thyristor that remains a high-impedance, non-conducting device until the voltage across it exceeds its breakover voltage, at which point it switches into conduction in either direction; it is almost never used alone, but to trigger other thyristor devices.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Diacs (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A DIAC is a bidirectional thyristor formed from two Shockley diodes joined in antiparallel: it remains a high-impedance non-conducting device until the voltage across it exceeds its breakover voltage, at which point it switches into conduction; DIACs are almost never used alone, but in conjunction with other thyristor devices [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-THYRISTOR-SCR-001
+
+**Statement (v1, APPROVED):** A silicon-controlled rectifier (SCR) conducts current in one direction only once a sufficient gate current triggers it into conduction, and continues conducting until the current through it falls below the device's holding current.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** EL-COMPONENT-TRIAC-001; EL-APPLICATION-MOTOR-CONTROL-001
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Thyristors (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A silicon-controlled rectifier (SCR) conducts current in one direction once a sufficient gate current triggers it on, and continues conducting until the anode-to-cathode current falls below the device's holding current; SCRs are more commonly seen in circuits like motor drives [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-TRIAC-001
+
+**Statement (v1, APPROVED):** A TRIAC acts much like two silicon-controlled rectifiers connected back-to-back, allowing it to conduct current in both directions once triggered by gate current, making it suitable for controlling alternating current.
+
+**Direct prerequisites:** EL-COMPONENT-THYRISTOR-SCR-001 (STRONG)
+**Direct dependents:** EL-APPLICATION-DIMMER-SWITCH-001
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Triacs (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A TRIAC acts much like two SCRs connected back-to-back for bidirectional (AC) operation, triggered by gate current from the main-terminal-2 side; TRIACs are usually seen in simple, low-power applications like household dimmer switches [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-TRANSISTOR-001
+
+**Statement (v1, APPROVED):** A bipolar junction transistor is a three-terminal semiconductor device whose collector-emitter current is controlled by a much smaller base current, allowing it to act as an electrically controlled switch (fully off with no base current, fully on/saturated with sufficient base current) or as an amplifier.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** EL-APPLICATION-WIRELESS-CONTROL-001
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Transistors (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A bipolar junction transistor is a three-terminal semiconductor device whose collector-emitter current is controlled by a much smaller base current, allowing it to act as an electrically controlled switch or amplifier [DEFINES] | Electric Circuits III - Semiconductors (Kuphaldt) — With no base current, a bipolar junction transistor behaves like an open switch and blocks collector current; sufficient base current drives it into saturation, behaving like a closed switch [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-INVERTER-001
+
+**Statement (v1, APPROVED):** An inverter converts a direct-current supply into an alternating-current output, by switching the DC input in a pre-determined sequence to generate the AC voltage or current waveform.
+
+**Direct prerequisites:** EL-CONCEPT-AC-DC-DISTINCTION-001 (STRONG)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Invertors (REQUIRED_FOR)
+**Provenance:** ELG4139: DC to AC Converters (course material) — An inverter converts DC to AC power by switching the DC input voltage (or current) in a pre-determined sequence so as to generate an AC voltage (or current) output [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-APPLICATION-DIMMER-SWITCH-001
+
+**Statement (v1, APPROVED):** A household dimmer switch typically uses a TRIAC to control the average power delivered to a lamp, by switching on at a controlled phase angle within each AC half-cycle.
+
+**Direct prerequisites:** EL-COMPONENT-TRIAC-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Dimmer switches (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A TRIAC acts much like two SCRs connected back-to-back for bidirectional (AC) operation, triggered by gate current from the main-terminal-2 side; TRIACs are usually seen in simple, low-power applications like household dimmer switches [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
+
+### EL-APPLICATION-MOTOR-CONTROL-001
+
+**Statement (v1, APPROVED):** Silicon-controlled rectifiers are commonly used in motor-control circuits to control the electrical power delivered to a motor.
+
+**Direct prerequisites:** EL-COMPONENT-THYRISTOR-SCR-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Motor control (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A silicon-controlled rectifier (SCR) conducts current in one direction once a sufficient gate current triggers it on, and continues conducting until the anode-to-cathode current falls below the device's holding current; SCRs are more commonly seen in circuits like motor drives [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
+
+### EL-APPLICATION-HEATING-BOILER-CONTROL-001
+
+**Statement (v1, APPROVED):** Thermistors are used in heating and boiler control systems to sense temperature and provide a feedback signal the control circuit uses to regulate heating.
+
+**Direct prerequisites:** EL-COMPONENT-THERMISTOR-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Heating/boiler controls (REQUIRED_FOR)
+**Provenance:** NTC Thermistors Application Note — An NTC (negative temperature coefficient) thermistor's electrical resistance decreases as its temperature increases; applications include temperature sensing/measurement, inrush-current limiting and temperature compensation [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
+
+### EL-APPLICATION-SECURITY-ALARM-001
+
+**Statement (v1, APPROVED):** Security alarm systems commonly use LEDs to provide visual status indication and photodiodes to detect a light beam being broken by an intruder.
+
+**Direct prerequisites:** EL-COMPONENT-LED-001 (REQUIRED); EL-COMPONENT-PHOTODIODE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Security alarms (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A light-emitting diode (LED) produces light by electroluminescence when forward-biased (recombination of electrons and holes in the junction yields photons); a photodiode is optimised to generate a photocurrent in response to incident light [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
+
+### EL-APPLICATION-TELEPHONE-001
+
+**Statement (v1, APPROVED):** Telephone and communication equipment commonly uses diodes to protect circuits against incorrect supply polarity, and LEDs to provide visual line/status indication.
+
+**Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED); EL-COMPONENT-LED-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Telephones (REQUIRED_FOR)
+**Provenance:** University Physics Volume 3 — A p-n junction diode's depletion layer narrows under forward bias (allowing current to flow easily) and widens under reverse bias (significantly reducing current flow), giving the diode its one-way-conduction behaviour [SUPPORTS] | Electric Circuits III - Semiconductors (Kuphaldt) — A light-emitting diode (LED) produces light by electroluminescence when forward-biased (recombination of electrons and holes in the junction yields photons); a photodiode is optimised to generate a photocurrent in response to incident light [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
+
+### EL-APPLICATION-WIRELESS-CONTROL-001
+
+**Statement (v1, APPROVED):** Wireless control systems (for example remote-controlled switches) commonly use transistors to switch or amplify the signal received from a remote transmitter.
+
+**Direct prerequisites:** EL-COMPONENT-TRANSISTOR-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Wireless control systems (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — With no base current, a bipolar junction transistor behaves like an open switch and blocks collector current; sufficient base current drives it into saturation, behaving like a closed switch [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
 
 ## Misconceptions
 
@@ -1798,4 +2196,10 @@ Confuses EMF (the source's own electrical energy per unit charge) with terminal 
 Confuses the joule and the kilowatt-hour as interchangeable without converting between them, or is unaware that they measure the same quantity (energy) at different scales.
 
 **Conflicts with:** EL-UNIT-JOULE-001, EL-UNIT-KWH-001
+
+### MIS-EL-DIODE-DIRECTION-CONFUSION-001
+
+Confuses which direction a diode allows current to flow (forward bias) versus blocks it (reverse bias), or assumes a diode conducts equally in both directions like a plain resistor.
+
+**Conflicts with:** EL-COMPONENT-DIODE-001
 

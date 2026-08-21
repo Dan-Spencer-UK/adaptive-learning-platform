@@ -120,6 +120,16 @@ const SRC_BIPM = "src-bipm-si-brochure";
 const SRC_DFE_MATHS = "src-dfe-gcse-maths";
 const SRC_OPENSTAX_UP1 = "src-openstax-university-physics-v1";
 const SRC_OPENSTAX_UP2 = "src-openstax-university-physics-v2";
+// CC-09B: new sources, researched to satisfy ADR-0002/task's non-negotiable
+// provenance rule for LO6 (electronic components) and the LO1 indices/
+// trigonometry/statistics and LO3 lever gaps CC-09A's structural-only
+// correction left as backlog. Every new assertion below cites one of
+// these (or an existing source) directly -- none relies on model
+// knowledge alone.
+const SRC_OPENSTAX_UP3 = "src-openstax-university-physics-v3";
+const SRC_KUPHALDT_SEMICONDUCTORS = "src-kuphaldt-electric-circuits-iii-semiconductors";
+const SRC_VISHAY_NTC = "src-vishay-ntc-thermistor-appnote";
+const SRC_UOTTAWA_INVERTERS = "src-uottawa-elg4139-dc-ac-converters";
 
 /** Exported so ./unit202-assessment-specification.ts cites the same governed source-version identity rather than hand-copying the string. */
 export const SV_CG = "sv-cg-2365-02-v1-12";
@@ -127,6 +137,10 @@ const SV_BIPM = "sv-bipm-si-9th-edition";
 const SV_DFE_MATHS = "sv-dfe-gcse-maths";
 const SV_OPENSTAX_UP1 = "sv-openstax-up1";
 const SV_OPENSTAX_UP2 = "sv-openstax-up2";
+const SV_OPENSTAX_UP3 = "sv-openstax-up3";
+const SV_KUPHALDT_SEMICONDUCTORS = "sv-kuphaldt-electric-circuits-iii-semiconductors";
+const SV_VISHAY_NTC = "sv-vishay-ntc-thermistor-appnote";
+const SV_UOTTAWA_INVERTERS = "sv-uottawa-elg4139-dc-ac-converters";
 
 // ---------------------------------------------------------------------
 // Curriculum
@@ -473,12 +487,15 @@ interface BuiltR2Nodes {
   acNodeKeyByNumber: Map<string, string>;
   /** LO number (1..6) -> CV_KEY_R2 node key, consumed by ./unit202-assessment-specification.ts. */
   loNodeKeyByNumber: Map<number, string>;
+  /** CC-09B: `${AC number}:${range item suffix}` (e.g. "1.1:ALGEBRA") -> CV_KEY_R2 RANGE_ITEM node key, so new assertions below map to the exact governed Range-item node mechanically rather than hand-deriving its key string. */
+  rangeItemNodeKeyByAcAndSuffix: Map<string, string>;
 }
 
 function buildUnit202R2Nodes(structure: readonly LoDef[]): BuiltR2Nodes {
   const nodes: KnowledgeGraphManifest["curriculumNodes"] = [];
   const acNodeKeyByNumber = new Map<string, string>();
   const loNodeKeyByNumber = new Map<number, string>();
+  const rangeItemNodeKeyByAcAndSuffix = new Map<string, string>();
 
   structure.forEach((lo, loIndex) => {
     const loKey = `node-202r2-lo${lo.number}`;
@@ -510,8 +527,10 @@ function buildUnit202R2Nodes(structure: readonly LoDef[]): BuiltR2Nodes {
       for (const group of ac.range ?? []) {
         for (const item of group.items) {
           rangeSequence += 1;
+          const rangeItemKey = `${acKey}-range-${item.suffix.toLowerCase()}`;
+          rangeItemNodeKeyByAcAndSuffix.set(`${ac.number}:${item.suffix}`, rangeItemKey);
           nodes.push({
-            key: `${acKey}-range-${item.suffix.toLowerCase()}`,
+            key: rangeItemKey,
             curriculumVersionKey: CV_KEY_R2,
             parentKey: acKey,
             nodeType: "RANGE_ITEM",
@@ -524,7 +543,7 @@ function buildUnit202R2Nodes(structure: readonly LoDef[]): BuiltR2Nodes {
     });
   });
 
-  return { nodes, acNodeKeyByNumber, loNodeKeyByNumber };
+  return { nodes, acNodeKeyByNumber, loNodeKeyByNumber, rangeItemNodeKeyByAcAndSuffix };
 }
 
 const unit202R2 = buildUnit202R2Nodes(UNIT202_R2_STRUCTURE);
@@ -533,6 +552,29 @@ const unit202R2 = buildUnit202R2Nodes(UNIT202_R2_STRUCTURE);
 export const UNIT202_R2_AC_NODE_KEY_BY_NUMBER = unit202R2.acNodeKeyByNumber;
 /** Every CV_KEY_R2 Learning Outcome node's key, keyed by LO number -- exported so ./unit202-assessment-specification.ts never hand-copies a node key string. */
 export const UNIT202_R2_LO_NODE_KEY_BY_NUMBER = unit202R2.loNodeKeyByNumber;
+
+/**
+ * CC-09B: `${AC number}:${range-item suffix}` -> CV_KEY_R2 RANGE_ITEM node
+ * key (e.g. `rangeNode("1.1", "ALGEBRA")`). Throws loudly on an unknown
+ * pair rather than silently mapping a new assertion to nothing -- a typo
+ * here must fail the manifest build, never fall through to "uncovered".
+ */
+function rangeNode(acNumber: string, suffix: string): string {
+  const key = unit202R2.rangeItemNodeKeyByAcAndSuffix.get(`${acNumber}:${suffix}`);
+  if (!key) {
+    throw new Error(`rangeNode: no CV_KEY_R2 RANGE_ITEM node for AC ${acNumber} range item '${suffix}'`);
+  }
+  return key;
+}
+
+/** AC number -> CV_KEY_R2 ASSESSMENT_CRITERION node key. Throws loudly on an unknown AC number, for the same reason as rangeNode() above. */
+function acNode(acNumber: string): string {
+  const key = unit202R2.acNodeKeyByNumber.get(acNumber);
+  if (!key) {
+    throw new Error(`acNode: no CV_KEY_R2 ASSESSMENT_CRITERION node for AC ${acNumber}`);
+  }
+  return key;
+}
 
 const OLD_TO_R2_AC_NODE = new Map<string, string>(
   [...OLD_AC_NODE_TO_CODE.entries()].map(([oldKey, acNumber]) => {
@@ -797,6 +839,172 @@ const locators: LocatorDef[] = [
     section: "Unit 202, LO5", subsection: "AC5.5",
     locatorSummary: "AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude)",
   },
+  {
+    key: "loc-cg-ac6.1", sourceVersionKey: SV_CG, page: "29",
+    section: "Unit 202, LO6", subsection: "AC6.1",
+    locatorSummary: "AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems)",
+  },
+  {
+    key: "loc-cg-ac6.2", sourceVersionKey: SV_CG, page: "29",
+    section: "Unit 202, LO6", subsection: "AC6.2",
+    locatorSummary: "AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors)",
+  },
+  {
+    key: "loc-cg-ac3.1", sourceVersionKey: SV_CG, page: "27",
+    section: "Unit 202, LO3", subsection: "AC3.1",
+    locatorSummary: "AC3.1: specify what is meant by mass and weight",
+  },
+  {
+    key: "loc-cg-ac3.2", sourceVersionKey: SV_CG, page: "27",
+    section: "Unit 202, LO3", subsection: "AC3.2",
+    locatorSummary: "AC3.2: explain the principles of basic mechanics as they apply to levers, gears and pulleys (Range: levers class I, class II, class III)",
+  },
+  {
+    key: "loc-cg-ac1.1", sourceVersionKey: SV_CG, page: "25",
+    section: "Unit 202, LO1", subsection: "AC1.1",
+    locatorSummary: "AC1.1: identify and apply appropriate mathematical principles which are relevant to electrical work tasks (Range: fractions and percentages, algebra, indices, transposition, triangles and trigonometry, statistics)",
+  },
+  {
+    key: "loc-cg-ac2.1", sourceVersionKey: SV_CG, page: "26",
+    section: "Unit 202, LO2", subsection: "AC2.1",
+    locatorSummary: "AC2.1: identify and use internationally recognised base and derived (SI) units of measurement (Range: length, area, volume, mass, density, time, temperature, velocity)",
+  },
+  {
+    key: "loc-cg-ac2.3-power-energy", sourceVersionKey: SV_CG, page: "26",
+    section: "Unit 202, LO2", subsection: "AC2.3",
+    locatorSummary: "AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities (Range: electrical quantities (measurement) -- resistance, power, current, voltage, energy)",
+  },
+
+  // -- CC-09B: BIPM SI Brochure, generic (non-electrical) SI quantities
+  // required by LO2 AC2.1's own Range (length/area/volume/mass/density/
+  // time/temperature/velocity) --
+  {
+    key: "loc-bipm-base-units-table",
+    sourceVersionKey: SV_BIPM,
+    section: "Table 1", subsection: "The seven SI base units",
+    locatorSummary: "SI Brochure Table 1: the seven SI base units, including the metre (length), kilogram (mass), second (time) and kelvin (thermodynamic temperature)",
+  },
+  {
+    key: "loc-bipm-coherent-derived-units-table",
+    sourceVersionKey: SV_BIPM,
+    section: "Table 3", subsection: "Examples of coherent derived units expressed in terms of base units",
+    locatorSummary: "SI Brochure Table 3: examples of SI coherent derived units expressed in terms of base units, including area (square metre), volume (cubic metre), speed/velocity (metre per second) and density (kilogram per cubic metre)",
+  },
+  {
+    key: "loc-bipm-celsius",
+    sourceVersionKey: SV_BIPM,
+    section: "2.3.3", subsection: "The degree Celsius",
+    locatorSummary: "SI Brochure 2.3.3: the degree Celsius, a special name for the kelvin used to express Celsius temperature",
+  },
+
+  // -- CC-09B: DfE GCSE Mathematics, LO1 range items with no existing FM
+  // assertion (indices, triangles and trigonometry, statistics) --
+  {
+    key: "loc-dfe-algebra-indices",
+    sourceVersionKey: SV_DFE_MATHS,
+    section: "Subject content", subsection: "Algebra, Notation/vocabulary/manipulation, item 4", page: "6",
+    locatorSummary: "Algebra: simplify and manipulate algebraic expressions... simplifying expressions involving sums, products and powers, including the laws of indices",
+  },
+  {
+    key: "loc-dfe-number-indices",
+    sourceVersionKey: SV_DFE_MATHS,
+    section: "Subject content", subsection: "Number, item 7", page: "5",
+    locatorSummary: "Number: calculate with roots, and with integer and fractional indices",
+  },
+  {
+    key: "loc-dfe-geometry-pythagoras-trig",
+    sourceVersionKey: SV_DFE_MATHS,
+    section: "Subject content", subsection: "Geometry and measures, Mensuration and calculation, item 20", page: "10",
+    locatorSummary: "Geometry and measures: know the formulae for Pythagoras' theorem a^2 + b^2 = c^2, and the trigonometric ratios sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse and tan(theta) = opposite/adjacent; apply them to find angles and lengths in right-angled triangles",
+  },
+  {
+    key: "loc-dfe-statistics-central-tendency-spread",
+    sourceVersionKey: SV_DFE_MATHS,
+    section: "Subject content", subsection: "Statistics, item 4", page: "11-12",
+    locatorSummary: "Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range)",
+  },
+
+  // -- CC-09B: OpenStax University Physics Volume 1, LO3 AC3.2 (levers) --
+  {
+    key: "loc-openstax-up1-torque-levers",
+    sourceVersionKey: SV_OPENSTAX_UP1,
+    section: "Chapter 12", subsection: "12.1 Conditions for Static Equilibrium / 12.2 Examples of Static Equilibrium",
+    locatorSummary: "Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load",
+  },
+
+  // -- CC-09B: OpenStax University Physics Volume 3, LO6 diode physics --
+  {
+    key: "loc-openstax-up3-semiconductor-diode",
+    sourceVersionKey: SV_OPENSTAX_UP3,
+    section: "9.7", subsection: "Semiconductor Devices -- Diodes",
+    locatorSummary: "A p-n junction diode's depletion layer narrows under forward bias (allowing current to flow easily) and widens under reverse bias (significantly reducing current flow), giving the diode its one-way-conduction behaviour",
+  },
+
+  // -- CC-09B: Kuphaldt, Electric Circuits III -- Semiconductors (LibreTexts) --
+  {
+    key: "loc-kuphaldt-rectifier-circuits",
+    sourceVersionKey: SV_KUPHALDT_SEMICONDUCTORS,
+    section: "Chapter 3, Diodes and Rectifiers", subsection: "3.4 Rectifier Circuits",
+    locatorSummary: "A rectifier circuit uses one or more diodes to convert an alternating-current input into a direct-current (or pulsating direct-current) output",
+  },
+  {
+    key: "loc-kuphaldt-zener-diodes",
+    sourceVersionKey: SV_KUPHALDT_SEMICONDUCTORS,
+    section: "Chapter 3, Diodes and Rectifiers", subsection: "3.11 What Are Zener Diodes?",
+    locatorSummary: "A Zener diode is a special-purpose diode designed to operate in reverse breakdown at a well-defined breakdown voltage without being damaged, so it maintains a substantially constant voltage across itself and can be used to regulate voltage",
+  },
+  {
+    key: "loc-kuphaldt-special-purpose-diodes",
+    sourceVersionKey: SV_KUPHALDT_SEMICONDUCTORS,
+    section: "Chapter 3, Diodes and Rectifiers", subsection: "3.12 Special-purpose Diodes",
+    locatorSummary: "A light-emitting diode (LED) produces light by electroluminescence when forward-biased (recombination of electrons and holes in the junction yields photons); a photodiode is optimised to generate a photocurrent in response to incident light",
+  },
+  {
+    key: "loc-kuphaldt-bjt-intro",
+    sourceVersionKey: SV_KUPHALDT_SEMICONDUCTORS,
+    section: "Chapter 4, Bipolar Junction Transistors", subsection: "4.1 Introduction to Bipolar Junction Transistors (BJT)",
+    locatorSummary: "A bipolar junction transistor is a three-terminal semiconductor device whose collector-emitter current is controlled by a much smaller base current, allowing it to act as an electrically controlled switch or amplifier",
+  },
+  {
+    key: "loc-kuphaldt-bjt-switch",
+    sourceVersionKey: SV_KUPHALDT_SEMICONDUCTORS,
+    section: "Chapter 4, Bipolar Junction Transistors", subsection: "4.2 The Bipolar Junction Transistor (BJT) as a Switch",
+    locatorSummary: "With no base current, a bipolar junction transistor behaves like an open switch and blocks collector current; sufficient base current drives it into saturation, behaving like a closed switch",
+  },
+  {
+    key: "loc-kuphaldt-diac",
+    sourceVersionKey: SV_KUPHALDT_SEMICONDUCTORS,
+    section: "Chapter 7, Thyristors", subsection: "7.4 The DIAC",
+    locatorSummary: "A DIAC is a bidirectional thyristor formed from two Shockley diodes joined in antiparallel: it remains a high-impedance non-conducting device until the voltage across it exceeds its breakover voltage, at which point it switches into conduction; DIACs are almost never used alone, but in conjunction with other thyristor devices",
+  },
+  {
+    key: "loc-kuphaldt-scr",
+    sourceVersionKey: SV_KUPHALDT_SEMICONDUCTORS,
+    section: "Chapter 7, Thyristors", subsection: "7.5 The Silicon-Controlled Rectifier (SCR)",
+    locatorSummary: "A silicon-controlled rectifier (SCR) conducts current in one direction once a sufficient gate current triggers it on, and continues conducting until the anode-to-cathode current falls below the device's holding current; SCRs are more commonly seen in circuits like motor drives",
+  },
+  {
+    key: "loc-kuphaldt-triac",
+    sourceVersionKey: SV_KUPHALDT_SEMICONDUCTORS,
+    section: "Chapter 7, Thyristors", subsection: "7.6 The TRIAC",
+    locatorSummary: "A TRIAC acts much like two SCRs connected back-to-back for bidirectional (AC) operation, triggered by gate current from the main-terminal-2 side; TRIACs are usually seen in simple, low-power applications like household dimmer switches",
+  },
+
+  // -- CC-09B: Vishay NTC thermistor application note, LO6 --
+  {
+    key: "loc-vishay-ntc-principle",
+    sourceVersionKey: SV_VISHAY_NTC,
+    section: "NTC Thermistors Application Note",
+    locatorSummary: "An NTC (negative temperature coefficient) thermistor's electrical resistance decreases as its temperature increases; applications include temperature sensing/measurement, inrush-current limiting and temperature compensation",
+  },
+
+  // -- CC-09B: University of Ottawa ELG4139 course material, LO6 invertors --
+  {
+    key: "loc-uottawa-inverter-principle",
+    sourceVersionKey: SV_UOTTAWA_INVERTERS,
+    section: "ELG4139: DC to AC Converters", subsection: "Introduction",
+    locatorSummary: "An inverter converts DC to AC power by switching the DC input voltage (or current) in a pre-determined sequence so as to generate an AC voltage (or current) output",
+  },
 ];
 
 // ---------------------------------------------------------------------
@@ -832,27 +1040,40 @@ interface AssertionDef {
 
 const A: AssertionDef[] = [
   // ===================================================================
-  // Foundational Maths (17) -- horizontal, never curriculum-mapped.
+  // Foundational Maths -- horizontal, reusable knowledge. CC-09B refines
+  // (does not reverse) CC-04A/B's "never curriculum-mapped directly"
+  // rule: an FM/FP assertion is curriculum-mapped ONLY where an official
+  // Assessment Criterion or Range item asks for that generic knowledge AS
+  // ITSELF (definitional/recognition content Unit 202 examines directly,
+  // e.g. LO1's Mathematical Principles Range) -- never merely because a
+  // vocational AC uses it instrumentally (e.g. Ohm's Law's use of
+  // algebraic rearrangement, which remains PREREQUISITE_OF-only, exactly
+  // as CC-04B established). See PROJECT-STATUS.md CC-09B for the full
+  // rationale.
   // ===================================================================
   {
     id: "FM-ALG-INVERSE-OPS-MULT-001", domain: "FM",
     statement: "Multiplication and division are inverse operations: dividing by a non-zero number undoes multiplying by that number, and vice versa.",
     provenance: [{ locator: "loc-dfe-number-inverse-reciprocal", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "ALGEBRA"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FM-ALG-INVERSE-OPS-ADD-001", domain: "FM",
     statement: "Addition and subtraction are inverse operations: subtracting a number undoes adding that number, and vice versa.",
     provenance: [{ locator: "loc-dfe-number-inverse-reciprocal", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "ALGEBRA"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FM-ALG-EQUALITY-MULT-001", domain: "FM",
     statement: "In an equation, multiplying or dividing both sides by the same non-zero value preserves the equality between the two sides.",
     provenance: [{ locator: "loc-dfe-algebra-equations", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "ALGEBRA"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FM-ALG-EQUALITY-ADD-001", domain: "FM",
     statement: "In an equation, adding or subtracting the same value from both sides preserves the equality between the two sides.",
     provenance: [{ locator: "loc-dfe-algebra-equations", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "ALGEBRA"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FM-ALG-TRANSPOSE-MULT-001", domain: "FM",
@@ -862,6 +1083,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-INVERSE-OPS-MULT-001", strength: "REQUIRED" },
       { id: "FM-ALG-EQUALITY-MULT-001", strength: "REQUIRED" },
     ],
+    curriculum: [{ node: rangeNode("1.1", "TRANSPOSITION"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FM-ALG-TRANSPOSE-ADD-001", domain: "FM",
@@ -871,11 +1093,13 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-INVERSE-OPS-ADD-001", strength: "REQUIRED" },
       { id: "FM-ALG-EQUALITY-ADD-001", strength: "REQUIRED" },
     ],
+    curriculum: [{ node: rangeNode("1.1", "TRANSPOSITION"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FM-ALG-SUBSTITUTION-001", domain: "FM",
     statement: "Substitute known numerical values into a formula to calculate the value of the remaining unknown quantity.",
     provenance: [{ locator: "loc-dfe-algebra-substitution", role: "SUPPORTS" }],
+    curriculum: [{ node: rangeNode("1.1", "TRANSPOSITION"), type: "SUPPORTS" }],
   },
   {
     id: "FM-ARITH-RECIPROCAL-001", domain: "FM",
@@ -886,6 +1110,7 @@ const A: AssertionDef[] = [
     id: "FM-ARITH-FRACTION-OPS-001", domain: "FM",
     statement: "Apply the four arithmetic operations (addition, subtraction, multiplication, division) to fractions, including proper and improper fractions.",
     provenance: [{ locator: "loc-dfe-number-fractions", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "FRACTIONS-PERCENTAGES"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FM-ARITH-RECIPROCAL-SUM-001", domain: "FM",
@@ -906,6 +1131,7 @@ const A: AssertionDef[] = [
     id: "FM-ARITH-PERCENTAGE-001", domain: "FM",
     statement: "A percentage expresses a quantity as a number of parts per hundred, and can be used to express one quantity as a proportion of another.",
     provenance: [{ locator: "loc-dfe-ratio-percentage", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "FRACTIONS-PERCENTAGES"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FM-ALG-PROPORTION-DIRECT-001", domain: "FM",
@@ -938,8 +1164,48 @@ const A: AssertionDef[] = [
     ],
   },
 
+  // -- CC-09B: LO1 Range items with no prior FM assertion (Indices;
+  // Triangles and trigonometry; Statistics) --
+  {
+    id: "FM-NUM-INDICES-LAWS-001", domain: "FM",
+    statement: "When multiplying two powers of the same base, add the indices; when dividing, subtract the indices; a fractional index represents a root.",
+    provenance: [
+      { locator: "loc-dfe-algebra-indices", role: "DEFINES" },
+      { locator: "loc-dfe-number-indices", role: "SUPPORTS" },
+    ],
+    curriculum: [{ node: rangeNode("1.1", "INDICES"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FM-GEOM-PYTHAGORAS-001", domain: "FM",
+    statement: "In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides: a squared plus b squared equals c squared.",
+    provenance: [{ locator: "loc-dfe-geometry-pythagoras-trig", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "TRIANGLES-TRIGONOMETRY"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FM-GEOM-TRIG-RATIOS-001", domain: "FM",
+    statement: "In a right-angled triangle, the sine, cosine and tangent of an angle are defined as the ratios opposite/hypotenuse, adjacent/hypotenuse and opposite/adjacent respectively.",
+    provenance: [{ locator: "loc-dfe-geometry-pythagoras-trig", role: "DEFINES" }],
+    prereqs: [{ id: "FM-GEOM-PYTHAGORAS-001", strength: "SUPPORTING" }],
+    curriculum: [{ node: rangeNode("1.1", "TRIANGLES-TRIGONOMETRY"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FM-STATS-MEAN-001", domain: "FM",
+    statement: "The mean of a set of numerical values is found by dividing their sum by the number of values, and is a measure of the central tendency of the data.",
+    provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FM-STATS-RANGE-001", domain: "FM",
+    statement: "The range of a set of numerical values is the difference between the largest and smallest values, and is a measure of the spread of the data.",
+    provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
+  },
+
   // ===================================================================
-  // Foundational Physics (13) -- horizontal, never curriculum-mapped.
+  // Foundational Physics -- horizontal, reusable knowledge. Curriculum-
+  // mapped only where CC-09B's refined rule (see the Foundational Maths
+  // header comment above) applies: LO3's AC3.1 (mass/weight) and AC3.2
+  // (levers) ask directly for this generic-physics knowledge itself.
   // ===================================================================
   {
     id: "FP-CONCEPT-FORCE-001", domain: "FP",
@@ -1010,6 +1276,10 @@ const A: AssertionDef[] = [
     id: "FP-CONCEPT-MASS-001", domain: "FP",
     statement: "Mass is the amount of matter in an object, measured in kilograms.",
     provenance: [{ locator: "loc-openstax-up1-work", role: "DEFINES" }],
+    // CC-09B: AC3.1 ("specify what is meant by mass and weight") asks
+    // directly for this generic-physics definitional knowledge -- see the
+    // Foundational Physics header comment above for the refined rule.
+    curriculum: [{ node: acNode("3.1"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-CONCEPT-WEIGHT-001", domain: "FP",
@@ -1019,6 +1289,7 @@ const A: AssertionDef[] = [
       { id: "FP-CONCEPT-FORCE-001", strength: "STRONG" },
       { id: "FP-CONCEPT-MASS-001", strength: "STRONG" },
     ],
+    curriculum: [{ node: acNode("3.1"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-REL-WEIGHT-MASS-001", domain: "FP",
@@ -1028,6 +1299,7 @@ const A: AssertionDef[] = [
       { id: "FP-CONCEPT-MASS-001", strength: "REQUIRED" },
       { id: "FP-CONCEPT-WEIGHT-001", strength: "REQUIRED" },
     ],
+    curriculum: [{ node: acNode("3.1"), type: "SUPPORTS" }],
   },
   {
     id: "FP-CALC-WEIGHT-001", domain: "FP",
@@ -1038,6 +1310,107 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" },
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
     ],
+  },
+
+  // -- CC-09B: LO3 AC3.2 (levers, gears and pulleys) -- previously
+  // entirely absent from the corpus. --
+  {
+    id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", domain: "FP",
+    statement: "A simple machine such as a lever, gear or pulley provides mechanical advantage by changing the relationship between the effort (input force) applied and the load (output force) it moves.",
+    provenance: [{ locator: "loc-openstax-up1-torque-levers", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-FORCE-001", strength: "STRONG" }],
+    curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-CONCEPT-LEVER-PRINCIPLE-001", domain: "FP",
+    statement: "A lever is a rigid bar that rotates about a fixed pivot (fulcrum); the mechanical advantage it provides depends on the ratio of the effort's distance from the pivot to the load's distance from the pivot.",
+    provenance: [{ locator: "loc-openstax-up1-torque-levers", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-LEVER-CLASS-I-001", domain: "FP",
+    statement: "In a class I lever, the pivot is positioned between the effort and the load (for example a see-saw or a pair of pliers).",
+    provenance: [{ locator: "loc-openstax-up1-torque-levers", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-LEVER-PRINCIPLE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: rangeNode("3.2", "CLASS-I"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-LEVER-CLASS-II-001", domain: "FP",
+    statement: "In a class II lever, the load is positioned between the pivot and the effort (for example a wheelbarrow).",
+    provenance: [{ locator: "loc-openstax-up1-torque-levers", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-LEVER-PRINCIPLE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: rangeNode("3.2", "CLASS-II"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-LEVER-CLASS-III-001", domain: "FP",
+    statement: "In a class III lever, the effort is positioned between the pivot and the load (for example a pair of tweezers or the human forearm).",
+    provenance: [{ locator: "loc-openstax-up1-torque-levers", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-LEVER-PRINCIPLE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: rangeNode("3.2", "CLASS-III"), type: "REQUIRED_FOR" }],
+  },
+
+  // -- CC-09B: LO2 AC2.1 Range ("(SI) Units of measurement for": Length,
+  // Area, Volume, Mass, Density, Time, Temperature, Velocity) -- generic
+  // physical quantities Unit 202 asks for directly, distinct from the
+  // AC2.2 Range's ELECTRICAL SI quantities (already covered above by
+  // EL-UNIT-*/EL-CONCEPT-* assertions). BIPM-sourced, matching the
+  // primary authority already used for every other SI-unit assertion in
+  // this corpus. --
+  {
+    id: "FP-UNIT-METRE-001", domain: "FP",
+    statement: "The metre (m) is the SI base unit of length.",
+    provenance: [{ locator: "loc-bipm-base-units-table", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("2.1", "LENGTH"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-UNIT-SQUARE-METRE-001", domain: "FP",
+    statement: "The square metre (m squared) is the SI derived unit of area, formed by multiplying two lengths.",
+    provenance: [{ locator: "loc-bipm-coherent-derived-units-table", role: "DEFINES" }],
+    prereqs: [{ id: "FP-UNIT-METRE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: rangeNode("2.1", "AREA"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-UNIT-CUBIC-METRE-001", domain: "FP",
+    statement: "The cubic metre (m cubed) is the SI derived unit of volume, formed by multiplying three lengths.",
+    provenance: [{ locator: "loc-bipm-coherent-derived-units-table", role: "DEFINES" }],
+    prereqs: [{ id: "FP-UNIT-METRE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: rangeNode("2.1", "VOLUME"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-UNIT-KILOGRAM-001", domain: "FP",
+    statement: "The kilogram (kg) is the SI base unit of mass.",
+    provenance: [{ locator: "loc-bipm-base-units-table", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("2.1", "MASS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-UNIT-DENSITY-001", domain: "FP",
+    statement: "Density is mass per unit volume, with SI derived unit the kilogram per cubic metre (kg/m cubed).",
+    provenance: [{ locator: "loc-bipm-coherent-derived-units-table", role: "DEFINES" }],
+    prereqs: [{ id: "FP-UNIT-KILOGRAM-001", strength: "REQUIRED" }, { id: "FP-UNIT-CUBIC-METRE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: rangeNode("2.1", "DENSITY"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-UNIT-SECOND-001", domain: "FP",
+    statement: "The second (s) is the SI base unit of time.",
+    provenance: [{ locator: "loc-bipm-base-units-table", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("2.1", "TIME"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-UNIT-KELVIN-CELSIUS-001", domain: "FP",
+    statement: "The kelvin (K) is the SI base unit of thermodynamic temperature; the degree Celsius (deg C) is a special name for the kelvin used to express everyday Celsius temperature.",
+    provenance: [
+      { locator: "loc-bipm-base-units-table", role: "DEFINES" },
+      { locator: "loc-bipm-celsius", role: "DEFINES" },
+    ],
+    curriculum: [{ node: rangeNode("2.1", "TEMPERATURE"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-UNIT-METRE-PER-SECOND-001", domain: "FP",
+    statement: "The metre per second (m/s) is the SI derived unit of speed/velocity, formed by dividing a length by a time.",
+    provenance: [{ locator: "loc-bipm-coherent-derived-units-table", role: "DEFINES" }],
+    prereqs: [{ id: "FP-UNIT-METRE-001", strength: "REQUIRED" }, { id: "FP-UNIT-SECOND-001", strength: "REQUIRED" }],
+    curriculum: [{ node: rangeNode("2.1", "VELOCITY"), type: "REQUIRED_FOR" }],
   },
 
   // ===================================================================
@@ -1053,6 +1426,7 @@ const A: AssertionDef[] = [
     curriculum: [
       { node: NODE_AC2_1, type: "REQUIRED_FOR" },
       { node: NODE_AC2_2, type: "REQUIRED_FOR" },
+      { node: rangeNode("2.2", "VOLTAGE"), type: "REQUIRED_FOR" },
     ],
   },
   {
@@ -1065,6 +1439,7 @@ const A: AssertionDef[] = [
     curriculum: [
       { node: NODE_AC2_1, type: "REQUIRED_FOR" },
       { node: NODE_AC2_2, type: "REQUIRED_FOR" },
+      { node: rangeNode("2.2", "CURRENT"), type: "REQUIRED_FOR" },
     ],
   },
   {
@@ -1074,7 +1449,7 @@ const A: AssertionDef[] = [
       { locator: "loc-bipm-derived-units", role: "DEFINES" },
       { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" },
     ],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "RESISTANCE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-UNIT-WATT-001", domain: "EL",
@@ -1083,7 +1458,7 @@ const A: AssertionDef[] = [
       { locator: "loc-bipm-derived-units", role: "DEFINES" },
       { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" },
     ],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "POWER"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-UNIT-JOULE-001", domain: "EL",
@@ -1092,7 +1467,7 @@ const A: AssertionDef[] = [
       { locator: "loc-bipm-derived-units", role: "DEFINES" },
       { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" },
     ],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "ENERGY"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-UNIT-OHM-METRE-001", domain: "EL",
@@ -1101,7 +1476,7 @@ const A: AssertionDef[] = [
       { locator: "loc-bipm-derived-units", role: "DEFINES" },
       { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" },
     ],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "RESISTIVITY"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-CONCEPT-VOLTAGE-001", domain: "EL",
@@ -1132,6 +1507,10 @@ const A: AssertionDef[] = [
     curriculum: [
       { node: NODE_AC2_2, type: "REQUIRED_FOR" },
       { node: NODE_AC4_3, type: "REQUIRED_FOR" },
+      { node: rangeNode("2.2", "RESISTANCE"), type: "REQUIRED_FOR" },
+      // CC-09B: also the LO6 AC6.2 "Resistors" Range item -- reused
+      // rather than re-authoring an electrical-domain duplicate.
+      { node: rangeNode("6.2", "RESISTORS"), type: "REQUIRED_FOR" },
     ],
   },
   {
@@ -1172,21 +1551,35 @@ const A: AssertionDef[] = [
     statement: "A voltmeter measures potential difference and is connected in parallel across the component being measured.",
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-VOLTAGE-001", strength: "STRONG" }],
-    curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "VOLTAGE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-AMMETER-001", domain: "EL",
     statement: "An ammeter measures current and is connected in series within the circuit being measured.",
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-CURRENT-001", strength: "STRONG" }],
-    curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "CURRENT"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-OHMMETER-001", domain: "EL",
     statement: "An ohmmeter measures resistance, and must be used on a component that is isolated and de-energised.",
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-RESISTANCE-001", strength: "STRONG" }],
-    curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "RESISTANCE"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-INSTRUMENT-WATTMETER-001", domain: "EL",
+    statement: "A wattmeter measures electrical power, sensing both the current through a load and the voltage across it.",
+    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    prereqs: [{ id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
+    curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "POWER"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-INSTRUMENT-ENERGY-METER-001", domain: "EL",
+    statement: "An energy meter (kWh meter) measures the cumulative electrical energy consumed by a supply over time.",
+    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    prereqs: [{ id: "EL-CONCEPT-ENERGY-001", strength: "STRONG" }],
+    curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "ENERGY"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-MULTIMETER-001", domain: "EL",
@@ -1227,14 +1620,18 @@ const A: AssertionDef[] = [
     id: "EL-UNIT-HERTZ-001", domain: "EL",
     statement: "The hertz (Hz) is the SI derived unit of frequency, equal to one cycle per second.",
     provenance: [{ locator: "loc-bipm-derived-units", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "FREQUENCY"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-CONCEPT-FREQUENCY-001", domain: "EL",
     statement: "Frequency is the number of complete cycles of a repeating waveform that occur in one second.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     supports: [{ id: "EL-UNIT-HERTZ-001", strength: "SUPPORTING" }],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [
+      { node: NODE_AC2_2, type: "REQUIRED_FOR" },
+      { node: rangeNode("2.2", "FREQUENCY"), type: "REQUIRED_FOR" },
+      { node: rangeNode("5.5", "FREQUENCY"), type: "REQUIRED_FOR" },
+    ],
   },
   {
     id: "EL-CONCEPT-REACTANCE-001", domain: "EL",
@@ -1249,40 +1646,47 @@ const A: AssertionDef[] = [
     statement: "Impedance is the total opposition a circuit presents to the flow of alternating current, combining resistance and reactance.",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-RESISTANCE-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-REACTANCE-001", strength: "REQUIRED" }],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "IMPEDANCE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-UNIT-HENRY-001", domain: "EL",
     statement: "The henry (H) is the SI derived unit of inductance.",
     provenance: [{ locator: "loc-bipm-derived-units", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "INDUCTANCE-REACTANCE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-CONCEPT-INDUCTANCE-001", domain: "EL",
     statement: "Inductance is the property of a conductor or coil that opposes a change in current by storing energy in a magnetic field.",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     supports: [{ id: "EL-UNIT-HENRY-001", strength: "SUPPORTING" }],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "INDUCTANCE-REACTANCE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-UNIT-FARAD-001", domain: "EL",
     statement: "The farad (F) is the SI derived unit of capacitance.",
     provenance: [{ locator: "loc-bipm-derived-units", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "CAPACITANCE-REACTANCE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-CONCEPT-CAPACITANCE-001", domain: "EL",
     statement: "Capacitance is the property of a component that describes its ability to store electrical charge in an electric field.",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     supports: [{ id: "EL-UNIT-FARAD-001", strength: "SUPPORTING" }],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [
+      { node: NODE_AC2_2, type: "REQUIRED_FOR" },
+      { node: rangeNode("2.2", "CAPACITANCE-REACTANCE"), type: "REQUIRED_FOR" },
+      // CC-09B: also the LO6 AC6.2 "Capacitors" Range item -- reused
+      // rather than re-authoring an electrical-domain duplicate (task's
+      // "do not duplicate the same truth" instruction).
+      { node: rangeNode("6.2", "CAPACITORS"), type: "REQUIRED_FOR" },
+    ],
   },
   {
     id: "EL-CONCEPT-POWER-FACTOR-001", domain: "EL",
     statement: "Power factor is a dimensionless ratio describing the phase relationship between voltage and current in an AC circuit.",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-IMPEDANCE-001", strength: "STRONG" }],
-    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "POWER-FACTOR"), type: "REQUIRED_FOR" }],
   },
 
   // ===================================================================
@@ -2184,28 +2588,28 @@ const A: AssertionDef[] = [
     statement: "Periodic time is the time taken to complete one full cycle of a repeating waveform.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-SINE-WAVE-001", strength: "STRONG" }],
-    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "PERIODIC-TIME"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-WAVEFORM-AMPLITUDE-001", domain: "EL",
     statement: "Amplitude is the maximum displacement of a waveform from its zero (mean) value.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-SINE-WAVE-001", strength: "STRONG" }],
-    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "AMPLITUDE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-WAVEFORM-PEAK-TO-PEAK-001", domain: "EL",
     statement: "The peak-to-peak value of a waveform is the difference between its maximum positive and maximum negative values.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-WAVEFORM-AMPLITUDE-001", strength: "REQUIRED" }],
-    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "PEAK-TO-PEAK-VALUE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-WAVEFORM-RMS-001", domain: "EL",
     statement: "The RMS (root mean square) value of an alternating quantity is the value of direct current or voltage that would produce the same heating effect in a resistor.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-SINE-WAVE-001", strength: "REQUIRED" }, { id: "EL-CURRENT-THERMAL-EFFECT-001", strength: "STRONG" }],
-    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "RMS-VALUE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-WAVEFORM-AVERAGE-VALUE-001", domain: "EL",
@@ -2213,7 +2617,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-SINE-WAVE-001", strength: "REQUIRED" }],
     contrastsWith: ["EL-WAVEFORM-RMS-001"],
-    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "AVERAGE-VALUE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001", domain: "EL",
@@ -2248,7 +2652,7 @@ const A: AssertionDef[] = [
     statement: "Frequency and periodic time are reciprocals of each other: frequency equals one divided by periodic time.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "SUPPORTS" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-FREQUENCY-001", strength: "REQUIRED" }, { id: "EL-WAVEFORM-PERIODIC-TIME-001", strength: "REQUIRED" }, { id: "FM-ARITH-RECIPROCAL-001", strength: "REQUIRED" }],
-    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
+    curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "FREQUENCY"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-WAVEFORM-FREQUENCY-CALC-001", domain: "EL",
@@ -2312,6 +2716,191 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-openstax-up2-ohms-law", role: "SUPPORTS" }, { locator: "loc-cg-ac4.4", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CIRCUIT-RECOGNISE-OPEN-CIRCUIT-001", strength: "REQUIRED" }, { id: "EL-OHM-RELATIONSHIP-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC4_4, type: "SUPPORTS" }],
+  },
+
+  // ===================================================================
+  // Electrical -- LO6 cluster: electronic components (CC-09B, previously
+  // entirely absent). Capacitors/Resistors reuse EL-CONCEPT-CAPACITANCE-001/
+  // EL-CONCEPT-RESISTANCE-001 above (mapped there, not duplicated here).
+  // Level 2 depth throughout: recognise the device, its basic operating
+  // principle, and typical application -- never semiconductor-device
+  // engineering depth (task brief section 18).
+  // ===================================================================
+  {
+    id: "EL-COMPONENT-RECTIFIER-001", domain: "EL",
+    statement: "A rectifier circuit uses one or more diodes to convert an alternating-current supply into a direct-current (or pulsating direct-current) output.",
+    provenance: [
+      { locator: "loc-kuphaldt-rectifier-circuits", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-AC-DC-DISTINCTION-001", strength: "STRONG" }],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "RECTIFIERS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-DIODE-001", domain: "EL",
+    statement: "A diode is a semiconductor device formed at a p-n junction that conducts current easily in one direction (forward bias, junction narrows) and blocks current in the other direction (reverse bias, junction widens).",
+    provenance: [
+      { locator: "loc-openstax-up3-semiconductor-diode", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "DIODES"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-ZENER-DIODE-001", domain: "EL",
+    statement: "A Zener diode is a special-purpose diode designed to be operated in reverse breakdown at a well-defined breakdown voltage without damage, so it maintains a substantially constant voltage across itself and can be used to regulate voltage.",
+    provenance: [
+      { locator: "loc-kuphaldt-zener-diodes", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }],
+    contrastsWith: ["EL-COMPONENT-DIODE-001"],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "ZENER"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-LED-001", domain: "EL",
+    statement: "A light-emitting diode (LED) produces light by electroluminescence: when forward-biased, recombination of electrons and holes at the junction releases energy as photons.",
+    provenance: [
+      { locator: "loc-kuphaldt-special-purpose-diodes", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "LED"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-PHOTODIODE-001", domain: "EL",
+    statement: "A photodiode is a diode optimised to generate a photocurrent in response to incident light falling on its junction, allowing it to detect or measure light.",
+    provenance: [
+      { locator: "loc-kuphaldt-special-purpose-diodes", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "PHOTO"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-THERMISTOR-001", domain: "EL",
+    statement: "An NTC (negative-temperature-coefficient) thermistor's electrical resistance decreases as its temperature increases, allowing it to be used as a temperature-sensing component.",
+    provenance: [
+      { locator: "loc-vishay-ntc-principle", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "THERMISTORS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-DIAC-001", domain: "EL",
+    statement: "A DIAC is a bidirectional thyristor that remains a high-impedance, non-conducting device until the voltage across it exceeds its breakover voltage, at which point it switches into conduction in either direction; it is almost never used alone, but to trigger other thyristor devices.",
+    provenance: [
+      { locator: "loc-kuphaldt-diac", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "DIACS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-THYRISTOR-SCR-001", domain: "EL",
+    statement: "A silicon-controlled rectifier (SCR) conducts current in one direction only once a sufficient gate current triggers it into conduction, and continues conducting until the current through it falls below the device's holding current.",
+    provenance: [
+      { locator: "loc-kuphaldt-scr", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "THYRISTORS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-TRIAC-001", domain: "EL",
+    statement: "A TRIAC acts much like two silicon-controlled rectifiers connected back-to-back, allowing it to conduct current in both directions once triggered by gate current, making it suitable for controlling alternating current.",
+    provenance: [
+      { locator: "loc-kuphaldt-triac", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-THYRISTOR-SCR-001", strength: "STRONG" }],
+    contrastsWith: ["EL-COMPONENT-THYRISTOR-SCR-001"],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "TRIACS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-TRANSISTOR-001", domain: "EL",
+    statement: "A bipolar junction transistor is a three-terminal semiconductor device whose collector-emitter current is controlled by a much smaller base current, allowing it to act as an electrically controlled switch (fully off with no base current, fully on/saturated with sufficient base current) or as an amplifier.",
+    provenance: [
+      { locator: "loc-kuphaldt-bjt-intro", role: "DEFINES" },
+      { locator: "loc-kuphaldt-bjt-switch", role: "SUPPORTS" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "TRANSISTORS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-INVERTER-001", domain: "EL",
+    statement: "An inverter converts a direct-current supply into an alternating-current output, by switching the DC input in a pre-determined sequence to generate the AC voltage or current waveform.",
+    provenance: [
+      { locator: "loc-uottawa-inverter-principle", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-AC-DC-DISTINCTION-001", strength: "STRONG" }],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "INVERTORS"), type: "REQUIRED_FOR" }],
+  },
+
+  // -- CC-09B: LO6 AC6.1 electrical-system applications. Each connects a
+  // real, already-sourced component (above) to the specific application
+  // its own source material names, rather than a generic unsupported
+  // "used in X" claim (task brief section 19/20). Proportionate: the
+  // Level 2 requirement is the component-to-application relationship, not
+  // full system design. --
+  {
+    id: "EL-APPLICATION-DIMMER-SWITCH-001", domain: "EL",
+    statement: "A household dimmer switch typically uses a TRIAC to control the average power delivered to a lamp, by switching on at a controlled phase angle within each AC half-cycle.",
+    provenance: [
+      { locator: "loc-kuphaldt-triac", role: "SUPPORTS" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-TRIAC-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "DIMMER-SWITCHES"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-APPLICATION-MOTOR-CONTROL-001", domain: "EL",
+    statement: "Silicon-controlled rectifiers are commonly used in motor-control circuits to control the electrical power delivered to a motor.",
+    provenance: [
+      { locator: "loc-kuphaldt-scr", role: "SUPPORTS" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-THYRISTOR-SCR-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "MOTOR-CONTROL"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-APPLICATION-HEATING-BOILER-CONTROL-001", domain: "EL",
+    statement: "Thermistors are used in heating and boiler control systems to sense temperature and provide a feedback signal the control circuit uses to regulate heating.",
+    provenance: [
+      { locator: "loc-vishay-ntc-principle", role: "SUPPORTS" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-THERMISTOR-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "HEATING-BOILER-CONTROLS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-APPLICATION-SECURITY-ALARM-001", domain: "EL",
+    statement: "Security alarm systems commonly use LEDs to provide visual status indication and photodiodes to detect a light beam being broken by an intruder.",
+    provenance: [
+      { locator: "loc-kuphaldt-special-purpose-diodes", role: "SUPPORTS" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-PHOTODIODE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "SECURITY-ALARMS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-APPLICATION-TELEPHONE-001", domain: "EL",
+    statement: "Telephone and communication equipment commonly uses diodes to protect circuits against incorrect supply polarity, and LEDs to provide visual line/status indication.",
+    provenance: [
+      { locator: "loc-openstax-up3-semiconductor-diode", role: "SUPPORTS" },
+      { locator: "loc-kuphaldt-special-purpose-diodes", role: "SUPPORTS" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "TELEPHONES"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-APPLICATION-WIRELESS-CONTROL-001", domain: "EL",
+    statement: "Wireless control systems (for example remote-controlled switches) commonly use transistors to switch or amplify the signal received from a remote transmitter.",
+    provenance: [
+      { locator: "loc-kuphaldt-bjt-switch", role: "SUPPORTS" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-TRANSISTOR-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "WIRELESS-CONTROL-SYSTEMS"), type: "REQUIRED_FOR" }],
   },
 ];
 
@@ -2427,6 +3016,11 @@ const M: MisconceptionDef[] = [
     id: "MIS-EL-ENERGY-UNIT-CONFUSION-001",
     description: "Confuses the joule and the kilowatt-hour as interchangeable without converting between them, or is unaware that they measure the same quantity (energy) at different scales.",
     conflicts: ["EL-UNIT-JOULE-001", "EL-UNIT-KWH-001"],
+  },
+  {
+    id: "MIS-EL-DIODE-DIRECTION-CONFUSION-001",
+    description: "Confuses which direction a diode allows current to flow (forward bias) versus blocks it (reverse bias), or assumes a diode conducts equally in both directions like a plain resistor.",
+    conflicts: ["EL-COMPONENT-DIODE-001"],
   },
 ];
 
@@ -2557,6 +3151,66 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       canonicalReference: "OpenStax University Physics Volume 2",
       accessLocation: "https://openstax.org/books/university-physics-volume-2",
     },
+    // -- CC-09B new sources --
+    {
+      key: SRC_OPENSTAX_UP3,
+      title: "University Physics Volume 3",
+      publisher: "OpenStax / Rice University",
+      sourceFamily: "Open textbook",
+      sourceType: "TEXTBOOK",
+      jurisdiction: "International",
+      canonicalReference: "OpenStax University Physics Volume 3",
+      accessLocation: "https://openstax.org/books/university-physics-volume-3",
+    },
+    {
+      // "Lessons in Electric Circuits" (Tony R. Kuphaldt, originally
+      // published under the Design Science License; this LibreTexts
+      // mirror -- an NSF-supported multi-institution academic OER
+      // platform -- displays it under GFDL 1.3), Volume III
+      // (Semiconductors). A long-established, collaboratively-developed
+      // open electronics textbook (chapter/section structure, not a blog
+      // or revision site), used here for LO6 device-level facts OpenStax
+      // (physics-first, no power-electronics/thyristor coverage) does not
+      // reach: rectification, Zener/special-purpose diodes, DIAC/SCR/
+      // TRIAC thyristor family, bipolar-junction-transistor switching.
+      key: SRC_KUPHALDT_SEMICONDUCTORS,
+      title: "Electric Circuits III - Semiconductors (Kuphaldt)",
+      publisher: "Tony R. Kuphaldt / LibreTexts (Workforce LibreTexts)",
+      sourceFamily: "Open textbook",
+      sourceType: "TEXTBOOK",
+      jurisdiction: "International",
+      canonicalReference: "Lessons in Electric Circuits, Volume III -- Semiconductors",
+      accessLocation: "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_III_-_Semiconductors_(Kuphaldt)",
+    },
+    {
+      // Manufacturer application note (task's own suggested source class
+      // for device-specific behaviour); used only for the NTC thermistor's
+      // basic resistance-temperature operating principle and application
+      // context, never for proprietary device-specific electrical ratings.
+      key: SRC_VISHAY_NTC,
+      title: "NTC Thermistors Application Note",
+      publisher: "Vishay BCcomponents",
+      sourceFamily: "Manufacturer application note",
+      sourceType: "APPLICATION_NOTE",
+      jurisdiction: "International",
+      canonicalReference: "Vishay BCcomponents document 29053",
+      accessLocation: "https://www.vishay.com/docs/29053/ntcappnote.pdf",
+    },
+    {
+      // University course material (source priority tier 4: "government/
+      // official educational source" -- used only because no accessible
+      // open-textbook chapter on DC-to-AC inverters was found; the fact
+      // cited is the single basic definitional principle, not any deeper
+      // inverter-design content this deck also contains.
+      key: SRC_UOTTAWA_INVERTERS,
+      title: "ELG4139: DC to AC Converters (course material)",
+      publisher: "University of Ottawa, School of Electrical Engineering and Computer Science",
+      sourceFamily: "University course material",
+      sourceType: "COURSE_MATERIAL",
+      jurisdiction: "International",
+      canonicalReference: "ELG4139 DC to AC Converters",
+      accessLocation: "https://www.site.uottawa.ca/~rhabash/ELG4139DCtoACConverters.pdf",
+    },
   ],
 
   sourceVersions: [
@@ -2569,17 +3223,30 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       // title page reads "April 2026 Version 1.12", and its "Qualification
       // at a glance" version-history table independently corroborates that
       // edition. contentFingerprintSha256 is the real SHA-256 of that
-      // fetched artefact (880.5KB, 2026-08-21), never a placeholder.
-      // verificationStatus is deliberately UNVERIFIED: the model that
-      // fetched and transcribed this source (CC-09A) is the SAME model
-      // authoring the governed content citing it, which ADR-0002 holds is
-      // never sufficient for VERIFIED status on its own -- independent
-      // verification against these exact bytes/fingerprint by a verifier
-      // distinct from the authoring model (Project Architect) is the next
-      // required step, not yet performed as of this snapshot.
+      // fetched artefact (880.5KB, 2026-08-21), never a placeholder --
+      // computed by the CC-09A implementation session, not recomputed
+      // since.
+      //
+      // CC-09A recorded this UNVERIFIED: the model that fetched/
+      // transcribed the source was the same model authoring the content
+      // citing it, which ADR-0002 holds is never sufficient for VERIFIED
+      // on its own. CC-09B: the Project Architect (ChatGPT) has now
+      // independently verified this handbook edition's AUTHORITATIVE
+      // CONTENT -- source identity (City & Guilds 2365-02, Unit 202
+      // R/503/9937), edition (v1.12, April 2026), the complete six-LO/
+      // 23-AC/58-Range-item structure, and the Unit 602 assessment
+      // specification (90 min, 40 questions, closed book, non-programmable
+      // calculator, ~50% pass, LO allocation 2/5/7/15/7/4) -- confirming
+      // CC-09A's transcription. Stated accurately, not more than actually
+      // happened: the Project Architect verified the document's CONTENT
+      // independently, but did NOT independently recompute the raw-byte
+      // SHA-256 above -- that fingerprint remains the CC-09A
+      // implementation-session value, content-verified but not itself
+      // byte-level re-verified. Recorded VERIFIED on that basis.
       retrievedDate: "2026-08-21",
       contentFingerprintSha256: "f6bc7a6c76e37a60a9d9830f873ab1079d230015d1ad95f458d69caa82dc9515",
-      verificationStatus: "UNVERIFIED",
+      verificationStatus: "VERIFIED",
+      verifiedBy: "project-architect",
       lastCurrencyCheckDate: "2026-08-21",
     },
     // ADR-0002: these four pre-dated ADR-0002 (fetched during CC-04A/B) --
@@ -2613,6 +3280,59 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       publicationDate: "2016-10-06",
       status: "CURRENT", rightsClassification: "PUBLIC_RESTRICTED",
       verificationStatus: "UNVERIFIED",
+    },
+    // -- CC-09B new source versions. Per ADR-0002 and the task brief's own
+    // instruction: this Sonnet session is the authoring/extraction model,
+    // so none of these are self-marked VERIFIED regardless of how directly
+    // their content was inspected -- independent verification by the
+    // Project Architect remains outstanding for all four.
+    {
+      key: SV_OPENSTAX_UP3, sourceKey: SRC_OPENSTAX_UP3,
+      edition: "1st edition",
+      publicationDate: "2016-09-29",
+      status: "CURRENT", rightsClassification: "PUBLIC_RESTRICTED",
+      // Same OpenStax CC BY-NC-SA 4.0 licence family already verified for
+      // UP1/UP2 (CC-04B); confirmed independently on this volume's own
+      // page during CC-09B research, not merely assumed from the sibling
+      // volumes.
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_KUPHALDT_SEMICONDUCTORS, sourceKey: SRC_KUPHALDT_SEMICONDUCTORS,
+      // Displayed on this LibreTexts mirror as GFDL 1.3 (the original
+      // Kuphaldt/All About Circuits publication uses the Design Science
+      // License; LibreTexts' own hosting states GFDL 1.3) -- both are
+      // genuine open-content copyleft licences permitting free copying,
+      // distribution and modification with attribution, so OPEN here
+      // matches the treatment already given to BIPM's CC BY licence.
+      status: "CURRENT", rightsClassification: "OPEN",
+      // Fetched via LibreTexts' rendered HTML pages, not a single
+      // downloadable artefact -- no stable single-file byte fingerprint is
+      // practical for a multi-page HTML book (ADR-0002 explicitly allows
+      // omitting one here rather than inventing one); source
+      // identity/edition/locators are recorded instead.
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_VISHAY_NTC, sourceKey: SRC_VISHAY_NTC,
+      revision: "Document Number 29053, 20-Jan-06",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "45a0acecc6cb70766784bd8a3a762853564e957c5c0b44e5c238ef67f94f366a",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_UOTTAWA_INVERTERS, sourceKey: SRC_UOTTAWA_INVERTERS,
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "29758def630c61322d6e89a7e4dfa29ddd7e5f669b6ad0284e44626830a5e020",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
     },
   ],
 
