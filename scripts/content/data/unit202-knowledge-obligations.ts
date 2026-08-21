@@ -33,6 +33,26 @@
  * pedagogy manifests already are (a schema-independent script cross-
  * checks it against the live corpus), per task brief section 5's
  * explicit instruction not to overbuild a new domain model.
+ *
+ * CC-09B.6 (OFFICIAL TEACHING-MATERIAL RECONCILIATION): the qualification
+ * handbook alone does not always provide enough detail to reconstruct the
+ * intended teaching breadth, depth, examples or decomposition (task
+ * section 0). Four source roles are kept strictly distinct (task section
+ * 1): the NORMATIVE CURRICULUM SOURCE (handbook) sets the formal scope
+ * boundary; the OFFICIAL TEACHING-SCOPE SOURCE (2365-202 SmartScreen/
+ * course handouts) is evidence of intended teaching breadth/depth/
+ * examples, never a scope boundary in its own right and never a factual
+ * authority; the OFFICIAL ASSESSMENT-PATTERN SOURCE (public 2365-602
+ * sample material) is deferred to a future package; independent
+ * authoritative technical/scientific sources establish factual truth. An
+ * assertion earns required Unit 202 status only by passing BOTH gates
+ * independently: (1) a `basis` here justifying its CURRICULUM SCOPE
+ * (EXPLICIT/RANGE/NECESSARY_PREREQUISITE/OFFICIAL_TEACHING_INTERPRETATION),
+ * and (2) its own genuine, independently-inspected FACTUAL provenance in
+ * `cc04-unit202-electrical-science.ts` (never SmartScreen citing itself as
+ * evidence -- task section 2's explicit governance rule: "official
+ * teaching intent does not override physical truth", verified case by
+ * case during this package's gear-power-trade-off audit, task section 8).
  */
 
 export interface KnowledgeObligation {
@@ -72,13 +92,25 @@ export interface KnowledgeObligation {
    *    wording, but reasonably necessary background to understand,
    *    perform, explain, identify, state or calculate the AC/Range
    *    requirement at Level 2 depth (never merely "interesting and true").
-   * A fourth value, SCOPE_UNRESOLVED, is reserved for an obligation whose
+   *  - OFFICIAL_TEACHING_INTERPRETATION (CC-09B.6, task section 22): the
+   *    official handbook's AC/Range wording alone does not itself resolve
+   *    the intended teaching breadth, depth, decomposition or worked
+   *    example, but the official 2365-202 SmartScreen/course teaching
+   *    material genuinely does -- and every such obligation still requires
+   *    its own independent factual-source entailment (SmartScreen resolves
+   *    SCOPE only, never FACT; see the two-gate model in CC-09B.6's own
+   *    module-header note below). Reserved for genuine teaching-scope
+   *    evidence, never for "SmartScreen happened to also mention this."
+   *  - OFFICIAL_ASSESSMENT_EVIDENCE (task section 22): reserved for a
+   *    future package once the public 2365-602 sample assessment material
+   *    is systematically reconciled -- deliberately never populated from
+   *    guesswork in CC-09B.6 itself.
+   * A final value, SCOPE_UNRESOLVED, is reserved for an obligation whose
    * basis cannot be defensibly assigned from available official material
    * (distinct from `scopeUnresolved` above, which flags BREADTH within an
-   * already-basis-justified obligation -- e.g. Statistics's basis is RANGE
-   * even though its breadth is unresolved).
+   * already-basis-justified obligation).
    */
-  basis: "EXPLICIT" | "RANGE" | "NECESSARY_PREREQUISITE" | "SCOPE_UNRESOLVED";
+  basis: "EXPLICIT" | "RANGE" | "NECESSARY_PREREQUISITE" | "OFFICIAL_TEACHING_INTERPRETATION" | "OFFICIAL_ASSESSMENT_EVIDENCE" | "SCOPE_UNRESOLVED";
 }
 
 export interface AcObligationSet {
@@ -98,23 +130,33 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
       { id: "triangles-trigonometry", basis: "RANGE", description: "State Pythagoras' theorem and the sine/cosine/tangent ratios, AND apply them to find an unknown side or angle.", satisfiedBy: ["FM-GEOM-PYTHAGORAS-001", "FM-GEOM-TRIG-RATIOS-001", "FM-CALC-PYTHAGORAS-001", "FM-CALC-TRIG-RATIO-001"] },
       {
         id: "statistics",
-        basis: "RANGE",
-        description: "Interpret the mean and range of a data set.",
-        satisfiedBy: ["FM-STATS-MEAN-001", "FM-STATS-RANGE-001"],
-        // CC-09B.4 (task section 15): the official handbook's Range box
-        // names this item simply "Statistics", with no further breakdown.
-        // FM-STATS-MEAN-001/FM-STATS-RANGE-001 are genuinely source-backed
-        // (DfE GCSE Maths) and are retained -- but neither the handbook
-        // nor any City & Guilds public sample-assessment material this
-        // package has access to independently confirms that mean+range
-        // exhausts the intended breadth of "Statistics" (median, mode and
-        // quartiles are NOT added here merely because DfE's own broader
-        // GCSE statistics content happens to be available -- that would be
-        // inventing curriculum scope from a foundational source's own
-        // coverage, not from the qualification's own stated requirement).
-        scopeUnresolved: {
-          note: "SCOPE_UNRESOLVED: City & Guilds handbook names the Range item only as \"Statistics\" with no sub-items; whether mean+range exhausts the intended breadth (vs. also requiring median/mode/quartiles) cannot be independently certified from the handbook alone. Flagged for Project Architect adjudication or resolution once official Unit 602 sample-assessment material is available -- not resolved by inventing scope from DfE's broader GCSE statistics content.",
-        },
+        basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Interpret the mean, median, mode and range of a data set.",
+        satisfiedBy: ["FM-STATS-MEAN-001", "FM-STATS-MEDIAN-001", "FM-STATS-MODE-001", "FM-STATS-RANGE-001"],
+        // CC-09B.4 (task section 15) left this obligation's breadth
+        // scopeUnresolved: the official handbook's Range box names this
+        // item only as "Statistics", with no sub-items, and quartiles
+        // were NOT added merely because DfE's broader GCSE Maths coverage
+        // happens to include them.
+        //
+        // CC-09B.6 (task section 6) RESOLVES this using the official
+        // 2365-202 SmartScreen handout (Handout 2, "Mathematical
+        // principles"), which explicitly states: "the data has been
+        // collected it can then be analysed using simple statistical
+        // tools including range, average (mean), median and mode" --
+        // genuine OFFICIAL_TEACHING_INTERPRETATION evidence of the
+        // intended breadth (four named tools, no more). basis changes
+        // from RANGE to OFFICIAL_TEACHING_INTERPRETATION because the
+        // handbook's bare "Statistics" wording alone still cannot justify
+        // this specific four-item breadth -- the SmartScreen evidence is
+        // what does. The FACTUAL entailment gate is independently
+        // satisfied: FM-STATS-MEDIAN-001/FM-STATS-MODE-001 cite the SAME
+        // already-verified DfE Maths locator already used for mean/range
+        // (its own locatorSummary already named "median, mean, mode and
+        // modal class" -- SmartScreen was never treated as the factual
+        // authority, only as scope evidence). Quartiles/inter-quartile
+        // range remain deliberately excluded -- SmartScreen itself
+        // confirms the intended breadth stops at range/mean/median/mode.
       },
     ],
   },
@@ -175,6 +217,18 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
     obligations: [
       { id: "mechanical-advantage-principle", basis: "NECESSARY_PREREQUISITE", description: "General principle of mechanical advantage shared by levers/gears/pulleys.", satisfiedBy: ["FP-CONCEPT-MECHANICAL-ADVANTAGE-001"] },
       { id: "lever-principle-and-classes", basis: "RANGE", description: "Lever principle, and the three lever classes distinguished by pivot/effort/load arrangement.", satisfiedBy: ["FP-CONCEPT-LEVER-PRINCIPLE-001", "FP-LEVER-CLASS-I-001", "FP-LEVER-CLASS-II-001", "FP-LEVER-CLASS-III-001"] },
+      {
+        // CC-09B.6 (task section 7): AC3.2's own verb is "explain", not
+        // "calculate", so the moment-balance relationship is not EXPLICIT
+        // from the AC wording alone -- but the official SmartScreen
+        // handout (Handout 16, "Levers") genuinely teaches lever
+        // calculation with worked numeric examples, exactly analogous to
+        // how gear-ratio and pulley-mechanical-advantage calculation are
+        // already governed RANGE-basis content under this same AC.
+        id: "lever-calculation", basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Calculate the effort or load in a balanced lever using the moment-balance relationship (effort x effort-arm = load x load-arm).",
+        satisfiedBy: ["FP-REL-LEVER-BALANCE-001"],
+      },
       { id: "gears", basis: "RANGE", description: "Gear principle (transmitting rotary motion) and gear-ratio mechanical advantage.", satisfiedBy: ["FP-CONCEPT-GEAR-001", "FP-REL-GEAR-RATIO-001"] },
       { id: "pulleys", basis: "RANGE", description: "Pulley principle, fixed-vs-movable distinction, and pulley mechanical advantage.", satisfiedBy: ["FP-CONCEPT-PULLEY-001", "FP-PULLEY-FIXED-VS-MOVABLE-001", "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001"] },
     ],
@@ -287,9 +341,35 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
     acNumber: "5.3",
     obligations: [
       { id: "field-from-current", basis: "EXPLICIT", description: "A current-carrying conductor produces a magnetic field.", satisfiedBy: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"] },
+      {
+        // CC-09B.6 (task section 9): "production of a magnetic field" is
+        // EXPLICIT in AC5.3's own wording, and the official SmartScreen
+        // handout (Handout 9) teaches the field's DIRECTION (Maxwell's
+        // screw rule) as part of describing that production -- necessary
+        // to fully "describe" this AC5.3 sub-topic, not merely that a
+        // field exists.
+        id: "field-direction-rule", basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Determine the direction of the magnetic field around a straight current-carrying conductor (Maxwell's screw rule / right-hand rule).",
+        satisfiedBy: ["EL-CONCEPT-FIELD-DIRECTION-RULE-001"],
+      },
       { id: "force-on-conductor", basis: "EXPLICIT", description: "A current-carrying conductor in a field experiences a force.", satisfiedBy: ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001"] },
+      {
+        // CC-09B.6 (adversarial gap review, task section 30): the official
+        // SmartScreen handout dedicates an entire handout to F = B I l and
+        // Fleming's left-hand rule under this exact AC5.3 sub-topic.
+        id: "force-on-conductor-calculation", basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Calculate the force on a current-carrying conductor using F = B I l, and determine its direction using Fleming's left-hand rule.",
+        satisfiedBy: ["EL-REL-FORCE-ON-CONDUCTOR-001", "EL-CONCEPT-FLEMING-LEFT-HAND-001"],
+      },
       { id: "electromagnetism-meaning", basis: "EXPLICIT", description: "Describe electromagnetism as the current/magnetism relationship.", satisfiedBy: ["EL-CONCEPT-ELECTROMAGNETISM-001"] },
       { id: "emf-meaning", basis: "EXPLICIT", description: "Describe electromotive force.", satisfiedBy: ["EL-CONCEPT-EMF-001"] },
+      {
+        // CC-09B.6: as above, for e = B l v and Fleming's right-hand rule
+        // (Handout 10, "Generation of an EMF").
+        id: "induced-emf-calculation", basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Calculate the EMF induced in a conductor moving through a magnetic field using e = B l v, and determine the induced current's direction using Fleming's right-hand rule.",
+        satisfiedBy: ["EL-REL-INDUCED-EMF-001", "EL-CONCEPT-FLEMING-RIGHT-HAND-001"],
+      },
     ],
   },
   {
@@ -320,17 +400,36 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
       { id: "dimmer-switch-application", basis: "RANGE", description: "Which component and why: dimmer switches.", satisfiedBy: ["EL-APPLICATION-DIMMER-SWITCH-001"] },
       { id: "motor-control-application", basis: "RANGE", description: "Which component and why: motor control.", satisfiedBy: ["EL-APPLICATION-MOTOR-CONTROL-001"] },
       { id: "heating-boiler-control-application", basis: "RANGE", description: "Which component and why: heating/boiler controls.", satisfiedBy: ["EL-APPLICATION-HEATING-BOILER-CONTROL-001"] },
-      { id: "security-alarm-application", basis: "RANGE", description: "Which component and why: security alarms.", satisfiedBy: ["EL-APPLICATION-SECURITY-ALARM-001"] },
-      // CC-09B.3: re-closed. CC-09B.2 could not find adequate application-
-      // specific evidence within its own search effort and left this
-      // honestly unsatisfied; CC-09B.3 found Skyworks AN347 (a real DAA/
-      // telephone-line-interface design guide showing a diode bridge wired
-      // directly to TIP/RING) and re-sourced EL-APPLICATION-TELEPHONE-001
-      // to it directly.
-      { id: "telephone-application", basis: "RANGE", description: "Which component and why: telephones/communications.", satisfiedBy: ["EL-APPLICATION-TELEPHONE-001"] },
+      {
+        // CC-09B.6 correction (task section 14): the official SmartScreen
+        // handout (Handout 18, "Electronic systems") teaches a transistor/
+        // thyristor switching-and-latching circuit, not a beam-break
+        // sensor. EL-APPLICATION-SECURITY-ALARM-001 (beam-break) is
+        // retained as valid reusable EL knowledge (now SUPPORTS-mapped,
+        // not REQUIRED_FOR) but no longer satisfies this obligation alone.
+        id: "security-alarm-application", basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Which component and why: security alarms (transistor senses a break in a normally-closed loop; a thyristor latches on to hold a sounder active).",
+        satisfiedBy: ["EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001"],
+      },
+      {
+        // CC-09B.6 correction (task section 15): the official SmartScreen
+        // handout teaches the master telephone socket's capacitor/
+        // resistor/surge-protector, not the DAA diode-bridge.
+        // EL-APPLICATION-TELEPHONE-001 (diode bridge) is retained as valid
+        // reusable EL knowledge (now SUPPORTS-mapped) but no longer
+        // satisfies this obligation alone.
+        id: "telephone-application", basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Which component and why: telephones/communications (master socket capacitor for ringing, resistor for line testing, surge protector).",
+        satisfiedBy: ["EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001"],
+      },
       // CC-09B.3: re-closed via the Holtek HT12D/HT12F decoder datasheet
       // (a real, first-party remote-control IC datasheet explicitly
       // naming garage-door/car-door/alarm/remote-control applications).
+      // CC-09B.6 (task section 16): confirmed directionally appropriate --
+      // the official SmartScreen handout names comparable generic
+      // application categories (lighting, shutters/blinds, gates/latches)
+      // without requiring decoder-IC implementation detail, matching the
+      // already-narrowed CC-09B.5 statement. No change.
       { id: "wireless-control-application", basis: "RANGE", description: "Which component and why: wireless control systems.", satisfiedBy: ["EL-APPLICATION-WIRELESS-CONTROL-001"] },
     ],
   },
@@ -340,11 +439,29 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
       { id: "capacitors", basis: "RANGE", description: "Basic operating principle of a capacitor as a component.", satisfiedBy: ["EL-COMPONENT-CAPACITOR-001"] },
       { id: "resistors", basis: "RANGE", description: "Basic operating principle of a resistor as a component.", satisfiedBy: ["EL-COMPONENT-RESISTOR-001"] },
       { id: "rectifiers", basis: "RANGE", description: "Basic operating principle of a rectifier.", satisfiedBy: ["EL-COMPONENT-RECTIFIER-001"] },
+      {
+        // CC-09B.6 (task section 19): the official SmartScreen handout
+        // (Handout 17) explicitly distinguishes half-wave (one diode) from
+        // full-wave/bridge (four diodes) rectification as named Level-2
+        // teaching content, beyond the generic rectifier concept above.
+        id: "rectifier-half-vs-full-wave", basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Distinguish half-wave rectification (single diode, blocks one AC half-cycle) from full-wave bridge rectification (four diodes, both half-cycles converted to the same output polarity).",
+        satisfiedBy: ["EL-COMPONENT-RECTIFIER-HALF-WAVE-001", "EL-COMPONENT-RECTIFIER-FULL-WAVE-001"],
+      },
       { id: "diodes", basis: "RANGE", description: "Basic operating principle of a diode.", satisfiedBy: ["EL-COMPONENT-DIODE-001"] },
       { id: "zener", basis: "RANGE", description: "Basic operating principle of a Zener diode.", satisfiedBy: ["EL-COMPONENT-ZENER-DIODE-001"] },
       { id: "led", basis: "RANGE", description: "Basic operating principle of an LED.", satisfiedBy: ["EL-COMPONENT-LED-001"] },
       { id: "photo", basis: "RANGE", description: "Basic operating principle of a photodiode.", satisfiedBy: ["EL-COMPONENT-PHOTODIODE-001"] },
       { id: "thermistors", basis: "RANGE", description: "Basic operating principle of a thermistor.", satisfiedBy: ["EL-COMPONENT-THERMISTOR-001"] },
+      {
+        // CC-09B.6 (task section 18): the official SmartScreen handout
+        // (Handout 17) explicitly names both PTC and NTC as the two
+        // thermistor types; PTC was genuinely missing, not merely
+        // under-decomposed.
+        id: "thermistors-ptc", basis: "OFFICIAL_TEACHING_INTERPRETATION",
+        description: "Basic operating principle of a PTC thermistor, in contrast to the NTC type.",
+        satisfiedBy: ["EL-COMPONENT-THERMISTOR-PTC-001"],
+      },
       { id: "diacs", basis: "RANGE", description: "Basic operating principle of a DIAC.", satisfiedBy: ["EL-COMPONENT-DIAC-001"] },
       { id: "triacs", basis: "RANGE", description: "Basic operating principle of a TRIAC.", satisfiedBy: ["EL-COMPONENT-TRIAC-001"] },
       { id: "transistors", basis: "RANGE", description: "Basic operating principle of a transistor.", satisfiedBy: ["EL-COMPONENT-TRANSISTOR-001"] },

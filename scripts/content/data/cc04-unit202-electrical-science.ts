@@ -174,6 +174,26 @@ const SRC_HOLTEK_HT12D = "src-holtek-ht12d-ht12f-decoder";
 const SRC_OPENSTAX_CHEMISTRY = "src-openstax-chemistry-2e";
 const SRC_FLUKE_CLAMP_METERS = "src-fluke-abcs-of-clamp-meters";
 const SRC_PRYSMIAN_6242Y = "src-prysmian-6242y-pvc-cable-datasheet";
+// CC-09B.6 (official teaching-material reconciliation): new sources
+// acquired to close genuine intended-teaching gaps the official 2365-202
+// SmartScreen/handout material revealed (median/mode already covered by
+// the existing DfE Maths locator; lever-balance/pulley-tradeoff already
+// covered by existing OpenStax locators; half-wave/full-wave already
+// covered by the existing Kuphaldt rectifier locator -- only genuinely
+// NEW facts needed a genuinely NEW independent source). See
+// PROJECT-STATUS.md CC-09B.6.
+const SRC_VISHAY_PTC = "src-vishay-ptcel-series-datasheet";
+const SRC_FIRGELLI_GEAR_TRAIN = "src-firgelli-gear-train-mechanisms";
+const SRC_WIKIPEDIA_BRITISH_TELEPHONE_SOCKETS = "src-wikipedia-british-telephone-sockets";
+const SRC_ELPROCUS_THYRISTOR_ALARM = "src-elprocus-thyristor-sensor-alarm";
+// CC-09B.6 (task section 30, adversarial gap review): an independent
+// read-only subagent critique found F = B I l / Fleming's left-hand rule
+// (AC5.3, Handout 11) and e = B l v / Fleming's right-hand rule (AC5.3,
+// Handout 10) were exact structural analogues of the Maxwell's-screw-rule
+// fix already made under the same AC, but had been missed. Adjudicated as
+// genuine, load-bearing gaps and closed.
+const SRC_WIKIPEDIA_FLEMING_LEFT_HAND = "src-wikipedia-flemings-left-hand-rule";
+const SRC_WIKIPEDIA_FLEMING_RIGHT_HAND = "src-wikipedia-flemings-right-hand-rule";
 
 /** Exported so ./unit202-assessment-specification.ts cites the same governed source-version identity rather than hand-copying the string. */
 export const SV_CG = "sv-cg-2365-02-v1-12";
@@ -204,6 +224,12 @@ const SV_HOLTEK_HT12D_2022 = "sv-holtek-ht12d-ht12f-decoder-rev1.40-2022";
 const SV_OPENSTAX_CHEMISTRY = "sv-openstax-chemistry-2e";
 const SV_FLUKE_CLAMP_METERS = "sv-fluke-abcs-of-clamp-meters";
 const SV_PRYSMIAN_6242Y = "sv-prysmian-6242y-pvc-cable-datasheet";
+const SV_VISHAY_PTC = "sv-vishay-ptcel-series-datasheet";
+const SV_FIRGELLI_GEAR_TRAIN = "sv-firgelli-gear-train-mechanisms";
+const SV_WIKIPEDIA_BRITISH_TELEPHONE_SOCKETS = "sv-wikipedia-british-telephone-sockets";
+const SV_ELPROCUS_THYRISTOR_ALARM = "sv-elprocus-thyristor-sensor-alarm";
+const SV_WIKIPEDIA_FLEMING_LEFT_HAND = "sv-wikipedia-flemings-left-hand-rule";
+const SV_WIKIPEDIA_FLEMING_RIGHT_HAND = "sv-wikipedia-flemings-right-hand-rule";
 
 // ---------------------------------------------------------------------
 // Curriculum
@@ -1241,6 +1267,91 @@ const locators: LocatorDef[] = [
     section: "Chapter 10, Direct-Current Circuits", subsection: "10.6 Household Wiring and Electrical Safety",
     locatorSummary: "\"Fuses and circuit breakers are used to limit excessive currents\" that would otherwise overheat wiring -- the general purpose of a protective device (automatic disconnection above a safe current) in a real household/installation safety context",
   },
+  {
+    // CC-09B.6 (task section 9): a more precise subsection of the same
+    // already-cited OpenStax UP2 Ch.12 source, re-inspected directly for
+    // this specific proposition (independently confirmed: "the direction
+    // of the magnetic field created by a long straight wire is given by
+    // right-hand rule 2 (RHR-2): point the thumb... in the direction of
+    // current, and the fingers curl in the direction of the magnetic
+    // field").
+    key: "loc-openstax-up2-straight-wire-field-direction",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 12", subsection: "12.2 Magnetic Field due to a Thin Straight Wire",
+    locatorSummary: "The direction of the magnetic field created by a long straight current-carrying wire is given by the right-hand rule: point the thumb of the right hand in the direction of current flow, and the curled fingers give the direction of the circular magnetic field loops around the wire",
+  },
+  // -- CC-09B.6 (official teaching-material reconciliation) new locators.
+  // Only genuinely NEW facts (confirmed missing from the corpus by
+  // comparison against the official 2365-202 SmartScreen handouts) needed
+  // a genuinely new source; median/mode, lever-balance and pulley
+  // force-distance already reuse existing, already-inspected locators
+  // (see their own assertions below). --
+  {
+    key: "loc-vishay-ptcel-principle",
+    sourceVersionKey: SV_VISHAY_PTC,
+    section: "Description; Quick Reference Data", page: "1",
+    locatorSummary: "\"These directly heated ceramic-based doped barium titanate thermistors have a positive temperature coefficient and are primarily intended for inrush current limiting and overload protection\"; Quick Reference Data lists a \"Switching temperature\" of 130-140C, above which resistance rises sharply -- confirming PTC resistance increases (rather than decreases, as with NTC) with rising temperature",
+  },
+  {
+    key: "loc-firgelli-gear-idler-direction",
+    sourceVersionKey: SV_FIRGELLI_GEAR_TRAIN,
+    section: "Gear Train Mechanism Explained",
+    locatorSummary: "Meshed gear teeth apply tangential forces at the pitch line such that if the driver gear turns clockwise, the driven gear is forced to turn anticlockwise -- meshed gears always rotate in opposite directions; \"An idler sits between driver and driven without changing the overall ratio -- its tooth count cancels out -- but it reverses output direction\"",
+  },
+  {
+    key: "loc-wikipedia-telephone-master-socket-components",
+    sourceVersionKey: SV_WIKIPEDIA_BRITISH_TELEPHONE_SOCKETS,
+    section: "Sockets", subsection: "Master socket (NTE5/LJU) component description, citing BS 6312 and BT SIN 351/352",
+    locatorSummary: "\"The socket includes a 1.8 uF capacitor (bell circuit) to feed the AC ringing and a 470 k-ohm resistor (R1, out-of-service resistor) to permit remote testing when no telephones are plugged into any sockets\"; older master sockets also contained an enclosed spark-gap surge protector (SP1); secondary/extension sockets, wired in parallel off the master socket, contain none of these components",
+  },
+  {
+    key: "loc-elprocus-thyristor-sensor-alarm",
+    sourceVersionKey: SV_ELPROCUS_THYRISTOR_ALARM,
+    section: "Thyristor Based Sensor Alarm System, Working and Applications",
+    locatorSummary: "Describes a thyristor-based sensor-alarm circuit in which closing/triggering a sensor switch gates the thyristor on; the thyristor then latches (\"thyristors 'latch' in the on state... and stay on after the gate pulse is detached until they are reverse biased\") so the alarm continues even after the triggering sensor condition ends, until the circuit is deliberately reset",
+  },
+  // -- CC-09B.6 (adversarial gap review, task section 30) locators: two
+  // genuine AC5.3 gaps found by an independent read-only critique, exact
+  // structural analogues of the Maxwell's-screw-rule fix already made
+  // under the same AC. --
+  {
+    key: "loc-openstax-up2-force-on-conductor-magnitude",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 11", subsection: "11.4 Magnetic Force on a Current-Carrying Conductor",
+    locatorSummary: "\"F = I l x B. This is the force on a straight, current-carrying wire in a uniform magnetic field\" -- the magnitude relationship F = B I l (for a conductor perpendicular to the field); direction is given by \"RHR-1, where you point your fingers in the direction of the current and curl them toward the field; your thumb then points in the direction of the force\"",
+  },
+  {
+    key: "loc-wikipedia-flemings-left-hand-rule",
+    sourceVersionKey: SV_WIKIPEDIA_FLEMING_LEFT_HAND,
+    section: "Fleming's left-hand rule for motors",
+    locatorSummary: "\"The Thumb represents the direction of the Motion (Force) of the conductor. The Fore finger represents the direction of the magnetic Field. The Centre finger represents the direction of the Current\" -- the UK vocational-trade naming/mnemonic for the same force-direction rule OpenStax states as RHR-1, citing Fleming, John Ambrose (1902), Magnets and Electric Currents, 2nd ed., pp.173-174",
+  },
+  {
+    key: "loc-openstax-up2-motional-emf",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 13", subsection: "13.3 Motional Emf",
+    locatorSummary: "\"epsilon = Blv\" (Equation 13.5) -- the motional EMF induced in a conductor of length l moving at velocity v perpendicular to a magnetic field of flux density B, derived directly from Faraday's law (epsilon = dPhi_m/dt = B l dx/dt = B l v)",
+  },
+  {
+    key: "loc-wikipedia-flemings-right-hand-rule",
+    sourceVersionKey: SV_WIKIPEDIA_FLEMING_RIGHT_HAND,
+    section: "Fleming's right-hand rule",
+    locatorSummary: "\"The thumb is pointed in the direction of the motion of the conductor relative to the magnetic field. The first finger is pointed in the direction of the magnetic field... the second finger represents the direction of the induced or generated current\" -- the UK vocational-trade naming/mnemonic for generator induced-current direction, citing Hughes, Edward (2016), Electrical and Electronic Technology",
+  },
+  {
+    // CC-09B.6 (adversarial gap review, task section 30): the official
+    // SmartScreen handout (Handouts 4-5, 7) names and proves both laws
+    // explicitly with worked examples; the underlying arithmetic (series
+    // voltage-drops sum to supply, parallel branch-currents sum to total)
+    // was already governed, but never NAMED -- preserves the recognisable
+    // exam terminology (task section 10), reusing the same already-cited
+    // Kuphaldt DC-circuits source (its own Chapter 6 is titled "Divider
+    // Circuits and Kirchhoff's Laws").
+    key: "loc-kuphaldt-kirchhoffs-laws",
+    sourceVersionKey: SV_KUPHALDT_DC_CIRCUITS,
+    section: "Chapter 6, Divider Circuits and Kirchhoff's Laws",
+    locatorSummary: "Kirchhoff's Voltage Law (KVL): \"the algebraic sum of all voltages in a loop must equal zero\"; Kirchhoff's Current Law (KCL): \"the algebraic sum of all currents entering and exiting a node must equal zero\" -- \"these Laws deserve to be memorized by the electronics student every bit as much as Ohm's Law\"",
+  },
 ];
 
 // ---------------------------------------------------------------------
@@ -1505,6 +1616,29 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
     curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
   },
+  {
+    // CC-09B.6 (task section 6): closes the Statistics breadth ambiguity
+    // CC-09B.4 deliberately left scope-unresolved. The official 2365-202
+    // SmartScreen handout (Handout 2, "Mathematical principles") explicitly
+    // teaches "range, average (mean), median and mode" as the four
+    // statistical tools -- median and mode were genuinely missing, not
+    // merely under-decomposed. The same already-verified DfE Maths locator
+    // already covers median (it was never re-cited only because no
+    // median assertion existed yet); quartiles/inter-quartile range remain
+    // deliberately excluded (not part of the SmartScreen-confirmed
+    // breadth).
+    id: "FM-STATS-MEDIAN-001", domain: "FM",
+    statement: "The median of a set of numerical values is the middle value when the values are arranged in numerical order, and is a measure of the central tendency of the data.",
+    provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.6 (task section 6): see FM-STATS-MEDIAN-001 above.
+    id: "FM-STATS-MODE-001", domain: "FM",
+    statement: "The mode of a set of numerical values is the value that occurs most often; a data set can have more than one mode.",
+    provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
+    curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
+  },
 
   // ===================================================================
   // Foundational Physics -- horizontal, reusable knowledge. Curriculum-
@@ -1732,6 +1866,23 @@ const A: AssertionDef[] = [
     prereqs: [{ id: "FP-CONCEPT-LEVER-PRINCIPLE-001", strength: "REQUIRED" }],
     curriculum: [{ node: rangeNode("3.2", "CLASS-III"), type: "REQUIRED_FOR" }],
   },
+  {
+    // CC-09B.6 (task section 7): official SmartScreen handout (Handout 16,
+    // "Levers") explicitly teaches lever calculation with worked numeric
+    // examples ("Effort = Load x Load-to-fulcrum distance / Effort-to-
+    // fulcrum distance"), even though AC3.2's own verb is "explain" not
+    // "calculate" -- exactly analogous to the gear-ratio and pulley-
+    // mechanical-advantage relationship assertions already governed under
+    // this same AC's RANGE-basis obligation. This is the moment-balance
+    // (torque-balance) condition already established generally by the same
+    // OpenStax "Conditions for Static Equilibrium" chapter already cited
+    // for the lever principle itself -- no new source needed.
+    id: "FP-REL-LEVER-BALANCE-001", domain: "FP",
+    statement: "A lever is in balance (equilibrium) when the effort multiplied by its distance from the pivot equals the load multiplied by its distance from the pivot; this relationship can be used to calculate the effort needed to balance a known load, or vice versa.",
+    provenance: [{ locator: "loc-openstax-up1-torque-levers", role: "DEFINES" }],
+    prereqs: [{ id: "FP-CONCEPT-LEVER-PRINCIPLE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
 
   // -- CC-09B.1: AC3.2's own statement names "levers, gears and pulleys",
   // but CC-09B only modelled levers -- the audit's largest single named
@@ -1789,9 +1940,50 @@ const A: AssertionDef[] = [
   },
   {
     id: "FP-GEAR-SPEED-TORQUE-TRADEOFF-001", domain: "FP",
+    // CC-09B.6 (task sections 7-8): the official SmartScreen handout
+    // (Handout 16, "Levers") teaches this same speed/torque trade-off, but
+    // its own wording is technically inaccurate: "there would be twice as
+    // much POWER available at the driven cog, despite going slower". A
+    // passive gear train has no power source of its own and cannot create
+    // power -- ignoring friction losses it approximately CONSERVES power
+    // (P = tau * omega stays constant), with torque rising as speed falls,
+    // never a power gain. This assertion already correctly states the
+    // trade-off as torque-or-speed (never power), and was NOT contaminated
+    // by the handout's error -- recorded here as a discrepancy the audit
+    // found and confirmed was never encoded:
+    //   OFFICIAL TEACHING INTENT: a gear ratio trades output speed for
+    //     output torque (or vice versa).
+    //   TECHNICAL ISSUE: the handout states this trade-off increases
+    //     output POWER, which is physically incorrect for a passive
+    //     (unpowered) gear train.
+    //   GOVERNED CORRECTION: this assertion states the trade-off is
+    //     between torque and speed only, consistent with approximate power
+    //     conservation (loc-ucsd-gear-ratio-tooth-count-torque, already the
+    //     sole cited source, itself correctly frames it this way).
     statement: "A gear ratio can increase a mechanism's output torque or its output speed relative to the input, but not both at the same time.",
     provenance: [{ locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "DEFINES", supportType: "DIRECT" }],
     prereqs: [{ id: "FP-REL-GEAR-RATIO-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "SUPPORTS" }],
+  },
+  {
+    // CC-09B.6 (task section 7): the official SmartScreen handout
+    // (Handout 16) explicitly teaches that meshed gears rotate in opposite
+    // directions, and that an idler gear restores the original direction
+    // without changing the overall ratio. The existing UCSD gear-ratio
+    // locator was directly re-checked and confirmed to NOT establish this
+    // (only a diagram caption shows opposite rotation, never stated as a
+    // taught principle) -- genuinely new source required.
+    id: "FP-GEAR-DIRECTION-REVERSAL-001", domain: "FP",
+    statement: "When two gears mesh directly, they rotate in opposite directions to each other.",
+    provenance: [{ locator: "loc-firgelli-gear-idler-direction", role: "DEFINES", supportType: "DIRECT" }],
+    prereqs: [{ id: "FP-CONCEPT-GEAR-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "SUPPORTS" }],
+  },
+  {
+    id: "FP-GEAR-IDLER-001", domain: "FP",
+    statement: "An idler gear placed between a driving gear and a driven gear reverses the driven gear's direction of rotation back to match the driving gear's direction, without changing the overall gear ratio between them.",
+    provenance: [{ locator: "loc-firgelli-gear-idler-direction", role: "DEFINES", supportType: "DIRECT" }],
+    prereqs: [{ id: "FP-GEAR-DIRECTION-REVERSAL-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "SUPPORTS" }],
   },
   {
@@ -1815,6 +2007,22 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "SUPPORTS" }],
     prereqs: [{ id: "FP-PULLEY-FIXED-VS-MOVABLE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.6 (task section 7): official SmartScreen handout (Handout 16)
+    // explicitly teaches the explicit force/distance trade-off ("increasing
+    // the number of pulleys will mean less force needs to be applied...
+    // but the force needs to be applied over a greater distance"), worked
+    // through four numeric examples. Already implicit in the existing
+    // rope-sections-count relationship, but not previously stated as its
+    // own explicit trade-off proposition -- reuses the same already-cited
+    // OpenStax simple-machines locator (a direct consequence of the same
+    // mechanical-advantage relationship the locator already establishes).
+    id: "FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001", domain: "FP",
+    statement: "The mechanical advantage a pulley system provides in reduced effort force is accompanied by a proportional increase in the distance the effort must move to lift the load.",
+    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "SUPPORTS" }],
   },
 
   // -- CC-09B: LO2 AC2.1 Range ("(SI) Units of measurement for": Length,
@@ -2514,6 +2722,21 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_4, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.6 (adversarial gap review, task section 30): the official
+    // SmartScreen handout (Handouts 4, 7) explicitly names this as
+    // Kirchhoff's Voltage Law with worked "law is proved" examples --
+    // the arithmetic was already governed (EL-SERIES-VOLTAGE-001); this
+    // adds the recognisable name (task section 10), not new substance.
+    id: "EL-CONCEPT-KIRCHHOFFS-VOLTAGE-LAW-001", domain: "EL",
+    statement: "Kirchhoff's voltage law states that the algebraic sum of the voltages around any closed loop of a circuit is zero -- in a series circuit this means the individual voltage drops sum to the supply voltage.",
+    provenance: [
+      { locator: "loc-kuphaldt-kirchhoffs-laws", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac4.4", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-SERIES-VOLTAGE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC4_4, type: "SUPPORTS" }],
+  },
+  {
     id: "EL-SERIES-VOLTAGE-CALC-001", domain: "EL",
     statement: "Calculate an individual voltage drop across a component in a series circuit.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
@@ -2563,6 +2786,19 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-TRANSPOSE-ADD-001", strength: "STRONG" },
     ],
     curriculum: [{ node: NODE_AC4_4, type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.6 (adversarial gap review, task section 30): as
+    // EL-CONCEPT-KIRCHHOFFS-VOLTAGE-LAW-001 above, for the current
+    // analogue (Handout 5).
+    id: "EL-CONCEPT-KIRCHHOFFS-CURRENT-LAW-001", domain: "EL",
+    statement: "Kirchhoff's current law states that the algebraic sum of the currents entering and leaving any point in a circuit is zero -- in a parallel circuit this means the branch currents sum to the total supply current.",
+    provenance: [
+      { locator: "loc-kuphaldt-kirchhoffs-laws", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac4.4", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-PARALLEL-CURRENT-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC4_4, type: "SUPPORTS" }],
   },
   {
     id: "EL-PARALLEL-RESISTANCE-001", domain: "EL",
@@ -3247,10 +3483,57 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.6 (task section 9): the official SmartScreen handout (Handout
+    // 9, "Electro-magnetism") explicitly teaches how to determine the
+    // direction of the field around a current-carrying conductor, naming
+    // it "Maxwell's screw rule" -- the vocational-trade term a City &
+    // Guilds question would use. Preserved alongside the equivalent modern
+    // physics term (right-hand rule) per task section 10: never modernised
+    // so aggressively that a learner fails to recognise the exam language.
+    id: "EL-CONCEPT-FIELD-DIRECTION-RULE-001", domain: "EL",
+    statement: "The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): with the thumb pointing in the direction of current flow, the curled fingers give the direction of the circular field around the conductor.",
+    provenance: [
+      { locator: "loc-openstax-up2-straight-wire-field-direction", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
+  },
+  {
     id: "EL-CONCEPT-FORCE-ON-CONDUCTOR-001", domain: "EL",
     statement: "A current-carrying conductor placed in a magnetic field experiences a mechanical force.",
     provenance: [{ locator: "loc-openstax-up2-magnetic-forces", role: "DEFINES" }, { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", strength: "REQUIRED" }, { id: "FP-CONCEPT-FORCE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.6 (adversarial gap review, task section 30): the official
+    // SmartScreen handout (Handout 11, "Force on current-carrying
+    // conductor") is entirely dedicated to this named formula with two
+    // worked numeric examples -- exact structural analogue of the
+    // Maxwell's-screw-rule fix already made for AC5.3's field-production
+    // sub-topic.
+    id: "EL-REL-FORCE-ON-CONDUCTOR-001", domain: "EL",
+    statement: "The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I l, where B is the magnetic flux density, I is the current and l is the length of the conductor in the field.",
+    provenance: [
+      { locator: "loc-openstax-up2-force-on-conductor-magnitude", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-FORCE-ON-CONDUCTOR-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.6: preserves the vocational-trade term (task section 10) a
+    // City & Guilds question would use, alongside the equivalent modern
+    // physics naming (OpenStax's own RHR-1) already implicit in
+    // loc-openstax-up2-force-on-conductor-magnitude.
+    id: "EL-CONCEPT-FLEMING-LEFT-HAND-001", domain: "EL",
+    statement: "Fleming's left-hand rule gives the direction of the force on a current-carrying conductor in a magnetic field: with the First finger, seCond finger and thuMb of the left hand mutually at right angles, the First finger points along the Field, the seCond finger along the Current, and the thuMb gives the direction of Motion (force).",
+    provenance: [
+      { locator: "loc-wikipedia-flemings-left-hand-rule", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-REL-FORCE-ON-CONDUCTOR-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
   },
   {
@@ -3265,6 +3548,34 @@ const A: AssertionDef[] = [
     statement: "Electromotive force (EMF) is the electrical energy per unit charge supplied by a source, which drives current around a circuit.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FLUX-001", strength: "STRONG" }],
+    curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.6 (adversarial gap review, task section 30): the official
+    // SmartScreen handout (Handout 10, "Generation of an EMF") is entirely
+    // dedicated to this named formula with two worked numeric examples --
+    // exact structural analogue of the force-on-conductor fix above.
+    id: "EL-REL-INDUCED-EMF-001", domain: "EL",
+    statement: "The magnitude of the EMF induced in a conductor of length l moving at velocity v perpendicular to a magnetic field of flux density B is given by e = B l v.",
+    provenance: [
+      { locator: "loc-openstax-up2-motional-emf", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-EMF-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.6: preserves the vocational-trade term (task section 10)
+    // alongside the underlying physics (Lenz's law direction, already
+    // implicit in loc-openstax-up2-motional-emf).
+    id: "EL-CONCEPT-FLEMING-RIGHT-HAND-001", domain: "EL",
+    statement: "Fleming's right-hand rule gives the direction of the current induced in a conductor moving through a magnetic field: with the thumb, First finger and seCond finger of the right hand mutually at right angles, the thumb points in the direction of Motion, the First finger along the Field, and the seCond finger gives the direction of the induced Current.",
+    provenance: [
+      { locator: "loc-wikipedia-flemings-right-hand-rule", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-REL-INDUCED-EMF-001", strength: "REQUIRED" }],
+    contrastsWith: ["EL-CONCEPT-FLEMING-LEFT-HAND-001"],
     curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
   },
   {
@@ -3442,7 +3753,15 @@ const A: AssertionDef[] = [
       { clause: "(background) current flowing in a conductor produces a magnetic field around it", locator: "loc-openstax-up2-magnetic-sources" },
     ],
     prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-CURRENT-001", strength: "REQUIRED" }],
-    curriculum: [{ node: NODE_AC2_3, type: "SUPPORTS" }],
+    // CC-09B.6 (task section 13): the official SmartScreen handout for
+    // AC2.3 (Handout 8, "Connection of meters") explicitly enumerates its
+    // complete intended instrument set -- ammeter, voltmeter, ohmmeter,
+    // wattmeter, energy meter -- and does not mention a clamp meter at
+    // all. Genuine negative teaching-scope evidence, not merely absence:
+    // the Unit 202 curriculum mapping is removed so this factually valid,
+    // well-sourced knowledge is retained as reusable horizontal EL
+    // knowledge without contributing to Unit 202 required/supporting
+    // completeness or mastery (previously SUPPORTS-mapped to NODE_AC2_3).
   },
   {
     id: "EL-CONCEPT-MOTOR-PRINCIPLE-001", domain: "EL",
@@ -3463,7 +3782,13 @@ const A: AssertionDef[] = [
     statement: "An oscilloscope displays how a voltage varies with time, allowing the shape, amplitude and periodic time of a waveform to be observed.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "SUPPORTS" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-WAVEFORM-AMPLITUDE-001", strength: "STRONG" }, { id: "EL-WAVEFORM-PERIODIC-TIME-001", strength: "STRONG" }],
-    curriculum: [{ node: NODE_AC5_5, type: "SUPPORTS" }],
+    // CC-09B.6 (task section 13): the official SmartScreen handout for
+    // AC5.5 (Handout 13, "Sine wave quantities") teaches amplitude,
+    // peak-to-peak, frequency, periodic time, average and RMS purely
+    // through worked calculation, with no mention of an oscilloscope as
+    // the means of observing them. Same treatment as the clamp meter
+    // above: Unit 202 curriculum mapping removed (previously SUPPORTS-
+    // mapped to NODE_AC5_5), retained as valid reusable EL knowledge.
   },
   {
     id: "EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001", domain: "EL",
@@ -3552,6 +3877,40 @@ const A: AssertionDef[] = [
     curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "RECTIFIERS"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.6 (task section 19): official SmartScreen handout (Handout 17,
+    // "Electronic components") explicitly distinguishes half-wave from
+    // full-wave/bridge rectification as named Level-2 teaching content, not
+    // merely the generic rectifier concept already governed above. Reuses
+    // the SAME already-verified Kuphaldt locator (independently
+    // re-inspected: "The simplest kind of rectifier circuit is the
+    // half-wave rectifier. It only allows one half of an AC waveform to
+    // pass through to the load" -- section 3.4, Rectifier Circuits).
+    id: "EL-COMPONENT-RECTIFIER-HALF-WAVE-001", domain: "EL",
+    statement: "A half-wave rectifier uses a single diode to allow only one half-cycle of an AC waveform through to the load, blocking the other half-cycle, producing a pulsating DC output.",
+    provenance: [
+      { locator: "loc-kuphaldt-rectifier-circuits", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-RECTIFIER-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "RECTIFIERS"), type: "SUPPORTS" }],
+  },
+  {
+    // CC-09B.6: independently re-inspected the same locator: full-wave
+    // bridge rectification uses four diodes so that "regardless of the
+    // polarity of the input, the current flows in the same direction
+    // through the load", converting both half-cycles to the same output
+    // polarity (a smoother pulsating DC than half-wave).
+    id: "EL-COMPONENT-RECTIFIER-FULL-WAVE-001", domain: "EL",
+    statement: "A full-wave bridge rectifier uses four diodes arranged so that both half-cycles of an AC waveform are converted to the same output polarity, producing a pulsating DC output with less ripple than a half-wave rectifier.",
+    provenance: [
+      { locator: "loc-kuphaldt-rectifier-circuits", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-RECTIFIER-001", strength: "REQUIRED" }],
+    contrastsWith: ["EL-COMPONENT-RECTIFIER-HALF-WAVE-001"],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "RECTIFIERS"), type: "SUPPORTS" }],
+  },
+  {
     id: "EL-COMPONENT-DIODE-001", domain: "EL",
     statement: "A diode is a semiconductor device formed at a p-n junction that conducts current easily in one direction (forward bias, junction narrows) and blocks current in the other direction (reverse bias, junction widens).",
     provenance: [
@@ -3599,6 +3958,25 @@ const A: AssertionDef[] = [
       { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
     ],
     curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "THERMISTORS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.6 (task section 18): official SmartScreen handout (Handout
+    // 17) explicitly names both thermistor types ("positive temperature
+    // coefficient (PTC)... negative temperature coefficient (NTC)... with
+    // PTC devices, the resistance increases as the temperature increases;
+    // with NTC devices, the resistance decreases as the temperature
+    // increases") -- PTC was genuinely missing, not merely under-
+    // decomposed. Sourced from the same manufacturer family (Vishay)
+    // already used for NTC, via a real PTC-specific datasheet.
+    id: "EL-COMPONENT-THERMISTOR-PTC-001", domain: "EL",
+    statement: "A PTC (positive-temperature-coefficient) thermistor's electrical resistance rises sharply once its temperature exceeds a defined switching temperature, in contrast to an NTC thermistor's resistance, which decreases as temperature rises; this behaviour is used for applications such as overcurrent and overload protection.",
+    provenance: [
+      { locator: "loc-vishay-ptcel-principle", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-THERMISTOR-001", strength: "STRONG" }],
+    contrastsWith: ["EL-COMPONENT-THERMISTOR-001"],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "THERMISTORS"), type: "SUPPORTS" }],
   },
   {
     id: "EL-COMPONENT-DIAC-001", domain: "EL",
@@ -3735,6 +4113,19 @@ const A: AssertionDef[] = [
     // The LED/photodiode component sources are retained as SUPPORTS for
     // the underlying component behaviour the beam sensor depends on, not
     // as the sole evidence for the application claim itself.
+    // CC-09B.6 correction (task section 14): independent Project Architect
+    // review of the official 2365-202 SmartScreen handout (Handout 18,
+    // "Electronic systems") found the intended AC6.1 security-alarm
+    // teaching example is a transistor/thyristor switching-and-latching
+    // circuit (see EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001
+    // below), not a beam-break sensor. This assertion's factual content
+    // remains valid and well-evidenced (SECO-LARM is a real, commercially
+    // sold product), so it is RETAINED as governed knowledge -- but
+    // downgraded from REQUIRED_FOR to SUPPORTS so it no longer stands as
+    // the sole (or primary) required Unit 202 Security-alarms coverage,
+    // per this package's explicit governance rule that a valid but
+    // wrongly-selected teaching example must not substitute for the
+    // official one merely because it was easier to source.
     id: "EL-APPLICATION-SECURITY-ALARM-001", domain: "EL",
     statement: "An infrared LED transmitter and a photoelectric (photodiode) receiver can be paired as a beam-break sensor: an object interrupting the beam changes the receiver's output, which triggers a relay output wired to an alarm control panel -- the basis of commercially manufactured security/intrusion-detection beam sensors.",
     provenance: [
@@ -3742,6 +4133,33 @@ const A: AssertionDef[] = [
       { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [{ id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-PHOTODIODE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.1"), type: "SUPPORTS" }, { node: rangeNode("6.1", "SECURITY-ALARMS"), type: "SUPPORTS" }],
+  },
+  {
+    // CC-09B.6 (task section 14): the official-teaching-matched replacement
+    // example. The general thyristor-latching PROPERTY is DIRECT via the
+    // same already-verified Kuphaldt SCR locator already governing
+    // EL-COMPONENT-THYRISTOR-001/EL-APPLICATION-MOTOR-CONTROL-001 ("SCR...
+    // continues conducting until the anode-to-cathode current falls below
+    // the device's holding current"); the specific "normally-closed loop
+    // -> transistor -> thyristor gate -> latched sounder" alarm-circuit
+    // APPLICATION pattern is independently corroborated (PARTIAL) via
+    // ElProCus. SmartScreen itself is used only to identify which
+    // proportionate proposition to source and govern, never as the
+    // factual authority for the proposition itself.
+    id: "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001", domain: "EL",
+    statement: "A simple electronic security-alarm circuit uses a transistor to detect a break in a normally-closed sensor loop; the transistor then triggers a thyristor, which latches on and continues to power a sounder even if the loop is reclosed, until the circuit is deliberately reset.",
+    provenance: [
+      { locator: "loc-kuphaldt-scr", role: "SUPPORTS", supportType: "PARTIAL" },
+      { locator: "loc-elprocus-thyristor-sensor-alarm", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "a normally-closed sensor loop is monitored by a transistor, which triggers a thyristor's gate when the loop opens", locator: "loc-elprocus-thyristor-sensor-alarm" },
+      { clause: "the thyristor latches on (continues conducting) once triggered, even after the triggering condition ends, until the circuit is reset", locator: "loc-kuphaldt-scr" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-TRANSISTOR-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-THYRISTOR-SCR-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "SECURITY-ALARMS"), type: "REQUIRED_FOR" }],
   },
   // CC-09B.3 (task sections 3/4): closes the two AC6.1 application-
@@ -3763,6 +4181,14 @@ const A: AssertionDef[] = [
   // locatorSummary as evidence context; they are deliberately not
   // repeated in the assertion text itself (task section 7).
   {
+    // CC-09B.6 correction (task section 15): the official SmartScreen
+    // handout's intended AC6.1 telephone teaching content is the UK master
+    // telephone socket's capacitor/resistor/surge-protector (see
+    // EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001 below), not the DAA
+    // diode-bridge. This assertion's factual content remains valid and
+    // well-evidenced, so it is RETAINED -- but downgraded from
+    // REQUIRED_FOR to SUPPORTS for the same reason as the security-alarm
+    // beam-sensor correction above.
     id: "EL-APPLICATION-TELEPHONE-001", domain: "EL",
     statement: "Telephone equipment includes a diode bridge connected across the two wires of the telephone line, so that the equipment's internal circuitry is unaffected by which way round the line is connected.",
     provenance: [
@@ -3770,6 +4196,24 @@ const A: AssertionDef[] = [
       { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.1"), type: "SUPPORTS" }, { node: rangeNode("6.1", "TELEPHONES"), type: "SUPPORTS" }],
+  },
+  {
+    // CC-09B.6 (task section 15): the official-teaching-matched
+    // replacement. Sourced independently (Wikipedia's "British telephone
+    // sockets" article, itself citing BS 6312 and BT SIN 351/352 --
+    // recorded honestly as an encyclopedia-tier source; see the source's
+    // own registration comment for why a stronger freely-accessible source
+    // could not be found). SmartScreen itself only identified WHICH
+    // proposition to source and govern; it is never treated as the
+    // factual authority for the proposition.
+    id: "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001", domain: "EL",
+    statement: "A master telephone socket contains a capacitor that couples the AC ringing signal to the line while blocking the line's DC, a resistor that provides a defined test load for line testing when no telephone is connected, and a surge protector that suppresses transient overvoltages on the line; secondary (extension) sockets, wired in parallel from the master socket, contain none of these components.",
+    provenance: [
+      { locator: "loc-wikipedia-telephone-master-socket-components", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-CAPACITOR-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-RESISTOR-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "TELEPHONES"), type: "REQUIRED_FOR" }],
   },
   {
@@ -4296,6 +4740,116 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       canonicalReference: "Prysmian 6242Y Datasheet",
       accessLocation: "https://datasheet.prysmian.com/pdf/datasheet/en-GB/312416/GB00_6242Y",
     },
+    {
+      // First-party manufacturer (Vishay, same manufacturer family already
+      // used for the corpus's NTC thermistor evidence) datasheet for a
+      // real PTC (positive-temperature-coefficient) thermistor product --
+      // direct evidence that PTC thermistor resistance rises sharply with
+      // temperature, the fact NTC-only sourcing could not itself establish
+      // (CC-09B.6, task section 18 -- SmartScreen handout 17 names PTC and
+      // NTC as the two thermistor types, but SmartScreen itself is never
+      // treated as factual authority; this datasheet is).
+      key: SRC_VISHAY_PTC,
+      title: "PTCEL Series -- PTC Thermistors, Inrush Current Limiter -- Datasheet",
+      publisher: "Vishay Intertechnology (Vishay BCcomponents)",
+      sourceFamily: "Manufacturer datasheet",
+      sourceType: "DATASHEET",
+      jurisdiction: "International",
+      canonicalReference: "Vishay PTCEL Series Datasheet, Document Number 29165",
+      accessLocation: "https://www.vishay.com/docs/29165/ptcel_series.pdf",
+    },
+    {
+      // Manufacturer (linear-actuator/motion-control) technical blog --
+      // independent of SmartScreen -- for the mechanical-engineering
+      // principle that meshed gears rotate in opposite directions and that
+      // an idler gear reverses output direction without changing the
+      // overall gear ratio (CC-09B.6, task section 7; the existing UCSD
+      // gear-ratio locator was directly re-checked and confirmed to NOT
+      // cover this -- see loc-ucsd-gear-ratio-tooth-count-torque's own
+      // scope note).
+      key: SRC_FIRGELLI_GEAR_TRAIN,
+      title: "Gear Train Mechanism Explained: How It Works, Diagram, Formula and Calculator",
+      publisher: "Firgelli Automations",
+      sourceFamily: "Manufacturer technical article",
+      sourceType: "TECHNICAL_ARTICLE",
+      jurisdiction: "International",
+      canonicalReference: "Firgelli Automations: Gear Train Mechanism Explained",
+      accessLocation: "https://www.firgelliauto.com/blogs/mechanisms/gear-train",
+    },
+    {
+      // CC-09B.6 (task section 15): independent, citation-backed evidence
+      // for what a UK BT-style master telephone socket contains (ring
+      // capacitor, line-test resistor, surge protector) and each
+      // component's function. Not a first-party BT/Openreach technical
+      // document (BT does not publicly host the underlying BS 6312/SIN 351
+      // specification text); this Wikipedia article's own citations to
+      // BS 6312 and BT SIN 351/352 were independently checked, and the
+      // same specific values (1.8uF ring capacitor, 470k ohm test
+      // resistor) were independently cross-corroborated across multiple
+      // unrelated UK electrician/telecoms trade sources during this
+      // package's research -- recorded honestly as an encyclopedia-tier
+      // source, one tier below this corpus's usual first-party-manufacturer
+      // standard, because a better freely-accessible source could not be
+      // found.
+      key: SRC_WIKIPEDIA_BRITISH_TELEPHONE_SOCKETS,
+      title: "British telephone sockets",
+      publisher: "Wikipedia",
+      sourceFamily: "Encyclopedia article (citation-backed)",
+      sourceType: "ENCYCLOPEDIA_ARTICLE",
+      jurisdiction: "United Kingdom",
+      canonicalReference: "Wikipedia: British telephone sockets",
+      accessLocation: "https://en.wikipedia.org/wiki/British_telephone_sockets",
+    },
+    {
+      // CC-09B.6 (task section 14): independent electronics-education
+      // source for the specific APPLICATION pattern (a normally-closed
+      // sensor loop feeding a transistor which triggers a thyristor gate,
+      // latching the output on) used in a simple electronic security-alarm
+      // circuit -- the general thyristor-latching PROPERTY itself is
+      // already directly sourced via loc-kuphaldt-scr; this source
+      // supplements it with the specific alarm-circuit application,
+      // PARTIAL support only (see clauseCoverage on the assertion this
+      // supports).
+      key: SRC_ELPROCUS_THYRISTOR_ALARM,
+      title: "Thyristor Based Sensor Alarm System, Working and Applications",
+      publisher: "ElProCus (Electronic Projects for Engineering Students)",
+      sourceFamily: "Electronics-education technical article",
+      sourceType: "TECHNICAL_ARTICLE",
+      jurisdiction: "International",
+      canonicalReference: "ElProCus: Thyristor Based Sensor Alarm System",
+      accessLocation: "https://www.elprocus.com/thyristor-based-sensor-alarm-system/",
+    },
+    {
+      // CC-09B.6 (adversarial gap review, task section 30): citation-backed
+      // encyclopedia article for the naming/finger-convention of Fleming's
+      // left-hand rule (motors), citing Fleming, John Ambrose (1902),
+      // "Magnets and Electric Currents", 2nd ed., pp.173-174, as the
+      // original historical source -- the F = B I l magnitude relationship
+      // itself is sourced directly from OpenStax UP2 11.4, not from this
+      // encyclopedia article.
+      key: SRC_WIKIPEDIA_FLEMING_LEFT_HAND,
+      title: "Fleming's left-hand rule for motors",
+      publisher: "Wikipedia",
+      sourceFamily: "Encyclopedia article (citation-backed)",
+      sourceType: "ENCYCLOPEDIA_ARTICLE",
+      jurisdiction: "International",
+      canonicalReference: "Wikipedia: Fleming's left-hand rule for motors",
+      accessLocation: "https://en.wikipedia.org/wiki/Fleming%27s_left-hand_rule_for_motors",
+    },
+    {
+      // CC-09B.6: as above, for Fleming's right-hand rule (generators),
+      // citing Hughes, Edward (2016), "Electrical and Electronic
+      // Technology". The e = B l v magnitude relationship itself is
+      // sourced directly from OpenStax UP2 13.3, not from this article.
+      key: SRC_WIKIPEDIA_FLEMING_RIGHT_HAND,
+      title: "Fleming's right-hand rule",
+      publisher: "Wikipedia",
+      sourceFamily: "Encyclopedia article (citation-backed)",
+      sourceType: "ENCYCLOPEDIA_ARTICLE",
+      jurisdiction: "International",
+      canonicalReference: "Wikipedia: Fleming's right-hand rule",
+      accessLocation: "https://en.wikipedia.org/wiki/Fleming%27s_right-hand_rule",
+    },
   ],
 
   sourceVersions: [
@@ -4563,6 +5117,49 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
       retrievedDate: "2026-08-21",
       contentFingerprintSha256: "d1c64322fbb31d926a4533b604642cd314674959affb55675c738a7eefea793b",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_VISHAY_PTC, sourceKey: SRC_VISHAY_PTC,
+      revision: "Revision: 12-Sep-2024, Document Number: 29165",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_FIRGELLI_GEAR_TRAIN, sourceKey: SRC_FIRGELLI_GEAR_TRAIN,
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_WIKIPEDIA_BRITISH_TELEPHONE_SOCKETS, sourceKey: SRC_WIKIPEDIA_BRITISH_TELEPHONE_SOCKETS,
+      status: "CURRENT", rightsClassification: "OPEN",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_ELPROCUS_THYRISTOR_ALARM, sourceKey: SRC_ELPROCUS_THYRISTOR_ALARM,
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_WIKIPEDIA_FLEMING_LEFT_HAND, sourceKey: SRC_WIKIPEDIA_FLEMING_LEFT_HAND,
+      status: "CURRENT", rightsClassification: "OPEN",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_WIKIPEDIA_FLEMING_RIGHT_HAND, sourceKey: SRC_WIKIPEDIA_FLEMING_RIGHT_HAND,
+      status: "CURRENT", rightsClassification: "OPEN",
+      retrievedDate: "2026-08-21",
       verificationStatus: "UNVERIFIED",
       lastCurrencyCheckDate: "2026-08-21",
     },

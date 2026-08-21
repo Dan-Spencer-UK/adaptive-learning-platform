@@ -671,6 +671,9 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["EL-INTERPRET-SERIES-RESULT-001", "misconception_guard"],
     ["EL-VOLTAGE-DROP-001", "prerequisite_concept"],
     ["EL-SERIES-VOLTAGE-001", "canonical_form"],
+    // CC-09B.6 (adversarial gap review): names the already-governed
+    // arithmetic as Kirchhoff's voltage law (task section 10).
+    ["EL-CONCEPT-KIRCHHOFFS-VOLTAGE-LAW-001", "consequence"],
     ["EL-SERIES-VOLTAGE-CALC-001", "consequence"],
     ["EL-SERIES-DOMINANT-RESISTOR-001", "consequence"],
     ["EL-SERIES-PREDICT-OPEN-001", "consequence"],
@@ -686,6 +689,8 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["EL-CIRCUIT-PARALLEL-STRUCTURE-001", "canonical_form"],
     ["EL-PARALLEL-VOLTAGE-001", "consequence"],
     ["EL-PARALLEL-CURRENT-001", "canonical_form"],
+    // CC-09B.6: as EL-CONCEPT-KIRCHHOFFS-VOLTAGE-LAW-001 above.
+    ["EL-CONCEPT-KIRCHHOFFS-CURRENT-LAW-001", "consequence"],
     ["EL-PARALLEL-RESISTANCE-001", "canonical_form"],
     ["EL-PARALLEL-RESISTANCE-CALC-001", "consequence"],
     ["EL-INTERPRET-PARALLEL-RESULT-001", "misconception_guard"],
@@ -803,7 +808,15 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["EL-CONCEPT-MAGNETIC-FLUX-001", "prerequisite_concept"],
     ["EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", "prerequisite_concept"],
     ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "canonical_form"],
+    // CC-09B.6: official-teaching-confirmed gap (task section 9).
+    ["EL-CONCEPT-FIELD-DIRECTION-RULE-001", "consequence"],
     ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001", "canonical_form"],
+    // CC-09B.6 (adversarial gap review): F=BIl/Fleming's left-hand rule and
+    // e=Blv/Fleming's right-hand rule, official-teaching-confirmed gaps.
+    ["EL-REL-FORCE-ON-CONDUCTOR-001", "consequence"],
+    ["EL-CONCEPT-FLEMING-LEFT-HAND-001", "consequence"],
+    ["EL-REL-INDUCED-EMF-001", "consequence"],
+    ["EL-CONCEPT-FLEMING-RIGHT-HAND-001", "consequence"],
     ["EL-CONCEPT-ELECTROMAGNETISM-001", "consequence"],
     ["EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001", "consequence"],
     ["EL-CONCEPT-MOTOR-PRINCIPLE-001", "consequence"],
@@ -865,6 +878,9 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
   ...membersOf("foundational.statistics", [
     ["FM-STATS-MEAN-001", "canonical_form"],
     ["FM-STATS-RANGE-001", "canonical_form"],
+    // CC-09B.6: official-teaching-resolved breadth (task section 6).
+    ["FM-STATS-MEDIAN-001", "canonical_form"],
+    ["FM-STATS-MODE-001", "canonical_form"],
   ]),
   ...membersOf("foundational.levers_mechanical_advantage", [
     ["FP-CONCEPT-MECHANICAL-ADVANTAGE-001", "prerequisite_concept"],
@@ -881,6 +897,13 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["FP-CONCEPT-PULLEY-001", "canonical_form"],
     ["FP-PULLEY-FIXED-VS-MOVABLE-001", "consequence"],
     ["FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001", "consequence"],
+    // CC-09B.6: official-teaching-confirmed gaps (task section 7) --
+    // lever calculation, gear direction/idler, pulley force-distance
+    // trade-off.
+    ["FP-REL-LEVER-BALANCE-001", "consequence"],
+    ["FP-GEAR-DIRECTION-REVERSAL-001", "consequence"],
+    ["FP-GEAR-IDLER-001", "consequence"],
+    ["FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001", "consequence"],
   ]),
   ...membersOf("foundational.si_quantities_general", [
     ["FP-UNIT-METRE-001", "canonical_form"],
@@ -904,11 +927,16 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     // from static charge/energy storage -- task section 15).
     ["EL-COMPONENT-CAPACITOR-TRANSIENT-001", "consequence"],
     ["EL-COMPONENT-RECTIFIER-001", "canonical_form"],
+    // CC-09B.6: official-teaching-confirmed depth (task section 19).
+    ["EL-COMPONENT-RECTIFIER-HALF-WAVE-001", "consequence"],
+    ["EL-COMPONENT-RECTIFIER-FULL-WAVE-001", "consequence"],
     ["EL-COMPONENT-DIODE-001", "canonical_form"],
     ["EL-COMPONENT-ZENER-DIODE-001", "consequence"],
     ["EL-COMPONENT-LED-001", "consequence"],
     ["EL-COMPONENT-PHOTODIODE-001", "consequence"],
     ["EL-COMPONENT-THERMISTOR-001", "canonical_form"],
+    // CC-09B.6: PTC was genuinely missing (task section 18).
+    ["EL-COMPONENT-THERMISTOR-PTC-001", "consequence"],
     ["EL-COMPONENT-DIAC-001", "canonical_form"],
     ["EL-COMPONENT-THYRISTOR-SCR-001", "canonical_form"],
     ["EL-COMPONENT-TRIAC-001", "consequence"],
@@ -918,7 +946,12 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["EL-APPLICATION-MOTOR-CONTROL-001", "contextual_application"],
     ["EL-APPLICATION-HEATING-BOILER-CONTROL-001", "contextual_application"],
     ["EL-APPLICATION-SECURITY-ALARM-001", "contextual_application"],
+    // CC-09B.6: official-teaching-matched replacement examples (task
+    // sections 14/15) -- the originals above are retained (SUPPORTS-mapped)
+    // as valid alternative teaching-adjacent examples, not removed.
+    ["EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001", "contextual_application"],
     ["EL-APPLICATION-TELEPHONE-001", "contextual_application"],
+    ["EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001", "contextual_application"],
     ["EL-APPLICATION-WIRELESS-CONTROL-001", "contextual_application"],
   ]),
 ];

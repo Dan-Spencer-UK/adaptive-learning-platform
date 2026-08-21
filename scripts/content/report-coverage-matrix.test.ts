@@ -161,8 +161,7 @@ describe("report-coverage-matrix: CC-09B.1 semantic completeness (never inferred
     const ac31 = report.acSemantic.find((s) => s.acNumber === "3.1");
     expect(ac31?.obligationsDeclared).toBe(false);
     expect(ac31?.status).toBe("INCOMPLETE");
-    // Real baseline is 23/23 (CC-09B.3); stripping AC3.1's declaration
-    // drops it to 22.
+    // Real baseline is 23/23; stripping AC3.1's declaration drops it to 22.
     expect(report.totals.acSemanticComplete).toBe(22);
     // Absence of a declaration is never a structural defect, and never fails --check.
     expect(isReportClean(report)).toBe(true);
@@ -537,18 +536,36 @@ describe("report-coverage-matrix: CC-09B.5 syllabus-scope fidelity and depth con
     expect(report.scopeStatusByAssertion["FM-NUM-SI-PREFIX-001"]).toBeUndefined();
   });
 
-  it("E (scope unresolved): the Statistics Range item stays honestly SCOPE_UNRESOLVED in breadth -- it must never expand to median/mode/quartiles merely because the foundational source (DfE GCSE Maths) happens to cover them", () => {
-    const statsObligation = AC_OBLIGATIONS.find((s) => s.acNumber === "1.1")!.obligations.find((o) => o.id === "statistics")!;
-    expect(statsObligation.scopeUnresolved).toBeDefined();
-    expect(statsObligation.satisfiedBy).toEqual(["FM-STATS-MEAN-001", "FM-STATS-RANGE-001"]);
+  it("E (scope unresolved, as of CC-09B.5): at that point the Statistics Range item must never expand to median/mode/quartiles merely because the foundational source (DfE GCSE Maths) happens to cover them -- CC-09B.6 later resolves this honestly using genuine official-teaching evidence, see the CC-09B.6 describe block below, not by inventing scope from the source's own breadth", () => {
+    // This test intentionally simulates the CC-09B.5 (pre-reconciliation)
+    // state to prove the underlying anti-invention rule still holds in
+    // isolation: quartiles are excluded even though DfE's own broader GCSE
+    // statistics content covers them, and even median/mode would have been
+    // wrong to add WITHOUT the CC-09B.6 SmartScreen evidence that actually
+    // resolved the breadth (see the real, untampered obligation in the
+    // CC-09B.6 test block, which DOES now include median/mode).
+    const realStatsObligation = AC_OBLIGATIONS.find((s) => s.acNumber === "1.1")!.obligations.find((o) => o.id === "statistics")!;
+    const tamperedObligations = AC_OBLIGATIONS.map((set) =>
+      set.acNumber === "1.1"
+        ? {
+            ...set,
+            obligations: set.obligations.map((o) =>
+              o.id === "statistics"
+                ? { ...o, basis: "RANGE" as const, satisfiedBy: ["FM-STATS-MEAN-001", "FM-STATS-RANGE-001"], scopeUnresolved: { note: "simulated pre-CC-09B.6 state" } }
+                : o,
+            ),
+          }
+        : set,
+    );
+    const report = buildReport({ obligations: tamperedObligations });
+    // Quartiles are excluded from the REAL corpus regardless of tampering.
     const statements = cc04Unit202ElectricalScience.assertionVersions.map((v) => v.statement);
-    expect(statements.some((s) => /median|quartile|\bmode\b/i.test(s))).toBe(false);
-    // Its own obligation basis is still RANGE (mean+range genuinely is
-    // required syllabus knowledge) -- scopeUnresolved is breadth-within-an-
-    // already-justified obligation, never a reason to demote the whole
-    // obligation out of scope.
-    const report = buildReport();
+    expect(statements.some((s) => /quartile/i.test(s))).toBe(false);
     expect(report.scopeStatusByAssertion["FM-STATS-MEAN-001"]).toBe("IN_SCOPE_REQUIRED");
+    // The real (untampered) obligation has already moved on: CC-09B.6
+    // resolved the breadth using genuine teaching evidence, not by
+    // reverting to this simulated unresolved state.
+    expect(realStatsObligation.scopeUnresolved).toBeUndefined();
   });
 
   it("REGRESSION (the decomposition-completeness fix this package made): an R2-curriculum-mapped assertion not yet named by any obligation is ENRICHMENT_NOT_REQUIRED only when it also lacks a REQUIRED_FOR mapping -- a REQUIRED_FOR-mapped-but-undecomposed assertion is SCOPE_UNRESOLVED, never silently swept either way", () => {
@@ -568,12 +585,129 @@ describe("report-coverage-matrix: CC-09B.5 syllabus-scope fidelity and depth con
     expect(report.scopeStatusByAssertion["EL-MOTOR-GENERATOR-COMPARE-001"]).toBe("IN_SCOPE_SUPPORTING");
   });
 
-  it("the real, corrected corpus has zero ENRICHMENT_NOT_REQUIRED and zero SCOPE_UNRESOLVED assertions among its 226 R2-curriculum-mapped assertions", () => {
+  it("REGRESSION: OFFICIAL_TEACHING_INTERPRETATION-basis obligations grant IN_SCOPE_REQUIRED, the same as EXPLICIT/RANGE -- never silently demoted to SCOPE_UNRESOLVED merely because a scope-derivation branch was not updated for the new basis value", () => {
+    // This is the exact bug this package's own implementation hit: adding
+    // OFFICIAL_TEACHING_INTERPRETATION to the `basis` type without also
+    // updating scopeStatusFor's branch logic silently dropped every
+    // teaching-interpretation-justified obligation's assertions to
+    // SCOPE_UNRESOLVED, which flipped four ACs (1.1, 3.2, 6.1, 6.2) from
+    // COMPLETE to INCOMPLETE. Guards against that regressing again.
+    const report = buildReport();
+    for (const id of [
+      "FM-STATS-MEDIAN-001", "FM-STATS-MODE-001", "FP-REL-LEVER-BALANCE-001",
+      "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001", "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001",
+      "EL-COMPONENT-RECTIFIER-HALF-WAVE-001", "EL-COMPONENT-RECTIFIER-FULL-WAVE-001", "EL-COMPONENT-THERMISTOR-PTC-001",
+    ]) {
+      expect(report.scopeStatusByAssertion[id]).toBe("IN_SCOPE_REQUIRED");
+    }
+    expect(report.totals.acSemanticComplete).toBe(23);
+    expect(report.totals.rangeItemsSemanticComplete).toBe(58);
+  });
+
+  it("the real, corrected corpus has zero ENRICHMENT_NOT_REQUIRED and zero SCOPE_UNRESOLVED assertions among its R2-curriculum-mapped assertions", () => {
     const report = buildReport();
     const statuses = Object.values(report.scopeStatusByAssertion);
-    expect(statuses.length).toBe(226);
+    // CC-09B.6 grew this from 226 (CC-09B.5) by adding new R2-mapped
+    // assertions (median, mode, lever-balance, gear-direction, gear-idler,
+    // pulley-force-distance, rectifier half/full-wave, thermistor-PTC,
+    // security-alarm-transistor-thyristor, telephone-master-socket) while
+    // removing clamp-meter/oscilloscope's R2 mapping entirely -- the
+    // important invariant is the zero counts below, not this exact total.
+    expect(statuses.length).toBe(242);
     expect(statuses.filter((s) => s === "ENRICHMENT_NOT_REQUIRED")).toEqual([]);
     expect(statuses.filter((s) => s === "OUT_OF_SCOPE")).toEqual([]);
     expect(statuses.filter((s) => s === "SCOPE_UNRESOLVED")).toEqual([]);
+  });
+});
+
+describe("report-coverage-matrix: CC-09B.6 official teaching-material reconciliation", () => {
+  it("Statistics is resolved using genuine official-teaching evidence: mean, median, mode and range are all required, quartiles/inter-quartile range remain deliberately excluded", () => {
+    const statsObligation = AC_OBLIGATIONS.find((s) => s.acNumber === "1.1")!.obligations.find((o) => o.id === "statistics")!;
+    expect(statsObligation.basis).toBe("OFFICIAL_TEACHING_INTERPRETATION");
+    expect(statsObligation.scopeUnresolved).toBeUndefined();
+    expect(statsObligation.satisfiedBy).toEqual(
+      expect.arrayContaining(["FM-STATS-MEAN-001", "FM-STATS-MEDIAN-001", "FM-STATS-MODE-001", "FM-STATS-RANGE-001"]),
+    );
+    const report = buildReport();
+    for (const id of ["FM-STATS-MEAN-001", "FM-STATS-MEDIAN-001", "FM-STATS-MODE-001", "FM-STATS-RANGE-001"]) {
+      expect(report.scopeStatusByAssertion[id]).toBe("IN_SCOPE_REQUIRED");
+    }
+    const statements = cc04Unit202ElectricalScience.assertionVersions.map((v) => v.statement);
+    expect(statements.some((s) => /quartile/i.test(s))).toBe(false);
+  });
+
+  it("the gear speed/torque trade-off assertion never encodes the SmartScreen handout's power-gain error: a passive gear train trades speed for torque, never gains power", () => {
+    const version = cc04Unit202ElectricalScience.assertionVersions.find((v) => v.assertionIdentifier === "FP-GEAR-SPEED-TORQUE-TRADEOFF-001")!;
+    expect(version.statement.toLowerCase()).not.toContain("power");
+    expect(version.statement.toLowerCase()).toContain("torque");
+    expect(version.statement.toLowerCase()).toContain("speed");
+  });
+
+  it("LO3 mechanics gains lever-calculation, gear-direction/idler and pulley-force-distance knowledge, all reusing already-verified sources (no weak citation forced for a genuinely necessary addition)", () => {
+    const report = buildReport();
+    // FP domain (Foundational Physics) SUPPORTS-mapped-only assertions
+    // resolve FOUNDATIONAL_PREREQUISITE, not IN_SCOPE_SUPPORTING -- that
+    // distinction is reserved for the EL (vocational Unit 202) domain.
+    expect(report.scopeStatusByAssertion["FP-REL-LEVER-BALANCE-001"]).toBe("IN_SCOPE_REQUIRED");
+    expect(report.scopeStatusByAssertion["FP-GEAR-DIRECTION-REVERSAL-001"]).toBe("FOUNDATIONAL_PREREQUISITE");
+    expect(report.scopeStatusByAssertion["FP-GEAR-IDLER-001"]).toBe("FOUNDATIONAL_PREREQUISITE");
+    expect(report.scopeStatusByAssertion["FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001"]).toBe("FOUNDATIONAL_PREREQUISITE");
+    for (const id of ["FP-REL-LEVER-BALANCE-001", "FP-GEAR-DIRECTION-REVERSAL-001", "FP-GEAR-IDLER-001", "FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001"]) {
+      expect(report.entailmentStatusByAssertion[id]).not.toBe("PARTIALLY_SUPPORTED");
+      expect(report.entailmentStatusByAssertion[id]).not.toBe("UNSUPPORTED");
+    }
+  });
+
+  it("security-alarm and telephone: the official-teaching-matched replacement examples are REQUIRED_FOR AC6.1, the previously-required-but-wrongly-selected examples are retained only as SUPPORTS (valid reusable knowledge, no longer sole/primary Unit 202 coverage)", () => {
+    const mappings = cc04Unit202ElectricalScience.assertionCurriculumMappings;
+    const mappingTypesFor = (id: string) => mappings.filter((m) => m.assertionIdentifier === id && m.curriculumNodeKey.startsWith("node-202r2")).map((m) => m.mappingType);
+    expect(mappingTypesFor("EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001")).toContain("REQUIRED_FOR");
+    expect(mappingTypesFor("EL-APPLICATION-SECURITY-ALARM-001")).not.toContain("REQUIRED_FOR");
+    expect(mappingTypesFor("EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001")).toContain("REQUIRED_FOR");
+    expect(mappingTypesFor("EL-APPLICATION-TELEPHONE-001")).not.toContain("REQUIRED_FOR");
+    const report = buildReport();
+    expect(report.scopeStatusByAssertion["EL-APPLICATION-SECURITY-ALARM-001"]).toBe("IN_SCOPE_SUPPORTING");
+    expect(report.scopeStatusByAssertion["EL-APPLICATION-TELEPHONE-001"]).toBe("IN_SCOPE_SUPPORTING");
+    const ac61 = report.acSemantic.find((s) => s.acNumber === "6.1");
+    expect(ac61?.status).toBe("COMPLETE_PENDING_VERIFICATION");
+  });
+
+  it("instrumentation: clamp meter and oscilloscope have no Unit 202 curriculum mapping at all (genuine negative teaching-scope evidence, not merely absent evidence) -- retained as valid reusable EL knowledge, undefined scope status, never OUT_OF_SCOPE", () => {
+    const mappings = cc04Unit202ElectricalScience.assertionCurriculumMappings;
+    for (const id of ["EL-INSTRUMENT-CLAMP-METER-001", "EL-INSTRUMENT-OSCILLOSCOPE-001"]) {
+      expect(mappings.some((m) => m.assertionIdentifier === id && m.curriculumNodeKey.startsWith("node-202r2"))).toBe(false);
+    }
+    const report = buildReport();
+    expect(report.scopeStatusByAssertion["EL-INSTRUMENT-CLAMP-METER-001"]).toBeUndefined();
+    expect(report.scopeStatusByAssertion["EL-INSTRUMENT-OSCILLOSCOPE-001"]).toBeUndefined();
+    // Still real, valid, well-sourced assertions -- just outside Unit 202 scope.
+    expect(cc04Unit202ElectricalScience.assertions.some((a) => a.identifier === "EL-INSTRUMENT-CLAMP-METER-001")).toBe(true);
+    expect(cc04Unit202ElectricalScience.assertions.some((a) => a.identifier === "EL-INSTRUMENT-OSCILLOSCOPE-001")).toBe(true);
+  });
+
+  it("REGRESSION (adversarial gap review, task section 30): F=BIl/Fleming's-left-hand-rule and e=Blv/Fleming's-right-hand-rule (AC5.3) are governed, sourced from independent physics/encyclopedia sources (never SmartScreen as factual authority), and Kirchhoff's laws are named on top of the already-governed series/parallel arithmetic", () => {
+    const report = buildReport();
+    for (const id of ["EL-REL-FORCE-ON-CONDUCTOR-001", "EL-CONCEPT-FLEMING-LEFT-HAND-001", "EL-REL-INDUCED-EMF-001", "EL-CONCEPT-FLEMING-RIGHT-HAND-001"]) {
+      expect(report.entailmentStatusByAssertion[id]).toBe("FULLY_SUPPORTED_SINGLE_SOURCE");
+      expect(report.scopeStatusByAssertion[id]).toBe("IN_SCOPE_REQUIRED");
+    }
+    const ac53 = report.acSemantic.find((s) => s.acNumber === "5.3");
+    expect(ac53?.status).toBe("COMPLETE_PENDING_VERIFICATION");
+    for (const id of ["EL-CONCEPT-KIRCHHOFFS-VOLTAGE-LAW-001", "EL-CONCEPT-KIRCHHOFFS-CURRENT-LAW-001"]) {
+      expect(report.entailmentStatusByAssertion[id]).toBe("FULLY_SUPPORTED_SINGLE_SOURCE");
+    }
+  });
+
+  it("half-wave/full-wave rectification and PTC thermistor are new, genuinely-sourced, proportionate AC6.2 knowledge (never SmartScreen cited as factual authority)", () => {
+    const report = buildReport();
+    for (const id of ["EL-COMPONENT-RECTIFIER-HALF-WAVE-001", "EL-COMPONENT-RECTIFIER-FULL-WAVE-001", "EL-COMPONENT-THERMISTOR-PTC-001"]) {
+      expect(report.entailmentStatusByAssertion[id]).toBe("FULLY_SUPPORTED_SINGLE_SOURCE");
+      expect(report.scopeStatusByAssertion[id]).toBe("IN_SCOPE_REQUIRED");
+    }
+    const links = cc04Unit202ElectricalScience.assertionProvenanceLinks;
+    for (const id of ["EL-COMPONENT-RECTIFIER-HALF-WAVE-001", "EL-COMPONENT-RECTIFIER-FULL-WAVE-001", "EL-COMPONENT-THERMISTOR-PTC-001"]) {
+      const factualLinks = links.filter((l) => l.assertionIdentifier === id && l.provenanceRole !== "CURRICULUM_REQUIRES");
+      expect(factualLinks.every((l) => l.sourceLocatorKey.startsWith("loc-smartscreen") === false)).toBe(true);
+    }
   });
 });

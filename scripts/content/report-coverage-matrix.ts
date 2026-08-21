@@ -648,7 +648,15 @@ function buildReport(overrides?: {
       // authored or the mapping itself is corrected.
       return "SCOPE_UNRESOLVED";
     }
-    if (bases.some((b) => b.basis === "EXPLICIT" || b.basis === "RANGE")) return "IN_SCOPE_REQUIRED";
+    // CC-09B.6 (task section 22): OFFICIAL_TEACHING_INTERPRETATION is a
+    // third, independent route to genuine curriculum-scope justification
+    // (official teaching material resolving what the bare handbook
+    // AC/Range wording alone could not) -- equally admissible as
+    // EXPLICIT/RANGE for the Mandatory Knowledge Gate, never a lesser
+    // tier. OFFICIAL_ASSESSMENT_EVIDENCE is deliberately excluded here:
+    // it is a declared-for-future-use value, never populated (and
+    // therefore never reached) in this package.
+    if (bases.some((b) => b.basis === "EXPLICIT" || b.basis === "RANGE" || b.basis === "OFFICIAL_TEACHING_INTERPRETATION")) return "IN_SCOPE_REQUIRED";
     if (bases.some((b) => b.basis === "NECESSARY_PREREQUISITE")) {
       const domain = domainByAssertion.get(assertionId);
       return domain === "FM" || domain === "FP" ? "FOUNDATIONAL_PREREQUISITE" : "IN_SCOPE_SUPPORTING";

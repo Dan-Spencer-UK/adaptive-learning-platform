@@ -6,10 +6,10 @@ Generated deterministically by `scripts/content/generate-corpus-review.ts` from
 only, never rendered to learners. Regenerate with:
 `node scripts/content/generate-corpus-review.ts`.
 
-Total assertions: 236
-- Foundational Maths (FM): 24
-- Foundational Physics (FP): 40
-- Electrical (EL): 172
+Total assertions: 254
+- Foundational Maths (FM): 26
+- Foundational Physics (FP): 44
+- Electrical (EL): 184
 
 The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150). Foundational Maths/Physics are additional reusable horizontal knowledge and do not count toward that target.
 
@@ -31,9 +31,9 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Describe the basic principles of generating an A.C. supply | 7 |
 | Describe the chemical and thermal effects of electric currents | 16 |
 | Describe the effects of magnetism in terms of attraction and repulsion | 2 |
-| Describe the function and application of electronic components that are used in electrical systems | 6 |
-| Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force | 7 |
-| Describe the magnetic effects of electrical currents | 7 |
+| Describe the function and application of electronic components that are used in electrical systems | 8 |
+| Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force | 12 |
+| Describe the magnetic effects of electrical currents | 12 |
 | Describe the main principles of force, work, energy, power and efficiency and their inter-relationships | 1 |
 | Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency | 1 |
 | Describe what is meant by resistance and resistivity in relation to electrical circuits | 14 |
@@ -56,8 +56,8 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Electrical systems: Dimmer switches | 1 |
 | Electrical systems: Heating/boiler controls | 1 |
 | Electrical systems: Motor control | 1 |
-| Electrical systems: Security alarms | 1 |
-| Electrical systems: Telephones | 1 |
+| Electrical systems: Security alarms | 2 |
+| Electrical systems: Telephones | 2 |
 | Electrical systems: Wireless control systems | 1 |
 | Electronic components and devices: Capacitors | 3 |
 | Electronic components and devices: Diacs | 1 |
@@ -65,31 +65,31 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Electronic components and devices: Invertors | 1 |
 | Electronic components and devices: LED | 1 |
 | Electronic components and devices: Photo | 1 |
-| Electronic components and devices: Rectifiers | 1 |
+| Electronic components and devices: Rectifiers | 3 |
 | Electronic components and devices: Resistors | 2 |
-| Electronic components and devices: Thermistors | 1 |
+| Electronic components and devices: Thermistors | 2 |
 | Electronic components and devices: Thyristors | 1 |
 | Electronic components and devices: Transistors | 1 |
 | Electronic components and devices: Triacs | 1 |
 | Electronic components and devices: Zener | 1 |
-| Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits | 56 |
+| Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits | 60 |
 | Identify and apply appropriate mathematical principles which are relevant to electrical work tasks | 32 |
 | Identify and determine values of base and derived SI units which apply specifically to electrical quantities | 60 |
 | Identify and distinguish between materials which are good conductors and insulators | 8 |
 | Identify and use internationally recognised base and derived (SI) units of measurement | 6 |
-| Identify appropriate electrical instruments for the measurement of different electrical quantities | 22 |
-| Identify the characteristics of sine-waves | 24 |
-| State the basic operating principles of electronic components and devices | 14 |
+| Identify appropriate electrical instruments for the measurement of different electrical quantities | 20 |
+| Identify the characteristics of sine-waves | 22 |
+| State the basic operating principles of electronic components and devices | 17 |
 | State the difference between magnetic flux and flux density | 4 |
 | State what is meant by the term voltage drop in relation to electrical circuits | 4 |
 
 ## Foundational Maths/Physics: used vs currently-unused-but-retained
 
-23 of 64 Foundational assertions currently reach an Electrical target via PREREQUISITE_OF; the remainder are retained as coherent, atomic, properly-sourced, non-speculative reusable horizontal knowledge for future Unit 202 expansion, other electrical qualifications, or other vocational verticals -- per explicit Product Owner direction, this is not treated as a defect.
+23 of 70 Foundational assertions currently reach an Electrical target via PREREQUISITE_OF; the remainder are retained as coherent, atomic, properly-sourced, non-speculative reusable horizontal knowledge for future Unit 202 expansion, other electrical qualifications, or other vocational verticals -- per explicit Product Owner direction, this is not treated as a defect.
 
 **Currently used (23):** FM-ALG-EQUALITY-ADD-001, FM-ALG-EQUALITY-MULT-001, FM-ALG-INVERSE-OPS-ADD-001, FM-ALG-INVERSE-OPS-MULT-001, FM-ALG-PROPORTION-DIRECT-001, FM-ALG-PROPORTION-INVERSE-001, FM-ALG-SUBSTITUTION-001, FM-ALG-TRANSPOSE-ADD-001, FM-ALG-TRANSPOSE-MULT-001, FM-ARITH-FRACTION-OPS-001, FM-ARITH-PERCENTAGE-001, FM-ARITH-RECIPROCAL-001, FM-ARITH-RECIPROCAL-INVERT-001, FM-ARITH-RECIPROCAL-SUM-001, FM-NUM-SI-PREFIX-001, FM-NUM-SI-PREFIX-CONVERT-001, FM-NUM-STANDARD-FORM-001, FP-CONCEPT-EFFICIENCY-001, FP-CONCEPT-ENERGY-001, FP-CONCEPT-ENERGY-CONSERVATION-001, FP-CONCEPT-FORCE-001, FP-CONCEPT-POWER-001, FP-CONCEPT-WORK-001
 
-**Currently unused but retained (41):** FM-CALC-PYTHAGORAS-001, FM-CALC-TRIG-RATIO-001, FM-GEOM-PYTHAGORAS-001, FM-GEOM-TRIG-RATIOS-001, FM-NUM-INDICES-LAWS-001, FM-STATS-MEAN-001, FM-STATS-RANGE-001, FP-CALC-EFFICIENCY-001, FP-CALC-KINETIC-ENERGY-001, FP-CALC-POTENTIAL-ENERGY-001, FP-CALC-POWER-001, FP-CALC-WEIGHT-001, FP-CALC-WORK-001, FP-CONCEPT-GEAR-001, FP-CONCEPT-KINETIC-ENERGY-001, FP-CONCEPT-LEVER-PRINCIPLE-001, FP-CONCEPT-MASS-001, FP-CONCEPT-MECHANICAL-ADVANTAGE-001, FP-CONCEPT-POTENTIAL-ENERGY-001, FP-CONCEPT-PULLEY-001, FP-CONCEPT-WEIGHT-001, FP-GEAR-SPEED-TORQUE-TRADEOFF-001, FP-LEVER-CLASS-I-001, FP-LEVER-CLASS-II-001, FP-LEVER-CLASS-III-001, FP-PULLEY-FIXED-VS-MOVABLE-001, FP-REL-GEAR-RATIO-001, FP-REL-KINETIC-ENERGY-001, FP-REL-POTENTIAL-ENERGY-001, FP-REL-POWER-WORK-TIME-001, FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001, FP-REL-WEIGHT-MASS-001, FP-REL-WORK-FORCE-DISTANCE-001, FP-UNIT-CUBIC-METRE-001, FP-UNIT-DENSITY-001, FP-UNIT-KELVIN-CELSIUS-001, FP-UNIT-KILOGRAM-001, FP-UNIT-METRE-001, FP-UNIT-METRE-PER-SECOND-001, FP-UNIT-SECOND-001, FP-UNIT-SQUARE-METRE-001
+**Currently unused but retained (47):** FM-CALC-PYTHAGORAS-001, FM-CALC-TRIG-RATIO-001, FM-GEOM-PYTHAGORAS-001, FM-GEOM-TRIG-RATIOS-001, FM-NUM-INDICES-LAWS-001, FM-STATS-MEAN-001, FM-STATS-MEDIAN-001, FM-STATS-MODE-001, FM-STATS-RANGE-001, FP-CALC-EFFICIENCY-001, FP-CALC-KINETIC-ENERGY-001, FP-CALC-POTENTIAL-ENERGY-001, FP-CALC-POWER-001, FP-CALC-WEIGHT-001, FP-CALC-WORK-001, FP-CONCEPT-GEAR-001, FP-CONCEPT-KINETIC-ENERGY-001, FP-CONCEPT-LEVER-PRINCIPLE-001, FP-CONCEPT-MASS-001, FP-CONCEPT-MECHANICAL-ADVANTAGE-001, FP-CONCEPT-POTENTIAL-ENERGY-001, FP-CONCEPT-PULLEY-001, FP-CONCEPT-WEIGHT-001, FP-GEAR-DIRECTION-REVERSAL-001, FP-GEAR-IDLER-001, FP-GEAR-SPEED-TORQUE-TRADEOFF-001, FP-LEVER-CLASS-I-001, FP-LEVER-CLASS-II-001, FP-LEVER-CLASS-III-001, FP-PULLEY-FIXED-VS-MOVABLE-001, FP-REL-GEAR-RATIO-001, FP-REL-KINETIC-ENERGY-001, FP-REL-LEVER-BALANCE-001, FP-REL-POTENTIAL-ENERGY-001, FP-REL-POWER-WORK-TIME-001, FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001, FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001, FP-REL-WEIGHT-MASS-001, FP-REL-WORK-FORCE-DISTANCE-001, FP-UNIT-CUBIC-METRE-001, FP-UNIT-DENSITY-001, FP-UNIT-KELVIN-CELSIUS-001, FP-UNIT-KILOGRAM-001, FP-UNIT-METRE-001, FP-UNIT-METRE-PER-SECOND-001, FP-UNIT-SECOND-001, FP-UNIT-SQUARE-METRE-001
 
 ## Provenance source / rights distribution
 
@@ -118,8 +118,14 @@ Verification columns per ADR-0002 -- Verified/By/Fingerprint reflect the governe
 | Chemistry 2e | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
 | The ABCs of Clamp Meters | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
 | 6242Y PVC Flat Wiring Cable with Bare CPC (BS 6004, 300/500V) -- Datasheet | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| PTCEL Series -- PTC Thermistors, Inrush Current Limiter -- Datasheet | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
+| Gear Train Mechanism Explained: How It Works, Diagram, Formula and Calculator | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
+| British telephone sockets | OPEN | UNVERIFIED | (none) | absent |
+| Thyristor Based Sensor Alarm System, Working and Applications | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
+| Fleming's left-hand rule for motors | OPEN | UNVERIFIED | (none) | absent |
+| Fleming's right-hand rule | OPEN | UNVERIFIED | (none) | absent |
 
-Rights distribution: PROPRIETARY_REFERENCE: 12, OPEN: 4, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
+Rights distribution: PROPRIETARY_REFERENCE: 15, OPEN: 7, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
 
 ## OpenStax exact-book licence evidence (CC-04B hard requirement)
 
@@ -132,13 +138,13 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ## Graph health
 
-- Total relationships: 367
-  - CONTRASTS_WITH: 14
+- Total relationships: 388
+  - CONTRASTS_WITH: 17
   - DERIVED_FROM: 36
-  - PREREQUISITE_OF: 307
+  - PREREQUISITE_OF: 325
   - SUPPORTS: 10
 - Misconceptions: 21; conflict links: 45
-- Curriculum mappings: 469
+- Curriculum mappings: 495
 - Self edges, duplicate edges, unintended prerequisite cycles, broken relationship targets, unmapped Electrical assertions and approved-versions-without-provenance: all mechanically proven 0 -- see supabase/tests/database/10_unit202_knowledge_graph.sql and the CC-04B completion report for the live query evidence.
 
 ## Foundational Maths (FM)
@@ -394,6 +400,28 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
+### FM-STATS-MEDIAN-001
+
+**Statement (v1, APPROVED):** The median of a set of numerical values is the middle value when the values are arranged in numerical order, and is a measure of the central tendency of the data.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Mathematical principles: Statistics (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [DEFINES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### FM-STATS-MODE-001
+
+**Statement (v1, APPROVED):** The mode of a set of numerical values is the value that occurs most often; a data set can have more than one mode.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Mathematical principles: Statistics (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [DEFINES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
 ## Foundational Physics (FP)
 
 ### FP-CONCEPT-FORCE-001
@@ -639,7 +667,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A lever is a rigid bar that rotates about a fixed pivot (fulcrum); the mechanical advantage it provides depends on the ratio of the effort's distance from the pivot to the load's distance from the pivot.
 
 **Direct prerequisites:** FP-CONCEPT-MECHANICAL-ADVANTAGE-001 (REQUIRED)
-**Direct dependents:** FP-LEVER-CLASS-I-001; FP-LEVER-CLASS-II-001; FP-LEVER-CLASS-III-001
+**Direct dependents:** FP-LEVER-CLASS-I-001; FP-LEVER-CLASS-II-001; FP-LEVER-CLASS-III-001; FP-REL-LEVER-BALANCE-001
 **Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS, support=DIRECT, verification=UNVERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
@@ -678,12 +706,23 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
+### FP-REL-LEVER-BALANCE-001
+
+**Statement (v1, APPROVED):** A lever is in balance (equilibrium) when the effort multiplied by its distance from the pivot equals the load multiplied by its distance from the pivot; this relationship can be used to calculate the effort needed to balance a known load, or vice versa.
+
+**Direct prerequisites:** FP-CONCEPT-LEVER-PRINCIPLE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [DEFINES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
 ### FP-CONCEPT-GEAR-001
 
 **Statement (v1, APPROVED):** A gear is a toothed wheel; when two gears mesh, their teeth engage so that one gear (the driving gear) transmits rotary motion and torque to the other (the driven gear) from one shaft to another.
 
 **Direct prerequisites:** FP-CONCEPT-MECHANICAL-ADVANTAGE-001 (REQUIRED)
-**Direct dependents:** FP-REL-GEAR-RATIO-001
+**Direct dependents:** FP-REL-GEAR-RATIO-001; FP-GEAR-DIRECTION-REVERSAL-001
 **Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
 **Provenance:** College Physics 2e — For wheels/gears driven by a common axle, mechanical advantage is the ratio of the radii of the driving and driven wheel/gear (the same simple expression as for a crank); a single fixed pulley has a mechanical advantage of 1 (direction change only, forces do not add); a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load, demonstrated for MA of 2, 3 and 4 [DEFINES, support=PARTIAL, verification=UNVERIFIED] | Machine Design: Gear Ratios — Because the radius of a gear is proportional to its number of teeth, gear-ratio relationships can equivalently be stated in terms of tooth counts: omega_out/omega_in = n_in/n_out (speed) and tau_out/tau_in = n_out/n_in (torque); "a gear ratio can increase the output torque or output speed of a mechanism, but not both" -- with a given power source you can achieve high velocity output or high force/torque output, but not both [SUPPORTS, support=PARTIAL, verification=UNVERIFIED]
 **Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
@@ -710,6 +749,28 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (SUPPORTS)
 **Provenance:** Machine Design: Gear Ratios — Because the radius of a gear is proportional to its number of teeth, gear-ratio relationships can equivalently be stated in terms of tooth counts: omega_out/omega_in = n_in/n_out (speed) and tau_out/tau_in = n_out/n_in (torque); "a gear ratio can increase the output torque or output speed of a mechanism, but not both" -- with a given power source you can achieve high velocity output or high force/torque output, but not both [DEFINES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** FOUNDATIONAL_PREREQUISITE
+
+### FP-GEAR-DIRECTION-REVERSAL-001
+
+**Statement (v1, APPROVED):** When two gears mesh directly, they rotate in opposite directions to each other.
+
+**Direct prerequisites:** FP-CONCEPT-GEAR-001 (REQUIRED)
+**Direct dependents:** FP-GEAR-IDLER-001
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (SUPPORTS)
+**Provenance:** Gear Train Mechanism Explained: How It Works, Diagram, Formula and Calculator — Meshed gear teeth apply tangential forces at the pitch line such that if the driver gear turns clockwise, the driven gear is forced to turn anticlockwise -- meshed gears always rotate in opposite directions; "An idler sits between driver and driven without changing the overall ratio -- its tooth count cancels out -- but it reverses output direction" [DEFINES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** FOUNDATIONAL_PREREQUISITE
+
+### FP-GEAR-IDLER-001
+
+**Statement (v1, APPROVED):** An idler gear placed between a driving gear and a driven gear reverses the driven gear's direction of rotation back to match the driving gear's direction, without changing the overall gear ratio between them.
+
+**Direct prerequisites:** FP-GEAR-DIRECTION-REVERSAL-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (SUPPORTS)
+**Provenance:** Gear Train Mechanism Explained: How It Works, Diagram, Formula and Calculator — Meshed gear teeth apply tangential forces at the pitch line such that if the driver gear turns clockwise, the driven gear is forced to turn anticlockwise -- meshed gears always rotate in opposite directions; "An idler sits between driver and driven without changing the overall ratio -- its tooth count cancels out -- but it reverses output direction" [DEFINES, support=DIRECT, verification=UNVERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** FOUNDATIONAL_PREREQUISITE
 
@@ -740,11 +801,22 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** For a movable or combination pulley system, the mechanical advantage is approximately equal to the number of rope or cable sections that directly support the load.
 
 **Direct prerequisites:** FP-PULLEY-FIXED-VS-MOVABLE-001 (REQUIRED)
-**Direct dependents:** (none — leaf capability)
+**Direct dependents:** FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001
 **Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
 **Provenance:** College Physics 2e — For wheels/gears driven by a common axle, mechanical advantage is the ratio of the radii of the driving and driven wheel/gear (the same simple expression as for a crank); a single fixed pulley has a mechanical advantage of 1 (direction change only, forces do not add); a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load, demonstrated for MA of 2, 3 and 4 [SUPPORTS, support=DIRECT, verification=UNVERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001
+
+**Statement (v1, APPROVED):** The mechanical advantage a pulley system provides in reduced effort force is accompanied by a proportional increase in the distance the effort must move to lift the load.
+
+**Direct prerequisites:** FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (SUPPORTS)
+**Provenance:** College Physics 2e — For wheels/gears driven by a common axle, mechanical advantage is the ratio of the radii of the driving and driven wheel/gear (the same simple expression as for a crank); a single fixed pulley has a mechanical advantage of 1 (direction change only, forces do not add); a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load, demonstrated for MA of 2, 3 and 4 [SUPPORTS, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** FOUNDATIONAL_PREREQUISITE
 
 ### FP-UNIT-METRE-001
 
@@ -1424,12 +1496,23 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** In a series circuit, the supply voltage is shared between the components as individual voltage drops that sum to the supply voltage.
 
 **Direct prerequisites:** EL-VOLTAGE-DROP-001 (REQUIRED); EL-CIRCUIT-SERIES-STRUCTURE-001 (REQUIRED); FM-ALG-TRANSPOSE-ADD-001 (STRONG)
-**Direct dependents:** EL-SERIES-VOLTAGE-CALC-001; EL-CIRCUIT-COMPARE-VOLTAGE-001; EL-SERIES-DOMINANT-RESISTOR-001; EL-SERIES-VOLTAGE-DIVIDER-001
+**Direct dependents:** EL-CONCEPT-KIRCHHOFFS-VOLTAGE-LAW-001; EL-SERIES-VOLTAGE-CALC-001; EL-CIRCUIT-COMPARE-VOLTAGE-001; EL-SERIES-DOMINANT-RESISTOR-001; EL-SERIES-VOLTAGE-DIVIDER-001
 **Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 **Misconceptions targeting this assertion:** MIS-EL-VOLTAGE-DROP-MISUNDERSTANDING-001
+
+### EL-CONCEPT-KIRCHHOFFS-VOLTAGE-LAW-001
+
+**Statement (v1, APPROVED):** Kirchhoff's voltage law states that the algebraic sum of the voltages around any closed loop of a circuit is zero -- in a series circuit this means the individual voltage drops sum to the supply voltage.
+
+**Direct prerequisites:** EL-SERIES-VOLTAGE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Provenance:** Electric Circuits I - Direct Current (Kuphaldt) — Kirchhoff's Voltage Law (KVL): "the algebraic sum of all voltages in a loop must equal zero"; Kirchhoff's Current Law (KCL): "the algebraic sum of all currents entering and exiting a node must equal zero" -- "these Laws deserve to be memorized by the electronics student every bit as much as Ohm's Law" [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 
 ### EL-SERIES-VOLTAGE-CALC-001
 
@@ -1471,11 +1554,22 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** In a parallel circuit, the supply current divides between the branches, and the branch currents sum to the total current.
 
 **Direct prerequisites:** EL-CIRCUIT-PARALLEL-STRUCTURE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED); FM-ALG-TRANSPOSE-ADD-001 (STRONG)
-**Direct dependents:** EL-PARALLEL-CURRENT-CALC-001; EL-CIRCUIT-COMPARE-CURRENT-001; EL-PARALLEL-DOMINANT-RESISTOR-001; EL-PARALLEL-CURRENT-DIVIDER-001
+**Direct dependents:** EL-CONCEPT-KIRCHHOFFS-CURRENT-LAW-001; EL-PARALLEL-CURRENT-CALC-001; EL-CIRCUIT-COMPARE-CURRENT-001; EL-PARALLEL-DOMINANT-RESISTOR-001; EL-PARALLEL-CURRENT-DIVIDER-001
 **Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 10.2: equivalent resistance for resistors in series and in parallel [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-CONCEPT-KIRCHHOFFS-CURRENT-LAW-001
+
+**Statement (v1, APPROVED):** Kirchhoff's current law states that the algebraic sum of the currents entering and leaving any point in a circuit is zero -- in a parallel circuit this means the branch currents sum to the total supply current.
+
+**Direct prerequisites:** EL-PARALLEL-CURRENT-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
+**Provenance:** Electric Circuits I - Direct Current (Kuphaldt) — Kirchhoff's Voltage Law (KVL): "the algebraic sum of all voltages in a loop must equal zero"; Kirchhoff's Current Law (KCL): "the algebraic sum of all currents entering and exiting a node must equal zero" -- "these Laws deserve to be memorized by the electronics student every bit as much as Ohm's Law" [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 
 ### EL-PARALLEL-RESISTANCE-001
 
@@ -2254,9 +2348,20 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A current-carrying conductor produces a magnetic field around it.
 
 **Direct prerequisites:** EL-CONCEPT-CURRENT-001 (REQUIRED); EL-CONCEPT-MAGNETISM-001 (STRONG)
-**Direct dependents:** EL-CONCEPT-FORCE-ON-CONDUCTOR-001; EL-CONCEPT-ELECTROMAGNETISM-001; EL-INSTRUMENT-CLAMP-METER-001
+**Direct dependents:** EL-CONCEPT-FIELD-DIRECTION-RULE-001; EL-CONCEPT-FORCE-ON-CONDUCTOR-001; EL-CONCEPT-ELECTROMAGNETISM-001; EL-INSTRUMENT-CLAMP-METER-001
 **Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.12: the magnetic field produced by a current-carrying conductor; electromagnetism [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-CONCEPT-FIELD-DIRECTION-RULE-001
+
+**Statement (v1, APPROVED):** The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): with the thumb pointing in the direction of current flow, the curled fingers give the direction of the circular field around the conductor.
+
+**Direct prerequisites:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — The direction of the magnetic field created by a long straight current-carrying wire is given by the right-hand rule: point the thumb of the right hand in the direction of current flow, and the curled fingers give the direction of the circular magnetic field loops around the wire [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
@@ -2265,9 +2370,31 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A current-carrying conductor placed in a magnetic field experiences a mechanical force.
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001 (REQUIRED); FP-CONCEPT-FORCE-001 (REQUIRED)
-**Direct dependents:** EL-CONCEPT-ELECTROMAGNETISM-001; EL-CONCEPT-MOTOR-PRINCIPLE-001
+**Direct dependents:** EL-REL-FORCE-ON-CONDUCTOR-001; EL-CONCEPT-ELECTROMAGNETISM-001; EL-CONCEPT-MOTOR-PRINCIPLE-001
 **Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.11: magnetic attraction/repulsion; force on a current-carrying conductor in a magnetic field (11.4) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-REL-FORCE-ON-CONDUCTOR-001
+
+**Statement (v1, APPROVED):** The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I l, where B is the magnetic flux density, I is the current and l is the length of the conductor in the field.
+
+**Direct prerequisites:** EL-CONCEPT-FORCE-ON-CONDUCTOR-001 (REQUIRED)
+**Direct dependents:** EL-CONCEPT-FLEMING-LEFT-HAND-001
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — "F = I l x B. This is the force on a straight, current-carrying wire in a uniform magnetic field" -- the magnitude relationship F = B I l (for a conductor perpendicular to the field); direction is given by "RHR-1, where you point your fingers in the direction of the current and curl them toward the field; your thumb then points in the direction of the force" [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-CONCEPT-FLEMING-LEFT-HAND-001
+
+**Statement (v1, APPROVED):** Fleming's left-hand rule gives the direction of the force on a current-carrying conductor in a magnetic field: with the First finger, seCond finger and thuMb of the left hand mutually at right angles, the First finger points along the Field, the seCond finger along the Current, and the thuMb gives the direction of Motion (force).
+
+**Direct prerequisites:** EL-REL-FORCE-ON-CONDUCTOR-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
+**Provenance:** Fleming's left-hand rule for motors — "The Thumb represents the direction of the Motion (Force) of the conductor. The Fore finger represents the direction of the magnetic Field. The Centre finger represents the direction of the Current" -- the UK vocational-trade naming/mnemonic for the same force-direction rule OpenStax states as RHR-1, citing Fleming, John Ambrose (1902), Magnets and Electric Currents, 2nd ed., pp.173-174 [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
@@ -2287,12 +2414,34 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Electromotive force (EMF) is the electrical energy per unit charge supplied by a source, which drives current around a circuit.
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (STRONG)
-**Direct dependents:** EL-CONCEPT-TERMINAL-VOLTAGE-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
+**Direct dependents:** EL-REL-INDUCED-EMF-001; EL-CONCEPT-TERMINAL-VOLTAGE-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
 **Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 **Misconceptions targeting this assertion:** MIS-EL-EMF-VOLTAGE-CONFUSION-001
+
+### EL-REL-INDUCED-EMF-001
+
+**Statement (v1, APPROVED):** The magnitude of the EMF induced in a conductor of length l moving at velocity v perpendicular to a magnetic field of flux density B is given by e = B l v.
+
+**Direct prerequisites:** EL-CONCEPT-EMF-001 (REQUIRED)
+**Direct dependents:** EL-CONCEPT-FLEMING-RIGHT-HAND-001
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — "epsilon = Blv" (Equation 13.5) -- the motional EMF induced in a conductor of length l moving at velocity v perpendicular to a magnetic field of flux density B, derived directly from Faraday's law (epsilon = dPhi_m/dt = B l dx/dt = B l v) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-CONCEPT-FLEMING-RIGHT-HAND-001
+
+**Statement (v1, APPROVED):** Fleming's right-hand rule gives the direction of the current induced in a conductor moving through a magnetic field: with the thumb, First finger and seCond finger of the right hand mutually at right angles, the thumb points in the direction of Motion, the First finger along the Field, and the seCond finger gives the direction of the induced Current.
+
+**Direct prerequisites:** EL-REL-INDUCED-EMF-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
+**Provenance:** Fleming's right-hand rule — "The thumb is pointed in the direction of the motion of the conductor relative to the magnetic field. The first finger is pointed in the direction of the magnetic field... the second finger represents the direction of the induced or generated current" -- the UK vocational-trade naming/mnemonic for generator induced-current direction, citing Hughes, Edward (2016), Electrical and Electronic Technology [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
 ### EL-CONCEPT-TERMINAL-VOLTAGE-001
 
@@ -2505,10 +2654,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS); Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
 **Provenance:** The ABCs of Clamp Meters — "The integration of a hinged jaw into an electrical meter enables technicians to securely clamp around a wire, cable, or conductor at any point in an electrical system, facilitating current measurement in the circuit without the need for disconnection or de-energization"; the jaws "consist of ferrite iron and are engineered to detect, concentrate, and measure the magnetic field generated by current as it flows through a conductor" [DEFINES, support=DIRECT, verification=UNVERIFIED] | University Physics Volume 2 — University Physics Volume 2, Ch.12: the magnetic field produced by a current-carrying conductor; electromagnetism [SUPPORTS, support=PARTIAL, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
-**Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 **Clause coverage:** "a clamp meter measures current without breaking the circuit, via ferrite jaws detecting the magnetic field" -> The ABCs of Clamp Meters (loc-fluke-clamp-meter-principle); "(background) current flowing in a conductor produces a magnetic field around it" -> University Physics Volume 2 (loc-openstax-up2-magnetic-sources)
 
 ### EL-CONCEPT-MOTOR-PRINCIPLE-001
@@ -2539,10 +2686,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-WAVEFORM-AMPLITUDE-001 (STRONG); EL-WAVEFORM-PERIODIC-TIME-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Identify the characteristics of sine-waves (SUPPORTS); Identify the characteristics of sine-waves (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
-**Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 
 ### EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001
 
@@ -2582,7 +2727,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A resistor is a component manufactured to provide a specific, stable value of resistance, used in circuits to limit current or to divide voltage.
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (REQUIRED)
-**Direct dependents:** (none — leaf capability)
+**Direct dependents:** EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001
 **Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Resistors (REQUIRED_FOR)
 **Provenance:** Electric Circuits I - Direct Current (Kuphaldt) — A resistor is a component manufactured to provide a specific, stable value of resistance, used in circuits to limit current or to divide voltage [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
@@ -2593,7 +2738,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A capacitor is a component that stores electrical charge and energy by separating charge in an electric field between two conductive plates; a charged capacitor stores this energy in the electric field between its plates.
 
 **Direct prerequisites:** EL-CONCEPT-CAPACITANCE-001 (REQUIRED)
-**Direct dependents:** EL-COMPONENT-CAPACITOR-TRANSIENT-001
+**Direct dependents:** EL-COMPONENT-CAPACITOR-TRANSIENT-001; EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001
 **Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Capacitors (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — A capacitor is a device used to store electrical charge and electrical energy: charge Q moves from one conductive plate to the other, creating equal and opposite charges on each plate and an electric field between them; a charged capacitor stores energy in that electric field, expressed as U = (1/2)CV^2 = (1/2)Q^2/C = (1/2)QV [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
@@ -2615,8 +2760,30 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A rectifier circuit uses one or more diodes to convert an alternating-current supply into a direct-current (or pulsating direct-current) output.
 
 **Direct prerequisites:** EL-CONCEPT-AC-DC-DISTINCTION-001 (STRONG)
-**Direct dependents:** (none — leaf capability)
+**Direct dependents:** EL-COMPONENT-RECTIFIER-HALF-WAVE-001; EL-COMPONENT-RECTIFIER-FULL-WAVE-001
 **Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Rectifiers (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A rectifier circuit uses one or more diodes to convert an alternating-current input into a direct-current (or pulsating direct-current) output [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-COMPONENT-RECTIFIER-HALF-WAVE-001
+
+**Statement (v1, APPROVED):** A half-wave rectifier uses a single diode to allow only one half-cycle of an AC waveform through to the load, blocking the other half-cycle, producing a pulsating DC output.
+
+**Direct prerequisites:** EL-COMPONENT-RECTIFIER-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Rectifiers (SUPPORTS)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A rectifier circuit uses one or more diodes to convert an alternating-current input into a direct-current (or pulsating direct-current) output [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-COMPONENT-RECTIFIER-FULL-WAVE-001
+
+**Statement (v1, APPROVED):** A full-wave bridge rectifier uses four diodes arranged so that both half-cycles of an AC waveform are converted to the same output polarity, producing a pulsating DC output with less ripple than a half-wave rectifier.
+
+**Direct prerequisites:** EL-COMPONENT-RECTIFIER-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Rectifiers (SUPPORTS)
 **Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A rectifier circuit uses one or more diodes to convert an alternating-current input into a direct-current (or pulsating direct-current) output [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
@@ -2671,9 +2838,20 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** An NTC (negative-temperature-coefficient) thermistor's electrical resistance decreases as its temperature increases, allowing it to be used as a temperature-sensing component.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** EL-APPLICATION-HEATING-BOILER-CONTROL-001
+**Direct dependents:** EL-COMPONENT-THERMISTOR-PTC-001; EL-APPLICATION-HEATING-BOILER-CONTROL-001
 **Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Thermistors (REQUIRED_FOR)
 **Provenance:** NTC Thermistors Application Note — An NTC (negative temperature coefficient) thermistor's electrical resistance decreases as its temperature increases; applications include temperature sensing/measurement, inrush-current limiting and temperature compensation [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-COMPONENT-THERMISTOR-PTC-001
+
+**Statement (v1, APPROVED):** A PTC (positive-temperature-coefficient) thermistor's electrical resistance rises sharply once its temperature exceeds a defined switching temperature, in contrast to an NTC thermistor's resistance, which decreases as temperature rises; this behaviour is used for applications such as overcurrent and overload protection.
+
+**Direct prerequisites:** EL-COMPONENT-THERMISTOR-001 (STRONG)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Thermistors (SUPPORTS)
+**Provenance:** PTCEL Series -- PTC Thermistors, Inrush Current Limiter -- Datasheet — "These directly heated ceramic-based doped barium titanate thermistors have a positive temperature coefficient and are primarily intended for inrush current limiting and overload protection"; Quick Reference Data lists a "Switching temperature" of 130-140C, above which resistance rises sharply -- confirming PTC resistance increases (rather than decreases, as with NTC) with rising temperature [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
@@ -2693,7 +2871,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A silicon-controlled rectifier (SCR) conducts current in one direction only once a sufficient gate current triggers it into conduction, and continues conducting until the current through it falls below the device's holding current.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** EL-COMPONENT-TRIAC-001; EL-APPLICATION-MOTOR-CONTROL-001
+**Direct dependents:** EL-COMPONENT-TRIAC-001; EL-APPLICATION-MOTOR-CONTROL-001; EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001
 **Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Thyristors (REQUIRED_FOR)
 **Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A silicon-controlled rectifier (SCR) conducts current in one direction once a sufficient gate current triggers it on, and continues conducting until the anode-to-cathode current falls below the device's holding current; SCRs are more commonly seen in circuits like motor drives [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
@@ -2715,7 +2893,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A bipolar junction transistor is a three-terminal semiconductor device whose collector-emitter current is controlled by a much smaller base current, allowing it to act as an electrically controlled switch (fully off with no base current, fully on/saturated with sufficient base current) or as an amplifier.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** EL-APPLICATION-WIRELESS-CONTROL-001
+**Direct dependents:** EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001; EL-APPLICATION-WIRELESS-CONTROL-001
 **Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Transistors (REQUIRED_FOR)
 **Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A bipolar junction transistor is a three-terminal semiconductor device whose collector-emitter current is controlled by a much smaller base current, allowing it to act as an electrically controlled switch or amplifier [DEFINES, support=PARTIAL, verification=UNVERIFIED] | Electric Circuits III - Semiconductors (Kuphaldt) — With no base current, a bipolar junction transistor behaves like an open switch and blocks collector current; sufficient base current drives it into saturation, behaving like a closed switch [SUPPORTS, support=PARTIAL, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
@@ -2773,10 +2951,22 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-COMPONENT-LED-001 (REQUIRED); EL-COMPONENT-PHOTODIODE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Security alarms (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (SUPPORTS); Electrical systems: Security alarms (SUPPORTS)
 **Provenance:** ENFORCER E-931-S33PRGQ 33ft Polarized Reflective Photoelectric Beam Sensor -- Installation Manual — The ENFORCER E-931-S33PRGQ photoelectric beam sensor (IR LED, wavelength 740nm, plus a photoelectric receiver) provides reliable sensing of objects breaking the infrared beam, and is suitable for "an alarm notification, as well as many other uses"; its SPDT relay trigger output is wired to an alarm control panel (the N.C. tamper terminal connects to the tamper circuit of an alarm control panel); a caution notes use in certain security applications may be regulated by local laws [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
+
+### EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001
+
+**Statement (v1, APPROVED):** A simple electronic security-alarm circuit uses a transistor to detect a break in a normally-closed sensor loop; the transistor then triggers a thyristor, which latches on and continues to power a sounder even if the loop is reclosed, until the circuit is deliberately reset.
+
+**Direct prerequisites:** EL-COMPONENT-TRANSISTOR-001 (REQUIRED); EL-COMPONENT-THYRISTOR-SCR-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Security alarms (REQUIRED_FOR)
+**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A silicon-controlled rectifier (SCR) conducts current in one direction once a sufficient gate current triggers it on, and continues conducting until the anode-to-cathode current falls below the device's holding current; SCRs are more commonly seen in circuits like motor drives [SUPPORTS, support=PARTIAL, verification=UNVERIFIED] | Thyristor Based Sensor Alarm System, Working and Applications — Describes a thyristor-based sensor-alarm circuit in which closing/triggering a sensor switch gates the thyristor on; the thyristor then latches ("thyristors 'latch' in the on state... and stay on after the gate pulse is detached until they are reverse biased") so the alarm continues even after the triggering sensor condition ends, until the circuit is deliberately reset [DEFINES, support=PARTIAL, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+**Clause coverage:** "a normally-closed sensor loop is monitored by a transistor, which triggers a thyristor's gate when the loop opens" -> Thyristor Based Sensor Alarm System, Working and Applications (loc-elprocus-thyristor-sensor-alarm); "the thyristor latches on (continues conducting) once triggered, even after the triggering condition ends, until the circuit is reset" -> Electric Circuits III - Semiconductors (Kuphaldt) (loc-kuphaldt-scr)
 
 ### EL-APPLICATION-TELEPHONE-001
 
@@ -2784,8 +2974,19 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
-**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Telephones (REQUIRED_FOR)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (SUPPORTS); Electrical systems: Telephones (SUPPORTS)
 **Provenance:** AN347: DAA Design Guide — Figure 2 shows a diode-bridge symbol (D1) wired directly into the line-side circuitry of a real telephone-line interface (DAA) application circuit; Figure 29's block diagram explicitly labels a "Bridge Diode" block connected directly to the telephone line's TIP and RING terminals, positioned within the TNV-3 (Telecommunications Network Voltage) circuit area between the line-side device/discretes and the telephone line itself [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
+
+### EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001
+
+**Statement (v1, APPROVED):** A master telephone socket contains a capacitor that couples the AC ringing signal to the line while blocking the line's DC, a resistor that provides a defined test load for line testing when no telephone is connected, and a surge protector that suppresses transient overvoltages on the line; secondary (extension) sockets, wired in parallel from the master socket, contain none of these components.
+
+**Direct prerequisites:** EL-COMPONENT-CAPACITOR-001 (REQUIRED); EL-COMPONENT-RESISTOR-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Telephones (REQUIRED_FOR)
+**Provenance:** British telephone sockets — "The socket includes a 1.8 uF capacitor (bell circuit) to feed the AC ringing and a 470 k-ohm resistor (R1, out-of-service resistor) to permit remote testing when no telephones are plugged into any sockets"; older master sockets also contained an enclosed spark-gap surge protector (SP1); secondary/extension sockets, wired in parallel off the master socket, contain none of these components [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
