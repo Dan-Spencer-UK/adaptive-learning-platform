@@ -321,12 +321,23 @@ export const LESSON_RESISTORS_SERIES: LessonPlan = {
       "cap.series.solve_missing_component",
       "cap.series.check_plausibility",
     ],
+    // CC-08A: course-advancement mastery gates -- excludes
+    // cap.series.recognise_structure (guided_interpret_diagram only) and
+    // cap.series.calculate_supply_current (guided_calculate_supply_current
+    // only), neither of which this lesson ever evidences independently;
+    // both remain genuine completion requirements without being able to
+    // block course advancement.
+    masteryGateCapabilityIds: [
+      "cap.series.calculate_total_resistance",
+      "cap.series.solve_missing_component",
+      "cap.series.check_plausibility",
+    ],
     requiresRemediationClearance: true,
     exitSummary:
       "The learner has recognised a series circuit, calculated total resistance and an individual voltage drop, transferred Ohm's law to find supply current, solved for a missing component by rearranging the total-resistance relationship, and judged the plausibility of a result.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v1",
+  contentRelease: "release.unit202.v2",
 };
 
 export const lessons = [LESSON_RESISTORS_SERIES];

@@ -285,12 +285,16 @@ export const LESSON_FOUNDATION_FORMULA_REARRANGEMENT: LessonPlan = {
       "exit_completion",
     ],
     requiredCapabilityEvidence: ["cap.foundational.algebraic_technique.apply"],
+    // CC-08A: the lesson's sole capability is genuinely independently
+    // testable here (independent_rearrange_multiplicative/_additive,
+    // retrieval_check), so it is a real course-advancement mastery gate.
+    masteryGateCapabilityIds: ["cap.foundational.algebraic_technique.apply"],
     requiresRemediationClearance: true,
     exitSummary:
       "The learner has rearranged both a = b x c and a = b + c to find an unknown factor or term, practised each independently, and retrieved the multiplicative case again -- the same technique needed to rearrange V = I x R and other vocational formulas.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v1",
+  contentRelease: "release.unit202.v2",
 };
 
 export const lessons = [LESSON_FOUNDATION_FORMULA_REARRANGEMENT];

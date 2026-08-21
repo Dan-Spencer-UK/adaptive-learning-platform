@@ -46,7 +46,7 @@ function session(learnerId: string, instanceId = "li1_a", overrides: Partial<Les
       learnerId,
       stepDecisions: [],
       includedStepIds: ["a", "b"],
-      completionCriteria: { requiredStepIds: ["a", "b"], requiredCapabilityEvidence: [], requiresRemediationClearance: true, exitSummary: "s" },
+      completionCriteria: { requiredStepIds: ["a", "b"], requiredCapabilityEvidence: [], masteryGateCapabilityIds: [], requiresRemediationClearance: true, exitSummary: "s" },
       evidenceDigest: "digest",
     },
     learnerId,

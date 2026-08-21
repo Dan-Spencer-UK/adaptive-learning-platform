@@ -14,6 +14,8 @@ describe("Course orchestration proving report (real cross-lesson adaptive vertic
       "RETURN",
       "TRANSFER",
       "ADVANCE",
+      "ADVANCE-BLOCK-WEAK",
+      "ADVANCE-BLOCK-CONFLICTING",
       "SHARED-PREREQUISITE",
       "MISCONCEPTION-SAFE",
       "CONVERGE",

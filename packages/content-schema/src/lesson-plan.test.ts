@@ -45,6 +45,7 @@ function minimalLesson(overrides: Partial<LessonPlan> = {}): LessonPlan {
     completionCriteria: {
       requiredStepIds: ["step.orientation"],
       requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+      masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
       requiresRemediationClearance: true,
       exitSummary: "Learner has recognised the relationship.",
     },
@@ -127,6 +128,7 @@ describe("lessonPlanSchema -- structural (superRefine) validation", () => {
       completionCriteria: {
         requiredStepIds: ["step.a"],
         requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+      masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
         requiresRemediationClearance: true,
         exitSummary: "x",
       },
@@ -159,6 +161,7 @@ describe("lessonPlanSchema -- structural (superRefine) validation", () => {
       completionCriteria: {
         requiredStepIds: ["step.a"],
         requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+      masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
         requiresRemediationClearance: true,
         exitSummary: "x",
       },
@@ -179,6 +182,7 @@ describe("lessonPlanSchema -- structural (superRefine) validation", () => {
       completionCriteria: {
         requiredStepIds: ["step.a", "step.b"],
         requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+      masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
         requiresRemediationClearance: true,
         exitSummary: "x",
       },
@@ -201,6 +205,7 @@ describe("lessonPlanSchema -- structural (superRefine) validation", () => {
       completionCriteria: {
         requiredStepIds: ["step.a", "step.b"],
         requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+      masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
         requiresRemediationClearance: true,
         exitSummary: "x",
       },
@@ -213,6 +218,7 @@ describe("lessonPlanSchema -- structural (superRefine) validation", () => {
       completionCriteria: {
         requiredStepIds: ["step.does-not-exist"],
         requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+      masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
         requiresRemediationClearance: true,
         exitSummary: "x",
       },
@@ -290,6 +296,7 @@ describe("masteryGateCapabilityId placement (CC-06D, Correction F §10.3)", () =
       completionCriteria: {
         requiredStepIds: ["ordinary"],
         requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+      masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
         requiresRemediationClearance: true,
         exitSummary: "s",
       },

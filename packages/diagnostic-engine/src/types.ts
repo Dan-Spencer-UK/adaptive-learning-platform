@@ -89,6 +89,20 @@ export interface AvailableContent {
 // definition + learner state + completion context + content release +
 // policy version must always produce the same decision. No timestamps
 // as a hidden decision input.
+//
+// CC-08A: the advancement rule this module applies changed materially
+// (from "some evidence on every completion capability + at least one
+// TRANSFER_SECURE" to "every declared masteryGateCapabilityIds capability
+// independently reaches a secure tier") without bumping this version.
+// That mirrors the precedent already set for @alp/evidence-engine's own
+// MASTERY_POLICY_VERSION and instance-identity hashing during CC-06D: no
+// production learner evidence existed against the old rule at the time of
+// correction (CC-08 was never accepted for Product Owner sign-off before
+// this correction landed), so there is nothing a version bump would need
+// to keep separable from the corrected semantics. A version bump exists
+// to let a future genuine behavioural change coexist with historical
+// decisions made under the old rule -- it is not owed to a rule this
+// package never shipped as correct.
 // ---------------------------------------------------------------------
 
 export const ACTIVITY_SELECTION_POLICY_VERSION = 1;

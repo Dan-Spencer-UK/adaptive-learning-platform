@@ -5,9 +5,10 @@
  * are computable for both, resolution chooses exactly the requested one,
  * and unknown identity fails explicitly -- never a first/default lesson.
  *
- * The two-lesson projection here is a SYNTHETIC test fixture (the real
- * bundled release currently has one lesson); it is deliberately not
- * fake product content.
+ * The two-lesson projection here is a SYNTHETIC test fixture, deliberately
+ * not fake product content -- kept even though the real bundled release
+ * (CC-08A: release.unit202.v2) now itself has four lessons, since it
+ * exercises resolution mechanics in isolation from real content.
  */
 import { computeLessonContentDependencies } from "@alp/learning-engine";
 import type { LessonPlan, LessonStep, MobileContentProjection } from "@alp/content-schema";
@@ -65,7 +66,7 @@ function lesson(id: string): LessonPlan {
     steps: [step("only_step")],
     misconceptionTargets: [],
     retrievalTags: [],
-    completionCriteria: { requiredStepIds: ["only_step"], requiredCapabilityEvidence: ["cap.synth.core"], requiresRemediationClearance: true, exitSummary: "done" },
+    completionCriteria: { requiredStepIds: ["only_step"], requiredCapabilityEvidence: ["cap.synth.core"], masteryGateCapabilityIds: ["cap.synth.core"], requiresRemediationClearance: true, exitSummary: "done" },
     presentationModes: ["learn"],
     contentRelease: SYNTH_RELEASE,
   };
@@ -125,7 +126,7 @@ describe("local content registry -- real bundled projection", () => {
   it("resolves the real Ohm's Law lesson by identity from the generated projection", () => {
     const record = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentRelease: bundledContentReleaseId() });
     expect(record.lesson.id).toBe("lesson.electrical.ohms-law");
-    expect(record.contentRelease).toBe("release.unit202.v1");
+    expect(record.contentRelease).toBe("release.unit202.v2");
     expect(record.questionBlueprintVersion).toBe(1);
     // CC-08: the lookup carries the whole bundled release's question
     // blueprints (23, across all four real lessons), not just this one
@@ -134,7 +135,7 @@ describe("local content registry -- real bundled projection", () => {
   });
 
   it("the generated projection records its release identity, and every lesson in it matches that release", () => {
-    expect(MOBILE_CONTENT_PROJECTION.contentRelease.id).toBe("release.unit202.v1");
+    expect(MOBILE_CONTENT_PROJECTION.contentRelease.id).toBe("release.unit202.v2");
     for (const l of MOBILE_CONTENT_PROJECTION.lessons) {
       expect(l.contentRelease).toBe(MOBILE_CONTENT_PROJECTION.contentRelease.id);
     }

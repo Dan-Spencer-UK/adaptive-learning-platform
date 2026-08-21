@@ -197,6 +197,7 @@ export const SYNTH_LESSON: LessonPlan = {
   completionCriteria: {
     requiredStepIds: [STEP_INDEPENDENT_A1],
     requiredCapabilityEvidence: [CAP_A],
+    masteryGateCapabilityIds: [CAP_A],
     requiresRemediationClearance: true,
     exitSummary: "synthetic fixture completion summary",
   },

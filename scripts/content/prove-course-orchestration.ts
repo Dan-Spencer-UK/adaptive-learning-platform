@@ -52,9 +52,9 @@ import {
 } from "@alp/diagnostic-engine";
 
 import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
-import { contentReleases, RELEASE_UNIT202_V1 } from "./data/content-releases.ts";
+import { contentReleases, RELEASE_UNIT202_V2 } from "./data/content-releases.ts";
 import {
-  LESSON_OHMS_LAW,
+  LESSON_OHMS_LAW_UNIT202_V2 as LESSON_OHMS_LAW,
   LESSON_FOUNDATION_FORMULA_REARRANGEMENT,
   LESSON_RESISTORS_SERIES,
   LESSON_RESISTORS_PARALLEL,
@@ -80,7 +80,7 @@ export const REAL_CONTENT_GAPS = [
 ];
 
 const pedagogy = pedagogyManifestSchema.parse(cc05aPedagogyUnit202);
-const release = contentReleases.releases.find((r) => r.id === RELEASE_UNIT202_V1)!;
+const release = contentReleases.releases.find((r) => r.id === RELEASE_UNIT202_V2)!;
 
 const CONTENT: EvidenceContentContext = {
   lessons: realLessons,
@@ -106,7 +106,7 @@ function realQuestion(lesson: LessonPlan, instanceId: string, stepId: string, se
   const identity: DeterministicIdentity = {
     blueprintId: blueprint.id,
     blueprintVersion: release.questionBlueprintVersion,
-    contentRelease: RELEASE_UNIT202_V1,
+    contentRelease: RELEASE_UNIT202_V2,
     seed: fnv1a32(`${instanceId}${sessionSalt}::${stepId}`),
   };
   return generateQuestionInstance({
@@ -137,7 +137,7 @@ function submit(args: {
     sessionKey: args.sessionKey,
     lessonId: args.lesson.id,
     lessonVersion: args.lesson.version,
-    contentRelease: RELEASE_UNIT202_V1,
+    contentRelease: RELEASE_UNIT202_V2,
     stepId: args.stepId,
     attemptIndex: args.attemptIndex ?? 1,
     answerRevealedBeforeAttempt: false,
@@ -299,27 +299,116 @@ function scenarioTransfer(): ScenarioResult {
 
 // ---------------------------------------------------------------------
 // ADVANCE -- state is sufficient to select the next appropriate activity
+//
+// CC-08A correction: the real Ohm's Law lesson declares FOUR mastery
+// gates (masteryGateCapabilityIds: solve_for_voltage, solve_for_resistance,
+// select_rearrangement, check_plausibility) -- cap.ohms_law.solve_for_current
+// is completion-required but deliberately excluded from the gate set
+// because its only evidence-emitting step (guided_calculation_current) is
+// guided-only and could never reach a secure mastery tier. Advancing now
+// requires EVERY declared gate to independently reach a secure tier
+// (PROVISIONALLY_SECURE or TRANSFER_SECURE), not just one -- so each
+// gate's real, single evidence-emitting step is submitted correctly
+// across two real sessions.
 // ---------------------------------------------------------------------
-function advanceAttempts(): LearnerAttemptRecord[] {
+function everyGateSecureAttempts(): LearnerAttemptRecord[] {
   return [
-    ...transferAttempts(),
+    ...transferAttempts(), // cap.ohms_law.select_rearrangement -> TRANSFER_SECURE
     submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "retrieval_check", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "retrieval_check", "s1"), sessionKey: "s1" }),
-    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "guided_calculation_current", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "guided_calculation_current", "s1"), sessionKey: "s1" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "retrieval_check", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "retrieval_check", "s2"), sessionKey: "s2" }), // cap.ohms_law.solve_for_voltage -> PROVISIONALLY_SECURE
     submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "independent_question_resistance", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "independent_question_resistance", "s1"), sessionKey: "s1" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "independent_question_resistance", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "independent_question_resistance", "s2"), sessionKey: "s2" }), // cap.ohms_law.solve_for_resistance -> PROVISIONALLY_SECURE
     submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "plausibility_check_transfer", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "plausibility_check_transfer", "s1"), sessionKey: "s1" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "plausibility_check_transfer", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "plausibility_check_transfer", "s2"), sessionKey: "s2" }), // cap.ohms_law.check_plausibility -> TRANSFER_SECURE
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "guided_calculation_current", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "guided_calculation_current", "s1"), sessionKey: "s1" }), // cap.ohms_law.solve_for_current -- completion evidence only, NOT a mastery gate
   ];
+}
+
+function advanceAttempts(): LearnerAttemptRecord[] {
+  return everyGateSecureAttempts();
 }
 
 function scenarioAdvance(): ScenarioResult {
   const snap = deriveSnapshot(advanceAttempts());
+  const gateStatuses = ["cap.ohms_law.select_rearrangement", "cap.ohms_law.solve_for_voltage", "cap.ohms_law.solve_for_resistance", "cap.ohms_law.check_plausibility"].map(
+    (id) => `${id}=${snap.capabilityStatus.get(id)}`,
+  );
   const decision = select(snap);
   const passed = decision.decisionType === "ADVANCE" && decision.lessonId === LESSON_RESISTORS_SERIES.id;
   return ok(
     "ADVANCE",
-    "Once every real Ohm's Law completion capability is evidenced and one (select_rearrangement) is TRANSFER_SECURE, the course deterministically advances to the real second vocational lesson (resistors-series)",
+    "Once every real, declared Ohm's Law mastery gate (select_rearrangement, solve_for_voltage, solve_for_resistance, check_plausibility) independently reaches a secure tier, the course deterministically advances to the real second vocational lesson (resistors-series) -- the excluded, guided-only solve_for_current capability plays no part",
     "real",
     passed,
-    `decisionType=${decision.decisionType}, lessonId=${decision.lessonId}`,
+    `decisionType=${decision.decisionType}, lessonId=${decision.lessonId}, ${gateStatuses.join(", ")}`,
+  );
+}
+
+// ---------------------------------------------------------------------
+// ADVANCE-BLOCK-WEAK / ADVANCE-BLOCK-CONFLICTING -- CC-08A advancement
+// integrity: a required real mastery gate that is WEAK or CONFLICTING
+// must prevent ADVANCE even while every OTHER real gate (including a
+// genuinely TRANSFER_SECURE one) is secure.
+// ---------------------------------------------------------------------
+function advanceBlockWeakAttempts(): LearnerAttemptRecord[] {
+  return [
+    ...transferAttempts(), // cap.ohms_law.select_rearrangement -> TRANSFER_SECURE (secure gate)
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "retrieval_check", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "retrieval_check", "s1"), sessionKey: "s1" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "retrieval_check", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "retrieval_check", "s2"), sessionKey: "s2" }), // solve_for_voltage -> PROVISIONALLY_SECURE (secure gate)
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "plausibility_check_transfer", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "plausibility_check_transfer", "s1"), sessionKey: "s1" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "plausibility_check_transfer", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "plausibility_check_transfer", "s2"), sessionKey: "s2" }), // check_plausibility -> TRANSFER_SECURE (secure gate)
+    // solve_for_resistance: two genuinely wrong real independent attempts,
+    // zero successes -> WEAK (task brief weak.v1 rule). This is the ONE
+    // required mastery gate left insecure.
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "independent_question_resistance", given: wrongNumeric(LESSON_OHMS_LAW, OHMS_INSTANCE, "independent_question_resistance", "s1"), sessionKey: "s1" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "independent_question_resistance", given: wrongNumeric(LESSON_OHMS_LAW, OHMS_INSTANCE, "independent_question_resistance", "s2"), sessionKey: "s2" }),
+  ];
+}
+
+function scenarioAdvanceBlockWeak(): ScenarioResult {
+  const snap = deriveSnapshot(advanceBlockWeakAttempts());
+  const gateStatus = snap.capabilityStatus.get("cap.ohms_law.solve_for_resistance");
+  const transferGateStatus = snap.capabilityStatus.get("cap.ohms_law.select_rearrangement");
+  const decision = select(snap);
+  const passed = gateStatus === "WEAK" && transferGateStatus === "TRANSFER_SECURE" && decision.decisionType !== "ADVANCE" && decision.decisionType === "CONTINUE_TARGET" && decision.lessonId === LESSON_OHMS_LAW.id;
+  return ok(
+    "ADVANCE-BLOCK-WEAK",
+    "A real, genuinely WEAK required mastery gate (solve_for_resistance) prevents ADVANCE even though three other real gates -- including a TRANSFER_SECURE one (select_rearrangement) -- are secure: one secure gate can never mask another that is not",
+    "real",
+    passed,
+    `cap.ohms_law.solve_for_resistance=${gateStatus}, cap.ohms_law.select_rearrangement=${transferGateStatus}, decisionType=${decision.decisionType}, reason=${decision.reason}`,
+  );
+}
+
+function advanceBlockConflictingAttempts(): LearnerAttemptRecord[] {
+  return [
+    ...transferAttempts(), // cap.ohms_law.select_rearrangement -> TRANSFER_SECURE (secure gate)
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "retrieval_check", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "retrieval_check", "s1"), sessionKey: "s1" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "retrieval_check", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "retrieval_check", "s2"), sessionKey: "s2" }), // solve_for_voltage -> PROVISIONALLY_SECURE (secure gate)
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "plausibility_check_transfer", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "plausibility_check_transfer", "s1"), sessionKey: "s1" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "plausibility_check_transfer", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "plausibility_check_transfer", "s2"), sessionKey: "s2" }), // check_plausibility -> TRANSFER_SECURE (secure gate)
+    // solve_for_resistance: two genuine real independent successes, THEN
+    // two genuine real independent failures -- independentSuccesses >= 2,
+    // meaningfulFailures >= 2, failuresAfterFirstIndependentSuccess >= 1
+    // -> CONFLICTING (task brief conflicting.v1 rule).
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "independent_question_resistance", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "independent_question_resistance", "s3"), sessionKey: "s3" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "independent_question_resistance", given: correctAnswer(LESSON_OHMS_LAW, OHMS_INSTANCE, "independent_question_resistance", "s4"), sessionKey: "s4" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "independent_question_resistance", given: wrongNumeric(LESSON_OHMS_LAW, OHMS_INSTANCE, "independent_question_resistance", "s5"), sessionKey: "s5" }),
+    submit({ lesson: LESSON_OHMS_LAW, instanceId: OHMS_INSTANCE, stepId: "independent_question_resistance", given: wrongNumeric(LESSON_OHMS_LAW, OHMS_INSTANCE, "independent_question_resistance", "s6"), sessionKey: "s6" }),
+  ];
+}
+
+function scenarioAdvanceBlockConflicting(): ScenarioResult {
+  const snap = deriveSnapshot(advanceBlockConflictingAttempts());
+  const gateStatus = snap.capabilityStatus.get("cap.ohms_law.solve_for_resistance");
+  const decision = select(snap);
+  const passed = gateStatus === "CONFLICTING" && decision.decisionType !== "ADVANCE" && decision.decisionType === "CONTINUE_TARGET" && decision.lessonId === LESSON_OHMS_LAW.id;
+  return ok(
+    "ADVANCE-BLOCK-CONFLICTING",
+    "A real, genuinely CONFLICTING required mastery gate (solve_for_resistance -- two real independent successes followed by two real independent failures) prevents ADVANCE even though every other real gate is secure",
+    "real",
+    passed,
+    `cap.ohms_law.solve_for_resistance=${gateStatus}, decisionType=${decision.decisionType}, reason=${decision.reason}`,
   );
 }
 
@@ -416,9 +505,19 @@ function seriesCompletionAttempts(): LearnerAttemptRecord[] {
     submit({ lesson, instanceId: id, stepId: "guided_interpret_diagram", given: correctAnswer(lesson, id, "guided_interpret_diagram", "s1"), sessionKey: "s1" }),
     submit({ lesson, instanceId: id, stepId: "guided_calculate_total_resistance", given: correctAnswer(lesson, id, "guided_calculate_total_resistance", "s1"), sessionKey: "s1" }),
     submit({ lesson, instanceId: id, stepId: "guided_calculate_supply_current", given: correctAnswer(lesson, id, "guided_calculate_supply_current", "s1"), sessionKey: "s1" }),
+    // cap.series.check_plausibility's declared mastery gate needs a second
+    // real independent transfer success (CC-08A: one is only EMERGING).
     submit({ lesson, instanceId: id, stepId: "transfer_plausibility_check", given: correctAnswer(lesson, id, "transfer_plausibility_check", "s1"), sessionKey: "s1" }),
+    submit({ lesson, instanceId: id, stepId: "transfer_plausibility_check", given: correctAnswer(lesson, id, "transfer_plausibility_check", "s2"), sessionKey: "s2" }),
     submit({ lesson, instanceId: id, stepId: "transfer_solve_missing_component", given: correctAnswer(lesson, id, "transfer_solve_missing_component", "s1"), sessionKey: "s1" }),
     submit({ lesson, instanceId: id, stepId: "transfer_solve_missing_component", given: correctAnswer(lesson, id, "transfer_solve_missing_component", "s2"), sessionKey: "s2" }),
+    // cap.series.calculate_total_resistance's mastery gate is never
+    // independently evidenced by the guided-only
+    // guided_calculate_total_resistance step -- its real independent
+    // evidence comes solely from the lesson's own retrieval_check step
+    // (CC-08A).
+    submit({ lesson, instanceId: id, stepId: "retrieval_check", given: correctAnswer(lesson, id, "retrieval_check", "s1"), sessionKey: "s1" }),
+    submit({ lesson, instanceId: id, stepId: "retrieval_check", given: correctAnswer(lesson, id, "retrieval_check", "s2"), sessionKey: "s2" }),
   ];
 }
 
@@ -429,9 +528,20 @@ function parallelCompletionAttempts(): LearnerAttemptRecord[] {
     submit({ lesson, instanceId: id, stepId: "guided_identify_topology", given: correctAnswer(lesson, id, "guided_identify_topology", "s1"), sessionKey: "s1" }),
     submit({ lesson, instanceId: id, stepId: "guided_calculate_total_resistance", given: correctAnswer(lesson, id, "guided_calculate_total_resistance", "s1"), sessionKey: "s1" }),
     submit({ lesson, instanceId: id, stepId: "guided_calculate_branch_current", given: correctAnswer(lesson, id, "guided_calculate_branch_current", "s1"), sessionKey: "s1" }),
+    // cap.parallel.check_plausibility's declared mastery gate needs a
+    // second real independent transfer success (CC-08A: one is only
+    // EMERGING).
     submit({ lesson, instanceId: id, stepId: "transfer_plausibility_check", given: correctAnswer(lesson, id, "transfer_plausibility_check", "s1"), sessionKey: "s1" }),
+    submit({ lesson, instanceId: id, stepId: "transfer_plausibility_check", given: correctAnswer(lesson, id, "transfer_plausibility_check", "s2"), sessionKey: "s2" }),
     submit({ lesson, instanceId: id, stepId: "transfer_solve_missing_branch", given: correctAnswer(lesson, id, "transfer_solve_missing_branch", "s1"), sessionKey: "s1" }),
     submit({ lesson, instanceId: id, stepId: "transfer_solve_missing_branch", given: correctAnswer(lesson, id, "transfer_solve_missing_branch", "s2"), sessionKey: "s2" }),
+    // cap.parallel.calculate_total_resistance's mastery gate is never
+    // independently evidenced by the guided-only
+    // guided_calculate_total_resistance step -- its real independent
+    // evidence comes solely from the lesson's own retrieval_check step
+    // (CC-08A).
+    submit({ lesson, instanceId: id, stepId: "retrieval_check", given: correctAnswer(lesson, id, "retrieval_check", "s1"), sessionKey: "s1" }),
+    submit({ lesson, instanceId: id, stepId: "retrieval_check", given: correctAnswer(lesson, id, "retrieval_check", "s2"), sessionKey: "s2" }),
   ];
 }
 
@@ -461,6 +571,8 @@ export function buildReport(): CourseOrchestrationProvingReport {
       scenarioReturn(),
       scenarioTransfer(),
       scenarioAdvance(),
+      scenarioAdvanceBlockWeak(),
+      scenarioAdvanceBlockConflicting(),
       scenarioSharedPrerequisite(),
       scenarioMisconceptionSafe(),
       scenarioConverge(),

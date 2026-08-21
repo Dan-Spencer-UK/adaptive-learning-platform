@@ -16,7 +16,10 @@ export const UNIT202_ADAPTIVE_VERTICAL_COURSE_ID = "course.unit202.adaptive-vert
 export const UNIT202_ADAPTIVE_VERTICAL: CourseDefinition = {
   id: UNIT202_ADAPTIVE_VERTICAL_COURSE_ID,
   schemaVersion: 1,
-  contentRelease: "release.unit202.v1",
+  // CC-08A: release.unit202.v1 is the original, frozen CC-06D release
+  // (Ohm's Law only) -- immutable, never grown. The four-lesson CC-08
+  // adaptive vertical lives in release.unit202.v2 instead.
+  contentRelease: "release.unit202.v2",
   nodes: [
     { id: "node.ohms-law", lessonId: "lesson.electrical.ohms-law", sequence: 1 },
     { id: "node.resistors-series", lessonId: "lesson.electrical.resistors-series", sequence: 2 },

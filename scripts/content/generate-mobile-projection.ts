@@ -86,14 +86,17 @@ export function buildMobileContentProjection(args: {
 }): MobileContentProjection {
   const { release, allLessons, pedagogy, knowledgeGraph } = args;
 
+  // CC-08A: matched on (id, version, contentRelease===release.id), never
+  // id/version alone -- the same immutable lesson content may legitimately
+  // be a member of more than one release, so an id/version-only lookup
+  // could silently resolve to a DIFFERENT release's entry for the same
+  // lesson when more than one exists (see lessonPlanManifestSchema's
+  // duplicate-detection comment).
   const memberLessons = [...release.lessons]
     .sort((a, b) => a.lessonId.localeCompare(b.lessonId))
     .map((member) => {
-      const lesson = allLessons.find((l) => l.id === member.lessonId && l.version === member.lessonVersion);
-      if (!lesson) throw new Error(`mobile projection generation failed: release '${release.id}' declares member '${member.lessonId}@${member.lessonVersion}' but no such governed lesson exists`);
-      if (lesson.contentRelease !== release.id) {
-        throw new Error(`mobile projection generation failed: lesson '${lesson.id}' claims contentRelease '${lesson.contentRelease}', not release '${release.id}'`);
-      }
+      const lesson = allLessons.find((l) => l.id === member.lessonId && l.version === member.lessonVersion && l.contentRelease === release.id);
+      if (!lesson) throw new Error(`mobile projection generation failed: release '${release.id}' declares member '${member.lessonId}@${member.lessonVersion}' but no governed lesson with that id/version claims contentRelease '${release.id}'`);
       return lesson;
     });
 

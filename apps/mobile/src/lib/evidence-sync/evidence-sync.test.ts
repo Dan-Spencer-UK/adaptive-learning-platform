@@ -49,7 +49,7 @@ function session(learnerId: string, sessionKey = "sess-jest-1") {
       learnerId,
       stepDecisions: [],
       includedStepIds: ["independent_question_resistance"],
-      completionCriteria: { requiredStepIds: ["independent_question_resistance"], requiredCapabilityEvidence: ["cap.ohms_law.solve_for_resistance"], requiresRemediationClearance: true, exitSummary: "s" },
+      completionCriteria: { requiredStepIds: ["independent_question_resistance"], requiredCapabilityEvidence: ["cap.ohms_law.solve_for_resistance"], masteryGateCapabilityIds: ["cap.ohms_law.solve_for_resistance"], requiresRemediationClearance: true, exitSummary: "s" },
       evidenceDigest: "digest",
     },
     learnerId,

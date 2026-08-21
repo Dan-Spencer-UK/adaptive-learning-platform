@@ -99,8 +99,8 @@ describe("buildReport (against the real canonical Ohm's Law lesson and live CC-0
     expect(isReportClean(report)).toBe(true);
   });
 
-  it("finds the four canonical lessons (CC-08: foundation formula-rearrangement, series, parallel added alongside Ohm's Law) with a genuinely rich, non-toy step count", () => {
-    expect(report.totalLessons).toBe(4);
+  it("finds the five canonical lesson entries (CC-08A: Ohm's Law's own immutable release.unit202.v1 entry, plus the four-lesson release.unit202.v2 adaptive vertical -- Ohm's Law again, foundation formula-rearrangement, series, parallel) with a genuinely rich, non-toy step count", () => {
+    expect(report.totalLessons).toBe(5);
     expect(report.totalSteps).toBeGreaterThanOrEqual(40);
     expect(report.totalSteps).toBeLessThanOrEqual(80);
   });

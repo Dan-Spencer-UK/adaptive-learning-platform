@@ -132,13 +132,14 @@ function buildReport(overrides?: {
   }
   for (const release of releaseManifest.releases) {
     for (const member of release.lessons) {
-      const lesson = lessonInputs.find((l) => l.id === member.lessonId);
+      // CC-08A: matched on (id, version, contentRelease===release.id), never
+      // id alone -- the same immutable lesson content may legitimately be a
+      // member of more than one release (see lessonPlanManifestSchema's
+      // duplicate-detection comment), so an id-only lookup could silently
+      // resolve to the WRONG release's entry when more than one exists.
+      const lesson = lessonInputs.find((l) => l.id === member.lessonId && l.version === member.lessonVersion && l.contentRelease === release.id);
       if (!lesson) {
-        releaseMembershipMismatches.push(`release '${release.id}' declares member '${member.lessonId}@${member.lessonVersion}' but no such lesson exists in the lesson manifest`);
-      } else if (lesson.version !== member.lessonVersion || lesson.contentRelease !== release.id) {
-        releaseMembershipMismatches.push(
-          `release '${release.id}' declares member '${member.lessonId}@${member.lessonVersion}' but the authored lesson is '${lesson.id}@${lesson.version}' with contentRelease '${lesson.contentRelease}'`,
-        );
+        releaseMembershipMismatches.push(`release '${release.id}' declares member '${member.lessonId}@${member.lessonVersion}' but no lesson manifest entry has that id/version and claims contentRelease '${release.id}'`);
       }
     }
     if (release.knowledgeCorpusId !== CC04_KNOWLEDGE_CORPUS_ID) {
@@ -173,6 +174,12 @@ function buildReport(overrides?: {
     for (const m of lesson.misconceptionTargets) checkMisconception(m.misconceptionIdentifier, `${lesson.id}.misconceptionTargets`);
     for (const capabilityId of lesson.completionCriteria.requiredCapabilityEvidence) {
       checkCapability(capabilityId, `${lesson.id}.completionCriteria.requiredCapabilityEvidence`);
+    }
+    // CC-08A: independently re-verified against the real corpus, never
+    // trusted merely because the schema already enforces
+    // masteryGateCapabilityIds ⊆ requiredCapabilityEvidence.
+    for (const capabilityId of lesson.completionCriteria.masteryGateCapabilityIds) {
+      checkCapability(capabilityId, `${lesson.id}.completionCriteria.masteryGateCapabilityIds`);
     }
 
     if (!lesson.steps.some((s) => s.type === "exit_completion")) {

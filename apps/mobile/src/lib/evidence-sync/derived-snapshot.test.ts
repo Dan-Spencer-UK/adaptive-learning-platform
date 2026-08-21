@@ -18,7 +18,7 @@ const LEARNER_A = "aaaaaaaa-0000-0000-0000-000000000001";
 const LEARNER_B = "bbbbbbbb-0000-0000-0000-000000000002";
 
 const REAL_LESSON = "lesson.electrical.ohms-law";
-const REAL_RELEASE = "release.unit202.v1";
+const REAL_RELEASE = "release.unit202.v2";
 
 function session(learnerId: string, sessionKey: string) {
   return startSession(
@@ -31,7 +31,7 @@ function session(learnerId: string, sessionKey: string) {
       learnerId,
       stepDecisions: [],
       includedStepIds: ["independent_question_resistance", "misconception_check_wrong_operation"],
-      completionCriteria: { requiredStepIds: ["independent_question_resistance"], requiredCapabilityEvidence: ["cap.ohms_law.solve_for_resistance"], requiresRemediationClearance: true, exitSummary: "s" },
+      completionCriteria: { requiredStepIds: ["independent_question_resistance"], requiredCapabilityEvidence: ["cap.ohms_law.solve_for_resistance"], masteryGateCapabilityIds: ["cap.ohms_law.solve_for_resistance"], requiresRemediationClearance: true, exitSummary: "s" },
       evidenceDigest: "digest",
     },
     learnerId,

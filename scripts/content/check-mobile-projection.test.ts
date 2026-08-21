@@ -73,9 +73,11 @@ describe("generated mobile content projection", () => {
   it("carries the release identity and only release-member lessons", () => {
     const projection = buildMobileContentProjection(realInputs());
     expect(projection.contentRelease.id).toBe(MOBILE_BUNDLED_RELEASE_ID);
-    // CC-08: release.unit202.v1's membership was additively extended with
-    // three new lessons (foundation formula-rearrangement, series, parallel)
-    // -- lesson.electrical.ohms-law's own entry is unchanged.
+    // CC-08A: release.unit202.v1 (Ohm's Law only) remains an exact,
+    // untouched immutable snapshot -- the four-lesson CC-08 adaptive
+    // vertical (Ohm's Law + foundation formula-rearrangement + series +
+    // parallel) lives entirely in the separate release.unit202.v2, which
+    // is what this projection bundles.
     expect(projection.lessons.map((l) => l.id).sort()).toEqual(
       [
         "lesson.electrical.ohms-law",
@@ -148,7 +150,11 @@ describe("generated mobile content projection", () => {
 
   it("MULTI-LESSON GENERICITY: a second synthetic lesson enters the projection through generation alone -- no manual mobile copy of its factual content", () => {
     const inputs = realInputs();
-    const [real] = inputs.allLessons;
+    // CC-08A: `inputs.allLessons` also carries release.unit202.v1's own
+    // untouched Ohm's Law entry -- must pick the v2-tagged one that is
+    // actually a member of the release under test here, not just the
+    // first array element.
+    const real = inputs.allLessons.find((l) => l.id === "lesson.electrical.ohms-law" && l.contentRelease === MOBILE_BUNDLED_RELEASE_ID);
     const second = {
       ...real!,
       id: "lesson.synthetic.second",
@@ -174,11 +180,16 @@ describe("generated mobile content projection", () => {
 
   it("FAILS LOUDLY when a release member references governed content that does not exist", () => {
     const inputs = realInputs();
-    const [real, ...rest] = inputs.allLessons;
+    // CC-08A: mutate the v2-tagged Ohm's Law entry that is actually a
+    // member of the release under test -- release.unit202.v1's own
+    // untouched entry (also present in `inputs.allLessons`) is never a
+    // member of this release and would silently be ignored instead.
+    const real = inputs.allLessons.find((l) => l.id === "lesson.electrical.ohms-law" && l.contentRelease === MOBILE_BUNDLED_RELEASE_ID)!;
     const broken = {
-      ...real!,
-      targetAssertionIdentifiers: [...real!.targetAssertionIdentifiers, "EL-DOES-NOT-EXIST-999"],
+      ...real,
+      targetAssertionIdentifiers: [...real.targetAssertionIdentifiers, "EL-DOES-NOT-EXIST-999"],
     };
-    expect(() => buildMobileContentProjection({ ...inputs, allLessons: [broken, ...rest] })).toThrow(/EL-DOES-NOT-EXIST-999/);
+    const allLessons = inputs.allLessons.map((l) => (l === real ? broken : l));
+    expect(() => buildMobileContentProjection({ ...inputs, allLessons })).toThrow(/EL-DOES-NOT-EXIST-999/);
   });
 });

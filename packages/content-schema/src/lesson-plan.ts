@@ -202,14 +202,53 @@ export type LessonStep = z.infer<typeof lessonStepSchema>;
 // mastery (task brief §14): completion is defined here; mastery/evidence
 // interpretation remains the existing learner evidence architecture's
 // job, never reinvented inside a lesson plan.
+//
+// CC-08A correction: `requiredCapabilityEvidence` answers "did the
+// learner engage with this" (completion) -- it was never a mastery
+// signal and must never be read as one. `masteryGateCapabilityIds` is
+// the separate, explicit, opt-in subset of those capabilities that a
+// COURSE-LEVEL orchestrator (@alp/diagnostic-engine) may treat as
+// genuine advancement gates -- each must independently reach a secure
+// mastery tier (WP1.3's MASTERED_STATES) before the course may advance
+// past this lesson. Mirrors the existing per-step
+// `masteryGateCapabilityId` (skip-if-mastered) naming/intent one level
+// up, rather than inventing a second parallel completion model.
+//
+// Deliberately NOT every `requiredCapabilityEvidence` entry: several
+// real governed capabilities are, by legitimate content design, only
+// ever evidenced through guided/diagnostic steps (never an independent
+// or transfer_application step) and can structurally never reach a
+// secure tier -- e.g. Ohm's Law's `cap.ohms_law.solve_for_current`
+// (guided-only). Listing such a capability here would make course
+// advancement permanently unreachable, so authors declare only the
+// capabilities this lesson's own step design genuinely lets a learner
+// demonstrate independently. `requiredCapabilityEvidence` still
+// requires evidence to exist for ALL of them (lesson completion is
+// unchanged); `masteryGateCapabilityIds` is strictly about which of
+// those additionally gate course-level advancement.
 // ---------------------------------------------------------------------
 
-export const lessonCompletionCriteriaSchema = z.object({
-  requiredStepIds: z.array(stableId).min(1),
-  requiredCapabilityEvidence: z.array(stableId).min(1),
-  requiresRemediationClearance: z.boolean().default(true),
-  exitSummary: z.string().min(1),
-});
+export const lessonCompletionCriteriaSchema = z
+  .object({
+    requiredStepIds: z.array(stableId).min(1),
+    requiredCapabilityEvidence: z.array(stableId).min(1),
+    /** Course-advancement mastery gates -- must be a non-empty subset of `requiredCapabilityEvidence` (enforced below). */
+    masteryGateCapabilityIds: z.array(stableId).min(1),
+    requiresRemediationClearance: z.boolean().default(true),
+    exitSummary: z.string().min(1),
+  })
+  .superRefine((criteria, ctx) => {
+    const requiredSet = new Set(criteria.requiredCapabilityEvidence);
+    for (const [index, id] of criteria.masteryGateCapabilityIds.entries()) {
+      if (!requiredSet.has(id)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["masteryGateCapabilityIds", index],
+          message: `masteryGateCapabilityIds entry '${id}' is not also in requiredCapabilityEvidence -- a mastery gate must be a genuine completion requirement, never a capability the lesson doesn't otherwise require evidence for`,
+        });
+      }
+    }
+  });
 export type LessonCompletionCriteria = z.infer<typeof lessonCompletionCriteriaSchema>;
 
 // ---------------------------------------------------------------------
@@ -360,11 +399,24 @@ export type LessonPlan = z.infer<typeof lessonPlanSchema>;
 export const lessonPlanManifestSchema = z.object({
   lessons: z.array(lessonPlanSchema),
 }).superRefine((manifest, ctx) => {
+  // CC-08A: keyed on (id, version, contentRelease) -- this module's own
+  // documented identity model ("same lesson id/version/content release
+  // must always mean the same canonical plan", ARCH-003 §18) already
+  // makes contentRelease part of a lesson's identity, so the SAME
+  // immutable step content may legitimately be a member of more than
+  // one governed ContentRelease (e.g. an existing lesson carried
+  // forward, unchanged, into a new release alongside newly added
+  // lessons) without being a "duplicate" -- content-release immutability
+  // (a release, once declared, always names the exact same snapshot)
+  // requires this: growing a release's membership by moving a lesson
+  // out of an older release is not legitimate, so the older release
+  // must keep its own (id, version, contentRelease)-identified member
+  // untouched while a new release gains its own.
   const seen = new Set<string>();
   for (const [index, lesson] of manifest.lessons.entries()) {
-    const key = `${lesson.id}@${lesson.version}`;
+    const key = `${lesson.id}@${lesson.version}@${lesson.contentRelease}`;
     if (seen.has(key)) {
-      ctx.addIssue({ code: "custom", path: ["lessons", index, "id"], message: `duplicate lesson id/version '${key}'` });
+      ctx.addIssue({ code: "custom", path: ["lessons", index, "id"], message: `duplicate lesson id/version/contentRelease '${key}'` });
     }
     seen.add(key);
   }

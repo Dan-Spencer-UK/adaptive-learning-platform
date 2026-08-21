@@ -2,7 +2,7 @@
  * GENERATED FILE -- DO NOT EDIT.
  *
  * Deterministic mobile learner-runtime content projection for governed
- * content release "release.unit202.v1".
+ * content release "release.unit202.v2".
  *
  * Source of truth: the governed content under scripts/content/data.
  * Regenerate with:  npm run content:mobile:generate
@@ -16,7 +16,7 @@ import type { MobileContentProjection } from "@alp/content-schema";
 export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
   "schemaVersion": 2,
   "contentRelease": {
-    "id": "release.unit202.v1",
+    "id": "release.unit202.v2",
     "questionBlueprintVersion": 1
   },
   "lessons": [
@@ -728,6 +728,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "cap.ohms_law.select_rearrangement",
           "cap.ohms_law.check_plausibility"
         ],
+        "masteryGateCapabilityIds": [
+          "cap.ohms_law.solve_for_voltage",
+          "cap.ohms_law.solve_for_resistance",
+          "cap.ohms_law.select_rearrangement",
+          "cap.ohms_law.check_plausibility"
+        ],
         "requiresRemediationClearance": true,
         "exitSummary": "The learner has calculated voltage, current and resistance from V = I x R, selected the correct rearrangement for an unknown quantity, judged the plausibility of a result, and -- if either governed misconception was detected -- cleared the remediation route before completion."
       },
@@ -735,7 +741,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v1"
+      "contentRelease": "release.unit202.v2"
     },
     {
       "id": "lesson.electrical.resistors-parallel",
@@ -1364,6 +1370,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "cap.parallel.solve_missing_branch",
           "cap.parallel.check_plausibility"
         ],
+        "masteryGateCapabilityIds": [
+          "cap.parallel.calculate_total_resistance",
+          "cap.parallel.solve_missing_branch",
+          "cap.parallel.check_plausibility"
+        ],
         "requiresRemediationClearance": true,
         "exitSummary": "The learner has recognised a parallel circuit, calculated total resistance and an individual branch current, solved for a missing branch by rearranging the reciprocal relationship, judged the plausibility of a result, and -- if either governed misconception was detected -- cleared the remediation route before completion."
       },
@@ -1371,7 +1382,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v1"
+      "contentRelease": "release.unit202.v2"
     },
     {
       "id": "lesson.electrical.resistors-series",
@@ -1875,6 +1886,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "cap.series.solve_missing_component",
           "cap.series.check_plausibility"
         ],
+        "masteryGateCapabilityIds": [
+          "cap.series.calculate_total_resistance",
+          "cap.series.solve_missing_component",
+          "cap.series.check_plausibility"
+        ],
         "requiresRemediationClearance": true,
         "exitSummary": "The learner has recognised a series circuit, calculated total resistance and an individual voltage drop, transferred Ohm's law to find supply current, solved for a missing component by rearranging the total-resistance relationship, and judged the plausibility of a result."
       },
@@ -1882,7 +1898,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v1"
+      "contentRelease": "release.unit202.v2"
     },
     {
       "id": "lesson.foundation.maths.formula-rearrangement",
@@ -2321,6 +2337,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "requiredCapabilityEvidence": [
           "cap.foundational.algebraic_technique.apply"
         ],
+        "masteryGateCapabilityIds": [
+          "cap.foundational.algebraic_technique.apply"
+        ],
         "requiresRemediationClearance": true,
         "exitSummary": "The learner has rearranged both a = b x c and a = b + c to find an unknown factor or term, practised each independently, and retrieved the multiplicative case again -- the same technique needed to rearrange V = I x R and other vocational formulas."
       },
@@ -2328,7 +2347,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v1"
+      "contentRelease": "release.unit202.v2"
     }
   ],
   "questionBlueprints": [

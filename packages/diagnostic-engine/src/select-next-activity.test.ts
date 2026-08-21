@@ -35,10 +35,11 @@ function step(overrides: Partial<LessonStep> & Pick<LessonStep, "id" | "type">):
   };
 }
 
-function completion(requiredCapabilityEvidence: string[]): LessonCompletionCriteria {
+function completion(requiredCapabilityEvidence: string[], masteryGateCapabilityIds: string[]): LessonCompletionCriteria {
   return {
     requiredStepIds: ["start", "end"],
     requiredCapabilityEvidence,
+    masteryGateCapabilityIds,
     requiresRemediationClearance: true,
     exitSummary: "synthetic fixture completion summary",
   };
@@ -46,7 +47,14 @@ function completion(requiredCapabilityEvidence: string[]): LessonCompletionCrite
 
 function lesson(
   id: string,
-  overrides: Partial<LessonPlan> & { readonly requiredCapabilityEvidence: string[]; readonly prerequisiteKnowledge?: string[]; readonly remediationEligibility?: RemediationEligibility[] },
+  overrides: Partial<LessonPlan> & {
+    readonly requiredCapabilityEvidence: string[];
+    /** Defaults to the same as requiredCapabilityEvidence when omitted -- most fixtures don't care about the completion/mastery-gate distinction. */
+    readonly masteryGateCapabilityIds?: string[];
+    readonly prerequisiteKnowledge?: string[];
+    readonly remediationEligibility?: RemediationEligibility[];
+    readonly contentRelease?: string;
+  },
 ): LessonPlan {
   return {
     id,
@@ -65,9 +73,9 @@ function lesson(
     steps: [step({ id: "start", type: "orientation" }), step({ id: "end", type: "exit_completion" })],
     misconceptionTargets: [],
     retrievalTags: [],
-    completionCriteria: completion(overrides.requiredCapabilityEvidence),
+    completionCriteria: completion(overrides.requiredCapabilityEvidence, overrides.masteryGateCapabilityIds ?? overrides.requiredCapabilityEvidence),
     presentationModes: ["learn"],
-    contentRelease: "synthetic.release.1",
+    contentRelease: overrides.contentRelease ?? "synthetic.release.1",
   };
 }
 
@@ -177,27 +185,159 @@ describe("selectNextActivity", () => {
     expect(d.lessonId).toBe(V1.id);
   });
 
-  it("[J] target capabilities mastered => ADVANCE to the next course node", () => {
+  it("[J] mastery-gate capability secure (TRANSFER_SECURE) => ADVANCE to the next course node", () => {
     const d = select({ snap: snapshot({ capabilityStatus: new Map([["cap.v1", "TRANSFER_SECURE"]]) }) });
     expect(d.decisionType).toBe("ADVANCE");
     expect(d.lessonId).toBe(V2.id);
     expect(d.reason).toBe("target_capabilities_mastered_advance");
   });
 
-  it("PROVISIONALLY_SECURE alone (no TRANSFER_SECURE evidence) does not yet advance -- genuine transfer evidence is required, not merely secure guided/independent practice", () => {
-    const d = select({ snap: snapshot({ capabilityStatus: new Map([["cap.v1", "PROVISIONALLY_SECURE"]]) }) });
-    expect(d.decisionType).not.toBe("ADVANCE");
+  describe("CC-08A: mastery-gate advancement integrity", () => {
+    // Node with TWO mastery gates (gate + secondary) plus one non-gate
+    // supporting capability that is completion-required but never a
+    // mastery gate (mirrors the real Ohm's Law/series/parallel content:
+    // a guided-only capability listed for completion but excluded from
+    // masteryGateCapabilityIds).
+    const twoGateTarget = lesson("lesson.two-gate", {
+      requiredCapabilityEvidence: ["cap.gate", "cap.secondary-gate", "cap.supporting"],
+      masteryGateCapabilityIds: ["cap.gate", "cap.secondary-gate"],
+    });
+    // A second course node follows the two-gate node so that clearing its
+    // mastery gates has somewhere to ADVANCE to -- a single-node course
+    // would correctly resolve to COMPLETE_SLICE instead, which is a
+    // different (also-tested-elsewhere) decision, not what these
+    // advancement-integrity proofs are isolating.
+    const course: CourseDefinition = { ...COURSE, nodes: [{ id: "node.two-gate", lessonId: twoGateTarget.id, sequence: 1 }, { id: "node.v2", lessonId: V2.id, sequence: 2 }] };
+    const selectTwoGate = (capabilityStatus: Map<string, MasteryState>) =>
+      select({ snap: snapshot({ capabilityStatus }), allLessons: [twoGateTarget, V2], course });
+
+    it("[A] all mastery gates secure (one TRANSFER_SECURE, one PROVISIONALLY_SECURE) + supporting capability with mere evidence => ADVANCE", () => {
+      const d = selectTwoGate(
+        new Map([
+          ["cap.gate", "TRANSFER_SECURE"],
+          ["cap.secondary-gate", "PROVISIONALLY_SECURE"],
+          ["cap.supporting", "EMERGING"],
+        ]),
+      );
+      expect(d.decisionType).toBe("ADVANCE");
+    });
+
+    it("[B] a required mastery gate WEAK => MUST NOT ADVANCE, even though the other gate is TRANSFER_SECURE", () => {
+      const d = selectTwoGate(
+        new Map([
+          ["cap.gate", "TRANSFER_SECURE"],
+          ["cap.secondary-gate", "WEAK"],
+        ]),
+      );
+      expect(d.decisionType).not.toBe("ADVANCE");
+    });
+
+    it("[C] a required mastery gate CONFLICTING => MUST NOT ADVANCE", () => {
+      const d = selectTwoGate(
+        new Map([
+          ["cap.gate", "TRANSFER_SECURE"],
+          ["cap.secondary-gate", "CONFLICTING"],
+        ]),
+      );
+      expect(d.decisionType).not.toBe("ADVANCE");
+    });
+
+    it("[D] a required mastery gate INSUFFICIENT_EVIDENCE => MUST NOT ADVANCE", () => {
+      const d = selectTwoGate(
+        new Map([
+          ["cap.gate", "TRANSFER_SECURE"],
+          ["cap.secondary-gate", "INSUFFICIENT_EVIDENCE"],
+        ]),
+      );
+      expect(d.decisionType).not.toBe("ADVANCE");
+    });
+
+    it("[E] a non-gate supporting capability that can never become secure does not block advancement -- only declared mastery gates are checked", () => {
+      const d = selectTwoGate(
+        new Map([
+          ["cap.gate", "PROVISIONALLY_SECURE"],
+          ["cap.secondary-gate", "PROVISIONALLY_SECURE"],
+          // cap.supporting deliberately left NOT_ASSESSED/absent -- it is
+          // completion-required (requiredCapabilityEvidence) but not a
+          // mastery gate, so its absence must never block ADVANCE.
+        ]),
+      );
+      expect(d.decisionType).toBe("ADVANCE");
+    });
+
+    it("[F] one TRANSFER_SECURE mastery gate cannot mask another required mastery gate being WEAK", () => {
+      const d = selectTwoGate(
+        new Map([
+          ["cap.gate", "TRANSFER_SECURE"],
+          ["cap.secondary-gate", "WEAK"],
+          ["cap.supporting", "TRANSFER_SECURE"],
+        ]),
+      );
+      expect(d.decisionType).not.toBe("ADVANCE");
+    });
+
+    it("[G] no evidence anywhere => does not advance (START_TARGET instead)", () => {
+      const d = selectTwoGate(new Map());
+      expect(d.decisionType).toBe("START_TARGET");
+    });
+
+    it("[H] genuine satisfying evidence across every governed mastery gate => advances deterministically", () => {
+      const d = selectTwoGate(
+        new Map([
+          ["cap.gate", "PROVISIONALLY_SECURE"],
+          ["cap.secondary-gate", "TRANSFER_SECURE"],
+          ["cap.supporting", "WEAK"],
+        ]),
+      );
+      expect(d.decisionType).toBe("ADVANCE");
+    });
+
+    it("[I] input (Map) ordering does not affect the mastery-gate result", () => {
+      const a = new Map<string, MasteryState>([
+        ["cap.gate", "TRANSFER_SECURE"],
+        ["cap.secondary-gate", "PROVISIONALLY_SECURE"],
+      ]);
+      const b = new Map<string, MasteryState>([
+        ["cap.secondary-gate", "PROVISIONALLY_SECURE"],
+        ["cap.gate", "TRANSFER_SECURE"],
+      ]);
+      expect(selectTwoGate(a)).toEqual(selectTwoGate(b));
+    });
+
+    it("[J] same state/policy/content => identical decision", () => {
+      const status = new Map<string, MasteryState>([["cap.gate", "WEAK"], ["cap.secondary-gate", "TRANSFER_SECURE"]]);
+      expect(selectTwoGate(status)).toEqual(selectTwoGate(status));
+    });
+
+    it("PROVISIONALLY_SECURE on every mastery gate is sufficient -- the governed MASTERED_STATES threshold, not an invented stricter one", () => {
+      const d = selectTwoGate(new Map([["cap.gate", "PROVISIONALLY_SECURE"], ["cap.secondary-gate", "PROVISIONALLY_SECURE"]]));
+      expect(d.decisionType).toBe("ADVANCE");
+    });
   });
 
-  it("all completion capabilities evidenced but none TRANSFER_SECURE does not yet advance (multi-capability target)", () => {
-    const twoCapTarget = lesson("lesson.v1c", { requiredCapabilityEvidence: ["cap.a", "cap.b"] });
-    const course: CourseDefinition = { ...COURSE, nodes: [{ id: "node.v1c", lessonId: twoCapTarget.id, sequence: 1 }] };
-    const d = select({
-      snap: snapshot({ capabilityStatus: new Map([["cap.a", "PROVISIONALLY_SECURE"], ["cap.b", "EMERGING"]]) }),
-      allLessons: [twoCapTarget],
-      course,
+  describe("CC-08A: release-scoped lesson resolution", () => {
+    it("a course only ever resolves lessons declaring its own contentRelease, never a same-id lesson from a different release", () => {
+      const v1Lesson = lesson("lesson.shared", { requiredCapabilityEvidence: ["cap.shared"], contentRelease: "release.a" });
+      const v2Lesson = lesson("lesson.shared", { requiredCapabilityEvidence: ["cap.shared"], contentRelease: "release.b" });
+      const courseA: CourseDefinition = { id: "course.a", schemaVersion: 1, contentRelease: "release.a", nodes: [{ id: "node.shared", lessonId: "lesson.shared", sequence: 1 }] };
+      const courseB: CourseDefinition = { id: "course.b", schemaVersion: 1, contentRelease: "release.b", nodes: [{ id: "node.shared", lessonId: "lesson.shared", sequence: 1 }] };
+      const both = [v1Lesson, v2Lesson];
+
+      const decisionA = select({ course: courseA, allLessons: both });
+      const decisionB = select({ course: courseB, allLessons: both });
+      // Both resolve successfully (no UnknownCourseActivityError) and
+      // independently -- neither release "sees" the other's member.
+      expect(decisionA.decisionType).toBe("START_TARGET");
+      expect(decisionB.decisionType).toBe("START_TARGET");
+      expect(decisionA.lessonId).toBe("lesson.shared");
+      expect(decisionB.lessonId).toBe("lesson.shared");
     });
-    expect(d.decisionType).toBe("CONTINUE_TARGET");
+
+    it("no first/default release fallback: a lesson that only exists under a DIFFERENT release than the course declares fails explicitly", () => {
+      const wrongReleaseLesson = lesson("lesson.only-elsewhere", { requiredCapabilityEvidence: ["cap.x"], contentRelease: "release.other" });
+      const course: CourseDefinition = { id: "course.strict", schemaVersion: 1, contentRelease: "release.expected", nodes: [{ id: "node.x", lessonId: "lesson.only-elsewhere", sequence: 1 }] };
+      expect(() => select({ course, allLessons: [wrongReleaseLesson] })).toThrow(/Unknown course activity/);
+    });
   });
 
   it("last node mastered => COMPLETE_SLICE with no lessonId", () => {

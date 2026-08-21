@@ -153,7 +153,7 @@ describe("LessonPlayerScreen (generic lesson identity)", () => {
     const savedSession = await loadLessonSession(activeId!, "learner.test");
     expect(savedSession?.completedStepIds).toContain("orientation");
     expect(savedSession?.learnerId).toBe("learner.test");
-    expect(savedSession?.contentRelease).toBe("release.unit202.v1");
+    expect(savedSession?.contentRelease).toBe("release.unit202.v2");
 
     await first.unmount();
     const second = await render(<LessonPlayerScreen />);

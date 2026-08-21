@@ -44,6 +44,12 @@ export function buildStep(overrides: Partial<LessonStep> & Pick<LessonStep, "id"
 
 function buildCompletionCriteria(overrides: Partial<LessonCompletionCriteria> & Pick<LessonCompletionCriteria, "requiredStepIds" | "requiredCapabilityEvidence">): LessonCompletionCriteria {
   return {
+    // Defaults to the same set as requiredCapabilityEvidence -- this
+    // package's own tests exercise pre-session assembly/branching, never
+    // course-level advancement (that is @alp/diagnostic-engine's concern),
+    // so the completion/mastery-gate distinction (CC-08A) is irrelevant
+    // here unless a specific test overrides it.
+    masteryGateCapabilityIds: overrides.requiredCapabilityEvidence,
     requiresRemediationClearance: true,
     exitSummary: "synthetic fixture completion summary",
     ...overrides,

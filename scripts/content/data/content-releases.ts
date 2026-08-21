@@ -3,15 +3,32 @@
  * controlled, human-authored declaration of which content releases
  * exist, typed against @alp/content-schema's `contentReleaseManifestSchema`.
  *
- * A release is a stable identity for one coherent snapshot of governed
- * learner content: which LessonPlan (id, version) pairs belong to it,
- * which governed corpus snapshot it references, and which
+ * A release is a stable identity for one coherent, IMMUTABLE snapshot of
+ * governed learner content: which LessonPlan (id, version) pairs belong
+ * to it, which governed corpus snapshot it references, and which
  * question-blueprint version executes within it. Every LessonPlan's
  * `contentRelease` field must name a release declared here, and must
  * appear in that release's membership -- enforced mechanically by
  * scripts/content/validate-lesson-plan.ts (`npm run lesson:validate:check`).
  *
  * Release ids are stable typed identities, never timestamps.
+ *
+ * IMMUTABILITY (CC-08A correction): once declared, a release's
+ * membership is never grown, shrunk or redefined -- exactly the same
+ * principle already established for evidence provenance ("releases are
+ * immutable governed snapshots, so (contentRelease, blueprintId) +
+ * release-level questionBlueprintVersion already identify blueprint
+ * semantics unambiguously for durable attempts", PROJECT-STATUS.md
+ * §CC-07). CC-08 briefly violated this by additively extending
+ * `release.unit202.v1`'s membership in place; that was wrong and has
+ * been reverted here. `release.unit202.v1` is restored to its original,
+ * exact CC-06D shape (Ohm's Law only) and a NEW release,
+ * `release.unit202.v2`, carries the CC-08 four-lesson expansion instead.
+ * A lesson may legitimately be a member of more than one release without
+ * being "duplicated" (see lessonPlanManifestSchema's own comment) --
+ * `lesson.electrical.ohms-law`'s real, unmodified step content is a
+ * genuine member of both v1 and v2, addressed twice (once per release)
+ * rather than moved.
  */
 
 import type { ContentReleaseManifest } from "@alp/content-schema";
@@ -20,40 +37,40 @@ import { CC04_KNOWLEDGE_CORPUS_ID } from "./cc04-unit202-electrical-science.ts";
 import { CC05A_PEDAGOGY_CORPUS_ID } from "./cc05a-pedagogy-unit202.ts";
 
 /**
- * The single current proving/product release: the real canonical Ohm's
- * Law lesson and its governed Unit 202 dependencies. Replaces the
- * previous inconsistent free-form strings ("lesson-plan-pilot-v1",
- * "cc05c-proving-slice-fixture-v1") that described this same actual
- * governed snapshot.
+ * The original CC-06D release: the real canonical Ohm's Law lesson and
+ * its governed Unit 202 dependencies. Frozen exactly as first declared --
+ * never grown, never redefined. Superseded as the bundled/proving
+ * release by `release.unit202.v2` (below), but remains valid, resolvable
+ * and unchanged for anything that already names it.
  */
 export const RELEASE_UNIT202_V1 = "release.unit202.v1" as const;
 
+/**
+ * CC-08: the four-lesson cross-lesson adaptive-vertical release --
+ * `release.unit202.v1`'s real Ohm's Law lesson (same, unmodified step
+ * content; a new membership entry, not a move) plus the three new real
+ * lessons (foundational formula-rearrangement, resistors-series,
+ * resistors-parallel). This is the release the CC-08 adaptive loop and
+ * the bundled mobile app actually use.
+ */
+export const RELEASE_UNIT202_V2 = "release.unit202.v2" as const;
+
 /** The release whose generated learner-runtime projection is bundled into the mobile app (scripts/content/generate-mobile-projection.ts). */
-export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V1;
+export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V2;
 
 export const contentReleases: ContentReleaseManifest = {
   releases: [
     {
       id: RELEASE_UNIT202_V1,
       schemaVersion: 1,
-      // CC-08: additively extends this release's membership with three
-      // new real lessons (the cross-lesson adaptive vertical needs all
-      // four lessons resolvable from the SAME bundled mobile content
-      // release -- apps/mobile's local projection carries exactly one
-      // release at a time, see local-content-registry.ts). This is a
-      // deliberate, considered choice, not an oversight: `lesson.
-      // electrical.ohms-law`'s own entry (id, version, contentRelease)
-      // is completely unchanged -- nothing already declared under this
-      // release id is redefined or removed, only new members are added,
-      // exactly as CC-04A/CC-04B/CC-05B2 grew the knowledge/pedagogy
-      // corpora under their own stable ids without minting a new one for
-      // every addition. No production learner evidence has ever been
-      // recorded against this release. See PROJECT-STATUS.md's CC-08
-      // section for the full rationale (versus creating release.unit202.v2,
-      // which was rejected here specifically because a lesson can only
-      // belong to the ONE release its own `contentRelease` field names,
-      // so v2 would have forced moving Ohm's Law out of v1 for no
-      // genuine content reason).
+      lessons: [{ lessonId: "lesson.electrical.ohms-law", lessonVersion: 1 }],
+      knowledgeCorpusId: CC04_KNOWLEDGE_CORPUS_ID,
+      pedagogyCorpusId: CC05A_PEDAGOGY_CORPUS_ID,
+      questionBlueprintVersion: 1,
+    },
+    {
+      id: RELEASE_UNIT202_V2,
+      schemaVersion: 1,
       lessons: [
         { lessonId: "lesson.electrical.ohms-law", lessonVersion: 1 },
         { lessonId: "lesson.foundation.maths.formula-rearrangement", lessonVersion: 1 },

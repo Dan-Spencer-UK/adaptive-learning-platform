@@ -11,7 +11,7 @@ function instance(overrides: Partial<LessonInstance> = {}): LessonInstance {
     learnerId: "learner.001",
     stepDecisions: [],
     includedStepIds: ["a", "b", "c"],
-    completionCriteria: { requiredStepIds: ["a", "b", "c"], requiredCapabilityEvidence: ["cap.x"], requiresRemediationClearance: true, exitSummary: "done" },
+    completionCriteria: { requiredStepIds: ["a", "b", "c"], requiredCapabilityEvidence: ["cap.x"], masteryGateCapabilityIds: ["cap.x"], requiresRemediationClearance: true, exitSummary: "done" },
     evidenceDigest: "digest",
     ...overrides,
   };

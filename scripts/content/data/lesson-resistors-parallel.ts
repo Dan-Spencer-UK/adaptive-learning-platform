@@ -388,12 +388,23 @@ export const LESSON_RESISTORS_PARALLEL: LessonPlan = {
       "cap.parallel.solve_missing_branch",
       "cap.parallel.check_plausibility",
     ],
+    // CC-08A: course-advancement mastery gates -- excludes
+    // cap.parallel.recognise_structure (guided_identify_topology only) and
+    // cap.parallel.calculate_branch_current (guided_calculate_branch_current
+    // only), neither of which this lesson ever evidences independently;
+    // both remain genuine completion requirements without being able to
+    // block course advancement.
+    masteryGateCapabilityIds: [
+      "cap.parallel.calculate_total_resistance",
+      "cap.parallel.solve_missing_branch",
+      "cap.parallel.check_plausibility",
+    ],
     requiresRemediationClearance: true,
     exitSummary:
       "The learner has recognised a parallel circuit, calculated total resistance and an individual branch current, solved for a missing branch by rearranging the reciprocal relationship, judged the plausibility of a result, and -- if either governed misconception was detected -- cleared the remediation route before completion.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v1",
+  contentRelease: "release.unit202.v2",
 };
 
 export const lessons = [LESSON_RESISTORS_PARALLEL];

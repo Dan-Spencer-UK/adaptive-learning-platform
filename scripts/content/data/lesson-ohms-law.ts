@@ -454,6 +454,18 @@ export const LESSON_OHMS_LAW: LessonPlan = {
       "cap.ohms_law.select_rearrangement",
       "cap.ohms_law.check_plausibility",
     ],
+    // CC-08A: course-advancement mastery gates -- excludes
+    // cap.ohms_law.solve_for_current, whose only evidence-emitting step
+    // in this lesson (guided_calculation_current) is guided scaffolding;
+    // it can never independently reach a secure mastery tier here, so it
+    // remains a genuine completion requirement (the learner must engage
+    // with it) without being able to block course advancement.
+    masteryGateCapabilityIds: [
+      "cap.ohms_law.solve_for_voltage",
+      "cap.ohms_law.solve_for_resistance",
+      "cap.ohms_law.select_rearrangement",
+      "cap.ohms_law.check_plausibility",
+    ],
     requiresRemediationClearance: true,
     exitSummary:
       "The learner has calculated voltage, current and resistance from V = I x R, selected the correct rearrangement for an unknown quantity, judged the plausibility of a result, and -- if either governed misconception was detected -- cleared the remediation route before completion.",

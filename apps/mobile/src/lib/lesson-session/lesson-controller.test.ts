@@ -75,7 +75,7 @@ const LESSON: LessonPlan = {
   steps: [ACKNOWLEDGE_ONLY, MISCONCEPTION_CHECK, NEXT_QUESTION, TRANSFER],
   misconceptionTargets: [],
   retrievalTags: [],
-  completionCriteria: { requiredStepIds: ["intro", "misconception_check", "next_question", "transfer"], requiredCapabilityEvidence: ["cap.test"], requiresRemediationClearance: true, exitSummary: "done" },
+  completionCriteria: { requiredStepIds: ["intro", "misconception_check", "next_question", "transfer"], requiredCapabilityEvidence: ["cap.test"], masteryGateCapabilityIds: ["cap.test"], requiresRemediationClearance: true, exitSummary: "done" },
   presentationModes: ["learn"],
   contentRelease: "release.test",
 };
