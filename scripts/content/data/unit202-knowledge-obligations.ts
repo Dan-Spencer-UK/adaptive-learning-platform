@@ -42,6 +42,24 @@ export interface KnowledgeObligation {
   description: string;
   /** Governed assertion identifier(s) that satisfy this obligation. Cross-checked against the live corpus; an unresolved id is a structural defect, not a silent gap. */
   satisfiedBy: string[];
+  /**
+   * CC-09B.4 (task section 15): distinguishes SOURCE-SUPPORTED KNOWLEDGE
+   * (the assertions in `satisfiedBy` are genuinely, directly sourced --
+   * unaffected) from CURRICULUM-SCOPE CERTAINTY (whether those assertions
+   * exhaust everything the official Range item's own single-word/short
+   * heading was actually intended to require). Set only when the
+   * official handbook/public assessment material genuinely does not
+   * itself specify the intended breadth, and no further scope may be
+   * invented from model memory or a foundational source's own broader
+   * coverage merely because it happens to be available (e.g. GCSE maths
+   * covering median/mode/quartiles does not by itself prove Unit 202's
+   * "Statistics" Range item requires them). This obligation still counts
+   * as satisfied for semantic-completeness purposes (its `satisfiedBy`
+   * assertions ARE genuinely sourced) -- this flag is a separate, explicit
+   * note for the Project Architect/future assessment-pattern package, not
+   * a semantic-completeness gate.
+   */
+  scopeUnresolved?: { note: string };
 }
 
 export interface AcObligationSet {
@@ -59,7 +77,25 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
       { id: "indices", description: "Apply the laws of indices (multiplying/dividing powers of the same base; fractional indices as roots).", satisfiedBy: ["FM-NUM-INDICES-LAWS-001"] },
       { id: "transposition", description: "Rearrange a formula to change its subject, and substitute known values to find an unknown.", satisfiedBy: ["FM-ALG-TRANSPOSE-MULT-001", "FM-ALG-TRANSPOSE-ADD-001", "FM-ALG-SUBSTITUTION-001"] },
       { id: "triangles-trigonometry", description: "State Pythagoras' theorem and the sine/cosine/tangent ratios, AND apply them to find an unknown side or angle.", satisfiedBy: ["FM-GEOM-PYTHAGORAS-001", "FM-GEOM-TRIG-RATIOS-001", "FM-CALC-PYTHAGORAS-001", "FM-CALC-TRIG-RATIO-001"] },
-      { id: "statistics", description: "Interpret the mean and range of a data set.", satisfiedBy: ["FM-STATS-MEAN-001", "FM-STATS-RANGE-001"] },
+      {
+        id: "statistics",
+        description: "Interpret the mean and range of a data set.",
+        satisfiedBy: ["FM-STATS-MEAN-001", "FM-STATS-RANGE-001"],
+        // CC-09B.4 (task section 15): the official handbook's Range box
+        // names this item simply "Statistics", with no further breakdown.
+        // FM-STATS-MEAN-001/FM-STATS-RANGE-001 are genuinely source-backed
+        // (DfE GCSE Maths) and are retained -- but neither the handbook
+        // nor any City & Guilds public sample-assessment material this
+        // package has access to independently confirms that mean+range
+        // exhausts the intended breadth of "Statistics" (median, mode and
+        // quartiles are NOT added here merely because DfE's own broader
+        // GCSE statistics content happens to be available -- that would be
+        // inventing curriculum scope from a foundational source's own
+        // coverage, not from the qualification's own stated requirement).
+        scopeUnresolved: {
+          note: "SCOPE_UNRESOLVED: City & Guilds handbook names the Range item only as \"Statistics\" with no sub-items; whether mean+range exhausts the intended breadth (vs. also requiring median/mode/quartiles) cannot be independently certified from the handbook alone. Flagged for Project Architect adjudication or resolution once official Unit 602 sample-assessment material is available -- not resolved by inventing scope from DfE's broader GCSE statistics content.",
+        },
+      },
     ],
   },
   {

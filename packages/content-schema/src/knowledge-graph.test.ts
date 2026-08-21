@@ -445,6 +445,15 @@ describe("knowledgeGraphManifestSchema", () => {
     }
   });
 
+  it("CC-09B.4: accepts an assertion version carrying a clauseCoverage record", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionVersions[0]!.clauseCoverage = [{ clause: "V = I x R", sourceLocatorKey: "loc-1" }];
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+
   it("rejects a CURRENT curriculum version whose label looks like a placeholder", () => {
     const manifest = minimalValidManifest();
     manifest.curriculumVersions[0]!.versionLabel = "proving-slice reference (edition unconfirmed)";

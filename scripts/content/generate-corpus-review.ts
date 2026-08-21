@@ -21,6 +21,7 @@ import { fileURLToPath } from "node:url";
 import { knowledgeGraphManifestSchema, type KnowledgeGraphManifest } from "@alp/content-schema";
 
 import { cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
+import { buildReport as buildCoverageMatrixReport } from "./report-coverage-matrix.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..", "..");
@@ -38,6 +39,18 @@ function buildReport(manifest: KnowledgeGraphManifest): string {
     manifest.sourceLocators.map((sl) => [sl.key, sl.locatorSummary]),
   );
   const nodeTitleByKey = new Map(manifest.curriculumNodes.map((n) => [n.key, n.title]));
+
+  // CC-09B.4 (task section 12): assertion-level entailment result, reused
+  // from report-coverage-matrix.ts rather than recomputed here -- so the
+  // Project Architect can see SOURCE / LOCATOR / SUPPORT TYPE / ENTAILMENT
+  // RESULT for every assertion on this one page without cross-referencing
+  // the schema/manifest by hand.
+  const entailmentStatusByAssertion = buildCoverageMatrixReport().entailmentStatusByAssertion;
+  const clauseCoverageByAssertion = new Map(
+    manifest.assertionVersions
+      .filter((v) => v.clauseCoverage && v.clauseCoverage.length > 0)
+      .map((v) => [v.assertionIdentifier, v.clauseCoverage!]),
+  );
 
   const sourceTitleForLocator = (locatorKey: string): string => {
     const svKey = sourceVersionKeyByLocatorKey.get(locatorKey);
@@ -285,6 +298,14 @@ function buildReport(manifest: KnowledgeGraphManifest): string {
       lines.push(`**Provenance:** ${prov.join(" | ")}`);
       const derivedFrom = derivedFromFor.get(a.identifier) ?? [];
       if (derivedFrom.length) lines.push(`**Derived from:** ${derivedFrom.join("; ")}`);
+      const entailment = entailmentStatusByAssertion[a.identifier];
+      if (entailment) lines.push(`**Entailment result:** ${entailment}`);
+      const clauseCoverage = clauseCoverageByAssertion.get(a.identifier);
+      if (clauseCoverage) {
+        lines.push(
+          `**Clause coverage:** ${clauseCoverage.map((c) => `"${c.clause}" -> ${sourceTitleForLocator(c.sourceLocatorKey)} (${c.sourceLocatorKey})`).join("; ")}`,
+        );
+      }
       const mis = misconceptionsFor.get(a.identifier) ?? [];
       if (mis.length) lines.push(`**Misconceptions targeting this assertion:** ${mis.join(", ")}`);
       lines.push("");

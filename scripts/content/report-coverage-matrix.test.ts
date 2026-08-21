@@ -397,3 +397,94 @@ describe("report-coverage-matrix: CC-09B.3 multi-source entailment semantics (ta
     expect(report.entailmentStatusByAssertion["EL-APPLICATION-WIRELESS-CONTROL-001"]).not.toBe("PARTIALLY_SUPPORTED");
   });
 });
+
+describe("report-coverage-matrix: CC-09B.4 retroactive source-first provenance migration (task section 20)", () => {
+  it("A: an unclassified factual provenance link is PENDING_REVIEW, never silently treated as complete", () => {
+    // Simulates what a legacy link would look like without the corpus
+    // compiler's own supportType default (cc04-unit202-electrical-
+    // science.ts's assertionProvenanceLinks compiler now defaults every
+    // factual link to DIRECT precisely so this state cannot occur in the
+    // real, generated manifest -- this test proves the underlying
+    // hardening RULE itself still catches an unclassified link if that
+    // default were ever bypassed).
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      assertionProvenanceLinks: cc04Unit202ElectricalScience.assertionProvenanceLinks.map((p) =>
+        p.assertionIdentifier === "EL-OHM-RELATIONSHIP-001" && p.provenanceRole === "DEFINES" ? { ...p, supportType: undefined } : p,
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    expect(report.entailmentStatusByAssertion["EL-OHM-RELATIONSHIP-001"]).toBe("PENDING_REVIEW");
+  });
+
+  it("B: a generic physical-principle-only link (no direct device evidence) cannot fully support a device/application assertion", () => {
+    // Strip the real Fluke direct evidence from EL-INSTRUMENT-CLAMP-METER-001,
+    // leaving only the generic "current produces a magnetic field" physics
+    // link (already correctly classified PARTIAL, since it does not itself
+    // establish the clamp-meter device claim).
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      assertionProvenanceLinks: cc04Unit202ElectricalScience.assertionProvenanceLinks.filter(
+        (p) => !(p.assertionIdentifier === "EL-INSTRUMENT-CLAMP-METER-001" && p.sourceLocatorKey === "loc-fluke-clamp-meter-principle"),
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    expect(report.entailmentStatusByAssertion["EL-INSTRUMENT-CLAMP-METER-001"]).toBe("PARTIALLY_SUPPORTED");
+  });
+
+  it("C: a locator classified PARTIAL cannot alone yield full support, even when its source family covers the fact elsewhere", () => {
+    // EL-INSULATOR-BREAKDOWN-001 is genuinely DIRECT via its dedicated
+    // dielectric-breakdown locator. Simulate the pre-CC-09B.4 defect: the
+    // SAME source (OpenStax UP2) is cited, but via the broad, wrong
+    // Ch.9-introduction locator, honestly marked PARTIAL (it does not
+    // itself establish dielectric breakdown, even though UP2 as a whole
+    // book does, elsewhere). Proves precision is enforced per-LINK, not
+    // merely per-source-family.
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      assertionProvenanceLinks: cc04Unit202ElectricalScience.assertionProvenanceLinks.map((p) =>
+        p.assertionIdentifier === "EL-INSULATOR-BREAKDOWN-001" && p.sourceLocatorKey === "loc-openstax-up2-dielectric-breakdown"
+          ? { ...p, sourceLocatorKey: "loc-openstax-up2-current-general", supportType: "PARTIAL" as const }
+          : p,
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    expect(report.entailmentStatusByAssertion["EL-INSULATOR-BREAKDOWN-001"]).toBe("PARTIALLY_SUPPORTED");
+  });
+
+  it("D: two sourceVersions of the same source simultaneously marked CURRENT is a structural defect", () => {
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      sourceVersions: cc04Unit202ElectricalScience.sourceVersions.map((sv) =>
+        sv.key === "sv-holtek-ht12d-ht12f-decoder" ? { ...sv, status: "CURRENT" as const } : sv,
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    expect(report.structuralDefects.some((d) => d.includes("simultaneously marked CURRENT"))).toBe(true);
+    expect(isReportClean(report)).toBe(false);
+  });
+
+  it("E: multiSourceFullyCovered without a clauseCoverage record is a structural defect (a bare Boolean is not sufficient evidence)", () => {
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      assertionVersions: cc04Unit202ElectricalScience.assertionVersions.map((v) =>
+        v.assertionIdentifier === "FP-CONCEPT-GEAR-001" ? { ...v, clauseCoverage: undefined } : v,
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    expect(report.structuralDefects.some((d) => d.includes("FP-CONCEPT-GEAR-001") && d.includes("no clauseCoverage"))).toBe(true);
+    expect(isReportClean(report)).toBe(false);
+  });
+
+  it("F: the real, migrated corpus has zero approved factual assertions in PARTIALLY_SUPPORTED, UNSUPPORTED or PENDING_REVIEW entailment states", () => {
+    const report = buildReport();
+    const statuses = Object.values(report.entailmentStatusByAssertion);
+    expect(statuses.length).toBe(cc04Unit202ElectricalScience.assertions.length);
+    for (const bad of ["PARTIALLY_SUPPORTED", "UNSUPPORTED", "PENDING_REVIEW"]) {
+      expect(statuses.filter((s) => s === bad)).toEqual([]);
+    }
+    expect(
+      statuses.every((s) => s === "FULLY_SUPPORTED_SINGLE_SOURCE" || s === "FULLY_SUPPORTED_MULTI_SOURCE" || s === "FULLY_SUPPORTED_DERIVED"),
+    ).toBe(true);
+  });
+});

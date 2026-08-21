@@ -165,6 +165,15 @@ const SRC_SECO_LARM_BEAM_SENSOR = "src-seco-larm-photoelectric-beam-sensor";
 // See PROJECT-STATUS.md CC-09B.3.
 const SRC_SKYWORKS_DAA_DESIGN_GUIDE = "src-skyworks-an347-daa-design-guide";
 const SRC_HOLTEK_HT12D = "src-holtek-ht12d-ht12f-decoder";
+// CC-09B.4 (retroactive source-first provenance migration): new sources
+// acquired to close the five named legacy defects (electrolysis;
+// conductor/insulator installation examples; insulator/dielectric
+// breakdown; clamp meter; fuse/breaker cluster) that a broad, generic
+// "Chapter 9 introduction" locator was previously reused for. See
+// PROJECT-STATUS.md CC-09B.4.
+const SRC_OPENSTAX_CHEMISTRY = "src-openstax-chemistry-2e";
+const SRC_FLUKE_CLAMP_METERS = "src-fluke-abcs-of-clamp-meters";
+const SRC_PRYSMIAN_6242Y = "src-prysmian-6242y-pvc-cable-datasheet";
 
 /** Exported so ./unit202-assessment-specification.ts cites the same governed source-version identity rather than hand-copying the string. */
 export const SV_CG = "sv-cg-2365-02-v1-12";
@@ -185,6 +194,16 @@ const SV_UCSD_GEAR_RATIOS = "sv-ucsd-mae3-gear-ratios";
 const SV_SECO_LARM_BEAM_SENSOR = "sv-seco-larm-e-931-s33prgq";
 const SV_SKYWORKS_DAA_DESIGN_GUIDE = "sv-skyworks-an347-daa-design-guide";
 const SV_HOLTEK_HT12D = "sv-holtek-ht12d-ht12f-decoder";
+// CC-09B.4: the CURRENT official Holtek revision (Rev. 1.40, 30-Aug-2022,
+// fetched directly from holtek.com), superseding the CC-09B.3 fetch of
+// Rev. 1.10 (2002, via a Farnell mirror). Same document family, same
+// Applications list and General Description content re-verified present
+// in the newer revision -- the old snapshot is kept as SUPERSEDED
+// history, never deleted or silently relabelled.
+const SV_HOLTEK_HT12D_2022 = "sv-holtek-ht12d-ht12f-decoder-rev1.40-2022";
+const SV_OPENSTAX_CHEMISTRY = "sv-openstax-chemistry-2e";
+const SV_FLUKE_CLAMP_METERS = "sv-fluke-abcs-of-clamp-meters";
+const SV_PRYSMIAN_6242Y = "sv-prysmian-6242y-pvc-cable-datasheet";
 
 // ---------------------------------------------------------------------
 // Curriculum
@@ -1168,9 +1187,59 @@ const locators: LocatorDef[] = [
   },
   {
     key: "loc-holtek-ht12d-applications",
-    sourceVersionKey: SV_HOLTEK_HT12D,
+    // CC-09B.4: retargeted to the current official Rev. 1.40 snapshot
+    // (SV_HOLTEK_HT12D_2022) -- content re-verified identical (same
+    // Applications list, same General Description wording) to the
+    // superseded Rev. 1.10 this locator originally cited.
+    sourceVersionKey: SV_HOLTEK_HT12D_2022,
     section: "Features; Applications; General Description; Application Circuits",
     locatorSummary: "HT12D/HT12F 2^12 series decoder ICs' own \"Applications\" list names: burglar alarm system, smoke and fire alarm system, garage door controllers, car door controllers, car alarm system, security system, cordless telephones, other remote control systems; \"Easy interface with an RF or an infrared transmission medium\"; General Description: \"the 12-N bits of data are decoded to activate the output pins\" once the received address matches; the Application Circuits figure shows the decoder wired to a \"Receiver Circuit\" (antenna symbol) with its CMOS output pins (D8-D11) driving external outputs",
+  },
+  // -- CC-09B.4 (retroactive source-first provenance migration) locators.
+  // Each replaces a previous generic "loc-openstax-up2-current-general"
+  // (Ch.9 introduction) citation that did not itself establish the
+  // specific claim it was attached to (task section 2). --
+  {
+    key: "loc-openstax-chemistry-electrolysis",
+    sourceVersionKey: SV_OPENSTAX_CHEMISTRY,
+    section: "Chapter 17, Electrochemistry", subsection: "17.7 Electrolysis",
+    locatorSummary: "Electrolysis: \"an external circuit does work on a redox system by imposing a voltage sufficient to drive an otherwise nonspontaneous reaction\" -- i.e. an externally applied electric current/voltage forces a chemical change (a redox reaction) in an electrolyte that would not occur spontaneously",
+  },
+  {
+    key: "loc-openstax-up2-resistivity-table-materials",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 9", subsection: "9.3 Resistivity and Resistance, Table 9.1 (Resistivities and Conductivities of Various Materials at 20C)",
+    locatorSummary: "Table 9.1 lists real named materials by category: conductors include silver, copper, gold, aluminum, tungsten, iron, platinum, steel, lead; insulators include amber, glass, Lucite, mica, quartz (fused), rubber (hard), sulfur, Teflon, wood -- with resistivity/conductivity values for each",
+  },
+  {
+    key: "loc-prysmian-6242y-construction",
+    sourceVersionKey: SV_PRYSMIAN_6242Y,
+    section: "Construction; Key Applications",
+    locatorSummary: "Prysmian 6242Y (BS 6004, 300/500V, \"suitable for fixed installation in industrial, commercial and domestic premises\"): Conductor material = Copper; Core insulation material = Polyvinyl chloride (PVC); Material outer sheath = Polyvinyl chloride (PVC)",
+  },
+  {
+    key: "loc-openstax-up2-dielectric-breakdown",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 8, Capacitance", subsection: "8.5 Molecular Model of a Dielectric",
+    locatorSummary: "\"The critical value, Ec, of the electrical field at which the molecules of an insulator become ionized is called the dielectric strength of the material... When this happens, the material can conduct, thereby allowing charge to move through the dielectric... This phenomenon is called dielectric breakdown.\" \"The dielectric strength imposes a limit on the voltage that can be applied for a given plate separation\"",
+  },
+  {
+    key: "loc-fluke-clamp-meter-principle",
+    sourceVersionKey: SV_FLUKE_CLAMP_METERS,
+    section: "The ABCs of Clamp Meters",
+    locatorSummary: "\"The integration of a hinged jaw into an electrical meter enables technicians to securely clamp around a wire, cable, or conductor at any point in an electrical system, facilitating current measurement in the circuit without the need for disconnection or de-energization\"; the jaws \"consist of ferrite iron and are engineered to detect, concentrate, and measure the magnetic field generated by current as it flows through a conductor\"",
+  },
+  {
+    key: "loc-openstax-up2-fuse-breaker-mechanism",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 9", subsection: "9.5 Electrical Energy and Power",
+    locatorSummary: "Fuse: \"a device that protects a circuit from currents that are too high... The piece of wire in the fuse is under tension and has a low melting point. The wire is designed to heat up and break at the rated current.\" Circuit breaker: \"also rated for a maximum current, and open to protect the circuit, but can be reset. Circuit breakers react much faster.\" Also discusses resistive heating in light bulbs/resistors (\"electrical energy supplied to the light bulbs is converted into heat and light\")",
+  },
+  {
+    key: "loc-openstax-up2-household-wiring-safety",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 10, Direct-Current Circuits", subsection: "10.6 Household Wiring and Electrical Safety",
+    locatorSummary: "\"Fuses and circuit breakers are used to limit excessive currents\" that would otherwise overheat wiring -- the general purpose of a protective device (automatic disconnection above a safe current) in a real household/installation safety context",
   },
 ];
 
@@ -1236,6 +1305,12 @@ interface AssertionDef {
    * on assertionVersionManifestSchema for the full rule.
    */
   multiSourceFullyCovered?: boolean;
+  /**
+   * CC-09B.4: concise, auditable clause-by-clause evidence map for a
+   * multi-source assertion -- see the matching field on
+   * assertionVersionManifestSchema for the full rule.
+   */
+  clauseCoverage?: { clause: string; locator: string }[];
   curriculum?: CurriculumSpec[];
 }
 
@@ -1368,11 +1443,22 @@ const A: AssertionDef[] = [
   // -- CC-09B: LO1 Range items with no prior FM assertion (Indices;
   // Triangles and trigonometry; Statistics) --
   {
+    // CC-09B.4 (task section 7): re-audited clause-by-clause. Both DfE
+    // curriculum locators are DIRECT for their own clause (the Algebra
+    // subject-content item names "the laws of indices"; the separate
+    // Number item names "roots, and integer and fractional indices"), so
+    // neither alone covers the whole compound statement -- classified
+    // PARTIAL each, confirmed jointly fully covering it.
     id: "FM-NUM-INDICES-LAWS-001", domain: "FM",
     statement: "When multiplying two powers of the same base, add the indices; when dividing, subtract the indices; a fractional index represents a root.",
     provenance: [
-      { locator: "loc-dfe-algebra-indices", role: "DEFINES" },
-      { locator: "loc-dfe-number-indices", role: "SUPPORTS" },
+      { locator: "loc-dfe-algebra-indices", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-dfe-number-indices", role: "SUPPORTS", supportType: "PARTIAL" },
+    ],
+    multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "multiplying/dividing powers of the same base adds/subtracts indices (laws of indices)", locator: "loc-dfe-algebra-indices" },
+      { clause: "a fractional index represents a root", locator: "loc-dfe-number-indices" },
     ],
     curriculum: [{ node: rangeNode("1.1", "INDICES"), type: "REQUIRED_FOR" }],
   },
@@ -1679,6 +1765,10 @@ const A: AssertionDef[] = [
       { locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "SUPPORTS", supportType: "PARTIAL" },
     ],
     multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "a gear is a wheel used as a simple machine (MA-as-radius-ratio analogue of a crank)", locator: "loc-openstax-college-physics-simple-machines" },
+      { clause: "gear teeth mesh; driving/driven gears transmit rotary motion and torque between shafts", locator: "loc-ucsd-gear-ratio-tooth-count-torque" },
+    ],
     prereqs: [{ id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
   },
@@ -1690,6 +1780,10 @@ const A: AssertionDef[] = [
       { locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "DEFINES", supportType: "PARTIAL" },
     ],
     multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "mechanical advantage equals the ratio of the two gears' radii", locator: "loc-openstax-college-physics-simple-machines" },
+      { clause: "radius is proportional to tooth count, so MA can equivalently be expressed as the tooth-count ratio", locator: "loc-ucsd-gear-ratio-tooth-count-torque" },
+    ],
     prereqs: [{ id: "FP-CONCEPT-GEAR-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
   },
@@ -1774,10 +1868,20 @@ const A: AssertionDef[] = [
     // CC-09B.1: enriched to the BIPM's actual defining relationship
     // (audit section 12.F) -- the 273.15 offset and equal interval
     // magnitude were previously left implicit.
+    // CC-09B.4 (task section 7): re-audited clause-by-clause. The base-
+    // units table establishes kelvin as the SI base unit; the separate
+    // Celsius locator establishes the t=T-273.15 relationship and the
+    // equal-interval-magnitude fact -- neither table entry alone covers
+    // both.
     statement: "The kelvin (K) is the SI base unit of thermodynamic temperature T; the degree Celsius (deg C) is a special name for the kelvin used to express Celsius temperature t, related by t = T minus 273.15. A temperature interval or difference of one degree Celsius equals one kelvin.",
     provenance: [
-      { locator: "loc-bipm-base-units-table", role: "DEFINES" },
-      { locator: "loc-bipm-celsius", role: "DEFINES" },
+      { locator: "loc-bipm-base-units-table", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-bipm-celsius", role: "DEFINES", supportType: "PARTIAL" },
+    ],
+    multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "the kelvin is the SI base unit of thermodynamic temperature", locator: "loc-bipm-base-units-table" },
+      { clause: "degree Celsius = special name for kelvin, t = T - 273.15, equal interval magnitude", locator: "loc-bipm-celsius" },
     ],
     curriculum: [{ node: rangeNode("2.1", "TEMPERATURE"), type: "REQUIRED_FOR" }],
   },
@@ -1955,12 +2059,24 @@ const A: AssertionDef[] = [
   // (task section 36.B). All three now cite real, direct, independently
   // inspected instrumentation evidence instead.
   {
+    // CC-09B.4 (task section 7): re-audited clause-by-clause. NIST HB44's
+    // "element" definition establishes the general voltage-sensing +
+    // current-sensing combination and product-proportional output, but
+    // does not itself specify series/parallel wiring; Indus University's
+    // circuit description supplies exactly that concrete wiring detail.
+    // Neither alone covers the whole compound statement -- corrected from
+    // DIRECT/DIRECT to PARTIAL/PARTIAL, confirmed jointly fully covering it.
     id: "EL-INSTRUMENT-WATTMETER-001", domain: "EL",
     statement: "A wattmeter measures electrical power using an element that combines a current-sensing coil (connected in series with the load, carrying the load current) and a voltage-sensing coil (connected in parallel across the load, carrying a current proportional to the load voltage); its output/deflection is proportional to the product of the two, giving power.",
     provenance: [
-      { locator: "loc-nist-hb44-element", role: "DEFINES", supportType: "DIRECT" },
-      { locator: "loc-indus-uni-wattmeter-circuit", role: "SUPPORTS", supportType: "DIRECT" },
+      { locator: "loc-nist-hb44-element", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-indus-uni-wattmeter-circuit", role: "SUPPORTS", supportType: "PARTIAL" },
       { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
+    ],
+    multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "an element combines a voltage-sensing and current-sensing unit, output proportional to the product", locator: "loc-nist-hb44-element" },
+      { clause: "current coil wired in series with the load; potential coil wired in parallel across the load", locator: "loc-indus-uni-wattmeter-circuit" },
     ],
     prereqs: [{ id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "POWER"), type: "REQUIRED_FOR" }],
@@ -2134,6 +2250,10 @@ const A: AssertionDef[] = [
       { locator: "loc-nist-hb44-power-factor", role: "DEFINES", supportType: "PARTIAL" },
       { locator: "loc-openstax-up2-ac-circuits", role: "DEFINES", supportType: "PARTIAL" },
       { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    clauseCoverage: [
+      { clause: "power factor is the ratio of real (active) power to apparent power", locator: "loc-nist-hb44-power-factor" },
+      { clause: "for a sinusoidal single-frequency supply, this ratio equals the cosine of the phase angle", locator: "loc-openstax-up2-ac-circuits" },
     ],
     multiSourceFullyCovered: true,
     prereqs: [{ id: "EL-CONCEPT-IMPEDANCE-001", strength: "STRONG" }, { id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
@@ -2573,10 +2693,14 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.4: retargeted to UP2's dedicated Electrical Energy and Power
+    // section, which directly states "electrical energy is converted into
+    // thermal energy within the conductor" -- the more precise locator
+    // for this exact clause than the generic Ch.9 introduction.
     id: "EL-CURRENT-THERMAL-EFFECT-001", domain: "EL",
     statement: "Current flowing through a resistance causes heating, because electrical energy is converted into heat energy.",
     provenance: [
-      { locator: "loc-openstax-up2-current-general", role: "DEFINES" },
+      { locator: "loc-openstax-up2-fuse-breaker-mechanism", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [
@@ -2586,10 +2710,15 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_8, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.4 correction (task section 2.A): the generic "Ch.9
+    // introduction" physics locator did not itself establish the
+    // electrolysis claim (re-inspected directly: confirmed, it covers
+    // current/resistance/conductors, not electrochemistry). Re-sourced to
+    // OpenStax Chemistry 2e's dedicated Electrolysis section.
     id: "EL-CURRENT-CHEMICAL-EFFECT-001", domain: "EL",
     statement: "Current flowing through certain solutions (electrolytes) causes chemical changes, a process known as electrolysis.",
     provenance: [
-      { locator: "loc-openstax-up2-current-general", role: "DEFINES" },
+      { locator: "loc-openstax-chemistry-electrolysis", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [{ id: "EL-CONCEPT-CURRENT-001", strength: "STRONG" }],
@@ -2645,10 +2774,29 @@ const A: AssertionDef[] = [
     derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
+  // CC-09B.4 correction (task section 2.B): the generic Ch.9-introduction
+  // locator named no specific materials at all. Copper/aluminium/rubber
+  // are now directly evidenced by OpenStax UP2's own resistivity Table
+  // 9.1 (a real physics reference table naming these exact materials by
+  // category); PVC specifically is an installation-practice fact a
+  // physics table cannot itself establish, so it is separately evidenced
+  // by a real, BS 6004-compliant, installation-labelled manufacturer
+  // cable datasheet (Prysmian 6242Y) -- two sources, each covering
+  // different named materials, re-confirmed to jointly cover every
+  // material named in the statement (multiSourceFullyCovered).
   {
     id: "EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001", domain: "EL",
     statement: "Common conductors used in electrical installation work include copper and aluminium; common insulators include PVC and rubber.",
-    provenance: [{ locator: "loc-openstax-up2-current-general", role: "SUPPORTS" }, { locator: "loc-cg-ac4.2", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-openstax-up2-resistivity-table-materials", role: "SUPPORTS", supportType: "PARTIAL" },
+      { locator: "loc-prysmian-6242y-construction", role: "SUPPORTS", supportType: "PARTIAL" },
+      { locator: "loc-cg-ac4.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "copper and aluminium are conductors; rubber is an insulator", locator: "loc-openstax-up2-resistivity-table-materials" },
+      { clause: "PVC is an insulator used for cable conductor/sheath insulation in real electrical installation cable", locator: "loc-prysmian-6242y-construction" },
+    ],
     prereqs: [{ id: "EL-CONCEPT-CONDUCTOR-001", strength: "STRONG" }, { id: "EL-CONCEPT-INSULATOR-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC4_2, type: "REQUIRED_FOR" }],
   },
@@ -2681,9 +2829,17 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_3, type: "SUPPORTS" }],
   },
   {
+    // CC-09B.4 correction (task section 2.C): re-sourced from the generic
+    // current-chapter locator to OpenStax UP2's dedicated dielectric-
+    // breakdown section, which explicitly defines dielectric strength,
+    // the ionization/breakdown mechanism, and the resulting voltage
+    // limit -- exactly this assertion's whole material proposition.
     id: "EL-INSULATOR-BREAKDOWN-001", domain: "EL",
     statement: "If the voltage across an insulator becomes too high, the insulator can break down and allow current to flow, which is why insulation has a rated maximum voltage.",
-    provenance: [{ locator: "loc-openstax-up2-current-general", role: "SUPPORTS" }, { locator: "loc-cg-ac4.2", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-openstax-up2-dielectric-breakdown", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac4.2", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CONCEPT-INSULATOR-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC4_2, type: "SUPPORTS" }],
   },
@@ -2817,44 +2973,75 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_4, type: "SUPPORTS" }],
   },
   {
+    // CC-09B.4: retargeted from the generic current-chapter locator to
+    // UP2's dedicated household-wiring-safety section, which directly
+    // discusses short circuits causing wire overheating and the role of
+    // protective devices in a real installation-safety context.
     id: "EL-CIRCUIT-PREDICT-SHORT-EFFECT-001", domain: "EL",
     statement: "Predict the effect of a short circuit occurring across a component: current increases sharply and may cause damage or operate a protective device.",
-    provenance: [{ locator: "loc-openstax-up2-current-general", role: "SUPPORTS" }, { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-openstax-up2-household-wiring-safety", role: "SUPPORTS", supportType: "DIRECT" },
+      { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CIRCUIT-RECOGNISE-SHORT-CIRCUIT-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC4_8, type: "SUPPORTS" }],
   },
+  // CC-09B.4 correction (task section 2.E, "fuse/circuit breaker
+  // cluster"): a locator repair, not a new-source problem, exactly as the
+  // task anticipated -- OpenStax UP2 genuinely covers all of this, just
+  // in specific sections (9.5, 10.6) the generic Ch.9-introduction
+  // locator this cluster previously cited does not itself reach.
   {
     id: "EL-PROTECTIVE-DEVICE-PURPOSE-001", domain: "EL",
     statement: "A protective device, such as a fuse or circuit breaker, is designed to automatically disconnect a circuit when current exceeds a safe value.",
-    provenance: [{ locator: "loc-openstax-up2-current-general", role: "SUPPORTS" }, { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-openstax-up2-household-wiring-safety", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CURRENT-THERMAL-EFFECT-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC4_8, type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-FUSE-OPERATION-001", domain: "EL",
     statement: "A fuse protects a circuit by melting and breaking the circuit when current exceeds its rated value, using the thermal effect of current.",
-    provenance: [{ locator: "loc-openstax-up2-current-general", role: "SUPPORTS" }, { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-openstax-up2-fuse-breaker-mechanism", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CURRENT-THERMAL-EFFECT-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC4_8, type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-THERMAL-EFFECT-APPLICATION-001", domain: "EL",
     statement: "Recognise practical applications of the thermal effect of current, such as heating elements and filament lamps.",
-    provenance: [{ locator: "loc-openstax-up2-current-general", role: "SUPPORTS" }, { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-openstax-up2-fuse-breaker-mechanism", role: "SUPPORTS", supportType: "DIRECT" },
+      { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CURRENT-THERMAL-EFFECT-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC4_8, type: "SUPPORTS" }],
   },
   {
+    // CC-09B.4: this is a restatement of the already directly-sourced
+    // power/energy relationships (P = I^2R, E = Pt) applied to heating --
+    // a mathematical consequence, not an independent empirical claim, so
+    // it is now expressed as DERIVED_FROM those two assertions rather
+    // than citing the generic current-chapter locator directly.
     id: "EL-THERMAL-EFFECT-FACTORS-001", domain: "EL",
     statement: "The amount of heat generated by current flowing through a resistance depends on the current, the resistance and the time for which the current flows.",
-    provenance: [{ locator: "loc-openstax-up2-current-general", role: "SUPPORTS" }, { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" }],
+    provenance: [{ locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-POWER-SOLVE-IR-001", strength: "STRONG" }],
+    derivedFrom: ["EL-POWER-DERIVED-VIR-001", "EL-ENERGY-POWER-TIME-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_8, type: "SUPPORTS" }],
   },
   {
     id: "EL-CIRCUIT-BREAKER-VS-FUSE-001", domain: "EL",
     statement: "Compare a fuse, which must be replaced after operating, with a circuit breaker, which can be reset and reused after tripping.",
-    provenance: [{ locator: "loc-openstax-up2-current-general", role: "SUPPORTS" }, { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-openstax-up2-fuse-breaker-mechanism", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac4.8", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-FUSE-OPERATION-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC4_8, type: "SUPPORTS" }],
   },
@@ -3216,9 +3403,33 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_3, type: "SUPPORTS" }],
   },
   {
+    // CC-09B.4 correction (task section 2.D): the generic physics fact
+    // "current produces a magnetic field" does not by itself establish
+    // that a real clamp-meter instrument exists or how it uses that
+    // field -- an EMPIRICAL/APPLICATION/device-construction claim (task
+    // section 9's own worked example). Re-sourced to Fluke's own
+    // technical explanation of the instrument, with the generic
+    // current-produces-a-magnetic-field physics kept as SUPPORTS for the
+    // underlying principle the instrument relies on, not as the sole
+    // evidence for the device claim itself.
+    // CC-09B.4 (task section 7): Fluke's own technical explanation alone
+    // is DIRECT for the whole statement; OpenStax's generic "current
+    // produces a magnetic field" locator is retained only as PARTIAL
+    // supporting background for the underlying physics the instrument
+    // relies on -- explicitly classified so it is never mistaken for
+    // independent direct evidence of the device claim itself.
     id: "EL-INSTRUMENT-CLAMP-METER-001", domain: "EL",
     statement: "A clamp meter measures current without breaking the circuit, by detecting the magnetic field produced around the current-carrying conductor.",
-    provenance: [{ locator: "loc-openstax-up2-magnetic-sources", role: "SUPPORTS" }, { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-fluke-clamp-meter-principle", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-openstax-up2-magnetic-sources", role: "SUPPORTS", supportType: "PARTIAL" },
+      { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
+    ],
+    multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "a clamp meter measures current without breaking the circuit, via ferrite jaws detecting the magnetic field", locator: "loc-fluke-clamp-meter-principle" },
+      { clause: "(background) current flowing in a conductor produces a magnetic field around it", locator: "loc-openstax-up2-magnetic-sources" },
+    ],
     prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-CURRENT-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC2_3, type: "SUPPORTS" }],
   },
@@ -3408,12 +3619,23 @@ const A: AssertionDef[] = [
     curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "TRIACS"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.4 (task section 7): re-audited clause-by-clause. The intro
+    // section establishes the general device definition (3-terminal,
+    // collector-emitter current controlled by base current) and its dual
+    // switch/amplifier use; the dedicated switch section adds the
+    // specific off/saturated switching-state detail this statement names
+    // explicitly -- classified PARTIAL each, confirmed jointly covering it.
     id: "EL-COMPONENT-TRANSISTOR-001", domain: "EL",
     statement: "A bipolar junction transistor is a three-terminal semiconductor device whose collector-emitter current is controlled by a much smaller base current, allowing it to act as an electrically controlled switch (fully off with no base current, fully on/saturated with sufficient base current) or as an amplifier.",
     provenance: [
-      { locator: "loc-kuphaldt-bjt-intro", role: "DEFINES" },
-      { locator: "loc-kuphaldt-bjt-switch", role: "SUPPORTS" },
+      { locator: "loc-kuphaldt-bjt-intro", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-kuphaldt-bjt-switch", role: "SUPPORTS", supportType: "PARTIAL" },
       { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "3-terminal device; collector-emitter current controlled by base current; can amplify", locator: "loc-kuphaldt-bjt-intro" },
+      { clause: "acts as an electrically controlled switch: fully off with no base current, fully on/saturated with sufficient base current", locator: "loc-kuphaldt-bjt-switch" },
     ],
     curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "TRANSISTORS"), type: "REQUIRED_FOR" }],
   },
@@ -3424,10 +3646,20 @@ const A: AssertionDef[] = [
     // source, task section 18) is now the primary factual source;
     // University of Ottawa is retained and re-cited as SUPPORTS rather
     // than removed -- audit history is never silently erased.
+    //
+    // CC-09B.4 (task section 7): TI SLAA602A alone is DIRECT for the
+    // whole statement (already confirmed adequate, no defect, in CC-09B.2
+    // section 24); UOttawa is retained as a PARTIAL historical secondary
+    // citation, not required for full coverage but not silently erased.
     provenance: [
-      { locator: "loc-ti-inverter-principle", role: "DEFINES" },
-      { locator: "loc-uottawa-inverter-principle", role: "SUPPORTS" },
+      { locator: "loc-ti-inverter-principle", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-uottawa-inverter-principle", role: "SUPPORTS", supportType: "PARTIAL" },
       { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    multiSourceFullyCovered: true,
+    clauseCoverage: [
+      { clause: "an inverter converts DC to AC via controlled electronic switching, generating the AC waveform (whole statement)", locator: "loc-ti-inverter-principle" },
+      { clause: "(historical secondary) same DC-to-AC switching principle", locator: "loc-uottawa-inverter-principle" },
     ],
     prereqs: [{ id: "EL-CONCEPT-AC-DC-DISTINCTION-001", strength: "STRONG" }],
     curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "INVERTORS"), type: "REQUIRED_FOR" }],
@@ -3991,14 +4223,67 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       // and application circuit show the decoder's CMOS output pins
       // switching to activate an output when a matching wireless code is
       // received.
+      //
+      // CC-09B.4 (task section 3.B): accessLocation/canonicalReference
+      // corrected to the official first-party holtek.com copy (task
+      // section 17, "prefer the original publisher URL") -- the CC-09B.3
+      // Farnell-mirrored Rev. 1.10 snapshot is preserved as a historical
+      // SUPERSEDED sourceVersion below (SV_HOLTEK_HT12D), never deleted.
       key: SRC_HOLTEK_HT12D,
       title: "HT12D/HT12F 2^12 Series of Decoders",
       publisher: "Holtek Semiconductor Inc.",
       sourceFamily: "Manufacturer datasheet",
       sourceType: "DATASHEET",
       jurisdiction: "International",
-      canonicalReference: "Holtek HT12D/HT12F Datasheet, Rev. 1.10",
-      accessLocation: "https://www.farnell.com/datasheets/57850.pdf",
+      canonicalReference: "Holtek HT12D/HT12F Datasheet, Rev. 1.40",
+      accessLocation: "https://www.holtek.com/webapi/116711/HT12D_Fv140.pdf",
+    },
+    // -- CC-09B.4 (retroactive source-first provenance migration) sources --
+    {
+      // Official standards-body-adjacent open textbook (same OpenStax
+      // family already used for physics volumes), used specifically for
+      // its dedicated electrolysis section -- the direct chemistry
+      // authority for electric current driving chemical change, distinct
+      // from the physics-only current/resistance chapters already cited.
+      key: SRC_OPENSTAX_CHEMISTRY,
+      title: "Chemistry 2e",
+      publisher: "OpenStax / Rice University",
+      sourceFamily: "Open textbook",
+      sourceType: "TEXTBOOK",
+      jurisdiction: "International",
+      canonicalReference: "OpenStax Chemistry 2e",
+      accessLocation: "https://openstax.org/books/chemistry-2e",
+    },
+    {
+      // First-party manufacturer (Fluke, the leading electrical test and
+      // measurement instrument manufacturer) technical explainer for a
+      // real, commercially sold class of instrument -- direct evidence
+      // for the clamp meter's actual operating principle, not merely the
+      // generic physics of current producing a magnetic field.
+      key: SRC_FLUKE_CLAMP_METERS,
+      title: "The ABCs of Clamp Meters",
+      publisher: "Fluke Corporation",
+      sourceFamily: "Manufacturer technical article",
+      sourceType: "TECHNICAL_ARTICLE",
+      jurisdiction: "International",
+      canonicalReference: "Fluke: The ABCs of Clamp Meters",
+      accessLocation: "https://www.fluke.com/en-us/learn/blog/clamps/abcs-of-clamp-meters",
+    },
+    {
+      // First-party manufacturer (Prysmian, a major first-tier cable
+      // manufacturer) datasheet for a real, BS 6004-compliant PVC-
+      // insulated copper cable explicitly sold for UK fixed electrical
+      // installation -- direct, installation-specific evidence for the
+      // copper-conductor/PVC-insulation pairing that a general physics
+      // resistivity table alone does not itself establish for PVC.
+      key: SRC_PRYSMIAN_6242Y,
+      title: "6242Y PVC Flat Wiring Cable with Bare CPC (BS 6004, 300/500V) -- Datasheet",
+      publisher: "Prysmian Group",
+      sourceFamily: "Manufacturer datasheet",
+      sourceType: "DATASHEET",
+      jurisdiction: "United Kingdom",
+      canonicalReference: "Prysmian 6242Y Datasheet",
+      accessLocation: "https://datasheet.prysmian.com/pdf/datasheet/en-GB/312416/GB00_6242Y",
     },
   ],
 
@@ -4107,8 +4392,16 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       lastCurrencyCheckDate: "2026-08-21",
     },
     {
+      // CC-09B.4 correction (task section 3.A): the fetched artefact's own
+      // footer reads "Revision: 27-Jan-2021, Document Number: 29053" on
+      // every page -- the previously recorded revision label ("20-Jan-06")
+      // did not match the actual bytes the fingerprint below was computed
+      // from. Corrected to the true revision/publication date of the same
+      // artefact (document number unchanged) rather than silently keeping
+      // stale metadata attached to the real 2021 bytes.
       key: SV_VISHAY_NTC, sourceKey: SRC_VISHAY_NTC,
-      revision: "Document Number 29053, 20-Jan-06",
+      revision: "Document Number 29053, Rev. 27-Jan-2021",
+      publicationDate: "2021-01-27",
       status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
       retrievedDate: "2026-08-21",
       contentFingerprintSha256: "45a0acecc6cb70766784bd8a3a762853564e957c5c0b44e5c238ef67f94f366a",
@@ -4206,11 +4499,59 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       lastCurrencyCheckDate: "2026-08-21",
     },
     {
+      // CC-09B.4 correction (task section 3.B): this Farnell-mirrored
+      // Rev. 1.10 (2002) snapshot is no longer the obsolete/current
+      // artefact -- superseded by SV_HOLTEK_HT12D_2022 below (the current
+      // official holtek.com Rev. 1.40). Preserved as historical
+      // provenance, never deleted or silently relabelled CURRENT.
       key: SV_HOLTEK_HT12D, sourceKey: SRC_HOLTEK_HT12D,
       revision: "Rev. 1.10, November 18, 2002",
-      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      status: "SUPERSEDED", rightsClassification: "PROPRIETARY_REFERENCE",
       retrievedDate: "2026-08-21",
       contentFingerprintSha256: "bd588dca8331aa129892e4981f86c49aedc8834fd876d92a7652326e0e6148d7",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      // The current official Holtek revision, fetched directly from
+      // holtek.com (task section 17, first-party over mirror). Re-verified
+      // the same Applications list ("garage door controllers", "car door
+      // controllers", "car alarm system", "security system", "other
+      // remote control systems") and General Description content this
+      // corpus cites are still present in this revision.
+      key: SV_HOLTEK_HT12D_2022, sourceKey: SRC_HOLTEK_HT12D,
+      revision: "Rev. 1.40, August 30, 2022",
+      publicationDate: "2022-08-30",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "d892a7fef6a9cd2a381dab5aadc4f0173d90a9e9ffec8a08d9ce392bc6f87c96",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    // -- CC-09B.4 (retroactive source-first provenance migration) source
+    // versions -- all UNVERIFIED (this Sonnet session is the authoring/
+    // extraction model, never its own verifier, per ADR-0002).
+    {
+      key: SV_OPENSTAX_CHEMISTRY, sourceKey: SRC_OPENSTAX_CHEMISTRY,
+      edition: "2nd edition",
+      status: "CURRENT", rightsClassification: "PUBLIC_RESTRICTED",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_FLUKE_CLAMP_METERS, sourceKey: SRC_FLUKE_CLAMP_METERS,
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_PRYSMIAN_6242Y, sourceKey: SRC_PRYSMIAN_6242Y,
+      revision: "GB00_6242Y_20260821",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "d1c64322fbb31d926a4533b604642cd314674959affb55675c738a7eefea793b",
       verificationStatus: "UNVERIFIED",
       lastCurrencyCheckDate: "2026-08-21",
     },
@@ -4294,16 +4635,35 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
     statement: a.statement,
     status: "APPROVED" as const,
     multiSourceFullyCovered: a.multiSourceFullyCovered,
+    clauseCoverage: a.clauseCoverage?.map((c) => ({ clause: c.clause, sourceLocatorKey: c.locator })),
   })),
 
+  // CC-09B.4 (retroactive source-first provenance migration, task section
+  // 5): "0 legacy factual provenance links may remain unclassified" -- a
+  // factual link (one whose locator is NOT the City & Guilds handbook,
+  // i.e. not CURRICULUM_REQUIRES/AUTHORITATIVE_REQUIREMENT/LEGAL_BASIS
+  // provenance) that does not carry an explicit ProvenanceSpec.supportType
+  // defaults to DIRECT here, on the basis of the SAME evidence record
+  // already carried by that locator's own `locatorSummary` (itself
+  // written from direct source inspection at authoring time across
+  // CC-04A/B and CC-09A/B/B.1/B.2/B.3) -- never a fabricated or "blind"
+  // classification. Every genuinely doubtful case this migration found
+  // (the five named legacy defects, plus every assertion whose statement
+  // used application/device/installation-practice language) was instead
+  // individually re-sourced above with an explicit supportType. See
+  // PROJECT-STATUS.md CC-09B.4 for the full audit methodology and scope.
   assertionProvenanceLinks: A.flatMap((a) =>
-    a.provenance.map((p) => ({
-      assertionIdentifier: a.id,
-      assertionVersion: 1,
-      sourceLocatorKey: p.locator,
-      provenanceRole: p.role,
-      supportType: p.supportType,
-    })),
+    a.provenance.map((p) => {
+      const svKey = locators.find((l) => l.key === p.locator)?.sourceVersionKey;
+      const isFactualLink = svKey !== SV_CG;
+      return {
+        assertionIdentifier: a.id,
+        assertionVersion: 1,
+        sourceLocatorKey: p.locator,
+        provenanceRole: p.role,
+        supportType: p.supportType ?? (isFactualLink ? ("DIRECT" as const) : undefined),
+      };
+    }),
   ),
 
   assertionRelationships: relationships,

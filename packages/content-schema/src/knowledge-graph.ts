@@ -288,6 +288,27 @@ export const assertionVersionManifestSchema = z.object({
    * flag was introduced for.
    */
   multiSourceFullyCovered: z.boolean().optional(),
+  /**
+   * CC-09B.4 (task section 7): for a multi-source assertion, a concise,
+   * auditable record of WHICH cited locator supports WHICH clause of the
+   * statement -- so `multiSourceFullyCovered` is never a bare, opaque
+   * Boolean a reviewer has to take on trust. Each entry names one
+   * material clause (a short paraphrase, not a verbatim quotation) and
+   * the `sourceLocatorKey` (must be one of this assertion's own
+   * provenance links) whose evidence establishes it. Optional and
+   * populated only for assertions with more than one factual provenance
+   * link; a single-source assertion needs no clause map. Authoring/
+   * governance metadata, deliberately not persisted to the DB or learner/
+   * runtime structures (same treatment as multiSourceFullyCovered).
+   */
+  clauseCoverage: z
+    .array(
+      z.object({
+        clause: z.string().min(1),
+        sourceLocatorKey: stableKey,
+      }),
+    )
+    .optional(),
 });
 
 export const assertionProvenanceLinkManifestSchema = z.object({

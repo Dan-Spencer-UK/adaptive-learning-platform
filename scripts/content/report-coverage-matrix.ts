@@ -144,6 +144,8 @@ interface ObligationResult {
   id: string;
   description: string;
   satisfied: boolean;
+  /** CC-09B.4 (task section 15): carried through from the obligation's own `scopeUnresolved` note when present -- an explicit, surfaced curriculum-scope-interpretation flag, never a semantic-completeness gate on its own (the obligation may still be `satisfied` -- its assertions are genuinely sourced; only the BREADTH of the official Range item is unresolved). */
+  scopeUnresolvedNote?: string;
 }
 
 interface AcSemantic {
@@ -319,6 +321,27 @@ function buildReport(overrides?: {
           `AssessmentSpecification '${spec.id}' outcome allocation for LO${allocation.outcomeNumber} references unknown Learning Outcome node '${allocation.learningOutcomeNodeKey}'`,
         );
       }
+    }
+  }
+
+  // ---- Structural gate 4 (CC-09B.4, task section 20.D): at most one
+  // CURRENT sourceVersion per source. A source revision migration (e.g.
+  // Vishay's 2006-labelled metadata actually being 2021 bytes; Holtek's
+  // superseded 2002 mirror vs. the current 2022 official revision) must
+  // leave exactly one unambiguous CURRENT snapshot per source -- two
+  // CURRENT versions of the same source would make "which snapshot is
+  // authoritative" undecidable, silently, for every assertion citing it. --
+  const currentVersionsBySource = new Map<string, string[]>();
+  for (const sv of corpus.sourceVersions) {
+    if (sv.status !== "CURRENT") continue;
+    if (!currentVersionsBySource.has(sv.sourceKey)) currentVersionsBySource.set(sv.sourceKey, []);
+    currentVersionsBySource.get(sv.sourceKey)!.push(sv.key);
+  }
+  for (const [sourceKey, versionKeys] of currentVersionsBySource) {
+    if (versionKeys.length > 1) {
+      structuralDefects.push(
+        `source '${sourceKey}' has ${versionKeys.length} sourceVersions simultaneously marked CURRENT (${versionKeys.join(", ")}) -- exactly one CURRENT snapshot per source is required; supersede the older one(s) explicitly`,
+      );
     }
   }
 
@@ -515,6 +538,17 @@ function buildReport(overrides?: {
     }
     const version = assertionVersionByIdentifier.get(assertionId);
     if (version?.multiSourceFullyCovered === true) {
+      // CC-09B.4 (task section 20.E): a bare Boolean is never sufficient
+      // on its own -- an assertion relying on multiSourceFullyCovered to
+      // reach a fully-supported status must also carry an explicit,
+      // auditable clause/evidence coverage record, or this is itself a
+      // structural defect (the flag would be unverifiable trust-me
+      // metadata, exactly what the task exists to prevent).
+      if (!version.clauseCoverage || version.clauseCoverage.length === 0) {
+        structuralDefects.push(
+          `${assertionId} sets multiSourceFullyCovered but declares no clauseCoverage -- a bare Boolean is not sufficient auditable evidence of multi-source full coverage`,
+        );
+      }
       return "FULLY_SUPPORTED_MULTI_SOURCE";
     }
     return "PARTIALLY_SUPPORTED";
@@ -555,7 +589,12 @@ function buildReport(overrides?: {
         );
         unresolvedObligationIds.push(obligation.id);
       }
-      return { id: obligation.id, description: obligation.description, satisfied: resolvedIds.length > 0 };
+      return {
+        id: obligation.id,
+        description: obligation.description,
+        satisfied: resolvedIds.length > 0,
+        scopeUnresolvedNote: obligation.scopeUnresolved?.note,
+      };
     });
 
     const status: SemanticStatus = obligations.length > 0 && obligations.every((o) => o.satisfied) ? "COMPLETE_PENDING_VERIFICATION" : "INCOMPLETE";
@@ -727,6 +766,13 @@ function formatReport(report: CoverageMatrixReport): string {
   lines.push("");
   lines.push("SEMANTIC KNOWLEDGE COMPLETENESS (every declared knowledge obligation satisfied -- see ./data/unit202-knowledge-obligations.ts):");
   lines.push(`  ${report.totals.acSemanticComplete}/${report.totals.acCount} ACs, ${report.totals.rangeItemsSemanticComplete}/${report.totals.rangeItemCount} Range items`);
+  const scopeUnresolved = report.acSemantic.flatMap((s) => s.obligations.filter((o) => o.scopeUnresolvedNote).map((o) => ({ acNumber: s.acNumber, obligation: o })));
+  if (scopeUnresolved.length) {
+    lines.push(`  CURRICULUM-SCOPE-UNRESOLVED obligations (task section 15 -- satisfied by genuinely sourced knowledge, but the official Range item's full intended BREADTH cannot be independently certified from available material; never a semantic-completeness gate on its own): ${scopeUnresolved.length}`);
+    for (const { acNumber, obligation } of scopeUnresolved) {
+      lines.push(`    AC${acNumber}:${obligation.id} -- ${obligation.scopeUnresolvedNote}`);
+    }
+  }
   lines.push("");
   lines.push("DIRECT FACTUAL PROVENANCE:");
   lines.push(`  unsupported (no provenance at all): ${report.provenanceAudit.noProvenance.length}`);
