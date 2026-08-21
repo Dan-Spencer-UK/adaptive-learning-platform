@@ -12,6 +12,7 @@ function minimalValidManifest(): KnowledgeGraphManifest {
         sourceKey: "src-1",
         status: "CURRENT" as const,
         rightsClassification: "ORIGINAL" as const,
+        verificationStatus: "UNVERIFIED" as const,
       },
     ],
     sourceLocators: [
@@ -87,6 +88,40 @@ function minimalValidManifest(): KnowledgeGraphManifest {
 describe("knowledgeGraphManifestSchema", () => {
   it("accepts a minimal internally-consistent manifest", () => {
     const result = knowledgeGraphManifestSchema.safeParse(minimalValidManifest());
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts a RANGE_ITEM node parented under an ASSESSMENT_CRITERION node (CC-09A)", () => {
+    const manifest = minimalValidManifest();
+    manifest.curriculumNodes.push(
+      {
+        key: "node-lo",
+        curriculumVersionKey: "cv-1",
+        parentKey: "node-unit",
+        nodeType: "LEARNING_OUTCOME",
+        code: "202-LO1",
+        title: "Sample Learning Outcome",
+      },
+      {
+        key: "node-ac",
+        curriculumVersionKey: "cv-1",
+        parentKey: "node-lo",
+        nodeType: "ASSESSMENT_CRITERION",
+        code: "202-LO1-AC1.1",
+        title: "Sample Assessment Criterion",
+      },
+      {
+        key: "node-range-item",
+        curriculumVersionKey: "cv-1",
+        parentKey: "node-ac",
+        nodeType: "RANGE_ITEM",
+        code: "202-LO1-AC1.1-RANGE-SAMPLE",
+        title: "Sample Range: item",
+      },
+    );
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
     expect(result.success).toBe(true);
   });
 
@@ -261,6 +296,44 @@ describe("knowledgeGraphManifestSchema", () => {
     expect(
       result.error?.issues.some((i) => i.message.includes("unconfirmed placeholder")),
     ).toBe(true);
+  });
+
+  it("ADR-0002: rejects a source version claiming VERIFIED with no verifiedBy attribution", () => {
+    const manifest = minimalValidManifest();
+    manifest.sourceVersions[0]!.verificationStatus = "VERIFIED";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues.some((i) => i.message.includes("no verifiedBy"))).toBe(true);
+  });
+
+  it("ADR-0002: accepts a source version marked VERIFIED with an attributed independent verifier", () => {
+    const manifest = minimalValidManifest();
+    manifest.sourceVersions[0]!.verificationStatus = "VERIFIED";
+    manifest.sourceVersions[0]!.verifiedBy = "project-architect";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+
+  it("ADR-0002: rejects a malformed content fingerprint (not 64 lowercase hex characters)", () => {
+    const manifest = minimalValidManifest();
+    manifest.sourceVersions[0]!.contentFingerprintSha256 = "not-a-real-hash";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+  });
+
+  it("ADR-0002: accepts a real-shaped SHA-256 content fingerprint", () => {
+    const manifest = minimalValidManifest();
+    manifest.sourceVersions[0]!.contentFingerprintSha256 = "f6bc7a6c76e37a60a9d9830f873ab1079d230015d1ad95f458d69caa82dc9515";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
   });
 
   it("rejects a CURRENT curriculum version whose label looks like a placeholder", () => {

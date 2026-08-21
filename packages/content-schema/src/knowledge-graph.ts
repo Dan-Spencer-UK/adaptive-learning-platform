@@ -52,6 +52,30 @@ export const curriculumNodeTypeSchema = z.enum([
   "UNIT",
   "LEARNING_OUTCOME",
   "ASSESSMENT_CRITERION",
+  // CC-09A: an individual mandatory item within an official handbook
+  // "Range" heading (e.g. a single named electrical quantity, a single
+  // named electronic component) -- the smallest mechanically enumerable
+  // official curriculum requirement below an Assessment Criterion. Its
+  // parent is always the ASSESSMENT_CRITERION node the Range box belongs
+  // to (never the LEARNING_OUTCOME directly), so a Range heading that
+  // groups several items becomes several sibling RANGE_ITEM nodes rather
+  // than one node with prose hiding the individual mandatory items.
+  "RANGE_ITEM",
+]);
+
+// ADR-0002: whether a source version's own CONTENT (not any assertion
+// extracted from it) has been independently confirmed against the actual
+// authoritative source artefact by a verifier distinct from whatever
+// model extracted/authored the governed content. Deliberately separate
+// from assertionVersionStatusSchema's own pre-existing "VERIFIED" state
+// (that is per-assertion; this is per-source-snapshot) -- an assertion
+// should not reach its own VERIFIED status while the source it cites is
+// still UNVERIFIED. Defaults to UNVERIFIED: verification must be an
+// explicit, evidenced act, never assumed from extraction alone.
+export const sourceVerificationStatusSchema = z.enum([
+  "UNVERIFIED",
+  "VERIFIED",
+  "VERIFICATION_FAILED",
 ]);
 
 export const assertionVersionStatusSchema = z.enum([
@@ -129,7 +153,35 @@ export const sourceVersionManifestSchema = z.object({
   effectiveDate: z.string().date().optional(),
   status: sourceVersionStatusSchema.default("CURRENT"),
   rightsClassification: rightsClassificationSchema,
-});
+  // ADR-0002 (source-snapshot identity + independent-verification
+  // evidence -- the smallest fields that make "same URL/edition label,
+  // changed bytes" detectable and make verification an evidenced act
+  // rather than an assumption). All optional/defaulted: only load-bearing
+  // external sources need populate them, and existing manifests remain
+  // valid without any migration of their own data.
+  /** The date this exact source artefact was actually fetched/inspected for this snapshot (distinct from publicationDate/effectiveDate, which the publisher controls). */
+  retrievedDate: z.string().date().optional(),
+  /** SHA-256 (64 lowercase hex chars) of the actual fetched source artefact's bytes. Never fabricated -- omit entirely when not actually computed from real source bytes, rather than inventing a placeholder. */
+  contentFingerprintSha256: z
+    .string()
+    .regex(/^[0-9a-f]{64}$/, "must be a lowercase 64-character hex SHA-256 digest")
+    .optional(),
+  /** Whether this source snapshot's own content has been independently confirmed against the authoritative artefact by a verifier distinct from whatever model extracted/authored the governed content citing it (see sourceVerificationStatusSchema and ADR-0002). */
+  verificationStatus: sourceVerificationStatusSchema.default("UNVERIFIED"),
+  /** Role/identity of the independent verifier (e.g. "project-architect"), populated only once verificationStatus leaves UNVERIFIED. Never the same identity as the model that authored/extracted the governed content citing this source. */
+  verifiedBy: z.string().min(1).optional(),
+  /** Most recent date this source was checked for upstream changes -- may be later than a full re-verification (a lightweight currency recheck confirming "still the same" is not itself a full independent verification). */
+  lastCurrencyCheckDate: z.string().date().optional(),
+})
+  .superRefine((sv, ctx) => {
+    if (sv.verificationStatus !== "UNVERIFIED" && !sv.verifiedBy) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["verifiedBy"],
+        message: `source version '${sv.key}' has verificationStatus '${sv.verificationStatus}' but no verifiedBy -- verification must be attributed to an identified independent verifier, never asserted anonymously`,
+      });
+    }
+  });
 
 export const sourceLocatorManifestSchema = z.object({
   key: stableKey,

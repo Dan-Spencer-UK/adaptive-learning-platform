@@ -145,7 +145,21 @@ function generate(manifest: Manifest): { sql: string; counts: Record<string, num
   sections.push(
     insert(
       "source_versions",
-      ["id", "source_id", "edition", "revision", "publication_date", "effective_date", "status", "rights_classification"],
+      [
+        "id",
+        "source_id",
+        "edition",
+        "revision",
+        "publication_date",
+        "effective_date",
+        "status",
+        "rights_classification",
+        "retrieved_date",
+        "content_fingerprint_sha256",
+        "verification_status",
+        "verified_by",
+        "last_currency_check_date",
+      ],
       data.sourceVersions.map((sv) => [
         sqlString(sourceVersionId.get(sv.key)!),
         sqlString(sourceId.get(sv.sourceKey)!),
@@ -155,6 +169,11 @@ function generate(manifest: Manifest): { sql: string; counts: Record<string, num
         sqlString(sv.effectiveDate),
         sqlString(sv.status),
         sqlString(sv.rightsClassification),
+        sqlString(sv.retrievedDate),
+        sqlString(sv.contentFingerprintSha256),
+        sqlString(sv.verificationStatus),
+        sqlString(sv.verifiedBy),
+        sqlString(sv.lastCurrencyCheckDate),
       ]),
     ),
   );

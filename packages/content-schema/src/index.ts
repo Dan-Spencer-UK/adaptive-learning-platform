@@ -21,8 +21,13 @@
  * lesson plans and their ordered lesson steps -- which sits ABOVE the
  * pedagogical chain, referencing governed assertion/family/capability/
  * representation/question-blueprint/misconception ids rather than
- * duplicating them. The learner-specific adaptive assembler and the full
- * learner-runtime content-publication pipeline remain later packages.
+ * duplicating them. CC-09A added the official assessment-structure layer
+ * (./assessment-specification.ts) -- an awarding body's own published
+ * test structure (duration, question count, per-Learning-Outcome
+ * allocation) as governed data, deliberately separate from any future
+ * mock-paper assembler. The learner-specific adaptive assembler and the
+ * full learner-runtime content-publication pipeline remain later
+ * packages.
  */
 
 import { z } from "zod";
@@ -44,3 +49,4 @@ export * from "./visual-governance.ts";
 export * from "./lesson-plan.ts";
 export * from "./content-release.ts";
 export * from "./runtime-projection.ts";
+export * from "./assessment-specification.ts";

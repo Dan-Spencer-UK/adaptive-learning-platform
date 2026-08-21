@@ -121,7 +121,8 @@ const SRC_DFE_MATHS = "src-dfe-gcse-maths";
 const SRC_OPENSTAX_UP1 = "src-openstax-university-physics-v1";
 const SRC_OPENSTAX_UP2 = "src-openstax-university-physics-v2";
 
-const SV_CG = "sv-cg-2365-02-v1-12";
+/** Exported so ./unit202-assessment-specification.ts cites the same governed source-version identity rather than hand-copying the string. */
+export const SV_CG = "sv-cg-2365-02-v1-12";
 const SV_BIPM = "sv-bipm-si-9th-edition";
 const SV_DFE_MATHS = "sv-dfe-gcse-maths";
 const SV_OPENSTAX_UP1 = "sv-openstax-up1";
@@ -159,6 +160,389 @@ const NODE_AC5_2 = "node-202-lo5-ac5.2";
 const NODE_AC5_3 = "node-202-lo5-ac5.3";
 const NODE_AC5_4 = "node-202-lo5-ac5.4";
 const NODE_AC5_5 = "node-202-lo5-ac5.5";
+
+// ---------------------------------------------------------------------
+// CC-09A: corrected, complete Unit 202 curriculum structure.
+//
+// The block above (CV_KEY = cv-2365-02-v1-12) is the CC-04A/CC-04B
+// deliberately-scoped proving slice: LO1, LO2, LO4, LO5 in full, plus
+// only the calculable subset of LO3 -- documented as an intentional
+// slice boundary in this file's own header comment, not an error. Every
+// title transcribed into it was independently re-verified against the
+// official handbook fetched directly from cityandguilds.com (CC-09A) and
+// found accurate for what it covers.
+//
+// It is nonetheless INCOMPLETE against the full official Unit 202
+// structure: LO3 is missing AC3.1 (mass/weight) and AC3.2 (levers/gears/
+// pulleys); LO6 (electronic components, 2 ACs) is entirely absent; and no
+// official handbook "Range" box (58 individually mandatory items across
+// 8 Range headings) is represented as a curriculum requirement at all --
+// RANGE_ITEM did not exist as a node type before CC-09A.
+//
+// Per the CC-09A approved architecture decision, this is corrected by a
+// NEW curriculumVersion (never by mutating the already-governed CC-04B
+// snapshot above -- the same "supersede, never silently rewrite"
+// discipline ContentRelease already enforces for lessons). CV_KEY_R2
+// contains the complete official LO1-LO6 / 23-AC / 58-Range-item
+// structure, transcribed and verified directly from:
+//
+//   City & Guilds Level 2 Diploma in Electrical Installations (Buildings
+//   and Structures) (2365-02) -- Qualification Handbook, April 2026,
+//   Version 1.12 (same edition as SV_CG above; UAN for Unit 202:
+//   R/503/9937), fetched directly from cityandguilds.com. Unit 202 is
+//   assessed by one mandatory online multiple-choice test (602): 90
+//   minutes, 40 questions, closed book, non-programmable calculator,
+//   approximate pass 50%. Per-outcome allocation: LO1 2/5%, LO2 5/13%,
+//   LO3 7/18%, LO4 15/37%, LO5 7/17%, LO6 4/10% (see
+//   ./unit202-assessment-specification.ts).
+//
+// The 19 Assessment Criterion nodes CC-04B already has real, provenanced
+// assertion coverage for (see `assertionCurriculumMappings` below) are
+// mechanically remapped onto their CV_KEY_R2 equivalents via
+// `OLD_TO_R2_AC_NODE` -- the SAME assertions, an additional mapping, not
+// re-authored knowledge -- so CV_KEY_R2's coverage picture is accurate
+// rather than falsely showing already-covered ground as backlog. AC3.1,
+// AC3.2, LO6's two ACs, and all 58 Range items have no CC-09A assertion
+// authored for them yet: this is the real, mechanically-derived Unit 202
+// knowledge backlog `scripts/content/report-coverage-matrix.ts` exists to
+// expose, not a defect in this package (CC-09A explicitly does not author
+// new lessons or question content).
+// ---------------------------------------------------------------------
+
+/** Exported so ./unit202-assessment-specification.ts and scripts/content/report-coverage-matrix.ts reference the same governed curriculum-version identity rather than hand-copying the string. */
+export const CV_KEY_R2 = "cv-2365-02-v1-12-r2";
+const NODE_QUAL_R2 = "node-2365-02-qualification-r2";
+const NODE_UNIT_R2 = "node-202-unit-r2";
+
+interface RangeItemDef {
+  /** Short stable suffix, e.g. "FRACTIONS-PERCENTAGES" -- combined with the owning AC's code to form the node's `code`, and lower-cased to form its manifest key. */
+  suffix: string;
+  title: string;
+}
+
+interface AcDef {
+  /** Official Assessment Criterion number, e.g. "1.1", "3.3a"-free (sub-lettered items inside one AC statement, e.g. AC3.3's a-e or AC5.3's a-d, are part of that AC's own statement text, never split into separate nodes -- only a handbook "Range" box's own bullet items become RANGE_ITEM nodes). */
+  number: string;
+  title: string;
+  /** One AC may have zero or one Range box (never more, per the current handbook); a Range box may itself contain more than one named heading (LO2), each contributing its own items. */
+  range?: { heading: string; items: RangeItemDef[] }[];
+}
+
+interface LoDef {
+  number: number;
+  title: string;
+  acs: AcDef[];
+}
+
+const UNIT202_R2_STRUCTURE: LoDef[] = [
+  {
+    number: 1,
+    title: "Understand mathematical principles which are appropriate to electrical installation, maintenance and design work",
+    acs: [
+      {
+        number: "1.1",
+        title: "Identify and apply appropriate mathematical principles which are relevant to electrical work tasks",
+        range: [
+          {
+            heading: "Mathematical principles",
+            items: [
+              { suffix: "FRACTIONS-PERCENTAGES", title: "Fractions and percentages" },
+              { suffix: "ALGEBRA", title: "Algebra" },
+              { suffix: "INDICES", title: "Indices" },
+              { suffix: "TRANSPOSITION", title: "Transposition" },
+              { suffix: "TRIANGLES-TRIGONOMETRY", title: "Triangles and trigonometry" },
+              { suffix: "STATISTICS", title: "Statistics" },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    number: 2,
+    title: "Understand standard units of measurement used in electrical installation, maintenance and design work",
+    acs: [
+      {
+        number: "2.1",
+        title: "Identify and use internationally recognised base and derived (SI) units of measurement",
+        range: [
+          {
+            heading: "(SI) Units of measurement for",
+            items: [
+              { suffix: "LENGTH", title: "Length" },
+              { suffix: "AREA", title: "Area" },
+              { suffix: "VOLUME", title: "Volume" },
+              { suffix: "MASS", title: "Mass" },
+              { suffix: "DENSITY", title: "Density" },
+              { suffix: "TIME", title: "Time" },
+              { suffix: "TEMPERATURE", title: "Temperature" },
+              { suffix: "VELOCITY", title: "Velocity" },
+            ],
+          },
+        ],
+      },
+      {
+        number: "2.2",
+        title: "Identify and determine values of base and derived SI units which apply specifically to electrical quantities",
+        range: [
+          {
+            heading: "Electrical quantities (SI units)",
+            items: [
+              { suffix: "RESISTANCE", title: "Resistance" },
+              { suffix: "RESISTIVITY", title: "Resistivity" },
+              { suffix: "POWER", title: "Power" },
+              { suffix: "FREQUENCY", title: "Frequency" },
+              { suffix: "CURRENT", title: "Current" },
+              { suffix: "VOLTAGE", title: "Voltage" },
+              { suffix: "ENERGY", title: "Energy" },
+              { suffix: "IMPEDANCE", title: "Impedance" },
+              { suffix: "INDUCTANCE-REACTANCE", title: "Inductance and inductive reactance" },
+              { suffix: "CAPACITANCE-REACTANCE", title: "Capacitance and capacitive reactance" },
+              { suffix: "POWER-FACTOR", title: "Power factor" },
+            ],
+          },
+        ],
+      },
+      {
+        number: "2.3",
+        title: "Identify appropriate electrical instruments for the measurement of different electrical quantities",
+        range: [
+          {
+            heading: "Electrical quantities (measurement)",
+            items: [
+              { suffix: "RESISTANCE", title: "Resistance" },
+              { suffix: "POWER", title: "Power" },
+              { suffix: "CURRENT", title: "Current" },
+              { suffix: "VOLTAGE", title: "Voltage" },
+              { suffix: "ENERGY", title: "Energy" },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    number: 3,
+    title: "Understand basic mechanics and the relationship between force, work, energy and power",
+    acs: [
+      { number: "3.1", title: "Specify what is meant by mass and weight" },
+      {
+        number: "3.2",
+        title: "Explain the principles of basic mechanics as they apply to levers, gears and pulleys",
+        range: [
+          {
+            heading: "Levers",
+            items: [
+              { suffix: "CLASS-I", title: "Class I" },
+              { suffix: "CLASS-II", title: "Class II" },
+              { suffix: "CLASS-III", title: "Class III" },
+            ],
+          },
+        ],
+      },
+      {
+        number: "3.3",
+        title: "Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency",
+      },
+      { number: "3.4", title: "Calculate values of mechanical energy, power and efficiency" },
+    ],
+  },
+  {
+    number: 4,
+    title: "Understand the relationship between resistance, resistivity, voltage, current and power",
+    acs: [
+      { number: "4.1", title: "Describe the basic principles of electron theory" },
+      { number: "4.2", title: "Identify and distinguish between materials which are good conductors and insulators" },
+      { number: "4.3", title: "Describe what is meant by resistance and resistivity in relation to electrical circuits" },
+      { number: "4.4", title: "Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits" },
+      { number: "4.5", title: "Calculate the values of current, voltage and resistance in parallel and series D.C. circuits" },
+      { number: "4.6", title: "Calculate values of power in parallel and series D.C. circuits" },
+      { number: "4.7", title: "State what is meant by the term voltage drop in relation to electrical circuits" },
+      { number: "4.8", title: "Describe the chemical and thermal effects of electric currents" },
+    ],
+  },
+  {
+    number: 5,
+    title: "Understand the fundamental principles which underpin the relationship between magnetism and electricity",
+    acs: [
+      { number: "5.1", title: "Describe the effects of magnetism in terms of attraction and repulsion" },
+      { number: "5.2", title: "State the difference between magnetic flux and flux density" },
+      {
+        number: "5.3",
+        title:
+          "Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force",
+      },
+      {
+        number: "5.4",
+        title: "Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux",
+      },
+      {
+        number: "5.5",
+        title: "Identify the characteristics of sine-waves",
+        range: [
+          {
+            heading: "Characteristics of a sine-wave",
+            items: [
+              { suffix: "RMS-VALUE", title: "Root Mean Square (RMS) value" },
+              { suffix: "AVERAGE-VALUE", title: "Average value" },
+              { suffix: "PEAK-TO-PEAK-VALUE", title: "Peak to peak value" },
+              { suffix: "PERIODIC-TIME", title: "Periodic time" },
+              { suffix: "FREQUENCY", title: "Frequency" },
+              { suffix: "AMPLITUDE", title: "Amplitude" },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    number: 6,
+    title: "Understand the types, applications and limitations of electronic components in electrical systems and equipment",
+    acs: [
+      {
+        number: "6.1",
+        title: "Describe the function and application of electronic components that are used in electrical systems",
+        range: [
+          {
+            heading: "Electrical systems",
+            items: [
+              { suffix: "SECURITY-ALARMS", title: "Security alarms" },
+              { suffix: "TELEPHONES", title: "Telephones" },
+              { suffix: "DIMMER-SWITCHES", title: "Dimmer switches" },
+              { suffix: "HEATING-BOILER-CONTROLS", title: "Heating/boiler controls" },
+              { suffix: "MOTOR-CONTROL", title: "Motor control" },
+              { suffix: "WIRELESS-CONTROL-SYSTEMS", title: "Wireless control systems" },
+            ],
+          },
+        ],
+      },
+      {
+        number: "6.2",
+        title: "State the basic operating principles of electronic components and devices",
+        range: [
+          {
+            heading: "Electronic components and devices",
+            items: [
+              { suffix: "CAPACITORS", title: "Capacitors" },
+              { suffix: "RESISTORS", title: "Resistors" },
+              { suffix: "RECTIFIERS", title: "Rectifiers" },
+              { suffix: "DIODES", title: "Diodes" },
+              { suffix: "ZENER", title: "Zener" },
+              { suffix: "LED", title: "LED" },
+              { suffix: "PHOTO", title: "Photo" },
+              { suffix: "THERMISTORS", title: "Thermistors" },
+              { suffix: "DIACS", title: "Diacs" },
+              { suffix: "TRIACS", title: "Triacs" },
+              { suffix: "TRANSISTORS", title: "Transistors" },
+              { suffix: "THYRISTORS", title: "Thyristors" },
+              { suffix: "INVERTORS", title: "Invertors" },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+/** node-key -> AC code, for the 19 CC-04B ACs that already have real assertion coverage (used by `OLD_TO_R2_AC_NODE` below to remap that coverage onto CV_KEY_R2 mechanically, without re-authoring any assertion). */
+const OLD_AC_NODE_TO_CODE = new Map<string, string>([
+  [NODE_AC1_1, "1.1"],
+  [NODE_AC2_1, "2.1"],
+  [NODE_AC2_2, "2.2"],
+  [NODE_AC2_3, "2.3"],
+  [NODE_AC3_3, "3.3"],
+  [NODE_AC3_4, "3.4"],
+  [NODE_AC4_1, "4.1"],
+  [NODE_AC4_2, "4.2"],
+  [NODE_AC4_3, "4.3"],
+  [NODE_AC4_4, "4.4"],
+  [NODE_AC4_5, "4.5"],
+  [NODE_AC4_6, "4.6"],
+  [NODE_AC4_7, "4.7"],
+  [NODE_AC4_8, "4.8"],
+  [NODE_AC5_1, "5.1"],
+  [NODE_AC5_2, "5.2"],
+  [NODE_AC5_3, "5.3"],
+  [NODE_AC5_4, "5.4"],
+  [NODE_AC5_5, "5.5"],
+]);
+
+interface BuiltR2Nodes {
+  nodes: KnowledgeGraphManifest["curriculumNodes"];
+  /** AC number ("1.1", "3.2", ...) -> CV_KEY_R2 node key, so OLD_TO_R2_AC_NODE and the AssessmentSpecification data can resolve real node keys mechanically instead of hand-copied strings. */
+  acNodeKeyByNumber: Map<string, string>;
+  /** LO number (1..6) -> CV_KEY_R2 node key, consumed by ./unit202-assessment-specification.ts. */
+  loNodeKeyByNumber: Map<number, string>;
+}
+
+function buildUnit202R2Nodes(structure: readonly LoDef[]): BuiltR2Nodes {
+  const nodes: KnowledgeGraphManifest["curriculumNodes"] = [];
+  const acNodeKeyByNumber = new Map<string, string>();
+  const loNodeKeyByNumber = new Map<number, string>();
+
+  structure.forEach((lo, loIndex) => {
+    const loKey = `node-202r2-lo${lo.number}`;
+    loNodeKeyByNumber.set(lo.number, loKey);
+    nodes.push({
+      key: loKey,
+      curriculumVersionKey: CV_KEY_R2,
+      parentKey: NODE_UNIT_R2,
+      nodeType: "LEARNING_OUTCOME",
+      code: `202-LO${lo.number}`,
+      title: lo.title,
+      sequenceOrder: loIndex + 1,
+    });
+
+    lo.acs.forEach((ac, acIndex) => {
+      const acKey = `${loKey}-ac${ac.number}`;
+      acNodeKeyByNumber.set(ac.number, acKey);
+      nodes.push({
+        key: acKey,
+        curriculumVersionKey: CV_KEY_R2,
+        parentKey: loKey,
+        nodeType: "ASSESSMENT_CRITERION",
+        code: `202-LO${lo.number}-AC${ac.number}`,
+        title: ac.title,
+        sequenceOrder: acIndex + 1,
+      });
+
+      let rangeSequence = 0;
+      for (const group of ac.range ?? []) {
+        for (const item of group.items) {
+          rangeSequence += 1;
+          nodes.push({
+            key: `${acKey}-range-${item.suffix.toLowerCase()}`,
+            curriculumVersionKey: CV_KEY_R2,
+            parentKey: acKey,
+            nodeType: "RANGE_ITEM",
+            code: `202-LO${lo.number}-AC${ac.number}-RANGE-${item.suffix}`,
+            title: `${group.heading}: ${item.title}`,
+            sequenceOrder: rangeSequence,
+          });
+        }
+      }
+    });
+  });
+
+  return { nodes, acNodeKeyByNumber, loNodeKeyByNumber };
+}
+
+const unit202R2 = buildUnit202R2Nodes(UNIT202_R2_STRUCTURE);
+
+/** Every CV_KEY_R2 Assessment Criterion node's key, keyed by AC number -- exported so ./unit202-assessment-specification.ts never hand-copies a node key string. */
+export const UNIT202_R2_AC_NODE_KEY_BY_NUMBER = unit202R2.acNodeKeyByNumber;
+/** Every CV_KEY_R2 Learning Outcome node's key, keyed by LO number -- exported so ./unit202-assessment-specification.ts never hand-copies a node key string. */
+export const UNIT202_R2_LO_NODE_KEY_BY_NUMBER = unit202R2.loNodeKeyByNumber;
+
+const OLD_TO_R2_AC_NODE = new Map<string, string>(
+  [...OLD_AC_NODE_TO_CODE.entries()].map(([oldKey, acNumber]) => {
+    const r2Key = unit202R2.acNodeKeyByNumber.get(acNumber);
+    if (!r2Key) {
+      throw new Error(`OLD_TO_R2_AC_NODE: no CV_KEY_R2 node built for AC ${acNumber} (remapped from ${oldKey})`);
+    }
+    return [oldKey, r2Key];
+  }),
+);
 
 // ---------------------------------------------------------------------
 // Source locators (each cited from multiple assertions where the same
@@ -2180,27 +2564,55 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       key: SV_CG, sourceKey: SRC_CG,
       edition: "Version 1.12 (April 2026)",
       status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      // ADR-0002: this snapshot was fetched directly from cityandguilds.com
+      // (not a third-party mirror) on 2026-08-21 -- the fetched PDF's own
+      // title page reads "April 2026 Version 1.12", and its "Qualification
+      // at a glance" version-history table independently corroborates that
+      // edition. contentFingerprintSha256 is the real SHA-256 of that
+      // fetched artefact (880.5KB, 2026-08-21), never a placeholder.
+      // verificationStatus is deliberately UNVERIFIED: the model that
+      // fetched and transcribed this source (CC-09A) is the SAME model
+      // authoring the governed content citing it, which ADR-0002 holds is
+      // never sufficient for VERIFIED status on its own -- independent
+      // verification against these exact bytes/fingerprint by a verifier
+      // distinct from the authoring model (Project Architect) is the next
+      // required step, not yet performed as of this snapshot.
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "f6bc7a6c76e37a60a9d9830f873ab1079d230015d1ad95f458d69caa82dc9515",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
     },
+    // ADR-0002: these four pre-dated ADR-0002 (fetched during CC-04A/B) --
+    // no raw fetched-artefact bytes are available in this environment to
+    // honestly compute a real fingerprint (never fabricated, per ADR-0002),
+    // so verificationStatus is UNVERIFIED with retrievedDate/fingerprint
+    // left unset rather than invented. A future maintenance pass may
+    // populate real snapshot identity for these when the source is
+    // next (re-)fetched.
     {
       key: SV_BIPM, sourceKey: SRC_BIPM,
       edition: "9th edition (2019)",
       status: "CURRENT", rightsClassification: "OPEN",
+      verificationStatus: "UNVERIFIED",
     },
     {
       key: SV_DFE_MATHS, sourceKey: SRC_DFE_MATHS,
       status: "CURRENT", rightsClassification: "OFFICIAL_OGL",
+      verificationStatus: "UNVERIFIED",
     },
     {
       key: SV_OPENSTAX_UP1, sourceKey: SRC_OPENSTAX_UP1,
       edition: "1st edition",
       publicationDate: "2016-09-19",
       status: "CURRENT", rightsClassification: "PUBLIC_RESTRICTED",
+      verificationStatus: "UNVERIFIED",
     },
     {
       key: SV_OPENSTAX_UP2, sourceKey: SRC_OPENSTAX_UP2,
       edition: "1st edition",
       publicationDate: "2016-10-06",
       status: "CURRENT", rightsClassification: "PUBLIC_RESTRICTED",
+      verificationStatus: "UNVERIFIED",
     },
   ],
 
@@ -2226,6 +2638,16 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       key: CV_KEY,
       curriculumCode: CURRICULUM_CODE,
       versionLabel: "Version 1.12 (April 2026)",
+      // CC-09A: superseded by CV_KEY_R2, the complete LO1-LO6 extraction
+      // of the same handbook edition -- see the CC-09A header comment
+      // above. Its nodes/mappings are untouched; this is a lifecycle
+      // status change, never a content mutation.
+      status: "SUPERSEDED",
+    },
+    {
+      key: CV_KEY_R2,
+      curriculumCode: CURRICULUM_CODE,
+      versionLabel: "Version 1.12 (April 2026) -- complete LO1-LO6 extraction (CC-09A)",
       status: "CURRENT",
     },
   ],
@@ -2257,6 +2679,11 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
     { key: NODE_AC5_3, curriculumVersionKey: CV_KEY, parentKey: NODE_LO5, nodeType: "ASSESSMENT_CRITERION", code: "202-LO5-AC5.3", title: "Describe the magnetic effects of electrical currents", sequenceOrder: 3 },
     { key: NODE_AC5_4, curriculumVersionKey: CV_KEY, parentKey: NODE_LO5, nodeType: "ASSESSMENT_CRITERION", code: "202-LO5-AC5.4", title: "Describe the basic principles of generating an A.C. supply", sequenceOrder: 4 },
     { key: NODE_AC5_5, curriculumVersionKey: CV_KEY, parentKey: NODE_LO5, nodeType: "ASSESSMENT_CRITERION", code: "202-LO5-AC5.5", title: "Identify the characteristics of sine-waves", sequenceOrder: 5 },
+
+    // -- CV_KEY_R2: complete official LO1-LO6/AC/Range structure --
+    { key: NODE_QUAL_R2, curriculumVersionKey: CV_KEY_R2, nodeType: "QUALIFICATION", code: "2365-02", title: "City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)", sequenceOrder: 1 },
+    { key: NODE_UNIT_R2, curriculumVersionKey: CV_KEY_R2, parentKey: NODE_QUAL_R2, nodeType: "UNIT", code: "202", title: "Principles of Electrical Science", sequenceOrder: 2 },
+    ...unit202R2.nodes,
   ],
 
   assertions: A.map((a) => ({ identifier: a.id, domainCode: a.domain })),
@@ -2279,13 +2706,28 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
 
   assertionRelationships: relationships,
 
-  assertionCurriculumMappings: A.flatMap((a) =>
-    (a.curriculum ?? []).map((c) => ({
-      assertionIdentifier: a.id,
-      curriculumNodeKey: c.node,
-      mappingType: c.type,
-    })),
-  ),
+  assertionCurriculumMappings: [
+    ...A.flatMap((a) =>
+      (a.curriculum ?? []).map((c) => ({
+        assertionIdentifier: a.id,
+        curriculumNodeKey: c.node,
+        mappingType: c.type,
+      })),
+    ),
+    // CC-09A: mechanical remap of the 19 CC-04B mappings above onto their
+    // CV_KEY_R2 equivalents -- the same assertions, an additional mapping
+    // to the corrected curriculum version's node, never re-authored
+    // knowledge. See OLD_TO_R2_AC_NODE's own header comment.
+    ...A.flatMap((a) =>
+      (a.curriculum ?? [])
+        .filter((c) => OLD_TO_R2_AC_NODE.has(c.node))
+        .map((c) => ({
+          assertionIdentifier: a.id,
+          curriculumNodeKey: OLD_TO_R2_AC_NODE.get(c.node)!,
+          mappingType: c.type,
+        })),
+    ),
+  ],
 
   misconceptions: M.map((m) => ({ identifier: m.id, description: m.description })),
 

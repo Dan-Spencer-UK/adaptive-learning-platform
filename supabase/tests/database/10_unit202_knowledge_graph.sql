@@ -21,10 +21,19 @@
 -- This file queries data already present after `db reset` (it does not
 -- insert its own fixtures), the same pattern 04_rls_baseline.sql uses
 -- for the CC-02 SAMPLE_DOMAIN fixture.
+--
+-- CC-09A addendum: the original CC-04B curriculum version
+-- (cv-2365-02-v1-12) is superseded (never mutated) by the complete
+-- official LO1-LO6/23-AC/58-Range-item extraction (cv-2365-02-v1-12-r2,
+-- same handbook edition, verified directly against cityandguilds.com).
+-- Gates below that assumed a single CURRENT curriculum version, or that
+-- assumed zero uncovered Assessment Criteria across the whole
+-- curriculum_nodes table, are re-scoped to the specific version each
+-- invariant actually holds for -- see each gate's own comment.
 
 begin;
 
-select plan(41);
+select plan(46);
 
 -- ===================================================================
 -- 1-2. Corpus size: the ELECTRICAL corpus specifically is 140-160
@@ -144,16 +153,81 @@ select is(
 
 -- ===================================================================
 -- 9. Curriculum mappings point to the confirmed (non-placeholder)
--- curriculum version.
+-- curriculum version. CC-09A: cv-2365-02-v1-12 (CC-04B's deliberately-
+-- scoped proving slice) is now SUPERSEDED by cv-2365-02-v1-12-r2 (the
+-- complete official LO1-LO6/AC/Range-item extraction of the SAME
+-- handbook edition, verified directly against cityandguilds.com) --
+-- never a content mutation, a lifecycle status change only, so both
+-- rows are checked: exactly one CURRENT row for 2365-02, and the
+-- original CC-04B row preserved unchanged as SUPERSEDED.
 -- ===================================================================
 
 select results_eq(
   $$ select c.code, cv.version_label, cv.status
      from public.curricula c
      join public.curriculum_versions cv on cv.curriculum_id = c.id
-     where c.code = '2365-02' $$,
-  $$ values ('2365-02'::text, 'Version 1.12 (April 2026)'::text, 'CURRENT'::text) $$,
-  'the 2365-02 curriculum version is the confirmed real handbook edition, not a placeholder'
+     where c.code = '2365-02' and cv.status = 'CURRENT' $$,
+  $$ values ('2365-02'::text, 'Version 1.12 (April 2026) -- complete LO1-LO6 extraction (CC-09A)'::text, 'CURRENT'::text) $$,
+  'the 2365-02 CURRENT curriculum version is the CC-09A complete LO1-LO6 extraction, not a placeholder'
+);
+
+select results_eq(
+  $$ select c.code, cv.version_label, cv.status
+     from public.curricula c
+     join public.curriculum_versions cv on cv.curriculum_id = c.id
+     where c.code = '2365-02' and cv.status = 'SUPERSEDED' $$,
+  $$ values ('2365-02'::text, 'Version 1.12 (April 2026)'::text, 'SUPERSEDED'::text) $$,
+  'the original CC-04B curriculum version is preserved unchanged, now SUPERSEDED (never mutated or deleted)'
+);
+
+-- ===================================================================
+-- 9a. CC-09A: the CURRENT (cv-2365-02-v1-12-r2) curriculum version has
+-- exactly the official Unit 202 skeleton -- 6 Learning Outcomes, 23
+-- Assessment Criteria, 58 Range items -- and every Range item is
+-- parented under an Assessment Criterion (never directly under a
+-- Learning Outcome). These are the mechanical completeness gates for
+-- the TRANSCRIPTION itself; assertion/lesson/question-blueprint
+-- coverage of that transcription is deliberately NOT gated here -- see
+-- scripts/content/report-coverage-matrix.ts, which is expected to
+-- report real backlog at this stage.
+-- ===================================================================
+
+select is(
+  (select count(*)::int from public.curriculum_nodes cn
+   join public.curriculum_versions cv on cv.id = cn.curriculum_version_id
+   where cv.version_label = 'Version 1.12 (April 2026) -- complete LO1-LO6 extraction (CC-09A)'
+     and cn.node_type = 'LEARNING_OUTCOME'),
+  6,
+  'the CC-09A curriculum version declares exactly the official 6 Unit 202 Learning Outcomes'
+);
+
+select is(
+  (select count(*)::int from public.curriculum_nodes cn
+   join public.curriculum_versions cv on cv.id = cn.curriculum_version_id
+   where cv.version_label = 'Version 1.12 (April 2026) -- complete LO1-LO6 extraction (CC-09A)'
+     and cn.node_type = 'ASSESSMENT_CRITERION'),
+  23,
+  'the CC-09A curriculum version declares exactly the official 23 Unit 202 Assessment Criteria'
+);
+
+select is(
+  (select count(*)::int from public.curriculum_nodes cn
+   join public.curriculum_versions cv on cv.id = cn.curriculum_version_id
+   where cv.version_label = 'Version 1.12 (April 2026) -- complete LO1-LO6 extraction (CC-09A)'
+     and cn.node_type = 'RANGE_ITEM'),
+  58,
+  'the CC-09A curriculum version declares exactly the official 58 mandatory Unit 202 Range items'
+);
+
+select is(
+  (select count(*)::int from public.curriculum_nodes item
+   join public.curriculum_nodes parent on parent.id = item.parent_node_id
+   join public.curriculum_versions cv on cv.id = item.curriculum_version_id
+   where cv.version_label = 'Version 1.12 (April 2026) -- complete LO1-LO6 extraction (CC-09A)'
+     and item.node_type = 'RANGE_ITEM'
+     and parent.node_type <> 'ASSESSMENT_CRITERION'),
+  0,
+  'every CC-09A Range item is parented under an Assessment Criterion (never directly under a Learning Outcome)'
 );
 
 select is(
@@ -183,14 +257,25 @@ select is(
   'every Electrical assertion has at least one curriculum mapping (unmapped Electrical count = 0)'
 );
 
+-- Scoped to the original CC-04B curriculum version specifically (never
+-- the CC-09A complete extraction) -- CC-04B's own deliberately-scoped 19
+-- Assessment Criteria are, and must remain, fully covered; the CC-09A
+-- version's additional Assessment Criteria (AC3.1, AC3.2, LO6's AC6.1/
+-- AC6.2) have no assertion authored yet by design, and asserting zero
+-- uncovered ACs against that version would be false: that real,
+-- mechanically-derived backlog is scripts/content/report-coverage-matrix.ts's
+-- job to expose, not this gate's.
 select is(
   (select count(*)::int from public.curriculum_nodes cn
+   join public.curriculum_versions cv on cv.id = cn.curriculum_version_id
    where cn.node_type = 'ASSESSMENT_CRITERION'
+     and cv.version_label = 'Version 1.12 (April 2026)'
+     and cv.status = 'SUPERSEDED'
      and not exists (
        select 1 from public.assertion_curriculum_mappings m where m.curriculum_node_id = cn.id
      )),
   0,
-  'no Assessment Criterion node in the selected proving slice has zero mapped assertions'
+  'no Assessment Criterion node in the original CC-04B proving slice has zero mapped assertions'
 );
 
 -- ===================================================================
