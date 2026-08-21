@@ -496,12 +496,16 @@ const assertionFamilies: AssertionFamily[] = [
   },
   {
     id: "foundational.levers_mechanical_advantage",
-    title: "Levers and mechanical advantage",
-    learningIntent: "Recognise how a lever provides mechanical advantage, and distinguish class I, II and III levers by the relative arrangement of pivot, effort and load.",
+    // CC-09B.1: broadened from "Levers and mechanical advantage" to cover
+    // gears and pulleys too (audit section 13) -- AC3.2 names all three
+    // as one "simple machines" topic, and they share the same mechanical-
+    // advantage learning intent, so one family (not three) represents them.
+    title: "Simple machines and mechanical advantage: levers, gears, pulleys",
+    learningIntent: "Recognise how a lever, gear or pulley provides mechanical advantage: lever classes by the relative arrangement of pivot, effort and load; gear ratio by the ratio of driving/driven radii or tooth counts; pulley mechanical advantage by the number of supporting rope sections.",
     teachFamilyTogether: true,
     completeness: { requiredCapabilityIds: ["cap.foundational.levers.recognise"] },
     assessmentRequirement: "teaching_only",
-    teachingOnlyReason: "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3 AC3.2, previously entirely absent from the corpus). No question blueprint authored in this knowledge-corpus package (CC-09B); lesson/assessment authoring is a later package.",
+    teachingOnlyReason: "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3 AC3.2). No question blueprint authored in this knowledge-corpus package (CC-09B/CC-09B.1); lesson/assessment authoring is a later package.",
   },
   {
     id: "foundational.si_quantities_general",
@@ -602,6 +606,16 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["FP-CONCEPT-POWER-001", "canonical_form"],
     ["FP-REL-POWER-WORK-TIME-001", "canonical_form"],
     ["FP-CONCEPT-EFFICIENCY-001", "canonical_form"],
+    // CC-09B.1: work formula + dedicated kinetic/gravitational-potential-
+    // energy concept/relationship/calculation additions (audit section 13).
+    ["FP-REL-WORK-FORCE-DISTANCE-001", "canonical_form"],
+    ["FP-CALC-WORK-001", "consequence"],
+    ["FP-CONCEPT-KINETIC-ENERGY-001", "prerequisite_concept"],
+    ["FP-REL-KINETIC-ENERGY-001", "canonical_form"],
+    ["FP-CALC-KINETIC-ENERGY-001", "consequence"],
+    ["FP-CONCEPT-POTENTIAL-ENERGY-001", "prerequisite_concept"],
+    ["FP-REL-POTENTIAL-ENERGY-001", "canonical_form"],
+    ["FP-CALC-POTENTIAL-ENERGY-001", "consequence"],
   ]),
   ...membersOf("foundational.mass_weight", [
     ["FP-CONCEPT-MASS-001", "prerequisite_concept"],
@@ -730,6 +744,9 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["EL-UNIT-COULOMB-001", "prerequisite_concept"],
     ["EL-CURRENT-CHARGE-RELATIONSHIP-001", "canonical_form"],
     ["EL-CURRENT-CHARGE-CALC-001", "consequence"],
+    // CC-09B.1: minimal atomic-structure grounding for AC4.1 electron
+    // theory (audit section 14.A).
+    ["EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001", "prerequisite_concept"],
   ]),
 
   // --- electrical.thermal_and_chemical_effects ---------------------------------------------------
@@ -797,6 +814,9 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
   ...membersOf("electrical.emf_and_generation", [
     ["EL-CONCEPT-EMF-001", "canonical_form"],
     ["EL-CONCEPT-TERMINAL-VOLTAGE-001", "consequence"],
+    // CC-09B.1: explicit causal principle the generator assertion below
+    // depends on (audit section 15.C).
+    ["EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001", "prerequisite_concept"],
     ["EL-CONCEPT-AC-GENERATOR-001", "canonical_form"],
     ["EL-CONCEPT-SINE-WAVE-001", "consequence"],
   ]),
@@ -826,8 +846,10 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["EL-CONCEPT-IMPEDANCE-001", "canonical_form"],
     ["EL-UNIT-HENRY-001", "prerequisite_concept"],
     ["EL-CONCEPT-INDUCTANCE-001", "canonical_form"],
+    ["EL-CONCEPT-INDUCTIVE-REACTANCE-001", "consequence"],
     ["EL-UNIT-FARAD-001", "prerequisite_concept"],
     ["EL-CONCEPT-CAPACITANCE-001", "canonical_form"],
+    ["EL-CONCEPT-CAPACITIVE-REACTANCE-001", "consequence"],
     ["EL-CONCEPT-POWER-FACTOR-001", "canonical_form"],
   ]),
 
@@ -836,6 +858,9 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
   ...membersOf("foundational.trigonometry", [
     ["FM-GEOM-PYTHAGORAS-001", "canonical_form"],
     ["FM-GEOM-TRIG-RATIOS-001", "canonical_form"],
+    // CC-09B.1: application knowledge (audit section 11.B).
+    ["FM-CALC-PYTHAGORAS-001", "consequence"],
+    ["FM-CALC-TRIG-RATIO-001", "consequence"],
   ]),
   ...membersOf("foundational.statistics", [
     ["FM-STATS-MEAN-001", "canonical_form"],
@@ -847,6 +872,15 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["FP-LEVER-CLASS-I-001", "consequence"],
     ["FP-LEVER-CLASS-II-001", "consequence"],
     ["FP-LEVER-CLASS-III-001", "consequence"],
+    // CC-09B.1: gears and pulleys were AC3.2's largest single named gap
+    // (audit section 13) -- folded into this same family (not a new one)
+    // since they share the same "mechanical advantage" learning intent.
+    ["FP-CONCEPT-GEAR-001", "canonical_form"],
+    ["FP-REL-GEAR-RATIO-001", "consequence"],
+    ["FP-GEAR-SPEED-TORQUE-TRADEOFF-001", "consequence"],
+    ["FP-CONCEPT-PULLEY-001", "canonical_form"],
+    ["FP-PULLEY-FIXED-VS-MOVABLE-001", "consequence"],
+    ["FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001", "consequence"],
   ]),
   ...membersOf("foundational.si_quantities_general", [
     ["FP-UNIT-METRE-001", "canonical_form"],
@@ -861,6 +895,10 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
 
   // --- CC-09B: electrical.electronic_components -------------------------
   ...membersOf("electrical.electronic_components", [
+    // CC-09B.1: component-level (not merely quantity-level) resistor/
+    // capacitor knowledge (audit section 16.A/B).
+    ["EL-COMPONENT-RESISTOR-001", "canonical_form"],
+    ["EL-COMPONENT-CAPACITOR-001", "canonical_form"],
     ["EL-COMPONENT-RECTIFIER-001", "canonical_form"],
     ["EL-COMPONENT-DIODE-001", "canonical_form"],
     ["EL-COMPONENT-ZENER-DIODE-001", "consequence"],
@@ -919,6 +957,16 @@ const capabilities: Capability[] = [
     "foundational.mechanics_work_energy_power",
     "recognise",
     "Recognise force, work, energy and power as general mechanical concepts.",
+  ),
+  // CC-09B.1: new calculate-type capability -- FP-CALC-WORK-001/
+  // FP-CALC-KINETIC-ENERGY-001/FP-CALC-POTENTIAL-ENERGY-001 are genuine
+  // calculation propositions the family's existing recognise-only
+  // capability cannot represent.
+  cap(
+    "cap.foundational.mechanics.calculate",
+    "foundational.mechanics_work_energy_power",
+    "calculate",
+    "Calculate work done, kinetic energy or gravitational potential energy from known force/distance, mass/speed or mass/height.",
   ),
   cap(
     "cap.foundational.mass_weight.recognise",

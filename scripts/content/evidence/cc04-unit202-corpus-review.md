@@ -6,10 +6,10 @@ Generated deterministically by `scripts/content/generate-corpus-review.ts` from
 only, never rendered to learners. Regenerate with:
 `node scripts/content/generate-corpus-review.ts`.
 
-Total assertions: 213
-- Foundational Maths (FM): 22
-- Foundational Physics (FP): 26
-- Electrical (EL): 165
+Total assertions: 235
+- Foundational Maths (FM): 24
+- Foundational Physics (FP): 40
+- Electrical (EL): 171
 
 The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150). Foundational Maths/Physics are additional reusable horizontal knowledge and do not count toward that target.
 
@@ -26,9 +26,9 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Characteristics of a sine-wave: Peak to peak value | 1 |
 | Characteristics of a sine-wave: Periodic time | 1 |
 | Characteristics of a sine-wave: Root Mean Square (RMS) value | 1 |
-| Describe the basic principles of electron theory | 6 |
-| Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux | 6 |
-| Describe the basic principles of generating an A.C. supply | 6 |
+| Describe the basic principles of electron theory | 8 |
+| Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux | 7 |
+| Describe the basic principles of generating an A.C. supply | 7 |
 | Describe the chemical and thermal effects of electric currents | 16 |
 | Describe the effects of magnetism in terms of attraction and repulsion | 2 |
 | Describe the function and application of electronic components that are used in electrical systems | 6 |
@@ -37,12 +37,12 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Describe the main principles of force, work, energy, power and efficiency and their inter-relationships | 1 |
 | Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency | 1 |
 | Describe what is meant by resistance and resistivity in relation to electrical circuits | 14 |
-| Electrical quantities (SI units): Capacitance and capacitive reactance | 2 |
+| Electrical quantities (SI units): Capacitance and capacitive reactance | 3 |
 | Electrical quantities (SI units): Current | 1 |
 | Electrical quantities (SI units): Energy | 1 |
 | Electrical quantities (SI units): Frequency | 2 |
 | Electrical quantities (SI units): Impedance | 1 |
-| Electrical quantities (SI units): Inductance and inductive reactance | 2 |
+| Electrical quantities (SI units): Inductance and inductive reactance | 3 |
 | Electrical quantities (SI units): Power factor | 1 |
 | Electrical quantities (SI units): Power | 1 |
 | Electrical quantities (SI units): Resistance | 2 |
@@ -59,14 +59,14 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Electrical systems: Security alarms | 1 |
 | Electrical systems: Telephones | 1 |
 | Electrical systems: Wireless control systems | 1 |
-| Electronic components and devices: Capacitors | 1 |
+| Electronic components and devices: Capacitors | 2 |
 | Electronic components and devices: Diacs | 1 |
 | Electronic components and devices: Diodes | 1 |
 | Electronic components and devices: Invertors | 1 |
 | Electronic components and devices: LED | 1 |
 | Electronic components and devices: Photo | 1 |
 | Electronic components and devices: Rectifiers | 1 |
-| Electronic components and devices: Resistors | 1 |
+| Electronic components and devices: Resistors | 2 |
 | Electronic components and devices: Thermistors | 1 |
 | Electronic components and devices: Thyristors | 1 |
 | Electronic components and devices: Transistors | 1 |
@@ -74,22 +74,22 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Electronic components and devices: Zener | 1 |
 | Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits | 56 |
 | Identify and apply appropriate mathematical principles which are relevant to electrical work tasks | 32 |
-| Identify and determine values of base and derived SI units which apply specifically to electrical quantities | 56 |
+| Identify and determine values of base and derived SI units which apply specifically to electrical quantities | 60 |
 | Identify and distinguish between materials which are good conductors and insulators | 8 |
 | Identify and use internationally recognised base and derived (SI) units of measurement | 6 |
 | Identify appropriate electrical instruments for the measurement of different electrical quantities | 22 |
 | Identify the characteristics of sine-waves | 24 |
-| State the basic operating principles of electronic components and devices | 11 |
+| State the basic operating principles of electronic components and devices | 13 |
 | State the difference between magnetic flux and flux density | 4 |
 | State what is meant by the term voltage drop in relation to electrical circuits | 4 |
 
 ## Foundational Maths/Physics: used vs currently-unused-but-retained
 
-23 of 48 Foundational assertions currently reach an Electrical target via PREREQUISITE_OF; the remainder are retained as coherent, atomic, properly-sourced, non-speculative reusable horizontal knowledge for future Unit 202 expansion, other electrical qualifications, or other vocational verticals -- per explicit Product Owner direction, this is not treated as a defect.
+23 of 64 Foundational assertions currently reach an Electrical target via PREREQUISITE_OF; the remainder are retained as coherent, atomic, properly-sourced, non-speculative reusable horizontal knowledge for future Unit 202 expansion, other electrical qualifications, or other vocational verticals -- per explicit Product Owner direction, this is not treated as a defect.
 
 **Currently used (23):** FM-ALG-EQUALITY-ADD-001, FM-ALG-EQUALITY-MULT-001, FM-ALG-INVERSE-OPS-ADD-001, FM-ALG-INVERSE-OPS-MULT-001, FM-ALG-PROPORTION-DIRECT-001, FM-ALG-PROPORTION-INVERSE-001, FM-ALG-SUBSTITUTION-001, FM-ALG-TRANSPOSE-ADD-001, FM-ALG-TRANSPOSE-MULT-001, FM-ARITH-FRACTION-OPS-001, FM-ARITH-PERCENTAGE-001, FM-ARITH-RECIPROCAL-001, FM-ARITH-RECIPROCAL-INVERT-001, FM-ARITH-RECIPROCAL-SUM-001, FM-NUM-SI-PREFIX-001, FM-NUM-SI-PREFIX-CONVERT-001, FM-NUM-STANDARD-FORM-001, FP-CONCEPT-EFFICIENCY-001, FP-CONCEPT-ENERGY-001, FP-CONCEPT-ENERGY-CONSERVATION-001, FP-CONCEPT-FORCE-001, FP-CONCEPT-POWER-001, FP-CONCEPT-WORK-001
 
-**Currently unused but retained (25):** FM-GEOM-PYTHAGORAS-001, FM-GEOM-TRIG-RATIOS-001, FM-NUM-INDICES-LAWS-001, FM-STATS-MEAN-001, FM-STATS-RANGE-001, FP-CALC-EFFICIENCY-001, FP-CALC-POWER-001, FP-CALC-WEIGHT-001, FP-CONCEPT-LEVER-PRINCIPLE-001, FP-CONCEPT-MASS-001, FP-CONCEPT-MECHANICAL-ADVANTAGE-001, FP-CONCEPT-WEIGHT-001, FP-LEVER-CLASS-I-001, FP-LEVER-CLASS-II-001, FP-LEVER-CLASS-III-001, FP-REL-POWER-WORK-TIME-001, FP-REL-WEIGHT-MASS-001, FP-UNIT-CUBIC-METRE-001, FP-UNIT-DENSITY-001, FP-UNIT-KELVIN-CELSIUS-001, FP-UNIT-KILOGRAM-001, FP-UNIT-METRE-001, FP-UNIT-METRE-PER-SECOND-001, FP-UNIT-SECOND-001, FP-UNIT-SQUARE-METRE-001
+**Currently unused but retained (41):** FM-CALC-PYTHAGORAS-001, FM-CALC-TRIG-RATIO-001, FM-GEOM-PYTHAGORAS-001, FM-GEOM-TRIG-RATIOS-001, FM-NUM-INDICES-LAWS-001, FM-STATS-MEAN-001, FM-STATS-RANGE-001, FP-CALC-EFFICIENCY-001, FP-CALC-KINETIC-ENERGY-001, FP-CALC-POTENTIAL-ENERGY-001, FP-CALC-POWER-001, FP-CALC-WEIGHT-001, FP-CALC-WORK-001, FP-CONCEPT-GEAR-001, FP-CONCEPT-KINETIC-ENERGY-001, FP-CONCEPT-LEVER-PRINCIPLE-001, FP-CONCEPT-MASS-001, FP-CONCEPT-MECHANICAL-ADVANTAGE-001, FP-CONCEPT-POTENTIAL-ENERGY-001, FP-CONCEPT-PULLEY-001, FP-CONCEPT-WEIGHT-001, FP-GEAR-SPEED-TORQUE-TRADEOFF-001, FP-LEVER-CLASS-I-001, FP-LEVER-CLASS-II-001, FP-LEVER-CLASS-III-001, FP-PULLEY-FIXED-VS-MOVABLE-001, FP-REL-GEAR-RATIO-001, FP-REL-KINETIC-ENERGY-001, FP-REL-POTENTIAL-ENERGY-001, FP-REL-POWER-WORK-TIME-001, FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001, FP-REL-WEIGHT-MASS-001, FP-REL-WORK-FORCE-DISTANCE-001, FP-UNIT-CUBIC-METRE-001, FP-UNIT-DENSITY-001, FP-UNIT-KELVIN-CELSIUS-001, FP-UNIT-KILOGRAM-001, FP-UNIT-METRE-001, FP-UNIT-METRE-PER-SECOND-001, FP-UNIT-SECOND-001, FP-UNIT-SQUARE-METRE-001
 
 ## Provenance source / rights distribution
 
@@ -106,8 +106,11 @@ Verification columns per ADR-0002 -- Verified/By/Fingerprint reflect the governe
 | Electric Circuits III - Semiconductors (Kuphaldt) | OPEN | UNVERIFIED | (none) | absent |
 | NTC Thermistors Application Note | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 | ELG4139: DC to AC Converters (course material) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| 800 VA Pure Sine Wave Inverter Reference Design (SLAA602A) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| College Physics 2e | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| Electric Circuits I - Direct Current (Kuphaldt) | OPEN | UNVERIFIED | (none) | absent |
 
-Rights distribution: PROPRIETARY_REFERENCE: 3, OPEN: 2, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 3
+Rights distribution: PROPRIETARY_REFERENCE: 4, OPEN: 3, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 4
 
 ## OpenStax exact-book licence evidence (CC-04B hard requirement)
 
@@ -120,13 +123,13 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ## Graph health
 
-- Total relationships: 299
-  - CONTRASTS_WITH: 12
-  - DERIVED_FROM: 4
-  - PREREQUISITE_OF: 273
+- Total relationships: 380
+  - CONTRASTS_WITH: 14
+  - DERIVED_FROM: 49
+  - PREREQUISITE_OF: 307
   - SUPPORTS: 10
 - Misconceptions: 21; conflict links: 45
-- Curriculum mappings: 429
+- Curriculum mappings: 467
 - Self edges, duplicate edges, unintended prerequisite cycles, broken relationship targets, unmapped Electrical assertions and approved-versions-without-provenance: all mechanically proven 0 -- see supabase/tests/database/10_unit202_knowledge_graph.sql and the CC-04B completion report for the live query evidence.
 
 ## Foundational Maths (FM)
@@ -190,7 +193,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Substitute known numerical values into a formula to calculate the value of the remaining unknown quantity.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** FP-CALC-POWER-001; FP-CALC-WEIGHT-001; EL-CALC-ELECTRICAL-EFFICIENCY-001; EL-OHM-SOLVE-V-001; EL-OHM-SOLVE-I-001; EL-OHM-SOLVE-R-001; EL-SERIES-RESISTANCE-CALC-001; EL-POWER-SOLVE-001; EL-POWER-SOLVE-IR-001; EL-CURRENT-CHARGE-CALC-001; EL-POWER-SOLVE-V2R-001; EL-ENERGY-CALC-001; EL-WAVEFORM-RMS-CALC-001; EL-WAVEFORM-FREQUENCY-CALC-001
+**Direct dependents:** FM-CALC-PYTHAGORAS-001; FM-CALC-TRIG-RATIO-001; FP-CALC-WORK-001; FP-CALC-KINETIC-ENERGY-001; FP-CALC-POTENTIAL-ENERGY-001; FP-CALC-POWER-001; FP-CALC-WEIGHT-001; EL-CALC-ELECTRICAL-EFFICIENCY-001; EL-OHM-SOLVE-V-001; EL-OHM-SOLVE-I-001; EL-OHM-SOLVE-R-001; EL-SERIES-RESISTANCE-CALC-001; EL-POWER-SOLVE-001; EL-POWER-SOLVE-IR-001; EL-CURRENT-CHARGE-CALC-001; EL-POWER-SOLVE-V2R-001; EL-ENERGY-CALC-001; EL-WAVEFORM-RMS-CALC-001; EL-WAVEFORM-FREQUENCY-CALC-001
 **Curriculum mapping(s):** Mathematical principles: Transposition (SUPPORTS)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Algebra: substitute numerical values into formulae and expressions, including scientific formulae [SUPPORTS]
 
@@ -292,7 +295,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides: a squared plus b squared equals c squared.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** FM-GEOM-TRIG-RATIOS-001
+**Direct dependents:** FM-GEOM-TRIG-RATIOS-001; FM-CALC-PYTHAGORAS-001
 **Curriculum mapping(s):** Mathematical principles: Triangles and trigonometry (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Geometry and measures: know the formulae for Pythagoras' theorem a^2 + b^2 = c^2, and the trigonometric ratios sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse and tan(theta) = opposite/adjacent; apply them to find angles and lengths in right-angled triangles [DEFINES]
 
@@ -301,9 +304,27 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** In a right-angled triangle, the sine, cosine and tangent of an angle are defined as the ratios opposite/hypotenuse, adjacent/hypotenuse and opposite/adjacent respectively.
 
 **Direct prerequisites:** FM-GEOM-PYTHAGORAS-001 (SUPPORTING)
-**Direct dependents:** (none — leaf capability)
+**Direct dependents:** FM-CALC-TRIG-RATIO-001
 **Curriculum mapping(s):** Mathematical principles: Triangles and trigonometry (REQUIRED_FOR)
 **Provenance:** Mathematics GCSE subject content and assessment objectives — Geometry and measures: know the formulae for Pythagoras' theorem a^2 + b^2 = c^2, and the trigonometric ratios sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse and tan(theta) = opposite/adjacent; apply them to find angles and lengths in right-angled triangles [DEFINES]
+
+### FM-CALC-PYTHAGORAS-001
+
+**Statement (v1, APPROVED):** Use Pythagoras' theorem to calculate an unknown side length of a right-angled triangle, given the lengths of the other two sides.
+
+**Direct prerequisites:** FM-GEOM-PYTHAGORAS-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (STRONG)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Mathematical principles: Triangles and trigonometry (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Geometry and measures: know the formulae for Pythagoras' theorem a^2 + b^2 = c^2, and the trigonometric ratios sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse and tan(theta) = opposite/adjacent; apply them to find angles and lengths in right-angled triangles [SUPPORTS]
+
+### FM-CALC-TRIG-RATIO-001
+
+**Statement (v1, APPROVED):** Use a trigonometric ratio (sine, cosine or tangent) to calculate an unknown side length or angle of a right-angled triangle, given sufficient other side lengths or angles.
+
+**Direct prerequisites:** FM-GEOM-TRIG-RATIOS-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (STRONG)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Mathematical principles: Triangles and trigonometry (REQUIRED_FOR)
+**Provenance:** Mathematics GCSE subject content and assessment objectives — Geometry and measures: know the formulae for Pythagoras' theorem a^2 + b^2 = c^2, and the trigonometric ratios sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse and tan(theta) = opposite/adjacent; apply them to find angles and lengths in right-angled triangles [SUPPORTS]
 
 ### FM-STATS-MEAN-001
 
@@ -331,6 +352,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FP-CONCEPT-WORK-001; FP-CONCEPT-WEIGHT-001; FP-CONCEPT-MECHANICAL-ADVANTAGE-001; EL-CONCEPT-FORCE-ON-CONDUCTOR-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [DEFINES]
 
 ### FP-CONCEPT-WORK-001
@@ -338,15 +360,35 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Work is done when a force causes its point of application to move through a distance in the direction of the force.
 
 **Direct prerequisites:** FP-CONCEPT-FORCE-001 (STRONG)
-**Direct dependents:** FP-CONCEPT-ENERGY-001; FP-CONCEPT-POWER-001
+**Direct dependents:** FP-REL-WORK-FORCE-DISTANCE-001; FP-CONCEPT-ENERGY-001; FP-CONCEPT-POWER-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [DEFINES]
+
+### FP-REL-WORK-FORCE-DISTANCE-001
+
+**Statement (v1, APPROVED):** Work done is calculated by multiplying the force applied by the distance moved in the direction of that force: W = F times d.
+
+**Direct prerequisites:** FP-CONCEPT-WORK-001 (REQUIRED)
+**Direct dependents:** FP-CALC-WORK-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [SUPPORTS]
+
+### FP-CALC-WORK-001
+
+**Statement (v1, APPROVED):** Calculate the work done by a force from its magnitude and the distance moved in its direction, using W = F times d.
+
+**Direct prerequisites:** FP-REL-WORK-FORCE-DISTANCE-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Calculate values of mechanical energy, power and efficiency (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [SUPPORTS]
 
 ### FP-CONCEPT-ENERGY-001
 
 **Statement (v1, APPROVED):** Energy is the capacity to do work, and exists in different forms including kinetic energy (due to motion) and potential energy (due to position or state).
 
 **Direct prerequisites:** FP-CONCEPT-WORK-001 (STRONG)
-**Direct dependents:** FP-CONCEPT-ENERGY-CONSERVATION-001; FP-CONCEPT-POWER-001; EL-CONCEPT-VOLTAGE-001; EL-CONCEPT-ENERGY-001
+**Direct dependents:** FP-CONCEPT-ENERGY-CONSERVATION-001; FP-CONCEPT-KINETIC-ENERGY-001; FP-CONCEPT-POTENTIAL-ENERGY-001; FP-CONCEPT-POWER-001; EL-CONCEPT-VOLTAGE-001; EL-CONCEPT-ENERGY-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.2: kinetic energy and the work-energy relationship; conservation of energy [DEFINES]
 
 ### FP-CONCEPT-ENERGY-CONSERVATION-001
@@ -357,12 +399,67 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct dependents:** FP-CONCEPT-EFFICIENCY-001
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.2: kinetic energy and the work-energy relationship; conservation of energy [SUPPORTS]
 
+### FP-CONCEPT-KINETIC-ENERGY-001
+
+**Statement (v1, APPROVED):** Kinetic energy is the energy an object possesses because of its motion.
+
+**Direct prerequisites:** FP-CONCEPT-ENERGY-001 (REQUIRED)
+**Direct dependents:** FP-REL-KINETIC-ENERGY-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.2: kinetic energy and the work-energy relationship; conservation of energy [DEFINES]
+
+### FP-REL-KINETIC-ENERGY-001
+
+**Statement (v1, APPROVED):** Kinetic energy is calculated from an object's mass and speed using KE = one half times m times v squared.
+
+**Direct prerequisites:** FP-CONCEPT-KINETIC-ENERGY-001 (REQUIRED)
+**Direct dependents:** FP-CALC-KINETIC-ENERGY-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.2: kinetic energy and the work-energy relationship; conservation of energy [SUPPORTS]
+
+### FP-CALC-KINETIC-ENERGY-001
+
+**Statement (v1, APPROVED):** Calculate the kinetic energy of an object from its mass and speed, using KE = one half times m times v squared.
+
+**Direct prerequisites:** FP-REL-KINETIC-ENERGY-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Calculate values of mechanical energy, power and efficiency (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.2: kinetic energy and the work-energy relationship; conservation of energy [SUPPORTS]
+
+### FP-CONCEPT-POTENTIAL-ENERGY-001
+
+**Statement (v1, APPROVED):** Gravitational potential energy is the energy an object possesses because of its position (height) within a gravitational field.
+
+**Direct prerequisites:** FP-CONCEPT-ENERGY-001 (REQUIRED)
+**Direct dependents:** FP-REL-POTENTIAL-ENERGY-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Gravitational potential energy near Earth's surface is calculated as GPE = mgh, where m is mass, g is gravitational field strength and h is height above a reference level [DEFINES]
+
+### FP-REL-POTENTIAL-ENERGY-001
+
+**Statement (v1, APPROVED):** Gravitational potential energy near the Earth's surface is calculated from an object's mass, gravitational field strength and height using GPE = m times g times h.
+
+**Direct prerequisites:** FP-CONCEPT-POTENTIAL-ENERGY-001 (REQUIRED); FP-REL-WEIGHT-MASS-001 (STRONG)
+**Direct dependents:** FP-CALC-POTENTIAL-ENERGY-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Gravitational potential energy near Earth's surface is calculated as GPE = mgh, where m is mass, g is gravitational field strength and h is height above a reference level [SUPPORTS]
+
+### FP-CALC-POTENTIAL-ENERGY-001
+
+**Statement (v1, APPROVED):** Calculate the gravitational potential energy of an object from its mass, gravitational field strength and height, using GPE = m times g times h.
+
+**Direct prerequisites:** FP-REL-POTENTIAL-ENERGY-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Calculate values of mechanical energy, power and efficiency (REQUIRED_FOR)
+**Provenance:** University Physics Volume 1 — Gravitational potential energy near Earth's surface is calculated as GPE = mgh, where m is mass, g is gravitational field strength and h is height above a reference level [SUPPORTS]
+
 ### FP-CONCEPT-POWER-001
 
 **Statement (v1, APPROVED):** Power is the rate at which work is done or energy is transferred.
 
 **Direct prerequisites:** FP-CONCEPT-WORK-001 (REQUIRED); FP-CONCEPT-ENERGY-001 (REQUIRED)
 **Direct dependents:** FP-REL-POWER-WORK-TIME-001; EL-CONCEPT-POWER-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.4: power as the rate at which work is done or energy is transferred, P = W / t [DEFINES]
 
 ### FP-REL-POWER-WORK-TIME-001
@@ -371,6 +468,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FP-CONCEPT-POWER-001 (REQUIRED)
 **Direct dependents:** FP-CALC-POWER-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.4: power as the rate at which work is done or energy is transferred, P = W / t [SUPPORTS]
 
 ### FP-CALC-POWER-001
@@ -379,6 +477,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FP-REL-POWER-WORK-TIME-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Calculate values of mechanical energy, power and efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.4: power as the rate at which work is done or energy is transferred, P = W / t [SUPPORTS]
 
 ### FP-CONCEPT-EFFICIENCY-001
@@ -387,6 +486,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FP-CONCEPT-ENERGY-CONSERVATION-001 (REQUIRED); FM-ARITH-PERCENTAGE-001 (REQUIRED)
 **Direct dependents:** FP-CALC-EFFICIENCY-001; EL-CONCEPT-ELECTRICAL-EFFICIENCY-001
+**Curriculum mapping(s):** Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.4: power as the rate at which work is done or energy is transferred, P = W / t [SUPPORTS]
 
 ### FP-CALC-EFFICIENCY-001
@@ -395,6 +495,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Direct prerequisites:** FP-CONCEPT-EFFICIENCY-001 (REQUIRED); FM-ARITH-PERCENTAGE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Calculate values of mechanical energy, power and efficiency (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7.4: power as the rate at which work is done or energy is transferred, P = W / t [SUPPORTS]
 
 ### FP-CONCEPT-MASS-001
@@ -420,7 +521,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Weight is calculated from mass and gravitational field strength using W = m times g.
 
 **Direct prerequisites:** FP-CONCEPT-MASS-001 (REQUIRED); FP-CONCEPT-WEIGHT-001 (REQUIRED)
-**Direct dependents:** FP-CALC-WEIGHT-001
+**Direct dependents:** FP-REL-POTENTIAL-ENERGY-001; FP-CALC-WEIGHT-001
 **Curriculum mapping(s):** Specify what is meant by mass and weight (SUPPORTS)
 **Provenance:** University Physics Volume 1 — University Physics Volume 1, Ch.7: work as a force causing displacement of its point of application; force and mass/weight [SUPPORTS]
 
@@ -437,7 +538,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A simple machine such as a lever, gear or pulley provides mechanical advantage by changing the relationship between the effort (input force) applied and the load (output force) it moves.
 
 **Direct prerequisites:** FP-CONCEPT-FORCE-001 (STRONG)
-**Direct dependents:** FP-CONCEPT-LEVER-PRINCIPLE-001
+**Direct dependents:** FP-CONCEPT-LEVER-PRINCIPLE-001; FP-CONCEPT-GEAR-001; FP-CONCEPT-PULLEY-001
 **Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS]
 
@@ -476,6 +577,60 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Levers: Class III (REQUIRED_FOR)
 **Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS]
+
+### FP-CONCEPT-GEAR-001
+
+**Statement (v1, APPROVED):** A gear is a toothed wheel that meshes with another gear to transmit rotary motion and force from one shaft to another.
+
+**Direct prerequisites:** FP-CONCEPT-MECHANICAL-ADVANTAGE-001 (REQUIRED)
+**Direct dependents:** FP-REL-GEAR-RATIO-001
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
+**Provenance:** College Physics 2e — For gears/wheels driven by a common axle, mechanical advantage is the ratio of the radii (or, equivalently, tooth counts) of the driving and driven gears; a single fixed pulley has a mechanical advantage of 1 (direction change only), while a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load [DEFINES]
+
+### FP-REL-GEAR-RATIO-001
+
+**Statement (v1, APPROVED):** For two meshed gears sharing a common tooth pitch, the mechanical advantage (and speed/torque relationship) between the driving and driven gear equals the ratio of their radii, which is equivalent to the ratio of their tooth counts.
+
+**Direct prerequisites:** FP-CONCEPT-GEAR-001 (REQUIRED)
+**Direct dependents:** FP-GEAR-SPEED-TORQUE-TRADEOFF-001
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
+**Provenance:** College Physics 2e — For gears/wheels driven by a common axle, mechanical advantage is the ratio of the radii (or, equivalently, tooth counts) of the driving and driven gears; a single fixed pulley has a mechanical advantage of 1 (direction change only), while a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load [SUPPORTS]
+
+### FP-GEAR-SPEED-TORQUE-TRADEOFF-001
+
+**Statement (v1, APPROVED):** A gear ratio can increase a mechanism's output torque or its output speed relative to the input, but not both at the same time.
+
+**Direct prerequisites:** FP-REL-GEAR-RATIO-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (SUPPORTS)
+**Provenance:** College Physics 2e — For gears/wheels driven by a common axle, mechanical advantage is the ratio of the radii (or, equivalently, tooth counts) of the driving and driven gears; a single fixed pulley has a mechanical advantage of 1 (direction change only), while a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load [SUPPORTS]
+
+### FP-CONCEPT-PULLEY-001
+
+**Statement (v1, APPROVED):** A pulley is a wheel with a grooved rim that changes the direction of a force applied through a rope or cable running over it.
+
+**Direct prerequisites:** FP-CONCEPT-MECHANICAL-ADVANTAGE-001 (REQUIRED)
+**Direct dependents:** FP-PULLEY-FIXED-VS-MOVABLE-001
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
+**Provenance:** College Physics 2e — For gears/wheels driven by a common axle, mechanical advantage is the ratio of the radii (or, equivalently, tooth counts) of the driving and driven gears; a single fixed pulley has a mechanical advantage of 1 (direction change only), while a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load [DEFINES]
+
+### FP-PULLEY-FIXED-VS-MOVABLE-001
+
+**Statement (v1, APPROVED):** A single fixed pulley has a mechanical advantage of one -- it changes the direction of the effort but does not reduce the force needed; a movable pulley, or a combination of pulleys, can provide a mechanical advantage greater than one.
+
+**Direct prerequisites:** FP-CONCEPT-PULLEY-001 (REQUIRED)
+**Direct dependents:** FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
+**Provenance:** College Physics 2e — For gears/wheels driven by a common axle, mechanical advantage is the ratio of the radii (or, equivalently, tooth counts) of the driving and driven gears; a single fixed pulley has a mechanical advantage of 1 (direction change only), while a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load [SUPPORTS]
+
+### FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001
+
+**Statement (v1, APPROVED):** For a movable or combination pulley system, the mechanical advantage is approximately equal to the number of rope or cable sections that directly support the load.
+
+**Direct prerequisites:** FP-PULLEY-FIXED-VS-MOVABLE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
+**Provenance:** College Physics 2e — For gears/wheels driven by a common axle, mechanical advantage is the ratio of the radii (or, equivalently, tooth counts) of the driving and driven gears; a single fixed pulley has a mechanical advantage of 1 (direction change only), while a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load [SUPPORTS]
 
 ### FP-UNIT-METRE-001
 
@@ -533,7 +688,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FP-UNIT-KELVIN-CELSIUS-001
 
-**Statement (v1, APPROVED):** The kelvin (K) is the SI base unit of thermodynamic temperature; the degree Celsius (deg C) is a special name for the kelvin used to express everyday Celsius temperature.
+**Statement (v1, APPROVED):** The kelvin (K) is the SI base unit of thermodynamic temperature T; the degree Celsius (deg C) is a special name for the kelvin used to express Celsius temperature t, related by t = T minus 273.15. A temperature interval or difference of one degree Celsius equals one kelvin.
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
@@ -635,7 +790,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Electrical resistance is the opposition a component presents to the flow of electric current.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** EL-CONCEPT-RESISTIVITY-001; EL-INSTRUMENT-OHMMETER-001; EL-CONCEPT-REACTANCE-001; EL-CONCEPT-IMPEDANCE-001; EL-RESISTIVITY-RELATIONSHIP-001; EL-OHM-RELATIONSHIP-001; EL-SERIES-RESISTANCE-001; EL-PARALLEL-RESISTANCE-001; EL-CURRENT-THERMAL-EFFECT-001; EL-CIRCUIT-RECOGNISE-SHORT-CIRCUIT-001
+**Direct dependents:** EL-CONCEPT-RESISTIVITY-001; EL-INSTRUMENT-OHMMETER-001; EL-CONCEPT-REACTANCE-001; EL-CONCEPT-IMPEDANCE-001; EL-RESISTIVITY-RELATIONSHIP-001; EL-OHM-RELATIONSHIP-001; EL-SERIES-RESISTANCE-001; EL-PARALLEL-RESISTANCE-001; EL-CURRENT-THERMAL-EFFECT-001; EL-CIRCUIT-RECOGNISE-SHORT-CIRCUIT-001; EL-COMPONENT-RESISTOR-001
 **Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR); Electrical quantities (SI units): Resistance (REQUIRED_FOR); Electronic components and devices: Resistors (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Describe what is meant by resistance and resistivity in relation to electrical circuits (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.3: resistance and resistivity, and R = rho L / A [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.3: describe what is meant by resistance and resistivity in relation to electrical circuits [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-RESISTANCE-RESISTIVITY-CONFUSION-001
@@ -655,7 +810,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Electrical power is the rate at which electrical energy is transferred or converted.
 
 **Direct prerequisites:** FP-CONCEPT-POWER-001 (REQUIRED)
-**Direct dependents:** EL-INSTRUMENT-WATTMETER-001; EL-POWER-RATING-001; EL-CONCEPT-ELECTRICAL-EFFICIENCY-001; EL-POWER-RELATIONSHIP-001; EL-ENERGY-POWER-TIME-RELATIONSHIP-001
+**Direct dependents:** EL-INSTRUMENT-WATTMETER-001; EL-POWER-RATING-001; EL-CONCEPT-POWER-FACTOR-001; EL-CONCEPT-ELECTRICAL-EFFICIENCY-001; EL-POWER-RELATIONSHIP-001; EL-ENERGY-POWER-TIME-RELATIONSHIP-001
 **Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-POWER-ENERGY-CONFUSION-001
@@ -677,7 +832,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** EL-CONCEPT-VOLTAGE-001 (STRONG)
 **Direct dependents:** EL-INSTRUMENT-MULTIMETER-001; EL-INSTRUMENT-SELECT-001; EL-INSTRUMENT-VOLTMETER-INTERNAL-RESISTANCE-001
 **Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Electrical quantities (measurement): Voltage (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
+**Provenance:** University Physics Volume 2 — A voltmeter is placed in parallel and must have very high (ideally infinite) resistance so it does not alter the circuit; an ammeter is placed in series and must have very low (ideally zero) resistance for the same reason; an ohmmeter must never be connected to a live (energised) circuit [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001
 
 ### EL-INSTRUMENT-AMMETER-001
@@ -687,7 +842,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** EL-CONCEPT-CURRENT-001 (STRONG)
 **Direct dependents:** EL-INSTRUMENT-MULTIMETER-001; EL-INSTRUMENT-SELECT-001; EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001
 **Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Electrical quantities (measurement): Current (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
+**Provenance:** University Physics Volume 2 — A voltmeter is placed in parallel and must have very high (ideally infinite) resistance so it does not alter the circuit; an ammeter is placed in series and must have very low (ideally zero) resistance for the same reason; an ohmmeter must never be connected to a live (energised) circuit [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001
 
 ### EL-INSTRUMENT-OHMMETER-001
@@ -697,11 +852,11 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (STRONG)
 **Direct dependents:** EL-INSTRUMENT-MULTIMETER-001; EL-INSTRUMENT-SELECT-001; EL-INSTRUMENT-CONTINUITY-TEST-001
 **Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Electrical quantities (measurement): Resistance (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
+**Provenance:** University Physics Volume 2 — A voltmeter is placed in parallel and must have very high (ideally infinite) resistance so it does not alter the circuit; an ammeter is placed in series and must have very low (ideally zero) resistance for the same reason; an ohmmeter must never be connected to a live (energised) circuit [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-WATTMETER-001
 
-**Statement (v1, APPROVED):** A wattmeter measures electrical power, sensing both the current through a load and the voltage across it.
+**Statement (v1, APPROVED):** A wattmeter measures electrical power by simultaneously sensing the current through a load (as an ammeter does) and the voltage across it (as a voltmeter does), and computing their product.
 
 **Direct prerequisites:** EL-CONCEPT-POWER-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
@@ -710,7 +865,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-INSTRUMENT-ENERGY-METER-001
 
-**Statement (v1, APPROVED):** An energy meter (kWh meter) measures the cumulative electrical energy consumed by a supply over time.
+**Statement (v1, APPROVED):** An energy meter (kWh meter) measures the cumulative electrical energy consumed by a supply over time, by integrating measured power over time.
 
 **Direct prerequisites:** EL-CONCEPT-ENERGY-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
@@ -777,13 +932,13 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Reactance is the opposition to current flow in an AC circuit caused by inductance or capacitance, and unlike resistance its value depends on the supply frequency.
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (STRONG); EL-CONCEPT-FREQUENCY-001 (STRONG)
-**Direct dependents:** EL-CONCEPT-IMPEDANCE-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001
+**Direct dependents:** EL-CONCEPT-IMPEDANCE-001; EL-CONCEPT-INDUCTIVE-REACTANCE-001; EL-CONCEPT-CAPACITIVE-REACTANCE-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001
 **Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-IMPEDANCE-001
 
-**Statement (v1, APPROVED):** Impedance is the total opposition a circuit presents to the flow of alternating current, combining resistance and reactance.
+**Statement (v1, APPROVED):** Impedance is the total opposition a circuit presents to the flow of alternating current, combining resistance and reactance; like resistance and reactance, it is measured in ohms.
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (REQUIRED); EL-CONCEPT-REACTANCE-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-POWER-FACTOR-001
@@ -792,7 +947,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-UNIT-HENRY-001
 
-**Statement (v1, APPROVED):** The henry (H) is the SI derived unit of inductance.
+**Statement (v1, APPROVED):** The henry (H) is the SI derived unit of inductance -- distinct from the ohm, the unit of inductive reactance.
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
@@ -801,16 +956,25 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-INDUCTANCE-001
 
-**Statement (v1, APPROVED):** Inductance is the property of a conductor or coil that opposes a change in current by storing energy in a magnetic field.
+**Statement (v1, APPROVED):** Inductance is the property of a conductor or coil that opposes a change in current by storing energy in a magnetic field, measured in henries.
 
 **Direct prerequisites:** (none — root assertion)
+**Direct dependents:** EL-CONCEPT-INDUCTIVE-REACTANCE-001
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Inductance and inductive reactance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
+
+### EL-CONCEPT-INDUCTIVE-REACTANCE-001
+
+**Statement (v1, APPROVED):** Inductive reactance is the opposition an inductor presents to alternating current; it increases as supply frequency increases, and is measured in ohms (not henries, the unit of inductance itself).
+
+**Direct prerequisites:** EL-CONCEPT-INDUCTANCE-001 (REQUIRED); EL-CONCEPT-REACTANCE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Inductance and inductive reactance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-UNIT-FARAD-001
 
-**Statement (v1, APPROVED):** The farad (F) is the SI derived unit of capacitance.
+**Statement (v1, APPROVED):** The farad (F) is the SI derived unit of capacitance -- distinct from the ohm, the unit of capacitive reactance.
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
@@ -819,18 +983,27 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-CAPACITANCE-001
 
-**Statement (v1, APPROVED):** Capacitance is the property of a component that describes its ability to store electrical charge in an electric field.
+**Statement (v1, APPROVED):** Capacitance is the property of a component that describes its ability to store electrical charge in an electric field, measured in farads.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** (none — leaf capability)
+**Direct dependents:** EL-CONCEPT-CAPACITIVE-REACTANCE-001; EL-COMPONENT-CAPACITOR-001
 **Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Capacitance and capacitive reactance (REQUIRED_FOR); Electronic components and devices: Capacitors (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
+
+### EL-CONCEPT-CAPACITIVE-REACTANCE-001
+
+**Statement (v1, APPROVED):** Capacitive reactance is the opposition a capacitor presents to alternating current; it decreases as supply frequency increases (the opposite frequency behaviour to inductive reactance), and is measured in ohms (not farads, the unit of capacitance itself).
+
+**Direct prerequisites:** EL-CONCEPT-CAPACITANCE-001 (REQUIRED); EL-CONCEPT-REACTANCE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Capacitance and capacitive reactance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-POWER-FACTOR-001
 
-**Statement (v1, APPROVED):** Power factor is a dimensionless ratio describing the phase relationship between voltage and current in an AC circuit.
+**Statement (v1, APPROVED):** Power factor is the ratio of real (true) power to apparent power in an AC circuit; for a sinusoidal single-frequency supply, this ratio equals the cosine of the phase angle between voltage and current.
 
-**Direct prerequisites:** EL-CONCEPT-IMPEDANCE-001 (STRONG)
+**Direct prerequisites:** EL-CONCEPT-IMPEDANCE-001 (STRONG); EL-CONCEPT-POWER-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Power factor (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES]
@@ -857,7 +1030,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Statement (v1, APPROVED):** Electric current in a conductor is the flow of free electrons, driven by a potential difference across the conductor.
 
-**Direct prerequisites:** EL-CONCEPT-CURRENT-001 (STRONG)
+**Direct prerequisites:** EL-CONCEPT-CURRENT-001 (STRONG); EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001 (STRONG)
 **Direct dependents:** EL-CONCEPT-CONDUCTOR-001; EL-CONCEPT-INSULATOR-001
 **Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR); Describe the basic principles of electron theory (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.1: describe the basic principles of electron theory [CURRICULUM_REQUIRES]
@@ -1171,7 +1344,16 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Electric charge is a fundamental property of matter that causes it to experience a force in an electric field, and can be positive or negative.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** EL-CURRENT-CHARGE-RELATIONSHIP-001
+**Direct dependents:** EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001; EL-CURRENT-CHARGE-RELATIONSHIP-001
+**Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR); Describe the basic principles of electron theory (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.1: describe the basic principles of electron theory [CURRICULUM_REQUIRES]
+
+### EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001
+
+**Statement (v1, APPROVED):** An atom consists of a nucleus containing positively charged protons, surrounded by negatively charged electrons; in a conductor, some of these electrons are only loosely bound to their atoms and are free to move.
+
+**Direct prerequisites:** EL-CONCEPT-CHARGE-001 (REQUIRED)
+**Direct dependents:** EL-CONCEPT-ELECTRON-THEORY-001
 **Curriculum mapping(s):** Describe the basic principles of electron theory (REQUIRED_FOR); Describe the basic principles of electron theory (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.9: electric current as the flow of free charge carriers; conductors, insulators; thermal/chemical effects of current [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.1: describe the basic principles of electron theory [CURRICULUM_REQUIRES]
 
@@ -1490,7 +1672,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** EL-INSTRUMENT-VOLTMETER-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS); Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
+**Provenance:** University Physics Volume 2 — A voltmeter is placed in parallel and must have very high (ideally infinite) resistance so it does not alter the circuit; an ammeter is placed in series and must have very low (ideally zero) resistance for the same reason; an ohmmeter must never be connected to a live (energised) circuit [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001
 
@@ -1499,7 +1681,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** EL-INSTRUMENT-AMMETER-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS); Identify appropriate electrical instruments for the measurement of different electrical quantities (SUPPORTS)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
+**Provenance:** University Physics Volume 2 — A voltmeter is placed in parallel and must have very high (ideally infinite) resistance so it does not alter the circuit; an ammeter is placed in series and must have very low (ideally zero) resistance for the same reason; an ohmmeter must never be connected to a live (energised) circuit [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES]
 
 ### EL-INSTRUMENT-CONTINUITY-TEST-001
 
@@ -1650,7 +1832,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Magnetic flux is a measure of the total amount of magnetic field passing through a given area.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001; EL-CONCEPT-EMF-001; EL-CONCEPT-AC-GENERATOR-001
+**Direct dependents:** EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001; EL-CONCEPT-EMF-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
 **Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR); State the difference between magnetic flux and flux density (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.2: state the difference between magnetic flux and flux density [CURRICULUM_REQUIRES]
 
@@ -1695,7 +1877,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Electromotive force (EMF) is the electrical energy per unit charge supplied by a source, which drives current around a circuit.
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (STRONG)
-**Direct dependents:** EL-CONCEPT-TERMINAL-VOLTAGE-001; EL-CONCEPT-AC-GENERATOR-001
+**Direct dependents:** EL-CONCEPT-TERMINAL-VOLTAGE-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
 **Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-EMF-VOLTAGE-CONFUSION-001
@@ -1710,11 +1892,20 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES]
 **Misconceptions targeting this assertion:** MIS-EL-EMF-VOLTAGE-CONFUSION-001
 
+### EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001
+
+**Statement (v1, APPROVED):** A changing magnetic flux through a circuit or coil induces an electromotive force (EMF) in that circuit -- the principle of electromagnetic induction.
+
+**Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (REQUIRED); EL-CONCEPT-EMF-001 (REQUIRED)
+**Direct dependents:** EL-CONCEPT-AC-GENERATOR-001
+**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES]
+
 ### EL-CONCEPT-AC-GENERATOR-001
 
-**Statement (v1, APPROVED):** A simple AC generator produces an alternating EMF by rotating a single loop of wire at constant speed within a magnetic field.
+**Statement (v1, APPROVED):** A simple AC generator produces an alternating EMF by rotating a single loop of wire at constant speed within a magnetic field, continuously changing the flux linking the loop.
 
-**Direct prerequisites:** EL-CONCEPT-EMF-001 (REQUIRED); EL-CONCEPT-MAGNETIC-FLUX-001 (REQUIRED)
+**Direct prerequisites:** EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001 (REQUIRED); EL-CONCEPT-EMF-001 (REQUIRED); EL-CONCEPT-MAGNETIC-FLUX-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-SINE-WAVE-001; EL-MOTOR-GENERATOR-COMPARE-001
 **Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES]
@@ -1819,7 +2010,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
+**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001
 
@@ -1847,7 +2038,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Identify the characteristics of sine-waves (REQUIRED_FOR); Identify the characteristics of sine-waves (REQUIRED_FOR)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.5: calculate the values of current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
+**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.5: identify the characteristics of sine-waves (RMS value, average value, peak-to-peak value, periodic time, frequency, amplitude) [CURRICULUM_REQUIRES]
 
 ### EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001
 
@@ -1920,6 +2111,24 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS); Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.4: Ohm's law, V = IR, and voltage/potential difference [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.4: explain the relationship between current, voltage and resistance in parallel and series D.C. circuits [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-RESISTOR-001
+
+**Statement (v1, APPROVED):** A resistor is a component manufactured to provide a specific, stable value of resistance, used in circuits to limit current or to divide voltage.
+
+**Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Resistors (REQUIRED_FOR)
+**Provenance:** Electric Circuits I - Direct Current (Kuphaldt) — A resistor is a component manufactured to provide a specific, stable value of resistance, used in circuits to limit current or to divide voltage [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+
+### EL-COMPONENT-CAPACITOR-001
+
+**Statement (v1, APPROVED):** A capacitor is a component that stores electrical energy by separating charge in an electric field between two conductive plates; it opposes a sudden change in the voltage across it, charging and discharging over time rather than passing an instantaneous voltage step.
+
+**Direct prerequisites:** EL-CONCEPT-CAPACITANCE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Capacitors (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
 
 ### EL-COMPONENT-RECTIFIER-001
 
@@ -2014,12 +2223,12 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-COMPONENT-INVERTER-001
 
-**Statement (v1, APPROVED):** An inverter converts a direct-current supply into an alternating-current output, by switching the DC input in a pre-determined sequence to generate the AC voltage or current waveform.
+**Statement (v1, APPROVED):** An inverter converts a direct-current supply into an alternating-current output, by using electronic switching circuits to switch the DC input in a controlled sequence and generate the AC voltage or current waveform.
 
 **Direct prerequisites:** EL-CONCEPT-AC-DC-DISTINCTION-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: Invertors (REQUIRED_FOR)
-**Provenance:** ELG4139: DC to AC Converters (course material) — An inverter converts DC to AC power by switching the DC input voltage (or current) in a pre-determined sequence so as to generate an AC voltage (or current) output [DEFINES] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
+**Provenance:** 800 VA Pure Sine Wave Inverter Reference Design (SLAA602A) — A DC-to-AC power inverter converts a DC source into an AC output using electronic switching circuits (e.g. an H-bridge/full-bridge of transistors or MOSFETs) that repeatedly reverse the polarity of the DC input at a controlled frequency to produce an AC waveform [DEFINES] | ELG4139: DC to AC Converters (course material) — An inverter converts DC to AC power by switching the DC input voltage (or current) in a pre-determined sequence so as to generate an AC voltage (or current) output [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES]
 
 ### EL-APPLICATION-DIMMER-SWITCH-001
 
@@ -2041,7 +2250,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-APPLICATION-HEATING-BOILER-CONTROL-001
 
-**Statement (v1, APPROVED):** Thermistors are used in heating and boiler control systems to sense temperature and provide a feedback signal the control circuit uses to regulate heating.
+**Statement (v1, APPROVED):** Thermistors' resistance-temperature response makes them suitable for temperature sensing in industrial and domestic control systems -- including heating and boiler controls -- providing a feedback signal the control circuit uses to regulate heating.
 
 **Direct prerequisites:** EL-COMPONENT-THERMISTOR-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
@@ -2050,30 +2259,30 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-APPLICATION-SECURITY-ALARM-001
 
-**Statement (v1, APPROVED):** Security alarm systems commonly use LEDs to provide visual status indication and photodiodes to detect a light beam being broken by an intruder.
+**Statement (v1, APPROVED):** An LED's low-power visual indication and a photodiode's photocurrent response to incident light make them suitable, respectively, for status-indicator and light-beam-interruption-detection roles in applications such as a security alarm system.
 
 **Direct prerequisites:** EL-COMPONENT-LED-001 (REQUIRED); EL-COMPONENT-PHOTODIODE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Security alarms (REQUIRED_FOR)
-**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A light-emitting diode (LED) produces light by electroluminescence when forward-biased (recombination of electrons and holes in the junction yields photons); a photodiode is optimised to generate a photocurrent in response to incident light [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
+**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
 
 ### EL-APPLICATION-TELEPHONE-001
 
-**Statement (v1, APPROVED):** Telephone and communication equipment commonly uses diodes to protect circuits against incorrect supply polarity, and LEDs to provide visual line/status indication.
+**Statement (v1, APPROVED):** A diode's one-way conduction makes it suitable for protecting equipment against incorrect supply polarity, and an LED's low-power visual indication makes it suitable for line/status indication -- roles applicable to telephone and communication equipment.
 
 **Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED); EL-COMPONENT-LED-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Telephones (REQUIRED_FOR)
-**Provenance:** University Physics Volume 3 — A p-n junction diode's depletion layer narrows under forward bias (allowing current to flow easily) and widens under reverse bias (significantly reducing current flow), giving the diode its one-way-conduction behaviour [SUPPORTS] | Electric Circuits III - Semiconductors (Kuphaldt) — A light-emitting diode (LED) produces light by electroluminescence when forward-biased (recombination of electrons and holes in the junction yields photons); a photodiode is optimised to generate a photocurrent in response to incident light [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
+**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
 
 ### EL-APPLICATION-WIRELESS-CONTROL-001
 
-**Statement (v1, APPROVED):** Wireless control systems (for example remote-controlled switches) commonly use transistors to switch or amplify the signal received from a remote transmitter.
+**Statement (v1, APPROVED):** A transistor's ability to switch or amplify a small input signal makes it suitable for processing the low-power signal received from a remote transmitter, a role applicable to wireless control systems such as remote-controlled switches.
 
 **Direct prerequisites:** EL-COMPONENT-TRANSISTOR-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Wireless control systems (REQUIRED_FOR)
-**Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — With no base current, a bipolar junction transistor behaves like an open switch and blocks collector current; sufficient base current drives it into saturation, behaving like a closed switch [SUPPORTS] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
+**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES]
 
 ## Misconceptions
 

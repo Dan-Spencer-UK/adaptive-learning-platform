@@ -48,16 +48,29 @@
  * determine values of... SI units" framing rather than LO4's deeper
  * "calculate" framing, which Unit 202 restricts to D.C. circuits.
  *
- * Foundational Maths (FM) and Foundational Physics (FP) assertions are
- * NEVER curriculum-mapped directly (WP1.2's domain-ownership rule: they
- * are reusable horizontal knowledge, not qualification syllabus
- * statements). Their curriculum relevance is demonstrated only through
- * PREREQUISITE_OF edges into curriculum-mapped Electrical assertions. Per
- * explicit Product Owner direction (CC-04B), a Foundational assertion
- * that does not currently reach an Electrical assertion in this slice is
- * not treated as a defect -- it remains retained, reusable horizontal
- * knowledge for future Unit 202 expansion, other electrical
- * qualifications, or other vocational verticals.
+ * Foundational Maths (FM) and Foundational Physics (FP) assertions remain
+ * reusable, domain-owned horizontal knowledge -- never duplicated into a
+ * vocational-domain assertion merely to satisfy one qualification's
+ * syllabus wording. CC-04A/B's original rule here read "never curriculum-
+ * mapped directly"; that was correct for the case it was written for
+ * (Ohm's Law's instrumental use of algebraic rearrangement, which
+ * remains PREREQUISITE_OF-only, never curriculum-mapped) but was
+ * over-broad as a blanket statement. CC-09B refined it once the corpus
+ * reached AC/Range items (LO1's mathematical principles, LO3's mass/
+ * weight and levers/gears/pulleys) that ask directly for generic FM/FP
+ * knowledge AS ITSELF, not merely as another assertion's instrumental
+ * prerequisite -- those cases now curriculum-map the FM/FP assertion
+ * directly, and are documented at the point they occur (search
+ * `acNode(` / `rangeNode(` within the FM/FP sections below). The
+ * ordinary case remains unchanged: an FM/FP assertion used only
+ * instrumentally by a vocational assertion (e.g. Ohm's Law's rearrangement
+ * technique) is demonstrated through a PREREQUISITE_OF edge only, never a
+ * direct curriculum mapping. Per explicit Product Owner direction
+ * (CC-04B), a Foundational assertion that does not currently reach an
+ * Electrical assertion or a direct curriculum mapping is not treated as a
+ * defect -- it remains retained, reusable horizontal knowledge for future
+ * Unit 202 expansion, other electrical qualifications, or other
+ * vocational verticals.
  *
  * PROVENANCE GROUNDING
  *
@@ -130,6 +143,13 @@ const SRC_OPENSTAX_UP3 = "src-openstax-university-physics-v3";
 const SRC_KUPHALDT_SEMICONDUCTORS = "src-kuphaldt-electric-circuits-iii-semiconductors";
 const SRC_VISHAY_NTC = "src-vishay-ntc-thermistor-appnote";
 const SRC_UOTTAWA_INVERTERS = "src-uottawa-elg4139-dc-ac-converters";
+// CC-09B.1: audit-correction sources. TI is the new primary inverter
+// source (task section 18, stronger first-party technical material);
+// UOttawa is retained and re-cited as SUPPORTS rather than removed, per
+// the explicit "do not silently erase audit history" instruction.
+const SRC_TI_INVERTERS = "src-ti-slaa602a-pure-sine-inverter";
+const SRC_OPENSTAX_COLLEGE_PHYSICS = "src-openstax-college-physics-2e";
+const SRC_KUPHALDT_DC_CIRCUITS = "src-kuphaldt-electric-circuits-i-direct-current";
 
 /** Exported so ./unit202-assessment-specification.ts cites the same governed source-version identity rather than hand-copying the string. */
 export const SV_CG = "sv-cg-2365-02-v1-12";
@@ -141,6 +161,9 @@ const SV_OPENSTAX_UP3 = "sv-openstax-up3";
 const SV_KUPHALDT_SEMICONDUCTORS = "sv-kuphaldt-electric-circuits-iii-semiconductors";
 const SV_VISHAY_NTC = "sv-vishay-ntc-thermistor-appnote";
 const SV_UOTTAWA_INVERTERS = "sv-uottawa-elg4139-dc-ac-converters";
+const SV_TI_INVERTERS = "sv-ti-slaa602a-pure-sine-inverter";
+const SV_OPENSTAX_COLLEGE_PHYSICS = "sv-openstax-college-physics-2e";
+const SV_KUPHALDT_DC_CIRCUITS = "sv-kuphaldt-electric-circuits-i-direct-current";
 
 // ---------------------------------------------------------------------
 // Curriculum
@@ -1005,6 +1028,38 @@ const locators: LocatorDef[] = [
     section: "ELG4139: DC to AC Converters", subsection: "Introduction",
     locatorSummary: "An inverter converts DC to AC power by switching the DC input voltage (or current) in a pre-determined sequence so as to generate an AC voltage (or current) output",
   },
+
+  // -- CC-09B.1 audit-correction locators --
+  {
+    key: "loc-ti-inverter-principle",
+    sourceVersionKey: SV_TI_INVERTERS,
+    section: "SLAA602A", subsection: "Introduction / overview",
+    locatorSummary: "A DC-to-AC power inverter converts a DC source into an AC output using electronic switching circuits (e.g. an H-bridge/full-bridge of transistors or MOSFETs) that repeatedly reverse the polarity of the DC input at a controlled frequency to produce an AC waveform",
+  },
+  {
+    key: "loc-openstax-up1-gravitational-potential-energy",
+    sourceVersionKey: SV_OPENSTAX_UP1,
+    section: "Chapter 8", subsection: "8.1 Potential Energy of a System",
+    locatorSummary: "Gravitational potential energy near Earth's surface is calculated as GPE = mgh, where m is mass, g is gravitational field strength and h is height above a reference level",
+  },
+  {
+    key: "loc-openstax-up2-electrical-measuring-instruments",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 10", subsection: "10.4 Electrical Measuring Instruments",
+    locatorSummary: "A voltmeter is placed in parallel and must have very high (ideally infinite) resistance so it does not alter the circuit; an ammeter is placed in series and must have very low (ideally zero) resistance for the same reason; an ohmmeter must never be connected to a live (energised) circuit",
+  },
+  {
+    key: "loc-openstax-college-physics-simple-machines",
+    sourceVersionKey: SV_OPENSTAX_COLLEGE_PHYSICS,
+    section: "Chapter 9", subsection: "9.5 Simple Machines",
+    locatorSummary: "For gears/wheels driven by a common axle, mechanical advantage is the ratio of the radii (or, equivalently, tooth counts) of the driving and driven gears; a single fixed pulley has a mechanical advantage of 1 (direction change only), while a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load",
+  },
+  {
+    key: "loc-kuphaldt-dc-resistors",
+    sourceVersionKey: SV_KUPHALDT_DC_CIRCUITS,
+    section: "Chapter 2, Ohm's Law", subsection: "2.5 Resistors",
+    locatorSummary: "A resistor is a component manufactured to provide a specific, stable value of resistance, used in circuits to limit current or to divide voltage",
+  },
 ];
 
 // ---------------------------------------------------------------------
@@ -1188,6 +1243,24 @@ const A: AssertionDef[] = [
     prereqs: [{ id: "FM-GEOM-PYTHAGORAS-001", strength: "SUPPORTING" }],
     curriculum: [{ node: rangeNode("1.1", "TRIANGLES-TRIGONOMETRY"), type: "REQUIRED_FOR" }],
   },
+  // -- CC-09B.1: application knowledge was previously missing -- the
+  // corpus defined Pythagoras/trig ratios but never the procedure of
+  // using them to find an unknown value, which the DfE locator's own
+  // "apply them to find angles and lengths" clause explicitly requires.
+  {
+    id: "FM-CALC-PYTHAGORAS-001", domain: "FM",
+    statement: "Use Pythagoras' theorem to calculate an unknown side length of a right-angled triangle, given the lengths of the other two sides.",
+    provenance: [{ locator: "loc-dfe-geometry-pythagoras-trig", role: "SUPPORTS" }],
+    prereqs: [{ id: "FM-GEOM-PYTHAGORAS-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "STRONG" }],
+    curriculum: [{ node: rangeNode("1.1", "TRIANGLES-TRIGONOMETRY"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FM-CALC-TRIG-RATIO-001", domain: "FM",
+    statement: "Use a trigonometric ratio (sine, cosine or tangent) to calculate an unknown side length or angle of a right-angled triangle, given sufficient other side lengths or angles.",
+    provenance: [{ locator: "loc-dfe-geometry-pythagoras-trig", role: "SUPPORTS" }],
+    prereqs: [{ id: "FM-GEOM-TRIG-RATIOS-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "STRONG" }],
+    curriculum: [{ node: rangeNode("1.1", "TRIANGLES-TRIGONOMETRY"), type: "REQUIRED_FOR" }],
+  },
   {
     id: "FM-STATS-MEAN-001", domain: "FM",
     statement: "The mean of a set of numerical values is found by dividing their sum by the number of values, and is a measure of the central tendency of the data.",
@@ -1211,24 +1284,97 @@ const A: AssertionDef[] = [
     id: "FP-CONCEPT-FORCE-001", domain: "FP",
     statement: "A force is a push or a pull that can change the motion, shape or state of rest of an object.",
     provenance: [{ locator: "loc-openstax-up1-work", role: "DEFINES" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-CONCEPT-WORK-001", domain: "FP",
     statement: "Work is done when a force causes its point of application to move through a distance in the direction of the force.",
     provenance: [{ locator: "loc-openstax-up1-work", role: "DEFINES" }],
     prereqs: [{ id: "FP-CONCEPT-FORCE-001", strength: "STRONG" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
+  },
+  // CC-09B.1: the work-formula relationship (audit 13, AC3.3) was
+  // previously missing -- FP-CONCEPT-WORK-001 stated work definitionally
+  // but never gave W = F x d.
+  {
+    id: "FP-REL-WORK-FORCE-DISTANCE-001", domain: "FP",
+    statement: "Work done is calculated by multiplying the force applied by the distance moved in the direction of that force: W = F times d.",
+    provenance: [{ locator: "loc-openstax-up1-work", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-WORK-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
   },
   {
+    id: "FP-CALC-WORK-001", domain: "FP",
+    statement: "Calculate the work done by a force from its magnitude and the distance moved in its direction, using W = F times d.",
+    provenance: [{ locator: "loc-openstax-up1-work", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-REL-WORK-FORCE-DISTANCE-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.4"), type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09B.1: retained as the general, umbrella energy concept -- the
+    // audit's finding was that this alone ("energy includes kinetic and
+    // potential") is not sufficient; it is now supplemented (not
+    // replaced) by the two dedicated KE/GPE concept/relationship/
+    // calculation triples below.
     id: "FP-CONCEPT-ENERGY-001", domain: "FP",
     statement: "Energy is the capacity to do work, and exists in different forms including kinetic energy (due to motion) and potential energy (due to position or state).",
     provenance: [{ locator: "loc-openstax-up1-kinetic-energy", role: "DEFINES" }],
     prereqs: [{ id: "FP-CONCEPT-WORK-001", strength: "STRONG" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-CONCEPT-ENERGY-CONSERVATION-001", domain: "FP",
     statement: "Energy cannot be created or destroyed, only transferred or converted from one form to another.",
     provenance: [{ locator: "loc-openstax-up1-kinetic-energy", role: "SUPPORTS" }],
     prereqs: [{ id: "FP-CONCEPT-ENERGY-001", strength: "REQUIRED" }],
+  },
+  // -- CC-09B.1: dedicated kinetic-energy concept/relationship/calculation
+  // triple (audit section 13, the largest AC3.3/AC3.4 gap) -- previously
+  // only mentioned inside the single compound FP-CONCEPT-ENERGY-001
+  // statement, with no formula and no calculation assertion at all. --
+  {
+    id: "FP-CONCEPT-KINETIC-ENERGY-001", domain: "FP",
+    statement: "Kinetic energy is the energy an object possesses because of its motion.",
+    provenance: [{ locator: "loc-openstax-up1-kinetic-energy", role: "DEFINES" }],
+    prereqs: [{ id: "FP-CONCEPT-ENERGY-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-REL-KINETIC-ENERGY-001", domain: "FP",
+    statement: "Kinetic energy is calculated from an object's mass and speed using KE = one half times m times v squared.",
+    provenance: [{ locator: "loc-openstax-up1-kinetic-energy", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-KINETIC-ENERGY-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-CALC-KINETIC-ENERGY-001", domain: "FP",
+    statement: "Calculate the kinetic energy of an object from its mass and speed, using KE = one half times m times v squared.",
+    provenance: [{ locator: "loc-openstax-up1-kinetic-energy", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-REL-KINETIC-ENERGY-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.4"), type: "REQUIRED_FOR" }],
+  },
+  // -- CC-09B.1: dedicated gravitational-potential-energy concept/
+  // relationship/calculation triple -- same gap as kinetic energy above. --
+  {
+    id: "FP-CONCEPT-POTENTIAL-ENERGY-001", domain: "FP",
+    statement: "Gravitational potential energy is the energy an object possesses because of its position (height) within a gravitational field.",
+    provenance: [{ locator: "loc-openstax-up1-gravitational-potential-energy", role: "DEFINES" }],
+    prereqs: [{ id: "FP-CONCEPT-ENERGY-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-REL-POTENTIAL-ENERGY-001", domain: "FP",
+    statement: "Gravitational potential energy near the Earth's surface is calculated from an object's mass, gravitational field strength and height using GPE = m times g times h.",
+    provenance: [{ locator: "loc-openstax-up1-gravitational-potential-energy", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-POTENTIAL-ENERGY-001", strength: "REQUIRED" }, { id: "FP-REL-WEIGHT-MASS-001", strength: "STRONG" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-CALC-POTENTIAL-ENERGY-001", domain: "FP",
+    statement: "Calculate the gravitational potential energy of an object from its mass, gravitational field strength and height, using GPE = m times g times h.",
+    provenance: [{ locator: "loc-openstax-up1-gravitational-potential-energy", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-REL-POTENTIAL-ENERGY-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.4"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-CONCEPT-POWER-001", domain: "FP",
@@ -1238,12 +1384,14 @@ const A: AssertionDef[] = [
       { id: "FP-CONCEPT-WORK-001", strength: "REQUIRED" },
       { id: "FP-CONCEPT-ENERGY-001", strength: "REQUIRED" },
     ],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-REL-POWER-WORK-TIME-001", domain: "FP",
     statement: "Power is calculated by dividing the work done (or energy transferred) by the time taken: P = W / t.",
     provenance: [{ locator: "loc-openstax-up1-power", role: "SUPPORTS" }],
     prereqs: [{ id: "FP-CONCEPT-POWER-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-CALC-POWER-001", domain: "FP",
@@ -1253,6 +1401,7 @@ const A: AssertionDef[] = [
       { id: "FP-REL-POWER-WORK-TIME-001", strength: "REQUIRED" },
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
     ],
+    curriculum: [{ node: acNode("3.4"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-CONCEPT-EFFICIENCY-001", domain: "FP",
@@ -1262,6 +1411,7 @@ const A: AssertionDef[] = [
       { id: "FP-CONCEPT-ENERGY-CONSERVATION-001", strength: "REQUIRED" },
       { id: "FM-ARITH-PERCENTAGE-001", strength: "REQUIRED" },
     ],
+    curriculum: [{ node: acNode("3.3"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-CALC-EFFICIENCY-001", domain: "FP",
@@ -1271,6 +1421,7 @@ const A: AssertionDef[] = [
       { id: "FP-CONCEPT-EFFICIENCY-001", strength: "REQUIRED" },
       { id: "FM-ARITH-PERCENTAGE-001", strength: "REQUIRED" },
     ],
+    curriculum: [{ node: acNode("3.4"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-CONCEPT-MASS-001", domain: "FP",
@@ -1350,6 +1501,56 @@ const A: AssertionDef[] = [
     curriculum: [{ node: rangeNode("3.2", "CLASS-III"), type: "REQUIRED_FOR" }],
   },
 
+  // -- CC-09B.1: AC3.2's own statement names "levers, gears and pulleys",
+  // but CC-09B only modelled levers -- the audit's largest single named
+  // defect (section 13). Gears and pulleys have no dedicated Range
+  // sub-items (only the three lever classes do), so these are AC-level
+  // (not Range-item-level) additions, sourced from OpenStax College
+  // Physics 2e's dedicated "9.5 Simple Machines" section. --
+  {
+    id: "FP-CONCEPT-GEAR-001", domain: "FP",
+    statement: "A gear is a toothed wheel that meshes with another gear to transmit rotary motion and force from one shaft to another.",
+    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES" }],
+    prereqs: [{ id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-REL-GEAR-RATIO-001", domain: "FP",
+    statement: "For two meshed gears sharing a common tooth pitch, the mechanical advantage (and speed/torque relationship) between the driving and driven gear equals the ratio of their radii, which is equivalent to the ratio of their tooth counts.",
+    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-GEAR-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-GEAR-SPEED-TORQUE-TRADEOFF-001", domain: "FP",
+    statement: "A gear ratio can increase a mechanism's output torque or its output speed relative to the input, but not both at the same time.",
+    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-REL-GEAR-RATIO-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "SUPPORTS" }],
+  },
+  {
+    id: "FP-CONCEPT-PULLEY-001", domain: "FP",
+    statement: "A pulley is a wheel with a grooved rim that changes the direction of a force applied through a rope or cable running over it.",
+    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES" }],
+    prereqs: [{ id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-PULLEY-FIXED-VS-MOVABLE-001", domain: "FP",
+    statement: "A single fixed pulley has a mechanical advantage of one -- it changes the direction of the effort but does not reduce the force needed; a movable pulley, or a combination of pulleys, can provide a mechanical advantage greater than one.",
+    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-CONCEPT-PULLEY-001", strength: "REQUIRED" }],
+    contrastsWith: ["FP-CONCEPT-PULLEY-001"],
+    curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001", domain: "FP",
+    statement: "For a movable or combination pulley system, the mechanical advantage is approximately equal to the number of rope or cable sections that directly support the load.",
+    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "SUPPORTS" }],
+    prereqs: [{ id: "FP-PULLEY-FIXED-VS-MOVABLE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
+  },
+
   // -- CC-09B: LO2 AC2.1 Range ("(SI) Units of measurement for": Length,
   // Area, Volume, Mass, Density, Time, Temperature, Velocity) -- generic
   // physical quantities Unit 202 asks for directly, distinct from the
@@ -1398,7 +1599,10 @@ const A: AssertionDef[] = [
   },
   {
     id: "FP-UNIT-KELVIN-CELSIUS-001", domain: "FP",
-    statement: "The kelvin (K) is the SI base unit of thermodynamic temperature; the degree Celsius (deg C) is a special name for the kelvin used to express everyday Celsius temperature.",
+    // CC-09B.1: enriched to the BIPM's actual defining relationship
+    // (audit section 12.F) -- the 273.15 offset and equal interval
+    // magnitude were previously left implicit.
+    statement: "The kelvin (K) is the SI base unit of thermodynamic temperature T; the degree Celsius (deg C) is a special name for the kelvin used to express Celsius temperature t, related by t = T minus 273.15. A temperature interval or difference of one degree Celsius equals one kelvin.",
     provenance: [
       { locator: "loc-bipm-base-units-table", role: "DEFINES" },
       { locator: "loc-bipm-celsius", role: "DEFINES" },
@@ -1549,36 +1753,43 @@ const A: AssertionDef[] = [
   {
     id: "EL-INSTRUMENT-VOLTMETER-001", domain: "EL",
     statement: "A voltmeter measures potential difference and is connected in parallel across the component being measured.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    provenance: [{ locator: "loc-openstax-up2-electrical-measuring-instruments", role: "DEFINES" }, { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-VOLTAGE-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "VOLTAGE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-AMMETER-001", domain: "EL",
     statement: "An ammeter measures current and is connected in series within the circuit being measured.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    provenance: [{ locator: "loc-openstax-up2-electrical-measuring-instruments", role: "DEFINES" }, { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-CURRENT-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "CURRENT"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-OHMMETER-001", domain: "EL",
     statement: "An ohmmeter measures resistance, and must be used on a component that is isolated and de-energised.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    provenance: [{ locator: "loc-openstax-up2-electrical-measuring-instruments", role: "DEFINES" }, { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-RESISTANCE-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "RESISTANCE"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.1: a wattmeter is not itself in a physics-textbook locator we
+    // hold, but its behaviour follows directly from the two instruments
+    // (ammeter, voltmeter) and the power relationship already
+    // independently sourced above -- expressed as DERIVED_FROM per task
+    // section 10, not left syllabus-only.
     id: "EL-INSTRUMENT-WATTMETER-001", domain: "EL",
-    statement: "A wattmeter measures electrical power, sensing both the current through a load and the voltage across it.",
+    statement: "A wattmeter measures electrical power by simultaneously sensing the current through a load (as an ammeter does) and the voltage across it (as a voltmeter does), and computing their product.",
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
+    derivedFrom: ["EL-POWER-RELATIONSHIP-001", "EL-INSTRUMENT-AMMETER-001", "EL-INSTRUMENT-VOLTMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "POWER"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-ENERGY-METER-001", domain: "EL",
-    statement: "An energy meter (kWh meter) measures the cumulative electrical energy consumed by a supply over time.",
+    statement: "An energy meter (kWh meter) measures the cumulative electrical energy consumed by a supply over time, by integrating measured power over time.",
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-ENERGY-001", strength: "STRONG" }],
+    derivedFrom: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001", "EL-INSTRUMENT-WATTMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "ENERGY"), type: "REQUIRED_FOR" }],
   },
   {
@@ -1590,6 +1801,7 @@ const A: AssertionDef[] = [
       { id: "EL-INSTRUMENT-AMMETER-001", strength: "SUPPORTING" },
       { id: "EL-INSTRUMENT-OHMMETER-001", strength: "SUPPORTING" },
     ],
+    derivedFrom: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001", "EL-INSTRUMENT-OHMMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }],
   },
   {
@@ -1643,33 +1855,47 @@ const A: AssertionDef[] = [
   },
   {
     id: "EL-CONCEPT-IMPEDANCE-001", domain: "EL",
-    statement: "Impedance is the total opposition a circuit presents to the flow of alternating current, combining resistance and reactance.",
+    // CC-09B.1: explicitly states impedance's unit (audit section 12.C) --
+    // previously left implicit.
+    statement: "Impedance is the total opposition a circuit presents to the flow of alternating current, combining resistance and reactance; like resistance and reactance, it is measured in ohms.",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-RESISTANCE-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-REACTANCE-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "IMPEDANCE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-UNIT-HENRY-001", domain: "EL",
-    statement: "The henry (H) is the SI derived unit of inductance.",
+    statement: "The henry (H) is the SI derived unit of inductance -- distinct from the ohm, the unit of inductive reactance.",
     provenance: [{ locator: "loc-bipm-derived-units", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "INDUCTANCE-REACTANCE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-CONCEPT-INDUCTANCE-001", domain: "EL",
-    statement: "Inductance is the property of a conductor or coil that opposes a change in current by storing energy in a magnetic field.",
+    statement: "Inductance is the property of a conductor or coil that opposes a change in current by storing energy in a magnetic field, measured in henries.",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     supports: [{ id: "EL-UNIT-HENRY-001", strength: "SUPPORTING" }],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "INDUCTANCE-REACTANCE"), type: "REQUIRED_FOR" }],
   },
+  // -- CC-09B.1: the official Range distinguishes "inductance and
+  // inductive reactance" as one item -- inductance (henry) and inductive
+  // reactance (ohm) are different quantities with different units, and
+  // the generic EL-CONCEPT-REACTANCE-001 assertion never made the
+  // inductive-specific frequency relationship explicit (audit 12.D).
+  {
+    id: "EL-CONCEPT-INDUCTIVE-REACTANCE-001", domain: "EL",
+    statement: "Inductive reactance is the opposition an inductor presents to alternating current; it increases as supply frequency increases, and is measured in ohms (not henries, the unit of inductance itself).",
+    provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
+    prereqs: [{ id: "EL-CONCEPT-INDUCTANCE-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-REACTANCE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "INDUCTANCE-REACTANCE"), type: "REQUIRED_FOR" }],
+  },
   {
     id: "EL-UNIT-FARAD-001", domain: "EL",
-    statement: "The farad (F) is the SI derived unit of capacitance.",
+    statement: "The farad (F) is the SI derived unit of capacitance -- distinct from the ohm, the unit of capacitive reactance.",
     provenance: [{ locator: "loc-bipm-derived-units", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "CAPACITANCE-REACTANCE"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-CONCEPT-CAPACITANCE-001", domain: "EL",
-    statement: "Capacitance is the property of a component that describes its ability to store electrical charge in an electric field.",
+    statement: "Capacitance is the property of a component that describes its ability to store electrical charge in an electric field, measured in farads.",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     supports: [{ id: "EL-UNIT-FARAD-001", strength: "SUPPORTING" }],
     curriculum: [
@@ -1682,10 +1908,26 @@ const A: AssertionDef[] = [
     ],
   },
   {
-    id: "EL-CONCEPT-POWER-FACTOR-001", domain: "EL",
-    statement: "Power factor is a dimensionless ratio describing the phase relationship between voltage and current in an AC circuit.",
+    id: "EL-CONCEPT-CAPACITIVE-REACTANCE-001", domain: "EL",
+    statement: "Capacitive reactance is the opposition a capacitor presents to alternating current; it decreases as supply frequency increases (the opposite frequency behaviour to inductive reactance), and is measured in ohms (not farads, the unit of capacitance itself).",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
-    prereqs: [{ id: "EL-CONCEPT-IMPEDANCE-001", strength: "STRONG" }],
+    prereqs: [{ id: "EL-CONCEPT-CAPACITANCE-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-REACTANCE-001", strength: "REQUIRED" }],
+    contrastsWith: ["EL-CONCEPT-INDUCTIVE-REACTANCE-001"],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "CAPACITANCE-REACTANCE"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-CONCEPT-POWER-FACTOR-001", domain: "EL",
+    // CC-09B.1: corrected to the technically primary definition (real
+    // power / apparent power); the phase-angle/cosine relationship is
+    // the correct explanation only under sinusoidal single-frequency
+    // conditions, so it is now stated as a consequence, not the
+    // definition itself (audit section 12.B). Its Range mapping was
+    // independently re-checked and already correctly targets the
+    // "Power factor" Range item (not "Power") -- no mapping defect
+    // reproduced against the live corpus; no mapping change made.
+    statement: "Power factor is the ratio of real (true) power to apparent power in an AC circuit; for a sinusoidal single-frequency supply, this ratio equals the cosine of the phase angle between voltage and current.",
+    provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
+    prereqs: [{ id: "EL-CONCEPT-IMPEDANCE-001", strength: "STRONG" }, { id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "POWER-FACTOR"), type: "REQUIRED_FOR" }],
   },
 
@@ -1718,7 +1960,7 @@ const A: AssertionDef[] = [
       { locator: "loc-openstax-up2-current-general", role: "DEFINES" },
       { locator: "loc-cg-ac4.1", role: "CURRICULUM_REQUIRES" },
     ],
-    prereqs: [{ id: "EL-CONCEPT-CURRENT-001", strength: "STRONG" }],
+    prereqs: [{ id: "EL-CONCEPT-CURRENT-001", strength: "STRONG" }, { id: "EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC4_1, type: "REQUIRED_FOR" }],
   },
   {
@@ -1784,6 +2026,9 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_4, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.1: syllabus-only provenance corrected -- each is genuinely
+    // DERIVED_FROM EL-OHM-RELATIONSHIP-001 (real OpenStax provenance),
+    // per task section 10.
     id: "EL-OHM-REARRANGE-001", domain: "EL",
     statement: "Rearrange V = I times R algebraically to make voltage, current or resistance the subject.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
@@ -1791,6 +2036,7 @@ const A: AssertionDef[] = [
       { id: "EL-OHM-RELATIONSHIP-001", strength: "REQUIRED" },
       { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" },
     ],
+    derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -1805,6 +2051,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
       { id: "FM-NUM-SI-PREFIX-CONVERT-001", strength: "STRONG" },
     ],
+    derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -1819,6 +2066,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
       { id: "FM-NUM-SI-PREFIX-CONVERT-001", strength: "STRONG" },
     ],
+    derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -1833,6 +2081,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
       { id: "FM-NUM-SI-PREFIX-CONVERT-001", strength: "STRONG" },
     ],
+    derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -1882,6 +2131,7 @@ const A: AssertionDef[] = [
       { id: "EL-SERIES-RESISTANCE-001", strength: "REQUIRED" },
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
     ],
+    derivedFrom: ["EL-SERIES-RESISTANCE-001"],
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -1926,6 +2176,7 @@ const A: AssertionDef[] = [
       { id: "EL-SERIES-VOLTAGE-001", strength: "REQUIRED" },
       { id: "EL-OHM-SOLVE-V-001", strength: "REQUIRED" },
     ],
+    derivedFrom: ["EL-SERIES-VOLTAGE-001", "EL-OHM-RELATIONSHIP-001"],
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2022,6 +2273,7 @@ const A: AssertionDef[] = [
       { id: "EL-PARALLEL-CURRENT-001", strength: "REQUIRED" },
       { id: "EL-OHM-SOLVE-I-001", strength: "REQUIRED" },
     ],
+    derivedFrom: ["EL-PARALLEL-CURRENT-001", "EL-OHM-RELATIONSHIP-001"],
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2049,6 +2301,7 @@ const A: AssertionDef[] = [
       { id: "EL-POWER-RELATIONSHIP-001", strength: "REQUIRED" },
       { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" },
     ],
+    derivedFrom: ["EL-POWER-RELATIONSHIP-001"],
     curriculum: [
       { node: NODE_AC4_6, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2062,6 +2315,7 @@ const A: AssertionDef[] = [
       { id: "EL-POWER-RELATIONSHIP-001", strength: "REQUIRED" },
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
     ],
+    derivedFrom: ["EL-POWER-RELATIONSHIP-001"],
     curriculum: [
       { node: NODE_AC4_6, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2082,6 +2336,7 @@ const A: AssertionDef[] = [
       { id: "EL-POWER-DERIVED-VIR-001", strength: "REQUIRED" },
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
     ],
+    derivedFrom: ["EL-POWER-DERIVED-VIR-001"],
     curriculum: [
       { node: NODE_AC4_6, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2135,6 +2390,18 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-openstax-up2-current-general", role: "DEFINES" }, { locator: "loc-cg-ac4.1", role: "CURRICULUM_REQUIRES" }],
     curriculum: [{ node: NODE_AC4_1, type: "REQUIRED_FOR" }],
   },
+  // CC-09B.1: AC4.1's own "basic principles of electron theory" needs the
+  // minimal atomic charge context grounding EL-CONCEPT-ELECTRON-THEORY-001's
+  // "flow of free electrons" claim (audit section 14.A) -- an atom's
+  // structure was never stated, only asserted for. Kept minimal: no
+  // atomic-physics course, one proposition.
+  {
+    id: "EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001", domain: "EL",
+    statement: "An atom consists of a nucleus containing positively charged protons, surrounded by negatively charged electrons; in a conductor, some of these electrons are only loosely bound to their atoms and are free to move.",
+    provenance: [{ locator: "loc-openstax-up2-current-general", role: "DEFINES" }, { locator: "loc-cg-ac4.1", role: "CURRICULUM_REQUIRES" }],
+    prereqs: [{ id: "EL-CONCEPT-CHARGE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC4_1, type: "REQUIRED_FOR" }],
+  },
   {
     id: "EL-UNIT-COULOMB-001", domain: "EL",
     statement: "The coulomb (C) is the SI derived unit of electric charge.",
@@ -2154,6 +2421,7 @@ const A: AssertionDef[] = [
     statement: "Calculate charge or current from the relationship I = Q divided by t, given the other two quantities.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CURRENT-CHARGE-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-CURRENT-CHARGE-RELATIONSHIP-001"],
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2203,6 +2471,7 @@ const A: AssertionDef[] = [
     statement: "Select the correct arrangement of V = I times R to use, based on which two quantities are known and which quantity is required.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-OHM-RELATIONSHIP-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2372,19 +2641,20 @@ const A: AssertionDef[] = [
     statement: "Select the appropriate instrument (voltmeter, ammeter, ohmmeter or multimeter) to measure a given electrical quantity.",
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-INSTRUMENT-VOLTMETER-001", strength: "REQUIRED" }, { id: "EL-INSTRUMENT-AMMETER-001", strength: "REQUIRED" }, { id: "EL-INSTRUMENT-OHMMETER-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001", "EL-INSTRUMENT-OHMMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-VOLTMETER-INTERNAL-RESISTANCE-001", domain: "EL",
     statement: "An ideal voltmeter has very high internal resistance so that connecting it in parallel does not significantly alter the circuit being measured.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    provenance: [{ locator: "loc-openstax-up2-electrical-measuring-instruments", role: "DEFINES" }, { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-INSTRUMENT-VOLTMETER-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC2_3, type: "SUPPORTS" }],
   },
   {
     id: "EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001", domain: "EL",
     statement: "An ideal ammeter has very low internal resistance so that connecting it in series does not significantly alter the circuit being measured.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    provenance: [{ locator: "loc-openstax-up2-electrical-measuring-instruments", role: "DEFINES" }, { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-INSTRUMENT-AMMETER-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC2_3, type: "SUPPORTS" }],
   },
@@ -2393,6 +2663,7 @@ const A: AssertionDef[] = [
     statement: "A continuity test uses an ohmmeter or multimeter to confirm that a low-resistance path exists between two points in a de-energised circuit.",
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-INSTRUMENT-OHMMETER-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-INSTRUMENT-OHMMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "SUPPORTS" }],
   },
   {
@@ -2414,6 +2685,7 @@ const A: AssertionDef[] = [
     statement: "Calculate the supply current in a series circuit from the supply voltage and the total resistance of the circuit.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-OHM-SOLVE-I-001", strength: "REQUIRED" }, { id: "EL-SERIES-RESISTANCE-CALC-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-OHM-RELATIONSHIP-001", "EL-SERIES-RESISTANCE-001"],
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }],
   },
   {
@@ -2421,6 +2693,7 @@ const A: AssertionDef[] = [
     statement: "Calculate the supply current in a parallel circuit from the supply voltage and the total resistance of the circuit.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-OHM-SOLVE-I-001", strength: "REQUIRED" }, { id: "EL-PARALLEL-RESISTANCE-CALC-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-OHM-RELATIONSHIP-001", "EL-PARALLEL-RESISTANCE-001"],
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }],
   },
   {
@@ -2435,6 +2708,7 @@ const A: AssertionDef[] = [
     statement: "Calculate electrical power from known voltage and resistance using P = V squared divided by R.",
     provenance: [{ locator: "loc-cg-ac4.6", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-POWER-DERIVED-V2R-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-POWER-DERIVED-V2R-001"],
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2442,6 +2716,7 @@ const A: AssertionDef[] = [
     statement: "Calculate the power dissipated by an individual component in a series circuit from the common current and that component's resistance.",
     provenance: [{ locator: "loc-cg-ac4.6", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-POWER-SOLVE-IR-001", strength: "REQUIRED" }, { id: "EL-SERIES-CURRENT-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-POWER-DERIVED-VIR-001"],
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }],
   },
   {
@@ -2449,6 +2724,7 @@ const A: AssertionDef[] = [
     statement: "Calculate the power dissipated by an individual branch in a parallel circuit from the common branch voltage and that branch's resistance.",
     provenance: [{ locator: "loc-cg-ac4.6", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-POWER-SOLVE-V2R-001", strength: "REQUIRED" }, { id: "EL-PARALLEL-VOLTAGE-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-POWER-DERIVED-V2R-001"],
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }],
   },
   {
@@ -2477,6 +2753,7 @@ const A: AssertionDef[] = [
     statement: "Rearrange E = P times t algebraically to make power or time the subject.",
     provenance: [{ locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-ENERGY-POWER-TIME-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001"],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2484,6 +2761,7 @@ const A: AssertionDef[] = [
     statement: "Calculate the electrical energy transferred by a device from its power rating and its time of use, using E = P times t.",
     provenance: [{ locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-ENERGY-POWER-TIME-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001"],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2491,6 +2769,7 @@ const A: AssertionDef[] = [
     statement: "Calculate the electrical energy used by a device in kilowatt-hours from its power rating in kilowatts and its time of use in hours.",
     provenance: [{ locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-ENERGY-CALC-001", strength: "REQUIRED" }, { id: "EL-UNIT-KWH-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001", "EL-UNIT-KWH-001"],
     curriculum: [{ node: NODE_AC2_2, type: "SUPPORTS" }],
   },
 
@@ -2556,10 +2835,22 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_3, type: "SUPPORTS" }],
   },
   {
-    id: "EL-CONCEPT-AC-GENERATOR-001", domain: "EL",
-    statement: "A simple AC generator produces an alternating EMF by rotating a single loop of wire at constant speed within a magnetic field.",
+    // CC-09B.1: the explicit causal proposition "changing flux induces
+    // EMF" was previously only implicit inside the motor/generator
+    // comparison assertion, never stated as its own atomic fact (audit
+    // section 15.C) -- added here as the direct prerequisite the
+    // generator assertion below actually depends on.
+    id: "EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001", domain: "EL",
+    statement: "A changing magnetic flux through a circuit or coil induces an electromotive force (EMF) in that circuit -- the principle of electromagnetic induction.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" }],
-    prereqs: [{ id: "EL-CONCEPT-EMF-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-MAGNETIC-FLUX-001", strength: "REQUIRED" }],
+    prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FLUX-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-EMF-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC5_4, type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-CONCEPT-AC-GENERATOR-001", domain: "EL",
+    statement: "A simple AC generator produces an alternating EMF by rotating a single loop of wire at constant speed within a magnetic field, continuously changing the flux linking the loop.",
+    provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" }],
+    prereqs: [{ id: "EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-EMF-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-MAGNETIC-FLUX-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_4, type: "REQUIRED_FOR" }],
   },
   {
@@ -2634,10 +2925,17 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.1: two real defects corrected (audit section 15.A) -- the
+    // City & Guilds locator wrongly pointed at AC4.5 (D.C. circuit
+    // calculations) instead of AC5.5 (this assertion's own waveform
+    // Assessment Criterion), and the assertion had no factual provenance
+    // beyond that curriculum citation; it is now properly DERIVED_FROM
+    // the real-sourced RMS/peak relationship.
     id: "EL-WAVEFORM-RMS-CALC-001", domain: "EL",
     statement: "Calculate the RMS value of a sine wave from its peak value, or the peak value from its RMS value.",
-    provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
+    provenance: [{ locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001"],
     curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
   },
   {
@@ -2655,10 +2953,14 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "FREQUENCY"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.1: same two corrections as EL-WAVEFORM-RMS-CALC-001 above --
+    // wrong AC4.5 locator corrected to AC5.5, and DERIVED_FROM the
+    // real-sourced frequency/period relationship added.
     id: "EL-WAVEFORM-FREQUENCY-CALC-001", domain: "EL",
     statement: "Calculate frequency from periodic time, or periodic time from frequency, using their reciprocal relationship.",
-    provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
+    provenance: [{ locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001"],
     curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
   },
   {
@@ -2720,12 +3022,37 @@ const A: AssertionDef[] = [
 
   // ===================================================================
   // Electrical -- LO6 cluster: electronic components (CC-09B, previously
-  // entirely absent). Capacitors/Resistors reuse EL-CONCEPT-CAPACITANCE-001/
-  // EL-CONCEPT-RESISTANCE-001 above (mapped there, not duplicated here).
-  // Level 2 depth throughout: recognise the device, its basic operating
-  // principle, and typical application -- never semiconductor-device
-  // engineering depth (task brief section 18).
+  // entirely absent). Level 2 depth throughout: recognise the device,
+  // its basic operating principle, and typical application -- never
+  // semiconductor-device engineering depth (task brief section 18).
   // ===================================================================
+  // CC-09B.1 (audit section 16.A/B): the generic quantity definitions
+  // EL-CONCEPT-RESISTANCE-001/EL-CONCEPT-CAPACITANCE-001 alone do not
+  // satisfy the "Resistors"/"Capacitors" Range items -- the Range asks
+  // for the COMPONENT (a manufactured device with a purpose), not merely
+  // the abstract electrical quantity it is named after. These two new
+  // component-level assertions now also map to the Range items,
+  // alongside (not instead of) the existing quantity definitions.
+  {
+    id: "EL-COMPONENT-RESISTOR-001", domain: "EL",
+    statement: "A resistor is a component manufactured to provide a specific, stable value of resistance, used in circuits to limit current or to divide voltage.",
+    provenance: [
+      { locator: "loc-kuphaldt-dc-resistors", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-RESISTANCE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "RESISTORS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-CAPACITOR-001", domain: "EL",
+    statement: "A capacitor is a component that stores electrical energy by separating charge in an electric field between two conductive plates; it opposes a sudden change in the voltage across it, charging and discharging over time rather than passing an instantaneous voltage step.",
+    provenance: [
+      { locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-CAPACITANCE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "CAPACITORS"), type: "REQUIRED_FOR" }],
+  },
   {
     id: "EL-COMPONENT-RECTIFIER-001", domain: "EL",
     statement: "A rectifier circuit uses one or more diodes to convert an alternating-current supply into a direct-current (or pulsating direct-current) output.",
@@ -2826,9 +3153,14 @@ const A: AssertionDef[] = [
   },
   {
     id: "EL-COMPONENT-INVERTER-001", domain: "EL",
-    statement: "An inverter converts a direct-current supply into an alternating-current output, by switching the DC input in a pre-determined sequence to generate the AC voltage or current waveform.",
+    statement: "An inverter converts a direct-current supply into an alternating-current output, by using electronic switching circuits to switch the DC input in a controlled sequence and generate the AC voltage or current waveform.",
+    // CC-09B.1: Texas Instruments (a first-party manufacturer technical
+    // source, task section 18) is now the primary factual source;
+    // University of Ottawa is retained and re-cited as SUPPORTS rather
+    // than removed -- audit history is never silently erased.
     provenance: [
-      { locator: "loc-uottawa-inverter-principle", role: "DEFINES" },
+      { locator: "loc-ti-inverter-principle", role: "DEFINES" },
+      { locator: "loc-uottawa-inverter-principle", role: "SUPPORTS" },
       { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [{ id: "EL-CONCEPT-AC-DC-DISTINCTION-001", strength: "STRONG" }],
@@ -2862,44 +3194,52 @@ const A: AssertionDef[] = [
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "MOTOR-CONTROL"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.1: narrowed to what the Vishay source itself names
+    // ("industrial controls" as an application category) -- heating/
+    // boiler control kept as a defensible worked example within that
+    // sourced category (audit section 17.D), not asserted as a
+    // separately-verified industry fact.
     id: "EL-APPLICATION-HEATING-BOILER-CONTROL-001", domain: "EL",
-    statement: "Thermistors are used in heating and boiler control systems to sense temperature and provide a feedback signal the control circuit uses to regulate heating.",
+    statement: "Thermistors' resistance-temperature response makes them suitable for temperature sensing in industrial and domestic control systems -- including heating and boiler controls -- providing a feedback signal the control circuit uses to regulate heating.",
     provenance: [
       { locator: "loc-vishay-ntc-principle", role: "SUPPORTS" },
       { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [{ id: "EL-COMPONENT-THERMISTOR-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-COMPONENT-THERMISTOR-001"],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "HEATING-BOILER-CONTROLS"), type: "REQUIRED_FOR" }],
   },
+  // CC-09B.1 (audit section 17.A/B/C): no genuine application-specific
+  // technical source was found for these three within the task's
+  // permitted source classes (only blogs/product pages/forum posts
+  // surfaced, explicitly excluded by the provenance rule) -- narrowed
+  // per the task's own offered alternative, from an unsupported "systems
+  // commonly use X" industry-practice claim to a directly source-derived
+  // "X's own established properties suit it for Y" logical statement,
+  // each expressed as DERIVED_FROM the real component provenance already
+  // established above rather than an independent application citation.
   {
     id: "EL-APPLICATION-SECURITY-ALARM-001", domain: "EL",
-    statement: "Security alarm systems commonly use LEDs to provide visual status indication and photodiodes to detect a light beam being broken by an intruder.",
-    provenance: [
-      { locator: "loc-kuphaldt-special-purpose-diodes", role: "SUPPORTS" },
-      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
-    ],
+    statement: "An LED's low-power visual indication and a photodiode's photocurrent response to incident light make them suitable, respectively, for status-indicator and light-beam-interruption-detection roles in applications such as a security alarm system.",
+    provenance: [{ locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-PHOTODIODE-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-COMPONENT-LED-001", "EL-COMPONENT-PHOTODIODE-001"],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "SECURITY-ALARMS"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-APPLICATION-TELEPHONE-001", domain: "EL",
-    statement: "Telephone and communication equipment commonly uses diodes to protect circuits against incorrect supply polarity, and LEDs to provide visual line/status indication.",
-    provenance: [
-      { locator: "loc-openstax-up3-semiconductor-diode", role: "SUPPORTS" },
-      { locator: "loc-kuphaldt-special-purpose-diodes", role: "SUPPORTS" },
-      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
-    ],
+    statement: "A diode's one-way conduction makes it suitable for protecting equipment against incorrect supply polarity, and an LED's low-power visual indication makes it suitable for line/status indication -- roles applicable to telephone and communication equipment.",
+    provenance: [{ locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-COMPONENT-DIODE-001", "EL-COMPONENT-LED-001"],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "TELEPHONES"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-APPLICATION-WIRELESS-CONTROL-001", domain: "EL",
-    statement: "Wireless control systems (for example remote-controlled switches) commonly use transistors to switch or amplify the signal received from a remote transmitter.",
-    provenance: [
-      { locator: "loc-kuphaldt-bjt-switch", role: "SUPPORTS" },
-      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
-    ],
+    statement: "A transistor's ability to switch or amplify a small input signal makes it suitable for processing the low-power signal received from a remote transmitter, a role applicable to wireless control systems such as remote-controlled switches.",
+    provenance: [{ locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-COMPONENT-TRANSISTOR-001", strength: "REQUIRED" }],
+    derivedFrom: ["EL-COMPONENT-TRANSISTOR-001"],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "WIRELESS-CONTROL-SYSTEMS"), type: "REQUIRED_FOR" }],
   },
 ];
@@ -3211,6 +3551,50 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       canonicalReference: "ELG4139 DC to AC Converters",
       accessLocation: "https://www.site.uottawa.ca/~rhabash/ELG4139DCtoACConverters.pdf",
     },
+    // -- CC-09B.1 audit-correction sources --
+    {
+      // Stronger first-party manufacturer technical source for the
+      // inverter Range item, per task section 18. Supplements (does not
+      // replace/erase) the UOttawa course-material source above.
+      key: SRC_TI_INVERTERS,
+      title: "800 VA Pure Sine Wave Inverter Reference Design (SLAA602A)",
+      publisher: "Texas Instruments",
+      sourceFamily: "Manufacturer application report",
+      sourceType: "APPLICATION_NOTE",
+      jurisdiction: "International",
+      canonicalReference: "Texas Instruments literature number SLAA602A",
+      accessLocation: "https://www.ti.com/lit/an/slaa602a/slaa602a.pdf",
+    },
+    {
+      // OpenStax College Physics 2e -- same CC BY-NC-SA licence family as
+      // UP1/UP2/UP3, used specifically for its dedicated "9.5 Simple
+      // Machines" section (gears, pulleys, mechanical advantage), which
+      // University Physics Volume 1's torque/equilibrium chapter (used
+      // for levers) does not itself extend to.
+      key: SRC_OPENSTAX_COLLEGE_PHYSICS,
+      title: "College Physics 2e",
+      publisher: "OpenStax / Rice University",
+      sourceFamily: "Open textbook",
+      sourceType: "TEXTBOOK",
+      jurisdiction: "International",
+      canonicalReference: "OpenStax College Physics 2e",
+      accessLocation: "https://openstax.org/books/college-physics-2e",
+    },
+    {
+      // "Lessons in Electric Circuits" Volume I (Direct Current) --
+      // same Kuphaldt/LibreTexts open-textbook family already registered
+      // for Volume III (Semiconductors), used here specifically for its
+      // "2.5 Resistors" section (the resistor as a manufactured
+      // component, not merely the abstract quantity resistance).
+      key: SRC_KUPHALDT_DC_CIRCUITS,
+      title: "Electric Circuits I - Direct Current (Kuphaldt)",
+      publisher: "Tony R. Kuphaldt / LibreTexts (Workforce LibreTexts)",
+      sourceFamily: "Open textbook",
+      sourceType: "TEXTBOOK",
+      jurisdiction: "International",
+      canonicalReference: "Lessons in Electric Circuits, Volume I -- Direct Current",
+      accessLocation: "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_I_-_Direct_Current_(Kuphaldt)",
+    },
   ],
 
   sourceVersions: [
@@ -3328,9 +3712,40 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
     },
     {
       key: SV_UOTTAWA_INVERTERS, sourceKey: SRC_UOTTAWA_INVERTERS,
+      // CC-09B.1: retained unchanged (never deleted -- audit history is
+      // not erased). No longer the sole/primary inverter provenance; see
+      // SV_TI_INVERTERS below, now cited DEFINES with this source
+      // demoted to SUPPORTS on EL-COMPONENT-INVERTER-001.
       status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
       retrievedDate: "2026-08-21",
       contentFingerprintSha256: "29758def630c61322d6e89a7e4dfa29ddd7e5f669b6ad0284e44626830a5e020",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    // -- CC-09B.1 audit-correction source versions (all UNVERIFIED -- this
+    // Sonnet session is the authoring/extraction model, never its own
+    // verifier, per ADR-0002) --
+    {
+      key: SV_TI_INVERTERS, sourceKey: SRC_TI_INVERTERS,
+      revision: "SLAA602A",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "39ad916bf586311364470325576e20d60ee039bc1c543f4aea3bc75574faf044",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_OPENSTAX_COLLEGE_PHYSICS, sourceKey: SRC_OPENSTAX_COLLEGE_PHYSICS,
+      edition: "2nd edition",
+      status: "CURRENT", rightsClassification: "PUBLIC_RESTRICTED",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_KUPHALDT_DC_CIRCUITS, sourceKey: SRC_KUPHALDT_DC_CIRCUITS,
+      status: "CURRENT", rightsClassification: "OPEN",
+      retrievedDate: "2026-08-21",
       verificationStatus: "UNVERIFIED",
       lastCurrencyCheckDate: "2026-08-21",
     },

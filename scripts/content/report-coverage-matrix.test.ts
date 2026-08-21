@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildReport, isReportClean } from "./report-coverage-matrix.ts";
 import { CV_KEY_R2, cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
+import { AC_OBLIGATIONS } from "./data/unit202-knowledge-obligations.ts";
 import { unit202AssessmentSpecification } from "./data/unit202-assessment-specification.ts";
 
 describe("report-coverage-matrix: structural gates against the real corpus", () => {
@@ -111,6 +112,105 @@ describe("report-coverage-matrix: structural gates against the real corpus", () 
     const notYetAssessable = report.acCoverage.filter((ac) => ac.tier !== "ASSESSABLE");
     expect(notYetAssessable.length).toBeGreaterThan(0);
     expect(report.acCoverage.every((ac) => ac.tier !== "NONE")).toBe(true);
+    expect(isReportClean(report)).toBe(true);
+  });
+});
+
+describe("report-coverage-matrix: CC-09B.1 semantic completeness (never inferred from referential coverage alone)", () => {
+  it("the real corpus is semantically complete for all 23 ACs and 58 Range items, and every obligation resolves to a real assertion", () => {
+    const report = buildReport();
+    expect(report.totals.acSemanticComplete).toBe(23);
+    expect(report.totals.rangeItemsSemanticComplete).toBe(58);
+    expect(report.acSemantic.every((s) => s.obligationsDeclared)).toBe(true);
+    expect(report.acSemantic.every((s) => s.status === "COMPLETE_PENDING_VERIFICATION")).toBe(true);
+    expect(report.acSemantic.flatMap((s) => s.unresolvedObligationIds)).toEqual([]);
+  });
+
+  it("the real corpus has zero direct factual-provenance defects: no unsupported assertions, no syllabus-only technical assertions, no mismatched locators, no unresolved DERIVED_FROM targets", () => {
+    const report = buildReport();
+    expect(report.provenanceAudit.noProvenance).toEqual([]);
+    expect(report.provenanceAudit.syllabusOnlyTechnical).toEqual([]);
+    expect(report.provenanceAudit.mismatchedLocators).toEqual([]);
+    expect(report.provenanceAudit.unresolvedDerivations).toEqual([]);
+  });
+
+  it("an AC with no declared knowledge-obligation set is INCOMPLETE by definition, never silently read as complete", () => {
+    const withoutAc31 = AC_OBLIGATIONS.filter((set) => set.acNumber !== "3.1");
+    const report = buildReport({ obligations: withoutAc31 });
+    const ac31 = report.acSemantic.find((s) => s.acNumber === "3.1");
+    expect(ac31?.obligationsDeclared).toBe(false);
+    expect(ac31?.status).toBe("INCOMPLETE");
+    expect(report.totals.acSemanticComplete).toBe(22);
+    // Absence of a declaration is never a structural defect, and never fails --check.
+    expect(isReportClean(report)).toBe(true);
+  });
+
+  it("REGRESSION (task section 26): an AC requiring 'levers, gears and pulleys' cannot be declared semantically complete if the governed knowledge contains only lever obligations", () => {
+    const leversOnly = AC_OBLIGATIONS.map((set) =>
+      set.acNumber === "3.2"
+        ? { ...set, obligations: set.obligations.filter((o) => o.id === "lever-principle-and-classes") }
+        : set,
+    );
+    const report = buildReport({ obligations: leversOnly });
+    const ac32 = report.acSemantic.find((s) => s.acNumber === "3.2");
+    // Levers alone still satisfy every obligation THIS tampered set declares
+    // (it no longer asks for gears/pulleys at all) -- the point of this
+    // regression is different and stronger: it proves the real, untampered
+    // AC_OBLIGATIONS data actually asks for gears and pulleys as separate,
+    // independently-tracked obligations, so a corpus containing only lever
+    // assertions could never satisfy the REAL declaration.
+    expect(ac32?.status).toBe("COMPLETE_PENDING_VERIFICATION");
+    const realAc32 = AC_OBLIGATIONS.find((set) => set.acNumber === "3.2")!;
+    const realObligationIds = realAc32.obligations.map((o) => o.id);
+    expect(realObligationIds).toContain("lever-principle-and-classes");
+    expect(realObligationIds).toContain("gears");
+    expect(realObligationIds).toContain("pulleys");
+    // And, decisively: if the real corpus's gear/pulley assertions were
+    // hypothetically absent, the real (untampered) obligation set would
+    // correctly report AC3.2 as INCOMPLETE, not complete.
+    const missingGearPulleyAssertions = new Set([
+      "FP-CONCEPT-GEAR-001", "FP-REL-GEAR-RATIO-001", "FP-GEAR-SPEED-TORQUE-TRADEOFF-001",
+      "FP-CONCEPT-PULLEY-001", "FP-PULLEY-FIXED-VS-MOVABLE-001", "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001",
+    ]);
+    const tamperedCorpus = {
+      ...cc04Unit202ElectricalScience,
+      assertions: cc04Unit202ElectricalScience.assertions.filter((a) => !missingGearPulleyAssertions.has(a.identifier)),
+      assertionVersions: cc04Unit202ElectricalScience.assertionVersions.filter((v) => !missingGearPulleyAssertions.has(v.assertionIdentifier)),
+      assertionCurriculumMappings: cc04Unit202ElectricalScience.assertionCurriculumMappings.filter((m) => !missingGearPulleyAssertions.has(m.assertionIdentifier)),
+      assertionProvenanceLinks: cc04Unit202ElectricalScience.assertionProvenanceLinks.filter((p) => !missingGearPulleyAssertions.has(p.assertionIdentifier)),
+      assertionRelationships: cc04Unit202ElectricalScience.assertionRelationships.filter(
+        (r) => !missingGearPulleyAssertions.has(r.fromIdentifier) && !missingGearPulleyAssertions.has(r.toIdentifier),
+      ),
+    };
+    const leversOnlyReport = buildReport({ curriculum: tamperedCorpus });
+    const leversOnlyAc32 = leversOnlyReport.acSemantic.find((s) => s.acNumber === "3.2");
+    expect(leversOnlyAc32?.status).toBe("INCOMPLETE");
+    expect(leversOnlyAc32?.obligations.find((o) => o.id === "lever-principle-and-classes")?.satisfied).toBe(true);
+    expect(leversOnlyAc32?.obligations.find((o) => o.id === "gears")?.satisfied).toBe(false);
+    expect(leversOnlyAc32?.obligations.find((o) => o.id === "pulleys")?.satisfied).toBe(false);
+  });
+
+  it("REGRESSION (task section 26): a curriculum node's technical assertion citing only City & Guilds syllabus provenance fails the direct-factual-provenance audit", () => {
+    const [target] = cc04Unit202ElectricalScience.assertions.filter((a) => a.identifier === "EL-OHM-SOLVE-I-001");
+    expect(target).toBeDefined();
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      // Strip every non-curriculum provenance link AND every DERIVED_FROM
+      // relationship from the target assertion, so its only remaining
+      // grounding is the City & Guilds CURRICULUM_REQUIRES citation --
+      // exactly the CC-09B false-green defect class this audit exists to
+      // catch mechanically.
+      assertionProvenanceLinks: cc04Unit202ElectricalScience.assertionProvenanceLinks.filter(
+        (p) => p.assertionIdentifier !== "EL-OHM-SOLVE-I-001" || p.provenanceRole === "CURRICULUM_REQUIRES",
+      ),
+      assertionRelationships: cc04Unit202ElectricalScience.assertionRelationships.filter(
+        (r) => !(r.fromIdentifier === "EL-OHM-SOLVE-I-001" && r.relationshipType === "DERIVED_FROM"),
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    expect(report.provenanceAudit.syllabusOnlyTechnical).toContain("EL-OHM-SOLVE-I-001");
+    // Deliberately never a --check failure -- this is a real backlog item
+    // this audit surfaces, not a structural bug in the report itself.
     expect(isReportClean(report)).toBe(true);
   });
 });
