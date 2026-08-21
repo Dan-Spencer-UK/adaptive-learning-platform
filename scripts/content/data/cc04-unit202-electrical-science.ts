@@ -1200,10 +1200,19 @@ const A: AssertionDef[] = [
       { locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" },
       { locator: "loc-openstax-up2-series-parallel", role: "SUPPORTS" },
     ],
+    // CC-08: FM-ALG-TRANSPOSE-ADD-001 added as a REQUIRED prereq alongside
+    // the existing reciprocal-arithmetic prereqs -- solving for a missing
+    // branch (1/Rx = 1/Rt - sum of the other branches' reciprocals) is
+    // genuine additive-relationship rearrangement, not only reciprocal/
+    // invert arithmetic. Mirrors the same prereq already declared on
+    // EL-SERIES-VOLTAGE-001 / EL-SERIES-RESISTANCE-001's own rearrangement
+    // needs, giving series and parallel a shared, explicit foundational
+    // dependency for the CC-08 cross-lesson adaptive vertical.
     prereqs: [
       { id: "EL-PARALLEL-RESISTANCE-001", strength: "REQUIRED" },
       { id: "FM-ARITH-RECIPROCAL-SUM-001", strength: "REQUIRED" },
       { id: "FM-ARITH-RECIPROCAL-INVERT-001", strength: "REQUIRED" },
+      { id: "FM-ALG-TRANSPOSE-ADD-001", strength: "REQUIRED" },
     ],
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },

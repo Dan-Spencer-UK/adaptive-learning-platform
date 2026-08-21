@@ -30,7 +30,7 @@ import {
   type LearnerEvidenceSnapshot,
   type LessonAssemblyResult,
 } from "@alp/learning-engine";
-import { LESSON_OHMS_LAW, lessons as realLessons } from "./data/lesson-ohms-law.ts";
+import { LESSON_OHMS_LAW, lessons as realLessons } from "./data/lessons.ts";
 import {
   REAL_CONTENT_GAPS,
   SYNTHETIC_PREREQ_REMEDIATION,

@@ -19,6 +19,7 @@
  */
 
 import type { DiagramBlueprint, FormulaFamily, QuestionBlueprint, WorkedExampleBlueprint } from "@alp/content-schema";
+import { algebraicRearrangementExecutors } from "./families/algebraic-rearrangement.ts";
 import { chargeExecutors } from "./families/charge.ts";
 import { comparisonExecutors } from "./families/comparison.ts";
 import { emfExecutors } from "./families/emf.ts";
@@ -69,6 +70,7 @@ const EXECUTORS: Readonly<Record<string, QuestionExecutor>> = {
   ...faultExecutors,
   ...emfExecutors,
   ...waveformExecutors,
+  ...algebraicRearrangementExecutors,
 };
 
 export const SUPPORTED_BLUEPRINT_IDS: readonly string[] = Object.freeze(Object.keys(EXECUTORS).sort());

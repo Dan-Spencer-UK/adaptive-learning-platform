@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { buildReport, formatReport, isReportClean, type LessonPlanReport } from "./validate-lesson-plan.ts";
-import { lessons as realLessons } from "./data/lesson-ohms-law.ts";
+import { lessons as realLessons } from "./data/lessons.ts";
 import { contentReleases as realReleases } from "./data/content-releases.ts";
 
 function cleanReport(): LessonPlanReport {
@@ -99,10 +99,10 @@ describe("buildReport (against the real canonical Ohm's Law lesson and live CC-0
     expect(isReportClean(report)).toBe(true);
   });
 
-  it("finds exactly one canonical lesson with a genuinely rich, non-toy step count", () => {
-    expect(report.totalLessons).toBe(1);
-    expect(report.totalSteps).toBeGreaterThanOrEqual(10);
-    expect(report.totalSteps).toBeLessThanOrEqual(20);
+  it("finds the four canonical lessons (CC-08: foundation formula-rearrangement, series, parallel added alongside Ohm's Law) with a genuinely rich, non-toy step count", () => {
+    expect(report.totalLessons).toBe(4);
+    expect(report.totalSteps).toBeGreaterThanOrEqual(40);
+    expect(report.totalSteps).toBeLessThanOrEqual(80);
   });
 });
 

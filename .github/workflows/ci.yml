@@ -51,6 +51,9 @@ jobs:
       - name: Deterministic evidence/mastery derivation real-content gate (CC-07)
         run: npm run evidence:prove:check
 
+      - name: Deterministic course-orchestration real-content gate (CC-08)
+        run: npm run course:orchestration:prove:check
+
       - name: Pedagogical content coverage gate (CC-05A)
         run: npm run content:pedagogy:check
 

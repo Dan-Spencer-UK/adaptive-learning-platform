@@ -48,6 +48,7 @@ import { useLessonDebugOverlay } from "@/lib/lesson-content/dev-debug-overlay";
 import { acknowledgeStep, submitStepAnswer } from "@/lib/lesson-session/lesson-controller";
 import { currentStepId, isSessionComplete, startSession, type LessonSessionState } from "@/lib/lesson-session/lesson-session-controller";
 import { getActiveLessonInstanceId, loadLessonSession, saveLessonSession } from "@/lib/lesson-session/lesson-session-store";
+import { recordRecentCourseCompletion } from "@/lib/course/recent-completion-store";
 import { color, radius, spacing, typography } from "@/lib/tokens";
 
 type ScreenState =
@@ -286,6 +287,16 @@ export default function LessonPlayerScreen(): React.JSX.Element {
       submitting: false,
     });
   }, [state]);
+
+  useEffect(() => {
+    // CC-08: record "what was just completed" for the course orchestrator
+    // (@alp/diagnostic-engine's selectNextActivity) once, when this
+    // Lesson Player instance actually reaches its own completion state --
+    // never for exits, never for prior sessions restored on init.
+    if (state.kind === "complete" && learnerId) {
+      void recordRecentCourseCompletion(learnerId, { lessonId: state.session.lessonId, lessonInstanceId: state.session.instanceId });
+    }
+  }, [state, learnerId]);
 
   if (state.kind === "loading") {
     return (

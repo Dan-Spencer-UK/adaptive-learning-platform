@@ -55,7 +55,7 @@ import {
 } from "@alp/learning-engine";
 import type { LessonPlan } from "@alp/content-schema";
 
-import { LESSON_OHMS_LAW, lessons as realLessons } from "./data/lesson-ohms-law.ts";
+import { LESSON_OHMS_LAW, lessons as realLessons } from "./data/lessons.ts";
 
 export interface ScenarioResult {
   readonly scenarioId: string;
@@ -71,7 +71,12 @@ export interface LessonAssemblyProvingReport {
 }
 
 export const REAL_CONTENT_GAPS = [
-  "No governed lesson yet targets any of lesson.electrical.ohms-law's real prerequisite families (foundational.algebraic_technique, foundational.arithmetic_technique, foundational.proportion_and_units, electrical.si_units, electrical.core_quantities) -- prerequisite-remediation ROUTING (a WEAK prerequisite resolving to an actual remediation lesson, not just correctly reporting 'unresolved') is proven only against a synthetic remediation lesson below, not real content.",
+  // CC-08 closes this gap for foundational.algebraic_technique specifically
+  // (lesson.foundation.maths.formula-rearrangement is now a real,
+  // remediationEligibility-declared candidate -- see scenario E's real
+  // half). The remaining prerequisite families still have no governed
+  // remediation lesson.
+  "No governed lesson yet targets lesson.electrical.ohms-law's other real prerequisite families (foundational.arithmetic_technique, foundational.proportion_and_units, electrical.si_units, electrical.core_quantities) -- prerequisite-remediation routing for these remains proven only against a synthetic remediation lesson, not real content.",
   "The real Ohm's Law lesson has no conditional_skip_if_mastered step -- skip-on-mastery is proven only against a synthetic lesson below.",
   "The real Ohm's Law lesson's retrieval_check step is deliberately `required` (unconditional distributed practice), not conditional_skip_if_mastered -- due/not-due retrieval participation is proven only against a synthetic lesson below.",
 ];
@@ -227,21 +232,42 @@ export const SYNTHETIC_PREREQ_REMEDIATION: LessonPlan = {
 function scenarioE(): ScenarioResult {
   const weakEvidence = evidence({ familyStatus: new Map([["foundational.algebraic_technique", "WEAK"]]) });
 
+  // CC-08 closes the real-content gap this scenario used to document: the
+  // real corpus now contains lesson.foundation.maths.formula-rearrangement,
+  // a real, governed remediationEligibility-declared default candidate for
+  // foundational.algebraic_technique -- so a WEAK prerequisite now resolves
+  // to prerequisite_required against REAL content, not merely "unresolved".
   const realResult = assembleLessonInstance(LESSON_OHMS_LAW, weakEvidence, realContext());
   const realHalfPassed =
-    realResult.status === "prerequisite_unresolved" &&
-    realResult.unresolved.length === 1 &&
-    realResult.unresolved[0]!.assertionFamilyId === "foundational.algebraic_technique";
+    realResult.status === "prerequisite_required" &&
+    realResult.prerequisiteInstance.lessonId === "lesson.foundation.maths.formula-rearrangement" &&
+    realResult.mainLessonPending.id === LESSON_OHMS_LAW.id &&
+    realResult.unmetFamilyId === "foundational.algebraic_technique";
 
-  const syntheticResult = assembleLessonInstance(LESSON_OHMS_LAW, weakEvidence, realContext([LESSON_OHMS_LAW, SYNTHETIC_PREREQ_REMEDIATION]));
+  // A family with genuinely zero remediation candidates anywhere in the
+  // corpus still resolves to prerequisite_unresolved rather than silently
+  // proceeding or guessing -- proven with a synthetic family id no real or
+  // synthetic lesson declares itself eligible for.
+  const noRemediationEvidence = evidence({ familyStatus: new Map([["synthetic.family_with_no_remediation_lesson", "WEAK"]]) });
+  const syntheticLessonTargetingUnresolvableFamily: LessonPlan = {
+    ...LESSON_OHMS_LAW,
+    id: "lesson.synthetic.prove-lesson-assembly.targets-unresolvable-family",
+    prerequisiteKnowledge: ["synthetic.family_with_no_remediation_lesson"],
+    remediationEligibility: [],
+  };
+  const syntheticResult = assembleLessonInstance(
+    syntheticLessonTargetingUnresolvableFamily,
+    noRemediationEvidence,
+    realContext([...realLessons, syntheticLessonTargetingUnresolvableFamily]),
+  );
   const syntheticHalfPassed =
-    syntheticResult.status === "prerequisite_required" &&
-    syntheticResult.prerequisiteInstance.lessonId === SYNTHETIC_PREREQ_REMEDIATION.id &&
-    syntheticResult.mainLessonPending.id === LESSON_OHMS_LAW.id;
+    syntheticResult.status === "prerequisite_unresolved" &&
+    syntheticResult.unresolved.length === 1 &&
+    syntheticResult.unresolved[0]!.assertionFamilyId === "synthetic.family_with_no_remediation_lesson";
 
   return ok(
     "E",
-    "Prerequisite weakness: with the real corpus alone (no remediation candidate) resolves to prerequisite_unresolved rather than silently proceeding [REAL]; with a synthetic remediation lesson added, resolves to prerequisite_required and assembles that lesson's own sequence [SYNTHETIC]",
+    "Prerequisite weakness: a WEAK foundational.algebraic_technique prerequisite resolves to prerequisite_required against the REAL formula-rearrangement lesson [REAL]; a family with genuinely zero remediation candidates still resolves to prerequisite_unresolved rather than guessing [SYNTHETIC]",
     "real",
     realHalfPassed && syntheticHalfPassed,
     `real-half status='${realResult.status}' (passed=${realHalfPassed}), synthetic-half status='${syntheticResult.status}' (passed=${syntheticHalfPassed})`,

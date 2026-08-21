@@ -28,7 +28,7 @@ import {
 import { cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
 import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
 import { contentReleases, MOBILE_BUNDLED_RELEASE_ID } from "./data/content-releases.ts";
-import { lessons } from "./data/lesson-ohms-law.ts";
+import { lessons } from "./data/lessons.ts";
 import { buildMobileContentProjection, PROJECTION_OUTPUT_FILE, renderProjectionModule } from "./generate-mobile-projection.ts";
 
 const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -73,16 +73,28 @@ describe("generated mobile content projection", () => {
   it("carries the release identity and only release-member lessons", () => {
     const projection = buildMobileContentProjection(realInputs());
     expect(projection.contentRelease.id).toBe(MOBILE_BUNDLED_RELEASE_ID);
-    expect(projection.lessons.map((l) => l.id)).toEqual(["lesson.electrical.ohms-law"]);
+    // CC-08: release.unit202.v1's membership was additively extended with
+    // three new lessons (foundation formula-rearrangement, series, parallel)
+    // -- lesson.electrical.ohms-law's own entry is unchanged.
+    expect(projection.lessons.map((l) => l.id).sort()).toEqual(
+      [
+        "lesson.electrical.ohms-law",
+        "lesson.electrical.resistors-parallel",
+        "lesson.electrical.resistors-series",
+        "lesson.foundation.maths.formula-rearrangement",
+      ].sort(),
+    );
     for (const lesson of projection.lessons) {
       expect(lesson.contentRelease).toBe(MOBILE_BUNDLED_RELEASE_ID);
     }
   });
 
-  it("carries exactly the 8 governed question blueprints the release's lesson references, each WITH governed presentation", () => {
+  it("carries exactly the 23 governed question blueprints the release's lessons reference, each WITH governed presentation", () => {
     const projection = buildMobileContentProjection(realInputs());
     expect(projection.questionBlueprints.map((b) => b.id).sort()).toEqual(
       [
+        "foundational.rearrange_additive",
+        "foundational.rearrange_multiplicative",
         "ohms_law.diagnose_rearrangement_error",
         "ohms_law.diagnose_wrong_operation",
         "ohms_law.match_variables_units",
@@ -91,6 +103,19 @@ describe("generated mobile content projection", () => {
         "ohms_law.solve_for_current",
         "ohms_law.solve_for_resistance",
         "ohms_law.solve_for_voltage",
+        "parallel.calculate_branch_current",
+        "parallel.calculate_total",
+        "parallel.detect_impossible_total",
+        "parallel.diagnose_missing_final_inversion",
+        "parallel.diagnose_reciprocal_error",
+        "parallel.identify_topology",
+        "parallel.solve_missing_branch",
+        "series.calculate_supply_current",
+        "series.calculate_total_resistance",
+        "series.calculate_voltage_drop",
+        "series.detect_incorrect_total",
+        "series.interpret_diagram",
+        "series.solve_missing_component",
       ].sort(),
     );
     for (const blueprint of projection.questionBlueprints) {
@@ -134,18 +159,26 @@ describe("generated mobile content projection", () => {
       lessons: [...inputs.release.lessons, { lessonId: second.id, lessonVersion: second.version }],
     };
     const projection = buildMobileContentProjection({ ...inputs, release, allLessons: [...inputs.allLessons, second] });
-    expect(projection.lessons.map((l) => l.id).sort()).toEqual(["lesson.electrical.ohms-law", "lesson.synthetic.second"]);
+    expect(projection.lessons.map((l) => l.id).sort()).toEqual(
+      [
+        "lesson.electrical.ohms-law",
+        "lesson.electrical.resistors-parallel",
+        "lesson.electrical.resistors-series",
+        "lesson.foundation.maths.formula-rearrangement",
+        "lesson.synthetic.second",
+      ].sort(),
+    );
     // The whole projection still validates against its governed schema.
     expect(() => mobileContentProjectionSchema.parse(projection)).not.toThrow();
   });
 
   it("FAILS LOUDLY when a release member references governed content that does not exist", () => {
     const inputs = realInputs();
-    const [real] = inputs.allLessons;
+    const [real, ...rest] = inputs.allLessons;
     const broken = {
       ...real!,
       targetAssertionIdentifiers: [...real!.targetAssertionIdentifiers, "EL-DOES-NOT-EXIST-999"],
     };
-    expect(() => buildMobileContentProjection({ ...inputs, allLessons: [broken] })).toThrow(/EL-DOES-NOT-EXIST-999/);
+    expect(() => buildMobileContentProjection({ ...inputs, allLessons: [broken, ...rest] })).toThrow(/EL-DOES-NOT-EXIST-999/);
   });
 });

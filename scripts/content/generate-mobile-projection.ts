@@ -52,7 +52,7 @@ import { computeLessonContentDependencies } from "@alp/learning-engine";
 import { cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
 import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
 import { contentReleases, MOBILE_BUNDLED_RELEASE_ID } from "./data/content-releases.ts";
-import { lessons } from "./data/lesson-ohms-law.ts";
+import { lessons } from "./data/lessons.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..", "..");

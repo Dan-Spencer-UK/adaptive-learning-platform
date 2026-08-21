@@ -350,6 +350,7 @@ export const QB_SERIES_CALCULATE_TOTAL_RESISTANCE: QuestionBlueprint = {
     "EL-SERIES-RESISTANCE-CALC-001",
   ]),
   difficultyBand: "introductory",
+  presentation: { promptLines: ["The series circuit shown has {component_count} resistors."] },
 };
 
 export const QB_SERIES_SOLVE_MISSING_COMPONENT: QuestionBlueprint = {
@@ -370,6 +371,12 @@ export const QB_SERIES_SOLVE_MISSING_COMPONENT: QuestionBlueprint = {
   difficultyBand: "advanced",
   normalisationNote:
     "A single blueprint with the unknown component chosen by the generator, rather than a separate find_R1/find_R2/find_R3 blueprint per component -- the assessed skill is identical regardless of which component is unknown.",
+  presentation: {
+    promptLines: [
+      "This series circuit has {component_count} resistors with a total resistance of {Rt} Ω.",
+      "Find the resistance of {target} (rearrange RT = R1 + R2 + ... to isolate it).",
+    ],
+  },
 };
 
 export const QB_PARALLEL_CALCULATE_TOTAL: QuestionBlueprint = {
@@ -389,6 +396,7 @@ export const QB_PARALLEL_CALCULATE_TOTAL: QuestionBlueprint = {
     "EL-PARALLEL-RESISTANCE-CALC-001",
   ]),
   difficultyBand: "intermediate",
+  presentation: { promptLines: ["The parallel circuit shown has {branch_count} branches."] },
 };
 
 export const QB_PARALLEL_SOLVE_MISSING_BRANCH: QuestionBlueprint = {
@@ -405,10 +413,17 @@ export const QB_PARALLEL_SOLVE_MISSING_BRANCH: QuestionBlueprint = {
     "EL-PARALLEL-RESISTANCE-001",
     "FM-ARITH-RECIPROCAL-SUM-001",
     "FM-ARITH-RECIPROCAL-INVERT-001",
+    "FM-ALG-TRANSPOSE-ADD-001",
   ]),
   difficultyBand: "advanced",
   normalisationNote:
     "A single blueprint with the unknown branch chosen by the generator (design doc §18), rather than a separate find_R1_given_Rt_R2 / find_R2_given_Rt_R1 blueprint pair -- the assessed skill is identical regardless of which branch is unknown.",
+  presentation: {
+    promptLines: [
+      "This parallel circuit has {branch_count} branches with a total resistance of {Rt} Ω.",
+      "Find the resistance of {target}.",
+    ],
+  },
 };
 
 export const QB_MAGNETISM_INTERPRET_FIELD_DIRECTION: QuestionBlueprint = {

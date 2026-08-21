@@ -111,9 +111,15 @@ const assertionFamilies: AssertionFamily[] = [
       "Rearrange and evaluate simple formulae correctly -- the general algebraic technique every electrical formula-family rearrangement relies on.",
     teachFamilyTogether: true,
     completeness: { requiredCapabilityIds: ["cap.foundational.algebraic_technique.apply"] },
-    assessmentRequirement: "teaching_only",
-    teachingOnlyReason:
-      "Reusable horizontal Foundational Maths technique (GCSE Maths subject content), not a Unit 202 syllabus statement. Its assessment happens in context: every Electrical formula-family solve/rearrange question blueprint (Ohm's law, power, energy, charge, resistivity, waveforms) inherently exercises this technique. Authoring a standalone abstract-algebra question blueprint disconnected from an electrical quantity would be outside the Electrical proving-slice scope this backfill targets.",
+    // CC-08: promoted from teaching_only to assessable. Every Electrical
+    // formula-family solve/rearrange blueprint still exercises this
+    // technique in context (unchanged), but a genuine standalone
+    // foundational lesson (lesson.foundation.maths.formula-rearrangement)
+    // now exists and needs real, abstract (non-electrical) assessment
+    // items of its own -- see formula.algebraic_rearrangement_multiplicative
+    // / _additive below -- so the family can now legitimately be assessed
+    // directly, not only inferred from Electrical performance.
+    assessmentRequirement: "assessable",
   },
   {
     id: "foundational.arithmetic_technique",
@@ -1443,6 +1449,84 @@ const formulaFamilies: FormulaFamily[] = [
     requiredTargets: ["V", "I", "R"],
     mnemonicId: "mnemonic.vir_triangle",
   },
+  // CC-08: two small, deliberately abstract (non-electrical) formula
+  // families for foundational.algebraic_technique's own standalone
+  // lesson. They restate FM-ALG-TRANSPOSE-MULT-001 ("a = b times c,
+  // rearrange to make b or c the subject") and FM-ALG-TRANSPOSE-ADD-001
+  // ("a = b + c, rearrange to make b or c the subject") -- both already
+  // real governed assertions -- in the SAME structured-expression /
+  // worked-example / question-blueprint machinery every Electrical
+  // formula family uses, so the skill genuinely transfers rather than
+  // being taught through Ohm's-law content in disguise (task brief §5B).
+  // "Solve for a" is deliberately not a target: given a and one factor/
+  // term, finding the OTHER factor/term is the rearrangement skill;
+  // finding a itself is direct substitution, not rearrangement.
+  {
+    id: "formula.algebraic_rearrangement_multiplicative",
+    assertionFamilyId: "foundational.algebraic_technique",
+    canonicalTarget: "a",
+    variables: [
+      { symbol: "a", name: "a", quantity: "value", unitName: "unit", unitSymbol: "u" },
+      { symbol: "b", name: "b", quantity: "value", unitName: "unit", unitSymbol: "u" },
+      { symbol: "c", name: "c", quantity: "value", unitName: "unit", unitSymbol: "u" },
+    ],
+    forms: [
+      {
+        target: "a",
+        expression: { operation: "multiply", operands: ["b", "c"] },
+        instruction: "a is b multiplied by c.",
+        requiresWorkedExample: false,
+      },
+      {
+        target: "b",
+        expression: { operation: "divide", numerator: "a", denominator: "c" },
+        instruction: "To find b, divide a by c.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "c",
+        expression: { operation: "divide", numerator: "a", denominator: "b" },
+        instruction: "To find c, divide a by b.",
+        requiresWorkedExample: true,
+      },
+    ],
+    // Only "b" is a required target (needs a governed question blueprint);
+    // the "c" form is documented content but the b/c rearrangement skill
+    // is identical, so a single assessed target keeps authoring bounded
+    // (task brief: smallest credible proving vertical).
+    requiredTargets: ["b"],
+  },
+  {
+    id: "formula.algebraic_rearrangement_additive",
+    assertionFamilyId: "foundational.algebraic_technique",
+    canonicalTarget: "a",
+    variables: [
+      { symbol: "a", name: "a", quantity: "value", unitName: "unit", unitSymbol: "u" },
+      { symbol: "b", name: "b", quantity: "value", unitName: "unit", unitSymbol: "u" },
+      { symbol: "c", name: "c", quantity: "value", unitName: "unit", unitSymbol: "u" },
+    ],
+    forms: [
+      {
+        target: "a",
+        expression: { operation: "add", operands: ["b", "c"] },
+        instruction: "a is b plus c.",
+        requiresWorkedExample: false,
+      },
+      {
+        target: "b",
+        expression: { operation: "subtract", operands: ["a", "c"] },
+        instruction: "To find b, subtract c from a.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "c",
+        expression: { operation: "subtract", operands: ["a", "b"] },
+        instruction: "To find c, subtract b from a.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["b"],
+  },
   {
     id: "formula.series_resistance",
     assertionFamilyId: "electrical.series_circuits",
@@ -1685,6 +1769,23 @@ const formulaFamilies: FormulaFamily[] = [
 ];
 
 const workedExampleBlueprints: WorkedExampleBlueprint[] = [
+  // CC-08: foundational.algebraic_technique's own worked examples.
+  {
+    id: "worked.algebraic_rearrangement_multiplicative.solve_for_factor",
+    formulaFamilyId: "formula.algebraic_rearrangement_multiplicative",
+    target: "b",
+    knownVariables: ["a", "c"],
+    steps: ["show_formula", "show_rearrangement", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { a: 12, c: 4 },
+  },
+  {
+    id: "worked.algebraic_rearrangement_additive.solve_for_term",
+    formulaFamilyId: "formula.algebraic_rearrangement_additive",
+    target: "b",
+    knownVariables: ["a", "c"],
+    steps: ["show_formula", "show_rearrangement", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { a: 15, c: 9 },
+  },
   {
     id: "worked.ohms_law.solve_voltage",
     formulaFamilyId: "formula.ohms_law",
@@ -2152,6 +2253,11 @@ const questionBlueprints: QuestionBlueprint[] = [
     },
     variantDimensions: { component_count: { allowed: [2, 3, 4] } },
     parameterGenerators: [{ variable: "R1", min: 1, max: 100, constraints: ["positive", "pedagogically_sensible"] }],
+    // Component count varies (2-4); only {component_count} is guaranteed
+    // present on every generated instance (packages/calculation-engine/src/
+    // families/series-resistance.ts's calculateTotalResistance), so the
+    // individual R1..R4 values are read from the diagram, never templated.
+    presentation: { promptLines: ["The series circuit shown has {component_count} resistors."] },
   }),
   qb({
     id: "series.solve_missing_component",
@@ -2166,6 +2272,15 @@ const questionBlueprints: QuestionBlueprint[] = [
     variantDimensions: { component_count: { allowed: [2, 3, 4] }, target: { allowed: ["choose_from_components"] } },
     normalisationNote:
       "A single blueprint with the unknown component chosen by the generator, rather than a separate find_R1/find_R2/find_R3 blueprint per component -- the assessed skill is identical regardless of which component is unknown.",
+    // {Rt} and {target} are always present regardless of component_count
+    // or which component is missing (solveMissingComponent); individual
+    // Ri values are read from the diagram.
+    presentation: {
+      promptLines: [
+        "This series circuit has {component_count} resistors with a total resistance of {Rt} Ω.",
+        "Find the resistance of {target} (rearrange RT = R1 + R2 + ... to isolate it).",
+      ],
+    },
   }),
   qb({
     id: "series.calculate_supply_current",
@@ -2177,6 +2292,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(1),
     assertionIdentifiers: ["EL-CIRCUIT-SUPPLY-CURRENT-SERIES-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.ohms_law" } },
+    presentation: { promptLines: ["V = {V} V", "Rt = {Rt} Ω"] },
   }),
   qb({
     id: "series.calculate_voltage_drop",
@@ -2188,6 +2304,9 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(1),
     assertionIdentifiers: ["EL-SERIES-VOLTAGE-CALC-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.series_resistors" } },
+    presentation: {
+      promptLines: ["This series circuit carries {I} A throughout.", "Using the diagram, find the voltage drop across {target}."],
+    },
   }),
   qb({
     id: "series.calculate_power",
@@ -2230,6 +2349,13 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-INTERPRET-SERIES-RESULT-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-SERIES-PARALLEL-CONFUSION-001", evidenceStrength: "suggestive" }],
+    presentation: {
+      promptLines: [
+        "This series circuit has {component_count} resistors (see diagram).",
+        "A calculated total resistance of {shown_total} Ω was reported. Is this plausible?",
+      ],
+      answerOptionLabels: { plausible: "Plausible", implausible: "Implausible" },
+    },
   }),
   qb({
     id: "series.identify_dominant_component",
@@ -2252,6 +2378,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-SERIES-STRUCTURE-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.series_resistors" } },
+    presentation: { promptLines: ["Look at the circuit diagram.", "Select the part that shows every component connected in one single loop (series)."] },
   }),
 
   // ===================================================================
@@ -2272,6 +2399,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     },
     variantDimensions: { branch_count: { allowed: [2, 3, 4] } },
     parameterGenerators: [{ variable: "R1", min: 1, max: 100, constraints: ["positive", "pedagogically_sensible"] }],
+    presentation: { promptLines: ["The parallel circuit shown has {branch_count} branches."] },
   }),
   qb({
     id: "parallel.solve_missing_branch",
@@ -2281,11 +2409,23 @@ const questionBlueprints: QuestionBlueprint[] = [
     difficultyBand: "advanced",
     answer: quantityAnswer("resistance", "ohm"),
     marking: tolerance(2),
-    assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-001", "FM-ARITH-RECIPROCAL-SUM-001", "FM-ARITH-RECIPROCAL-INVERT-001"],
+    // CC-08: FM-ALG-TRANSPOSE-ADD-001 added -- isolating the unknown
+    // branch (1/Rx = 1/Rt - sum of the known branches' reciprocals) is
+    // genuine additive-relationship rearrangement, the same technique
+    // series.solve_missing_component already cites, not only reciprocal
+    // arithmetic. See the matching cc04 knowledge-graph prereq added to
+    // EL-PARALLEL-RESISTANCE-CALC-001.
+    assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-001", "FM-ARITH-RECIPROCAL-SUM-001", "FM-ARITH-RECIPROCAL-INVERT-001", "FM-ALG-TRANSPOSE-ADD-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.parallel_resistors" } },
     variantDimensions: { branch_count: { allowed: [2, 3] }, target: { allowed: ["choose_from_branches"] } },
     normalisationNote:
       "A single blueprint with the unknown branch chosen by the generator (design doc §18), rather than a separate find_R1_given_Rt_R2 / find_R2_given_Rt_R1 blueprint pair -- the assessed skill is identical regardless of which branch is unknown.",
+    presentation: {
+      promptLines: [
+        "This parallel circuit has {branch_count} branches with a total resistance of {Rt} Ω.",
+        "Find the resistance of {target}.",
+      ],
+    },
   }),
   qb({
     id: "parallel.identify_topology",
@@ -2297,6 +2437,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-PARALLEL-STRUCTURE-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.parallel_resistors" } },
+    presentation: { promptLines: ["Look at the circuit diagram.", "Select the part that shows multiple branches connected across the same two points (parallel)."] },
   }),
   qb({
     id: "parallel.predict_add_branch_effect",
@@ -2331,6 +2472,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       formula: { required: true, formulaFamilyId: "formula.ohms_law" },
       diagram: { required: true, blueprintId: "circuit.parallel_resistors" },
     },
+    presentation: { promptLines: ["The parallel circuit's supply voltage is {V} V.", "Using the diagram, find the current in branch {target}."] },
   }),
   qb({
     id: "parallel.calculate_power",
@@ -2364,6 +2506,13 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-INTERPRET-PARALLEL-RESULT-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-PARALLEL-RESISTANCE-ADDITION-001", evidenceStrength: "suggestive" }],
+    presentation: {
+      promptLines: [
+        "This parallel circuit has {branch_count} branches (see diagram).",
+        "A calculated total resistance of {shown_total} Ω was reported. Is this possible?",
+      ],
+      answerOptionLabels: { plausible: "Possible", impossible: "Impossible" },
+    },
   }),
   qb({
     id: "parallel.diagnose_reciprocal_error",
@@ -2375,6 +2524,10 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: enumMarking(),
     assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-PARALLEL-RESISTANCE-ADDITION-001", evidenceStrength: "direct" }],
+    presentation: {
+      promptLines: ["A learner calculated the total resistance of this {branch_count}-branch parallel circuit (see diagram)."],
+      shownWorkingLines: ["Rt = R1 + R2 + ... = {shown_total} Ω"],
+    },
   }),
   qb({
     id: "parallel.diagnose_missing_final_inversion",
@@ -2386,6 +2539,10 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: enumMarking(),
     assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-CALC-001", "FM-ARITH-RECIPROCAL-INVERT-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-RECIPROCAL-FORGOTTEN-INVERT-001", evidenceStrength: "direct" }],
+    presentation: {
+      promptLines: ["A learner calculated the total resistance of this {branch_count}-branch parallel circuit (see diagram)."],
+      shownWorkingLines: ["1/Rt = 1/R1 + 1/R2 + ... = {shown_total} (left un-inverted)"],
+    },
   }),
 
   // ===================================================================
@@ -2904,6 +3061,37 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["same_both", "differs_by_frequency"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"],
+  }),
+
+  // ===================================================================
+  // foundational.algebraic_technique (2) -- CC-08: standalone, abstract
+  // (non-electrical) formula-rearrangement assessment for
+  // lesson.foundation.maths.formula-rearrangement. Restates
+  // FM-ALG-TRANSPOSE-MULT-001 / FM-ALG-TRANSPOSE-ADD-001 directly.
+  // ===================================================================
+  qb({
+    id: "foundational.rearrange_multiplicative",
+    familyId: "foundational.algebraic_technique",
+    capabilityId: "cap.foundational.algebraic_technique.apply",
+    title: "Rearrange a = b x c to find b",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("value", "unit"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["FM-ALG-TRANSPOSE-MULT-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.algebraic_rearrangement_multiplicative" } },
+    presentation: { promptLines: ["a = {a}", "c = {c}", "Given a = b x c, find b."] },
+  }),
+  qb({
+    id: "foundational.rearrange_additive",
+    familyId: "foundational.algebraic_technique",
+    capabilityId: "cap.foundational.algebraic_technique.apply",
+    title: "Rearrange a = b + c to find b",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("value", "unit"),
+    marking: tolerance(1),
+    assertionIdentifiers: ["FM-ALG-TRANSPOSE-ADD-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.algebraic_rearrangement_additive" } },
+    presentation: { promptLines: ["a = {a}", "c = {c}", "Given a = b + c, find b."] },
   }),
 ];
 

@@ -49,7 +49,7 @@ import { pedagogyManifestSchema, type QuestionBlueprint } from "@alp/content-sch
 
 import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
 import { contentReleases, RELEASE_UNIT202_V1 } from "./data/content-releases.ts";
-import { LESSON_OHMS_LAW, lessons as realLessons } from "./data/lesson-ohms-law.ts";
+import { LESSON_OHMS_LAW, lessons as realLessons } from "./data/lessons.ts";
 
 export interface ScenarioResult {
   readonly scenarioId: string;

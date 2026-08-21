@@ -22,7 +22,7 @@ import { knowledgeGraphManifestSchema, pedagogyManifestSchema, lessonPlanManifes
 
 import { cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
 import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
-import { lessons } from "./data/lesson-ohms-law.ts";
+import { lessons } from "./data/lessons.ts";
 
 const OUTPUT_FILE = "scripts/content/evidence/lesson-plan-review.md";
 

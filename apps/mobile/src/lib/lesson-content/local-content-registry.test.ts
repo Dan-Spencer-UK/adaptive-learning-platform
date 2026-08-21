@@ -127,7 +127,10 @@ describe("local content registry -- real bundled projection", () => {
     expect(record.lesson.id).toBe("lesson.electrical.ohms-law");
     expect(record.contentRelease).toBe("release.unit202.v1");
     expect(record.questionBlueprintVersion).toBe(1);
-    expect(record.lookup.questionBlueprints).toHaveLength(8);
+    // CC-08: the lookup carries the whole bundled release's question
+    // blueprints (23, across all four real lessons), not just this one
+    // lesson's own 8 -- getLocalLesson's `lookup` is release-scoped.
+    expect(record.lookup.questionBlueprints).toHaveLength(23);
   });
 
   it("the generated projection records its release identity, and every lesson in it matches that release", () => {

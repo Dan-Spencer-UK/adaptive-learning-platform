@@ -4,8 +4,8 @@ import { buildProvingReport, isProvingReportClean } from "./prove-cc05b-engine.t
 describe("CC-05B engine proving report (full governed Unit 202 question-blueprint inventory)", () => {
   const report = buildProvingReport();
 
-  it("mechanically derives the total governed blueprint count from the live manifest (currently 84)", () => {
-    expect(report.totalGovernedBlueprints).toBe(84);
+  it("mechanically derives the total governed blueprint count from the live manifest (currently 86 -- CC-08 adds 2 for foundational.algebraic_technique)", () => {
+    expect(report.totalGovernedBlueprints).toBe(86);
   });
 
   it("every governed blueprint is supported by the engine registry", () => {
@@ -59,10 +59,11 @@ describe("CC-05B engine proving report (full governed Unit 202 question-blueprin
   });
 });
 
-describe("CC-05B engine proving report -- stability across many seeds (all 84 governed blueprints)", () => {
+describe("CC-05B engine proving report -- stability across many seeds (all 86 governed blueprints)", () => {
   // The original CC-05B proving pattern used 25 seeds; kept here at 30 (not
   // reduced) to catch any seed-dependent parameter-generation edge case
-  // across the FULL now-84-blueprint inventory, not just the original 36.
+  // across the FULL now-86-blueprint inventory (CC-08 adds 2), not just the
+  // original 36.
   const SEEDS_TO_TRY = Array.from({ length: 30 }, (_, i) => 1000 + i * 37);
 
   it.each(SEEDS_TO_TRY)("seed %d: every governed blueprint generates and grades correctly with no unsupported/failed blueprints", (seed) => {

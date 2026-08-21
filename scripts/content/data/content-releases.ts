@@ -36,7 +36,30 @@ export const contentReleases: ContentReleaseManifest = {
     {
       id: RELEASE_UNIT202_V1,
       schemaVersion: 1,
-      lessons: [{ lessonId: "lesson.electrical.ohms-law", lessonVersion: 1 }],
+      // CC-08: additively extends this release's membership with three
+      // new real lessons (the cross-lesson adaptive vertical needs all
+      // four lessons resolvable from the SAME bundled mobile content
+      // release -- apps/mobile's local projection carries exactly one
+      // release at a time, see local-content-registry.ts). This is a
+      // deliberate, considered choice, not an oversight: `lesson.
+      // electrical.ohms-law`'s own entry (id, version, contentRelease)
+      // is completely unchanged -- nothing already declared under this
+      // release id is redefined or removed, only new members are added,
+      // exactly as CC-04A/CC-04B/CC-05B2 grew the knowledge/pedagogy
+      // corpora under their own stable ids without minting a new one for
+      // every addition. No production learner evidence has ever been
+      // recorded against this release. See PROJECT-STATUS.md's CC-08
+      // section for the full rationale (versus creating release.unit202.v2,
+      // which was rejected here specifically because a lesson can only
+      // belong to the ONE release its own `contentRelease` field names,
+      // so v2 would have forced moving Ohm's Law out of v1 for no
+      // genuine content reason).
+      lessons: [
+        { lessonId: "lesson.electrical.ohms-law", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.maths.formula-rearrangement", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-series", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-parallel", lessonVersion: 1 },
+      ],
       knowledgeCorpusId: CC04_KNOWLEDGE_CORPUS_ID,
       pedagogyCorpusId: CC05A_PEDAGOGY_CORPUS_ID,
       questionBlueprintVersion: 1,

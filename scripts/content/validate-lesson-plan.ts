@@ -23,7 +23,7 @@ import { contentReleaseManifestSchema, knowledgeGraphManifestSchema, pedagogyMan
 import { CC04_KNOWLEDGE_CORPUS_ID, cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
 import { CC05A_PEDAGOGY_CORPUS_ID, cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
 import { contentReleases } from "./data/content-releases.ts";
-import { lessons } from "./data/lesson-ohms-law.ts";
+import { lessons } from "./data/lessons.ts";
 
 interface LessonPlanReport {
   totalLessons: number;

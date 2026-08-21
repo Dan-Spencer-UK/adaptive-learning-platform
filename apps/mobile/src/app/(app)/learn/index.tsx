@@ -1,24 +1,65 @@
 /**
- * CC-05C: family picker -- the entry point of the native proving slice.
- * Lists the four representative governed families this slice demonstrates
- * end-to-end (design doc §39's recommended proving slice: Ohm's law,
- * series resistance, parallel resistance, one directional/diagram-heavy
- * family).
+ * Learn hub. The top card is CC-08's course-orchestration entry point:
+ * @alp/diagnostic-engine's `selectNextActivity` (via
+ * ./course/next-activity.ts) deterministically decides which real
+ * lesson comes next -- across lesson boundaries, entirely from local
+ * evidence -- and this screen only renders that decision; it never
+ * lets the learner pick a lesson id itself (task brief §20's "avoid a
+ * fake manual choose-the-next-lesson button that bypasses
+ * orchestration"). Below it, the CC-05C proving-slice family picker
+ * remains unchanged (a separate, simpler mechanism, not the course
+ * orchestrator or the Lesson Player).
  */
-import { Link, useFocusEffect } from "expo-router";
-import { useCallback } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Link, useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import type { ActivityDecision } from "@alp/diagnostic-engine";
+
 import { useSession } from "@/lib/auth/session-context";
+import { computeNextCourseActivity } from "@/lib/course/next-activity";
 import { syncPendingLessonEvidence } from "@/lib/evidence-sync/evidence-sync";
+import { getLocalReleaseLessons, bundledContentReleaseId } from "@/lib/lesson-content/local-content-registry";
 import { PROVING_FAMILIES } from "@/lib/proving-content/unit202-proving-fixture";
 import { getSupabaseClient } from "@/lib/supabase/client";
 import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
 
+type NextActivityState = { kind: "loading" } | { kind: "ready"; decision: ActivityDecision; lessonTitle: string | null } | { kind: "error"; detail: string };
+
 export default function LearnIndexScreen(): React.JSX.Element {
   const { session } = useSession();
   const learnerId = session?.user.id ?? null;
+  const router = useRouter();
+  const [nextActivity, setNextActivity] = useState<NextActivityState>({ kind: "loading" });
+
+  // CC-08: recomputed every time the Learn context gains focus (which
+  // includes returning from a lesson), so a just-completed lesson's
+  // fresh local evidence immediately drives the next real decision --
+  // no network round trip, entirely from local state (task brief §21).
+  useFocusEffect(
+    useCallback(() => {
+      if (!learnerId) return;
+      let cancelled = false;
+      setNextActivity({ kind: "loading" });
+      void computeNextCourseActivity(learnerId)
+        .then((decision) => {
+          if (cancelled) return;
+          const lessonTitle = decision.lessonId
+            ? (getLocalReleaseLessons(bundledContentReleaseId()).find((l) => l.id === decision.lessonId)?.title ?? decision.lessonId)
+            : null;
+          setNextActivity({ kind: "ready", decision, lessonTitle });
+        })
+        .catch((error: unknown) => {
+          if (cancelled) return;
+          console.error("Course orchestration decision failed", error);
+          setNextActivity({ kind: "error", detail: error instanceof Error ? error.message : "The next activity could not be determined." });
+        });
+      return () => {
+        cancelled = true;
+      };
+    }, [learnerId]),
+  );
 
   // CC-07: opportunistic, fire-and-forget background evidence sync every
   // time the Learn context gains focus (which includes returning from a
@@ -43,16 +84,47 @@ export default function LearnIndexScreen(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.safeArea} edges={["bottom"]}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Link href={{ pathname: "/learn/lesson-player", params: { lessonId: "lesson.electrical.ohms-law" } }} asChild>
+        {nextActivity.kind === "loading" && (
+          <View style={[styles.card, styles.lessonPlayerCard]}>
+            <ActivityIndicator color={color.accent} accessibilityLabel="Deciding your next activity" />
+          </View>
+        )}
+
+        {nextActivity.kind === "error" && (
+          <View style={[styles.card, styles.lessonPlayerCard]}>
+            <Text style={styles.cardTitle}>Could not determine your next activity</Text>
+            <Text style={styles.cardBody}>{nextActivity.detail}</Text>
+          </View>
+        )}
+
+        {nextActivity.kind === "ready" && nextActivity.decision.decisionType === "COMPLETE_SLICE" && (
+          <View style={[styles.card, styles.lessonPlayerCard]}>
+            <Text style={styles.cardTitle}>Adaptive vertical complete</Text>
+            <Text style={styles.cardBody}>{nextActivity.decision.detail}</Text>
+          </View>
+        )}
+
+        {nextActivity.kind === "ready" && nextActivity.decision.decisionType === "BLOCKED" && (
+          <View style={[styles.card, styles.lessonPlayerCard]}>
+            <Text style={styles.cardTitle}>Not available right now</Text>
+            <Text style={styles.cardBody}>{nextActivity.decision.detail}</Text>
+          </View>
+        )}
+
+        {nextActivity.kind === "ready" && nextActivity.decision.lessonId && (
           <Pressable
             style={({ pressed }) => [styles.card, styles.lessonPlayerCard, pressed && styles.pressed]}
             accessibilityRole="button"
-            accessibilityLabel="Open the Ohm's Law lesson"
+            accessibilityLabel={`Continue: ${nextActivity.lessonTitle ?? nextActivity.decision.lessonId}`}
+            onPress={() =>
+              router.push({ pathname: "/learn/lesson-player", params: { lessonId: nextActivity.decision.lessonId! } })
+            }
           >
-            <Text style={styles.cardTitle}>Ohm&apos;s Law (full lesson)</Text>
-            <Text style={styles.cardBody}>The step-based Lesson Player -- teaching, guided practice and adaptive remediation together.</Text>
+            <Text style={styles.cardMetaText}>{decisionLabel(nextActivity.decision.decisionType)}</Text>
+            <Text style={styles.cardTitle}>{nextActivity.lessonTitle}</Text>
+            <Text style={styles.cardBody}>{nextActivity.decision.detail}</Text>
           </Pressable>
-        </Link>
+        )}
 
         <Text style={styles.intro}>
           A proving slice across four governed Unit 202 topics: pick one to see teaching, generated questions, local
@@ -76,6 +148,25 @@ export default function LearnIndexScreen(): React.JSX.Element {
       </ScrollView>
     </SafeAreaView>
   );
+}
+
+function decisionLabel(decisionType: ActivityDecision["decisionType"]): string {
+  switch (decisionType) {
+    case "START_TARGET":
+      return "Start";
+    case "CONTINUE_TARGET":
+      return "Continue";
+    case "REMEDIATE_FOUNDATION":
+      return "Recommended: build a foundation first";
+    case "RETEST_FOUNDATION":
+      return "Recommended: try again";
+    case "RETURN_TO_VOCATIONAL_TRANSFER":
+      return "Ready to return";
+    case "ADVANCE":
+      return "Next up";
+    default:
+      return "";
+  }
 }
 
 const styles = StyleSheet.create({
