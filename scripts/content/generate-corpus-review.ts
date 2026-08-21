@@ -66,11 +66,39 @@ function buildReport(manifest: KnowledgeGraphManifest): string {
     mappingsFor.set(m.assertionIdentifier, list);
   }
 
+  const verificationStatusByLocatorKey = new Map<string, string>();
+  for (const sl of manifest.sourceLocators) {
+    const svKey = sourceVersionKeyByLocatorKey.get(sl.key);
+    const sv = svKey ? manifest.sourceVersions.find((v) => v.key === svKey) : undefined;
+    if (sv) verificationStatusByLocatorKey.set(sl.key, sv.verificationStatus);
+  }
+
+  // CC-09B.2 (task section 29): the review surface must expose entailment
+  // classification (SUPPORT TYPE) and each cited source's independent
+  // VERIFICATION STATUS alongside the locator/evidence-summary it already
+  // showed, so the Project Architect never has to reconstruct this by
+  // cross-referencing the schema/manifest files by hand.
   const provenanceFor = new Map<string, string[]>();
   for (const p of manifest.assertionProvenanceLinks) {
     const list = provenanceFor.get(p.assertionIdentifier) ?? [];
-    list.push(`${sourceTitleForLocator(p.sourceLocatorKey)} — ${locatorSummaryByKey.get(p.sourceLocatorKey) ?? p.sourceLocatorKey} [${p.provenanceRole}]`);
+    const supportTag = p.supportType ? `, support=${p.supportType}` : "";
+    const verificationTag = verificationStatusByLocatorKey.get(p.sourceLocatorKey) ?? "UNVERIFIED";
+    list.push(
+      `${sourceTitleForLocator(p.sourceLocatorKey)} — ${locatorSummaryByKey.get(p.sourceLocatorKey) ?? p.sourceLocatorKey} [${p.provenanceRole}${supportTag}, verification=${verificationTag}]`,
+    );
     provenanceFor.set(p.assertionIdentifier, list);
+  }
+
+  // CC-09B.2: DERIVED_FROM edges rendered with their derivationKind, so an
+  // assertion's indirect provenance chain (task section 6/7's ENTAILMENT
+  // CLASSIFICATION concept) is visible on the same page as its direct
+  // citations, not only inferable from the raw manifest.
+  const derivedFromFor = new Map<string, string[]>();
+  for (const r of manifest.assertionRelationships) {
+    if (r.relationshipType !== "DERIVED_FROM") continue;
+    const list = derivedFromFor.get(r.fromIdentifier) ?? [];
+    list.push(`${r.toIdentifier} [${r.derivationKind ?? "undeclared"}]`);
+    derivedFromFor.set(r.fromIdentifier, list);
   }
 
   const misconceptionsFor = new Map<string, string[]>();
@@ -255,6 +283,8 @@ function buildReport(manifest: KnowledgeGraphManifest): string {
       if (mappings.length) lines.push(`**Curriculum mapping(s):** ${mappings.join("; ")}`);
       const prov = provenanceFor.get(a.identifier) ?? [];
       lines.push(`**Provenance:** ${prov.join(" | ")}`);
+      const derivedFrom = derivedFromFor.get(a.identifier) ?? [];
+      if (derivedFrom.length) lines.push(`**Derived from:** ${derivedFrom.join("; ")}`);
       const mis = misconceptionsFor.get(a.identifier) ?? [];
       if (mis.length) lines.push(`**Misconceptions targeting this assertion:** ${mis.join(", ")}`);
       lines.push("");

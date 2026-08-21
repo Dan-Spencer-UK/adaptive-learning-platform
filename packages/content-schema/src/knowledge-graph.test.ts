@@ -336,6 +336,95 @@ describe("knowledgeGraphManifestSchema", () => {
     expect(result.success).toBe(true);
   });
 
+  it("CC-09B.2: rejects a DERIVED_FROM relationship with no derivationKind", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertions.push({ identifier: "EL-OHM-SOLVE-I-001", domainCode: "EL" });
+    manifest.assertionVersions.push({
+      assertionIdentifier: "EL-OHM-SOLVE-I-001",
+      version: 1,
+      statement: "I = V / R",
+      status: "APPROVED",
+    });
+    manifest.assertionProvenanceLinks.push({
+      assertionIdentifier: "EL-OHM-SOLVE-I-001",
+      assertionVersion: 1,
+      sourceLocatorKey: "loc-1",
+      provenanceRole: "SUPPORTS",
+    });
+    manifest.assertionRelationships.push({
+      fromIdentifier: "EL-OHM-SOLVE-I-001",
+      toIdentifier: "EL-OHM-RELATIONSHIP-001",
+      relationshipType: "DERIVED_FROM",
+    });
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues.some((i) => i.message.includes("must declare a derivationKind"))).toBe(true);
+  });
+
+  it("CC-09B.2: accepts a DERIVED_FROM relationship with a declared derivationKind", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertions.push({ identifier: "EL-OHM-SOLVE-I-001", domainCode: "EL" });
+    manifest.assertionVersions.push({
+      assertionIdentifier: "EL-OHM-SOLVE-I-001",
+      version: 1,
+      statement: "I = V / R",
+      status: "APPROVED",
+    });
+    manifest.assertionProvenanceLinks.push({
+      assertionIdentifier: "EL-OHM-SOLVE-I-001",
+      assertionVersion: 1,
+      sourceLocatorKey: "loc-1",
+      provenanceRole: "SUPPORTS",
+    });
+    manifest.assertionRelationships.push({
+      fromIdentifier: "EL-OHM-SOLVE-I-001",
+      toIdentifier: "EL-OHM-RELATIONSHIP-001",
+      relationshipType: "DERIVED_FROM",
+      derivationKind: "MATHEMATICAL",
+    });
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+
+  it("CC-09B.2: derivationKind is optional on non-DERIVED_FROM relationships (PREREQUISITE_OF etc. never require it)", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertions.push({ identifier: "EL-OHM-SOLVE-I-001", domainCode: "EL" });
+    manifest.assertionVersions.push({
+      assertionIdentifier: "EL-OHM-SOLVE-I-001",
+      version: 1,
+      statement: "I = V / R",
+      status: "APPROVED",
+    });
+    manifest.assertionProvenanceLinks.push({
+      assertionIdentifier: "EL-OHM-SOLVE-I-001",
+      assertionVersion: 1,
+      sourceLocatorKey: "loc-1",
+      provenanceRole: "SUPPORTS",
+    });
+    manifest.assertionRelationships.push({
+      fromIdentifier: "EL-OHM-RELATIONSHIP-001",
+      toIdentifier: "EL-OHM-SOLVE-I-001",
+      relationshipType: "PREREQUISITE_OF",
+    });
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+
+  it("CC-09B.2: accepts a provenance link carrying an explicit supportType (DIRECT/PARTIAL)", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionProvenanceLinks[0]!.supportType = "PARTIAL";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+
   it("rejects a CURRENT curriculum version whose label looks like a placeholder", () => {
     const manifest = minimalValidManifest();
     manifest.curriculumVersions[0]!.versionLabel = "proving-slice reference (edition unconfirmed)";

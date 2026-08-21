@@ -258,8 +258,22 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
       { id: "motor-control-application", description: "Which component and why: motor control.", satisfiedBy: ["EL-APPLICATION-MOTOR-CONTROL-001"] },
       { id: "heating-boiler-control-application", description: "Which component and why: heating/boiler controls.", satisfiedBy: ["EL-APPLICATION-HEATING-BOILER-CONTROL-001"] },
       { id: "security-alarm-application", description: "Which component and why: security alarms.", satisfiedBy: ["EL-APPLICATION-SECURITY-ALARM-001"] },
-      { id: "telephone-application", description: "Which component and why: telephones/communications.", satisfiedBy: ["EL-APPLICATION-TELEPHONE-001"] },
-      { id: "wireless-control-application", description: "Which component and why: wireless control systems.", satisfiedBy: ["EL-APPLICATION-WIRELESS-CONTROL-001"] },
+      // CC-09B.2 (task section 35): deliberately left UNSATISFIED. No
+      // genuine application-specific source (standards body / manufacturer
+      // / university / government / respected technical reference) was
+      // found for a telephone-equipment application within this package's
+      // search effort; the corpus's EL-APPLICATION-TELEPHONE-001 was
+      // narrowed to the component-property level it can actually support
+      // (see its own code comment) rather than left over-claiming an
+      // unsourced industry-practice fact. This intentionally flips AC6.1
+      // to semantically INCOMPLETE -- do not "fix" this by re-adding the
+      // assertion id here without first adding real application evidence.
+      { id: "telephone-application", description: "Which component and why: telephones/communications.", satisfiedBy: [] },
+      // CC-09B.2: same treatment and same reason as telephone-application
+      // above -- no genuine wireless-control-system application source
+      // was found; EL-APPLICATION-WIRELESS-CONTROL-001 was narrowed
+      // accordingly and is deliberately not listed as satisfying this.
+      { id: "wireless-control-application", description: "Which component and why: wireless control systems.", satisfiedBy: [] },
     ],
   },
   {

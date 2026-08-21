@@ -150,6 +150,16 @@ const SRC_UOTTAWA_INVERTERS = "src-uottawa-elg4139-dc-ac-converters";
 const SRC_TI_INVERTERS = "src-ti-slaa602a-pure-sine-inverter";
 const SRC_OPENSTAX_COLLEGE_PHYSICS = "src-openstax-college-physics-2e";
 const SRC_KUPHALDT_DC_CIRCUITS = "src-kuphaldt-electric-circuits-i-direct-current";
+// CC-09B.2 (source-first evidence hardening): new sources acquired to
+// replace DERIVED_FROM-only "provenance" for empirical/application claims
+// (device construction, specific industry application) with genuine
+// direct evidence, and to fill two entailment gaps the Project Architect
+// named specifically (gear tooth-count/speed-torque; power factor's
+// real/apparent-power-ratio clause). See PROJECT-STATUS.md CC-09B.2.
+const SRC_NIST_HB44 = "src-nist-hb44-3.41-electricity-measuring";
+const SRC_INDUS_UNI_WATTMETER = "src-indus-uni-dynamometer-wattmeter";
+const SRC_UCSD_GEAR_RATIOS = "src-ucsd-mae3-gear-ratios";
+const SRC_SECO_LARM_BEAM_SENSOR = "src-seco-larm-photoelectric-beam-sensor";
 
 /** Exported so ./unit202-assessment-specification.ts cites the same governed source-version identity rather than hand-copying the string. */
 export const SV_CG = "sv-cg-2365-02-v1-12";
@@ -164,6 +174,10 @@ const SV_UOTTAWA_INVERTERS = "sv-uottawa-elg4139-dc-ac-converters";
 const SV_TI_INVERTERS = "sv-ti-slaa602a-pure-sine-inverter";
 const SV_OPENSTAX_COLLEGE_PHYSICS = "sv-openstax-college-physics-2e";
 const SV_KUPHALDT_DC_CIRCUITS = "sv-kuphaldt-electric-circuits-i-direct-current";
+const SV_NIST_HB44 = "sv-nist-hb44-3.41-2026";
+const SV_INDUS_UNI_WATTMETER = "sv-indus-uni-dynamometer-wattmeter";
+const SV_UCSD_GEAR_RATIOS = "sv-ucsd-mae3-gear-ratios";
+const SV_SECO_LARM_BEAM_SENSOR = "sv-seco-larm-e-931-s33prgq";
 
 // ---------------------------------------------------------------------
 // Curriculum
@@ -1052,13 +1066,90 @@ const locators: LocatorDef[] = [
     key: "loc-openstax-college-physics-simple-machines",
     sourceVersionKey: SV_OPENSTAX_COLLEGE_PHYSICS,
     section: "Chapter 9", subsection: "9.5 Simple Machines",
-    locatorSummary: "For gears/wheels driven by a common axle, mechanical advantage is the ratio of the radii (or, equivalently, tooth counts) of the driving and driven gears; a single fixed pulley has a mechanical advantage of 1 (direction change only), while a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load",
+    // CC-09B.2 correction (task section 14): the Project Architect's audit
+    // found this locator's own summary overstated what section 9.5 itself
+    // establishes -- it directly gives the MA-as-radius-ratio relationship
+    // for wheels/gears and both pulley facts, but does NOT itself state
+    // tooth-count equivalence or a speed/torque trade-off (independently
+    // re-inspected: the section reads "Wheels and gears have this simple
+    // expression for their MAs too" [MA = ri/r0], with no tooth-count or
+    // torque/speed language). Those two propositions now cite
+    // loc-ucsd-gear-ratio-tooth-count-torque instead -- this summary no
+    // longer claims them.
+    locatorSummary: "For wheels/gears driven by a common axle, mechanical advantage is the ratio of the radii of the driving and driven wheel/gear (the same simple expression as for a crank); a single fixed pulley has a mechanical advantage of 1 (direction change only, forces do not add); a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load, demonstrated for MA of 2, 3 and 4",
   },
   {
     key: "loc-kuphaldt-dc-resistors",
     sourceVersionKey: SV_KUPHALDT_DC_CIRCUITS,
     section: "Chapter 2, Ohm's Law", subsection: "2.5 Resistors",
     locatorSummary: "A resistor is a component manufactured to provide a specific, stable value of resistance, used in circuits to limit current or to divide voltage",
+  },
+  // -- CC-09B.2 (source-first evidence hardening) new locators --
+  {
+    key: "loc-ucsd-gear-ratio-tooth-count-torque",
+    sourceVersionKey: SV_UCSD_GEAR_RATIOS,
+    section: "Gear Ratios",
+    locatorSummary: "Because the radius of a gear is proportional to its number of teeth, gear-ratio relationships can equivalently be stated in terms of tooth counts: omega_out/omega_in = n_in/n_out (speed) and tau_out/tau_in = n_out/n_in (torque); \"a gear ratio can increase the output torque or output speed of a mechanism, but not both\" -- with a given power source you can achieve high velocity output or high force/torque output, but not both",
+  },
+  {
+    key: "loc-nist-hb44-active-energy",
+    sourceVersionKey: SV_NIST_HB44,
+    section: "Appendix D, Definitions", subsection: "active energy", page: "3-183",
+    locatorSummary: "Active energy: the integral of active power with respect to time, typically measured in kilowatt-hours (kWh) or watt-hours; E(T) = integral from 0 to T of v(t) times i(t) dt, where T is much greater than the AC line period",
+  },
+  {
+    key: "loc-nist-hb44-power-factor",
+    sourceVersionKey: SV_NIST_HB44,
+    section: "Appendix D, Definitions", subsection: "power factor (PF)", page: "3-186",
+    locatorSummary: "Power factor (PF): the ratio of \"active power\" to \"apparent power\" in an AC circuit; it describes the efficient use of available power",
+  },
+  {
+    key: "loc-nist-hb44-element",
+    sourceVersionKey: SV_NIST_HB44,
+    section: "Appendix D, Definitions", subsection: "element", page: "3-184",
+    locatorSummary: "Element: a combination of a voltage-sensing unit and a current-sensing unit, which provides an output proportional to the quantities measured; meters can include multiple elements",
+  },
+  {
+    key: "loc-indus-uni-wattmeter-circuit",
+    sourceVersionKey: SV_INDUS_UNI_WATTMETER,
+    section: "2 Wattmeter",
+    locatorSummary: "A wattmeter is an inherent combination of an ammeter and a voltmeter, with a current coil (CC) connected in series with the load so it carries the load current, and a potential coil (PC) connected in parallel with the load so it carries a current proportional to the load voltage",
+  },
+  {
+    key: "loc-kuphaldt-dc-multimeters",
+    sourceVersionKey: SV_KUPHALDT_DC_CIRCUITS,
+    section: "Chapter 8, DC Metering Circuits", subsection: "Multimeters",
+    locatorSummary: "A single meter movement can be made to function as a voltmeter, ammeter or ohmmeter by connecting it to different external resistor networks and switch positions; a multi-purpose meter (\"multimeter\") can be designed in one unit with the appropriate switch(es) and resistors",
+  },
+  {
+    key: "loc-kuphaldt-dc-ohmmeter-continuity",
+    sourceVersionKey: SV_KUPHALDT_DC_CIRCUITS,
+    section: "Chapter 8, DC Metering Circuits", subsection: "Ohmmeter design",
+    locatorSummary: "With the leads shorted (zero ohms) the meter movement carries maximum current and the needle deflects fully; with infinite resistance between the leads there is zero current and the needle stays at the far left -- so a low-resistance (near full-scale-deflection) reading confirms a continuous path; ohmmeters must never be connected to an energised circuit, since their accurate indication depends on the only voltage source being the ohmmeter's own internal battery",
+  },
+  {
+    key: "loc-openstax-up2-capacitor-charge-energy",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 8, Capacitance", subsection: "8.1 Capacitors and Capacitance; 8.3 Energy Stored in a Capacitor",
+    locatorSummary: "A capacitor is a device used to store electrical charge and electrical energy: charge Q moves from one conductive plate to the other, creating equal and opposite charges on each plate and an electric field between them; a charged capacitor stores energy in that electric field, expressed as U = (1/2)CV^2 = (1/2)Q^2/C = (1/2)QV",
+  },
+  {
+    key: "loc-openstax-up2-rc-circuits",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 10, DC Circuits", subsection: "10.5 RC Circuits",
+    locatorSummary: "In a circuit with resistance, a capacitor's voltage rises or falls exponentially rather than instantaneously: charging, Vc(t) = epsilon(1 - e^(-t/tau)); discharging, q(t) = Q e^(-t/tau); with time constant tau = RC, the capacitor reaches only 63.2% of its final change after one time constant, demonstrating gradual (not sudden) voltage change",
+  },
+  {
+    key: "loc-vishay-ntc-heating-applications",
+    sourceVersionKey: SV_VISHAY_NTC,
+    section: "Applications; Examples", subsection: "Industrial/domestic application list (p.1); Fig. 4 boiler sensor response, Fig. 16 simple thermostat (pp.5, 10)",
+    locatorSummary: "NTC temperature sensors' listed applications include \"heating and ventilation\" (industrial) and \"central-heating systems\" (domestic); Fig. 4 shows the typical response (about 4s) of a boiler sensor transitioning from 25C to 100C; Fig. 16 shows a simple thermostat circuit using an NTC sensor and a relay to switch a heating load off/on at set temperatures",
+  },
+  {
+    key: "loc-seco-larm-beam-sensor-alarm",
+    sourceVersionKey: SV_SECO_LARM_BEAM_SENSOR,
+    section: "Overview; Wiring Diagram", subsection: "product description and Trigger output specification",
+    locatorSummary: "The ENFORCER E-931-S33PRGQ photoelectric beam sensor (IR LED, wavelength 740nm, plus a photoelectric receiver) provides reliable sensing of objects breaking the infrared beam, and is suitable for \"an alarm notification, as well as many other uses\"; its SPDT relay trigger output is wired to an alarm control panel (the N.C. tamper terminal connects to the tamper circuit of an alarm control panel); a caution notes use in certain security applications may be regulated by local laws",
   },
 ];
 
@@ -1069,6 +1160,18 @@ const locators: LocatorDef[] = [
 interface ProvenanceSpec {
   locator: string;
   role: ProvenanceRole;
+  /**
+   * CC-09B.2 (source-first evidence hardening): whether the cited
+   * locator's actual inspected evidence supports this assertion's WHOLE
+   * material proposition (DIRECT) or only PART of it. Optional and left
+   * unset on most pre-existing links -- this package classifies the
+   * specific links it audited/corrected, not a retroactive re-audit of
+   * links CC-04A through CC-09B.1 already passed review with (a tracked,
+   * honestly-reported backlog, see PROJECT-STATUS.md CC-09B.2). A PARTIAL
+   * link is a signal to narrow/split the assertion or add a further
+   * source, never a final resting state.
+   */
+  supportType?: "DIRECT" | "PARTIAL";
 }
 
 interface PrereqSpec {
@@ -1090,6 +1193,20 @@ interface AssertionDef {
   supports?: PrereqSpec[]; // this assertion SUPPORTS the named target(s)
   contrastsWith?: string[];
   derivedFrom?: string[];
+  /**
+   * CC-09B.2: required whenever `derivedFrom` is non-empty (enforced by
+   * `buildRelationships` below, not merely documented). Applies uniformly
+   * to every parent in `derivedFrom` -- in this corpus, an assertion's
+   * DERIVED_FROM parents are always combined for one single mathematical
+   * or logical consequence (e.g. substituting two relationships), never a
+   * mix of independently-classified derivations, so one shared kind per
+   * assertion is accurate, not a loss of precision. Only MATHEMATICAL and
+   * LOGICAL_DEFINITIONAL may ever be used here -- an EMPIRICAL_APPLICATION
+   * or INVALID_UNCLEAR derivation means the assertion must instead cite
+   * real direct provenance (see derivationKindSchema in
+   * packages/content-schema/src/knowledge-graph.ts).
+   */
+  derivedFromKind?: "MATHEMATICAL" | "LOGICAL_DEFINITIONAL";
   curriculum?: CurriculumSpec[];
 }
 
@@ -1505,26 +1622,41 @@ const A: AssertionDef[] = [
   // but CC-09B only modelled levers -- the audit's largest single named
   // defect (section 13). Gears and pulleys have no dedicated Range
   // sub-items (only the three lever classes do), so these are AC-level
-  // (not Range-item-level) additions, sourced from OpenStax College
-  // Physics 2e's dedicated "9.5 Simple Machines" section. --
+  // (not Range-item-level) additions.
+  //
+  // CC-09B.2 correction (task section 14): the Project Architect
+  // independently confirmed OpenStax College Physics 2e 9.5 supports gears
+  // as simple machines and MA-as-radius-ratio, but NOT tooth-count
+  // equivalence or the speed/torque trade-off it was previously cited for
+  // (re-inspected directly: confirmed). The tooth-count and speed/torque
+  // propositions now cite University of California San Diego MAE 3 course
+  // material instead (loc-ucsd-gear-ratio-tooth-count-torque), which
+  // states both explicitly and precisely. Nothing here claims more than
+  // its own cited locator's own inspected text establishes. --
   {
     id: "FP-CONCEPT-GEAR-001", domain: "FP",
-    statement: "A gear is a toothed wheel that meshes with another gear to transmit rotary motion and force from one shaft to another.",
-    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES" }],
+    statement: "A gear is a toothed wheel; when two gears mesh, their teeth engage so that one gear (the driving gear) transmits rotary motion and torque to the other (the driven gear) from one shaft to another.",
+    provenance: [
+      { locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "SUPPORTS", supportType: "PARTIAL" },
+    ],
     prereqs: [{ id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-REL-GEAR-RATIO-001", domain: "FP",
-    statement: "For two meshed gears sharing a common tooth pitch, the mechanical advantage (and speed/torque relationship) between the driving and driven gear equals the ratio of their radii, which is equivalent to the ratio of their tooth counts.",
-    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "SUPPORTS" }],
+    statement: "For two meshed gears, mechanical advantage equals the ratio of their radii (the driving gear's radius to the driven gear's radius); because gear teeth are evenly spaced and shared between meshed gears, a gear's radius is proportional to its number of teeth, so this same mechanical advantage can equivalently be expressed as the ratio of their tooth counts.",
+    provenance: [
+      { locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "DEFINES", supportType: "PARTIAL" },
+    ],
     prereqs: [{ id: "FP-CONCEPT-GEAR-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
   },
   {
     id: "FP-GEAR-SPEED-TORQUE-TRADEOFF-001", domain: "FP",
     statement: "A gear ratio can increase a mechanism's output torque or its output speed relative to the input, but not both at the same time.",
-    provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "SUPPORTS" }],
+    provenance: [{ locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "DEFINES", supportType: "DIRECT" }],
     prereqs: [{ id: "FP-REL-GEAR-RATIO-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "SUPPORTS" }],
   },
@@ -1771,37 +1903,50 @@ const A: AssertionDef[] = [
     prereqs: [{ id: "EL-CONCEPT-RESISTANCE-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "RESISTANCE"), type: "REQUIRED_FOR" }],
   },
+  // CC-09B.2 correction (task section 16/28): CC-09B.1 gave the wattmeter,
+  // energy-meter and multimeter assertions below DERIVED_FROM provenance
+  // from unrelated mathematical relationship assertions (P = VI; E = Pt)
+  // plus the separate voltmeter/ammeter/ohmmeter assertions. That is an
+  // EMPIRICAL/APPLICATION derivation, not a mathematical one: the fact
+  // that P = VI is true, and that separate voltmeters/ammeters/ohmmeters
+  // exist, does not by itself entail that a real manufactured instrument
+  // combining them exists or how it is built -- exactly the "device
+  // construction inference" failure mode this package exists to close
+  // (task section 36.B). All three now cite real, direct, independently
+  // inspected instrumentation evidence instead.
   {
-    // CC-09B.1: a wattmeter is not itself in a physics-textbook locator we
-    // hold, but its behaviour follows directly from the two instruments
-    // (ammeter, voltmeter) and the power relationship already
-    // independently sourced above -- expressed as DERIVED_FROM per task
-    // section 10, not left syllabus-only.
     id: "EL-INSTRUMENT-WATTMETER-001", domain: "EL",
-    statement: "A wattmeter measures electrical power by simultaneously sensing the current through a load (as an ammeter does) and the voltage across it (as a voltmeter does), and computing their product.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    statement: "A wattmeter measures electrical power using an element that combines a current-sensing coil (connected in series with the load, carrying the load current) and a voltage-sensing coil (connected in parallel across the load, carrying a current proportional to the load voltage); its output/deflection is proportional to the product of the two, giving power.",
+    provenance: [
+      { locator: "loc-nist-hb44-element", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-indus-uni-wattmeter-circuit", role: "SUPPORTS", supportType: "DIRECT" },
+      { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
-    derivedFrom: ["EL-POWER-RELATIONSHIP-001", "EL-INSTRUMENT-AMMETER-001", "EL-INSTRUMENT-VOLTMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "POWER"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-ENERGY-METER-001", domain: "EL",
-    statement: "An energy meter (kWh meter) measures the cumulative electrical energy consumed by a supply over time, by integrating measured power over time.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    statement: "An energy meter (kWh meter) measures active (cumulative) electrical energy delivered over a period of time, expressed in kilowatt-hours; active energy is the time integral of active power (instantaneous voltage multiplied by instantaneous current).",
+    provenance: [
+      { locator: "loc-nist-hb44-active-energy", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CONCEPT-ENERGY-001", strength: "STRONG" }],
-    derivedFrom: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001", "EL-INSTRUMENT-WATTMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "ENERGY"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-INSTRUMENT-MULTIMETER-001", domain: "EL",
-    statement: "A multimeter is a single instrument that can be configured to measure voltage, current or resistance.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    statement: "A multimeter is a single instrument that can be configured to measure voltage, current or resistance, by connecting one meter movement to different external resistor networks via a selector switch.",
+    provenance: [
+      { locator: "loc-kuphaldt-dc-multimeters", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [
       { id: "EL-INSTRUMENT-VOLTMETER-001", strength: "SUPPORTING" },
       { id: "EL-INSTRUMENT-AMMETER-001", strength: "SUPPORTING" },
       { id: "EL-INSTRUMENT-OHMMETER-001", strength: "SUPPORTING" },
     ],
-    derivedFrom: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001", "EL-INSTRUMENT-OHMMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }],
   },
   {
@@ -1925,8 +2070,24 @@ const A: AssertionDef[] = [
     // independently re-checked and already correctly targets the
     // "Power factor" Range item (not "Power") -- no mapping defect
     // reproduced against the live corpus; no mapping change made.
+    //
+    // CC-09B.2 correction (task section 23): re-inspecting OpenStax UP2
+    // 15.4 directly found it establishes ONLY the cosine-of-phase-angle
+    // form ("cos(phi) is known as the power factor... the amount by which
+    // power... is less than the theoretical maximum... due to voltage and
+    // current being out of phase") -- it does NOT itself frame power
+    // factor as a ratio of real to apparent power. NIST Handbook 44 now
+    // supplies that missing clause directly ("power factor (PF): the
+    // ratio of active power to apparent power in an AC circuit"), so
+    // each clause of this statement now has its own direct evidence
+    // rather than one borrowing an unsupported ratio framing from the
+    // other's citation.
     statement: "Power factor is the ratio of real (true) power to apparent power in an AC circuit; for a sinusoidal single-frequency supply, this ratio equals the cosine of the phase angle between voltage and current.",
-    provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-nist-hb44-power-factor", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-openstax-up2-ac-circuits", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CONCEPT-IMPEDANCE-001", strength: "STRONG" }, { id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "POWER-FACTOR"), type: "REQUIRED_FOR" }],
   },
@@ -2037,6 +2198,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" },
     ],
     derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2052,6 +2214,7 @@ const A: AssertionDef[] = [
       { id: "FM-NUM-SI-PREFIX-CONVERT-001", strength: "STRONG" },
     ],
     derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2067,6 +2230,7 @@ const A: AssertionDef[] = [
       { id: "FM-NUM-SI-PREFIX-CONVERT-001", strength: "STRONG" },
     ],
     derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2082,6 +2246,7 @@ const A: AssertionDef[] = [
       { id: "FM-NUM-SI-PREFIX-CONVERT-001", strength: "STRONG" },
     ],
     derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2132,6 +2297,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
     ],
     derivedFrom: ["EL-SERIES-RESISTANCE-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2177,6 +2343,7 @@ const A: AssertionDef[] = [
       { id: "EL-OHM-SOLVE-V-001", strength: "REQUIRED" },
     ],
     derivedFrom: ["EL-SERIES-VOLTAGE-001", "EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2274,6 +2441,7 @@ const A: AssertionDef[] = [
       { id: "EL-OHM-SOLVE-I-001", strength: "REQUIRED" },
     ],
     derivedFrom: ["EL-PARALLEL-CURRENT-001", "EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_5, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2302,6 +2470,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" },
     ],
     derivedFrom: ["EL-POWER-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_6, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2316,6 +2485,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
     ],
     derivedFrom: ["EL-POWER-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_6, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2326,6 +2496,7 @@ const A: AssertionDef[] = [
     statement: "Electrical power can also be found from current and resistance alone, since combining P = V times I with V = I times R gives P = I squared times R.",
     provenance: [{ locator: "loc-openstax-up2-power-energy", role: "SUPPORTS" }],
     derivedFrom: ["EL-POWER-RELATIONSHIP-001", "EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }],
   },
   {
@@ -2337,6 +2508,7 @@ const A: AssertionDef[] = [
       { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" },
     ],
     derivedFrom: ["EL-POWER-DERIVED-VIR-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [
       { node: NODE_AC4_6, type: "REQUIRED_FOR" },
       { node: NODE_AC1_1, type: "EXEMPLIFIES" },
@@ -2422,6 +2594,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CURRENT-CHARGE-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-CURRENT-CHARGE-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2472,6 +2645,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-OHM-RELATIONSHIP-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "LOGICAL_DEFINITIONAL",
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2642,6 +2816,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-INSTRUMENT-VOLTMETER-001", strength: "REQUIRED" }, { id: "EL-INSTRUMENT-AMMETER-001", strength: "REQUIRED" }, { id: "EL-INSTRUMENT-OHMMETER-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001", "EL-INSTRUMENT-OHMMETER-001"],
+    derivedFromKind: "LOGICAL_DEFINITIONAL",
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }],
   },
   {
@@ -2659,11 +2834,22 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC2_3, type: "SUPPORTS" }],
   },
   {
+    // CC-09B.2 correction (task section 18): previously DERIVED_FROM the
+    // ohmmeter assertion alone -- an EMPIRICAL/APPLICATION derivation
+    // (which specific trade-test procedure a real technician performs is
+    // not a mathematical consequence of "an ohmmeter measures
+    // resistance"). Now cites Kuphaldt's ohmmeter-design section directly:
+    // it demonstrates exactly this behaviour (full-scale deflection at
+    // zero ohms, no deflection at infinite ohms -- i.e. confirming a
+    // continuous low-resistance path) and states the de-energised-circuit
+    // requirement explicitly.
     id: "EL-INSTRUMENT-CONTINUITY-TEST-001", domain: "EL",
     statement: "A continuity test uses an ohmmeter or multimeter to confirm that a low-resistance path exists between two points in a de-energised circuit.",
-    provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-kuphaldt-dc-ohmmeter-continuity", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-INSTRUMENT-OHMMETER-001", strength: "REQUIRED" }],
-    derivedFrom: ["EL-INSTRUMENT-OHMMETER-001"],
     curriculum: [{ node: NODE_AC2_3, type: "SUPPORTS" }],
   },
   {
@@ -2686,6 +2872,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-OHM-SOLVE-I-001", strength: "REQUIRED" }, { id: "EL-SERIES-RESISTANCE-CALC-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-OHM-RELATIONSHIP-001", "EL-SERIES-RESISTANCE-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }],
   },
   {
@@ -2694,6 +2881,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-OHM-SOLVE-I-001", strength: "REQUIRED" }, { id: "EL-PARALLEL-RESISTANCE-CALC-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-OHM-RELATIONSHIP-001", "EL-PARALLEL-RESISTANCE-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_5, type: "REQUIRED_FOR" }],
   },
   {
@@ -2701,6 +2889,7 @@ const A: AssertionDef[] = [
     statement: "Electrical power can also be found from voltage and resistance alone, since combining P = V times I with I = V divided by R gives P = V squared divided by R.",
     provenance: [{ locator: "loc-openstax-up2-power-energy", role: "SUPPORTS" }],
     derivedFrom: ["EL-POWER-RELATIONSHIP-001", "EL-OHM-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }],
   },
   {
@@ -2709,6 +2898,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac4.6", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-POWER-DERIVED-V2R-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-POWER-DERIVED-V2R-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2717,6 +2907,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac4.6", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-POWER-SOLVE-IR-001", strength: "REQUIRED" }, { id: "EL-SERIES-CURRENT-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-POWER-DERIVED-VIR-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }],
   },
   {
@@ -2725,6 +2916,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac4.6", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-POWER-SOLVE-V2R-001", strength: "REQUIRED" }, { id: "EL-PARALLEL-VOLTAGE-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-POWER-DERIVED-V2R-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }],
   },
   {
@@ -2754,6 +2946,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-ENERGY-POWER-TIME-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-TRANSPOSE-MULT-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2762,6 +2955,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-ENERGY-POWER-TIME-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: NODE_AC1_1, type: "EXEMPLIFIES" }],
   },
   {
@@ -2770,6 +2964,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-ENERGY-CALC-001", strength: "REQUIRED" }, { id: "EL-UNIT-KWH-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001", "EL-UNIT-KWH-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC2_2, type: "SUPPORTS" }],
   },
 
@@ -2936,6 +3131,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
   },
   {
@@ -2961,6 +3157,7 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "FM-ALG-SUBSTITUTION-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001"],
+    derivedFromKind: "MATHEMATICAL",
     curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }],
   },
   {
@@ -3043,15 +3240,36 @@ const A: AssertionDef[] = [
     prereqs: [{ id: "EL-CONCEPT-RESISTANCE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "RESISTORS"), type: "REQUIRED_FOR" }],
   },
+  // CC-09B.2 correction (task section 15): the single compound assertion
+  // below was cited to OpenStax UP2's AC-circuits chapter (reactance,
+  // impedance, power factor) for a charge-storage/energy/transient-
+  // behaviour claim that chapter does not itself cover. The Project
+  // Architect identified stronger direct sources -- UP2 Chapter 8
+  // (Capacitance) for charge storage and field energy, and UP2's RC-
+  // circuits section for charging/discharging/voltage-continuity
+  // behaviour -- which are two materially different, separately-sourced
+  // propositions (static field-energy storage vs. time-domain transient
+  // behaviour), so per the task's own instruction the assertion is split
+  // rather than retained as one compound citation of convenience.
   {
     id: "EL-COMPONENT-CAPACITOR-001", domain: "EL",
-    statement: "A capacitor is a component that stores electrical energy by separating charge in an electric field between two conductive plates; it opposes a sudden change in the voltage across it, charging and discharging over time rather than passing an instantaneous voltage step.",
+    statement: "A capacitor is a component that stores electrical charge and energy by separating charge in an electric field between two conductive plates; a charged capacitor stores this energy in the electric field between its plates.",
     provenance: [
-      { locator: "loc-openstax-up2-ac-circuits", role: "DEFINES" },
+      { locator: "loc-openstax-up2-capacitor-charge-energy", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [{ id: "EL-CONCEPT-CAPACITANCE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "CAPACITORS"), type: "REQUIRED_FOR" }],
+  },
+  {
+    id: "EL-COMPONENT-CAPACITOR-TRANSIENT-001", domain: "EL",
+    statement: "A capacitor opposes a sudden change in the voltage across it: connected in a circuit with resistance, it charges and discharges exponentially over time (governed by the time constant tau = R times C) rather than the voltage across it changing instantaneously.",
+    provenance: [
+      { locator: "loc-openstax-up2-rc-circuits", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-CAPACITOR-001", strength: "REQUIRED" }],
+    curriculum: [{ node: acNode("6.2"), type: "SUPPORTS" }, { node: rangeNode("6.2", "CAPACITORS"), type: "SUPPORTS" }],
   },
   {
     id: "EL-COMPONENT-RECTIFIER-001", domain: "EL",
@@ -3194,52 +3412,76 @@ const A: AssertionDef[] = [
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "MOTOR-CONTROL"), type: "REQUIRED_FOR" }],
   },
   {
-    // CC-09B.1: narrowed to what the Vishay source itself names
-    // ("industrial controls" as an application category) -- heating/
-    // boiler control kept as a defensible worked example within that
-    // sourced category (audit section 17.D), not asserted as a
-    // separately-verified industry fact.
+    // CC-09B.2 correction (task section 22): CC-09B.1's DERIVED_FROM-only
+    // treatment was itself an EMPIRICAL/APPLICATION derivation (thermistor
+    // resistance-temperature response does not by itself entail a real
+    // "boiler control" application). The Project Architect's re-inspection
+    // of the SAME Vishay document CC-09B already registered found it
+    // directly names "Heating and ventilation" (industrial) and "Central-
+    // heating systems" (domestic) in its own Applications list, and shows
+    // a real "boiler sensor" response-time example (Fig. 4) and a "Simple
+    // thermostat" NTC/relay circuit (Fig. 16) -- genuine direct evidence
+    // that was already sitting in an already-registered source and simply
+    // was not the locator originally cited.
     id: "EL-APPLICATION-HEATING-BOILER-CONTROL-001", domain: "EL",
-    statement: "Thermistors' resistance-temperature response makes them suitable for temperature sensing in industrial and domestic control systems -- including heating and boiler controls -- providing a feedback signal the control circuit uses to regulate heating.",
+    statement: "Thermistors are used for temperature sensing in heating and ventilation systems, including central-heating and boiler controls, providing a feedback signal a control circuit (such as a thermostat) uses to switch a heating load on or off at set temperatures.",
     provenance: [
-      { locator: "loc-vishay-ntc-principle", role: "SUPPORTS" },
+      { locator: "loc-vishay-ntc-heating-applications", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [{ id: "EL-COMPONENT-THERMISTOR-001", strength: "REQUIRED" }],
-    derivedFrom: ["EL-COMPONENT-THERMISTOR-001"],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "HEATING-BOILER-CONTROLS"), type: "REQUIRED_FOR" }],
   },
-  // CC-09B.1 (audit section 17.A/B/C): no genuine application-specific
-  // technical source was found for these three within the task's
-  // permitted source classes (only blogs/product pages/forum posts
-  // surfaced, explicitly excluded by the provenance rule) -- narrowed
-  // per the task's own offered alternative, from an unsupported "systems
-  // commonly use X" industry-practice claim to a directly source-derived
-  // "X's own established properties suit it for Y" logical statement,
-  // each expressed as DERIVED_FROM the real component provenance already
-  // established above rather than an independent application citation.
   {
+    // CC-09B.2 correction (task section 19): CC-09B.1's DERIVED_FROM-only
+    // treatment was an EMPIRICAL/APPLICATION derivation (a photodiode
+    // detecting light does not by itself entail a "security alarm"
+    // application -- exactly the failure pattern the task's own worked
+    // example names). Now cites a first-party manufacturer of a real,
+    // commercially sold security product: SECO-LARM's ENFORCER photo-
+    // electric beam sensor, explicitly marketed for "an alarm
+    // notification" with a relay output wired to an alarm control panel.
+    // The LED/photodiode component sources are retained as SUPPORTS for
+    // the underlying component behaviour the beam sensor depends on, not
+    // as the sole evidence for the application claim itself.
     id: "EL-APPLICATION-SECURITY-ALARM-001", domain: "EL",
-    statement: "An LED's low-power visual indication and a photodiode's photocurrent response to incident light make them suitable, respectively, for status-indicator and light-beam-interruption-detection roles in applications such as a security alarm system.",
-    provenance: [{ locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" }],
+    statement: "An infrared LED transmitter and a photoelectric (photodiode) receiver can be paired as a beam-break sensor: an object interrupting the beam changes the receiver's output, which triggers a relay output wired to an alarm control panel -- the basis of commercially manufactured security/intrusion-detection beam sensors.",
+    provenance: [
+      { locator: "loc-seco-larm-beam-sensor-alarm", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-PHOTODIODE-001", strength: "REQUIRED" }],
-    derivedFrom: ["EL-COMPONENT-LED-001", "EL-COMPONENT-PHOTODIODE-001"],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "SECURITY-ALARMS"), type: "REQUIRED_FOR" }],
   },
+  // CC-09B.2 correction (task sections 20/21): for these two, no genuine
+  // application-specific source meeting the task's permitted source
+  // classes (standards body / manufacturer / university / government /
+  // "respected technical reference", explicitly excluding tutorial/SEO
+  // sites and treating patent filings as too narrow/unusual a citation
+  // for a Level 2 learner corpus) could be found within this package's
+  // search effort. Per the task's own explicit instruction (section 35:
+  // "if narrowing/splitting an assertion causes an obligation to become
+  // uncovered, the obligation must become INCOMPLETE ... do not keep the
+  // semantic matrix green by weakening its obligation"), these two are
+  // narrowed to what is genuinely sourced (the underlying component
+  // property alone) and are DELIBERATELY REMOVED from
+  // unit202-knowledge-obligations.ts's "satisfiedBy" list for their Range
+  // item -- AC6.1 is therefore now honestly reported INCOMPLETE rather
+  // than falsely kept green. Tracked as an explicit open item for the
+  // Project Architect (see PROJECT-STATUS.md CC-09B.2 and the completion
+  // report's Project Architect Handoff, group F).
   {
     id: "EL-APPLICATION-TELEPHONE-001", domain: "EL",
-    statement: "A diode's one-way conduction makes it suitable for protecting equipment against incorrect supply polarity, and an LED's low-power visual indication makes it suitable for line/status indication -- roles applicable to telephone and communication equipment.",
+    statement: "A diode conducts current in one direction only, and an LED provides low-power visual indication when forward-biased -- properties that are, in general, applicable to protection and indication roles in electronic equipment (a specific telephone-equipment application is not yet independently source-evidenced; see the knowledge-obligation register).",
     provenance: [{ locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }],
-    derivedFrom: ["EL-COMPONENT-DIODE-001", "EL-COMPONENT-LED-001"],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "TELEPHONES"), type: "REQUIRED_FOR" }],
   },
   {
     id: "EL-APPLICATION-WIRELESS-CONTROL-001", domain: "EL",
-    statement: "A transistor's ability to switch or amplify a small input signal makes it suitable for processing the low-power signal received from a remote transmitter, a role applicable to wireless control systems such as remote-controlled switches.",
+    statement: "A transistor can switch or amplify a small input signal -- a property that is, in general, applicable to processing a low-power received signal (a specific wireless-control-system application is not yet independently source-evidenced; see the knowledge-obligation register).",
     provenance: [{ locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-COMPONENT-TRANSISTOR-001", strength: "REQUIRED" }],
-    derivedFrom: ["EL-COMPONENT-TRANSISTOR-001"],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "WIRELESS-CONTROL-SYSTEMS"), type: "REQUIRED_FOR" }],
   },
 ];
@@ -3400,11 +3642,17 @@ for (const a of A) {
       relationshipType: "CONTRASTS_WITH",
     });
   }
+  if ((a.derivedFrom ?? []).length > 0 && !a.derivedFromKind) {
+    throw new Error(
+      `${a.id} declares derivedFrom but no derivedFromKind -- CC-09B.2 requires every DERIVED_FROM edge to state whether it is a valid MATHEMATICAL/LOGICAL_DEFINITIONAL consequence before it may substitute for direct provenance`,
+    );
+  }
   for (const d of a.derivedFrom ?? []) {
     relationships.push({
       fromIdentifier: a.id,
       toIdentifier: d,
       relationshipType: "DERIVED_FROM",
+      derivationKind: a.derivedFromKind,
     });
   }
 }
@@ -3595,6 +3843,70 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       canonicalReference: "Lessons in Electric Circuits, Volume I -- Direct Current",
       accessLocation: "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_I_-_Direct_Current_(Kuphaldt)",
     },
+    // -- CC-09B.2 (source-first evidence hardening) sources --
+    {
+      // Official US standards body (highest source-priority tier). Its
+      // Appendix D definitions ("active energy", "power factor (PF)",
+      // "element") directly establish the factual content several
+      // instrument/quantity assertions previously only reached via a
+      // DERIVED_FROM chain from unrelated relationship assertions.
+      key: SRC_NIST_HB44,
+      title: "NIST Handbook 44: Specifications, Tolerances, and Other Technical Requirements for Weighing and Measuring Devices -- Section 3.41, Non-Utility Electricity-Measuring Systems (Tentative Code)",
+      publisher: "National Institute of Standards and Technology (NIST)",
+      sourceFamily: "Official standards body",
+      sourceType: "STANDARD",
+      jurisdiction: "United States",
+      canonicalReference: "NIST Handbook 44 - 2026, Section 3.41",
+      accessLocation: "https://www.nist.gov/system/files/documents/2025/12/30/3-41-26-HB44-20251222.pdf",
+    },
+    {
+      // University engineering course material giving the concrete
+      // dynamometer-wattmeter circuit (current coil in series carrying
+      // load current, potential coil in parallel carrying a current
+      // proportional to load voltage) that NIST's abstract "element"
+      // definition does not itself spell out.
+      key: SRC_INDUS_UNI_WATTMETER,
+      title: "Dynamometer Type Wattmeter",
+      publisher: "Indus University",
+      sourceFamily: "University course material",
+      sourceType: "COURSE_NOTES",
+      jurisdiction: "International",
+      canonicalReference: "Indus University course content: Dynamometer-type wattmeter",
+      accessLocation: "https://coursecontent.indusuni.ac.in/wp-content/uploads/sites/8/2021/10/Dynamometer-type-wattmeter.pdf",
+    },
+    {
+      // University engineering course material. Used specifically because
+      // the Project Architect's audit found OpenStax College Physics 2e
+      // section 9.5 supports gears as simple machines and mechanical
+      // advantage as a ratio of radii, but does NOT itself establish
+      // tooth-count equivalence or the speed/torque trade-off -- this
+      // source directly establishes both.
+      key: SRC_UCSD_GEAR_RATIOS,
+      title: "Machine Design: Gear Ratios",
+      publisher: "University of California San Diego, Department of Mechanical and Aerospace Engineering",
+      sourceFamily: "University course material",
+      sourceType: "COURSE_NOTES",
+      jurisdiction: "United States",
+      canonicalReference: "UCSD MAE 3, Machine Design: Gear Ratios",
+      accessLocation: "https://mae3.eng.ucsd.edu/machine-design/gear-ratios",
+    },
+    {
+      // First-party manufacturer (SECO-LARM, "ENFORCER" security-product
+      // line) installation manual for a real, commercially sold
+      // photoelectric infrared beam-break sensor wired to an alarm
+      // control panel and explicitly marketed for "alarm notification"
+      // and security applications -- direct evidence for the specific
+      // application claim that a photodiode's/LED's own component
+      // behaviour does not by itself establish.
+      key: SRC_SECO_LARM_BEAM_SENSOR,
+      title: "ENFORCER E-931-S33PRGQ 33ft Polarized Reflective Photoelectric Beam Sensor -- Installation Manual",
+      publisher: "SECO-LARM U.S.A., Inc.",
+      sourceFamily: "Manufacturer installation manual",
+      sourceType: "INSTALLATION_MANUAL",
+      jurisdiction: "International",
+      canonicalReference: "SECO-LARM E-931-S33PRGQ Installation Manual",
+      accessLocation: "https://www.seco-larm.com/wp-content/uploads/2020/12/MI_E-931-S33PRGQ_231113.pdf",
+    },
   ],
 
   sourceVersions: [
@@ -3749,6 +4061,46 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       verificationStatus: "UNVERIFIED",
       lastCurrencyCheckDate: "2026-08-21",
     },
+    // -- CC-09B.2 (source-first evidence hardening) source versions -- all
+    // UNVERIFIED (this Sonnet session is the authoring/extraction model,
+    // never its own verifier, per ADR-0002). Fingerprints are the real
+    // SHA-256 of the actual fetched PDF bytes, never fabricated; the UCSD
+    // page has none for the same reason the other HTML-only sources above
+    // do not (no single downloadable artefact to fingerprint).
+    {
+      key: SV_NIST_HB44, sourceKey: SRC_NIST_HB44,
+      edition: "Handbook 44 - 2026",
+      revision: "Section 3.41 (Tentative Code, added 2024)",
+      status: "CURRENT", rightsClassification: "OPEN",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "3a8654c4a3cda1e3cf24774050af713b24fc37d75a929987276e0d538a48d557",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_INDUS_UNI_WATTMETER, sourceKey: SRC_INDUS_UNI_WATTMETER,
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "f3ef29975ead33618ce12ada09acc2329c98111e03f787fe33d5036ee3251059",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_UCSD_GEAR_RATIOS, sourceKey: SRC_UCSD_GEAR_RATIOS,
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_SECO_LARM_BEAM_SENSOR, sourceKey: SRC_SECO_LARM_BEAM_SENSOR,
+      revision: "E-931-S33PRGQ installation manual",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "242e887377533f4e89ac4241ebe5e262124438cd2c3e16f823cea3e1b8ba57f6",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
   ],
 
   sourceLocators: locators.map((l) => ({
@@ -3836,6 +4188,7 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       assertionVersion: 1,
       sourceLocatorKey: p.locator,
       provenanceRole: p.role,
+      supportType: p.supportType,
     })),
   ),
 

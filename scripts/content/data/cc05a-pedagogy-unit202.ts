@@ -899,6 +899,10 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     // capacitor knowledge (audit section 16.A/B).
     ["EL-COMPONENT-RESISTOR-001", "canonical_form"],
     ["EL-COMPONENT-CAPACITOR-001", "canonical_form"],
+    // CC-09B.2: split out of EL-COMPONENT-CAPACITOR-001 (charging/
+    // discharging transient behaviour is a separately-sourced proposition
+    // from static charge/energy storage -- task section 15).
+    ["EL-COMPONENT-CAPACITOR-TRANSIENT-001", "consequence"],
     ["EL-COMPONENT-RECTIFIER-001", "canonical_form"],
     ["EL-COMPONENT-DIODE-001", "canonical_form"],
     ["EL-COMPONENT-ZENER-DIODE-001", "consequence"],

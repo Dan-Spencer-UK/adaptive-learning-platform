@@ -117,21 +117,43 @@ describe("report-coverage-matrix: structural gates against the real corpus", () 
 });
 
 describe("report-coverage-matrix: CC-09B.1 semantic completeness (never inferred from referential coverage alone)", () => {
-  it("the real corpus is semantically complete for all 23 ACs and 58 Range items, and every obligation resolves to a real assertion", () => {
+  it("the real corpus is semantically complete for 22/23 ACs and 52/58 Range items -- AC6.1 is honestly INCOMPLETE (CC-09B.2)", () => {
+    // CC-09B.2 deliberately narrowed EL-APPLICATION-TELEPHONE-001 and
+    // EL-APPLICATION-WIRELESS-CONTROL-001 to what their evidence actually
+    // supports (no genuine application-specific source was found within
+    // this package's search effort) and removed them from
+    // unit202-knowledge-obligations.ts's AC6.1 "satisfiedBy" lists rather
+    // than force an unsupported application claim. This is the intended,
+    // honest result of task section 35 ("do not keep the semantic matrix
+    // green by weakening its obligation") -- 23/23 was itself the
+    // false-green condition this correction exists to prevent recurring.
     const report = buildReport();
-    expect(report.totals.acSemanticComplete).toBe(23);
-    expect(report.totals.rangeItemsSemanticComplete).toBe(58);
-    expect(report.acSemantic.every((s) => s.obligationsDeclared)).toBe(true);
-    expect(report.acSemantic.every((s) => s.status === "COMPLETE_PENDING_VERIFICATION")).toBe(true);
-    expect(report.acSemantic.flatMap((s) => s.unresolvedObligationIds)).toEqual([]);
+    expect(report.totals.acSemanticComplete).toBe(22);
+    expect(report.totals.rangeItemsSemanticComplete).toBe(52);
+    const ac61 = report.acSemantic.find((s) => s.acNumber === "6.1");
+    expect(ac61?.status).toBe("INCOMPLETE");
+    expect(ac61?.obligations.filter((o) => !o.satisfied).map((o) => o.id)).toEqual(["telephone-application", "wireless-control-application"]);
+    // Every other AC remains genuinely complete.
+    const complete = report.acSemantic.filter((s) => s.acNumber !== "6.1");
+    expect(complete.every((s) => s.obligationsDeclared)).toBe(true);
+    expect(complete.every((s) => s.status === "COMPLETE_PENDING_VERIFICATION")).toBe(true);
+    expect(complete.flatMap((s) => s.unresolvedObligationIds)).toEqual([]);
   });
 
-  it("the real corpus has zero direct factual-provenance defects: no unsupported assertions, no syllabus-only technical assertions, no mismatched locators, no unresolved DERIVED_FROM targets", () => {
+  it("the real corpus has zero unsupported/mismatched/unresolved-derivation provenance defects, and exactly the two honestly-flagged syllabus-only application assertions", () => {
     const report = buildReport();
     expect(report.provenanceAudit.noProvenance).toEqual([]);
-    expect(report.provenanceAudit.syllabusOnlyTechnical).toEqual([]);
+    // CC-09B.2: these two are the deliberate, documented exception -- see
+    // the test above and each assertion's own code comment in
+    // cc04-unit202-electrical-science.ts. Never silently re-zeroed by
+    // re-adding a DERIVED_FROM/weak citation instead of real evidence.
+    expect(report.provenanceAudit.syllabusOnlyTechnical).toEqual(["EL-APPLICATION-TELEPHONE-001", "EL-APPLICATION-WIRELESS-CONTROL-001"]);
     expect(report.provenanceAudit.mismatchedLocators).toEqual([]);
     expect(report.provenanceAudit.unresolvedDerivations).toEqual([]);
+    // CC-09B.2: the schema-level superRefine already forces every
+    // DERIVED_FROM edge to declare a kind; this proves none of the 34
+    // remaining edges are classified EMPIRICAL_APPLICATION/INVALID_UNCLEAR.
+    expect(report.provenanceAudit.invalidDerivationKinds).toEqual([]);
   });
 
   it("an AC with no declared knowledge-obligation set is INCOMPLETE by definition, never silently read as complete", () => {
@@ -140,7 +162,9 @@ describe("report-coverage-matrix: CC-09B.1 semantic completeness (never inferred
     const ac31 = report.acSemantic.find((s) => s.acNumber === "3.1");
     expect(ac31?.obligationsDeclared).toBe(false);
     expect(ac31?.status).toBe("INCOMPLETE");
-    expect(report.totals.acSemanticComplete).toBe(22);
+    // Real baseline is 22/23 (AC6.1 already honestly INCOMPLETE, CC-09B.2);
+    // stripping AC3.1's declaration on top drops it one further to 21.
+    expect(report.totals.acSemanticComplete).toBe(21);
     // Absence of a declaration is never a structural defect, and never fails --check.
     expect(isReportClean(report)).toBe(true);
   });
@@ -212,5 +236,68 @@ describe("report-coverage-matrix: CC-09B.1 semantic completeness (never inferred
     // Deliberately never a --check failure -- this is a real backlog item
     // this audit surfaces, not a structural bug in the report itself.
     expect(isReportClean(report)).toBe(true);
+  });
+});
+
+describe("report-coverage-matrix: CC-09B.2 source-first entailment (task section 36)", () => {
+  it("REGRESSION A/B (application/device-construction inference): an EMPIRICAL_APPLICATION-classified DERIVED_FROM edge never rescues an assertion from syllabus-only-technical, even when its parent is itself well-sourced", () => {
+    // Simulates exactly the pre-CC-09B.2 defect pattern this package
+    // corrected for real (EL-INSTRUMENT-WATTMETER-001 previously
+    // DERIVED_FROM the well-sourced EL-POWER-RELATIONSHIP-001/ammeter/
+    // voltmeter assertions) -- proves the fix is structural, not just a
+    // one-off content edit that could silently regress.
+    const [wattmeter] = cc04Unit202ElectricalScience.assertions.filter((a) => a.identifier === "EL-INSTRUMENT-WATTMETER-001");
+    expect(wattmeter).toBeDefined();
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      // Strip the wattmeter's real direct provenance (NIST/Indus Uni),
+      // leaving only the City & Guilds curriculum citation.
+      assertionProvenanceLinks: cc04Unit202ElectricalScience.assertionProvenanceLinks.filter(
+        (p) => p.assertionIdentifier !== "EL-INSTRUMENT-WATTMETER-001" || p.provenanceRole === "CURRICULUM_REQUIRES",
+      ),
+      // Add back a DERIVED_FROM edge to a genuinely well-sourced parent
+      // (EL-POWER-RELATIONSHIP-001), but honestly classified as an
+      // EMPIRICAL_APPLICATION derivation -- device construction is not a
+      // mathematical consequence of P = VI.
+      assertionRelationships: [
+        ...cc04Unit202ElectricalScience.assertionRelationships,
+        { fromIdentifier: "EL-INSTRUMENT-WATTMETER-001", toIdentifier: "EL-POWER-RELATIONSHIP-001", relationshipType: "DERIVED_FROM" as const, derivationKind: "EMPIRICAL_APPLICATION" as const },
+      ],
+    };
+    const report = buildReport({ curriculum: tampered });
+    expect(report.provenanceAudit.syllabusOnlyTechnical).toContain("EL-INSTRUMENT-WATTMETER-001");
+    expect(report.provenanceAudit.invalidDerivationKinds.some((s) => s.includes("EL-INSTRUMENT-WATTMETER-001") && s.includes("EMPIRICAL_APPLICATION"))).toBe(true);
+    // Still never a --check failure -- a real, honestly-surfaced defect, not a script bug.
+    expect(isReportClean(report)).toBe(true);
+  });
+
+  it("REGRESSION C (valid mathematical derivation): a MATHEMATICAL-classified DERIVED_FROM edge to a directly-sourced parent correctly confers provenance", () => {
+    // EL-OHM-SOLVE-I-001 (I = V/R by algebraic rearrangement) genuinely
+    // DERIVED_FROM EL-OHM-RELATIONSHIP-001 (directly OpenStax-sourced) in
+    // the real, untampered corpus -- this must remain accepted, or the
+    // provenance audit would wrongly demand a citation for every one of
+    // the corpus's 30 real mathematical-consequence calculation
+    // assertions.
+    const report = buildReport();
+    expect(report.provenanceAudit.syllabusOnlyTechnical).not.toContain("EL-OHM-SOLVE-I-001");
+    const edge = cc04Unit202ElectricalScience.assertionRelationships.find(
+      (r) => r.fromIdentifier === "EL-OHM-SOLVE-I-001" && r.relationshipType === "DERIVED_FROM",
+    );
+    expect(edge?.derivationKind).toBe("MATHEMATICAL");
+  });
+
+  it("REGRESSION D (partial source support): an assertion whose every classified provenance link is PARTIAL (no single source covers the whole compound proposition) is reported, never silently treated as fully supported", () => {
+    // The real corpus's EL-CONCEPT-POWER-FACTOR-001 is exactly this case:
+    // OpenStax UP2 15.4 supports only the cosine-of-phase-angle clause,
+    // NIST HB44 supports only the real/apparent-power-ratio clause -- each
+    // link is honestly classified PARTIAL, and their combination (not
+    // either alone) is what makes the compound statement supported.
+    const report = buildReport();
+    expect(report.provenanceAudit.partialSupportOnly).toContain("EL-CONCEPT-POWER-FACTOR-001");
+    const links = cc04Unit202ElectricalScience.assertionProvenanceLinks.filter(
+      (p) => p.assertionIdentifier === "EL-CONCEPT-POWER-FACTOR-001" && p.supportType !== undefined,
+    );
+    expect(links.length).toBeGreaterThanOrEqual(2);
+    expect(links.every((l) => l.supportType === "PARTIAL")).toBe(true);
   });
 });

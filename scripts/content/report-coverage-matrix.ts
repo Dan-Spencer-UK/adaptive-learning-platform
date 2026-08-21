@@ -123,6 +123,12 @@ interface ProvenanceAudit {
   mismatchedLocators: string[];
   /** DERIVED_FROM targets that do not resolve to a real corpus assertion. Structural defect (folded into structuralDefects, listed here too for visibility). */
   unresolvedDerivations: string[];
+  /** CC-09B.2: DERIVED_FROM edges whose declared (or missing) derivationKind is EMPIRICAL_APPLICATION/INVALID_UNCLEAR/undeclared -- these can never satisfy provenance. Target 0. */
+  invalidDerivationKinds: string[];
+  /** CC-09B.2: assertions with at least one explicitly classified (supportType set) provenance link where every classified link is PARTIAL, none DIRECT -- reported for transparency, never a failure (a deliberate multi-source PARTIAL combination, e.g. EL-CONCEPT-POWER-FACTOR-001, is a valid pattern per task section 11.A, not a defect). */
+  partialSupportOnly: string[];
+  /** CC-09B.2: count of assertions with >=1 provenance link carrying an explicit supportType -- i.e. assertions this package's bounded entailment audit actually classified (task sections 25/26 plus the specific named corrections), never claimed to be the whole corpus. See this module's header and PROJECT-STATUS.md CC-09B.2 for the audit's explicit scope boundary. */
+  entailmentClassifiedCount: number;
   /** Assertions citing at least one source whose sourceVersion.verificationStatus is not VERIFIED. Reported, never a failure -- independent verification is a separate, later step (ADR-0002). */
   unverifiedSourceCount: number;
 }
@@ -438,6 +444,17 @@ function buildReport(overrides?: {
   }
   const derivedFromByAssertion = new Map<string, string[]>();
   const unresolvedDerivations: string[] = [];
+  // CC-09B.2 (source-first evidence hardening, task section 27/28): only
+  // MATHEMATICAL/LOGICAL_DEFINITIONAL derivations may substitute for an
+  // assertion's own direct provenance. `validKindByEdge` tracks which
+  // edges qualify; `invalidDerivationKinds` records any that do not (the
+  // content-schema-level superRefine already forces every DERIVED_FROM
+  // edge to declare SOME kind, so this is a second, independent
+  // structural check -- if a future edit ever adds an EMPIRICAL_APPLICATION
+  // or INVALID_UNCLEAR edge, it is caught here rather than silently
+  // trusted as provenance).
+  const validKindByEdge = new Map<string, boolean>();
+  const invalidDerivationKinds: string[] = [];
   for (const rel of corpus.assertionRelationships) {
     if (rel.relationshipType !== "DERIVED_FROM") continue;
     if (!realAssertionIds.has(rel.toIdentifier)) {
@@ -447,13 +464,20 @@ function buildReport(overrides?: {
     }
     if (!derivedFromByAssertion.has(rel.fromIdentifier)) derivedFromByAssertion.set(rel.fromIdentifier, []);
     derivedFromByAssertion.get(rel.fromIdentifier)!.push(rel.toIdentifier);
+    const edgeKey = `${rel.fromIdentifier}->${rel.toIdentifier}`;
+    const isValidKind = rel.derivationKind === "MATHEMATICAL" || rel.derivationKind === "LOGICAL_DEFINITIONAL";
+    validKindByEdge.set(edgeKey, isValidKind);
+    if (!isValidKind) {
+      invalidDerivationKinds.push(`${rel.fromIdentifier} DERIVED_FROM ${rel.toIdentifier} (${rel.derivationKind ?? "undeclared"})`);
+    }
   }
 
-  /** True once a chain of DERIVED_FROM edges (bounded depth against cycles) reaches an assertion with real non-curriculum provenance. */
+  /** True once a chain of DERIVED_FROM edges (bounded depth against cycles, and only through MATHEMATICAL/LOGICAL_DEFINITIONAL edges -- an EMPIRICAL_APPLICATION or INVALID_UNCLEAR edge never confers provenance, CC-09B.2) reaches an assertion with real non-curriculum provenance. */
   function derivesFromSourcedAssertion(assertionId: string, seen = new Set<string>()): boolean {
     if (seen.has(assertionId)) return false;
     seen.add(assertionId);
     for (const targetId of derivedFromByAssertion.get(assertionId) ?? []) {
+      if (!validKindByEdge.get(`${assertionId}->${targetId}`)) continue;
       if (hasDirectTechnicalProvenance(targetId) || derivesFromSourcedAssertion(targetId, seen)) return true;
     }
     return false;
@@ -489,6 +513,8 @@ function buildReport(overrides?: {
     r2NodeKeysByAssertion.get(mapping.assertionIdentifier)!.push(mapping.curriculumNodeKey);
   }
 
+  const partialSupportOnly: string[] = [];
+  let entailmentClassifiedCount = 0;
   for (const assertion of corpus.assertions) {
     const links = provenanceByAssertion.get(assertion.identifier) ?? [];
     if (links.length === 0) {
@@ -498,6 +524,17 @@ function buildReport(overrides?: {
 
     if (!hasDirectTechnicalProvenance(assertion.identifier) && !derivesFromSourcedAssertion(assertion.identifier)) {
       syllabusOnlyTechnical.push(assertion.identifier);
+    }
+
+    // CC-09B.2: entailment classification (task section 30) -- a
+    // deliberately bounded, honestly-scoped transparency metric, not a
+    // retroactive re-audit of every pre-existing provenance link.
+    const classifiedLinks = links.filter((link) => link.supportType !== undefined);
+    if (classifiedLinks.length > 0) {
+      entailmentClassifiedCount++;
+      if (classifiedLinks.every((link) => link.supportType === "PARTIAL")) {
+        partialSupportOnly.push(assertion.identifier);
+      }
     }
 
     const mappedAcNumbers = new Set(
@@ -523,7 +560,16 @@ function buildReport(overrides?: {
     }
   }
 
-  const provenanceAudit: ProvenanceAudit = { noProvenance, syllabusOnlyTechnical, mismatchedLocators, unresolvedDerivations, unverifiedSourceCount };
+  const provenanceAudit: ProvenanceAudit = {
+    noProvenance,
+    syllabusOnlyTechnical,
+    mismatchedLocators,
+    unresolvedDerivations,
+    invalidDerivationKinds,
+    partialSupportOnly,
+    entailmentClassifiedCount,
+    unverifiedSourceCount,
+  };
 
   return {
     structuralDefects,
@@ -570,9 +616,16 @@ function formatReport(report: CoverageMatrixReport): string {
   lines.push(`  syllabus-only technical (City & Guilds is the sole factual grounding): ${report.provenanceAudit.syllabusOnlyTechnical.length}`);
   lines.push(`  mismatched locators (CURRICULUM_REQUIRES cites a different AC than mapped): ${report.provenanceAudit.mismatchedLocators.length}`);
   lines.push(`  unresolved DERIVED_FROM targets: ${report.provenanceAudit.unresolvedDerivations.length}`);
+  lines.push(`  invalid derivation kinds (EMPIRICAL_APPLICATION/INVALID_UNCLEAR/undeclared -- can never satisfy provenance): ${report.provenanceAudit.invalidDerivationKinds.length}`);
   if (report.provenanceAudit.noProvenance.length) lines.push(`    no provenance: ${report.provenanceAudit.noProvenance.join(", ")}`);
   if (report.provenanceAudit.syllabusOnlyTechnical.length) lines.push(`    syllabus-only: ${report.provenanceAudit.syllabusOnlyTechnical.join(", ")}`);
   if (report.provenanceAudit.mismatchedLocators.length) lines.push(`    mismatched: ${report.provenanceAudit.mismatchedLocators.join("; ")}`);
+  if (report.provenanceAudit.invalidDerivationKinds.length) lines.push(`    invalid derivations: ${report.provenanceAudit.invalidDerivationKinds.join("; ")}`);
+  lines.push("");
+  lines.push("ENTAILMENT CLASSIFICATION (CC-09B.2 -- a bounded audit of the specific assertions/sources this package corrected or newly authored, never a full-corpus re-audit; see module header):");
+  lines.push(`  assertions with >=1 explicitly classified (DIRECT/PARTIAL) provenance link: ${report.provenanceAudit.entailmentClassifiedCount}`);
+  lines.push(`  PARTIAL-only support (every classified link is PARTIAL, none DIRECT -- expected for deliberate multi-source combinations, not itself a failure): ${report.provenanceAudit.partialSupportOnly.length}`);
+  if (report.provenanceAudit.partialSupportOnly.length) lines.push(`    partial-only: ${report.provenanceAudit.partialSupportOnly.join(", ")}`);
   lines.push("");
   lines.push("INDEPENDENT VERIFICATION:");
   lines.push(`  assertions citing at least one still-UNVERIFIED source: ${report.provenanceAudit.unverifiedSourceCount} (reported, never a --check failure -- see ADR-0002)`);

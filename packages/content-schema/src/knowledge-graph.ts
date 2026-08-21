@@ -114,6 +114,42 @@ export const relationshipStrengthSchema = z.enum([
   "SUPPORTING",
 ]);
 
+// CC-09B.2 (source-first evidence hardening): classifies a DERIVED_FROM
+// relationship's actual justification, so "the child assertion follows
+// from its parents" cannot silently mean anything from "pure algebra" to
+// "I assumed a real device works this way". Only MATHEMATICAL and
+// LOGICAL_DEFINITIONAL derivations may substitute for the child having its
+// own direct factual provenance -- deriving a new EMPIRICAL fact (a real
+// device's construction, a specific application, an industry practice)
+// from a mathematical/definitional parent is exactly the "reference-shaped
+// decoration" failure mode this package exists to make structurally
+// difficult to reintroduce. See docs/governance/DECISION-LOG.md.
+export const derivationKindSchema = z.enum([
+  /** A deductive, purely mathematical consequence of the parent(s) -- e.g. algebraic rearrangement or substitution (V = IR + I = V/R by rearrangement; P = VI + V = IR by substitution -> P = I^2R). */
+  "MATHEMATICAL",
+  /** A logical/definitional consequence that introduces no new empirical content -- e.g. "select the instrument matching the desired quantity" given each instrument's measured quantity is already independently established. */
+  "LOGICAL_DEFINITIONAL",
+  /** Introduces new empirical content (a real device's construction, a specific application/industry-practice claim) not entailed by the parent(s) alone -- NEVER sufficient on its own to satisfy factual provenance; the child needs its own direct source instead. */
+  "EMPIRICAL_APPLICATION",
+  /** The derivation's justification could not be established as sound; flagged for correction rather than silently treated as valid. */
+  "INVALID_UNCLEAR",
+]);
+
+// CC-09B.2: whether a source locator's evidence, as actually inspected,
+// supports the WHOLE material factual proposition of the assertion it is
+// linked to (DIRECT) or only part of it (PARTIAL -- the assertion should
+// be narrowed, split, or given an additional source). Deliberately does
+// NOT include a "CURRICULUM_ONLY" value here: that case is already fully
+// expressed by provenanceRoleSchema's own CURRICULUM_REQUIRES value, so
+// adding a second, overlapping concept would duplicate rather than
+// clarify (per the task's own "reuse existing provenanceRole semantics,
+// do not create duplicate concepts" instruction). Optional and unset on
+// most pre-existing links: this package audits/classifies the specific
+// links it corrected or newly authored, not a retroactive re-audit of the
+// entire pre-existing corpus (a tracked, honestly-reported backlog -- see
+// PROJECT-STATUS.md CC-09B.2).
+export const supportTypeSchema = z.enum(["DIRECT", "PARTIAL"]);
+
 export const curriculumMappingTypeSchema = z.enum([
   "REQUIRED_FOR",
   "SUPPORTS",
@@ -242,14 +278,28 @@ export const assertionProvenanceLinkManifestSchema = z.object({
   assertionVersion: z.number().int().positive(),
   sourceLocatorKey: stableKey,
   provenanceRole: provenanceRoleSchema,
+  /** CC-09B.2: whether the locator's actual evidence supports the assertion's whole proposition (DIRECT) or only part of it (PARTIAL). See supportTypeSchema. */
+  supportType: supportTypeSchema.optional(),
 });
 
-export const assertionRelationshipManifestSchema = z.object({
-  fromIdentifier: stableKey,
-  toIdentifier: stableKey,
-  relationshipType: relationshipTypeSchema,
-  strength: relationshipStrengthSchema.optional(),
-});
+export const assertionRelationshipManifestSchema = z
+  .object({
+    fromIdentifier: stableKey,
+    toIdentifier: stableKey,
+    relationshipType: relationshipTypeSchema,
+    strength: relationshipStrengthSchema.optional(),
+    /** CC-09B.2: required whenever relationshipType is DERIVED_FROM (see superRefine below) -- see derivationKindSchema. */
+    derivationKind: derivationKindSchema.optional(),
+  })
+  .superRefine((r, ctx) => {
+    if (r.relationshipType === "DERIVED_FROM" && !r.derivationKind) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["derivationKind"],
+        message: `DERIVED_FROM relationship ${r.fromIdentifier} -> ${r.toIdentifier} must declare a derivationKind -- a derivation can never silently stand in for the child assertion's own factual provenance without stating whether it is mathematical/definitional (valid) or introduces new empirical content (invalid as provenance)`,
+      });
+    }
+  });
 
 export const assertionCurriculumMappingManifestSchema = z.object({
   assertionIdentifier: stableKey,
