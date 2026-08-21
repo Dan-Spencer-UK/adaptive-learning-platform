@@ -45,7 +45,14 @@ function buildReport(manifest: KnowledgeGraphManifest): string {
   // Project Architect can see SOURCE / LOCATOR / SUPPORT TYPE / ENTAILMENT
   // RESULT for every assertion on this one page without cross-referencing
   // the schema/manifest by hand.
-  const entailmentStatusByAssertion = buildCoverageMatrixReport().entailmentStatusByAssertion;
+  const coverageMatrixReport = buildCoverageMatrixReport();
+  const entailmentStatusByAssertion = coverageMatrixReport.entailmentStatusByAssertion;
+  // CC-09B.5 (task section 31): the second, independent admissibility axis
+  // -- reused, never recomputed here -- so a curriculum-facing assertion's
+  // CURRICULUM TARGET / SCOPE STATUS is visible on the same page as its
+  // evidence entailment result, without cross-referencing
+  // unit202-knowledge-obligations.ts by hand.
+  const scopeStatusByAssertion = coverageMatrixReport.scopeStatusByAssertion;
   const clauseCoverageByAssertion = new Map(
     manifest.assertionVersions
       .filter((v) => v.clauseCoverage && v.clauseCoverage.length > 0)
@@ -300,6 +307,8 @@ function buildReport(manifest: KnowledgeGraphManifest): string {
       if (derivedFrom.length) lines.push(`**Derived from:** ${derivedFrom.join("; ")}`);
       const entailment = entailmentStatusByAssertion[a.identifier];
       if (entailment) lines.push(`**Entailment result:** ${entailment}`);
+      const scopeStatus = scopeStatusByAssertion[a.identifier];
+      if (scopeStatus) lines.push(`**Scope status (CC-09B.5):** ${scopeStatus}`);
       const clauseCoverage = clauseCoverageByAssertion.get(a.identifier);
       if (clauseCoverage) {
         lines.push(

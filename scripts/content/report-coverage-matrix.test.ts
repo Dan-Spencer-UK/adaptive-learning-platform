@@ -488,3 +488,92 @@ describe("report-coverage-matrix: CC-09B.4 retroactive source-first provenance m
     ).toBe(true);
   });
 });
+
+describe("report-coverage-matrix: CC-09B.5 syllabus-scope fidelity and depth control (task section 29)", () => {
+  it("A (source over-specificity): the wireless-control application assertion is fully evidenced by a detailed decoder-IC datasheet, but its governed statement never absorbs that source's device-level jargon", () => {
+    // loc-holtek-ht12d-applications genuinely describes named IC part
+    // numbers, CMOS output-stage detail and product examples (garage/car
+    // door receivers) -- Axis 1 (evidence) is satisfied, but Axis 2
+    // (curriculum scope) bounds what actually enters the governed
+    // statement. Evidence being more detailed than the syllabus requires
+    // must never leak into the assertion text.
+    const report = buildReport();
+    expect(report.entailmentStatusByAssertion["EL-APPLICATION-WIRELESS-CONTROL-001"]).toBe("FULLY_SUPPORTED_SINGLE_SOURCE");
+    const version = cc04Unit202ElectricalScience.assertionVersions.find((v) => v.assertionIdentifier === "EL-APPLICATION-WIRELESS-CONTROL-001");
+    const statement = version!.statement.toLowerCase();
+    for (const jargon of ["holtek", "ht12d", "ht12f", "cmos", "garage", "car door", "address bit", "encoder"]) {
+      expect(statement).not.toContain(jargon);
+    }
+  });
+
+  it("B (telephone source detail): the telephone application assertion is fully evidenced by a DAA design guide, but its governed statement never absorbs DAA/TIP/RING terminal jargon or exact circuit-placement detail", () => {
+    const report = buildReport();
+    expect(report.entailmentStatusByAssertion["EL-APPLICATION-TELEPHONE-001"]).toBe("FULLY_SUPPORTED_SINGLE_SOURCE");
+    const version = cc04Unit202ElectricalScience.assertionVersions.find((v) => v.assertionIdentifier === "EL-APPLICATION-TELEPHONE-001");
+    const statement = version!.statement.toLowerCase();
+    for (const jargon of ["daa", "tip", "ring", "skyworks", "an347"]) {
+      expect(statement).not.toContain(jargon);
+    }
+  });
+
+  it("C (necessary supporting knowledge): Ohm's-law rearrangement and selection are admissible NECESSARY_PREREQUISITE knowledge for AC4.5's calculation requirement, even though no such wording appears verbatim in the syllabus", () => {
+    const report = buildReport();
+    for (const id of ["EL-OHM-REARRANGE-001", "EL-OHM-SELECT-RELATIONSHIP-001"]) {
+      expect(report.scopeStatusByAssertion[id]).toBe("IN_SCOPE_SUPPORTING");
+      expect(report.scopeStatusByAssertion[id]).not.toBe("ENRICHMENT_NOT_REQUIRED");
+      expect(report.scopeStatusByAssertion[id]).not.toBe("OUT_OF_SCOPE");
+    }
+    const ac45 = AC_OBLIGATIONS.find((s) => s.acNumber === "4.5")!;
+    expect(ac45.obligations.find((o) => o.id === "ohms-law-rearrangement-and-selection")?.basis).toBe("NECESSARY_PREREQUISITE");
+  });
+
+  it("D (foundation reuse): an assertion with no Unit 202 curriculum mapping remains a valid governed assertion -- undefined scope status, never OUT_OF_SCOPE", () => {
+    // FM-NUM-SI-PREFIX-001 (SI-prefix conversion, e.g. kilo/milli) is real
+    // reusable horizontal foundation with no direct R2 mapping -- it is
+    // legitimately outside this classification's scope entirely (task
+    // section 8.B), not a curriculum requirement that failed a gate.
+    const report = buildReport();
+    expect(cc04Unit202ElectricalScience.assertions.some((a) => a.identifier === "FM-NUM-SI-PREFIX-001")).toBe(true);
+    expect(report.scopeStatusByAssertion["FM-NUM-SI-PREFIX-001"]).toBeUndefined();
+  });
+
+  it("E (scope unresolved): the Statistics Range item stays honestly SCOPE_UNRESOLVED in breadth -- it must never expand to median/mode/quartiles merely because the foundational source (DfE GCSE Maths) happens to cover them", () => {
+    const statsObligation = AC_OBLIGATIONS.find((s) => s.acNumber === "1.1")!.obligations.find((o) => o.id === "statistics")!;
+    expect(statsObligation.scopeUnresolved).toBeDefined();
+    expect(statsObligation.satisfiedBy).toEqual(["FM-STATS-MEAN-001", "FM-STATS-RANGE-001"]);
+    const statements = cc04Unit202ElectricalScience.assertionVersions.map((v) => v.statement);
+    expect(statements.some((s) => /median|quartile|\bmode\b/i.test(s))).toBe(false);
+    // Its own obligation basis is still RANGE (mean+range genuinely is
+    // required syllabus knowledge) -- scopeUnresolved is breadth-within-an-
+    // already-justified obligation, never a reason to demote the whole
+    // obligation out of scope.
+    const report = buildReport();
+    expect(report.scopeStatusByAssertion["FM-STATS-MEAN-001"]).toBe("IN_SCOPE_REQUIRED");
+  });
+
+  it("REGRESSION (the decomposition-completeness fix this package made): an R2-curriculum-mapped assertion not yet named by any obligation is ENRICHMENT_NOT_REQUIRED only when it also lacks a REQUIRED_FOR mapping -- a REQUIRED_FOR-mapped-but-undecomposed assertion is SCOPE_UNRESOLVED, never silently swept either way", () => {
+    const withoutObligation = AC_OBLIGATIONS.map((set) =>
+      set.acNumber === "4.5" ? { ...set, obligations: set.obligations.filter((o) => o.id !== "ohms-law-rearrangement-and-selection") } : set,
+    );
+    const report = buildReport({ obligations: withoutObligation });
+    // EL-OHM-REARRANGE-001 carries REQUIRED_FOR node-202r2-lo4-ac4.5 --
+    // stripping its obligation must surface SCOPE_UNRESOLVED, not a false
+    // ENRICHMENT_NOT_REQUIRED verdict about genuinely necessary knowledge.
+    expect(report.scopeStatusByAssertion["EL-OHM-REARRANGE-001"]).toBe("SCOPE_UNRESOLVED");
+    // A real corpus assertion mapped only SUPPORTS/EXEMPLIFIES (never
+    // REQUIRED_FOR) and not named by any obligation is IN_SCOPE_SUPPORTING
+    // -- its own already-authored SUPPORTS mapping is the judgment that it
+    // is legitimate, proportionate supporting content, not a source-shaped
+    // enrichment guess.
+    expect(report.scopeStatusByAssertion["EL-MOTOR-GENERATOR-COMPARE-001"]).toBe("IN_SCOPE_SUPPORTING");
+  });
+
+  it("the real, corrected corpus has zero ENRICHMENT_NOT_REQUIRED and zero SCOPE_UNRESOLVED assertions among its 226 R2-curriculum-mapped assertions", () => {
+    const report = buildReport();
+    const statuses = Object.values(report.scopeStatusByAssertion);
+    expect(statuses.length).toBe(226);
+    expect(statuses.filter((s) => s === "ENRICHMENT_NOT_REQUIRED")).toEqual([]);
+    expect(statuses.filter((s) => s === "OUT_OF_SCOPE")).toEqual([]);
+    expect(statuses.filter((s) => s === "SCOPE_UNRESOLVED")).toEqual([]);
+  });
+});

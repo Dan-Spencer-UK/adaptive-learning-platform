@@ -140,6 +140,39 @@ type EntailmentStatus =
   | "UNSUPPORTED"
   | "PENDING_REVIEW";
 
+/**
+ * CC-09B.5 (SYLLABUS-SCOPE FIDELITY AND DEPTH CONTROL, task sections 2/10):
+ * a SECOND, independent admissibility axis alongside EntailmentStatus.
+ * EntailmentStatus answers "is this true according to inspected evidence?";
+ * ScopeStatus answers "does the learner need this at this depth for the
+ * governed curriculum?" -- passing one never substitutes for the other
+ * (task section 2's two-axis rule). Derived, not separately authored: an
+ * assertion's scope status follows from the strongest `basis`
+ * (unit202-knowledge-obligations.ts) of any obligation it satisfies --
+ * EXPLICIT/RANGE obligations make an assertion IN_SCOPE_REQUIRED;
+ * NECESSARY_PREREQUISITE makes an EL assertion IN_SCOPE_SUPPORTING and an
+ * FM/FP assertion FOUNDATIONAL_PREREQUISITE (task section 8's foundation-
+ * layer distinction); SCOPE_UNRESOLVED obligations make their assertions
+ * SCOPE_UNRESOLVED. An assertion that carries a real Unit 202 curriculum
+ * mapping but is named by no obligation at all is ENRICHMENT_NOT_REQUIRED
+ * -- referentially mapped, but never decomposed as a genuine syllabus
+ * necessity (task section 20's explicit "the source contained this
+ * interesting fact" prohibition). An assertion with no Unit 202 curriculum
+ * mapping at all is out of scope of this classification entirely (pure
+ * reusable horizontal foundation, task section 8.B) and is left
+ * unclassified (`undefined`), never OUT_OF_SCOPE by default -- OUT_OF_SCOPE
+ * is reserved for a Unit-202-mapped assertion an authoring review has
+ * actively found does not belong (none currently, after this package's
+ * corrections; see PROJECT-STATUS.md CC-09B.5).
+ */
+type ScopeStatus =
+  | "IN_SCOPE_REQUIRED"
+  | "IN_SCOPE_SUPPORTING"
+  | "FOUNDATIONAL_PREREQUISITE"
+  | "ENRICHMENT_NOT_REQUIRED"
+  | "OUT_OF_SCOPE"
+  | "SCOPE_UNRESOLVED";
+
 interface ObligationResult {
   id: string;
   description: string;
@@ -223,6 +256,8 @@ interface CoverageMatrixReport {
   provenanceAudit: ProvenanceAudit;
   /** CC-09B.3: assertion-level EntailmentStatus for every real assertion in the corpus -- see EntailmentStatus for the full rule. */
   entailmentStatusByAssertion: Record<string, EntailmentStatus>;
+  /** CC-09B.5: assertion-level ScopeStatus for every Unit-202-curriculum-mapped assertion (undefined/absent for pure reusable-foundation assertions with no Unit 202 mapping) -- see ScopeStatus for the full rule. */
+  scopeStatusByAssertion: Record<string, ScopeStatus>;
   totals: {
     loCount: number;
     acCount: number;
@@ -555,6 +590,73 @@ function buildReport(overrides?: {
   }
 
   // =====================================================================
+  // CC-09B.5 (SYLLABUS-SCOPE FIDELITY AND DEPTH CONTROL): the second,
+  // independent admissibility axis (task section 2). Derived from
+  // unit202-knowledge-obligations.ts's own `basis` field -- never
+  // separately hand-classified per assertion, so there is exactly one
+  // place a reviewer edits to change an assertion's scope justification.
+  // =====================================================================
+  const obligationBasisByAssertion = new Map<string, { basis: string; acNumber: string; obligationId: string }[]>();
+  for (const set of obligationSets) {
+    for (const obligation of set.obligations) {
+      for (const id of obligation.satisfiedBy) {
+        if (!obligationBasisByAssertion.has(id)) obligationBasisByAssertion.set(id, []);
+        obligationBasisByAssertion.get(id)!.push({ basis: obligation.basis, acNumber: set.acNumber, obligationId: obligation.id });
+      }
+    }
+  }
+  const r2CurriculumNodeKeys = new Set(corpus.curriculumNodes.filter((n) => n.curriculumVersionKey === CV_KEY_R2).map((n) => n.key));
+  const hasR2Mapping = new Set(
+    corpus.assertionCurriculumMappings.filter((m) => r2CurriculumNodeKeys.has(m.curriculumNodeKey)).map((m) => m.assertionIdentifier),
+  );
+  // Whether an assertion carries a REQUIRED_FOR (not merely SUPPORTS/
+  // EXEMPLIFIES) mapping to an R2 node -- a pre-existing, already-governed
+  // CC-09A field, reused (never duplicated) as the fallback signal below.
+  const hasRequiredForR2Mapping = new Set(
+    corpus.assertionCurriculumMappings
+      .filter((m) => r2CurriculumNodeKeys.has(m.curriculumNodeKey) && m.mappingType === "REQUIRED_FOR")
+      .map((m) => m.assertionIdentifier),
+  );
+  const domainByAssertion = new Map(corpus.assertions.map((a) => [a.identifier, a.domainCode]));
+
+  /** CC-09B.5 (task sections 2/10): undefined for an assertion with no Unit 202 curriculum mapping at all (pure reusable horizontal foundation is out of this classification's scope entirely, task section 8.B -- never defaulted to OUT_OF_SCOPE). */
+  function scopeStatusFor(assertionId: string): ScopeStatus | undefined {
+    if (!hasR2Mapping.has(assertionId)) return undefined;
+    const bases = obligationBasisByAssertion.get(assertionId) ?? [];
+    if (bases.length === 0) {
+      if (!hasRequiredForR2Mapping.has(assertionId)) {
+        // Curriculum-mapped only as SUPPORTS/EXEMPLIFIES (never claimed
+        // REQUIRED_FOR) and not separately decomposed as its own knowledge
+        // obligation -- the mapping type itself is the already-reviewed
+        // CC-09A authoring judgment that this is legitimate supporting/
+        // illustrative content, not a core required proposition. Spot-
+        // checked against the real corpus (CC-09B.5): comparison/
+        // prediction/interpretation/calculation-support assertions such as
+        // motor-vs-generator comparison, oscilloscope-for-sine-waves, and
+        // series/parallel fault-prediction all fall here and are genuinely
+        // proportionate -- never "the source contained this interesting
+        // fact" (task section 20), which is what ENRICHMENT_NOT_REQUIRED
+        // is reserved for.
+        const domain = domainByAssertion.get(assertionId);
+        return domain === "FM" || domain === "FP" ? "FOUNDATIONAL_PREREQUISITE" : "IN_SCOPE_SUPPORTING";
+      }
+      // Claims REQUIRED_FOR an AC/Range item yet no knowledge obligation
+      // anywhere names it -- a genuine decomposition gap (or, on individual
+      // review, source-shaped over-scope). Never silently swept in as
+      // required knowledge, and never silently swept out as enrichment
+      // either -- both are unverified guesses until an obligation is
+      // authored or the mapping itself is corrected.
+      return "SCOPE_UNRESOLVED";
+    }
+    if (bases.some((b) => b.basis === "EXPLICIT" || b.basis === "RANGE")) return "IN_SCOPE_REQUIRED";
+    if (bases.some((b) => b.basis === "NECESSARY_PREREQUISITE")) {
+      const domain = domainByAssertion.get(assertionId);
+      return domain === "FM" || domain === "FP" ? "FOUNDATIONAL_PREREQUISITE" : "IN_SCOPE_SUPPORTING";
+    }
+    return "SCOPE_UNRESOLVED";
+  }
+
+  // =====================================================================
   // CC-09B.1: semantic knowledge completeness (never inferred from
   // assertion/mapping counts -- see the module header's "false-green"
   // rationale). Cross-checks every declared obligation's satisfiedBy
@@ -581,7 +683,18 @@ function buildReport(overrides?: {
 
     const obligations: ObligationResult[] = declared.map((obligation) => {
       const knownIds = obligation.satisfiedBy.filter((id) => realAssertionIds.has(id));
-      const resolvedIds = knownIds.filter((id) => entailmentStatusFor(id) !== "PARTIALLY_SUPPORTED");
+      // CC-09B.5 (task section 11, MANDATORY KNOWLEDGE GATE): an
+      // obligation's own `basis` (EXPLICIT/RANGE/NECESSARY_PREREQUISITE)
+      // already determines every one of its satisfiedBy assertions'
+      // ScopeStatus by construction (never ENRICHMENT_NOT_REQUIRED/
+      // OUT_OF_SCOPE/SCOPE_UNRESOLVED for an id genuinely named here) --
+      // this filter is a defensive structural check, not the primary
+      // mechanism, guarding against a future inconsistent edit.
+      const resolvedIds = knownIds.filter((id) => {
+        if (entailmentStatusFor(id) === "PARTIALLY_SUPPORTED") return false;
+        const scope = scopeStatusFor(id);
+        return scope === undefined || scope === "IN_SCOPE_REQUIRED" || scope === "IN_SCOPE_SUPPORTING" || scope === "FOUNDATIONAL_PREREQUISITE";
+      });
       const unknownIds = obligation.satisfiedBy.filter((id) => !realAssertionIds.has(id));
       if (unknownIds.length > 0) {
         structuralDefects.push(
@@ -722,8 +835,11 @@ function buildReport(overrides?: {
   };
 
   const entailmentStatusByAssertion: Record<string, EntailmentStatus> = {};
+  const scopeStatusByAssertion: Record<string, ScopeStatus> = {};
   for (const assertion of corpus.assertions) {
     entailmentStatusByAssertion[assertion.identifier] = entailmentStatusFor(assertion.identifier);
+    const scope = scopeStatusFor(assertion.identifier);
+    if (scope !== undefined) scopeStatusByAssertion[assertion.identifier] = scope;
   }
 
   return {
@@ -733,6 +849,7 @@ function buildReport(overrides?: {
     acSemantic,
     provenanceAudit,
     entailmentStatusByAssertion,
+    scopeStatusByAssertion,
     totals: {
       loCount: loNodes.length,
       acCount: acNodes.length,
@@ -772,6 +889,29 @@ function formatReport(report: CoverageMatrixReport): string {
     for (const { acNumber, obligation } of scopeUnresolved) {
       lines.push(`    AC${acNumber}:${obligation.id} -- ${obligation.scopeUnresolvedNote}`);
     }
+  }
+  lines.push("");
+  lines.push("SYLLABUS-SCOPE FIDELITY (CC-09B.5, task section 2 -- the second, independent admissibility axis; passing evidence entailment above never substitutes for this):");
+  {
+    const scopeCounts: Record<ScopeStatus, number> = {
+      IN_SCOPE_REQUIRED: 0,
+      IN_SCOPE_SUPPORTING: 0,
+      FOUNDATIONAL_PREREQUISITE: 0,
+      ENRICHMENT_NOT_REQUIRED: 0,
+      OUT_OF_SCOPE: 0,
+      SCOPE_UNRESOLVED: 0,
+    };
+    for (const status of Object.values(report.scopeStatusByAssertion)) scopeCounts[status]++;
+    lines.push(`  ${Object.values(report.scopeStatusByAssertion).length} R2-curriculum-mapped assertions classified:`);
+    for (const key of Object.keys(scopeCounts) as ScopeStatus[]) {
+      lines.push(`    ${key}: ${scopeCounts[key]}`);
+    }
+    const flaggedEnrichment = Object.entries(report.scopeStatusByAssertion).filter(([, s]) => s === "ENRICHMENT_NOT_REQUIRED").map(([id]) => id);
+    const flaggedOutOfScope = Object.entries(report.scopeStatusByAssertion).filter(([, s]) => s === "OUT_OF_SCOPE").map(([id]) => id);
+    const flaggedUnresolved = Object.entries(report.scopeStatusByAssertion).filter(([, s]) => s === "SCOPE_UNRESOLVED").map(([id]) => id);
+    if (flaggedEnrichment.length) lines.push(`  ENRICHMENT_NOT_REQUIRED (source-shaped, may not enter Mandatory Knowledge Gate): ${flaggedEnrichment.join(", ")}`);
+    if (flaggedOutOfScope.length) lines.push(`  OUT_OF_SCOPE: ${flaggedOutOfScope.join(", ")}`);
+    if (flaggedUnresolved.length) lines.push(`  SCOPE_UNRESOLVED (needs obligation-decomposition or curriculum-mapping review): ${flaggedUnresolved.join(", ")}`);
   }
   lines.push("");
   lines.push("DIRECT FACTUAL PROVENANCE:");
@@ -829,7 +969,7 @@ function isReportClean(report: CoverageMatrixReport): boolean {
 }
 
 export { buildReport, formatReport, isReportClean };
-export type { AcCoverage, AcSemantic, CoverageMatrixReport, EntailmentStatus, LoReadiness, ProvenanceAudit, SemanticStatus };
+export type { AcCoverage, AcSemantic, CoverageMatrixReport, EntailmentStatus, LoReadiness, ProvenanceAudit, ScopeStatus, SemanticStatus };
 
 function isMainModule(): boolean {
   const entryPoint = process.argv[1];

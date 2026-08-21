@@ -2059,31 +2059,42 @@ const A: AssertionDef[] = [
   // (task section 36.B). All three now cite real, direct, independently
   // inspected instrumentation evidence instead.
   {
-    // CC-09B.4 (task section 7): re-audited clause-by-clause. NIST HB44's
-    // "element" definition establishes the general voltage-sensing +
-    // current-sensing combination and product-proportional output, but
-    // does not itself specify series/parallel wiring; Indus University's
-    // circuit description supplies exactly that concrete wiring detail.
-    // Neither alone covers the whole compound statement -- corrected from
-    // DIRECT/DIRECT to PARTIAL/PARTIAL, confirmed jointly fully covering it.
+    // CC-09B.5 correction (task section 17): AC2.3's own cognitive verb is
+    // "Identify appropriate electrical instruments" -- distinguishing
+    // WHICH instrument to select for a task from HOW a manufacturer
+    // internally wires its sensing coils is beyond that depth. The
+    // detailed series/parallel coil-wiring architecture (still genuinely
+    // evidenced by Indus University's circuit description) is retained as
+    // supporting provenance but no longer repeated in the governed,
+    // learner-facing statement -- narrowed to the functional principle
+    // that lets a learner recognise/select a wattmeter: it senses both
+    // current and voltage and multiplies them.
     id: "EL-INSTRUMENT-WATTMETER-001", domain: "EL",
-    statement: "A wattmeter measures electrical power using an element that combines a current-sensing coil (connected in series with the load, carrying the load current) and a voltage-sensing coil (connected in parallel across the load, carrying a current proportional to the load voltage); its output/deflection is proportional to the product of the two, giving power.",
+    statement: "A wattmeter measures electrical power by combining a measurement of the current through the load with a measurement of the voltage across it; its output is proportional to the product of the two, giving power.",
     provenance: [
-      { locator: "loc-nist-hb44-element", role: "DEFINES", supportType: "PARTIAL" },
+      { locator: "loc-nist-hb44-element", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-indus-uni-wattmeter-circuit", role: "SUPPORTS", supportType: "PARTIAL" },
       { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
     ],
     multiSourceFullyCovered: true,
     clauseCoverage: [
-      { clause: "an element combines a voltage-sensing and current-sensing unit, output proportional to the product", locator: "loc-nist-hb44-element" },
-      { clause: "current coil wired in series with the load; potential coil wired in parallel across the load", locator: "loc-indus-uni-wattmeter-circuit" },
+      { clause: "an element combines a voltage-sensing and current-sensing unit, output proportional to the product (the whole governed statement)", locator: "loc-nist-hb44-element" },
+      { clause: "(supporting, not required) concrete series/parallel coil-wiring implementation detail -- retained as evidence, not repeated in the governed statement per the syllabus-scope-fidelity rule", locator: "loc-indus-uni-wattmeter-circuit" },
     ],
     prereqs: [{ id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "POWER"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09B.5 correction (task section 17): narrowed the calculus-
+    // flavoured "time integral of instantaneous voltage x current"
+    // phrasing (a formalism proportionate to NIST's own standards-body
+    // register, not to AC2.3's "identify appropriate instruments" Level 2
+    // depth) to plain-language "continuously measuring power and
+    // accumulating it over time" -- same substance, still DIRECT-
+    // evidenced by the same NIST definition, without introducing
+    // calculus notation this AC does not require.
     id: "EL-INSTRUMENT-ENERGY-METER-001", domain: "EL",
-    statement: "An energy meter (kWh meter) measures active (cumulative) electrical energy delivered over a period of time, expressed in kilowatt-hours; active energy is the time integral of active power (instantaneous voltage multiplied by instantaneous current).",
+    statement: "An energy meter (kWh meter) measures the cumulative electrical energy delivered over a period of time, expressed in kilowatt-hours, by continuously measuring power and accumulating it over time.",
     provenance: [
       { locator: "loc-nist-hb44-active-energy", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
@@ -3738,15 +3749,22 @@ const A: AssertionDef[] = [
   // adequate sources. Both now cite real, first-party, application-
   // specific manufacturer documentation, inspected directly (not merely
   // generic component behaviour) -- see PROJECT-STATUS.md CC-09B.3.
+  // CC-09B.5 correction (task sections 12/13): SOURCE SPECIFICITY MUST NOT
+  // BECOME OR EXCEED SYLLABUS SCOPE. The CC-09B.3 statements below were
+  // factually correct and genuinely DIRECT-evidenced, but their wording
+  // absorbed source-specific implementation vocabulary (DAA, TIP/RING,
+  // CMOS, "address code", RF/IR, named products) that AC6.1's actual
+  // cognitive verb ("Describe the function and application") does not
+  // require at Level 2 depth. The detailed Skyworks/Holtek evidence is
+  // UNCHANGED and remains cited (still fully supports the now-narrower
+  // claim, a subset of what each source establishes) -- only the
+  // GOVERNED, learner-facing proposition is narrowed. Product/example
+  // names (garage door, car door) remain in each locator's own
+  // locatorSummary as evidence context; they are deliberately not
+  // repeated in the assertion text itself (task section 7).
   {
-    // Skyworks AN347 (a real telephone-line-interface/DAA design guide,
-    // not a generic polarity-protection tutorial) shows, in its own
-    // Figure 2 application schematic and Figure 29 architecture diagram,
-    // a diode bridge wired directly to the telephone line's TIP and RING
-    // terminals, positioned as the first stage between the raw two-wire
-    // line and the rest of the line-side interface circuitry.
     id: "EL-APPLICATION-TELEPHONE-001", domain: "EL",
-    statement: "Telephone-line interface (Direct Access Arrangement, DAA) circuits include a diode bridge wired directly across the telephone line's TIP and RING terminals, positioned as the first stage between the raw two-wire telephone line connection and the rest of the line-side interface circuitry.",
+    statement: "Telephone equipment includes a diode bridge connected across the two wires of the telephone line, so that the equipment's internal circuitry is unaffected by which way round the line is connected.",
     provenance: [
       { locator: "loc-skyworks-an347-bridge-diode", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
@@ -3755,20 +3773,13 @@ const A: AssertionDef[] = [
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "TELEPHONES"), type: "REQUIRED_FOR" }],
   },
   {
-    // Holtek's HT12D/HT12F datasheet (a real, first-party decoder-IC
-    // datasheet) explicitly names "garage door controllers", "car door
-    // controllers", "car alarm system", "security system" and "other
-    // remote control systems" in its own Applications list, and its own
-    // General Description states the decoder's output pins are activated
-    // once the received address matches -- a CMOS (transistor-based)
-    // output stage switching in response to a decoded wireless signal.
     id: "EL-APPLICATION-WIRELESS-CONTROL-001", domain: "EL",
-    statement: "A remote-control decoder IC, whose CMOS (transistor-based) output stage is activated once the received address code matches, is used with an RF or infrared receiver to switch an output in response to a wireless signal -- the operating basis of manufactured wireless remote-control products, including garage door controllers, car door controllers and other remote control systems.",
+    statement: "A wireless control system uses an electronic receiver and decoder circuit that responds to a transmitted control signal by switching an output to operate a device.",
     provenance: [
       { locator: "loc-holtek-ht12d-applications", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
     ],
-    prereqs: [{ id: "EL-COMPONENT-TRANSISTOR-001", strength: "REQUIRED" }],
+    prereqs: [{ id: "EL-COMPONENT-TRANSISTOR-001", strength: "SUPPORTING" }],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "WIRELESS-CONTROL-SYSTEMS"), type: "REQUIRED_FOR" }],
   },
 ];
