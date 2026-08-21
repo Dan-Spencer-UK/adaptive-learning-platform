@@ -271,6 +271,23 @@ export const assertionVersionManifestSchema = z.object({
   version: z.number().int().positive(),
   statement: z.string().min(1),
   status: assertionVersionStatusSchema,
+  /**
+   * CC-09B.3: an explicit AUTHORING decision (never algorithmically
+   * inferred from "more than one PARTIAL link exists") that this
+   * assertion's classified provenance links, taken TOGETHER, were
+   * actually re-inspected clause-by-clause and found to jointly cover the
+   * assertion's whole material proposition -- e.g. one source establishes
+   * clause A, a second establishes clause B, and nothing in the statement
+   * is left unsupported by either. Left unset/false for every assertion
+   * this package did not itself re-audit (the vast majority of the
+   * corpus): silence here means "not yet confirmed", never "confirmed
+   * false" -- see derivesEntailmentStatus() in
+   * scripts/content/report-coverage-matrix.ts for how this combines with
+   * supportType/derivationKind into one assertion-level entailment
+   * status, and PROJECT-STATUS.md CC-09B.3 for the worked examples this
+   * flag was introduced for.
+   */
+  multiSourceFullyCovered: z.boolean().optional(),
 });
 
 export const assertionProvenanceLinkManifestSchema = z.object({

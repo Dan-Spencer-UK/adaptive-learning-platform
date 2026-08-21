@@ -100,6 +100,46 @@ const EXPECTED_RANGE_ITEM_COUNT = 58;
 
 type SemanticStatus = "INCOMPLETE" | "COMPLETE_PENDING_VERIFICATION";
 
+/**
+ * CC-09B.3 (task section 5): the ASSERTION-level entailment result,
+ * distinct from PROVENANCE-LINK-level `supportType` (DIRECT/PARTIAL,
+ * unchanged -- multiple PARTIAL links legitimately covering different
+ * clauses is normal and expected at the link level). This is the
+ * assertion-level synthesis of those links plus any DERIVED_FROM chain:
+ *
+ *  - FULLY_SUPPORTED_SINGLE_SOURCE: exactly one classified factual link,
+ *    and it is DIRECT.
+ *  - FULLY_SUPPORTED_MULTI_SOURCE: more than one classified factual link,
+ *    and either every one is DIRECT, or the assertion's own
+ *    `multiSourceFullyCovered` flag records that an author actually
+ *    re-inspected the combination and confirmed it covers the whole
+ *    statement (task section 6: never inferred merely from "more than one
+ *    PARTIAL link exists").
+ *  - FULLY_SUPPORTED_DERIVED: no direct factual link, but a valid
+ *    MATHEMATICAL/LOGICAL_DEFINITIONAL DERIVED_FROM chain reaches a
+ *    directly-sourced assertion.
+ *  - PARTIALLY_SUPPORTED: classified factual link(s) exist, at least one
+ *    is PARTIAL, and multi-source full coverage has not been confirmed --
+ *    a genuine, unresolved gap. Per task section 6, an assertion here must
+ *    NOT satisfy a semantic knowledge obligation.
+ *  - UNSUPPORTED: no factual provenance at all (curriculum-only or none),
+ *    and no valid derivation chain either.
+ *  - PENDING_REVIEW: factual provenance exists but has not yet been
+ *    classified (no link carries a `supportType`) -- this package's
+ *    entailment audit is deliberately bounded (never a full-corpus
+ *    re-audit, see the module header), so the vast majority of the corpus
+ *    is honestly PENDING_REVIEW, not PARTIALLY_SUPPORTED -- and PENDING_
+ *    REVIEW assertions are NOT blocked from satisfying an obligation
+ *    (only a confirmed PARTIALLY_SUPPORTED result blocks one).
+ */
+type EntailmentStatus =
+  | "FULLY_SUPPORTED_SINGLE_SOURCE"
+  | "FULLY_SUPPORTED_MULTI_SOURCE"
+  | "FULLY_SUPPORTED_DERIVED"
+  | "PARTIALLY_SUPPORTED"
+  | "UNSUPPORTED"
+  | "PENDING_REVIEW";
+
 interface ObligationResult {
   id: string;
   description: string;
@@ -129,6 +169,8 @@ interface ProvenanceAudit {
   partialSupportOnly: string[];
   /** CC-09B.2: count of assertions with >=1 provenance link carrying an explicit supportType -- i.e. assertions this package's bounded entailment audit actually classified (task sections 25/26 plus the specific named corrections), never claimed to be the whole corpus. See this module's header and PROJECT-STATUS.md CC-09B.2 for the audit's explicit scope boundary. */
   entailmentClassifiedCount: number;
+  /** CC-09B.3: every assertion carrying a confirmed PARTIALLY_SUPPORTED entailment status (see EntailmentStatus) -- must be 0 for the corpus to be considered clean; a non-empty list is a genuine, named backlog item, never a --check failure by itself (structural defects remain the only --check gate) but always surfaced. */
+  assertionLevelPartiallySupported: string[];
   /** Assertions citing at least one source whose sourceVersion.verificationStatus is not VERIFIED. Reported, never a failure -- independent verification is a separate, later step (ADR-0002). */
   unverifiedSourceCount: number;
 }
@@ -177,6 +219,8 @@ interface CoverageMatrixReport {
   loReadiness: LoReadiness[];
   acSemantic: AcSemantic[];
   provenanceAudit: ProvenanceAudit;
+  /** CC-09B.3: assertion-level EntailmentStatus for every real assertion in the corpus -- see EntailmentStatus for the full rule. */
+  entailmentStatusByAssertion: Record<string, EntailmentStatus>;
   totals: {
     loCount: number;
     acCount: number;
@@ -376,67 +420,17 @@ function buildReport(overrides?: {
   const lessonPlanGovernanceClean = isLessonPlanReportClean(buildLessonPlanReport());
 
   // =====================================================================
-  // CC-09B.1: semantic knowledge completeness (never inferred from
-  // assertion/mapping counts -- see the module header's "false-green"
-  // rationale). Cross-checks every declared obligation's satisfiedBy
-  // assertion ids against the real corpus: an obligation naming an id
-  // that does not exist is a structural defect (this package's own bug),
-  // never silently treated as unsatisfied.
+  // CC-09B.3: entailment-status machinery, computed BEFORE semantic
+  // completeness (moved up from its CC-09B.1/B.2 position) because
+  // obligation satisfaction (task section 6) must be able to check an
+  // assertion's assertion-level entailment status, not merely whether its
+  // id is named. `assertionVersionByIdentifier` reads the corpus's own
+  // `multiSourceFullyCovered` authoring flag (never inferred).
   // =====================================================================
   const realAssertionIds = new Set(corpus.assertions.map((a) => a.identifier));
-  const obligationsByAc = new Map(obligationSets.map((set) => [set.acNumber, set.obligations]));
-
-  const acSemantic: AcSemantic[] = acNodes.map((ac) => {
-    const acNumberMatch = /-AC(\d+\.\d+)$/.exec(ac.code);
-    const acNumber = acNumberMatch?.[1] ?? ac.code;
-    const declared = obligationsByAc.get(acNumber);
-    const unresolvedObligationIds: string[] = [];
-
-    if (!declared) {
-      return { acNumber, status: "INCOMPLETE", obligationsDeclared: false, obligations: [], unresolvedObligationIds };
-    }
-
-    const obligations: ObligationResult[] = declared.map((obligation) => {
-      const resolvedIds = obligation.satisfiedBy.filter((id) => realAssertionIds.has(id));
-      const unknownIds = obligation.satisfiedBy.filter((id) => !realAssertionIds.has(id));
-      if (unknownIds.length > 0) {
-        structuralDefects.push(
-          `knowledge obligation '${acNumber}:${obligation.id}' names unknown assertion id(s): ${unknownIds.join(", ")}`,
-        );
-        unresolvedObligationIds.push(obligation.id);
-      }
-      return { id: obligation.id, description: obligation.description, satisfied: resolvedIds.length > 0 };
-    });
-
-    const status: SemanticStatus = obligations.length > 0 && obligations.every((o) => o.satisfied) ? "COMPLETE_PENDING_VERIFICATION" : "INCOMPLETE";
-    return { acNumber, status, obligationsDeclared: true, obligations, unresolvedObligationIds };
-  });
-  const semanticStatusByAcNumber = new Map(acSemantic.map((s) => [s.acNumber, s.status]));
-
-  function acNumberForNode(node: CurriculumNodeManifest): string | undefined {
-    const direct = /-AC(\d+\.\d+)$/.exec(node.code);
-    if (direct) return direct[1];
-    if (node.nodeType === "RANGE_ITEM" && node.parentKey) {
-      const parent = nodesByKey.get(node.parentKey);
-      if (parent) return acNumberForNode(parent);
-    }
-    return undefined;
-  }
-
-  let rangeItemsSemanticComplete = 0;
-  for (const item of rangeNodes) {
-    const acNumber = acNumberForNode(item);
-    const acStatus = acNumber ? semanticStatusByAcNumber.get(acNumber) : undefined;
-    const referentiallyCovered = (assertionIdsByNodeKey.get(item.key) ?? []).length > 0;
-    if (referentiallyCovered && acStatus === "COMPLETE_PENDING_VERIFICATION") rangeItemsSemanticComplete++;
-  }
-
-  // =====================================================================
-  // CC-09B.1: direct factual-provenance audit (task brief section 20).
-  // =====================================================================
+  const assertionVersionByIdentifier = new Map(corpus.assertionVersions.map((v) => [v.assertionIdentifier, v]));
   const sourceKeyBySourceVersionKey = new Map(corpus.sourceVersions.map((sv) => [sv.key, sv.sourceKey]));
   const sourceVersionKeyByLocatorKey = new Map(corpus.sourceLocators.map((sl) => [sl.key, sl.sourceVersionKey]));
-  const verificationStatusBySourceVersionKey = new Map(corpus.sourceVersions.map((sv) => [sv.key, sv.verificationStatus]));
   const provenanceByAssertion = new Map<string, typeof corpus.assertionProvenanceLinks>();
   for (const link of corpus.assertionProvenanceLinks) {
     if (!provenanceByAssertion.has(link.assertionIdentifier)) provenanceByAssertion.set(link.assertionIdentifier, []);
@@ -491,6 +485,109 @@ function buildReport(overrides?: {
     });
   }
 
+  /** Only non-curriculum-authority provenance links count as "factual" for entailment purposes -- CURRICULUM_REQUIRES/AUTHORITATIVE_REQUIREMENT/LEGAL_BASIS establish WHAT must be taught, never the technical fact itself. */
+  function factualLinks(assertionId: string) {
+    const links = provenanceByAssertion.get(assertionId) ?? [];
+    return links.filter((link) => {
+      const svKey = sourceVersionKeyByLocatorKey.get(link.sourceLocatorKey);
+      const srcKey = svKey ? sourceKeyBySourceVersionKey.get(svKey) : undefined;
+      return srcKey !== "src-cg-2365-02";
+    });
+  }
+
+  /** CC-09B.3 (task sections 5-7): the assertion-level entailment synthesis -- see EntailmentStatus for the full rule. */
+  function entailmentStatusFor(assertionId: string): EntailmentStatus {
+    const links = factualLinks(assertionId);
+    const classified = links.filter((link) => link.supportType !== undefined);
+
+    if (links.length === 0) {
+      return derivesFromSourcedAssertion(assertionId) ? "FULLY_SUPPORTED_DERIVED" : "UNSUPPORTED";
+    }
+    if (classified.length === 0) {
+      return "PENDING_REVIEW";
+    }
+    if (classified.length === 1) {
+      return classified[0]!.supportType === "DIRECT" ? "FULLY_SUPPORTED_SINGLE_SOURCE" : "PARTIALLY_SUPPORTED";
+    }
+    // Multiple classified links.
+    if (classified.every((link) => link.supportType === "DIRECT")) {
+      return "FULLY_SUPPORTED_MULTI_SOURCE";
+    }
+    const version = assertionVersionByIdentifier.get(assertionId);
+    if (version?.multiSourceFullyCovered === true) {
+      return "FULLY_SUPPORTED_MULTI_SOURCE";
+    }
+    return "PARTIALLY_SUPPORTED";
+  }
+
+  // =====================================================================
+  // CC-09B.1: semantic knowledge completeness (never inferred from
+  // assertion/mapping counts -- see the module header's "false-green"
+  // rationale). Cross-checks every declared obligation's satisfiedBy
+  // assertion ids against the real corpus: an obligation naming an id
+  // that does not exist is a structural defect (this package's own bug),
+  // never silently treated as unsatisfied. CC-09B.3 additionally requires
+  // (task section 6) that a satisfying assertion's entailment status is
+  // not a confirmed PARTIALLY_SUPPORTED -- PENDING_REVIEW (the vast
+  // majority of the corpus, never audited by this bounded package) still
+  // counts, since "not yet classified" is not the same claim as "found
+  // deficient".
+  // =====================================================================
+  const obligationsByAc = new Map(obligationSets.map((set) => [set.acNumber, set.obligations]));
+
+  const acSemantic: AcSemantic[] = acNodes.map((ac) => {
+    const acNumberMatch = /-AC(\d+\.\d+)$/.exec(ac.code);
+    const acNumber = acNumberMatch?.[1] ?? ac.code;
+    const declared = obligationsByAc.get(acNumber);
+    const unresolvedObligationIds: string[] = [];
+
+    if (!declared) {
+      return { acNumber, status: "INCOMPLETE", obligationsDeclared: false, obligations: [], unresolvedObligationIds };
+    }
+
+    const obligations: ObligationResult[] = declared.map((obligation) => {
+      const knownIds = obligation.satisfiedBy.filter((id) => realAssertionIds.has(id));
+      const resolvedIds = knownIds.filter((id) => entailmentStatusFor(id) !== "PARTIALLY_SUPPORTED");
+      const unknownIds = obligation.satisfiedBy.filter((id) => !realAssertionIds.has(id));
+      if (unknownIds.length > 0) {
+        structuralDefects.push(
+          `knowledge obligation '${acNumber}:${obligation.id}' names unknown assertion id(s): ${unknownIds.join(", ")}`,
+        );
+        unresolvedObligationIds.push(obligation.id);
+      }
+      return { id: obligation.id, description: obligation.description, satisfied: resolvedIds.length > 0 };
+    });
+
+    const status: SemanticStatus = obligations.length > 0 && obligations.every((o) => o.satisfied) ? "COMPLETE_PENDING_VERIFICATION" : "INCOMPLETE";
+    return { acNumber, status, obligationsDeclared: true, obligations, unresolvedObligationIds };
+  });
+  const semanticStatusByAcNumber = new Map(acSemantic.map((s) => [s.acNumber, s.status]));
+
+  function acNumberForNode(node: CurriculumNodeManifest): string | undefined {
+    const direct = /-AC(\d+\.\d+)$/.exec(node.code);
+    if (direct) return direct[1];
+    if (node.nodeType === "RANGE_ITEM" && node.parentKey) {
+      const parent = nodesByKey.get(node.parentKey);
+      if (parent) return acNumberForNode(parent);
+    }
+    return undefined;
+  }
+
+  let rangeItemsSemanticComplete = 0;
+  for (const item of rangeNodes) {
+    const acNumber = acNumberForNode(item);
+    const acStatus = acNumber ? semanticStatusByAcNumber.get(acNumber) : undefined;
+    const referentiallyCovered = (assertionIdsByNodeKey.get(item.key) ?? []).length > 0;
+    if (referentiallyCovered && acStatus === "COMPLETE_PENDING_VERIFICATION") rangeItemsSemanticComplete++;
+  }
+
+  // =====================================================================
+  // CC-09B.1: direct factual-provenance audit (task brief section 20).
+  // Reuses the entailment machinery computed above (CC-09B.3) rather than
+  // redefining it a second time.
+  // =====================================================================
+  const verificationStatusBySourceVersionKey = new Map(corpus.sourceVersions.map((sv) => [sv.key, sv.verificationStatus]));
+
   const noProvenance: string[] = [];
   const syllabusOnlyTechnical: string[] = [];
   const mismatchedLocators: string[] = [];
@@ -514,6 +611,7 @@ function buildReport(overrides?: {
   }
 
   const partialSupportOnly: string[] = [];
+  const assertionLevelPartiallySupported: string[] = [];
   let entailmentClassifiedCount = 0;
   for (const assertion of corpus.assertions) {
     const links = provenanceByAssertion.get(assertion.identifier) ?? [];
@@ -526,15 +624,27 @@ function buildReport(overrides?: {
       syllabusOnlyTechnical.push(assertion.identifier);
     }
 
-    // CC-09B.2: entailment classification (task section 30) -- a
+    // CC-09B.2: link-level classification (task section 30) -- a
     // deliberately bounded, honestly-scoped transparency metric, not a
-    // retroactive re-audit of every pre-existing provenance link.
+    // retroactive re-audit of every pre-existing provenance link. NOTE:
+    // "every classified link is PARTIAL" is a LINK-level observation and
+    // is NOT itself a defect (task section 5) -- it is normal whenever
+    // several sources each cover one clause of a compound statement. The
+    // ASSERTION-level question ("do they jointly cover the WHOLE
+    // statement?") is answered separately by entailmentStatusFor() below.
     const classifiedLinks = links.filter((link) => link.supportType !== undefined);
     if (classifiedLinks.length > 0) {
       entailmentClassifiedCount++;
       if (classifiedLinks.every((link) => link.supportType === "PARTIAL")) {
         partialSupportOnly.push(assertion.identifier);
       }
+    }
+    // CC-09B.3 (task section 6): the assertion-level gate. Only a
+    // confirmed PARTIALLY_SUPPORTED result lands here -- PENDING_REVIEW
+    // (not yet classified at all) is deliberately excluded, since this
+    // package's audit is bounded, not a full-corpus re-audit.
+    if (entailmentStatusFor(assertion.identifier) === "PARTIALLY_SUPPORTED") {
+      assertionLevelPartiallySupported.push(assertion.identifier);
     }
 
     const mappedAcNumbers = new Set(
@@ -568,8 +678,14 @@ function buildReport(overrides?: {
     invalidDerivationKinds,
     partialSupportOnly,
     entailmentClassifiedCount,
+    assertionLevelPartiallySupported,
     unverifiedSourceCount,
   };
+
+  const entailmentStatusByAssertion: Record<string, EntailmentStatus> = {};
+  for (const assertion of corpus.assertions) {
+    entailmentStatusByAssertion[assertion.identifier] = entailmentStatusFor(assertion.identifier);
+  }
 
   return {
     structuralDefects,
@@ -577,6 +693,7 @@ function buildReport(overrides?: {
     loReadiness,
     acSemantic,
     provenanceAudit,
+    entailmentStatusByAssertion,
     totals: {
       loCount: loNodes.length,
       acCount: acNodes.length,
@@ -622,10 +739,12 @@ function formatReport(report: CoverageMatrixReport): string {
   if (report.provenanceAudit.mismatchedLocators.length) lines.push(`    mismatched: ${report.provenanceAudit.mismatchedLocators.join("; ")}`);
   if (report.provenanceAudit.invalidDerivationKinds.length) lines.push(`    invalid derivations: ${report.provenanceAudit.invalidDerivationKinds.join("; ")}`);
   lines.push("");
-  lines.push("ENTAILMENT CLASSIFICATION (CC-09B.2 -- a bounded audit of the specific assertions/sources this package corrected or newly authored, never a full-corpus re-audit; see module header):");
+  lines.push("ENTAILMENT CLASSIFICATION (CC-09B.2/B.3 -- a bounded audit of the specific assertions/sources this package corrected or newly authored, never a full-corpus re-audit; see module header):");
   lines.push(`  assertions with >=1 explicitly classified (DIRECT/PARTIAL) provenance link: ${report.provenanceAudit.entailmentClassifiedCount}`);
-  lines.push(`  PARTIAL-only support (every classified link is PARTIAL, none DIRECT -- expected for deliberate multi-source combinations, not itself a failure): ${report.provenanceAudit.partialSupportOnly.length}`);
-  if (report.provenanceAudit.partialSupportOnly.length) lines.push(`    partial-only: ${report.provenanceAudit.partialSupportOnly.join(", ")}`);
+  lines.push(`  LINK-level PARTIAL-only (every classified link is PARTIAL, none DIRECT -- normal/expected whenever multiple sources each cover one clause; NOT itself a defect, see CC-09B.3): ${report.provenanceAudit.partialSupportOnly.length}`);
+  if (report.provenanceAudit.partialSupportOnly.length) lines.push(`    link-level partial-only: ${report.provenanceAudit.partialSupportOnly.join(", ")}`);
+  lines.push(`  ASSERTION-level PARTIALLY_SUPPORTED (combined evidence confirmed to leave a material clause uncovered -- CANNOT satisfy a semantic obligation, task section 6): ${report.provenanceAudit.assertionLevelPartiallySupported.length}`);
+  if (report.provenanceAudit.assertionLevelPartiallySupported.length) lines.push(`    assertion-level partial: ${report.provenanceAudit.assertionLevelPartiallySupported.join(", ")}`);
   lines.push("");
   lines.push("INDEPENDENT VERIFICATION:");
   lines.push(`  assertions citing at least one still-UNVERIFIED source: ${report.provenanceAudit.unverifiedSourceCount} (reported, never a --check failure -- see ADR-0002)`);
@@ -664,7 +783,7 @@ function isReportClean(report: CoverageMatrixReport): boolean {
 }
 
 export { buildReport, formatReport, isReportClean };
-export type { AcCoverage, AcSemantic, CoverageMatrixReport, LoReadiness, ProvenanceAudit, SemanticStatus };
+export type { AcCoverage, AcSemantic, CoverageMatrixReport, EntailmentStatus, LoReadiness, ProvenanceAudit, SemanticStatus };
 
 function isMainModule(): boolean {
   const entryPoint = process.argv[1];

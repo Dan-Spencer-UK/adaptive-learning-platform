@@ -160,6 +160,11 @@ const SRC_NIST_HB44 = "src-nist-hb44-3.41-electricity-measuring";
 const SRC_INDUS_UNI_WATTMETER = "src-indus-uni-dynamometer-wattmeter";
 const SRC_UCSD_GEAR_RATIOS = "src-ucsd-mae3-gear-ratios";
 const SRC_SECO_LARM_BEAM_SENSOR = "src-seco-larm-photoelectric-beam-sensor";
+// CC-09B.3: closes the two AC6.1 application-evidence gaps CC-09B.2 left
+// honestly incomplete (telephone equipment; wireless control systems).
+// See PROJECT-STATUS.md CC-09B.3.
+const SRC_SKYWORKS_DAA_DESIGN_GUIDE = "src-skyworks-an347-daa-design-guide";
+const SRC_HOLTEK_HT12D = "src-holtek-ht12d-ht12f-decoder";
 
 /** Exported so ./unit202-assessment-specification.ts cites the same governed source-version identity rather than hand-copying the string. */
 export const SV_CG = "sv-cg-2365-02-v1-12";
@@ -178,6 +183,8 @@ const SV_NIST_HB44 = "sv-nist-hb44-3.41-2026";
 const SV_INDUS_UNI_WATTMETER = "sv-indus-uni-dynamometer-wattmeter";
 const SV_UCSD_GEAR_RATIOS = "sv-ucsd-mae3-gear-ratios";
 const SV_SECO_LARM_BEAM_SENSOR = "sv-seco-larm-e-931-s33prgq";
+const SV_SKYWORKS_DAA_DESIGN_GUIDE = "sv-skyworks-an347-daa-design-guide";
+const SV_HOLTEK_HT12D = "sv-holtek-ht12d-ht12f-decoder";
 
 // ---------------------------------------------------------------------
 // Curriculum
@@ -1151,6 +1158,20 @@ const locators: LocatorDef[] = [
     section: "Overview; Wiring Diagram", subsection: "product description and Trigger output specification",
     locatorSummary: "The ENFORCER E-931-S33PRGQ photoelectric beam sensor (IR LED, wavelength 740nm, plus a photoelectric receiver) provides reliable sensing of objects breaking the infrared beam, and is suitable for \"an alarm notification, as well as many other uses\"; its SPDT relay trigger output is wired to an alarm control panel (the N.C. tamper terminal connects to the tamper circuit of an alarm control panel); a caution notes use in certain security applications may be regulated by local laws",
   },
+  // -- CC-09B.3 locators --
+  {
+    key: "loc-skyworks-an347-bridge-diode",
+    sourceVersionKey: SV_SKYWORKS_DAA_DESIGN_GUIDE,
+    section: "2.2 Typical DAA Application Schematics; 3.3.1 Isolation Barrier",
+    subsection: "Figure 2 (Typical Si3018 Based DAA Application Circuit); Figure 29 (SELV, TNV-3 and Isolation Barrier)",
+    locatorSummary: "Figure 2 shows a diode-bridge symbol (D1) wired directly into the line-side circuitry of a real telephone-line interface (DAA) application circuit; Figure 29's block diagram explicitly labels a \"Bridge Diode\" block connected directly to the telephone line's TIP and RING terminals, positioned within the TNV-3 (Telecommunications Network Voltage) circuit area between the line-side device/discretes and the telephone line itself",
+  },
+  {
+    key: "loc-holtek-ht12d-applications",
+    sourceVersionKey: SV_HOLTEK_HT12D,
+    section: "Features; Applications; General Description; Application Circuits",
+    locatorSummary: "HT12D/HT12F 2^12 series decoder ICs' own \"Applications\" list names: burglar alarm system, smoke and fire alarm system, garage door controllers, car door controllers, car alarm system, security system, cordless telephones, other remote control systems; \"Easy interface with an RF or an infrared transmission medium\"; General Description: \"the 12-N bits of data are decoded to activate the output pins\" once the received address matches; the Application Circuits figure shows the decoder wired to a \"Receiver Circuit\" (antenna symbol) with its CMOS output pins (D8-D11) driving external outputs",
+  },
 ];
 
 // ---------------------------------------------------------------------
@@ -1207,6 +1228,14 @@ interface AssertionDef {
    * packages/content-schema/src/knowledge-graph.ts).
    */
   derivedFromKind?: "MATHEMATICAL" | "LOGICAL_DEFINITIONAL";
+  /**
+   * CC-09B.3: set true only after actually re-inspecting every classified
+   * (supportType-carrying) provenance link clause-by-clause and confirming
+   * they jointly cover this assertion's WHOLE material proposition. Never
+   * set merely because two PARTIAL links exist -- see the matching field
+   * on assertionVersionManifestSchema for the full rule.
+   */
+  multiSourceFullyCovered?: boolean;
   curriculum?: CurriculumSpec[];
 }
 
@@ -1633,6 +1662,15 @@ const A: AssertionDef[] = [
   // material instead (loc-ucsd-gear-ratio-tooth-count-torque), which
   // states both explicitly and precisely. Nothing here claims more than
   // its own cited locator's own inspected text establishes. --
+  // CC-09B.3 (task section 7): re-audited clause-by-clause. OpenStax
+  // establishes the wheel/gear-as-simple-machine and MA-as-radius-ratio
+  // clauses; UCSD establishes gear teeth/meshing, input/output gear
+  // torque-and-speed transmission, and tooth-count proportionality. Between
+  // the two, every clause of FP-CONCEPT-GEAR-001's and
+  // FP-REL-GEAR-RATIO-001's statements is covered -- neither leaves a
+  // material factual clause unsupported -- so both are now confirmed
+  // FULLY_SUPPORTED_MULTI_SOURCE (multiSourceFullyCovered: true), not left
+  // at the link-level PARTIAL classification alone.
   {
     id: "FP-CONCEPT-GEAR-001", domain: "FP",
     statement: "A gear is a toothed wheel; when two gears mesh, their teeth engage so that one gear (the driving gear) transmits rotary motion and torque to the other (the driven gear) from one shaft to another.",
@@ -1640,6 +1678,7 @@ const A: AssertionDef[] = [
       { locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES", supportType: "PARTIAL" },
       { locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "SUPPORTS", supportType: "PARTIAL" },
     ],
+    multiSourceFullyCovered: true,
     prereqs: [{ id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
   },
@@ -1650,6 +1689,7 @@ const A: AssertionDef[] = [
       { locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES", supportType: "PARTIAL" },
       { locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "DEFINES", supportType: "PARTIAL" },
     ],
+    multiSourceFullyCovered: true,
     prereqs: [{ id: "FP-CONCEPT-GEAR-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
   },
@@ -2082,12 +2122,20 @@ const A: AssertionDef[] = [
     // each clause of this statement now has its own direct evidence
     // rather than one borrowing an unsupported ratio framing from the
     // other's citation.
+    //
+    // CC-09B.3 (task section 7): re-audited clause-by-clause. NIST HB44
+    // fully establishes the ratio-definition clause; OpenStax UP2 15.4
+    // fully establishes the cosine-of-phase-angle-under-sinusoidal-supply
+    // clause (matching this statement's own "for a sinusoidal single-
+    // frequency supply" qualifier). No material clause is left
+    // unsupported by either -- confirmed FULLY_SUPPORTED_MULTI_SOURCE.
     statement: "Power factor is the ratio of real (true) power to apparent power in an AC circuit; for a sinusoidal single-frequency supply, this ratio equals the cosine of the phase angle between voltage and current.",
     provenance: [
       { locator: "loc-nist-hb44-power-factor", role: "DEFINES", supportType: "PARTIAL" },
       { locator: "loc-openstax-up2-ac-circuits", role: "DEFINES", supportType: "PARTIAL" },
       { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" },
     ],
+    multiSourceFullyCovered: true,
     prereqs: [{ id: "EL-CONCEPT-IMPEDANCE-001", strength: "STRONG" }, { id: "EL-CONCEPT-POWER-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "POWER-FACTOR"), type: "REQUIRED_FOR" }],
   },
@@ -3453,34 +3501,41 @@ const A: AssertionDef[] = [
     prereqs: [{ id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-PHOTODIODE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "SECURITY-ALARMS"), type: "REQUIRED_FOR" }],
   },
-  // CC-09B.2 correction (task sections 20/21): for these two, no genuine
-  // application-specific source meeting the task's permitted source
-  // classes (standards body / manufacturer / university / government /
-  // "respected technical reference", explicitly excluding tutorial/SEO
-  // sites and treating patent filings as too narrow/unusual a citation
-  // for a Level 2 learner corpus) could be found within this package's
-  // search effort. Per the task's own explicit instruction (section 35:
-  // "if narrowing/splitting an assertion causes an obligation to become
-  // uncovered, the obligation must become INCOMPLETE ... do not keep the
-  // semantic matrix green by weakening its obligation"), these two are
-  // narrowed to what is genuinely sourced (the underlying component
-  // property alone) and are DELIBERATELY REMOVED from
-  // unit202-knowledge-obligations.ts's "satisfiedBy" list for their Range
-  // item -- AC6.1 is therefore now honestly reported INCOMPLETE rather
-  // than falsely kept green. Tracked as an explicit open item for the
-  // Project Architect (see PROJECT-STATUS.md CC-09B.2 and the completion
-  // report's Project Architect Handoff, group F).
+  // CC-09B.3 (task sections 3/4): closes the two AC6.1 application-
+  // evidence gaps CC-09B.2 left honestly incomplete after failing to find
+  // adequate sources. Both now cite real, first-party, application-
+  // specific manufacturer documentation, inspected directly (not merely
+  // generic component behaviour) -- see PROJECT-STATUS.md CC-09B.3.
   {
+    // Skyworks AN347 (a real telephone-line-interface/DAA design guide,
+    // not a generic polarity-protection tutorial) shows, in its own
+    // Figure 2 application schematic and Figure 29 architecture diagram,
+    // a diode bridge wired directly to the telephone line's TIP and RING
+    // terminals, positioned as the first stage between the raw two-wire
+    // line and the rest of the line-side interface circuitry.
     id: "EL-APPLICATION-TELEPHONE-001", domain: "EL",
-    statement: "A diode conducts current in one direction only, and an LED provides low-power visual indication when forward-biased -- properties that are, in general, applicable to protection and indication roles in electronic equipment (a specific telephone-equipment application is not yet independently source-evidenced; see the knowledge-obligation register).",
-    provenance: [{ locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" }],
-    prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }, { id: "EL-COMPONENT-LED-001", strength: "REQUIRED" }],
+    statement: "Telephone-line interface (Direct Access Arrangement, DAA) circuits include a diode bridge wired directly across the telephone line's TIP and RING terminals, positioned as the first stage between the raw two-wire telephone line connection and the rest of the line-side interface circuitry.",
+    provenance: [
+      { locator: "loc-skyworks-an347-bridge-diode", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-COMPONENT-DIODE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "TELEPHONES"), type: "REQUIRED_FOR" }],
   },
   {
+    // Holtek's HT12D/HT12F datasheet (a real, first-party decoder-IC
+    // datasheet) explicitly names "garage door controllers", "car door
+    // controllers", "car alarm system", "security system" and "other
+    // remote control systems" in its own Applications list, and its own
+    // General Description states the decoder's output pins are activated
+    // once the received address matches -- a CMOS (transistor-based)
+    // output stage switching in response to a decoded wireless signal.
     id: "EL-APPLICATION-WIRELESS-CONTROL-001", domain: "EL",
-    statement: "A transistor can switch or amplify a small input signal -- a property that is, in general, applicable to processing a low-power received signal (a specific wireless-control-system application is not yet independently source-evidenced; see the knowledge-obligation register).",
-    provenance: [{ locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" }],
+    statement: "A remote-control decoder IC, whose CMOS (transistor-based) output stage is activated once the received address code matches, is used with an RF or infrared receiver to switch an output in response to a wireless signal -- the operating basis of manufactured wireless remote-control products, including garage door controllers, car door controllers and other remote control systems.",
+    provenance: [
+      { locator: "loc-holtek-ht12d-applications", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-COMPONENT-TRANSISTOR-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("6.1"), type: "REQUIRED_FOR" }, { node: rangeNode("6.1", "WIRELESS-CONTROL-SYSTEMS"), type: "REQUIRED_FOR" }],
   },
@@ -3907,6 +3962,44 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       canonicalReference: "SECO-LARM E-931-S33PRGQ Installation Manual",
       accessLocation: "https://www.seco-larm.com/wp-content/uploads/2020/12/MI_E-931-S33PRGQ_231113.pdf",
     },
+    // -- CC-09B.3 sources --
+    {
+      // First-party manufacturer (Skyworks Solutions, successor to
+      // Silicon Laboratories' DAA business) design guide for real
+      // telephone-line interface (Direct Access Arrangement) circuitry.
+      // Figure 2 ("Typical Si3018 Based DAA Application Circuit") and
+      // Figure 29 ("SELV, TNV-3 and Isolation Barrier") both show a
+      // "Bridge Diode" block wired directly to the telephone line's TIP
+      // and RING terminals -- genuine application-specific evidence that
+      // a diode bridge is a real component of telephone equipment, not
+      // merely a generic polarity-protection circuit description.
+      key: SRC_SKYWORKS_DAA_DESIGN_GUIDE,
+      title: "AN347: DAA Design Guide",
+      publisher: "Skyworks Solutions, Inc.",
+      sourceFamily: "Manufacturer application note",
+      sourceType: "APPLICATION_NOTE",
+      jurisdiction: "International",
+      canonicalReference: "Skyworks Solutions Application Note AN347, Rev. 0.3",
+      accessLocation: "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/application-notes/AN347.pdf",
+    },
+    {
+      // First-party manufacturer (Holtek Semiconductor) datasheet for a
+      // real, commercially sold remote-control decoder IC. Its own
+      // "Applications" list names "Garage door controllers", "Car door
+      // controllers", "Car alarm system", "Security system" and "Other
+      // remote control systems" directly; its own functional description
+      // and application circuit show the decoder's CMOS output pins
+      // switching to activate an output when a matching wireless code is
+      // received.
+      key: SRC_HOLTEK_HT12D,
+      title: "HT12D/HT12F 2^12 Series of Decoders",
+      publisher: "Holtek Semiconductor Inc.",
+      sourceFamily: "Manufacturer datasheet",
+      sourceType: "DATASHEET",
+      jurisdiction: "International",
+      canonicalReference: "Holtek HT12D/HT12F Datasheet, Rev. 1.10",
+      accessLocation: "https://www.farnell.com/datasheets/57850.pdf",
+    },
   ],
 
   sourceVersions: [
@@ -4101,6 +4194,26 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       verificationStatus: "UNVERIFIED",
       lastCurrencyCheckDate: "2026-08-21",
     },
+    // -- CC-09B.3 source versions -- UNVERIFIED (this Sonnet session is
+    // the authoring/extraction model, never its own verifier, ADR-0002).
+    {
+      key: SV_SKYWORKS_DAA_DESIGN_GUIDE, sourceKey: SRC_SKYWORKS_DAA_DESIGN_GUIDE,
+      revision: "AN347 Rev. 0.3",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "232e6643ad677923d221d69110fc34dad7b80378f5d64919f0b9527d979f78ad",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      key: SV_HOLTEK_HT12D, sourceKey: SRC_HOLTEK_HT12D,
+      revision: "Rev. 1.10, November 18, 2002",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-21",
+      contentFingerprintSha256: "bd588dca8331aa129892e4981f86c49aedc8834fd876d92a7652326e0e6148d7",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-21",
+    },
   ],
 
   sourceLocators: locators.map((l) => ({
@@ -4180,6 +4293,7 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
     version: 1,
     statement: a.statement,
     status: "APPROVED" as const,
+    multiSourceFullyCovered: a.multiSourceFullyCovered,
   })),
 
   assertionProvenanceLinks: A.flatMap((a) =>

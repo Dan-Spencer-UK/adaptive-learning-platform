@@ -113,8 +113,10 @@ Verification columns per ADR-0002 -- Verified/By/Fingerprint reflect the governe
 | Dynamometer Type Wattmeter | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 | Machine Design: Gear Ratios | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
 | ENFORCER E-931-S33PRGQ 33ft Polarized Reflective Photoelectric Beam Sensor -- Installation Manual | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| AN347: DAA Design Guide | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| HT12D/HT12F 2^12 Series of Decoders | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 
-Rights distribution: PROPRIETARY_REFERENCE: 7, OPEN: 4, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 4
+Rights distribution: PROPRIETARY_REFERENCE: 9, OPEN: 4, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 4
 
 ## OpenStax exact-book licence evidence (CC-04B hard requirement)
 
@@ -127,10 +129,10 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ## Graph health
 
-- Total relationships: 366
+- Total relationships: 365
   - CONTRASTS_WITH: 14
   - DERIVED_FROM: 34
-  - PREREQUISITE_OF: 308
+  - PREREQUISITE_OF: 307
   - SUPPORTS: 10
 - Misconceptions: 21; conflict links: 45
 - Curriculum mappings: 469
@@ -2201,7 +2203,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A light-emitting diode (LED) produces light by electroluminescence: when forward-biased, recombination of electrons and holes at the junction releases energy as photons.
 
 **Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED)
-**Direct dependents:** EL-APPLICATION-SECURITY-ALARM-001; EL-APPLICATION-TELEPHONE-001
+**Direct dependents:** EL-APPLICATION-SECURITY-ALARM-001
 **Curriculum mapping(s):** State the basic operating principles of electronic components and devices (REQUIRED_FOR); Electronic components and devices: LED (REQUIRED_FOR)
 **Provenance:** Electric Circuits III - Semiconductors (Kuphaldt) — A light-emitting diode (LED) produces light by electroluminescence when forward-biased (recombination of electrons and holes in the junction yields photons); a photodiode is optimised to generate a photocurrent in response to incident light [DEFINES, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.2: state the basic operating principles of electronic components and devices (capacitors, resistors, rectifiers, diodes, zener, LED, photo, thermistors, diacs, triacs, transistors, thyristors, invertors) [CURRICULUM_REQUIRES, verification=VERIFIED]
 
@@ -2306,21 +2308,21 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-APPLICATION-TELEPHONE-001
 
-**Statement (v1, APPROVED):** A diode conducts current in one direction only, and an LED provides low-power visual indication when forward-biased -- properties that are, in general, applicable to protection and indication roles in electronic equipment (a specific telephone-equipment application is not yet independently source-evidenced; see the knowledge-obligation register).
+**Statement (v1, APPROVED):** Telephone-line interface (Direct Access Arrangement, DAA) circuits include a diode bridge wired directly across the telephone line's TIP and RING terminals, positioned as the first stage between the raw two-wire telephone line connection and the rest of the line-side interface circuitry.
 
-**Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED); EL-COMPONENT-LED-001 (REQUIRED)
+**Direct prerequisites:** EL-COMPONENT-DIODE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Telephones (REQUIRED_FOR)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Provenance:** AN347: DAA Design Guide — Figure 2 shows a diode-bridge symbol (D1) wired directly into the line-side circuitry of a real telephone-line interface (DAA) application circuit; Figure 29's block diagram explicitly labels a "Bridge Diode" block connected directly to the telephone line's TIP and RING terminals, positioned within the TNV-3 (Telecommunications Network Voltage) circuit area between the line-side device/discretes and the telephone line itself [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES, verification=VERIFIED]
 
 ### EL-APPLICATION-WIRELESS-CONTROL-001
 
-**Statement (v1, APPROVED):** A transistor can switch or amplify a small input signal -- a property that is, in general, applicable to processing a low-power received signal (a specific wireless-control-system application is not yet independently source-evidenced; see the knowledge-obligation register).
+**Statement (v1, APPROVED):** A remote-control decoder IC, whose CMOS (transistor-based) output stage is activated once the received address code matches, is used with an RF or infrared receiver to switch an output in response to a wireless signal -- the operating basis of manufactured wireless remote-control products, including garage door controllers, car door controllers and other remote control systems.
 
 **Direct prerequisites:** EL-COMPONENT-TRANSISTOR-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Describe the function and application of electronic components that are used in electrical systems (REQUIRED_FOR); Electrical systems: Wireless control systems (REQUIRED_FOR)
-**Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Provenance:** HT12D/HT12F 2^12 Series of Decoders — HT12D/HT12F 2^12 series decoder ICs' own "Applications" list names: burglar alarm system, smoke and fire alarm system, garage door controllers, car door controllers, car alarm system, security system, cordless telephones, other remote control systems; "Easy interface with an RF or an infrared transmission medium"; General Description: "the 12-N bits of data are decoded to activate the output pins" once the received address matches; the Application Circuits figure shows the decoder wired to a "Receiver Circuit" (antenna symbol) with its CMOS output pins (D8-D11) driving external outputs [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC6.1: describe the function and application of electronic components that are used in electrical systems (security alarms, telephones, dimmer switches, heating/boiler controls, motor control, wireless control systems) [CURRICULUM_REQUIRES, verification=VERIFIED]
 
 ## Misconceptions
 

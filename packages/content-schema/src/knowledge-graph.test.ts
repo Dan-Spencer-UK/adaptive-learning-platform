@@ -425,6 +425,26 @@ describe("knowledgeGraphManifestSchema", () => {
     expect(result.success).toBe(true);
   });
 
+  it("CC-09B.3: accepts an assertion version carrying an explicit multiSourceFullyCovered flag", () => {
+    const manifest = minimalValidManifest();
+    manifest.assertionVersions[0]!.multiSourceFullyCovered = true;
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+
+  it("CC-09B.3: multiSourceFullyCovered is optional and omitted by default", () => {
+    const manifest = minimalValidManifest();
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.assertionVersions[0]!.multiSourceFullyCovered).toBeUndefined();
+    }
+  });
+
   it("rejects a CURRENT curriculum version whose label looks like a placeholder", () => {
     const manifest = minimalValidManifest();
     manifest.curriculumVersions[0]!.versionLabel = "proving-slice reference (edition unconfirmed)";
