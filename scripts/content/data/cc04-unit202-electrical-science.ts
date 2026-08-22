@@ -2449,8 +2449,22 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "ENERGY"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09H (Project Architect correction, task section 1): "one meter
+    // movement connected to different external resistor networks via a
+    // selector switch" is specifically an analogue multimeter's internal
+    // architecture -- not true of modern digital multimeters, and not
+    // required by the governed obligation (multimeter-and-selection,
+    // unit202-knowledge-obligations.ts), which needs only the combined-
+    // instrument/function-selection fact. Restated technology-neutral, no
+    // internal analogue/digital architecture taught. Provenance kept:
+    // loc-kuphaldt-dc-multimeters's own passage genuinely still entails
+    // this narrower claim ("a multi-purpose meter... can be designed in
+    // one unit with the appropriate switch(es)") independent of its own
+    // extra (now-omitted) analogue-mechanism detail -- the source being
+    // more specific than the assertion is fine; the assertion no longer
+    // claims the mechanism the source's own extra detail describes.
     id: "EL-INSTRUMENT-MULTIMETER-001", domain: "EL",
-    statement: "A multimeter is a single instrument that can be configured to measure voltage, current or resistance, by connecting one meter movement to different external resistor networks via a selector switch.",
+    statement: "A multimeter is a single test instrument that can be configured to measure several electrical quantities, commonly including voltage, current and resistance.",
     provenance: [
       { locator: "loc-kuphaldt-dc-multimeters", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" },
@@ -3615,8 +3629,16 @@ const A: AssertionDef[] = [
   // (CC-04B); conceptual/definitional only -- no AC calculation engine.
   // ===================================================================
   {
+    // CC-09H (Project Architect correction, task section 2): the previous
+    // wording equated magnetism itself with a force ("magnetism is a
+    // force of attraction/repulsion") -- magnetism is the phenomenon;
+    // attraction/repulsion is its EFFECT, exerted as forces between poles.
+    // AC5.1 itself asks for "the effects of magnetism in terms of
+    // attraction and repulsion", not a definition of magnetism as a
+    // force. Restated to describe the effect directly, still fully
+    // entailed by the same source (magnetic attraction/repulsion).
     id: "EL-CONCEPT-MAGNETISM-001", domain: "EL",
-    statement: "Magnetism is a force of attraction between unlike magnetic poles and repulsion between like magnetic poles.",
+    statement: "Magnetic poles exert forces on one another: like poles repel and unlike poles attract.",
     provenance: [{ locator: "loc-openstax-up2-magnetic-forces", role: "DEFINES" }, { locator: "loc-cg-ac5.1", role: "CURRICULUM_REQUIRES" }],
     curriculum: [{ node: NODE_AC5_1, type: "REQUIRED_FOR" }],
   },
@@ -3774,8 +3796,14 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09H (Project Architect correction, task section 3, NON_MATERIAL):
+    // "slightly less" was an unjustified magnitude qualifier -- for
+    // V_terminal = EMF - I r, the drop depends on the current drawn and
+    // the internal resistance and is not inherently small. Removed;
+    // stays at the existing Level-2 depth (discharging-source model only,
+    // no charging-source behaviour added).
     id: "EL-CONCEPT-TERMINAL-VOLTAGE-001", domain: "EL",
-    statement: "Terminal voltage is the potential difference measured across the terminals of a source while it is supplying current, which is slightly less than its EMF due to the source's own internal resistance.",
+    statement: "Terminal voltage is the potential difference measured across the terminals of a source while it is supplying current, which is less than its EMF due to the source's own internal resistance.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "SUPPORTS" }, { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-EMF-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-VOLTAGE-001", strength: "REQUIRED" }],
     contrastsWith: ["EL-CONCEPT-EMF-001"],
@@ -3891,16 +3919,29 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "RMS-VALUE"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09H (Project Architect correction, task section 4): "the average
+    // of the rectified (half-cycle) waveform" conflated two equivalent
+    // but distinct procedures under one ambiguous phrase -- averaging the
+    // ORIGINAL waveform over one half-cycle, versus averaging the FULL-
+    // WAVE-RECTIFIED waveform over a full cycle. Both give the same
+    // conventional non-zero value for a symmetrical waveform (rectifying
+    // makes every half-cycle the same shape), but they are two different
+    // procedures, not one. Restated to name both explicitly and state
+    // their equivalence, rather than bundling them into one phrase.
     id: "EL-WAVEFORM-AVERAGE-VALUE-001", domain: "EL",
-    statement: "The average value of an alternating waveform used in AC calculations is normally the average of the rectified (half-cycle) waveform, rather than the average over a full cycle.",
+    statement: "The conventional (non-zero) average value quoted for an alternating waveform in AC calculations is the average taken over one half-cycle of the waveform; this is equivalent to averaging the full-wave-rectified waveform over a complete cycle, since rectification makes every half-cycle the same shape.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-SINE-WAVE-001", strength: "REQUIRED" }],
     contrastsWith: ["EL-WAVEFORM-RMS-001"],
     curriculum: [{ node: NODE_AC5_5, type: "REQUIRED_FOR" }, { node: rangeNode("5.5", "AVERAGE-VALUE"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09H (task section 4): trailing clause harmonised with the
+    // corrected EL-WAVEFORM-AVERAGE-VALUE-001 above (half-cycle average,
+    // equivalently full-wave-rectified) rather than "refers to the
+    // rectified waveform" alone.
     id: "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001", domain: "EL",
-    statement: "The average value of a symmetrical sine wave taken over a full cycle is zero, because the positive and negative half-cycles cancel; the non-zero 'average value' quoted for AC calculations refers to the rectified waveform.",
+    statement: "The average value of a symmetrical sine wave taken over a full cycle is zero, because the positive and negative half-cycles cancel; the conventional non-zero 'average value' quoted for AC calculations is instead taken over one half-cycle, equivalently the average of the full-wave-rectified waveform over a full cycle.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "SUPPORTS" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-WAVEFORM-AVERAGE-VALUE-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_5, type: "SUPPORTS" }],

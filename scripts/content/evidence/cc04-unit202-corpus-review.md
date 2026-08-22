@@ -1117,7 +1117,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-INSTRUMENT-MULTIMETER-001
 
-**Statement (v1, APPROVED):** A multimeter is a single instrument that can be configured to measure voltage, current or resistance, by connecting one meter movement to different external resistor networks via a selector switch.
+**Statement (v1, APPROVED):** A multimeter is a single test instrument that can be configured to measure several electrical quantities, commonly including voltage, current and resistance.
 
 **Direct prerequisites:** EL-INSTRUMENT-VOLTMETER-001 (SUPPORTING); EL-INSTRUMENT-AMMETER-001 (SUPPORTING); EL-INSTRUMENT-OHMMETER-001 (SUPPORTING)
 **Direct dependents:** (none — leaf capability)
@@ -2328,7 +2328,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-MAGNETISM-001
 
-**Statement (v1, APPROVED):** Magnetism is a force of attraction between unlike magnetic poles and repulsion between like magnetic poles.
+**Statement (v1, APPROVED):** Magnetic poles exert forces on one another: like poles repel and unlike poles attract.
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001; EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001
@@ -2483,7 +2483,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-TERMINAL-VOLTAGE-001
 
-**Statement (v1, APPROVED):** Terminal voltage is the potential difference measured across the terminals of a source while it is supplying current, which is slightly less than its EMF due to the source's own internal resistance.
+**Statement (v1, APPROVED):** Terminal voltage is the potential difference measured across the terminals of a source while it is supplying current, which is less than its EMF due to the source's own internal resistance.
 
 **Direct prerequisites:** EL-CONCEPT-EMF-001 (REQUIRED); EL-CONCEPT-VOLTAGE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
@@ -2608,7 +2608,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-WAVEFORM-AVERAGE-VALUE-001
 
-**Statement (v1, APPROVED):** The average value of an alternating waveform used in AC calculations is normally the average of the rectified (half-cycle) waveform, rather than the average over a full cycle.
+**Statement (v1, APPROVED):** The conventional (non-zero) average value quoted for an alternating waveform in AC calculations is the average taken over one half-cycle of the waveform; this is equivalent to averaging the full-wave-rectified waveform over a complete cycle, since rectification makes every half-cycle the same shape.
 
 **Direct prerequisites:** EL-CONCEPT-SINE-WAVE-001 (REQUIRED)
 **Direct dependents:** EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001
@@ -2619,7 +2619,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001
 
-**Statement (v1, APPROVED):** The average value of a symmetrical sine wave taken over a full cycle is zero, because the positive and negative half-cycles cancel; the non-zero 'average value' quoted for AC calculations refers to the rectified waveform.
+**Statement (v1, APPROVED):** The average value of a symmetrical sine wave taken over a full cycle is zero, because the positive and negative half-cycles cancel; the conventional non-zero 'average value' quoted for AC calculations is instead taken over one half-cycle, equivalently the average of the full-wave-rectified waveform over a full cycle.
 
 **Direct prerequisites:** EL-WAVEFORM-AVERAGE-VALUE-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
