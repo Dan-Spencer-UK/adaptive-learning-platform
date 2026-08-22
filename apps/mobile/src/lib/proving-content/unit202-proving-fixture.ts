@@ -351,6 +351,13 @@ export const QB_SERIES_CALCULATE_TOTAL_RESISTANCE: QuestionBlueprint = {
   ]),
   difficultyBand: "introductory",
   presentation: { promptLines: ["The series circuit shown has {component_count} resistors."] },
+  // CC-09E: mirrored field-for-field from the real governed corpus record
+  // (see this file's own header note) -- never invented or reworded here.
+  assessmentStyleEvidence: {
+    classification: "DIRECT_SAMPLE_ANALOGUE",
+    sourceItemRef: "2365-602-sample-v1:item-27",
+    note: "Sample item 27 (series-circuit power calculation from a diagram) requires this same series total-resistance operation/representation as an intermediate step for this knowledge target.",
+  },
 };
 
 export const QB_SERIES_SOLVE_MISSING_COMPONENT: QuestionBlueprint = {
@@ -397,6 +404,13 @@ export const QB_PARALLEL_CALCULATE_TOTAL: QuestionBlueprint = {
   ]),
   difficultyBand: "intermediate",
   presentation: { promptLines: ["The parallel circuit shown has {branch_count} branches."] },
+  // CC-09E: mirrored field-for-field from the real governed corpus record
+  // (see this file's own header note) -- never invented or reworded here.
+  assessmentStyleEvidence: {
+    classification: "DIRECT_SAMPLE_ANALOGUE",
+    sourceItemRef: "2365-602-sample-v1:item-25",
+    note: "Sample item 25 (parallel-circuit total-resistance calculation from a diagram) demonstrates this exact operation/representation for this same knowledge target.",
+  },
 };
 
 export const QB_PARALLEL_SOLVE_MISSING_BRANCH: QuestionBlueprint = {

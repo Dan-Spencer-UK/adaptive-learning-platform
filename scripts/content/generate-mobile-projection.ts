@@ -143,7 +143,18 @@ export function buildMobileContentProjection(args: {
     contentRelease: { id: release.id, questionBlueprintVersion: release.questionBlueprintVersion },
     lessons: memberLessons,
     assertionFamilies,
-    questionBlueprints: pickAll("question blueprint", questionBlueprintIds, byId(pedagogy.questionBlueprints)),
+    // CC-09E: assessmentStyleEvidence (CC-09D-derived assessment-provenance
+    // classification) is authoring/governance metadata, deliberately
+    // stripped here -- never the full governed authoring record, matching
+    // this projection's own documented "excludes authoring/governance/
+    // provenance data" intent (see this module's header). The deterministic
+    // runtime executes a blueprint's calculation/marking/evidence contract;
+    // it never needs to know why the question was authored.
+    questionBlueprints: pickAll("question blueprint", questionBlueprintIds, byId(pedagogy.questionBlueprints)).map((blueprint) => {
+      const projected = { ...blueprint };
+      delete projected.assessmentStyleEvidence;
+      return projected;
+    }),
     formulaFamilies: pickAll("formula family", formulaFamilyIds, byId(pedagogy.formulaFamilies)),
     workedExampleBlueprints: pickAll("worked-example blueprint", workedExampleIds, byId(pedagogy.workedExampleBlueprints)),
     visualAidBlueprints: pickAll("visual-aid blueprint", visualAidIds, byId(pedagogy.visualAidBlueprints)),

@@ -136,12 +136,30 @@ const compareMotorGenerator: QuestionExecutor = (ctx) => {
   return assembleInstance(ctx, { scenario }, {}, { answer: ctx.blueprint.answer, value: scenario });
 };
 
+/**
+ * CC-09E: identify the SI unit of magnetic flux or flux density among
+ * plausible related-unit distractors (weber/henry/farad) -- the direct
+ * sample-analogue archetype for the official 2365-602 sample's item 31
+ * (see cc05a-pedagogy-unit202.ts's own assessmentStyleEvidence note).
+ * Purely categorical, matching units-and-quantities.ts's identifyUnit
+ * pattern exactly.
+ */
+const identifyFluxDensityUnit: QuestionExecutor = (ctx) => {
+  const quantity = pick(ctx.rng, ["flux_density", "flux"] as const);
+  const unitByQuantity: Readonly<Record<string, string>> = {
+    flux_density: "tesla",
+    flux: "weber",
+  };
+  return assembleInstance(ctx, { quantity }, {}, { answer: ctx.blueprint.answer, value: unitByQuantity[quantity]! });
+};
+
 export const magnetismExecutors: Readonly<Record<string, QuestionExecutor>> = {
   "magnetism.recognise_concept": recogniseConcept,
   "magnetism.interpret_field_direction": interpretFieldDirection,
   "magnetism.interpret_force_direction": interpretForceDirection,
   "magnetism.compare_permanent_electromagnet": comparePermanentElectromagnet,
   "magnetism.compare_motor_generator": compareMotorGenerator,
+  "magnetism.identify_flux_density_unit": identifyFluxDensityUnit,
 };
 
 export const __internal = {

@@ -232,4 +232,70 @@ describe("pedagogyManifestSchema", () => {
     const result = pedagogyManifestSchema.safeParse(manifest);
     expect(result.success).toBe(false);
   });
+
+  // CC-09E: assessmentStyleEvidence (question-blueprint archetype
+  // classification against official assessment evidence).
+  it("accepts a DIRECT_SAMPLE_ANALOGUE blueprint with a sourceItemRef", () => {
+    const manifest = minimalValidManifest();
+    manifest.questionBlueprints[0]!.assessmentStyleEvidence = {
+      classification: "DIRECT_SAMPLE_ANALOGUE",
+      sourceItemRef: "2365-602-sample-v1:item-01",
+      note: "Sample item 1 demonstrates this exact grammar for this same knowledge target.",
+    };
+    const result = pedagogyManifestSchema.safeParse(manifest);
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects a DIRECT_SAMPLE_ANALOGUE blueprint with no sourceItemRef", () => {
+    const manifest = minimalValidManifest();
+    manifest.questionBlueprints[0]!.assessmentStyleEvidence = {
+      classification: "DIRECT_SAMPLE_ANALOGUE",
+      note: "Missing its traceable source item reference.",
+    };
+    const result = pedagogyManifestSchema.safeParse(manifest);
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts an ASSESSMENT_STYLE_TRANSFER blueprint whose transferredFromBlueprintId resolves to a real blueprint", () => {
+    const manifest = minimalValidManifest();
+    manifest.questionBlueprints.push({
+      ...manifest.questionBlueprints[0]!,
+      id: "ohms_law.transferred_variant",
+      assessmentStyleEvidence: {
+        classification: "ASSESSMENT_STYLE_TRANSFER",
+        transferredFromBlueprintId: "ohms_law.solve_for_voltage",
+        note: "Transfers a demonstrated grammar to a different knowledge target.",
+      },
+    });
+    const result = pedagogyManifestSchema.safeParse(manifest);
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects an ASSESSMENT_STYLE_TRANSFER blueprint with no transferredFromBlueprintId", () => {
+    const manifest = minimalValidManifest();
+    manifest.questionBlueprints[0]!.assessmentStyleEvidence = {
+      classification: "ASSESSMENT_STYLE_TRANSFER",
+      note: "Missing its traceable transfer origin.",
+    };
+    const result = pedagogyManifestSchema.safeParse(manifest);
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects a transferredFromBlueprintId that does not resolve to any real question blueprint", () => {
+    const manifest = minimalValidManifest();
+    manifest.questionBlueprints[0]!.assessmentStyleEvidence = {
+      classification: "ASSESSMENT_STYLE_TRANSFER",
+      transferredFromBlueprintId: "does_not_exist.blueprint",
+      note: "Invented lineage.",
+    };
+    const result = pedagogyManifestSchema.safeParse(manifest);
+    expect(result.success).toBe(false);
+  });
+
+  it("leaves assessmentStyleEvidence unset by default (CC-09E: absence means not yet classified, never a negative finding)", () => {
+    const manifest = minimalValidManifest();
+    const result = pedagogyManifestSchema.safeParse(manifest);
+    expect(result.success).toBe(true);
+    expect(result.success && result.data.questionBlueprints[0]!.assessmentStyleEvidence).toBeUndefined();
+  });
 });

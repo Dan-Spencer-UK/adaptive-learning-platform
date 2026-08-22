@@ -19,6 +19,7 @@
  */
 
 import type { DiagramBlueprint, FormulaFamily, QuestionBlueprint, WorkedExampleBlueprint } from "@alp/content-schema";
+import { acReactiveQuantitiesExecutors } from "./families/ac-reactive-quantities.ts";
 import { algebraicRearrangementExecutors } from "./families/algebraic-rearrangement.ts";
 import { chargeExecutors } from "./families/charge.ts";
 import { comparisonExecutors } from "./families/comparison.ts";
@@ -49,13 +50,17 @@ import { UnsupportedBlueprintError, type EvaluationResult, type GeneratedQuestio
  * series_vs_parallel_comparison, power_relationships, energy_and_efficiency,
  * charge_and_current, thermal_and_chemical_effects, conductors_and_insulators,
  * instrumentation, fault_conditions_protection, emf_and_generation and
- * ac_dc_waveforms. `SUPPORTED_BLUEPRINT_IDS` below is the explicit,
+ * ac_dc_waveforms; CC-09E adds ac_reactive_quantities (2 blueprints,
+ * formula/unit recognition only, no numeric AC calculation -- see the
+ * family's own reclassification comment in cc05a-pedagogy-unit202.ts).
+ * `SUPPORTED_BLUEPRINT_IDS` below is the explicit,
  * mechanically-checkable record of exactly which ones (see
  * scripts/content/prove-cc05b-engine.ts for the full-manifest gate that
  * proves this set equals the live governed blueprint set).
  */
 const EXECUTORS: Readonly<Record<string, QuestionExecutor>> = {
   ...ohmsLawExecutors,
+  ...acReactiveQuantitiesExecutors,
   ...seriesResistanceExecutors,
   ...parallelResistanceExecutors,
   ...magnetismExecutors,

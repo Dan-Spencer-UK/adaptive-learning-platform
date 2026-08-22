@@ -4,10 +4,10 @@ import { buildDimensionCoverageReport, isDimensionCoverageClean } from "./report
 describe("CC-05B2 variant-dimension coverage (full governed Unit 202 manifest)", () => {
   const results = buildDimensionCoverageReport();
 
-  it("finds every governed blueprint with a declared variantDimensions entry (currently 9 blueprints, 11 entries)", () => {
+  it("finds every governed blueprint with a declared variantDimensions entry (currently 11 blueprints, 13 entries -- CC-09E adds magnetism.identify_flux_density_unit and emf.calculate_flux_change)", () => {
     const blueprintIds = new Set(results.map((r) => r.blueprintId));
-    expect(blueprintIds.size).toBe(9);
-    expect(results.length).toBe(11);
+    expect(blueprintIds.size).toBe(11);
+    expect(results.length).toBe(13);
   });
 
   it("exercises every permitted value of every non-marker dimension at least once", () => {

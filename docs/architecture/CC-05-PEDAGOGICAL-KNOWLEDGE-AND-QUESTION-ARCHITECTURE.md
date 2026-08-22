@@ -1662,3 +1662,36 @@ Mechanical + Two-Pass Semantic + Human QA Evidence (CC-05D)
 ```
 
 This is a bounded amendment, not a rewrite: no field, type, or behaviour defined elsewhere in this document changes. `DiagramBlueprint` (§30) remains exactly what it always was — a rendering parameter contract — and CC-05D's `VisualSemanticContract` is a separate, additively-referenced governed artefact, never a modification to it. Full specification: [`docs/architecture/CC-05D-INSTRUCTIONAL-VISUAL-GOVERNANCE-AND-SEMANTIC-QA.md`](CC-05D-INSTRUCTIONAL-VISUAL-GOVERNANCE-AND-SEMANTIC-QA.md).
+
+## 46. CC-09E — Exam-Style Question Archetypes & Generation Calibration (bounded amendment)
+
+CC-09D calibrated the governed Unit 202 corpus against the complete official public City & Guilds 2365-602 sample assessment (40 items, analysed without ever committing source question text — [`docs/architecture/evidence/CC-09D-UNIT202-ASSESSMENT-CALIBRATION.md`](evidence/CC-09D-UNIT202-ASSESSMENT-CALIBRATION.md)). CC-09E turns that evidence into a reusable question-generation capability, answering the product question "not just what is assessable, but *how* does the awarding body turn knowledge into assessment items."
+
+**A question archetype is not a new concept.** `QuestionBlueprint` (§30) already *is* the "governed blueprint → many original variants" mechanism, via `variantDimensions`/`parameterGenerators` (§22-23). CC-09E adds no parallel system. What it adds is a single new optional field, `assessmentStyleEvidence` (`packages/content-schema/src/pedagogy.ts`), classifying a blueprint's relationship to official assessment evidence:
+
+```text
+DIRECT_SAMPLE_ANALOGUE      -- the official sample directly demonstrates this
+                                exact question grammar (operation + representation)
+                                for this same knowledge target. Requires a
+                                sourceItemRef (an opaque, non-reconstructable
+                                reference, e.g. "2365-602-sample-v1:item-06" --
+                                never source question/option/mark-scheme text).
+
+ASSESSMENT_STYLE_TRANSFER   -- a grammar the sample demonstrated for a DIFFERENT
+                                knowledge target has been legitimately carried
+                                over to a new one the sample never tested.
+                                Requires transferredFromBlueprintId, naming the
+                                real DIRECT_SAMPLE_ANALOGUE blueprint whose
+                                grammar it transfers -- never asserted without a
+                                traceable origin.
+```
+
+**Near-archetype variation** (same knowledge/capability, same assessment operation, original values/context/distractors) is exactly what `variantDimensions`/`parameterGenerators` already provide -- no new mechanism needed. **Assessment-style transfer** (§2 of the CC-09E task brief) is the new fact this field records: that a demonstrated grammar was deliberately reapplied to different, already-governed knowledge, never that the sample proved that specific question occurs. Both remain governed, deterministically generated, original content — the sample only ever informs the *grammar*, never supplies the *content*.
+
+**Originality/copyright firebreak** (reaffirming §31's content-vs-engine boundary for this specific evidence source): no `assessmentStyleEvidence.note` or `sourceItemRef` may contain official question stems, answer options, or mark-scheme wording -- mechanically regression-tested (`scripts/content/prove-question-archetypes.test.ts`). `assessmentStyleEvidence` is authoring/governance metadata, deliberately excluded from the published learner-runtime projection (§32) — `generate-mobile-projection.ts` strips it before embedding, the same treatment §32 already gives every other authoring-only field.
+
+**Practice and mock questions draw from the same archetypes.** CC-09E does not model exam style as mock-only: an archetype's blueprint is the same governed object a teaching-context question, a diagnostic question, or a future mock-paper question would all generate from — only the *pool selection* differs (out of scope here; §41's future-work list already tracks a future deterministic mock-paper assembler, `AssessmentBlueprint`, unaffected by this amendment).
+
+**Formal assessment weighting stays separate from archetype metadata.** `AssessmentSpecification`'s per-Learning-Outcome question allocation governs how a *future* mock assembles many questions across topics; `assessmentStyleEvidence` governs how *one* blueprint generates variants of *one* question grammar. Neither field references the other; a blueprint's exam-style classification never implies anything about its selection frequency in a future paper.
+
+Bounded scope, explicitly not built here: no numeric AC reactive-quantity calculation engine (impedance/reactance arithmetic remains out of scope, per §37's original CC-05A decision — CC-09E's one reclassified family, `electrical.ac_reactive_quantities`, gained only categorical formula/unit *recognition*, never calculation); no mock-paper assembler; no runtime AI; no question bank beyond the bounded proving set (7 archetypes). Full implementation record: `PROJECT-STATUS.md` §CC-09E.

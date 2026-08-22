@@ -457,9 +457,24 @@ const assertionFamilies: AssertionFamily[] = [
     completeness: {
       requiredCapabilityIds: ["cap.ac_reactive.recognise"],
     },
-    assessmentRequirement: "teaching_only",
-    teachingOnlyReason:
-      "Per the corpus's own documented design decision (cc04-unit202-electrical-science.ts header comment, lines 43-49): 'AC circuit calculation (reactance/impedance arithmetic, phasor addition) is deliberately NOT decomposed into calculation capabilities here -- only the conceptual/definitional knowledge... is modelled', consistent with LO2's 'identify and determine values of... SI units' framing rather than LO4's deeper 'calculate' framing (which Unit 202 restricts to D.C. circuits). No numeric AC reactive-quantity calculation engine exists or is planned in this proving slice, so no question blueprint requiring one was authored.",
+    // CC-09E (task section 3/4): narrowly reclassified from teaching_only.
+    // The prior design decision (cc04-unit202-electrical-science.ts header
+    // comment, lines 43-49) reasoned that "AC circuit calculation
+    // (reactance/impedance arithmetic, phasor addition)" was out of scope
+    // at Unit 202's LO2 depth ("identify and determine values of... SI
+    // units", not LO4's deeper "calculate" framing) -- that reasoning is
+    // UNCHANGED and still governs: no numeric AC reactive-quantity
+    // calculation engine exists or is added by this package. CC-09D's
+    // official 2365-602 sample-assessment calibration found real evidence
+    // (sample item 6) that FORMULA RECOGNITION at LO2's own "identify"
+    // depth -- selecting the correct impedance formula among distractors,
+    // never computing a numeric AC value -- is genuinely assessable and
+    // was previously undocumented. This flip and its one new capability
+    // (cap.ac_reactive.select_impedance_formula, operationType
+    // "select_relationship", categorical only) is scoped exactly to that
+    // narrower, evidence-justified fact; it does not reopen or contradict
+    // the original calculation-engine decision.
+    assessmentRequirement: "assessable",
   },
 
   // --- CC-09B: new Foundational families for LO1 Range items with no
@@ -1414,6 +1429,15 @@ const capabilities: Capability[] = [
     "compare",
     "Compare the motor principle with the generator principle.",
   ),
+  // CC-09E: official 2365-602 sample-assessment-confirmed archetype (task
+  // section 4) -- identify the correct SI unit for a magnetic quantity
+  // among plausible related-unit distractors.
+  cap(
+    "cap.magnetism.identify_unit",
+    "electrical.magnetism_and_electromagnetism",
+    "identify",
+    "Identify the SI unit of magnetic flux or magnetic flux density.",
+  ),
 
   // --- electrical.emf_and_generation -----------------------------------------
   cap(
@@ -1427,6 +1451,15 @@ const capabilities: Capability[] = [
     "electrical.emf_and_generation",
     "recognise",
     "Describe the basic principle of a rotating-loop A.C. generator.",
+  ),
+  // CC-09E: official 2365-602 sample-assessment-confirmed archetype (task
+  // section 4) -- calculate the EMF induced in a single loop (or the flux
+  // change from a given EMF/time), e = (change in flux) / (time taken).
+  cap(
+    "cap.emf.calculate_flux_change",
+    "electrical.emf_and_generation",
+    "calculate",
+    "Calculate the EMF induced in a single loop by a changing magnetic flux, or the flux change from a given EMF and time.",
   ),
 
   // --- electrical.ac_dc_waveforms ---------------------------------------------
@@ -1462,12 +1495,35 @@ const capabilities: Capability[] = [
     "Compare how a resistor, inductor and capacitor behave under AC versus DC supply.",
   ),
 
-  // --- electrical.ac_reactive_quantities (teaching-only) ----------------------
+  // --- electrical.ac_reactive_quantities ---------------------------------------
   cap(
     "cap.ac_reactive.recognise",
     "electrical.ac_reactive_quantities",
     "recognise",
     "Recognise reactance, impedance, inductance, capacitance or power factor from its definition.",
+  ),
+  // CC-09E: official 2365-602 sample-assessment-confirmed archetype (task
+  // section 4) -- select the correct formula for a governed AC relationship
+  // among plausible distractor formulas. Categorical formula recognition
+  // only (operationType "select_relationship") -- no numeric AC
+  // calculation is required or added; see the family's own reclassification
+  // comment above for the scope boundary this stays within.
+  cap(
+    "cap.ac_reactive.select_impedance_formula",
+    "electrical.ac_reactive_quantities",
+    "select_relationship",
+    "Select the correct formula for impedance in terms of resistance and reactance.",
+  ),
+  // CC-09E (task section 10, ASSESSMENT_STYLE_TRANSFER example): the same
+  // "identify SI unit among plausible related-unit distractors" grammar
+  // magnetism.identify_flux_density_unit demonstrates (DIRECT_SAMPLE_
+  // ANALOGUE to sample item 31) legitimately transfers to a different
+  // governed electrical quantity the sample never tested -- reactance.
+  cap(
+    "cap.ac_reactive.identify_reactance_unit",
+    "electrical.ac_reactive_quantities",
+    "identify",
+    "Identify the SI unit of reactance.",
   ),
 
   // --- CC-09B: new Foundational capabilities (teaching-only) -----------
@@ -1939,6 +1995,42 @@ const formulaFamilies: FormulaFamily[] = [
     requiredTargets: ["I", "Q"],
   },
   {
+    // CC-09E: official 2365-602 sample-assessment-confirmed archetype
+    // (task section 4) -- the single-loop form of Faraday's law
+    // (EL-REL-FLUX-CHANGE-EMF-001, CC-09D/CC-09D.1: e = (change in flux) /
+    // (time taken), narrowed from a generic "coil" wording to match the
+    // formula actually given, with no N-turn factor).
+    id: "formula.flux_change_emf",
+    assertionFamilyId: "electrical.emf_and_generation",
+    canonicalTarget: "e",
+    variables: [
+      { symbol: "e", name: "induced EMF", quantity: "emf", unitName: "volt", unitSymbol: "V" },
+      { symbol: "deltaPhi", name: "change in magnetic flux", quantity: "magnetic flux", unitName: "weber", unitSymbol: "Wb" },
+      { symbol: "deltaT", name: "time taken", quantity: "time", unitName: "second", unitSymbol: "s" },
+    ],
+    forms: [
+      {
+        target: "e",
+        expression: { operation: "divide", numerator: "deltaPhi", denominator: "deltaT" },
+        instruction: "To find the induced EMF, divide the change in flux by the time taken.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "deltaPhi",
+        expression: { operation: "multiply", operands: ["e", "deltaT"] },
+        instruction: "To find the change in flux, multiply the induced EMF by the time taken.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "deltaT",
+        expression: { operation: "divide", numerator: "deltaPhi", denominator: "e" },
+        instruction: "To find the time taken, divide the change in flux by the induced EMF.",
+        requiresWorkedExample: false,
+      },
+    ],
+    requiredTargets: ["e", "deltaPhi"],
+  },
+  {
     id: "formula.resistivity",
     assertionFamilyId: "electrical.resistivity",
     canonicalTarget: "R",
@@ -2169,6 +2261,8 @@ interface QuestionBlueprintSpec {
   normalisationNote?: string;
   /** Governed learner-facing presentation copy (CC-06D, Correction C) -- required for any blueprint a governed lesson's learner runtime uses; see @alp/content-schema's questionPresentationManifestSchema. */
   presentation?: QuestionBlueprint["presentation"];
+  /** CC-09E: this blueprint's classified relationship to official public assessment evidence -- see @alp/content-schema's assessmentStyleEvidenceManifestSchema. Unset for blueprints this package did not examine under this lens. */
+  assessmentStyleEvidence?: QuestionBlueprint["assessmentStyleEvidence"];
 }
 
 function qb(spec: QuestionBlueprintSpec): QuestionBlueprint {
@@ -2185,6 +2279,7 @@ function qb(spec: QuestionBlueprintSpec): QuestionBlueprint {
     difficultyBand: spec.difficultyBand,
     normalisationNote: spec.normalisationNote,
     presentation: spec.presentation,
+    assessmentStyleEvidence: spec.assessmentStyleEvidence,
     evidence: evidence(spec.familyId, spec.capabilityId, spec.assertionIdentifiers, {
       supportingCapabilityIds: spec.supportingCapabilityIds,
       representationDependency: spec.representationDependency,
@@ -2492,6 +2587,15 @@ const questionBlueprints: QuestionBlueprint[] = [
     // families/series-resistance.ts's calculateTotalResistance), so the
     // individual R1..R4 values are read from the diagram, never templated.
     presentation: { promptLines: ["The series circuit shown has {component_count} resistors."] },
+    // CC-09E: the official public 2365-602 sample directly demonstrates
+    // this exact grammar (series-circuit diagram + total-resistance
+    // calculation) across several items (e.g. sample item 27, total power
+    // in a series circuit, which requires the same total-resistance step).
+    assessmentStyleEvidence: {
+      classification: "DIRECT_SAMPLE_ANALOGUE",
+      sourceItemRef: "2365-602-sample-v1:item-27",
+      note: "Sample item 27 (series-circuit power calculation from a diagram) requires this same series total-resistance operation/representation as an intermediate step for this knowledge target.",
+    },
   }),
   qb({
     id: "series.solve_missing_component",
@@ -2634,6 +2738,15 @@ const questionBlueprints: QuestionBlueprint[] = [
     variantDimensions: { branch_count: { allowed: [2, 3, 4] } },
     parameterGenerators: [{ variable: "R1", min: 1, max: 100, constraints: ["positive", "pedagogically_sensible"] }],
     presentation: { promptLines: ["The parallel circuit shown has {branch_count} branches."] },
+    // CC-09E: the official public 2365-602 sample directly demonstrates
+    // this exact grammar (parallel-circuit diagram + total-resistance
+    // calculation) across several items (e.g. sample item 25). No source
+    // wording retained -- item reference only.
+    assessmentStyleEvidence: {
+      classification: "DIRECT_SAMPLE_ANALOGUE",
+      sourceItemRef: "2365-602-sample-v1:item-25",
+      note: "Sample item 25 (parallel-circuit total-resistance calculation from a diagram) demonstrates this exact operation/representation for this same knowledge target.",
+    },
   }),
   qb({
     id: "parallel.solve_missing_branch",
@@ -3189,6 +3302,33 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-MOTOR-GENERATOR-COMPARE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "suggestive" }],
   }),
+  qb({
+    id: "magnetism.identify_flux_density_unit",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.identify_unit",
+    title: "Identify the SI unit of a named magnetic quantity",
+    difficultyBand: "introductory",
+    // Distractors are the real, governed SI units of closely related AC
+    // reactive quantities (henry/inductance, farad/capacitance) plus
+    // magnetic flux's own unit (weber) -- each a genuine, plausible
+    // related-unit confusion, never an arbitrary wrong answer (task
+    // section 11).
+    answer: { type: "multiple_choice", options: ["tesla", "weber", "henry", "farad"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-UNIT-TESLA-001", "EL-UNIT-WEBER-001"],
+    variantDimensions: { quantity: { allowed: ["flux_density", "flux"] } },
+    // CC-09E (task section 4): the official public 2365-602 sample
+    // directly demonstrates this exact grammar -- sample item 31 tests
+    // naming the SI unit of magnetic flux density among plausible
+    // related-unit distractors (weber, henry, farad were the real
+    // distractor options; only the topic is paraphrased here, per the
+    // copyright firebreak -- task section 6). No source wording retained.
+    assessmentStyleEvidence: {
+      classification: "DIRECT_SAMPLE_ANALOGUE",
+      sourceItemRef: "2365-602-sample-v1:item-31",
+      note: "Sample item 31 (identify the SI unit of magnetic flux density among weber/henry/farad distractors) demonstrates this exact operation/representation for this same knowledge target -- the finding that originally justified authoring EL-UNIT-TESLA-001 (CC-09D).",
+    },
+  }),
 
   // ===================================================================
   // electrical.emf_and_generation (2)
@@ -3214,6 +3354,33 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-AC-GENERATOR-001", "EL-CONCEPT-SINE-WAVE-001"],
     representation: { diagram: { required: false, blueprintId: "motor.force_field_current" } },
+  }),
+  qb({
+    id: "emf.calculate_flux_change",
+    familyId: "electrical.emf_and_generation",
+    capabilityId: "cap.emf.calculate_flux_change",
+    title: "Calculate the EMF induced in a single loop from a changing magnetic flux",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("emf", "volt"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-REL-FLUX-CHANGE-EMF-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.flux_change_emf" } },
+    variantDimensions: { target_variable: { allowed: ["e", "deltaPhi", "deltaT"] } },
+    parameterGenerators: [
+      { variable: "deltaPhi", min: 1, max: 20, constraints: ["positive", "pedagogically_sensible"] },
+      { variable: "deltaT", min: 1, max: 60, constraints: ["positive", "pedagogically_sensible"] },
+    ],
+    // CC-09E (task section 4): the official public 2365-602 sample
+    // directly demonstrates this exact grammar -- sample item 35 requires
+    // calculating the flux change from a given induced EMF and time
+    // interval, the same single-step rearrangement of the same formula
+    // (CC-09D's own OFFICIAL_ASSESSMENT_EVIDENCE finding). No source
+    // wording retained -- item reference only.
+    assessmentStyleEvidence: {
+      classification: "DIRECT_SAMPLE_ANALOGUE",
+      sourceItemRef: "2365-602-sample-v1:item-35",
+      note: "Sample item 35 (calculate flux change from a given induced EMF and time interval) demonstrates this exact operation/formula for this same knowledge target -- the finding that originally justified authoring EL-REL-FLUX-CHANGE-EMF-001 (CC-09D).",
+    },
   }),
 
   // ===================================================================
@@ -3247,6 +3414,15 @@ const questionBlueprints: QuestionBlueprint[] = [
       "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001",
     ],
     representation: { diagram: { required: true, blueprintId: "graph.waveform_sine" } },
+    // CC-09E: the official public 2365-602 sample directly demonstrates
+    // this exact grammar (identify a named waveform characteristic from a
+    // diagram) -- sample item 36 asks which labelled interval on a
+    // sine-wave diagram indicates periodic time.
+    assessmentStyleEvidence: {
+      classification: "DIRECT_SAMPLE_ANALOGUE",
+      sourceItemRef: "2365-602-sample-v1:item-36",
+      note: "Sample item 36 (identify periodic time from a labelled waveform diagram) demonstrates this exact operation/representation for this same knowledge target.",
+    },
   }),
   qb({
     id: "waveform.calculate_rms_from_peak",
@@ -3295,6 +3471,88 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["same_both", "differs_by_frequency"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"],
+  }),
+
+  // ===================================================================
+  // electrical.ac_reactive_quantities (3) -- CC-09E: newly assessable
+  // (see the family's own reclassification comment, section 1 above).
+  // Formula/unit RECOGNITION only, categorical -- no numeric AC
+  // reactive-quantity calculation engine exists or is added here.
+  // ===================================================================
+  qb({
+    // The family's own pre-existing required capability
+    // (cap.ac_reactive.recognise) now needs its own blueprint now that the
+    // family is assessable -- a direct, necessary consequence of the
+    // reclassification above, not new assessment-evidenced scope. Not
+    // marked assessmentStyleEvidence: this specific recognition question
+    // was not itself examined against the sample (unlike its two siblings
+    // below), so it is honestly left unclassified rather than overclaimed.
+    id: "ac_reactive.recognise",
+    familyId: "electrical.ac_reactive_quantities",
+    capabilityId: "cap.ac_reactive.recognise",
+    title: "Recognise an AC reactive quantity from its definition",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["reactance", "impedance", "inductance", "capacitance", "power_factor"] },
+    marking: exact(),
+    assertionIdentifiers: [
+      "EL-CONCEPT-REACTANCE-001",
+      "EL-CONCEPT-IMPEDANCE-001",
+      "EL-CONCEPT-INDUCTANCE-001",
+      "EL-CONCEPT-CAPACITANCE-001",
+      "EL-CONCEPT-POWER-FACTOR-001",
+    ],
+  }),
+  qb({
+    id: "ac_reactive.select_impedance_formula",
+    familyId: "electrical.ac_reactive_quantities",
+    capabilityId: "cap.ac_reactive.select_impedance_formula",
+    title: "Select the correct formula for impedance",
+    difficultyBand: "intermediate",
+    // Distractors are the real, governed shape of plausible impedance-
+    // formula confusions -- wrong operation (division instead of the
+    // Pythagorean combination) and inversion -- never arbitrary wrong
+    // answers (task section 11). "formula_selection" is answer-type
+    // categorical; graded as an enum, no numeric evaluation required.
+    answer: { type: "formula_selection", options: ["sqrt_r2_plus_x2", "sqrt_r2_minus_x2", "r_over_z", "z_over_r"] },
+    marking: enumMarking(),
+    assertionIdentifiers: ["EL-REL-IMPEDANCE-001"],
+    // CC-09E (task section 4): the official public 2365-602 sample
+    // directly demonstrates this exact grammar -- sample item 6 tests
+    // selecting the correct impedance formula among the same shape of
+    // plausible distractors (wrong operation, inversion). No source
+    // wording retained -- item reference only.
+    assessmentStyleEvidence: {
+      classification: "DIRECT_SAMPLE_ANALOGUE",
+      sourceItemRef: "2365-602-sample-v1:item-06",
+      note: "Sample item 6 (select the correct impedance formula among plausible wrong-operation/inversion distractors) demonstrates this exact operation/representation for this same knowledge target -- the finding that originally justified authoring EL-REL-IMPEDANCE-001 (CC-09D).",
+    },
+  }),
+  qb({
+    id: "ac_reactive.identify_reactance_unit",
+    familyId: "electrical.ac_reactive_quantities",
+    capabilityId: "cap.ac_reactive.identify_reactance_unit",
+    title: "Identify the SI unit of reactance",
+    difficultyBand: "introductory",
+    // Distractors are the real, governed SI units of closely related AC
+    // reactive quantities (henry/inductance, farad/capacitance) plus
+    // impedance's own shared unit (ohm is the correct answer for both
+    // resistance and reactance/impedance -- the genuine, governed source
+    // of confusion this distractor set tests).
+    answer: { type: "multiple_choice", options: ["ohm", "henry", "farad", "siemens"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-REACTANCE-001"],
+    // CC-09E (task sections 2.B/10, ASSESSMENT_STYLE_TRANSFER): the
+    // sample never tested reactance's own unit -- this transfers the
+    // "identify SI unit among plausible related-unit distractors" grammar
+    // magnetism.identify_flux_density_unit demonstrates (DIRECT_SAMPLE_
+    // ANALOGUE, sample item 31) to a different governed electrical
+    // quantity. Never claimed as sample-proven; recorded honestly as a
+    // legitimate style transfer, never a DIRECT_SAMPLE_ANALOGUE.
+    assessmentStyleEvidence: {
+      classification: "ASSESSMENT_STYLE_TRANSFER",
+      transferredFromBlueprintId: "magnetism.identify_flux_density_unit",
+      note: "Transfers the 'identify SI unit among plausible related-unit distractors' grammar sample item 31 demonstrated for magnetic flux density to reactance -- a different, already-governed Unit 202 quantity (EL-CONCEPT-REACTANCE-001, AC2.2) the sample itself never tested. One sample item is evidence this grammar is a plausible, real City & Guilds assessment style, not proof it is a universal exam rule or that this specific question occurs -- see task section 21's sample-size discipline.",
+    },
   }),
 
   // ===================================================================

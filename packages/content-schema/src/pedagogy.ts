@@ -162,6 +162,56 @@ export const difficultyBandSchema = z.enum([
   "diagnostic",
 ]);
 
+// CC-09E (Exam-Style Question Archetypes & Generation Calibration): a
+// question blueprint already IS the reusable "governed blueprint -> many
+// original variants" mechanism (variantDimensions/parameterGenerators) --
+// this does not need a parallel "archetype" concept. What CC-09D's
+// official-sample calibration added is a genuinely new, previously
+// unrepresented FACT about certain blueprints: whether an official public
+// assessment item demonstrates this exact grammar (DIRECT_SAMPLE_ANALOGUE)
+// or whether the grammar was legitimately carried over to a DIFFERENT
+// governed knowledge target the sample never tested
+// (ASSESSMENT_STYLE_TRANSFER) -- task section 2's two-level-extrapolation
+// distinction. Deliberately never conflated with `basis`
+// (knowledge-graph.ts's OFFICIAL_ASSESSMENT_EVIDENCE, which justifies
+// CURRICULUM SCOPE) -- this is a separate, pedagogy-layer classification
+// of a QUESTION BLUEPRINT's own assessment-style provenance, answering "is
+// this exam-style grammar observed or transferred", never "is this
+// knowledge in scope".
+export const assessmentStyleClassificationSchema = z.enum([
+  /** The official sample itself demonstrates this exact question grammar (operation + representation) for this same knowledge target. */
+  "DIRECT_SAMPLE_ANALOGUE",
+  /** A grammar the sample demonstrated for a DIFFERENT knowledge target has been legitimately carried over here -- the sample never proved this exact question occurs, only that the underlying operation/format is a genuine City & Guilds assessment style. */
+  "ASSESSMENT_STYLE_TRANSFER",
+]);
+
+export const assessmentStyleEvidenceManifestSchema = z
+  .object({
+    classification: assessmentStyleClassificationSchema,
+    /** Opaque, non-reconstructable reference to the official sample item this blueprint derives its grammar from -- e.g. "2365-602-sample-v1:item-06". Traceability only; never source question/option/mark-scheme text (task section 6). */
+    sourceItemRef: z.string().min(1).optional(),
+    /** ASSESSMENT_STYLE_TRANSFER only: the blueprint id whose demonstrated grammar this one transfers to a different knowledge target. */
+    transferredFromBlueprintId: stableId.optional(),
+    /** Human-readable justification -- what evidence/reasoning supports this classification. Never verbatim sample wording. */
+    note: z.string().min(1),
+  })
+  .superRefine((v, ctx) => {
+    if (v.classification === "ASSESSMENT_STYLE_TRANSFER" && !v.transferredFromBlueprintId) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["transferredFromBlueprintId"],
+        message: "ASSESSMENT_STYLE_TRANSFER requires transferredFromBlueprintId -- a transfer must name the blueprint whose grammar it carries over, never asserted without a traceable origin",
+      });
+    }
+    if (v.classification === "DIRECT_SAMPLE_ANALOGUE" && !v.sourceItemRef) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["sourceItemRef"],
+        message: "DIRECT_SAMPLE_ANALOGUE requires a sourceItemRef -- a direct analogue must cite which sample item it derives from, never asserted without a traceable source",
+      });
+    }
+  });
+
 // ---------------------------------------------------------------------
 // 1. Assertion families, membership, standalone classification
 // ---------------------------------------------------------------------
@@ -470,6 +520,8 @@ export const questionBlueprintManifestSchema = z.object({
   normalisationNote: z.string().min(1).optional(),
   /** Optional until a blueprint is used by a governed lesson's learner runtime -- the Lesson Player fails loudly on a blueprint without it (CC-06D migrates the 8 real Ohm's Law lesson blueprints; the mini-unit migrates more as real need is proven). */
   presentation: questionPresentationManifestSchema.optional(),
+  /** CC-09E: this blueprint's classified relationship to official public assessment evidence, where examined -- see assessmentStyleEvidenceManifestSchema. Optional and unset for the majority of blueprints this package did not examine under this lens; absence means "not yet classified", never "no assessment relevance" (the same non-exclusion discipline CC-09C/D established for curriculum scope). */
+  assessmentStyleEvidence: assessmentStyleEvidenceManifestSchema.optional(),
 });
 
 // ---------------------------------------------------------------------
@@ -763,6 +815,15 @@ export const pedagogyManifestSchema = z
           ["questionBlueprints", i, "evidence", "primaryCapabilityId"],
         );
       }
+      // CC-09E: a declared transfer must name a REAL blueprint whose
+      // grammar it carries over -- never an invented or stale lineage.
+      const transferSource = q.assessmentStyleEvidence?.transferredFromBlueprintId;
+      if (transferSource && !manifest.questionBlueprints.some((other) => other.id === transferSource)) {
+        issue(
+          `question blueprint ${q.id} declares assessmentStyleEvidence.transferredFromBlueprintId "${transferSource}", which is not a known question blueprint id`,
+          ["questionBlueprints", i, "assessmentStyleEvidence", "transferredFromBlueprintId"],
+        );
+      }
     });
   });
 
@@ -779,6 +840,8 @@ export type DiagramBlueprint = z.infer<typeof diagramBlueprintManifestSchema>;
 export type FamilyTeachingRepresentation = z.infer<typeof familyTeachingRepresentationManifestSchema>;
 export type QuestionBlueprint = z.infer<typeof questionBlueprintManifestSchema>;
 export type QuestionPresentation = z.infer<typeof questionPresentationManifestSchema>;
+export type AssessmentStyleClassification = z.infer<typeof assessmentStyleClassificationSchema>;
+export type AssessmentStyleEvidence = z.infer<typeof assessmentStyleEvidenceManifestSchema>;
 export type VariantDimension = z.infer<typeof variantDimensionManifestSchema>;
 export type ParameterGenerator = z.infer<typeof parameterGeneratorManifestSchema>;
 export type AnswerContract = z.infer<typeof answerContractManifestSchema>;
