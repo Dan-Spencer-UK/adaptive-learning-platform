@@ -215,6 +215,12 @@ const SRC_ELPROCUS_THYRISTOR_ALARM = "src-elprocus-thyristor-sensor-alarm";
 // genuine, load-bearing gaps and closed.
 const SRC_WIKIPEDIA_FLEMING_LEFT_HAND = "src-wikipedia-flemings-left-hand-rule";
 const SRC_WIKIPEDIA_FLEMING_RIGHT_HAND = "src-wikipedia-flemings-right-hand-rule";
+// CC-09I (task section 11): the UK 230V/50Hz domestic-supply claim was
+// previously supported only by a generic OpenStax electromagnetic-
+// induction locator, which does not itself establish any UK supply
+// standard. Registered the actual first-party UK regulatory source that
+// defines it.
+const SRC_UK_ESQCR = "src-uk-electricity-safety-quality-continuity-regulations-2002";
 
 /** Exported so ./unit202-assessment-specification.ts cites the same governed source-version identity rather than hand-copying the string. */
 export const SV_CG = "sv-cg-2365-02-v1-12";
@@ -252,6 +258,7 @@ const SV_WIKIPEDIA_BRITISH_TELEPHONE_SOCKETS = "sv-wikipedia-british-telephone-s
 const SV_ELPROCUS_THYRISTOR_ALARM = "sv-elprocus-thyristor-sensor-alarm";
 const SV_WIKIPEDIA_FLEMING_LEFT_HAND = "sv-wikipedia-flemings-left-hand-rule";
 const SV_WIKIPEDIA_FLEMING_RIGHT_HAND = "sv-wikipedia-flemings-right-hand-rule";
+const SV_UK_ESQCR = "sv-uk-electricity-safety-quality-continuity-regulations-2002";
 // CC-09D: the official public 2365-602 sample e-volve MC test (v1.0,
 // August 2018) -- OFFICIAL_ASSESSMENT evidence only, never cited as
 // factual authority anywhere in this manifest.
@@ -1430,6 +1437,12 @@ const locators: LocatorDef[] = [
     locatorSummary: "\"The thumb is pointed in the direction of the motion of the conductor relative to the magnetic field. The first finger is pointed in the direction of the magnetic field... the second finger represents the direction of the induced or generated current\" -- the UK vocational-trade naming/mnemonic for generator induced-current direction, citing Hughes, Edward (2016), Electrical and Electronic Technology",
   },
   {
+    key: "loc-uk-esqcr-nominal-supply",
+    sourceVersionKey: SV_UK_ESQCR,
+    section: "Regulation 27", subsection: "Declared frequency and voltage",
+    locatorSummary: "\"...the frequency declared... shall be 50 hertz and the voltage declared in respect of a low voltage supply shall be 230 volts between the phase and neutral conductors at the supply terminals\" (Regulation 27(2)); permitted variation +10%/-6% on voltage, +-1% on frequency (Regulation 27(3))",
+  },
+  {
     // CC-09B.6 (adversarial gap review, task section 30): the official
     // SmartScreen handout (Handouts 4-5, 7) names and proves both laws
     // explicitly with worked examples; the underlying arithmetic (series
@@ -1600,8 +1613,14 @@ const A: AssertionDef[] = [
     // never implying every "in parallel" physical quantity obeys it.
     // Legitimate reuse for parallel-resistance calculation is preserved
     // (parallel resistance genuinely does take this form).
+    // CC-09I (Project Architect correction, task section 8C): "the total T
+    // is found by summing... to give 1/T" conflated finding T itself with
+    // finding 1/T in one sentence. Corrected to state precisely that
+    // summing the reciprocals gives the RECIPROCAL of the total (1/T),
+    // never T itself -- a further step (FM-ARITH-RECIPROCAL-INVERT-001)
+    // is needed to obtain T.
     id: "FM-ARITH-RECIPROCAL-SUM-001", domain: "FM",
-    statement: "When a governed relationship has the form 1/T = 1/a + 1/b + ... , the total T is found by summing the reciprocals of each individual contribution (1/a, 1/b, ...) to give 1/T.",
+    statement: "When a governed relationship has the form 1/T = 1/a + 1/b + ... , summing the reciprocals of each individual contribution (1/a, 1/b, ...) gives the reciprocal of the total, 1/T -- not the total T itself.",
     provenance: [{ locator: "loc-openstax-up2-series-parallel", role: "SUPPORTS" }],
     prereqs: [
       { id: "FM-ARITH-RECIPROCAL-001", strength: "REQUIRED" },
@@ -1621,14 +1640,24 @@ const A: AssertionDef[] = [
     curriculum: [{ node: rangeNode("1.1", "FRACTIONS-PERCENTAGES"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09I (Project Architect correction, task section 8A): "one
+    // increases in the same ratio as the other" was mathematically
+    // ambiguous (does not itself state the constant-ratio/multiplicative
+    // relationship precisely). Restated with the exact Level-2-appropriate
+    // "multiply by k" form, matching the inverse-proportion correction
+    // below for a consistent contrast.
     id: "FM-ALG-PROPORTION-DIRECT-001", domain: "FM",
-    statement: "Two quantities are in direct proportion when one increases in the same ratio as the other.",
+    statement: "Two quantities are in direct proportion when their ratio is constant: if one quantity is multiplied by a factor k, the other is also multiplied by k.",
     provenance: [{ locator: "loc-dfe-ratio-proportion", role: "DEFINES" }],
     contrastsWith: ["FM-ALG-PROPORTION-INVERSE-001"],
   },
   {
+    // CC-09I (Project Architect correction, task section 8A): "one
+    // increases in the same ratio as the other decreases" was
+    // mathematically ambiguous. Restated with the exact Level-2-
+    // appropriate constant-product form.
     id: "FM-ALG-PROPORTION-INVERSE-001", domain: "FM",
-    statement: "Two quantities are in inverse proportion when one increases in the same ratio as the other decreases.",
+    statement: "Two quantities are inversely proportional when their product is constant: if one quantity is multiplied by a non-zero factor k, the other is divided by the same factor k.",
     provenance: [{ locator: "loc-dfe-ratio-proportion", role: "DEFINES" }],
   },
   {
@@ -1637,8 +1666,15 @@ const A: AssertionDef[] = [
     provenance: [{ locator: "loc-bipm-derived-units", role: "SUPPORTS" }],
   },
   {
+    // CC-09I (Project Architect correction, task section 8B): "1 <= A < 10"
+    // excludes negative numbers while the statement claims to describe "a
+    // number" generally (e.g. -3.2 x 10^4 cannot be written in this form
+    // under the old wording). Corrected so the coefficient's MAGNITUDE
+    // (not the coefficient itself) satisfies the 1-to-10 range, and it may
+    // be positive or negative -- learner-appropriate wording rather than
+    // absolute-value bar notation.
     id: "FM-NUM-STANDARD-FORM-001", domain: "FM",
-    statement: "A number can be expressed in standard form as A times 10 to the power n, where 1 <= A < 10 and n is an integer.",
+    statement: "A number can be expressed in standard form as A times 10 to the power n, where n is an integer and A is a number (positive or negative) whose magnitude is at least 1 and less than 10.",
     provenance: [{ locator: "loc-dfe-number-standard-form", role: "DEFINES" }],
   },
   {
@@ -1959,9 +1995,26 @@ const A: AssertionDef[] = [
   // -- CC-09B: LO3 AC3.2 (levers, gears and pulleys) -- previously
   // entirely absent from the corpus. --
   {
+    // CC-09I (Project Architect correction, task section 9): "changing the
+    // relationship between the effort... and the load" was circular/vague
+    // -- it did not actually say WHAT mechanical advantage is. Restated
+    // with its genuine Level-2 meaning (ratio of output/load effect to
+    // input/effort effect), proportionate to the lever/gear/pulley
+    // material this family governs, without introducing ideal-machine
+    // theory. Provenance corrected: the previously sole-cited locator
+    // (loc-openstax-up1-torque-levers) is lever-specific (its own summary:
+    // "a lever's mechanical advantage from the balance of torques...
+    // about a pivot") and does not itself cover gears/pulleys generally --
+    // added the existing generic simple-machines locator (already used
+    // elsewhere in this family for gear/pulley MA) as the genuinely
+    // general DEFINES source, keeping the lever-specific one as SUPPORTS
+    // for the lever instance.
     id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", domain: "FP",
-    statement: "A simple machine such as a lever, gear or pulley provides mechanical advantage by changing the relationship between the effort (input force) applied and the load (output force) it moves.",
-    provenance: [{ locator: "loc-openstax-up1-torque-levers", role: "SUPPORTS" }],
+    statement: "A simple machine such as a lever, gear or pulley provides mechanical advantage: the ratio of the output (load) effect it produces to the input (effort) applied -- commonly output force divided by input force for a lever or pulley, or the corresponding output torque divided by input torque for a gear.",
+    provenance: [
+      { locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES" },
+      { locator: "loc-openstax-up1-torque-levers", role: "SUPPORTS" },
+    ],
     prereqs: [{ id: "FP-CONCEPT-FORCE-001", strength: "STRONG" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
   },
@@ -2125,8 +2178,14 @@ const A: AssertionDef[] = [
     curriculum: [{ node: acNode("3.2"), type: "SUPPORTS" }],
   },
   {
+    // CC-09I (Project Architect correction, task section 9): "changes the
+    // direction of a force" implied every pulley's defining function is
+    // necessarily direction-change -- a movable/combination pulley's own
+    // point (FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001, kept as a separate
+    // assertion) is mechanical advantage, not merely redirection. Restated
+    // to cover both possible functions.
     id: "FP-CONCEPT-PULLEY-001", domain: "FP",
-    statement: "A pulley is a wheel with a grooved rim that changes the direction of a force applied through a rope or cable running over it.",
+    statement: "A pulley is a wheel with a grooved rim, used with a rope or cable running over it to change the direction of an applied force and/or to provide mechanical advantage.",
     provenance: [{ locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES" }],
     prereqs: [{ id: "FP-CONCEPT-MECHANICAL-ADVANTAGE-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
@@ -2387,8 +2446,18 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "CURRENT"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09I (Project Architect correction, task section 7): "must be
+    // used on a component that is isolated and de-energised" overstated
+    // its own cited source, which establishes only that an ohmmeter must
+    // never be connected to an ENERGISED circuit -- not that every
+    // resistance measurement requires the component to be electrically
+    // isolated from the rest of the circuit. Corrected to the smallest
+    // truthful statement the source supports, with isolation named only
+    // as a conditional need for measuring an individual component
+    // accurately (other circuit paths may otherwise provide a parallel
+    // path skewing the reading), never as an unsupported universal rule.
     id: "EL-INSTRUMENT-OHMMETER-001", domain: "EL",
-    statement: "An ohmmeter measures resistance, and must be used on a component that is isolated and de-energised.",
+    statement: "An ohmmeter measures resistance and must never be connected to an energised circuit; to measure an individual component's resistance accurately, other circuit paths may need to be disconnected first.",
     provenance: [{ locator: "loc-openstax-up2-electrical-measuring-instruments", role: "DEFINES" }, { locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-RESISTANCE-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }, { node: rangeNode("2.3", "RESISTANCE"), type: "REQUIRED_FOR" }],
@@ -2675,8 +2744,18 @@ const A: AssertionDef[] = [
   // Ohm's law, series, parallel, power, thermal/chemical effects (33).
   // ===================================================================
   {
+    // CC-09I (Project Architect correction, task section 6): "electric
+    // current in a conductor is the flow of free electrons" risked
+    // presenting free-electron conduction as universal to ALL electrical
+    // conductors -- but this same corpus separately, correctly governs
+    // current through electrolytes as a chemical/ionic effect
+    // (EL-CURRENT-CHEMICAL-EFFECT-001), where charge transport is ionic,
+    // not free electrons through a metal. Qualified to the metallic-
+    // conductor context this Level 2 electrical-installation qualification
+    // actually teaches -- never expanded into ionic/semiconductor
+    // charge-carrier physics.
     id: "EL-CONCEPT-ELECTRON-THEORY-001", domain: "EL",
-    statement: "Electric current in a conductor is the flow of free electrons, driven by a potential difference across the conductor.",
+    statement: "In a metallic conductor, electric current is the flow of free electrons, driven by a potential difference across the conductor.",
     provenance: [
       { locator: "loc-openstax-up2-current-general", role: "DEFINES" },
       { locator: "loc-cg-ac4.1", role: "CURRICULUM_REQUIRES" },
@@ -2685,8 +2764,14 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_1, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09I (task section 6): qualified to metallic conductors, same
+    // reasoning as EL-CONCEPT-ELECTRON-THEORY-001 above -- this is the
+    // electrical-installation-conductor sense of "conductor" Unit 202
+    // AC4.2 teaches (cable/wire materials), not a claim that every
+    // electrical conductor of any kind (e.g. an electrolyte) conducts via
+    // free electrons.
     id: "EL-CONCEPT-CONDUCTOR-001", domain: "EL",
-    statement: "A conductor is a material containing many free electrons, which allows electric current to flow through it easily.",
+    statement: "A metallic conductor is a material containing many free electrons, which allows electric current (the flow of those electrons) to pass through it easily.",
     provenance: [
       { locator: "loc-openstax-up2-current-general", role: "DEFINES" },
       { locator: "loc-cg-ac4.2", role: "CURRICULUM_REQUIRES" },
@@ -2696,8 +2781,10 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_2, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09I (task section 6): qualified for consistency with the
+    // corrected metallic-conductor contrast above.
     id: "EL-CONCEPT-INSULATOR-001", domain: "EL",
-    statement: "An insulator is a material with very few free electrons, which strongly opposes the flow of electric current.",
+    statement: "Compared to a metallic conductor, an insulator is a material with very few free electrons available to move, which strongly opposes the flow of electric current through it.",
     provenance: [
       { locator: "loc-openstax-up2-current-general", role: "DEFINES" },
       { locator: "loc-cg-ac4.2", role: "CURRICULUM_REQUIRES" },
@@ -3466,11 +3553,21 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_8, type: "SUPPORTS" }],
   },
   {
+    // CC-09I (task section 5C): the statement explicitly names selecting
+    // among voltmeter/ammeter/ohmmeter/multimeter, but
+    // EL-INSTRUMENT-MULTIMETER-001 was missing from both prereqs and
+    // derivedFrom -- added, after CC-09H's technology-neutral multimeter
+    // correction.
     id: "EL-INSTRUMENT-SELECT-001", domain: "EL",
     statement: "Select the appropriate instrument (voltmeter, ammeter, ohmmeter or multimeter) to measure a given electrical quantity.",
     provenance: [{ locator: "loc-cg-ac2.3", role: "CURRICULUM_REQUIRES" }],
-    prereqs: [{ id: "EL-INSTRUMENT-VOLTMETER-001", strength: "REQUIRED" }, { id: "EL-INSTRUMENT-AMMETER-001", strength: "REQUIRED" }, { id: "EL-INSTRUMENT-OHMMETER-001", strength: "REQUIRED" }],
-    derivedFrom: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001", "EL-INSTRUMENT-OHMMETER-001"],
+    prereqs: [
+      { id: "EL-INSTRUMENT-VOLTMETER-001", strength: "REQUIRED" },
+      { id: "EL-INSTRUMENT-AMMETER-001", strength: "REQUIRED" },
+      { id: "EL-INSTRUMENT-OHMMETER-001", strength: "REQUIRED" },
+      { id: "EL-INSTRUMENT-MULTIMETER-001", strength: "REQUIRED" },
+    ],
+    derivedFrom: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001", "EL-INSTRUMENT-OHMMETER-001", "EL-INSTRUMENT-MULTIMETER-001"],
     derivedFromKind: "LOGICAL_DEFINITIONAL",
     curriculum: [{ node: NODE_AC2_3, type: "REQUIRED_FOR" }],
   },
@@ -3575,17 +3672,32 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC4_6, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09I (task section 13, NON_MATERIAL): this assertion's own
+    // "dissipates the most power" conclusion substantially duplicates
+    // EL-SERIES-DOMINANT-RESISTOR-001's identical conclusion -- both kept
+    // (never merged) because they genuinely serve distinct diagnostic
+    // purposes: EL-SERIES-DOMINANT-RESISTOR-001 maps to AC4.4 (the
+    // voltage/current relational reasoning), this one maps to AC4.6 (the
+    // power-calculation context specifically). The duplication is now
+    // made explicit and traceable via derivedFrom rather than left as an
+    // unexplained independent restatement.
     id: "EL-SERIES-POWER-DISTRIBUTION-001", domain: "EL",
     statement: "In a series circuit, since current is equal throughout, the component with the greatest resistance dissipates the most power.",
     provenance: [{ locator: "loc-openstax-up2-power-energy", role: "SUPPORTS" }, { locator: "loc-cg-ac4.6", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-SERIES-POWER-CALC-001", strength: "STRONG" }],
+    derivedFrom: ["EL-SERIES-DOMINANT-RESISTOR-001"],
+    derivedFromKind: "LOGICAL_DEFINITIONAL",
     curriculum: [{ node: NODE_AC4_6, type: "SUPPORTS" }],
   },
   {
+    // CC-09I (task section 13, NON_MATERIAL): see EL-SERIES-POWER-
+    // DISTRIBUTION-001 above -- same duplication-vs-distinct-AC reasoning.
     id: "EL-PARALLEL-POWER-DISTRIBUTION-001", domain: "EL",
     statement: "In a parallel circuit, since voltage is equal across every branch, the branch with the smallest resistance dissipates the most power.",
     provenance: [{ locator: "loc-openstax-up2-power-energy", role: "SUPPORTS" }, { locator: "loc-cg-ac4.6", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-PARALLEL-POWER-CALC-001", strength: "STRONG" }],
+    derivedFrom: ["EL-PARALLEL-DOMINANT-RESISTOR-001"],
+    derivedFromKind: "LOGICAL_DEFINITIONAL",
     curriculum: [{ node: NODE_AC4_6, type: "SUPPORTS" }],
   },
   {
@@ -3752,10 +3864,18 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09I (task section 5B): magnetic flux was a STRONG prerequisite of
+    // this generic EMF concept -- but EMF is a general source concept
+    // (any source, e.g. a battery, has an EMF), while magnetic flux is
+    // specifically prerequisite to ELECTROMAGNETIC-INDUCTION EMF, not to
+    // the generic meaning of EMF itself. Removed here; both
+    // EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001 and EL-CONCEPT-AC-
+    // GENERATOR-001 already independently declare their own REQUIRED
+    // magnetic-flux prerequisite, so the induction-specific dependency
+    // chain is unaffected.
     id: "EL-CONCEPT-EMF-001", domain: "EL",
     statement: "Electromotive force (EMF) is the electrical energy per unit charge supplied by a source, which drives current around a circuit.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" }],
-    prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FLUX-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
   },
   {
@@ -3877,16 +3997,36 @@ const A: AssertionDef[] = [
     // contradictory). Corrected to name magnitude as the distinguishing
     // AC/DC characteristic explicitly (varies-ordinarily vs may-be-steady-
     // or-vary), never claiming D.C. requires constancy.
+    // CC-09I (task section 5A): EL-CONCEPT-SINE-WAVE-001 was a REQUIRED
+    // prerequisite -- backwards for root-cause purposes. A learner can and
+    // normally should understand the AC/DC distinction (direction,
+    // steady-vs-varying magnitude) before, and independently of,
+    // sinusoidal waveform generation; the statement's own "typically
+    // following a sine wave" clause is illustrative, not a dependency.
+    // Removed; current/charge context (EL-CONCEPT-CURRENT-001) kept.
     id: "EL-CONCEPT-AC-DC-DISTINCTION-001", domain: "EL",
     statement: "Direct current (D.C.) flows in one direction, and its magnitude may be steady or may vary (as with pulsating D.C.); alternating current (A.C.) periodically reverses direction and ordinarily varies in magnitude, typically following a sine wave.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "SUPPORTS" }, { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" }],
-    prereqs: [{ id: "EL-CONCEPT-SINE-WAVE-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-CURRENT-001", strength: "REQUIRED" }],
+    prereqs: [{ id: "EL-CONCEPT-CURRENT-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_4, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09I (Project Architect correction, task section 11): the UK-
+    // specific "standard frequency of 50 Hz" claim was previously
+    // supported only by a generic OpenStax electromagnetic-induction
+    // locator, which never itself establishes any UK supply standard.
+    // Added the first-party UK statutory instrument that actually defines
+    // it (Regulation 27, ESQCR 2002) as DIRECT factual evidence; the
+    // OpenStax locator is retained only for the generic "AC" concept this
+    // SUPPORTING assertion also names. Deliberately bounded to this one
+    // fact -- no wiring-regulations package added.
     id: "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001", domain: "EL",
     statement: "UK domestic and industrial electrical supplies are alternating current, with a standard frequency of 50 Hz.",
-    provenance: [{ locator: "loc-openstax-up2-em-induction", role: "SUPPORTS" }, { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" }],
+    provenance: [
+      { locator: "loc-uk-esqcr-nominal-supply", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-openstax-up2-em-induction", role: "SUPPORTS" },
+      { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" },
+    ],
     prereqs: [{ id: "EL-CONCEPT-AC-DC-DISTINCTION-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-FREQUENCY-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_4, type: "SUPPORTS" }],
   },
@@ -3970,7 +4110,14 @@ const A: AssertionDef[] = [
   },
   {
     id: "EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001", domain: "EL",
-    statement: "The rated voltage of an AC supply (for example 230 V) refers to its RMS value, not its peak value, which is higher.",
+    // CC-09I (task section 11): the illustrative "(for example 230 V)"
+    // parenthetical was an unsourced UK-specific numeric example inside a
+    // generic-physics-sourced assertion -- not itself the assertion's
+    // testable claim (rated=RMS-not-peak), so removed rather than sourced,
+    // per the task's own smallest-clean-solution guidance (the genuinely
+    // UK-specific 230V/50Hz fact is now properly sourced on
+    // EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001 above).
+    statement: "The rated voltage of an AC supply refers to its RMS value, not its peak value, which is higher.",
     provenance: [{ locator: "loc-openstax-up2-ac-circuits", role: "SUPPORTS" }, { locator: "loc-cg-ac5.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001", strength: "REQUIRED" }, { id: "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001", strength: "STRONG" }],
     curriculum: [{ node: NODE_AC5_5, type: "SUPPORTS" }],
@@ -4188,8 +4335,11 @@ const A: AssertionDef[] = [
     curriculum: [{ node: acNode("6.2"), type: "REQUIRED_FOR" }, { node: rangeNode("6.2", "RECTIFIERS"), type: "SUPPORTS" }],
   },
   {
+    // CC-09I (task section 10, NON_MATERIAL): the source establishes that
+    // the DEPLETION LAYER/REGION narrows under forward bias and widens
+    // under reverse bias -- corrected from "junction narrows/widens".
     id: "EL-COMPONENT-DIODE-001", domain: "EL",
-    statement: "A diode is a semiconductor device formed at a p-n junction that conducts current easily in one direction (forward bias, junction narrows) and blocks current in the other direction (reverse bias, junction widens).",
+    statement: "A diode is a semiconductor device formed at a p-n junction that conducts current easily in one direction (forward bias, depletion layer narrows) and blocks current in the other direction (reverse bias, depletion layer widens).",
     provenance: [
       { locator: "loc-openstax-up3-semiconductor-diode", role: "DEFINES" },
       { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
@@ -5179,6 +5329,26 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       accessLocation: "https://en.wikipedia.org/wiki/Fleming%27s_right-hand_rule",
     },
     {
+      // CC-09I (task section 11): first-party UK statutory instrument
+      // directly re-inspected -- Regulation 27(2) states plainly "the
+      // frequency declared... shall be 50 hertz and the voltage
+      // declared in respect of a low voltage supply shall be 230 volts
+      // between the phase and neutral conductors at the supply
+      // terminals". The strongest available authoritative UK source for
+      // this specific fact, distinct from and never confused with a
+      // general BS 7671 wiring-regulations citation (not added -- task
+      // section 11 explicitly bounds this to the single supply-standard
+      // fact, not a wiring-regulations package).
+      key: SRC_UK_ESQCR,
+      title: "The Electricity Safety, Quality and Continuity Regulations 2002 (SI 2002/2665)",
+      publisher: "UK Statutory Instruments (legislation.gov.uk)",
+      sourceFamily: "UK statutory instrument",
+      sourceType: "REGULATION",
+      jurisdiction: "United Kingdom",
+      canonicalReference: "The Electricity Safety, Quality and Continuity Regulations 2002, SI 2002/2665, Regulation 27",
+      accessLocation: "https://www.legislation.gov.uk/uksi/2002/2665/regulation/27",
+    },
+    {
       // CC-09D (Unit 202 Official Public Assessment Calibration): the
       // official public 2365-602 sample assessment, registered in the
       // Course Evidence Registry as OFFICIAL_ASSESSMENT-role evidence
@@ -5634,6 +5804,20 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       retrievedDate: "2026-08-21",
       verificationStatus: "UNVERIFIED",
       lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      // CC-09I: a live legislation.gov.uk web page, not a downloaded PDF
+      // -- no raw fetched bytes are available to honestly fingerprint
+      // (never fabricated, per ADR-0002), so contentFingerprintSha256 is
+      // left unset rather than invented, matching the same pattern
+      // already used for other live-web-page sources in this manifest
+      // (e.g. SV_UCSD_GEAR_RATIOS, SV_NIST_EDA_HANDBOOK).
+      key: SV_UK_ESQCR, sourceKey: SRC_UK_ESQCR,
+      revision: "SI 2002/2665",
+      status: "CURRENT", rightsClassification: "OFFICIAL_OGL",
+      retrievedDate: "2026-08-22",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-22",
     },
   ],
 

@@ -173,8 +173,17 @@ const assertionFamilies: AssertionFamily[] = [
     teachFamilyTogether: true,
     completeness: { requiredCapabilityIds: ["cap.foundational.mass_weight.recognise"] },
     assessmentRequirement: "teaching_only",
+    // CC-09I (task section 1/3): the old "does not currently reach an
+    // Electrical assertion via PREREQUISITE_OF" framing conflated the
+    // Electrical-proving-slice PREREQUISITE_OF boundary (a scoping device
+    // for CC-05B's engine-proving slice) with Unit 202 qualification
+    // mastery -- the two are not the same thing, and the corrected
+    // reason no longer implies they are. This family's own governed
+    // mastery representation (completeness above) is unaffected by that
+    // proving-slice boundary; only question-blueprint authoring is
+    // deferred.
     teachingOnlyReason:
-      "Reusable horizontal Foundational Physics knowledge that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice (see cc04-unit202-corpus-review.md, 'Foundational Maths/Physics: used vs currently-unused-but-retained'); retained per explicit Product Owner direction as future-reusable knowledge, not a defect. Out of the Electrical proving-slice scope this backfill targets.",
+      "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3 AC3.1). No question blueprint authored in this knowledge-corpus package; lesson/assessment authoring is a later package.",
   },
 
   // --- Electrical: units and core quantities ----------------------------
@@ -598,24 +607,17 @@ const assertionFamilies: AssertionFamily[] = [
 
 const standaloneAssertions: StandaloneAssertion[] = [
   {
-    assertionIdentifier: "FP-CALC-POWER-001",
-    reason:
-      "Foundational Physics general-mechanics calculation (P = W/t) that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice (see cc04-unit202-corpus-review.md); retained reusable horizontal knowledge, not a defect, per explicit Product Owner direction. Out of Electrical proving-slice scope.",
-  },
-  {
-    assertionIdentifier: "FP-CALC-EFFICIENCY-001",
-    reason:
-      "Foundational Physics general-mechanics calculation that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice; the Electrical specialisation (EL-CALC-ELECTRICAL-EFFICIENCY-001) is separately assessed by electrical.energy_and_efficiency. Retained reusable horizontal knowledge, not a defect.",
-  },
-  {
-    assertionIdentifier: "FP-REL-WEIGHT-MASS-001",
-    reason:
-      "Foundational Physics mechanics relationship (W = mg) that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice. Retained reusable horizontal knowledge, not a defect.",
-  },
-  {
+    // CC-09I (task section 1/3): FP-CALC-WEIGHT-001 is genuinely not named
+    // by any Unit 202 knowledge obligation (unlike FP-CALC-POWER-001/
+    // FP-CALC-EFFICIENCY-001/FP-REL-WEIGHT-MASS-001, which were the real
+    // defect -- see foundational.mechanics_work_energy_power/foundational.
+    // mass_weight's own membersOf entries above). Retained reusable
+    // horizontal knowledge, deliberately never promoted to family-required
+    // status merely to remove this entry -- doing so without genuine
+    // obligation/scope evidence would itself be a scope-expansion defect.
     assertionIdentifier: "FP-CALC-WEIGHT-001",
     reason:
-      "Foundational Physics mechanics calculation that does not currently reach an Electrical assertion via PREREQUISITE_OF in this slice. Retained reusable horizontal knowledge, not a defect.",
+      "Foundational Physics mechanics calculation (W = mg, inverse direction) not named by any Unit 202 knowledge obligation -- genuinely optional reusable horizontal knowledge, not a defect.",
   },
 ];
 
@@ -668,10 +670,23 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     ["FP-CONCEPT-POTENTIAL-ENERGY-001", "prerequisite_concept"],
     ["FP-REL-POTENTIAL-ENERGY-001", "canonical_form"],
     ["FP-CALC-POTENTIAL-ENERGY-001", "consequence"],
+    // CC-09I (task section 1/2): FP-CALC-POWER-001/FP-CALC-EFFICIENCY-001
+    // satisfy AC3.4's explicit power-calculation/efficiency-calculation
+    // obligations but were left standalone (never a family member) since
+    // CC-09B.1 -- a MATERIAL mastery-governance defect, since the old
+    // Electrical-proving-slice PREREQUISITE_OF boundary is not a
+    // qualification-mastery boundary. Added alongside their sibling
+    // calculate-assertions above.
+    ["FP-CALC-POWER-001", "consequence"],
+    ["FP-CALC-EFFICIENCY-001", "consequence"],
   ]),
   ...membersOf("foundational.mass_weight", [
     ["FP-CONCEPT-MASS-001", "prerequisite_concept"],
     ["FP-CONCEPT-WEIGHT-001", "canonical_form"],
+    // CC-09I (task section 1/3): FP-REL-WEIGHT-MASS-001 satisfies AC3.1's
+    // explicit weight-mass-relationship obligation but was left standalone
+    // -- same MATERIAL defect as above.
+    ["FP-REL-WEIGHT-MASS-001", "canonical_form"],
   ]),
 
   // --- electrical.si_units ---------------------------------------------------
@@ -1062,17 +1077,25 @@ const capabilities: Capability[] = [
   // FP-CALC-KINETIC-ENERGY-001/FP-CALC-POTENTIAL-ENERGY-001 are genuine
   // calculation propositions the family's existing recognise-only
   // capability cannot represent.
+  // CC-09I (task section 2): description previously omitted power and
+  // efficiency despite both being explicit AC3.4 obligations this
+  // capability already represents (FP-CALC-POWER-001/FP-CALC-EFFICIENCY-
+  // 001, now family members -- see foundational.mechanics_work_energy_
+  // power's own membersOf entries).
   cap(
     "cap.foundational.mechanics.calculate",
     "foundational.mechanics_work_energy_power",
     "calculate",
-    "Calculate work done, kinetic energy or gravitational potential energy from known force/distance, mass/speed or mass/height.",
+    "Calculate work done, kinetic energy, gravitational potential energy, power or efficiency from known force/distance, mass/speed, mass/height, work-or-energy/time, or useful/total input-output values.",
   ),
+  // CC-09I (task section 3): description strengthened to name the
+  // relationship explicitly (W = mg, weight-mass-relationship obligation,
+  // AC3.1) rather than the vague "and their relationship".
   cap(
     "cap.foundational.mass_weight.recognise",
     "foundational.mass_weight",
     "recognise",
-    "Recognise mass and weight and their relationship.",
+    "Recognise mass and weight, and their relationship (weight = mass x gravitational field strength, W = mg).",
   ),
 
   // --- electrical.si_units ----------------------------------------------
@@ -1573,7 +1596,19 @@ const capabilities: Capability[] = [
   // (FP-CONCEPT-GEAR-001/FP-REL-GEAR-RATIO-001/... and FP-CONCEPT-PULLEY-
   // 001/FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001/...) but no capability of
   // their own to represent in family-mastery completeness.
-  cap("cap.foundational.gears.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a gear provides mechanical advantage (ratio of driven/driving radii or tooth counts), and describe gear direction reversal and the idler gear's role."),
+  // CC-09I (task section 4): narrowed to genuinely REQUIRED knowledge only
+  // (the "gears" obligation, unit202-knowledge-obligations.ts acNumber
+  // "3.2", satisfiedBy exactly FP-CONCEPT-GEAR-001/FP-REL-GEAR-RATIO-001).
+  // Direction reversal (FP-GEAR-DIRECTION-REVERSAL-001) and the idler
+  // gear's role (FP-GEAR-IDLER-001), like the speed/torque trade-off
+  // (FP-GEAR-SPEED-TORQUE-TRADEOFF-001), are governed SUPPORTS-only
+  // curriculum content (curriculum type "SUPPORTS", never "REQUIRED_FOR")
+  // -- valuable teaching content, still governed family members via
+  // membersOf below, but never named by this REQUIRED capability's own
+  // description, which would have silently promoted them to mandatory
+  // Unit 202 mastery. See report-coverage-matrix.test.ts's CC-09I
+  // regression pinning this.
+  cap("cap.foundational.gears.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a gear provides mechanical advantage (ratio of driven/driving radii or tooth counts)."),
   cap("cap.foundational.pulleys.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a pulley system provides mechanical advantage (number of supporting rope/cable sections), distinguishing fixed from movable/combination pulleys."),
   cap("cap.foundational.si_quantities_general.identify_unit", "foundational.si_quantities_general", "identify", "Identify the correct SI unit for a general (non-electrical) physical quantity."),
 

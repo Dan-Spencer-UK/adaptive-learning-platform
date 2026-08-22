@@ -22,6 +22,7 @@ import { knowledgeGraphManifestSchema, pedagogyManifestSchema } from "@alp/conte
 
 import { cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
 import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
+import { AC_OBLIGATIONS } from "./data/unit202-knowledge-obligations.ts";
 
 interface CoverageReport {
   totalAssertionFamilies: number;
@@ -41,6 +42,7 @@ interface CoverageReport {
   assessableFamiliesWithZeroQuestionBlueprints: string[];
   requiredCapabilitiesWithoutCoverage: string[];
   capabilitiesMissingFromFamilyCompleteness: string[];
+  obligationAssertionsWithoutMasteryRepresentation: string[];
 }
 
 // CC-09G (task section 4): a general invariant, not a brittle Unit-202-
@@ -158,6 +160,43 @@ function buildReport(): CoverageReport {
     }
   }
 
+  // CC-09I (task section 15): "every assertion that satisfies a
+  // qualification knowledge obligation must have a governed mastery
+  // representation" -- generically, not a Unit-202-only hardcoded list:
+  // any assertion id named in ANY AC_OBLIGATIONS entry's satisfiedBy is,
+  // by definition, curriculum-required; a bare "standalone" entry
+  // (pedagogy.standaloneAssertions -- literally the architecture's own
+  // "no family, no mastery representation" state) can never honestly
+  // apply to it. This is the exact check that would have caught the
+  // CC-09G-baseline false-green: FP-CALC-POWER-001/FP-CALC-EFFICIENCY-001/
+  // FP-REL-WEIGHT-MASS-001 were all standalone while satisfying an
+  // explicit AC3.4/AC3.1 obligation.
+  const obligationSatisfyingAssertionIds = new Set<string>();
+  for (const acSet of AC_OBLIGATIONS) {
+    for (const obligation of acSet.obligations) {
+      for (const assertionId of obligation.satisfiedBy) obligationSatisfyingAssertionIds.add(assertionId);
+    }
+  }
+  const obligationAssertionsWithoutMasteryRepresentation = [...obligationSatisfyingAssertionIds]
+    .filter((id) => standaloneAssertionIds.has(id))
+    .sort((a, b) => a.localeCompare(b));
+
+  // NOTE (task section 15/4, investigated then reverted): a mechanical
+  // "no REQUIRED capability's blueprint evidence may cite a SUPPORTS-only
+  // assertion" check was attempted and found NOT to hold as a valid
+  // invariant against the real, correctly-designed corpus -- it flagged
+  // 41 long-standing, genuinely correct question blueprints (e.g.
+  // series.predict_open_circuit_effect legitimately drawing on the
+  // SUPPORTS-mapped EL-SERIES-PREDICT-OPEN-001 as part of testing an
+  // integrated prediction skill). The real CC-09G gear defect was a
+  // CAPABILITY-DESCRIPTION accuracy issue (the description text named
+  // SUPPORTS-only content as part of the required skill), not a
+  // structural assertion-to-capability mapping defect -- addressed
+  // directly at the source (cc05a-pedagogy-unit202.ts's
+  // cap.foundational.gears.recognise description) and pinned by a
+  // targeted regression (report-coverage-matrix.test.ts), rather than by
+  // a broad mechanical check that does not actually generalise here.
+
   return {
     totalAssertionFamilies: pedagogy.assertionFamilies.length,
     totalMemberships: pedagogy.assertionFamilyMemberships.length,
@@ -176,6 +215,7 @@ function buildReport(): CoverageReport {
     assessableFamiliesWithZeroQuestionBlueprints,
     requiredCapabilitiesWithoutCoverage,
     capabilitiesMissingFromFamilyCompleteness,
+    obligationAssertionsWithoutMasteryRepresentation,
   };
 }
 
@@ -204,6 +244,8 @@ function formatReport(report: CoverageReport): string {
   if (report.requiredCapabilitiesWithoutCoverage.length) lines.push(`    ${report.requiredCapabilitiesWithoutCoverage.join("; ")}`);
   lines.push(`  - capabilities missing from their own family's completeness (target 0): ${report.capabilitiesMissingFromFamilyCompleteness.length}`);
   if (report.capabilitiesMissingFromFamilyCompleteness.length) lines.push(`    ${report.capabilitiesMissingFromFamilyCompleteness.join("; ")}`);
+  lines.push(`  - obligation-satisfying assertions without mastery representation (target 0): ${report.obligationAssertionsWithoutMasteryRepresentation.length}`);
+  if (report.obligationAssertionsWithoutMasteryRepresentation.length) lines.push(`    ${report.obligationAssertionsWithoutMasteryRepresentation.join(", ")}`);
   return lines.join("\n");
 }
 
@@ -214,7 +256,8 @@ export function isReportClean(report: CoverageReport): boolean {
     report.unresolvedRequiredDiagramReferences.length === 0 &&
     report.assessableFamiliesWithZeroQuestionBlueprints.length === 0 &&
     report.requiredCapabilitiesWithoutCoverage.length === 0 &&
-    report.capabilitiesMissingFromFamilyCompleteness.length === 0
+    report.capabilitiesMissingFromFamilyCompleteness.length === 0 &&
+    report.obligationAssertionsWithoutMasteryRepresentation.length === 0
   );
 }
 

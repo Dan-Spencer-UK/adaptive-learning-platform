@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
+import { pedagogyManifestSchema } from "@alp/content-schema";
 import { buildReport, isReportClean } from "./report-coverage-matrix.ts";
 import { CV_KEY_R2, cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
 import { AC_OBLIGATIONS } from "./data/unit202-knowledge-obligations.ts";
 import { unit202AssessmentSpecification } from "./data/unit202-assessment-specification.ts";
+import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
 
 describe("report-coverage-matrix: structural gates against the real corpus", () => {
   it("the real CV_KEY_R2 curriculum structure has zero structural defects", () => {
@@ -1002,5 +1004,64 @@ describe("report-coverage-matrix: CC-09F gear-ratio numerator/denominator direct
     expect(ucsdClause!.clause).toMatch(/output\/input/i);
     expect(ucsdClause!.clause).toMatch(/driven\/driving/i);
     expect(ucsdClause!.clause).toMatch(/tau_out\/tau_in\s*=\s*n_out\/n_in/);
+  });
+});
+
+describe("report-coverage-matrix: CC-09I remaining Phase-1 audit corrections", () => {
+  it("regression (task section 4): cap.foundational.gears.recognise's REQUIRED description names only the genuinely REQUIRED gear knowledge (the 'gears' obligation: gear principle + gear-ratio mechanical advantage), never the SUPPORTS-only direction-reversal/idler-gear/speed-torque-tradeoff content -- a required capability's own description must never silently promote SUPPORTING knowledge to mandatory syllabus mastery", () => {
+    const pedagogy = pedagogyManifestSchema.parse(cc05aPedagogyUnit202);
+    const gearsCapability = pedagogy.capabilities.find((c) => c.id === "cap.foundational.gears.recognise")!;
+    expect(gearsCapability).toBeDefined();
+    expect(gearsCapability.description).not.toMatch(/direction/i);
+    expect(gearsCapability.description).not.toMatch(/idler/i);
+    expect(gearsCapability.description).not.toMatch(/speed.{0,15}torque|torque.{0,15}speed/i);
+    expect(gearsCapability.description).toMatch(/mechanical advantage/i);
+
+    // Cross-check directly against the knowledge graph: the assertions
+    // this description alludes to (direction reversal, idler) are
+    // genuinely SUPPORTS-only, never REQUIRED_FOR any curriculum node --
+    // confirming the description's narrowing was evidence-justified, not
+    // arbitrary.
+    const supportsOnlyIds = ["FP-GEAR-DIRECTION-REVERSAL-001", "FP-GEAR-IDLER-001", "FP-GEAR-SPEED-TORQUE-TRADEOFF-001"];
+    for (const id of supportsOnlyIds) {
+      const mappings = cc04Unit202ElectricalScience.assertionCurriculumMappings.filter((m) => m.assertionIdentifier === id);
+      expect(mappings.length, `${id} must have at least one curriculum mapping`).toBeGreaterThan(0);
+      expect(mappings.every((m) => m.mappingType === "SUPPORTS"), `${id} must never be REQUIRED_FOR`).toBe(true);
+    }
+    // The genuinely required pair remains REQUIRED_FOR.
+    for (const id of ["FP-CONCEPT-GEAR-001", "FP-REL-GEAR-RATIO-001"]) {
+      const mappings = cc04Unit202ElectricalScience.assertionCurriculumMappings.filter((m) => m.assertionIdentifier === id);
+      expect(mappings.some((m) => m.mappingType === "REQUIRED_FOR"), `${id} must be REQUIRED_FOR`).toBe(true);
+    }
+  });
+
+  it("regression (task section 6): the electron-theory statement is scoped to metallic conductors and does not contradict the governed electrolyte/electrolysis content (ionic, not free-electron, charge transport)", () => {
+    const electronTheory = cc04Unit202ElectricalScience.assertionVersions.find(
+      (v) => v.assertionIdentifier === "EL-CONCEPT-ELECTRON-THEORY-001",
+    )!;
+    expect(electronTheory.statement).toMatch(/metallic conductor/i);
+
+    const conductor = cc04Unit202ElectricalScience.assertionVersions.find((v) => v.assertionIdentifier === "EL-CONCEPT-CONDUCTOR-001")!;
+    expect(conductor.statement).toMatch(/metallic conductor/i);
+
+    const chemicalEffect = cc04Unit202ElectricalScience.assertionVersions.find(
+      (v) => v.assertionIdentifier === "EL-CURRENT-CHEMICAL-EFFECT-001",
+    )!;
+    expect(chemicalEffect).toBeDefined();
+    // The electrolysis assertion must never be reworded to imply free-
+    // electron transport through the electrolyte -- it correctly stays
+    // silent on the transport mechanism, never claiming "free electron".
+    expect(chemicalEffect.statement.toLowerCase()).not.toContain("free electron");
+  });
+
+  it("regression (task section 1/15): FP-CALC-POWER-001, FP-CALC-EFFICIENCY-001 and FP-REL-WEIGHT-MASS-001 -- the exact CC-09G-baseline false-green -- are no longer standalone, and FP-CALC-WEIGHT-001 (genuinely not obligation-named) correctly remains standalone", () => {
+    const pedagogy = pedagogyManifestSchema.parse(cc05aPedagogyUnit202);
+    const standaloneIds = new Set(pedagogy.standaloneAssertions.map((s) => s.assertionIdentifier));
+    for (const id of ["FP-CALC-POWER-001", "FP-CALC-EFFICIENCY-001", "FP-REL-WEIGHT-MASS-001"]) {
+      expect(standaloneIds.has(id), `${id} must no longer be standalone`).toBe(false);
+      const memberOf = pedagogy.assertionFamilyMemberships.find((m) => m.assertionIdentifier === id);
+      expect(memberOf, `${id} must be a real family member`).toBeDefined();
+    }
+    expect(standaloneIds.has("FP-CALC-WEIGHT-001")).toBe(true);
   });
 });

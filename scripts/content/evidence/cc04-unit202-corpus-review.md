@@ -127,10 +127,11 @@ Source role (CC-09C) reflects the generic Course Evidence Registry evidential-ro
 | Thyristor Based Sensor Alarm System, Working and Applications | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
 | Fleming's left-hand rule for motors | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
 | Fleming's right-hand rule | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
+| The Electricity Safety, Quality and Continuity Regulations 2002 (SI 2002/2665) | (unclassified) | OFFICIAL_OGL | UNVERIFIED | (none) | absent |
 | 5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (question paper) | OFFICIAL_ASSESSMENT | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 | 5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (mark scheme / answer keys) | OFFICIAL_ASSESSMENT | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 
-Rights distribution: PROPRIETARY_REFERENCE: 18, OPEN: 8, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
+Rights distribution: PROPRIETARY_REFERENCE: 18, OPEN: 8, OFFICIAL_OGL: 2, PUBLIC_RESTRICTED: 5
 
 ## OpenStax exact-book licence evidence (CC-04B hard requirement)
 
@@ -143,10 +144,10 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ## Graph health
 
-- Total relationships: 392
+- Total relationships: 394
   - CONTRASTS_WITH: 17
-  - DERIVED_FROM: 36
-  - PREREQUISITE_OF: 329
+  - DERIVED_FROM: 39
+  - PREREQUISITE_OF: 328
   - SUPPORTS: 10
 - Misconceptions: 21; conflict links: 45
 - Curriculum mappings: 504
@@ -253,7 +254,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FM-ARITH-RECIPROCAL-SUM-001
 
-**Statement (v1, APPROVED):** When a governed relationship has the form 1/T = 1/a + 1/b + ... , the total T is found by summing the reciprocals of each individual contribution (1/a, 1/b, ...) to give 1/T.
+**Statement (v1, APPROVED):** When a governed relationship has the form 1/T = 1/a + 1/b + ... , summing the reciprocals of each individual contribution (1/a, 1/b, ...) gives the reciprocal of the total, 1/T -- not the total T itself.
 
 **Direct prerequisites:** FM-ARITH-RECIPROCAL-001 (REQUIRED); FM-ARITH-FRACTION-OPS-001 (STRONG)
 **Direct dependents:** EL-PARALLEL-RESISTANCE-CALC-001
@@ -282,7 +283,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FM-ALG-PROPORTION-DIRECT-001
 
-**Statement (v1, APPROVED):** Two quantities are in direct proportion when one increases in the same ratio as the other.
+**Statement (v1, APPROVED):** Two quantities are in direct proportion when their ratio is constant: if one quantity is multiplied by a factor k, the other is also multiplied by k.
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-OHM-PROPORTIONALITY-001; EL-RESISTIVITY-LENGTH-EFFECT-001; EL-SERIES-VOLTAGE-DIVIDER-001
@@ -292,7 +293,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FM-ALG-PROPORTION-INVERSE-001
 
-**Statement (v1, APPROVED):** Two quantities are in inverse proportion when one increases in the same ratio as the other decreases.
+**Statement (v1, APPROVED):** Two quantities are inversely proportional when their product is constant: if one quantity is multiplied by a non-zero factor k, the other is divided by the same factor k.
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-OHM-PROPORTIONALITY-001; EL-RESISTIVITY-AREA-EFFECT-001; EL-PARALLEL-CURRENT-DIVIDER-001
@@ -311,7 +312,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FM-NUM-STANDARD-FORM-001
 
-**Statement (v1, APPROVED):** A number can be expressed in standard form as A times 10 to the power n, where 1 <= A < 10 and n is an integer.
+**Statement (v1, APPROVED):** A number can be expressed in standard form as A times 10 to the power n, where n is an integer and A is a number (positive or negative) whose magnitude is at least 1 and less than 10.
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** FM-NUM-SI-PREFIX-CONVERT-001
@@ -658,13 +659,13 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FP-CONCEPT-MECHANICAL-ADVANTAGE-001
 
-**Statement (v1, APPROVED):** A simple machine such as a lever, gear or pulley provides mechanical advantage by changing the relationship between the effort (input force) applied and the load (output force) it moves.
+**Statement (v1, APPROVED):** A simple machine such as a lever, gear or pulley provides mechanical advantage: the ratio of the output (load) effect it produces to the input (effort) applied -- commonly output force divided by input force for a lever or pulley, or the corresponding output torque divided by input torque for a gear.
 
 **Direct prerequisites:** FP-CONCEPT-FORCE-001 (STRONG)
 **Direct dependents:** FP-CONCEPT-LEVER-PRINCIPLE-001; FP-CONCEPT-GEAR-001; FP-CONCEPT-PULLEY-001
 **Curriculum mapping(s):** Explain the principles of basic mechanics as they apply to levers, gears and pulleys (REQUIRED_FOR)
-**Provenance:** University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS, support=DIRECT, verification=UNVERIFIED]
-**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Provenance:** College Physics 2e — For wheels/gears driven by a common axle, mechanical advantage is the ratio of the radii of the driving and driven wheel/gear (the same simple expression as for a crank); a single fixed pulley has a mechanical advantage of 1 (direction change only, forces do not add); a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load, demonstrated for MA of 2, 3 and 4 [DEFINES, support=DIRECT, verification=UNVERIFIED] | University Physics Volume 1 — Static equilibrium: a lever's mechanical advantage from the balance of torques (force times lever-arm distance) about a pivot, the physical basis distinguishing lever classes by the relative arrangement of pivot, effort and load [SUPPORTS, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
 **Scope status (CC-09B.5):** FOUNDATIONAL_PREREQUISITE
 
 ### FP-CONCEPT-LEVER-PRINCIPLE-001
@@ -781,7 +782,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FP-CONCEPT-PULLEY-001
 
-**Statement (v1, APPROVED):** A pulley is a wheel with a grooved rim that changes the direction of a force applied through a rope or cable running over it.
+**Statement (v1, APPROVED):** A pulley is a wheel with a grooved rim, used with a rope or cable running over it to change the direction of an applied force and/or to provide mechanical advantage.
 
 **Direct prerequisites:** FP-CONCEPT-MECHANICAL-ADVANTAGE-001 (REQUIRED)
 **Direct dependents:** FP-PULLEY-FIXED-VS-MOVABLE-001
@@ -1083,7 +1084,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-INSTRUMENT-OHMMETER-001
 
-**Statement (v1, APPROVED):** An ohmmeter measures resistance, and must be used on a component that is isolated and de-energised.
+**Statement (v1, APPROVED):** An ohmmeter measures resistance and must never be connected to an energised circuit; to measure an individual component's resistance accurately, other circuit paths may need to be disconnected first.
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (STRONG)
 **Direct dependents:** EL-INSTRUMENT-MULTIMETER-001; EL-INSTRUMENT-SELECT-001; EL-INSTRUMENT-CONTINUITY-TEST-001
@@ -1120,7 +1121,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A multimeter is a single test instrument that can be configured to measure several electrical quantities, commonly including voltage, current and resistance.
 
 **Direct prerequisites:** EL-INSTRUMENT-VOLTMETER-001 (SUPPORTING); EL-INSTRUMENT-AMMETER-001 (SUPPORTING); EL-INSTRUMENT-OHMMETER-001 (SUPPORTING)
-**Direct dependents:** (none — leaf capability)
+**Direct dependents:** EL-INSTRUMENT-SELECT-001
 **Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
 **Provenance:** Electric Circuits I - Direct Current (Kuphaldt) — A single meter movement can be made to function as a voltmeter, ammeter or ohmmeter by connecting it to different external resistor networks and switch positions; a multi-purpose meter ("multimeter") can be designed in one unit with the appropriate switch(es) and resistors [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
@@ -1317,7 +1318,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-ELECTRON-THEORY-001
 
-**Statement (v1, APPROVED):** Electric current in a conductor is the flow of free electrons, driven by a potential difference across the conductor.
+**Statement (v1, APPROVED):** In a metallic conductor, electric current is the flow of free electrons, driven by a potential difference across the conductor.
 
 **Direct prerequisites:** EL-CONCEPT-CURRENT-001 (STRONG); EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001 (STRONG)
 **Direct dependents:** EL-CONCEPT-CONDUCTOR-001; EL-CONCEPT-INSULATOR-001
@@ -1329,7 +1330,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-CONDUCTOR-001
 
-**Statement (v1, APPROVED):** A conductor is a material containing many free electrons, which allows electric current to flow through it easily.
+**Statement (v1, APPROVED):** A metallic conductor is a material containing many free electrons, which allows electric current (the flow of those electrons) to pass through it easily.
 
 **Direct prerequisites:** EL-CONCEPT-ELECTRON-THEORY-001 (STRONG)
 **Direct dependents:** EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001
@@ -1341,7 +1342,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-INSULATOR-001
 
-**Statement (v1, APPROVED):** An insulator is a material with very few free electrons, which strongly opposes the flow of electric current.
+**Statement (v1, APPROVED):** Compared to a metallic conductor, an insulator is a material with very few free electrons available to move, which strongly opposes the flow of electric current through it.
 
 **Direct prerequisites:** EL-CONCEPT-ELECTRON-THEORY-001 (STRONG)
 **Direct dependents:** EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001; EL-INSULATOR-BREAKDOWN-001
@@ -2121,11 +2122,11 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Statement (v1, APPROVED):** Select the appropriate instrument (voltmeter, ammeter, ohmmeter or multimeter) to measure a given electrical quantity.
 
-**Direct prerequisites:** EL-INSTRUMENT-VOLTMETER-001 (REQUIRED); EL-INSTRUMENT-AMMETER-001 (REQUIRED); EL-INSTRUMENT-OHMMETER-001 (REQUIRED)
+**Direct prerequisites:** EL-INSTRUMENT-VOLTMETER-001 (REQUIRED); EL-INSTRUMENT-AMMETER-001 (REQUIRED); EL-INSTRUMENT-OHMMETER-001 (REQUIRED); EL-INSTRUMENT-MULTIMETER-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR); Identify appropriate electrical instruments for the measurement of different electrical quantities (REQUIRED_FOR)
 **Provenance:** City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.3: identify appropriate electrical instruments for the measurement of different electrical quantities [CURRICULUM_REQUIRES, verification=VERIFIED]
-**Derived from:** EL-INSTRUMENT-VOLTMETER-001 [LOGICAL_DEFINITIONAL]; EL-INSTRUMENT-AMMETER-001 [LOGICAL_DEFINITIONAL]; EL-INSTRUMENT-OHMMETER-001 [LOGICAL_DEFINITIONAL]
+**Derived from:** EL-INSTRUMENT-VOLTMETER-001 [LOGICAL_DEFINITIONAL]; EL-INSTRUMENT-AMMETER-001 [LOGICAL_DEFINITIONAL]; EL-INSTRUMENT-OHMMETER-001 [LOGICAL_DEFINITIONAL]; EL-INSTRUMENT-MULTIMETER-001 [LOGICAL_DEFINITIONAL]
 **Entailment result:** FULLY_SUPPORTED_DERIVED
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 **Misconceptions targeting this assertion:** MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001
@@ -2265,6 +2266,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS); Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Derived from:** EL-SERIES-DOMINANT-RESISTOR-001 [LOGICAL_DEFINITIONAL]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 
@@ -2276,6 +2278,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Calculate values of power in parallel and series D.C. circuits (SUPPORTS); Calculate values of power in parallel and series D.C. circuits (SUPPORTS)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, 9.5: electrical power and energy, P = VI and P = I^2 R [SUPPORTS, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC4.6: calculate values of power in parallel and series D.C. circuits [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Derived from:** EL-PARALLEL-DOMINANT-RESISTOR-001 [LOGICAL_DEFINITIONAL]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 
@@ -2342,7 +2345,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Magnetic flux is a measure of the total amount of magnetic field passing through a given area.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** EL-UNIT-WEBER-001; EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001; EL-CONCEPT-EMF-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
+**Direct dependents:** EL-UNIT-WEBER-001; EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
 **Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR); State the difference between magnetic flux and flux density (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.2: state the difference between magnetic flux and flux density [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
@@ -2451,7 +2454,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Statement (v1, APPROVED):** Electromotive force (EMF) is the electrical energy per unit charge supplied by a source, which drives current around a circuit.
 
-**Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (STRONG)
+**Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-REL-INDUCED-EMF-001; EL-CONCEPT-TERMINAL-VOLTAGE-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
 **Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
@@ -2531,7 +2534,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** The EMF produced by a simple rotating-loop AC generator varies with time as a sine wave.
 
 **Direct prerequisites:** EL-CONCEPT-AC-GENERATOR-001 (REQUIRED)
-**Direct dependents:** EL-CONCEPT-AC-DC-DISTINCTION-001; EL-WAVEFORM-PERIODIC-TIME-001; EL-WAVEFORM-AMPLITUDE-001; EL-WAVEFORM-RMS-001; EL-WAVEFORM-AVERAGE-VALUE-001
+**Direct dependents:** EL-WAVEFORM-PERIODIC-TIME-001; EL-WAVEFORM-AMPLITUDE-001; EL-WAVEFORM-RMS-001; EL-WAVEFORM-AVERAGE-VALUE-001
 **Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
@@ -2542,7 +2545,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 **Statement (v1, APPROVED):** Direct current (D.C.) flows in one direction, and its magnitude may be steady or may vary (as with pulsating D.C.); alternating current (A.C.) periodically reverses direction and ordinarily varies in magnitude, typically following a sine wave.
 
-**Direct prerequisites:** EL-CONCEPT-SINE-WAVE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED)
+**Direct prerequisites:** EL-CONCEPT-CURRENT-001 (REQUIRED)
 **Direct dependents:** EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001; EL-COMPONENT-RECTIFIER-001; EL-COMPONENT-INVERTER-001
 **Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES, verification=VERIFIED]
@@ -2557,8 +2560,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** EL-CONCEPT-AC-DC-DISTINCTION-001 (REQUIRED); EL-CONCEPT-FREQUENCY-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001
 **Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (SUPPORTS); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (SUPPORTS)
-**Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES, verification=VERIFIED]
-**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Provenance:** The Electricity Safety, Quality and Continuity Regulations 2002 (SI 2002/2665) — "...the frequency declared... shall be 50 hertz and the voltage declared in respect of a low voltage supply shall be 230 volts between the phase and neutral conductors at the supply terminals" (Regulation 27(2)); permitted variation +10%/-6% on voltage, +-1% on frequency (Regulation 27(3)) [DEFINES, support=DIRECT, verification=UNVERIFIED] | University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [SUPPORTS, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 
 ### EL-WAVEFORM-PERIODIC-TIME-001
@@ -2653,7 +2656,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001
 
-**Statement (v1, APPROVED):** The rated voltage of an AC supply (for example 230 V) refers to its RMS value, not its peak value, which is higher.
+**Statement (v1, APPROVED):** The rated voltage of an AC supply refers to its RMS value, not its peak value, which is higher.
 
 **Direct prerequisites:** EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001 (REQUIRED); EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
@@ -2839,7 +2842,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-COMPONENT-DIODE-001
 
-**Statement (v1, APPROVED):** A diode is a semiconductor device formed at a p-n junction that conducts current easily in one direction (forward bias, junction narrows) and blocks current in the other direction (reverse bias, junction widens).
+**Statement (v1, APPROVED):** A diode is a semiconductor device formed at a p-n junction that conducts current easily in one direction (forward bias, depletion layer narrows) and blocks current in the other direction (reverse bias, depletion layer widens).
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** EL-COMPONENT-ZENER-DIODE-001; EL-COMPONENT-LED-001; EL-COMPONENT-PHOTODIODE-001; EL-APPLICATION-TELEPHONE-001

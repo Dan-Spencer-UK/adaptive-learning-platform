@@ -43,7 +43,13 @@
  * course handouts) is evidence of intended teaching breadth/depth/
  * examples, never a scope boundary in its own right and never a factual
  * authority; the OFFICIAL ASSESSMENT-PATTERN SOURCE (public 2365-602
- * sample material) is deferred to a future package; independent
+ * sample material) informs assessment-style/knowledge-gap evidence only,
+ * never factual authority or curriculum scope (CC-09D exercised this role
+ * against the v1.0 sample; CC-09F/CC-09I registered but could not yet
+ * content-compare the current v1.2 edition -- see PROJECT-STATUS.md
+ * §CC-09D/§CC-09F/§CC-09I for the current state; this sentence described a
+ * still-deferred role only up to CC-09B.6, not the current architecture);
+ * independent
  * authoritative technical/scientific sources establish factual truth. An
  * assertion earns required Unit 202 status only by passing BOTH gates
  * independently: (1) a `basis` here justifying its CURRICULUM SCOPE

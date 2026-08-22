@@ -20,6 +20,7 @@ function cleanReport(): CoverageReport {
     assessableFamiliesWithZeroQuestionBlueprints: [],
     requiredCapabilitiesWithoutCoverage: [],
     capabilitiesMissingFromFamilyCompleteness: [],
+    obligationAssertionsWithoutMasteryRepresentation: [],
   };
 }
 
@@ -61,6 +62,12 @@ describe("isReportClean", () => {
       isReportClean({ ...cleanReport(), capabilitiesMissingFromFamilyCompleteness: ["family.foo: cap.foo.bar"] }),
     ).toBe(false);
   });
+
+  it("returns false when an obligation-satisfying assertion has no mastery representation (CC-09I task section 15)", () => {
+    expect(
+      isReportClean({ ...cleanReport(), obligationAssertionsWithoutMasteryRepresentation: ["FP-FOO-001"] }),
+    ).toBe(false);
+  });
 });
 
 describe("buildReport (against the real CC-05A pedagogy manifest and CC-04 corpus)", () => {
@@ -91,6 +98,10 @@ describe("buildReport (against the real CC-05A pedagogy manifest and CC-04 corpu
     expect(report.capabilitiesMissingFromFamilyCompleteness).toEqual([]);
   });
 
+  it("CC-09I (task section 15): every assertion satisfying a genuine Unit 202 knowledge obligation has a governed mastery representation -- a bare 'standalone because it does not reach the Electrical proving slice' can never satisfy a curriculum-required obligation", () => {
+    expect(report.obligationAssertionsWithoutMasteryRepresentation).toEqual([]);
+  });
+
   it("the full report is clean", () => {
     expect(isReportClean(report)).toBe(true);
   });
@@ -119,5 +130,6 @@ describe("formatReport", () => {
     expect(text).toContain("assessable families with zero blueprints");
     expect(text).toContain("required capabilities without assessment coverage");
     expect(text).toContain("capabilities missing from their own family's completeness");
+    expect(text).toContain("obligation-satisfying assertions without mastery representation");
   });
 });
