@@ -263,8 +263,11 @@ describe("power calculation blueprints", () => {
     });
     for (let seed = 0; seed < 15; seed++) {
       const instance = generate(bp, seed);
-      const values = Object.values(instance.parameters as Record<string, number>);
-      expect(instance.expected.value).toBeCloseTo(values.reduce((a, b) => a + b, 0), 5);
+      const params = instance.parameters as Record<string, number | string>;
+      const powerValues = Object.entries(params)
+        .filter(([key]) => /^P\d+$/.test(key))
+        .map(([, value]) => value as number);
+      expect(instance.expected.value).toBeCloseTo(powerValues.reduce((a, b) => a + b, 0), 5);
     }
   });
 });

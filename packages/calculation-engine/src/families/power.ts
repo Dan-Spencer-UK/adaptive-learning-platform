@@ -102,7 +102,12 @@ const calculateTotal: QuestionExecutor = (ctx) => {
   // are) -- it is still evaluated through the SAME generic evaluator via
   // a locally-built "add" expression, never raw JS addition.
   const total = evaluateFormulaExpression({ operation: "add", operands: symbols }, powers);
-  return assembleInstance(ctx, powers, {}, quantityAnswer("power", "watt", total));
+  // `summary` is a safe, always-present param for `presentation.promptLines`:
+  // the individual P1/P2/(P3) keys vary in count by seed, so a single static
+  // prompt line can't reference them directly (component_count mirrors the
+  // series/parallel calculate-total-resistance precedent).
+  const summary = symbols.map((symbol) => `${symbol} = ${powers[symbol]} W`).join(", ");
+  return assembleInstance(ctx, { ...powers, component_count: componentCount, summary }, {}, quantityAnswer("power", "watt", total));
 };
 
 export const powerExecutors: Readonly<Record<string, QuestionExecutor>> = {

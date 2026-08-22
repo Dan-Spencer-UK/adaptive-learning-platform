@@ -55,8 +55,20 @@ export const RELEASE_UNIT202_V1 = "release.unit202.v1" as const;
  */
 export const RELEASE_UNIT202_V2 = "release.unit202.v2" as const;
 
+/**
+ * CC-10: `release.unit202.v2`'s own membership is left exactly as CC-08
+ * declared it -- immutable, per this file's own documented rule -- and a
+ * NEW release, `release.unit202.v3`, carries the CC-10 nine-lesson
+ * expansion instead (exactly the same "new release, not a mutation"
+ * pattern v2 itself was created by). `lesson.electrical.ohms-law`'s real,
+ * unmodified step content is a genuine member of v1, v2 AND v3 -- one
+ * authored source, three release-scoped membership entries, never three
+ * copies of the content.
+ */
+export const RELEASE_UNIT202_V3 = "release.unit202.v3" as const;
+
 /** The release whose generated learner-runtime projection is bundled into the mobile app (scripts/content/generate-mobile-projection.ts). */
-export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V2;
+export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V3;
 
 export const contentReleases: ContentReleaseManifest = {
   releases: [
@@ -76,6 +88,30 @@ export const contentReleases: ContentReleaseManifest = {
         { lessonId: "lesson.foundation.maths.formula-rearrangement", lessonVersion: 1 },
         { lessonId: "lesson.electrical.resistors-series", lessonVersion: 1 },
         { lessonId: "lesson.electrical.resistors-parallel", lessonVersion: 1 },
+      ],
+      knowledgeCorpusId: CC04_KNOWLEDGE_CORPUS_ID,
+      pedagogyCorpusId: CC05A_PEDAGOGY_CORPUS_ID,
+      questionBlueprintVersion: 1,
+    },
+    {
+      id: RELEASE_UNIT202_V3,
+      schemaVersion: 1,
+      lessons: [
+        { lessonId: "lesson.electrical.ohms-law", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.maths.formula-rearrangement", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-series", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-parallel", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.core-quantities", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.si-units", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.instrumentation", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.charge-and-current", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.conductors-and-insulators", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.thermal-and-chemical-effects", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistivity", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.power", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.energy-and-efficiency", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.fault-conditions-protection", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.series-vs-parallel-comparison", lessonVersion: 1 },
       ],
       knowledgeCorpusId: CC04_KNOWLEDGE_CORPUS_ID,
       pedagogyCorpusId: CC05A_PEDAGOGY_CORPUS_ID,

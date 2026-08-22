@@ -30,19 +30,63 @@ const distinguishBaseDerived: QuestionExecutor = (ctx) => {
   return assembleInstance(ctx, { unit }, {}, { answer: ctx.blueprint.answer, value: classification });
 };
 
+// Learner-facing pair labels for the confusable-unit scenarios (CC-10:
+// presentation copy only, never a new knowledge fact -- restates the pair
+// the executor already picks in readable form for `presentation.promptLines`).
+const CONFUSED_PAIR_LABELS: Readonly<Record<string, string>> = {
+  volt_ohm: "the volt and the ohm",
+  watt_joule: "the watt and the joule",
+  ampere_coulomb: "the ampere and the coulomb",
+};
+
 const diagnoseUnitConfusion: QuestionExecutor = (ctx) => {
   const confusedPair = pick(ctx.rng, ["volt_ohm", "watt_joule", "ampere_coulomb"] as const);
-  return assembleInstance(ctx, { confused_pair: confusedPair }, {}, { answer: ctx.blueprint.answer, value: "unit_confusion" });
+  return assembleInstance(
+    ctx,
+    { confused_pair: confusedPair, confused_pair_label: CONFUSED_PAIR_LABELS[confusedPair]! },
+    {},
+    { answer: ctx.blueprint.answer, value: "unit_confusion" },
+  );
+};
+
+// Definition CLAUSES only (the governed term itself deliberately omitted --
+// EL-CONCEPT-VOLTAGE-001/CURRENT-001/RESISTANCE-001's own statements name
+// their term in the opening words, so quoting them whole would hand the
+// learner the answer; these clauses are the same governed definitions with
+// only the naming word withheld for `presentation.promptLines`).
+const DEFINITION_CLAUSES: Readonly<Record<string, string>> = {
+  voltage: "the electrical energy transferred per unit charge between two points in a circuit",
+  current: "the rate of flow of electric charge through a conductor",
+  resistance: "the opposition a component presents to the flow of electric current",
 };
 
 const recogniseFromDefinition: QuestionExecutor = (ctx) => {
   const quantity = pick(ctx.rng, ["voltage", "current", "resistance"] as const);
-  return assembleInstance(ctx, { quantity }, {}, { answer: ctx.blueprint.answer, value: quantity });
+  return assembleInstance(
+    ctx,
+    { quantity, definition_clause: DEFINITION_CLAUSES[quantity]! },
+    {},
+    { answer: ctx.blueprint.answer, value: quantity },
+  );
+};
+
+// Learner-facing restatements of MIS-EL-CURRENT-VOLTAGE-CONFUSION-001's own
+// governed description ("treating current as something a source 'has'
+// independent of the circuit rather than voltage driving current through
+// resistance") for `presentation.promptLines` -- not a new misconception fact.
+const CURRENT_VOLTAGE_SCENARIO_TEXT: Readonly<Record<string, string>> = {
+  voltage_described_as_flow: "A learner describes voltage as \"the flow of electricity around the circuit\".",
+  current_described_as_pressure: "A learner describes current as \"the electrical pressure that pushes charge around the circuit\".",
 };
 
 const diagnoseCurrentVoltageConfusion: QuestionExecutor = (ctx) => {
   const scenario = pick(ctx.rng, ["voltage_described_as_flow", "current_described_as_pressure"] as const);
-  return assembleInstance(ctx, { scenario }, {}, { answer: ctx.blueprint.answer, value: "current_voltage_confusion" });
+  return assembleInstance(
+    ctx,
+    { scenario, scenario_text: CURRENT_VOLTAGE_SCENARIO_TEXT[scenario]! },
+    {},
+    { answer: ctx.blueprint.answer, value: "current_voltage_confusion" },
+  );
 };
 
 export const unitsAndQuantitiesExecutors: Readonly<Record<string, QuestionExecutor>> = {

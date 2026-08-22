@@ -59,9 +59,23 @@ const recogniseInternalResistanceProperty: QuestionExecutor = (ctx) => {
   );
 };
 
+// Learner-facing clue text for `presentation.promptLines` -- restates
+// EL-INSTRUMENT-CLAMP-METER-001/OSCILLOSCOPE-001/CONTINUITY-TEST-001's own
+// governed definitions with the instrument's name withheld.
+const INSTRUMENT_PURPOSE_CLUES: Readonly<Record<string, string>> = {
+  clamp_meter: "Measures current without breaking the circuit, by detecting the magnetic field produced around the current-carrying conductor.",
+  oscilloscope: "Displays how a voltage varies with time, allowing the shape, amplitude and periodic time of a waveform to be observed.",
+  continuity_tester: "Uses an ohmmeter or multimeter to confirm that a low-resistance path exists between two points in a de-energised circuit.",
+};
+
 const recognisePurpose: QuestionExecutor = (ctx) => {
   const instrument = pick(ctx.rng, ["clamp_meter", "oscilloscope", "continuity_tester"] as const);
-  return assembleInstance(ctx, { instrument }, {}, { answer: ctx.blueprint.answer, value: instrument });
+  return assembleInstance(
+    ctx,
+    { instrument, purpose_clue: INSTRUMENT_PURPOSE_CLUES[instrument]! },
+    {},
+    { answer: ctx.blueprint.answer, value: instrument },
+  );
 };
 
 export const instrumentationExecutors: Readonly<Record<string, QuestionExecutor>> = {

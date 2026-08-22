@@ -73,16 +73,28 @@ describe("generated mobile content projection", () => {
   it("carries the release identity and only release-member lessons", () => {
     const projection = buildMobileContentProjection(realInputs());
     expect(projection.contentRelease.id).toBe(MOBILE_BUNDLED_RELEASE_ID);
-    // CC-08A: release.unit202.v1 (Ohm's Law only) remains an exact,
-    // untouched immutable snapshot -- the four-lesson CC-08 adaptive
-    // vertical (Ohm's Law + foundation formula-rearrangement + series +
-    // parallel) lives entirely in the separate release.unit202.v2, which
-    // is what this projection bundles.
+    // CC-08A: release.unit202.v1 (Ohm's Law only) and release.unit202.v2
+    // (the CC-08 four-lesson adaptive vertical) both remain exact,
+    // untouched immutable snapshots -- CC-10's eleven new lessons live
+    // entirely in the separate release.unit202.v3 (which reuses the same
+    // four real lessons via a release-scoped membership entry, never a
+    // mutation), and that is what this projection now bundles.
     expect(projection.lessons.map((l) => l.id).sort()).toEqual(
       [
+        "lesson.electrical.charge-and-current",
+        "lesson.electrical.conductors-and-insulators",
+        "lesson.electrical.core-quantities",
+        "lesson.electrical.energy-and-efficiency",
+        "lesson.electrical.fault-conditions-protection",
+        "lesson.electrical.instrumentation",
         "lesson.electrical.ohms-law",
+        "lesson.electrical.power",
+        "lesson.electrical.resistivity",
         "lesson.electrical.resistors-parallel",
         "lesson.electrical.resistors-series",
+        "lesson.electrical.series-vs-parallel-comparison",
+        "lesson.electrical.si-units",
+        "lesson.electrical.thermal-and-chemical-effects",
         "lesson.foundation.maths.formula-rearrangement",
       ].sort(),
     );
@@ -91,12 +103,36 @@ describe("generated mobile content projection", () => {
     }
   });
 
-  it("carries exactly the 23 governed question blueprints the release's lessons reference, each WITH governed presentation", () => {
+  it("carries exactly the 62 governed question blueprints the release's lessons reference (CC-10 expansion), each WITH governed presentation", () => {
     const projection = buildMobileContentProjection(realInputs());
     expect(projection.questionBlueprints.map((b) => b.id).sort()).toEqual(
       [
+        "charge.calculate",
+        "charge.recognise",
+        "comparison.compare_current_voltage",
+        "comparison.compare_power_energy",
+        "comparison.compare_resistance",
+        "comparison.identify_topology",
+        "comparison.recognise_mixed_circuit",
+        "comparison.trace_current_path",
+        "conductors.classify_material",
+        "conductors.recognise_breakdown",
+        "core_quantities.diagnose_current_voltage_confusion",
+        "core_quantities.recognise_from_definition",
+        "energy.calculate_efficiency",
+        "energy.calculate_energy",
+        "energy.calculate_energy_kwh",
+        "energy.rearrange",
+        "fault.compare_fuse_breaker",
+        "fault.predict_short_effect",
+        "fault.recognise_condition",
+        "fault.select_protective_device",
         "foundational.rearrange_additive",
         "foundational.rearrange_multiplicative",
+        "instrumentation.recognise_connection",
+        "instrumentation.recognise_internal_resistance_property",
+        "instrumentation.recognise_purpose",
+        "instrumentation.select_instrument",
         "ohms_law.diagnose_rearrangement_error",
         "ohms_law.diagnose_wrong_operation",
         "ohms_law.match_variables_units",
@@ -112,12 +148,28 @@ describe("generated mobile content projection", () => {
         "parallel.diagnose_reciprocal_error",
         "parallel.identify_topology",
         "parallel.solve_missing_branch",
+        "power.calculate_from_ir",
+        "power.calculate_from_vi",
+        "power.calculate_from_vr",
+        "power.calculate_total",
+        "power.recognise_relationship",
+        "power.select_form",
+        "resistivity.calculate_resistance",
+        "resistivity.compare_materials",
+        "resistivity.predict_area_effect",
+        "resistivity.predict_length_effect",
+        "resistivity.recognise",
         "series.calculate_supply_current",
         "series.calculate_total_resistance",
         "series.calculate_voltage_drop",
         "series.detect_incorrect_total",
         "series.interpret_diagram",
         "series.solve_missing_component",
+        "si_units.diagnose_unit_confusion",
+        "si_units.distinguish_base_derived",
+        "si_units.identify_unit",
+        "thermal_chemical.recognise_application",
+        "thermal_chemical.recognise_effect",
       ].sort(),
     );
     for (const blueprint of projection.questionBlueprints) {
@@ -167,9 +219,20 @@ describe("generated mobile content projection", () => {
     const projection = buildMobileContentProjection({ ...inputs, release, allLessons: [...inputs.allLessons, second] });
     expect(projection.lessons.map((l) => l.id).sort()).toEqual(
       [
+        "lesson.electrical.charge-and-current",
+        "lesson.electrical.conductors-and-insulators",
+        "lesson.electrical.core-quantities",
+        "lesson.electrical.energy-and-efficiency",
+        "lesson.electrical.fault-conditions-protection",
+        "lesson.electrical.instrumentation",
         "lesson.electrical.ohms-law",
+        "lesson.electrical.power",
+        "lesson.electrical.resistivity",
         "lesson.electrical.resistors-parallel",
         "lesson.electrical.resistors-series",
+        "lesson.electrical.series-vs-parallel-comparison",
+        "lesson.electrical.si-units",
+        "lesson.electrical.thermal-and-chemical-effects",
         "lesson.foundation.maths.formula-rearrangement",
         "lesson.synthetic.second",
       ].sort(),

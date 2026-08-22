@@ -83,12 +83,17 @@ const compareResistance: QuestionExecutor = (ctx) => {
   return assembleInstance(ctx, {}, {}, { answer: ctx.blueprint.answer, value: "series_higher" });
 };
 
+const PATTERN_TEXT: Readonly<Record<string, string>> = {
+  current_common_voltage_divides: "The same current flows through every component, and the supply voltage divides across them.",
+  voltage_common_current_divides: "The same voltage appears across every branch, and the supply current divides between them.",
+};
+
 const compareCurrentVoltage: QuestionExecutor = (ctx) => {
   const describedPattern = pick(ctx.rng, ["current_common_voltage_divides", "voltage_common_current_divides"] as const);
   const expected = describedPattern === "current_common_voltage_divides" ? "series_behaviour" : "parallel_behaviour";
   return assembleInstance(
     ctx,
-    { described_pattern: describedPattern },
+    { described_pattern: describedPattern, pattern_text: PATTERN_TEXT[describedPattern]! },
     {},
     { answer: ctx.blueprint.answer, value: expected },
   );

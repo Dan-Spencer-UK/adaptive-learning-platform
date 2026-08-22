@@ -26,14 +26,18 @@ const calculate: QuestionExecutor = (ctx) => {
     const formulaInstance = buildFormulaInstance(formulaFamily, "I", { Q, t });
     return assembleInstance(
       ctx,
-      { Q, t, target_variable: target },
+      // `given_summary` is a safe, always-present param for
+      // `presentation.promptLines`: the branch-specific known values (Q vs
+      // I) can't both be templated in a single static prompt line (one is
+      // always undefined), so the executor renders the known pair itself.
+      { Q, t, target_variable: target, given_summary: `Q = ${Q} C, t = ${t} s` },
       { formula: formulaInstance },
       { answer: { type: "quantity", quantity: "charge_or_current", canonicalUnit: "coulomb_or_ampere" }, value: I },
     );
   }
   return assembleInstance(
     ctx,
-    { I, t, target_variable: target },
+    { I, t, target_variable: target, given_summary: `I = ${I} A, t = ${t} s` },
     { formula: qFormulaInstance },
     { answer: { type: "quantity", quantity: "charge_or_current", canonicalUnit: "coulomb_or_ampere" }, value: Q },
   );

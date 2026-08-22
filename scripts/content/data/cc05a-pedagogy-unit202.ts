@@ -2388,6 +2388,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       "EL-UNIT-HERTZ-001",
     ],
     variantDimensions: { quantity: { allowed: ["voltage", "current", "resistance", "power", "energy", "frequency"] } },
+    presentation: { promptLines: ["Which SI unit is used to measure {quantity}?"] },
   }),
   qb({
     id: "si_units.distinguish_base_derived",
@@ -2398,6 +2399,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["base", "derived"] },
     marking: exact(),
     assertionIdentifiers: ["EL-UNIT-BASE-VS-DERIVED-001"],
+    presentation: { promptLines: ["Is the {unit} an SI base unit or an SI derived unit?"] },
   }),
   qb({
     id: "si_units.diagnose_unit_confusion",
@@ -2412,6 +2414,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       { misconceptionIdentifier: "MIS-EL-UNIT-CONFUSION-001", evidenceStrength: "direct" },
       { misconceptionIdentifier: "MIS-EL-SI-PREFIX-ERROR-001", evidenceStrength: "suggestive" },
     ],
+    presentation: { promptLines: ["A learner keeps mixing up {confused_pair_label}.", "Which kind of unit confusion is this?"] },
   }),
 
   // ===================================================================
@@ -2426,6 +2429,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["voltage", "current", "resistance"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-VOLTAGE-001", "EL-CONCEPT-CURRENT-001", "EL-CONCEPT-RESISTANCE-001"],
+    presentation: { promptLines: ["Which quantity is defined as: {definition_clause}?"] },
   }),
   qb({
     id: "core_quantities.diagnose_current_voltage_confusion",
@@ -2437,6 +2441,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: enumMarking(),
     assertionIdentifiers: ["EL-CONCEPT-VOLTAGE-001", "EL-CONCEPT-CURRENT-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-CURRENT-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" }],
+    presentation: { promptLines: ["{scenario_text}", "Which misconception does this reveal?"] },
   }),
 
   // ===================================================================
@@ -2600,6 +2605,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["resistance", "resistivity"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-RESISTIVITY-001"],
+    presentation: { promptLines: ["Which term describes this: {recognise_clue}?"] },
   }),
   qb({
     id: "resistivity.calculate_resistance",
@@ -2611,6 +2617,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(2),
     assertionIdentifiers: ["EL-RESISTIVITY-RELATIONSHIP-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.resistivity" } },
+    presentation: { promptLines: ["ρ = {rho} Ω·m", "L = {L} m", "A = {A} m²"] },
   }),
   qb({
     id: "resistivity.compare_materials",
@@ -2621,6 +2628,13 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["material_a", "material_b"] },
     marking: exact(),
     assertionIdentifiers: ["EL-RESISTIVITY-COMPARE-MATERIALS-001"],
+    presentation: {
+      promptLines: [
+        "Material A has a resistivity of {resistivity_a} Ω·m.",
+        "Material B has a resistivity of {resistivity_b} Ω·m.",
+        "Which material is the better conductor?",
+      ],
+    },
   }),
   qb({
     id: "resistivity.predict_length_effect",
@@ -2631,6 +2645,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "direction", canonicalUnit: undefined },
     marking: exact(),
     assertionIdentifiers: ["EL-RESISTIVITY-LENGTH-EFFECT-001"],
+    presentation: { promptLines: ["A conductor's length is increased while its material and cross-sectional area stay the same.", "What happens to its resistance?"] },
   }),
   qb({
     id: "resistivity.predict_area_effect",
@@ -2641,6 +2656,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "direction" },
     marking: exact(),
     assertionIdentifiers: ["EL-RESISTIVITY-AREA-EFFECT-001"],
+    presentation: { promptLines: ["A conductor's cross-sectional area is increased while its material and length stay the same.", "What happens to its resistance?"] },
   }),
 
   // ===================================================================
@@ -2996,6 +3012,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-SELECT-CONFIGURATION-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.series_parallel_mixed" } },
+    presentation: { promptLines: ["Look at the circuit diagram.", "Is this circuit's overall arrangement series or parallel?"] },
   }),
   qb({
     id: "comparison.recognise_mixed_circuit",
@@ -3007,6 +3024,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.series_parallel_mixed" } },
+    presentation: { promptLines: ["Look at the circuit diagram.", "Is it wired in series, parallel, or a mix of both?"] },
   }),
   qb({
     id: "comparison.trace_current_path",
@@ -3018,6 +3036,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-TRACE-CURRENT-PATH-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.series_parallel_mixed" } },
+    presentation: { promptLines: ["Look at the circuit diagram.", "Trace the path(s) current takes from the supply and back."] },
   }),
   qb({
     id: "comparison.compare_resistance",
@@ -3028,6 +3047,9 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["series_higher", "parallel_higher", "equal"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-RESISTANCE-001"],
+    presentation: {
+      promptLines: ["Take the same set of two or more resistors.", "Is their total resistance higher when connected in series, or when connected in parallel?"],
+    },
   }),
   qb({
     id: "comparison.compare_current_voltage",
@@ -3038,6 +3060,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["series_behaviour", "parallel_behaviour"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-CURRENT-001", "EL-CIRCUIT-COMPARE-VOLTAGE-001"],
+    presentation: { promptLines: ["{pattern_text}", "Is this series behaviour or parallel behaviour?"] },
   }),
   qb({
     id: "comparison.compare_power_energy",
@@ -3048,6 +3071,12 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["series_higher", "parallel_higher", "equal"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-POWER-001", "EL-CIRCUIT-COMPARE-ENERGY-001"],
+    presentation: {
+      promptLines: [
+        "Take the same set of two or more resistors, connected to the same supply voltage.",
+        "Is their total power/energy higher when connected in series, or when connected in parallel?",
+      ],
+    },
   }),
 
   // ===================================================================
@@ -3062,6 +3091,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "formula_selection" },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-POWER-RELATIONSHIP-001"],
+    presentation: { promptLines: ["Which formula correctly relates electrical power P to voltage V and current I?"] },
   }),
   qb({
     id: "power.select_form",
@@ -3073,6 +3103,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: enumMarking(),
     assertionIdentifiers: ["EL-POWER-REARRANGE-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+    presentation: { promptLines: ["The known quantities are: {known}.", "Which form of the power relationship should be used to find the missing quantity?"] },
   }),
   qb({
     id: "power.calculate_from_vi",
@@ -3084,6 +3115,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(1),
     assertionIdentifiers: ["EL-POWER-SOLVE-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+    presentation: { promptLines: ["V = {V} V", "I = {I} A"] },
   }),
   qb({
     id: "power.calculate_from_ir",
@@ -3095,6 +3127,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(1),
     assertionIdentifiers: ["EL-POWER-SOLVE-IR-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+    presentation: { promptLines: ["I = {I} A", "R = {R} Ω"] },
   }),
   qb({
     id: "power.calculate_from_vr",
@@ -3106,6 +3139,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(1),
     assertionIdentifiers: ["EL-POWER-SOLVE-V2R-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.electrical_power" } },
+    presentation: { promptLines: ["V = {V} V", "R = {R} Ω"] },
   }),
   qb({
     id: "power.calculate_total",
@@ -3116,6 +3150,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: quantityAnswer("power", "watt"),
     marking: tolerance(2),
     assertionIdentifiers: ["EL-CIRCUIT-POWER-TOTAL-001"],
+    presentation: { promptLines: ["This circuit has {component_count} components.", "Individual power values: {summary}", "Calculate the total power."] },
   }),
 
   // ===================================================================
@@ -3131,6 +3166,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(1),
     assertionIdentifiers: ["EL-ENERGY-CALC-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.electrical_energy" } },
+    presentation: { promptLines: ["P = {P} W", "t = {t} s"] },
   }),
   qb({
     id: "energy.calculate_energy_kwh",
@@ -3142,6 +3178,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(1),
     assertionIdentifiers: ["EL-ENERGY-KWH-CALC-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.electrical_energy" } },
+    presentation: { promptLines: ["P = {P_kW} kW", "t = {t_hours} hours"] },
   }),
   qb({
     id: "energy.rearrange",
@@ -3153,6 +3190,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: enumMarking(),
     assertionIdentifiers: ["EL-ENERGY-REARRANGE-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.electrical_energy" } },
+    presentation: { promptLines: ["The known quantities are: {known}.", "Which rearrangement of E = P x t should be used to find the missing quantity?"] },
   }),
   qb({
     id: "energy.calculate_efficiency",
@@ -3164,6 +3202,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(1),
     assertionIdentifiers: ["EL-CALC-ELECTRICAL-EFFICIENCY-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.electrical_efficiency" } },
+    presentation: { promptLines: ["Power input: {Pin} W", "Power output: {Pout} W"] },
   }),
 
   // ===================================================================
@@ -3178,6 +3217,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "formula_selection" },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-CURRENT-CHARGE-RELATIONSHIP-001"],
+    presentation: { promptLines: ["Which formula correctly relates current I to charge Q and time t?"] },
   }),
   qb({
     id: "charge.calculate",
@@ -3190,6 +3230,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-CURRENT-CHARGE-CALC-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.charge_current" } },
     variantDimensions: { target_variable: { allowed: ["I", "Q"] } },
+    presentation: { promptLines: ["{given_summary}", "Find {target_variable}."] },
   }),
 
   // ===================================================================
@@ -3204,6 +3245,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["thermal", "chemical"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CURRENT-THERMAL-EFFECT-001", "EL-CURRENT-CHEMICAL-EFFECT-001", "EL-THERMAL-EFFECT-FACTORS-001"],
+    presentation: { promptLines: ["{effect_clue}", "Is this the thermal effect or the chemical effect of current?"] },
   }),
   qb({
     id: "thermal_chemical.recognise_application",
@@ -3214,6 +3256,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["heating_element", "filament_lamp", "relay_coil"] },
     marking: exact(),
     assertionIdentifiers: ["EL-THERMAL-EFFECT-APPLICATION-001"],
+    presentation: { promptLines: ["{application_clue}", "Which application of the thermal effect of current is this?"] },
   }),
 
   // ===================================================================
@@ -3229,6 +3272,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-CONDUCTOR-INSULATOR-CONFUSION-001", evidenceStrength: "suggestive" }],
+    presentation: { promptLines: ["Is {material} a conductor or an insulator?"] },
   }),
   qb({
     id: "conductors.recognise_breakdown",
@@ -3239,6 +3283,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["breaks_down_and_conducts", "remains_insulating"] },
     marking: exact(),
     assertionIdentifiers: ["EL-INSULATOR-BREAKDOWN-001"],
+    presentation: { promptLines: ["A voltage far beyond an insulator's rating is applied across it.", "What happens to the insulator?"] },
   }),
 
   // ===================================================================
@@ -3253,6 +3298,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["voltmeter", "ammeter", "ohmmeter", "multimeter"] },
     marking: exact(),
     assertionIdentifiers: ["EL-INSTRUMENT-SELECT-001"],
+    presentation: { promptLines: ["Which instrument should be used to measure {quantity}?"] },
   }),
   qb({
     id: "instrumentation.recognise_connection",
@@ -3265,6 +3311,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001"],
     representation: { diagram: { required: true, blueprintId: "instrument.measurement_connection" } },
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001", evidenceStrength: "direct" }],
+    presentation: { promptLines: ["Look at the circuit diagram.", "How should the {instrument_type} be connected to measure correctly?"] },
   }),
   qb({
     id: "instrumentation.recognise_internal_resistance_property",
@@ -3275,6 +3322,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["very_high", "very_low"] },
     marking: exact(),
     assertionIdentifiers: ["EL-INSTRUMENT-VOLTMETER-INTERNAL-RESISTANCE-001", "EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001"],
+    presentation: { promptLines: ["For accurate measurement without disturbing the circuit, what should the ideal internal resistance of a {instrument_type} be?"] },
   }),
   qb({
     id: "instrumentation.recognise_purpose",
@@ -3285,6 +3333,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["clamp_meter", "oscilloscope", "continuity_tester"] },
     marking: exact(),
     assertionIdentifiers: ["EL-INSTRUMENT-CLAMP-METER-001", "EL-INSTRUMENT-OSCILLOSCOPE-001", "EL-INSTRUMENT-CONTINUITY-TEST-001"],
+    presentation: { promptLines: ["{purpose_clue}", "Which instrument is this?"] },
   }),
 
   // ===================================================================
@@ -3304,6 +3353,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       "EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001",
       "EL-CIRCUIT-OPEN-CIRCUIT-RESISTANCE-INTERPRETATION-001",
     ],
+    presentation: { promptLines: ["{condition_clue}", "Which fault condition is this?"] },
   }),
   qb({
     id: "fault.predict_short_effect",
@@ -3314,6 +3364,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["current_increases_sharply", "current_decreases", "no_effect"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-PREDICT-SHORT-EFFECT-001"],
+    presentation: { promptLines: ["A short circuit occurs across a component in an energised circuit.", "What happens to the current?"] },
   }),
   qb({
     id: "fault.select_protective_device",
@@ -3324,6 +3375,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["fuse", "circuit_breaker"] },
     marking: exact(),
     assertionIdentifiers: ["EL-PROTECTIVE-DEVICE-PURPOSE-001", "EL-FUSE-OPERATION-001"],
+    presentation: { promptLines: ["{scenario_text}", "Which protective device is most appropriate?"] },
   }),
   qb({
     id: "fault.compare_fuse_breaker",
@@ -3334,6 +3386,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["fuse", "circuit_breaker"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-BREAKER-VS-FUSE-001"],
+    presentation: { promptLines: ["Which protective device {asked_about_text}?"] },
   }),
 
   // ===================================================================
