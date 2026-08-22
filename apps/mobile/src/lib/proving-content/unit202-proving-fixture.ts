@@ -351,12 +351,13 @@ export const QB_SERIES_CALCULATE_TOTAL_RESISTANCE: QuestionBlueprint = {
   ]),
   difficultyBand: "introductory",
   presentation: { promptLines: ["The series circuit shown has {component_count} resistors."] },
-  // CC-09E: mirrored field-for-field from the real governed corpus record
-  // (see this file's own header note) -- never invented or reworded here.
+  // CC-09E.1: mirrored field-for-field from the real governed corpus
+  // record (see this file's own header note) -- never invented or
+  // reworded here.
   assessmentStyleEvidence: {
     classification: "DIRECT_SAMPLE_ANALOGUE",
-    sourceItemRef: "2365-602-sample-v1:item-27",
-    note: "Sample item 27 (series-circuit power calculation from a diagram) requires this same series total-resistance operation/representation as an intermediate step for this knowledge target.",
+    sourceItemRef: "2365-602-sample-v1:item-22",
+    note: "Sample item 22 (series-circuit voltage-divider calculation from a diagram, three resistors in series) requires this same series total-resistance operation/representation as an intermediate step for this knowledge target.",
   },
 };
 

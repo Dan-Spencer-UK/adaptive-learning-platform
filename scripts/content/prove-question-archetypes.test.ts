@@ -37,10 +37,15 @@ function generate(blueprintId: string, seed: number) {
   });
 }
 
-// The 7 CC-09E archetypes: 6 DIRECT_SAMPLE_ANALOGUE (3 new + 3 reclassified
-// pre-existing) + 1 ASSESSMENT_STYLE_TRANSFER.
+// The 8 CC-09E/CC-09E.1 archetypes: 6 DIRECT_SAMPLE_ANALOGUE (3 new + 3
+// reclassified pre-existing) + 2 ASSESSMENT_STYLE_TRANSFER. CC-09E.1 split
+// the original single magnetism.identify_flux_density_unit blueprint (which
+// silently generated both tesla AND weber under one DIRECT classification)
+// into that blueprint restricted to tesla only, plus a new
+// magnetism.identify_flux_unit TRANSFER blueprint for weber.
 const CC09E_ARCHETYPE_BLUEPRINT_IDS = [
   "magnetism.identify_flux_density_unit",
+  "magnetism.identify_flux_unit",
   "emf.calculate_flux_change",
   "ac_reactive.select_impedance_formula",
   "ac_reactive.identify_reactance_unit",
@@ -48,6 +53,19 @@ const CC09E_ARCHETYPE_BLUEPRINT_IDS = [
   "series.calculate_total_resistance",
   "waveform.identify_characteristic",
 ] as const;
+
+const CC09E_TRANSFER_BLUEPRINT_IDS = new Set(["ac_reactive.identify_reactance_unit", "magnetism.identify_flux_unit"]);
+
+// Every governed SI-unit name known to the corpus, derived mechanically
+// from the EL-UNIT-* assertions' own statement text (e.g. "The tesla (T)
+// is the SI derived unit of...") -- never hand-maintained, so it can never
+// drift out of sync with what is actually governed.
+const GOVERNED_UNIT_NAMES = new Set(
+  cc04Unit202ElectricalScience.assertionVersions
+    .filter((v) => v.assertionIdentifier.startsWith("EL-UNIT-"))
+    .map((v) => /^The (\w+)\s/.exec(v.statement)?.[1]?.toLowerCase())
+    .filter((name): name is string => Boolean(name)),
+);
 
 describe("CC-09E: question-archetype classification metadata", () => {
   it("every CC-09E archetype blueprint declares assessmentStyleEvidence", () => {
@@ -57,8 +75,8 @@ describe("CC-09E: question-archetype classification metadata", () => {
     }
   });
 
-  it("C (task section 14.C): DIRECT_SAMPLE_ANALOGUE and ASSESSMENT_STYLE_TRANSFER are structurally distinguishable -- direct analogues carry a sourceItemRef, the transfer carries a transferredFromBlueprintId to a real blueprint, never both/neither", () => {
-    const directIds = CC09E_ARCHETYPE_BLUEPRINT_IDS.filter((id) => id !== "ac_reactive.identify_reactance_unit");
+  it("C (task section 14.C): DIRECT_SAMPLE_ANALOGUE and ASSESSMENT_STYLE_TRANSFER are structurally distinguishable -- direct analogues carry a sourceItemRef, transfers carry a transferredFromBlueprintId to a real DIRECT_SAMPLE_ANALOGUE blueprint, never both/neither", () => {
+    const directIds = CC09E_ARCHETYPE_BLUEPRINT_IDS.filter((id) => !CC09E_TRANSFER_BLUEPRINT_IDS.has(id));
     for (const id of directIds) {
       const evidence = pedagogy.questionBlueprints.find((q) => q.id === id)!.assessmentStyleEvidence!;
       expect(evidence.classification).toBe("DIRECT_SAMPLE_ANALOGUE");
@@ -66,12 +84,15 @@ describe("CC-09E: question-archetype classification metadata", () => {
       expect(evidence.transferredFromBlueprintId).toBeUndefined();
     }
 
-    const transfer = pedagogy.questionBlueprints.find((q) => q.id === "ac_reactive.identify_reactance_unit")!.assessmentStyleEvidence!;
-    expect(transfer.classification).toBe("ASSESSMENT_STYLE_TRANSFER");
-    expect(transfer.transferredFromBlueprintId).toBe("magnetism.identify_flux_density_unit");
-    // The transfer's declared origin is a REAL, DIRECT_SAMPLE_ANALOGUE blueprint -- a traceable lineage, never an invented one.
-    const origin = pedagogy.questionBlueprints.find((q) => q.id === transfer.transferredFromBlueprintId)!;
-    expect(origin.assessmentStyleEvidence?.classification).toBe("DIRECT_SAMPLE_ANALOGUE");
+    for (const id of CC09E_TRANSFER_BLUEPRINT_IDS) {
+      const transfer = pedagogy.questionBlueprints.find((q) => q.id === id)!.assessmentStyleEvidence!;
+      expect(transfer.classification).toBe("ASSESSMENT_STYLE_TRANSFER");
+      expect(transfer.transferredFromBlueprintId).toBeDefined();
+      expect(transfer.sourceItemRef).toBeUndefined();
+      // The transfer's declared origin is a REAL, DIRECT_SAMPLE_ANALOGUE blueprint -- a traceable lineage, never an invented one.
+      const origin = pedagogy.questionBlueprints.find((q) => q.id === transfer.transferredFromBlueprintId)!;
+      expect(origin.assessmentStyleEvidence?.classification).toBe("DIRECT_SAMPLE_ANALOGUE");
+    }
   });
 
   it("no source item reference or note contains a copyright-risk pattern (task section 6) -- opaque item references only, no option-letter/answer-key artefacts", () => {
@@ -95,12 +116,36 @@ describe("CC-09E: generation proves the archetype mechanism (task section 9/14)"
     expect(uniqueTargets.size).toBeGreaterThan(1);
   });
 
-  it("A2: magnetism.identify_flux_density_unit generates both governed quantities (flux and flux density) across seeds -- never only the sample-tested one", () => {
+  it("A2 (CC-09E.1): magnetism.identify_flux_density_unit generates ONLY the sample-tested quantity (tesla) across seeds -- flux density and flux were split into separate honestly-classified blueprints, so this DIRECT blueprint must never also generate weber", () => {
     const instances = Array.from({ length: 10 }, (_, seed) => generate("magnetism.identify_flux_density_unit", seed));
     const uniqueExpectedValues = new Set(instances.map((inst) => inst.expected.value));
-    expect(uniqueExpectedValues.size).toBe(2);
-    expect(uniqueExpectedValues.has("tesla")).toBe(true);
-    expect(uniqueExpectedValues.has("weber")).toBe(true);
+    expect(uniqueExpectedValues).toEqual(new Set(["tesla"]));
+    for (const inst of instances) {
+      expect(inst.evidence.assertionIdentifiers).toEqual(["EL-UNIT-TESLA-001"]);
+    }
+  });
+
+  it("A3 (CC-09E.1): magnetism.identify_flux_unit (the TRANSFER sibling) generates ONLY weber across seeds, and its knowledge target is distinct from the DIRECT blueprint it was split from", () => {
+    const instances = Array.from({ length: 10 }, (_, seed) => generate("magnetism.identify_flux_unit", seed));
+    const uniqueExpectedValues = new Set(instances.map((inst) => inst.expected.value));
+    expect(uniqueExpectedValues).toEqual(new Set(["weber"]));
+    for (const inst of instances) {
+      expect(inst.evidence.assertionIdentifiers).toEqual(["EL-UNIT-WEBER-001"]);
+    }
+  });
+
+  it("regression (CC-09E.1 task section 1): no DIRECT_SAMPLE_ANALOGUE archetype blueprint generates a knowledge target other than the one(s) named in its own assessmentStyleEvidence-adjacent assertionIdentifiers -- a DIRECT classification must never silently cover transfer-only content", () => {
+    const directIds = CC09E_ARCHETYPE_BLUEPRINT_IDS.filter((id) => !CC09E_TRANSFER_BLUEPRINT_IDS.has(id));
+    for (const id of directIds) {
+      const blueprint = pedagogy.questionBlueprints.find((q) => q.id === id)!;
+      const declaredIds = new Set(blueprint.evidence.assertionIdentifiers);
+      const instances = Array.from({ length: 6 }, (_, seed) => generate(id, seed));
+      for (const inst of instances) {
+        for (const assertionId of inst.evidence.assertionIdentifiers) {
+          expect(declaredIds.has(assertionId)).toBe(true);
+        }
+      }
+    }
   });
 
   it("B (task section 14.B): every CC-09E archetype's generated evidence references only real, already-governed assertion identifiers -- generation never introduces ungoverned knowledge", () => {
@@ -122,13 +167,32 @@ describe("CC-09E: generation proves the archetype mechanism (task section 9/14)"
     expect(cc09dAddedIds.has("EL-CONCEPT-REACTANCE-001")).toBe(false);
   });
 
-  it("E (task section 14.E/11): declared distractor options are governed, plausible error-pattern shapes -- never arbitrary filler, and every misconception target (where declared) references a real governed misconception", () => {
+  it("E (task section 14.E/11, strengthened CC-09E.1 task section 2): declared distractor options are governed, plausible error-pattern shapes -- never arbitrary filler; every distractor naming a real SI unit must itself be an already-governed unit, and every misconception target (where declared) references a real governed misconception", () => {
     const impedanceBlueprint = pedagogy.questionBlueprints.find((q) => q.id === "ac_reactive.select_impedance_formula")!;
     // Distractors are wrong-operation (subtraction instead of the
     // Pythagorean sum) and inversion errors -- the same shape of plausible
     // calculation mistake the corpus's own misconception vocabulary
     // already anticipates for formula-selection tasks, never silly filler.
     expect(impedanceBlueprint.answer.options).toEqual(["sqrt_r2_plus_x2", "sqrt_r2_minus_x2", "r_over_z", "z_over_r"]);
+
+    // Every archetype blueprint whose answer options are themselves SI-unit
+    // names (the "identify the unit" grammar) must draw every option --
+    // correct answer AND every distractor -- from GOVERNED_UNIT_NAMES.
+    // CC-09E.1 (task section 2) exists specifically because "siemens" had
+    // slipped into ac_reactive.identify_reactance_unit's options despite
+    // never being a governed Unit 202 quantity/unit anywhere in this
+    // corpus -- this mechanically prevents that class of defect recurring.
+    const unitIdentifyingBlueprintIds = [
+      "magnetism.identify_flux_density_unit",
+      "magnetism.identify_flux_unit",
+      "ac_reactive.identify_reactance_unit",
+    ];
+    for (const id of unitIdentifyingBlueprintIds) {
+      const blueprint = pedagogy.questionBlueprints.find((q) => q.id === id)!;
+      for (const option of blueprint.answer.options ?? []) {
+        expect(GOVERNED_UNIT_NAMES.has(option), `"${option}" (blueprint ${id}) must be a governed SI unit`).toBe(true);
+      }
+    }
 
     for (const id of CC09E_ARCHETYPE_BLUEPRINT_IDS) {
       const blueprint = pedagogy.questionBlueprints.find((q) => q.id === id)!;

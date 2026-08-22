@@ -2587,14 +2587,20 @@ const questionBlueprints: QuestionBlueprint[] = [
     // families/series-resistance.ts's calculateTotalResistance), so the
     // individual R1..R4 values are read from the diagram, never templated.
     presentation: { promptLines: ["The series circuit shown has {component_count} resistors."] },
-    // CC-09E: the official public 2365-602 sample directly demonstrates
-    // this exact grammar (series-circuit diagram + total-resistance
-    // calculation) across several items (e.g. sample item 27, total power
-    // in a series circuit, which requires the same total-resistance step).
+    // CC-09E.1 (Project Architect correction): the official public
+    // 2365-602 sample directly demonstrates this exact grammar via item
+    // 22 (a genuine series-circuit voltage-divider diagram -- three
+    // resistors in series, each with its own voltmeter, requiring the
+    // total series resistance as an intermediate step to find one
+    // resistor's voltage). The original citation (item 27) was factually
+    // wrong: on re-inspection, item 27's own diagram is a three-branch
+    // PARALLEL circuit (matching item 23's topology), not series --
+    // corrected to the genuine series-circuit item rather than left
+    // pointing at a topologically mismatched one.
     assessmentStyleEvidence: {
       classification: "DIRECT_SAMPLE_ANALOGUE",
-      sourceItemRef: "2365-602-sample-v1:item-27",
-      note: "Sample item 27 (series-circuit power calculation from a diagram) requires this same series total-resistance operation/representation as an intermediate step for this knowledge target.",
+      sourceItemRef: "2365-602-sample-v1:item-22",
+      note: "Sample item 22 (series-circuit voltage-divider calculation from a diagram, three resistors in series) requires this same series total-resistance operation/representation as an intermediate step for this knowledge target.",
     },
   }),
   qb({
@@ -3303,10 +3309,19 @@ const questionBlueprints: QuestionBlueprint[] = [
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "suggestive" }],
   }),
   qb({
+    // CC-09E.1 (Project Architect correction): restricted to magnetic
+    // flux DENSITY only -- the official sample directly demonstrated unit
+    // recognition for this one quantity (item 31), never for magnetic
+    // flux itself. Magnetic flux's own unit (weber) was previously bundled
+    // into this SAME DIRECT_SAMPLE_ANALOGUE blueprint via a variantDimensions
+    // quantity pick, which dishonestly implied the sample had also directly
+    // demonstrated flux-unit recognition. Split into a companion
+    // ASSESSMENT_STYLE_TRANSFER blueprint below (magnetism.identify_flux_unit)
+    // instead.
     id: "magnetism.identify_flux_density_unit",
     familyId: "electrical.magnetism_and_electromagnetism",
     capabilityId: "cap.magnetism.identify_unit",
-    title: "Identify the SI unit of a named magnetic quantity",
+    title: "Identify the SI unit of magnetic flux density",
     difficultyBand: "introductory",
     // Distractors are the real, governed SI units of closely related AC
     // reactive quantities (henry/inductance, farad/capacitance) plus
@@ -3315,8 +3330,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     // section 11).
     answer: { type: "multiple_choice", options: ["tesla", "weber", "henry", "farad"] },
     marking: exact(),
-    assertionIdentifiers: ["EL-UNIT-TESLA-001", "EL-UNIT-WEBER-001"],
-    variantDimensions: { quantity: { allowed: ["flux_density", "flux"] } },
+    assertionIdentifiers: ["EL-UNIT-TESLA-001"],
     // CC-09E (task section 4): the official public 2365-602 sample
     // directly demonstrates this exact grammar -- sample item 31 tests
     // naming the SI unit of magnetic flux density among plausible
@@ -3327,6 +3341,26 @@ const questionBlueprints: QuestionBlueprint[] = [
       classification: "DIRECT_SAMPLE_ANALOGUE",
       sourceItemRef: "2365-602-sample-v1:item-31",
       note: "Sample item 31 (identify the SI unit of magnetic flux density among weber/henry/farad distractors) demonstrates this exact operation/representation for this same knowledge target -- the finding that originally justified authoring EL-UNIT-TESLA-001 (CC-09D).",
+    },
+  }),
+  qb({
+    // CC-09E.1: the companion transfer -- magnetic FLUX's own unit
+    // (weber) was never itself tested by the sample (only flux density
+    // was, item 31); this reuses the same "identify unit among plausible
+    // related-unit distractors" grammar for magnetic flux, honestly
+    // classified as a transfer, never a direct analogue.
+    id: "magnetism.identify_flux_unit",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.identify_unit",
+    title: "Identify the SI unit of magnetic flux",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["weber", "tesla", "henry", "farad"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-UNIT-WEBER-001"],
+    assessmentStyleEvidence: {
+      classification: "ASSESSMENT_STYLE_TRANSFER",
+      transferredFromBlueprintId: "magnetism.identify_flux_density_unit",
+      note: "Transfers the 'identify SI unit among plausible related-unit distractors' grammar sample item 31 demonstrated for magnetic flux DENSITY to magnetic flux itself -- a closely related but distinct, already-governed Unit 202 quantity (EL-UNIT-WEBER-001, AC5.2) the sample never directly tested unit recognition for.",
     },
   }),
 
@@ -3533,12 +3567,15 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.ac_reactive.identify_reactance_unit",
     title: "Identify the SI unit of reactance",
     difficultyBand: "introductory",
-    // Distractors are the real, governed SI units of closely related AC
-    // reactive quantities (henry/inductance, farad/capacitance) plus
-    // impedance's own shared unit (ohm is the correct answer for both
-    // resistance and reactance/impedance -- the genuine, governed source
-    // of confusion this distractor set tests).
-    answer: { type: "multiple_choice", options: ["ohm", "henry", "farad", "siemens"] },
+    // CC-09E.1 (Project Architect correction): distractors are the real,
+    // governed SI units of closely related AC reactive quantities
+    // (henry/inductance, farad/capacitance) plus volt -- ohm/volt is
+    // already a governed confusion pair elsewhere in this corpus
+    // (units-and-quantities.ts's `diagnoseUnitConfusion`, "volt_ohm"),
+    // reused here rather than "siemens" (conductance), which is not a
+    // governed Unit 202 quantity/unit anywhere in this corpus and was
+    // removed rather than adding new knowledge merely to keep it.
+    answer: { type: "multiple_choice", options: ["ohm", "henry", "farad", "volt"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-REACTANCE-001"],
     // CC-09E (task sections 2.B/10, ASSESSMENT_STYLE_TRANSFER): the

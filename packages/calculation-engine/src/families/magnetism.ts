@@ -137,21 +137,20 @@ const compareMotorGenerator: QuestionExecutor = (ctx) => {
 };
 
 /**
- * CC-09E: identify the SI unit of magnetic flux or flux density among
- * plausible related-unit distractors (weber/henry/farad) -- the direct
- * sample-analogue archetype for the official 2365-602 sample's item 31
- * (see cc05a-pedagogy-unit202.ts's own assessmentStyleEvidence note).
- * Purely categorical, matching units-and-quantities.ts's identifyUnit
- * pattern exactly.
+ * CC-09E.1 (Project Architect correction): split from the original single
+ * CC-09E `identifyFluxDensityUnit` executor, which used a variantDimensions
+ * quantity pick to silently generate BOTH magnetic flux density (tesla,
+ * genuinely sample-evidenced by item 31) and magnetic flux (weber, only
+ * ever transfer-supported) under one DIRECT_SAMPLE_ANALOGUE blueprint --
+ * hiding a transfer inside a direct-analogue classification. Each
+ * quantity now has its own constant-output executor tied to its own
+ * honestly-classified blueprint (see cc05a-pedagogy-unit202.ts).
  */
-const identifyFluxDensityUnit: QuestionExecutor = (ctx) => {
-  const quantity = pick(ctx.rng, ["flux_density", "flux"] as const);
-  const unitByQuantity: Readonly<Record<string, string>> = {
-    flux_density: "tesla",
-    flux: "weber",
-  };
-  return assembleInstance(ctx, { quantity }, {}, { answer: ctx.blueprint.answer, value: unitByQuantity[quantity]! });
-};
+const identifyFluxDensityUnit: QuestionExecutor = (ctx) =>
+  assembleInstance(ctx, {}, {}, { answer: ctx.blueprint.answer, value: "tesla" });
+
+const identifyFluxUnit: QuestionExecutor = (ctx) =>
+  assembleInstance(ctx, {}, {}, { answer: ctx.blueprint.answer, value: "weber" });
 
 export const magnetismExecutors: Readonly<Record<string, QuestionExecutor>> = {
   "magnetism.recognise_concept": recogniseConcept,
@@ -160,6 +159,7 @@ export const magnetismExecutors: Readonly<Record<string, QuestionExecutor>> = {
   "magnetism.compare_permanent_electromagnet": comparePermanentElectromagnet,
   "magnetism.compare_motor_generator": compareMotorGenerator,
   "magnetism.identify_flux_density_unit": identifyFluxDensityUnit,
+  "magnetism.identify_flux_unit": identifyFluxUnit,
 };
 
 export const __internal = {
