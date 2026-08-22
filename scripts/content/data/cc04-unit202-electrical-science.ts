@@ -246,6 +246,14 @@ const SV_WIKIPEDIA_FLEMING_RIGHT_HAND = "sv-wikipedia-flemings-right-hand-rule";
 // factual authority anywhere in this manifest.
 const SV_CG_602_SAMPLE_QUESTIONS = "sv-cg-2365-602-sample-questions-v1-0";
 const SV_CG_602_SAMPLE_MARK_SCHEME = "sv-cg-2365-602-sample-mark-scheme-v1-0";
+// CC-09F: City & Guilds republished the "5357 and 2365 Sample Papers"
+// question document as v1.2 (14 April 2026), replacing the v1.0 link on
+// the live qualification page entirely (the mark scheme was NOT
+// republished -- it remains v1.0/August 2018, still live at the same
+// URL). See this key's own sourceVersion record for the full retrieval/
+// verification account, including why item-level comparison against the
+// v1.0 analysis could not be completed this package.
+const SV_CG_602_SAMPLE_QUESTIONS_V1_2 = "sv-cg-2365-602-sample-questions-v1-2";
 
 // ---------------------------------------------------------------------
 // Curriculum
@@ -1960,8 +1968,19 @@ const A: AssertionDef[] = [
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09F (Project Architect correction, task section 1): the statement
+    // previously reversed the numerator/denominator -- it said mechanical
+    // advantage equals driving radius / driven radius (and driving/driven
+    // tooth count), which contradicts the corpus's own cited UCSD evidence
+    // (loc-ucsd-gear-ratio-tooth-count-torque's own summary: "tau_out/
+    // tau_in = n_out/n_in"). Mechanical advantage for a driven load is
+    // conventionally OUTPUT/INPUT (matching FP-CONCEPT-MECHANICAL-
+    // ADVANTAGE-001's own "load (output) / effort (input)" framing), so
+    // MA = tau_out/tau_in = driven-gear radius/driving-gear radius =
+    // driven tooth count/driving tooth count -- corrected to state the
+    // ratio in that order.
     id: "FP-REL-GEAR-RATIO-001", domain: "FP",
-    statement: "For two meshed gears, mechanical advantage equals the ratio of their radii (the driving gear's radius to the driven gear's radius); because gear teeth are evenly spaced and shared between meshed gears, a gear's radius is proportional to its number of teeth, so this same mechanical advantage can equivalently be expressed as the ratio of their tooth counts.",
+    statement: "For two meshed gears, mechanical advantage (the ratio of output torque to input torque) equals the ratio of their radii (the driven gear's radius to the driving gear's radius); because gear teeth are evenly spaced and shared between meshed gears, a gear's radius is proportional to its number of teeth, so this same mechanical advantage can equivalently be expressed as the ratio of their tooth counts (driven tooth count to driving tooth count).",
     provenance: [
       { locator: "loc-openstax-college-physics-simple-machines", role: "DEFINES", supportType: "PARTIAL" },
       { locator: "loc-ucsd-gear-ratio-tooth-count-torque", role: "DEFINES", supportType: "PARTIAL" },
@@ -1969,7 +1988,7 @@ const A: AssertionDef[] = [
     multiSourceFullyCovered: true,
     clauseCoverage: [
       { clause: "mechanical advantage equals the ratio of the two gears' radii", locator: "loc-openstax-college-physics-simple-machines" },
-      { clause: "radius is proportional to tooth count, so MA can equivalently be expressed as the tooth-count ratio", locator: "loc-ucsd-gear-ratio-tooth-count-torque" },
+      { clause: "mechanical advantage (torque ratio) is output/input, i.e. driven/driving -- tau_out/tau_in = n_out/n_in -- and radius is proportional to tooth count, so MA can equivalently be expressed as the driven/driving tooth-count ratio", locator: "loc-ucsd-gear-ratio-tooth-count-torque" },
     ],
     prereqs: [{ id: "FP-CONCEPT-GEAR-001", strength: "REQUIRED" }],
     curriculum: [{ node: acNode("3.2"), type: "REQUIRED_FOR" }],
@@ -4987,8 +5006,14 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       sourceFamily: "Official sample assessment",
       sourceType: "SAMPLE_ASSESSMENT",
       jurisdiction: "UK",
-      canonicalReference: "City & Guilds \"5357 Level 3 Electrotechnical / 2365 Level 2 and 3 Diploma in Electrical Installations (Buildings and Structures) -- Sample papers\", v1.0, August 2018",
-      accessLocation: "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers-v1-0-pdf.ashx",
+      // CC-09F: canonicalReference kept edition-neutral (matching SRC_CG's
+      // own handbook pattern) -- per-edition specifics (v1.0/August 2018,
+      // v1.2/14 April 2026) live on each sourceVersion record below, never
+      // duplicated here.
+      canonicalReference: "City & Guilds \"5357 Level 3 Electrotechnical / 2365 Level 2 and 3 Diploma in Electrical Installations (Buildings and Structures) -- Sample papers\"",
+      // Points at the CURRENT edition (v1.2) -- the superseded v1.0 URL is
+      // recorded on that sourceVersion's own comment instead.
+      accessLocation: "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers-v1-2-pdf.pdf",
       sourceRole: "OFFICIAL_ASSESSMENT",
     },
     {
@@ -5060,27 +5085,69 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       // v1.0/August 2018) remains live at the same host today, supporting
       // (not proving) that v1.0 is still the current sample-paper edition.
       //
-      // CC-09D.1 (Project Architect review): `status: "CURRENT"` here is
-      // deliberately kept, not changed to a "stale"/"historical" value.
-      // Per ADR-0002's own status/verificationStatus split, `status`
-      // (CURRENT/SUPERSEDED/WITHDRAWN) answers "is this the specific
-      // edition being cited, or has it been replaced/invalidated by a
-      // known later one" -- CURRENT here means the latest-known,
-      // not-superseded source-version record (no later edition of this
-      // sample paper is known to exist), matching the treatment already
-      // given to every pre-ADR-0002 CC-04A/B source. It does NOT assert
-      // independently-confirmed live/current applicability -- that
-      // separate, honest question is answered by `verificationStatus:
-      // "UNVERIFIED"` and `lastCurrencyCheckDate` below, exactly the
-      // orthogonal pair ADR-0002 defines for this. The live URL's own
-      // 404 (this document's dead-link finding, above) is a currency
-      // concern tracked via those fields and this comment, never
-      // silently hidden behind an unqualified CURRENT.
+      // CC-09D.1 (Project Architect review): `status: "CURRENT"` here was
+      // deliberately kept at that time, per ADR-0002's status/
+      // verificationStatus split ("no later edition of this sample paper
+      // is known to exist"). CC-09F (below) has now positively confirmed a
+      // later edition (v1.2, 14 April 2026) exists and has replaced this
+      // v1.0 question paper's own link on the live City & Guilds page --
+      // this record is therefore honestly reclassified SUPERSEDED. This
+      // is a bibliographic fact (a newer edition is now known to exist),
+      // independent of whether v1.2's actual content differs -- see the
+      // v1.2 sourceVersion record immediately below for why that separate
+      // content-comparison question remains genuinely open. SUPERSEDED
+      // never means invalid: this record, its fingerprint, and every
+      // CC-09D/CC-09E finding/citation that depends on it remain a valid
+      // historical snapshot (ADR-0002, "NOT CURRENT is not INVALID").
       key: SV_CG_602_SAMPLE_QUESTIONS, sourceKey: SRC_CG_602_SAMPLE_QUESTIONS,
       edition: "v1.0 (August 2018)",
-      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      status: "SUPERSEDED", rightsClassification: "PROPRIETARY_REFERENCE",
       retrievedDate: "2026-08-22",
       contentFingerprintSha256: "96afeb0827ec1f39cc19249608bf0fbea9287e554f7b40a94979dcccf8da983c",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-22",
+    },
+    {
+      // CC-09F (task section 2): the current City & Guilds 2365 Level 2
+      // qualification page now lists "5357 and 2365 Sample Papers v1-2",
+      // dated 14 April 2026, at a URL following the same pattern as the
+      // superseded v1.0 record above -- confirmed by directly fetching the
+      // live qualification page (title, version label and file size/date
+      // it reports all match this retrieval exactly: 512KB, 14 Apr 2026).
+      // Fetched directly (not archived) and reproducibly: two independent
+      // fetches on this date produced byte-identical content
+      // (contentFingerprintSha256 below, confirmed twice).
+      //
+      // HONEST LIMITATION (task section 2's "determine mechanically/
+      // evidentially" requirement): the retrieved PDF is encrypted --
+      // opening it (even for metadata/text extraction, not just editing)
+      // requires a password neither this session nor any publicly
+      // documented default was able to supply. Confirmed independently by
+      // three separate tools against this exact fingerprinted artefact:
+      // Poppler's pdftotext (-upw "" and no-flag), Poppler's pdfinfo, and
+      // pdfjs-dist's getDocument() with an explicit empty-string password
+      // callback -- all three fail with a password/decryption error, never
+      // a parsing or format error. This is NOT a case of "assumed
+      // unchanged" or "assumed changed": the actual content-level
+      // comparison against the CC-09D 40-item v1.0 analysis (task section
+      // 2.A-D) could not be performed this package and is recorded as a
+      // genuinely open, blocking item -- see PROJECT-STATUS.md §CC-09F and
+      // this package's completion report. No existing CC-09D/CC-09E
+      // finding, sourceItemRef citation, or DIRECT_SAMPLE_ANALOGUE
+      // classification was changed as a result: changing them without
+      // being able to read v1.2 would be exactly the "assume it changed"
+      // error the task brief warns against, just as leaving this
+      // discovery unrecorded would be the "assume it did not change" one.
+      // verificationStatus is honestly UNVERIFIED (unreadable content
+      // cannot be verified by anyone, let alone this extracting session);
+      // status is CURRENT (it is the latest-known edition, a bibliographic
+      // fact independent of readability).
+      key: SV_CG_602_SAMPLE_QUESTIONS_V1_2, sourceKey: SRC_CG_602_SAMPLE_QUESTIONS,
+      edition: "v1.2 (14 April 2026)",
+      publicationDate: "2026-04-14",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-22",
+      contentFingerprintSha256: "71a39b800f4048d2775529ec4783218bf808e7478561214d40f7a61538f39669",
       verificationStatus: "UNVERIFIED",
       lastCurrencyCheckDate: "2026-08-22",
     },

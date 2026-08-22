@@ -129,7 +129,7 @@ Source role (CC-09C) reflects the generic Course Evidence Registry evidential-ro
 | 5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (question paper) | OFFICIAL_ASSESSMENT | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 | 5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (mark scheme / answer keys) | OFFICIAL_ASSESSMENT | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 
-Rights distribution: PROPRIETARY_REFERENCE: 17, OPEN: 7, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
+Rights distribution: PROPRIETARY_REFERENCE: 18, OPEN: 7, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
 
 ## OpenStax exact-book licence evidence (CC-04B hard requirement)
 
@@ -735,7 +735,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FP-REL-GEAR-RATIO-001
 
-**Statement (v1, APPROVED):** For two meshed gears, mechanical advantage equals the ratio of their radii (the driving gear's radius to the driven gear's radius); because gear teeth are evenly spaced and shared between meshed gears, a gear's radius is proportional to its number of teeth, so this same mechanical advantage can equivalently be expressed as the ratio of their tooth counts.
+**Statement (v1, APPROVED):** For two meshed gears, mechanical advantage (the ratio of output torque to input torque) equals the ratio of their radii (the driven gear's radius to the driving gear's radius); because gear teeth are evenly spaced and shared between meshed gears, a gear's radius is proportional to its number of teeth, so this same mechanical advantage can equivalently be expressed as the ratio of their tooth counts (driven tooth count to driving tooth count).
 
 **Direct prerequisites:** FP-CONCEPT-GEAR-001 (REQUIRED)
 **Direct dependents:** FP-GEAR-SPEED-TORQUE-TRADEOFF-001
@@ -743,7 +743,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Provenance:** College Physics 2e — For wheels/gears driven by a common axle, mechanical advantage is the ratio of the radii of the driving and driven wheel/gear (the same simple expression as for a crank); a single fixed pulley has a mechanical advantage of 1 (direction change only, forces do not add); a movable/combination pulley system's mechanical advantage approximately equals the number of rope/cable sections directly supporting the load, demonstrated for MA of 2, 3 and 4 [DEFINES, support=PARTIAL, verification=UNVERIFIED] | Machine Design: Gear Ratios — Because the radius of a gear is proportional to its number of teeth, gear-ratio relationships can equivalently be stated in terms of tooth counts: omega_out/omega_in = n_in/n_out (speed) and tau_out/tau_in = n_out/n_in (torque); "a gear ratio can increase the output torque or output speed of a mechanism, but not both" -- with a given power source you can achieve high velocity output or high force/torque output, but not both [DEFINES, support=PARTIAL, verification=UNVERIFIED]
 **Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
-**Clause coverage:** "mechanical advantage equals the ratio of the two gears' radii" -> College Physics 2e (loc-openstax-college-physics-simple-machines); "radius is proportional to tooth count, so MA can equivalently be expressed as the tooth-count ratio" -> Machine Design: Gear Ratios (loc-ucsd-gear-ratio-tooth-count-torque)
+**Clause coverage:** "mechanical advantage equals the ratio of the two gears' radii" -> College Physics 2e (loc-openstax-college-physics-simple-machines); "mechanical advantage (torque ratio) is output/input, i.e. driven/driving -- tau_out/tau_in = n_out/n_in -- and radius is proportional to tooth count, so MA can equivalently be expressed as the driven/driving tooth-count ratio" -> Machine Design: Gear Ratios (loc-ucsd-gear-ratio-tooth-count-torque)
 
 ### FP-GEAR-SPEED-TORQUE-TRADEOFF-001
 

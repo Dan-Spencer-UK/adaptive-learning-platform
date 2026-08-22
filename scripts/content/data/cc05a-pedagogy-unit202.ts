@@ -516,7 +516,7 @@ const assertionFamilies: AssertionFamily[] = [
     // as one "simple machines" topic, and they share the same mechanical-
     // advantage learning intent, so one family (not three) represents them.
     title: "Simple machines and mechanical advantage: levers, gears, pulleys",
-    learningIntent: "Recognise how a lever, gear or pulley provides mechanical advantage: lever classes by the relative arrangement of pivot, effort and load; gear ratio by the ratio of driving/driven radii or tooth counts; pulley mechanical advantage by the number of supporting rope sections.",
+    learningIntent: "Recognise how a lever, gear or pulley provides mechanical advantage: lever classes by the relative arrangement of pivot, effort and load; gear ratio by the ratio of driven/driving radii or tooth counts (mechanical advantage is output/input, matching torque out over torque in); pulley mechanical advantage by the number of supporting rope sections.",
     teachFamilyTogether: true,
     completeness: { requiredCapabilityIds: ["cap.foundational.levers.recognise"] },
     assessmentRequirement: "teaching_only",

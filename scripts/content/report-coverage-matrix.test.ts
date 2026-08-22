@@ -956,3 +956,51 @@ describe("report-coverage-matrix: CC-09D Unit 202 official public assessment cal
     expect(obligation.description.toLowerCase()).not.toContain("coil");
   });
 });
+
+describe("report-coverage-matrix: CC-09F gear-ratio numerator/denominator direction (task section 1)", () => {
+  it("mechanically distinguishes the speed ratio (omega_out/omega_in = N_in/N_out) from the torque/mechanical-advantage ratio (tau_out/tau_in = N_out/N_in) as cited by loc-ucsd-gear-ratio-tooth-count-torque, and confirms FP-REL-GEAR-RATIO-001's own direction matches the TORQUE convention, never the speed one", () => {
+    const locator = cc04Unit202ElectricalScience.sourceLocators.find((l) => l.key === "loc-ucsd-gear-ratio-tooth-count-torque")!;
+
+    // Extract both formulas directly from the cited source's own recorded
+    // summary text -- never hand-duplicated -- so this test tracks the
+    // real locator, not a copy of it.
+    const speedMatch = /omega_out\/omega_in = (n_\w+)\/(n_\w+)/.exec(locator.locatorSummary);
+    const torqueMatch = /tau_out\/tau_in = (n_\w+)\/(n_\w+)/.exec(locator.locatorSummary);
+    expect(speedMatch, "locator must state the speed-ratio formula").not.toBeNull();
+    expect(torqueMatch, "locator must state the torque-ratio formula").not.toBeNull();
+    const [, speedNum, speedDen] = speedMatch!;
+    const [, torqueNum, torqueDen] = torqueMatch!;
+
+    // The two formulas must be genuine inverses of each other (numerator
+    // and denominator swapped) -- this is the exact structural shape of
+    // the CC-09E's original defect: copying one ratio's direction into a
+    // statement about the other silently produces the reciprocal claim.
+    expect(torqueNum).toBe(speedDen);
+    expect(torqueDen).toBe(speedNum);
+    expect(torqueNum).not.toBe(torqueDen);
+
+    // FP-REL-GEAR-RATIO-001 states mechanical advantage (a TORQUE ratio,
+    // output/input -- matching FP-CONCEPT-MECHANICAL-ADVANTAGE-001's own
+    // load/effort = output/input framing), so its own driven/driving
+    // radius-and-tooth-count order must match the torque convention
+    // (n_out/n_in = driven/driving), never the speed convention.
+    const version = cc04Unit202ElectricalScience.assertionVersions.find(
+      (v) => v.assertionIdentifier === "FP-REL-GEAR-RATIO-001",
+    )!;
+    expect(version.statement).toMatch(/driven gear's radius to the driving gear's radius/i);
+    expect(version.statement).not.toMatch(/driving gear's radius to the driven gear's radius/i);
+    expect(version.statement).toMatch(/driven tooth count to driving tooth count/i);
+    expect(version.statement).not.toMatch(/driving tooth count to driven tooth count/i);
+  });
+
+  it("regression (CC-09F QA-gap fix): FP-REL-GEAR-RATIO-001's own clauseCoverage names the directional formula explicitly, not merely the undirected topic -- the original defect passed multi-source entailment precisely because its UCSD clause asserted only 'MA can be expressed as a tooth-count ratio' (topic-level, direction-agnostic), which a clause-by-clause topic audit could satisfy without ever checking numerator/denominator order. Pinning the direction into the clause text itself closes that specific gap without redesigning the entailment engine.", () => {
+    const version = cc04Unit202ElectricalScience.assertionVersions.find(
+      (v) => v.assertionIdentifier === "FP-REL-GEAR-RATIO-001",
+    )!;
+    const ucsdClause = version.clauseCoverage?.find((c) => c.sourceLocatorKey === "loc-ucsd-gear-ratio-tooth-count-torque");
+    expect(ucsdClause, "the UCSD clause must exist").toBeDefined();
+    expect(ucsdClause!.clause).toMatch(/output\/input/i);
+    expect(ucsdClause!.clause).toMatch(/driven\/driving/i);
+    expect(ucsdClause!.clause).toMatch(/tau_out\/tau_in\s*=\s*n_out\/n_in/);
+  });
+});
