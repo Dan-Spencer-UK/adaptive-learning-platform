@@ -2505,7 +2505,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-REL-FLUX-CHANGE-EMF-001
 
-**Statement (v1, APPROVED):** The magnitude of the EMF induced in a coil equals the rate of change of the magnetic flux linking it: e = (change in flux) / (time taken).
+**Statement (v1, APPROVED):** The magnitude of the EMF induced in a single loop equals the rate of change of the magnetic flux through it: e = (change in flux) / (time taken).
 
 **Direct prerequisites:** EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)

@@ -9,6 +9,8 @@ last_reviewed: 2026-08-22
 
 The first real calibration of the CC-09C course-evidence architecture against genuine official public assessment material: the complete City & Guilds 2365-602 (Unit 202, Principles of Electrical Science) sample e-volve multiple-choice test.
 
+> **Amendment (CC-09D.1, 2026-08-22):** `EL-REL-FLUX-CHANGE-EMF-001` (§D below) was narrowed from "the EMF induced in a **coil**" to "the EMF induced in a **single loop**" following Project Architect review -- the OpenStax source itself distinguishes single-loop (ε = -dΦ/dt, no turns factor) from N-turn-coil (ε = -N dΦ/dt) forms, and the original wording said "coil" while giving the single-loop expression. The correction matches both the formula actually given and AC5.4's own "single-loop generator" wording; no N-turn detail was introduced. §A/§D below are left as originally written for historical accuracy; see `PROJECT-STATUS.md` §CC-09D.1 for the full correction record.
+
 ## A. Source
 
 | Field | Value |

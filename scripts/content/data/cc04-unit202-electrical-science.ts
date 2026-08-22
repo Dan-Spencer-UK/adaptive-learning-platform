@@ -3691,12 +3691,22 @@ const A: AssertionDef[] = [
     // principle EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001 already states.
     // Distinct from EL-REL-INDUCED-EMF-001 (e = B l v, AC5.3's motional-EMF
     // special case for a conductor moving through a field) -- this is the
-    // general flux-linkage form underlying AC5.4's generator principle.
-    // Formula independently inspected and verified against OpenStax
-    // University Physics Volume 2 Section 13.1 before authoring -- never
-    // taken from the assessment item or its answer key.
+    // general rate-of-change-of-flux form underlying AC5.4's generator
+    // principle. Formula independently inspected and verified against
+    // OpenStax University Physics Volume 2 Section 13.1 before authoring
+    // -- never taken from the assessment item or its answer key.
+    //
+    // CC-09D.1 (Project Architect correction): the source itself
+    // distinguishes single-loop (epsilon = -dPhi/dt) from N-turn-coil
+    // (epsilon = -N dPhi/dt) forms -- the original wording said "coil"
+    // while giving the single-loop expression (no N factor), an
+    // over-broad mismatch between statement and formula. AC5.4's own
+    // wording is specifically "a single-loop generator"; narrowed to
+    // match both the formula actually given and the AC5.4 context. N-turn
+    // detail is NOT introduced -- neither the formal curriculum nor the
+    // assessment evidence requires it.
     id: "EL-REL-FLUX-CHANGE-EMF-001", domain: "EL",
-    statement: "The magnitude of the EMF induced in a coil equals the rate of change of the magnetic flux linking it: e = (change in flux) / (time taken).",
+    statement: "The magnitude of the EMF induced in a single loop equals the rate of change of the magnetic flux through it: e = (change in flux) / (time taken).",
     provenance: [
       { locator: "loc-openstax-up2-faradays-law", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" },
@@ -5049,6 +5059,23 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       // could determine; the companion mark-scheme document below (same
       // v1.0/August 2018) remains live at the same host today, supporting
       // (not proving) that v1.0 is still the current sample-paper edition.
+      //
+      // CC-09D.1 (Project Architect review): `status: "CURRENT"` here is
+      // deliberately kept, not changed to a "stale"/"historical" value.
+      // Per ADR-0002's own status/verificationStatus split, `status`
+      // (CURRENT/SUPERSEDED/WITHDRAWN) answers "is this the specific
+      // edition being cited, or has it been replaced/invalidated by a
+      // known later one" -- CURRENT here means the latest-known,
+      // not-superseded source-version record (no later edition of this
+      // sample paper is known to exist), matching the treatment already
+      // given to every pre-ADR-0002 CC-04A/B source. It does NOT assert
+      // independently-confirmed live/current applicability -- that
+      // separate, honest question is answered by `verificationStatus:
+      // "UNVERIFIED"` and `lastCurrencyCheckDate` below, exactly the
+      // orthogonal pair ADR-0002 defines for this. The live URL's own
+      // 404 (this document's dead-link finding, above) is a currency
+      // concern tracked via those fields and this comment, never
+      // silently hidden behind an unqualified CURRENT.
       key: SV_CG_602_SAMPLE_QUESTIONS, sourceKey: SRC_CG_602_SAMPLE_QUESTIONS,
       edition: "v1.0 (August 2018)",
       status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",

@@ -449,7 +449,10 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
         // quantitative Faraday's-law relationship, not merely the
         // qualitative causal principle above.
         id: "flux-change-emf-calculation", basis: "OFFICIAL_ASSESSMENT_EVIDENCE",
-        description: "Calculate the EMF induced by a changing magnetic flux (or the flux change from a given EMF and time), e = (change in flux) / (time taken).",
+        // CC-09D.1: narrowed to "single loop" alongside the assertion's own
+        // correction -- matches both the formula (no N-turn factor) and
+        // AC5.4's own "single-loop generator" wording.
+        description: "Calculate the EMF induced in a single loop by a changing magnetic flux (or the flux change from a given EMF and time), e = (change in flux) / (time taken).",
         satisfiedBy: ["EL-REL-FLUX-CHANGE-EMF-001"],
       },
       { id: "ac-generator-principle", basis: "EXPLICIT", description: "A single-loop generator produces alternating EMF by rotating within a field.", satisfiedBy: ["EL-CONCEPT-AC-GENERATOR-001"] },

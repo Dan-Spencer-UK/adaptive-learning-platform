@@ -937,4 +937,22 @@ describe("report-coverage-matrix: CC-09D Unit 202 official public assessment cal
       expect(version.statement.length).toBeLessThan(300);
     }
   });
+
+  it("F (CC-09D.1, Project Architect correction): EL-REL-FLUX-CHANGE-EMF-001 states the single-loop form its own source and formula actually support -- never implies a generic multi-turn coil without the N factor its N-turn formula would require", () => {
+    const version = cc04Unit202ElectricalScience.assertionVersions.find(
+      (v) => v.assertionIdentifier === "EL-REL-FLUX-CHANGE-EMF-001",
+    )!;
+    expect(version.statement.toLowerCase()).not.toContain("coil");
+    expect(version.statement.toLowerCase()).toContain("single loop");
+    // The single-loop formula given (e = change in flux / time taken)
+    // carries no turns-count factor -- the statement must never claim
+    // this holds for a multi-turn coil, which would require an explicit N.
+    expect(version.statement).not.toMatch(/\bN\b/);
+
+    const obligation = AC_OBLIGATIONS.find((s) => s.acNumber === "5.4")!.obligations.find(
+      (o) => o.id === "flux-change-emf-calculation",
+    )!;
+    expect(obligation.description.toLowerCase()).toContain("single loop");
+    expect(obligation.description.toLowerCase()).not.toContain("coil");
+  });
 });
