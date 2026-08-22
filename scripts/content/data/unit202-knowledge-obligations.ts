@@ -221,6 +221,20 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
       { id: "energy-calculation", basis: "NECESSARY_PREREQUISITE", description: "Determine values of energy using E = P x t and its rearrangements.", satisfiedBy: ["EL-ENERGY-POWER-TIME-RELATIONSHIP-001", "EL-ENERGY-REARRANGE-001", "EL-ENERGY-CALC-001"] },
       { id: "charge", basis: "RANGE", description: "Identify the SI unit of charge (coulomb) and determine values of charge/current using I = Q / t.", satisfiedBy: ["EL-UNIT-COULOMB-001", "EL-CURRENT-CHARGE-CALC-001"] },
       { id: "impedance", basis: "RANGE", description: "Understand impedance as combined resistance/reactance and its unit.", satisfiedBy: ["EL-CONCEPT-IMPEDANCE-001"] },
+      {
+        // CC-09D (Unit 202 Official Public Assessment Calibration): the
+        // first real use of OFFICIAL_ASSESSMENT_EVIDENCE (reserved since
+        // CC-09B.6, populated here for the first time from genuine
+        // official 2365-602 sample-assessment evidence, not guesswork).
+        // Sample item 6 tests selecting the correct impedance formula
+        // among plausible distractors -- positive evidence that AC2.2's
+        // "impedance" Range item extends to formula recall/calculation,
+        // not merely the qualitative "understand impedance" depth the
+        // pre-existing obligation above already covers.
+        id: "impedance-calculation", basis: "OFFICIAL_ASSESSMENT_EVIDENCE",
+        description: "Recall and apply the impedance formula Z = sqrt(R^2 + X^2).",
+        satisfiedBy: ["EL-REL-IMPEDANCE-001"],
+      },
       { id: "reactance-general", basis: "RANGE", description: "Reactance as the frequency-dependent opposition to current in an AC circuit, underlying its inductive and capacitive forms.", satisfiedBy: ["EL-CONCEPT-REACTANCE-001"] },
       { id: "inductance-and-inductive-reactance", basis: "RANGE", description: "Distinguish inductance (henry) from inductive reactance (ohm), and state inductive reactance's frequency dependence.", satisfiedBy: ["EL-UNIT-HENRY-001", "EL-CONCEPT-INDUCTANCE-001", "EL-CONCEPT-INDUCTIVE-REACTANCE-001"] },
       { id: "capacitance-and-capacitive-reactance", basis: "RANGE", description: "Distinguish capacitance (farad) from capacitive reactance (ohm), and state capacitive reactance's frequency dependence.", satisfiedBy: ["EL-UNIT-FARAD-001", "EL-CONCEPT-CAPACITANCE-001", "EL-CONCEPT-CAPACITIVE-REACTANCE-001"] },
@@ -369,6 +383,24 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
     obligations: [
       { id: "flux-meaning", basis: "EXPLICIT", description: "State what magnetic flux is.", satisfiedBy: ["EL-CONCEPT-MAGNETIC-FLUX-001"] },
       { id: "flux-density-meaning", basis: "EXPLICIT", description: "State the difference between flux and flux density.", satisfiedBy: ["EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"] },
+      {
+        // CC-09D: naming the SI unit alongside the quantity is the same
+        // paired quantity+unit pattern every other electrical quantity in
+        // this corpus already carries -- background knowledge necessary to
+        // fully identify magnetic flux, not itself assessment-evidenced.
+        id: "flux-unit", basis: "NECESSARY_PREREQUISITE",
+        description: "Identify the SI unit of magnetic flux (weber).",
+        satisfiedBy: ["EL-UNIT-WEBER-001"],
+      },
+      {
+        // CC-09D: sample item 31 directly tests naming the SI unit of
+        // magnetic flux density among real-but-wrong SI-unit distractors
+        // (weber, henry, farad) -- positive OFFICIAL_ASSESSMENT_EVIDENCE
+        // this specific unit-recognition fact is assessable.
+        id: "flux-density-unit", basis: "OFFICIAL_ASSESSMENT_EVIDENCE",
+        description: "Identify the SI unit of magnetic flux density (tesla).",
+        satisfiedBy: ["EL-UNIT-TESLA-001"],
+      },
     ],
   },
   {
@@ -410,6 +442,16 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
     acNumber: "5.4",
     obligations: [
       { id: "electromagnetic-induction", basis: "NECESSARY_PREREQUISITE", description: "A changing flux induces an EMF (the causal principle underlying generation).", satisfiedBy: ["EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001"] },
+      {
+        // CC-09D: sample item 35 requires CALCULATING the flux change from
+        // a given induced EMF and time interval -- positive
+        // OFFICIAL_ASSESSMENT_EVIDENCE that this AC extends to the
+        // quantitative Faraday's-law relationship, not merely the
+        // qualitative causal principle above.
+        id: "flux-change-emf-calculation", basis: "OFFICIAL_ASSESSMENT_EVIDENCE",
+        description: "Calculate the EMF induced by a changing magnetic flux (or the flux change from a given EMF and time), e = (change in flux) / (time taken).",
+        satisfiedBy: ["EL-REL-FLUX-CHANGE-EMF-001"],
+      },
       { id: "ac-generator-principle", basis: "EXPLICIT", description: "A single-loop generator produces alternating EMF by rotating within a field.", satisfiedBy: ["EL-CONCEPT-AC-GENERATOR-001"] },
       { id: "sine-wave-output", basis: "EXPLICIT", description: "The generator's EMF varies as a sine wave.", satisfiedBy: ["EL-CONCEPT-SINE-WAVE-001"] },
       { id: "ac-dc-distinction", basis: "EXPLICIT", description: "Distinguish A.C. from D.C.", satisfiedBy: ["EL-CONCEPT-AC-DC-DISTINCTION-001"] },

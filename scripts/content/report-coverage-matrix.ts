@@ -771,10 +771,24 @@ function buildReport(overrides?: {
     // (official teaching material resolving what the bare handbook
     // AC/Range wording alone could not) -- equally admissible as
     // EXPLICIT/RANGE for the Mandatory Knowledge Gate, never a lesser
-    // tier. OFFICIAL_ASSESSMENT_EVIDENCE is deliberately excluded here:
-    // it is a declared-for-future-use value, never populated (and
-    // therefore never reached) in this package.
-    if (bases.some((b) => b.basis === "EXPLICIT" || b.basis === "RANGE" || b.basis === "OFFICIAL_TEACHING_INTERPRETATION")) return "IN_SCOPE_REQUIRED";
+    // tier. CC-09D (Unit 202 Official Public Assessment Calibration) adds
+    // OFFICIAL_ASSESSMENT_EVIDENCE as a fourth, equally admissible route,
+    // now that it is genuinely populated for the first time from real
+    // official 2365-602 sample-assessment evidence (previously reserved-
+    // but-unreachable per CC-09B.6/CC-09C) -- official assessment evidence
+    // demonstrating a proposition is assessable is exactly as strong a
+    // curriculum-scope justification as official teaching-scope evidence,
+    // never a lesser tier.
+    if (
+      bases.some(
+        (b) =>
+          b.basis === "EXPLICIT" ||
+          b.basis === "RANGE" ||
+          b.basis === "OFFICIAL_TEACHING_INTERPRETATION" ||
+          b.basis === "OFFICIAL_ASSESSMENT_EVIDENCE",
+      )
+    )
+      return "IN_SCOPE_REQUIRED";
     if (bases.some((b) => b.basis === "NECESSARY_PREREQUISITE")) {
       const domain = domainByAssertion.get(assertionId);
       return domain === "FM" || domain === "FP" ? "FOUNDATIONAL_PREREQUISITE" : "IN_SCOPE_SUPPORTING";

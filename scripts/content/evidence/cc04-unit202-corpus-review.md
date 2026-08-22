@@ -6,10 +6,10 @@ Generated deterministically by `scripts/content/generate-corpus-review.ts` from
 only, never rendered to learners. Regenerate with:
 `node scripts/content/generate-corpus-review.ts`.
 
-Total assertions: 254
+Total assertions: 258
 - Foundational Maths (FM): 26
 - Foundational Physics (FP): 44
-- Electrical (EL): 184
+- Electrical (EL): 188
 
 The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150). Foundational Maths/Physics are additional reusable horizontal knowledge and do not count toward that target.
 
@@ -27,8 +27,8 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Characteristics of a sine-wave: Periodic time | 1 |
 | Characteristics of a sine-wave: Root Mean Square (RMS) value | 1 |
 | Describe the basic principles of electron theory | 8 |
-| Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux | 7 |
-| Describe the basic principles of generating an A.C. supply | 7 |
+| Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux | 8 |
+| Describe the basic principles of generating an A.C. supply | 8 |
 | Describe the chemical and thermal effects of electric currents | 16 |
 | Describe the effects of magnetism in terms of attraction and repulsion | 2 |
 | Describe the function and application of electronic components that are used in electrical systems | 8 |
@@ -41,7 +41,7 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Electrical quantities (SI units): Current | 1 |
 | Electrical quantities (SI units): Energy | 1 |
 | Electrical quantities (SI units): Frequency | 2 |
-| Electrical quantities (SI units): Impedance | 1 |
+| Electrical quantities (SI units): Impedance | 2 |
 | Electrical quantities (SI units): Inductance and inductive reactance | 3 |
 | Electrical quantities (SI units): Power factor | 1 |
 | Electrical quantities (SI units): Power | 1 |
@@ -74,13 +74,13 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Electronic components and devices: Zener | 1 |
 | Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits | 60 |
 | Identify and apply appropriate mathematical principles which are relevant to electrical work tasks | 32 |
-| Identify and determine values of base and derived SI units which apply specifically to electrical quantities | 60 |
+| Identify and determine values of base and derived SI units which apply specifically to electrical quantities | 62 |
 | Identify and distinguish between materials which are good conductors and insulators | 8 |
 | Identify and use internationally recognised base and derived (SI) units of measurement | 6 |
 | Identify appropriate electrical instruments for the measurement of different electrical quantities | 20 |
 | Identify the characteristics of sine-waves | 22 |
 | State the basic operating principles of electronic components and devices | 17 |
-| State the difference between magnetic flux and flux density | 4 |
+| State the difference between magnetic flux and flux density | 8 |
 | State what is meant by the term voltage drop in relation to electrical circuits | 4 |
 
 ## Foundational Maths/Physics: used vs currently-unused-but-retained
@@ -126,8 +126,10 @@ Source role (CC-09C) reflects the generic Course Evidence Registry evidential-ro
 | Thyristor Based Sensor Alarm System, Working and Applications | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
 | Fleming's left-hand rule for motors | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
 | Fleming's right-hand rule | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
+| 5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (question paper) | OFFICIAL_ASSESSMENT | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| 5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (mark scheme / answer keys) | OFFICIAL_ASSESSMENT | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 
-Rights distribution: PROPRIETARY_REFERENCE: 15, OPEN: 7, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
+Rights distribution: PROPRIETARY_REFERENCE: 17, OPEN: 7, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
 
 ## OpenStax exact-book licence evidence (CC-04B hard requirement)
 
@@ -140,13 +142,13 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ## Graph health
 
-- Total relationships: 388
+- Total relationships: 392
   - CONTRASTS_WITH: 17
   - DERIVED_FROM: 36
-  - PREREQUISITE_OF: 325
+  - PREREQUISITE_OF: 329
   - SUPPORTS: 10
 - Misconceptions: 21; conflict links: 45
-- Curriculum mappings: 495
+- Curriculum mappings: 504
 - Self edges, duplicate edges, unintended prerequisite cycles, broken relationship targets, unmapped Electrical assertions and approved-versions-without-provenance: all mechanically proven 0 -- see supabase/tests/database/10_unit202_knowledge_graph.sql and the CC-04B completion report for the live query evidence.
 
 ## Foundational Maths (FM)
@@ -1195,9 +1197,20 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Impedance is the total opposition a circuit presents to the flow of alternating current, combining resistance and reactance; like resistance and reactance, it is measured in ohms.
 
 **Direct prerequisites:** EL-CONCEPT-RESISTANCE-001 (REQUIRED); EL-CONCEPT-REACTANCE-001 (REQUIRED)
-**Direct dependents:** EL-CONCEPT-POWER-FACTOR-001
+**Direct dependents:** EL-REL-IMPEDANCE-001; EL-CONCEPT-POWER-FACTOR-001
 **Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Impedance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-REL-IMPEDANCE-001
+
+**Statement (v1, APPROVED):** The magnitude of the impedance of a series AC circuit is given by Z = sqrt(R^2 + X^2), where R is the circuit's resistance and X is its net reactance.
+
+**Direct prerequisites:** EL-CONCEPT-IMPEDANCE-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR); Electrical quantities (SI units): Impedance (REQUIRED_FOR); Identify and determine values of base and derived SI units which apply specifically to electrical quantities (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — "Z = sqrt(R^2 + (X_L - X_C)^2)" (Equation 15.11) -- the impedance magnitude of a series RLC AC circuit, combining resistance and net reactance [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC2.2: identify and determine values of base and derived SI units which apply specifically to electrical quantities [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
@@ -2328,20 +2341,42 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** Magnetic flux is a measure of the total amount of magnetic field passing through a given area.
 
 **Direct prerequisites:** (none — root assertion)
-**Direct dependents:** EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001; EL-CONCEPT-EMF-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
+**Direct dependents:** EL-UNIT-WEBER-001; EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001; EL-CONCEPT-EMF-001; EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001; EL-CONCEPT-AC-GENERATOR-001
 **Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR); State the difference between magnetic flux and flux density (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.2: state the difference between magnetic flux and flux density [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-UNIT-WEBER-001
+
+**Statement (v1, APPROVED):** The weber (Wb) is the SI derived unit of magnetic flux.
+
+**Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR); State the difference between magnetic flux and flux density (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.2: state the difference between magnetic flux and flux density [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 
 ### EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001
 
 **Statement (v1, APPROVED):** Magnetic flux density is the amount of magnetic flux passing through a unit area, describing how concentrated a magnetic field is.
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (REQUIRED)
-**Direct dependents:** (none — leaf capability)
+**Direct dependents:** EL-UNIT-TESLA-001
 **Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR); State the difference between magnetic flux and flux density (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.2: state the difference between magnetic flux and flux density [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-UNIT-TESLA-001
+
+**Statement (v1, APPROVED):** The tesla (T) is the SI derived unit of magnetic flux density.
+
+**Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** State the difference between magnetic flux and flux density (REQUIRED_FOR); State the difference between magnetic flux and flux density (REQUIRED_FOR)
+**Provenance:** The International System of Units (SI Brochure) — SI Brochure: table of SI derived units with special names, including the volt, ohm, watt and joule, and SI prefixes [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.2: state the difference between magnetic flux and flux density [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
@@ -2462,11 +2497,22 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Statement (v1, APPROVED):** A changing magnetic flux through a circuit or coil induces an electromotive force (EMF) in that circuit -- the principle of electromagnetic induction.
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FLUX-001 (REQUIRED); EL-CONCEPT-EMF-001 (REQUIRED)
-**Direct dependents:** EL-CONCEPT-AC-GENERATOR-001
+**Direct dependents:** EL-REL-FLUX-CHANGE-EMF-001; EL-CONCEPT-AC-GENERATOR-001
 **Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
 **Provenance:** University Physics Volume 2 — University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
+
+### EL-REL-FLUX-CHANGE-EMF-001
+
+**Statement (v1, APPROVED):** The magnitude of the EMF induced in a coil equals the rate of change of the magnetic flux linking it: e = (change in flux) / (time taken).
+
+**Direct prerequisites:** EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001 (REQUIRED)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the basic principles of generating an A.C. supply (REQUIRED_FOR); Describe the basic principles of generating an A.C. supply in terms of: a single-loop generator, sine-wave, frequency, EMF, magnetic flux (REQUIRED_FOR)
+**Provenance:** University Physics Volume 2 — "epsilon = -dPhi_m/dt" (single loop) and "epsilon = -N dPhi_m/dt" (N-turn coil) -- the induced EMF equals the (negative) rate of change of magnetic flux linking the circuit [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.4: describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
 ### EL-CONCEPT-AC-GENERATOR-001
 

@@ -806,7 +806,11 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
   ...membersOf("electrical.magnetism_and_electromagnetism", [
     ["EL-CONCEPT-MAGNETISM-001", "canonical_form"],
     ["EL-CONCEPT-MAGNETIC-FLUX-001", "prerequisite_concept"],
+    // CC-09D: official 2365-602 sample-assessment-confirmed unit-naming
+    // gap (task section 7).
+    ["EL-UNIT-WEBER-001", "prerequisite_concept"],
     ["EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", "prerequisite_concept"],
+    ["EL-UNIT-TESLA-001", "prerequisite_concept"],
     ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "canonical_form"],
     // CC-09B.6: official-teaching-confirmed gap (task section 9).
     ["EL-CONCEPT-FIELD-DIRECTION-RULE-001", "consequence"],
@@ -830,6 +834,9 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     // CC-09B.1: explicit causal principle the generator assertion below
     // depends on (audit section 15.C).
     ["EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001", "prerequisite_concept"],
+    // CC-09D: official 2365-602 sample-assessment-confirmed calculation
+    // gap (task section 7) -- the quantitative Faraday's-law form.
+    ["EL-REL-FLUX-CHANGE-EMF-001", "consequence"],
     ["EL-CONCEPT-AC-GENERATOR-001", "canonical_form"],
     ["EL-CONCEPT-SINE-WAVE-001", "consequence"],
   ]),
@@ -857,6 +864,10 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
   ...membersOf("electrical.ac_reactive_quantities", [
     ["EL-CONCEPT-REACTANCE-001", "canonical_form"],
     ["EL-CONCEPT-IMPEDANCE-001", "canonical_form"],
+    // CC-09D: official 2365-602 sample-assessment-confirmed calculation
+    // gap (task section 7) -- formula recall/application, not merely the
+    // qualitative concept above.
+    ["EL-REL-IMPEDANCE-001", "consequence"],
     ["EL-UNIT-HENRY-001", "prerequisite_concept"],
     ["EL-CONCEPT-INDUCTANCE-001", "canonical_form"],
     ["EL-CONCEPT-INDUCTIVE-REACTANCE-001", "consequence"],

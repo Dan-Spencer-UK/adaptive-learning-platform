@@ -129,6 +129,17 @@ type Strength = z.infer<typeof relationshipStrengthSchema>;
 // ---------------------------------------------------------------------
 
 const SRC_CG = "src-cg-2365-02";
+// CC-09D (Unit 202 Official Public Assessment Calibration): the official
+// public 2365-602 sample assessment, registered as OFFICIAL_ASSESSMENT-role
+// Course Evidence Registry entries (CC-09C's sourceRole). Deliberately
+// carries NO assertionProvenanceLinks anywhere in this manifest -- it is
+// evidence that a proposition is assessable, never factual authority for
+// the proposition itself (task section 7's explicit CORRECT/INCORRECT
+// sequence). Two companion documents, released together as the same v1.0
+// (August 2018) sample-paper set but as separate PDF files with separate
+// fingerprints.
+const SRC_CG_602_SAMPLE_QUESTIONS = "src-cg-2365-602-sample-questions";
+const SRC_CG_602_SAMPLE_MARK_SCHEME = "src-cg-2365-602-sample-mark-scheme";
 const SRC_BIPM = "src-bipm-si-brochure";
 const SRC_DFE_MATHS = "src-dfe-gcse-maths";
 const SRC_OPENSTAX_UP1 = "src-openstax-university-physics-v1";
@@ -230,6 +241,11 @@ const SV_WIKIPEDIA_BRITISH_TELEPHONE_SOCKETS = "sv-wikipedia-british-telephone-s
 const SV_ELPROCUS_THYRISTOR_ALARM = "sv-elprocus-thyristor-sensor-alarm";
 const SV_WIKIPEDIA_FLEMING_LEFT_HAND = "sv-wikipedia-flemings-left-hand-rule";
 const SV_WIKIPEDIA_FLEMING_RIGHT_HAND = "sv-wikipedia-flemings-right-hand-rule";
+// CC-09D: the official public 2365-602 sample e-volve MC test (v1.0,
+// August 2018) -- OFFICIAL_ASSESSMENT evidence only, never cited as
+// factual authority anywhere in this manifest.
+const SV_CG_602_SAMPLE_QUESTIONS = "sv-cg-2365-602-sample-questions-v1-0";
+const SV_CG_602_SAMPLE_MARK_SCHEME = "sv-cg-2365-602-sample-mark-scheme-v1-0";
 
 // ---------------------------------------------------------------------
 // Curriculum
@@ -824,10 +840,30 @@ const locators: LocatorDef[] = [
     locatorSummary: "University Physics Volume 2, Ch.13: magnetic flux and flux density (13.1 Faraday's Law); EMF; electric generators and the sinusoidal generated waveform (13.6)",
   },
   {
+    // CC-09D: precise locator for the quantitative form of Faraday's law
+    // itself (distinct from loc-openstax-up2-em-induction's broader
+    // chapter-level citation, and distinct from loc-openstax-up2-motional-
+    // emf's own e=Blv special case) -- inspected directly, task section 24.
+    key: "loc-openstax-up2-faradays-law",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 13", subsection: "13.1 Faraday's Law",
+    locatorSummary: "\"epsilon = -dPhi_m/dt\" (single loop) and \"epsilon = -N dPhi_m/dt\" (N-turn coil) -- the induced EMF equals the (negative) rate of change of magnetic flux linking the circuit",
+  },
+  {
     key: "loc-openstax-up2-ac-circuits",
     sourceVersionKey: SV_OPENSTAX_UP2,
     section: "Chapter 15", subsection: "Alternating-Current Circuits",
     locatorSummary: "University Physics Volume 2, Ch.15: impedance, reactance, inductance, capacitance and power factor in AC circuits",
+  },
+  {
+    // CC-09D: precise locator for the impedance MAGNITUDE formula itself
+    // (distinct from loc-openstax-up2-ac-circuits' broader chapter-level
+    // citation already used for the qualitative impedance concept) --
+    // inspected directly, task section 24.
+    key: "loc-openstax-up2-rlc-series-impedance",
+    sourceVersionKey: SV_OPENSTAX_UP2,
+    section: "Chapter 15", subsection: "15.3 RLC Series Circuits with AC",
+    locatorSummary: "\"Z = sqrt(R^2 + (X_L - X_C)^2)\" (Equation 15.11) -- the impedance magnitude of a series RLC AC circuit, combining resistance and net reactance",
   },
 
   // -- City & Guilds 2365-02, Unit 202 Assessment Criteria (real AC
@@ -2383,6 +2419,27 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "IMPEDANCE"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09D (Unit 202 Official Public Assessment Calibration): the
+    // official public 2365-602 sample e-volve MC test (item 6) tests
+    // selecting the correct impedance FORMULA among four plausible
+    // distractors (wrong sign, wrong operation, inverted) -- positive
+    // OFFICIAL_ASSESSMENT evidence that a calculation/formula-recall
+    // capability is expected under AC2.2's "impedance" Range item, beyond
+    // EL-CONCEPT-IMPEDANCE-001's existing qualitative "understand
+    // impedance" depth. Formula independently inspected and verified
+    // against OpenStax University Physics Volume 2 Section 15.3 (Equation
+    // 15.11) before authoring -- never taken from the assessment item or
+    // its answer key, which establish assessability only, never fact.
+    id: "EL-REL-IMPEDANCE-001", domain: "EL",
+    statement: "The magnitude of the impedance of a series AC circuit is given by Z = sqrt(R^2 + X^2), where R is the circuit's resistance and X is its net reactance.",
+    provenance: [
+      { locator: "loc-openstax-up2-rlc-series-impedance", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-IMPEDANCE-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC2_2, type: "REQUIRED_FOR" }, { node: rangeNode("2.2", "IMPEDANCE"), type: "REQUIRED_FOR" }],
+  },
+  {
     id: "EL-UNIT-HENRY-001", domain: "EL",
     statement: "The henry (H) is the SI derived unit of inductance -- distinct from the ohm, the unit of inductive reactance.",
     provenance: [{ locator: "loc-bipm-derived-units", role: "DEFINES" }, { locator: "loc-cg-ac2.2", role: "CURRICULUM_REQUIRES" }],
@@ -3469,10 +3526,37 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_2, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09D: AC5.2's own EXPLICIT wording ("state the difference between
+    // magnetic flux and flux density") already required both quantities'
+    // identity as governed knowledge -- naming the SI unit alongside the
+    // quantity is the same paired quantity+unit pattern every other
+    // electrical quantity in this corpus already carries (ohm/resistance,
+    // henry/inductance, farad/capacitance, etc.), not new scope.
+    id: "EL-UNIT-WEBER-001", domain: "EL",
+    statement: "The weber (Wb) is the SI derived unit of magnetic flux.",
+    provenance: [{ locator: "loc-bipm-derived-units", role: "DEFINES" }, { locator: "loc-cg-ac5.2", role: "CURRICULUM_REQUIRES" }],
+    prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FLUX-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC5_2, type: "REQUIRED_FOR" }],
+  },
+  {
     id: "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", domain: "EL",
     statement: "Magnetic flux density is the amount of magnetic flux passing through a unit area, describing how concentrated a magnetic field is.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.2", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FLUX-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC5_2, type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09D: the official public 2365-602 sample e-volve MC test (item
+    // 31) directly tests naming the SI unit of magnetic flux density
+    // among plausible distractors (weber, henry, farad -- all real but
+    // wrong SI derived units) -- positive OFFICIAL_ASSESSMENT evidence
+    // this unit-recognition fact is assessable, previously ungoverned
+    // (EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001 states the quantity but never
+    // named its unit).
+    id: "EL-UNIT-TESLA-001", domain: "EL",
+    statement: "The tesla (T) is the SI derived unit of magnetic flux density.",
+    provenance: [{ locator: "loc-bipm-derived-units", role: "DEFINES" }, { locator: "loc-cg-ac5.2", role: "CURRICULUM_REQUIRES" }],
+    prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_2, type: "REQUIRED_FOR" }],
   },
   {
@@ -3596,6 +3680,28 @@ const A: AssertionDef[] = [
     statement: "A changing magnetic flux through a circuit or coil induces an electromotive force (EMF) in that circuit -- the principle of electromagnetic induction.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "DEFINES" }, { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-MAGNETIC-FLUX-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-EMF-001", strength: "REQUIRED" }],
+    curriculum: [{ node: NODE_AC5_4, type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-09D: the official public 2365-602 sample e-volve MC test (item
+    // 35) requires CALCULATING the flux change from a given induced EMF
+    // and time interval -- positive OFFICIAL_ASSESSMENT evidence that
+    // AC5.4's "changing flux induces an EMF" obligation extends to the
+    // quantitative Faraday's-law relationship, not merely the qualitative
+    // principle EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001 already states.
+    // Distinct from EL-REL-INDUCED-EMF-001 (e = B l v, AC5.3's motional-EMF
+    // special case for a conductor moving through a field) -- this is the
+    // general flux-linkage form underlying AC5.4's generator principle.
+    // Formula independently inspected and verified against OpenStax
+    // University Physics Volume 2 Section 13.1 before authoring -- never
+    // taken from the assessment item or its answer key.
+    id: "EL-REL-FLUX-CHANGE-EMF-001", domain: "EL",
+    statement: "The magnitude of the EMF induced in a coil equals the rate of change of the magnetic flux linking it: e = (change in flux) / (time taken).",
+    provenance: [
+      { locator: "loc-openstax-up2-faradays-law", role: "DEFINES", supportType: "DIRECT" },
+      { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" },
+    ],
+    prereqs: [{ id: "EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_4, type: "REQUIRED_FOR" }],
   },
   {
@@ -4858,6 +4964,38 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       canonicalReference: "Wikipedia: Fleming's right-hand rule",
       accessLocation: "https://en.wikipedia.org/wiki/Fleming%27s_right-hand_rule",
     },
+    {
+      // CC-09D (Unit 202 Official Public Assessment Calibration): the
+      // official public 2365-602 sample assessment, registered in the
+      // Course Evidence Registry as OFFICIAL_ASSESSMENT-role evidence
+      // (CC-09C's sourceRole) -- positive evidence of assessability only,
+      // never factual authority. Deliberately carries ZERO
+      // assertionProvenanceLinks anywhere in this manifest.
+      key: SRC_CG_602_SAMPLE_QUESTIONS,
+      title: "5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (question paper)",
+      publisher: "City & Guilds",
+      sourceFamily: "Official sample assessment",
+      sourceType: "SAMPLE_ASSESSMENT",
+      jurisdiction: "UK",
+      canonicalReference: "City & Guilds \"5357 Level 3 Electrotechnical / 2365 Level 2 and 3 Diploma in Electrical Installations (Buildings and Structures) -- Sample papers\", v1.0, August 2018",
+      accessLocation: "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers-v1-0-pdf.ashx",
+      sourceRole: "OFFICIAL_ASSESSMENT",
+    },
+    {
+      // CC-09D: the companion mark scheme / answer key for the same
+      // sample e-volve MC test above -- used only to confirm which of the
+      // four options is correct for each item during analysis, never
+      // itself cited as a fact source.
+      key: SRC_CG_602_SAMPLE_MARK_SCHEME,
+      title: "5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (mark scheme / answer keys)",
+      publisher: "City & Guilds",
+      sourceFamily: "Official sample assessment",
+      sourceType: "MARK_SCHEME",
+      jurisdiction: "UK",
+      canonicalReference: "City & Guilds \"5357 Level 3 Electrotechnical / 2365 Level 2 and 3 Diploma in Electrical Installations (Buildings and Structures) -- Sample papers -- Mark schemes\", v1.0, August 2018",
+      accessLocation: "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers---mark-schemes-v1-0-pdf.pdf",
+      sourceRole: "OFFICIAL_ASSESSMENT",
+    },
   ],
 
   sourceVersions: [
@@ -4895,6 +5033,42 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       verificationStatus: "VERIFIED",
       verifiedBy: "project-architect",
       lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      // CC-09D: the official cityandguilds.com URL for this specific file
+      // (the question-text companion) currently redirects to
+      // "/page-not-found" -- confirmed by direct HTTP inspection, not
+      // assumed. Fetched instead via the Internet Archive Wayback
+      // Machine's own snapshot of the SAME cityandguilds.com URL, captured
+      // 2024-11-25 -- the most recent available capture of the live,
+      // official artefact, not a third-party mirror or reproduction.
+      // contentFingerprintSha256 is the real SHA-256 of that exact
+      // archived artefact (627.6KB), computed directly, never fabricated.
+      // Currency: the document's own title page states "August 2018 v1.0"
+      // -- unchanged since original publication as far as this session
+      // could determine; the companion mark-scheme document below (same
+      // v1.0/August 2018) remains live at the same host today, supporting
+      // (not proving) that v1.0 is still the current sample-paper edition.
+      key: SV_CG_602_SAMPLE_QUESTIONS, sourceKey: SRC_CG_602_SAMPLE_QUESTIONS,
+      edition: "v1.0 (August 2018)",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-22",
+      contentFingerprintSha256: "96afeb0827ec1f39cc19249608bf0fbea9287e554f7b40a94979dcccf8da983c",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-22",
+    },
+    {
+      // CC-09D: fetched directly, live, from cityandguilds.com on
+      // 2026-08-22 (this exact URL still resolves, unlike its question-
+      // text companion above). contentFingerprintSha256 is the real
+      // SHA-256 of that fetched artefact (181KB), computed directly.
+      key: SV_CG_602_SAMPLE_MARK_SCHEME, sourceKey: SRC_CG_602_SAMPLE_MARK_SCHEME,
+      edition: "v1.0 (August 2018)",
+      status: "CURRENT", rightsClassification: "PROPRIETARY_REFERENCE",
+      retrievedDate: "2026-08-22",
+      contentFingerprintSha256: "0fba6fc4d2ad0f7662cc7068b184e815ddca4b17b3fa91f9772c058d62c770d7",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-22",
     },
     // ADR-0002: these four pre-dated ADR-0002 (fetched during CC-04A/B) --
     // no raw fetched-artefact bytes are available in this environment to
