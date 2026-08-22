@@ -2587,21 +2587,27 @@ const questionBlueprints: QuestionBlueprint[] = [
     // families/series-resistance.ts's calculateTotalResistance), so the
     // individual R1..R4 values are read from the diagram, never templated.
     presentation: { promptLines: ["The series circuit shown has {component_count} resistors."] },
-    // CC-09E.1 (Project Architect correction): the official public
-    // 2365-602 sample directly demonstrates this exact grammar via item
-    // 22 (a genuine series-circuit voltage-divider diagram -- three
-    // resistors in series, each with its own voltmeter, requiring the
-    // total series resistance as an intermediate step to find one
-    // resistor's voltage). The original citation (item 27) was factually
-    // wrong: on re-inspection, item 27's own diagram is a three-branch
-    // PARALLEL circuit (matching item 23's topology), not series --
-    // corrected to the genuine series-circuit item rather than left
-    // pointing at a topologically mismatched one.
-    assessmentStyleEvidence: {
-      classification: "DIRECT_SAMPLE_ANALOGUE",
-      sourceItemRef: "2365-602-sample-v1:item-22",
-      note: "Sample item 22 (series-circuit voltage-divider calculation from a diagram, three resistors in series) requires this same series total-resistance operation/representation as an intermediate step for this knowledge target.",
-    },
+    // CC-09E.2 (Project Architect correction): assessmentStyleEvidence
+    // deliberately left undeclared. CC-09E originally cited item 27 (a
+    // factual error -- item 27's diagram is actually a three-branch
+    // PARALLEL circuit, matching item 23's topology); CC-09E.1 corrected
+    // this to item 22 (a genuine series-circuit voltage-divider, three
+    // resistors in series, individually voltmetered), but on further
+    // review item 22's own REQUESTED answer is an individual resistor's
+    // voltage (V1), not the total series resistance -- the total is only
+    // ever computed as an internal intermediate step toward that answer,
+    // never itself the grammar the sample tests. DIRECT_SAMPLE_ANALOGUE
+    // requires the sample to directly demonstrate the SAME requested-
+    // answer grammar for the SAME knowledge target, not merely use it as
+    // an intermediate operation inside a materially different question
+    // (see the regression test in prove-question-archetypes.test.ts
+    // guarding against exactly this). No sample item in the official
+    // public 2365-602 sample asks for total series resistance as its own
+    // final requested answer (unlike item 25, which does ask this
+    // directly for a parallel circuit -- see parallel.calculate_total).
+    // This blueprint remains valid, governed practice regardless --
+    // "no direct sample analogue" is not itself a defect, only an
+    // honestly narrower evidence claim than CC-09E/CC-09E.1 made.
   }),
   qb({
     id: "series.solve_missing_component",

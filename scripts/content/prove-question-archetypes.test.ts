@@ -37,12 +37,15 @@ function generate(blueprintId: string, seed: number) {
   });
 }
 
-// The 8 CC-09E/CC-09E.1 archetypes: 6 DIRECT_SAMPLE_ANALOGUE (3 new + 3
-// reclassified pre-existing) + 2 ASSESSMENT_STYLE_TRANSFER. CC-09E.1 split
-// the original single magnetism.identify_flux_density_unit blueprint (which
-// silently generated both tesla AND weber under one DIRECT classification)
-// into that blueprint restricted to tesla only, plus a new
-// magnetism.identify_flux_unit TRANSFER blueprint for weber.
+// The 7 CC-09E/CC-09E.1 archetypes that declare assessmentStyleEvidence: 5
+// DIRECT_SAMPLE_ANALOGUE (3 new + 2 reclassified pre-existing) + 2
+// ASSESSMENT_STYLE_TRANSFER. CC-09E.1 split the original single
+// magnetism.identify_flux_density_unit blueprint (which silently generated
+// both tesla AND weber under one DIRECT classification) into that blueprint
+// restricted to tesla only, plus a new magnetism.identify_flux_unit
+// TRANSFER blueprint for weber. CC-09E.2 removed series.calculate_total_
+// resistance from this list entirely -- see the dedicated test below for
+// why it no longer declares assessmentStyleEvidence at all.
 const CC09E_ARCHETYPE_BLUEPRINT_IDS = [
   "magnetism.identify_flux_density_unit",
   "magnetism.identify_flux_unit",
@@ -50,7 +53,6 @@ const CC09E_ARCHETYPE_BLUEPRINT_IDS = [
   "ac_reactive.select_impedance_formula",
   "ac_reactive.identify_reactance_unit",
   "parallel.calculate_total",
-  "series.calculate_total_resistance",
   "waveform.identify_characteristic",
 ] as const;
 
@@ -104,6 +106,27 @@ describe("CC-09E: question-archetype classification metadata", () => {
       expect(evidence.note).not.toMatch(/^[A-D]\.\s/);
       expect(evidence.note.length).toBeLessThan(600);
     }
+  });
+
+  it("regression (CC-09E.2 task section 1): DIRECT_SAMPLE_ANALOGUE cannot be justified solely by an intermediate operation inside a materially different requested-answer grammar -- series.calculate_total_resistance declares no assessmentStyleEvidence at all", () => {
+    // CC-09E originally cited sample item 27 for this blueprint; that
+    // citation was factually wrong (item 27 is a parallel circuit, not
+    // series -- CC-09E.1 fixed the citation to item 22). But item 22's own
+    // REQUESTED answer is an individual resistor's voltage, not the total
+    // series resistance -- the total is computed only as an internal
+    // intermediate step toward that answer. No item in the official public
+    // 2365-602 sample asks for total series resistance as its own final
+    // requested answer (contrast parallel.calculate_total, genuinely
+    // DIRECT against item 25, which does ask this directly for a parallel
+    // circuit). A DIRECT_SAMPLE_ANALOGUE must demonstrate the SAME
+    // requested-answer grammar for the SAME knowledge target -- using a
+    // capability as an intermediate step inside a different question's
+    // grammar is not that, however tempting the operation-level match is.
+    const blueprint = pedagogy.questionBlueprints.find((q) => q.id === "series.calculate_total_resistance")!;
+    expect(blueprint.assessmentStyleEvidence).toBeUndefined();
+    // The blueprint itself remains valid, fully governed practice --
+    // "no direct sample analogue" is an honest evidence gap, not a defect.
+    expect(blueprint.evidence.assertionIdentifiers).toEqual(["EL-SERIES-RESISTANCE-CALC-001"]);
   });
 });
 
