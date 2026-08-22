@@ -168,6 +168,16 @@ const SRC_KUPHALDT_DC_CIRCUITS = "src-kuphaldt-electric-circuits-i-direct-curren
 // named specifically (gear tooth-count/speed-torque; power factor's
 // real/apparent-power-ratio clause). See PROJECT-STATUS.md CC-09B.2.
 const SRC_NIST_HB44 = "src-nist-hb44-3.41-electricity-measuring";
+// CC-09G (task section 2): mean/median/mode/range's factual DEFINES
+// evidence was the DfE GCSE Maths locator, but that locator's own text
+// only establishes these as curriculum SCOPE ("interpret, analyse and
+// compare... through appropriate measures of...") -- it never itself
+// states the mathematical definitions. Replaced with the NIST/SEMATECH
+// e-Handbook of Statistical Methods, an official US government technical
+// reference (same publisher/sourceFamily pattern already trusted via
+// SRC_NIST_HB44) that directly, precisely defines all four measures,
+// including the median's odd/even-count distinction.
+const SRC_NIST_EDA_HANDBOOK = "src-nist-eda-statistical-methods-handbook";
 const SRC_INDUS_UNI_WATTMETER = "src-indus-uni-dynamometer-wattmeter";
 const SRC_UCSD_GEAR_RATIOS = "src-ucsd-mae3-gear-ratios";
 const SRC_SECO_LARM_BEAM_SENSOR = "src-seco-larm-photoelectric-beam-sensor";
@@ -220,6 +230,7 @@ const SV_TI_INVERTERS = "sv-ti-slaa602a-pure-sine-inverter";
 const SV_OPENSTAX_COLLEGE_PHYSICS = "sv-openstax-college-physics-2e";
 const SV_KUPHALDT_DC_CIRCUITS = "sv-kuphaldt-electric-circuits-i-direct-current";
 const SV_NIST_HB44 = "sv-nist-hb44-3.41-2026";
+const SV_NIST_EDA_HANDBOOK = "sv-nist-eda-statistical-methods-handbook";
 const SV_INDUS_UNI_WATTMETER = "sv-indus-uni-dynamometer-wattmeter";
 const SV_UCSD_GEAR_RATIOS = "sv-ucsd-mae3-gear-ratios";
 const SV_SECO_LARM_BEAM_SENSOR = "sv-seco-larm-e-931-s33prgq";
@@ -1051,10 +1062,39 @@ const locators: LocatorDef[] = [
     locatorSummary: "Geometry and measures: know the formulae for Pythagoras' theorem a^2 + b^2 = c^2, and the trigonometric ratios sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse and tan(theta) = opposite/adjacent; apply them to find angles and lengths in right-angled triangles",
   },
   {
+    // CC-09G (task section 2): kept as SCOPE evidence only (CURRICULUM_
+    // REQUIRES) -- this locator's own text establishes that these four
+    // measures are curriculum content, never their mathematical
+    // definitions (independently re-inspected: no formula or definition
+    // appears here, only "interpret, analyse and compare... through
+    // appropriate measures of..."). No longer cited with role DEFINES.
     key: "loc-dfe-statistics-central-tendency-spread",
     sourceVersionKey: SV_DFE_MATHS,
     section: "Subject content", subsection: "Statistics, item 4", page: "11-12",
     locatorSummary: "Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range)",
+  },
+  {
+    // CC-09G: directly re-inspected (itl.nist.gov/div898/handbook/eda/
+    // section3/eda351.htm, section 1.3.5.1) -- gives the mean as the
+    // formula Ybar = sum(Yi)/N; the median explicitly by both cases
+    // (odd N: the middle ordered value; even N: the mean of the two
+    // middle ordered values -- with its own explicit formulas for each);
+    // the mode as the most-frequently-occurring value, not necessarily
+    // unique. No SmartScreen/DfE wording reused -- an independent factual
+    // source for the mathematical definitions themselves.
+    key: "loc-nist-eda-measures-of-location",
+    sourceVersionKey: SV_NIST_EDA_HANDBOOK,
+    section: "1. Exploratory Data Analysis", subsection: "1.3.5.1 Measures of Location",
+    locatorSummary: "The mean is the sum of the data points divided by the number of data points. The median is the value of the point which has half the data smaller than it and half larger; for an odd number of values N it is the middle ordered value, for an even number of values N it is the mean of the two middle ordered values. The mode is the value that occurs with the greatest frequency, and is not necessarily unique.",
+  },
+  {
+    // CC-09G: directly re-inspected (itl.nist.gov/div898/handbook/eda/
+    // section3/eda356.htm, section 1.3.5.6) -- "the range is the largest
+    // value minus the smallest value in a data set".
+    key: "loc-nist-eda-measures-of-scale",
+    sourceVersionKey: SV_NIST_EDA_HANDBOOK,
+    section: "1. Exploratory Data Analysis", subsection: "1.3.5.6 Measures of Scale",
+    locatorSummary: "The range is the largest value minus the smallest value in a data set -- a measure of spread based only on the two extreme values.",
   },
 
   // -- CC-09B: OpenStax University Physics Volume 1, LO3 AC3.2 (levers) --
@@ -1371,10 +1411,17 @@ const locators: LocatorDef[] = [
     locatorSummary: "\"The Thumb represents the direction of the Motion (Force) of the conductor. The Fore finger represents the direction of the magnetic Field. The Centre finger represents the direction of the Current\" -- the UK vocational-trade naming/mnemonic for the same force-direction rule OpenStax states as RHR-1, citing Fleming, John Ambrose (1902), Magnets and Electric Currents, 2nd ed., pp.173-174",
   },
   {
+    // CC-09G (task section 3): locatorSummary strengthened to name the
+    // full geometric requirement -- independently re-inspected (the
+    // section's own rod-on-rails derivation sweeps a rectangular area
+    // l*x perpendicular to B, which requires the rod's length and its
+    // direction of motion to themselves be perpendicular to each other as
+    // well as to the field -- i.e. mutually perpendicular, not merely
+    // "v perpendicular to B" alone).
     key: "loc-openstax-up2-motional-emf",
     sourceVersionKey: SV_OPENSTAX_UP2,
     section: "Chapter 13", subsection: "13.3 Motional Emf",
-    locatorSummary: "\"epsilon = Blv\" (Equation 13.5) -- the motional EMF induced in a conductor of length l moving at velocity v perpendicular to a magnetic field of flux density B, derived directly from Faraday's law (epsilon = dPhi_m/dt = B l dx/dt = B l v)",
+    locatorSummary: "\"epsilon = Blv\" (Equation 13.5) -- the motional EMF induced in a straight conductor of length l moving at velocity v through a magnetic field of flux density B, derived directly from Faraday's law (epsilon = dPhi_m/dt = B l dx/dt = B l v) for the case where the conductor's length, its velocity and the field are mutually perpendicular to one another",
   },
   {
     key: "loc-wikipedia-flemings-right-hand-rule",
@@ -1544,8 +1591,17 @@ const A: AssertionDef[] = [
     curriculum: [{ node: rangeNode("1.1", "FRACTIONS-PERCENTAGES"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09G (Project Architect correction, task section 5): the previous
+    // wording ("several parallel contributions") stated a physical claim
+    // about arbitrary quantities connected "in parallel" as if it were a
+    // general mathematical property -- it is not; it is a property of
+    // relationships that happen to take the specific reciprocal-sum form.
+    // Restated as a domain-neutral arithmetic fact about that form itself,
+    // never implying every "in parallel" physical quantity obeys it.
+    // Legitimate reuse for parallel-resistance calculation is preserved
+    // (parallel resistance genuinely does take this form).
     id: "FM-ARITH-RECIPROCAL-SUM-001", domain: "FM",
-    statement: "The reciprocal of a total formed from several parallel contributions can be found by summing the reciprocals of each individual contribution.",
+    statement: "When a governed relationship has the form 1/T = 1/a + 1/b + ... , the total T is found by summing the reciprocals of each individual contribution (1/a, 1/b, ...) to give 1/T.",
     provenance: [{ locator: "loc-openstax-up2-series-parallel", role: "SUPPORTS" }],
     prereqs: [
       { id: "FM-ARITH-RECIPROCAL-001", strength: "REQUIRED" },
@@ -1649,15 +1705,30 @@ const A: AssertionDef[] = [
     curriculum: [{ node: rangeNode("1.1", "TRIANGLES-TRIGONOMETRY"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09G (task section 2): provenance corrected -- the DfE locator
+    // establishes these four measures as curriculum SCOPE, never their
+    // mathematical definitions (independently re-inspected: no formula
+    // appears there). Factual DEFINES evidence now cites the NIST/SEMATECH
+    // e-Handbook of Statistical Methods instead; DfE is retained as
+    // CURRICULUM_REQUIRES (scope) evidence only. SmartScreen never becomes
+    // factual authority.
     id: "FM-STATS-MEAN-001", domain: "FM",
     statement: "The mean of a set of numerical values is found by dividing their sum by the number of values, and is a measure of the central tendency of the data.",
-    provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
+    provenance: [
+      { locator: "loc-nist-eda-measures-of-location", role: "DEFINES" },
+      { locator: "loc-dfe-statistics-central-tendency-spread", role: "CURRICULUM_REQUIRES" },
+    ],
     curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09G (task section 2): see FM-STATS-MEAN-001 above for the
+    // provenance correction (same DfE-locator-was-scope-only finding).
     id: "FM-STATS-RANGE-001", domain: "FM",
     statement: "The range of a set of numerical values is the difference between the largest and smallest values, and is a measure of the spread of the data.",
-    provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
+    provenance: [
+      { locator: "loc-nist-eda-measures-of-scale", role: "DEFINES" },
+      { locator: "loc-dfe-statistics-central-tendency-spread", role: "CURRICULUM_REQUIRES" },
+    ],
     curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
   },
   {
@@ -1666,21 +1737,33 @@ const A: AssertionDef[] = [
     // SmartScreen handout (Handout 2, "Mathematical principles") explicitly
     // teaches "range, average (mean), median and mode" as the four
     // statistical tools -- median and mode were genuinely missing, not
-    // merely under-decomposed. The same already-verified DfE Maths locator
-    // already covers median (it was never re-cited only because no
-    // median assertion existed yet); quartiles/inter-quartile range remain
-    // deliberately excluded (not part of the SmartScreen-confirmed
-    // breadth).
+    // merely under-decomposed.
+    //
+    // CC-09G (task section 2): the statement was incomplete -- it defined
+    // the median only as "the middle value when arranged in order", which
+    // is correct for an odd count but undefined for an even count. NIST's
+    // own definition gives both cases explicitly (odd: the middle ordered
+    // value; even: the mean of the two middle ordered values) -- corrected
+    // to state both. Provenance corrected exactly as FM-STATS-MEAN-001
+    // above (DfE was never itself a definitions source).
     id: "FM-STATS-MEDIAN-001", domain: "FM",
-    statement: "The median of a set of numerical values is the middle value when the values are arranged in numerical order, and is a measure of the central tendency of the data.",
-    provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
+    statement: "The median of a set of numerical values, arranged in numerical order, is the middle value if there is an odd number of values, or the mean (average) of the two middle values if there is an even number of values; it is a measure of the central tendency of the data.",
+    provenance: [
+      { locator: "loc-nist-eda-measures-of-location", role: "DEFINES" },
+      { locator: "loc-dfe-statistics-central-tendency-spread", role: "CURRICULUM_REQUIRES" },
+    ],
     curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
   },
   {
     // CC-09B.6 (task section 6): see FM-STATS-MEDIAN-001 above.
+    // CC-09G (task section 2): provenance corrected exactly as
+    // FM-STATS-MEAN-001 above.
     id: "FM-STATS-MODE-001", domain: "FM",
     statement: "The mode of a set of numerical values is the value that occurs most often; a data set can have more than one mode.",
-    provenance: [{ locator: "loc-dfe-statistics-central-tendency-spread", role: "DEFINES" }],
+    provenance: [
+      { locator: "loc-nist-eda-measures-of-location", role: "DEFINES" },
+      { locator: "loc-dfe-statistics-central-tendency-spread", role: "CURRICULUM_REQUIRES" },
+    ],
     curriculum: [{ node: rangeNode("1.1", "STATISTICS"), type: "REQUIRED_FOR" }],
   },
 
@@ -3658,8 +3741,17 @@ const A: AssertionDef[] = [
     // SmartScreen handout (Handout 10, "Generation of an EMF") is entirely
     // dedicated to this named formula with two worked numeric examples --
     // exact structural analogue of the force-on-conductor fix above.
+    // CC-09G (Project Architect correction, task section 3): "velocity v
+    // perpendicular to a magnetic field of flux density B" alone does not
+    // constrain the conductor's own length/orientation -- the simple
+    // e = B l v form requires the conductor's length, its velocity AND
+    // the field to be mutually perpendicular (re-confirmed directly
+    // against the source above: the rod-on-rails derivation sweeps an
+    // area perpendicular to B, which requires the rod and its direction
+    // of travel to themselves be perpendicular too). Corrected to name
+    // the full geometry, still without vector notation.
     id: "EL-REL-INDUCED-EMF-001", domain: "EL",
-    statement: "The magnitude of the EMF induced in a conductor of length l moving at velocity v perpendicular to a magnetic field of flux density B is given by e = B l v.",
+    statement: "For a straight conductor of effective length l moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B l v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.",
     provenance: [
       { locator: "loc-openstax-up2-motional-emf", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
@@ -3748,8 +3840,17 @@ const A: AssertionDef[] = [
     curriculum: [{ node: NODE_AC5_4, type: "REQUIRED_FOR" }],
   },
   {
+    // CC-09G (Project Architect correction, task section 1): "with a
+    // constant value" was over-broad -- D.C. is defined by unidirectional
+    // flow; its magnitude may be steady OR may vary/pulsate (the corpus's
+    // own rectifier assertions already govern pulsating D.C., e.g.
+    // EL-COMPONENT-RECTIFIER-001's "direct-current (or pulsating direct-
+    // current) output" -- the original wording was internally
+    // contradictory). Corrected to name magnitude as the distinguishing
+    // AC/DC characteristic explicitly (varies-ordinarily vs may-be-steady-
+    // or-vary), never claiming D.C. requires constancy.
     id: "EL-CONCEPT-AC-DC-DISTINCTION-001", domain: "EL",
-    statement: "Direct current (D.C.) flows in one direction with a constant value, while alternating current (A.C.) periodically reverses direction and varies in value, typically following a sine wave.",
+    statement: "Direct current (D.C.) flows in one direction, and its magnitude may be steady or may vary (as with pulsating D.C.); alternating current (A.C.) periodically reverses direction and ordinarily varies in magnitude, typically following a sine wave.",
     provenance: [{ locator: "loc-openstax-up2-em-induction", role: "SUPPORTS" }, { locator: "loc-cg-ac5.4", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-CONCEPT-SINE-WAVE-001", strength: "REQUIRED" }, { id: "EL-CONCEPT-CURRENT-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_4, type: "REQUIRED_FOR" }],
@@ -4103,8 +4204,22 @@ const A: AssertionDef[] = [
     // increases") -- PTC was genuinely missing, not merely under-
     // decomposed. Sourced from the same manufacturer family (Vishay)
     // already used for NTC, via a real PTC-specific datasheet.
+    // CC-09G (Project Architect correction, task section 6): narrowed --
+    // the previous statement generalised the Vishay PTCEL SWITCHING/
+    // inrush-limiting product family's own specific behaviour (a sharp
+    // resistance rise at a defined switching temperature, used for
+    // overcurrent/overload protection) into a claim about PTC thermistors
+    // generically. Source specificity must never become or exceed
+    // syllabus scope (task's permanent rule): Unit 202's own Range item
+    // ("Thermistors") requires only the essential PTC-vs-NTC contrast,
+    // matching EL-COMPONENT-THERMISTOR-001's own equally simple NTC
+    // statement immediately above. Narrowed to that essential fact; the
+    // switching-temperature/inrush/overload detail remains only in this
+    // assertion's own cited locator (loc-vishay-ptcel-principle, already
+    // honestly scoped to that specific product family), never restated
+    // here as universal required PTC behaviour.
     id: "EL-COMPONENT-THERMISTOR-PTC-001", domain: "EL",
-    statement: "A PTC (positive-temperature-coefficient) thermistor's electrical resistance rises sharply once its temperature exceeds a defined switching temperature, in contrast to an NTC thermistor's resistance, which decreases as temperature rises; this behaviour is used for applications such as overcurrent and overload protection.",
+    statement: "A PTC (positive-temperature-coefficient) thermistor's electrical resistance increases as its temperature increases, in contrast to an NTC thermistor's resistance, which decreases as temperature increases.",
     provenance: [
       { locator: "loc-vishay-ptcel-principle", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac6.2", role: "CURRICULUM_REQUIRES" },
@@ -4342,8 +4457,18 @@ const A: AssertionDef[] = [
     // could not be found). SmartScreen itself only identified WHICH
     // proposition to source and govern; it is never treated as the
     // factual authority for the proposition.
+    // CC-09G (Project Architect correction, task section 7, NON_MATERIAL):
+    // qualified as the traditional UK master-socket arrangement (the
+    // Unit 202 SmartScreen teaching content, per the comment above) rather
+    // than an unqualified universal claim about every modern master
+    // socket. Also corrected to match the cited source's own nuance more
+    // precisely: its own text says the surge protector was a feature of
+    // OLDER master sockets specifically ("older master sockets also
+    // contained an enclosed spark-gap surge protector"), not a
+    // universally-present third component alongside the capacitor and
+    // resistor -- the previous wording had flattened that distinction.
     id: "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001", domain: "EL",
-    statement: "A master telephone socket contains a capacitor that couples the AC ringing signal to the line while blocking the line's DC, a resistor that provides a defined test load for line testing when no telephone is connected, and a surge protector that suppresses transient overvoltages on the line; secondary (extension) sockets, wired in parallel from the master socket, contain none of these components.",
+    statement: "The traditional UK master telephone socket arrangement contains a capacitor that couples the AC ringing signal to the line while blocking the line's DC, and a resistor that provides a defined test load for line testing when no telephone is connected; older master sockets also included a surge protector to suppress transient overvoltages on the line. Secondary (extension) sockets, wired in parallel from the master socket, contain none of these components.",
     provenance: [
       { locator: "loc-wikipedia-telephone-master-socket-components", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac6.1", role: "CURRICULUM_REQUIRES" },
@@ -4743,6 +4868,25 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       jurisdiction: "United States",
       canonicalReference: "NIST Handbook 44 - 2026, Section 3.41",
       accessLocation: "https://www.nist.gov/system/files/documents/2025/12/30/3-41-26-HB44-20251222.pdf",
+    },
+    {
+      // CC-09G (task section 2): a different NIST publication from
+      // SRC_NIST_HB44 (Handbook 44 is weights-and-measures regulation;
+      // this is the NIST/SEMATECH e-Handbook of Statistical Methods,
+      // NIST's own statistics reference) -- directly, precisely defines
+      // mean, median (including the odd/even-count distinction), mode and
+      // range, replacing the DfE GCSE Maths locator as factual DEFINES
+      // evidence for FM-STATS-MEAN/MEDIAN/MODE/RANGE-001 (the DfE locator
+      // remains cited for curriculum-scope/CURRICULUM_REQUIRES evidence
+      // only -- it was never itself a mathematical-definitions source).
+      key: SRC_NIST_EDA_HANDBOOK,
+      title: "NIST/SEMATECH e-Handbook of Statistical Methods -- 1.3.5 Measures of Location and Scale",
+      publisher: "National Institute of Standards and Technology (NIST)",
+      sourceFamily: "Official standards body",
+      sourceType: "TECHNICAL_HANDBOOK",
+      jurisdiction: "United States",
+      canonicalReference: "NIST/SEMATECH e-Handbook of Statistical Methods, Section 1.3.5",
+      accessLocation: "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm",
     },
     {
       // University engineering course material giving the concrete
@@ -5303,6 +5447,17 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       contentFingerprintSha256: "3a8654c4a3cda1e3cf24774050af713b24fc37d75a929987276e0d538a48d557",
       verificationStatus: "UNVERIFIED",
       lastCurrencyCheckDate: "2026-08-21",
+    },
+    {
+      // CC-09G: a live web page (like SRC_UCSD_GEAR_RATIOS), not a
+      // downloaded PDF -- no raw fetched bytes are available to honestly
+      // fingerprint (never fabricated, per ADR-0002), so
+      // contentFingerprintSha256 is left unset rather than invented.
+      key: SV_NIST_EDA_HANDBOOK, sourceKey: SRC_NIST_EDA_HANDBOOK,
+      status: "CURRENT", rightsClassification: "OPEN",
+      retrievedDate: "2026-08-22",
+      verificationStatus: "UNVERIFIED",
+      lastCurrencyCheckDate: "2026-08-22",
     },
     {
       key: SV_INDUS_UNI_WATTMETER, sourceKey: SRC_INDUS_UNI_WATTMETER,

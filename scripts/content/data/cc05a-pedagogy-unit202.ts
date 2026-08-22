@@ -150,7 +150,18 @@ const assertionFamilies: AssertionFamily[] = [
     learningIntent:
       "Understand force, work, energy and power as general mechanical concepts before their electrical specialisation.",
     teachFamilyTogether: true,
-    completeness: { requiredCapabilityIds: ["cap.foundational.mechanics.recognise"] },
+    // CC-09G (task section 4C): cap.foundational.mechanics.calculate
+    // (added CC-09B.1 for FP-CALC-WORK-001/FP-CALC-KINETIC-ENERGY-001/
+    // FP-CALC-POTENTIAL-ENERGY-001/FP-CALC-POWER-001/FP-CALC-EFFICIENCY-
+    // 001) was never added to completeness -- AC3.4 explicitly requires
+    // "calculate values of mechanical energy, power and efficiency"
+    // (5 EXPLICIT knowledge obligations, unit202-knowledge-obligations.ts
+    // acNumber "3.4"), so this capability represents required, not merely
+    // supporting, knowledge. Horizontal Foundational Physics ownership
+    // (this family remains teaching_only within the Electrical proving
+    // slice) does not make curriculum-required knowledge optional to Unit
+    // 202 mastery.
+    completeness: { requiredCapabilityIds: ["cap.foundational.mechanics.recognise", "cap.foundational.mechanics.calculate"] },
     assessmentRequirement: "teaching_only",
     teachingOnlyReason:
       "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3, general mechanics). The electrical specialisations of these concepts (electrical power, electrical energy, electrical efficiency) are directly assessed by the electrical.power_relationships and electrical.energy_and_efficiency families; the general-mechanics form is prerequisite/contextual only within this Electrical proving slice.",
@@ -408,6 +419,9 @@ const assertionFamilies: AssertionFamily[] = [
     learningIntent:
       "Understand magnetic flux/flux density, the magnetic field around a current-carrying conductor, the force on a conductor in a field, and the motor principle.",
     teachFamilyTogether: true,
+    // CC-09G (task section 4D): cap.magnetism.identify_unit (CC-09D/E,
+    // AC5.2 required obligation flux-density-unit, DIRECT_SAMPLE_ANALOGUE
+    // archetype evidence) was never added to completeness.
     completeness: {
       requiredCapabilityIds: [
         "cap.magnetism.recognise_concept",
@@ -415,6 +429,7 @@ const assertionFamilies: AssertionFamily[] = [
         "cap.magnetism.interpret_force_direction",
         "cap.magnetism.compare_permanent_electromagnet",
         "cap.magnetism.compare_motor_generator",
+        "cap.magnetism.identify_unit",
       ],
     },
     assessmentRequirement: "assessable",
@@ -425,8 +440,12 @@ const assertionFamilies: AssertionFamily[] = [
     learningIntent:
       "Understand electromotive force, terminal voltage, and the basic principle of a rotating-loop A.C. generator.",
     teachFamilyTogether: true,
+    // CC-09G (task section 4E): cap.emf.calculate_flux_change (CC-09D/E,
+    // AC5.4 required obligation flux-change-emf-calculation, basis
+    // OFFICIAL_ASSESSMENT_EVIDENCE, DIRECT_SAMPLE_ANALOGUE archetype
+    // evidence) was never added to completeness.
     completeness: {
-      requiredCapabilityIds: ["cap.emf.recognise_emf_terminal_voltage", "cap.emf.describe_ac_generation"],
+      requiredCapabilityIds: ["cap.emf.recognise_emf_terminal_voltage", "cap.emf.describe_ac_generation", "cap.emf.calculate_flux_change"],
     },
     assessmentRequirement: "assessable",
   },
@@ -454,8 +473,13 @@ const assertionFamilies: AssertionFamily[] = [
     learningIntent:
       "Describe reactance, impedance, inductance, capacitance and power factor as conceptual/definitional AC quantities.",
     teachFamilyTogether: true,
+    // CC-09G (task section 4F): cap.ac_reactive.select_impedance_formula
+    // and cap.ac_reactive.identify_reactance_unit (CC-09E -- the very
+    // reclassification this comment block below describes) were never
+    // added to completeness despite being governed, assessable, archetype-
+    // evidenced capabilities.
     completeness: {
-      requiredCapabilityIds: ["cap.ac_reactive.recognise"],
+      requiredCapabilityIds: ["cap.ac_reactive.recognise", "cap.ac_reactive.select_impedance_formula", "cap.ac_reactive.identify_reactance_unit"],
     },
     // CC-09E (task section 3/4): narrowly reclassified from teaching_only.
     // The prior design decision (cc04-unit202-electrical-science.ts header
@@ -502,8 +526,13 @@ const assertionFamilies: AssertionFamily[] = [
   },
   {
     id: "foundational.statistics",
-    title: "Central tendency and spread (mean, range)",
-    learningIntent: "Interpret a data set's mean (central tendency) and range (spread).",
+    // CC-09G (task section 4A): title/learningIntent/capability description
+    // previously named only mean and range, even though this family's own
+    // membersOf list already includes median and mode (FM-STATS-MEDIAN-001/
+    // FM-STATS-MODE-001, CC-09B.6) -- broadened to represent the full
+    // governed Unit 202 scope honestly.
+    title: "Central tendency and spread (mean, median, mode, range)",
+    learningIntent: "Interpret a data set's mean, median and mode (central tendency) and range (spread).",
     teachFamilyTogether: true,
     completeness: { requiredCapabilityIds: ["cap.foundational.statistics.interpret"] },
     assessmentRequirement: "teaching_only",
@@ -518,7 +547,15 @@ const assertionFamilies: AssertionFamily[] = [
     title: "Simple machines and mechanical advantage: levers, gears, pulleys",
     learningIntent: "Recognise how a lever, gear or pulley provides mechanical advantage: lever classes by the relative arrangement of pivot, effort and load; gear ratio by the ratio of driven/driving radii or tooth counts (mechanical advantage is output/input, matching torque out over torque in); pulley mechanical advantage by the number of supporting rope sections.",
     teachFamilyTogether: true,
-    completeness: { requiredCapabilityIds: ["cap.foundational.levers.recognise"] },
+    // CC-09G (task section 4B): AC3.2 covers levers, gears AND pulleys, but
+    // family-mastery completeness required only the lever capability --
+    // gear/pulley mastery could reach FULLY_SECURE-equivalent family state
+    // without ever having been assessed. Added the two capabilities this
+    // family's own broadening (CC-09B.1, comment above) already implied
+    // but never mechanically completed.
+    completeness: {
+      requiredCapabilityIds: ["cap.foundational.levers.recognise", "cap.foundational.gears.recognise", "cap.foundational.pulleys.recognise"],
+    },
     assessmentRequirement: "teaching_only",
     teachingOnlyReason: "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3 AC3.2). No question blueprint authored in this knowledge-corpus package (CC-09B/CC-09B.1); lesson/assessment authoring is a later package.",
   },
@@ -1529,8 +1566,15 @@ const capabilities: Capability[] = [
   // --- CC-09B: new Foundational capabilities (teaching-only) -----------
   cap("cap.foundational.indices.apply", "foundational.indices", "calculate", "Apply the laws of indices when multiplying, dividing or taking roots of powers of the same base."),
   cap("cap.foundational.trigonometry.apply", "foundational.trigonometry", "calculate", "Apply Pythagoras' theorem or a trigonometric ratio to find an unknown length or angle in a right-angled triangle."),
-  cap("cap.foundational.statistics.interpret", "foundational.statistics", "interpret_diagram", "Interpret the mean and range of a data set."),
+  cap("cap.foundational.statistics.interpret", "foundational.statistics", "interpret_diagram", "Interpret the mean, median, mode and range of a data set."),
   cap("cap.foundational.levers.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a lever provides mechanical advantage, and distinguish class I, II and III levers."),
+  // CC-09G (task section 4B): AC3.2 requires gears and pulleys alongside
+  // levers; these capabilities already had governed assertion coverage
+  // (FP-CONCEPT-GEAR-001/FP-REL-GEAR-RATIO-001/... and FP-CONCEPT-PULLEY-
+  // 001/FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001/...) but no capability of
+  // their own to represent in family-mastery completeness.
+  cap("cap.foundational.gears.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a gear provides mechanical advantage (ratio of driven/driving radii or tooth counts), and describe gear direction reversal and the idler gear's role."),
+  cap("cap.foundational.pulleys.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a pulley system provides mechanical advantage (number of supporting rope/cable sections), distinguishing fixed from movable/combination pulleys."),
   cap("cap.foundational.si_quantities_general.identify_unit", "foundational.si_quantities_general", "identify", "Identify the correct SI unit for a general (non-electrical) physical quantity."),
 
   // --- CC-09B: electrical.electronic_components (teaching-only) --------

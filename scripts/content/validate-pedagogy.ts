@@ -40,7 +40,26 @@ interface CoverageReport {
   questionBlueprints: number;
   assessableFamiliesWithZeroQuestionBlueprints: string[];
   requiredCapabilitiesWithoutCoverage: string[];
+  capabilitiesMissingFromFamilyCompleteness: string[];
 }
+
+// CC-09G (task section 4): a general invariant, not a brittle Unit-202-
+// only list -- "a capability representing REQUIRED curriculum/assessment
+// knowledge must either (1) participate in the relevant family's mastery
+// completeness, or (2) be explicitly marked non-required/optional with a
+// governed rationale." Every governed Capability already declares its own
+// familyId; a capability whose family never lists it in
+// `completeness.requiredCapabilityIds` can silently reach a family-secure
+// mastery state without that capability ever having been assessed --
+// exactly the CC-09G-discovered defect shape (mechanics/magnetism/emf/
+// ac_reactive each had a real, governed, evidence-backed capability
+// omitted from completeness). The escape hatch for a genuinely optional
+// capability is this explicit, individually-commented allow-list -- never
+// silent exclusion. Empty as of CC-09G: every currently governed
+// capability is required by its own family.
+const NON_REQUIRED_CAPABILITY_IDS: ReadonlySet<string> = new Set([
+  // e.g. "cap.example.optional_extra", // governed rationale: ...
+]);
 
 function buildReport(): CoverageReport {
   const corpus = knowledgeGraphManifestSchema.parse(cc04Unit202ElectricalScience);
@@ -122,6 +141,23 @@ function buildReport(): CoverageReport {
     }
   }
 
+  // CC-09G (task section 4): the inverse direction -- every capability
+  // must participate in its own family's completeness, or be explicitly
+  // allow-listed above with a governed rationale. Applies to every family
+  // (assessable AND teaching_only): a teaching-only family's completeness
+  // still governs its family-mastery-security derivation (evidence-
+  // engine), independent of whether question blueprints exist yet.
+  const familiesById = new Map(pedagogy.assertionFamilies.map((f) => [f.id, f]));
+  const capabilitiesMissingFromFamilyCompleteness: string[] = [];
+  for (const capability of pedagogy.capabilities) {
+    if (NON_REQUIRED_CAPABILITY_IDS.has(capability.id)) continue;
+    const family = familiesById.get(capability.familyId);
+    if (!family) continue; // dangling familyId is a separate schema-level concern
+    if (!family.completeness.requiredCapabilityIds.includes(capability.id)) {
+      capabilitiesMissingFromFamilyCompleteness.push(`${family.id}: ${capability.id}`);
+    }
+  }
+
   return {
     totalAssertionFamilies: pedagogy.assertionFamilies.length,
     totalMemberships: pedagogy.assertionFamilyMemberships.length,
@@ -139,6 +175,7 @@ function buildReport(): CoverageReport {
     questionBlueprints: pedagogy.questionBlueprints.length,
     assessableFamiliesWithZeroQuestionBlueprints,
     requiredCapabilitiesWithoutCoverage,
+    capabilitiesMissingFromFamilyCompleteness,
   };
 }
 
@@ -165,6 +202,8 @@ function formatReport(report: CoverageReport): string {
   if (report.assessableFamiliesWithZeroQuestionBlueprints.length) lines.push(`    ${report.assessableFamiliesWithZeroQuestionBlueprints.join(", ")}`);
   lines.push(`  - required capabilities without assessment coverage (target 0): ${report.requiredCapabilitiesWithoutCoverage.length}`);
   if (report.requiredCapabilitiesWithoutCoverage.length) lines.push(`    ${report.requiredCapabilitiesWithoutCoverage.join("; ")}`);
+  lines.push(`  - capabilities missing from their own family's completeness (target 0): ${report.capabilitiesMissingFromFamilyCompleteness.length}`);
+  if (report.capabilitiesMissingFromFamilyCompleteness.length) lines.push(`    ${report.capabilitiesMissingFromFamilyCompleteness.join("; ")}`);
   return lines.join("\n");
 }
 
@@ -174,7 +213,8 @@ export function isReportClean(report: CoverageReport): boolean {
     report.formulaFamiliesMissingRequiredForms.length === 0 &&
     report.unresolvedRequiredDiagramReferences.length === 0 &&
     report.assessableFamiliesWithZeroQuestionBlueprints.length === 0 &&
-    report.requiredCapabilitiesWithoutCoverage.length === 0
+    report.requiredCapabilitiesWithoutCoverage.length === 0 &&
+    report.capabilitiesMissingFromFamilyCompleteness.length === 0
   );
 }
 

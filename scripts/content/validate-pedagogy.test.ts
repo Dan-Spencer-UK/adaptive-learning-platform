@@ -19,6 +19,7 @@ function cleanReport(): CoverageReport {
     questionBlueprints: 1,
     assessableFamiliesWithZeroQuestionBlueprints: [],
     requiredCapabilitiesWithoutCoverage: [],
+    capabilitiesMissingFromFamilyCompleteness: [],
   };
 }
 
@@ -54,6 +55,12 @@ describe("isReportClean", () => {
       isReportClean({ ...cleanReport(), requiredCapabilitiesWithoutCoverage: ["family.foo: cap.foo.bar"] }),
     ).toBe(false);
   });
+
+  it("returns false when a capability is missing from its own family's completeness (CC-09G task section 4)", () => {
+    expect(
+      isReportClean({ ...cleanReport(), capabilitiesMissingFromFamilyCompleteness: ["family.foo: cap.foo.bar"] }),
+    ).toBe(false);
+  });
 });
 
 describe("buildReport (against the real CC-05A pedagogy manifest and CC-04 corpus)", () => {
@@ -78,6 +85,10 @@ describe("buildReport (against the real CC-05A pedagogy manifest and CC-04 corpu
 
   it("gives every required family capability an assessment path", () => {
     expect(report.requiredCapabilitiesWithoutCoverage).toEqual([]);
+  });
+
+  it("CC-09G (task section 4): every governed capability participates in its own family's mastery completeness, or is explicitly allow-listed with a governed rationale -- a capability can never silently sit outside the family-security derivation it should gate", () => {
+    expect(report.capabilitiesMissingFromFamilyCompleteness).toEqual([]);
   });
 
   it("the full report is clean", () => {
@@ -107,5 +118,6 @@ describe("formatReport", () => {
     expect(text).toContain("unresolved required diagram references");
     expect(text).toContain("assessable families with zero blueprints");
     expect(text).toContain("required capabilities without assessment coverage");
+    expect(text).toContain("capabilities missing from their own family's completeness");
   });
 });

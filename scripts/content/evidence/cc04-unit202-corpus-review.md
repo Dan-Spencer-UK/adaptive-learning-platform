@@ -112,6 +112,7 @@ Source role (CC-09C) reflects the generic Course Evidence Registry evidential-ro
 | College Physics 2e | (unclassified) | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
 | Electric Circuits I - Direct Current (Kuphaldt) | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
 | NIST Handbook 44: Specifications, Tolerances, and Other Technical Requirements for Weighing and Measuring Devices -- Section 3.41, Non-Utility Electricity-Measuring Systems (Tentative Code) | (unclassified) | OPEN | UNVERIFIED | (none) | present |
+| NIST/SEMATECH e-Handbook of Statistical Methods -- 1.3.5 Measures of Location and Scale | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
 | Dynamometer Type Wattmeter | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 | Machine Design: Gear Ratios | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
 | ENFORCER E-931-S33PRGQ 33ft Polarized Reflective Photoelectric Beam Sensor -- Installation Manual | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
@@ -129,7 +130,7 @@ Source role (CC-09C) reflects the generic Course Evidence Registry evidential-ro
 | 5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (question paper) | OFFICIAL_ASSESSMENT | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 | 5357-003 Electrical Scientific Principles and Technologies / 2365-602 Principles of Electrical Science -- Sample e-volve MC Test (mark scheme / answer keys) | OFFICIAL_ASSESSMENT | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
 
-Rights distribution: PROPRIETARY_REFERENCE: 18, OPEN: 7, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
+Rights distribution: PROPRIETARY_REFERENCE: 18, OPEN: 8, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
 
 ## OpenStax exact-book licence evidence (CC-04B hard requirement)
 
@@ -252,7 +253,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### FM-ARITH-RECIPROCAL-SUM-001
 
-**Statement (v1, APPROVED):** The reciprocal of a total formed from several parallel contributions can be found by summing the reciprocals of each individual contribution.
+**Statement (v1, APPROVED):** When a governed relationship has the form 1/T = 1/a + 1/b + ... , the total T is found by summing the reciprocals of each individual contribution (1/a, 1/b, ...) to give 1/T.
 
 **Direct prerequisites:** FM-ARITH-RECIPROCAL-001 (REQUIRED); FM-ARITH-FRACTION-OPS-001 (STRONG)
 **Direct dependents:** EL-PARALLEL-RESISTANCE-CALC-001
@@ -389,8 +390,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Mathematical principles: Statistics (REQUIRED_FOR)
-**Provenance:** Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [DEFINES, support=DIRECT, verification=UNVERIFIED]
-**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Provenance:** NIST/SEMATECH e-Handbook of Statistical Methods -- 1.3.5 Measures of Location and Scale — The mean is the sum of the data points divided by the number of data points. The median is the value of the point which has half the data smaller than it and half larger; for an odd number of values N it is the middle ordered value, for an even number of values N it is the mean of the two middle ordered values. The mode is the value that occurs with the greatest frequency, and is not necessarily unique. [DEFINES, support=DIRECT, verification=UNVERIFIED] | Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [CURRICULUM_REQUIRES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
 ### FM-STATS-RANGE-001
@@ -400,19 +401,19 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Mathematical principles: Statistics (REQUIRED_FOR)
-**Provenance:** Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [DEFINES, support=DIRECT, verification=UNVERIFIED]
-**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Provenance:** NIST/SEMATECH e-Handbook of Statistical Methods -- 1.3.5 Measures of Location and Scale — The range is the largest value minus the smallest value in a data set -- a measure of spread based only on the two extreme values. [DEFINES, support=DIRECT, verification=UNVERIFIED] | Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [CURRICULUM_REQUIRES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
 ### FM-STATS-MEDIAN-001
 
-**Statement (v1, APPROVED):** The median of a set of numerical values is the middle value when the values are arranged in numerical order, and is a measure of the central tendency of the data.
+**Statement (v1, APPROVED):** The median of a set of numerical values, arranged in numerical order, is the middle value if there is an odd number of values, or the mean (average) of the two middle values if there is an even number of values; it is a measure of the central tendency of the data.
 
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Mathematical principles: Statistics (REQUIRED_FOR)
-**Provenance:** Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [DEFINES, support=DIRECT, verification=UNVERIFIED]
-**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Provenance:** NIST/SEMATECH e-Handbook of Statistical Methods -- 1.3.5 Measures of Location and Scale — The mean is the sum of the data points divided by the number of data points. The median is the value of the point which has half the data smaller than it and half larger; for an odd number of values N it is the middle ordered value, for an even number of values N it is the mean of the two middle ordered values. The mode is the value that occurs with the greatest frequency, and is not necessarily unique. [DEFINES, support=DIRECT, verification=UNVERIFIED] | Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [CURRICULUM_REQUIRES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
 ### FM-STATS-MODE-001
@@ -422,8 +423,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Direct prerequisites:** (none — root assertion)
 **Direct dependents:** (none — leaf capability)
 **Curriculum mapping(s):** Mathematical principles: Statistics (REQUIRED_FOR)
-**Provenance:** Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [DEFINES, support=DIRECT, verification=UNVERIFIED]
-**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Provenance:** NIST/SEMATECH e-Handbook of Statistical Methods -- 1.3.5 Measures of Location and Scale — The mean is the sum of the data points divided by the number of data points. The median is the value of the point which has half the data smaller than it and half larger; for an odd number of values N it is the middle ordered value, for an even number of values N it is the mean of the two middle ordered values. The mode is the value that occurs with the greatest frequency, and is not necessarily unique. [DEFINES, support=DIRECT, verification=UNVERIFIED] | Mathematics GCSE subject content and assessment objectives — Statistics: interpret, analyse and compare distributions of data sets through appropriate measures of central tendency (median, mean, mode and modal class) and spread (range, including consideration of outliers, quartiles and inter-quartile range) [CURRICULUM_REQUIRES, support=DIRECT, verification=UNVERIFIED]
+**Entailment result:** FULLY_SUPPORTED_MULTI_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
 ## Foundational Physics (FP)
@@ -2460,12 +2461,12 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-REL-INDUCED-EMF-001
 
-**Statement (v1, APPROVED):** The magnitude of the EMF induced in a conductor of length l moving at velocity v perpendicular to a magnetic field of flux density B is given by e = B l v.
+**Statement (v1, APPROVED):** For a straight conductor of effective length l moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B l v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.
 
 **Direct prerequisites:** EL-CONCEPT-EMF-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-FLEMING-RIGHT-HAND-001
 **Curriculum mapping(s):** Describe the magnetic effects of electrical currents (REQUIRED_FOR); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (REQUIRED_FOR)
-**Provenance:** University Physics Volume 2 — "epsilon = Blv" (Equation 13.5) -- the motional EMF induced in a conductor of length l moving at velocity v perpendicular to a magnetic field of flux density B, derived directly from Faraday's law (epsilon = dPhi_m/dt = B l dx/dt = B l v) [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Provenance:** University Physics Volume 2 — "epsilon = Blv" (Equation 13.5) -- the motional EMF induced in a straight conductor of length l moving at velocity v through a magnetic field of flux density B, derived directly from Faraday's law (epsilon = dPhi_m/dt = B l dx/dt = B l v) for the case where the conductor's length, its velocity and the field are mutually perpendicular to one another [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
 
@@ -2539,7 +2540,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-AC-DC-DISTINCTION-001
 
-**Statement (v1, APPROVED):** Direct current (D.C.) flows in one direction with a constant value, while alternating current (A.C.) periodically reverses direction and varies in value, typically following a sine wave.
+**Statement (v1, APPROVED):** Direct current (D.C.) flows in one direction, and its magnitude may be steady or may vary (as with pulsating D.C.); alternating current (A.C.) periodically reverses direction and ordinarily varies in magnitude, typically following a sine wave.
 
 **Direct prerequisites:** EL-CONCEPT-SINE-WAVE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED)
 **Direct dependents:** EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001; EL-COMPONENT-RECTIFIER-001; EL-COMPONENT-INVERTER-001
@@ -2894,7 +2895,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-COMPONENT-THERMISTOR-PTC-001
 
-**Statement (v1, APPROVED):** A PTC (positive-temperature-coefficient) thermistor's electrical resistance rises sharply once its temperature exceeds a defined switching temperature, in contrast to an NTC thermistor's resistance, which decreases as temperature rises; this behaviour is used for applications such as overcurrent and overload protection.
+**Statement (v1, APPROVED):** A PTC (positive-temperature-coefficient) thermistor's electrical resistance increases as its temperature increases, in contrast to an NTC thermistor's resistance, which decreases as temperature increases.
 
 **Direct prerequisites:** EL-COMPONENT-THERMISTOR-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
@@ -3029,7 +3030,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001
 
-**Statement (v1, APPROVED):** A master telephone socket contains a capacitor that couples the AC ringing signal to the line while blocking the line's DC, a resistor that provides a defined test load for line testing when no telephone is connected, and a surge protector that suppresses transient overvoltages on the line; secondary (extension) sockets, wired in parallel from the master socket, contain none of these components.
+**Statement (v1, APPROVED):** The traditional UK master telephone socket arrangement contains a capacitor that couples the AC ringing signal to the line while blocking the line's DC, and a resistor that provides a defined test load for line testing when no telephone is connected; older master sockets also included a surge protector to suppress transient overvoltages on the line. Secondary (extension) sockets, wired in parallel from the master socket, contain none of these components.
 
 **Direct prerequisites:** EL-COMPONENT-CAPACITOR-001 (REQUIRED); EL-COMPONENT-RESISTOR-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)

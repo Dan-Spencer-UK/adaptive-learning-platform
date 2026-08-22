@@ -191,6 +191,17 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
         // authority, only as scope evidence). Quartiles/inter-quartile
         // range remain deliberately excluded -- SmartScreen itself
         // confirms the intended breadth stops at range/mean/median/mode.
+        //
+        // CC-09G amendment (task section 2): the DfE locator's own text
+        // was re-inspected and found to establish curriculum SCOPE only
+        // ("interpret, analyse and compare... through appropriate
+        // measures of..."), never the actual mathematical definitions --
+        // it was never a valid factual DEFINES source for what these four
+        // measures ARE, only for the fact that they are taught. All four
+        // FM-STATS-*-001 assertions now cite the NIST/SEMATECH e-Handbook
+        // of Statistical Methods for their factual definitions instead;
+        // DfE is retained CURRICULUM_REQUIRES (scope) only. This
+        // obligation's own basis/breadth reasoning above is unaffected.
       },
     ],
   },
@@ -498,7 +509,7 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
         // reusable EL knowledge (now SUPPORTS-mapped) but no longer
         // satisfies this obligation alone.
         id: "telephone-application", basis: "OFFICIAL_TEACHING_INTERPRETATION",
-        description: "Which component and why: telephones/communications (master socket capacitor for ringing, resistor for line testing, surge protector).",
+        description: "Which component and why: the traditional UK master socket arrangement (capacitor for ringing, resistor for line testing, and -- on older sockets -- a surge protector).",
         satisfiedBy: ["EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001"],
       },
       // CC-09B.3: re-closed via the Holtek HT12D/HT12F decoder datasheet
