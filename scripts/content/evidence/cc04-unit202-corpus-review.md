@@ -95,35 +95,37 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 
 Verification columns per ADR-0002 -- Verified/By/Fingerprint reflect the governed `sourceVersion` record mechanically, never hand-typed here. UNVERIFIED means exactly that: identifiable and usable as an authoring source, but not yet independently confirmed against the actual artefact by a verifier distinct from the authoring model.
 
-| Source | Rights classification | Verification | Verified by | Fingerprint |
-|---|---|---|---|---|
-| City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook | PROPRIETARY_REFERENCE | VERIFIED | project-architect | present |
-| The International System of Units (SI Brochure) | OPEN | UNVERIFIED | (none) | absent |
-| Mathematics GCSE subject content and assessment objectives | OFFICIAL_OGL | UNVERIFIED | (none) | absent |
-| University Physics Volume 1 | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
-| University Physics Volume 2 | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
-| University Physics Volume 3 | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
-| Electric Circuits III - Semiconductors (Kuphaldt) | OPEN | UNVERIFIED | (none) | absent |
-| NTC Thermistors Application Note | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
-| ELG4139: DC to AC Converters (course material) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
-| 800 VA Pure Sine Wave Inverter Reference Design (SLAA602A) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
-| College Physics 2e | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
-| Electric Circuits I - Direct Current (Kuphaldt) | OPEN | UNVERIFIED | (none) | absent |
-| NIST Handbook 44: Specifications, Tolerances, and Other Technical Requirements for Weighing and Measuring Devices -- Section 3.41, Non-Utility Electricity-Measuring Systems (Tentative Code) | OPEN | UNVERIFIED | (none) | present |
-| Dynamometer Type Wattmeter | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
-| Machine Design: Gear Ratios | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
-| ENFORCER E-931-S33PRGQ 33ft Polarized Reflective Photoelectric Beam Sensor -- Installation Manual | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
-| AN347: DAA Design Guide | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
-| HT12D/HT12F 2^12 Series of Decoders | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
-| Chemistry 2e | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
-| The ABCs of Clamp Meters | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
-| 6242Y PVC Flat Wiring Cable with Bare CPC (BS 6004, 300/500V) -- Datasheet | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
-| PTCEL Series -- PTC Thermistors, Inrush Current Limiter -- Datasheet | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
-| Gear Train Mechanism Explained: How It Works, Diagram, Formula and Calculator | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
-| British telephone sockets | OPEN | UNVERIFIED | (none) | absent |
-| Thyristor Based Sensor Alarm System, Working and Applications | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
-| Fleming's left-hand rule for motors | OPEN | UNVERIFIED | (none) | absent |
-| Fleming's right-hand rule | OPEN | UNVERIFIED | (none) | absent |
+Source role (CC-09C) reflects the generic Course Evidence Registry evidential-role classification -- see @alp/content-schema's sourceRoleSchema. (unclassified) means this source has not been narrowly, defensibly classified, never that it is assumed factual or curriculum-authority by default.
+
+| Source | Source role | Rights classification | Verification | Verified by | Fingerprint |
+|---|---|---|---|---|---|
+| City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook | NORMATIVE_CURRICULUM | PROPRIETARY_REFERENCE | VERIFIED | project-architect | present |
+| The International System of Units (SI Brochure) | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
+| Mathematics GCSE subject content and assessment objectives | (unclassified) | OFFICIAL_OGL | UNVERIFIED | (none) | absent |
+| University Physics Volume 1 | (unclassified) | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| University Physics Volume 2 | (unclassified) | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| University Physics Volume 3 | (unclassified) | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| Electric Circuits III - Semiconductors (Kuphaldt) | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
+| NTC Thermistors Application Note | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| ELG4139: DC to AC Converters (course material) | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| 800 VA Pure Sine Wave Inverter Reference Design (SLAA602A) | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| College Physics 2e | (unclassified) | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| Electric Circuits I - Direct Current (Kuphaldt) | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
+| NIST Handbook 44: Specifications, Tolerances, and Other Technical Requirements for Weighing and Measuring Devices -- Section 3.41, Non-Utility Electricity-Measuring Systems (Tentative Code) | (unclassified) | OPEN | UNVERIFIED | (none) | present |
+| Dynamometer Type Wattmeter | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| Machine Design: Gear Ratios | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
+| ENFORCER E-931-S33PRGQ 33ft Polarized Reflective Photoelectric Beam Sensor -- Installation Manual | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| AN347: DAA Design Guide | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| HT12D/HT12F 2^12 Series of Decoders | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| Chemistry 2e | (unclassified) | PUBLIC_RESTRICTED | UNVERIFIED | (none) | absent |
+| The ABCs of Clamp Meters | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
+| 6242Y PVC Flat Wiring Cable with Bare CPC (BS 6004, 300/500V) -- Datasheet | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | present |
+| PTCEL Series -- PTC Thermistors, Inrush Current Limiter -- Datasheet | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
+| Gear Train Mechanism Explained: How It Works, Diagram, Formula and Calculator | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
+| British telephone sockets | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
+| Thyristor Based Sensor Alarm System, Working and Applications | (unclassified) | PROPRIETARY_REFERENCE | UNVERIFIED | (none) | absent |
+| Fleming's left-hand rule for motors | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
+| Fleming's right-hand rule | (unclassified) | OPEN | UNVERIFIED | (none) | absent |
 
 Rights distribution: PROPRIETARY_REFERENCE: 15, OPEN: 7, OFFICIAL_OGL: 1, PUBLIC_RESTRICTED: 5
 

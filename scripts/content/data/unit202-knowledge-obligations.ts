@@ -53,6 +53,25 @@
  * evidence -- task section 2's explicit governance rule: "official
  * teaching intent does not override physical truth", verified case by
  * case during this package's gear-power-trade-off audit, task section 8).
+ *
+ * CC-09C (COURSE EVIDENCE, CORPUS CONFIDENCE & RELEASE-GATE ARCHITECTURE):
+ * the four source roles CC-09B.6 named informally above are now a generic,
+ * reusable enum (`sourceRoleSchema` in `@alp/content-schema`'s
+ * knowledge-graph.ts) rather than Unit-202/SmartScreen-specific prose --
+ * NORMATIVE_CURRICULUM, AWARDING_BODY_SCOPE_INTERPRETATION,
+ * OFFICIAL_ASSESSMENT and FACTUAL_AUTHORITY are that same distinction,
+ * generalised. This file's own `basis` values are deliberately left
+ * UNCHANGED (no renaming, per task section 8's explicit "do not blindly
+ * rename the existing literal" guidance) -- `basis` answers a different
+ * question (why is THIS obligation in Unit 202's scope) at a different
+ * layer (the obligation-decomposition layer) than `sourceRole` (what
+ * evidential job does THIS source play in the registry), and the two are
+ * deliberately never conflated (task section 11). `scopeUnresolved` also
+ * gained a required `materiality` field this package (see the interface
+ * below) feeding a new, separate course-evidence release-confidence
+ * assessment in `report-coverage-matrix.ts` -- unused by any real
+ * obligation in this file today (Statistics, the one prior
+ * `scopeUnresolved` case, was itself resolved by CC-09B.6).
  */
 
 export interface KnowledgeObligation {
@@ -78,8 +97,23 @@ export interface KnowledgeObligation {
    * assertions ARE genuinely sourced) -- this flag is a separate, explicit
    * note for the Project Architect/future assessment-pattern package, not
    * a semantic-completeness gate.
+   *
+   * CC-09C (task sections 15-16): `materiality` distinguishes an
+   * unresolved question that could genuinely change what a learner needs
+   * to know/do or a credible alignment claim (MATERIAL -- e.g. whether a
+   * whole subtopic sits under a terse Range item, or whether a formula is
+   * expected at all) from one that could not (NON_MATERIAL -- e.g. which
+   * of several equally valid illustrative examples a source happens to
+   * use). `report-coverage-matrix.ts`'s course-evidence release-confidence
+   * assessment reads this field directly: any MATERIAL unresolved
+   * obligation caps confidence at LIMITED regardless of otherwise-complete
+   * formal/semantic coverage (task section 34, gate A); a NON_MATERIAL one
+   * never blocks release on its own (gate B). Required whenever
+   * `scopeUnresolved` is set -- an unresolved question with no stated
+   * materiality would be exactly the kind of hidden gap this package
+   * exists to prevent.
    */
-  scopeUnresolved?: { note: string };
+  scopeUnresolved?: { note: string; materiality: "MATERIAL" | "NON_MATERIAL" };
   /**
    * CC-09B.5 (task section 20, SYLLABUS-SCOPE FIDELITY AND DEPTH CONTROL):
    * a concise, mechanically-checkable rationale for WHY this obligation is

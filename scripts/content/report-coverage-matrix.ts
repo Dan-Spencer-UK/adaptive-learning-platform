@@ -70,6 +70,33 @@
  * in validate-lesson-plan.ts); this report reuses that result rather than
  * duplicating governance logic (see `lessonPlanGovernanceClean` below).
  *
+ * CC-09C (COURSE EVIDENCE, CORPUS CONFIDENCE & RELEASE-GATE ARCHITECTURE)
+ * adds two things on top of the above, both purely derived from dimensions
+ * this module already computes -- never a new authored source of truth:
+ *
+ *  - The curriculum/scope-interpretation-vs-factual source split that
+ *    CC-09A through CC-09B.6 decided by comparing a locator's source key
+ *    against the hardcoded string `"src-cg-2365-02"` is now driven by the
+ *    generic, governed `sourceRole` field (`@alp/content-schema`'s
+ *    `sourceRoleSchema`) -- `isNonFactualAuthoritySource()` below excludes
+ *    every non-factual role (NORMATIVE_CURRICULUM,
+ *    AWARDING_BODY_SCOPE_INTERPRETATION, OFFICIAL_ASSESSMENT,
+ *    OFFICIAL_PERFORMANCE_FEEDBACK, SME_ADJUDICATION), not just the one
+ *    role Unit 202 happens to use today. City & Guilds' handbook is the
+ *    one source in this corpus classified `NORMATIVE_CURRICULUM`; a second
+ *    qualification/awarding body onboarded later needs no code change
+ *    here, only its own sources classified the same way.
+ *  - `releaseConfidence` (`ReleaseConfidenceAssessment`): a fourth,
+ *    independently-derived dimension answering "can we credibly release this
+ *    course, and if not, what MATERIAL uncertainty blocks us?" -- distinct
+ *    from FORMAL COVERAGE and SEMANTIC KNOWLEDGE COMPLETENESS above (a
+ *    corpus can be 100% formally covered and semantically complete while
+ *    this is still LIMITED, if a MATERIAL `scopeUnresolved` question
+ *    remains -- see unit202-knowledge-obligations.ts's `materiality`
+ *    field). See ReleaseConfidenceAssessment's own doc comment for the
+ *    full HIGH/GOOD/LIMITED rule and PROJECT-STATUS.md's CC-09C section
+ *    for the architecture rationale.
+ *
  * Usage:
  *   node scripts/content/report-coverage-matrix.ts            (print report)
  *   node scripts/content/report-coverage-matrix.ts --check     (exit 1 on any structural defect)
@@ -179,6 +206,8 @@ interface ObligationResult {
   satisfied: boolean;
   /** CC-09B.4 (task section 15): carried through from the obligation's own `scopeUnresolved` note when present -- an explicit, surfaced curriculum-scope-interpretation flag, never a semantic-completeness gate on its own (the obligation may still be `satisfied` -- its assertions are genuinely sourced; only the BREADTH of the official Range item is unresolved). */
   scopeUnresolvedNote?: string;
+  /** CC-09C (task sections 15-16): carried through from the obligation's own `scopeUnresolved.materiality` -- feeds the release-confidence assessment's material/non-material split. Present whenever `scopeUnresolvedNote` is. */
+  scopeUnresolvedMateriality?: "MATERIAL" | "NON_MATERIAL";
 }
 
 interface AcSemantic {
@@ -208,6 +237,52 @@ interface ProvenanceAudit {
   assertionLevelPartiallySupported: string[];
   /** Assertions citing at least one source whose sourceVersion.verificationStatus is not VERIFIED. Reported, never a failure -- independent verification is a separate, later step (ADR-0002). */
   unverifiedSourceCount: number;
+}
+
+/**
+ * CC-09C (task sections 14-17): the derived, evidence-aware course/corpus
+ * confidence state -- deliberately categorical, never a fabricated
+ * percentage (task section 16 explicitly bans "93.7% confidence"-style
+ * false precision; there is no mathematically defensible model for that
+ * here). Distinct from, and never substitutable for, FORMAL COVERAGE and
+ * SEMANTIC KNOWLEDGE COMPLETENESS above -- a corpus can show 100% formal
+ * coverage while this assessment is LIMITED (task section 14's central
+ * example).
+ *
+ *  - HIGH: GOOD, plus every source backing an IN_SCOPE_REQUIRED assertion
+ *    is independently VERIFIED (ADR-0002) -- not yet reachable by the real
+ *    Unit 202 corpus today (only the handbook itself is VERIFIED, and it
+ *    is excluded from "factual" sourcing by design), which is an honest
+ *    result, not a defect (task section 16: "do NOT make HIGH a universal
+ *    release requirement").
+ *  - GOOD: formal coverage complete, semantic knowledge complete, entailment
+ *    clean (no UNSUPPORTED/PARTIALLY_SUPPORTED assertion among Unit-202-
+ *    mapped knowledge), syllabus-scope-fidelity clean (no OUT_OF_SCOPE/
+ *    ENRICHMENT_NOT_REQUIRED/SCOPE_UNRESOLVED assertion), and zero MATERIAL
+ *    unresolved uncertainty. A valid, releaseable commercial-quality target
+ *    (task section 17) -- perfection/verification is NOT required for GOOD.
+ *  - LIMITED: any of the above GOOD criteria is unmet. Not a failure state
+ *    -- may be entirely appropriate for internal development, research,
+ *    beta or a course not yet ready for a strong alignment claim.
+ */
+type ReleaseConfidenceLevel = "HIGH" | "GOOD" | "LIMITED";
+
+/** A single MATERIAL or NON_MATERIAL unresolved knowledge-obligation question, surfaced for human (targeted SME) adjudication -- see task section 18: the architecture must not require free-text archaeology to find these. */
+interface MaterialUncertainty {
+  acNumber: string;
+  obligationId: string;
+  note: string;
+  materiality: "MATERIAL" | "NON_MATERIAL";
+}
+
+interface ReleaseConfidenceAssessment {
+  level: ReleaseConfidenceLevel;
+  /** GOOD or HIGH -- task section 17's release gate: "as close to perfect as practicably achievable", never "perfect or never release". */
+  releaseReady: boolean;
+  materialUncertainties: MaterialUncertainty[];
+  nonMaterialUncertainties: MaterialUncertainty[];
+  /** Human-readable reasons the level is what it is -- which specific criterion failed, never a bare label. */
+  reasons: string[];
 }
 
 /**
@@ -258,6 +333,8 @@ interface CoverageMatrixReport {
   entailmentStatusByAssertion: Record<string, EntailmentStatus>;
   /** CC-09B.5: assertion-level ScopeStatus for every Unit-202-curriculum-mapped assertion (undefined/absent for pure reusable-foundation assertions with no Unit 202 mapping) -- see ScopeStatus for the full rule. */
   scopeStatusByAssertion: Record<string, ScopeStatus>;
+  /** CC-09C: the derived, evidence-aware course/corpus confidence and release-gate assessment -- see ReleaseConfidenceAssessment for the full rule. */
+  releaseConfidence: ReleaseConfidenceAssessment;
   totals: {
     loCount: number;
     acCount: number;
@@ -489,6 +566,47 @@ function buildReport(overrides?: {
   const assertionVersionByIdentifier = new Map(corpus.assertionVersions.map((v) => [v.assertionIdentifier, v]));
   const sourceKeyBySourceVersionKey = new Map(corpus.sourceVersions.map((sv) => [sv.key, sv.sourceKey]));
   const sourceVersionKeyByLocatorKey = new Map(corpus.sourceLocators.map((sl) => [sl.key, sl.sourceVersionKey]));
+  // CC-09C (task section 8/35.11): which sources are NOT valid factual
+  // authority is now derived from the generic, governed `sourceRole` field
+  // (see knowledge-graph.ts's sourceRoleSchema) instead of a hardcoded
+  // Unit-202-specific source key -- the exact "has Unit 202/SmartScreen
+  // terminology leaked into what should be a generic architecture?"
+  // adversarial-review question (task section 35.11) this package exists
+  // to close.
+  //
+  // NORMATIVE_CURRICULUM, AWARDING_BODY_SCOPE_INTERPRETATION,
+  // OFFICIAL_ASSESSMENT, OFFICIAL_PERFORMANCE_FEEDBACK and SME_ADJUDICATION
+  // are all, by this module's own governing rule (task section 6: "official
+  // teaching intent does not override physical truth" / CC-09B.6's "official
+  // teaching material resolves SCOPE only, never FACT"), never themselves
+  // factual authority -- a link citing one of these can never satisfy
+  // entailment on its own, regardless of how confidently it establishes
+  // curriculum scope. An earlier version of this check excluded ONLY
+  // NORMATIVE_CURRICULUM, which meant a source later classified
+  // AWARDING_BODY_SCOPE_INTERPRETATION (e.g. an official teaching-scope
+  // handout) would have silently started counting as factual evidence --
+  // exactly the "official teaching material becomes factual truth by
+  // accident" failure mode CC-09B.6 exists to prevent, caught by
+  // independent adversarial review before any source was actually
+  // reclassified this way. FACTUAL_AUTHORITY, ENDORSED_OR_ASSOCIATED and
+  // EXTERNAL_DISCOVERY_OR_CORROBORATION sources, and every unclassified
+  // source (the vast majority -- see task section 32's migration
+  // discipline), continue to count as factual, matching this module's
+  // pre-CC-09C behaviour for every source other than the one now
+  // explicitly classified NORMATIVE_CURRICULUM.
+  const NON_FACTUAL_SOURCE_ROLES = new Set([
+    "NORMATIVE_CURRICULUM",
+    "AWARDING_BODY_SCOPE_INTERPRETATION",
+    "OFFICIAL_ASSESSMENT",
+    "OFFICIAL_PERFORMANCE_FEEDBACK",
+    "SME_ADJUDICATION",
+  ]);
+  const sourceRoleBySourceKey = new Map(corpus.sources.map((s) => [s.key, s.sourceRole]));
+  function isNonFactualAuthoritySource(sourceKey: string | undefined): boolean {
+    if (sourceKey === undefined) return false;
+    const role = sourceRoleBySourceKey.get(sourceKey);
+    return role !== undefined && NON_FACTUAL_SOURCE_ROLES.has(role);
+  }
   const provenanceByAssertion = new Map<string, typeof corpus.assertionProvenanceLinks>();
   for (const link of corpus.assertionProvenanceLinks) {
     if (!provenanceByAssertion.has(link.assertionIdentifier)) provenanceByAssertion.set(link.assertionIdentifier, []);
@@ -539,17 +657,17 @@ function buildReport(overrides?: {
     return links.some((link) => {
       const svKey = sourceVersionKeyByLocatorKey.get(link.sourceLocatorKey);
       const srcKey = svKey ? sourceKeyBySourceVersionKey.get(svKey) : undefined;
-      return srcKey !== "src-cg-2365-02";
+      return !isNonFactualAuthoritySource(srcKey);
     });
   }
 
-  /** Only non-curriculum-authority provenance links count as "factual" for entailment purposes -- CURRICULUM_REQUIRES/AUTHORITATIVE_REQUIREMENT/LEGAL_BASIS establish WHAT must be taught, never the technical fact itself. */
+  /** Only links to a genuine factual-authority source count as "factual" for entailment purposes -- a curriculum-authority, teaching-scope-interpretation, official-assessment, performance-feedback or SME-adjudication source establishes WHAT must be taught (or how confidently), never the technical fact itself. CC-09C: this is now the generic `sourceRole` classification (see NON_FACTUAL_SOURCE_ROLES above), not a hardcoded source key. */
   function factualLinks(assertionId: string) {
     const links = provenanceByAssertion.get(assertionId) ?? [];
     return links.filter((link) => {
       const svKey = sourceVersionKeyByLocatorKey.get(link.sourceLocatorKey);
       const srcKey = svKey ? sourceKeyBySourceVersionKey.get(svKey) : undefined;
-      return srcKey !== "src-cg-2365-02";
+      return !isNonFactualAuthoritySource(srcKey);
     });
   }
 
@@ -715,6 +833,7 @@ function buildReport(overrides?: {
         description: obligation.description,
         satisfied: resolvedIds.length > 0,
         scopeUnresolvedNote: obligation.scopeUnresolved?.note,
+        scopeUnresolvedMateriality: obligation.scopeUnresolved?.materiality,
       };
     });
 
@@ -850,6 +969,99 @@ function buildReport(overrides?: {
     if (scope !== undefined) scopeStatusByAssertion[assertion.identifier] = scope;
   }
 
+  // =====================================================================
+  // CC-09C (task sections 14-17): COURSE-EVIDENCE RELEASE CONFIDENCE. A
+  // derived assessment, never a fourth authored source of truth -- purely
+  // a function of the dimensions already computed above. See
+  // ReleaseConfidenceAssessment for the full HIGH/GOOD/LIMITED rule.
+  // =====================================================================
+  const materialUncertainties: MaterialUncertainty[] = [];
+  const nonMaterialUncertainties: MaterialUncertainty[] = [];
+  for (const semantic of acSemantic) {
+    for (const obligation of semantic.obligations) {
+      if (!obligation.scopeUnresolvedNote) continue;
+      const entry: MaterialUncertainty = {
+        acNumber: semantic.acNumber,
+        obligationId: obligation.id,
+        note: obligation.scopeUnresolvedNote,
+        // An unresolved question with no stated materiality is treated as
+        // MATERIAL by default -- never silently downgraded to non-blocking
+        // (task section 15: "the system should not hide material
+        // uncertainty behind green coverage counts"). In practice
+        // `materiality` is always set alongside `scopeUnresolved` (see
+        // unit202-knowledge-obligations.ts's own type), so this default is
+        // a defensive fallback, never the primary mechanism.
+        materiality: obligation.scopeUnresolvedMateriality ?? "MATERIAL",
+      };
+      if (entry.materiality === "MATERIAL") materialUncertainties.push(entry);
+      else nonMaterialUncertainties.push(entry);
+    }
+  }
+
+  const formalCoverageComplete =
+    structuralDefects.length === 0 &&
+    loNodes.length === EXPECTED_LO_COUNT &&
+    acNodes.length === EXPECTED_AC_COUNT &&
+    rangeNodes.length === EXPECTED_RANGE_ITEM_COUNT;
+  const semanticCompleteAll =
+    acSemantic.every((s) => s.status === "COMPLETE_PENDING_VERIFICATION") && rangeItemsSemanticComplete === rangeNodes.length;
+  const unitScopedEntailmentStatuses = Object.keys(scopeStatusByAssertion).map((id) => entailmentStatusByAssertion[id]);
+  const entailmentClean = unitScopedEntailmentStatuses.every((status) => status !== "UNSUPPORTED" && status !== "PARTIALLY_SUPPORTED");
+  const scopeClean = Object.values(scopeStatusByAssertion).every(
+    (status) => status !== "OUT_OF_SCOPE" && status !== "ENRICHMENT_NOT_REQUIRED" && status !== "SCOPE_UNRESOLVED",
+  );
+
+  const releaseConfidenceReasons: string[] = [];
+  if (!formalCoverageComplete) releaseConfidenceReasons.push("formal curriculum coverage is not complete (structural defect, or an LO/AC/Range-item count mismatch)");
+  if (!semanticCompleteAll) releaseConfidenceReasons.push("semantic knowledge completeness is not 100% (some AC/Range item has an unsatisfied knowledge obligation)");
+  if (!entailmentClean) releaseConfidenceReasons.push("at least one Unit-202-scoped assertion is UNSUPPORTED or PARTIALLY_SUPPORTED");
+  if (!scopeClean) releaseConfidenceReasons.push("at least one Unit-202-scoped assertion is OUT_OF_SCOPE, ENRICHMENT_NOT_REQUIRED or SCOPE_UNRESOLVED");
+  if (materialUncertainties.length > 0) {
+    releaseConfidenceReasons.push(
+      `${materialUncertainties.length} MATERIAL unresolved knowledge-obligation ${materialUncertainties.length === 1 ? "question remains" : "questions remain"} (task section 34 gate A: full formal coverage never overrides this)`,
+    );
+  }
+
+  const goodCriteriaMet = formalCoverageComplete && semanticCompleteAll && entailmentClean && scopeClean && materialUncertainties.length === 0;
+  let releaseConfidenceLevel: ReleaseConfidenceLevel;
+  if (!goodCriteriaMet) {
+    releaseConfidenceLevel = "LIMITED";
+  } else {
+    // HIGH additionally requires every source backing an IN_SCOPE_REQUIRED
+    // assertion to be independently VERIFIED (ADR-0002) -- deliberately
+    // NOT required for GOOD (task section 17: perfection is not a release
+    // requirement; GOOD is a valid commercial-quality target).
+    const requiredAssertionIds = Object.entries(scopeStatusByAssertion)
+      .filter(([, status]) => status === "IN_SCOPE_REQUIRED")
+      .map(([id]) => id);
+    const allRequiredSourcesVerified = requiredAssertionIds.every((id) => {
+      const links = factualLinks(id);
+      // No direct factual link of its own (FULLY_SUPPORTED_DERIVED reaches
+      // verification transitively through its DERIVED_FROM chain, already
+      // proven non-UNSUPPORTED by entailmentClean above) -- nothing further
+      // to check here.
+      if (links.length === 0) return true;
+      return links.every((link) => {
+        const svKey = sourceVersionKeyByLocatorKey.get(link.sourceLocatorKey);
+        return svKey ? verificationStatusBySourceVersionKey.get(svKey) === "VERIFIED" : false;
+      });
+    });
+    if (!allRequiredSourcesVerified) {
+      releaseConfidenceReasons.push(
+        "not every source backing a required (IN_SCOPE_REQUIRED) assertion is independently VERIFIED per ADR-0002 -- GOOD, not yet HIGH",
+      );
+    }
+    releaseConfidenceLevel = allRequiredSourcesVerified ? "HIGH" : "GOOD";
+  }
+
+  const releaseConfidence: ReleaseConfidenceAssessment = {
+    level: releaseConfidenceLevel,
+    releaseReady: releaseConfidenceLevel === "GOOD" || releaseConfidenceLevel === "HIGH",
+    materialUncertainties,
+    nonMaterialUncertainties,
+    reasons: releaseConfidenceReasons,
+  };
+
   return {
     structuralDefects,
     acCoverage,
@@ -858,6 +1070,7 @@ function buildReport(overrides?: {
     provenanceAudit,
     entailmentStatusByAssertion,
     scopeStatusByAssertion,
+    releaseConfidence,
     totals: {
       loCount: loNodes.length,
       acCount: acNodes.length,
@@ -943,6 +1156,25 @@ function formatReport(report: CoverageMatrixReport): string {
   lines.push("INDEPENDENT VERIFICATION:");
   lines.push(`  assertions citing at least one still-UNVERIFIED source: ${report.provenanceAudit.unverifiedSourceCount} (reported, never a --check failure -- see ADR-0002)`);
   lines.push("");
+  lines.push("COURSE-EVIDENCE RELEASE CONFIDENCE (CC-09C, task sections 14-17 -- \"can we credibly release this course? if not, what MATERIAL uncertainty blocks us?\"):");
+  lines.push(`  level: ${report.releaseConfidence.level} (release-ready: ${report.releaseConfidence.releaseReady ? "YES" : "NO"})`);
+  if (report.releaseConfidence.reasons.length) {
+    lines.push("  reasons:");
+    for (const reason of report.releaseConfidence.reasons) lines.push(`    - ${reason}`);
+  }
+  lines.push(
+    `  MATERIAL unresolved uncertainty (blocks GOOD/HIGH): ${report.releaseConfidence.materialUncertainties.length}` +
+      (report.releaseConfidence.materialUncertainties.length
+        ? ` -- ${report.releaseConfidence.materialUncertainties.map((u) => `AC${u.acNumber}:${u.obligationId}`).join(", ")}`
+        : ""),
+  );
+  lines.push(
+    `  NON_MATERIAL unresolved uncertainty (never blocks release on its own): ${report.releaseConfidence.nonMaterialUncertainties.length}` +
+      (report.releaseConfidence.nonMaterialUncertainties.length
+        ? ` -- ${report.releaseConfidence.nonMaterialUncertainties.map((u) => `AC${u.acNumber}:${u.obligationId}`).join(", ")}`
+        : ""),
+  );
+  lines.push("");
   lines.push(`Underlying lesson-plan governance (validate-lesson-plan.ts): ${report.lessonPlanGovernanceClean ? "CLEAN" : "HAS ISSUES -- run npm run lesson:validate for detail"}`);
   lines.push("");
   lines.push("Per-Learning-Outcome exam-readiness (against the official 602 assessment specification):");
@@ -977,7 +1209,19 @@ function isReportClean(report: CoverageMatrixReport): boolean {
 }
 
 export { buildReport, formatReport, isReportClean };
-export type { AcCoverage, AcSemantic, CoverageMatrixReport, EntailmentStatus, LoReadiness, ProvenanceAudit, ScopeStatus, SemanticStatus };
+export type {
+  AcCoverage,
+  AcSemantic,
+  CoverageMatrixReport,
+  EntailmentStatus,
+  LoReadiness,
+  MaterialUncertainty,
+  ProvenanceAudit,
+  ReleaseConfidenceAssessment,
+  ReleaseConfidenceLevel,
+  ScopeStatus,
+  SemanticStatus,
+};
 
 function isMainModule(): boolean {
   const entryPoint = process.argv[1];

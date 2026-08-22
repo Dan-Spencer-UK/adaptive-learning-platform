@@ -551,7 +551,12 @@ describe("report-coverage-matrix: CC-09B.5 syllabus-scope fidelity and depth con
             ...set,
             obligations: set.obligations.map((o) =>
               o.id === "statistics"
-                ? { ...o, basis: "RANGE" as const, satisfiedBy: ["FM-STATS-MEAN-001", "FM-STATS-RANGE-001"], scopeUnresolved: { note: "simulated pre-CC-09B.6 state" } }
+                ? {
+                    ...o,
+                    basis: "RANGE" as const,
+                    satisfiedBy: ["FM-STATS-MEAN-001", "FM-STATS-RANGE-001"],
+                    scopeUnresolved: { note: "simulated pre-CC-09B.6 state", materiality: "MATERIAL" as const },
+                  }
                 : o,
             ),
           }
@@ -709,5 +714,144 @@ describe("report-coverage-matrix: CC-09B.6 official teaching-material reconcilia
       const factualLinks = links.filter((l) => l.assertionIdentifier === id && l.provenanceRole !== "CURRICULUM_REQUIRES");
       expect(factualLinks.every((l) => l.sourceLocatorKey.startsWith("loc-smartscreen") === false)).toBe(true);
     }
+  });
+});
+
+describe("report-coverage-matrix: CC-09C course-evidence and release-confidence governance", () => {
+  it("A (generalisation, task section 35.11): the curriculum-vs-factual source split is driven by the generic sourceRole field, not a hardcoded City & Guilds source key -- reclassifying an arbitrary OTHER source as NORMATIVE_CURRICULUM removes its evidence from entailment exactly like City & Guilds' own source always was", () => {
+    const baseline = buildReport();
+    expect(baseline.entailmentStatusByAssertion["EL-UNIT-OHM-001"]).not.toBe("UNSUPPORTED");
+
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      sources: cc04Unit202ElectricalScience.sources.map((s) =>
+        s.key === "src-bipm-si-brochure" ? { ...s, sourceRole: "NORMATIVE_CURRICULUM" as const } : s,
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    // EL-UNIT-OHM-001's only factual link cites BIPM; once BIPM is
+    // reclassified as a curriculum-authority source, its sole remaining
+    // link (City & Guilds' own CURRICULUM_REQUIRES citation) can no longer
+    // count as factual evidence either -- exactly the treatment CG's own
+    // source has always received, now proven to generalise.
+    expect(report.entailmentStatusByAssertion["EL-UNIT-OHM-001"]).toBe("UNSUPPORTED");
+  });
+
+  it("A2 (adversarial-review finding, task section 35.5): AWARDING_BODY_SCOPE_INTERPRETATION sources -- not just NORMATIVE_CURRICULUM -- are also excluded from factual entailment, so an official teaching-scope-interpretation source (the generic SmartScreen equivalent) can never become factual truth by accident merely by being cited", () => {
+    const baseline = buildReport();
+    expect(baseline.entailmentStatusByAssertion["EL-UNIT-OHM-001"]).not.toBe("UNSUPPORTED");
+
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      sources: cc04Unit202ElectricalScience.sources.map((s) =>
+        s.key === "src-bipm-si-brochure" ? { ...s, sourceRole: "AWARDING_BODY_SCOPE_INTERPRETATION" as const } : s,
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    // Identical outcome to reclassifying it NORMATIVE_CURRICULUM (test A) --
+    // both roles are non-factual-authority roles by this module's own
+    // governing rule (CC-09B.6: "official teaching material resolves
+    // SCOPE only, never FACT"). An earlier version of this check excluded
+    // ONLY NORMATIVE_CURRICULUM, which would have let this exact
+    // reclassification silently keep counting as factual evidence.
+    expect(report.entailmentStatusByAssertion["EL-UNIT-OHM-001"]).toBe("UNSUPPORTED");
+  });
+
+  it("B (fact does not establish scope, task section 34.D): EL-INSTRUMENT-CLAMP-METER-001 is strongly, factually evidenced (Fluke) yet carries no Unit 202 curriculum mapping at all -- strong factual evidence alone never grants curriculum-requirement status", () => {
+    const report = buildReport();
+    expect(report.entailmentStatusByAssertion["EL-INSTRUMENT-CLAMP-METER-001"]).not.toBe("UNSUPPORTED");
+    expect(report.entailmentStatusByAssertion["EL-INSTRUMENT-CLAMP-METER-001"]).not.toBe("PARTIALLY_SUPPORTED");
+    expect(report.scopeStatusByAssertion["EL-INSTRUMENT-CLAMP-METER-001"]).toBeUndefined();
+  });
+
+  it("C (scope does not establish fact, task section 34.E): FM-STATS-MEDIAN-001 satisfies an OFFICIAL_TEACHING_INTERPRETATION-basis obligation (IN_SCOPE_REQUIRED) -- stripping its own factual provenance link still leaves it UNSUPPORTED; the scope basis grants no factual credit", () => {
+    const baseline = buildReport();
+    expect(baseline.scopeStatusByAssertion["FM-STATS-MEDIAN-001"]).toBe("IN_SCOPE_REQUIRED");
+    expect(baseline.entailmentStatusByAssertion["FM-STATS-MEDIAN-001"]).not.toBe("UNSUPPORTED");
+
+    // Every APPROVED assertion version must keep >=1 provenance link (a
+    // schema-level invariant, unrelated to this test) -- so rather than
+    // removing the link outright, retarget it onto a real City & Guilds
+    // curriculum-authority locator. The assertion keeps a provenance link,
+    // but it is no longer FACTUAL evidence of anything.
+    const tampered = {
+      ...cc04Unit202ElectricalScience,
+      assertionProvenanceLinks: cc04Unit202ElectricalScience.assertionProvenanceLinks.map((p) =>
+        p.assertionIdentifier === "FM-STATS-MEDIAN-001"
+          ? { ...p, sourceLocatorKey: "loc-cg-ac1.1", provenanceRole: "CURRICULUM_REQUIRES" as const }
+          : p,
+      ),
+    };
+    const report = buildReport({ curriculum: tampered });
+    expect(report.entailmentStatusByAssertion["FM-STATS-MEDIAN-001"]).toBe("UNSUPPORTED");
+    // Scope status is untouched -- it is derived from the obligation basis
+    // and curriculum mapping alone, never from provenance links.
+    expect(report.scopeStatusByAssertion["FM-STATS-MEDIAN-001"]).toBe("IN_SCOPE_REQUIRED");
+  });
+
+  it("D (task section 34.A, materiality gate): a declared MATERIAL unresolved knowledge obligation caps release confidence at LIMITED, even with unchanged 100% formal/semantic coverage -- the exact false-green failure mode this package exists to prevent", () => {
+    const tamperedObligations = AC_OBLIGATIONS.map((set) =>
+      set.acNumber === "1.1"
+        ? {
+            ...set,
+            obligations: set.obligations.map((o) =>
+              o.id === "statistics"
+                ? { ...o, scopeUnresolved: { note: "synthetic test: material uncertainty", materiality: "MATERIAL" as const } }
+                : o,
+            ),
+          }
+        : set,
+    );
+    const report = buildReport({ obligations: tamperedObligations });
+    expect(report.totals.acSemanticComplete).toBe(report.totals.acCount);
+    expect(report.totals.rangeItemsSemanticComplete).toBe(report.totals.rangeItemCount);
+    expect(report.releaseConfidence.materialUncertainties.length).toBeGreaterThan(0);
+    expect(report.releaseConfidence.level).toBe("LIMITED");
+    expect(report.releaseConfidence.releaseReady).toBe(false);
+  });
+
+  it("E (task section 34.B): a declared NON_MATERIAL unresolved knowledge obligation never blocks release on its own -- confidence stays at the real corpus's baseline level", () => {
+    const baseline = buildReport();
+    const tamperedObligations = AC_OBLIGATIONS.map((set) =>
+      set.acNumber === "1.1"
+        ? {
+            ...set,
+            obligations: set.obligations.map((o) =>
+              o.id === "statistics"
+                ? { ...o, scopeUnresolved: { note: "synthetic test: non-material uncertainty", materiality: "NON_MATERIAL" as const } }
+                : o,
+            ),
+          }
+        : set,
+    );
+    const report = buildReport({ obligations: tamperedObligations });
+    expect(report.releaseConfidence.nonMaterialUncertainties.length).toBeGreaterThan(0);
+    expect(report.releaseConfidence.materialUncertainties.length).toBe(0);
+    expect(report.releaseConfidence.level).toBe(baseline.releaseConfidence.level);
+    expect(report.releaseConfidence.releaseReady).toBe(baseline.releaseConfidence.releaseReady);
+  });
+
+  it("F (real corpus baseline, task sections 16-17): the live, unmodified Unit 202 corpus resolves to GOOD -- release-ready without requiring HIGH/perfection, honestly not yet HIGH because independent source verification (ADR-0002) has not happened at scale", () => {
+    const report = buildReport();
+    expect(report.releaseConfidence.materialUncertainties).toEqual([]);
+    expect(report.releaseConfidence.level).toBe("GOOD");
+    expect(report.releaseConfidence.releaseReady).toBe(true);
+    expect(report.releaseConfidence.reasons.some((r) => r.includes("VERIFIED"))).toBe(true);
+  });
+
+  it("G (task section 34.C): no code path derives OUT_OF_SCOPE from the absence of sample-assessment evidence -- the real corpus has zero OUT_OF_SCOPE assertions, and OFFICIAL_ASSESSMENT_EVIDENCE (reserved for the deferred assessment-calibration package) is not yet used to justify any obligation", () => {
+    const report = buildReport();
+    expect(Object.values(report.scopeStatusByAssertion).filter((s) => s === "OUT_OF_SCOPE")).toEqual([]);
+    const basesInUse = new Set(AC_OBLIGATIONS.flatMap((set) => set.obligations.map((o) => o.basis)));
+    expect(basesInUse.has("OFFICIAL_ASSESSMENT_EVIDENCE")).toBe(false);
+  });
+
+  it("G2 (mutation proof, task section 34.C): removing the ONLY thing that could positively justify a REQUIRED_FOR-mapped assertion's scope (its knowledge obligation -- the same role a future OFFICIAL_ASSESSMENT_EVIDENCE obligation would play) resolves to SCOPE_UNRESOLVED, an explicit needs-adjudication state, never silently to OUT_OF_SCOPE -- absence of positive evidence is structurally distinct from a finding of exclusion", () => {
+    const withoutObligation = AC_OBLIGATIONS.map((set) =>
+      set.acNumber === "4.5" ? { ...set, obligations: set.obligations.filter((o) => o.id !== "ohms-law-rearrangement-and-selection") } : set,
+    );
+    const report = buildReport({ obligations: withoutObligation });
+    expect(report.scopeStatusByAssertion["EL-OHM-REARRANGE-001"]).toBe("SCOPE_UNRESOLVED");
+    expect(report.scopeStatusByAssertion["EL-OHM-REARRANGE-001"]).not.toBe("OUT_OF_SCOPE");
   });
 });

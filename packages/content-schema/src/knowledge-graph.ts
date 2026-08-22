@@ -47,6 +47,48 @@ export const curriculumVersionStatusSchema = z.enum([
   "WITHDRAWN",
 ]);
 
+// CC-09C (Course Evidence, Corpus Confidence & Release-Gate Architecture):
+// the generic EVIDENTIAL ROLE a source plays in governing a qualification's
+// content -- WHAT job the source does, never WHO produced it (that remains
+// `publisher`/`sourceFamily`/`sourceType`, deliberately left as free text --
+// see this field's own doc note below) and never the separate question of
+// what a specific provenance LINK does for one specific assertion (that is
+// `provenanceRoleSchema`, unchanged). Introduced because CC-09B.6's Unit 202
+// implementation had exactly one place where "is this source a curriculum
+// authority" was decided by literally comparing a source's stable key
+// against the hardcoded string "src-cg-2365-02" -- correct for Unit 202,
+// but City & Guilds/Unit-202-specific in a way the underlying architecture
+// must not be if a second qualification/awarding body is ever onboarded.
+// `report-coverage-matrix.ts` now derives that same distinction generically
+// from `sourceRole` instead (see its own header note).
+//
+// Optional and unset for the vast majority of the existing corpus (per
+// task section 32's migration discipline -- never mass-label historical
+// sources merely because a title looks plausible). Only City & Guilds'
+// own qualification handbook (the sole source ever cited with
+// provenanceRole CURRICULUM_REQUIRES/AUTHORITATIVE_REQUIREMENT/LEGAL_BASIS
+// in the live Unit 202 corpus) is currently classified, as
+// NORMATIVE_CURRICULUM -- a narrow, defensible, evidence-backed
+// classification, not a bulk retroactive labelling exercise.
+export const sourceRoleSchema = z.enum([
+  /** Sets the formal curriculum boundary -- a qualification handbook/specification or equivalent. */
+  "NORMATIVE_CURRICULUM",
+  /** Official awarding-body evidence of intended teaching breadth/depth/examples beneath a terse formal requirement (SmartScreen-equivalent handouts, Scheme of Work, delivery/teacher guide, indicative content, amplification guidance) -- generalises CC-09B.6's OFFICIAL_TEACHING_INTERPRETATION knowledge-obligation `basis` concept to the source-evidence layer. Never itself a scope boundary or a factual authority. */
+  "AWARDING_BODY_SCOPE_INTERPRETATION",
+  /** Official public sample/specimen assessment material, mark schemes or assessment specifications -- positive scope/assessment-pattern evidence only; its ABSENCE is never exclusion evidence (see report-coverage-matrix.ts's ScopeStatus/materiality model). */
+  "OFFICIAL_ASSESSMENT",
+  /** Official examiner/qualification reports or other post-assessment performance feedback. */
+  "OFFICIAL_PERFORMANCE_FEEDBACK",
+  /** An awarding-body-endorsed or formally associated textbook/resource, distinct from the awarding body's own official material. */
+  "ENDORSED_OR_ASSOCIATED",
+  /** A third-party resource used only to discover or corroborate other evidence (e.g. a college course outline) -- never itself sufficient curriculum or factual authority. */
+  "EXTERNAL_DISCOVERY_OR_CORROBORATION",
+  /** Establishes technical/factual truth (a standard, a government/statutory source, a scientific/academic authority, an open textbook, first-party manufacturer technical documentation, an appropriate technical body) -- never itself a curriculum-scope authority. */
+  "FACTUAL_AUTHORITY",
+  /** A recorded human subject-matter-expert adjudication resolving a specific, otherwise-unresolved evidence question -- not a source artefact in the conventional sense, but the same registry entity models it uniformly. */
+  "SME_ADJUDICATION",
+]);
+
 export const curriculumNodeTypeSchema = z.enum([
   "QUALIFICATION",
   "UNIT",
@@ -178,6 +220,8 @@ export const sourceManifestSchema = z.object({
   jurisdiction: z.string().min(1).optional(),
   canonicalReference: z.string().min(1).optional(),
   accessLocation: z.string().min(1).optional(),
+  /** CC-09C: this source's generic evidential role -- see sourceRoleSchema. Optional/unset for sources this migration did not narrowly, defensibly classify (task section 32's "explicit unclassified state" allowance). */
+  sourceRole: sourceRoleSchema.optional(),
 });
 
 export const sourceVersionManifestSchema = z.object({

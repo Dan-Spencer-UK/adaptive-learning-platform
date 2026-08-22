@@ -4440,6 +4440,14 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       jurisdiction: "UK",
       canonicalReference: "City & Guilds 2365-02, Accreditation 600/5498/0",
       accessLocation: "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/centre_documents/2365-02_l2_electrical_installation_qualification_handbook_v1-12-pdf.pdf",
+      // CC-09C: the sole source in this corpus ever cited with
+      // provenanceRole CURRICULUM_REQUIRES/AUTHORITATIVE_REQUIREMENT/
+      // LEGAL_BASIS -- narrowly and defensibly classified as the generic
+      // NORMATIVE_CURRICULUM evidence role (see knowledge-graph.ts's
+      // sourceRoleSchema). Every other source in this manifest is
+      // deliberately left unclassified rather than retroactively
+      // mass-labelled (task section 32).
+      sourceRole: "NORMATIVE_CURRICULUM",
     },
     {
       key: SRC_BIPM,

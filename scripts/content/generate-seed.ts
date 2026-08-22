@@ -128,7 +128,7 @@ function generate(manifest: Manifest): { sql: string; counts: Record<string, num
   sections.push(
     insert(
       "sources",
-      ["id", "title", "publisher", "source_family", "source_type", "jurisdiction", "canonical_reference", "access_location"],
+      ["id", "title", "publisher", "source_family", "source_type", "jurisdiction", "canonical_reference", "access_location", "source_role"],
       data.sources.map((s) => [
         sqlString(sourceId.get(s.key)!),
         sqlString(s.title),
@@ -138,6 +138,7 @@ function generate(manifest: Manifest): { sql: string; counts: Record<string, num
         sqlString(s.jurisdiction),
         sqlString(s.canonicalReference),
         sqlString(s.accessLocation),
+        sqlString(s.sourceRole),
       ]),
     ),
   );

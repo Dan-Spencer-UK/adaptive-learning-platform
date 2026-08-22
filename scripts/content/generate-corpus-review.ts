@@ -236,12 +236,19 @@ function buildReport(manifest: KnowledgeGraphManifest): string {
       "confirmed against the actual artefact by a verifier distinct from the authoring model.",
   );
   lines.push("");
-  lines.push("| Source | Rights classification | Verification | Verified by | Fingerprint |");
-  lines.push("|---|---|---|---|---|");
+  lines.push(
+    "Source role (CC-09C) reflects the generic Course Evidence Registry evidential-role " +
+      "classification -- see @alp/content-schema's sourceRoleSchema. (unclassified) means this " +
+      "source has not been narrowly, defensibly classified, never that it is assumed factual " +
+      "or curriculum-authority by default.",
+  );
+  lines.push("");
+  lines.push("| Source | Source role | Rights classification | Verification | Verified by | Fingerprint |");
+  lines.push("|---|---|---|---|---|---|");
   for (const s of manifest.sources) {
     const sv = manifest.sourceVersions.find((v) => v.sourceKey === s.key);
     lines.push(
-      `| ${s.title} | ${sv?.rightsClassification ?? "(unknown)"} | ${sv?.verificationStatus ?? "UNVERIFIED"} | ${sv?.verifiedBy ?? "(none)"} | ${sv?.contentFingerprintSha256 ? "present" : "absent"} |`,
+      `| ${s.title} | ${s.sourceRole ?? "(unclassified)"} | ${sv?.rightsClassification ?? "(unknown)"} | ${sv?.verificationStatus ?? "UNVERIFIED"} | ${sv?.verifiedBy ?? "(none)"} | ${sv?.contentFingerprintSha256 ? "present" : "absent"} |`,
     );
   }
   lines.push("");

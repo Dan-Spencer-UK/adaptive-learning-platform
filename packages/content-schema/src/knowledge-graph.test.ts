@@ -240,6 +240,34 @@ describe("knowledgeGraphManifestSchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("accepts a source with a valid sourceRole", () => {
+    const manifest = minimalValidManifest();
+    manifest.sources[0]!.sourceRole = "NORMATIVE_CURRICULUM";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+  });
+
+  it("leaves sourceRole unset by default (CC-09C: never fabricated for a legacy source)", () => {
+    const manifest = minimalValidManifest();
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(true);
+    expect(result.success && result.data.sources[0]!.sourceRole).toBeUndefined();
+  });
+
+  it("rejects a source.sourceRole outside the governed enum (CC-09C: no vendor-specific role values)", () => {
+    const manifest = minimalValidManifest();
+    // @ts-expect-error -- "SMARTSCREEN" is deliberately not part of the generic, vendor-neutral enum
+    manifest.sources[0]!.sourceRole = "SMARTSCREEN";
+
+    const result = knowledgeGraphManifestSchema.safeParse(manifest);
+
+    expect(result.success).toBe(false);
+  });
+
   it("rejects a duplicate assertion version", () => {
     const manifest = minimalValidManifest();
     manifest.assertionVersions.push({ ...manifest.assertionVersions[0]! });
