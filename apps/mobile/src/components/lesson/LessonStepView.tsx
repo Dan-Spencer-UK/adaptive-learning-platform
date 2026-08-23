@@ -68,7 +68,7 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
     resolved.diagram && questionInstance?.representation.diagram?.blueprintId === resolved.diagram.id
       ? questionInstance.representation.diagram
       : resolved.diagram
-        ? buildTeachingDiagramInstance(resolved.diagram)
+        ? buildTeachingDiagramInstance(resolved.diagram, [], resolved.step.representation.diagramParameters)
         : null;
   const diagramReveal: DiagramRevealProps | undefined =
     evaluation && revealCorrectAnswer && questionInstance && resolved.diagram
@@ -76,7 +76,9 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
         ? { fieldRotation: questionInstance.expected.value as "clockwise" | "counterclockwise" }
         : resolved.diagram.id === "motor.force_field_current"
           ? { forceDirection: questionInstance.expected.value as "up" | "down" | "left" | "right" }
-          : undefined
+          : resolved.diagram.id === "magnetic.pole_interaction"
+            ? { showPoleForce: true }
+            : undefined
       : undefined;
 
   return (

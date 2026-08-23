@@ -49,6 +49,7 @@ const FORCE_ON_CONDUCTOR_FORMULA_ID = "formula.force_on_conductor";
 
 const FIELD_DIAGRAM_ID = "magnetic.field_conductor_direction";
 const FORCE_DIAGRAM_ID = "motor.force_field_current";
+const POLE_DIAGRAM_ID = "magnetic.pole_interaction";
 
 const CONDUCTOR_CURRENT_DIRECTIONS = ["into_page", "out_of_page"] as const;
 type ConductorCurrentDirection = (typeof CONDUCTOR_CURRENT_DIRECTIONS)[number];
@@ -96,6 +97,19 @@ function forceDiagram(poleLabels: PoleLabels, currentDirection: ConductorCurrent
     blueprintId: FORCE_DIAGRAM_ID,
     parameters: { pole_labels: poleLabels, current_direction: currentDirection, show_force_arrow: true },
     labels: ["conductor"],
+  };
+}
+
+// CC-11.3: the diagram's own `pole_pairing` parameter is given context
+// (which poles face each other) -- never itself the attract/repel
+// answer, which stays gated entirely by the separate showForceArrows/
+// reveal prop the Lesson Player supplies only in teaching mode or after
+// feedback (see MagneticPoleDiagram.tsx's own header comment).
+function poleDiagram(poleCombination: "like" | "unlike"): DiagramInstance {
+  return {
+    blueprintId: POLE_DIAGRAM_ID,
+    parameters: { pole_pairing: poleCombination === "like" ? "like_poles_facing" : "unlike_poles_facing" },
+    labels: [],
   };
 }
 
@@ -190,12 +204,14 @@ const POLE_SCENARIO_CLUE: Readonly<Record<"like" | "unlike", string>> = {
 };
 
 const recogniseAttractionRepulsion: QuestionExecutor = (ctx) => {
+  requireDiagramBlueprint(ctx, POLE_DIAGRAM_ID);
   const poleCombination = pick(ctx.rng, ["like", "unlike"] as const);
   const expected = poleCombination === "like" ? "repel" : "attract";
+  const diagram = poleDiagram(poleCombination);
   return assembleInstance(
     ctx,
     { pole_combination: poleCombination, pole_scenario_clue: POLE_SCENARIO_CLUE[poleCombination] },
-    {},
+    { diagram },
     { answer: ctx.blueprint.answer, value: expected },
   );
 };

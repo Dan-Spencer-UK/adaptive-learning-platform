@@ -98,7 +98,7 @@ describe("motorForceVariants", () => {
 });
 
 describe("CANONICAL_VARIANT_BUILDERS", () => {
-  it("has exactly one entry per rendered diagram blueprint", () => {
+  it("has exactly one entry per rendered diagram blueprint (CC-11.3 adds 9)", () => {
     expect(Object.keys(CANONICAL_VARIANT_BUILDERS).sort()).toEqual(
       [
         "circuit.parallel_resistors",
@@ -108,6 +108,15 @@ describe("CANONICAL_VARIANT_BUILDERS", () => {
         "motor.force_field_current",
         "graph.waveform_sine",
         "instrument.measurement_connection",
+        "mechanical.lever_arrangement",
+        "mechanical.gear_mesh",
+        "mechanical.pulley_arrangement",
+        "mechanical.resistivity_dimensions",
+        "magnetic.pole_interaction",
+        "magnetic.flux_field_lines",
+        "emf.motional_emf_geometry",
+        "generator.rotating_loop",
+        "electronics.component_symbol_card",
       ].sort(),
     );
   });

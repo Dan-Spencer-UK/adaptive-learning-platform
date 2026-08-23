@@ -87,6 +87,20 @@ export const stepRepresentationRefsSchema = z.object({
   diagramBlueprintId: stableId.optional(),
   workedExampleBlueprintId: stableId.optional(),
   visualAidBlueprintId: stableId.optional(),
+  /**
+   * CC-11.3: explicit parameter overrides for a pure TEACHING diagram
+   * instance (no generated question instance driving it) -- e.g.
+   * `{ component_type: "capacitor" }` so a step referencing the shared,
+   * multi-component `electronics.component_symbol_card` blueprint shows
+   * the right one, rather than `buildTeachingDiagramInstance`'s generic
+   * first-declared-enum-value default (which would show every such step
+   * identically). Only meaningful for teaching-only diagram instances;
+   * a step whose diagram instead comes from a real generated question
+   * (see `LessonStepView.tsx`) always uses that instance's own
+   * engine-computed parameters instead, exactly as before -- this field
+   * is never consulted in that case.
+   */
+  diagramParameters: z.record(z.string().min(1), z.union([z.string(), z.number(), z.boolean()])).optional(),
 });
 export type StepRepresentationRefs = z.infer<typeof stepRepresentationRefsSchema>;
 

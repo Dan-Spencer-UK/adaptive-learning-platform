@@ -88,8 +88,17 @@ function renderNode(node: RenderTreeNode): string {
       const ariaAttrs = accessibilityLabel ? ` role="img" aria-label="${escapeXml(accessibilityLabel)}"` : "";
       return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="${minX} ${minY} ${vbWidth} ${vbHeight}"${ariaAttrs}>${titleEl}${renderChildren(node.children)}</svg>`;
     }
-    case "RNSVGGroup":
-      return `<g${paintAttrs(p)}>${renderChildren(node.children)}</g>`;
+    case "RNSVGGroup": {
+      // CC-11.3: transform support -- newly exercised by ComponentSymbolCard's
+      // <G transform="translate(x,y) scale(s)"> (scaling ComponentSymbols.tsx's
+      // shared symbol viewBox into the card's own symbol box). Previously
+      // unreached by any canonical variant (no diagram in this folder used a
+      // transformed group before), not previously unsupported by design --
+      // react-native-svg accepts the CSS-transform-string form directly as a
+      // string prop, so it is passed straight through as the SVG attribute.
+      const transformAttr = typeof p.transform === "string" ? ` transform="${escapeXml(p.transform)}"` : "";
+      return `<g${transformAttr}${paintAttrs(p)}>${renderChildren(node.children)}</g>`;
+    }
     case "RNSVGPath":
       return `<path d="${escapeXml(String(p.d ?? ""))}"${paintAttrs(p)} />`;
     case "RNSVGLine":
@@ -100,6 +109,15 @@ function renderNode(node: RenderTreeNode): string {
       const rxAttr = typeof p.rx === "number" ? ` rx="${p.rx}"` : "";
       return `<rect x="${p.x}" y="${p.y}" width="${p.width}" height="${p.height}"${rxAttr}${paintAttrs(p)} />`;
     }
+    // CC-11.3: newly exercised by the mechanics/pole-interaction/AC-
+    // generator diagrams (Polygon for the pivot triangle/pole-force
+    // arrows, Ellipse for the rotating-loop shape) -- previously
+    // unreached by any canonical variant, not previously unsupported by
+    // design.
+    case "RNSVGPolygon":
+      return `<polygon points="${escapeXml(String(p.points ?? ""))}"${paintAttrs(p)} />`;
+    case "RNSVGEllipse":
+      return `<ellipse cx="${p.cx}" cy="${p.cy}" rx="${p.rx}" ry="${p.ry}"${paintAttrs(p)} />`;
     case "RNSVGText": {
       const x = firstOf(p.x) ?? 0;
       const y = firstOf(p.y) ?? 0;

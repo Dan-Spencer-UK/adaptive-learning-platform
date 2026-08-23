@@ -12,11 +12,25 @@
  * packages/calculation-engine/src/families/electronic-components.ts for
  * the executors and this package's integration report for the exact
  * cc05a-pedagogy-unit202.ts blueprint/family-reclassification diff a
- * separate integrator applies). Deliberately no numeric calculation and no
- * new diagram blueprint (task brief: teach exactly the governed Level-2
- * operating principles and applications, not semiconductor engineering).
- * Cross-checked mechanically by scripts/content/validate-lesson-plan.ts
- * once integrated.
+ * separate integrator applies). No numeric calculation (task brief: teach
+ * exactly the governed Level-2 operating principles and applications, not
+ * semiconductor engineering). Cross-checked mechanically by
+ * scripts/content/validate-lesson-plan.ts once integrated.
+ *
+ * CC-11.3: adds the UK/IEC governed component-symbol library
+ * (`electronics.component_symbol_card`, ComponentSymbolCard.tsx) this
+ * lesson's own "deliberately no new diagram blueprint" note above
+ * predates -- superseded now that real symbol-recognition value was
+ * identified. `concept_thermistors` and `guided_recognise_thermistor_
+ * type` are the two steps here that test exactly one component
+ * (thermistor -- the same symbol represents both the NTC and PTC
+ * variant); wired via `representation.diagramParameters`. The
+ * switching-family steps each teach 2-4 components together and cannot
+ * cleanly show a single symbol -- left untouched rather than
+ * restructured (out of this package's scope). `contentRelease` moved to
+ * `release.unit202.v7`; see lesson-cc11-3-historical-snapshot.ts for how
+ * v4/v5/v6's own immutable membership remains resolvable against this
+ * lesson's pre-CC-11.3 content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -79,7 +93,7 @@ export const LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL: LessonPlan = {
       assertionFamilyId: "electrical.electronic_components",
       capabilityIds: ["cap.electronic_components.recognise_principle", "cap.electronic_components.identify_application"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "electronics.component_symbol_card", diagramParameters: { component_type: "thermistor" } },
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "introductory",
@@ -99,7 +113,7 @@ export const LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL: LessonPlan = {
       assertionFamilyId: "electrical.electronic_components",
       capabilityIds: ["cap.electronic_components.recognise_principle"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "electronics.component_symbol_card", diagramParameters: { component_type: "thermistor" } },
       questionBlueprintId: "electronics.recognise_thermistor_type",
       presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -318,7 +332,7 @@ export const LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL: LessonPlan = {
       "The learner has distinguished NTC from PTC thermistors, recognised the DIAC/TRIAC/thyristor/transistor switching family, and identified the correct component for a dimmer switch, motor control, heating/boiler control and each of the two independent roles in a security-alarm circuit.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v4",
+  contentRelease: "release.unit202.v7",
 };
 
 export const lessons = [LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL];

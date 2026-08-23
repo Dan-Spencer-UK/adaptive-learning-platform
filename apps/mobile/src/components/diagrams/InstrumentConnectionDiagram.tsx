@@ -18,12 +18,24 @@
  *    supplied.
  *
  * `connection_style` is still a genuine, honoured parameter for
- * voltmeter/ammeter (a caller may legitimately request either), but the
- * diagram never lets a caller silently imply a dangerous or physically
- * incorrect combination is standard practice: whichever combination is
- * drawn, an explicit on-diagram caption states whether it matches the
- * conventional connection method for that instrument, so the image can
- * never be mistaken for endorsing a miswiring.
+ * voltmeter/ammeter (a caller may legitimately request either) -- a
+ * deliberate non-standard combination (voltmeter-in-series, ammeter-in-
+ * parallel) remains a legitimate TEACHING comparison example (task brief
+ * §11.A/§11.B: "incorrect configurations may remain as teaching
+ * comparison examples; they must not leak the answer in assessment
+ * state").
+ *
+ * CC-11.3 mode correction: `mode` now genuinely gates the standard/non-
+ * standard caption, which previously rendered unconditionally regardless
+ * of context (an answer-leakage risk the moment this diagram is ever
+ * wired into `instrumentation.recognise_connection`'s own assessment
+ * presentation, whose answer options are literally "series"/"parallel" --
+ * see this file's own git history / PROJECT-STATUS.md §CC-11.3 for the
+ * finding). TEACHING (default) and "both" show the caption, exactly as
+ * before; ASSESSMENT withholds it -- the learner must judge the
+ * connection from the drawn topology alone, matching the answer-reveal
+ * pattern every other diagram in this folder already uses (compare
+ * `MagneticForceDiagram`'s `forceDirection` prop).
  */
 import type { DiagramInstance } from "@alp/calculation-engine";
 import { Fragment } from "react";
@@ -35,6 +47,8 @@ import { horizontalResistorPath } from "./resistor-path";
 
 export interface InstrumentConnectionDiagramProps {
   readonly diagram: DiagramInstance;
+  /** Whether the standard/non-standard caption (the assessed answer for `instrumentation.recognise_connection`) is shown. Defaults to "teaching" -- callers driving an assessment presentation must pass "assessment" explicitly. */
+  readonly mode?: "teaching" | "assessment" | "both";
   readonly testID?: string;
 }
 
@@ -52,13 +66,14 @@ const HEIGHT = 170;
 const MARGIN = 26;
 const RESISTOR_WIDTH = 44;
 
-export function InstrumentConnectionDiagram({ diagram, testID }: InstrumentConnectionDiagramProps): React.JSX.Element {
+export function InstrumentConnectionDiagram({ diagram, mode = "teaching", testID }: InstrumentConnectionDiagramProps): React.JSX.Element {
   const { width: windowWidth } = useWindowDimensions();
   const width = Math.max(280, Math.min(windowWidth - 48, 420));
 
   const instrumentType: InstrumentType =
     diagram.parameters.instrument_type === "ammeter" || diagram.parameters.instrument_type === "ohmmeter" ? diagram.parameters.instrument_type : "voltmeter";
   const requestedStyle: ConnectionStyle = diagram.parameters.connection_style === "series" ? "series" : "parallel";
+  const showCaption = mode !== "assessment";
 
   const top = MARGIN + 6;
   const bottom = HEIGHT - MARGIN;
@@ -79,10 +94,14 @@ export function InstrumentConnectionDiagram({ diagram, testID }: InstrumentConne
 
   const accessibilityLabel = [
     `${instrumentType === "voltmeter" ? "Voltmeter" : "Ammeter"} connected in ${requestedStyle} with the component under test.`,
-    isCanonical
-      ? `This is the standard, correct way to connect ${instrumentType === "voltmeter" ? "a voltmeter (in parallel, across the component)" : "an ammeter (in series, in the current path)"}.`
-      : `This connection does not match the standard, correct method for a ${instrumentType}.`,
-  ].join(" ");
+    showCaption
+      ? isCanonical
+        ? `This is the standard, correct way to connect ${instrumentType === "voltmeter" ? "a voltmeter (in parallel, across the component)" : "an ammeter (in series, in the current path)"}.`
+        : `This connection does not match the standard, correct method for a ${instrumentType}.`
+      : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <Svg width={width} height={HEIGHT} viewBox={`0 0 ${width} ${HEIGHT}`} testID={testID} accessible accessibilityLabel={accessibilityLabel} accessibilityRole="image">
@@ -101,9 +120,11 @@ export function InstrumentConnectionDiagram({ diagram, testID }: InstrumentConne
         <ParallelInstrument componentStart={componentStart} componentEnd={componentEnd} top={top} right={right} left={left} bottom={bottom} type={instrumentType} />
       )}
 
-      <SvgText x={width / 2} y={HEIGHT - 6} fill={isCanonical ? color.textSecondary : color.danger} fontSize={10} textAnchor="middle">
-        {captionText}
-      </SvgText>
+      {showCaption ? (
+        <SvgText x={width / 2} y={HEIGHT - 6} fill={isCanonical ? color.textSecondary : color.danger} fontSize={10} textAnchor="middle">
+          {captionText}
+        </SvgText>
+      ) : null}
     </Svg>
   );
 }
@@ -192,8 +213,14 @@ function OhmmeterDiagram({
 }) {
   const meterY = top + 46;
   const meterX = (componentStart + componentEnd) / 2;
+  // CC-11.3: matches EL-INSTRUMENT-OHMMETER-001's exact governed wording --
+  // an ohmmeter must never be connected to an energised circuit; isolating
+  // the individual component (disconnecting other parallel paths) may be
+  // needed for an ACCURATE reading of that one component, not because
+  // isolation is universally required for resistance measurement itself.
+  // The pre-CC-11.3 wording overstated this as an unconditional rule.
   const accessibilityLabel =
-    "Ohmmeter connected across an isolated component. No supply is present in the circuit -- the component must be disconnected from any source before measuring resistance with an ohmmeter.";
+    "Ohmmeter connected across an isolated component. An ohmmeter must never be connected to an energised circuit; other circuit paths may need to be disconnected first to measure this component's resistance accurately.";
   return (
     <Svg width={width} height={HEIGHT} viewBox={`0 0 ${width} ${HEIGHT}`} testID={testID} accessible accessibilityLabel={accessibilityLabel} accessibilityRole="image">
       <Path d={horizontalResistorPath(componentStart, top, RESISTOR_WIDTH)} stroke={color.accent} strokeWidth={2} fill="none" />

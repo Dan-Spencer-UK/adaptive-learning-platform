@@ -7,6 +7,18 @@
  * in the CC-05A pedagogy corpus; no new governed knowledge, capability or
  * blueprint was authored for it. Cross-checked mechanically by
  * scripts/content/validate-lesson-plan.ts.
+ *
+ * CC-11.3: `guided_predict_length_area_effects` and
+ * `independent_predict_area_effect` tested the length/area relationship
+ * purely from prose despite being a genuinely spatial prediction --
+ * closed with `mechanical.resistivity_dimensions`
+ * (ResistivityDimensionsDiagram.tsx), parameterised per step via
+ * `representation.diagramParameters` (length comparison for the guided
+ * step, area comparison for the independent one) since both steps share
+ * one governed blueprint. `contentRelease` moved to
+ * `release.unit202.v7`; see lesson-cc11-3-historical-snapshot.ts for how
+ * v3/v4/v5/v6's own immutable membership remains resolvable against
+ * this lesson's pre-CC-11.3 content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -132,7 +144,7 @@ export const LESSON_RESISTIVITY: LessonPlan = {
       assertionFamilyId: "electrical.resistivity",
       capabilityIds: ["cap.resistivity.predict_length_effect"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.resistivity_dimensions", diagramParameters: { comparison: "length" } },
       questionBlueprintId: "resistivity.predict_length_effect",
       presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -153,7 +165,7 @@ export const LESSON_RESISTIVITY: LessonPlan = {
       assertionFamilyId: "electrical.resistivity",
       capabilityIds: ["cap.resistivity.predict_area_effect"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.resistivity_dimensions", diagramParameters: { comparison: "area" } },
       questionBlueprintId: "resistivity.predict_area_effect",
       presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "independent",
@@ -272,7 +284,7 @@ export const LESSON_RESISTIVITY: LessonPlan = {
       "The learner has distinguished resistivity from resistance, compared materials, predicted the effect of length and area on resistance, and calculated resistance from resistivity, length and area.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v3",
+  contentRelease: "release.unit202.v7",
 };
 
 export const lessons = [LESSON_RESISTIVITY];

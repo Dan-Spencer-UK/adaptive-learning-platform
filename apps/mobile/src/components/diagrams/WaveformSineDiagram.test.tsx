@@ -46,6 +46,22 @@ describe("WaveformSineDiagram", () => {
     expect(getByLabelText(/3 cycles shown/)).toBeTruthy();
   });
 
+  it("CC-11.3: mentions a peak-to-peak bracket whenever the peak line is shown (the contract's own claimed EL-WAVEFORM-PEAK-TO-PEAK-001 linkage)", async () => {
+    const shown = await render(
+      <WaveformSineDiagram
+        diagram={{ blueprintId: "graph.waveform_sine", parameters: { show_peak_line: true, show_rms_line: false, show_period_marker: false, cycles_shown: 2 }, labels: [] }}
+      />,
+    );
+    expect(shown.getByLabelText(/peak-to-peak bracket spans from the peak line to the trough line/)).toBeTruthy();
+
+    const hidden = await render(
+      <WaveformSineDiagram
+        diagram={{ blueprintId: "graph.waveform_sine", parameters: { show_peak_line: false, show_rms_line: false, show_period_marker: false, cycles_shown: 2 }, labels: [] }}
+      />,
+    );
+    expect(hidden.queryByLabelText(/peak-to-peak/)).toBeNull();
+  });
+
   it("never embeds a numeric peak/RMS value or a non-zero average line", async () => {
     const { getByLabelText } = await render(
       <WaveformSineDiagram

@@ -18,6 +18,20 @@
  * page) curls the field anticlockwise as seen by the viewer; current away
  * from the viewer (into the page) curls it clockwise.
  *
+ * CC-11.3 thumb-geometry correction: the pre-CC-11.3 thumb was a single
+ * fixed-width diagonal line, identical regardless of `currentDirection`
+ * -- it never actually communicated "along the current" (real-pixel
+ * review finding, task brief §12). A thumb genuinely pointing into/out
+ * of the page necessarily foreshortens toward the viewer's line of
+ * sight, so this version draws it as a TAPERED wedge (wide at the palm,
+ * narrowing toward the conductor -- the classic 2D cue for "receding
+ * into the distance") that terminates EXACTLY at the conductor circle,
+ * with the identical into/out-of-page dot-or-cross glyph the conductor
+ * itself uses repeated at the thumb's own tip. The thumb tip and the
+ * conductor symbol are drawn as literally the same mark, so "the thumb
+ * points this way" and "the current flows this way" read as one visual
+ * fact instead of two separately-labelled, seemingly-unrelated glyphs.
+ *
  * `fieldRotation` is deliberately a separate, optional prop -- the same
  * reveal/withhold pattern MagneticForceDiagram.tsx uses for its force
  * arrow: the thumb (current direction) is always shown, since it is given
@@ -92,16 +106,36 @@ export function RightHandGripRuleDiagram({ diagram, fieldRotation, testID }: Rig
       {/* Palm. */}
       <PalmShape />
 
-      {/* Thumb -- extends from the palm to the conductor, along the current direction. Coloured and labelled distinctly from the fingers so the rule reads correctly without relying on shape recognition alone. */}
-      <Line
-        x1={92}
-        y1={128}
-        x2={CONDUCTOR_X - CONDUCTOR_RADIUS - 2}
-        y2={CONDUCTOR_Y + 4}
-        stroke={color.accent}
-        strokeWidth={13}
-        strokeLinecap="round"
-      />
+      {/* Thumb -- a TAPERED wedge from the palm to the conductor (wide at
+          the palm, narrowing toward the tip: the standard 2D cue for
+          "receding into/out of the page"), terminating in the identical
+          into/out-of-page dot-or-cross glyph the conductor circle itself
+          uses -- so the thumb visually points along the SAME current
+          direction the conductor symbol shows, not merely a same-coloured
+          line placed nearby. */}
+      <Path d={taperedWedgePath(92, 128, CONDUCTOR_X - CONDUCTOR_RADIUS - 2, CONDUCTOR_Y + 4, 13, 5)} fill={color.accent} />
+      {currentDirection === "out_of_page" ? (
+        <Circle cx={CONDUCTOR_X - CONDUCTOR_RADIUS - 2} cy={CONDUCTOR_Y + 4} r={2.5} fill={color.background} />
+      ) : (
+        <>
+          <Line
+            x1={CONDUCTOR_X - CONDUCTOR_RADIUS - 6}
+            y1={CONDUCTOR_Y}
+            x2={CONDUCTOR_X - CONDUCTOR_RADIUS + 2}
+            y2={CONDUCTOR_Y + 8}
+            stroke={color.background}
+            strokeWidth={1.5}
+          />
+          <Line
+            x1={CONDUCTOR_X - CONDUCTOR_RADIUS - 6}
+            y1={CONDUCTOR_Y + 8}
+            x2={CONDUCTOR_X - CONDUCTOR_RADIUS + 2}
+            y2={CONDUCTOR_Y}
+            stroke={color.background}
+            strokeWidth={1.5}
+          />
+        </>
+      )}
       <SvgText x={80} y={150} fill={color.accent} fontSize={11} fontWeight="700" textAnchor="middle">
         Thumb
       </SvgText>
@@ -127,6 +161,22 @@ export function RightHandGripRuleDiagram({ diagram, fieldRotation, testID }: Rig
       </SvgText>
     </Svg>
   );
+}
+
+/** A tapered wedge from (x1,y1) [width w1] to (x2,y2) [width w2] -- the 2D "receding into the distance" cue used for the thumb, so it visually foreshortens toward the conductor rather than reading as a flat, same-width line. */
+function taperedWedgePath(x1: number, y1: number, x2: number, y2: number, w1: number, w2: number): string {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const px = -dy / len;
+  const py = dx / len;
+  const h1 = w1 / 2;
+  const h2 = w2 / 2;
+  const a = { x: x1 + px * h1, y: y1 + py * h1 };
+  const b = { x: x2 + px * h2, y: y2 + py * h2 };
+  const c = { x: x2 - px * h2, y: y2 - py * h2 };
+  const d = { x: x1 - px * h1, y: y1 - py * h1 };
+  return `M${a.x.toFixed(1)},${a.y.toFixed(1)} L${b.x.toFixed(1)},${b.y.toFixed(1)} L${c.x.toFixed(1)},${c.y.toFixed(1)} L${d.x.toFixed(1)},${d.y.toFixed(1)} Z`;
 }
 
 function PalmShape() {

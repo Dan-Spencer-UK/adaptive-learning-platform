@@ -2,7 +2,7 @@
  * GENERATED FILE -- DO NOT EDIT.
  *
  * Deterministic mobile learner-runtime content projection for governed
- * content release "release.unit202.v6".
+ * content release "release.unit202.v7".
  *
  * Source of truth: the governed content under scripts/content/data.
  * Regenerate with:  npm run content:mobile:generate
@@ -16,7 +16,7 @@ import type { MobileContentProjection } from "@alp/content-schema";
 export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
   "schemaVersion": 2,
   "contentRelease": {
-    "id": "release.unit202.v6",
+    "id": "release.unit202.v7",
     "questionBlueprintVersion": 1
   },
   "lessons": [
@@ -310,7 +310,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.conductors-and-insulators",
@@ -662,7 +662,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.core-quantities",
@@ -925,7 +925,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.electronic-components-passive",
@@ -1041,7 +1041,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.electronic_components.recognise_principle"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "electronics.component_symbol_card",
+            "diagramParameters": {
+              "component_type": "capacitor"
+            }
+          },
           "questionBlueprintId": "electronics.recognise_capacitor_behaviour",
           "presentation": {
             "interactionRequired": true,
@@ -1427,7 +1432,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.electronic-components-switching-control",
@@ -1507,7 +1512,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.electronic_components.identify_application"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "electronics.component_symbol_card",
+            "diagramParameters": {
+              "component_type": "thermistor"
+            }
+          },
           "presentation": {
             "interactionRequired": false,
             "answerReveal": "not_applicable",
@@ -1543,7 +1553,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.electronic_components.recognise_principle"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "electronics.component_symbol_card",
+            "diagramParameters": {
+              "component_type": "thermistor"
+            }
+          },
           "questionBlueprintId": "electronics.recognise_thermistor_type",
           "presentation": {
             "interactionRequired": true,
@@ -1920,7 +1935,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.energy-and-efficiency",
@@ -2314,7 +2329,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.fault-conditions-protection",
@@ -2697,7 +2712,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.instrumentation",
@@ -3092,7 +3107,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.ohms-law",
@@ -3815,7 +3830,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.power",
@@ -4352,7 +4367,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.resistivity",
@@ -4542,7 +4557,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.resistivity.predict_length_effect"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.resistivity_dimensions",
+            "diagramParameters": {
+              "comparison": "length"
+            }
+          },
           "questionBlueprintId": "resistivity.predict_length_effect",
           "presentation": {
             "interactionRequired": true,
@@ -4578,7 +4598,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.resistivity.predict_area_effect"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.resistivity_dimensions",
+            "diagramParameters": {
+              "comparison": "area"
+            }
+          },
           "questionBlueprintId": "resistivity.predict_area_effect",
           "presentation": {
             "interactionRequired": true,
@@ -4770,7 +4795,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.resistors-parallel",
@@ -5411,7 +5436,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.resistors-series",
@@ -5927,7 +5952,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.series-vs-parallel-comparison",
@@ -6382,7 +6407,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.si-units",
@@ -6785,7 +6810,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.electrical.thermal-and-chemical-effects",
@@ -7043,7 +7068,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.emf.ac-generation-principles",
@@ -7122,7 +7147,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "capabilityIds": [],
           "misconceptionTargets": [],
           "representation": {
-            "diagramBlueprintId": "motor.force_field_current"
+            "diagramBlueprintId": "generator.rotating_loop"
           },
           "presentation": {
             "interactionRequired": false,
@@ -7157,7 +7182,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           ],
           "misconceptionTargets": [],
           "representation": {
-            "diagramBlueprintId": "motor.force_field_current"
+            "diagramBlueprintId": "generator.rotating_loop"
           },
           "questionBlueprintId": "emf.describe_ac_generation",
           "presentation": {
@@ -7539,7 +7564,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.foundation.maths.formula-rearrangement",
@@ -7988,7 +8013,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.foundation.physics.mass-and-weight",
@@ -8278,7 +8303,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.foundation.physics.mechanics-force-work-energy-power",
@@ -8969,7 +8994,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.foundation.physics.simple-machines",
@@ -9052,7 +9077,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.foundational.levers.recognise"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.lever_arrangement"
+          },
           "presentation": {
             "interactionRequired": false,
             "answerReveal": "not_applicable",
@@ -9089,7 +9116,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.foundational.levers.recognise"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.lever_arrangement"
+          },
           "questionBlueprintId": "levers.identify_class",
           "presentation": {
             "interactionRequired": true,
@@ -9125,7 +9154,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "misconceptionTargets": [],
           "representation": {
             "formulaFamilyId": "formula.lever_balance",
-            "workedExampleBlueprintId": "worked.lever_balance.calculate_effort"
+            "diagramBlueprintId": "mechanical.lever_arrangement",
+            "workedExampleBlueprintId": "worked.lever_balance.calculate_effort",
+            "diagramParameters": {
+              "show_distances": true
+            }
           },
           "presentation": {
             "interactionRequired": true,
@@ -9160,7 +9193,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           ],
           "misconceptionTargets": [],
           "representation": {
-            "formulaFamilyId": "formula.lever_balance"
+            "formulaFamilyId": "formula.lever_balance",
+            "diagramBlueprintId": "mechanical.lever_arrangement",
+            "diagramParameters": {
+              "show_distances": true
+            }
           },
           "questionBlueprintId": "levers.calculate_effort_or_load",
           "presentation": {
@@ -9200,7 +9237,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.foundational.gears.recognise"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.gear_mesh"
+          },
           "presentation": {
             "interactionRequired": false,
             "answerReveal": "not_applicable",
@@ -9235,7 +9274,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.foundational.gears.recognise"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.gear_mesh"
+          },
           "questionBlueprintId": "gears.recognise_ratio_tradeoff",
           "presentation": {
             "interactionRequired": true,
@@ -9272,7 +9313,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.foundational.gears.recognise"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.gear_mesh"
+          },
           "questionBlueprintId": "gears.recognise_ratio_tradeoff",
           "presentation": {
             "interactionRequired": true,
@@ -9312,7 +9355,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.foundational.pulleys.recognise"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.pulley_arrangement"
+          },
           "presentation": {
             "interactionRequired": false,
             "answerReveal": "not_applicable",
@@ -9347,7 +9392,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.foundational.pulleys.recognise"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.pulley_arrangement"
+          },
           "questionBlueprintId": "pulleys.recognise_force_distance_tradeoff",
           "presentation": {
             "interactionRequired": true,
@@ -9384,7 +9431,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           ],
           "misconceptionTargets": [],
           "representation": {
-            "formulaFamilyId": "formula.lever_balance"
+            "formulaFamilyId": "formula.lever_balance",
+            "diagramBlueprintId": "mechanical.lever_arrangement",
+            "diagramParameters": {
+              "show_distances": true
+            }
           },
           "questionBlueprintId": "levers.calculate_effort_or_load",
           "presentation": {
@@ -9423,7 +9474,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.foundational.levers.recognise"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "mechanical.lever_arrangement"
+          },
           "questionBlueprintId": "levers.identify_class",
           "presentation": {
             "interactionRequired": true,
@@ -9543,7 +9596,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.magnetism.effects-of-current",
@@ -9926,7 +9979,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.emf.recognise_emf_terminal_voltage"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "emf.motional_emf_geometry"
+          },
           "presentation": {
             "interactionRequired": false,
             "answerReveal": "not_applicable",
@@ -9958,6 +10013,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "misconceptionTargets": [],
           "representation": {
             "formulaFamilyId": "formula.motional_emf",
+            "diagramBlueprintId": "emf.motional_emf_geometry",
             "workedExampleBlueprintId": "worked.motional_emf.calculate"
           },
           "presentation": {
@@ -9993,7 +10049,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           ],
           "misconceptionTargets": [],
           "representation": {
-            "formulaFamilyId": "formula.motional_emf"
+            "formulaFamilyId": "formula.motional_emf",
+            "diagramBlueprintId": "emf.motional_emf_geometry"
           },
           "questionBlueprintId": "emf.calculate_motional_emf",
           "presentation": {
@@ -10265,7 +10322,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.magnetism.fundamentals",
@@ -10340,7 +10397,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.magnetism.recognise_attraction_repulsion"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "magnetic.pole_interaction"
+          },
           "presentation": {
             "interactionRequired": false,
             "answerReveal": "not_applicable",
@@ -10372,7 +10431,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.magnetism.recognise_attraction_repulsion"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "magnetic.pole_interaction"
+          },
           "questionBlueprintId": "magnetism.recognise_attraction_repulsion",
           "presentation": {
             "interactionRequired": true,
@@ -10409,7 +10470,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "cap.magnetism.recognise_concept"
           ],
           "misconceptionTargets": [],
-          "representation": {},
+          "representation": {
+            "diagramBlueprintId": "magnetic.flux_field_lines",
+            "diagramParameters": {
+              "density_comparison": true
+            }
+          },
           "presentation": {
             "interactionRequired": false,
             "answerReveal": "not_applicable",
@@ -10778,7 +10844,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     },
     {
       "id": "lesson.waveforms.ac-dc-and-sine-wave-quantities",
@@ -11443,7 +11509,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v6"
+      "contentRelease": "release.unit202.v7"
     }
   ],
   "questionBlueprints": [
@@ -12297,6 +12363,10 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "capabilityId": "cap.emf.calculate_motional_emf",
       "title": "Calculate the EMF induced in a conductor moving through a magnetic field",
       "representation": {
+        "diagram": {
+          "required": false,
+          "blueprintId": "emf.motional_emf_geometry"
+        },
         "formula": {
           "required": true,
           "formulaFamilyId": "formula.motional_emf"
@@ -12342,7 +12412,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "representation": {
         "diagram": {
           "required": false,
-          "blueprintId": "motor.force_field_current"
+          "blueprintId": "generator.rotating_loop"
         }
       },
       "variantDimensions": {},
@@ -13366,7 +13436,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
       "capabilityId": "cap.magnetism.recognise_attraction_repulsion",
       "title": "Recognise the effects of magnetism in terms of attraction and repulsion",
-      "representation": {},
+      "representation": {
+        "diagram": {
+          "required": true,
+          "blueprintId": "magnetic.pole_interaction"
+        }
+      },
       "variantDimensions": {},
       "parameterGenerators": [],
       "answer": {
@@ -17329,6 +17404,71 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "valueEmbedding": "symbolic_only"
     },
     {
+      "id": "electronics.component_symbol_card",
+      "type": "component_symbol",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "component_type",
+          "kind": "enum",
+          "allowed": [
+            "resistor",
+            "capacitor",
+            "diode",
+            "zener_diode",
+            "led",
+            "photodiode",
+            "thermistor",
+            "diac",
+            "triac",
+            "transistor",
+            "thyristor_scr",
+            "rectifier",
+            "inverter"
+          ]
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "component-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "emf.motional_emf_geometry",
+      "type": "magnetic_field",
+      "renderer": "svg",
+      "parameters": [],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "vector-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "generator.rotating_loop",
+      "type": "magnetic_field",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "rotation_phase",
+          "kind": "enum",
+          "allowed": [
+            "vertical",
+            "horizontal"
+          ]
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "loop-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
       "id": "graph.waveform_sine",
       "type": "waveform",
       "renderer": "svg",
@@ -17378,7 +17518,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "kind": "enum",
           "allowed": [
             "series",
-            "parallel"
+            "parallel",
+            "isolated"
           ]
         }
       ],
@@ -17412,6 +17553,134 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "semanticDescriptionRequired": true,
         "colourOnlyEncodingProhibited": true,
         "identifierLabelPattern": "arrow-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "magnetic.flux_field_lines",
+      "type": "magnetic_field",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "density_comparison",
+          "kind": "boolean"
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "flux-line-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "magnetic.pole_interaction",
+      "type": "magnetic_field",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "pole_pairing",
+          "kind": "enum",
+          "allowed": [
+            "like_poles_facing",
+            "unlike_poles_facing"
+          ]
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "pole-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "mechanical.gear_mesh",
+      "type": "mechanical",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "size_ratio",
+          "kind": "enum",
+          "allowed": [
+            "driven_larger",
+            "driven_smaller",
+            "equal"
+          ]
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "gear-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "mechanical.lever_arrangement",
+      "type": "mechanical",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "lever_class",
+          "kind": "enum",
+          "allowed": [
+            "class_1",
+            "class_2",
+            "class_3"
+          ]
+        },
+        {
+          "name": "show_distances",
+          "kind": "boolean"
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "lever-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "mechanical.pulley_arrangement",
+      "type": "mechanical",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "arrangement",
+          "kind": "enum",
+          "allowed": [
+            "fixed",
+            "movable"
+          ]
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "pulley-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "mechanical.resistivity_dimensions",
+      "type": "mechanical",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "comparison",
+          "kind": "enum",
+          "allowed": [
+            "length",
+            "area"
+          ]
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "rod-{index}"
       },
       "valueEmbedding": "symbolic_only"
     },

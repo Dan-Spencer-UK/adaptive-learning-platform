@@ -54,6 +54,12 @@ async function renderVariantTree(variant: CanonicalVariant): Promise<RenderTreeN
   const reveal: DiagramRevealProps = {
     fieldRotation: variant.revealProps.field_rotation as "clockwise" | "counterclockwise" | undefined,
     forceDirection: variant.revealProps.force_direction as "up" | "down" | "left" | "right" | undefined,
+    // CC-11.3: was missing entirely -- every magnetic.pole_interaction
+    // teaching-mode variant silently rendered with showPoleForce always
+    // undefined (identical to its own assessment-mode variant), caught by
+    // this same test's own "no two distinct variants collapse to the same
+    // image" invariant below.
+    showPoleForce: variant.revealProps.show_pole_force as boolean | undefined,
   };
   // Invoked as a plain function, not `<Component .../>` -- see
   // DiagramRenderer.tsx's own comment on why (avoids react-hooks/
@@ -122,5 +128,17 @@ describe("CC-05D deterministic render capture", () => {
     const assessmentSvg = renderTreeToSvg(await renderVariantTree(assessment));
     expect(teachingSvg).toContain(`Field: ${teaching.revealProps.field_rotation}`);
     expect(assessmentSvg).not.toContain("Field:");
+  });
+
+  it("CC-11.3: magnetic.pole_interaction's assessment-mode variants never render the attract/repel reveal text or force-arrow label an equivalent teaching-mode variant shows", async () => {
+    const teaching = CANONICAL_VARIANTS.find((v) => v.diagramBlueprintId === "magnetic.pole_interaction" && v.mode === "teaching")!;
+    const assessment = CANONICAL_VARIANTS.find(
+      (v) => v.diagramBlueprintId === "magnetic.pole_interaction" && v.mode === "assessment" && v.parameters.pole_pairing === teaching.parameters.pole_pairing,
+    )!;
+    const teachingSvg = renderTreeToSvg(await renderVariantTree(teaching));
+    const assessmentSvg = renderTreeToSvg(await renderVariantTree(assessment));
+    expect(teachingSvg).toMatch(/Repel|Attract/);
+    expect(assessmentSvg).not.toMatch(/Repel|Attract/);
+    expect(teachingSvg).not.toBe(assessmentSvg);
   });
 });

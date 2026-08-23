@@ -1,5 +1,15 @@
 [
   {
+    "variantId": "visual-contract.ac-generator-rotating-loop@1::mode=both,rotation_phase=horizontal::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.ac-generator-rotating-loop@1::mode=both,rotation_phase=vertical::both",
+    "passed": true,
+    "failures": []
+  },
+  {
     "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=1,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
     "passed": true,
     "failures": []
@@ -30,6 +40,91 @@
     "failures": []
   },
   {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=capacitor,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=diac,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=diode,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=inverter,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=led,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=photodiode,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=rectifier,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=resistor,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=thermistor,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=thyristor_scr,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=transistor,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=triac,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=zener_diode,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=driven_larger::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=driven_smaller::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=equal::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=isolated,instrument_type=ohmmeter,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
     "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=ammeter,mode=both::both",
     "passed": true,
     "failures": []
@@ -45,12 +140,72 @@
     "failures": []
   },
   {
-    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ohmmeter,mode=both::both",
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=voltmeter,mode=both::both",
     "passed": true,
     "failures": []
   },
   {
-    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=voltmeter,mode=both::both",
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_1,mode=both,show_distances=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_1,mode=both,show_distances=true::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_2,mode=both,show_distances=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_2,mode=both,show_distances=true::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_3,mode=both,show_distances=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_3,mode=both,show_distances=true::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.magnetic-flux-density-comparison@1::density_comparison=false,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.magnetic-flux-density-comparison@1::density_comparison=true,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.magnetic-pole-interaction@1::mode=assessment,pole_pairing=like_poles_facing::assessment",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.magnetic-pole-interaction@1::mode=assessment,pole_pairing=unlike_poles_facing::assessment",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.magnetic-pole-interaction@1::mode=teaching,pole_pairing=like_poles_facing,show_pole_force=true::teaching",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.magnetic-pole-interaction@1::mode=teaching,pole_pairing=unlike_poles_facing,show_pole_force=true::teaching",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.motional-emf-geometry@1::mode=both::both",
     "passed": true,
     "failures": []
   },
@@ -106,6 +261,26 @@
   },
   {
     "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=4,mode=both,show_branch_current_arrows=true,show_values=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.pulley-fixed-vs-movable@1::arrangement=fixed,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.pulley-fixed-vs-movable@1::arrangement=movable,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.resistivity-length-area-dimensions@1::comparison=area,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.resistivity-length-area-dimensions@1::comparison=length,mode=both::both",
     "passed": true,
     "failures": []
   },

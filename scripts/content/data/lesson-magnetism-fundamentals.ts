@@ -26,6 +26,18 @@
  * taught/practised directly in this lesson
  * (concept_magnetism_attraction_repulsion /
  * guided_recognise_attraction_repulsion).
+ *
+ * CC-11.3: attraction/repulsion and flux/flux-density were both taught
+ * purely from prose despite being inherently spatial -- closed with
+ * `magnetic.pole_interaction` (MagneticPoleDiagram.tsx, wired into the
+ * two attraction/repulsion steps -- the force-arrow reveal is withheld
+ * until feedback, matching MagneticForceDiagram's own established
+ * pattern elsewhere in this course) and `magnetic.flux_field_lines`
+ * (MagneticFluxDiagram.tsx, wired into the flux/flux-density concept
+ * step). `contentRelease` moved to `release.unit202.v7`; see
+ * lesson-cc11-3-historical-snapshot.ts for how v5/v6's own immutable
+ * membership remains resolvable against this lesson's pre-CC-11.3
+ * content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -89,7 +101,7 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
       assertionFamilyId: "electrical.magnetism_and_electromagnetism",
       capabilityIds: ["cap.magnetism.recognise_attraction_repulsion"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "magnetic.pole_interaction" },
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "introductory",
@@ -109,7 +121,7 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
       assertionFamilyId: "electrical.magnetism_and_electromagnetism",
       capabilityIds: ["cap.magnetism.recognise_attraction_repulsion"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "magnetic.pole_interaction" },
       questionBlueprintId: "magnetism.recognise_attraction_repulsion",
       presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -130,7 +142,7 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
       assertionFamilyId: "electrical.magnetism_and_electromagnetism",
       capabilityIds: ["cap.magnetism.recognise_concept"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "magnetic.flux_field_lines", diagramParameters: { density_comparison: true } },
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "introductory",
@@ -361,7 +373,7 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
       "The learner has described magnetic attraction and repulsion, distinguished magnetic flux from flux density with their SI units, and compared a permanent magnet with an electromagnet.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v5",
+  contentRelease: "release.unit202.v7",
 };
 
 export const lessons = [LESSON_MAGNETISM_FUNDAMENTALS];

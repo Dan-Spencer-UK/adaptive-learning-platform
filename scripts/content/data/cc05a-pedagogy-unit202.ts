@@ -1759,9 +1759,12 @@ const familyTeachingRepresentations: FamilyTeachingRepresentation[] = [
     diagramBlueprintId: "magnetic.field_conductor_direction",
   }),
 
-  familyRep("electrical.emf_and_generation", "technical_diagram", "optional", {
-    role: "supporting",
-    diagramBlueprintId: "motor.force_field_current",
+  // CC-11.3: was "motor.force_field_current" (the static motor-principle
+  // diagram) -- a genuine misrepresentation of this family's own rotating-
+  // loop AC-generation content, corrected to the new dedicated blueprint.
+  familyRep("electrical.emf_and_generation", "technical_diagram", "required", {
+    role: "essential",
+    diagramBlueprintId: "generator.rotating_loop",
   }),
 
   familyRep("electrical.ac_dc_waveforms", "technical_diagram", "required", {
@@ -1860,9 +1863,116 @@ const diagramBlueprints: DiagramBlueprint[] = [
     renderer: "svg",
     parameters: [
       { name: "instrument_type", kind: "enum", allowed: ["voltmeter", "ammeter", "ohmmeter"] },
-      { name: "connection_style", kind: "enum", allowed: ["series", "parallel"] },
+      // CC-11.3: "isolated" added for the ohmmeter's own metadata honesty
+      // -- an ohmmeter connection is never meaningfully "in series" or
+      // "in parallel" (InstrumentConnectionDiagram.tsx's own
+      // CANONICAL_CONNECTION already documents and structurally enforces
+      // this; the renderer never even reads connection_style for
+      // instrument_type "ohmmeter"). "series"/"parallel" remain first in
+      // the list and unchanged in meaning for voltmeter/ammeter.
+      { name: "connection_style", kind: "enum", allowed: ["series", "parallel", "isolated"] },
     ],
     accessibility: diagramAccessibility("instrument-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  // ---------------------------------------------------------------------
+  // CC-11.3: whole-course instructional visual coverage closeout -- LO3
+  // mechanics (levers/gears/pulleys), LO4 resistivity, LO5 magnetism/AC
+  // (pole interaction, flux/flux-density concept, motional-EMF geometry,
+  // single-loop AC generator), LO6 UK/IEC component symbols.
+  // ---------------------------------------------------------------------
+  {
+    id: "mechanical.lever_arrangement",
+    type: "mechanical",
+    renderer: "svg",
+    parameters: [
+      { name: "lever_class", kind: "enum", allowed: ["class_1", "class_2", "class_3"] },
+      { name: "show_distances", kind: "boolean" },
+    ],
+    accessibility: diagramAccessibility("lever-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "mechanical.gear_mesh",
+    type: "mechanical",
+    renderer: "svg",
+    parameters: [{ name: "size_ratio", kind: "enum", allowed: ["driven_larger", "driven_smaller", "equal"] }],
+    accessibility: diagramAccessibility("gear-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "mechanical.pulley_arrangement",
+    type: "mechanical",
+    renderer: "svg",
+    parameters: [{ name: "arrangement", kind: "enum", allowed: ["fixed", "movable"] }],
+    accessibility: diagramAccessibility("pulley-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    // Belongs conceptually to electrical.resistivity, not the mechanics
+    // families above -- `type: "mechanical"` names the diagram's own
+    // spatial/graphical CATEGORY (a labelled physical object's
+    // dimensions), never an assertion-family grouping; see
+    // ResistivityDimensionsDiagram.tsx's own header comment.
+    id: "mechanical.resistivity_dimensions",
+    type: "mechanical",
+    renderer: "svg",
+    parameters: [{ name: "comparison", kind: "enum", allowed: ["length", "area"] }],
+    accessibility: diagramAccessibility("rod-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "magnetic.pole_interaction",
+    type: "magnetic_field",
+    renderer: "svg",
+    parameters: [{ name: "pole_pairing", kind: "enum", allowed: ["like_poles_facing", "unlike_poles_facing"] }],
+    accessibility: diagramAccessibility("pole-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "magnetic.flux_field_lines",
+    type: "magnetic_field",
+    renderer: "svg",
+    parameters: [{ name: "density_comparison", kind: "boolean" }],
+    accessibility: diagramAccessibility("flux-line-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    // No parameters -- the mutually-perpendicular B/l/v geometry never
+    // varies; this diagram illustrates a fixed given arrangement, not a
+    // family of distinct pictures.
+    id: "emf.motional_emf_geometry",
+    type: "magnetic_field",
+    renderer: "svg",
+    parameters: [],
+    accessibility: diagramAccessibility("vector-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    id: "generator.rotating_loop",
+    type: "magnetic_field",
+    renderer: "svg",
+    parameters: [{ name: "rotation_phase", kind: "enum", allowed: ["vertical", "horizontal"] }],
+    accessibility: diagramAccessibility("loop-{index}"),
+    valueEmbedding: "symbolic_only",
+  },
+  {
+    // One shared, parameterised blueprint for all 13 governed LO6
+    // components -- mirrors instrument.measurement_connection's own
+    // one-blueprint-many-instrument_type pattern, rather than 13 bespoke
+    // blueprints for what is structurally the same "pick a governed
+    // component and show its symbol/card" representation.
+    id: "electronics.component_symbol_card",
+    type: "component_symbol",
+    renderer: "svg",
+    parameters: [
+      {
+        name: "component_type",
+        kind: "enum",
+        allowed: ["resistor", "capacitor", "diode", "zener_diode", "led", "photodiode", "thermistor", "diac", "triac", "transistor", "thyristor_scr", "rectifier", "inverter"],
+      },
+    ],
+    accessibility: diagramAccessibility("component-{index}"),
     valueEmbedding: "symbolic_only",
   },
 ];
@@ -3940,7 +4050,10 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["sine_wave", "constant_dc", "square_wave"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-AC-GENERATOR-001", "EL-CONCEPT-SINE-WAVE-001"],
-    representation: { diagram: { required: false, blueprintId: "motor.force_field_current" } },
+    // CC-11.3: was "motor.force_field_current" -- an active misrepresentation
+    // (the static motor-principle diagram, not a rotating loop) this
+    // package fixes; see generator.rotating_loop's own diagram-blueprint entry.
+    representation: { diagram: { required: false, blueprintId: "generator.rotating_loop" } },
     presentation: { promptLines: ["A single loop of wire is rotated at a constant speed inside a uniform magnetic field.", "What shape is the resulting EMF waveform?"] },
   }),
   qb({
@@ -4449,6 +4562,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["attract", "repel"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-MAGNETISM-001"],
+    representation: { diagram: { required: true, blueprintId: "magnetic.pole_interaction" } },
     presentation: { promptLines: ["Two magnetic poles are brought close together: {pole_scenario_clue}.", "What happens?"] },
   }),
   qb({
@@ -4472,7 +4586,10 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: quantityAnswer("emf", "volt"),
     marking: tolerance(2),
     assertionIdentifiers: ["EL-REL-INDUCED-EMF-001"],
-    representation: { formula: { required: true, formulaFamilyId: "formula.motional_emf" } },
+    representation: {
+      formula: { required: true, formulaFamilyId: "formula.motional_emf" },
+      diagram: { required: false, blueprintId: "emf.motional_emf_geometry" },
+    },
     presentation: {
       promptLines: [
         "B = {B} T",

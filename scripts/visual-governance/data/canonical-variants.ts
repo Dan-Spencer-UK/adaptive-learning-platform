@@ -243,9 +243,94 @@ export function instrumentConnectionVariants(contractId: string, contractVersion
     { instrument_type: "voltmeter", connection_style: "series" },
     { instrument_type: "ammeter", connection_style: "series" },
     { instrument_type: "ammeter", connection_style: "parallel" },
-    { instrument_type: "ohmmeter", connection_style: "series" },
+    // CC-11.3: "isolated" (not "series") -- the ohmmeter connection is
+    // never meaningfully series/parallel; see the DiagramBlueprint's own
+    // parameter comment in cc05a-pedagogy-unit202.ts.
+    { instrument_type: "ohmmeter", connection_style: "isolated" },
   ];
   return combinations.map((c) => variant(contractId, contractVersion, "instrument.measurement_connection", "both", c, []));
+}
+
+// ---------------------------------------------------------------------
+// CC-11.3: whole-course instructional visual coverage closeout.
+// ---------------------------------------------------------------------
+
+export function leverArrangementVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  const classes: Array<"class_1" | "class_2" | "class_3"> = ["class_1", "class_2", "class_3"];
+  const variants: CanonicalVariant[] = [];
+  for (const leverClass of classes) {
+    for (const showDistances of [false, true]) {
+      variants.push(variant(contractId, contractVersion, "mechanical.lever_arrangement", "both", { lever_class: leverClass, show_distances: showDistances }, []));
+    }
+  }
+  return variants;
+}
+
+export function gearMeshVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  const ratios: Array<"driven_larger" | "driven_smaller" | "equal"> = ["driven_larger", "driven_smaller", "equal"];
+  return ratios.map((size_ratio) => variant(contractId, contractVersion, "mechanical.gear_mesh", "both", { size_ratio }, []));
+}
+
+export function pulleyArrangementVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  const arrangements: Array<"fixed" | "movable"> = ["fixed", "movable"];
+  return arrangements.map((arrangement) => variant(contractId, contractVersion, "mechanical.pulley_arrangement", "both", { arrangement }, []));
+}
+
+export function resistivityDimensionsVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  const comparisons: Array<"length" | "area"> = ["length", "area"];
+  return comparisons.map((comparison) => variant(contractId, contractVersion, "mechanical.resistivity_dimensions", "both", { comparison }, []));
+}
+
+export function magneticPoleInteractionVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  const pairings: Array<"like_poles_facing" | "unlike_poles_facing"> = ["like_poles_facing", "unlike_poles_facing"];
+  const modes: CanonicalVariant["mode"][] = ["teaching", "assessment"];
+  const variants: CanonicalVariant[] = [];
+  for (const pairing of pairings) {
+    for (const mode of modes) {
+      variants.push(
+        variant(contractId, contractVersion, "magnetic.pole_interaction", mode, { pole_pairing: pairing }, [], mode === "teaching" ? { show_pole_force: true } : {}),
+      );
+    }
+  }
+  return variants;
+}
+
+export function magneticFluxVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  return [
+    variant(contractId, contractVersion, "magnetic.flux_field_lines", "both", { density_comparison: false }, []),
+    variant(contractId, contractVersion, "magnetic.flux_field_lines", "both", { density_comparison: true }, []),
+  ];
+}
+
+export function motionalEmfVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  return [variant(contractId, contractVersion, "emf.motional_emf_geometry", "both", {}, ["conductor"])];
+}
+
+export function acGeneratorVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  const phases: Array<"vertical" | "horizontal"> = ["vertical", "horizontal"];
+  return phases.map((rotation_phase) => variant(contractId, contractVersion, "generator.rotating_loop", "both", { rotation_phase }, []));
+}
+
+const ELECTRONIC_COMPONENT_TYPES = [
+  "resistor",
+  "capacitor",
+  "diode",
+  "zener_diode",
+  "led",
+  "photodiode",
+  "thermistor",
+  "diac",
+  "triac",
+  "transistor",
+  "thyristor_scr",
+  "rectifier",
+  "inverter",
+] as const;
+
+export function componentSymbolCardVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  return ELECTRONIC_COMPONENT_TYPES.map((componentType) =>
+    variant(contractId, contractVersion, "electronics.component_symbol_card", "both", { component_type: componentType }, []),
+  );
 }
 
 export const CANONICAL_VARIANT_BUILDERS: Record<string, (contractId: string, contractVersion: number) => CanonicalVariant[]> = {
@@ -256,4 +341,13 @@ export const CANONICAL_VARIANT_BUILDERS: Record<string, (contractId: string, con
   "circuit.series_parallel_mixed": seriesParallelMixedVariants,
   "graph.waveform_sine": waveformSineVariants,
   "instrument.measurement_connection": instrumentConnectionVariants,
+  "mechanical.lever_arrangement": leverArrangementVariants,
+  "mechanical.gear_mesh": gearMeshVariants,
+  "mechanical.pulley_arrangement": pulleyArrangementVariants,
+  "mechanical.resistivity_dimensions": resistivityDimensionsVariants,
+  "magnetic.pole_interaction": magneticPoleInteractionVariants,
+  "magnetic.flux_field_lines": magneticFluxVariants,
+  "emf.motional_emf_geometry": motionalEmfVariants,
+  "generator.rotating_loop": acGeneratorVariants,
+  "electronics.component_symbol_card": componentSymbolCardVariants,
 };

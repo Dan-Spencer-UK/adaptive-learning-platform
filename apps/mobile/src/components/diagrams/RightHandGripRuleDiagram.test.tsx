@@ -56,16 +56,32 @@ describe("RightHandGripRuleDiagram", () => {
     expect(withReveal.toJSON()).not.toEqual(withoutReveal.toJSON());
   });
 
-  it("renders a distinct thumb element (as an SVG line, coloured and positioned separately from the finger curls), not a generic field arrow", async () => {
+  it("renders a distinct thumb element (a tapered wedge, coloured and positioned separately from the finger curls), not a generic field arrow", async () => {
     const { toJSON } = await render(
       <RightHandGripRuleDiagram
         diagram={{ blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "into_page", show_field_arrows: true }, labels: ["conductor"] }}
       />,
     );
-    // Structural proof of a hand shape: a palm path, a thumb line, and four
-    // separate finger-curl paths -- not a single arrow/line pair.
+    // Structural proof of a hand shape: a palm path, a tapered thumb wedge,
+    // and four separate finger-curl paths -- not a single arrow/line pair.
     const svgTree = JSON.stringify(toJSON());
     const pathCount = (svgTree.match(/"RNSVGPath"/g) ?? []).length;
-    expect(pathCount).toBeGreaterThanOrEqual(5); // 1 palm + 4 finger curls
+    expect(pathCount).toBeGreaterThanOrEqual(6); // 1 palm + 1 thumb wedge + 4 finger curls
+  });
+
+  it("CC-11.3: the thumb TIP carries the identical into/out-of-page glyph the conductor symbol uses, tying the thumb's own direction to the current direction rather than leaving them as unrelated marks", async () => {
+    const outOfPage = await render(
+      <RightHandGripRuleDiagram diagram={{ blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "out_of_page", show_field_arrows: true }, labels: ["conductor"] }} />,
+    );
+    // out_of_page: conductor body circle + conductor centre dot + thumb-tip dot = 3 circles.
+    const outOfPageCircleCount = (JSON.stringify(outOfPage.toJSON()).match(/"RNSVGCircle"/g) ?? []).length;
+    expect(outOfPageCircleCount).toBe(3);
+
+    const intoPage = await render(
+      <RightHandGripRuleDiagram diagram={{ blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "into_page", show_field_arrows: true }, labels: ["conductor"] }} />,
+    );
+    // into_page: conductor body circle only (the cross, and the thumb-tip cross, are drawn as lines, not circles).
+    const intoPageCircleCount = (JSON.stringify(intoPage.toJSON()).match(/"RNSVGCircle"/g) ?? []).length;
+    expect(intoPageCircleCount).toBe(1);
   });
 });

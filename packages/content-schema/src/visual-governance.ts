@@ -57,6 +57,19 @@ export const accessibilityExpectationSchema = z.object({
   requiresNonColourEncoding: z.boolean().default(true),
 });
 
+/**
+ * CC-11.3: which graphical-symbol convention a schematic-symbol visual
+ * uses. Only present when the diagram actually draws standardised
+ * component symbols (never on circuit-topology/field/waveform
+ * contracts, which have no symbol-convention choice to record). Closed
+ * enum, one member today (`UK_IEC` = BS EN 60617 / IEC 60617, the
+ * convention appropriate for a UK electrical-installation
+ * qualification) -- extend only if a future qualification genuinely
+ * needs a different convention (e.g. `US_ANSI`), never speculatively.
+ */
+export const symbolStandardSchema = z.enum(["UK_IEC"]);
+export type SymbolStandard = z.infer<typeof symbolStandardSchema>;
+
 export const visualSemanticContractSchema = z.object({
   id: stableId,
   version: z.number().int().min(1),
@@ -77,6 +90,7 @@ export const visualSemanticContractSchema = z.object({
   answerDisclosure: z.array(answerDisclosureRuleSchema).default([]),
   accessibilityExpectations: z.array(accessibilityExpectationSchema).default([]),
   knownAmbiguity: z.string().optional(),
+  symbolStandard: symbolStandardSchema.optional(),
 });
 
 export type VisualSemanticContract = z.infer<typeof visualSemanticContractSchema>;

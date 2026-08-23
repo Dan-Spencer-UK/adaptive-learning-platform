@@ -1265,7 +1265,7 @@ exports[`proving-slice visual QA -- structural snapshots formula family: Ohm's l
 
 exports[`proving-slice visual QA -- structural snapshots parallel circuit diagram (3 branches, symbolic labels) 1`] = `
 <RNSVGSvgView
-  accessibilityLabel="Parallel circuit diagram with 3 branches labelled R1, R2, R3, connected between two shared rails. An arrow at the top of each branch shows the current direction, flowing down the branch."
+  accessibilityLabel="Parallel circuit diagram with 3 branches labelled R1, R2, R3, connected between two shared rails. A battery is shown on the left rail, and an arrow at the top of each branch shows the current direction, flowing down the branch -- consistent with the battery's own polarity."
   accessibilityRole="image"
   accessible={true}
   align="xMidYMid"
@@ -1374,8 +1374,183 @@ exports[`proving-slice visual QA -- structural snapshots parallel circuit diagra
       x1={24}
       x2={24}
       y1={24}
+      y2={65}
+    />
+    <RNSVGLine
+      fill={
+        {
+          "payload": 4278190080,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      strokeWidth={2}
+      x1={24}
+      x2={24}
+      y1={85}
       y2={126}
     />
+    <RNSVGLine
+      fill={
+        {
+          "payload": 4278190080,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      strokeWidth={1.5}
+      x1={15}
+      x2={33}
+      y1={65}
+      y2={65}
+    />
+    <RNSVGText
+      content={null}
+      dx={[]}
+      dy={[]}
+      fill={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      font={
+        {
+          "fontSize": 11,
+          "fontWeight": "700",
+          "textAnchor": "start",
+        }
+      }
+      propList={
+        [
+          "fill",
+        ]
+      }
+      rotate={[]}
+      x={
+        [
+          38,
+        ]
+      }
+      y={
+        [
+          69,
+        ]
+      }
+    >
+      <RNSVGTSpan
+        content="+"
+        dx={[]}
+        dy={[]}
+        fill={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+        font={{}}
+        rotate={[]}
+        x={[]}
+        y={[]}
+      />
+    </RNSVGText>
+    <RNSVGLine
+      fill={
+        {
+          "payload": 4278190080,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      strokeWidth={3}
+      x1={19}
+      x2={29}
+      y1={85}
+      y2={85}
+    />
+    <RNSVGText
+      content={null}
+      dx={[]}
+      dy={[]}
+      fill={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      font={
+        {
+          "fontSize": 11,
+          "fontWeight": "700",
+          "textAnchor": "start",
+        }
+      }
+      propList={
+        [
+          "fill",
+        ]
+      }
+      rotate={[]}
+      x={
+        [
+          38,
+        ]
+      }
+      y={
+        [
+          89,
+        ]
+      }
+    >
+      <RNSVGTSpan
+        content="-"
+        dx={[]}
+        dy={[]}
+        fill={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+        font={{}}
+        rotate={[]}
+        x={[]}
+        y={[]}
+      />
+    </RNSVGText>
     <RNSVGLine
       fill={
         {
@@ -1934,6 +2109,20 @@ exports[`proving-slice visual QA -- structural snapshots right-hand grip rule di
       }
       strokeWidth={2}
     />
+    <RNSVGPath
+      d="M94.6,134.0 L160.0,101.3 L158.0,96.7 L89.4,122.0 Z"
+      fill={
+        {
+          "payload": 4283207167,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
     <RNSVGLine
       fill={
         {
@@ -1945,21 +2134,44 @@ exports[`proving-slice visual QA -- structural snapshots right-hand grip rule di
         [
           "stroke",
           "strokeWidth",
-          "strokeLinecap",
         ]
       }
       stroke={
         {
-          "payload": 4283207167,
+          "payload": 4278914322,
           "type": 0,
         }
       }
-      strokeLinecap={1}
-      strokeWidth={13}
-      x1={92}
-      x2={159}
-      y1={128}
-      y2={99}
+      strokeWidth={1.5}
+      x1={155}
+      x2={163}
+      y1={95}
+      y2={103}
+    />
+    <RNSVGLine
+      fill={
+        {
+          "payload": 4278190080,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={
+        {
+          "payload": 4278914322,
+          "type": 0,
+        }
+      }
+      strokeWidth={1.5}
+      x1={155}
+      x2={163}
+      y1={103}
+      y2={95}
     />
     <RNSVGText
       content={null}
@@ -2376,7 +2588,7 @@ exports[`proving-slice visual QA -- structural snapshots right-hand grip rule di
 
 exports[`proving-slice visual QA -- structural snapshots series circuit diagram (3 components, symbolic labels) 1`] = `
 <RNSVGSvgView
-  accessibilityLabel="Series circuit diagram with 3 resistors labelled R1, R2, R3, connected one after another in a single loop. An arrow on the return wire shows the current direction, flowing left to right."
+  accessibilityLabel="Series circuit diagram with 3 resistors labelled R1, R2, R3, connected one after another in a single loop. A battery is shown on the left wire, and an arrow on the return wire shows the current direction, flowing left to right -- consistent with the battery's own polarity."
   accessibilityRole="image"
   accessible={true}
   align="xMidYMid"
@@ -2435,8 +2647,183 @@ exports[`proving-slice visual QA -- structural snapshots series circuit diagram 
       x1={24}
       x2={24}
       y1={24}
+      y2={60}
+    />
+    <RNSVGLine
+      fill={
+        {
+          "payload": 4278190080,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      strokeWidth={2}
+      x1={24}
+      x2={24}
+      y1={80}
       y2={116}
     />
+    <RNSVGLine
+      fill={
+        {
+          "payload": 4278190080,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      strokeWidth={3}
+      x1={19}
+      x2={29}
+      y1={60}
+      y2={60}
+    />
+    <RNSVGText
+      content={null}
+      dx={[]}
+      dy={[]}
+      fill={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      font={
+        {
+          "fontSize": 11,
+          "fontWeight": "700",
+          "textAnchor": "start",
+        }
+      }
+      propList={
+        [
+          "fill",
+        ]
+      }
+      rotate={[]}
+      x={
+        [
+          36,
+        ]
+      }
+      y={
+        [
+          64,
+        ]
+      }
+    >
+      <RNSVGTSpan
+        content="-"
+        dx={[]}
+        dy={[]}
+        fill={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+        font={{}}
+        rotate={[]}
+        x={[]}
+        y={[]}
+      />
+    </RNSVGText>
+    <RNSVGLine
+      fill={
+        {
+          "payload": 4278190080,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      strokeWidth={1.5}
+      x1={15}
+      x2={33}
+      y1={80}
+      y2={80}
+    />
+    <RNSVGText
+      content={null}
+      dx={[]}
+      dy={[]}
+      fill={
+        {
+          "payload": 4294112504,
+          "type": 0,
+        }
+      }
+      font={
+        {
+          "fontSize": 11,
+          "fontWeight": "700",
+          "textAnchor": "start",
+        }
+      }
+      propList={
+        [
+          "fill",
+        ]
+      }
+      rotate={[]}
+      x={
+        [
+          36,
+        ]
+      }
+      y={
+        [
+          84,
+        ]
+      }
+    >
+      <RNSVGTSpan
+        content="+"
+        dx={[]}
+        dy={[]}
+        fill={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+        font={{}}
+        rotate={[]}
+        x={[]}
+        y={[]}
+      />
+    </RNSVGText>
     <RNSVGLine
       fill={
         {

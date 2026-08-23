@@ -38,7 +38,7 @@ describe("DiagramRenderer registry", () => {
     );
   });
 
-  it("SUPPORTED_DIAGRAM_BLUEPRINT_IDS lists exactly the 7 governed diagram blueprints", () => {
+  it("SUPPORTED_DIAGRAM_BLUEPRINT_IDS lists exactly the 16 governed diagram blueprints (CC-11.3 adds 9: lever/gear/pulley/resistivity-dimensions, pole-interaction/flux/motional-emf-geometry/rotating-loop, component-symbol-card)", () => {
     expect([...SUPPORTED_DIAGRAM_BLUEPRINT_IDS]).toEqual(
       [
         "circuit.parallel_resistors",
@@ -48,6 +48,15 @@ describe("DiagramRenderer registry", () => {
         "instrument.measurement_connection",
         "magnetic.field_conductor_direction",
         "motor.force_field_current",
+        "mechanical.lever_arrangement",
+        "mechanical.gear_mesh",
+        "mechanical.pulley_arrangement",
+        "mechanical.resistivity_dimensions",
+        "magnetic.pole_interaction",
+        "magnetic.flux_field_lines",
+        "emf.motional_emf_geometry",
+        "generator.rotating_loop",
+        "electronics.component_symbol_card",
       ].sort(),
     );
   });
@@ -86,5 +95,16 @@ describe("buildTeachingDiagramInstance", () => {
     });
     const instance = buildTeachingDiagramInstance(waveformBlueprint);
     expect(instance.parameters.cycles_shown).toBe(1);
+  });
+
+  it("CC-11.3: an explicit override replaces the generic default for the named parameter only, leaving every other parameter at its normal default", () => {
+    const instance = buildTeachingDiagramInstance(SERIES_BLUEPRINT, ["R1", "R2", "R3"], { component_count: 4 });
+    expect(instance.parameters).toEqual({ component_count: 4, show_values: true, show_current_arrow: true });
+  });
+
+  it("CC-11.3: an override naming a parameter the blueprint doesn't declare is ignored, never injected as new state", () => {
+    const instance = buildTeachingDiagramInstance(SERIES_BLUEPRINT, [], { not_a_real_parameter: "x" });
+    expect(instance.parameters).toEqual({ component_count: 2, show_values: true, show_current_arrow: true });
+    expect(instance.parameters).not.toHaveProperty("not_a_real_parameter");
   });
 });

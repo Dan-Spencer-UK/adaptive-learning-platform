@@ -1,5 +1,69 @@
 [
   {
+    "variantId": "visual-contract.ac-generator-rotating-loop@1::mode=both,rotation_phase=horizontal::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.409Z",
+      "imageHash": "dfe63a0c4338443fad1026a8ebd8153acebdc5d3f6c1f6102d5e6bfa23ca6759",
+      "contractHash": "7d60c66b5abf1af839d15db8da2e4f081f1d409c81eace75d381c88e8170b731"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.ac-generator-rotating-loop@1::mode=both,rotation_phase=vertical::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.410Z",
+      "imageHash": "cb7bae80894cbc94e4723e25ffd8566609dc98c49b8501ca5f69228d48b3691b",
+      "contractHash": "7d60c66b5abf1af839d15db8da2e4f081f1d409c81eace75d381c88e8170b731"
+    },
+    "cacheHit": true
+  },
+  {
     "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=1,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
     "observation": {
       "visibleObjects": [
@@ -25,9 +89,9 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.753Z",
-      "imageHash": "434d8bd27eb5baf472ac988009630c9cf8783c4ee085363a1d4c080ff47632d7",
-      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+      "timestamp": "2026-08-23T13:43:07.411Z",
+      "imageHash": "3e92cb76f512c6b9205a409f9f768e2ec700b0b9ec09a24d6eb38cecb3ea07be",
+      "contractHash": "9532705b7b4a67b11dbf637b029a76552b2e479c3f8f17472055f90b82d0a488"
     },
     "cacheHit": true
   },
@@ -57,9 +121,9 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.755Z",
+      "timestamp": "2026-08-23T13:43:07.411Z",
       "imageHash": "c2752ed263b051303d8142fb2a3f7453baa876c93896eb6f6c52b07730f66689",
-      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+      "contractHash": "9532705b7b4a67b11dbf637b029a76552b2e479c3f8f17472055f90b82d0a488"
     },
     "cacheHit": true
   },
@@ -89,9 +153,9 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.756Z",
-      "imageHash": "6ec5f719567c3b90b0e694cd6c743c099dea935c98d4aedea0892279f0e885d9",
-      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+      "timestamp": "2026-08-23T13:43:07.412Z",
+      "imageHash": "021e4082a1df9c63f3547894e1822422883db10cee88b3cb27399842c8c40533",
+      "contractHash": "9532705b7b4a67b11dbf637b029a76552b2e479c3f8f17472055f90b82d0a488"
     },
     "cacheHit": true
   },
@@ -121,9 +185,9 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.756Z",
-      "imageHash": "8f434920279150bd083709b1bc9e225ede63d15e7d672754e932b186d6d0fb2f",
-      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+      "timestamp": "2026-08-23T13:43:07.414Z",
+      "imageHash": "c79172f949f3c0f7d5f32982b6c07e2561b9ad4b661da04cbce1374e96cb5379",
+      "contractHash": "9532705b7b4a67b11dbf637b029a76552b2e479c3f8f17472055f90b82d0a488"
     },
     "cacheHit": true
   },
@@ -153,9 +217,9 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.757Z",
-      "imageHash": "1094f117ff71061766ea2b05afcbb697b98600f45627335c001c3f303da80499",
-      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+      "timestamp": "2026-08-23T13:43:07.416Z",
+      "imageHash": "de38417de7a78d5660d5d341616bd55709a7c0285bae0a6863e9cacf59e7517c",
+      "contractHash": "9532705b7b4a67b11dbf637b029a76552b2e479c3f8f17472055f90b82d0a488"
     },
     "cacheHit": true
   },
@@ -185,9 +249,553 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.757Z",
-      "imageHash": "6b7a87090f31f79a8636d5cccbae21491fca444e93d13cc22a87313ba6078459",
-      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+      "timestamp": "2026-08-23T13:43:07.416Z",
+      "imageHash": "3c9301d86b879aa3e6c46ab4117577ec1cdebad1e924fee1d0c6313a3236d966",
+      "contractHash": "9532705b7b4a67b11dbf637b029a76552b2e479c3f8f17472055f90b82d0a488"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=capacitor,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.417Z",
+      "imageHash": "2a2875a4dd79cd8a8a7477677550e5b3d11f32683f5df4f308c64dbfdd0e8365",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=diac,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.418Z",
+      "imageHash": "5916d125888ab15add37167d16737ed8929e00356100c35aef2ca4c3f4b6d826",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=diode,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.418Z",
+      "imageHash": "425777a5a0c5cc9dc2d3b121338400de1636e2612607642b7932e4cb73a03632",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=inverter,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.419Z",
+      "imageHash": "48dde02b974c204e45f5573263ef2e7f95624091ae47d3f0c3e8a062bdf3444c",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=led,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.420Z",
+      "imageHash": "f9241d05f1a46fa23786a5e886ac37b2010d0d481cf7bc5fcff7533a7bd9d273",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=photodiode,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.420Z",
+      "imageHash": "0e0544aef22552035d94ebc61122be1686cb5b4452705b48a41e188a6caa5602",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=rectifier,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.421Z",
+      "imageHash": "a9304bae65ff324ae25d27639e94e4da7db3335469a4c987a4c2ebd6ce5c6251",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=resistor,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.422Z",
+      "imageHash": "badc25ef6d86177da6b7aeb888fec6cb80ee3acc439257151d98a61d7ebe264e",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=thermistor,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.422Z",
+      "imageHash": "278777bad027891de6831824ebf4d6ae363852c35a12580ae9a11057a14370cc",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=thyristor_scr,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.423Z",
+      "imageHash": "f48e22847b65c29f5297a6353c23ef837d6e62e7f42704435bc5f45da433b316",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=transistor,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.424Z",
+      "imageHash": "6d61b11fc4e5129de7f1f7fb1a1c1a163be026f64e8e8e8a56b7301cbe7b6b9f",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=triac,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.424Z",
+      "imageHash": "44df8840289230fdb80fef2d93c25c29037819fe447e1a27f6e56715561cb64f",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.electronic-component-symbol-card@1::component_type=zener_diode,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.425Z",
+      "imageHash": "0883fa46ed3bb6d93f92aab7af9829a023897ea77fe75ceed179839af7c48e3b",
+      "contractHash": "eaeb6df632675343d91ecba18b23357d776e560298c567e0be233645c00549fb"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=driven_larger::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.425Z",
+      "imageHash": "5c6a1711012aabc7431806563ad2d070304c50e49961c5db9cc0fa4e73c14806",
+      "contractHash": "5652473350465138460808e942ee9bcf84af2855ea43921d1a20cad761103d5c"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=driven_smaller::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.426Z",
+      "imageHash": "5b0ea1c46059de9287bf2d553c361c2d6edc1d88499b49c8617a22cdf106408c",
+      "contractHash": "5652473350465138460808e942ee9bcf84af2855ea43921d1a20cad761103d5c"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=equal::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.426Z",
+      "imageHash": "81f21fb9190be138c624c452e4f88ebe39a0c861c998b28b7e33355156156850",
+      "contractHash": "5652473350465138460808e942ee9bcf84af2855ea43921d1a20cad761103d5c"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=isolated,instrument_type=ohmmeter,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.427Z",
+      "imageHash": "db68558b8de86f12c3d6574c056a8bf3372123a1fbf8df082127b3816f40b7b9",
+      "contractHash": "a56969972dc1827bbcf01e8b69e7a9c0616de43917a5625628a050f39ca8a525"
     },
     "cacheHit": true
   },
@@ -217,9 +825,9 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.758Z",
+      "timestamp": "2026-08-23T13:43:07.427Z",
       "imageHash": "abc783d876c7126fb998c0f2efa92a501e722987b36b6ef40b24c509eb650d0f",
-      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+      "contractHash": "a56969972dc1827bbcf01e8b69e7a9c0616de43917a5625628a050f39ca8a525"
     },
     "cacheHit": true
   },
@@ -249,9 +857,9 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.758Z",
+      "timestamp": "2026-08-23T13:43:07.428Z",
       "imageHash": "3652518ae747da29b7339b1cd5202b6620f279990c67619a853329ffc3e1e429",
-      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+      "contractHash": "a56969972dc1827bbcf01e8b69e7a9c0616de43917a5625628a050f39ca8a525"
     },
     "cacheHit": true
   },
@@ -281,41 +889,9 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.759Z",
+      "timestamp": "2026-08-23T13:43:07.428Z",
       "imageHash": "f6f2900a78ec81249e372e4b0b65b01092948f62ac3cd846211fdb557ab9205a",
-      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
-    },
-    "cacheHit": true
-  },
-  {
-    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ohmmeter,mode=both::both",
-    "observation": {
-      "visibleObjects": [
-        "diagram element"
-      ],
-      "visibleLabels": [],
-      "arrows": [],
-      "apparentRelationships": [],
-      "rotationSense": "not_applicable",
-      "labelsOverlap": false,
-      "anyClipping": false,
-      "arrowsAppearAttachedToLabelledObject": true,
-      "ambiguityNotes": [],
-      "legibilityConcerns": []
-    },
-    "verification": {
-      "status": "pass",
-      "confidence": "high",
-      "issues": [],
-      "possibleLearnerMisunderstanding": false,
-      "answerLeakage": false,
-      "requiresHumanReview": false,
-      "reviewerIdentity": "mock-provider-v1",
-      "promptVersion": "pass-a.v1+pass-b.v1",
-      "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.759Z",
-      "imageHash": "3f2c9ab51a2821aa7e6838e16a351876871e6b919a7e29f450472190f5ba6961",
-      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+      "contractHash": "a56969972dc1827bbcf01e8b69e7a9c0616de43917a5625628a050f39ca8a525"
     },
     "cacheHit": true
   },
@@ -345,9 +921,425 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:15:32.760Z",
+      "timestamp": "2026-08-23T13:43:07.428Z",
       "imageHash": "a874be2cbdbdb1a4ed27d6b657bf5fec7aeab58d46d11ef63b5a30d9c70ceaeb",
-      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+      "contractHash": "a56969972dc1827bbcf01e8b69e7a9c0616de43917a5625628a050f39ca8a525"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_1,mode=both,show_distances=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.429Z",
+      "imageHash": "ba2ea86657d2cc98cd223adfb60329117182dae5a06912b7a983400a98f4fd91",
+      "contractHash": "804d7b334f788d2c7d3b5c1aa97db6657b46be64a7cc586f86802969c954edca"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_1,mode=both,show_distances=true::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.429Z",
+      "imageHash": "181a7cb9de7dcc8dcf26ffaa6311bcd99ea18eb3e81c7723511de79d193d93c7",
+      "contractHash": "804d7b334f788d2c7d3b5c1aa97db6657b46be64a7cc586f86802969c954edca"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_2,mode=both,show_distances=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.430Z",
+      "imageHash": "d2be84c6bd6e835f96548c943159a41a1e7622038b6391cf6ad5898212e4584a",
+      "contractHash": "804d7b334f788d2c7d3b5c1aa97db6657b46be64a7cc586f86802969c954edca"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_2,mode=both,show_distances=true::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.430Z",
+      "imageHash": "367d841676c2c564c2ca7a4ddb2257a3d93b226b2e140785af141820ffc61e5f",
+      "contractHash": "804d7b334f788d2c7d3b5c1aa97db6657b46be64a7cc586f86802969c954edca"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_3,mode=both,show_distances=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.430Z",
+      "imageHash": "e3d0d160151029c040674c576e697b37fe48961502fc83a53d623059ff1172cb",
+      "contractHash": "804d7b334f788d2c7d3b5c1aa97db6657b46be64a7cc586f86802969c954edca"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.lever-class-arrangement@1::lever_class=class_3,mode=both,show_distances=true::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.431Z",
+      "imageHash": "4d99b014417146c3966b3be3d1a17208498220f4a0eacd772f9439fee36cc7ee",
+      "contractHash": "804d7b334f788d2c7d3b5c1aa97db6657b46be64a7cc586f86802969c954edca"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.magnetic-flux-density-comparison@1::density_comparison=false,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.431Z",
+      "imageHash": "3405a91a761ac1c73c697aa385261560bf6b7bf91a1540487c1b73a56a002d8d",
+      "contractHash": "8990cd75793f4a3f896370302aeaf0c3a4fa34f474e93878b3d8ff9acd963374"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.magnetic-flux-density-comparison@1::density_comparison=true,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.432Z",
+      "imageHash": "bebbbb09608ee41a7372e67639756e8118ad1ee555329b0c96fd6457b0f66d03",
+      "contractHash": "8990cd75793f4a3f896370302aeaf0c3a4fa34f474e93878b3d8ff9acd963374"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.magnetic-pole-interaction@1::mode=assessment,pole_pairing=like_poles_facing::assessment",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.432Z",
+      "imageHash": "7174a16343d64aee4eebb1a7f94f891a210acb4a5040ca39f00c72f1095200be",
+      "contractHash": "951672476579bce97991f5f9d69e1917e9528eaaf8d86d3b5283340357f6ae8a"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.magnetic-pole-interaction@1::mode=assessment,pole_pairing=unlike_poles_facing::assessment",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.433Z",
+      "imageHash": "9874070695dfb04432849b6d071aa045417da24fe350a04bcee87e3f0ab2dd0a",
+      "contractHash": "951672476579bce97991f5f9d69e1917e9528eaaf8d86d3b5283340357f6ae8a"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.magnetic-pole-interaction@1::mode=teaching,pole_pairing=like_poles_facing,show_pole_force=true::teaching",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.433Z",
+      "imageHash": "a73bbb416b27e5e340fb91c0fa42f673ff53f8e37b42e9fb3089787f8b413524",
+      "contractHash": "951672476579bce97991f5f9d69e1917e9528eaaf8d86d3b5283340357f6ae8a"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.magnetic-pole-interaction@1::mode=teaching,pole_pairing=unlike_poles_facing,show_pole_force=true::teaching",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.433Z",
+      "imageHash": "c002abf8a5d14fea88e65bbf4ee54307acf8547945e21292ae1877ac5cc99202",
+      "contractHash": "951672476579bce97991f5f9d69e1917e9528eaaf8d86d3b5283340357f6ae8a"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.motional-emf-geometry@1::mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.434Z",
+      "imageHash": "2479156c56555541386f8aa31ae9fc7e8a9924cdfe839438ea70a0bc19e5d6c1",
+      "contractHash": "dece276cf1953fea67b949dc6d10e1fab105216ff651d9d62af63596c7b4dcd5"
     },
     "cacheHit": true
   },
@@ -633,8 +1625,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:11:19.382Z",
-      "imageHash": "c7fa9b03660f3bbf3a8b72fd3962cfd8557f00da15c67865a827efb6ac2124b9",
+      "timestamp": "2026-08-23T13:43:07.435Z",
+      "imageHash": "a262bcbcb3ee86b97b75a32b740aa4db10044a43c7c608e4c77a28fea87a0d53",
       "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
     },
     "cacheHit": true
@@ -665,8 +1657,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:11:19.383Z",
-      "imageHash": "f1dcc192abec4800e58b37b6d33a28a07cc7bbae189c2a20a3eac4f5f7d532ac",
+      "timestamp": "2026-08-23T13:43:07.435Z",
+      "imageHash": "b8ecb3a6cf2f89c3c89b843098bac69ac752650ea279d7419ef029d9f7b580bd",
       "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
     },
     "cacheHit": true
@@ -697,9 +1689,137 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:11:19.426Z",
-      "imageHash": "7cfbbc7e88245aeb351f3d0fb0086a51827cab7e53c5c2a8f33835c945945709",
+      "timestamp": "2026-08-23T13:43:07.435Z",
+      "imageHash": "00982c090b739ac8c331aaac6aabe89e81649d7a13928fbafad684794c06ffee",
       "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.pulley-fixed-vs-movable@1::arrangement=fixed,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.436Z",
+      "imageHash": "366f9545e9fe18d555d3ac76c90318a72c38039858adb4af6320a54bbf6e9c2a",
+      "contractHash": "a7f109f3fec81885b1b5603779bd3cc568f7898c4c50ae73a4713f3e9ab366b4"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.pulley-fixed-vs-movable@1::arrangement=movable,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.436Z",
+      "imageHash": "787d3c834f5d530f957a0a1a0a795229ba040654095d0cc82420bee2b99d3275",
+      "contractHash": "a7f109f3fec81885b1b5603779bd3cc568f7898c4c50ae73a4713f3e9ab366b4"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.resistivity-length-area-dimensions@1::comparison=area,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.440Z",
+      "imageHash": "3020a65caf41668f30390202ba341ac52dbc014d94af032f5ab4e7444578c44c",
+      "contractHash": "f844937a9f1b58b64259c5bc385cbc264813a4b2c3c1ccc0f7777cfffc4fca29"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.resistivity-length-area-dimensions@1::comparison=length,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T13:43:07.441Z",
+      "imageHash": "66691aff9e32e3f5bd5b8f9c2e41cbdfc37d19af3ad4dbd18b5851ed86a851ae",
+      "contractHash": "f844937a9f1b58b64259c5bc385cbc264813a4b2c3c1ccc0f7777cfffc4fca29"
     },
     "cacheHit": true
   },
@@ -729,8 +1849,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:11:19.427Z",
-      "imageHash": "fb7f2c6350c81dcb82d3f7fb629aff139100f2bb729788e345c000d1a76d21ef",
+      "timestamp": "2026-08-23T13:43:07.442Z",
+      "imageHash": "ac6f7ade692c6693fec2cc0881d838b96e9b871c1ffc42d3785e4ca10b713e84",
       "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
     },
     "cacheHit": true
@@ -761,8 +1881,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:11:19.428Z",
-      "imageHash": "dc6feeff05d3d8864f8a5cb9b2d5a84312c82acde59f335a87a573c09800cdad",
+      "timestamp": "2026-08-23T13:43:07.443Z",
+      "imageHash": "8ca6ab5773128d8125817668185070356d0e0efd8313a5067cb856eb1377fd09",
       "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
     },
     "cacheHit": true
@@ -793,8 +1913,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:11:19.428Z",
-      "imageHash": "3f4b46052d809bb5188fbc02d00088240ee9b13616e1d85f2e0177a3d4d9ef72",
+      "timestamp": "2026-08-23T13:43:07.443Z",
+      "imageHash": "5fd7a608a4ae7dc380d4b9c0e12276f533eab0c22431be7faf05831d26ea06e2",
       "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
     },
     "cacheHit": true
@@ -825,8 +1945,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-23T00:11:19.429Z",
-      "imageHash": "30bea0fbca30995081de0abcdf75165814d5b437e6150e26399d15fa5c0156bc",
+      "timestamp": "2026-08-23T13:43:07.444Z",
+      "imageHash": "3f8469fe183335547ae3fce8d69e7fef56ca584888eca386e510f665da6a4bdb",
       "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
     },
     "cacheHit": true
@@ -857,8 +1977,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.536Z",
-      "imageHash": "13f73839faafa0f5b35b6ea4f1c4547a0192ac3dc05fe6457142232ce3e8c23f",
+      "timestamp": "2026-08-23T13:43:07.444Z",
+      "imageHash": "47bdbf17d47f67b3862bb3061d2496fa5003a2a22fe7598346e5b4927bb7b166",
       "contractHash": "855e45f52e52ec82194ecc77f377b4b935311a01286930b310d32c9b27d92705"
     },
     "cacheHit": true
@@ -889,8 +2009,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.537Z",
-      "imageHash": "e3b3599b9d7fde56d9d6c35987cbdc0a9d95c0dc0c93568224b46731fb2263cf",
+      "timestamp": "2026-08-23T13:43:07.444Z",
+      "imageHash": "f983c6cfa8d499cba7ff8ec54c6d3608ace30e07010b1a67743bcd2fb928a798",
       "contractHash": "855e45f52e52ec82194ecc77f377b4b935311a01286930b310d32c9b27d92705"
     },
     "cacheHit": true
@@ -921,8 +2041,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.537Z",
-      "imageHash": "67463fe37841c068a176d4596ecbcb7a41a9c0fe194e55823896e79435f66d9f",
+      "timestamp": "2026-08-23T13:43:07.445Z",
+      "imageHash": "afd312647b02481d5bc2588355afb1aa2fecb64fa1f81e2c2e30099b8d115a0f",
       "contractHash": "855e45f52e52ec82194ecc77f377b4b935311a01286930b310d32c9b27d92705"
     },
     "cacheHit": true

@@ -133,8 +133,13 @@ function buildDocumentHtml(cards: ReturnType<typeof generateReport>["cards"]): s
   .mode-badge.mode-assessment { color: #b35900; border-color: #b35900; }
   .mode-badge.mode-both { color: #1f5fb3; border-color: #1f5fb3; }
   h2 { font-size: 16px; margin: 4px 0 12px; }
-  .phone-frame { width: 390px; margin: 0 auto 16px; border: 3px solid #222; border-radius: 28px; padding: 10px; background: #fafafa; }
-  .phone-screen { width: 100%; background: #ffffff; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 8px; }
+  /* CC-11.3 pixel-review fix: every diagram is drawn against the app's real
+     governed dark background (apps/mobile/src/lib/tokens.ts color.background
+     #0B0D12, text #F2F4F8) -- a white phone screen here rendered that
+     near-white text and strokes as near-invisible. The mockup must match
+     production, not contradict it. */
+  .phone-frame { width: 390px; margin: 0 auto 16px; border: 3px solid #222; border-radius: 28px; padding: 10px; background: #111318; }
+  .phone-screen { width: 100%; background: #0B0D12; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 8px; }
   .phone-screen svg { max-width: 100%; height: auto; }
   dl { display: grid; grid-template-columns: 190px 1fr; gap: 4px 10px; font-size: 12px; margin: 10px 0; }
   dt { color: #666; }
@@ -162,11 +167,16 @@ async function main(): Promise<void> {
   writeFileSync(tempHtmlPath, html, "utf8");
 
   const browser = await chromium.launch();
+  let pdfBuffer: Buffer;
   try {
     const page = await browser.newPage();
     await page.goto(`file://${tempHtmlPath.replace(/\\/g, "/")}`);
-    await page.pdf({
-      path: PDF_PATH,
+    // Rendered in-memory (no `path` option) rather than letting Playwright
+    // open the destination file itself -- lets this script control the
+    // write and fall back to an alternate filename if an external process
+    // (indexer/AV/preview handler) holds a transient OS-level lock on the
+    // usual path, rather than failing the whole regeneration outright.
+    pdfBuffer = await page.pdf({
       format: "A4",
       printBackground: true,
       margin: { top: "10mm", bottom: "10mm", left: "10mm", right: "10mm" },
@@ -176,12 +186,26 @@ async function main(): Promise<void> {
     rmSync(scratchDir, { recursive: true, force: true });
   }
 
+  let pdfFileName = "unit202-instructional-visuals-review.pdf";
+  try {
+    writeFileSync(PDF_PATH, pdfBuffer);
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException).code;
+    if (code !== "EBUSY" && code !== "EPERM") throw error;
+    pdfFileName = `unit202-instructional-visuals-review-${Date.now()}.pdf`;
+    const fallbackPath = join(REVIEW_PACKAGE_DIR, pdfFileName);
+    writeFileSync(fallbackPath, pdfBuffer);
+    console.warn(
+      `WARNING: '${PDF_PATH}' is locked by another process (external indexer/AV/preview handler, not this script) and could not be overwritten. Wrote the regenerated PDF to '${fallbackPath}' instead -- delete the stale locked file manually once whatever holds it releases it.`,
+    );
+  }
+
   writeFileSync(
     MANIFEST_PATH,
     JSON.stringify(
       {
         generatedAt: new Date().toISOString(),
-        pdf: "unit202-instructional-visuals-review.pdf",
+        pdf: pdfFileName,
         pageOrder: cards.map((c, i) => ({ page: i + 2, variantId: c.variantId, contractId: c.contractId, mode: c.mode })),
       },
       null,
@@ -191,7 +215,7 @@ async function main(): Promise<void> {
   );
 
   console.log(`Review package generated: ${cards.length} variants, ${cards.length + 1} PDF pages (1 cover + ${cards.length} variants).`);
-  console.log(`  PDF: ${PDF_PATH}`);
+  console.log(`  PDF: ${join(REVIEW_PACKAGE_DIR, pdfFileName)}`);
   console.log(`  Manifest: ${MANIFEST_PATH}`);
 }
 

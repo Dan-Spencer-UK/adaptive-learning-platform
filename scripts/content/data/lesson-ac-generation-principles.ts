@@ -25,6 +25,18 @@
  * change_e / worked.emf.calculate_flux_change_deltaPhi now exist and are
  * taught directly (worked_flux_change_emf, below) before the learner
  * practises the calculation unaided.
+ *
+ * CC-11.3: fixes an active misrepresentation the whole-course visual-
+ * completeness audit found -- `concept_electromagnetic_induction_and_
+ * generator` and `guided_describe_ac_generation` both wrongly reused
+ * `motor.force_field_current` (a STATIC conductor + force-arrow diagram,
+ * scoped by its own contract to the motor principle) to illustrate a
+ * ROTATING loop producing changing flux, a different concept entirely.
+ * Both now use the new, dedicated `generator.rotating_loop`
+ * (ACGeneratorDiagram.tsx). `contentRelease` moved to
+ * `release.unit202.v7`; see lesson-cc11-3-historical-snapshot.ts for how
+ * v5/v6's own immutable membership remains resolvable against this
+ * lesson's pre-CC-11.3 content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -82,7 +94,7 @@ export const LESSON_AC_GENERATION_PRINCIPLES: LessonPlan = {
       assertionFamilyId: "electrical.emf_and_generation",
       capabilityIds: [],
       misconceptionTargets: [],
-      representation: { diagramBlueprintId: "motor.force_field_current" },
+      representation: { diagramBlueprintId: "generator.rotating_loop" },
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "introductory",
@@ -102,7 +114,7 @@ export const LESSON_AC_GENERATION_PRINCIPLES: LessonPlan = {
       assertionFamilyId: "electrical.emf_and_generation",
       capabilityIds: ["cap.emf.describe_ac_generation"],
       misconceptionTargets: [],
-      representation: { diagramBlueprintId: "motor.force_field_current" },
+      representation: { diagramBlueprintId: "generator.rotating_loop" },
       questionBlueprintId: "emf.describe_ac_generation",
       presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -326,7 +338,7 @@ export const LESSON_AC_GENERATION_PRINCIPLES: LessonPlan = {
       "The learner has described the rotating-loop A.C. generator principle, calculated the EMF induced by a changing magnetic flux, and compared the motor principle with the generator principle.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v5",
+  contentRelease: "release.unit202.v7",
 };
 
 export const lessons = [LESSON_AC_GENERATION_PRINCIPLES];

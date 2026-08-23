@@ -114,6 +114,12 @@ export const diagramTypeSchema = z.enum([
   "graph",
   "instrument_connection",
   "waveform",
+  // CC-11.3: mechanical-principle diagrams (levers/gears/pulleys) and
+  // governed UK/IEC component schematic symbols -- neither fits any
+  // pre-existing category (both are new spatial/graphical domains, not
+  // variants of a circuit/field/waveform/instrument diagram).
+  "mechanical",
+  "component_symbol",
 ]);
 
 export const diagramParameterKindSchema = z.enum([

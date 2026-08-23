@@ -36,9 +36,20 @@ export function ParallelCircuitDiagram({ diagram, testID }: ParallelCircuitDiagr
   const slot = span / count;
   const midY = top + (bottom - top - RESISTOR_HEIGHT) / 2;
 
+  // CC-11.3: as with SeriesCircuitDiagram, a current-direction arrow needs
+  // a physical justification (task brief §15) -- a battery is now drawn
+  // inline on the left rail whenever branch-current arrows are shown.
+  // Branch current flows DOWN each branch (top rail to bottom rail), so
+  // by loop continuity current flows UP the left rail from the bottom
+  // rail to the top rail -- the battery's + terminal therefore sits at
+  // the TOP of its own symbol (current exits + and continues up/along to
+  // feed the branches from the top rail).
+  const midLeftY = (top + bottom) / 2;
   const accessibilityLabel = [
     `Parallel circuit diagram with ${count} branch${count === 1 ? "" : "es"} labelled ${labels.join(", ")}, connected between two shared rails.`,
-    showBranchArrows ? "An arrow at the top of each branch shows the current direction, flowing down the branch." : "",
+    showBranchArrows
+      ? "A battery is shown on the left rail, and an arrow at the top of each branch shows the current direction, flowing down the branch -- consistent with the battery's own polarity."
+      : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -56,7 +67,15 @@ export function ParallelCircuitDiagram({ diagram, testID }: ParallelCircuitDiagr
       {/* Two shared rails all branches connect between. */}
       <Line x1={left} y1={top} x2={right} y2={top} stroke={color.text} strokeWidth={2} />
       <Line x1={left} y1={bottom} x2={right} y2={bottom} stroke={color.text} strokeWidth={2} />
-      <Line x1={left} y1={top} x2={left} y2={bottom} stroke={color.text} strokeWidth={2} />
+      {showBranchArrows ? (
+        <>
+          <Line x1={left} y1={top} x2={left} y2={midLeftY - 10} stroke={color.text} strokeWidth={2} />
+          <Line x1={left} y1={midLeftY + 10} x2={left} y2={bottom} stroke={color.text} strokeWidth={2} />
+          <ParallelBattery x={left} yTop={midLeftY - 10} yBottom={midLeftY + 10} />
+        </>
+      ) : (
+        <Line x1={left} y1={top} x2={left} y2={bottom} stroke={color.text} strokeWidth={2} />
+      )}
       <Line x1={right} y1={top} x2={right} y2={bottom} stroke={color.text} strokeWidth={2} />
 
       {Array.from({ length: count }, (_, i) => {
@@ -76,5 +95,21 @@ export function ParallelCircuitDiagram({ diagram, testID }: ParallelCircuitDiagr
         );
       })}
     </Svg>
+  );
+}
+
+/** CC-11.3: mirrors SeriesCircuitDiagram's own SeriesBattery, with polarity flipped to match this diagram's current direction (+ at top -- see this file's header comment for the derivation). */
+function ParallelBattery({ x, yTop, yBottom }: { x: number; yTop: number; yBottom: number }) {
+  return (
+    <>
+      <Line x1={x - 9} y1={yTop} x2={x + 9} y2={yTop} stroke={color.text} strokeWidth={1.5} />
+      <SvgText x={x + 14} y={yTop + 4} fill={color.text} fontSize={11} fontWeight="700" textAnchor="start">
+        +
+      </SvgText>
+      <Line x1={x - 5} y1={yBottom} x2={x + 5} y2={yBottom} stroke={color.text} strokeWidth={3} />
+      <SvgText x={x + 14} y={yBottom + 4} fill={color.text} fontSize={11} fontWeight="700" textAnchor="start">
+        -
+      </SvgText>
+    </>
   );
 }

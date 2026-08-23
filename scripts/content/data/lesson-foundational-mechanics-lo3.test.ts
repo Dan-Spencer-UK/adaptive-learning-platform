@@ -64,8 +64,13 @@ describe("CC-11 LO3 lesson files validate against the real lessonPlanSchema", ()
       }
     });
 
-    it(`${name} declares contentRelease "release.unit202.v4" (retargeted by the main integrator from the authoring-time v3 placeholder) and presentationModes learn+review`, () => {
-      expect(lesson.contentRelease).toBe("release.unit202.v4");
+    it(`${name} declares its expected contentRelease and presentationModes learn+review`, () => {
+      // CC-11.3: LESSON_SIMPLE_MACHINES gained REQUIRED instructional-visual
+      // integration (lever/gear/pulley diagrams), retargeting its own
+      // contentRelease from v4 to v7 -- see that lesson file's own CC-11.3
+      // header comment. The other two LO3 lessons are unaffected.
+      const expectedRelease = name === "LESSON_SIMPLE_MACHINES" ? "release.unit202.v7" : "release.unit202.v4";
+      expect(lesson.contentRelease).toBe(expectedRelease);
       expect(lesson.presentationModes).toEqual(["learn", "review"]);
     });
   }

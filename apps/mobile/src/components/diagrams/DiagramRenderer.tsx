@@ -21,9 +21,18 @@
 import type { DiagramInstance } from "@alp/calculation-engine";
 import type { DiagramBlueprint } from "@alp/content-schema";
 
+import { ACGeneratorDiagram } from "./ACGeneratorDiagram";
+import { ComponentSymbolCard } from "./ComponentSymbolCard";
+import { GearDiagram } from "./GearDiagram";
 import { InstrumentConnectionDiagram } from "./InstrumentConnectionDiagram";
+import { LeverDiagram } from "./LeverDiagram";
+import { MagneticFluxDiagram } from "./MagneticFluxDiagram";
 import { MagneticForceDiagram } from "./MagneticForceDiagram";
+import { MagneticPoleDiagram } from "./MagneticPoleDiagram";
+import { MotionalEmfDiagram } from "./MotionalEmfDiagram";
 import { ParallelCircuitDiagram } from "./ParallelCircuitDiagram";
+import { PulleyDiagram } from "./PulleyDiagram";
+import { ResistivityDimensionsDiagram } from "./ResistivityDimensionsDiagram";
 import { RightHandGripRuleDiagram } from "./RightHandGripRuleDiagram";
 import { SeriesCircuitDiagram } from "./SeriesCircuitDiagram";
 import { SeriesParallelMixedCircuitDiagram } from "./SeriesParallelMixedCircuitDiagram";
@@ -44,6 +53,8 @@ import { WaveformSineDiagram } from "./WaveformSineDiagram";
 export interface DiagramRevealProps {
   readonly fieldRotation?: "clockwise" | "counterclockwise";
   readonly forceDirection?: "up" | "down" | "left" | "right";
+  /** CC-11.3: whether MagneticPoleDiagram's force arrows (the assessed attract/repel answer) are shown. */
+  readonly showPoleForce?: boolean;
 }
 
 interface DiagramComponentProps {
@@ -66,6 +77,18 @@ const REGISTRY: Readonly<Record<string, DiagramComponent>> = {
   ),
   "graph.waveform_sine": ({ diagram, testID }) => <WaveformSineDiagram diagram={diagram} testID={testID} />,
   "instrument.measurement_connection": ({ diagram, testID }) => <InstrumentConnectionDiagram diagram={diagram} testID={testID} />,
+  // CC-11.3: whole-course instructional visual coverage closeout.
+  "mechanical.lever_arrangement": ({ diagram, testID }) => <LeverDiagram diagram={diagram} testID={testID} />,
+  "mechanical.gear_mesh": ({ diagram, testID }) => <GearDiagram diagram={diagram} testID={testID} />,
+  "mechanical.pulley_arrangement": ({ diagram, testID }) => <PulleyDiagram diagram={diagram} testID={testID} />,
+  "mechanical.resistivity_dimensions": ({ diagram, testID }) => <ResistivityDimensionsDiagram diagram={diagram} testID={testID} />,
+  "magnetic.pole_interaction": ({ diagram, testID, reveal }) => (
+    <MagneticPoleDiagram diagram={diagram} showForceArrows={reveal?.showPoleForce} testID={testID} />
+  ),
+  "magnetic.flux_field_lines": ({ diagram, testID }) => <MagneticFluxDiagram diagram={diagram} testID={testID} />,
+  "emf.motional_emf_geometry": ({ diagram, testID }) => <MotionalEmfDiagram diagram={diagram} testID={testID} />,
+  "generator.rotating_loop": ({ diagram, testID }) => <ACGeneratorDiagram diagram={diagram} testID={testID} />,
+  "electronics.component_symbol_card": ({ diagram, testID }) => <ComponentSymbolCard diagram={diagram} testID={testID} />,
 };
 
 /** The exact set of diagram blueprint ids this registry can render -- the mechanical renderer-coverage gate cross-checks the live corpus against this list. */
@@ -129,11 +152,27 @@ export function DiagramRenderer({ blueprint, diagram, reveal, testID }: DiagramR
  * separate `reveal` prop above), and `min` for a `number_range`. This is
  * pure, generic and never diagram-specific -- exactly the "resolver, not a
  * second switch statement" task brief §7 asks for.
+ *
+ * CC-11.3: `overrides` (from the step's own governed
+ * `representation.diagramParameters`, see lesson-plan.ts) replaces the
+ * generic default for any parameter it names -- needed the moment more
+ * than one lesson step shares a single multi-value blueprint (e.g.
+ * `electronics.component_symbol_card`'s `component_type` enum) and each
+ * step must show a DIFFERENT one, not all silently defaulting to the
+ * same first-declared value. Never overrides a parameter the blueprint
+ * doesn't itself declare -- an override key with no matching parameter
+ * is simply ignored, never injected as new, ungoverned state.
  */
-export function buildTeachingDiagramInstance(blueprint: DiagramBlueprint, labels: readonly string[] = []): DiagramInstance {
+export function buildTeachingDiagramInstance(
+  blueprint: DiagramBlueprint,
+  labels: readonly string[] = [],
+  overrides?: Readonly<Record<string, string | number | boolean>>,
+): DiagramInstance {
   const parameters: Record<string, string | number | boolean> = {};
   for (const param of blueprint.parameters) {
-    if (param.kind === "boolean") {
+    if (overrides && Object.prototype.hasOwnProperty.call(overrides, param.name)) {
+      parameters[param.name] = overrides[param.name]!;
+    } else if (param.kind === "boolean") {
       parameters[param.name] = true;
     } else if (param.kind === "number_range") {
       parameters[param.name] = param.min ?? 1;

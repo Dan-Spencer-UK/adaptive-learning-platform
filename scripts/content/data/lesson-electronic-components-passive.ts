@@ -19,11 +19,25 @@
  * packages/calculation-engine/src/families/electronic-components.ts for
  * the executors and this package's integration report for the exact
  * cc05a-pedagogy-unit202.ts blueprint/family-reclassification diff a
- * separate integrator applies). Deliberately no numeric calculation and no
- * new diagram blueprint (task brief: teach exactly the governed Level-2
- * operating principles and applications, not semiconductor engineering).
- * Cross-checked mechanically by scripts/content/validate-lesson-plan.ts
- * once integrated.
+ * separate integrator applies). No numeric calculation (task brief: teach
+ * exactly the governed Level-2 operating principles and applications, not
+ * semiconductor engineering). Cross-checked mechanically by
+ * scripts/content/validate-lesson-plan.ts once integrated.
+ *
+ * CC-11.3: adds the UK/IEC governed component-symbol library
+ * (`electronics.component_symbol_card`, ComponentSymbolCard.tsx) this
+ * lesson's own "deliberately no new diagram blueprint" note above
+ * predates -- superseded now that real symbol-recognition value was
+ * identified. `guided_recognise_capacitor_transient` is the one step
+ * here that tests exactly one component (capacitor); wired via
+ * `representation.diagramParameters` (the shared blueprint's
+ * `component_type` parameter) since the other concept steps each teach
+ * 2-4 components together and cannot cleanly show a single symbol --
+ * left untouched rather than restructured (out of this package's
+ * scope). `contentRelease` moved to `release.unit202.v7`; see
+ * lesson-cc11-3-historical-snapshot.ts for how v4/v5/v6's own immutable
+ * membership remains resolvable against this lesson's pre-CC-11.3
+ * content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -108,7 +122,7 @@ export const LESSON_ELECTRONIC_COMPONENTS_PASSIVE: LessonPlan = {
       assertionFamilyId: "electrical.electronic_components",
       capabilityIds: ["cap.electronic_components.recognise_principle"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "electronics.component_symbol_card", diagramParameters: { component_type: "capacitor" } },
       questionBlueprintId: "electronics.recognise_capacitor_behaviour",
       presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -326,7 +340,7 @@ export const LESSON_ELECTRONIC_COMPONENTS_PASSIVE: LessonPlan = {
       "The learner has recognised capacitor transient (charge/discharge) behaviour, distinguished half-wave and full-wave rectification from the inverter, recognised the diode family (diode, Zener diode, LED, photodiode), and identified the components used in a traditional UK master telephone socket.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v4",
+  contentRelease: "release.unit202.v7",
 };
 
 export const lessons = [LESSON_ELECTRONIC_COMPONENTS_PASSIVE];

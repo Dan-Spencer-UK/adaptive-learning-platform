@@ -135,8 +135,38 @@ export const RELEASE_UNIT202_V5 = "release.unit202.v5" as const;
  */
 export const RELEASE_UNIT202_V6 = "release.unit202.v6" as const;
 
+/**
+ * CC-11.3: closes the whole-course instructional-visual-completeness and
+ * -correctness gate. Same pattern as v5/v6's own creation:
+ * `release.unit202.v6`'s own declared membership below is left byte-
+ * identical (immutable), and because 7 lessons are single-sourced
+ * (`lesson.foundation.physics.simple-machines`,
+ * `lesson.electrical.resistivity`,
+ * `lesson.electrical.electronic-components-passive`,
+ * `lesson.electrical.electronic-components-switching-control`,
+ * `lesson.magnetism.fundamentals`, `lesson.magnetism.effects-of-current`,
+ * `lesson.emf.ac-generation-principles`), each gaining REQUIRED
+ * instructional-visual integration (new diagrams wired into their own
+ * concept/practice steps) plus, for `lesson.emf.ac-generation-
+ * principles`, a genuine correctness fix (the wrongly-reused static
+ * motor-principle diagram replaced with a real rotating-loop generator
+ * diagram), their `contentRelease` field now reads `release.unit202.v7`,
+ * not their previous value. Each lesson's pre-CC-11.3 step content is
+ * preserved, byte-identical, in `lesson-cc11-3-historical-snapshot.ts`
+ * and referenced from every past release block that previously resolved
+ * it (v3/v4/v5/v6, whichever apply per lesson -- see that snapshot
+ * file's own naming convention) so all of them remain fully resolvable.
+ * The other 17 v6 members are unaffected and remain resolvable exactly
+ * as v6 declared them. `release.unit202.v7` is the first release where
+ * every part of Unit 202 that materially benefits from instructional
+ * imagery has a real, governed, rendered and lesson-integrated visual
+ * (see PROJECT-STATUS.md §CC-11.3 for the full completeness/correctness
+ * account).
+ */
+export const RELEASE_UNIT202_V7 = "release.unit202.v7" as const;
+
 /** The release whose generated learner-runtime projection is bundled into the mobile app (scripts/content/generate-mobile-projection.ts). */
-export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V6;
+export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V7;
 
 export const contentReleases: ContentReleaseManifest = {
   releases: [
@@ -293,6 +323,52 @@ export const contentReleases: ContentReleaseManifest = {
         { lessonId: "lesson.emf.ac-generation-principles", lessonVersion: 1 },
         { lessonId: "lesson.waveforms.ac-dc-and-sine-wave-quantities", lessonVersion: 1 },
         { lessonId: "lesson.electrical.electronic-components-passive", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.electronic-components-switching-control", lessonVersion: 1 },
+      ],
+      knowledgeCorpusId: CC04_KNOWLEDGE_CORPUS_ID,
+      pedagogyCorpusId: CC05A_PEDAGOGY_CORPUS_ID,
+      questionBlueprintVersion: 1,
+    },
+    {
+      // CC-11.3: closes the whole-course instructional-visual-completeness
+      // and -correctness gate -- see RELEASE_UNIT202_V7's own doc comment
+      // above. Same 24-lesson membership as v6; 7 lessons' underlying
+      // content was genuinely corrected/extended (REQUIRED visual
+      // integration, plus one real defect fix), the rest reused exactly
+      // as v6 declared them.
+      id: RELEASE_UNIT202_V7,
+      schemaVersion: 1,
+      lessons: [
+        { lessonId: "lesson.electrical.ohms-law", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.maths.formula-rearrangement", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-series", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-parallel", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.core-quantities", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.si-units", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.instrumentation", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.charge-and-current", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.conductors-and-insulators", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.thermal-and-chemical-effects", lessonVersion: 1 },
+        // CC-11.3: content genuinely corrected/extended relative to v6 (REQUIRED visual integration).
+        { lessonId: "lesson.electrical.resistivity", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.power", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.energy-and-efficiency", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.fault-conditions-protection", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.series-vs-parallel-comparison", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.physics.mass-and-weight", lessonVersion: 1 },
+        // CC-11.3: content genuinely corrected/extended relative to v6 (REQUIRED visual integration).
+        { lessonId: "lesson.foundation.physics.simple-machines", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.physics.mechanics-force-work-energy-power", lessonVersion: 1 },
+        // CC-11.3: content genuinely corrected/extended relative to v6 (REQUIRED visual integration).
+        { lessonId: "lesson.magnetism.fundamentals", lessonVersion: 1 },
+        // CC-11.3: content genuinely corrected/extended relative to v6 (REQUIRED visual integration).
+        { lessonId: "lesson.magnetism.effects-of-current", lessonVersion: 1 },
+        // CC-11.3: content genuinely corrected relative to v6 (visual integration + the motor/generator-diagram defect fix).
+        { lessonId: "lesson.emf.ac-generation-principles", lessonVersion: 1 },
+        { lessonId: "lesson.waveforms.ac-dc-and-sine-wave-quantities", lessonVersion: 1 },
+        // CC-11.3: content genuinely corrected/extended relative to v6 (REQUIRED visual integration).
+        { lessonId: "lesson.electrical.electronic-components-passive", lessonVersion: 1 },
+        // CC-11.3: content genuinely corrected/extended relative to v6 (REQUIRED visual integration).
         { lessonId: "lesson.electrical.electronic-components-switching-control", lessonVersion: 1 },
       ],
       knowledgeCorpusId: CC04_KNOWLEDGE_CORPUS_ID,

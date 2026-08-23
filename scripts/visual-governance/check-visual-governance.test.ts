@@ -8,8 +8,8 @@ describe("check-visual-governance against the live CC-05A corpus + CC-05D contra
     expect(isReportClean(report)).toBe(true);
   });
 
-  it("finds exactly 7 real governed diagram blueprints", () => {
-    expect(report.totalRealDiagramBlueprints).toBe(7);
+  it("finds exactly 16 real governed diagram blueprints (CC-11.3 adds 9: lever/gear/pulley/resistivity-dimensions, pole-interaction/flux/motional-emf-geometry/rotating-loop, component-symbol-card)", () => {
+    expect(report.totalRealDiagramBlueprints).toBe(16);
   });
 
   it("has exactly one contract per rendered (governed pilot) diagram blueprint", () => {
@@ -32,8 +32,8 @@ describe("check-visual-governance against the live CC-05A corpus + CC-05D contra
     expect(report.answerLeakageFailures).toEqual([]);
   });
 
-  it("produces 31 canonical variants: 3 series + 3 parallel + 4 grip-rule + 8 motor-force + 2 series-parallel-mixed + 6 waveform + 5 instrument-connection", () => {
-    expect(report.totalCanonicalVariants).toBe(31);
+  it("produces 66 canonical variants: 3 series + 3 parallel + 4 grip-rule + 8 motor-force + 2 series-parallel-mixed + 6 waveform + 5 instrument-connection + 6 lever + 3 gear + 2 pulley + 2 resistivity-dimensions + 4 pole-interaction + 2 flux + 1 motional-emf-geometry + 2 rotating-loop + 13 component-symbol-card", () => {
+    expect(report.totalCanonicalVariants).toBe(66);
   });
 
   it("has zero rendered-artefact geometry failures (checks 0 when renders don't exist yet, or all real arrows when they do)", () => {
@@ -43,7 +43,7 @@ describe("check-visual-governance against the live CC-05A corpus + CC-05D contra
   it("formats to a human-readable report string containing the PASS/FAIL verdict inputs", () => {
     const text = formatReport(report);
     expect(text).toContain("CC-05D instructional-visual governance mechanical report");
-    expect(text).toContain("Real governed diagram blueprints (CC-05A corpus): 7");
+    expect(text).toContain("Real governed diagram blueprints (CC-05A corpus): 16");
   });
 });
 

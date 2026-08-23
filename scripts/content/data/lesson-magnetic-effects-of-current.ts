@@ -32,6 +32,15 @@
  * taught + practised directly in this lesson
  * (worked_force_on_conductor / guided_calculate_force_on_conductor;
  * worked_motional_emf / guided_calculate_motional_emf).
+ *
+ * CC-11.3: e = B l v's own governing "mutually perpendicular" geometry
+ * (B, l and v) had a formula card but zero visual support -- closed
+ * with `emf.motional_emf_geometry` (MotionalEmfDiagram.tsx), wired into
+ * the EMF concept step and both the worked example and guided
+ * calculation. `contentRelease` moved to `release.unit202.v7`; see
+ * lesson-cc11-3-historical-snapshot.ts for how v5/v6's own immutable
+ * membership remains resolvable against this lesson's pre-CC-11.3
+ * content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -265,7 +274,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       assertionFamilyId: "electrical.emf_and_generation",
       capabilityIds: ["cap.emf.recognise_emf_terminal_voltage"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "emf.motional_emf_geometry" },
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "intermediate",
@@ -285,7 +294,11 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       assertionFamilyId: "electrical.emf_and_generation",
       capabilityIds: ["cap.emf.calculate_motional_emf"],
       misconceptionTargets: [],
-      representation: { formulaFamilyId: "formula.motional_emf", workedExampleBlueprintId: "worked.motional_emf.calculate" },
+      representation: {
+        formulaFamilyId: "formula.motional_emf",
+        workedExampleBlueprintId: "worked.motional_emf.calculate",
+        diagramBlueprintId: "emf.motional_emf_geometry",
+      },
       presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: true, progressiveReveal: true },
       scaffoldingLevel: "guided",
       cognitiveDemand: "intermediate",
@@ -305,7 +318,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       assertionFamilyId: "electrical.emf_and_generation",
       capabilityIds: ["cap.emf.calculate_motional_emf"],
       misconceptionTargets: [],
-      representation: { formulaFamilyId: "formula.motional_emf" },
+      representation: { formulaFamilyId: "formula.motional_emf", diagramBlueprintId: "emf.motional_emf_geometry" },
       questionBlueprintId: "emf.calculate_motional_emf",
       presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -477,7 +490,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       "The learner has interpreted the direction of the magnetic field around a current-carrying conductor, calculated the force on a conductor in a field, recognised electromagnetism, calculated induced EMF from a moving conductor, and distinguished EMF from terminal voltage -- clearing remediation if that misconception was detected.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v5",
+  contentRelease: "release.unit202.v7",
 };
 
 export const lessons = [LESSON_MAGNETIC_EFFECTS_OF_CURRENT];

@@ -20,6 +20,21 @@
  * (moment balance, with a worked example before practice); gears and
  * pulleys get one recognition capability each (their own governed
  * knowledge obligations are RANGE-basis, not calculation-basis).
+ *
+ * CC-11.3: closes the whole-course instructional-visual-completeness
+ * audit's strongest LO3 finding -- all three simple machines are
+ * inherently spatial (arrangement of pivot/effort/load; relative gear
+ * size; rope-segment counting) and were taught/tested through prose
+ * alone. Three new diagrams wired in: `mechanical.lever_arrangement`
+ * (LeverDiagram.tsx), `mechanical.gear_mesh` (GearDiagram.tsx),
+ * `mechanical.pulley_arrangement` (PulleyDiagram.tsx) -- each integrated
+ * immediately at its own concept step and every guided/independent
+ * practice step that tests it, matching the concept-then-practice
+ * pattern already established elsewhere in this course.
+ * `contentRelease` moved to `release.unit202.v7`; see
+ * lesson-cc11-3-historical-snapshot.ts for how v4/v5/v6's own immutable
+ * membership remains resolvable against this lesson's pre-CC-11.3
+ * content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -89,7 +104,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.levers.recognise"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.lever_arrangement" },
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "introductory",
@@ -109,7 +124,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.levers.recognise"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.lever_arrangement" },
       questionBlueprintId: "levers.identify_class",
       presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -130,7 +145,12 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.levers.calculate"],
       misconceptionTargets: [],
-      representation: { formulaFamilyId: "formula.lever_balance", workedExampleBlueprintId: "worked.lever_balance.calculate_effort" },
+      representation: {
+        formulaFamilyId: "formula.lever_balance",
+        workedExampleBlueprintId: "worked.lever_balance.calculate_effort",
+        diagramBlueprintId: "mechanical.lever_arrangement",
+        diagramParameters: { show_distances: true },
+      },
       presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: true, progressiveReveal: true },
       scaffoldingLevel: "guided",
       cognitiveDemand: "intermediate",
@@ -150,7 +170,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.levers.calculate"],
       misconceptionTargets: [],
-      representation: { formulaFamilyId: "formula.lever_balance" },
+      representation: { formulaFamilyId: "formula.lever_balance", diagramBlueprintId: "mechanical.lever_arrangement", diagramParameters: { show_distances: true } },
       questionBlueprintId: "levers.calculate_effort_or_load",
       presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -171,7 +191,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.gears.recognise"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.gear_mesh" },
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "introductory",
@@ -191,7 +211,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.gears.recognise"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.gear_mesh" },
       questionBlueprintId: "gears.recognise_ratio_tradeoff",
       presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
@@ -212,7 +232,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.gears.recognise"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.gear_mesh" },
       questionBlueprintId: "gears.recognise_ratio_tradeoff",
       presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "independent",
@@ -233,7 +253,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.pulleys.recognise"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.pulley_arrangement" },
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "introductory",
@@ -253,7 +273,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.pulleys.recognise"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.pulley_arrangement" },
       questionBlueprintId: "pulleys.recognise_force_distance_tradeoff",
       presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "independent",
@@ -274,7 +294,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.levers.calculate"],
       misconceptionTargets: [],
-      representation: { formulaFamilyId: "formula.lever_balance" },
+      representation: { formulaFamilyId: "formula.lever_balance", diagramBlueprintId: "mechanical.lever_arrangement", diagramParameters: { show_distances: true } },
       questionBlueprintId: "levers.calculate_effort_or_load",
       presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "independent",
@@ -295,7 +315,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       assertionFamilyId: "foundational.levers_mechanical_advantage",
       capabilityIds: ["cap.foundational.levers.recognise"],
       misconceptionTargets: [],
-      representation: {},
+      representation: { diagramBlueprintId: "mechanical.lever_arrangement" },
       questionBlueprintId: "levers.identify_class",
       presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "independent",
@@ -381,7 +401,7 @@ export const LESSON_SIMPLE_MACHINES: LessonPlan = {
       "The learner has identified lever classes, calculated the effort or load in a balanced lever, and recognised how gears and pulleys each provide mechanical advantage.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v4",
+  contentRelease: "release.unit202.v7",
 };
 
 export const lessons = [LESSON_SIMPLE_MACHINES];

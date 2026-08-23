@@ -50,6 +50,20 @@ export const RENDERED_DIAGRAM_BLUEPRINT_IDS = new Set([
   "motor.force_field_current",
   "graph.waveform_sine",
   "instrument.measurement_connection",
+  // CC-11.3: whole-course instructional visual coverage closeout -- see
+  // LeverDiagram.tsx/GearDiagram.tsx/PulleyDiagram.tsx/
+  // ResistivityDimensionsDiagram.tsx/MagneticPoleDiagram.tsx/
+  // MagneticFluxDiagram.tsx/MotionalEmfDiagram.tsx/ACGeneratorDiagram.tsx/
+  // ComponentSymbolCard.tsx, all registered in DiagramRenderer.tsx.
+  "mechanical.lever_arrangement",
+  "mechanical.gear_mesh",
+  "mechanical.pulley_arrangement",
+  "mechanical.resistivity_dimensions",
+  "magnetic.pole_interaction",
+  "magnetic.flux_field_lines",
+  "emf.motional_emf_geometry",
+  "generator.rotating_loop",
+  "electronics.component_symbol_card",
 ]);
 
 /**

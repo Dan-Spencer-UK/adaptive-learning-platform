@@ -41,7 +41,7 @@ describe("SeriesCircuitDiagram", () => {
         diagram={{ blueprintId: "circuit.series_resistors", parameters: { component_count: 2, show_values: false, show_current_arrow: true }, labels: ["R1", "R2"] }}
       />,
     );
-    expect(shown.getByLabelText(/An arrow on the return wire shows the current direction, flowing left to right\./)).toBeTruthy();
+    expect(shown.getByLabelText(/an arrow on the return wire shows the current direction, flowing left to right/)).toBeTruthy();
 
     const hidden = await render(
       <SeriesCircuitDiagram
@@ -49,5 +49,21 @@ describe("SeriesCircuitDiagram", () => {
       />,
     );
     expect(hidden.queryByLabelText(/current direction/)).toBeNull();
+  });
+
+  it("CC-11.3: shows a battery on the left wire, with polarity consistent with the shown current direction, whenever the current arrow is shown (task brief §15: a direction arrow must not look arbitrary/unjustified)", async () => {
+    const shown = await render(
+      <SeriesCircuitDiagram
+        diagram={{ blueprintId: "circuit.series_resistors", parameters: { component_count: 2, show_values: false, show_current_arrow: true }, labels: ["R1", "R2"] }}
+      />,
+    );
+    expect(shown.getByLabelText(/A battery is shown on the left wire.*consistent with the battery's own polarity/)).toBeTruthy();
+
+    const hidden = await render(
+      <SeriesCircuitDiagram
+        diagram={{ blueprintId: "circuit.series_resistors", parameters: { component_count: 2, show_values: false, show_current_arrow: false }, labels: ["R1", "R2"] }}
+      />,
+    );
+    expect(hidden.queryByLabelText(/battery/)).toBeNull();
   });
 });

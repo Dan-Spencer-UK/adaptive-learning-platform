@@ -1,26 +1,26 @@
 [
   {
-    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=false::both",
-    "reason": "sampled",
-    "status": "pass"
-  },
-  {
     "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=true::both",
     "reason": "sampled",
     "status": "pass"
   },
   {
-    "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
     "reason": "sampled",
     "status": "pass"
   },
   {
-    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=voltmeter,mode=both::both",
     "reason": "sampled",
     "status": "pass"
   },
   {
-    "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,mode=assessment,show_field_arrows=true::assessment",
+    "variantId": "visual-contract.magnetic-flux-density-comparison@1::density_comparison=false,mode=both::both",
+    "reason": "sampled",
+    "status": "pass"
+  },
+  {
+    "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
     "reason": "sampled",
     "status": "pass"
   }

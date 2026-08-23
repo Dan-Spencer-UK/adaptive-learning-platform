@@ -82,7 +82,9 @@ export function WaveformSineDiagram({ diagram, testID }: WaveformSineDiagramProp
 
   const accessibilityLabel = [
     `Sine waveform, ${cycles} cycle${cycles === 1 ? "" : "s"} shown, oscillating symmetrically above and below a zero reference axis.`,
-    showPeak ? "A peak reference line marks the maximum height above the zero axis." : "",
+    showPeak
+      ? "A peak reference line marks the maximum height above the zero axis, and a peak-to-peak bracket spans from the peak line to the trough line."
+      : "",
     showRms ? "A separate RMS reference line sits between the zero axis and the peak line, at about 71 percent of the peak height." : "",
     showPeriod ? "A period marker spans exactly one full cycle along the time axis." : "",
   ]
@@ -109,6 +111,16 @@ export function WaveformSineDiagram({ diagram, testID }: WaveformSineDiagramProp
           <SvgText x={plotRight + 2} y={peakY + 4} fill={color.text} fontSize={10} textAnchor="start">
             peak
           </SvgText>
+          {/* CC-11.3: peak-to-peak span, explicitly labelled -- the contract
+              claims linkage to EL-WAVEFORM-PEAK-TO-PEAK-001 but no marker
+              previously existed for it; the trough line was drawn but never
+              labelled as the other end of a peak-to-peak span. Positioned
+              just inside the plot's left edge, clear of the "0"/"t" axis
+              labels which sit outside the plot margins. */}
+          <PeakToPeakBracket x={plotLeft + 10} yTop={peakY} yBottom={troughY} />
+          <SvgText x={plotLeft + 16} y={(peakY + troughY) / 2 + 3} fill={color.textSecondary} fontSize={9} textAnchor="start">
+            peak-to-peak
+          </SvgText>
         </>
       ) : null}
 
@@ -123,6 +135,18 @@ export function WaveformSineDiagram({ diagram, testID }: WaveformSineDiagramProp
 
       {showPeriod ? <PeriodMarker x1={plotLeft} x2={plotLeft + periodPx} y={HEIGHT - 14} /> : null}
     </Svg>
+  );
+}
+
+/** A small vertical double-ended bracket spanning peak to trough -- the peak-to-peak span, distinct from (and drawn inside) the horizontal peak/trough reference lines. */
+function PeakToPeakBracket({ x, yTop, yBottom }: { x: number; yTop: number; yBottom: number }) {
+  const tick = 4;
+  return (
+    <>
+      <Line x1={x} y1={yTop} x2={x} y2={yBottom} stroke={color.textSecondary} strokeWidth={1} />
+      <Line x1={x - tick} y1={yTop} x2={x + tick} y2={yTop} stroke={color.textSecondary} strokeWidth={1} />
+      <Line x1={x - tick} y1={yBottom} x2={x + tick} y2={yBottom} stroke={color.textSecondary} strokeWidth={1} />
+    </>
   );
 }
 
