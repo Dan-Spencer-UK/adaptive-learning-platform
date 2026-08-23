@@ -1,9 +1,20 @@
 # ALP Visual Production Studio
 
-**CC-11.5.** A local, localhost-only development tool for producing and
-approving premium instructional artwork. **Not learner-facing product
-functionality** -- never imported by `apps/mobile` or `apps/web`, never
-part of the learner runtime.
+**CC-11.5/CC-11.6.** A local, localhost-only development tool for
+producing and approving premium instructional artwork. **Not
+learner-facing product functionality** -- never imported by
+`apps/mobile` or `apps/web`, never part of the learner runtime.
+
+The production catalogue is organised by **Visual Family** — a
+VisualFamily is the complete governed set of visual assets needed to
+teach one concept, and may contain a single asset (most families do) or
+several (e.g. a phenomenon plus the mnemonic used to predict it, or
+several distinct configurations of one concept). **A family never
+reduces prompt granularity**: every individual asset, even one nested
+inside a four-asset family, gets its own fully independent, individually
+copyable ASSET-SPECIFIC PROMPT. See
+[`docs/architecture/PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md`](../../docs/architecture/PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md)
+§14/§15 for the full architecture.
 
 This is the manual-assisted production implementation of the approved
 reference-first pipeline recorded in
@@ -30,11 +41,18 @@ to skip the automatic browser launch.
 1. Start the Studio (`npm run visuals:studio`).
 2. Click **COPY MASTER PROMPT** and paste it as the first message in a
    new ChatGPT conversation (or click **OPEN CHATGPT** to open a fresh tab).
-   This establishes the session's standing art-direction rules once.
-3. Use the **NEXT RECOMMENDED ASSET** panel (or browse the filtered
-   catalogue grid) to pick the next visual to produce. Click **COPY
-   PROMPT** (or the next-asset shortcut, keyboard `N`) to copy that
-   asset's full, deterministically-generated production prompt.
+   This establishes the session's standing art-direction rules once, for
+   the whole session -- it is never repeated per asset.
+3. Use the **NEXT RECOMMENDED ASSET** panel (or browse the family-grouped,
+   filtered catalogue -- each family is a collapsible section, with every
+   individual asset inside it fully visible and independently actionable)
+   to pick the next visual to produce. Click **COPY PROMPT** (or the
+   next-asset shortcut, keyboard `N`) to copy that *specific asset's*
+   full, deterministically-generated ASSET-SPECIFIC PROMPT. If several
+   assets belong to the same family (e.g. a pulley family's fixed and
+   movable configurations), each still gets its own separate prompt --
+   copy and produce them one at a time, never edit one asset's prompt
+   into another's.
 4. Paste the prompt into the ChatGPT session. Review the authoritative
    reference shown on the asset's card (**OPEN REFERENCE**) alongside
    what ChatGPT produces.
@@ -66,11 +84,20 @@ Zero new npm dependencies -- a plain `node:http` server plus a static,
 unbundled HTML/CSS/JS page (`public/`), per the task brief's own
 "choose the simplest architecture" guidance.
 
-- `catalogue.ts` -- the structured Unit 202 production catalogue (24
-  entries). The single source of truth every prompt is built from.
-- `master-prompt.ts` -- the permanent "start a new art session" prompt.
-- `prompt-builder.ts` -- deterministically builds each asset's exact
-  copyable prompt from its catalogue entry.
+- `catalogue.ts` -- the structured Unit 202 production catalogue: 20
+  `VisualFamily` entries containing 29 individual `VisualAsset` entries
+  in total (25 currently promptable). The single source of truth every
+  prompt is built from. Exposes `FAMILIES`, `allAssets()`, `findAsset()`,
+  `findFamily()`, `familyForAsset()`, `isPromptable()`,
+  `promptableAssets()` and `validateCatalogue()`.
+- `master-prompt.ts` -- the permanent "start a new art session" prompt
+  (PROMPT 1, used once per session).
+- `prompt-builder.ts` -- deterministically builds each individual
+  asset's exact copyable ASSET-SPECIFIC PROMPT (PROMPT 2, used once per
+  asset -- never once per family) from its catalogue entry plus its
+  containing family's context, including an explicit per-asset
+  annotation instruction (REQUIRED / PERMITTED-non-revealing / OMIT)
+  derived from that asset's `annotationPolicy`.
 - `paths.ts` -- the safe local-save boundary. Every filesystem write
   goes through here; nothing else is permitted to turn client input into
   a real path.
@@ -80,14 +107,21 @@ unbundled HTML/CSS/JS page (`public/`), per the task brief's own
   (`data/studio-state.json`, gitignored -- ephemeral WIP, not governed
   content) and the append-only approval manifest
   (`reports/instructional-visuals/premium-artwork/unit202-artwork-manifest.json`,
-  committed -- the real governed provenance record).
+  committed -- the real governed provenance record, now recording both
+  the owning `visualFamilyId` and, where one exists, the related
+  `governedDiagramBlueprintId` from the CC-05D deterministic pipeline).
 - `approval.ts` -- the APPROVE + SAVE orchestration: existing-file
   protection, versioning, hashing, manifest append.
 - `next-asset.ts` -- the NEXT RECOMMENDED ASSET ranking (priority ->
-  reference readiness -> status).
-- `contact-sheet.ts` -- the EXPORT REVIEW CONTACT SHEET HTML generator.
+  reference readiness -> status), family-aware in the sense that
+  matters: a blocked/not-ready sibling in the same family never prevents
+  an otherwise-actionable co-member from being recommended.
+- `contact-sheet.ts` -- the EXPORT REVIEW CONTACT SHEET HTML generator,
+  grouping approved assets by family and showing them in family order.
 - `server.ts` -- wires the above into a local-only HTTP API and serves
-  `public/index.html` / `studio.css` / `studio.js`.
+  `public/index.html` / `studio.css` / `studio.js` (the client renders
+  the family-grouped catalogue as collapsible sections, each containing
+  its own fully independent per-asset cards).
 
 ## Governed output locations
 

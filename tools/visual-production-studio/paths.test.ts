@@ -4,7 +4,7 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 
 import { APPROVED_ASSET_ROOT, resolveApprovedAssetPath, resolveStagingPath, UnsafePathError } from "./paths.ts";
-import { CATALOGUE } from "./catalogue.ts";
+import { allAssets } from "./catalogue.ts";
 
 describe("resolveApprovedAssetPath", () => {
   it("resolves a safe filename inside a governed subfolder under the real approved asset root", () => {
@@ -13,11 +13,11 @@ describe("resolveApprovedAssetPath", () => {
     expect(resolved.endsWith(join("teaching", "right-hand-grip-teaching-base-v1.png"))).toBe(true);
   });
 
-  it("produces the correct output path for every catalogue entry's own declared subfolder", () => {
-    for (const entry of CATALOGUE) {
-      const filename = `${entry.filenameBase}-v1.png`;
-      const resolved = resolveApprovedAssetPath(entry.outputSubfolder, filename);
-      expect(resolved).toBe(join(APPROVED_ASSET_ROOT, entry.outputSubfolder, filename));
+  it("produces the correct output path for every catalogue asset's own declared subfolder", () => {
+    for (const asset of allAssets()) {
+      const filename = `${asset.filenameBase}-v1.png`;
+      const resolved = resolveApprovedAssetPath(asset.outputSubfolder, filename);
+      expect(resolved).toBe(join(APPROVED_ASSET_ROOT, asset.outputSubfolder, filename));
     }
   });
 
@@ -74,8 +74,8 @@ describe("resolveStagingPath", () => {
   });
 
   it("every real catalogue assetId resolves safely (no false-positive rejections)", () => {
-    for (const entry of CATALOGUE) {
-      expect(() => resolveStagingPath(entry.assetId, "png")).not.toThrow();
+    for (const asset of allAssets()) {
+      expect(() => resolveStagingPath(asset.assetId, "png")).not.toThrow();
     }
   });
 });

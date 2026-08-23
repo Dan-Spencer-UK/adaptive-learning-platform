@@ -3,7 +3,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
-import { findCatalogueEntry } from "./catalogue.ts";
+import { findAsset } from "./catalogue.ts";
 import { approveStagedImage } from "./approval.ts";
 import { sha256Hex } from "./image-utils.ts";
 import { currentManifestEntry, loadManifest } from "./state-store.ts";
@@ -32,7 +32,7 @@ afterEach(() => {
   for (const dir of tempDirs.splice(0)) rmSync(dir, { recursive: true, force: true });
 });
 
-const ENTRY = findCatalogueEntry("unit202.right-hand-grip.teaching")!;
+const ENTRY = findAsset("unit202.right-hand-grip.teaching")!;
 
 describe("approveStagedImage -- first approval (image-save behaviour)", () => {
   it("writes the file to the entry's governed subfolder with a v1 filename and appends a matching manifest record", () => {
@@ -56,6 +56,14 @@ describe("approveStagedImage -- first approval (image-save behaviour)", () => {
     const result = approveStagedImage({ entry: ENTRY, stagedBuffer: buffer, assetRoot, manifestPath });
     if (result.status !== "saved") throw new Error("unreachable");
     expect(result.manifestEntry.fileHash).toBe(sha256Hex(buffer));
+  });
+
+  it("records the containing VisualFamily's id (not the old flat blueprint id) as visualFamilyId, and the governed CC-05D blueprint id separately", () => {
+    const { assetRoot, manifestPath } = isolatedRoots();
+    const result = approveStagedImage({ entry: ENTRY, stagedBuffer: makeMinimalPng(1, 1), assetRoot, manifestPath });
+    if (result.status !== "saved") throw new Error("unreachable");
+    expect(result.manifestEntry.visualFamilyId).toBe("unit202.family.right-hand-grip");
+    expect(result.manifestEntry.governedDiagramBlueprintId).toBe("magnetic.field_conductor_direction");
   });
 
   it("records detected dimensions and MIME type in the manifest entry", () => {

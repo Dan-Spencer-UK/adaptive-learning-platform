@@ -1,14 +1,16 @@
 /**
- * CC-11.5 §18: EXPORT REVIEW CONTACT SHEET -- a simple local HTML report
- * of every currently-approved premium asset, so the whole family can be
- * reviewed without opening every file individually. PDF generation is
- * explicitly optional per the task brief; HTML is sufficient.
+ * CC-11.5/CC-11.6 §15/§18: EXPORT REVIEW CONTACT SHEET -- a simple local
+ * HTML report of every currently-approved premium asset, grouped by
+ * visual family and shown in family order, so visual consistency and
+ * pedagogical progression across related images can be reviewed together
+ * without opening every file individually. PDF generation is explicitly
+ * optional per the task brief; HTML is sufficient.
  */
 
 import { readFileSync } from "node:fs";
 import { relative } from "node:path";
 
-import { CATALOGUE } from "./catalogue.ts";
+import { allAssets, FAMILIES, type VisualFamily } from "./catalogue.ts";
 import { loadManifest, type ManifestEntry } from "./state-store.ts";
 import { MANIFEST_PATH, REPO_ROOT } from "./paths.ts";
 
@@ -16,7 +18,7 @@ function esc(text: string): string {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
-function currentVersionsByAsset(entries: ManifestEntry[]): ManifestEntry[] {
+function currentVersionsByAsset(entries: ManifestEntry[]): Map<string, ManifestEntry> {
   const byAsset = new Map<string, ManifestEntry>();
   for (const entry of entries) {
     const existing = byAsset.get(entry.assetId);
@@ -24,7 +26,7 @@ function currentVersionsByAsset(entries: ManifestEntry[]): ManifestEntry[] {
       byAsset.set(entry.assetId, entry);
     }
   }
-  return [...byAsset.values()].sort((a, b) => a.assetId.localeCompare(b.assetId));
+  return byAsset;
 }
 
 function mimeToDataUri(path: string, mimeType: string): string | null {
@@ -36,18 +38,13 @@ function mimeToDataUri(path: string, mimeType: string): string | null {
   }
 }
 
-export function buildContactSheetHtml(manifestPath: string = MANIFEST_PATH): string {
-  const manifest = loadManifest(manifestPath);
-  const current = currentVersionsByAsset(manifest.assets);
-
-  const cards = current
-    .map((entry) => {
-      const thumb = mimeToDataUri(entry.outputPath, entry.mimeType);
-      const relativePath = relative(REPO_ROOT, entry.outputPath).replace(/\\/g, "/");
-      return `
+function assetCardHtml(entry: ManifestEntry): string {
+  const thumb = mimeToDataUri(entry.outputPath, entry.mimeType);
+  const relativePath = relative(REPO_ROOT, entry.outputPath).replace(/\\/g, "/");
+  return `
 <section class="card">
   <div class="thumb">${thumb ? `<img src="${thumb}" alt="${esc(entry.displayName)}" />` : `<div class="missing">file not found on disk: ${esc(relativePath)}</div>`}</div>
-  <h2>${esc(entry.displayName)}</h2>
+  <h3>${esc(entry.displayName)}</h3>
   <dl>
     <dt>Asset ID</dt><dd><code>${esc(entry.assetId)}</code></dd>
     <dt>Reference</dt><dd>${esc(entry.referenceSource)}${entry.referenceUrl ? ` — <a href="${esc(entry.referenceUrl)}">${esc(entry.referenceUrl)}</a>` : ""}</dd>
@@ -57,8 +54,29 @@ export function buildContactSheetHtml(manifestPath: string = MANIFEST_PATH): str
     <dt>Approved</dt><dd>${esc(entry.approvedAt)}</dd>
   </dl>
 </section>`;
-    })
-    .join("\n");
+}
+
+function familySectionHtml(family: VisualFamily, approvedByAsset: Map<string, ManifestEntry>): string | null {
+  const approvedInOrder = family.assets.map((asset) => approvedByAsset.get(asset.assetId)).filter((entry): entry is ManifestEntry => Boolean(entry));
+  if (approvedInOrder.length === 0) return null;
+
+  return `
+<section class="family">
+  <div class="family-header">
+    <h2>${esc(family.displayName)}</h2>
+    <span class="family-progress">[${approvedInOrder.length}/${family.assets.length} approved]</span>
+  </div>
+  <div class="grid">${approvedInOrder.map(assetCardHtml).join("\n")}</div>
+</section>`;
+}
+
+export function buildContactSheetHtml(manifestPath: string = MANIFEST_PATH): string {
+  const manifest = loadManifest(manifestPath);
+  const approvedByAsset = currentVersionsByAsset(manifest.assets);
+  const totalApproved = approvedByAsset.size;
+  const totalCatalogued = allAssets().length;
+
+  const familySections = FAMILIES.map((family) => familySectionHtml(family, approvedByAsset)).filter((html): html is string => html !== null);
 
   return `<!doctype html>
 <html lang="en">
@@ -68,14 +86,18 @@ export function buildContactSheetHtml(manifestPath: string = MANIFEST_PATH): str
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #0B0D12; color: #F2F4F8; padding: 24px; }
-  h1 { font-size: 22px; }
-  .generated { color: #9AA3B2; font-size: 12px; margin-bottom: 24px; }
+  h1 { font-size: 22px; margin: 0; }
+  .generated { color: #9AA3B2; font-size: 12px; margin: 6px 0 28px; }
+  .family { margin-bottom: 28px; }
+  .family-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; border-bottom: 1px solid #262B38; padding-bottom: 6px; }
+  .family-header h2 { font-size: 16px; margin: 0; }
+  .family-progress { font-size: 11px; color: #4CD07A; font-weight: 700; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
   .card { background: #151821; border: 1px solid #262B38; border-radius: 12px; padding: 14px; }
   .thumb { background: #05060a; border-radius: 8px; overflow: hidden; margin-bottom: 10px; min-height: 140px; display: flex; align-items: center; justify-content: center; }
   .thumb img { max-width: 100%; max-height: 320px; display: block; }
   .missing { color: #ff6b6b; font-size: 12px; padding: 12px; }
-  h2 { font-size: 15px; margin: 0 0 8px; }
+  h3 { font-size: 14px; margin: 0 0 8px; }
   dl { display: grid; grid-template-columns: 90px 1fr; gap: 4px 8px; font-size: 12px; margin: 0; }
   dt { color: #9AA3B2; }
   dd { margin: 0; word-break: break-word; }
@@ -85,8 +107,8 @@ export function buildContactSheetHtml(manifestPath: string = MANIFEST_PATH): str
 </head>
 <body>
 <h1>Unit 202 Premium Artwork — Review Contact Sheet</h1>
-<p class="generated">Generated ${new Date().toISOString()} — ${current.length} approved asset${current.length === 1 ? "" : "s"} of ${CATALOGUE.length} catalogued.</p>
-${current.length ? `<div class="grid">${cards}</div>` : '<p class="empty">No approved assets yet.</p>'}
+<p class="generated">Generated ${new Date().toISOString()} — ${totalApproved} approved asset${totalApproved === 1 ? "" : "s"} of ${totalCatalogued} catalogued, grouped by visual family in family order.</p>
+${familySections.length ? familySections.join("\n") : '<p class="empty">No approved assets yet.</p>'}
 </body>
 </html>`;
 }

@@ -1,5 +1,5 @@
 /**
- * CC-11.5 §8/§9/§15: status persistence (a small local JSON file, no
+ * CC-11.5/CC-11.6: status persistence (a small local JSON file, no
  * database, per task brief §15) and the governed approval manifest
  * (append-only per approved artwork version, mirroring this repository's
  * existing "never mutate a past immutable version" discipline for
@@ -10,11 +10,12 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 
-import { CATALOGUE, type CatalogueEntry } from "./catalogue.ts";
+import { allAssets, familyForAsset, FAMILIES, type VisualAsset, type VisualFamily } from "./catalogue.ts";
 import { MANIFEST_PATH, STATE_PATH } from "./paths.ts";
 
 export const STUDIO_STATUSES = [
   "REFERENCE_NOT_READY",
+  "SCOPE_CONFIRMATION_NEEDED",
   "READY_TO_PROMPT",
   "IN_ART_SESSION",
   "IMAGE_PASTED",
@@ -34,14 +35,15 @@ export interface StudioStateEntry {
 
 export type StudioState = Record<string, StudioStateEntry>;
 
-function defaultStatusFor(entry: CatalogueEntry): StudioStatus {
-  return entry.referenceReadiness === "NOT_READY" ? "REFERENCE_NOT_READY" : "READY_TO_PROMPT";
+function defaultStatusFor(asset: VisualAsset): StudioStatus {
+  if (asset.needsScopeConfirmation) return "SCOPE_CONFIRMATION_NEEDED";
+  return asset.referenceReadiness === "NOT_READY" ? "REFERENCE_NOT_READY" : "READY_TO_PROMPT";
 }
 
-export function defaultState(catalogue: CatalogueEntry[] = CATALOGUE): StudioState {
+export function defaultState(families: VisualFamily[] = FAMILIES): StudioState {
   const state: StudioState = {};
-  for (const entry of catalogue) {
-    state[entry.assetId] = { status: defaultStatusFor(entry), updatedAt: new Date(0).toISOString() };
+  for (const asset of allAssets(families)) {
+    state[asset.assetId] = { status: defaultStatusFor(asset), updatedAt: new Date(0).toISOString() };
   }
   return state;
 }
@@ -51,13 +53,13 @@ function ensureDir(filePath: string): void {
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
 }
 
-export function loadState(statePath: string = STATE_PATH, catalogue: CatalogueEntry[] = CATALOGUE): StudioState {
-  const base = defaultState(catalogue);
+export function loadState(statePath: string = STATE_PATH, families: VisualFamily[] = FAMILIES): StudioState {
+  const base = defaultState(families);
   if (!existsSync(statePath)) return base;
 
   try {
     const parsed = JSON.parse(readFileSync(statePath, "utf8")) as StudioState;
-    // Merge over defaults so a newly added catalogue entry always has a
+    // Merge over defaults so a newly added catalogue asset always has a
     // valid starting status even if the on-disk state file predates it.
     return { ...base, ...parsed };
   } catch {
@@ -73,13 +75,17 @@ export function saveState(state: StudioState, statePath: string = STATE_PATH): v
 export function setStatus(
   assetId: string,
   status: StudioStatus,
-  options: { notes?: string; statePath?: string; catalogue?: CatalogueEntry[] } = {},
+  options: { notes?: string; statePath?: string; families?: VisualFamily[] } = {},
 ): StudioState {
   const statePath = options.statePath ?? STATE_PATH;
-  const state = loadState(statePath, options.catalogue);
+  const state = loadState(statePath, options.families);
   state[assetId] = { status, notes: options.notes, updatedAt: new Date().toISOString() };
   saveState(state, statePath);
   return state;
+}
+
+export function familyIdForAsset(assetId: string, families: VisualFamily[] = FAMILIES): string | undefined {
+  return familyForAsset(assetId, families)?.familyId;
 }
 
 // ---------------------------------------------------------------------
@@ -92,7 +98,10 @@ export type ApprovalStatus = "APPROVED";
 export interface ManifestEntry {
   assetId: string;
   displayName: string;
-  visualFamilyId?: string;
+  /** The governing VisualFamily's id (e.g. "unit202.family.right-hand-grip") -- see catalogue.ts. */
+  visualFamilyId: string;
+  /** The existing CC-05D-governed DiagramBlueprint id this asset relates to, if any -- distinct from `visualFamilyId`. */
+  governedDiagramBlueprintId?: string;
   lessonIds: string[];
   productionClass: string;
   priority: string;

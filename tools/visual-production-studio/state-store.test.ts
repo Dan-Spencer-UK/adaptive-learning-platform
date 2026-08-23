@@ -3,11 +3,12 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
-import { CATALOGUE } from "./catalogue.ts";
+import { allAssets } from "./catalogue.ts";
 import {
   appendManifestEntry,
   currentManifestEntry,
   defaultState,
+  familyIdForAsset,
   loadManifest,
   loadState,
   saveState,
@@ -27,12 +28,18 @@ afterEach(() => {
 });
 
 describe("defaultState", () => {
-  it("gives every catalogue entry a starting status matching its reference readiness", () => {
+  it("gives every catalogue asset a starting status matching its reference readiness", () => {
     const state = defaultState();
-    for (const entry of CATALOGUE) {
-      const expected = entry.referenceReadiness === "NOT_READY" ? "REFERENCE_NOT_READY" : "READY_TO_PROMPT";
-      expect(state[entry.assetId]?.status).toBe(expected);
+    for (const asset of allAssets()) {
+      if (asset.needsScopeConfirmation) continue;
+      const expected = asset.referenceReadiness === "NOT_READY" ? "REFERENCE_NOT_READY" : "READY_TO_PROMPT";
+      expect(state[asset.assetId]?.status).toBe(expected);
     }
+  });
+
+  it("familyIdForAsset resolves every real asset to its containing family id", () => {
+    expect(familyIdForAsset("unit202.right-hand-grip.teaching")).toBe("unit202.family.right-hand-grip");
+    expect(familyIdForAsset("unit202.does-not-exist")).toBeUndefined();
   });
 });
 
@@ -74,6 +81,7 @@ describe("approval manifest", () => {
     return {
       assetId: "unit202.right-hand-grip.teaching",
       displayName: "Right-hand grip rule — teaching mnemonic",
+      visualFamilyId: "unit202.family.right-hand-grip",
       lessonIds: [],
       productionClass: "HYBRID",
       priority: "P0",

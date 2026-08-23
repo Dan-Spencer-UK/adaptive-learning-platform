@@ -11,7 +11,7 @@
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 
-import type { CatalogueEntry } from "./catalogue.ts";
+import { familyForAsset, type VisualAsset } from "./catalogue.ts";
 import { computeNextVersion, inspectImage, sha256Hex, versionedFilename, type ImageInfo } from "./image-utils.ts";
 import { APPROVED_ASSET_ROOT, resolveApprovedAssetPath } from "./paths.ts";
 import { appendManifestEntry, currentManifestEntry, type ManifestEntry } from "./state-store.ts";
@@ -20,7 +20,7 @@ import { MANIFEST_PATH } from "./paths.ts";
 export type VersioningChoice = "new_version" | "replace_confirmed";
 
 export interface ApproveParams {
-  entry: CatalogueEntry;
+  entry: VisualAsset;
   stagedBuffer: Buffer;
   versioning?: VersioningChoice;
   assetRoot?: string;
@@ -90,10 +90,13 @@ export function approveStagedImage(params: ApproveParams): ApproveResult {
   ensureDir(dirname(outputPath));
   writeFileSync(outputPath, params.stagedBuffer);
 
+  const family = familyForAsset(params.entry.assetId);
+
   const manifestEntry: ManifestEntry = {
     assetId: params.entry.assetId,
     displayName: params.entry.displayName,
-    visualFamilyId: params.entry.currentFamily,
+    visualFamilyId: family?.familyId ?? params.entry.familyId,
+    governedDiagramBlueprintId: params.entry.governedDiagramBlueprintId,
     lessonIds: params.entry.loOrLesson ? [params.entry.loOrLesson] : [],
     productionClass: params.entry.productionClass,
     priority: params.entry.priority,

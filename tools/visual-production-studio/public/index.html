@@ -12,6 +12,7 @@
 <header class="page-header">
   <h1>ALP VISUAL PRODUCTION STUDIO</h1>
   <p class="subtitle">Unit 202 — Principles of Electrical Science</p>
+  <p class="prompt-accounting" id="prompt-accounting"></p>
 </header>
 
 <section class="progress-summary" id="progress-summary" aria-label="Progress summary">
@@ -53,7 +54,22 @@
   <button id="btn-contact-sheet" class="btn">EXPORT REVIEW CONTACT SHEET</button>
 </section>
 
-<main id="asset-grid" class="asset-grid" aria-label="Visual asset catalogue"></main>
+<main id="family-list" class="family-list" aria-label="Visual family catalogue"></main>
+
+<template id="family-section-template">
+  <section class="family-section">
+    <details class="family-details" open>
+      <summary class="family-summary">
+        <span class="family-name"></span>
+        <span class="family-count"></span>
+        <span class="family-progress"></span>
+      </summary>
+      <p class="family-purpose"></p>
+      <p class="family-notes"></p>
+      <div class="asset-grid"></div>
+    </details>
+  </section>
+</template>
 
 <template id="asset-card-template">
   <article class="card">
@@ -64,10 +80,12 @@
     </div>
     <div class="card-meta">
       <span class="chip asset-id"></span>
+      <span class="chip role"></span>
       <span class="chip lo"></span>
       <span class="chip priority"></span>
       <span class="chip production-class"></span>
-      <span class="chip current-family"></span>
+      <span class="chip governed-blueprint"></span>
+      <span class="chip annotation-policy"></span>
     </div>
     <p class="purpose"></p>
 

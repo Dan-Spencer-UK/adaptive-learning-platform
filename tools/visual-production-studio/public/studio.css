@@ -22,7 +22,8 @@ body {
 }
 
 .page-header h1 { margin: 0; font-size: 22px; letter-spacing: 0.02em; }
-.page-header .subtitle { margin: 4px 0 20px; color: var(--text2); font-size: 13px; }
+.page-header .subtitle { margin: 4px 0 4px; color: var(--text2); font-size: 13px; }
+.page-header .prompt-accounting { margin: 0 0 20px; color: var(--text2); font-size: 11px; }
 
 .progress-summary {
   display: flex;
@@ -89,6 +90,31 @@ body {
 .copied-flash { color: var(--good); font-size: 11px; font-weight: 700; opacity: 0; transition: opacity 0.15s; }
 .copied-flash.show { opacity: 1; }
 
+.family-list { display: flex; flex-direction: column; gap: 10px; }
+.family-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px 14px 14px;
+}
+.family-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  cursor: pointer;
+  padding: 12px 0;
+  list-style: none;
+}
+.family-summary::-webkit-details-marker { display: none; }
+.family-summary::before { content: "▸"; color: var(--text2); margin-right: 2px; }
+details[open] > .family-summary::before { content: "▾"; }
+.family-name { font-size: 15px; font-weight: 700; }
+.family-count { font-size: 11px; color: var(--text2); }
+.family-progress { font-size: 11px; color: var(--good); font-weight: 700; margin-left: auto; }
+.family-purpose { font-size: 12px; color: var(--text2); margin: 0 0 4px; }
+.family-notes { font-size: 11px; color: var(--text2); font-style: italic; margin: 0 0 12px; }
+.family-section.filtered-out { display: none; }
+
 .asset-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
@@ -146,6 +172,7 @@ body {
   overflow: hidden;
 }
 .paste-zone:focus, .paste-zone.drag-over { border-color: var(--accent); outline: none; }
+.paste-zone.disabled-zone { opacity: 0.5; }
 .paste-zone-empty { font-size: 11px; color: var(--text2); text-align: center; padding: 8px; }
 .paste-preview { max-width: 100%; max-height: 220px; display: block; cursor: zoom-in; }
 .paste-preview.zoomed { position: fixed; inset: 0; margin: auto; max-width: 90vw; max-height: 90vh; z-index: 100; background: #000; cursor: zoom-out; }

@@ -1,59 +1,184 @@
 import { describe, expect, it } from "vitest";
-import { CATALOGUE, findCatalogueEntry } from "./catalogue.ts";
+import { allAssets, familyForAsset, findAsset } from "./catalogue.ts";
 import { buildAssetPrompt } from "./prompt-builder.ts";
+import { MASTER_PROMPT } from "./master-prompt.ts";
 
-describe("buildAssetPrompt", () => {
-  it("is deterministic -- two calls with the same entry produce byte-identical output", () => {
-    const entry = findCatalogueEntry("unit202.right-hand-grip.teaching")!;
-    expect(buildAssetPrompt(entry)).toBe(buildAssetPrompt(entry));
+describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
+  it("is deterministic -- two calls with the same asset produce byte-identical output", () => {
+    const asset = findAsset("unit202.right-hand-grip.teaching")!;
+    expect(buildAssetPrompt(asset)).toBe(buildAssetPrompt(asset));
   });
 
-  it("includes the asset id, display name and every immutable fact for a READY entry", () => {
-    const entry = findCatalogueEntry("unit202.right-hand-grip.teaching")!;
-    const text = buildAssetPrompt(entry);
-    expect(text).toContain(entry.assetId);
-    expect(text).toContain(entry.displayName);
-    for (const fact of entry.immutableFacts) expect(text).toContain(fact);
+  it("includes the asset id, display name and every immutable fact for a READY asset", () => {
+    const asset = findAsset("unit202.right-hand-grip.teaching")!;
+    const text = buildAssetPrompt(asset);
+    expect(text).toContain(asset.assetId);
+    expect(text).toContain(asset.displayName);
+    for (const fact of asset.immutableFacts) expect(text).toContain(fact);
   });
 
-  it("includes the critical direction-verification rule (§11) in every generated production prompt (READY entries only -- a BLOCKED entry gets a short notice instead, never a full prompt)", () => {
-    for (const entry of CATALOGUE) {
-      if (entry.referenceReadiness !== "READY") continue;
-      const text = buildAssetPrompt(entry);
+  it("includes the critical direction-verification rule (§11) in every generated production prompt (READY, non-scope-blocked entries only)", () => {
+    for (const asset of allAssets()) {
+      if (asset.referenceReadiness !== "READY" || asset.needsScopeConfirmation || asset.promptable === false) continue;
+      const text = buildAssetPrompt(asset);
       expect(text).toContain("Do NOT rely on the text label of an arrow or diagram to infer correctness");
       expect(text).toContain("inspect arrowheads");
     }
   });
 
+  it("includes the family name/id and this asset's role and position within it", () => {
+    const asset = findAsset("unit202.right-hand-grip.teaching")!;
+    const family = familyForAsset(asset.assetId)!;
+    const text = buildAssetPrompt(asset);
+    expect(text).toContain(family.familyId);
+    expect(text).toContain(family.displayName);
+    expect(text).toContain("Role in family: MNEMONIC");
+    expect(text).toContain("asset 2 of 2");
+  });
+
+  it('every generated prompt tells the art session to produce ONLY this asset and not the rest of the family', () => {
+    for (const asset of allAssets()) {
+      if (asset.referenceReadiness !== "READY" || asset.needsScopeConfirmation || asset.promptable === false) continue;
+      const text = buildAssetPrompt(asset);
+      expect(text).toContain("Produce ONLY this asset. Do not automatically create the other members of the visual family.");
+    }
+  });
+
+  it("a single-asset family's prompt does not add the multi-asset family-consistency reminder", () => {
+    const asset = findAsset("unit202.circuit.series")!;
+    const text = buildAssetPrompt(asset);
+    expect(text).not.toContain("keep them visually consistent with each other");
+  });
+
+  it("a multi-asset family's prompt adds the family-consistency reminder without assuming the family always needs multiple images", () => {
+    const asset = findAsset("unit202.levers.class-1")!;
+    const text = buildAssetPrompt(asset);
+    expect(text).toContain("keep them visually consistent with each other");
+    expect(text).toContain("do not assume every concept needs multiple images");
+  });
+
   it("includes the assessment note when one is declared (right-hand grip / Fleming rules are teaching-only)", () => {
-    const entry = findCatalogueEntry("unit202.right-hand-grip.teaching")!;
-    const text = buildAssetPrompt(entry);
+    const asset = findAsset("unit202.right-hand-grip.teaching")!;
+    const text = buildAssetPrompt(asset);
     expect(text).toContain("Assessment contains NO hand");
   });
 
-  it("a BLOCKED (reference NOT_READY) entry produces a short blocked notice, never a full production prompt", () => {
-    const entry = findCatalogueEntry("unit202.heating-effect")!;
-    const text = buildAssetPrompt(entry);
+  it("a BLOCKED (reference NOT_READY) asset produces a short blocked notice, never a full production prompt", () => {
+    const asset = findAsset("unit202.heating-effect")!;
+    const text = buildAssetPrompt(asset);
     expect(text).toContain("BLOCKED");
     expect(text).not.toContain("IMMUTABLE TECHNICAL FACTS");
   });
 
-  it("produces a unique prompt per catalogue entry (no two assets share identical prompt text)", () => {
-    const texts = CATALOGUE.map((entry) => buildAssetPrompt(entry));
+  it("a promptable:false asset (no image-generation deliverable) produces a short notice, never a full production prompt", () => {
+    const asset = findAsset("unit202.components.symbols")!;
+    const text = buildAssetPrompt(asset);
+    expect(text).toContain("NO IMAGE-GENERATION DELIVERABLE");
+    expect(text).not.toContain("IMMUTABLE TECHNICAL FACTS");
+  });
+
+  it("produces a unique prompt per catalogue asset (no two assets share identical prompt text)", () => {
+    const texts = allAssets().map((asset) => buildAssetPrompt(asset));
     expect(new Set(texts).size).toBe(texts.length);
   });
 
-  it("never includes a secondary-reference block for an entry with none declared", () => {
-    const entry = findCatalogueEntry("unit202.right-hand-grip.teaching")!;
-    expect(entry.secondaryReference).toBeUndefined();
-    expect(buildAssetPrompt(entry)).not.toContain("SECONDARY / CROSS-CHECK REFERENCE");
+  it("never includes a secondary-reference block for an asset with none declared", () => {
+    const asset = findAsset("unit202.right-hand-grip.teaching")!;
+    expect(asset.secondaryReference).toBeUndefined();
+    expect(buildAssetPrompt(asset)).not.toContain("SECONDARY / CROSS-CHECK REFERENCE");
   });
 
-  it("includes a secondary-reference block for an entry that declares one", () => {
-    const entry = findCatalogueEntry("unit202.generator.rotating-loop")!;
-    expect(entry.secondaryReference).toBeDefined();
-    const text = buildAssetPrompt(entry);
+  it("includes a secondary-reference block for an asset that declares one", () => {
+    const asset = findAsset("unit202.generator.rotating-loop")!;
+    expect(asset.secondaryReference).toBeDefined();
+    const text = buildAssetPrompt(asset);
     expect(text).toContain("SECONDARY / CROSS-CHECK REFERENCE");
-    expect(text).toContain(entry.secondaryReference!.sourceName);
+    expect(text).toContain(asset.secondaryReference!.sourceName);
+  });
+
+  describe("ANNOTATION FOLLOWS PEDAGOGICAL STATE -- label instructions", () => {
+    it("a TEACHING_EXPLANATORY asset's prompt says labels are REQUIRED and names the specific required labels", () => {
+      const asset = findAsset("unit202.right-hand-grip.teaching")!;
+      const text = buildAssetPrompt(asset);
+      expect(text).toContain("LABELS FOR THIS ASSET: REQUIRED");
+      expect(text).toContain("THUMB = CURRENT");
+      expect(text).toContain("FINGERS = MAGNETIC FIELD");
+    });
+
+    it("a NONE-policy (deterministic style-reference) asset's prompt says labels are OMITTED", () => {
+      const asset = findAsset("unit202.circuit.series")!;
+      const text = buildAssetPrompt(asset);
+      expect(text).toContain("LABELS FOR THIS ASSET: OMIT");
+    });
+
+    it("never claims a blanket 'no labels' rule for a TEACHING_EXPLANATORY asset -- the old absolute default is gone", () => {
+      const asset = findAsset("unit202.levers.class-1")!;
+      const text = buildAssetPrompt(asset);
+      expect(text).not.toMatch(/should not bake in/i);
+      expect(text).toContain("EFFORT");
+      expect(text).toContain("LOAD");
+      expect(text).toContain("FULCRUM");
+    });
+  });
+
+  describe("default premium surface -- background instruction", () => {
+    it("a HYBRID asset's prompt automatically inherits the standard muted slate/blue-grey background instruction, discouraging (never requiring) pure black", () => {
+      const asset = findAsset("unit202.right-hand-grip.teaching")!;
+      expect(asset.productionClass).toBe("HYBRID");
+      const text = buildAssetPrompt(asset);
+      expect(text).toContain("BACKGROUND:");
+      expect(text).toMatch(/slate.*blue-grey/i);
+      expect(text).toMatch(/softer and less harsh than pure black/i);
+    });
+
+    it("a PREMIUM_CONCEPTUAL asset's prompt also inherits the default background instruction", () => {
+      const asset = findAsset("unit202.components.physical")!;
+      expect(asset.productionClass).toBe("PREMIUM_CONCEPTUAL");
+      const text = buildAssetPrompt(asset);
+      expect(text).toContain("BACKGROUND:");
+    });
+
+    it("a DETERMINISTIC_TECHNICAL asset's prompt never includes the background instruction -- it has no illustrated surface", () => {
+      const asset = findAsset("unit202.circuit.series")!;
+      expect(asset.productionClass).toBe("DETERMINISTIC_TECHNICAL");
+      const text = buildAssetPrompt(asset);
+      expect(text).not.toContain("BACKGROUND:");
+    });
+
+    it("an asset with a backgroundStyleOverride uses that text instead of the standard default", () => {
+      const asset = { ...findAsset("unit202.right-hand-grip.teaching")!, backgroundStyleOverride: "Use a warm workshop-bench context instead of an abstract background." };
+      const text = buildAssetPrompt(asset);
+      expect(text).toContain("Use a warm workshop-bench context instead of an abstract background.");
+      expect(text).not.toMatch(/slate.*blue-grey/i);
+    });
+
+    it("the Product Owner's own approved instruction wording is reproduced exactly for the standard (non-overridden) case", () => {
+      const asset = findAsset("unit202.right-hand-grip.teaching")!;
+      const text = buildAssetPrompt(asset);
+      expect(text).toContain(
+        "Use a muted medium-dark slate / blue-grey background with a subtle smooth gradient. It should be softer and less harsh than pure black while retaining excellent contrast and a premium technical-learning aesthetic. Avoid strong texture, scenery, neon/cyberpunk treatment or a black void.",
+      );
+    });
+  });
+});
+
+describe("MASTER_PROMPT (PROMPT 1 -- MASTER ART SESSION PROMPT) stays a separate, single layer", () => {
+  it("is a non-empty string distinct from any per-asset prompt", () => {
+    expect(MASTER_PROMPT.length).toBeGreaterThan(200);
+    const assetText = buildAssetPrompt(findAsset("unit202.right-hand-grip.teaching")!);
+    expect(MASTER_PROMPT).not.toBe(assetText);
+  });
+
+  it("never contains an individual asset's assetId -- it is asset-agnostic, used once per session", () => {
+    for (const asset of allAssets()) {
+      expect(MASTER_PROMPT).not.toContain(asset.assetId);
+    }
+  });
+
+  it("explains the labels-follow-pedagogical-state rule and visual-family awareness, not a blanket no-labels default", () => {
+    expect(MASTER_PROMPT).toMatch(/LABELS ARE A PEDAGOGICAL TOOL/);
+    expect(MASTER_PROMPT).toMatch(/do not automatically strip labels/i);
+    expect(MASTER_PROMPT).toMatch(/VISUAL-FAMILY AWARENESS/);
+    expect(MASTER_PROMPT).toMatch(/do not assume every concept requires multiple images/i);
   });
 });

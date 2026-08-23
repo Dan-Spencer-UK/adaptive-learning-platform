@@ -1,6 +1,13 @@
-// CC-11.5: ALP Visual Production Studio client. Plain vanilla JS, no
-// build step, no framework -- fetches from the local-only API server
-// (server.ts) and renders the catalogue/state it returns.
+// CC-11.5/CC-11.6: ALP Visual Production Studio client. Plain vanilla JS,
+// no build step, no framework -- fetches from the local-only API server
+// (server.ts) and renders the FAMILY-grouped catalogue it returns.
+//
+// A VisualFamily is an organisational grouping only -- it never reduces
+// prompt granularity. Every individual asset, even one nested inside a
+// multi-asset family, gets its own fully-rendered card with its own
+// independent [COPY PROMPT] / [VIEW PROMPT] / paste-drop / approve-save
+// controls. Grouping only changes how cards are visually organised on
+// the page (collapsible family sections), never how many prompts exist.
 
 const FILTERS = [
   { id: "all", label: "All" },
@@ -17,6 +24,7 @@ const FILTERS = [
 
 const STATUS_BUCKET = {
   REFERENCE_NOT_READY: "blocked",
+  SCOPE_CONFIRMATION_NEEDED: "blocked",
   BLOCKED: "blocked",
   READY_TO_PROMPT: "not-started",
   IN_ART_SESSION: "in-progress",
@@ -29,6 +37,7 @@ const STATUS_BUCKET = {
 
 const STATUS_BADGE_CLASS = {
   REFERENCE_NOT_READY: "status-not-ready",
+  SCOPE_CONFIRMATION_NEEDED: "status-not-ready",
   BLOCKED: "status-blocked",
   READY_TO_PROMPT: "status-ready",
   IN_ART_SESSION: "status-progress",
@@ -39,7 +48,8 @@ const STATUS_BADGE_CLASS = {
   SUPERSEDED: "status-approved",
 };
 
-let catalogue = [];
+let families = []; // VisualFamily[], each with .assets (VisualAsset[]) -- as returned by /api/catalogue
+let catalogue = []; // flat allAssets(), derived client-side for per-asset lookups
 let studioState = {};
 let manifestCurrent = {};
 let activeFilter = localStorage.getItem("alp-studio-filter") || "all";
@@ -81,15 +91,28 @@ function flashConflict(message) {
   window.alert(message);
 }
 
+function isPromptable(asset) {
+  return asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false;
+}
+
+// ---------------------------------------------------------------------
+// Prompt accounting (family count / asset count / promptable count)
+// ---------------------------------------------------------------------
+
+function renderPromptAccounting() {
+  const promptableCount = catalogue.filter(isPromptable).length;
+  $("#prompt-accounting").textContent = `${families.length} visual families · ${catalogue.length} individual assets · ${promptableCount} promptable artwork assets`;
+}
+
 // ---------------------------------------------------------------------
 // Progress summary
 // ---------------------------------------------------------------------
 
 function renderProgress() {
   const buckets = { total: 0, "not-started": 0, "in-progress": 0, approved: 0, "needs-review": 0, blocked: 0 };
-  for (const entry of catalogue) {
+  for (const asset of catalogue) {
     buckets.total += 1;
-    const status = studioState[entry.assetId]?.status;
+    const status = studioState[asset.assetId]?.status;
     const bucket = STATUS_BUCKET[status] || "not-started";
     buckets[bucket] += 1;
   }
@@ -105,13 +128,13 @@ function renderProgress() {
 // Filters
 // ---------------------------------------------------------------------
 
-function entryMatchesFilter(entry, filterId) {
+function assetMatchesFilter(asset, filterId) {
   if (filterId === "all") return true;
-  if (filterId === "P0" || filterId === "P1" || filterId === "P2") return entry.priority === filterId;
+  if (filterId === "P0" || filterId === "P1" || filterId === "P2") return asset.priority === filterId;
   if (filterId === "teaching" || filterId === "hybrid" || filterId === "deterministic-polish" || filterId === "conceptual") {
-    return entry.outputSubfolder === filterId;
+    return asset.outputSubfolder === filterId;
   }
-  const status = studioState[entry.assetId]?.status;
+  const status = studioState[asset.assetId]?.status;
   if (filterId === "approved") return STATUS_BUCKET[status] === "approved";
   if (filterId === "outstanding") return STATUS_BUCKET[status] !== "approved";
   return true;
@@ -135,10 +158,16 @@ function renderFilters() {
 }
 
 function applyFilter() {
-  for (const card of document.querySelectorAll(".card")) {
-    const assetId = card.dataset.assetId;
-    const entry = catalogue.find((item) => item.assetId === assetId);
-    card.classList.toggle("filtered-out", !entryMatchesFilter(entry, activeFilter));
+  for (const section of document.querySelectorAll(".family-section")) {
+    let visibleCount = 0;
+    for (const card of section.querySelectorAll(".card")) {
+      const assetId = card.dataset.assetId;
+      const asset = catalogue.find((item) => item.assetId === assetId);
+      const matches = assetMatchesFilter(asset, activeFilter);
+      card.classList.toggle("filtered-out", !matches);
+      if (matches) visibleCount += 1;
+    }
+    section.classList.toggle("filtered-out", visibleCount === 0);
   }
 }
 
@@ -156,8 +185,8 @@ async function refreshNextAsset() {
     copyBtn.dataset.assetId = "";
     return;
   }
-  const entry = catalogue.find((item) => item.assetId === assetId);
-  nameEl.textContent = `${entry.sequence.toString().padStart(2, "0")} — ${entry.displayName}`;
+  const asset = catalogue.find((item) => item.assetId === assetId);
+  nameEl.textContent = `${asset.sequence.toString().padStart(2, "0")} — ${asset.displayName}`;
   copyBtn.disabled = false;
   copyBtn.dataset.assetId = assetId;
 }
@@ -175,7 +204,7 @@ async function copyNextPrompt() {
 }
 
 // ---------------------------------------------------------------------
-// Card rendering
+// Family section + card rendering
 // ---------------------------------------------------------------------
 
 function fillList(ul, items) {
@@ -187,87 +216,99 @@ function fillList(ul, items) {
   }
 }
 
-function renderCard(entry) {
+function familyApprovedCount(family) {
+  return family.assets.filter((asset) => {
+    const status = studioState[asset.assetId]?.status;
+    return STATUS_BUCKET[status] === "approved";
+  }).length;
+}
+
+function renderCard(asset) {
   const template = $("#asset-card-template");
   const card = template.content.firstElementChild.cloneNode(true);
-  card.dataset.assetId = entry.assetId;
+  card.dataset.assetId = asset.assetId;
 
-  card.querySelector(".card-seq").textContent = "#" + entry.sequence.toString().padStart(2, "0");
-  card.querySelector(".card-name").textContent = entry.displayName;
-  card.querySelector(".asset-id").textContent = entry.assetId;
-  card.querySelector(".lo").textContent = entry.loOrLesson || "LO/lesson: n/a";
-  card.querySelector(".priority").textContent = "Priority " + entry.priorityLabel;
-  card.querySelector(".production-class").textContent = entry.productionClassLabel;
-  card.querySelector(".current-family").textContent = entry.currentFamily ? "family: " + entry.currentFamily : "no existing family";
-  card.querySelector(".purpose").textContent = entry.instructionalPurpose;
+  card.querySelector(".card-seq").textContent = "#" + asset.sequence.toString().padStart(2, "0");
+  card.querySelector(".card-name").textContent = asset.displayName;
+  card.querySelector(".asset-id").textContent = asset.assetId;
+  card.querySelector(".role").textContent = asset.role;
+  card.querySelector(".lo").textContent = asset.loOrLesson || "LO/lesson: n/a";
+  card.querySelector(".priority").textContent = "Priority " + asset.priorityLabel;
+  card.querySelector(".production-class").textContent = asset.productionClassLabel;
+  card.querySelector(".governed-blueprint").textContent = asset.governedDiagramBlueprintId ? "blueprint: " + asset.governedDiagramBlueprintId : "no existing blueprint";
+  card.querySelector(".annotation-policy").textContent = "labels: " + asset.annotationPolicy.replace(/_/g, " ");
+  card.querySelector(".purpose").textContent = asset.instructionalPurpose;
 
-  card.querySelector(".reference-source").textContent = entry.primaryReference.sourceName;
+  card.querySelector(".reference-source").textContent = asset.primaryReference.sourceName;
   const link = card.querySelector(".reference-link");
-  if (entry.primaryReference.sourceUrl) {
-    link.href = entry.primaryReference.sourceUrl;
+  if (asset.primaryReference.sourceUrl) {
+    link.href = asset.primaryReference.sourceUrl;
   } else {
     link.style.display = "none";
   }
-  card.querySelector(".reference-licence").textContent = "Licence: " + entry.primaryReference.licence;
-  card.querySelector(".reference-grade").textContent = "Quality grade: " + entry.primaryReference.qualityGrade;
+  card.querySelector(".reference-licence").textContent = "Licence: " + asset.primaryReference.licence;
+  card.querySelector(".reference-grade").textContent = "Quality grade: " + asset.primaryReference.qualityGrade;
 
-  fillList(card.querySelector(".fact-immutable"), entry.immutableFacts);
-  fillList(card.querySelector(".fact-creative"), entry.creativeFreedoms);
-  fillList(card.querySelector(".fact-overlay"), entry.deterministicOverlayResponsibilities);
-  fillList(card.querySelector(".fact-prohibited"), entry.prohibitedChanges);
+  fillList(card.querySelector(".fact-immutable"), asset.requiredLabels && asset.requiredLabels.length ? asset.immutableFacts.concat(asset.requiredLabels.map((l) => "LABEL: " + l)) : asset.immutableFacts);
+  fillList(card.querySelector(".fact-creative"), asset.creativeFreedoms);
+  fillList(card.querySelector(".fact-overlay"), asset.deterministicOverlayResponsibilities);
+  fillList(card.querySelector(".fact-prohibited"), asset.prohibitedChanges);
 
-  card.querySelector(".output-filename").textContent = entry.filenameBase + "-v{N}." + "(png|webp|jpg)";
-  card.querySelector(".output-path").textContent = `apps/mobile/src/assets/instructional/unit202/${entry.outputSubfolder}/`;
+  card.querySelector(".output-filename").textContent = asset.filenameBase + "-v{N}." + "(png|webp|jpg)";
+  card.querySelector(".output-path").textContent = `apps/mobile/src/assets/instructional/unit202/${asset.outputSubfolder}/`;
 
-  wireCardControls(card, entry);
-  updateCardStatus(card, entry);
+  wireCardControls(card, asset);
+  updateCardStatus(card, asset);
 
   return card;
 }
 
-function updateCardStatus(card, entry) {
-  const status = studioState[entry.assetId]?.status || "READY_TO_PROMPT";
+function updateCardStatus(card, asset) {
+  const status = studioState[asset.assetId]?.status || "READY_TO_PROMPT";
   const badge = card.querySelector(".status-badge");
   badge.textContent = status.replace(/_/g, " ");
   badge.className = "badge status-badge " + (STATUS_BADGE_CLASS[status] || "");
 
-  const current = manifestCurrent[entry.assetId];
+  const current = manifestCurrent[asset.assetId];
   const openSavedBtn = card.querySelector(".btn-open-saved");
   openSavedBtn.disabled = !current;
   const approveBtn = card.querySelector(".btn-approve-save");
-  const hasStagedPreview = Boolean(stagedPreview[entry.assetId]) || status === "IMAGE_PASTED";
-  approveBtn.disabled = entry.referenceReadiness !== "READY" || !hasStagedPreview;
+  const hasStagedPreview = Boolean(stagedPreview[asset.assetId]) || status === "IMAGE_PASTED";
+  approveBtn.disabled = !isPromptable(asset) || !hasStagedPreview;
+
+  const pasteZone = card.querySelector(".paste-zone");
+  pasteZone.classList.toggle("disabled-zone", !isPromptable(asset));
 }
 
-function setPastePreview(card, entry, file) {
+function setPastePreview(card, asset, file) {
   const zone = card.querySelector(".paste-zone");
   const emptyEl = zone.querySelector(".paste-zone-empty");
   const img = zone.querySelector(".paste-preview");
-  const previous = stagedPreview[entry.assetId];
+  const previous = stagedPreview[asset.assetId];
   if (previous?.objectUrl) URL.revokeObjectURL(previous.objectUrl);
 
   const objectUrl = URL.createObjectURL(file);
-  stagedPreview[entry.assetId] = { file, objectUrl };
+  stagedPreview[asset.assetId] = { file, objectUrl };
   img.src = objectUrl;
   img.hidden = false;
   emptyEl.hidden = true;
 }
 
-function clearPastePreview(card, entry) {
+function clearPastePreview(card, asset) {
   const zone = card.querySelector(".paste-zone");
   const emptyEl = zone.querySelector(".paste-zone-empty");
   const img = zone.querySelector(".paste-preview");
-  const previous = stagedPreview[entry.assetId];
+  const previous = stagedPreview[asset.assetId];
   if (previous?.objectUrl) URL.revokeObjectURL(previous.objectUrl);
-  delete stagedPreview[entry.assetId];
+  delete stagedPreview[asset.assetId];
   img.hidden = true;
   img.removeAttribute("src");
   emptyEl.hidden = false;
 }
 
-async function uploadPastedImage(card, entry, file) {
-  setPastePreview(card, entry, file);
-  const info = await api(`/api/paste/${encodeURIComponent(entry.assetId)}`, {
+async function uploadPastedImage(card, asset, file) {
+  setPastePreview(card, asset, file);
+  const info = await api(`/api/paste/${encodeURIComponent(asset.assetId)}`, {
     method: "POST",
     headers: { "Content-Type": file.type || "application/octet-stream" },
     body: file,
@@ -275,24 +316,25 @@ async function uploadPastedImage(card, entry, file) {
   card.querySelector(".paste-info").textContent =
     `${info.format.toUpperCase()} · ${info.width || "?"}×${info.height || "?"} · ${info.approxSize}` +
     (info.hasAlpha === null ? "" : info.hasAlpha ? " · transparency detected" : " · no transparency detected");
-  studioState[entry.assetId] = { status: "IMAGE_PASTED", updatedAt: new Date().toISOString() };
-  updateCardStatus(card, entry);
+  studioState[asset.assetId] = { status: "IMAGE_PASTED", updatedAt: new Date().toISOString() };
+  updateCardStatus(card, asset);
   renderProgress();
 }
 
-async function approveAndSave(card, entry, versioning) {
+async function approveAndSave(card, asset, versioning) {
   try {
     const body = versioning ? { versioning } : {};
-    const result = await api(`/api/approve/${encodeURIComponent(entry.assetId)}`, {
+    const result = await api(`/api/approve/${encodeURIComponent(asset.assetId)}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    manifestCurrent[entry.assetId] = result.manifestEntry;
-    studioState[entry.assetId] = { status: "SAVED", updatedAt: new Date().toISOString() };
+    manifestCurrent[asset.assetId] = result.manifestEntry;
+    studioState[asset.assetId] = { status: "SAVED", updatedAt: new Date().toISOString() };
     card.querySelector(".conflict-panel").hidden = true;
-    updateCardStatus(card, entry);
+    updateCardStatus(card, asset);
     renderProgress();
+    renderFamilyProgressBadges();
     window.alert(`Saved: ${result.outputPath}`);
   } catch (error) {
     if (error.status === 409) {
@@ -303,7 +345,7 @@ async function approveAndSave(card, entry, versioning) {
   }
 }
 
-function wireCardControls(card, entry) {
+function wireCardControls(card, asset) {
   const zone = card.querySelector(".paste-zone");
   const fileInput = card.querySelector(".file-input");
   const promptView = card.querySelector(".prompt-view");
@@ -316,7 +358,7 @@ function wireCardControls(card, entry) {
     for (const item of items) {
       if (item.type.startsWith("image/")) {
         const file = item.getAsFile();
-        if (file) void uploadPastedImage(card, entry, file);
+        if (file) void uploadPastedImage(card, asset, file);
         event.preventDefault();
         return;
       }
@@ -331,11 +373,11 @@ function wireCardControls(card, entry) {
     event.preventDefault();
     zone.classList.remove("drag-over");
     const file = event.dataTransfer?.files?.[0];
-    if (file && file.type.startsWith("image/")) void uploadPastedImage(card, entry, file);
+    if (file && file.type.startsWith("image/")) void uploadPastedImage(card, asset, file);
   });
   fileInput.addEventListener("change", () => {
     const file = fileInput.files?.[0];
-    if (file) void uploadPastedImage(card, entry, file);
+    if (file) void uploadPastedImage(card, asset, file);
   });
 
   card.querySelector(".paste-preview").addEventListener("click", (event) => {
@@ -344,7 +386,7 @@ function wireCardControls(card, entry) {
 
   card.querySelector(".btn-view-prompt").addEventListener("click", async () => {
     if (promptView.hidden) {
-      const { text } = await api(`/api/prompt/${encodeURIComponent(entry.assetId)}`);
+      const { text } = await api(`/api/prompt/${encodeURIComponent(asset.assetId)}`);
       promptView.textContent = text;
       promptView.hidden = false;
     } else {
@@ -353,46 +395,71 @@ function wireCardControls(card, entry) {
   });
 
   card.querySelector(".btn-copy-prompt").addEventListener("click", async () => {
-    const { text } = await api(`/api/prompt/${encodeURIComponent(entry.assetId)}`);
+    const { text } = await api(`/api/prompt/${encodeURIComponent(asset.assetId)}`);
     await copyToClipboard(text, flash);
     zone.focus();
   });
 
   card.querySelector(".btn-open-reference").addEventListener("click", () => {
-    if (entry.primaryReference.sourceUrl) window.open(entry.primaryReference.sourceUrl, "_blank", "noopener");
+    if (asset.primaryReference.sourceUrl) window.open(asset.primaryReference.sourceUrl, "_blank", "noopener");
   });
 
   card.querySelector(".btn-needs-review").addEventListener("click", async () => {
     const notes = card.querySelector(".notes-box").value;
-    await api(`/api/status/${encodeURIComponent(entry.assetId)}`, {
+    await api(`/api/status/${encodeURIComponent(asset.assetId)}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "NEEDS_REVIEW", notes }),
     });
-    studioState[entry.assetId] = { status: "NEEDS_REVIEW", notes, updatedAt: new Date().toISOString() };
-    updateCardStatus(card, entry);
+    studioState[asset.assetId] = { status: "NEEDS_REVIEW", notes, updatedAt: new Date().toISOString() };
+    updateCardStatus(card, asset);
     renderProgress();
   });
 
-  card.querySelector(".btn-approve-save").addEventListener("click", () => approveAndSave(card, entry, undefined));
+  card.querySelector(".btn-approve-save").addEventListener("click", () => approveAndSave(card, asset, undefined));
   card.querySelector(".conflict-cancel").addEventListener("click", () => {
     card.querySelector(".conflict-panel").hidden = true;
   });
-  card.querySelector(".conflict-new-version").addEventListener("click", () => approveAndSave(card, entry, "new_version"));
+  card.querySelector(".conflict-new-version").addEventListener("click", () => approveAndSave(card, asset, "new_version"));
   card.querySelector(".conflict-replace").addEventListener("click", () => {
     if (window.confirm("Replace the current approved version in place? This overwrites the existing file.")) {
-      void approveAndSave(card, entry, "replace_confirmed");
+      void approveAndSave(card, asset, "replace_confirmed");
     }
   });
 
   card.querySelector(".btn-replace-image").addEventListener("click", () => {
-    clearPastePreview(card, entry);
+    clearPastePreview(card, asset);
     zone.focus();
   });
 
   card.querySelector(".btn-open-saved").addEventListener("click", async () => {
-    await api(`/api/open-file/${encodeURIComponent(entry.assetId)}`, { method: "POST" });
+    await api(`/api/open-file/${encodeURIComponent(asset.assetId)}`, { method: "POST" });
   });
+}
+
+function renderFamilySection(family) {
+  const template = $("#family-section-template");
+  const section = template.content.firstElementChild.cloneNode(true);
+  section.dataset.familyId = family.familyId;
+
+  section.querySelector(".family-name").textContent = family.displayName;
+  section.querySelector(".family-count").textContent = `${family.assets.length} visual asset${family.assets.length === 1 ? "" : "s"}`;
+  section.querySelector(".family-purpose").textContent = family.instructionalPurpose;
+  if (family.familyNotes) section.querySelector(".family-notes").textContent = family.familyNotes;
+
+  const grid = section.querySelector(".asset-grid");
+  for (const asset of family.assets) grid.appendChild(renderCard(asset));
+
+  return section;
+}
+
+function renderFamilyProgressBadges() {
+  for (const section of document.querySelectorAll(".family-section")) {
+    const family = families.find((f) => f.familyId === section.dataset.familyId);
+    if (!family) continue;
+    const approved = familyApprovedCount(family);
+    section.querySelector(".family-progress").textContent = `[${approved}/${family.assets.length} approved]`;
+  }
 }
 
 // ---------------------------------------------------------------------
@@ -400,26 +467,29 @@ function wireCardControls(card, entry) {
 // ---------------------------------------------------------------------
 
 async function loadAll() {
-  catalogue = await api("/api/catalogue");
+  families = await api("/api/catalogue");
+  catalogue = families.flatMap((family) => family.assets);
   const stateResponse = await api("/api/state");
   studioState = stateResponse.state;
   manifestCurrent = stateResponse.manifestCurrent;
 }
 
-function renderGrid() {
-  const grid = $("#asset-grid");
-  grid.innerHTML = "";
-  for (const entry of catalogue) {
-    grid.appendChild(renderCard(entry));
+function renderFamilyList() {
+  const list = $("#family-list");
+  list.innerHTML = "";
+  for (const family of families) {
+    list.appendChild(renderFamilySection(family));
   }
+  renderFamilyProgressBadges();
   applyFilter();
 }
 
 async function main() {
   await loadAll();
+  renderPromptAccounting();
   renderProgress();
   renderFilters();
-  renderGrid();
+  renderFamilyList();
   await refreshNextAsset();
 
   $("#btn-copy-master").addEventListener("click", async () => {

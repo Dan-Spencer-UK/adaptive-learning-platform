@@ -21,7 +21,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { CATALOGUE, findCatalogueEntry } from "./catalogue.ts";
+import { allAssets, findAsset, FAMILIES } from "./catalogue.ts";
 import { MASTER_PROMPT } from "./master-prompt.ts";
 import { buildAssetPrompt } from "./prompt-builder.ts";
 import { inspectImage, formatApproxSize } from "./image-utils.ts";
@@ -75,7 +75,7 @@ async function readJsonBody<T>(req: import("node:http").IncomingMessage): Promis
 
 function manifestSnapshot(): Record<string, ReturnType<typeof currentManifestEntry>> {
   const snapshot: Record<string, ReturnType<typeof currentManifestEntry>> = {};
-  for (const entry of CATALOGUE) snapshot[entry.assetId] = currentManifestEntry(entry.assetId);
+  for (const asset of allAssets()) snapshot[asset.assetId] = currentManifestEntry(asset.assetId);
   return snapshot;
 }
 
@@ -137,7 +137,7 @@ async function handleRequest(req: import("node:http").IncomingMessage, res: impo
   // API
   // -------------------------------------------------------------
   if (method === "GET" && pathname === "/api/catalogue") {
-    sendJson(res, 200, CATALOGUE);
+    sendJson(res, 200, FAMILIES);
     return;
   }
 
@@ -152,7 +152,7 @@ async function handleRequest(req: import("node:http").IncomingMessage, res: impo
   }
 
   if (method === "GET" && pathname === "/api/next") {
-    const next = pickNextAsset(CATALOGUE, loadState());
+    const next = pickNextAsset(FAMILIES, loadState());
     sendJson(res, 200, { assetId: next?.assetId ?? null });
     return;
   }
@@ -169,7 +169,7 @@ async function handleRequest(req: import("node:http").IncomingMessage, res: impo
   const promptMatch = /^\/api\/prompt\/(.+)$/.exec(pathname);
   if (method === "GET" && promptMatch?.[1]) {
     const assetId = decodeURIComponent(promptMatch[1]);
-    const entry = findCatalogueEntry(assetId);
+    const entry = findAsset(assetId);
     if (!entry) {
       sendJson(res, 404, { error: `unknown assetId: ${assetId}` });
       return;
@@ -181,7 +181,7 @@ async function handleRequest(req: import("node:http").IncomingMessage, res: impo
   const statusMatch = /^\/api\/status\/(.+)$/.exec(pathname);
   if (method === "POST" && statusMatch?.[1]) {
     const assetId = decodeURIComponent(statusMatch[1]);
-    const entry = findCatalogueEntry(assetId);
+    const entry = findAsset(assetId);
     if (!entry) {
       sendJson(res, 404, { error: `unknown assetId: ${assetId}` });
       return;
@@ -199,7 +199,7 @@ async function handleRequest(req: import("node:http").IncomingMessage, res: impo
   const pasteMatch = /^\/api\/paste\/(.+)$/.exec(pathname);
   if (method === "POST" && pasteMatch?.[1]) {
     const assetId = decodeURIComponent(pasteMatch[1]);
-    const entry = findCatalogueEntry(assetId);
+    const entry = findAsset(assetId);
     if (!entry) {
       sendJson(res, 404, { error: `unknown assetId: ${assetId}` });
       return;
@@ -236,7 +236,7 @@ async function handleRequest(req: import("node:http").IncomingMessage, res: impo
   const approveMatch = /^\/api\/approve\/(.+)$/.exec(pathname);
   if (method === "POST" && approveMatch?.[1]) {
     const assetId = decodeURIComponent(approveMatch[1]);
-    const entry = findCatalogueEntry(assetId);
+    const entry = findAsset(assetId);
     if (!entry) {
       sendJson(res, 404, { error: `unknown assetId: ${assetId}` });
       return;
