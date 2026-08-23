@@ -10,7 +10,7 @@
  */
 
 import type { VisualAsset, VisualFamily } from "./catalogue.ts";
-import { familyForAsset } from "./catalogue.ts";
+import { familyForAsset, visualNeedClassificationFor } from "./catalogue.ts";
 
 function bulletList(items: string[]): string {
   if (items.length === 0) return "  (none declared)";
@@ -160,6 +160,7 @@ export function buildAssetPrompt(asset: VisualAsset, families?: VisualFamily[]):
     lines.push(`Visual family: ${family.displayName} (${family.familyId}) -- asset ${asset.orderInFamily} of ${family.assets.length}`);
   }
   lines.push(`Role in family: ${asset.role}`);
+  lines.push(`Need classification: ${visualNeedClassificationFor(asset)}${asset.needOverride === "USEFUL" ? " (optional enrichment -- never blocks REQUIRED Unit 202 visual completeness)" : ""}`);
   lines.push(`Production class: ${asset.productionClassLabel}`);
   lines.push(`Priority: ${asset.priorityLabel}`);
   if (asset.loOrLesson) lines.push(`Curriculum context: ${asset.loOrLesson}`);

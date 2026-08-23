@@ -1,11 +1,15 @@
 /**
- * CC-11.5/CC-11.6 §14: NEXT RECOMMENDED ASSET -- ranks by priority (1),
- * reference readiness (2), then status (3), exactly the order the task
- * brief lists. Family-aware in the sense that mattered: a
- * REFERENCE_NOT_READY or SCOPE_CONFIRMATION_NEEDED sibling never blocks
- * an otherwise-actionable asset in the same family, because eligibility
- * is evaluated per-asset, never per-family. Pure function so the ranking
- * rule itself is directly unit-testable.
+ * CC-11.5/CC-11.6 §14 / CC-11.7A §5/§23: NEXT RECOMMENDED ASSET -- ranks by
+ * REQUIRED-before-USEFUL (1), priority (2), reference readiness (3), then
+ * status (4). Task brief §5/§23: "Default recommendation order: 1.
+ * REQUIRED P0 ready assets 2. REQUIRED P1 3. REQUIRED P2 4. USEFUL
+ * P0/P1/P2 as appropriate" -- a USEFUL asset is never recommended ahead of
+ * an actionable REQUIRED one, regardless of relative priority label.
+ * Family-aware in the sense that mattered: a REFERENCE_NOT_READY or
+ * SCOPE_CONFIRMATION_NEEDED sibling never blocks an otherwise-actionable
+ * asset in the same family, because eligibility is evaluated per-asset,
+ * never per-family. Pure function so the ranking rule itself is directly
+ * unit-testable.
  */
 
 import { allAssets, FAMILIES, type Priority, type VisualAsset, type VisualFamily } from "./catalogue.ts";
@@ -28,6 +32,8 @@ export function pickNextAsset(families: VisualFamily[] = FAMILIES, state: Studio
   if (candidates.length === 0) return null;
 
   candidates.sort((a, b) => {
+    const classificationDelta = Number(a.needOverride === "USEFUL") - Number(b.needOverride === "USEFUL");
+    if (classificationDelta !== 0) return classificationDelta; // REQUIRED (false=0) before USEFUL (true=1)
     const priorityDelta = PRIORITY_RANK[a.priority] - PRIORITY_RANK[b.priority];
     if (priorityDelta !== 0) return priorityDelta;
     // Sequence follows family declaration order (see catalogue.ts), so this

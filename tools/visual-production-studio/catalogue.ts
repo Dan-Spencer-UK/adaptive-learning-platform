@@ -228,6 +228,18 @@ export interface VisualAsset {
    * never silently dropped.
    */
   canonicalStates: CanonicalState[];
+  /**
+   * CC-11.7A §3/§15: an asset defaults to REQUIRED (see
+   * `visualNeedClassificationFor`). Set this to "USEFUL" for a genuine
+   * CC-11.7-audit USEFUL finding that has been materialised into the live
+   * catalogue -- optional enrichment the Product Owner may choose to
+   * produce for course quality, never something REQUIRED completion may
+   * depend on. Never set for an asset the audit judged REQUIRED merely
+   * because it is now visible in the Studio (§3: "Do NOT upgrade optional
+   * items to REQUIRED... Do not turn them into REQUIRED merely because
+   * they are now visible").
+   */
+  needOverride?: "USEFUL";
 }
 
 export interface VisualFamily {
@@ -1027,6 +1039,57 @@ export const FAMILIES: VisualFamily[] = [
           },
         ]),
       },
+      // CC-11.7A §1/§2/§8: CC-11.7 audit finding 4 ("Permanent magnet vs
+      // electromagnet comparison", cap.magnetism.compare_permanent_electromagnet
+      // -- reports/instructional-visuals/unit202-comprehensive-visual-audit.md
+      // §4) materialised as USEFUL, not REQUIRED (Level 2 depth keeps it
+      // below REQUIRED per the audit). The intended learner-facing
+      // deliverable is one side-by-side comparison, so this is
+      // deliberately one image-generation job / one ProductionAsset (task
+      // brief §8's own "CORRECT EXAMPLE — PERMANENT MAGNET VS
+      // ELECTROMAGNET"), not two.
+      {
+        sequence: 43,
+        assetId: "unit202.magnet.permanent-vs-electromagnet",
+        familyId: "unit202.family.magnetism",
+        orderInFamily: 3,
+        role: "COMPARISON",
+        displayName: "Permanent magnet vs electromagnet comparison",
+        loOrLesson: "LO5 — lesson.magnetism.fundamentals",
+        priority: "P2",
+        priorityLabel: "P2 (USEFUL, not REQUIRED)",
+        productionClass: "HYBRID",
+        productionClassLabel: "HYBRID",
+        instructionalPurpose:
+          "CC-11.7 audit finding: a genuine physical-topology comparison (coiled wire around a core vs a solid bar magnet) the learner can use to distinguish the two magnet types by appearance -- USEFUL enrichment, Level 2 depth keeps it below REQUIRED.",
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY",
+        annotationPolicy: "TEACHING_EXPLANATORY",
+        requiredLabels: ["PERMANENT MAGNET", "ELECTROMAGNET"],
+        immutableFacts: [
+          "permanent magnet depicted as a solid bar/horseshoe magnet, no coil or power source",
+          "electromagnet depicted as a coil of wire around a core with a visible power source/current path",
+          "one side-by-side comparison image, not two separate images",
+        ],
+        creativeFreedoms: ["premium magnet/coil/core rendering", "composition", "finish"],
+        deterministicOverlayResponsibilities: [],
+        prohibitedChanges: ["do not generate until a primary reference is marked READY", "do not split into two separate images -- this is one comparison deliverable"],
+        exactDeliverable:
+          "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium side-by-side illustration (permanent magnet | electromagnet), matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+        outputSubfolder: "hybrid",
+        filenameBase: "magnet-permanent-vs-electromagnet-base",
+        needOverride: "USEFUL",
+        canonicalStates: [
+          {
+            stateId: "unit202.magnet.permanent-vs-electromagnet.state.teaching",
+            displayName: "Permanent magnet vs electromagnet (blocked)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["PERMANENT MAGNET", "ELECTROMAGNET"],
+            notes: "CC-11.7 audit finding, USEFUL not REQUIRED -- cap.magnetism.compare_permanent_electromagnet, Level 2 depth.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -1253,6 +1316,123 @@ export const FAMILIES: VisualFamily[] = [
           existingCanonicalVariantId: reconciledVariantId("visual-contract.instrument-measurement-connection", 1, { instrument_type, connection_style }, "both"),
         })),
       },
+      // CC-11.7A §1/§2/§16: CC-11.7 audit findings 1-2 ("Clamp meter
+      // recognition" / "Oscilloscope recognition" --
+      // reports/instructional-visuals/unit202-comprehensive-visual-audit.md
+      // §4) materialised as USEFUL, not REQUIRED. Both are distinctive
+      // physical-recognition targets genuinely different from the
+      // series/parallel/isolated connection topology the sibling
+      // TECHNICAL_DIAGRAM asset models -- kept as two separate assets
+      // (one distinct instrument each), not combined.
+      ...(
+        [
+          {
+            component: "clamp-meter",
+            displayName: "Clamp meter",
+            purpose:
+              "CC-11.7 audit finding: physical recognition of a clamp meter by its distinctive ferrite-jaw form -- genuinely different from the series/parallel/isolated connection topology the sibling TECHNICAL_DIAGRAM asset models. USEFUL enrichment, not REQUIRED.",
+            fact: "ferrite clamp jaw must be clearly visible and open-able around a conductor -- the defining recognition feature",
+          },
+          {
+            component: "oscilloscope",
+            displayName: "Oscilloscope",
+            purpose: "CC-11.7 audit finding: physical recognition of an oscilloscope by its distinctive screen/trace form. USEFUL enrichment, not REQUIRED.",
+            fact: "screen with a visible waveform trace must be clearly depicted -- the defining recognition feature",
+          },
+        ] as const
+      ).map(({ component, displayName, purpose, fact }, index) => ({
+        sequence: 44 + index,
+        assetId: `unit202.instrument.${component}`,
+        familyId: "unit202.family.instrument-connections",
+        orderInFamily: 2 + index,
+        role: "PHYSICAL_RECOGNITION" as const,
+        displayName: `${displayName} recognition`,
+        loOrLesson: "LO2 — lesson.electrical.instrumentation",
+        priority: "P2" as const,
+        priorityLabel: "P2 (USEFUL, not REQUIRED)",
+        productionClass: "PREMIUM_CONCEPTUAL" as const,
+        productionClassLabel: "PREMIUM CONCEPTUAL",
+        instructionalPurpose: purpose,
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY" as const,
+        annotationPolicy: "TEACHING_EXPLANATORY" as const,
+        requiredLabels: ["instrument name"],
+        immutableFacts: [fact],
+        creativeFreedoms: ["premium photographic-impression rendering", "composition", "lighting"],
+        deterministicOverlayResponsibilities: [],
+        prohibitedChanges: ["do not generate until a primary reference is marked READY", "do not make one manufacturer's product appearance canonical"],
+        exactDeliverable: `BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a ${displayName.toLowerCase()}. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        outputSubfolder: "physical-components" as const,
+        filenameBase: `instrument-${component}-base`,
+        needOverride: "USEFUL" as const,
+        canonicalStates: [
+          {
+            stateId: `unit202.instrument.${component}.state.teaching`,
+            displayName: `${displayName} recognition (blocked)`,
+            pedagogicalState: "TEACHING" as const,
+            annotationPolicy: "TEACHING_EXPLANATORY" as const,
+            requiredLabels: ["instrument name"],
+            notes: "CC-11.7 audit finding, USEFUL not REQUIRED.",
+          },
+        ],
+      })),
+    ],
+  },
+  {
+    familyId: "unit202.family.current-direction",
+    displayName: "Conventional current vs electron flow",
+    instructionalPurpose: "A single deterministic dual-arrow diagram distinguishing conventional current direction from actual electron-flow direction.",
+    governedConcept: "LO4 — lesson.electrical.charge-and-current",
+    familyNotes:
+      "CC-11.7 audit finding 3 (reports/instructional-visuals/unit202-comprehensive-visual-audit.md §4): targets the named misconception MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001. USEFUL, not REQUIRED -- cheap and high-value, but not yet corroborated by a dedicated QuestionBlueprint. A simple dual-arrow wire diagram is a geometric fact (conventional current: + to -; electron flow: - to +, opposite direction, same wire), not an artistic subject -- DETERMINISTIC_TECHNICAL, no ChatGPT art job, and no risk of generated artwork ever establishing arrow direction (task brief §16's own explicit warning).",
+    assets: [
+      {
+        sequence: 46,
+        assetId: "unit202.current-direction.electron-flow-vs-conventional",
+        familyId: "unit202.family.current-direction",
+        orderInFamily: 1,
+        role: "TECHNICAL_DIAGRAM",
+        displayName: "Conventional current vs electron flow",
+        loOrLesson: "LO4 — lesson.electrical.charge-and-current",
+        priority: "P2",
+        priorityLabel: "P2 (USEFUL, not REQUIRED)",
+        productionClass: "DETERMINISTIC_TECHNICAL",
+        productionClassLabel: "DETERMINISTIC TECHNICAL",
+        instructionalPurpose:
+          "CC-11.7 audit finding: a single wire with two labelled arrows -- conventional current (+ to -) and actual electron flow (- to +) -- shown together so the direction distinction and the underlying reason (electrons are negative, so they physically move opposite to the conventional-current convention) are both visible at a glance.",
+        primaryReference: {
+          sourceName: "Standard conventional-current/electron-flow dual-arrow reference -- to be selected when this asset is commissioned",
+          sourceUrl: "",
+          licence: "to be recorded when selected",
+          qualityGrade: "to be assessed",
+        },
+        referenceReadiness: "READY",
+        annotationPolicy: "TEACHING_EXPLANATORY",
+        requiredLabels: ["CONVENTIONAL CURRENT (+ to -)", "ELECTRON FLOW (- to +)"],
+        immutableFacts: [
+          "conventional current direction: positive terminal to negative terminal",
+          "electron flow direction: negative terminal to positive terminal -- opposite to conventional current",
+          "both arrows on the same single wire/conductor, never on separate wires",
+        ],
+        creativeFreedoms: [],
+        deterministicOverlayResponsibilities: ["the two arrows and their geometry remain deterministic vector -- no arbitrary raster arrow direction for this family"],
+        prohibitedChanges: ["do not draw the two arrows pointing the same direction", "do not omit either arrow"],
+        exactDeliverable: "Deterministic vector dual-arrow diagram -- not a premium art-generation deliverable.",
+        outputSubfolder: "deterministic-polish",
+        filenameBase: "current-direction-electron-flow-vs-conventional-base",
+        promptable: false,
+        needOverride: "USEFUL",
+        canonicalStates: [
+          {
+            stateId: "unit202.current-direction.electron-flow-vs-conventional.state.teaching",
+            displayName: "Conventional current vs electron flow (dual arrow)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["CONVENTIONAL CURRENT (+ to -)", "ELECTRON FLOW (- to +)"],
+            notes: "CC-11.7 audit finding, USEFUL not REQUIRED. NO ART PROMPT -- DETERMINISTIC.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -1302,6 +1482,72 @@ export const FAMILIES: VisualFamily[] = [
           parameters: { size_ratio },
           existingCanonicalVariantId: reconciledVariantId("visual-contract.gear-mesh-ratio", 1, { size_ratio }, "both"),
         })),
+      },
+      // CC-11.7A §1/§2/§16: CC-11.7 audit finding 5 ("Gear rotation-direction
+      // reversal / idler gear", FP-GEAR-DIRECTION-REVERSAL-001,
+      // FP-GEAR-IDLER-001) materialised as USEFUL, not REQUIRED --
+      // governed SUPPORTS-only (non-mandatory) content. The audit report's
+      // own framing ("cheap addition to the existing gear-mesh asset if
+      // commissioned") is followed literally: this reuses the existing
+      // unit202.gears base artwork's deterministic rotation-direction
+      // overlay (already declared in that asset's
+      // deterministicOverlayResponsibilities), so it is DETERMINISTIC
+      // annotation, not a second premium art job for the same gears.
+      {
+        sequence: 47,
+        assetId: "unit202.gears.rotation-direction",
+        familyId: "unit202.family.gears",
+        orderInFamily: 2,
+        role: "TECHNICAL_DIAGRAM",
+        displayName: "Gear rotation-direction reversal / idler gear",
+        loOrLesson: "LO3 — lesson.foundation.physics.simple-machines",
+        priority: "P2",
+        priorityLabel: "P2 (USEFUL, not REQUIRED)",
+        productionClass: "DETERMINISTIC_TECHNICAL",
+        productionClassLabel: "DETERMINISTIC TECHNICAL (annotation overlay on the existing unit202.gears base artwork)",
+        governedDiagramBlueprintId: "mechanical.gear_mesh",
+        instructionalPurpose:
+          "CC-11.7 audit finding: two meshed gears rotate in opposite directions; adding a third idler gear reverses the output direction back to match the driver without changing the overall ratio. Governed SUPPORTS-only content (non-mandatory).",
+        primaryReference: {
+          sourceName: "Deterministic rotation-direction annotation on the existing unit202.gears reference geometry -- no separate photographic reference required",
+          sourceUrl: "",
+          licence: "n/a -- deterministic annotation, not generated artwork",
+          qualityGrade: "n/a",
+        },
+        referenceReadiness: "READY",
+        annotationPolicy: "TEACHING_EXPLANATORY",
+        requiredLabels: ["rotation-direction arrows", "idler (where present)"],
+        immutableFacts: [
+          "two directly meshed gears rotate in opposite directions",
+          "an idler gear between driver and driven reverses the output direction back to match the driver's own direction",
+          "an idler gear does not change the overall driver:driven ratio",
+        ],
+        creativeFreedoms: [],
+        deterministicOverlayResponsibilities: ["rotation-direction arrows and idler-gear presence remain a deterministic overlay on the existing unit202.gears base artwork -- no separate art session"],
+        prohibitedChanges: ["do not commission a new premium base image for this asset -- it reuses the existing gears artwork's overlay system"],
+        exactDeliverable: "Deterministic rotation-direction overlay states on the existing unit202.gears base artwork -- not a separate premium art-generation deliverable.",
+        outputSubfolder: "deterministic-polish",
+        filenameBase: "gears-rotation-direction-base",
+        promptable: false,
+        needOverride: "USEFUL",
+        canonicalStates: [
+          {
+            stateId: "unit202.gears.rotation-direction.state.direct-mesh-opposite-directions",
+            displayName: "Two directly meshed gears — opposite rotation directions",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["rotation-direction arrows"],
+            notes: "CC-11.7 audit finding, USEFUL not REQUIRED. NO ART PROMPT -- DETERMINISTIC overlay on the existing unit202.gears base artwork.",
+          },
+          {
+            stateId: "unit202.gears.rotation-direction.state.idler-preserves-driver-direction",
+            displayName: "Idler gear — output direction matches driver, ratio unchanged",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["rotation-direction arrows", "idler"],
+            notes: "CC-11.7 audit finding, USEFUL not REQUIRED. NO ART PROMPT -- DETERMINISTIC overlay on the existing unit202.gears base artwork.",
+          },
+        ],
       },
     ],
   },
@@ -1572,60 +1818,72 @@ export const FAMILIES: VisualFamily[] = [
           existingCanonicalVariantId: reconciledVariantId("visual-contract.electronic-component-symbol-card", 1, { component_type }, "both"),
         })),
       },
-      {
-        sequence: 24,
-        assetId: "unit202.components.physical",
+      // CC-11.7A §9: unit202.components.physical (the original single asset)
+      // was six genuinely distinct image-generation jobs collapsed behind
+      // one ProductionAsset/one prompt/one filename/one approval slot --
+      // a resistor and a capacitor are not the same base artwork with a
+      // toggled annotation, they are different physical objects (task
+      // brief §8's own "INCORRECT EXAMPLE — ELECTRONIC COMPONENTS"). Split
+      // into six independent REQUIRED PHYSICAL_RECOGNITION assets, each
+      // with its own reference/prompt/filename/save slot/approval state.
+      // Classification and reference-readiness are unchanged from the
+      // pre-split asset (task brief §28: "Do not reopen or weaken the
+      // accepted REQUIRED findings") -- only the structural granularity is
+      // fixed.
+      ...(
+        [
+          { component: "resistor", note: "REQUIRED -- ubiquitous, distinctive banded-body form." },
+          { component: "capacitor", note: "REQUIRED -- distinctive cylindrical/disc forms, genuinely different from a resistor." },
+          { component: "diode", note: "REQUIRED -- small distinctive banded form, directly supports forward/reverse-bias recognition." },
+          { component: "led", note: "REQUIRED -- visually distinctive domed package, high recognition value." },
+          { component: "thermistor", note: "REQUIRED -- distinctive bead/disc form, directly supports NTC/PTC recognition." },
+          { component: "transistor", note: "REQUIRED -- distinctive 3-lead TO-92/TO-220-style package." },
+        ] as const
+      ).map(({ component, note }, index) => ({
+        sequence: 24 + index,
+        assetId: `unit202.components.physical.${component}`,
         familyId: "unit202.family.electronic-components",
-        orderInFamily: 2,
-        role: "PHYSICAL_RECOGNITION",
-        displayName: "Physical electronic component companion family",
+        orderInFamily: 2 + index,
+        role: "PHYSICAL_RECOGNITION" as const,
+        displayName: `Physical electronic component — ${component}`,
         loOrLesson: "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
-        priority: "P1",
+        priority: "P1" as const,
         priorityLabel: "P1/P2",
-        productionClass: "PREMIUM_CONCEPTUAL",
+        productionClass: "PREMIUM_CONCEPTUAL" as const,
         productionClassLabel: "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
-        instructionalPurpose:
-          "A physical-appearance companion image per governed component (resistor, capacitor, diode, LED, thermistor, transistor, TRIAC, thyristor/SCR and others where a physical image genuinely improves recognition), paired with its existing deterministic symbol card.",
+        instructionalPurpose: `A physical-appearance companion image for the ${component}, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.`,
         primaryReference: {
-          sourceName: "Physical reference material per component (manufacturer/datasheet photography or equivalent, sourced individually per component)",
+          sourceName: `Physical reference material for the ${component} (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned`,
           sourceUrl: "",
-          licence: "record individually per component when sourced",
-          qualityGrade: "to be assessed per component",
+          licence: "to be recorded when selected",
+          qualityGrade: "to be assessed",
         },
-        referenceReadiness: "READY",
-        annotationPolicy: "TEACHING_EXPLANATORY",
+        referenceReadiness: "READY" as const,
+        annotationPolicy: "TEACHING_EXPLANATORY" as const,
         requiredLabels: ["component name"],
-        immutableFacts: ["package form must be a real, representative physical form for the named component type"],
+        immutableFacts: [`package form must be a real, representative physical form for a ${component}`],
         creativeFreedoms: ["premium photographic-impression rendering", "composition", "lighting"],
         deterministicOverlayResponsibilities: ["pairing with the existing deterministic UK/IEC symbol card"],
-        prohibitedChanges: ["do not invent a misleading package form for any component"],
-        exactDeliverable:
-          "One premium physical-appearance illustration per selected component, matching real, representative package forms. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
-        outputSubfolder: "physical-components",
-        filenameBase: "components-physical-base",
-        canonicalStates: (
-          [
-            { component: "resistor", note: "REQUIRED -- ubiquitous, distinctive banded-body form." },
-            { component: "capacitor", note: "REQUIRED -- distinctive cylindrical/disc forms, genuinely different from a resistor." },
-            { component: "diode", note: "REQUIRED -- small distinctive banded form, directly supports forward/reverse-bias recognition." },
-            { component: "led", note: "REQUIRED -- visually distinctive domed package, high recognition value." },
-            { component: "thermistor", note: "REQUIRED -- distinctive bead/disc form, directly supports NTC/PTC recognition." },
-            { component: "transistor", note: "REQUIRED -- distinctive 3-lead TO-92/TO-220-style package." },
-          ] as const
-        ).map(({ component, note }) => ({
-          stateId: `unit202.components.physical.state.${component}`,
-          displayName: `Physical appearance — ${component}`,
-          pedagogicalState: "MULTI_STATE" as const,
-          annotationPolicy: "TEACHING_EXPLANATORY" as const,
-          requiredLabels: ["component name"],
-          notes: note,
-        })),
-      },
+        prohibitedChanges: [`do not invent a misleading package form for the ${component}`, "do not depict any other component in this asset"],
+        exactDeliverable: `One premium physical-appearance illustration of a ${component}, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        outputSubfolder: "physical-components" as const,
+        filenameBase: `components-physical-${component}-base`,
+        canonicalStates: [
+          {
+            stateId: `unit202.components.physical.${component}.state.teaching`,
+            displayName: `Physical appearance — ${component}`,
+            pedagogicalState: "TEACHING" as const,
+            annotationPolicy: "TEACHING_EXPLANATORY" as const,
+            requiredLabels: ["component name"],
+            notes: note,
+          },
+        ],
+      })),
       {
-        sequence: 25,
+        sequence: 30,
         assetId: "unit202.diode.bias-direction",
         familyId: "unit202.family.electronic-components",
-        orderInFamily: 3,
+        orderInFamily: 8,
         role: "PHENOMENON",
         displayName: "Diode forward/reverse-bias current direction",
         loOrLesson: "LO6 — lesson.electrical.electronic-components-passive",
@@ -1674,10 +1932,10 @@ export const FAMILIES: VisualFamily[] = [
         ],
       },
       {
-        sequence: 26,
+        sequence: 31,
         assetId: "unit202.rectification.waveforms",
         familyId: "unit202.family.electronic-components",
-        orderInFamily: 4,
+        orderInFamily: 9,
         role: "TECHNICAL_DIAGRAM",
         displayName: "Rectifier/inverter output waveform shapes",
         loOrLesson: "LO6 — lesson.electrical.electronic-components-switching-control",
@@ -1737,10 +1995,10 @@ export const FAMILIES: VisualFamily[] = [
         ],
       },
       {
-        sequence: 27,
+        sequence: 32,
         assetId: "unit202.capacitor.transient",
         familyId: "unit202.family.electronic-components",
-        orderInFamily: 5,
+        orderInFamily: 10,
         role: "TECHNICAL_DIAGRAM",
         displayName: "Capacitor RC charge/discharge transient curve",
         loOrLesson: "LO6 — lesson.electrical.electronic-components-passive",
@@ -1789,6 +2047,61 @@ export const FAMILIES: VisualFamily[] = [
           },
         ],
       },
+      // CC-11.7A §1/§2/§9: CC-11.7 audit findings 6-10 ("Physical-recognition
+      // images for zener diode, photodiode, DIAC, TRIAC, thyristor/SCR" --
+      // reports/instructional-visuals/unit202-comprehensive-visual-audit.md
+      // §4) materialised into the live catalogue as USEFUL, not REQUIRED
+      // (§3: the 6 already-REQUIRED components above cover the
+      // highest-value recognition targets; these 5 are genuinely useful
+      // but more specialist). Each is its own ProductionAsset -- the same
+      // "one distinct image, one asset" discipline applied to the REQUIRED
+      // split above -- and each is currently BLOCKED_REFERENCE (no
+      // individually-sourced physical reference approved yet); tracked,
+      // never removed for lacking one (§15).
+      ...(
+        [
+          { component: "zener_diode", displayName: "zener diode" },
+          { component: "photodiode", displayName: "photodiode" },
+          { component: "diac", displayName: "DIAC" },
+          { component: "triac", displayName: "TRIAC" },
+          { component: "thyristor_scr", displayName: "thyristor/SCR" },
+        ] as const
+      ).map(({ component, displayName }, index) => ({
+        sequence: 33 + index,
+        assetId: `unit202.components.physical.${component.replace(/_/g, "-")}`,
+        familyId: "unit202.family.electronic-components",
+        orderInFamily: 11 + index,
+        role: "PHYSICAL_RECOGNITION" as const,
+        displayName: `Physical electronic component — ${displayName}`,
+        loOrLesson: "LO6 — lesson.electrical.electronic-components-switching-control",
+        priority: "P2" as const,
+        priorityLabel: "P2 (secondary queue)",
+        productionClass: "PREMIUM_CONCEPTUAL" as const,
+        productionClassLabel: "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+        instructionalPurpose: `A physical-appearance companion image for the ${displayName}, paired with its existing deterministic UK/IEC symbol card -- more specialist than the six REQUIRED components, genuinely useful but not REQUIRED for Unit 202 visual completeness (CC-11.7 audit finding).`,
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY" as const,
+        annotationPolicy: "TEACHING_EXPLANATORY" as const,
+        requiredLabels: ["component name"],
+        immutableFacts: [`package form must be a real, representative physical form for a ${displayName}`],
+        creativeFreedoms: ["premium photographic-impression rendering", "composition", "lighting"],
+        deterministicOverlayResponsibilities: ["pairing with the existing deterministic UK/IEC symbol card"],
+        prohibitedChanges: [`do not invent a misleading package form for the ${displayName}`, "do not generate until a primary reference is marked READY"],
+        exactDeliverable: `BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a ${displayName}, matching a real, representative package form.`,
+        outputSubfolder: "physical-components" as const,
+        filenameBase: `components-physical-${component.replace(/_/g, "-")}-base`,
+        needOverride: "USEFUL" as const,
+        canonicalStates: [
+          {
+            stateId: `unit202.components.physical.${component.replace(/_/g, "-")}.state.teaching`,
+            displayName: `Physical appearance — ${displayName} (blocked)`,
+            pedagogicalState: "TEACHING" as const,
+            annotationPolicy: "TEACHING_EXPLANATORY" as const,
+            requiredLabels: ["component name"],
+            notes: "CC-11.7 audit finding, USEFUL not REQUIRED -- more specialist than the six REQUIRED components; deferred to the secondary production queue.",
+          },
+        ],
+      })),
     ],
   },
   {
@@ -1800,7 +2113,7 @@ export const FAMILIES: VisualFamily[] = [
       "Single-asset family -- one arrangement, no distinct states or configurations to separate. CC-11.7 audit corroboration: EL-CURRENT-CHEMICAL-EFFECT-001 (electrolysis) has no representation anywhere in the deterministic CC-05D system (none of the 16 blueprints depict a chemistry apparatus), confirming this asset is REQUIRED, not merely USEFUL as originally scoped.",
     assets: [
       {
-        sequence: 28,
+        sequence: 38,
         assetId: "unit202.electrolysis",
         familyId: "unit202.family.electrolysis",
         orderInFamily: 1,
@@ -1855,7 +2168,7 @@ export const FAMILIES: VisualFamily[] = [
     familyNotes: "Single-asset family, reference not yet approved.",
     assets: [
       {
-        sequence: 29,
+        sequence: 39,
         assetId: "unit202.heating-effect",
         familyId: "unit202.family.heating-effect",
         orderInFamily: 1,
@@ -1899,7 +2212,7 @@ export const FAMILIES: VisualFamily[] = [
     familyNotes: "Single-asset family, reference not yet approved.",
     assets: [
       {
-        sequence: 30,
+        sequence: 40,
         assetId: "unit202.conductor-insulator",
         familyId: "unit202.family.conductor-insulator",
         orderInFamily: 1,
@@ -1944,7 +2257,7 @@ export const FAMILIES: VisualFamily[] = [
       "Single-asset family, reference not yet approved. CC-11.7 audit corroboration: a dedicated capability, cap.fault.compare_fuse_breaker, exists with zero visual representation anywhere in the corpus -- the fuse-vs-breaker reset/replace comparison specifically is REQUIRED once a reference is sourced, upgraded from the original blocked/deferred framing; the broader fuse/MCB/RCD physical-recognition need remains USEFUL.",
     assets: [
       {
-        sequence: 31,
+        sequence: 41,
         assetId: "unit202.protective-devices",
         familyId: "unit202.family.protective-devices",
         orderInFamily: 1,
@@ -1988,7 +2301,7 @@ export const FAMILIES: VisualFamily[] = [
     familyNotes: "Single-asset family, tracked for future commissioning only.",
     assets: [
       {
-        sequence: 32,
+        sequence: 42,
         assetId: "unit202.trigonometry",
         familyId: "unit202.family.trigonometry",
         orderInFamily: 1,
@@ -2075,10 +2388,21 @@ export function isPromptable(asset: VisualAsset): boolean {
  */
 export type VisualNeedClassification = "REQUIRED" | "USEFUL" | "NOT_NEEDED" | "DEFERRED_SCOPE" | "BLOCKED_REFERENCE";
 
+/**
+ * CC-11.7A §3: a missing/not-yet-sourced reference still takes priority
+ * over `needOverride` -- an asset can be simultaneously "ultimately
+ * USEFUL, not REQUIRED" and "currently blocked pending a reference" (task
+ * brief §15). Callers that need the "is this asset one of the 10
+ * materialised USEFUL findings" fact independent of its current
+ * reference-blocked status should read `asset.needOverride` directly
+ * (see dashboard.ts's required/useful split and audit.ts's
+ * usefulFindingsMissingFromCatalogue check) rather than this function.
+ */
 export function visualNeedClassificationFor(asset: VisualAsset): VisualNeedClassification {
   if (asset.referenceReadiness === "NOT_READY") return "BLOCKED_REFERENCE";
   if (asset.needsScopeConfirmation) return "DEFERRED_SCOPE";
   if (asset.assetId === "unit202.trigonometry") return "DEFERRED_SCOPE";
+  if (asset.needOverride === "USEFUL") return "USEFUL";
   return "REQUIRED";
 }
 
@@ -2131,6 +2455,22 @@ export function validateCatalogue(families: VisualFamily[] = FAMILIES): string[]
       }
       if (!/^[a-z0-9-]+$/.test(asset.filenameBase)) {
         problems.push(`${asset.assetId}: filenameBase '${asset.filenameBase}' is not a safe lowercase-kebab stem`);
+      }
+
+      // CC-11.7A §7/§8/§9: ONE ART PROMPT PER DISTINCT IMAGE JOB. A
+      // PHYSICAL_RECOGNITION asset depicts one specific physical object --
+      // several such states sharing one asset would mean several genuinely
+      // different images (a resistor is not a capacitor with a toggled
+      // annotation) are being collapsed behind one prompt/filename/save
+      // slot, exactly the granularity error the package's own brief
+      // documents as incorrect. Unlike PHENOMENON/CONFIGURATION/etc. roles
+      // (where multiple states legitimately share one base image via
+      // deterministic annotation), a PHYSICAL_RECOGNITION asset must carry
+      // exactly one state.
+      if (asset.role === "PHYSICAL_RECOGNITION" && asset.canonicalStates.length > 1) {
+        problems.push(
+          `${asset.assetId}: PHYSICAL_RECOGNITION asset has ${asset.canonicalStates.length} canonicalStates -- each distinct physical component/instrument must be its own ProductionAsset with its own prompt and save slot, never combined behind one asset`,
+        );
       }
 
       // CC-11.7 §7/§9: a base asset with zero canonical states is meaningless,

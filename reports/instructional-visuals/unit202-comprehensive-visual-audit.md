@@ -88,3 +88,21 @@ Per task brief §5 ("USEFUL assets may enter a secondary production queue... do 
 - NOT_NEEDED (lesson/concept level, no asset): 12 lessons plus several assertion-level items (§4)
 
 **This count emerged from the audit; it was not chosen in advance.** No target number was set before the research passes ran, and the final number is neither round nor pre-announced anywhere in this package's own working notes.
+
+---
+
+## 7. CC-11.7A addendum — materialising the USEFUL queue and fixing art-job granularity
+
+CC-11.7A is a focused follow-up, not a re-audit: the CC-11.7 audit conclusions above (§1–6) are accepted unchanged. Two production-tooling gaps were fixed.
+
+**7.1 All 10 §4 USEFUL findings materialised into the live catalogue.** Every finding enumerated in §4 above now has a real `assetId`, family assignment, `CanonicalState`, and `needOverride: "USEFUL"` in `tools/visual-production-studio/catalogue.ts` — none exist only in this document or the coverage matrix any more. `usefulTrackedNotCatalogued` is now permanently 0. Reference status was **not** upgraded merely to make an item promptable: 8 of the 10 (everything except the two DETERMINISTIC_TECHNICAL findings, #3 and #5) are currently `BLOCKED_REFERENCE`, honestly reflecting that no individually-sourced physical/photographic reference has been approved for them yet — tracked, never removed, never fabricated. `tools/visual-production-studio/audit.ts`'s `EXPECTED_USEFUL_FINDING_ASSET_IDS` gate fails if any of the 10 is ever silently dropped again.
+
+None were upgraded to REQUIRED. `needOverride: "USEFUL"` is a distinct, permanent field precisely so a materialised finding stays visible in the Studio without inflating REQUIRED completeness — `dashboard.ts` tracks `required`/`useful` and their art-job/approved/outstanding sub-counts as fully independent buckets.
+
+**7.2 `unit202.components.physical` split from 1 asset into 6.** The original single `ProductionAsset` carried 6 `CanonicalState`s (resistor/capacitor/diode/LED/thermistor/transistor) — six genuinely different physical objects sharing one prompt, one filename, one approval slot. This was a real granularity defect (a resistor is not a capacitor with a toggled annotation): split into `unit202.components.physical.resistor` / `.capacitor` / `.diode` / `.led` / `.thermistor` / `.transistor`, each its own asset with its own prompt/filename/save-slot/approval state. REQUIRED classification and READY reference status are unchanged from the pre-split asset — only structural granularity was fixed, per the explicit "do not reopen or weaken the accepted REQUIRED findings" constraint. `catalogue.ts`'s `validateCatalogue()` now mechanically enforces this going forward: a `PHYSICAL_RECOGNITION`-role asset may never carry more than one `CanonicalState`.
+
+The 5 specialist USEFUL physical-recognition findings (§4 items 6–10) were built directly into this corrected shape — 5 independent assets from the start, never a shared "remaining components" asset.
+
+**7.3 Updated counts.** Visual families: 20 → **21** (+1: `unit202.family.current-direction`, hosting the conventional-current-vs-electron-flow finding). Production/base assets: 32 → **47** (+15: +5 from the components.physical split, +10 materialised USEFUL findings). Canonical states: 87 → **98**. REQUIRED assets: 28 → **33** (net +5 from the split; no REQUIRED finding was added or removed otherwise). USEFUL assets (materialised): **10**. Of the 10, 2 are DETERMINISTIC_TECHNICAL and currently READY (no reference-blocking, no art job); 8 are PREMIUM_CONCEPTUAL/HYBRID and currently `BLOCKED_REFERENCE`. Zero of the historical 66 canonical variants were touched — the CC-11.7 reconciliation (§1) remains exact.
+
+**7.4 Art-job accounting now means real manual work.** `dashboard.ts`'s `requiredPremiumHybridArtJobs`/`usefulPremiumHybridArtJobs` count only promptable, non-deterministic assets — i.e. the actual number of separate ChatGPT sessions the Product Owner would need to run, not an abstract asset count. Currently: **25 REQUIRED art jobs**, **0 USEFUL art jobs live** (all 8 non-deterministic USEFUL findings are honestly blocked pending a reference — once one is sourced and marked READY, it becomes a real, separately-trackable art job, never silently folded into an existing prompt).

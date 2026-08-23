@@ -17,6 +17,19 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
     for (const fact of asset.immutableFacts) expect(text).toContain(fact);
   });
 
+  it("CC-11.7A §21/§22: states the need classification (REQUIRED vs USEFUL) so a Product Owner never confuses optional enrichment with REQUIRED completeness", () => {
+    const required = findAsset("unit202.right-hand-grip.teaching")!;
+    expect(buildAssetPrompt(required)).toContain("Need classification: REQUIRED");
+
+    const useful = findAsset("unit202.magnet.permanent-vs-electromagnet")!;
+    expect(useful.needOverride).toBe("USEFUL");
+    // this specific fixture is currently BLOCKED_REFERENCE (no reference sourced yet) -- confirm the classification text still appears on a synthetically-ready clone.
+    const readyUseful = { ...useful, referenceReadiness: "READY" as const, primaryReference: { sourceName: "test", sourceUrl: "", licence: "test", qualityGrade: "test" } };
+    const text = buildAssetPrompt(readyUseful);
+    expect(text).toContain("Need classification: USEFUL");
+    expect(text).toContain("optional enrichment");
+  });
+
   it("includes the critical direction-verification rule (§11) in every generated production prompt (READY, non-scope-blocked entries only)", () => {
     for (const asset of allAssets()) {
       if (asset.referenceReadiness !== "READY" || asset.needsScopeConfirmation || asset.promptable === false) continue;
@@ -24,6 +37,12 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
       expect(text).toContain("Do NOT rely on the text label of an arrow or diagram to infer correctness");
       expect(text).toContain("inspect arrowheads");
     }
+  });
+
+  it("CC-11.7A §11: every promptable asset's generated prompt is byte-unique -- one distinct image job, one distinct prompt, never a shared/generic family prompt", () => {
+    const promptableAssets = allAssets().filter((asset) => asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false);
+    const prompts = promptableAssets.map((asset) => buildAssetPrompt(asset));
+    expect(new Set(prompts).size).toBe(prompts.length);
   });
 
   it("includes the family name/id and this asset's role and position within it", () => {
@@ -132,7 +151,7 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
     });
 
     it("a PREMIUM_CONCEPTUAL asset's prompt also inherits the default background instruction", () => {
-      const asset = findAsset("unit202.components.physical")!;
+      const asset = findAsset("unit202.components.physical.resistor")!;
       expect(asset.productionClass).toBe("PREMIUM_CONCEPTUAL");
       const text = buildAssetPrompt(asset);
       expect(text).toContain("BACKGROUND:");

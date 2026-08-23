@@ -1,6 +1,6 @@
 # ALP Visual Production Studio
 
-**CC-11.5–CC-11.7.** A local, localhost-only development tool for
+**CC-11.5–CC-11.7A.** A local, localhost-only development tool for
 producing and approving premium instructional artwork. **Not
 learner-facing product functionality** -- never imported by
 `apps/mobile` or `apps/web`, never part of the learner runtime.
@@ -26,6 +26,15 @@ enumerates every state it must safely support. See
 §14/§15/§17 for the full architecture, and
 [`reports/instructional-visuals/unit202-comprehensive-visual-audit.md`](../../reports/instructional-visuals/unit202-comprehensive-visual-audit.md)
 for the full-corpus audit this catalogue is derived from.
+
+The Studio is the **complete** Unit 202 visual production queue, not only
+the minimum-REQUIRED one: every REQUIRED asset and every USEFUL
+(optional-enrichment) finding from the CC-11.7 audit has a live catalogue
+presence, tracked in fully independent REQUIRED/USEFUL dashboard buckets
+so optional work can never make REQUIRED completeness look incomplete (or
+vice versa) -- see
+[`unit202-comprehensive-visual-audit.md`](../../reports/instructional-visuals/unit202-comprehensive-visual-audit.md)
+§7 for the CC-11.7A materialisation pass.
 
 This is the manual-assisted production implementation of the approved
 reference-first pipeline recorded in
@@ -95,30 +104,37 @@ Zero new npm dependencies -- a plain `node:http` server plus a static,
 unbundled HTML/CSS/JS page (`public/`), per the task brief's own
 "choose the simplest architecture" guidance.
 
-- `catalogue.ts` -- the structured Unit 202 production catalogue: 20
-  `VisualFamily` entries containing 32 `VisualAsset` (production/base
-  asset) entries, each carrying one or more `CanonicalState` (canonical
-  learner-visible state) entries -- 87 states in total, 26 assets
-  currently promptable. The single source of truth every prompt is built
-  from. Exposes `FAMILIES`, `allAssets()`, `findAsset()`, `findFamily()`,
-  `familyForAsset()`, `isPromptable()`, `promptableAssets()`,
-  `visualNeedClassificationFor()` and `validateCatalogue()`. Also exports
-  `reconciledVariantId()`, which reproduces the real CC-05D
-  `stableVariantId` algorithm so every `CanonicalState.existingCanonicalVariantId`
-  is computed from real inputs, never hand-transcribed.
+- `catalogue.ts` -- the structured Unit 202 production catalogue: 21
+  `VisualFamily` entries containing 47 `VisualAsset` (production/base
+  asset) entries (33 REQUIRED, 10 USEFUL/optional-enrichment via
+  `needOverride: "USEFUL"`), each carrying one or more `CanonicalState`
+  (canonical learner-visible state) entries -- 98 states in total. The
+  single source of truth every prompt is built from. Exposes `FAMILIES`,
+  `allAssets()`, `findAsset()`, `findFamily()`, `familyForAsset()`,
+  `isPromptable()`, `promptableAssets()`, `visualNeedClassificationFor()`
+  and `validateCatalogue()` -- the latter also enforces "one art prompt
+  per distinct image job": a `PHYSICAL_RECOGNITION`-role asset (one
+  specific physical component/instrument) may never carry more than one
+  `CanonicalState`. Also exports `reconciledVariantId()`, which
+  reproduces the real CC-05D `stableVariantId` algorithm so every
+  `CanonicalState.existingCanonicalVariantId` is computed from real
+  inputs, never hand-transcribed.
 - `audit.ts` -- the comprehensive catalogue's own completeness gate
   (`npm run visuals:studio:audit`). Fails if any of the 66 pre-existing
-  CC-05D canonical variants is no longer reconciled by any state, a
-  REQUIRED premium/hybrid asset has no working prompt or no
-  reference/BLOCKED_REFERENCE status, a canonical state has no
-  pedagogical state, an ASSESSMENT state leaks a known answer-bearing
-  mnemonic dependency, or any id is duplicated.
-- `dashboard.ts` -- computes the Studio's 12 distinct dashboard counts
-  (families / production assets / canonical states / REQUIRED / USEFUL
-  tracked-but-uncatalogued / deterministic-only / premium-hybrid art jobs
-  / approved / outstanding / BLOCKED_REFERENCE / DEFERRED_SCOPE /
-  SUPERSEDED) mechanically from live catalogue + status data -- never a
-  single misleading total.
+  CC-05D canonical variants is no longer reconciled by any state, any of
+  the 10 CC-11.7 USEFUL findings (`EXPECTED_USEFUL_FINDING_ASSET_IDS`) is
+  missing from the live catalogue, a premium/hybrid asset has no working
+  prompt or no reference/BLOCKED_REFERENCE status, a canonical state has
+  no pedagogical state, an ASSESSMENT state leaks a known answer-bearing
+  mnemonic dependency, any structural rule from `validateCatalogue()` is
+  violated, or any id is duplicated.
+- `dashboard.ts` -- computes the Studio's dashboard counts (families /
+  production assets / canonical states / REQUIRED / USEFUL /
+  deterministic-only / REQUIRED art jobs / USEFUL art jobs / total art
+  jobs / approved / outstanding, each split by REQUIRED vs USEFUL /
+  BLOCKED_REFERENCE / DEFERRED_SCOPE / SUPERSEDED) mechanically from live
+  catalogue + status data -- REQUIRED and USEFUL are tracked as fully
+  independent buckets throughout, never a single misleading total.
 - `generate-matrix.ts` -- generates the machine-readable comprehensive
   visual-coverage matrix (`npm run visuals:studio:matrix`,
   `reports/instructional-visuals/unit202-visual-coverage-matrix.json`).

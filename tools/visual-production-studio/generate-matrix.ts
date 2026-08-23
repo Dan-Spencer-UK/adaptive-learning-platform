@@ -1,10 +1,15 @@
 /**
- * CC-11.7 §22: generates the machine-readable Unit 202 comprehensive
- * visual-coverage matrix. Every REQUIRED/BLOCKED_REFERENCE/DEFERRED_SCOPE
- * row is derived directly from the live catalogue (never hand-typed, so
- * it can never silently drift from the real data); the USEFUL/NOT_NEEDED
- * rows record findings that were deliberately not materialised as
- * catalogue assets (task brief §5) and are sourced from
+ * CC-11.7 §22 / CC-11.7A §25: generates the machine-readable Unit 202
+ * comprehensive visual-coverage matrix. Every REQUIRED/USEFUL/
+ * BLOCKED_REFERENCE/DEFERRED_SCOPE row is derived directly from the live
+ * catalogue (never hand-typed, so it can never silently drift from the
+ * real data). CC-11.7A materialised all 10 CC-11.7 USEFUL findings into
+ * the live catalogue (audit.ts's EXPECTED_USEFUL_FINDING_ASSET_IDS), so
+ * `USEFUL_UNCATALOGUED_ROWS` below is now empty -- kept as an explicit,
+ * empty, documented list (not deleted) so a future genuinely-uncataloguable
+ * finding has an obvious place to go, per task brief §25's "this should be
+ * exceptional" framing. The `NOT_NEEDED_ROWS` (lesson-level, no visual
+ * component at all) are unaffected by CC-11.7A and remain sourced from
  * reports/instructional-visuals/unit202-comprehensive-visual-audit.md.
  *
  * Usage: node tools/visual-production-studio/generate-matrix.ts
@@ -54,19 +59,14 @@ function catalogueRow(asset: VisualAsset): MatrixRow {
   };
 }
 
-/** §4 of the audit report -- USEFUL findings deliberately not materialised as catalogue assets this pass. */
-const USEFUL_UNCATALOGUED_ROWS: MatrixRow[] = [
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO2 — lesson.electrical.instrumentation", displayName: "Clamp meter recognition", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "EL-INSTRUMENT-CLAMP-METER-001; distinctive ferrite-jaw physical form." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO2 — lesson.electrical.instrumentation", displayName: "Oscilloscope recognition", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "EL-INSTRUMENT-OSCILLOSCOPE-001." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO4 — lesson.electrical.charge-and-current", displayName: "Electron flow vs conventional current direction", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "Targets MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001; no dedicated QuestionBlueprint yet." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO5 — lesson.magnetism.fundamentals", displayName: "Permanent magnet vs electromagnet comparison", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "cap.magnetism.compare_permanent_electromagnet; Level 2 depth keeps it below REQUIRED." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO3 — lesson.foundation.physics.simple-machines", displayName: "Gear rotation-direction reversal / idler gear", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "FP-GEAR-DIRECTION-REVERSAL-001, FP-GEAR-IDLER-001; SUPPORTS-only, non-mandatory." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO6 — lesson.electrical.electronic-components-passive", displayName: "Physical recognition — zener diode", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "Specialist component; deferred to secondary queue." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO6 — lesson.electrical.electronic-components-passive", displayName: "Physical recognition — photodiode", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "Specialist component; deferred to secondary queue." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO6 — lesson.electrical.electronic-components-switching-control", displayName: "Physical recognition — DIAC", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "Specialist component; deferred to secondary queue." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO6 — lesson.electrical.electronic-components-switching-control", displayName: "Physical recognition — TRIAC", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "Specialist component; deferred to secondary queue." },
-  { kind: "USEFUL_UNCATALOGUED", loOrLesson: "LO6 — lesson.electrical.electronic-components-switching-control", displayName: "Physical recognition — thyristor/SCR", needClassification: "USEFUL", existing66Mapped: false, gapStatus: "USEFUL", notes: "Specialist component; deferred to secondary queue." },
-];
+/**
+ * CC-11.7A §25: empty by design -- all 10 CC-11.7 USEFUL findings this
+ * list previously held are now materialised as live `CATALOGUED_ASSET`
+ * rows (see `catalogueRow`/`allAssets()` below), each carrying
+ * `needClassification: "USEFUL"`. Reserved for a future genuinely
+ * non-materialisable finding, which task brief §25 frames as exceptional.
+ */
+const USEFUL_UNCATALOGUED_ROWS: MatrixRow[] = [];
 
 /** §4 of the audit report -- confirmed NOT_NEEDED at lesson granularity. */
 const NOT_NEEDED_ROWS: MatrixRow[] = [

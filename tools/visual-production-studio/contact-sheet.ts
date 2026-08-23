@@ -10,7 +10,7 @@
 import { readFileSync } from "node:fs";
 import { relative } from "node:path";
 
-import { allAssets, FAMILIES, type VisualFamily } from "./catalogue.ts";
+import { allAssets, FAMILIES, findAsset, visualNeedClassificationFor, type VisualFamily } from "./catalogue.ts";
 import { loadManifest, type ManifestEntry } from "./state-store.ts";
 import { MANIFEST_PATH, REPO_ROOT } from "./paths.ts";
 
@@ -38,13 +38,21 @@ function mimeToDataUri(path: string, mimeType: string): string | null {
   }
 }
 
+/** CC-11.7A §24: REQUIRED and USEFUL approved artwork must remain distinguishable on the contact sheet, never hidden. */
+function classificationBadgeHtml(entry: ManifestEntry): string {
+  const asset = findAsset(entry.assetId);
+  const classification = asset ? visualNeedClassificationFor(asset) : "REQUIRED";
+  const cssClass = classification === "USEFUL" ? "badge-useful" : "badge-required";
+  return `<span class="badge ${cssClass}">${esc(classification)}</span>`;
+}
+
 function assetCardHtml(entry: ManifestEntry): string {
   const thumb = mimeToDataUri(entry.outputPath, entry.mimeType);
   const relativePath = relative(REPO_ROOT, entry.outputPath).replace(/\\/g, "/");
   return `
 <section class="card">
   <div class="thumb">${thumb ? `<img src="${thumb}" alt="${esc(entry.displayName)}" />` : `<div class="missing">file not found on disk: ${esc(relativePath)}</div>`}</div>
-  <h3>${esc(entry.displayName)}</h3>
+  <h3>${esc(entry.displayName)} ${classificationBadgeHtml(entry)}</h3>
   <dl>
     <dt>Asset ID</dt><dd><code>${esc(entry.assetId)}</code></dd>
     <dt>Reference</dt><dd>${esc(entry.referenceSource)}${entry.referenceUrl ? ` — <a href="${esc(entry.referenceUrl)}">${esc(entry.referenceUrl)}</a>` : ""}</dd>
@@ -97,7 +105,10 @@ export function buildContactSheetHtml(manifestPath: string = MANIFEST_PATH): str
   .thumb { background: #05060a; border-radius: 8px; overflow: hidden; margin-bottom: 10px; min-height: 140px; display: flex; align-items: center; justify-content: center; }
   .thumb img { max-width: 100%; max-height: 320px; display: block; }
   .missing { color: #ff6b6b; font-size: 12px; padding: 12px; }
-  h3 { font-size: 14px; margin: 0 0 8px; }
+  h3 { font-size: 14px; margin: 0 0 8px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .badge { font-size: 9px; font-weight: 700; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 4px; }
+  .badge-required { background: #1d3a2a; color: #4CD07A; }
+  .badge-useful { background: #2a2410; color: #E0B84C; }
   dl { display: grid; grid-template-columns: 90px 1fr; gap: 4px 8px; font-size: 12px; margin: 0; }
   dt { color: #9AA3B2; }
   dd { margin: 0; word-break: break-word; }

@@ -20,8 +20,30 @@ import { fileURLToPath } from "node:url";
 import { CANONICAL_VARIANT_BUILDERS } from "../../scripts/visual-governance/data/canonical-variants.ts";
 import { visualSemanticContracts } from "../../scripts/visual-governance/data/cc05d-visual-contracts-unit202.ts";
 
-import { allAssets, FAMILIES, isPromptable } from "./catalogue.ts";
+import { allAssets, FAMILIES, isPromptable, validateCatalogue } from "./catalogue.ts";
 import { buildAssetPrompt } from "./prompt-builder.ts";
+
+/**
+ * CC-11.7A §2/§26: the exact 10 USEFUL findings the CC-11.7 audit report
+ * (reports/instructional-visuals/unit202-comprehensive-visual-audit.md §4)
+ * recorded, mechanically enumerated from that report -- not invented here.
+ * Every one of these assetIds must exist in the live catalogue with
+ * `needOverride: "USEFUL"`, or this gate fails (task brief §1's
+ * acceptance criterion: "0 CC-11.7 USEFUL findings remain
+ * documentation-only").
+ */
+export const EXPECTED_USEFUL_FINDING_ASSET_IDS: readonly string[] = [
+  "unit202.instrument.clamp-meter", // finding 1
+  "unit202.instrument.oscilloscope", // finding 2
+  "unit202.current-direction.electron-flow-vs-conventional", // finding 3
+  "unit202.magnet.permanent-vs-electromagnet", // finding 4
+  "unit202.gears.rotation-direction", // finding 5
+  "unit202.components.physical.zener-diode", // finding 6
+  "unit202.components.physical.photodiode", // finding 7
+  "unit202.components.physical.diac", // finding 8
+  "unit202.components.physical.triac", // finding 9
+  "unit202.components.physical.thyristor-scr", // finding 10
+];
 
 export interface AuditReport {
   totalRealCanonicalVariants: number;
@@ -33,6 +55,10 @@ export interface AuditReport {
   stateWithNoPedagogicalState: string[];
   assessmentLeaksMnemonic: string[];
   duplicateIds: string[];
+  /** CC-11.7A §1/§26: a CC-11.7 USEFUL finding that has no live catalogue asset at all, or exists but is missing `needOverride: "USEFUL"`. */
+  usefulFindingsMissingFromCatalogue: string[];
+  /** CC-11.7A §7/§8/§9/§26: catalogue structural-integrity problems, including "ONE ART PROMPT PER DISTINCT IMAGE JOB" violations -- see `validateCatalogue()` in catalogue.ts. */
+  catalogueStructuralProblems: string[];
 }
 
 /** Recomputes the real 66 (or however many the live CC-05D system currently declares) canonical-variant ids directly from source -- never trusts the catalogue's own claims. */
@@ -109,6 +135,22 @@ export function buildAuditReport(families = FAMILIES): AuditReport {
     }
   }
 
+  // CC-11.7A §1/§26: every accepted CC-11.7 USEFUL finding must have a live
+  // catalogue presence with needOverride: "USEFUL" -- recomputed from the
+  // fixed, mechanically-enumerated finding list, never trusted from a
+  // dashboard count alone.
+  const usefulFindingsMissingFromCatalogue: string[] = [];
+  for (const assetId of EXPECTED_USEFUL_FINDING_ASSET_IDS) {
+    const asset = assets.find((a) => a.assetId === assetId);
+    if (!asset) {
+      usefulFindingsMissingFromCatalogue.push(`${assetId} (no catalogue asset with this id)`);
+    } else if (asset.needOverride !== "USEFUL") {
+      usefulFindingsMissingFromCatalogue.push(`${assetId} (exists but missing needOverride: "USEFUL")`);
+    }
+  }
+
+  const catalogueStructuralProblems = validateCatalogue(families);
+
   return {
     totalRealCanonicalVariants: realIds.size,
     unmappedExistingVariants,
@@ -119,6 +161,8 @@ export function buildAuditReport(families = FAMILIES): AuditReport {
     stateWithNoPedagogicalState,
     assessmentLeaksMnemonic,
     duplicateIds,
+    usefulFindingsMissingFromCatalogue,
+    catalogueStructuralProblems,
   };
 }
 
@@ -131,7 +175,9 @@ export function isAuditClean(report: AuditReport): boolean {
     report.familyReferencesNonexistentBlueprint.length === 0 &&
     report.stateWithNoPedagogicalState.length === 0 &&
     report.assessmentLeaksMnemonic.length === 0 &&
-    report.duplicateIds.length === 0
+    report.duplicateIds.length === 0 &&
+    report.usefulFindingsMissingFromCatalogue.length === 0 &&
+    report.catalogueStructuralProblems.length === 0
   );
 }
 
@@ -156,6 +202,10 @@ export function formatAuditReport(report: AuditReport): string {
   if (report.assessmentLeaksMnemonic.length) lines.push(`    ${report.assessmentLeaksMnemonic.join("; ")}`);
   lines.push(`Duplicate ids (family/asset/state, target 0, FATAL): ${report.duplicateIds.length}`);
   if (report.duplicateIds.length) lines.push(`    ${report.duplicateIds.join("; ")}`);
+  lines.push(`CC-11.7 USEFUL findings missing from the live catalogue (target 0, FATAL): ${report.usefulFindingsMissingFromCatalogue.length}`);
+  if (report.usefulFindingsMissingFromCatalogue.length) lines.push(`    ${report.usefulFindingsMissingFromCatalogue.join("; ")}`);
+  lines.push(`Catalogue structural problems, incl. one-art-prompt-per-distinct-image-job violations (target 0, FATAL): ${report.catalogueStructuralProblems.length}`);
+  if (report.catalogueStructuralProblems.length) lines.push(`    ${report.catalogueStructuralProblems.join("; ")}`);
   return lines.join("\n");
 }
 

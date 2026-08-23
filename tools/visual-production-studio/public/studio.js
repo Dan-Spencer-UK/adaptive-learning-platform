@@ -9,15 +9,23 @@
 // controls. Grouping only changes how cards are visually organised on
 // the page (collapsible family sections), never how many prompts exist.
 
+// CC-11.7A §5: at least ALL / REQUIRED / USEFUL / BLOCKED / DETERMINISTIC /
+// PREMIUM-HYBRID / APPROVED / OUTSTANDING, plus the pre-existing P0-P2 and
+// output-subfolder filters.
 const FILTERS = [
   { id: "all", label: "All" },
+  { id: "required", label: "Required" },
+  { id: "useful", label: "Useful" },
   { id: "P0", label: "P0" },
   { id: "P1", label: "P1" },
   { id: "P2", label: "P2" },
+  { id: "premium-hybrid", label: "Premium/Hybrid" },
+  { id: "deterministic", label: "Deterministic" },
   { id: "teaching", label: "Teaching illustration" },
   { id: "hybrid", label: "Hybrid" },
   { id: "deterministic-polish", label: "Deterministic/polish" },
   { id: "conceptual", label: "Conceptual" },
+  { id: "blocked", label: "Blocked" },
   { id: "approved", label: "Approved" },
   { id: "outstanding", label: "Outstanding" },
 ];
@@ -95,6 +103,17 @@ function isPromptable(asset) {
   return asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false;
 }
 
+// Mirrors catalogue.ts's visualNeedClassificationFor() exactly -- the
+// client has no server round-trip for this, so it must stay byte-for-byte
+// equivalent to the source of truth.
+function needClassificationFor(asset) {
+  if (asset.referenceReadiness === "NOT_READY") return "BLOCKED_REFERENCE";
+  if (asset.needsScopeConfirmation) return "DEFERRED_SCOPE";
+  if (asset.assetId === "unit202.trigonometry") return "DEFERRED_SCOPE";
+  if (asset.needOverride === "USEFUL") return "USEFUL";
+  return "REQUIRED";
+}
+
 // ---------------------------------------------------------------------
 // Prompt accounting (family count / asset count / promptable count)
 // ---------------------------------------------------------------------
@@ -122,21 +141,31 @@ function renderProgress() {
   $("#stat-blocked").textContent = buckets.blocked;
 }
 
-/** CC-11.7 §19: the comprehensive-catalogue dashboard -- distinct counts, never one misleading total. */
+/**
+ * CC-11.7 §19 / CC-11.7A §21/§22: the comprehensive-catalogue dashboard --
+ * distinct counts, never one misleading total, with REQUIRED and USEFUL
+ * kept as fully independent buckets throughout so USEFUL progress can
+ * never make REQUIRED completeness look incomplete (or vice versa).
+ */
 async function renderDashboard() {
   const d = await api("/api/dashboard");
   $("#dash-families").textContent = d.visualFamilies;
   $("#dash-assets").textContent = d.productionBaseAssets;
   $("#dash-states").textContent = d.canonicalLearnerVisibleStates;
   $("#dash-required").textContent = d.required;
-  $("#dash-useful").textContent = d.usefulTrackedNotCatalogued;
+  $("#dash-useful").textContent = d.useful;
   $("#dash-deterministic").textContent = d.deterministicOnly;
+  $("#dash-required-artjobs").textContent = d.requiredPremiumHybridArtJobs;
+  $("#dash-useful-artjobs").textContent = d.usefulPremiumHybridArtJobs;
   $("#dash-artjobs").textContent = d.premiumHybridArtJobs;
   $("#dash-approved").textContent = d.approved;
   $("#dash-outstanding").textContent = d.outstanding;
   $("#dash-blocked").textContent = d.blockedReference;
   $("#dash-deferred").textContent = d.deferredScope;
   $("#dash-superseded").textContent = d.superseded;
+
+  $("#rvo-required-progress").textContent = `${d.approvedRequired} / ${d.requiredPremiumHybridArtJobs} APPROVED`;
+  $("#rvo-useful-progress").textContent = `${d.approvedUseful} / ${d.usefulPremiumHybridArtJobs} APPROVED`;
 }
 
 // ---------------------------------------------------------------------
@@ -145,6 +174,11 @@ async function renderDashboard() {
 
 function assetMatchesFilter(asset, filterId) {
   if (filterId === "all") return true;
+  if (filterId === "required") return needClassificationFor(asset) === "REQUIRED";
+  if (filterId === "useful") return needClassificationFor(asset) === "USEFUL";
+  if (filterId === "blocked") return needClassificationFor(asset) === "BLOCKED_REFERENCE";
+  if (filterId === "premium-hybrid") return asset.productionClass === "PREMIUM_CONCEPTUAL" || asset.productionClass === "HYBRID";
+  if (filterId === "deterministic") return asset.productionClass === "DETERMINISTIC_TECHNICAL";
   if (filterId === "P0" || filterId === "P1" || filterId === "P2") return asset.priority === filterId;
   if (filterId === "teaching" || filterId === "hybrid" || filterId === "deterministic-polish" || filterId === "conceptual") {
     return asset.outputSubfolder === filterId;
@@ -245,6 +279,10 @@ function renderCard(asset) {
 
   card.querySelector(".card-seq").textContent = "#" + asset.sequence.toString().padStart(2, "0");
   card.querySelector(".card-name").textContent = asset.displayName;
+  const needBadge = card.querySelector(".need-badge");
+  const needClassification = needClassificationFor(asset);
+  needBadge.textContent = needClassification;
+  needBadge.className = "badge need-badge need-" + needClassification.toLowerCase().replace(/_/g, "-");
   card.querySelector(".asset-id").textContent = asset.assetId;
   card.querySelector(".role").textContent = asset.role;
   card.querySelector(".lo").textContent = asset.loOrLesson || "LO/lesson: n/a";

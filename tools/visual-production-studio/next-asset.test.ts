@@ -85,6 +85,27 @@ describe("pickNextAsset", () => {
     expect(pickNextAsset(syntheticFamilies, state)?.assetId).toBe("synthetic.ready-sibling");
   });
 
+  it("CC-11.7A §5/§23: never recommends a USEFUL asset ahead of an actionable REQUIRED one, even when the USEFUL asset has a higher (lower-numbered) priority", () => {
+    const requiredBase = findAsset("unit202.right-hand-grip.teaching")!;
+    const usefulBase = findAsset("unit202.gears.rotation-direction")!; // DETERMINISTIC + promptable:false in reality -- override for this synthetic fixture
+    const syntheticFamilies: VisualFamily[] = [
+      {
+        familyId: "synthetic.required-vs-useful",
+        displayName: "Synthetic required vs useful",
+        instructionalPurpose: "test",
+        assets: [
+          { ...usefulBase, assetId: "synthetic.useful-p0", orderInFamily: 1, priority: "P0", promptable: true, needOverride: "USEFUL" },
+          { ...requiredBase, assetId: "synthetic.required-p2", orderInFamily: 2, priority: "P2" },
+        ],
+      },
+    ];
+    const state: StudioState = {
+      "synthetic.useful-p0": { status: "READY_TO_PROMPT", updatedAt: "" },
+      "synthetic.required-p2": { status: "READY_TO_PROMPT", updatedAt: "" },
+    };
+    expect(pickNextAsset(syntheticFamilies, state)?.assetId).toBe("synthetic.required-p2");
+  });
+
   it("a sanity check that the fixture asset ids referenced above actually exist in the real catalogue", () => {
     for (const id of ["unit202.current-conductor.magnetic-field", "unit202.waveform.sine", "unit202.magnet.field", "unit202.fleming-left-hand.teaching", "unit202.components.symbols"]) {
       expect(findAsset(id)).toBeDefined();

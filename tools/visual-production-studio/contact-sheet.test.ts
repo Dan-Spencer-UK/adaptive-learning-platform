@@ -98,4 +98,22 @@ describe("buildContactSheetHtml", () => {
     const html = buildContactSheetHtml(manifestPath);
     expect(html).not.toContain("Lever classes"); // a family with zero approvals never gets a section
   });
+
+  it("CC-11.7A §24: distinguishes REQUIRED from USEFUL approved assets with a visible badge", () => {
+    const manifestPath = tempManifestPath();
+    appendManifestEntry(sampleEntry(), manifestPath); // unit202.right-hand-grip.teaching -- REQUIRED
+    appendManifestEntry(
+      sampleEntry({
+        assetId: "unit202.gears.rotation-direction",
+        displayName: "Gear rotation-direction reversal / idler gear",
+        visualFamilyId: "unit202.family.gears",
+        filename: "gears-rotation-direction-base-v1.png",
+      }),
+      manifestPath,
+    ); // USEFUL
+
+    const html = buildContactSheetHtml(manifestPath);
+    expect(html).toContain('<span class="badge badge-required">REQUIRED</span>');
+    expect(html).toContain('<span class="badge badge-useful">USEFUL</span>');
+  });
 });

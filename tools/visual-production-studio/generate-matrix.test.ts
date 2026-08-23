@@ -10,9 +10,14 @@ describe("buildMatrix", () => {
     expect(catalogued.length).toBe(allAssets().length);
   });
 
-  it("includes USEFUL_UNCATALOGUED and NOT_NEEDED rows from the audit findings", () => {
-    expect(matrix.rows.some((row) => row.kind === "USEFUL_UNCATALOGUED")).toBe(true);
+  it("includes NOT_NEEDED rows from the audit findings", () => {
     expect(matrix.rows.some((row) => row.kind === "NOT_NEEDED")).toBe(true);
+  });
+
+  it("CC-11.7A §25: zero USEFUL_UNCATALOGUED rows -- all 10 CC-11.7 USEFUL findings are now live CATALOGUED_ASSET rows with needClassification USEFUL", () => {
+    expect(matrix.rows.filter((row) => row.kind === "USEFUL_UNCATALOGUED")).toHaveLength(0);
+    const usefulCatalogued = matrix.rows.filter((row) => row.kind === "CATALOGUED_ASSET" && row.needClassification === "USEFUL");
+    expect(usefulCatalogued.length).toBeGreaterThan(0);
   });
 
   it("every CATALOGUED_ASSET row's existing66Mapped flag matches whether any of its states reconciles to a real CC-05D variant", () => {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T21:57:17.252Z",
+  "generatedAt": "2026-08-23T22:35:32.160Z",
   "rows": [
     {
       "kind": "CATALOGUED_ASSET",
@@ -350,6 +350,25 @@
     },
     {
       "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO5 — lesson.magnetism.fundamentals",
+      "assetId": "unit202.magnet.permanent-vs-electromagnet",
+      "familyId": "unit202.family.magnetism",
+      "familyDisplayName": "Magnetism — field and pole interaction",
+      "displayName": "Permanent magnet vs electromagnet comparison",
+      "needClassification": "BLOCKED_REFERENCE",
+      "productionClass": "HYBRID",
+      "referenceReadiness": "NOT_READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.magnet.permanent-vs-electromagnet.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "BLOCKED_REFERENCE"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO4 — lesson.electrical.resistors-series",
       "assetId": "unit202.circuit.series",
       "familyId": "unit202.family.circuit-series",
@@ -475,6 +494,63 @@
     },
     {
       "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO2 — lesson.electrical.instrumentation",
+      "assetId": "unit202.instrument.clamp-meter",
+      "familyId": "unit202.family.instrument-connections",
+      "familyDisplayName": "Instrument connections",
+      "displayName": "Clamp meter recognition",
+      "needClassification": "BLOCKED_REFERENCE",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "NOT_READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.instrument.clamp-meter.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "BLOCKED_REFERENCE"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO2 — lesson.electrical.instrumentation",
+      "assetId": "unit202.instrument.oscilloscope",
+      "familyId": "unit202.family.instrument-connections",
+      "familyDisplayName": "Instrument connections",
+      "displayName": "Oscilloscope recognition",
+      "needClassification": "BLOCKED_REFERENCE",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "NOT_READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.instrument.oscilloscope.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "BLOCKED_REFERENCE"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO4 — lesson.electrical.charge-and-current",
+      "assetId": "unit202.current-direction.electron-flow-vs-conventional",
+      "familyId": "unit202.family.current-direction",
+      "familyDisplayName": "Conventional current vs electron flow",
+      "displayName": "Conventional current vs electron flow",
+      "needClassification": "USEFUL",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.current-direction.electron-flow-vs-conventional.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "USEFUL"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO3 — lesson.foundation.physics.simple-machines",
       "assetId": "unit202.gears",
       "familyId": "unit202.family.gears",
@@ -502,6 +578,29 @@
       ],
       "existing66Mapped": true,
       "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO3 — lesson.foundation.physics.simple-machines",
+      "assetId": "unit202.gears.rotation-direction",
+      "familyId": "unit202.family.gears",
+      "familyDisplayName": "Driver/driven gears",
+      "displayName": "Gear rotation-direction reversal / idler gear",
+      "needClassification": "USEFUL",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.gears.rotation-direction.state.direct-mesh-opposite-directions",
+          "pedagogicalState": "TEACHING"
+        },
+        {
+          "stateId": "unit202.gears.rotation-direction.state.idler-preserves-driver-direction",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "USEFUL"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -691,37 +790,112 @@
     {
       "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
-      "assetId": "unit202.components.physical",
+      "assetId": "unit202.components.physical.resistor",
       "familyId": "unit202.family.electronic-components",
       "familyDisplayName": "Electronic components — recognition",
-      "displayName": "Physical electronic component companion family",
+      "displayName": "Physical electronic component — resistor",
       "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "READY",
       "canonicalStates": [
         {
-          "stateId": "unit202.components.physical.state.resistor",
-          "pedagogicalState": "MULTI_STATE"
-        },
+          "stateId": "unit202.components.physical.resistor.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+      "assetId": "unit202.components.physical.capacitor",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — capacitor",
+      "needClassification": "REQUIRED",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.components.physical.state.capacitor",
-          "pedagogicalState": "MULTI_STATE"
-        },
+          "stateId": "unit202.components.physical.capacitor.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+      "assetId": "unit202.components.physical.diode",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — diode",
+      "needClassification": "REQUIRED",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.components.physical.state.diode",
-          "pedagogicalState": "MULTI_STATE"
-        },
+          "stateId": "unit202.components.physical.diode.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+      "assetId": "unit202.components.physical.led",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — led",
+      "needClassification": "REQUIRED",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.components.physical.state.led",
-          "pedagogicalState": "MULTI_STATE"
-        },
+          "stateId": "unit202.components.physical.led.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+      "assetId": "unit202.components.physical.thermistor",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — thermistor",
+      "needClassification": "REQUIRED",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.components.physical.state.thermistor",
-          "pedagogicalState": "MULTI_STATE"
-        },
+          "stateId": "unit202.components.physical.thermistor.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+      "assetId": "unit202.components.physical.transistor",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — transistor",
+      "needClassification": "REQUIRED",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.components.physical.state.transistor",
-          "pedagogicalState": "MULTI_STATE"
+          "stateId": "unit202.components.physical.transistor.state.teaching",
+          "pedagogicalState": "TEACHING"
         }
       ],
       "existing66Mapped": false,
@@ -799,6 +973,101 @@
       ],
       "existing66Mapped": false,
       "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-switching-control",
+      "assetId": "unit202.components.physical.zener-diode",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — zener diode",
+      "needClassification": "BLOCKED_REFERENCE",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "NOT_READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.components.physical.zener-diode.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "BLOCKED_REFERENCE"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-switching-control",
+      "assetId": "unit202.components.physical.photodiode",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — photodiode",
+      "needClassification": "BLOCKED_REFERENCE",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "NOT_READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.components.physical.photodiode.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "BLOCKED_REFERENCE"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-switching-control",
+      "assetId": "unit202.components.physical.diac",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — DIAC",
+      "needClassification": "BLOCKED_REFERENCE",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "NOT_READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.components.physical.diac.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "BLOCKED_REFERENCE"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-switching-control",
+      "assetId": "unit202.components.physical.triac",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — TRIAC",
+      "needClassification": "BLOCKED_REFERENCE",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "NOT_READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.components.physical.triac.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "BLOCKED_REFERENCE"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-switching-control",
+      "assetId": "unit202.components.physical.thyristor-scr",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Physical electronic component — thyristor/SCR",
+      "needClassification": "BLOCKED_REFERENCE",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "referenceReadiness": "NOT_READY",
+      "canonicalStates": [
+        {
+          "stateId": "unit202.components.physical.thyristor-scr.state.teaching",
+          "pedagogicalState": "TEACHING"
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "BLOCKED_REFERENCE"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -894,96 +1163,6 @@
       ],
       "existing66Mapped": false,
       "gapStatus": "DEFERRED_SCOPE"
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO2 — lesson.electrical.instrumentation",
-      "displayName": "Clamp meter recognition",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "EL-INSTRUMENT-CLAMP-METER-001; distinctive ferrite-jaw physical form."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO2 — lesson.electrical.instrumentation",
-      "displayName": "Oscilloscope recognition",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "EL-INSTRUMENT-OSCILLOSCOPE-001."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO4 — lesson.electrical.charge-and-current",
-      "displayName": "Electron flow vs conventional current direction",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "Targets MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001; no dedicated QuestionBlueprint yet."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO5 — lesson.magnetism.fundamentals",
-      "displayName": "Permanent magnet vs electromagnet comparison",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "cap.magnetism.compare_permanent_electromagnet; Level 2 depth keeps it below REQUIRED."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO3 — lesson.foundation.physics.simple-machines",
-      "displayName": "Gear rotation-direction reversal / idler gear",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "FP-GEAR-DIRECTION-REVERSAL-001, FP-GEAR-IDLER-001; SUPPORTS-only, non-mandatory."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive",
-      "displayName": "Physical recognition — zener diode",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "Specialist component; deferred to secondary queue."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive",
-      "displayName": "Physical recognition — photodiode",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "Specialist component; deferred to secondary queue."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO6 — lesson.electrical.electronic-components-switching-control",
-      "displayName": "Physical recognition — DIAC",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "Specialist component; deferred to secondary queue."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO6 — lesson.electrical.electronic-components-switching-control",
-      "displayName": "Physical recognition — TRIAC",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "Specialist component; deferred to secondary queue."
-    },
-    {
-      "kind": "USEFUL_UNCATALOGUED",
-      "loOrLesson": "LO6 — lesson.electrical.electronic-components-switching-control",
-      "displayName": "Physical recognition — thyristor/SCR",
-      "needClassification": "USEFUL",
-      "existing66Mapped": false,
-      "gapStatus": "USEFUL",
-      "notes": "Specialist component; deferred to secondary queue."
     },
     {
       "kind": "NOT_NEEDED",

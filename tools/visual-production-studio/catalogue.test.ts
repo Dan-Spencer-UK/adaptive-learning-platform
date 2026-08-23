@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { allAssets, FAMILIES, familyForAsset, findAsset, findFamily, isPromptable, promptableAssets, validateCatalogue, type VisualFamily } from "./catalogue.ts";
+import { allAssets, FAMILIES, familyForAsset, findAsset, findFamily, isPromptable, promptableAssets, validateCatalogue, visualNeedClassificationFor, type VisualFamily } from "./catalogue.ts";
 
 describe("FAMILIES", () => {
   it("has zero validation problems -- unique family/asset ids, sequences, filename stems, and consistent enum/readiness/role/order fields", () => {
@@ -207,5 +207,52 @@ describe("prompt accounting -- a VisualFamily is an organisational grouping only
   it("an ordinary style-reference deterministic asset (not explicitly promptable:false) still counts as promptable", () => {
     const asset = findAsset("unit202.waveform.sine")!;
     expect(isPromptable(asset)).toBe(true);
+  });
+
+  it("every promptable asset has a globally unique filenameBase -- one distinct image job, one independent save destination", () => {
+    const promptable = promptableAssets();
+    const stems = promptable.map((a) => a.filenameBase);
+    expect(new Set(stems).size).toBe(stems.length);
+  });
+});
+
+describe("CC-11.7A: ONE ART PROMPT PER DISTINCT IMAGE JOB -- physical electronic components split", () => {
+  it("the six REQUIRED physical-recognition components are six independent ProductionAssets, never combined behind one asset", () => {
+    const ids = ["resistor", "capacitor", "diode", "led", "thermistor", "transistor"].map((c) => `unit202.components.physical.${c}`);
+    for (const id of ids) {
+      const asset = findAsset(id)!;
+      expect(asset).toBeDefined();
+      expect(asset.role).toBe("PHYSICAL_RECOGNITION");
+      expect(asset.canonicalStates).toHaveLength(1);
+      expect(visualNeedClassificationFor(asset)).toBe("REQUIRED");
+    }
+    const filenames = ids.map((id) => findAsset(id)!.filenameBase);
+    expect(new Set(filenames).size).toBe(6);
+  });
+
+  it("the five USEFUL specialist physical-recognition components (zener diode, photodiode, DIAC, TRIAC, thyristor/SCR) are also independent ProductionAssets", () => {
+    const ids = ["zener-diode", "photodiode", "diac", "triac", "thyristor-scr"].map((c) => `unit202.components.physical.${c}`);
+    for (const id of ids) {
+      const asset = findAsset(id)!;
+      expect(asset).toBeDefined();
+      expect(asset.role).toBe("PHYSICAL_RECOGNITION");
+      expect(asset.canonicalStates).toHaveLength(1);
+      expect(asset.needOverride).toBe("USEFUL");
+    }
+  });
+
+  it("no PHYSICAL_RECOGNITION asset in the whole catalogue carries more than one canonicalState", () => {
+    for (const asset of allAssets()) {
+      if (asset.role === "PHYSICAL_RECOGNITION") {
+        expect(asset.canonicalStates.length).toBe(1);
+      }
+    }
+  });
+
+  it("the electronic-components family genuinely contains both REQUIRED and USEFUL assets side by side (VISUAL COUNT FOLLOWS PEDAGOGICAL NEED, classification never collapsed to a family-wide value)", () => {
+    const family = findFamily("unit202.family.electronic-components")!;
+    const classes = new Set(family.assets.map((asset) => visualNeedClassificationFor(asset)));
+    expect(classes.has("REQUIRED")).toBe(true);
+    expect(classes.has("USEFUL") || family.assets.some((a) => a.needOverride === "USEFUL")).toBe(true);
   });
 });
