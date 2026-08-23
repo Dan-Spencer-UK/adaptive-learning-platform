@@ -429,14 +429,19 @@ const assertionFamilies: AssertionFamily[] = [
     // CC-09G (task section 4D): cap.magnetism.identify_unit (CC-09D/E,
     // AC5.2 required obligation flux-density-unit, DIRECT_SAMPLE_ANALOGUE
     // archetype evidence) was never added to completeness.
+    // CC-11.1: added cap.magnetism.recognise_attraction_repulsion
+    // (AC5.1) and cap.magnetism.calculate_force_on_conductor (AC5.3) --
+    // both genuine required obligations with no prior capability.
     completeness: {
       requiredCapabilityIds: [
+        "cap.magnetism.recognise_attraction_repulsion",
         "cap.magnetism.recognise_concept",
         "cap.magnetism.interpret_field_direction",
         "cap.magnetism.interpret_force_direction",
         "cap.magnetism.compare_permanent_electromagnet",
         "cap.magnetism.compare_motor_generator",
         "cap.magnetism.identify_unit",
+        "cap.magnetism.calculate_force_on_conductor",
       ],
     },
     assessmentRequirement: "assessable",
@@ -451,8 +456,15 @@ const assertionFamilies: AssertionFamily[] = [
     // AC5.4 required obligation flux-change-emf-calculation, basis
     // OFFICIAL_ASSESSMENT_EVIDENCE, DIRECT_SAMPLE_ANALOGUE archetype
     // evidence) was never added to completeness.
+    // CC-11.1: added cap.emf.calculate_motional_emf (AC5.3) -- a genuine
+    // required obligation with no prior capability.
     completeness: {
-      requiredCapabilityIds: ["cap.emf.recognise_emf_terminal_voltage", "cap.emf.describe_ac_generation", "cap.emf.calculate_flux_change"],
+      requiredCapabilityIds: [
+        "cap.emf.recognise_emf_terminal_voltage",
+        "cap.emf.describe_ac_generation",
+        "cap.emf.calculate_flux_change",
+        "cap.emf.calculate_motional_emf",
+      ],
     },
     assessmentRequirement: "assessable",
   },
@@ -1484,6 +1496,17 @@ const capabilities: Capability[] = [
   ),
 
   // --- electrical.magnetism_and_electromagnetism ----------------------------
+  // CC-11.1: AC5.1's own explicit obligation (EL-CONCEPT-MAGNETISM-001,
+  // "like poles repel, unlike poles attract") had no capability of its
+  // own -- cap.magnetism.compare_permanent_electromagnet tests a
+  // different proposition (permanent magnet vs electromagnet), never
+  // pole interaction.
+  cap(
+    "cap.magnetism.recognise_attraction_repulsion",
+    "electrical.magnetism_and_electromagnetism",
+    "recognise",
+    "Recognise the effects of magnetism in terms of attraction and repulsion between poles.",
+  ),
   cap(
     "cap.magnetism.recognise_concept",
     "electrical.magnetism_and_electromagnetism",
@@ -1523,6 +1546,17 @@ const capabilities: Capability[] = [
     "identify",
     "Identify the SI unit of magnetic flux or magnetic flux density.",
   ),
+  // CC-11.1: AC5.3's own governed "force-on-conductor-calculation"
+  // obligation (F = B I l, Fleming's left-hand rule, basis
+  // OFFICIAL_TEACHING_INTERPRETATION) had no capability, formula family,
+  // worked example or question blueprint anywhere -- a genuine gap CC-11
+  // found and explicitly deferred, closed here.
+  cap(
+    "cap.magnetism.calculate_force_on_conductor",
+    "electrical.magnetism_and_electromagnetism",
+    "calculate",
+    "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I l.",
+  ),
 
   // --- electrical.emf_and_generation -----------------------------------------
   cap(
@@ -1545,6 +1579,19 @@ const capabilities: Capability[] = [
     "electrical.emf_and_generation",
     "calculate",
     "Calculate the EMF induced in a single loop by a changing magnetic flux, or the flux change from a given EMF and time.",
+  ),
+  // CC-11.1: AC5.3's own governed "induced-emf-calculation" obligation
+  // (e = B l v, the motional-EMF special case for a conductor moving
+  // through a field, distinct from the general rate-of-change-of-flux
+  // form above; Fleming's right-hand rule; basis
+  // OFFICIAL_TEACHING_INTERPRETATION) had no capability, formula family,
+  // worked example or question blueprint anywhere -- a genuine gap CC-11
+  // found and explicitly deferred, closed here.
+  cap(
+    "cap.emf.calculate_motional_emf",
+    "electrical.emf_and_generation",
+    "calculate",
+    "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B l v (conductor length, velocity and field mutually perpendicular).",
   ),
 
   // --- electrical.ac_dc_waveforms ---------------------------------------------
@@ -2345,6 +2392,58 @@ const formulaFamilies: FormulaFamily[] = [
     ],
     requiredTargets: ["eta"],
   },
+  // ===================================================================
+  // CC-11.1: Unit 202 LO5 AC5.3 (force-on-conductor-calculation /
+  // induced-emf-calculation) -- the two genuine gaps CC-11 found and
+  // explicitly deferred. Both are the single governed simple-geometry
+  // case only (conductor at right angles to the field / conductor,
+  // velocity and field mutually perpendicular) -- no vector maths, no
+  // sin(theta), no N-turn coil treatment, matching the governed
+  // assertions' own stated scope. Single form each (the canonical
+  // target only) -- the governed assertions state only "calculate F"/
+  // "calculate e" from the other three quantities, never a rearrangement
+  // for B/I/l or B/l/v, so none is invented here.
+  // ===================================================================
+  {
+    id: "formula.force_on_conductor",
+    assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+    canonicalTarget: "F",
+    variables: [
+      { symbol: "F", name: "force", quantity: "force", unitName: "newton", unitSymbol: "N" },
+      { symbol: "B", name: "magnetic flux density", quantity: "magnetic flux density", unitName: "tesla", unitSymbol: "T" },
+      { symbol: "I", name: "current", quantity: "current", unitName: "ampere", unitSymbol: "A" },
+      { symbol: "l", name: "conductor length in the field", quantity: "length", unitName: "metre", unitSymbol: "m" },
+    ],
+    forms: [
+      {
+        target: "F",
+        expression: { operation: "multiply", operands: ["B", "I", "l"] },
+        instruction: "To find the force on the conductor, multiply the magnetic flux density by the current, by the length of conductor in the field: F = B x I x l.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["F"],
+  },
+  {
+    id: "formula.motional_emf",
+    assertionFamilyId: "electrical.emf_and_generation",
+    canonicalTarget: "e",
+    variables: [
+      { symbol: "e", name: "induced EMF", quantity: "emf", unitName: "volt", unitSymbol: "V" },
+      { symbol: "B", name: "magnetic flux density", quantity: "magnetic flux density", unitName: "tesla", unitSymbol: "T" },
+      { symbol: "l", name: "conductor length", quantity: "length", unitName: "metre", unitSymbol: "m" },
+      { symbol: "v", name: "conductor velocity", quantity: "speed", unitName: "metre per second", unitSymbol: "m/s" },
+    ],
+    forms: [
+      {
+        target: "e",
+        expression: { operation: "multiply", operands: ["B", "l", "v"] },
+        instruction: "To find the induced EMF, multiply the magnetic flux density by the conductor length, by its velocity: e = B x l x v.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["e"],
+  },
 ];
 
 const workedExampleBlueprints: WorkedExampleBlueprint[] = [
@@ -2518,6 +2617,44 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     knownVariables: ["Eout", "Ein"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
     teachingValues: { Eout: 80, Ein: 100 },
+  },
+  // ===================================================================
+  // CC-11.1: LO5 AC5.3 force-on-conductor / motional-EMF worked examples,
+  // and the two flux_change_emf worked examples CC-11 identified as
+  // missing (formula.flux_change_emf declares requiresWorkedExample:
+  // true for targets "e" and "deltaPhi" but neither had a blueprint).
+  // ===================================================================
+  {
+    id: "worked.force_on_conductor.calculate",
+    formulaFamilyId: "formula.force_on_conductor",
+    target: "F",
+    knownVariables: ["B", "I", "l"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { B: 0.5, I: 4, l: 0.3 },
+  },
+  {
+    id: "worked.motional_emf.calculate",
+    formulaFamilyId: "formula.motional_emf",
+    target: "e",
+    knownVariables: ["B", "l", "v"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { B: 0.5, l: 0.3, v: 2 },
+  },
+  {
+    id: "worked.emf.calculate_flux_change_e",
+    formulaFamilyId: "formula.flux_change_emf",
+    target: "e",
+    knownVariables: ["deltaPhi", "deltaT"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { deltaPhi: 6, deltaT: 3 },
+  },
+  {
+    id: "worked.emf.calculate_flux_change_deltaPhi",
+    formulaFamilyId: "formula.flux_change_emf",
+    target: "deltaPhi",
+    knownVariables: ["e", "deltaT"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { e: 2, deltaT: 3 },
   },
 ];
 
@@ -2972,7 +3109,10 @@ const questionBlueprints: QuestionBlueprint[] = [
     difficultyBand: "intermediate",
     answer: quantityAnswer("voltage", "volt"),
     marking: tolerance(1),
-    assertionIdentifiers: ["EL-SERIES-VOLTAGE-CALC-001"],
+    // CC-11.1: additive evidence-citation fix -- calculating a voltage
+    // drop functionally demonstrates understanding what "voltage drop"
+    // means (AC4.7's own obligation), previously uncited here.
+    assertionIdentifiers: ["EL-SERIES-VOLTAGE-CALC-001", "EL-VOLTAGE-DROP-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.series_resistors" } },
     presentation: {
       promptLines: ["This series circuit carries {I} A throughout.", "Using the diagram, find the voltage drop across {target}."],
@@ -3495,7 +3635,16 @@ const questionBlueprints: QuestionBlueprint[] = [
     difficultyBand: "introductory",
     answer: { type: "multiple_choice", options: ["conductor", "insulator"] },
     marking: exact(),
-    assertionIdentifiers: ["EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001"],
+    // CC-11.1: additive evidence-citation fix -- correctly classifying a
+    // material as conductor/insulator functionally demonstrates
+    // understanding of what each term means (AC4.2's own "conductor-
+    // meaning"/"insulator-meaning" obligations), but those two definitional
+    // assertions were never cited here, an evidence-completeness gap the
+    // new obligation-level readiness check (report-coverage-matrix.ts)
+    // would otherwise mis-flag as a missing assessment route. No new
+    // pedagogy: same blueprint, same grading, just honestly-completed
+    // evidence.
+    assertionIdentifiers: ["EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001", "EL-CONCEPT-CONDUCTOR-001", "EL-CONCEPT-INSULATOR-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-CONDUCTOR-INSULATOR-CONFUSION-001", evidenceStrength: "suggestive" }],
     presentation: { promptLines: ["Is {material} a conductor or an insulator?"] },
   }),
@@ -3636,7 +3785,11 @@ const questionBlueprints: QuestionBlueprint[] = [
     difficultyBand: "advanced",
     answer: { type: "direction" },
     marking: { type: "direction_match" },
-    assertionIdentifiers: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"],
+    // CC-11.1: additive evidence-citation fix -- determining the field's
+    // direction from a current direction IS applying the field-direction
+    // rule (AC5.3's own "field-direction-rule" obligation, Maxwell's screw
+    // rule / right-hand rule), previously uncited here.
+    assertionIdentifiers: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "EL-CONCEPT-FIELD-DIRECTION-RULE-001"],
     representation: { diagram: { required: true, blueprintId: "magnetic.field_conductor_direction" } },
     presentation: { promptLines: ["A straight conductor carries current as shown. In which direction does the magnetic field circulate around it?"] },
   }),
@@ -4251,6 +4404,54 @@ const questionBlueprints: QuestionBlueprint[] = [
     presentation: {
       promptLines: ["{application_clue}"],
       answerOptionLabels: { triac: "TRIAC", thyristor_scr: "Thyristor (SCR)", thermistor: "Thermistor", transistor: "Transistor", capacitor: "Capacitor", resistor: "Resistor" },
+    },
+  }),
+
+  // ===================================================================
+  // CC-11.1: Unit 202 LO5 AC5.1/AC5.3 -- the three genuine evidence gaps
+  // CC-11 found and explicitly deferred.
+  // ===================================================================
+  qb({
+    id: "magnetism.recognise_attraction_repulsion",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.recognise_attraction_repulsion",
+    title: "Recognise the effects of magnetism in terms of attraction and repulsion",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["attract", "repel"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-MAGNETISM-001"],
+    presentation: { promptLines: ["Two magnetic poles are brought close together: {pole_scenario_clue}.", "What happens?"] },
+  }),
+  qb({
+    id: "magnetism.calculate_force_on_conductor",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.calculate_force_on_conductor",
+    title: "Calculate the force on a current-carrying conductor at right angles to a magnetic field",
+    difficultyBand: "advanced",
+    answer: quantityAnswer("force", "newton"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-REL-FORCE-ON-CONDUCTOR-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.force_on_conductor" } },
+    presentation: { promptLines: ["B = {B} T", "I = {I} A", "l = {l} m", "The conductor is at right angles to the field.", "Find the force on the conductor."] },
+  }),
+  qb({
+    id: "emf.calculate_motional_emf",
+    familyId: "electrical.emf_and_generation",
+    capabilityId: "cap.emf.calculate_motional_emf",
+    title: "Calculate the EMF induced in a conductor moving through a magnetic field",
+    difficultyBand: "advanced",
+    answer: quantityAnswer("emf", "volt"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["EL-REL-INDUCED-EMF-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.motional_emf" } },
+    presentation: {
+      promptLines: [
+        "B = {B} T",
+        "l = {l} m",
+        "v = {v} m/s",
+        "The conductor's length, its velocity and the magnetic field are mutually perpendicular.",
+        "Find the induced EMF.",
+      ],
     },
   }),
 ];

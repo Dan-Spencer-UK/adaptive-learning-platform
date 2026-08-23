@@ -17,18 +17,15 @@
  * fields/forces (which need the field/force diagrams and materially
  * higher cognitive demand) in the next lesson.
  *
- * Known corpus gap (flagged, not silently worked around): AC5.1's own
- * core obligation -- "Describe magnetic attraction and repulsion"
- * (EL-CONCEPT-MAGNETISM-001, unit202-knowledge-obligations.ts AC5.1,
- * basis EXPLICIT) -- has NO governed question blueprint or capability of
- * its own anywhere in the CC-05A corpus. It is taught here
- * (concept_magnetism_attraction_repulsion, teaches
- * EL-CONCEPT-MAGNETISM-001) and reinforced via the nearest genuinely
- * related practice (magnetism.compare_permanent_electromagnet, whose
- * comparison depends on the same attract/repel behaviour), but it is
- * never itself directly assessed by this lesson because no blueprint
- * exists to assess it with. Authoring a new blueprint was out of scope
- * (task instruction: pure lesson-authoring against the existing corpus).
+ * CC-11.1: closes the gap CC-11 flagged -- AC5.1's own core obligation
+ * ("Describe magnetic attraction and repulsion", EL-CONCEPT-MAGNETISM-001,
+ * unit202-knowledge-obligations.ts AC5.1, basis EXPLICIT) previously had
+ * no governed question blueprint or capability of its own. A dedicated
+ * capability (cap.magnetism.recognise_attraction_repulsion) and question
+ * blueprint (magnetism.recognise_attraction_repulsion) now exist and are
+ * taught/practised directly in this lesson
+ * (concept_magnetism_attraction_repulsion /
+ * guided_recognise_attraction_repulsion).
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -52,7 +49,12 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
     "EL-UNIT-TESLA-001",
     "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001",
   ],
-  targetCapabilityIds: ["cap.magnetism.recognise_concept", "cap.magnetism.identify_unit", "cap.magnetism.compare_permanent_electromagnet"],
+  targetCapabilityIds: [
+    "cap.magnetism.recognise_attraction_repulsion",
+    "cap.magnetism.recognise_concept",
+    "cap.magnetism.identify_unit",
+    "cap.magnetism.compare_permanent_electromagnet",
+  ],
   estimatedDurationMinutes: 16,
   instructionalStrategy:
     "Attraction/repulsion is introduced first as the intuitive, everyday phenomenon underlying everything else in LO5. Flux and flux density are then taught as a deliberately paired distinction (what exists vs. how concentrated it is), immediately followed by their SI units so the quantity and its unit are never learned apart. Permanent magnet vs. electromagnet closes the lesson, explicitly reinforcing attraction/repulsion as the shared underlying mechanism and previewing that the NEXT lesson explains exactly how a current produces that magnetism.",
@@ -85,7 +87,7 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
       reinforces: [],
       tests: [],
       assertionFamilyId: "electrical.magnetism_and_electromagnetism",
-      capabilityIds: ["cap.magnetism.compare_permanent_electromagnet"],
+      capabilityIds: ["cap.magnetism.recognise_attraction_repulsion"],
       misconceptionTargets: [],
       representation: {},
       presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
@@ -95,6 +97,27 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
       completionCondition: "view_acknowledged",
       branchRoutes: [],
       evidenceEmitted: [],
+    },
+    {
+      id: "guided_recognise_attraction_repulsion",
+      type: "guided_interaction",
+      purpose: "Recognise magnetic attraction and repulsion between poles.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-CONCEPT-MAGNETISM-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.recognise_attraction_repulsion"],
+      misconceptionTargets: [],
+      representation: {},
+      questionBlueprintId: "magnetism.recognise_attraction_repulsion",
+      presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.recognise_attraction_repulsion"],
     },
     {
       id: "concept_flux_and_flux_density",
@@ -307,6 +330,7 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
     requiredStepIds: [
       "orientation",
       "concept_magnetism_attraction_repulsion",
+      "guided_recognise_attraction_repulsion",
       "concept_flux_and_flux_density",
       "guided_recognise_flux_concepts",
       "concept_flux_and_flux_density_units",
@@ -318,20 +342,26 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
       "recap",
       "exit_completion",
     ],
-    requiredCapabilityEvidence: ["cap.magnetism.recognise_concept", "cap.magnetism.identify_unit", "cap.magnetism.compare_permanent_electromagnet"],
-    // cap.magnetism.compare_permanent_electromagnet is excluded from the
-    // mastery gate -- its only evidence-emitting step in this lesson
-    // (guided_compare_permanent_electromagnet) is guided scaffolding, so
-    // it can never independently reach a secure mastery tier here (same
-    // rationale as lesson-ohms-law.ts's cap.ohms_law.solve_for_current
-    // exclusion). It remains a genuine completion requirement.
+    requiredCapabilityEvidence: [
+      "cap.magnetism.recognise_attraction_repulsion",
+      "cap.magnetism.recognise_concept",
+      "cap.magnetism.identify_unit",
+      "cap.magnetism.compare_permanent_electromagnet",
+    ],
+    // cap.magnetism.recognise_attraction_repulsion and
+    // cap.magnetism.compare_permanent_electromagnet are excluded from the
+    // mastery gate -- their only evidence-emitting steps in this lesson
+    // are guided scaffolding, so neither can independently reach a secure
+    // mastery tier here (same rationale as lesson-ohms-law.ts's
+    // cap.ohms_law.solve_for_current exclusion). Both remain genuine
+    // completion requirements.
     masteryGateCapabilityIds: ["cap.magnetism.recognise_concept", "cap.magnetism.identify_unit"],
     requiresRemediationClearance: true,
     exitSummary:
       "The learner has described magnetic attraction and repulsion, distinguished magnetic flux from flux density with their SI units, and compared a permanent magnet with an electromagnet.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v4",
+  contentRelease: "release.unit202.v5",
 };
 
 export const lessons = [LESSON_MAGNETISM_FUNDAMENTALS];

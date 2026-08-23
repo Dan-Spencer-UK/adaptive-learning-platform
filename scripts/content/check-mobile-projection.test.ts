@@ -114,7 +114,7 @@ describe("generated mobile content projection", () => {
     }
   });
 
-  it("carries exactly the 96 governed question blueprints the release's lessons reference (CC-11 expansion), each WITH governed presentation", () => {
+  it("carries exactly the 99 governed question blueprints the release's lessons reference (CC-11.1 adds magnetism.recognise_attraction_repulsion, magnetism.calculate_force_on_conductor and emf.calculate_motional_emf), each WITH governed presentation", () => {
     const projection = buildMobileContentProjection(realInputs());
     expect(projection.questionBlueprints.map((b) => b.id).sort()).toEqual(
       [
@@ -137,6 +137,7 @@ describe("generated mobile content projection", () => {
         "electronics.recognise_switching_family",
         "electronics.recognise_thermistor_type",
         "emf.calculate_flux_change",
+        "emf.calculate_motional_emf",
         "emf.describe_ac_generation",
         "emf.distinguish_emf_terminal_voltage",
         "energy.calculate_efficiency",
@@ -156,12 +157,14 @@ describe("generated mobile content projection", () => {
         "instrumentation.select_instrument",
         "levers.calculate_effort_or_load",
         "levers.identify_class",
+        "magnetism.calculate_force_on_conductor",
         "magnetism.compare_motor_generator",
         "magnetism.compare_permanent_electromagnet",
         "magnetism.identify_flux_density_unit",
         "magnetism.identify_flux_unit",
         "magnetism.interpret_field_direction",
         "magnetism.interpret_force_direction",
+        "magnetism.recognise_attraction_repulsion",
         "magnetism.recognise_concept",
         "mass_weight.recognise_relationship",
         "mechanics.calculate_efficiency",

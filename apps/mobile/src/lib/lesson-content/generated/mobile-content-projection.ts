@@ -2,7 +2,7 @@
  * GENERATED FILE -- DO NOT EDIT.
  *
  * Deterministic mobile learner-runtime content projection for governed
- * content release "release.unit202.v4".
+ * content release "release.unit202.v5".
  *
  * Source of truth: the governed content under scripts/content/data.
  * Regenerate with:  npm run content:mobile:generate
@@ -16,7 +16,7 @@ import type { MobileContentProjection } from "@alp/content-schema";
 export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
   "schemaVersion": 2,
   "contentRelease": {
-    "id": "release.unit202.v4",
+    "id": "release.unit202.v5",
     "questionBlueprintVersion": 1
   },
   "lessons": [
@@ -310,7 +310,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.conductors-and-insulators",
@@ -617,7 +617,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.core-quantities",
@@ -880,7 +880,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.electronic-components-passive",
@@ -1382,7 +1382,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.electronic-components-switching-control",
@@ -1875,7 +1875,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.energy-and-efficiency",
@@ -2269,7 +2269,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.fault-conditions-protection",
@@ -2652,7 +2652,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.instrumentation",
@@ -3047,7 +3047,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.ohms-law",
@@ -3770,7 +3770,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.power",
@@ -4307,7 +4307,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.resistivity",
@@ -4725,7 +4725,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.resistors-parallel",
@@ -5366,7 +5366,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.resistors-series",
@@ -5882,7 +5882,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.series-vs-parallel-comparison",
@@ -6337,7 +6337,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.si-units",
@@ -6740,7 +6740,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.electrical.thermal-and-chemical-effects",
@@ -6998,7 +6998,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.emf.ac-generation-principles",
@@ -7169,9 +7169,43 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "evidenceEmitted": []
         },
         {
+          "id": "worked_flux_change_emf",
+          "type": "worked_example",
+          "purpose": "Model calculating the induced EMF from a changing magnetic flux, before the learner practises it unaided.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.calculate_flux_change"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.flux_change_emf",
+            "workedExampleBlueprintId": "worked.emf.calculate_flux_change_e"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
           "id": "guided_calculate_flux_change_emf",
           "type": "guided_interaction",
-          "purpose": "First learner-performed flux-change EMF calculation, more heavily scaffolded than usual since no worked-example blueprint exists for this relationship (see file header).",
+          "purpose": "First learner-performed flux-change EMF calculation.",
           "requirement": "required",
           "teaches": [],
           "reinforces": [],
@@ -7191,8 +7225,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "interactionRequired": true,
             "interactionRole": "calculate",
             "answerReveal": "after_submission",
-            "contentMayScroll": true,
-            "progressiveReveal": true
+            "contentMayScroll": false,
+            "progressiveReveal": false
           },
           "scaffoldingLevel": "guided",
           "cognitiveDemand": "intermediate",
@@ -7436,6 +7470,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "concept_electromagnetic_induction_and_generator",
           "guided_describe_ac_generation",
           "concept_flux_change_emf",
+          "worked_flux_change_emf",
           "guided_calculate_flux_change_emf",
           "independent_calculate_flux_change_emf",
           "concept_motor_vs_generator",
@@ -7459,7 +7494,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.foundation.maths.formula-rearrangement",
@@ -7908,7 +7943,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.foundation.physics.mass-and-weight",
@@ -8198,7 +8233,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.foundation.physics.mechanics-force-work-energy-power",
@@ -8889,7 +8924,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.foundation.physics.simple-machines",
@@ -9463,7 +9498,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.magnetism.effects-of-current",
@@ -9495,8 +9530,10 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "targetCapabilityIds": [
         "cap.magnetism.interpret_field_direction",
         "cap.magnetism.interpret_force_direction",
+        "cap.magnetism.calculate_force_on_conductor",
         "cap.magnetism.recognise_concept",
-        "cap.emf.recognise_emf_terminal_voltage"
+        "cap.emf.recognise_emf_terminal_voltage",
+        "cap.emf.calculate_motional_emf"
       ],
       "remediationEligibility": [],
       "estimatedDurationMinutes": 18,
@@ -9637,6 +9674,78 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "completionCondition": "view_acknowledged",
           "branchRoutes": [],
           "evidenceEmitted": []
+        },
+        {
+          "id": "worked_force_on_conductor",
+          "type": "worked_example",
+          "purpose": "Model calculating the force on a current-carrying conductor using F = B I l, before the learner practises it unaided.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.calculate_force_on_conductor"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.force_on_conductor",
+            "workedExampleBlueprintId": "worked.force_on_conductor.calculate"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_calculate_force_on_conductor",
+          "type": "guided_interaction",
+          "purpose": "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I l.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-REL-FORCE-ON-CONDUCTOR-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.calculate_force_on_conductor"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.force_on_conductor"
+          },
+          "questionBlueprintId": "magnetism.calculate_force_on_conductor",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.calculate_force_on_conductor"
+          ]
         },
         {
           "id": "guided_interpret_force_direction",
@@ -9788,6 +9897,78 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "completionCondition": "view_acknowledged",
           "branchRoutes": [],
           "evidenceEmitted": []
+        },
+        {
+          "id": "worked_motional_emf",
+          "type": "worked_example",
+          "purpose": "Model calculating the EMF induced in a conductor moving through a magnetic field using e = B l v, before the learner practises it unaided.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.calculate_motional_emf"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.motional_emf",
+            "workedExampleBlueprintId": "worked.motional_emf.calculate"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_calculate_motional_emf",
+          "type": "guided_interaction",
+          "purpose": "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B l v.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-REL-INDUCED-EMF-001"
+          ],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.calculate_motional_emf"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.motional_emf"
+          },
+          "questionBlueprintId": "emf.calculate_motional_emf",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.emf.calculate_motional_emf"
+          ]
         },
         {
           "id": "misconception_check_emf_terminal_voltage",
@@ -10008,10 +10189,14 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "concept_field_from_current",
           "guided_interpret_field_direction",
           "concept_force_on_conductor",
+          "worked_force_on_conductor",
+          "guided_calculate_force_on_conductor",
           "guided_interpret_force_direction",
           "concept_electromagnetism",
           "guided_recognise_electromagnetism",
           "concept_emf_and_terminal_voltage",
+          "worked_motional_emf",
+          "guided_calculate_motional_emf",
           "misconception_check_emf_terminal_voltage",
           "retrieval_check",
           "recap",
@@ -10020,20 +10205,22 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "requiredCapabilityEvidence": [
           "cap.magnetism.interpret_field_direction",
           "cap.magnetism.interpret_force_direction",
+          "cap.magnetism.calculate_force_on_conductor",
           "cap.magnetism.recognise_concept",
-          "cap.emf.recognise_emf_terminal_voltage"
+          "cap.emf.recognise_emf_terminal_voltage",
+          "cap.emf.calculate_motional_emf"
         ],
         "masteryGateCapabilityIds": [
           "cap.emf.recognise_emf_terminal_voltage"
         ],
         "requiresRemediationClearance": true,
-        "exitSummary": "The learner has interpreted the direction of the magnetic field around a current-carrying conductor and the force on a conductor in a field, recognised electromagnetism, and distinguished EMF from terminal voltage -- clearing remediation if that misconception was detected."
+        "exitSummary": "The learner has interpreted the direction of the magnetic field around a current-carrying conductor, calculated the force on a conductor in a field, recognised electromagnetism, calculated induced EMF from a moving conductor, and distinguished EMF from terminal voltage -- clearing remediation if that misconception was detected."
       },
       "presentationModes": [
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.magnetism.fundamentals",
@@ -10057,6 +10244,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"
       ],
       "targetCapabilityIds": [
+        "cap.magnetism.recognise_attraction_repulsion",
         "cap.magnetism.recognise_concept",
         "cap.magnetism.identify_unit",
         "cap.magnetism.compare_permanent_electromagnet"
@@ -10104,7 +10292,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "tests": [],
           "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
           "capabilityIds": [
-            "cap.magnetism.compare_permanent_electromagnet"
+            "cap.magnetism.recognise_attraction_repulsion"
           ],
           "misconceptionTargets": [],
           "representation": {},
@@ -10123,6 +10311,42 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "completionCondition": "view_acknowledged",
           "branchRoutes": [],
           "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_attraction_repulsion",
+          "type": "guided_interaction",
+          "purpose": "Recognise magnetic attraction and repulsion between poles.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-MAGNETISM-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.recognise_attraction_repulsion"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "magnetism.recognise_attraction_repulsion",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.recognise_attraction_repulsion"
+          ]
         },
         {
           "id": "concept_flux_and_flux_density",
@@ -10480,6 +10704,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "requiredStepIds": [
           "orientation",
           "concept_magnetism_attraction_repulsion",
+          "guided_recognise_attraction_repulsion",
           "concept_flux_and_flux_density",
           "guided_recognise_flux_concepts",
           "concept_flux_and_flux_density_units",
@@ -10492,6 +10717,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "exit_completion"
         ],
         "requiredCapabilityEvidence": [
+          "cap.magnetism.recognise_attraction_repulsion",
           "cap.magnetism.recognise_concept",
           "cap.magnetism.identify_unit",
           "cap.magnetism.compare_permanent_electromagnet"
@@ -10507,7 +10733,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     },
     {
       "id": "lesson.waveforms.ac-dc-and-sine-wave-quantities",
@@ -11172,7 +11398,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v4"
+      "contentRelease": "release.unit202.v5"
     }
   ],
   "questionBlueprints": [
@@ -11508,7 +11734,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "primaryCapabilityId": "cap.conductors.classify_material",
         "familyId": "electrical.conductors_and_insulators",
         "assertionIdentifiers": [
-          "EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001"
+          "EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001",
+          "EL-CONCEPT-CONDUCTOR-001",
+          "EL-CONCEPT-INSULATOR-001"
         ],
         "supportingCapabilityIds": [],
         "representationDependency": [],
@@ -11978,6 +12206,49 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{given_summary}",
           "Find {target_variable}."
+        ]
+      }
+    },
+    {
+      "id": "emf.calculate_motional_emf",
+      "assertionFamilyId": "electrical.emf_and_generation",
+      "capabilityId": "cap.emf.calculate_motional_emf",
+      "title": "Calculate the EMF induced in a conductor moving through a magnetic field",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.motional_emf"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "emf",
+        "canonicalUnit": "volt"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 2
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.emf.calculate_motional_emf",
+        "familyId": "electrical.emf_and_generation",
+        "assertionIdentifiers": [
+          "EL-REL-INDUCED-EMF-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "B = {B} T",
+          "l = {l} m",
+          "v = {v} m/s",
+          "The conductor's length, its velocity and the magnetic field are mutually perpendicular.",
+          "Find the induced EMF."
         ]
       }
     },
@@ -12738,6 +13009,49 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       }
     },
     {
+      "id": "magnetism.calculate_force_on_conductor",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.calculate_force_on_conductor",
+      "title": "Calculate the force on a current-carrying conductor at right angles to a magnetic field",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.force_on_conductor"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "force",
+        "canonicalUnit": "newton"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 2
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.calculate_force_on_conductor",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-REL-FORCE-ON-CONDUCTOR-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "B = {B} T",
+          "I = {I} A",
+          "l = {l} m",
+          "The conductor is at right angles to the field.",
+          "Find the force on the conductor."
+        ]
+      }
+    },
+    {
       "id": "magnetism.compare_motor_generator",
       "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
       "capabilityId": "cap.magnetism.compare_motor_generator",
@@ -12909,7 +13223,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "primaryCapabilityId": "cap.magnetism.interpret_field_direction",
         "familyId": "electrical.magnetism_and_electromagnetism",
         "assertionIdentifiers": [
-          "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"
+          "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
+          "EL-CONCEPT-FIELD-DIRECTION-RULE-001"
         ],
         "supportingCapabilityIds": [],
         "representationDependency": [],
@@ -12961,6 +13276,42 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "A current-carrying conductor sits in the magnetic field shown. In which direction does the force act on it?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.recognise_attraction_repulsion",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.recognise_attraction_repulsion",
+      "title": "Recognise the effects of magnetism in terms of attraction and repulsion",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "attract",
+          "repel"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.recognise_attraction_repulsion",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-MAGNETISM-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "Two magnetic poles are brought close together: {pole_scenario_clue}.",
+          "What happens?"
         ]
       }
     },
@@ -14531,7 +14882,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "primaryCapabilityId": "cap.series.calculate_voltage_drop",
         "familyId": "electrical.series_circuits",
         "assertionIdentifiers": [
-          "EL-SERIES-VOLTAGE-CALC-001"
+          "EL-SERIES-VOLTAGE-CALC-001",
+          "EL-VOLTAGE-DROP-001"
         ],
         "supportingCapabilityIds": [],
         "representationDependency": [],
@@ -15727,6 +16079,59 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       ]
     },
     {
+      "id": "formula.force_on_conductor",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "canonicalTarget": "F",
+      "variables": [
+        {
+          "symbol": "F",
+          "name": "force",
+          "quantity": "force",
+          "unitName": "newton",
+          "unitSymbol": "N"
+        },
+        {
+          "symbol": "B",
+          "name": "magnetic flux density",
+          "quantity": "magnetic flux density",
+          "unitName": "tesla",
+          "unitSymbol": "T"
+        },
+        {
+          "symbol": "I",
+          "name": "current",
+          "quantity": "current",
+          "unitName": "ampere",
+          "unitSymbol": "A"
+        },
+        {
+          "symbol": "l",
+          "name": "conductor length in the field",
+          "quantity": "length",
+          "unitName": "metre",
+          "unitSymbol": "m"
+        }
+      ],
+      "forms": [
+        {
+          "target": "F",
+          "expression": {
+            "operation": "multiply",
+            "operands": [
+              "B",
+              "I",
+              "l"
+            ]
+          },
+          "instruction": "To find the force on the conductor, multiply the magnetic flux density by the current, by the length of conductor in the field: F = B x I x l.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "F"
+      ]
+    },
+    {
       "id": "formula.lever_balance",
       "assertionFamilyId": "foundational.levers_mechanical_advantage",
       "canonicalTarget": "Fe",
@@ -16023,6 +16428,59 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       ],
       "requiredTargets": [
         "W"
+      ]
+    },
+    {
+      "id": "formula.motional_emf",
+      "assertionFamilyId": "electrical.emf_and_generation",
+      "canonicalTarget": "e",
+      "variables": [
+        {
+          "symbol": "e",
+          "name": "induced EMF",
+          "quantity": "emf",
+          "unitName": "volt",
+          "unitSymbol": "V"
+        },
+        {
+          "symbol": "B",
+          "name": "magnetic flux density",
+          "quantity": "magnetic flux density",
+          "unitName": "tesla",
+          "unitSymbol": "T"
+        },
+        {
+          "symbol": "l",
+          "name": "conductor length",
+          "quantity": "length",
+          "unitName": "metre",
+          "unitSymbol": "m"
+        },
+        {
+          "symbol": "v",
+          "name": "conductor velocity",
+          "quantity": "speed",
+          "unitName": "metre per second",
+          "unitSymbol": "m/s"
+        }
+      ],
+      "forms": [
+        {
+          "target": "e",
+          "expression": {
+            "operation": "multiply",
+            "operands": [
+              "B",
+              "l",
+              "v"
+            ]
+          },
+          "instruction": "To find the induced EMF, multiply the magnetic flux density by the conductor length, by its velocity: e = B x l x v.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "e"
       ]
     },
     {
@@ -16329,6 +16787,25 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       ]
     },
     {
+      "id": "worked.emf.calculate_flux_change_e",
+      "formulaFamilyId": "formula.flux_change_emf",
+      "target": "e",
+      "knownVariables": [
+        "deltaPhi",
+        "deltaT"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "deltaPhi": 6,
+        "deltaT": 3
+      }
+    },
+    {
       "id": "worked.energy.calculate_energy",
       "formulaFamilyId": "formula.electrical_energy",
       "target": "E",
@@ -16342,6 +16819,27 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "calculate",
         "show_answer_with_unit"
       ]
+    },
+    {
+      "id": "worked.force_on_conductor.calculate",
+      "formulaFamilyId": "formula.force_on_conductor",
+      "target": "F",
+      "knownVariables": [
+        "B",
+        "I",
+        "l"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "B": 0.5,
+        "I": 4,
+        "l": 0.3
+      }
     },
     {
       "id": "worked.lever_balance.calculate_effort",
@@ -16457,6 +16955,27 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "teachingValues": {
         "F": 20,
         "d": 5
+      }
+    },
+    {
+      "id": "worked.motional_emf.calculate",
+      "formulaFamilyId": "formula.motional_emf",
+      "target": "e",
+      "knownVariables": [
+        "B",
+        "l",
+        "v"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "B": 0.5,
+        "l": 0.3,
+        "v": 2
       }
     },
     {
@@ -16898,7 +17417,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "requiredCapabilityIds": [
         "cap.emf.recognise_emf_terminal_voltage",
         "cap.emf.describe_ac_generation",
-        "cap.emf.calculate_flux_change"
+        "cap.emf.calculate_flux_change",
+        "cap.emf.calculate_motional_emf"
       ],
       "assessmentRequirement": "assessable"
     },
@@ -16935,12 +17455,14 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     {
       "id": "electrical.magnetism_and_electromagnetism",
       "requiredCapabilityIds": [
+        "cap.magnetism.recognise_attraction_repulsion",
         "cap.magnetism.recognise_concept",
         "cap.magnetism.interpret_field_direction",
         "cap.magnetism.interpret_force_direction",
         "cap.magnetism.compare_permanent_electromagnet",
         "cap.magnetism.compare_motor_generator",
-        "cap.magnetism.identify_unit"
+        "cap.magnetism.identify_unit",
+        "cap.magnetism.calculate_force_on_conductor"
       ],
       "assessmentRequirement": "assessable"
     },

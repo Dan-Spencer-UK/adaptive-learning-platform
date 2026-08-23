@@ -450,10 +450,14 @@ export const QB_MAGNETISM_INTERPRET_FIELD_DIRECTION: QuestionBlueprint = {
   marking: { type: "direction_match" },
   evidence: evidence("electrical.magnetism_and_electromagnetism", "cap.magnetism.interpret_field_direction", [
     "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
+    "EL-CONCEPT-FIELD-DIRECTION-RULE-001",
   ]),
   difficultyBand: "advanced",
   // CC-11: mirrors the real corpus's newly-authored presentation field
   // (previously absent, a pre-existing gap this package closed).
+  // CC-11.1: evidence citation extended to also cite
+  // EL-CONCEPT-FIELD-DIRECTION-RULE-001, which this blueprint already
+  // functionally tests but had not previously cited.
   presentation: { promptLines: ["A straight conductor carries current as shown. In which direction does the magnetic field circulate around it?"] },
 };
 

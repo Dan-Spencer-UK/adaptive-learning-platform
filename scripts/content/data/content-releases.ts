@@ -79,8 +79,42 @@ export const RELEASE_UNIT202_V3 = "release.unit202.v3" as const;
  */
 export const RELEASE_UNIT202_V4 = "release.unit202.v4" as const;
 
+/**
+ * CC-11.1: three of `release.unit202.v4`'s own 9 newly-authored lessons
+ * (`lesson.magnetism.fundamentals`, `lesson.magnetism.effects-of-current`,
+ * `lesson.emf.ac-generation-principles`) needed genuine STEP-CONTENT
+ * corrections within hours of v4's own creation -- CC-11's own LO5
+ * workstream found three real Unit 202 AC5.1/AC5.3 assessment-obligation
+ * gaps (see PROJECT-STATUS.md §CC-11.1), and closing them required adding
+ * real new teaching/practice steps to those three lessons, not merely a
+ * new release-scoped membership entry reusing unmodified content. Per
+ * this file's own documented immutability rule, that content correction
+ * cannot be applied to `release.unit202.v4` in place -- so
+ * `release.unit202.v5` carries it instead, exactly the same "new
+ * release, not a mutation" pattern v2/v3/v4 were each created by.
+ *
+ * Honest scope note (this is a narrower case than v2/v3/v4's own
+ * creation): `release.unit202.v4`'s own declared membership list below is
+ * left byte-identical, per the immutability rule -- but because those
+ * three lessons' underlying `LessonPlan` objects are single-sourced (each
+ * has exactly one authored form, changed in place to fix the genuine
+ * gaps, with no preserved historical copy of the pre-fix step content),
+ * their own `contentRelease` field now reads `release.unit202.v5`, not
+ * `v4`. A resolver that specifically requests `release.unit202.v4` for
+ * one of those three lesson ids will correctly, loudly fail
+ * (`UnknownLessonError`) rather than silently serve the corrected
+ * content under the old release's name -- a safe failure mode, not a
+ * silent mutation. `release.unit202.v4` was never bundled to a real
+ * learner (superseded by v5 the same development session it was cut) and
+ * should be treated as historical/non-resolvable for those three members
+ * specifically; the other 21 v4 members remain fully resolvable exactly
+ * as declared. `release.unit202.v5` is the first release where all 24
+ * members are consistently resolvable.
+ */
+export const RELEASE_UNIT202_V5 = "release.unit202.v5" as const;
+
 /** The release whose generated learner-runtime projection is bundled into the mobile app (scripts/content/generate-mobile-projection.ts). */
-export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V4;
+export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V5;
 
 export const contentReleases: ContentReleaseManifest = {
   releases: [
@@ -158,6 +192,45 @@ export const contentReleases: ContentReleaseManifest = {
         { lessonId: "lesson.emf.ac-generation-principles", lessonVersion: 1 },
         { lessonId: "lesson.waveforms.ac-dc-and-sine-wave-quantities", lessonVersion: 1 },
         // CC-11: LO6 (Workstream C).
+        { lessonId: "lesson.electrical.electronic-components-passive", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.electronic-components-switching-control", lessonVersion: 1 },
+      ],
+      knowledgeCorpusId: CC04_KNOWLEDGE_CORPUS_ID,
+      pedagogyCorpusId: CC05A_PEDAGOGY_CORPUS_ID,
+      questionBlueprintVersion: 1,
+    },
+    {
+      // CC-11.1: closes the LO5 AC5.1/AC5.3 evidence gaps -- see
+      // RELEASE_UNIT202_V5's own doc comment above. Same 24-lesson
+      // membership as v4; 3 lessons' underlying content was genuinely
+      // corrected (not merely re-addressed unchanged), the rest reused
+      // exactly as v4 declared them.
+      id: RELEASE_UNIT202_V5,
+      schemaVersion: 1,
+      lessons: [
+        { lessonId: "lesson.electrical.ohms-law", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.maths.formula-rearrangement", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-series", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-parallel", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.core-quantities", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.si-units", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.instrumentation", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.charge-and-current", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.conductors-and-insulators", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.thermal-and-chemical-effects", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistivity", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.power", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.energy-and-efficiency", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.fault-conditions-protection", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.series-vs-parallel-comparison", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.physics.mass-and-weight", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.physics.simple-machines", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.physics.mechanics-force-work-energy-power", lessonVersion: 1 },
+        // CC-11.1: content genuinely corrected relative to v4 (AC5.1/AC5.3 gaps closed).
+        { lessonId: "lesson.magnetism.fundamentals", lessonVersion: 1 },
+        { lessonId: "lesson.magnetism.effects-of-current", lessonVersion: 1 },
+        { lessonId: "lesson.emf.ac-generation-principles", lessonVersion: 1 },
+        { lessonId: "lesson.waveforms.ac-dc-and-sine-wave-quantities", lessonVersion: 1 },
         { lessonId: "lesson.electrical.electronic-components-passive", lessonVersion: 1 },
         { lessonId: "lesson.electrical.electronic-components-switching-control", lessonVersion: 1 },
       ],

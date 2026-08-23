@@ -218,6 +218,70 @@ interface AcSemantic {
   unresolvedObligationIds: string[];
 }
 
+/**
+ * CC-11.1 (task brief §1/§7): AC-level ASSESSABLE (`AcCoverage.tier`) is
+ * a real, useful signal but is not sufficient for LEARNER-READY on its
+ * own -- an AC reaches ASSESSABLE the moment ANY one of its assertions'
+ * capabilities has ANY question blueprint, even if a different, genuinely
+ * required obligation within that same AC has zero assessment route at
+ * all (the exact false-green class CC-11's own LO5 workstream found for
+ * AC5.1's attraction/repulsion obligation and AC5.3's two calculation
+ * obligations -- see PROJECT-STATUS.md §CC-11 point 3/§12).
+ *
+ * `requiresEvidence` is derived generically, never a Unit-202-hardcoded
+ * obligation list: an obligation "requires demonstrable learner
+ * evidence" only if (a) its own declared `basis` is EXPLICIT,
+ * OFFICIAL_TEACHING_INTERPRETATION or OFFICIAL_ASSESSMENT_EVIDENCE --
+ * i.e. the AC's own wording (or official teaching/assessment material)
+ * names it directly, as opposed to RANGE (an enumerated-breadth item,
+ * already independently audited via referential Range-item coverage --
+ * see CC-09B.5) or NECESSARY_PREREQUISITE (background knowledge, by its
+ * own declared basis, not itself independently examined) -- AND (b) at
+ * least one of its `satisfiedBy` assertions belongs to an `assessable`
+ * (not `teaching_only`) assertion family, matching this corpus's own
+ * existing "required mastery/capability evidence vs. supporting teaching
+ * content" distinction (`AssertionFamily.assessmentRequirement`).
+ *
+ * `hasEvidenceRoute` is true when >=1 real, live `QuestionBlueprint`'s
+ * `evidence.assertionIdentifiers` cites at least one of the obligation's
+ * `satisfiedBy` assertions -- the only generic, mechanically-checkable
+ * signal this corpus's architecture actually provides for "this exact
+ * proposition is assessed" (there is no other assertion-to-capability
+ * link in the schema). A `false` result here does not always mean new
+ * pedagogy must be authored: several pre-existing corpus blueprints
+ * genuinely exercise an obligation's proposition without historically
+ * having cited its exact assertion id in their own evidence array (an
+ * evidence-completeness gap, not a missing assessment route) -- CC-11.1
+ * closed the ones it found this way as small, additive evidence-citation
+ * fixes (see cc05a-pedagogy-unit202.ts's own CC-11.1 comments).
+ */
+interface ObligationReadinessResult {
+  acNumber: string;
+  obligationId: string;
+  description: string;
+  basis: string;
+  requiresEvidence: boolean;
+  hasEvidenceRoute: boolean;
+  /** Set only for a small, explicit, human-reviewed allowlist of genuine, pre-existing gaps knowingly deferred to a documented future package (never silently absorbed) -- see TRACKED_OBLIGATION_EVIDENCE_EXCEPTIONS below. Undefined for every obligation this gate expects to be clean. */
+  trackedExceptionReason?: string;
+}
+
+/**
+ * A SMALL, explicit, human-reviewed allowlist of genuine (non-citation)
+ * obligation-evidence gaps found while building this check but
+ * deliberately out of the bounded package that built it -- never a way
+ * to silently launder an unexamined gap. Each entry must name the real
+ * reason and the package boundary that deferred it. Growing this list is
+ * a deliberate, reviewed decision, not a mechanical default -- an
+ * obligation only lands here after an actual check confirmed no existing
+ * blueprint functionally exercises it (never merely "the mechanical
+ * check flagged it").
+ */
+const TRACKED_OBLIGATION_EVIDENCE_EXCEPTIONS: Readonly<Record<string, string>> = {
+  "4.1:electron-theory-of-current":
+    "CC-11.1 (task brief, LO5-only scope): genuinely uncovered -- EL-CONCEPT-ELECTRON-THEORY-001 is taught (lesson-charge-and-current.ts) but no existing blueprint (charge.recognise/charge.calculate test I=Q/t, not electron flow) exercises it. Real gap, but AC4.1 is LO4, outside CC-11.1's explicit 'the three known LO5 evidence holes' boundary. Tracked for a future package.",
+};
+
 interface ProvenanceAudit {
   /** Assertions with zero provenance links at all. Target 0. */
   noProvenance: string[];
@@ -328,6 +392,12 @@ interface CoverageMatrixReport {
   acCoverage: AcCoverage[];
   loReadiness: LoReadiness[];
   acSemantic: AcSemantic[];
+  /** CC-11.1: obligation-level learner readiness -- see ObligationReadinessResult. */
+  obligationReadiness: ObligationReadinessResult[];
+  /** CC-11.1: requiresEvidence obligations with no evidence route and no documented tracked exception -- the `--check` gate (target 0). */
+  untrackedObligationEvidenceGaps: ObligationReadinessResult[];
+  /** CC-11.1: requiresEvidence obligations with no evidence route but an explicit, human-reviewed, documented exception -- always reported, never gates `--check`. */
+  trackedObligationEvidenceExceptions: ObligationReadinessResult[];
   provenanceAudit: ProvenanceAudit;
   /** CC-09B.3: assertion-level EntailmentStatus for every real assertion in the corpus -- see EntailmentStatus for the full rule. */
   entailmentStatusByAssertion: Record<string, EntailmentStatus>;
@@ -344,6 +414,10 @@ interface CoverageMatrixReport {
     rangeItemsCovered: number;
     acSemanticComplete: number;
     rangeItemsSemanticComplete: number;
+    /** CC-11.1: ACs that are both referentially ASSESSABLE and have every requiresEvidence obligation covered (or a documented tracked exception). */
+    acLearnerReady: number;
+    /** CC-11.1: LOs whose every AC is acLearnerReady. */
+    loLearnerReady: number;
   };
   lessonPlanGovernanceClean: boolean;
 }
@@ -379,9 +453,11 @@ function buildReport(overrides?: {
   readonly curriculum?: typeof cc04Unit202ElectricalScience;
   readonly assessmentSpecification?: typeof unit202AssessmentSpecification;
   readonly obligations?: typeof AC_OBLIGATIONS;
+  /** CC-11.1: test-only override to prove the obligation-evidence gate actually detects a defect (adversarial regression proof), never used by production/CLI callers -- same convention as the three overrides above. */
+  readonly pedagogy?: typeof cc05aPedagogyUnit202;
 }): CoverageMatrixReport {
   const corpus = knowledgeGraphManifestSchema.parse(overrides?.curriculum ?? cc04Unit202ElectricalScience);
-  const pedagogy = pedagogyManifestSchema.parse(cc05aPedagogyUnit202);
+  const pedagogy = pedagogyManifestSchema.parse(overrides?.pedagogy ?? cc05aPedagogyUnit202);
   const lessonManifest = lessonPlanManifestSchema.parse({ lessons });
   const specManifest = assessmentSpecificationManifestSchema.parse(overrides?.assessmentSpecification ?? unit202AssessmentSpecification);
   const obligationSets = overrides?.obligations ?? AC_OBLIGATIONS;
@@ -856,6 +932,39 @@ function buildReport(overrides?: {
   });
   const semanticStatusByAcNumber = new Map(acSemantic.map((s) => [s.acNumber, s.status]));
 
+  // =====================================================================
+  // CC-11.1: obligation-level learner readiness -- see
+  // ObligationReadinessResult's own doc comment for the full rule. This
+  // is deliberately a SEPARATE dimension from acSemantic above (which
+  // asks only "is every obligation's satisfiedBy assertion itself
+  // factually sourced", never "is it independently assessable") and from
+  // AcCoverage.tier (which asks only "does this AC have SOME blueprint
+  // anywhere among its assertions' capabilities").
+  // =====================================================================
+  const familyAssessabilityById = new Map(pedagogy.assertionFamilies.map((f) => [f.id, f.assessmentRequirement]));
+  const evidencedAssertionIds = new Set(pedagogy.questionBlueprints.flatMap((qb) => qb.evidence.assertionIdentifiers));
+  const EVIDENCE_REQUIRING_BASES = new Set(["EXPLICIT", "OFFICIAL_TEACHING_INTERPRETATION", "OFFICIAL_ASSESSMENT_EVIDENCE"]);
+
+  const obligationReadiness: ObligationReadinessResult[] = obligationSets.flatMap((set) =>
+    set.obligations.map((obligation) => {
+      const touchesAssessableFamily = obligation.satisfiedBy.some((id) => familyAssessabilityById.get(familyIdByAssertion.get(id) ?? "") === "assessable");
+      const requiresEvidence = EVIDENCE_REQUIRING_BASES.has(obligation.basis) && touchesAssessableFamily;
+      const hasEvidenceRoute = obligation.satisfiedBy.some((id) => evidencedAssertionIds.has(id));
+      const exceptionKey = `${set.acNumber}:${obligation.id}`;
+      return {
+        acNumber: set.acNumber,
+        obligationId: obligation.id,
+        description: obligation.description,
+        basis: obligation.basis,
+        requiresEvidence,
+        hasEvidenceRoute,
+        trackedExceptionReason: requiresEvidence && !hasEvidenceRoute ? TRACKED_OBLIGATION_EVIDENCE_EXCEPTIONS[exceptionKey] : undefined,
+      };
+    }),
+  );
+  const untrackedObligationEvidenceGaps = obligationReadiness.filter((o) => o.requiresEvidence && !o.hasEvidenceRoute && !o.trackedExceptionReason);
+  const trackedObligationEvidenceExceptions = obligationReadiness.filter((o) => o.requiresEvidence && !o.hasEvidenceRoute && o.trackedExceptionReason);
+
   function acNumberForNode(node: CurriculumNodeManifest): string | undefined {
     const direct = /-AC(\d+\.\d+)$/.exec(node.code);
     if (direct) return direct[1];
@@ -1076,11 +1185,46 @@ function buildReport(overrides?: {
     reasons: releaseConfidenceReasons,
   };
 
+  // =====================================================================
+  // CC-11.1: LEARNER-READY rollup -- an AC is learner-ready only when it
+  // is BOTH referentially ASSESSABLE (AcCoverage.tier) AND every one of
+  // its own declared obligations that requiresEvidence has a real
+  // evidence route or a documented tracked exception. An LO is
+  // learner-ready only when every one of its ACs is. Deliberately
+  // distinct from (and strictly stronger than) LoReadiness.examReady
+  // above, which only ever asked the AC-level tier question.
+  // =====================================================================
+  const obligationsByAcNumberForReadiness = new Map<string, ObligationReadinessResult[]>();
+  for (const o of obligationReadiness) {
+    if (!obligationsByAcNumberForReadiness.has(o.acNumber)) obligationsByAcNumberForReadiness.set(o.acNumber, []);
+    obligationsByAcNumberForReadiness.get(o.acNumber)!.push(o);
+  }
+  const acLearnerReadyByAcNumber = new Map<string, boolean>();
+  for (const ac of acCoverage) {
+    const acNumberMatch = /-AC(\d+\.\d+)$/.exec(ac.code);
+    const acNumber = acNumberMatch?.[1] ?? ac.code;
+    const acObligations = obligationsByAcNumberForReadiness.get(acNumber) ?? [];
+    const obligationsClean = acObligations.every((o) => !o.requiresEvidence || o.hasEvidenceRoute || o.trackedExceptionReason);
+    acLearnerReadyByAcNumber.set(acNumber, ac.tier === "ASSESSABLE" && obligationsClean);
+  }
+  const acLearnerReadyCount = [...acLearnerReadyByAcNumber.values()].filter(Boolean).length;
+  const loLearnerReadyCount = loReadiness.filter((lo) => {
+    const acsForLo = acCoverage.filter((ac) => ac.loNumber === lo.number);
+    return acsForLo.length > 0 && acsForLo.every((ac) => {
+      const acNumberMatch = /-AC(\d+\.\d+)$/.exec(ac.code);
+      const acNumber = acNumberMatch?.[1] ?? ac.code;
+      return acLearnerReadyByAcNumber.get(acNumber) === true;
+    });
+  }).length;
+
   return {
     structuralDefects,
     acCoverage,
     loReadiness,
     acSemantic,
+    obligationReadiness,
+    untrackedObligationEvidenceGaps,
+    trackedObligationEvidenceExceptions,
     provenanceAudit,
     entailmentStatusByAssertion,
     scopeStatusByAssertion,
@@ -1094,6 +1238,8 @@ function buildReport(overrides?: {
       rangeItemsCovered: acCoverage.reduce((sum, ac) => sum + ac.rangeItemsCovered, 0),
       acSemanticComplete: acSemantic.filter((s) => s.status === "COMPLETE_PENDING_VERIFICATION").length,
       rangeItemsSemanticComplete,
+      acLearnerReady: acLearnerReadyCount,
+      loLearnerReady: loLearnerReadyCount,
     },
     lessonPlanGovernanceClean,
   };
@@ -1199,27 +1345,68 @@ function formatReport(report: CoverageMatrixReport): string {
     );
   }
   lines.push("");
+  // CC-11.1: OBLIGATION-LEVEL LEARNER READINESS -- deliberately printed
+  // as its own block, never folded into the AC-level tier/exam-readiness
+  // numbers above, so "AC has SOME blueprint" and "every required
+  // obligation has an evidence route" can never be visually or
+  // mechanically confused (task brief §1's own explicit "AC HAS SOME
+  // ASSESSMENT" vs "ALL REQUIRED ASSESSMENT-REQUIRING OBLIGATIONS...HAVE
+  // A MASTERY/EVIDENCE ROUTE" distinction).
+  lines.push("OBLIGATION-LEVEL LEARNER READINESS (CC-11.1 -- stronger than AC-level ASSESSABLE tier above):");
+  lines.push(`  LOs learner-ready: ${report.totals.loLearnerReady}/${report.totals.loCount}`);
+  lines.push(`  ACs learner-ready: ${report.totals.acLearnerReady}/${report.totals.acCount}`);
+  lines.push(`  Untracked required-obligation evidence gaps (target 0, FATAL): ${report.untrackedObligationEvidenceGaps.length}`);
+  for (const gap of report.untrackedObligationEvidenceGaps) {
+    lines.push(`      AC${gap.acNumber}:${gap.obligationId} [${gap.basis}] -- ${gap.description}`);
+  }
+  lines.push(`  Tracked (documented, deliberately deferred) obligation evidence exceptions -- informational only, never blocks --check: ${report.trackedObligationEvidenceExceptions.length}`);
+  for (const exc of report.trackedObligationEvidenceExceptions) {
+    lines.push(`      AC${exc.acNumber}:${exc.obligationId} -- ${exc.trackedExceptionReason}`);
+  }
+  lines.push("");
   const semanticByAcNumber = new Map(report.acSemantic.map((s) => [s.acNumber, s]));
-  lines.push("Per-Assessment-Criterion coverage (backlog list) -- REFERENTIAL [tier] vs SEMANTIC [status]:");
+  const obligationsByAcNumber = new Map<string, ObligationReadinessResult[]>();
+  for (const o of report.obligationReadiness) {
+    if (!obligationsByAcNumber.has(o.acNumber)) obligationsByAcNumber.set(o.acNumber, []);
+    obligationsByAcNumber.get(o.acNumber)!.push(o);
+  }
+  lines.push("Per-Assessment-Criterion coverage (backlog list) -- REFERENTIAL [tier] vs SEMANTIC [status] vs LEARNER-READY:");
   for (const ac of report.acCoverage) {
     const acNumberMatch = /-AC(\d+\.\d+)$/.exec(ac.code);
     const acNumber = acNumberMatch?.[1] ?? ac.code;
     const semantic = semanticByAcNumber.get(acNumber);
     const unsatisfied = semantic?.obligations.filter((o) => !o.satisfied).map((o) => o.id) ?? [];
+    const acObligations = obligationsByAcNumber.get(acNumber) ?? [];
+    const learnerReady = ac.tier === "ASSESSABLE" && acObligations.every((o) => !o.requiresEvidence || o.hasEvidenceRoute || o.trackedExceptionReason);
     lines.push(
-      `  ${ac.code} referential=[${ac.tier}] semantic=[${semantic?.status ?? "INCOMPLETE"}] assertions=${ac.assertionCount} capabilities=${ac.capabilityIds.length} lesson=${ac.hasLesson} masteryGate=${ac.hasMasteryGate} questionBlueprint=${ac.hasQuestionBlueprint} range=${ac.rangeItemsCovered}/${ac.rangeItemsTotal} -- ${ac.title}`,
+      `  ${ac.code} referential=[${ac.tier}] semantic=[${semantic?.status ?? "INCOMPLETE"}] learnerReady=[${learnerReady ? "READY" : "NOT_READY"}] assertions=${ac.assertionCount} capabilities=${ac.capabilityIds.length} lesson=${ac.hasLesson} masteryGate=${ac.hasMasteryGate} questionBlueprint=${ac.hasQuestionBlueprint} range=${ac.rangeItemsCovered}/${ac.rangeItemsTotal} -- ${ac.title}`,
     );
     if (!semantic?.obligationsDeclared) lines.push(`      (no knowledge-obligation decomposition declared -- semantic status forced INCOMPLETE)`);
     else if (unsatisfied.length) lines.push(`      unsatisfied obligations: ${unsatisfied.join(", ")}`);
+    const acUncoveredEvidence = acObligations.filter((o) => o.requiresEvidence && !o.hasEvidenceRoute);
+    if (acUncoveredEvidence.length) {
+      lines.push(
+        `      obligations lacking an evidence route: ${acUncoveredEvidence.map((o) => (o.trackedExceptionReason ? `${o.obligationId} (tracked exception)` : o.obligationId)).join(", ")}`,
+      );
+    }
   }
   return lines.join("\n");
 }
 
 function isReportClean(report: CoverageMatrixReport): boolean {
-  // Deliberately ONLY structural defects -- coverage gaps are the
-  // expected, honestly-reported backlog this report exists to surface,
-  // never a `--check` failure (see module header).
-  return report.structuralDefects.length === 0;
+  // Deliberately mostly structural defects -- coverage/semantic gaps
+  // remain the expected, honestly-reported backlog this report exists to
+  // surface, never a `--check` failure (see module header). The one
+  // exception (CC-11.1): an UNTRACKED obligation-evidence gap (a
+  // required, assessable-family obligation with no evidence route and no
+  // explicit, documented, human-reviewed exception) DOES gate --check --
+  // this is deliberately the one class of gap the task brief asked this
+  // package to make impossible to silently reintroduce (§1/§7: "so this
+  // particular class of false-green cannot recur"). A genuine new gap of
+  // this kind must be either fixed or explicitly, visibly added to
+  // TRACKED_OBLIGATION_EVIDENCE_EXCEPTIONS with a real reason -- it can
+  // never simply fail to appear.
+  return report.structuralDefects.length === 0 && report.untrackedObligationEvidenceGaps.length === 0;
 }
 
 export { buildReport, formatReport, isReportClean };
@@ -1230,6 +1417,7 @@ export type {
   EntailmentStatus,
   LoReadiness,
   MaterialUncertainty,
+  ObligationReadinessResult,
   ProvenanceAudit,
   ReleaseConfidenceAssessment,
   ReleaseConfidenceLevel,
@@ -1248,7 +1436,11 @@ if (isMainModule()) {
   console.log(formatReport(report));
   const clean = isReportClean(report);
   console.log("");
-  console.log(clean ? "PASS: no structural defects in the Unit 202 coverage matrix." : "FAIL: one or more structural defects in the Unit 202 coverage matrix.");
+  console.log(
+    clean
+      ? "PASS: no structural defects and no untracked obligation-evidence gaps in the Unit 202 coverage matrix."
+      : "FAIL: one or more structural defects or untracked obligation-evidence gaps in the Unit 202 coverage matrix.",
+  );
   if (process.argv.includes("--check") && !clean) {
     process.exit(1);
   }

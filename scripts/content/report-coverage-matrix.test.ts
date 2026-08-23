@@ -1065,3 +1065,56 @@ describe("report-coverage-matrix: CC-09I remaining Phase-1 audit corrections", (
     expect(standaloneIds.has("FP-CALC-WEIGHT-001")).toBe(true);
   });
 });
+
+describe("report-coverage-matrix: CC-11.1 obligation-level learner readiness", () => {
+  it("the real, current corpus has zero untracked obligation-evidence gaps, exactly one documented tracked exception (AC4.1 electron-theory-of-current), and reports 6/6 LOs and 23/23 ACs learner-ready", () => {
+    const report = buildReport();
+    expect(report.untrackedObligationEvidenceGaps).toEqual([]);
+    expect(report.trackedObligationEvidenceExceptions.map((o) => `${o.acNumber}:${o.obligationId}`)).toEqual(["4.1:electron-theory-of-current"]);
+    expect(report.totals.loLearnerReady).toBe(report.totals.loCount);
+    expect(report.totals.acLearnerReady).toBe(report.totals.acCount);
+    expect(isReportClean(report)).toBe(true);
+  });
+
+  it("REGRESSION GUARD: reproduces the exact CC-11 baseline false-green end-to-end -- stripping AC5.1's attraction/repulsion obligation's only evidence citation makes buildReport() flag it as an untracked gap and fail isReportClean, proving the check actually detects this defect class rather than merely reflecting the real corpus's current (fixed) state", () => {
+    const pedagogy = pedagogyManifestSchema.parse(cc05aPedagogyUnit202);
+    const tamperedPedagogy = {
+      ...pedagogy,
+      // Replaced with an unrelated real assertion id, never emptied --
+      // the schema requires >=1 evidence assertionIdentifier, so an
+      // empty array cannot model "this blueprint no longer evidences
+      // EL-CONCEPT-MAGNETISM-001"; citing a different real assertion
+      // instead achieves the same thing (zero blueprints left evidencing
+      // EL-CONCEPT-MAGNETISM-001) while staying schema-valid.
+      questionBlueprints: pedagogy.questionBlueprints.map((qb) =>
+        qb.id === "magnetism.recognise_attraction_repulsion" ? { ...qb, evidence: { ...qb.evidence, assertionIdentifiers: ["EL-CONCEPT-ELECTROMAGNETISM-001"] } } : qb,
+      ),
+    };
+    const report = buildReport({ pedagogy: tamperedPedagogy });
+    const gap = report.untrackedObligationEvidenceGaps.find((o) => o.acNumber === "5.1" && o.obligationId === "magnetism-attraction-repulsion");
+    expect(gap, "the tampered pedagogy must reproduce the exact CC-11 baseline gap").toBeDefined();
+    expect(gap!.requiresEvidence).toBe(true);
+    expect(gap!.hasEvidenceRoute).toBe(false);
+    expect(isReportClean(report)).toBe(false);
+  });
+
+  it("RANGE and NECESSARY_PREREQUISITE-basis obligations never require their own evidence route (never redefines every declarative teaching statement as requiring its own question, per task brief §7)", () => {
+    const report = buildReport();
+    const rangeOrPrerequisite = report.obligationReadiness.filter((o) => o.basis === "RANGE" || o.basis === "NECESSARY_PREREQUISITE");
+    expect(rangeOrPrerequisite.length).toBeGreaterThan(0);
+    expect(rangeOrPrerequisite.every((o) => !o.requiresEvidence)).toBe(true);
+  });
+
+  it("an obligation whose satisfiedBy assertions belong only to a teaching_only family never requires its own evidence route", () => {
+    const report = buildReport();
+    const massWeight = report.obligationReadiness.filter((o) => o.acNumber === "5.1" || o.acNumber === "3.1");
+    // AC3.1 (mass and weight) obligations were reclassified assessable in
+    // CC-11 -- assert against a genuinely teaching_only-backed obligation
+    // instead: AC1.1's "statistics" obligation (foundational.statistics,
+    // teaching_only).
+    const statisticsObligation = report.obligationReadiness.find((o) => o.obligationId === "statistics");
+    expect(statisticsObligation).toBeDefined();
+    expect(statisticsObligation!.requiresEvidence).toBe(false);
+    expect(massWeight.length).toBeGreaterThan(0);
+  });
+});

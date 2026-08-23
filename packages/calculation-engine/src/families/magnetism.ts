@@ -40,9 +40,12 @@
  * evidence document.
  */
 
+import { cleanInteger } from "../parameter-generation.ts";
 import { pick } from "../seed.ts";
 import type { DiagramInstance } from "../types.ts";
-import { assembleInstance, requireDiagramBlueprint, type QuestionExecutor } from "./shared.ts";
+import { assembleInstance, buildFormulaInstance, requireDiagramBlueprint, requireFormulaFamily, type QuestionExecutor } from "./shared.ts";
+
+const FORCE_ON_CONDUCTOR_FORMULA_ID = "formula.force_on_conductor";
 
 const FIELD_DIAGRAM_ID = "magnetic.field_conductor_direction";
 const FORCE_DIAGRAM_ID = "motor.force_field_current";
@@ -175,6 +178,41 @@ const identifyFluxDensityUnit: QuestionExecutor = (ctx) =>
 const identifyFluxUnit: QuestionExecutor = (ctx) =>
   assembleInstance(ctx, {}, {}, { answer: ctx.blueprint.answer, value: "weber" });
 
+// CC-11.1: AC5.1's own explicit obligation -- "like poles repel, unlike
+// poles attract" (EL-CONCEPT-MAGNETISM-001). `pole_combination` is
+// deliberately NOT the answer's own value domain ("attract"/"repel"),
+// so no clue lookup is needed to avoid leaking it -- unlike
+// recogniseConcept/comparePermanentElectromagnet/compareMotorGenerator
+// above, whose raw generated parameter IS the answer.
+const POLE_SCENARIO_CLUE: Readonly<Record<"like" | "unlike", string>> = {
+  like: "two poles of the same type (for example, two north poles)",
+  unlike: "two poles of opposite types (a north pole and a south pole)",
+};
+
+const recogniseAttractionRepulsion: QuestionExecutor = (ctx) => {
+  const poleCombination = pick(ctx.rng, ["like", "unlike"] as const);
+  const expected = poleCombination === "like" ? "repel" : "attract";
+  return assembleInstance(
+    ctx,
+    { pole_combination: poleCombination, pole_scenario_clue: POLE_SCENARIO_CLUE[poleCombination] },
+    {},
+    { answer: ctx.blueprint.answer, value: expected },
+  );
+};
+
+// CC-11.1: AC5.3's own governed "force-on-conductor-calculation"
+// obligation -- F = B I l, the single governed right-angles case only
+// (no vector maths, no sin(theta)). Single target (F) only, matching
+// formula.force_on_conductor's own single declared form.
+const calculateForceOnConductor: QuestionExecutor = (ctx) => {
+  const formulaFamily = requireFormulaFamily(ctx, FORCE_ON_CONDUCTOR_FORMULA_ID);
+  const B = cleanInteger(ctx.rng, 1, 20) / 10; // 0.1 - 2.0 T
+  const I = cleanInteger(ctx.rng, 1, 15); // A
+  const l = cleanInteger(ctx.rng, 5, 100) / 100; // 0.05 - 1.00 m
+  const formulaInstance = buildFormulaInstance(formulaFamily, "F", { B, I, l });
+  return assembleInstance(ctx, { B, I, l }, { formula: formulaInstance }, { answer: ctx.blueprint.answer, value: formulaInstance.result });
+};
+
 export const magnetismExecutors: Readonly<Record<string, QuestionExecutor>> = {
   "magnetism.recognise_concept": recogniseConcept,
   "magnetism.interpret_field_direction": interpretFieldDirection,
@@ -183,6 +221,8 @@ export const magnetismExecutors: Readonly<Record<string, QuestionExecutor>> = {
   "magnetism.compare_motor_generator": compareMotorGenerator,
   "magnetism.identify_flux_density_unit": identifyFluxDensityUnit,
   "magnetism.identify_flux_unit": identifyFluxUnit,
+  "magnetism.recognise_attraction_repulsion": recogniseAttractionRepulsion,
+  "magnetism.calculate_force_on_conductor": calculateForceOnConductor,
 };
 
 export const __internal = {

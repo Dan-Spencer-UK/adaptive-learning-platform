@@ -39,10 +39,15 @@ import { LESSON_MECHANICS_FORCE_WORK_ENERGY_POWER } from "./lesson-mechanics-for
 import { LESSON_MAGNETISM_FUNDAMENTALS } from "./lesson-magnetism-fundamentals.ts";
 import { LESSON_MAGNETIC_EFFECTS_OF_CURRENT } from "./lesson-magnetic-effects-of-current.ts";
 import { LESSON_AC_GENERATION_PRINCIPLES } from "./lesson-ac-generation-principles.ts";
+import {
+  LESSON_MAGNETISM_FUNDAMENTALS_V4_HISTORICAL,
+  LESSON_MAGNETIC_EFFECTS_OF_CURRENT_V4_HISTORICAL,
+  LESSON_AC_GENERATION_PRINCIPLES_V4_HISTORICAL,
+} from "./lesson-lo5-v4-historical-snapshot.ts";
 import { LESSON_AC_DC_AND_SINE_WAVE_QUANTITIES } from "./lesson-ac-dc-and-sine-wave-quantities.ts";
 import { LESSON_ELECTRONIC_COMPONENTS_PASSIVE } from "./lesson-electronic-components-passive.ts";
 import { LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL } from "./lesson-electronic-components-switching-control.ts";
-import { RELEASE_UNIT202_V2, RELEASE_UNIT202_V3, RELEASE_UNIT202_V4 } from "./content-releases.ts";
+import { RELEASE_UNIT202_V2, RELEASE_UNIT202_V3, RELEASE_UNIT202_V4, RELEASE_UNIT202_V5 } from "./content-releases.ts";
 
 /**
  * The same real Ohm's Law step content, addressed as a member of
@@ -96,6 +101,52 @@ export const LESSON_ELECTRICAL_ENERGY_EFFICIENCY_UNIT202_V4: LessonPlan = { ...L
 export const LESSON_FAULT_CONDITIONS_PROTECTION_UNIT202_V4: LessonPlan = { ...LESSON_FAULT_CONDITIONS_PROTECTION, contentRelease: RELEASE_UNIT202_V4 };
 export const LESSON_SERIES_VS_PARALLEL_COMPARISON_UNIT202_V4: LessonPlan = { ...LESSON_SERIES_VS_PARALLEL_COMPARISON, contentRelease: RELEASE_UNIT202_V4 };
 
+/**
+ * CC-11.1: `release.unit202.v5` carries the same 24-lesson membership as
+ * v4 (see content-releases.ts's own RELEASE_UNIT202_V5 doc comment for
+ * why v4 itself could not simply be grown in place). 21 of these 24
+ * lessons' step content is genuinely unchanged from v4 -- re-addressed
+ * here via the same plain-field-override pattern as every release
+ * before it. The remaining 3
+ * (LESSON_MAGNETISM_FUNDAMENTALS/LESSON_MAGNETIC_EFFECTS_OF_CURRENT/
+ * LESSON_AC_GENERATION_PRINCIPLES) are referenced directly, unwrapped,
+ * below -- their own native `contentRelease` field now reads v5 (their
+ * step content was genuinely corrected, so v5 is their first, and only,
+ * true release identity; see lesson-magnetism-fundamentals.ts /
+ * lesson-magnetic-effects-of-current.ts / lesson-ac-generation-
+ * principles.ts's own CC-11.1 header comments for exactly what changed).
+ */
+export const LESSON_OHMS_LAW_UNIT202_V5: LessonPlan = { ...LESSON_OHMS_LAW, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_FOUNDATION_FORMULA_REARRANGEMENT_UNIT202_V5: LessonPlan = {
+  ...LESSON_FOUNDATION_FORMULA_REARRANGEMENT,
+  contentRelease: RELEASE_UNIT202_V5,
+};
+export const LESSON_RESISTORS_SERIES_UNIT202_V5: LessonPlan = { ...LESSON_RESISTORS_SERIES, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_RESISTORS_PARALLEL_UNIT202_V5: LessonPlan = { ...LESSON_RESISTORS_PARALLEL, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_CORE_QUANTITIES_UNIT202_V5: LessonPlan = { ...LESSON_CORE_QUANTITIES, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_SI_UNITS_UNIT202_V5: LessonPlan = { ...LESSON_SI_UNITS, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_INSTRUMENTATION_UNIT202_V5: LessonPlan = { ...LESSON_INSTRUMENTATION, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_CHARGE_AND_CURRENT_UNIT202_V5: LessonPlan = { ...LESSON_CHARGE_AND_CURRENT, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_CONDUCTORS_AND_INSULATORS_UNIT202_V5: LessonPlan = { ...LESSON_CONDUCTORS_AND_INSULATORS, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_THERMAL_AND_CHEMICAL_EFFECTS_UNIT202_V5: LessonPlan = { ...LESSON_THERMAL_AND_CHEMICAL_EFFECTS, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_RESISTIVITY_UNIT202_V5: LessonPlan = { ...LESSON_RESISTIVITY, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_ELECTRICAL_POWER_UNIT202_V5: LessonPlan = { ...LESSON_ELECTRICAL_POWER, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_ELECTRICAL_ENERGY_EFFICIENCY_UNIT202_V5: LessonPlan = { ...LESSON_ELECTRICAL_ENERGY_EFFICIENCY, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_FAULT_CONDITIONS_PROTECTION_UNIT202_V5: LessonPlan = { ...LESSON_FAULT_CONDITIONS_PROTECTION, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_SERIES_VS_PARALLEL_COMPARISON_UNIT202_V5: LessonPlan = { ...LESSON_SERIES_VS_PARALLEL_COMPARISON, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_MASS_AND_WEIGHT_UNIT202_V5: LessonPlan = { ...LESSON_MASS_AND_WEIGHT, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_SIMPLE_MACHINES_UNIT202_V5: LessonPlan = { ...LESSON_SIMPLE_MACHINES, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_MECHANICS_FORCE_WORK_ENERGY_POWER_UNIT202_V5: LessonPlan = {
+  ...LESSON_MECHANICS_FORCE_WORK_ENERGY_POWER,
+  contentRelease: RELEASE_UNIT202_V5,
+};
+export const LESSON_AC_DC_AND_SINE_WAVE_QUANTITIES_UNIT202_V5: LessonPlan = { ...LESSON_AC_DC_AND_SINE_WAVE_QUANTITIES, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_ELECTRONIC_COMPONENTS_PASSIVE_UNIT202_V5: LessonPlan = { ...LESSON_ELECTRONIC_COMPONENTS_PASSIVE, contentRelease: RELEASE_UNIT202_V5 };
+export const LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL_UNIT202_V5: LessonPlan = {
+  ...LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL,
+  contentRelease: RELEASE_UNIT202_V5,
+};
+
 export const lessons: LessonPlan[] = [
   LESSON_OHMS_LAW,
   LESSON_OHMS_LAW_UNIT202_V2,
@@ -140,16 +191,48 @@ export const lessons: LessonPlan[] = [
   LESSON_ELECTRICAL_ENERGY_EFFICIENCY_UNIT202_V4,
   LESSON_FAULT_CONDITIONS_PROTECTION_UNIT202_V4,
   LESSON_SERIES_VS_PARALLEL_COMPARISON_UNIT202_V4,
-  // CC-11 new lessons:
+  // CC-11 new lessons (release.unit202.v4 -- 21 of these 24 are also
+  // release.unit202.v5 members, re-addressed below; the 3 CC-11.1-
+  // corrected lessons' CURRENT native contentRelease now reads v5, so
+  // frozen historical snapshots of their original v4 content stand in
+  // here instead -- see lesson-lo5-v4-historical-snapshot.ts and
+  // content-releases.ts's RELEASE_UNIT202_V5 doc comment):
   LESSON_MASS_AND_WEIGHT,
   LESSON_SIMPLE_MACHINES,
   LESSON_MECHANICS_FORCE_WORK_ENERGY_POWER,
-  LESSON_MAGNETISM_FUNDAMENTALS,
-  LESSON_MAGNETIC_EFFECTS_OF_CURRENT,
-  LESSON_AC_GENERATION_PRINCIPLES,
+  LESSON_MAGNETISM_FUNDAMENTALS_V4_HISTORICAL,
+  LESSON_MAGNETIC_EFFECTS_OF_CURRENT_V4_HISTORICAL,
+  LESSON_AC_GENERATION_PRINCIPLES_V4_HISTORICAL,
   LESSON_AC_DC_AND_SINE_WAVE_QUANTITIES,
   LESSON_ELECTRONIC_COMPONENTS_PASSIVE,
   LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL,
+  // CC-11.1: release.unit202.v5 -- 21 lessons re-addressed unchanged,
+  // plus the 3 CC-11.1-corrected lessons referenced directly (their own
+  // native contentRelease already reads v5).
+  LESSON_OHMS_LAW_UNIT202_V5,
+  LESSON_FOUNDATION_FORMULA_REARRANGEMENT_UNIT202_V5,
+  LESSON_RESISTORS_SERIES_UNIT202_V5,
+  LESSON_RESISTORS_PARALLEL_UNIT202_V5,
+  LESSON_CORE_QUANTITIES_UNIT202_V5,
+  LESSON_SI_UNITS_UNIT202_V5,
+  LESSON_INSTRUMENTATION_UNIT202_V5,
+  LESSON_CHARGE_AND_CURRENT_UNIT202_V5,
+  LESSON_CONDUCTORS_AND_INSULATORS_UNIT202_V5,
+  LESSON_THERMAL_AND_CHEMICAL_EFFECTS_UNIT202_V5,
+  LESSON_RESISTIVITY_UNIT202_V5,
+  LESSON_ELECTRICAL_POWER_UNIT202_V5,
+  LESSON_ELECTRICAL_ENERGY_EFFICIENCY_UNIT202_V5,
+  LESSON_FAULT_CONDITIONS_PROTECTION_UNIT202_V5,
+  LESSON_SERIES_VS_PARALLEL_COMPARISON_UNIT202_V5,
+  LESSON_MASS_AND_WEIGHT_UNIT202_V5,
+  LESSON_SIMPLE_MACHINES_UNIT202_V5,
+  LESSON_MECHANICS_FORCE_WORK_ENERGY_POWER_UNIT202_V5,
+  LESSON_MAGNETISM_FUNDAMENTALS,
+  LESSON_MAGNETIC_EFFECTS_OF_CURRENT,
+  LESSON_AC_GENERATION_PRINCIPLES,
+  LESSON_AC_DC_AND_SINE_WAVE_QUANTITIES_UNIT202_V5,
+  LESSON_ELECTRONIC_COMPONENTS_PASSIVE_UNIT202_V5,
+  LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL_UNIT202_V5,
 ];
 
 export {

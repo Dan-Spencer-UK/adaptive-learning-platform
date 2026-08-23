@@ -20,22 +20,18 @@
  * Lesson Player's generic diagram-rendering gap (PROJECT-STATUS.md CC-10
  * §5a) is a separate, parallel workstream's concern, not this one's.
  *
- * Known corpus gaps (flagged, not silently worked around): AC5.3's two
- * OFFICIAL_TEACHING_INTERPRETATION calculation obligations --
- * "force-on-conductor-calculation" (F = B I l via Fleming's left-hand
- * rule, EL-REL-FORCE-ON-CONDUCTOR-001 / EL-CONCEPT-FLEMING-LEFT-HAND-001)
- * and "induced-emf-calculation" (e = B l v via Fleming's right-hand rule,
- * EL-REL-INDUCED-EMF-001 / EL-CONCEPT-FLEMING-RIGHT-HAND-001) -- have NO
- * formula family, worked example, question blueprint or capability
- * anywhere in the CC-05A corpus (confirmed by grep: these four assertion
- * ids appear only in the family's membersOf list, never in any question
- * blueprint's assertionIdentifiers). They are taught conceptually here
- * (concept_force_on_conductor / concept_emf_and_terminal_voltage, both
- * `teaches` these ids) but cannot be practised or independently tested by
- * this lesson -- there is nothing to reference. This is the most
- * significant LO5 assessment-coverage gap found; authoring the missing
- * formula/blueprint/capability triple (twice) was out of scope for pure
- * lesson-authoring and would need its own governed-content package.
+ * CC-11.1: closes the two gaps CC-11 flagged -- AC5.3's
+ * OFFICIAL_TEACHING_INTERPRETATION calculation obligations
+ * "force-on-conductor-calculation" (F = B I l, Fleming's left-hand rule)
+ * and "induced-emf-calculation" (e = B l v, Fleming's right-hand rule)
+ * previously had no formula family, worked example, question blueprint
+ * or capability anywhere. Both now exist
+ * (cap.magnetism.calculate_force_on_conductor /
+ * magnetism.calculate_force_on_conductor;
+ * cap.emf.calculate_motional_emf / emf.calculate_motional_emf) and are
+ * taught + practised directly in this lesson
+ * (worked_force_on_conductor / guided_calculate_force_on_conductor;
+ * worked_motional_emf / guided_calculate_motional_emf).
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -66,8 +62,10 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
   targetCapabilityIds: [
     "cap.magnetism.interpret_field_direction",
     "cap.magnetism.interpret_force_direction",
+    "cap.magnetism.calculate_force_on_conductor",
     "cap.magnetism.recognise_concept",
     "cap.emf.recognise_emf_terminal_voltage",
+    "cap.emf.calculate_motional_emf",
   ],
   estimatedDurationMinutes: 18,
   instructionalStrategy:
@@ -154,6 +152,47 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       evidenceEmitted: [],
     },
     {
+      id: "worked_force_on_conductor",
+      type: "worked_example",
+      purpose: "Model calculating the force on a current-carrying conductor using F = B I l, before the learner practises it unaided.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.calculate_force_on_conductor"],
+      misconceptionTargets: [],
+      representation: { formulaFamilyId: "formula.force_on_conductor", workedExampleBlueprintId: "worked.force_on_conductor.calculate" },
+      presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: true, progressiveReveal: true },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "intermediate",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_calculate_force_on_conductor",
+      type: "guided_interaction",
+      purpose: "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I l.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-REL-FORCE-ON-CONDUCTOR-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.calculate_force_on_conductor"],
+      misconceptionTargets: [],
+      representation: { formulaFamilyId: "formula.force_on_conductor" },
+      questionBlueprintId: "magnetism.calculate_force_on_conductor",
+      presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "advanced",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.calculate_force_on_conductor"],
+    },
+    {
       id: "guided_interpret_force_direction",
       type: "guided_interaction",
       purpose: "Interpret the direction of the force on a current-carrying conductor in a magnetic field from a diagram.",
@@ -234,6 +273,47 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       completionCondition: "view_acknowledged",
       branchRoutes: [],
       evidenceEmitted: [],
+    },
+    {
+      id: "worked_motional_emf",
+      type: "worked_example",
+      purpose: "Model calculating the EMF induced in a conductor moving through a magnetic field using e = B l v, before the learner practises it unaided.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: [],
+      assertionFamilyId: "electrical.emf_and_generation",
+      capabilityIds: ["cap.emf.calculate_motional_emf"],
+      misconceptionTargets: [],
+      representation: { formulaFamilyId: "formula.motional_emf", workedExampleBlueprintId: "worked.motional_emf.calculate" },
+      presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: true, progressiveReveal: true },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "intermediate",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_calculate_motional_emf",
+      type: "guided_interaction",
+      purpose: "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B l v.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-REL-INDUCED-EMF-001"],
+      assertionFamilyId: "electrical.emf_and_generation",
+      capabilityIds: ["cap.emf.calculate_motional_emf"],
+      misconceptionTargets: [],
+      representation: { formulaFamilyId: "formula.motional_emf" },
+      questionBlueprintId: "emf.calculate_motional_emf",
+      presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "advanced",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.emf.calculate_motional_emf"],
     },
     {
       id: "misconception_check_emf_terminal_voltage",
@@ -362,10 +442,14 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       "concept_field_from_current",
       "guided_interpret_field_direction",
       "concept_force_on_conductor",
+      "worked_force_on_conductor",
+      "guided_calculate_force_on_conductor",
       "guided_interpret_force_direction",
       "concept_electromagnetism",
       "guided_recognise_electromagnetism",
       "concept_emf_and_terminal_voltage",
+      "worked_motional_emf",
+      "guided_calculate_motional_emf",
       "misconception_check_emf_terminal_voltage",
       "retrieval_check",
       "recap",
@@ -374,10 +458,13 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     requiredCapabilityEvidence: [
       "cap.magnetism.interpret_field_direction",
       "cap.magnetism.interpret_force_direction",
+      "cap.magnetism.calculate_force_on_conductor",
       "cap.magnetism.recognise_concept",
       "cap.emf.recognise_emf_terminal_voltage",
+      "cap.emf.calculate_motional_emf",
     ],
-    // interpret_field_direction, interpret_force_direction and
+    // interpret_field_direction, interpret_force_direction,
+    // calculate_force_on_conductor, calculate_motional_emf and
     // recognise_concept are each only evidenced through guided steps in
     // THIS lesson's own step design (never independently or via
     // transfer) so cannot structurally reach a secure mastery tier here
@@ -387,10 +474,10 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     masteryGateCapabilityIds: ["cap.emf.recognise_emf_terminal_voltage"],
     requiresRemediationClearance: true,
     exitSummary:
-      "The learner has interpreted the direction of the magnetic field around a current-carrying conductor and the force on a conductor in a field, recognised electromagnetism, and distinguished EMF from terminal voltage -- clearing remediation if that misconception was detected.",
+      "The learner has interpreted the direction of the magnetic field around a current-carrying conductor, calculated the force on a conductor in a field, recognised electromagnetism, calculated induced EMF from a moving conductor, and distinguished EMF from terminal voltage -- clearing remediation if that misconception was detected.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v4",
+  contentRelease: "release.unit202.v5",
 };
 
 export const lessons = [LESSON_MAGNETIC_EFFECTS_OF_CURRENT];

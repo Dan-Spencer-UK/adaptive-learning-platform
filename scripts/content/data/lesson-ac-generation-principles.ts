@@ -19,20 +19,12 @@
  * scripts/content/validate-lesson-plan.ts. No new knowledge, capability
  * or blueprint was authored.
  *
- * Known corpus gap (flagged, not silently worked around): formula
- * family formula.flux_change_emf marks BOTH of its practised targets
- * (e, deltaPhi) `requiresWorkedExample: true`, but no worked-example
- * blueprint exists for it anywhere in the corpus (unlike
- * formula.ac_waveform_relationships, which has
- * worked.waveform.calculate_rms/calculate_frequency). This is the SAME
- * EMF-calculation worked-example gap the CC-11 task brief itself
- * anticipated ("if an EMF worked example does not exist, note its
- * absence"). guided_calculate_flux_change_emf below compensates
- * pedagogically within the existing schema (progressiveReveal: true,
- * contentMayScroll: true, heavier "guided" scaffolding, explicit
- * concept-first framing of the formula) rather than skipping the
- * capability or inventing a new worked-example blueprint, which was out
- * of scope.
+ * CC-11.1: closes the worked-example gap CC-11 flagged --
+ * formula.flux_change_emf marks both of its practised targets (e,
+ * deltaPhi) `requiresWorkedExample: true`; worked.emf.calculate_flux_
+ * change_e / worked.emf.calculate_flux_change_deltaPhi now exist and are
+ * taught directly (worked_flux_change_emf, below) before the learner
+ * practises the calculation unaided.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -141,9 +133,29 @@ export const LESSON_AC_GENERATION_PRINCIPLES: LessonPlan = {
       evidenceEmitted: [],
     },
     {
+      id: "worked_flux_change_emf",
+      type: "worked_example",
+      purpose: "Model calculating the induced EMF from a changing magnetic flux, before the learner practises it unaided.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: [],
+      assertionFamilyId: "electrical.emf_and_generation",
+      capabilityIds: ["cap.emf.calculate_flux_change"],
+      misconceptionTargets: [],
+      representation: { formulaFamilyId: "formula.flux_change_emf", workedExampleBlueprintId: "worked.emf.calculate_flux_change_e" },
+      presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: true, progressiveReveal: true },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "intermediate",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
       id: "guided_calculate_flux_change_emf",
       type: "guided_interaction",
-      purpose: "First learner-performed flux-change EMF calculation, more heavily scaffolded than usual since no worked-example blueprint exists for this relationship (see file header).",
+      purpose: "First learner-performed flux-change EMF calculation.",
       requirement: "required",
       teaches: [],
       reinforces: [],
@@ -153,7 +165,7 @@ export const LESSON_AC_GENERATION_PRINCIPLES: LessonPlan = {
       misconceptionTargets: [],
       representation: { formulaFamilyId: "formula.flux_change_emf" },
       questionBlueprintId: "emf.calculate_flux_change",
-      presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: true, progressiveReveal: true },
+      presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
       cognitiveDemand: "intermediate",
       feedback: { mode: "immediate", explainWhy: true },
@@ -292,6 +304,7 @@ export const LESSON_AC_GENERATION_PRINCIPLES: LessonPlan = {
       "concept_electromagnetic_induction_and_generator",
       "guided_describe_ac_generation",
       "concept_flux_change_emf",
+      "worked_flux_change_emf",
       "guided_calculate_flux_change_emf",
       "independent_calculate_flux_change_emf",
       "concept_motor_vs_generator",
@@ -313,7 +326,7 @@ export const LESSON_AC_GENERATION_PRINCIPLES: LessonPlan = {
       "The learner has described the rotating-loop A.C. generator principle, calculated the EMF induced by a changing magnetic flux, and compared the motor principle with the generator principle.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v4",
+  contentRelease: "release.unit202.v5",
 };
 
 export const lessons = [LESSON_AC_GENERATION_PRINCIPLES];

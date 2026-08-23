@@ -1,0 +1,192 @@
+{
+  "generatedAt": "2026-08-23T01:55:06.213Z",
+  "pdf": "unit202-instructional-visuals-review.pdf",
+  "pageOrder": [
+    {
+      "page": 2,
+      "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=1,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+      "contractId": "visual-contract.ac-waveform-sine",
+      "mode": "both"
+    },
+    {
+      "page": 3,
+      "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=false,show_period_marker=false,show_rms_line=false::both",
+      "contractId": "visual-contract.ac-waveform-sine",
+      "mode": "both"
+    },
+    {
+      "page": 4,
+      "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=false::both",
+      "contractId": "visual-contract.ac-waveform-sine",
+      "mode": "both"
+    },
+    {
+      "page": 5,
+      "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=true::both",
+      "contractId": "visual-contract.ac-waveform-sine",
+      "mode": "both"
+    },
+    {
+      "page": 6,
+      "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+      "contractId": "visual-contract.ac-waveform-sine",
+      "mode": "both"
+    },
+    {
+      "page": 7,
+      "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=3,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+      "contractId": "visual-contract.ac-waveform-sine",
+      "mode": "both"
+    },
+    {
+      "page": 8,
+      "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=ammeter,mode=both::both",
+      "contractId": "visual-contract.instrument-measurement-connection",
+      "mode": "both"
+    },
+    {
+      "page": 9,
+      "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=voltmeter,mode=both::both",
+      "contractId": "visual-contract.instrument-measurement-connection",
+      "mode": "both"
+    },
+    {
+      "page": 10,
+      "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ammeter,mode=both::both",
+      "contractId": "visual-contract.instrument-measurement-connection",
+      "mode": "both"
+    },
+    {
+      "page": 11,
+      "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ohmmeter,mode=both::both",
+      "contractId": "visual-contract.instrument-measurement-connection",
+      "mode": "both"
+    },
+    {
+      "page": 12,
+      "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=voltmeter,mode=both::both",
+      "contractId": "visual-contract.instrument-measurement-connection",
+      "mode": "both"
+    },
+    {
+      "page": 13,
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
+      "contractId": "visual-contract.motor-principle-force",
+      "mode": "teaching"
+    },
+    {
+      "page": 14,
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+      "contractId": "visual-contract.motor-principle-force",
+      "mode": "teaching"
+    },
+    {
+      "page": 15,
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+      "contractId": "visual-contract.motor-principle-force",
+      "mode": "assessment"
+    },
+    {
+      "page": 16,
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+      "contractId": "visual-contract.motor-principle-force",
+      "mode": "assessment"
+    },
+    {
+      "page": 17,
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=right,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching",
+      "contractId": "visual-contract.motor-principle-force",
+      "mode": "teaching"
+    },
+    {
+      "page": 18,
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=up,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
+      "contractId": "visual-contract.motor-principle-force",
+      "mode": "teaching"
+    },
+    {
+      "page": 19,
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment",
+      "contractId": "visual-contract.motor-principle-force",
+      "mode": "assessment"
+    },
+    {
+      "page": 20,
+      "variantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment",
+      "contractId": "visual-contract.motor-principle-force",
+      "mode": "assessment"
+    },
+    {
+      "page": 21,
+      "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=2,mode=both,show_branch_current_arrows=true,show_values=false::both",
+      "contractId": "visual-contract.parallel-circuit-branches",
+      "mode": "both"
+    },
+    {
+      "page": 22,
+      "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=3,mode=both,show_branch_current_arrows=true,show_values=false::both",
+      "contractId": "visual-contract.parallel-circuit-branches",
+      "mode": "both"
+    },
+    {
+      "page": 23,
+      "variantId": "visual-contract.parallel-circuit-branches@1::branch_count=4,mode=both,show_branch_current_arrows=true,show_values=false::both",
+      "contractId": "visual-contract.parallel-circuit-branches",
+      "mode": "both"
+    },
+    {
+      "page": 24,
+      "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,field_rotation=clockwise,mode=teaching,show_field_arrows=true::teaching",
+      "contractId": "visual-contract.right-hand-grip-rule",
+      "mode": "teaching"
+    },
+    {
+      "page": 25,
+      "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=into_page,mode=assessment,show_field_arrows=true::assessment",
+      "contractId": "visual-contract.right-hand-grip-rule",
+      "mode": "assessment"
+    },
+    {
+      "page": 26,
+      "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,field_rotation=counterclockwise,mode=teaching,show_field_arrows=true::teaching",
+      "contractId": "visual-contract.right-hand-grip-rule",
+      "mode": "teaching"
+    },
+    {
+      "page": 27,
+      "variantId": "visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,mode=assessment,show_field_arrows=true::assessment",
+      "contractId": "visual-contract.right-hand-grip-rule",
+      "mode": "assessment"
+    },
+    {
+      "page": 28,
+      "variantId": "visual-contract.series-circuit-current-direction@1::component_count=2,mode=both,show_current_arrow=true,show_values=false::both",
+      "contractId": "visual-contract.series-circuit-current-direction",
+      "mode": "both"
+    },
+    {
+      "page": 29,
+      "variantId": "visual-contract.series-circuit-current-direction@1::component_count=3,mode=both,show_current_arrow=true,show_values=false::both",
+      "contractId": "visual-contract.series-circuit-current-direction",
+      "mode": "both"
+    },
+    {
+      "page": 30,
+      "variantId": "visual-contract.series-circuit-current-direction@1::component_count=4,mode=both,show_current_arrow=true,show_values=false::both",
+      "contractId": "visual-contract.series-circuit-current-direction",
+      "mode": "both"
+    },
+    {
+      "page": 31,
+      "variantId": "visual-contract.series-parallel-mixed-topology@1::branch_arrangement=parallel_of_series,mode=both,show_values=false::both",
+      "contractId": "visual-contract.series-parallel-mixed-topology",
+      "mode": "both"
+    },
+    {
+      "page": 32,
+      "variantId": "visual-contract.series-parallel-mixed-topology@1::branch_arrangement=series_of_parallel,mode=both,show_values=false::both",
+      "contractId": "visual-contract.series-parallel-mixed-topology",
+      "mode": "both"
+    }
+  ]
+}

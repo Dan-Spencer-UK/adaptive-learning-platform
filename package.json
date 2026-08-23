@@ -66,6 +66,7 @@
     "visuals:audit:semantic": "node scripts/visual-governance/run-semantic-audit.ts",
     "visuals:review:record": "node scripts/visual-governance/human-review.ts record",
     "visuals:report": "node scripts/visual-governance/generate-report.ts",
+    "visuals:review:package": "node scripts/visual-governance/generate-review-package.ts",
     "visuals:all": "npm run visuals:render && npm run visuals:check:strict && npm run visuals:audit:semantic && npm run visuals:report"
   },
   "devDependencies": {
