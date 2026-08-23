@@ -113,8 +113,30 @@ export const RELEASE_UNIT202_V4 = "release.unit202.v4" as const;
  */
 export const RELEASE_UNIT202_V5 = "release.unit202.v5" as const;
 
+/**
+ * CC-11.2: closes the last known Unit 202 evidence gap -- AC4.1's own
+ * "electron-theory-of-current" obligation was taught
+ * (`lesson.electrical.conductors-and-insulators`) but never directly
+ * assessed. Same pattern as v5's own creation: `release.unit202.v5`'s
+ * own declared membership below is left byte-identical (immutable), and
+ * because `lesson.electrical.conductors-and-insulators` is single-
+ * sourced, its `contentRelease` field now reads `release.unit202.v6`,
+ * not `v5`. That lesson's pre-CC-11.2 step content is preserved,
+ * byte-identical, in
+ * `lesson-conductors-and-insulators-v3-v5-historical-snapshot.ts` and
+ * referenced from v3/v4/v5's own membership blocks below so all three
+ * remain fully resolvable -- a resolver requesting `release.unit202.v5`
+ * (or v4, or v3) for this lesson id correctly gets the pre-CC-11.2
+ * content, never the corrected content silently substituted in. The
+ * other 23 v5 members are unaffected and remain resolvable exactly as
+ * v5 declared them. `release.unit202.v6` is the first release where
+ * every Unit 202 required-obligation evidence route exists (0 tracked
+ * exceptions, not just 0 untracked gaps).
+ */
+export const RELEASE_UNIT202_V6 = "release.unit202.v6" as const;
+
 /** The release whose generated learner-runtime projection is bundled into the mobile app (scripts/content/generate-mobile-projection.ts). */
-export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V5;
+export const MOBILE_BUNDLED_RELEASE_ID = RELEASE_UNIT202_V6;
 
 export const contentReleases: ContentReleaseManifest = {
   releases: [
@@ -227,6 +249,45 @@ export const contentReleases: ContentReleaseManifest = {
         { lessonId: "lesson.foundation.physics.simple-machines", lessonVersion: 1 },
         { lessonId: "lesson.foundation.physics.mechanics-force-work-energy-power", lessonVersion: 1 },
         // CC-11.1: content genuinely corrected relative to v4 (AC5.1/AC5.3 gaps closed).
+        { lessonId: "lesson.magnetism.fundamentals", lessonVersion: 1 },
+        { lessonId: "lesson.magnetism.effects-of-current", lessonVersion: 1 },
+        { lessonId: "lesson.emf.ac-generation-principles", lessonVersion: 1 },
+        { lessonId: "lesson.waveforms.ac-dc-and-sine-wave-quantities", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.electronic-components-passive", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.electronic-components-switching-control", lessonVersion: 1 },
+      ],
+      knowledgeCorpusId: CC04_KNOWLEDGE_CORPUS_ID,
+      pedagogyCorpusId: CC05A_PEDAGOGY_CORPUS_ID,
+      questionBlueprintVersion: 1,
+    },
+    {
+      // CC-11.2: closes the AC4.1 electron-theory-of-current evidence
+      // gap -- see RELEASE_UNIT202_V6's own doc comment above. Same
+      // 24-lesson membership as v5; 1 lesson's underlying content was
+      // genuinely corrected (not merely re-addressed unchanged), the
+      // rest reused exactly as v5 declared them.
+      id: RELEASE_UNIT202_V6,
+      schemaVersion: 1,
+      lessons: [
+        { lessonId: "lesson.electrical.ohms-law", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.maths.formula-rearrangement", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-series", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistors-parallel", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.core-quantities", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.si-units", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.instrumentation", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.charge-and-current", lessonVersion: 1 },
+        // CC-11.2: content genuinely corrected relative to v5 (AC4.1 gap closed).
+        { lessonId: "lesson.electrical.conductors-and-insulators", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.thermal-and-chemical-effects", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.resistivity", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.power", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.energy-and-efficiency", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.fault-conditions-protection", lessonVersion: 1 },
+        { lessonId: "lesson.electrical.series-vs-parallel-comparison", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.physics.mass-and-weight", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.physics.simple-machines", lessonVersion: 1 },
+        { lessonId: "lesson.foundation.physics.mechanics-force-work-energy-power", lessonVersion: 1 },
         { lessonId: "lesson.magnetism.fundamentals", lessonVersion: 1 },
         { lessonId: "lesson.magnetism.effects-of-current", lessonVersion: 1 },
         { lessonId: "lesson.emf.ac-generation-principles", lessonVersion: 1 },

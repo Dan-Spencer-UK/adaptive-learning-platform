@@ -380,7 +380,7 @@ const assertionFamilies: AssertionFamily[] = [
       "Distinguish conductors from insulators via electron theory, identify common examples, and recognise insulation breakdown.",
     teachFamilyTogether: true,
     completeness: {
-      requiredCapabilityIds: ["cap.conductors.classify_material", "cap.conductors.recognise_breakdown"],
+      requiredCapabilityIds: ["cap.conductors.classify_material", "cap.conductors.recognise_breakdown", "cap.conductors.recognise_electron_theory"],
     },
     assessmentRequirement: "assessable",
   },
@@ -1446,6 +1446,17 @@ const capabilities: Capability[] = [
     "electrical.conductors_and_insulators",
     "recognise",
     "Recognise insulation breakdown as a consequence of excessive voltage.",
+  ),
+  // CC-11.2: closes AC4.1's own "electron-theory-of-current" obligation
+  // (EXPLICIT basis) -- taught since CC-10 but never directly assessed;
+  // the pre-existing blueprints in this family test conductor/insulator
+  // classification and breakdown, neither of which exercises the
+  // electron-theory proposition itself.
+  cap(
+    "cap.conductors.recognise_electron_theory",
+    "electrical.conductors_and_insulators",
+    "recognise",
+    "Recognise electron theory: in a metallic conductor, current is the flow of free electrons driven by a potential difference.",
   ),
 
   // --- electrical.instrumentation -------------------------------------------
@@ -3658,6 +3669,24 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-INSULATOR-BREAKDOWN-001"],
     presentation: { promptLines: ["A voltage far beyond an insulator's rating is applied across it.", "What happens to the insulator?"] },
+  }),
+  // CC-11.2: closes AC4.1's own "electron-theory-of-current" obligation.
+  // Distractor is "protons" rather than an ionic/semiconductor charge
+  // carrier -- both the correct answer and the wrong one draw only on
+  // content this family's own prerequisite already teaches
+  // (EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001: protons fixed in the
+  // nucleus, only electrons free to move), so no new teaching content
+  // was introduced to support this question.
+  qb({
+    id: "conductors.recognise_electron_theory",
+    familyId: "electrical.conductors_and_insulators",
+    capabilityId: "cap.conductors.recognise_electron_theory",
+    title: "Recognise electron theory of current in a metallic conductor",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["free_electrons", "protons"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-ELECTRON-THEORY-001", "EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001"],
+    presentation: { promptLines: ["In a metallic conductor, a potential difference is applied across it.", "What actually moves through the conductor to create the electric current?"] },
   }),
 
   // ===================================================================

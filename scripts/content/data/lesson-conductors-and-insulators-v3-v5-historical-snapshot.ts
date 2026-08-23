@@ -1,25 +1,31 @@
 /**
- * CC-10: complete Unit 202 course production. `electrical.conductors_and_insulators`
- * (AC4.1/AC4.2) teaches electron theory and applies it to distinguish
- * conductors from insulators -- the physical-materials foundation every
- * later resistance/resistivity lesson assumes.
+ * CC-11.2: a frozen, byte-for-byte historical snapshot of
+ * `lesson.electrical.conductors-and-insulators`'s exact step content as
+ * it stood at commit `9012b40` (CC-11.1's own closing commit), copied
+ * verbatim BEFORE CC-11.2 added the `guided_recognise_electron_theory`
+ * step. This file exists ONLY so `release.unit202.v3`/`v4`/`v5`'s own
+ * declared membership (content-releases.ts) remains genuinely,
+ * mechanically resolvable -- all three releases previously resolved
+ * this lesson via the exact same live object (natively for v3, via
+ * release-scoped spread copies for v4/v5), so changing that object's
+ * content to close CC-11.2's AC4.1 gap would otherwise retroactively
+ * mutate three already-declared-immutable releases at once.
  *
- * CC-11.2: closes AC4.1's own "electron-theory-of-current" obligation --
- * electron theory was taught here since CC-10 but never directly
- * assessed (the pre-existing practice steps test conductor/insulator
- * classification and insulation breakdown, neither of which exercises
- * the electron-theory proposition itself). Added one guided-interaction
- * step, `guided_recognise_electron_theory`, immediately after the
- * concept step that teaches it. `contentRelease` moved to
- * `release.unit202.v6`; see content-releases.ts's `RELEASE_UNIT202_V6`
- * doc comment and lesson-conductors-and-insulators-v3-v5-historical-
- * snapshot.ts for how v3/v4/v5's own immutable membership remains
- * resolvable against this lesson's pre-CC-11.2 content.
+ * The CURRENT, corrected lesson content lives in
+ * lesson-conductors-and-insulators.ts, tagged `release.unit202.v6` --
+ * see that file's own CC-11.2 header comment for exactly what changed,
+ * and content-releases.ts's `RELEASE_UNIT202_V6` doc comment for the
+ * full rationale.
+ *
+ * This file must never be edited again. If a future package finds a
+ * genuine defect in this frozen content, the fix belongs in a NEW
+ * release, exactly like every other correction in this codebase --
+ * never here.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
 
-export const LESSON_CONDUCTORS_AND_INSULATORS: LessonPlan = {
+export const LESSON_CONDUCTORS_AND_INSULATORS_V3_V5_HISTORICAL: LessonPlan = {
   id: "lesson.electrical.conductors-and-insulators",
   schemaVersion: 1,
   version: 1,
@@ -37,7 +43,7 @@ export const LESSON_CONDUCTORS_AND_INSULATORS: LessonPlan = {
     "EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001",
     "EL-INSULATOR-BREAKDOWN-001",
   ],
-  targetCapabilityIds: ["cap.conductors.classify_material", "cap.conductors.recognise_breakdown", "cap.conductors.recognise_electron_theory"],
+  targetCapabilityIds: ["cap.conductors.classify_material", "cap.conductors.recognise_breakdown"],
   estimatedDurationMinutes: 12,
   instructionalStrategy:
     "Electron theory is taught first as the root-cause explanation (why some materials conduct and others don't), scoped explicitly to metallic conductors, then applied to classify real installation materials, then extended to what happens when an insulator is pushed beyond its limit (breakdown) -- a genuine safety-relevant consequence, not just a definition to memorise.",
@@ -80,27 +86,6 @@ export const LESSON_CONDUCTORS_AND_INSULATORS: LessonPlan = {
       completionCondition: "view_acknowledged",
       branchRoutes: [],
       evidenceEmitted: [],
-    },
-    {
-      id: "guided_recognise_electron_theory",
-      type: "guided_interaction",
-      purpose: "Recognise electron theory: what actually moves to create current in a metallic conductor.",
-      requirement: "required",
-      teaches: [],
-      reinforces: [],
-      tests: ["EL-CONCEPT-ELECTRON-THEORY-001"],
-      assertionFamilyId: "electrical.conductors_and_insulators",
-      capabilityIds: ["cap.conductors.recognise_electron_theory"],
-      misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "suggestive" }],
-      representation: {},
-      questionBlueprintId: "conductors.recognise_electron_theory",
-      presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
-      scaffoldingLevel: "guided",
-      cognitiveDemand: "introductory",
-      feedback: { mode: "immediate", explainWhy: true },
-      completionCondition: "correct_answer_required",
-      branchRoutes: [],
-      evidenceEmitted: ["cap.conductors.recognise_electron_theory"],
     },
     {
       id: "concept_conductor_insulator",
@@ -170,7 +155,7 @@ export const LESSON_CONDUCTORS_AND_INSULATORS: LessonPlan = {
       purpose: "Summarise electron theory, the conductor/insulator distinction, and insulation breakdown.",
       requirement: "required",
       teaches: [],
-      reinforces: ["EL-CONCEPT-ELECTRON-THEORY-001", "EL-CONCEPT-CONDUCTOR-001", "EL-CONCEPT-INSULATOR-001"],
+      reinforces: ["EL-CONCEPT-CONDUCTOR-001", "EL-CONCEPT-INSULATOR-001"],
       tests: [],
       assertionFamilyId: "electrical.conductors_and_insulators",
       capabilityIds: [],
@@ -213,21 +198,18 @@ export const LESSON_CONDUCTORS_AND_INSULATORS: LessonPlan = {
     requiredStepIds: [
       "orientation",
       "concept_electron_theory",
-      "guided_recognise_electron_theory",
       "concept_conductor_insulator",
       "guided_classify_material",
       "independent_recognise_breakdown",
       "recap",
       "exit_completion",
     ],
-    requiredCapabilityEvidence: ["cap.conductors.classify_material", "cap.conductors.recognise_breakdown", "cap.conductors.recognise_electron_theory"],
+    requiredCapabilityEvidence: ["cap.conductors.classify_material", "cap.conductors.recognise_breakdown"],
     masteryGateCapabilityIds: ["cap.conductors.classify_material"],
     requiresRemediationClearance: true,
     exitSummary:
-      "The learner has stated and recognised electron theory for a metallic conductor, distinguished conductors from insulators, classified real materials, and recognised insulation breakdown.",
+      "The learner has stated electron theory for a metallic conductor, distinguished conductors from insulators, classified real materials, and recognised insulation breakdown.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v6",
+  contentRelease: "release.unit202.v3",
 };
-
-export const lessons = [LESSON_CONDUCTORS_AND_INSULATORS];

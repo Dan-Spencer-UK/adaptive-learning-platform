@@ -99,10 +99,10 @@ describe("buildReport (against the real canonical Ohm's Law lesson and live CC-0
     expect(isReportClean(report)).toBe(true);
   });
 
-  it("finds the sixty-eight canonical lesson entries (CC-08A: Ohm's Law's own immutable release.unit202.v1 entry, the four-lesson release.unit202.v2 adaptive vertical, CC-10's fifteen-lesson release.unit202.v3 course-production expansion, CC-11's twenty-four-lesson release.unit202.v4 completion -- fifteen re-addressed v3 lessons plus nine genuinely new ones, and CC-11.1's twenty-four-lesson release.unit202.v5 closeout -- twenty-one re-addressed lessons plus the three LO5-corrected lessons, with three frozen historical snapshots standing in for those same three under v4 so v4 stays fully resolvable) with a genuinely rich, non-toy step count", () => {
-    expect(report.totalLessons).toBe(68);
-    expect(report.totalSteps).toBeGreaterThanOrEqual(700);
-    expect(report.totalSteps).toBeLessThanOrEqual(800);
+  it("finds the ninety-two canonical lesson entries (CC-08A: Ohm's Law's own immutable release.unit202.v1 entry, the four-lesson release.unit202.v2 adaptive vertical, CC-10's fifteen-lesson release.unit202.v3 course-production expansion, CC-11's twenty-four-lesson release.unit202.v4 completion, CC-11.1's twenty-four-lesson release.unit202.v5 closeout -- three frozen v4-historical snapshots standing in for the three LO5-corrected lessons -- and CC-11.2's twenty-four-lesson release.unit202.v6 closeout -- one frozen v3/v4/v5-historical snapshot standing in for the one AC4.1-corrected lesson) with a genuinely rich, non-toy step count", () => {
+    expect(report.totalLessons).toBe(92);
+    expect(report.totalSteps).toBeGreaterThanOrEqual(950);
+    expect(report.totalSteps).toBeLessThanOrEqual(1100);
   });
 });
 

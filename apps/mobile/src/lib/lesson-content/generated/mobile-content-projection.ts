@@ -2,7 +2,7 @@
  * GENERATED FILE -- DO NOT EDIT.
  *
  * Deterministic mobile learner-runtime content projection for governed
- * content release "release.unit202.v5".
+ * content release "release.unit202.v6".
  *
  * Source of truth: the governed content under scripts/content/data.
  * Regenerate with:  npm run content:mobile:generate
@@ -16,7 +16,7 @@ import type { MobileContentProjection } from "@alp/content-schema";
 export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
   "schemaVersion": 2,
   "contentRelease": {
-    "id": "release.unit202.v5",
+    "id": "release.unit202.v6",
     "questionBlueprintVersion": 1
   },
   "lessons": [
@@ -310,7 +310,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.conductors-and-insulators",
@@ -334,7 +334,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       ],
       "targetCapabilityIds": [
         "cap.conductors.classify_material",
-        "cap.conductors.recognise_breakdown"
+        "cap.conductors.recognise_breakdown",
+        "cap.conductors.recognise_electron_theory"
       ],
       "remediationEligibility": [],
       "estimatedDurationMinutes": 12,
@@ -403,6 +404,47 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "completionCondition": "view_acknowledged",
           "branchRoutes": [],
           "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_electron_theory",
+          "type": "guided_interaction",
+          "purpose": "Recognise electron theory: what actually moves to create current in a metallic conductor.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-ELECTRON-THEORY-001"
+          ],
+          "assertionFamilyId": "electrical.conductors_and_insulators",
+          "capabilityIds": [
+            "cap.conductors.recognise_electron_theory"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+              "evidenceStrength": "suggestive"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "conductors.recognise_electron_theory",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.conductors.recognise_electron_theory"
+          ]
         },
         {
           "id": "concept_conductor_insulator",
@@ -528,6 +570,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "requirement": "required",
           "teaches": [],
           "reinforces": [
+            "EL-CONCEPT-ELECTRON-THEORY-001",
             "EL-CONCEPT-CONDUCTOR-001",
             "EL-CONCEPT-INSULATOR-001"
           ],
@@ -597,6 +640,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "requiredStepIds": [
           "orientation",
           "concept_electron_theory",
+          "guided_recognise_electron_theory",
           "concept_conductor_insulator",
           "guided_classify_material",
           "independent_recognise_breakdown",
@@ -605,19 +649,20 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         ],
         "requiredCapabilityEvidence": [
           "cap.conductors.classify_material",
-          "cap.conductors.recognise_breakdown"
+          "cap.conductors.recognise_breakdown",
+          "cap.conductors.recognise_electron_theory"
         ],
         "masteryGateCapabilityIds": [
           "cap.conductors.classify_material"
         ],
         "requiresRemediationClearance": true,
-        "exitSummary": "The learner has stated electron theory for a metallic conductor, distinguished conductors from insulators, classified real materials, and recognised insulation breakdown."
+        "exitSummary": "The learner has stated and recognised electron theory for a metallic conductor, distinguished conductors from insulators, classified real materials, and recognised insulation breakdown."
       },
       "presentationModes": [
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.core-quantities",
@@ -880,7 +925,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.electronic-components-passive",
@@ -1382,7 +1427,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.electronic-components-switching-control",
@@ -1875,7 +1920,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.energy-and-efficiency",
@@ -2269,7 +2314,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.fault-conditions-protection",
@@ -2652,7 +2697,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.instrumentation",
@@ -3047,7 +3092,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.ohms-law",
@@ -3770,7 +3815,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.power",
@@ -4307,7 +4352,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.resistivity",
@@ -4725,7 +4770,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.resistors-parallel",
@@ -5366,7 +5411,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.resistors-series",
@@ -5882,7 +5927,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.series-vs-parallel-comparison",
@@ -6337,7 +6382,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.si-units",
@@ -6740,7 +6785,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.electrical.thermal-and-chemical-effects",
@@ -6998,7 +7043,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.emf.ac-generation-principles",
@@ -7494,7 +7539,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.foundation.maths.formula-rearrangement",
@@ -7943,7 +7988,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.foundation.physics.mass-and-weight",
@@ -8233,7 +8278,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.foundation.physics.mechanics-force-work-energy-power",
@@ -8924,7 +8969,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.foundation.physics.simple-machines",
@@ -9498,7 +9543,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.magnetism.effects-of-current",
@@ -10220,7 +10265,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.magnetism.fundamentals",
@@ -10733,7 +10778,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     },
     {
       "id": "lesson.waveforms.ac-dc-and-sine-wave-quantities",
@@ -11398,7 +11443,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v5"
+      "contentRelease": "release.unit202.v6"
     }
   ],
   "questionBlueprints": [
@@ -11787,6 +11832,43 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A voltage far beyond an insulator's rating is applied across it.",
           "What happens to the insulator?"
+        ]
+      }
+    },
+    {
+      "id": "conductors.recognise_electron_theory",
+      "assertionFamilyId": "electrical.conductors_and_insulators",
+      "capabilityId": "cap.conductors.recognise_electron_theory",
+      "title": "Recognise electron theory of current in a metallic conductor",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "free_electrons",
+          "protons"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.conductors.recognise_electron_theory",
+        "familyId": "electrical.conductors_and_insulators",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-ELECTRON-THEORY-001",
+          "EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "In a metallic conductor, a potential difference is applied across it.",
+          "What actually moves through the conductor to create the electric current?"
         ]
       }
     },
@@ -17392,7 +17474,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "id": "electrical.conductors_and_insulators",
       "requiredCapabilityIds": [
         "cap.conductors.classify_material",
-        "cap.conductors.recognise_breakdown"
+        "cap.conductors.recognise_breakdown",
+        "cap.conductors.recognise_electron_theory"
       ],
       "assessmentRequirement": "assessable"
     },

@@ -1066,11 +1066,11 @@ describe("report-coverage-matrix: CC-09I remaining Phase-1 audit corrections", (
   });
 });
 
-describe("report-coverage-matrix: CC-11.1 obligation-level learner readiness", () => {
-  it("the real, current corpus has zero untracked obligation-evidence gaps, exactly one documented tracked exception (AC4.1 electron-theory-of-current), and reports 6/6 LOs and 23/23 ACs learner-ready", () => {
+describe("report-coverage-matrix: CC-11.1/CC-11.2 obligation-level learner readiness", () => {
+  it("the real, current corpus has zero untracked obligation-evidence gaps, zero tracked exceptions (CC-11.2 closed the last one, AC4.1 electron-theory-of-current), and reports 6/6 LOs and 23/23 ACs learner-ready", () => {
     const report = buildReport();
     expect(report.untrackedObligationEvidenceGaps).toEqual([]);
-    expect(report.trackedObligationEvidenceExceptions.map((o) => `${o.acNumber}:${o.obligationId}`)).toEqual(["4.1:electron-theory-of-current"]);
+    expect(report.trackedObligationEvidenceExceptions).toEqual([]);
     expect(report.totals.loLearnerReady).toBe(report.totals.loCount);
     expect(report.totals.acLearnerReady).toBe(report.totals.acCount);
     expect(isReportClean(report)).toBe(true);

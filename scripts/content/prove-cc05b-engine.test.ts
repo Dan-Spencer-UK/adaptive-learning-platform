@@ -4,8 +4,8 @@ import { buildProvingReport, isProvingReportClean } from "./prove-cc05b-engine.t
 describe("CC-05B engine proving report (full governed Unit 202 question-blueprint inventory)", () => {
   const report = buildProvingReport();
 
-  it("mechanically derives the total governed blueprint count from the live manifest (currently 112 -- CC-08 adds 2 for foundational.algebraic_technique; CC-09E adds 5 for electrical.ac_reactive_quantities/magnetism/emf_and_generation archetypes; CC-09E.1 adds 1 for magnetism.identify_flux_unit, split out of magnetism.identify_flux_density_unit; CC-11 adds 11 for foundational.mass_weight/levers_mechanical_advantage/mechanics_work_energy_power and 6 for electrical.electronic_components; CC-11.1 adds 3 for magnetism.recognise_attraction_repulsion/magnetism.calculate_force_on_conductor/emf.calculate_motional_emf)", () => {
-    expect(report.totalGovernedBlueprints).toBe(112);
+  it("mechanically derives the total governed blueprint count from the live manifest (currently 113 -- CC-08 adds 2 for foundational.algebraic_technique; CC-09E adds 5 for electrical.ac_reactive_quantities/magnetism/emf_and_generation archetypes; CC-09E.1 adds 1 for magnetism.identify_flux_unit, split out of magnetism.identify_flux_density_unit; CC-11 adds 11 for foundational.mass_weight/levers_mechanical_advantage/mechanics_work_energy_power and 6 for electrical.electronic_components; CC-11.1 adds 3 for magnetism.recognise_attraction_repulsion/magnetism.calculate_force_on_conductor/emf.calculate_motional_emf; CC-11.2 adds 1 for conductors.recognise_electron_theory)", () => {
+    expect(report.totalGovernedBlueprints).toBe(113);
   });
 
   it("every governed blueprint is supported by the engine registry", () => {

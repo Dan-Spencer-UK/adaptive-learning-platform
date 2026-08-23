@@ -276,11 +276,27 @@ interface ObligationReadinessResult {
  * obligation only lands here after an actual check confirmed no existing
  * blueprint functionally exercises it (never merely "the mechanical
  * check flagged it").
+ *
+ * CC-11.2 EXCEPTION-GOVERNANCE CORRECTION: CC-11.1 added exactly one
+ * entry here (`4.1:electron-theory-of-current`) reasoned solely as
+ * "genuinely uncovered, but out of THIS package's task-brief scope."
+ * That reasoning was wrong and is not reused. A Claude-package
+ * boundary -- "this content correction wasn't nominally in scope for
+ * the task brief that happened to be running" -- describes who was
+ * doing the work, not whether the qualification can honestly be
+ * delivered without it; it is NEVER, on its own, a valid reason to
+ * defer a required-obligation evidence gap. The mechanism itself
+ * remains real and necessary: a genuinely justified deferred exception
+ * still needs somewhere to go (e.g. an obligation blocked on content
+ * this repository does not yet govern at all, or a deliberate product
+ * decision that a specific obligation's assessment depth is out of
+ * scope for the qualification itself, recorded here with that actual
+ * reason). "Which internal package happened to schedule the fix" is
+ * never that reason. This allowlist is intentionally empty as of
+ * CC-11.2 -- every currently-known Unit 202 required-obligation
+ * evidence gap has a real assessment route.
  */
-const TRACKED_OBLIGATION_EVIDENCE_EXCEPTIONS: Readonly<Record<string, string>> = {
-  "4.1:electron-theory-of-current":
-    "CC-11.1 (task brief, LO5-only scope): genuinely uncovered -- EL-CONCEPT-ELECTRON-THEORY-001 is taught (lesson-charge-and-current.ts) but no existing blueprint (charge.recognise/charge.calculate test I=Q/t, not electron flow) exercises it. Real gap, but AC4.1 is LO4, outside CC-11.1's explicit 'the three known LO5 evidence holes' boundary. Tracked for a future package.",
-};
+const TRACKED_OBLIGATION_EVIDENCE_EXCEPTIONS: Readonly<Record<string, string>> = {};
 
 interface ProvenanceAudit {
   /** Assertions with zero provenance links at all. Target 0. */

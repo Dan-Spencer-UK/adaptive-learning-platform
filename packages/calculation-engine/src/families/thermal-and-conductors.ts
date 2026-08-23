@@ -1,7 +1,8 @@
 /**
- * CC-05B2: execution for the 4 remaining small categorical families:
+ * CC-05B2: execution for the small categorical families
  * `electrical.thermal_and_chemical_effects` (2) and
- * `electrical.conductors_and_insulators` (2). No formula family or
+ * `electrical.conductors_and_insulators` (3, CC-11.2 adds
+ * conductors.recognise_electron_theory). No formula family or
  * diagram is involved in either.
  */
 
@@ -60,9 +61,17 @@ const recogniseBreakdown: QuestionExecutor = (ctx) => {
   return assembleInstance(ctx, {}, {}, { answer: ctx.blueprint.answer, value: "breaks_down_and_conducts" });
 };
 
+// CC-11.2: single fixed governed proposition (EL-CONCEPT-ELECTRON-THEORY-001)
+// -- no scenario parameter to vary, unlike classifyMaterial's real-material
+// choice, so this always assembles the same correct answer.
+const recogniseElectronTheory: QuestionExecutor = (ctx) => {
+  return assembleInstance(ctx, {}, {}, { answer: ctx.blueprint.answer, value: "free_electrons" });
+};
+
 export const thermalAndConductorsExecutors: Readonly<Record<string, QuestionExecutor>> = {
   "thermal_chemical.recognise_effect": recogniseThermalChemicalEffect,
   "thermal_chemical.recognise_application": recogniseThermalApplication,
   "conductors.classify_material": classifyMaterial,
   "conductors.recognise_breakdown": recogniseBreakdown,
+  "conductors.recognise_electron_theory": recogniseElectronTheory,
 };
