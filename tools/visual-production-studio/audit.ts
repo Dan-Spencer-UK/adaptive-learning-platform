@@ -20,7 +20,7 @@ import { fileURLToPath } from "node:url";
 import { CANONICAL_VARIANT_BUILDERS } from "../../scripts/visual-governance/data/canonical-variants.ts";
 import { visualSemanticContracts } from "../../scripts/visual-governance/data/cc05d-visual-contracts-unit202.ts";
 
-import { allAssets, FAMILIES, isPromptable, validateCatalogue } from "./catalogue.ts";
+import { allAssets, FAMILIES, isPromptable, isReferenceBlocked, validateCatalogue, visualNeedClassificationFor } from "./catalogue.ts";
 import { buildAssetPrompt } from "./prompt-builder.ts";
 
 /**
@@ -59,6 +59,12 @@ export interface AuditReport {
   usefulFindingsMissingFromCatalogue: string[];
   /** CC-11.7A §7/§8/§9/§26: catalogue structural-integrity problems, including "ONE ART PROMPT PER DISTINCT IMAGE JOB" violations -- see `validateCatalogue()` in catalogue.ts. */
   catalogueStructuralProblems: string[];
+  /** CC-11.7B §6/§28: every ProductionAsset with more than one CanonicalState must carry a `sharedBaseAudit` decision -- "100% of multi-state ProductionAssets audited" is this package's own acceptance criterion. */
+  multiStateAssetsMissingSharedBaseAudit: string[];
+  /** CC-11.7B §28: a `sharedBaseAudit.classification === "SEPARATE_ARTWORK_REQUIRED"` asset must be a genuine, traceable split result (`action: "SPLIT"` and a `splitFrom` pointer) -- never a dangling "should split but didn't" marker left on an asset that still combines the conflicting states. */
+  splitDecisionsNotApplied: string[];
+  /** CC-11.7B §12/§28 regression proof: a REQUIRED asset must report classification REQUIRED regardless of reference readiness -- never silently excluded from the REQUIRED bucket because it is blocked. */
+  requiredBlockedExcludedFromRequiredTotal: string[];
 }
 
 /** Recomputes the real 66 (or however many the live CC-05D system currently declares) canonical-variant ids directly from source -- never trusts the catalogue's own claims. */
@@ -151,6 +157,19 @@ export function buildAuditReport(families = FAMILIES): AuditReport {
 
   const catalogueStructuralProblems = validateCatalogue(families);
 
+  // CC-11.7B §6/§28: 100% multi-state ProductionAsset shared-base audit coverage.
+  const multiStateAssetsMissingSharedBaseAudit = assets.filter((a) => a.canonicalStates.length > 1 && !a.sharedBaseAudit).map((a) => a.assetId);
+
+  // CC-11.7B §28: a SEPARATE_ARTWORK_REQUIRED decision must be a genuine, traceable split -- never a marker left on an asset that was never actually split.
+  const splitDecisionsNotApplied = assets
+    .filter((a) => a.sharedBaseAudit?.classification === "SEPARATE_ARTWORK_REQUIRED" && (a.sharedBaseAudit.action !== "SPLIT" || !a.sharedBaseAudit.splitFrom))
+    .map((a) => a.assetId);
+
+  // CC-11.7B §12/§28 regression proof: a REQUIRED-but-blocked asset must still classify as REQUIRED (and a USEFUL-but-blocked asset as USEFUL) -- BLOCKED_REFERENCE must never silently override pedagogical need.
+  const requiredBlockedExcludedFromRequiredTotal = assets
+    .filter((a) => isReferenceBlocked(a) && a.needOverride !== "USEFUL" && !a.needsScopeConfirmation && a.assetId !== "unit202.trigonometry" && visualNeedClassificationFor(a) !== "REQUIRED")
+    .map((a) => a.assetId);
+
   return {
     totalRealCanonicalVariants: realIds.size,
     unmappedExistingVariants,
@@ -163,6 +182,9 @@ export function buildAuditReport(families = FAMILIES): AuditReport {
     duplicateIds,
     usefulFindingsMissingFromCatalogue,
     catalogueStructuralProblems,
+    multiStateAssetsMissingSharedBaseAudit,
+    splitDecisionsNotApplied,
+    requiredBlockedExcludedFromRequiredTotal,
   };
 }
 
@@ -177,7 +199,10 @@ export function isAuditClean(report: AuditReport): boolean {
     report.assessmentLeaksMnemonic.length === 0 &&
     report.duplicateIds.length === 0 &&
     report.usefulFindingsMissingFromCatalogue.length === 0 &&
-    report.catalogueStructuralProblems.length === 0
+    report.catalogueStructuralProblems.length === 0 &&
+    report.multiStateAssetsMissingSharedBaseAudit.length === 0 &&
+    report.splitDecisionsNotApplied.length === 0 &&
+    report.requiredBlockedExcludedFromRequiredTotal.length === 0
   );
 }
 
@@ -206,6 +231,12 @@ export function formatAuditReport(report: AuditReport): string {
   if (report.usefulFindingsMissingFromCatalogue.length) lines.push(`    ${report.usefulFindingsMissingFromCatalogue.join("; ")}`);
   lines.push(`Catalogue structural problems, incl. one-art-prompt-per-distinct-image-job violations (target 0, FATAL): ${report.catalogueStructuralProblems.length}`);
   if (report.catalogueStructuralProblems.length) lines.push(`    ${report.catalogueStructuralProblems.join("; ")}`);
+  lines.push(`Multi-state assets missing a shared-base audit decision (target 0, FATAL): ${report.multiStateAssetsMissingSharedBaseAudit.length}`);
+  if (report.multiStateAssetsMissingSharedBaseAudit.length) lines.push(`    ${report.multiStateAssetsMissingSharedBaseAudit.join("; ")}`);
+  lines.push(`SEPARATE_ARTWORK_REQUIRED decisions not actually applied as a traceable split (target 0, FATAL): ${report.splitDecisionsNotApplied.length}`);
+  if (report.splitDecisionsNotApplied.length) lines.push(`    ${report.splitDecisionsNotApplied.join("; ")}`);
+  lines.push(`REQUIRED-but-blocked assets excluded from the REQUIRED total (target 0, FATAL): ${report.requiredBlockedExcludedFromRequiredTotal.length}`);
+  if (report.requiredBlockedExcludedFromRequiredTotal.length) lines.push(`    ${report.requiredBlockedExcludedFromRequiredTotal.join("; ")}`);
   return lines.join("\n");
 }
 

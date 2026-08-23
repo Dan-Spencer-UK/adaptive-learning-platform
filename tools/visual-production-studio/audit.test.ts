@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { buildAuditReport, EXPECTED_USEFUL_FINDING_ASSET_IDS, formatAuditReport, isAuditClean } from "./audit.ts";
-import { FAMILIES, findAsset, type VisualFamily } from "./catalogue.ts";
+import { FAMILIES, findAsset, visualNeedClassificationFor, type VisualFamily } from "./catalogue.ts";
 
 describe("buildAuditReport against the real comprehensive catalogue", () => {
   const report = buildAuditReport();
@@ -34,6 +34,55 @@ describe("buildAuditReport against the real comprehensive catalogue", () => {
 
   it("has zero catalogue structural problems (incl. one-art-prompt-per-distinct-image-job violations)", () => {
     expect(report.catalogueStructuralProblems).toEqual([]);
+  });
+
+  it("CC-11.7B §6/§28: every multi-state asset has a shared-base audit decision -- zero missing", () => {
+    expect(report.multiStateAssetsMissingSharedBaseAudit).toEqual([]);
+  });
+
+  it("CC-11.7B §28: every SEPARATE_ARTWORK_REQUIRED decision is a genuine, traceable split", () => {
+    expect(report.splitDecisionsNotApplied).toEqual([]);
+  });
+
+  it("CC-11.7B §12/§28: zero REQUIRED-but-blocked assets excluded from the REQUIRED total", () => {
+    expect(report.requiredBlockedExcludedFromRequiredTotal).toEqual([]);
+  });
+});
+
+describe("buildAuditReport detects CC-11.7B intentionally injected gaps", () => {
+  it("fails when a multi-state asset's sharedBaseAudit is stripped", () => {
+    const multiState = FAMILIES.flatMap((f) => f.assets).find((a) => a.canonicalStates.length > 1 && a.sharedBaseAudit)!;
+    const dirtyFamilies: VisualFamily[] = FAMILIES.map((family) =>
+      family.familyId !== multiState.familyId ? family : { ...family, assets: family.assets.map((asset) => (asset.assetId === multiState.assetId ? { ...asset, sharedBaseAudit: undefined } : asset)) },
+    );
+    const report = buildAuditReport(dirtyFamilies);
+    expect(report.multiStateAssetsMissingSharedBaseAudit).toContain(multiState.assetId);
+    expect(isAuditClean(report)).toBe(false);
+  });
+
+  it("fails when an asset is given a SEPARATE_ARTWORK_REQUIRED classification without a traceable splitFrom (a dangling 'should split' marker)", () => {
+    const base = findAsset("unit202.right-hand-grip.teaching")!;
+    const dirtyFamilies: VisualFamily[] = FAMILIES.map((family) =>
+      family.familyId !== base.familyId
+        ? family
+        : {
+            ...family,
+            assets: family.assets.map((asset) =>
+              asset.assetId === base.assetId ? { ...asset, sharedBaseAudit: { classification: "SEPARATE_ARTWORK_REQUIRED" as const, action: "SPLIT" as const, rationale: "test" } } : asset,
+            ),
+          },
+    );
+    const report = buildAuditReport(dirtyFamilies);
+    expect(report.splitDecisionsNotApplied).toContain(base.assetId);
+    expect(isAuditClean(report)).toBe(false);
+  });
+
+  it("regression proof: a REQUIRED-and-blocked asset (heating-effect) still classifies REQUIRED, never BLOCKED_REFERENCE -- the exact pre-CC-11.7B bug this gate exists to catch is now structurally impossible", () => {
+    const base = findAsset("unit202.heating-effect")!; // already REQUIRED + NOT_READY in the real catalogue
+    expect(base.referenceReadiness).toBe("NOT_READY");
+    expect(base.needOverride).not.toBe("USEFUL");
+    expect(visualNeedClassificationFor(base)).toBe("REQUIRED"); // never demoted by blocked status
+    expect(buildAuditReport().requiredBlockedExcludedFromRequiredTotal).toEqual([]);
   });
 });
 

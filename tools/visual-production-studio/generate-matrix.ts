@@ -19,7 +19,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { allAssets, familyForAsset, visualNeedClassificationFor, type VisualAsset } from "./catalogue.ts";
+import { allAssets, familyForAsset, isReferenceBlocked, visualNeedClassificationFor, type VisualAsset } from "./catalogue.ts";
 import { REPO_ROOT } from "./paths.ts";
 
 const MATRIX_PATH = join(REPO_ROOT, "reports", "instructional-visuals", "unit202-visual-coverage-matrix.json");
@@ -40,9 +40,25 @@ interface MatrixRow {
   notes?: string;
 }
 
+/**
+ * CC-11.7B §12: `gapStatus` reports pedagogical need and production
+ * readiness together (e.g. "REQUIRED_BLOCKED") rather than letting a
+ * blocked reference silently overwrite a REQUIRED/USEFUL classification --
+ * a REQUIRED asset that is also reference-blocked is REQUIRED_BLOCKED,
+ * never demoted to a bare "BLOCKED_REFERENCE" row.
+ */
+function gapStatusFor(asset: VisualAsset, classification: ReturnType<typeof visualNeedClassificationFor>): string {
+  if (classification === "DEFERRED_SCOPE") return "DEFERRED_SCOPE";
+  if (classification === "NOT_NEEDED") return "NOT_NEEDED";
+  const blocked = isReferenceBlocked(asset);
+  if (classification === "REQUIRED") return blocked ? "REQUIRED_BLOCKED" : "SATISFIED";
+  return blocked ? "USEFUL_BLOCKED" : "USEFUL_READY";
+}
+
 function catalogueRow(asset: VisualAsset): MatrixRow {
   const family = familyForAsset(asset.assetId);
   const existing66Mapped = asset.canonicalStates.some((s) => Boolean(s.existingCanonicalVariantId));
+  const classification = visualNeedClassificationFor(asset);
   return {
     kind: "CATALOGUED_ASSET",
     loOrLesson: asset.loOrLesson,
@@ -50,12 +66,12 @@ function catalogueRow(asset: VisualAsset): MatrixRow {
     familyId: family?.familyId,
     familyDisplayName: family?.displayName,
     displayName: asset.displayName,
-    needClassification: visualNeedClassificationFor(asset),
+    needClassification: classification,
     productionClass: asset.productionClass,
     referenceReadiness: asset.referenceReadiness,
     canonicalStates: asset.canonicalStates.map((s) => ({ stateId: s.stateId, pedagogicalState: s.pedagogicalState, existingCanonicalVariantId: s.existingCanonicalVariantId })),
     existing66Mapped,
-    gapStatus: visualNeedClassificationFor(asset) === "REQUIRED" ? "SATISFIED" : visualNeedClassificationFor(asset),
+    gapStatus: gapStatusFor(asset, classification),
   };
 }
 

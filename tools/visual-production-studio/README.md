@@ -1,6 +1,6 @@
 # ALP Visual Production Studio
 
-**CC-11.5–CC-11.7A.** A local, localhost-only development tool for
+**CC-11.5–CC-11.7B.** A local, localhost-only development tool for
 producing and approving premium instructional artwork. **Not
 learner-facing product functionality** -- never imported by
 `apps/mobile` or `apps/web`, never part of the learner runtime.
@@ -34,7 +34,14 @@ presence, tracked in fully independent REQUIRED/USEFUL dashboard buckets
 so optional work can never make REQUIRED completeness look incomplete (or
 vice versa) -- see
 [`unit202-comprehensive-visual-audit.md`](../../reports/instructional-visuals/unit202-comprehensive-visual-audit.md)
-§7 for the CC-11.7A materialisation pass.
+§7 for the CC-11.7A materialisation pass and §8 for the CC-11.7B final
+shared-base validation.
+
+Before any artwork is generated, review
+[`reports/instructional-visuals/unit202-final-visual-production-review.pdf`](../../reports/instructional-visuals/unit202-final-visual-production-review.pdf)
+(regenerate with `npm run visuals:studio:final-review`) -- the Product
+Owner's pre-production review pack, self-contained and uploadable to an
+independent reviewer without opening this repository.
 
 This is the manual-assisted production implementation of the approved
 reference-first pipeline recorded in
@@ -105,36 +112,56 @@ unbundled HTML/CSS/JS page (`public/`), per the task brief's own
 "choose the simplest architecture" guidance.
 
 - `catalogue.ts` -- the structured Unit 202 production catalogue: 21
-  `VisualFamily` entries containing 47 `VisualAsset` (production/base
-  asset) entries (33 REQUIRED, 10 USEFUL/optional-enrichment via
-  `needOverride: "USEFUL"`), each carrying one or more `CanonicalState`
-  (canonical learner-visible state) entries -- 98 states in total. The
-  single source of truth every prompt is built from. Exposes `FAMILIES`,
-  `allAssets()`, `findAsset()`, `findFamily()`, `familyForAsset()`,
-  `isPromptable()`, `promptableAssets()`, `visualNeedClassificationFor()`
+  `VisualFamily` entries containing 53 `VisualAsset` (production/base
+  asset) entries (42 REQUIRED -- 39 ready, 3 blocked; 10
+  USEFUL/optional-enrichment via `needOverride: "USEFUL"` -- 2 ready, 8
+  blocked), each carrying one or more `CanonicalState` (canonical
+  learner-visible state) entries -- 98 states in total. The single source
+  of truth every prompt is built from. Exposes `FAMILIES`, `allAssets()`,
+  `findAsset()`, `findFamily()`, `familyForAsset()`, `isPromptable()`,
+  `promptableAssets()`, `visualNeedClassificationFor()` (pedagogical need
+  only -- REQUIRED/USEFUL/DEFERRED_SCOPE/NOT_NEEDED), `isReferenceBlocked()`
+  (production readiness, a fully independent dimension since CC-11.7B),
   and `validateCatalogue()` -- the latter also enforces "one art prompt
   per distinct image job": a `PHYSICAL_RECOGNITION`-role asset (one
   specific physical component/instrument) may never carry more than one
   `CanonicalState`. Also exports `reconciledVariantId()`, which
   reproduces the real CC-05D `stableVariantId` algorithm so every
   `CanonicalState.existingCanonicalVariantId` is computed from real
-  inputs, never hand-transcribed.
+  inputs, never hand-transcribed, and `sharedBaseAudit` (CC-11.7B) on
+  every multi-state asset, recording whether its proposed image sharing
+  is `SAFE_SHARED_BASE`, `SHARED_BASE_WITH_CONDITIONS`, or was found
+  `SEPARATE_ARTWORK_REQUIRED` and split.
 - `audit.ts` -- the comprehensive catalogue's own completeness gate
   (`npm run visuals:studio:audit`). Fails if any of the 66 pre-existing
   CC-05D canonical variants is no longer reconciled by any state, any of
   the 10 CC-11.7 USEFUL findings (`EXPECTED_USEFUL_FINDING_ASSET_IDS`) is
   missing from the live catalogue, a premium/hybrid asset has no working
-  prompt or no reference/BLOCKED_REFERENCE status, a canonical state has
-  no pedagogical state, an ASSESSMENT state leaks a known answer-bearing
+  prompt or no reference/blocked status, a canonical state has no
+  pedagogical state, an ASSESSMENT state leaks a known answer-bearing
   mnemonic dependency, any structural rule from `validateCatalogue()` is
-  violated, or any id is duplicated.
+  violated (incl. a multi-state asset with no `sharedBaseAudit` decision,
+  or a `SEPARATE_ARTWORK_REQUIRED` decision that was never actually
+  applied as a traceable split), a REQUIRED-but-blocked asset is excluded
+  from the REQUIRED total, or any id is duplicated.
+- `generate-final-review.ts` -- the Product Owner's pre-production review
+  pack (`npm run visuals:studio:final-review`), generating
+  `reports/instructional-visuals/unit202-final-visual-production-review.{pdf,json}`
+  directly from the live catalogue/dashboard/audit data via Playwright
+  chromium (the same PDF-rendering approach `scripts/visual-governance/generate-review-package.ts`
+  already uses -- zero new dependencies). Embeds real deterministic SVG
+  previews where governed renders already exist; shows an honest "ARTWORK
+  NOT YET PRODUCED" placeholder everywhere else -- never a fabricated
+  mockup.
 - `dashboard.ts` -- computes the Studio's dashboard counts (families /
-  production assets / canonical states / REQUIRED / USEFUL /
-  deterministic-only / REQUIRED art jobs / USEFUL art jobs / total art
-  jobs / approved / outstanding, each split by REQUIRED vs USEFUL /
-  BLOCKED_REFERENCE / DEFERRED_SCOPE / SUPERSEDED) mechanically from live
-  catalogue + status data -- REQUIRED and USEFUL are tracked as fully
-  independent buckets throughout, never a single misleading total.
+  production assets / canonical states / REQUIRED total-ready-blocked /
+  USEFUL total-ready-blocked / deterministic-only / REQUIRED art jobs /
+  USEFUL art jobs (each further split ready/blocked/approved) /
+  DEFERRED_SCOPE / SUPERSEDED, plus a `requiredVisualProductionComplete`
+  boolean) mechanically from live catalogue + status data -- pedagogical
+  need (REQUIRED/USEFUL) and production readiness (ready/blocked) are two
+  fully independent dimensions throughout (CC-11.7B correction), never a
+  single misleading total.
 - `generate-matrix.ts` -- generates the machine-readable comprehensive
   visual-coverage matrix (`npm run visuals:studio:matrix`,
   `reports/instructional-visuals/unit202-visual-coverage-matrix.json`).
@@ -176,6 +203,8 @@ unbundled HTML/CSS/JS page (`public/`), per the task brief's own
 - Approved artwork: `apps/mobile/src/assets/instructional/unit202/{teaching,conceptual,hybrid,physical-components,deterministic-polish}/`
 - Provenance manifest: `reports/instructional-visuals/premium-artwork/unit202-artwork-manifest.json`
 - Review contact sheet (generated on demand): `reports/instructional-visuals/premium-artwork/contact-sheet.html`
+- Comprehensive coverage matrix: `reports/instructional-visuals/unit202-visual-coverage-matrix.json`
+- Pre-production review pack (generate with `npm run visuals:studio:final-review`): `reports/instructional-visuals/unit202-final-visual-production-review.{pdf,json}`
 
 ## Safety
 

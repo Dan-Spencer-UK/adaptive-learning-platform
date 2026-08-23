@@ -105,13 +105,20 @@ function isPromptable(asset) {
 
 // Mirrors catalogue.ts's visualNeedClassificationFor() exactly -- the
 // client has no server round-trip for this, so it must stay byte-for-byte
-// equivalent to the source of truth.
+// equivalent to the source of truth. CC-11.7B §12: pedagogical need only --
+// never conflated with reference-blocked status, which is a fully
+// independent dimension (see isReferenceBlockedClient() below).
 function needClassificationFor(asset) {
-  if (asset.referenceReadiness === "NOT_READY") return "BLOCKED_REFERENCE";
   if (asset.needsScopeConfirmation) return "DEFERRED_SCOPE";
   if (asset.assetId === "unit202.trigonometry") return "DEFERRED_SCOPE";
   if (asset.needOverride === "USEFUL") return "USEFUL";
   return "REQUIRED";
+}
+
+// Mirrors catalogue.ts's isReferenceBlocked() -- production readiness,
+// orthogonal to needClassificationFor().
+function isReferenceBlockedClient(asset) {
+  return asset.referenceReadiness === "NOT_READY";
 }
 
 // ---------------------------------------------------------------------
@@ -152,20 +159,26 @@ async function renderDashboard() {
   $("#dash-families").textContent = d.visualFamilies;
   $("#dash-assets").textContent = d.productionBaseAssets;
   $("#dash-states").textContent = d.canonicalLearnerVisibleStates;
-  $("#dash-required").textContent = d.required;
-  $("#dash-useful").textContent = d.useful;
+  $("#dash-required").textContent = `${d.requiredTotal} (${d.requiredReady} ready / ${d.requiredBlocked} blocked)`;
+  $("#dash-useful").textContent = `${d.usefulTotal} (${d.usefulReady} ready / ${d.usefulBlocked} blocked)`;
   $("#dash-deterministic").textContent = d.deterministicOnly;
-  $("#dash-required-artjobs").textContent = d.requiredPremiumHybridArtJobs;
-  $("#dash-useful-artjobs").textContent = d.usefulPremiumHybridArtJobs;
-  $("#dash-artjobs").textContent = d.premiumHybridArtJobs;
-  $("#dash-approved").textContent = d.approved;
-  $("#dash-outstanding").textContent = d.outstanding;
-  $("#dash-blocked").textContent = d.blockedReference;
+  $("#dash-required-artjobs").textContent = `${d.requiredArtJobsTotal} (${d.requiredArtJobsApproved} approved)`;
+  $("#dash-useful-artjobs").textContent = `${d.usefulArtJobsTotal} (${d.usefulArtJobsApproved} approved)`;
+  $("#dash-artjobs").textContent = d.requiredArtJobsTotal + d.usefulArtJobsTotal;
+  $("#dash-approved").textContent = d.requiredArtJobsApproved + d.usefulArtJobsApproved;
+  $("#dash-outstanding").textContent = d.requiredArtJobsTotal - d.requiredArtJobsApproved + (d.usefulArtJobsTotal - d.usefulArtJobsApproved);
+  $("#dash-blocked").textContent = `${d.requiredBlocked + d.usefulBlocked} (${d.requiredBlocked} required / ${d.usefulBlocked} useful)`;
   $("#dash-deferred").textContent = d.deferredScope;
   $("#dash-superseded").textContent = d.superseded;
 
-  $("#rvo-required-progress").textContent = `${d.approvedRequired} / ${d.requiredPremiumHybridArtJobs} APPROVED`;
-  $("#rvo-useful-progress").textContent = `${d.approvedUseful} / ${d.usefulPremiumHybridArtJobs} APPROVED`;
+  $("#rvo-required-progress").textContent = `${d.requiredArtJobsApproved} / ${d.requiredArtJobsTotal} APPROVED (${d.requiredBlocked} blocked)`;
+  $("#rvo-useful-progress").textContent = `${d.usefulArtJobsApproved} / ${d.usefulArtJobsTotal} APPROVED (${d.usefulBlocked} blocked)`;
+
+  const completeBanner = $("#required-completion-banner");
+  if (completeBanner) {
+    completeBanner.textContent = d.requiredVisualProductionComplete ? "REQUIRED VISUAL PRODUCTION COMPLETE" : "REQUIRED VISUAL PRODUCTION NOT YET COMPLETE";
+    completeBanner.className = "completion-banner " + (d.requiredVisualProductionComplete ? "complete" : "incomplete");
+  }
 }
 
 // ---------------------------------------------------------------------
@@ -176,7 +189,7 @@ function assetMatchesFilter(asset, filterId) {
   if (filterId === "all") return true;
   if (filterId === "required") return needClassificationFor(asset) === "REQUIRED";
   if (filterId === "useful") return needClassificationFor(asset) === "USEFUL";
-  if (filterId === "blocked") return needClassificationFor(asset) === "BLOCKED_REFERENCE";
+  if (filterId === "blocked") return isReferenceBlockedClient(asset);
   if (filterId === "premium-hybrid") return asset.productionClass === "PREMIUM_CONCEPTUAL" || asset.productionClass === "HYBRID";
   if (filterId === "deterministic") return asset.productionClass === "DETERMINISTIC_TECHNICAL";
   if (filterId === "P0" || filterId === "P1" || filterId === "P2") return asset.priority === filterId;

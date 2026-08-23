@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T22:35:32.160Z",
+  "generatedAt": "2026-08-23T23:42:45.446Z",
   "rows": [
     {
       "kind": "CATALOGUED_ASSET",
@@ -58,51 +58,66 @@
     {
       "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO5 — lesson.magnetism.effects-of-current",
-      "assetId": "unit202.motor.effect",
+      "assetId": "unit202.motor.effect.horizontal-poles",
       "familyId": "unit202.family.fleming-left-hand-motor",
       "familyDisplayName": "Fleming's left-hand rule / motor effect",
-      "displayName": "Motor effect — conductor in magnetic field",
+      "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged horizontally)",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
       "referenceReadiness": "READY",
       "canonicalStates": [
         {
-          "stateId": "unit202.motor.effect.state.n-s-horizontal-into-page-teaching",
+          "stateId": "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
           "pedagogicalState": "TEACHING",
           "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching"
         },
         {
-          "stateId": "unit202.motor.effect.state.n-s-horizontal-into-page-assessment",
+          "stateId": "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
           "pedagogicalState": "ASSESSMENT",
           "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment"
         },
         {
-          "stateId": "unit202.motor.effect.state.n-s-horizontal-out-of-page-teaching",
+          "stateId": "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching",
           "pedagogicalState": "TEACHING",
           "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=up,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching"
         },
         {
-          "stateId": "unit202.motor.effect.state.n-s-horizontal-out-of-page-assessment",
+          "stateId": "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment",
           "pedagogicalState": "ASSESSMENT",
           "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment"
-        },
+        }
+      ],
+      "existing66Mapped": true,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO5 — lesson.magnetism.effects-of-current",
+      "assetId": "unit202.motor.effect.vertical-poles",
+      "familyId": "unit202.family.fleming-left-hand-motor",
+      "familyDisplayName": "Fleming's left-hand rule / motor effect",
+      "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged vertically)",
+      "needClassification": "REQUIRED",
+      "productionClass": "HYBRID",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.motor.effect.state.n-s-vertical-into-page-teaching",
+          "stateId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
           "pedagogicalState": "TEACHING",
           "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching"
         },
         {
-          "stateId": "unit202.motor.effect.state.n-s-vertical-into-page-assessment",
+          "stateId": "unit202.motor.effect.vertical-poles.state.into-page-assessment",
           "pedagogicalState": "ASSESSMENT",
           "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment"
         },
         {
-          "stateId": "unit202.motor.effect.state.n-s-vertical-out-of-page-teaching",
+          "stateId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
           "pedagogicalState": "TEACHING",
           "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=right,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching"
         },
         {
-          "stateId": "unit202.motor.effect.state.n-s-vertical-out-of-page-assessment",
+          "stateId": "unit202.motor.effect.vertical-poles.state.out-of-page-assessment",
           "pedagogicalState": "ASSESSMENT",
           "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment"
         }
@@ -132,21 +147,36 @@
     {
       "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO5 — lesson.emf.ac-generation-principles",
-      "assetId": "unit202.generator.rotating-loop",
+      "assetId": "unit202.generator.rotating-loop.horizontal",
       "familyId": "unit202.family.fleming-right-hand-generator",
       "familyDisplayName": "Fleming's right-hand rule / AC generator effect",
-      "displayName": "Simple rotating-loop AC generator",
+      "displayName": "Simple rotating-loop AC generator — loop plane facing poles — near-zero EMF",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
       "referenceReadiness": "READY",
       "canonicalStates": [
         {
-          "stateId": "unit202.generator.rotating-loop.state.horizontal-near-zero-emf",
+          "stateId": "unit202.generator.rotating-loop.horizontal.state.near-zero-emf",
           "pedagogicalState": "MULTI_STATE",
           "existingCanonicalVariantId": "visual-contract.ac-generator-rotating-loop@1::mode=both,rotation_phase=horizontal::both"
-        },
+        }
+      ],
+      "existing66Mapped": true,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO5 — lesson.emf.ac-generation-principles",
+      "assetId": "unit202.generator.rotating-loop.vertical",
+      "familyId": "unit202.family.fleming-right-hand-generator",
+      "familyDisplayName": "Fleming's right-hand rule / AC generator effect",
+      "displayName": "Simple rotating-loop AC generator — loop plane edge-on to poles — near-peak EMF",
+      "needClassification": "REQUIRED",
+      "productionClass": "HYBRID",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.generator.rotating-loop.state.vertical-near-peak-emf",
+          "stateId": "unit202.generator.rotating-loop.vertical.state.near-peak-emf",
           "pedagogicalState": "MULTI_STATE",
           "existingCanonicalVariantId": "visual-contract.ac-generator-rotating-loop@1::mode=both,rotation_phase=vertical::both"
         }
@@ -316,31 +346,46 @@
     {
       "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO5 — lesson.magnetism.fundamentals",
-      "assetId": "unit202.magnet.poles",
+      "assetId": "unit202.magnet.poles.like",
       "familyId": "unit202.family.magnetism",
       "familyDisplayName": "Magnetism — field and pole interaction",
-      "displayName": "Magnetic pole attraction / repulsion",
+      "displayName": "Magnetic pole repulsion — like poles facing (repel)",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
       "referenceReadiness": "READY",
       "canonicalStates": [
         {
-          "stateId": "unit202.magnet.poles.state.like-poles-facing-teaching",
+          "stateId": "unit202.magnet.poles.like.state.teaching",
           "pedagogicalState": "TEACHING",
           "existingCanonicalVariantId": "visual-contract.magnetic-pole-interaction@1::mode=teaching,pole_pairing=like_poles_facing,show_pole_force=true::teaching"
         },
         {
-          "stateId": "unit202.magnet.poles.state.like-poles-facing-assessment",
+          "stateId": "unit202.magnet.poles.like.state.assessment",
           "pedagogicalState": "ASSESSMENT",
           "existingCanonicalVariantId": "visual-contract.magnetic-pole-interaction@1::mode=assessment,pole_pairing=like_poles_facing::assessment"
-        },
+        }
+      ],
+      "existing66Mapped": true,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO5 — lesson.magnetism.fundamentals",
+      "assetId": "unit202.magnet.poles.unlike",
+      "familyId": "unit202.family.magnetism",
+      "familyDisplayName": "Magnetism — field and pole interaction",
+      "displayName": "Magnetic pole attraction — unlike poles facing (attract)",
+      "needClassification": "REQUIRED",
+      "productionClass": "HYBRID",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.magnet.poles.state.unlike-poles-facing-teaching",
+          "stateId": "unit202.magnet.poles.unlike.state.teaching",
           "pedagogicalState": "TEACHING",
           "existingCanonicalVariantId": "visual-contract.magnetic-pole-interaction@1::mode=teaching,pole_pairing=unlike_poles_facing,show_pole_force=true::teaching"
         },
         {
-          "stateId": "unit202.magnet.poles.state.unlike-poles-facing-assessment",
+          "stateId": "unit202.magnet.poles.unlike.state.assessment",
           "pedagogicalState": "ASSESSMENT",
           "existingCanonicalVariantId": "visual-contract.magnetic-pole-interaction@1::mode=assessment,pole_pairing=unlike_poles_facing::assessment"
         }
@@ -355,7 +400,7 @@
       "familyId": "unit202.family.magnetism",
       "familyDisplayName": "Magnetism — field and pole interaction",
       "displayName": "Permanent magnet vs electromagnet comparison",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "USEFUL",
       "productionClass": "HYBRID",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -365,7 +410,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "USEFUL_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -499,7 +544,7 @@
       "familyId": "unit202.family.instrument-connections",
       "familyDisplayName": "Instrument connections",
       "displayName": "Clamp meter recognition",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "USEFUL",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -509,7 +554,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "USEFUL_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -518,7 +563,7 @@
       "familyId": "unit202.family.instrument-connections",
       "familyDisplayName": "Instrument connections",
       "displayName": "Oscilloscope recognition",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "USEFUL",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -528,7 +573,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "USEFUL_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -547,31 +592,61 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "USEFUL"
+      "gapStatus": "USEFUL_READY"
     },
     {
       "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO3 — lesson.foundation.physics.simple-machines",
-      "assetId": "unit202.gears",
+      "assetId": "unit202.gears.driven-larger",
       "familyId": "unit202.family.gears",
       "familyDisplayName": "Driver/driven gears",
-      "displayName": "Driver/driven gears",
+      "displayName": "Driver/driven gears — driven gear larger than the driver",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
       "referenceReadiness": "READY",
       "canonicalStates": [
         {
-          "stateId": "unit202.gears.state.driven-larger",
+          "stateId": "unit202.gears.driven-larger.state.teaching",
           "pedagogicalState": "MULTI_STATE",
           "existingCanonicalVariantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=driven_larger::both"
-        },
+        }
+      ],
+      "existing66Mapped": true,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO3 — lesson.foundation.physics.simple-machines",
+      "assetId": "unit202.gears.driven-smaller",
+      "familyId": "unit202.family.gears",
+      "familyDisplayName": "Driver/driven gears",
+      "displayName": "Driver/driven gears — driven gear smaller than the driver",
+      "needClassification": "REQUIRED",
+      "productionClass": "HYBRID",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.gears.state.driven-smaller",
+          "stateId": "unit202.gears.driven-smaller.state.teaching",
           "pedagogicalState": "MULTI_STATE",
           "existingCanonicalVariantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=driven_smaller::both"
-        },
+        }
+      ],
+      "existing66Mapped": true,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO3 — lesson.foundation.physics.simple-machines",
+      "assetId": "unit202.gears.equal",
+      "familyId": "unit202.family.gears",
+      "familyDisplayName": "Driver/driven gears",
+      "displayName": "Driver/driven gears — driver and driven gears equal size",
+      "needClassification": "REQUIRED",
+      "productionClass": "HYBRID",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.gears.state.equal",
+          "stateId": "unit202.gears.equal.state.teaching",
           "pedagogicalState": "MULTI_STATE",
           "existingCanonicalVariantId": "visual-contract.gear-mesh-ratio@1::mode=both,size_ratio=equal::both"
         }
@@ -600,7 +675,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "USEFUL"
+      "gapStatus": "USEFUL_READY"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -904,20 +979,35 @@
     {
       "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive",
-      "assetId": "unit202.diode.bias-direction",
+      "assetId": "unit202.diode.bias-direction.forward",
       "familyId": "unit202.family.electronic-components",
       "familyDisplayName": "Electronic components — recognition",
-      "displayName": "Diode forward/reverse-bias current direction",
+      "displayName": "Diode forward bias — conducting",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
       "referenceReadiness": "READY",
       "canonicalStates": [
         {
-          "stateId": "unit202.diode.bias-direction.state.forward-bias",
+          "stateId": "unit202.diode.bias-direction.forward.state.teaching",
           "pedagogicalState": "TEACHING"
-        },
+        }
+      ],
+      "existing66Mapped": false,
+      "gapStatus": "SATISFIED"
+    },
+    {
+      "kind": "CATALOGUED_ASSET",
+      "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive",
+      "assetId": "unit202.diode.bias-direction.reverse",
+      "familyId": "unit202.family.electronic-components",
+      "familyDisplayName": "Electronic components — recognition",
+      "displayName": "Diode reverse bias — blocked",
+      "needClassification": "REQUIRED",
+      "productionClass": "HYBRID",
+      "referenceReadiness": "READY",
+      "canonicalStates": [
         {
-          "stateId": "unit202.diode.bias-direction.state.reverse-bias",
+          "stateId": "unit202.diode.bias-direction.reverse.state.teaching",
           "pedagogicalState": "TEACHING"
         }
       ],
@@ -981,7 +1071,7 @@
       "familyId": "unit202.family.electronic-components",
       "familyDisplayName": "Electronic components — recognition",
       "displayName": "Physical electronic component — zener diode",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "USEFUL",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -991,7 +1081,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "USEFUL_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -1000,7 +1090,7 @@
       "familyId": "unit202.family.electronic-components",
       "familyDisplayName": "Electronic components — recognition",
       "displayName": "Physical electronic component — photodiode",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "USEFUL",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -1010,7 +1100,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "USEFUL_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -1019,7 +1109,7 @@
       "familyId": "unit202.family.electronic-components",
       "familyDisplayName": "Electronic components — recognition",
       "displayName": "Physical electronic component — DIAC",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "USEFUL",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -1029,7 +1119,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "USEFUL_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -1038,7 +1128,7 @@
       "familyId": "unit202.family.electronic-components",
       "familyDisplayName": "Electronic components — recognition",
       "displayName": "Physical electronic component — TRIAC",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "USEFUL",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -1048,7 +1138,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "USEFUL_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -1057,7 +1147,7 @@
       "familyId": "unit202.family.electronic-components",
       "familyDisplayName": "Electronic components — recognition",
       "displayName": "Physical electronic component — thyristor/SCR",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "USEFUL",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -1067,7 +1157,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "USEFUL_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -1095,7 +1185,7 @@
       "familyId": "unit202.family.heating-effect",
       "familyDisplayName": "Heating effect of electric current",
       "displayName": "Heating effect of electric current",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -1105,7 +1195,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -1114,7 +1204,7 @@
       "familyId": "unit202.family.conductor-insulator",
       "familyDisplayName": "Conductor vs insulator",
       "displayName": "Conductor vs insulator",
-      "needClassification": "BLOCKED_REFERENCE",
+      "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -1124,16 +1214,16 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
       "loOrLesson": "LO4 — lesson.electrical.fault-conditions-protection",
       "assetId": "unit202.protective-devices",
       "familyId": "unit202.family.protective-devices",
-      "familyDisplayName": "Fuse / MCB / RCD conceptual visual",
-      "displayName": "Fuse / MCB / RCD conceptual visual",
-      "needClassification": "BLOCKED_REFERENCE",
+      "familyDisplayName": "Fuse vs circuit breaker comparison",
+      "displayName": "Fuse vs circuit breaker comparison",
+      "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "referenceReadiness": "NOT_READY",
       "canonicalStates": [
@@ -1143,7 +1233,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "BLOCKED_REFERENCE"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",

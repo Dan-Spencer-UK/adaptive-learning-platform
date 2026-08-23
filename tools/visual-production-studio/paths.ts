@@ -11,20 +11,30 @@
  * resolution -- defense in depth, not a single check.
  */
 
-import { resolve, sep } from "node:path";
+import { dirname, resolve, sep } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { OUTPUT_SUBFOLDERS, type OutputSubfolder } from "./catalogue.ts";
 
-const TOOL_ROOT = new URL(".", import.meta.url).pathname;
-
-/** Repo root is two levels above this file: tools/visual-production-studio/paths.ts -> tools -> repo root. */
+/**
+ * CC-11.7B fix: repo root is two levels above this file
+ * (tools/visual-production-studio/paths.ts -> tools -> repo root), computed
+ * via `fileURLToPath` + `dirname` rather than manually parsing
+ * `new URL(".", import.meta.url).pathname`. The manual approach silently
+ * broke under this repo's Vitest config (`environment: "jsdom"`): jsdom's
+ * bundled WHATWG URL polyfill mishandles a Windows `file:///D:/...` URL's
+ * drive letter, collapsing the resolved pathname down to a path relative
+ * to the drive root (e.g. `/tools/visual-production-studio` instead of
+ * `/D:/Development/.../tools/visual-production-studio`) -- every
+ * REPO_ROOT-derived constant below was silently wrong under any test that
+ * actually exercised a real filesystem path, undetected until CC-11.7B's
+ * PDF-review generator's own test suite read real files from disk.
+ * `fileURLToPath` is a Node builtin operating on the URL string directly,
+ * not the jsdom-polyfilled `URL` class, so it is unaffected.
+ */
 function repoRoot(): string {
-  // On Windows, import.meta.url pathname begins with a leading '/' before
-  // the drive letter (e.g. "/D:/Development/..."); node:path resolves that
-  // correctly via resolve() but we strip it defensively for direct use.
-  const raw = decodeURIComponent(TOOL_ROOT);
-  const cleaned = /^\/[A-Za-z]:/.test(raw) ? raw.slice(1) : raw;
-  return resolve(cleaned, "..", "..");
+  const toolDir = dirname(fileURLToPath(import.meta.url));
+  return resolve(toolDir, "..", "..");
 }
 
 export const REPO_ROOT = repoRoot();

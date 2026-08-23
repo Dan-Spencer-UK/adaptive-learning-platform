@@ -1,18 +1,20 @@
 /**
- * CC-11.7 §19 / CC-11.7A §21: the Studio's dashboard counts, computed
- * mechanically from catalogue + status data -- never a single misleading
- * total. Every number here is derived, never separately authored, so the
- * dashboard can never silently drift from the real catalogue.
+ * CC-11.7 §19 / CC-11.7A §21 / CC-11.7B §12-14: the Studio's dashboard
+ * counts, computed mechanically from catalogue + status data -- never a
+ * single misleading total. Every number here is derived, never separately
+ * authored, so the dashboard can never silently drift from the real
+ * catalogue.
  *
- * CC-11.7A: REQUIRED and USEFUL are tracked as fully independent buckets
- * throughout (task brief §6/§21/§22: "Do not let USEFUL assets make
- * REQUIRED progress appear incomplete"). A DEFERRED_SCOPE asset (currently
- * only trigonometry, which has no lesson to attach to yet) is counted in
- * `deferredScope` and deliberately excluded from both the required and
- * useful art-job/approved/outstanding buckets -- it is neither.
+ * CC-11.7B §12: PEDAGOGICAL NEED (REQUIRED/USEFUL/DEFERRED_SCOPE) and
+ * PRODUCTION READINESS (READY/BLOCKED_REFERENCE) are two independent
+ * dimensions, never conflated. A REQUIRED asset that is currently
+ * reference-blocked is still REQUIRED -- it appears in `requiredTotal`
+ * AND `requiredBlocked`, never removed from the REQUIRED bucket. The same
+ * applies to USEFUL. This dashboard tracks both dimensions explicitly for
+ * both REQUIRED and USEFUL throughout.
  */
 
-import { allAssets, FAMILIES, isPromptable, visualNeedClassificationFor, type VisualFamily } from "./catalogue.ts";
+import { allAssets, FAMILIES, isPromptable, isReferenceBlocked, visualNeedClassificationFor, type VisualFamily } from "./catalogue.ts";
 import type { StudioState } from "./state-store.ts";
 
 export interface DashboardCounts {
@@ -20,41 +22,73 @@ export interface DashboardCounts {
   productionBaseAssets: number;
   canonicalLearnerVisibleStates: number;
 
-  required: number;
-  useful: number;
+  requiredTotal: number;
+  requiredReady: number;
+  requiredBlocked: number;
 
-  requiredPremiumHybridArtJobs: number;
-  usefulPremiumHybridArtJobs: number;
-  /** requiredPremiumHybridArtJobs + usefulPremiumHybridArtJobs -- kept for backward compatibility with the CC-11.7 single-total field name. */
-  premiumHybridArtJobs: number;
+  usefulTotal: number;
+  usefulReady: number;
+  usefulBlocked: number;
+
+  requiredArtJobsTotal: number;
+  requiredArtJobsReady: number;
+  requiredArtJobsBlocked: number;
+  requiredArtJobsApproved: number;
+
+  usefulArtJobsTotal: number;
+  usefulArtJobsReady: number;
+  usefulArtJobsBlocked: number;
+  usefulArtJobsApproved: number;
 
   deterministicOnly: number;
-  blockedReference: number;
-  blockedReferenceRequired: number;
-  blockedReferenceUseful: number;
   deferredScope: number;
   superseded: number;
 
-  /** approvedRequired + approvedUseful -- kept for backward compatibility with the CC-11.7 single-total field name. */
-  approved: number;
-  /** outstandingRequired + outstandingUseful -- kept for backward compatibility with the CC-11.7 single-total field name. */
-  outstanding: number;
-  approvedRequired: number;
-  outstandingRequired: number;
-  approvedUseful: number;
-  outstandingUseful: number;
-
   /**
-   * CC-11.7A §25 acceptance criterion: all 10 CC-11.7 USEFUL findings are
-   * now materialised as live catalogue assets (`needOverride: "USEFUL"`),
-   * so this historical count is 0. Kept (rather than removed) so a
-   * dashboard/report consumer written against the CC-11.7 field name does
-   * not silently read `undefined` -- see `useful` for the live, current
-   * count of materialised USEFUL assets instead.
+   * CC-11.7B §14: true only when EVERY REQUIRED premium/hybrid art job is
+   * approved AND the REQUIRED-blocked count is exactly 0. USEFUL status
+   * never affects this value in either direction (§6/§14: "USEFUL assets
+   * remain independent").
    */
+  requiredVisualProductionComplete: boolean;
+
+  // --- Backward-compatible aliases (CC-11.7/CC-11.7A field names) -------
+  /** @deprecated use requiredTotal */
+  required: number;
+  /** @deprecated use usefulTotal */
+  useful: number;
+  /** @deprecated use requiredArtJobsTotal */
+  requiredPremiumHybridArtJobs: number;
+  /** @deprecated use usefulArtJobsTotal */
+  usefulPremiumHybridArtJobs: number;
+  /** @deprecated use requiredArtJobsTotal + usefulArtJobsTotal */
+  premiumHybridArtJobs: number;
+  /** @deprecated use requiredBlocked + usefulBlocked */
+  blockedReference: number;
+  /** @deprecated use requiredBlocked */
+  blockedReferenceRequired: number;
+  /** @deprecated use usefulBlocked */
+  blockedReferenceUseful: number;
+  /** @deprecated use requiredArtJobsApproved + usefulArtJobsApproved */
+  approved: number;
+  /** @deprecated use (requiredArtJobsTotal - requiredArtJobsApproved) + (usefulArtJobsTotal - usefulArtJobsApproved) */
+  outstanding: number;
+  /** @deprecated use requiredArtJobsApproved */
+  approvedRequired: number;
+  /** @deprecated use requiredArtJobsTotal - requiredArtJobsApproved */
+  outstandingRequired: number;
+  /** @deprecated use usefulArtJobsApproved */
+  approvedUseful: number;
+  /** @deprecated use usefulArtJobsTotal - usefulArtJobsApproved */
+  outstandingUseful: number;
+  /** @deprecated always 0 since CC-11.7A -- see USEFUL_TRACKED_NOT_CATALOGUED_COUNT */
   usefulTrackedNotCatalogued: number;
 }
 
+/**
+ * CC-11.7A §25: all 10 CC-11.7 USEFUL findings are now materialised as
+ * live catalogue assets, so this historical count is permanently 0.
+ */
 export const USEFUL_TRACKED_NOT_CATALOGUED_COUNT = 0;
 
 export function buildDashboard(state: StudioState, families: VisualFamily[] = FAMILIES): DashboardCounts {
@@ -62,81 +96,121 @@ export function buildDashboard(state: StudioState, families: VisualFamily[] = FA
   const approvedStatuses = new Set(["APPROVED", "SAVED"]);
   const supersededStatuses = new Set(["SUPERSEDED"]);
 
-  let required = 0;
-  let useful = 0;
+  let requiredTotal = 0;
+  let requiredReady = 0;
+  let requiredBlocked = 0;
+  let usefulTotal = 0;
+  let usefulReady = 0;
+  let usefulBlocked = 0;
   let deterministicOnly = 0;
-  let requiredPremiumHybridArtJobs = 0;
-  let usefulPremiumHybridArtJobs = 0;
-  let approvedRequired = 0;
-  let outstandingRequired = 0;
-  let approvedUseful = 0;
-  let outstandingUseful = 0;
-  let blockedReference = 0;
-  let blockedReferenceRequired = 0;
-  let blockedReferenceUseful = 0;
   let deferredScope = 0;
   let superseded = 0;
 
-  for (const asset of assets) {
-    const classification = visualNeedClassificationFor(asset);
-    // "Ultimately REQUIRED/USEFUL" independent of current reference-blocked
-    // status (task brief §15: an item can be simultaneously USEFUL and
-    // currently BLOCKED_REFERENCE) -- read from `needOverride` directly,
-    // never from `classification` alone, so a blocked USEFUL asset is
-    // never miscounted as REQUIRED.
-    const isUltimatelyUseful = asset.needOverride === "USEFUL";
-    const isUltimatelyRequired = !isUltimatelyUseful && classification !== "DEFERRED_SCOPE";
+  let requiredArtJobsTotal = 0;
+  let requiredArtJobsReady = 0;
+  let requiredArtJobsBlocked = 0;
+  let requiredArtJobsApproved = 0;
+  let usefulArtJobsTotal = 0;
+  let usefulArtJobsReady = 0;
+  let usefulArtJobsBlocked = 0;
+  let usefulArtJobsApproved = 0;
 
-    if (classification === "REQUIRED") required += 1;
-    if (classification === "USEFUL") useful += 1;
-    if (classification === "DEFERRED_SCOPE") deferredScope += 1;
-    if (classification === "BLOCKED_REFERENCE") {
-      blockedReference += 1;
-      if (isUltimatelyUseful) blockedReferenceUseful += 1;
-      else blockedReferenceRequired += 1;
+  for (const asset of assets) {
+    const classification = visualNeedClassificationFor(asset); // REQUIRED | USEFUL | DEFERRED_SCOPE | NOT_NEEDED -- pedagogical need only
+    const blocked = isReferenceBlocked(asset); // production readiness only, orthogonal
+
+    if (classification === "REQUIRED") {
+      requiredTotal += 1;
+      if (blocked) requiredBlocked += 1;
+      else requiredReady += 1;
+    } else if (classification === "USEFUL") {
+      usefulTotal += 1;
+      if (blocked) usefulBlocked += 1;
+      else usefulReady += 1;
+    } else if (classification === "DEFERRED_SCOPE") {
+      deferredScope += 1;
     }
 
     if (asset.productionClass === "DETERMINISTIC_TECHNICAL") deterministicOnly += 1;
 
-    const isArtJob = isPromptable(asset) && asset.productionClass !== "DETERMINISTIC_TECHNICAL";
+    // An "art job" is a real, non-deterministic image-generation job this
+    // asset represents -- deterministic-only and promptable:false assets
+    // never count here, regardless of pedagogical need or readiness.
+    // DEFERRED_SCOPE assets are excluded from both art-job buckets (§14:
+    // "no required shared-base audit remains unresolved" implies a
+    // deferred asset is neither REQUIRED-complete nor USEFUL-complete).
+    const isArtJobCandidate = asset.productionClass !== "DETERMINISTIC_TECHNICAL" && asset.promptable !== false && classification !== "DEFERRED_SCOPE";
+    if (!isArtJobCandidate) continue;
+
     const status = state[asset.assetId]?.status;
     const isApproved = Boolean(status && approvedStatuses.has(status));
     if (status && supersededStatuses.has(status)) superseded += 1;
 
-    if (isArtJob) {
-      if (isUltimatelyUseful) {
-        usefulPremiumHybridArtJobs += 1;
-        if (isApproved) approvedUseful += 1;
-        else outstandingUseful += 1;
-      } else if (isUltimatelyRequired) {
-        requiredPremiumHybridArtJobs += 1;
-        if (isApproved) approvedRequired += 1;
-        else outstandingRequired += 1;
-      }
+    if (classification === "REQUIRED") {
+      requiredArtJobsTotal += 1;
+      if (blocked) requiredArtJobsBlocked += 1;
+      else requiredArtJobsReady += 1;
+      if (isApproved) requiredArtJobsApproved += 1;
+    } else if (classification === "USEFUL") {
+      usefulArtJobsTotal += 1;
+      if (blocked) usefulArtJobsBlocked += 1;
+      else usefulArtJobsReady += 1;
+      if (isApproved) usefulArtJobsApproved += 1;
     }
   }
+
+  // isPromptable() double-checked here only as a cross-validation that a
+  // "ready" art job is genuinely promptable -- the two computations must
+  // always agree, or a future catalogue field is inconsistent.
+  const readyArtJobsViaIsPromptable = assets.filter((a) => isPromptable(a) && a.productionClass !== "DETERMINISTIC_TECHNICAL" && visualNeedClassificationFor(a) !== "DEFERRED_SCOPE").length;
+  if (readyArtJobsViaIsPromptable !== requiredArtJobsReady + usefulArtJobsReady) {
+    throw new Error(`dashboard readiness accounting mismatch: isPromptable() found ${readyArtJobsViaIsPromptable} ready art jobs, but classification+blocked accounting found ${requiredArtJobsReady + usefulArtJobsReady}`);
+  }
+
+  const requiredVisualProductionComplete = requiredBlocked === 0 && requiredArtJobsTotal === requiredArtJobsApproved;
 
   return {
     visualFamilies: families.length,
     productionBaseAssets: assets.length,
     canonicalLearnerVisibleStates: assets.reduce((sum, asset) => sum + asset.canonicalStates.length, 0),
-    required,
-    useful,
-    requiredPremiumHybridArtJobs,
-    usefulPremiumHybridArtJobs,
-    premiumHybridArtJobs: requiredPremiumHybridArtJobs + usefulPremiumHybridArtJobs,
+
+    requiredTotal,
+    requiredReady,
+    requiredBlocked,
+    usefulTotal,
+    usefulReady,
+    usefulBlocked,
+
+    requiredArtJobsTotal,
+    requiredArtJobsReady,
+    requiredArtJobsBlocked,
+    requiredArtJobsApproved,
+    usefulArtJobsTotal,
+    usefulArtJobsReady,
+    usefulArtJobsBlocked,
+    usefulArtJobsApproved,
+
     deterministicOnly,
-    blockedReference,
-    blockedReferenceRequired,
-    blockedReferenceUseful,
     deferredScope,
     superseded,
-    approved: approvedRequired + approvedUseful,
-    outstanding: outstandingRequired + outstandingUseful,
-    approvedRequired,
-    outstandingRequired,
-    approvedUseful,
-    outstandingUseful,
+
+    requiredVisualProductionComplete,
+
+    // Backward-compatible aliases
+    required: requiredTotal,
+    useful: usefulTotal,
+    requiredPremiumHybridArtJobs: requiredArtJobsTotal,
+    usefulPremiumHybridArtJobs: usefulArtJobsTotal,
+    premiumHybridArtJobs: requiredArtJobsTotal + usefulArtJobsTotal,
+    blockedReference: requiredBlocked + usefulBlocked,
+    blockedReferenceRequired: requiredBlocked,
+    blockedReferenceUseful: usefulBlocked,
+    approved: requiredArtJobsApproved + usefulArtJobsApproved,
+    outstanding: requiredArtJobsTotal - requiredArtJobsApproved + (usefulArtJobsTotal - usefulArtJobsApproved),
+    approvedRequired: requiredArtJobsApproved,
+    outstandingRequired: requiredArtJobsTotal - requiredArtJobsApproved,
+    approvedUseful: usefulArtJobsApproved,
+    outstandingUseful: usefulArtJobsTotal - usefulArtJobsApproved,
     usefulTrackedNotCatalogued: USEFUL_TRACKED_NOT_CATALOGUED_COUNT,
   };
 }

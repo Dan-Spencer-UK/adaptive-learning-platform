@@ -240,6 +240,45 @@ export interface VisualAsset {
    * they are now visible").
    */
   needOverride?: "USEFUL";
+  /**
+   * CC-11.7B §3/§6: whether this asset's proposed image/state sharing (or,
+   * for a single-state asset, its proposed multi-object composite -- §8)
+   * was genuinely audited and found safe, safe-with-constraints, or
+   * required a split into separate ProductionAssets. Present on every
+   * asset that either (a) currently supports more than one
+   * `CanonicalState`, or (b) resulted from, or was deliberately spared
+   * from, a CC-11.7B split decision -- absent on an ordinary single-state
+   * asset with nothing to audit here.
+   */
+  sharedBaseAudit?: SharedBaseAudit;
+}
+
+/**
+ * CC-11.7B §3: SAFE_SHARED_BASE -- no meaningful pose/configuration/scene
+ * change between states; achievable entirely via deterministic
+ * labels/arrows/overlays/reveal-hide/dimensions. SHARED_BASE_WITH_CONDITIONS
+ * -- reusable, but only if the recorded `conditions` are honoured by the
+ * art session (e.g. "leave neutral spacing", "do not bake in a specific
+ * direction"). SEPARATE_ARTWORK_REQUIRED -- the grouped states/objects
+ * require genuinely different underlying images (pose, orientation,
+ * apparatus configuration, or scene change); the asset was split.
+ */
+export type SharedBaseClassification = "SAFE_SHARED_BASE" | "SHARED_BASE_WITH_CONDITIONS" | "SEPARATE_ARTWORK_REQUIRED";
+export const SHARED_BASE_CLASSIFICATIONS: readonly SharedBaseClassification[] = ["SAFE_SHARED_BASE", "SHARED_BASE_WITH_CONDITIONS", "SEPARATE_ARTWORK_REQUIRED"];
+
+export type SharedBaseAction = "KEEP" | "KEEP_WITH_CONDITIONS" | "SPLIT";
+export const SHARED_BASE_ACTIONS: readonly SharedBaseAction[] = ["KEEP", "KEEP_WITH_CONDITIONS", "SPLIT"];
+
+export interface SharedBaseAudit {
+  classification: SharedBaseClassification;
+  action: SharedBaseAction;
+  rationale: string;
+  /** Populated only when classification is SHARED_BASE_WITH_CONDITIONS. */
+  conditions?: string[];
+  /** Populated only on an asset produced by a CC-11.7B split -- the original pre-split assetId this asset's state(s) were carved out of. */
+  splitFrom?: string;
+  /** Populated on a split asset -- every other assetId the same original asset split into (siblings, not including itself). */
+  splitSiblings?: string[];
 }
 
 export interface VisualFamily {
@@ -296,21 +335,36 @@ export const FAMILIES: VisualFamily[] = [
         },
         referenceReadiness: "READY",
         annotationPolicy: "TEACHING_EXPLANATORY",
-        requiredLabels: ["current-direction arrow/label", "field-circulation direction indicator"],
+        requiredLabels: [],
         immutableFacts: [
           "straight current-carrying conductor",
           "magnetic field circulates around the conductor (closed concentric loops, not radiating outward)",
           "reversing the current reverses the direction of circulation",
           "any depiction of field strength must not contradict a stronger field nearer the conductor",
+          "the concentric field-line pattern is rotationally symmetric -- do not bake in a specific current direction or circulation sense",
         ],
         creativeFreedoms: ["premium conductor material/finish", "field-line stylisation", "composition"],
-        deterministicOverlayResponsibilities: [],
-        prohibitedChanges: ["do not include a hand in this asset -- that is the separate MNEMONIC asset in this family"],
+        deterministicOverlayResponsibilities: ["current-direction arrow/label (dot/cross convention)", "field-circulation direction indicator (arrowheads on the field lines)"],
+        prohibitedChanges: [
+          "do not include a hand in this asset -- that is the separate MNEMONIC asset in this family",
+          "do not bake a specific current direction or circulation-arrow sense into the base artwork -- CC-11.7B correction: this base must safely serve BOTH current directions via deterministic overlay, never a redraw",
+        ],
         exactDeliverable:
-          "One premium illustration of a straight conductor with concentric magnetic field lines circulating around it, current direction indicated, matching the reference field geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+          "One premium illustration of a straight conductor with concentric magnetic field lines circulating around it -- direction-neutral, with no baked current-direction or circulation arrowheads (those are added deterministically per state), matching the reference field geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         assessmentNote: "Not the mnemonic itself -- may appear in assessment context as the phenomenon being questioned, distinct from the MNEMONIC asset which never appears in assessment.",
         outputSubfolder: "hybrid",
         filenameBase: "current-conductor-magnetic-field-base",
+        sharedBaseAudit: {
+          classification: "SHARED_BASE_WITH_CONDITIONS",
+          action: "KEEP_WITH_CONDITIONS",
+          rationale:
+            "CC-11.7B: a straight conductor's concentric field-line pattern is rotationally symmetric -- reversing current only reverses which way the circulation arrows point, never the field-line geometry, conductor position, or composition. This is the same 'legitimate deterministic transform, not a reason to commission a near-duplicate image' reasoning already applied to the sibling MNEMONIC hand asset. CORRECTION APPLIED: the pre-audit config incorrectly asked the art session to bake in 'current direction indicated' as part of the artwork (exactDeliverable) while also requiring 4 states covering both directions from one image -- an internal inconsistency. Fixed by moving both direction indicators to deterministicOverlayResponsibilities and removing direction-specific language from exactDeliverable/immutableFacts.",
+          conditions: [
+            "base artwork must show field lines with NO baked arrowheads/direction sense",
+            "base artwork must show the conductor cross-section with no baked dot/cross current-direction symbol",
+            "composition must leave clear, uncluttered space at the conductor's cross-section and along at least two field-line loops for a deterministic overlay to add direction indicators afterward",
+          ],
+        },
         canonicalStates: [
           {
             stateId: "unit202.current-conductor.magnetic-field.state.into-page-teaching",
@@ -393,6 +447,12 @@ export const FAMILIES: VisualFamily[] = [
         assessmentNote: "Assessment contains NO hand — teaching only.",
         outputSubfolder: "teaching",
         filenameBase: "right-hand-grip-teaching-base",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale:
+            "CC-11.7B: single canonical state, single learner-facing object (one hand demonstrating one rule) -- no sharing/composite question applies. Confirmed this asset does not need a reversed-current companion image: the mnemonic teaches the RULE itself, not a specific current direction, and a reversed-current illustration would be a legitimate deterministic mirror/rotate transform of the same hand pose, not a genuinely different pose.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.right-hand-grip.teaching.state.teaching",
@@ -414,54 +474,85 @@ export const FAMILIES: VisualFamily[] = [
     governedConcept: "LO5 — lesson.magnetism.effects-of-current (motor.force_field_current)",
     familyNotes: "Phenomenon and mnemonic are genuinely distinct facts, same reasoning as the right-hand-grip family -- these two assets already existed separately in the prior flat catalogue and are grouped here without any content change.",
     assets: [
-      {
-        sequence: 3,
-        assetId: "unit202.motor.effect",
+      // CC-11.7B §5/§6: unit202.motor.effect audited and SPLIT. Pole
+      // orientation (N/S poles arranged horizontally vs vertically) is a
+      // genuine physical apparatus-layout change -- the magnets themselves
+      // occupy different positions in the scene, not something a
+      // deterministic overlay can achieve on one base image. Current
+      // direction (into/out of page) WITHIN one fixed pole orientation is,
+      // by contrast, a deterministic dot/cross + force-arrow overlay
+      // concern (same reasoning as the right-hand-grip conductor asset) --
+      // so the split is by pole orientation only, not by all 4 parameter
+      // combinations. Each resulting asset keeps 4 states (2 current
+      // directions x 2 pedagogical modes), 8 states preserved in total,
+      // 0 historical variants lost (all 8 existingCanonicalVariantId
+      // values carried over unchanged onto their new parent asset).
+      ...(
+        [
+          { poles: "N_S_horizontal" as const, orderSuffix: 1, slug: "horizontal-poles", label: "N/S poles arranged horizontally" },
+          { poles: "N_S_vertical" as const, orderSuffix: 2, slug: "vertical-poles", label: "N/S poles arranged vertically" },
+        ] as const
+      ).map(({ poles, orderSuffix, slug, label }) => ({
+        sequence: poles === "N_S_horizontal" ? 3 : 48,
+        assetId: `unit202.motor.effect.${slug}`,
         familyId: "unit202.family.fleming-left-hand-motor",
-        orderInFamily: 1,
-        role: "PHENOMENON",
-        displayName: "Motor effect — conductor in magnetic field",
+        orderInFamily: orderSuffix,
+        role: "PHENOMENON" as const,
+        displayName: `Motor effect — conductor in magnetic field (${label})`,
         loOrLesson: "LO5 — lesson.magnetism.effects-of-current",
-        priority: "P0",
+        priority: "P0" as const,
         priorityLabel: "P0",
-        productionClass: "HYBRID",
+        productionClass: "HYBRID" as const,
         productionClassLabel: "HYBRID",
         governedDiagramBlueprintId: "motor.force_field_current",
-        instructionalPurpose:
-          "Show a current-carrying conductor between magnetic poles experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.",
+        instructionalPurpose: `Show a current-carrying conductor between magnetic poles (${label}) experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.`,
         primaryReference: {
           sourceName: "Existing governed ALP motor-effect geometry (motor.force_field_current) plus a reputable human-readable motor-effect reference",
           sourceUrl: "",
           licence: "internal governed geometry -- external reference to be added when sourced",
           qualityGrade: "internal A (geometry); external reference pending",
         },
-        referenceReadiness: "READY",
-        annotationPolicy: "TEACHING_EXPLANATORY",
-        requiredLabels: ["N", "S", "current-direction indicator", "force-direction indicator"],
+        referenceReadiness: "READY" as const,
+        annotationPolicy: "TEACHING_EXPLANATORY" as const,
+        requiredLabels: [],
         immutableFacts: [
           "N to S field direction",
           "conductor positioned between the poles",
-          "current explicitly into or out of the page",
+          `poles arranged ${poles === "N_S_horizontal" ? "horizontally" : "vertically"} -- this specific orientation is the defining physical fact of this asset, never mixed with the sibling orientation asset`,
+          "current explicitly into or out of the page -- the base artwork must not bake in either direction (deterministic overlay per state)",
           "resulting force perpendicular to both field and current",
           "must remain visually distinct from the hand-rule mnemonic asset",
         ],
         creativeFreedoms: ["premium magnet/conductor physical-object rendering", "composition", "finish"],
-        deterministicOverlayResponsibilities: [],
-        prohibitedChanges: ["do not include a hand in this asset -- that is the separate MNEMONIC asset in this family"],
-        exactDeliverable:
-          "One premium illustration of magnet poles with a conductor between them, ready to receive deterministic N/S, field, current and force overlays, matching the existing governed motor-effect geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
-        outputSubfolder: "hybrid",
-        filenameBase: "motor-effect-base",
+        deterministicOverlayResponsibilities: ["N/S pole labels", "current-direction indicator (dot/cross)", "force-direction indicator (arrow)"],
+        prohibitedChanges: [
+          "do not include a hand in this asset -- that is the separate MNEMONIC asset in this family",
+          `do not depict the ${poles === "N_S_horizontal" ? "vertical" : "horizontal"} pole arrangement in this asset -- that is the sibling ProductionAsset`,
+          "do not bake a specific current or force direction into the base artwork -- this base must safely serve both current directions via deterministic overlay",
+        ],
+        exactDeliverable: `One premium illustration of magnet poles arranged ${poles === "N_S_horizontal" ? "horizontally" : "vertically"} with a conductor between them, direction-neutral (no baked current/force arrows), ready to receive deterministic N/S, current and force overlays, matching the existing governed motor-effect geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        outputSubfolder: "hybrid" as const,
+        filenameBase: `motor-effect-${slug}-base`,
+        sharedBaseAudit: {
+          classification: "SHARED_BASE_WITH_CONDITIONS" as const,
+          action: "KEEP_WITH_CONDITIONS" as const,
+          rationale:
+            "CC-11.7B: split from the original unit202.motor.effect (8 states, all 4 pole/current combinations on one asset). Pole orientation is a genuine apparatus-layout change requiring separate artwork; current direction within one fixed orientation is a deterministic overlay concern, matching the right-hand-grip conductor asset's reasoning.",
+          conditions: [
+            "base artwork must show N/S pole labels ready for deterministic overlay, not baked as final text",
+            "base artwork must leave the conductor and the space around it clear of any baked current-direction or force-direction arrow",
+          ],
+          splitFrom: "unit202.motor.effect",
+          splitSiblings: [`unit202.motor.effect.${poles === "N_S_horizontal" ? "vertical-poles" : "horizontal-poles"}`],
+        },
         canonicalStates: (
           [
-            { poles: "N_S_horizontal", direction: "into_page", force: "down" },
-            { poles: "N_S_horizontal", direction: "out_of_page", force: "up" },
-            { poles: "N_S_vertical", direction: "into_page", force: "left" },
-            { poles: "N_S_vertical", direction: "out_of_page", force: "right" },
+            { direction: "into_page" as const, force: poles === "N_S_horizontal" ? ("down" as const) : ("left" as const) },
+            { direction: "out_of_page" as const, force: poles === "N_S_horizontal" ? ("up" as const) : ("right" as const) },
           ] as const
-        ).flatMap(({ poles, direction, force }) => [
+        ).flatMap(({ direction, force }) => [
           {
-            stateId: `unit202.motor.effect.state.${poles.toLowerCase().replace(/_/g, "-")}-${direction.replace(/_/g, "-")}-teaching`,
+            stateId: `unit202.motor.effect.${slug}.state.${direction.replace(/_/g, "-")}-teaching`,
             displayName: `${poles.replace(/_/g, "/")} poles, current ${direction.replace(/_/g, " ")} — force revealed (teaching)`,
             pedagogicalState: "TEACHING" as const,
             annotationPolicy: "TEACHING_EXPLANATORY" as const,
@@ -470,7 +561,7 @@ export const FAMILIES: VisualFamily[] = [
             existingCanonicalVariantId: reconciledVariantId("visual-contract.motor-principle-force", 1, { pole_labels: poles, current_direction: direction, show_force_arrow: true, force_direction: force }, "teaching"),
           },
           {
-            stateId: `unit202.motor.effect.state.${poles.toLowerCase().replace(/_/g, "-")}-${direction.replace(/_/g, "-")}-assessment`,
+            stateId: `unit202.motor.effect.${slug}.state.${direction.replace(/_/g, "-")}-assessment`,
             displayName: `${poles.replace(/_/g, "/")} poles, current ${direction.replace(/_/g, " ")} — force withheld (assessment)`,
             pedagogicalState: "ASSESSMENT" as const,
             annotationPolicy: "ASSESSMENT_NON_REVEALING" as const,
@@ -480,12 +571,12 @@ export const FAMILIES: VisualFamily[] = [
             existingCanonicalVariantId: reconciledVariantId("visual-contract.motor-principle-force", 1, { pole_labels: poles, current_direction: direction, show_force_arrow: true }, "assessment"),
           },
         ]),
-      },
+      })),
       {
         sequence: 4,
         assetId: "unit202.fleming-left-hand.teaching",
         familyId: "unit202.family.fleming-left-hand-motor",
-        orderInFamily: 2,
+        orderInFamily: 3,
         role: "MNEMONIC",
         displayName: "Fleming left-hand rule — motor teaching mnemonic",
         loOrLesson: "LO5 — lesson.magnetism.effects-of-current",
@@ -519,6 +610,12 @@ export const FAMILIES: VisualFamily[] = [
         assessmentNote: "Assessment: NO hand. Use the PHENOMENON asset's physical motor-effect apparatus instead.",
         outputSubfolder: "teaching",
         filenameBase: "fleming-left-hand-teaching-base",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale:
+            "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Force/Field/Current correspondence itself, not a specific pole/current combination, so it does not need a companion image per pole-orientation the way the sibling PHENOMENON assets do.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.fleming-left-hand.teaching.state.teaching",
@@ -526,7 +623,7 @@ export const FAMILIES: VisualFamily[] = [
             pedagogicalState: "TEACHING",
             annotationPolicy: "TEACHING_EXPLANATORY",
             requiredLabels: ["MOTION / FORCE", "FIELD", "CURRENT"],
-            notes: "One base image is sufficient -- the mnemonic teaches the F/B/I correspondence, not a specific pole/current combination. Never appears in assessment -- the sibling PHENOMENON asset (unit202.motor.effect) carries this family's assessment/teaching deterministic states.",
+            notes: "One base image is sufficient -- the mnemonic teaches the F/B/I correspondence, not a specific pole/current combination. Never appears in assessment -- the sibling PHENOMENON assets (unit202.motor.effect.horizontal-poles / .vertical-poles) carry this family's assessment/teaching deterministic states.",
           },
         ],
       },
@@ -539,21 +636,36 @@ export const FAMILIES: VisualFamily[] = [
     governedConcept: "LO5 — lesson.emf.ac-generation-principles / lesson.magnetism.effects-of-current (generator.rotating_loop)",
     familyNotes: "Groups the rotating-loop generator phenomenon with its own hand-rule mnemonic, the same phenomenon+mnemonic pattern as the other two hand-rule families -- unifies what were two separately-lesson-linked but pedagogically inseparable assets in the prior flat catalogue.",
     assets: [
-      {
-        sequence: 5,
-        assetId: "unit202.generator.rotating-loop",
+      // CC-11.7B §5/§6: unit202.generator.rotating-loop audited and SPLIT.
+      // "Loop plane facing poles" (near-zero EMF) and "loop plane edge-on
+      // to poles" (near-peak EMF) are two materially different 3D poses of
+      // the same physical loop-on-axis apparatus -- a rectangular loop
+      // shown face-on has a completely different silhouette from the same
+      // loop shown edge-on (a thin line/sliver). No deterministic overlay
+      // can rotate a loop's rendered pose in a premium illustration; this
+      // is exactly the "genuinely separate rendered physical states are
+      // pedagogically superior" case the brief itself invited scrutiny of
+      // (§5 GENERATOR). 2 states preserved in total (now 1 per asset), 0
+      // historical variants lost.
+      ...(
+        [
+          { phase: "horizontal" as const, orderSuffix: 1, slug: "horizontal", label: "loop plane facing poles — near-zero EMF", pose: "loop plane facing the poles head-on (widest visible loop face)" },
+          { phase: "vertical" as const, orderSuffix: 2, slug: "vertical", label: "loop plane edge-on to poles — near-peak EMF", pose: "loop plane edge-on to the poles (loop seen from the side, near its thinnest silhouette)" },
+        ] as const
+      ).map(({ phase, orderSuffix, slug, label, pose }) => ({
+        sequence: phase === "horizontal" ? 5 : 49,
+        assetId: `unit202.generator.rotating-loop.${slug}`,
         familyId: "unit202.family.fleming-right-hand-generator",
-        orderInFamily: 1,
-        role: "PHENOMENON",
-        displayName: "Simple rotating-loop AC generator",
+        orderInFamily: orderSuffix,
+        role: "PHENOMENON" as const,
+        displayName: `Simple rotating-loop AC generator — ${label}`,
         loOrLesson: "LO5 — lesson.emf.ac-generation-principles",
-        priority: "P0",
+        priority: "P0" as const,
         priorityLabel: "P0",
-        productionClass: "HYBRID",
+        productionClass: "HYBRID" as const,
         productionClassLabel: "HYBRID",
         governedDiagramBlueprintId: "generator.rotating_loop",
-        instructionalPurpose:
-          "Show a single loop of wire rotating on a central axis between N and S poles, establishing the physical basis of single-loop AC generation at Level 2 depth.",
+        instructionalPurpose: `Show a single loop of wire, ${pose}, rotating on a central axis between N and S poles, establishing the physical basis of single-loop AC generation at Level 2 depth.`,
         primaryReference: {
           sourceName: "Wikimedia Commons — Diagram of single-phase generator with two poles.svg",
           sourceUrl: "https://commons.wikimedia.org/wiki/File:Diagram_of_single-phase_generator_with_two_poles.svg",
@@ -566,50 +678,53 @@ export const FAMILIES: VisualFamily[] = [
           licence: "CC0/public-domain",
           qualityGrade: "A physical context",
         },
-        referenceReadiness: "READY",
-        annotationPolicy: "TEACHING_EXPLANATORY",
+        referenceReadiness: "READY" as const,
+        annotationPolicy: "TEACHING_EXPLANATORY" as const,
         requiredLabels: ["N", "S", "coil/loop", "rotation indicator", "output where useful"],
         immutableFacts: [
           "N/S magnetic poles",
           "loop/coil between the poles",
+          `${pose} -- this specific pose is the defining physical fact of this asset, never mixed with the sibling pose asset`,
           "central rotational axis",
           "output/slip-ring concept at governed Level-2 abstraction",
           "rotating conductor cuts magnetic flux",
         ],
         creativeFreedoms: ["premium pole/housing/loop rendering", "composition", "finish"],
         deterministicOverlayResponsibilities: [],
-        prohibitedChanges: ["do not substitute a detailed modern alternator", "do not add three-phase windings, phasors or brushes/commutator detail beyond governed scope"],
-        exactDeliverable:
-          "One premium illustration of a single wire loop rotating on a central axis between clearly labelled N and S poles, with a minimal slip-ring/output connection concept, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
-        outputSubfolder: "hybrid",
-        filenameBase: "generator-rotating-loop-base",
+        prohibitedChanges: [
+          "do not substitute a detailed modern alternator",
+          "do not add three-phase windings, phasors or brushes/commutator detail beyond governed scope",
+          `do not depict the ${phase === "horizontal" ? "edge-on" : "face-on"} loop pose in this asset -- that is the sibling ProductionAsset`,
+        ],
+        exactDeliverable: `One premium illustration of a single wire loop, ${pose}, rotating on a central axis between clearly labelled N and S poles, with a minimal slip-ring/output connection concept, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        outputSubfolder: "hybrid" as const,
+        filenameBase: `generator-rotating-loop-${slug}-base`,
+        sharedBaseAudit: {
+          classification: "SEPARATE_ARTWORK_REQUIRED" as const,
+          action: "SPLIT" as const,
+          rationale:
+            "CC-11.7B: split from the original unit202.generator.rotating-loop (2 states on 1 asset). The loop's face-on vs edge-on pose is a materially different silhouette/scene, not a labelling or overlay difference -- no deterministic overlay can rotate a loop's rendered 3D pose. Confirms brief §5's own invited scrutiny: reuse would have been chosen merely to reduce workload, not because it is pedagogically or technically honest.",
+          splitFrom: "unit202.generator.rotating-loop",
+          splitSiblings: [`unit202.generator.rotating-loop.${phase === "horizontal" ? "vertical" : "horizontal"}`],
+        },
         canonicalStates: [
           {
-            stateId: "unit202.generator.rotating-loop.state.horizontal-near-zero-emf",
-            displayName: "Loop plane facing poles — near-zero EMF",
-            pedagogicalState: "MULTI_STATE",
-            annotationPolicy: "TEACHING_EXPLANATORY",
+            stateId: `unit202.generator.rotating-loop.${slug}.state.${phase === "horizontal" ? "near-zero-emf" : "near-peak-emf"}`,
+            displayName: label.replace(/^./, (c) => c.toUpperCase()),
+            pedagogicalState: "MULTI_STATE" as const,
+            annotationPolicy: "TEACHING_EXPLANATORY" as const,
             requiredLabels: ["N", "S", "coil/loop", "rotation indicator", "output where useful"],
-            notes: "Confirmed sufficient at two states (brief §14): near-zero and near-peak EMF are the two pedagogically load-bearing orientations; additional phase/animation-like states were considered and rejected as not materially improving understanding at Level 2 depth.",
-            parameters: { rotation_phase: "horizontal" },
-            existingCanonicalVariantId: reconciledVariantId("visual-contract.ac-generator-rotating-loop", 1, { rotation_phase: "horizontal" }, "both"),
-          },
-          {
-            stateId: "unit202.generator.rotating-loop.state.vertical-near-peak-emf",
-            displayName: "Loop plane edge-on to poles — near-peak EMF",
-            pedagogicalState: "MULTI_STATE",
-            annotationPolicy: "TEACHING_EXPLANATORY",
-            requiredLabels: ["N", "S", "coil/loop", "rotation indicator", "output where useful"],
-            parameters: { rotation_phase: "vertical" },
-            existingCanonicalVariantId: reconciledVariantId("visual-contract.ac-generator-rotating-loop", 1, { rotation_phase: "vertical" }, "both"),
+            notes: "Confirmed sufficient at two states (brief §14, re-confirmed CC-11.7B §5): near-zero and near-peak EMF are the two pedagogically load-bearing orientations; additional phase/animation-like states were considered and rejected as not materially improving understanding at Level 2 depth.",
+            parameters: { rotation_phase: phase },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.ac-generator-rotating-loop", 1, { rotation_phase: phase }, "both"),
           },
         ],
-      },
+      })),
       {
         sequence: 6,
         assetId: "unit202.fleming-right-hand.teaching",
         familyId: "unit202.family.fleming-right-hand-generator",
-        orderInFamily: 2,
+        orderInFamily: 3,
         role: "MNEMONIC",
         displayName: "Fleming right-hand rule — generator teaching mnemonic",
         loOrLesson: "LO5 — lesson.magnetism.effects-of-current",
@@ -643,6 +758,12 @@ export const FAMILIES: VisualFamily[] = [
         assessmentNote: "Assessment: NO hand.",
         outputSubfolder: "teaching",
         filenameBase: "fleming-right-hand-teaching-base",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale:
+            "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Motion/Field/induced-Current correspondence itself, not a specific loop pose, so it does not need a companion image per rotation phase the way the sibling PHENOMENON assets do.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.fleming-right-hand.teaching.state.teaching",
@@ -650,7 +771,7 @@ export const FAMILIES: VisualFamily[] = [
             pedagogicalState: "TEACHING",
             annotationPolicy: "TEACHING_EXPLANATORY",
             requiredLabels: ["MOTION", "FIELD", "INDUCED CURRENT / EMF"],
-            notes: "One base image is sufficient -- the mnemonic teaches the M/F/I correspondence generally. Never appears in assessment -- the sibling PHENOMENON asset (unit202.generator.rotating-loop) carries this family's deterministic states.",
+            notes: "One base image is sufficient -- the mnemonic teaches the M/F/I correspondence generally. Never appears in assessment -- the sibling PHENOMENON assets (unit202.generator.rotating-loop.horizontal / .vertical) carry this family's deterministic states.",
           },
         ],
       },
@@ -695,6 +816,11 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a bar with the fulcrum positioned between a clearly marked effort point and load point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "levers-class-1-base",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale: "CC-11.7B: 'recognition' and 'moment-balance' states depict the identical physical lever rig (same fulcrum/effort/load positions) -- the only difference is whether deterministic effort-arm/load-arm distance annotations are added on top. No pose, configuration or scene change.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.levers.class-1.state.recognition",
@@ -747,6 +873,11 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a bar with the load positioned between a clearly marked fulcrum and effort point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "levers-class-2-base",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale: "CC-11.7B: 'recognition' and 'moment-balance' states depict the identical physical lever rig (same fulcrum/effort/load positions) -- the only difference is whether deterministic effort-arm/load-arm distance annotations are added on top. No pose, configuration or scene change.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.levers.class-2.state.recognition",
@@ -799,6 +930,11 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a bar with the effort positioned between a clearly marked fulcrum and load point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "levers-class-3-base",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale: "CC-11.7B: 'recognition' and 'moment-balance' states depict the identical physical lever rig (same fulcrum/effort/load positions) -- the only difference is whether deterministic effort-arm/load-arm distance annotations are added on top. No pose, configuration or scene change.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.levers.class-3.state.recognition",
@@ -963,6 +1099,11 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a bar magnet body ready to receive a deterministic N/S-labelled field-line overlay, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "magnet-field-base",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale: "CC-11.7B: the density-comparison state adds a deterministic comparison callout to the same bar magnet + field-line composition -- the magnet's position and field-line geometry are unchanged. The base artwork already documents this as an overlay concern (exactDeliverable: 'ready to receive a deterministic N/S-labelled field-line overlay').",
+        },
         canonicalStates: [
           {
             stateId: "unit202.magnet.field.state.field-only",
@@ -984,43 +1125,70 @@ export const FAMILIES: VisualFamily[] = [
           },
         ],
       },
-      {
-        sequence: 13,
-        assetId: "unit202.magnet.poles",
+      // CC-11.7B §5/§6: unit202.magnet.poles audited and SPLIT. The
+      // pre-audit exactDeliverable already literally asked for "Two
+      // premium illustrations (like poles facing; unlike poles facing)"
+      // inside one ProductionAsset/one prompt -- exactly the brief's own
+      // "NOT ACCEPTABLE" composite pattern. The two arrangements also
+      // differ in genuine physical spacing (attracting unlike poles drawn
+      // close/near-touching; repelling like poles drawn with a visible
+      // gap and compressed field lines) -- a real scene difference, not
+      // an arrow-direction overlay. 4 states preserved in total (2 per
+      // asset), 0 historical variants lost.
+      ...(
+        [
+          { pairing: "like_poles_facing" as const, orderSuffix: 2, slug: "like", label: "like poles facing (repel)" },
+          { pairing: "unlike_poles_facing" as const, orderSuffix: 3, slug: "unlike", label: "unlike poles facing (attract)" },
+        ] as const
+      ).map(({ pairing, orderSuffix, slug, label }) => ({
+        sequence: pairing === "like_poles_facing" ? 13 : 50,
+        assetId: `unit202.magnet.poles.${slug}`,
         familyId: "unit202.family.magnetism",
-        orderInFamily: 2,
-        role: "COMPARISON",
-        displayName: "Magnetic pole attraction / repulsion",
+        orderInFamily: orderSuffix,
+        role: "COMPARISON" as const,
+        displayName: `Magnetic pole ${pairing === "like_poles_facing" ? "repulsion" : "attraction"} — ${label}`,
         loOrLesson: "LO5 — lesson.magnetism.fundamentals",
-        priority: "P1",
+        priority: "P1" as const,
         priorityLabel: "P1",
-        productionClass: "HYBRID",
+        productionClass: "HYBRID" as const,
         productionClassLabel: "HYBRID",
         governedDiagramBlueprintId: "magnetic.pole_interaction",
-        instructionalPurpose: "Show like poles repelling and unlike poles attracting from the pole labels on two facing bar magnets.",
+        instructionalPurpose: `Show ${label} from the pole labels on two bar magnets.`,
         primaryReference: {
           sourceName: "Public-domain historical iron-filings attraction/repulsion illustrations, plus the approved bar-magnet reference (unit202.magnet.field)",
           sourceUrl: "",
           licence: "public-domain historical -- record exact source when selected",
           qualityGrade: "B+",
         },
-        referenceReadiness: "READY",
-        annotationPolicy: "TEACHING_EXPLANATORY",
+        referenceReadiness: "READY" as const,
+        annotationPolicy: "TEACHING_EXPLANATORY" as const,
         requiredLabels: ["N", "S", "attract/repel force-arrow indicator"],
-        immutableFacts: ["unlike poles attract", "like poles repel", "field behaviour between the two magnets must remain physically meaningful"],
+        immutableFacts: [
+          pairing === "like_poles_facing" ? "like poles repel" : "unlike poles attract",
+          `magnets must be composed with a spacing appropriate to ${pairing === "like_poles_facing" ? "repulsion (visible gap, compressed/deflected field lines)" : "attraction (close together, merging field lines)"} -- this specific spacing is the defining physical fact of this asset, never mixed with the sibling asset`,
+          "field behaviour between the two magnets must remain physically meaningful",
+        ],
         creativeFreedoms: ["premium magnet-body rendering", "composition"],
         deterministicOverlayResponsibilities: [],
         prohibitedChanges: [
           "this premium asset is TEACHING-only -- the separate deterministic magnetic.pole_interaction diagram (not this asset) is what governs the assessment-mode reveal/withhold state; do not treat this teaching image's own labels as an assessment-answer leak",
+          `do not depict the ${pairing === "like_poles_facing" ? "unlike-poles/attracting" : "like-poles/repelling"} arrangement in this asset -- that is the sibling ProductionAsset`,
         ],
-        exactDeliverable:
-          "Two premium illustrations (like poles facing; unlike poles facing) of two bar magnets, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
-        outputSubfolder: "hybrid",
-        filenameBase: "magnet-poles-base",
-        canonicalStates: (["like_poles_facing", "unlike_poles_facing"] as const).flatMap((pairing) => [
+        exactDeliverable: `One premium illustration of two bar magnets arranged ${label}, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        outputSubfolder: "hybrid" as const,
+        filenameBase: `magnet-poles-${slug}-base`,
+        sharedBaseAudit: {
+          classification: "SEPARATE_ARTWORK_REQUIRED" as const,
+          action: "SPLIT" as const,
+          rationale:
+            "CC-11.7B: split from the original unit202.magnet.poles (4 states on 1 asset whose own exactDeliverable already literally asked for 'Two premium illustrations' in one prompt). Attracting vs repelling poles are conventionally composed with genuinely different magnet spacing/field-line behaviour, not merely a different arrow direction on identical geometry.",
+          splitFrom: "unit202.magnet.poles",
+          splitSiblings: [`unit202.magnet.poles.${pairing === "like_poles_facing" ? "unlike" : "like"}`],
+        },
+        canonicalStates: [
           {
-            stateId: `unit202.magnet.poles.state.${pairing.replace(/_/g, "-")}-teaching`,
-            displayName: `${pairing === "like_poles_facing" ? "Like" : "Unlike"} poles facing — force revealed (teaching)`,
+            stateId: `unit202.magnet.poles.${slug}.state.teaching`,
+            displayName: `${label} — force revealed (teaching)`,
             pedagogicalState: "TEACHING" as const,
             annotationPolicy: "TEACHING_EXPLANATORY" as const,
             requiredLabels: ["N", "S", "attract/repel force-arrow indicator"],
@@ -1028,8 +1196,8 @@ export const FAMILIES: VisualFamily[] = [
             existingCanonicalVariantId: reconciledVariantId("visual-contract.magnetic-pole-interaction", 1, { pole_pairing: pairing, show_pole_force: true }, "teaching"),
           },
           {
-            stateId: `unit202.magnet.poles.state.${pairing.replace(/_/g, "-")}-assessment`,
-            displayName: `${pairing === "like_poles_facing" ? "Like" : "Unlike"} poles facing — force withheld (assessment)`,
+            stateId: `unit202.magnet.poles.${slug}.state.assessment`,
+            displayName: `${label} — force withheld (assessment)`,
             pedagogicalState: "ASSESSMENT" as const,
             annotationPolicy: "ASSESSMENT_NON_REVEALING" as const,
             requiredLabels: [],
@@ -1037,8 +1205,8 @@ export const FAMILIES: VisualFamily[] = [
             parameters: { pole_pairing: pairing },
             existingCanonicalVariantId: reconciledVariantId("visual-contract.magnetic-pole-interaction", 1, { pole_pairing: pairing }, "assessment"),
           },
-        ]),
-      },
+        ],
+      })),
       // CC-11.7A §1/§2/§8: CC-11.7 audit finding 4 ("Permanent magnet vs
       // electromagnet comparison", cap.magnetism.compare_permanent_electromagnet
       // -- reports/instructional-visuals/unit202-comprehensive-visual-audit.md
@@ -1052,7 +1220,7 @@ export const FAMILIES: VisualFamily[] = [
         sequence: 43,
         assetId: "unit202.magnet.permanent-vs-electromagnet",
         familyId: "unit202.family.magnetism",
-        orderInFamily: 3,
+        orderInFamily: 4,
         role: "COMPARISON",
         displayName: "Permanent magnet vs electromagnet comparison",
         loOrLesson: "LO5 — lesson.magnetism.fundamentals",
@@ -1079,6 +1247,12 @@ export const FAMILIES: VisualFamily[] = [
         outputSubfolder: "hybrid",
         filenameBase: "magnet-permanent-vs-electromagnet-base",
         needOverride: "USEFUL",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale:
+            "CC-11.7B composite-image audit (§8): the intended learner-facing deliverable is deliberately ONE side-by-side comparison visual (permanent magnet | electromagnet) -- the comparison itself is the teaching objective, matching the brief's own explicit 'ACCEPTABLE' example. Confirmed as one ProductionAsset, not split.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.magnet.permanent-vs-electromagnet.state.teaching",
@@ -1136,6 +1310,7 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset): include an unmistakable cell/battery/source wherever current direction is being taught, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "circuit-series-base",
+        sharedBaseAudit: { classification: "SAFE_SHARED_BASE", action: "KEEP", rationale: "CC-11.7B: DETERMINISTIC_TECHNICAL -- component-count states are deterministic vector geometry, no generated artwork involved at all." },
         canonicalStates: ([2, 3, 4] as const).map((count) => ({
           stateId: `unit202.circuit.series.state.${count}-component`,
           displayName: `Series circuit — ${count} components`,
@@ -1186,6 +1361,7 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset), matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "circuit-parallel-base",
+        sharedBaseAudit: { classification: "SAFE_SHARED_BASE", action: "KEEP", rationale: "CC-11.7B: DETERMINISTIC_TECHNICAL -- branch-count states are deterministic vector geometry, no generated artwork involved at all." },
         canonicalStates: ([2, 3, 4] as const).map((count) => ({
           stateId: `unit202.circuit.parallel.state.${count}-branch`,
           displayName: `Parallel circuit — ${count} branches`,
@@ -1236,6 +1412,7 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset), matching the reference topology exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "circuit-mixed-base",
+        sharedBaseAudit: { classification: "SAFE_SHARED_BASE", action: "KEEP", rationale: "CC-11.7B: DETERMINISTIC_TECHNICAL -- arrangement states are deterministic vector topology, no generated artwork involved at all." },
         canonicalStates: (["series_of_parallel", "parallel_of_series"] as const).map((arrangement) => ({
           stateId: `unit202.circuit.mixed.state.${arrangement.replace(/_/g, "-")}`,
           displayName: `Mixed circuit — ${arrangement.replace(/_/g, " ")}`,
@@ -1298,6 +1475,7 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset), matching the reference connection geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "instrument-connections-base",
+        sharedBaseAudit: { classification: "SAFE_SHARED_BASE", action: "KEEP", rationale: "CC-11.7B: DETERMINISTIC_TECHNICAL -- instrument/connection-style states are deterministic vector topology, no generated artwork involved at all." },
         canonicalStates: (
           [
             { instrument_type: "voltmeter", connection_style: "parallel", standard: true },
@@ -1438,78 +1616,99 @@ export const FAMILIES: VisualFamily[] = [
   {
     familyId: "unit202.family.gears",
     displayName: "Driver/driven gears",
-    instructionalPurpose: "A single, simple concept: one relative-size relationship between a driver and driven gear.",
+    instructionalPurpose: "The driver/driven relative-size relationship, plus the optional rotation-direction/idler concept.",
     governedConcept: "LO3 — lesson.foundation.physics.simple-machines (mechanical.gear_mesh)",
-    familyNotes: "Single-asset family -- the driver/driven ratio is one relationship, not multiple distinct configurations, so no split is justified.",
+    familyNotes:
+      "CC-11.7B correction: the original single unit202.gears asset packed 3 genuinely different gear-size relationships (driven larger/smaller/equal) behind one prompt -- a real physical size change to a rendered object in the scene, with no deterministic overlay mechanism (only rotation-direction is an overlay responsibility) able to resize a gear in generated artwork. Split into 3 size-specific ProductionAssets. The optional rotation-direction/idler USEFUL finding remains a separate deterministic-only asset, unaffected by the split.",
     assets: [
-      {
-        sequence: 18,
-        assetId: "unit202.gears",
+      ...(
+        [
+          { ratio: "driven_larger" as const, orderSuffix: 1, slug: "driven-larger", label: "driven gear larger than the driver" },
+          { ratio: "driven_smaller" as const, orderSuffix: 2, slug: "driven-smaller", label: "driven gear smaller than the driver" },
+          { ratio: "equal" as const, orderSuffix: 3, slug: "equal", label: "driver and driven gears equal size" },
+        ] as const
+      ).map(({ ratio, orderSuffix, slug, label }) => ({
+        sequence: ratio === "driven_larger" ? 18 : ratio === "driven_smaller" ? 51 : 52,
+        assetId: `unit202.gears.${slug}`,
         familyId: "unit202.family.gears",
-        orderInFamily: 1,
-        role: "CONFIGURATION",
-        displayName: "Driver/driven gears",
+        orderInFamily: orderSuffix,
+        role: "CONFIGURATION" as const,
+        displayName: `Driver/driven gears — ${label}`,
         loOrLesson: "LO3 — lesson.foundation.physics.simple-machines",
-        priority: "P1",
+        priority: "P1" as const,
         priorityLabel: "P1",
-        productionClass: "HYBRID",
+        productionClass: "HYBRID" as const,
         productionClassLabel: "POLISHED DETERMINISTIC / HYBRID",
         governedDiagramBlueprintId: "mechanical.gear_mesh",
-        instructionalPurpose: "Show a driver gear meshed with a driven gear whose relative size represents the gear ratio and the resulting torque/speed trade-off.",
+        instructionalPurpose: `Show a driver gear meshed with a driven gear, ${label}, representing the gear ratio and the resulting torque/speed trade-off.`,
         primaryReference: {
           sourceName: "Wikimedia Commons — Example of a Compound Gear Train.png",
           sourceUrl: "https://commons.wikimedia.org/wiki/File:Example_of_a_Compound_Gear_Train.png",
           licence: "CC0",
           qualityGrade: "A",
         },
-        referenceReadiness: "READY",
-        annotationPolicy: "TEACHING_EXPLANATORY",
+        referenceReadiness: "READY" as const,
+        annotationPolicy: "TEACHING_EXPLANATORY" as const,
         requiredLabels: ["Driver", "Driven"],
-        immutableFacts: ["meaningful driver/driven relationship", "physically plausible mesh", "relative size represents the ratio", "correct rotation relationship when shown"],
+        immutableFacts: [
+          "meaningful driver/driven relationship",
+          "physically plausible mesh",
+          `${label} -- this specific size relationship is the defining physical fact of this asset, never mixed with a sibling size-ratio asset`,
+          "correct rotation relationship when shown",
+        ],
         creativeFreedoms: ["premium gear/material rendering", "composition", "finish"],
         deterministicOverlayResponsibilities: ["rotation-direction overlay where taught"],
-        prohibitedChanges: ["do not depict a mesh that is not physically plausible"],
-        exactDeliverable:
-          "One premium illustration of two meshed gears with a clear relative-size relationship, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
-        outputSubfolder: "hybrid",
-        filenameBase: "gears-base",
-        canonicalStates: (["driven_larger", "driven_smaller", "equal"] as const).map((size_ratio) => ({
-          stateId: `unit202.gears.state.${size_ratio.replace(/_/g, "-")}`,
-          displayName: `Driver/driven gears — ${size_ratio.replace(/_/g, " ")}`,
-          pedagogicalState: "MULTI_STATE" as const,
-          annotationPolicy: "TEACHING_EXPLANATORY" as const,
-          requiredLabels: ["Driver", "Driven"],
-          parameters: { size_ratio },
-          existingCanonicalVariantId: reconciledVariantId("visual-contract.gear-mesh-ratio", 1, { size_ratio }, "both"),
-        })),
-      },
+        prohibitedChanges: ["do not depict a mesh that is not physically plausible", "do not depict a different size relationship than stated -- that is a sibling ProductionAsset"],
+        exactDeliverable: `One premium illustration of two meshed gears, ${label}, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        outputSubfolder: "hybrid" as const,
+        filenameBase: `gears-${slug}-base`,
+        sharedBaseAudit: {
+          classification: "SEPARATE_ARTWORK_REQUIRED" as const,
+          action: "SPLIT" as const,
+          rationale:
+            "CC-11.7B: split from the original unit202.gears (3 states on 1 asset). Driven-gear size relative to the driver is a genuine physical size change to a rendered object, not a labelling/overlay difference -- no deterministic overlay mechanism can resize a gear in generated artwork (only rotation-direction is declared as an overlay responsibility).",
+          splitFrom: "unit202.gears",
+          splitSiblings: (["driven-larger", "driven-smaller", "equal"] as const).filter((s) => s !== slug).map((s) => `unit202.gears.${s}`),
+        },
+        canonicalStates: [
+          {
+            stateId: `unit202.gears.${slug}.state.teaching`,
+            displayName: `Driver/driven gears — ${ratio.replace(/_/g, " ")}`,
+            pedagogicalState: "MULTI_STATE" as const,
+            annotationPolicy: "TEACHING_EXPLANATORY" as const,
+            requiredLabels: ["Driver", "Driven"],
+            parameters: { size_ratio: ratio },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.gear-mesh-ratio", 1, { size_ratio: ratio }, "both"),
+          },
+        ],
+      })),
       // CC-11.7A §1/§2/§16: CC-11.7 audit finding 5 ("Gear rotation-direction
       // reversal / idler gear", FP-GEAR-DIRECTION-REVERSAL-001,
       // FP-GEAR-IDLER-001) materialised as USEFUL, not REQUIRED --
       // governed SUPPORTS-only (non-mandatory) content. The audit report's
       // own framing ("cheap addition to the existing gear-mesh asset if
-      // commissioned") is followed literally: this reuses the existing
-      // unit202.gears base artwork's deterministic rotation-direction
-      // overlay (already declared in that asset's
-      // deterministicOverlayResponsibilities), so it is DETERMINISTIC
-      // annotation, not a second premium art job for the same gears.
+      // commissioned") is followed literally: this reuses whichever
+      // existing driver/driven gear artwork is on hand via a
+      // deterministic rotation-direction overlay (already declared on
+      // each size-specific asset's deterministicOverlayResponsibilities),
+      // so it is DETERMINISTIC annotation, not a second premium art job.
       {
         sequence: 47,
         assetId: "unit202.gears.rotation-direction",
         familyId: "unit202.family.gears",
-        orderInFamily: 2,
+        orderInFamily: 4,
         role: "TECHNICAL_DIAGRAM",
         displayName: "Gear rotation-direction reversal / idler gear",
         loOrLesson: "LO3 — lesson.foundation.physics.simple-machines",
         priority: "P2",
         priorityLabel: "P2 (USEFUL, not REQUIRED)",
         productionClass: "DETERMINISTIC_TECHNICAL",
-        productionClassLabel: "DETERMINISTIC TECHNICAL (annotation overlay on the existing unit202.gears base artwork)",
+        productionClassLabel: "DETERMINISTIC TECHNICAL (annotation overlay on whichever sibling driver/driven gear base artwork applies)",
         governedDiagramBlueprintId: "mechanical.gear_mesh",
         instructionalPurpose:
           "CC-11.7 audit finding: two meshed gears rotate in opposite directions; adding a third idler gear reverses the output direction back to match the driver without changing the overall ratio. Governed SUPPORTS-only content (non-mandatory).",
         primaryReference: {
-          sourceName: "Deterministic rotation-direction annotation on the existing unit202.gears reference geometry -- no separate photographic reference required",
+          sourceName: "Deterministic rotation-direction annotation on the sibling driver/driven gear reference geometry -- no separate photographic reference required",
           sourceUrl: "",
           licence: "n/a -- deterministic annotation, not generated artwork",
           qualityGrade: "n/a",
@@ -1523,13 +1722,18 @@ export const FAMILIES: VisualFamily[] = [
           "an idler gear does not change the overall driver:driven ratio",
         ],
         creativeFreedoms: [],
-        deterministicOverlayResponsibilities: ["rotation-direction arrows and idler-gear presence remain a deterministic overlay on the existing unit202.gears base artwork -- no separate art session"],
-        prohibitedChanges: ["do not commission a new premium base image for this asset -- it reuses the existing gears artwork's overlay system"],
-        exactDeliverable: "Deterministic rotation-direction overlay states on the existing unit202.gears base artwork -- not a separate premium art-generation deliverable.",
+        deterministicOverlayResponsibilities: ["rotation-direction arrows and idler-gear presence remain a deterministic overlay on whichever sibling driver/driven gear base artwork applies -- no separate art session"],
+        prohibitedChanges: ["do not commission a new premium base image for this asset -- it reuses a sibling gear asset's own overlay system"],
+        exactDeliverable: "Deterministic rotation-direction overlay states on a sibling driver/driven gear base artwork -- not a separate premium art-generation deliverable.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "gears-rotation-direction-base",
         promptable: false,
         needOverride: "USEFUL",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale: "CC-11.7B: purely deterministic annotation (rotation-direction arrows, idler presence) on whichever sibling driver/driven gear base artwork applies -- no generated artwork involved at all, unaffected by the CC-11.7B size-ratio split.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.gears.rotation-direction.state.direct-mesh-opposite-directions",
@@ -1537,7 +1741,7 @@ export const FAMILIES: VisualFamily[] = [
             pedagogicalState: "TEACHING",
             annotationPolicy: "TEACHING_EXPLANATORY",
             requiredLabels: ["rotation-direction arrows"],
-            notes: "CC-11.7 audit finding, USEFUL not REQUIRED. NO ART PROMPT -- DETERMINISTIC overlay on the existing unit202.gears base artwork.",
+            notes: "CC-11.7 audit finding, USEFUL not REQUIRED. NO ART PROMPT -- DETERMINISTIC overlay on a sibling driver/driven gear base artwork.",
           },
           {
             stateId: "unit202.gears.rotation-direction.state.idler-preserves-driver-direction",
@@ -1545,7 +1749,7 @@ export const FAMILIES: VisualFamily[] = [
             pedagogicalState: "TEACHING",
             annotationPolicy: "TEACHING_EXPLANATORY",
             requiredLabels: ["rotation-direction arrows", "idler"],
-            notes: "CC-11.7 audit finding, USEFUL not REQUIRED. NO ART PROMPT -- DETERMINISTIC overlay on the existing unit202.gears base artwork.",
+            notes: "CC-11.7 audit finding, USEFUL not REQUIRED. NO ART PROMPT -- DETERMINISTIC overlay on a sibling driver/driven gear base artwork.",
           },
         ],
       },
@@ -1691,6 +1895,7 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset), matching the reference waveform exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "waveform-sine-base",
+        sharedBaseAudit: { classification: "SAFE_SHARED_BASE", action: "KEEP", rationale: "CC-11.7B: DETERMINISTIC_TECHNICAL -- peak/RMS/period-marker/cycle-count states are deterministic vector plots, no generated artwork involved at all." },
         canonicalStates: (
           [
             { peak: false, rms: false, period: false, cycles: 2, name: "bare cycle (zero-axis reference only)" },
@@ -1804,6 +2009,7 @@ export const FAMILIES: VisualFamily[] = [
         exactDeliverable: "No image-generation deliverable -- this catalogue entry exists for tracking/QA only; symbols remain produced by ComponentSymbols.tsx.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "components-symbols-base",
+        sharedBaseAudit: { classification: "SAFE_SHARED_BASE", action: "KEEP", rationale: "CC-11.7B: DETERMINISTIC_TECHNICAL -- governed UK/IEC symbol geometry, produced by ComponentSymbols.tsx, never an art session. No generated-artwork sharing question applies." },
         promptable: false,
         canonicalStates: (
           ["resistor", "capacitor", "diode", "zener_diode", "led", "photodiode", "thermistor", "diac", "triac", "transistor", "thyristor_scr", "rectifier", "inverter"] as const
@@ -1879,63 +2085,82 @@ export const FAMILIES: VisualFamily[] = [
           },
         ],
       })),
-      {
-        sequence: 30,
-        assetId: "unit202.diode.bias-direction",
+      // CC-11.7B §5/§6: unit202.diode.bias-direction audited and SPLIT.
+      // The pre-audit exactDeliverable already literally asked for "Two
+      // premium illustrations (forward bias, conducting; reverse bias,
+      // blocked)" inside one ProductionAsset/one prompt -- the same
+      // composite-violation pattern as the pre-audit magnet.poles asset.
+      // Conducting vs blocked current flow through the same diode/circuit
+      // context is also a genuine presence/absence scene difference
+      // (a visible current-flow glow/arrow vs a visibly blocked/gapped
+      // path), not a label swap. 2 states preserved in total (1 per
+      // asset); neither state carries an existingCanonicalVariantId (both
+      // are new since CC-11.7, not part of the historical 66), so the
+      // split has no historical-reconciliation impact.
+      ...(
+        [
+          { bias: "forward" as const, orderSuffix: 8, label: "forward bias — conducting" },
+          { bias: "reverse" as const, orderSuffix: 9, label: "reverse bias — blocked" },
+        ] as const
+      ).map(({ bias, orderSuffix, label }) => ({
+        sequence: bias === "forward" ? 30 : 53,
+        assetId: `unit202.diode.bias-direction.${bias}`,
         familyId: "unit202.family.electronic-components",
-        orderInFamily: 8,
-        role: "PHENOMENON",
-        displayName: "Diode forward/reverse-bias current direction",
+        orderInFamily: orderSuffix,
+        role: "PHENOMENON" as const,
+        displayName: `Diode ${label}`,
         loOrLesson: "LO6 — lesson.electrical.electronic-components-passive",
-        priority: "P1",
+        priority: "P1" as const,
         priorityLabel: "P1",
-        productionClass: "HYBRID",
+        productionClass: "HYBRID" as const,
         productionClassLabel: "HYBRID",
-        instructionalPurpose:
-          "CC-11.7 audit finding (new, beyond the original 66): show current flowing easily in forward bias and blocked in reverse bias, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing `electronics.component_symbol_card` blueprint cannot represent since it renders only the static symbol, never current flow.",
+        instructionalPurpose: `CC-11.7 audit finding (new, beyond the original 66): show current ${bias === "forward" ? "flowing easily in forward bias" : "blocked in reverse bias"}, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing \`electronics.component_symbol_card\` blueprint cannot represent since it renders only the static symbol, never current flow.`,
         primaryReference: {
           sourceName: "Standard diode forward/reverse-bias circuit reference -- to be selected when this asset is commissioned",
           sourceUrl: "",
           licence: "to be recorded when selected",
           qualityGrade: "to be assessed",
         },
-        referenceReadiness: "READY",
-        annotationPolicy: "TEACHING_EXPLANATORY",
-        requiredLabels: ["forward bias / reverse bias", "current-flow arrow (forward) or blocked indicator (reverse)"],
+        referenceReadiness: "READY" as const,
+        annotationPolicy: "TEACHING_EXPLANATORY" as const,
+        requiredLabels: bias === "forward" ? ["FORWARD BIAS", "current-flow arrow"] : ["REVERSE BIAS", "blocked-current indicator"],
         immutableFacts: [
-          "diode conducts easily in forward bias (anode more positive than cathode)",
-          "diode blocks current in reverse bias (cathode more positive than anode)",
+          bias === "forward" ? "diode conducts easily in forward bias (anode more positive than cathode)" : "diode blocks current in reverse bias (cathode more positive than anode)",
           "must remain visually distinct from the plain IEC diode symbol asset",
+          `must depict ONLY the ${bias}-bias state -- the sibling ProductionAsset covers the other`,
         ],
         creativeFreedoms: ["premium diode/circuit-context rendering", "composition", "finish"],
         deterministicOverlayResponsibilities: [],
-        prohibitedChanges: ["do not depict current flowing in reverse bias", "do not conflate with the zener/LED/photodiode symbol variants"],
-        exactDeliverable:
-          "Two premium illustrations (forward bias, conducting; reverse bias, blocked) of a diode in a simple test circuit, matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
-        outputSubfolder: "hybrid",
-        filenameBase: "diode-bias-direction-base",
+        prohibitedChanges: [
+          bias === "forward" ? "do not depict blocked/no current flow -- that is the reverse-bias sibling asset" : "do not depict current flowing -- that is the forward-bias sibling asset",
+          "do not conflate with the zener/LED/photodiode symbol variants",
+        ],
+        exactDeliverable: `One premium illustration (${label}) of a diode in a simple test circuit, matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        outputSubfolder: "hybrid" as const,
+        filenameBase: `diode-bias-direction-${bias}-base`,
+        sharedBaseAudit: {
+          classification: "SEPARATE_ARTWORK_REQUIRED" as const,
+          action: "SPLIT" as const,
+          rationale:
+            "CC-11.7B: split from the original unit202.diode.bias-direction (2 states on 1 asset whose own exactDeliverable already literally asked for 'Two premium illustrations' in one prompt). Conducting vs blocked current flow is a genuine presence/absence scene difference (visible current-flow indication vs a visibly blocked path), not a label swap on identical geometry.",
+          splitFrom: "unit202.diode.bias-direction",
+          splitSiblings: [`unit202.diode.bias-direction.${bias === "forward" ? "reverse" : "forward"}`],
+        },
         canonicalStates: [
           {
-            stateId: "unit202.diode.bias-direction.state.forward-bias",
-            displayName: "Forward bias — conducting",
-            pedagogicalState: "TEACHING",
-            annotationPolicy: "TEACHING_EXPLANATORY",
-            requiredLabels: ["FORWARD BIAS", "current-flow arrow"],
-          },
-          {
-            stateId: "unit202.diode.bias-direction.state.reverse-bias",
-            displayName: "Reverse bias — blocked",
-            pedagogicalState: "TEACHING",
-            annotationPolicy: "TEACHING_EXPLANATORY",
-            requiredLabels: ["REVERSE BIAS", "blocked-current indicator"],
+            stateId: `unit202.diode.bias-direction.${bias}.state.teaching`,
+            displayName: label.replace(/^./, (c) => c.toUpperCase()),
+            pedagogicalState: "TEACHING" as const,
+            annotationPolicy: "TEACHING_EXPLANATORY" as const,
+            requiredLabels: bias === "forward" ? ["FORWARD BIAS", "current-flow arrow"] : ["REVERSE BIAS", "blocked-current indicator"],
           },
         ],
-      },
+      })),
       {
         sequence: 31,
         assetId: "unit202.rectification.waveforms",
         familyId: "unit202.family.electronic-components",
-        orderInFamily: 9,
+        orderInFamily: 10,
         role: "TECHNICAL_DIAGRAM",
         displayName: "Rectifier/inverter output waveform shapes",
         loOrLesson: "LO6 — lesson.electrical.electronic-components-switching-control",
@@ -1967,6 +2192,7 @@ export const FAMILIES: VisualFamily[] = [
         outputSubfolder: "deterministic-polish",
         filenameBase: "rectification-waveforms-base",
         promptable: false,
+        sharedBaseAudit: { classification: "SAFE_SHARED_BASE", action: "KEEP", rationale: "CC-11.7B: DETERMINISTIC_TECHNICAL -- half-wave/full-wave/inverter waveform shapes are deterministic vector plots, no generated artwork involved at all." },
         canonicalStates: [
           {
             stateId: "unit202.rectification.waveforms.state.half-wave",
@@ -1998,7 +2224,7 @@ export const FAMILIES: VisualFamily[] = [
         sequence: 32,
         assetId: "unit202.capacitor.transient",
         familyId: "unit202.family.electronic-components",
-        orderInFamily: 10,
+        orderInFamily: 11,
         role: "TECHNICAL_DIAGRAM",
         displayName: "Capacitor RC charge/discharge transient curve",
         loOrLesson: "LO6 — lesson.electrical.electronic-components-passive",
@@ -2028,6 +2254,7 @@ export const FAMILIES: VisualFamily[] = [
         outputSubfolder: "deterministic-polish",
         filenameBase: "capacitor-transient-base",
         promptable: false,
+        sharedBaseAudit: { classification: "SAFE_SHARED_BASE", action: "KEEP", rationale: "CC-11.7B: DETERMINISTIC_TECHNICAL -- charge/discharge exponential curves are deterministic vector plots, no generated artwork involved at all." },
         canonicalStates: [
           {
             stateId: "unit202.capacitor.transient.state.charge",
@@ -2070,7 +2297,7 @@ export const FAMILIES: VisualFamily[] = [
         sequence: 33 + index,
         assetId: `unit202.components.physical.${component.replace(/_/g, "-")}`,
         familyId: "unit202.family.electronic-components",
-        orderInFamily: 11 + index,
+        orderInFamily: 12 + index,
         role: "PHYSICAL_RECOGNITION" as const,
         displayName: `Physical electronic component — ${displayName}`,
         loOrLesson: "LO6 — lesson.electrical.electronic-components-switching-control",
@@ -2250,43 +2477,53 @@ export const FAMILIES: VisualFamily[] = [
   },
   {
     familyId: "unit202.family.protective-devices",
-    displayName: "Fuse / MCB / RCD conceptual visual",
-    instructionalPurpose: "A single conceptual recognition illustration -- blocked pending a primary reference.",
+    displayName: "Fuse vs circuit breaker comparison",
+    instructionalPurpose: "A single side-by-side comparison illustration -- blocked pending a primary reference.",
     governedConcept: "LO4 — lesson.electrical.fault-conditions-protection",
     familyNotes:
-      "Single-asset family, reference not yet approved. CC-11.7 audit corroboration: a dedicated capability, cap.fault.compare_fuse_breaker, exists with zero visual representation anywhere in the corpus -- the fuse-vs-breaker reset/replace comparison specifically is REQUIRED once a reference is sourced, upgraded from the original blocked/deferred framing; the broader fuse/MCB/RCD physical-recognition need remains USEFUL.",
+      "Single-asset family, reference not yet approved. CC-11.7 audit corroboration: a dedicated capability, cap.fault.compare_fuse_breaker, exists with zero visual representation anywhere in the corpus -- the fuse-vs-breaker reset/replace comparison is REQUIRED once a reference is sourced, upgraded from the original blocked/deferred framing. CC-11.7B correction: this asset's ROLE was PHYSICAL_RECOGNITION (a mismatch -- it does not depict one recognisable physical component) and its displayName/scope implied broader MCB/RCD physical-recognition coverage that was never actually modelled or corroborated; narrowed to what the governed capability actually asks for -- COMPARISON, fuse vs circuit breaker specifically -- per the explicit CC-11.7B pedagogical decision recorded on the asset's own sharedBaseAudit.",
     assets: [
       {
         sequence: 41,
         assetId: "unit202.protective-devices",
         familyId: "unit202.family.protective-devices",
         orderInFamily: 1,
-        role: "PHYSICAL_RECOGNITION",
-        displayName: "Fuse / MCB / RCD conceptual visual",
+        role: "COMPARISON",
+        displayName: "Fuse vs circuit breaker comparison",
         loOrLesson: "LO4 — lesson.electrical.fault-conditions-protection",
         priority: "P2",
         priorityLabel: "P2",
         productionClass: "PREMIUM_CONCEPTUAL",
         productionClassLabel: "PREMIUM CONCEPTUAL + deterministic functional explanation",
-        instructionalPurpose: "Show protective-device recognition (fuse/MCB/RCD) at a conceptual level, without endorsing one manufacturer's product appearance as canonical.",
+        instructionalPurpose: "Show a fuse and a circuit breaker side by side, supporting cap.fault.compare_fuse_breaker (fuse must be replaced once blown; breaker can be reset), without endorsing one manufacturer's product appearance as canonical.",
         primaryReference: NOT_READY_REF,
         referenceReadiness: "NOT_READY",
         annotationPolicy: "TEACHING_EXPLANATORY",
-        requiredLabels: [],
-        immutableFacts: [],
-        creativeFreedoms: [],
+        requiredLabels: ["FUSE", "CIRCUIT BREAKER"],
+        immutableFacts: ["one fuse and one circuit breaker shown side by side, not as two separate images", "must not endorse one manufacturer's product appearance as canonical"],
+        creativeFreedoms: ["premium physical-object rendering", "composition", "lighting"],
         deterministicOverlayResponsibilities: [],
-        prohibitedChanges: ["do not generate until a primary reference is marked READY", "avoid making one manufacturer's product appearance canonical"],
-        exactDeliverable: "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY.",
+        prohibitedChanges: [
+          "do not generate until a primary reference is marked READY",
+          "avoid making one manufacturer's product appearance canonical",
+          "do not split into two separate images -- this is one comparison deliverable",
+        ],
+        exactDeliverable: "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium side-by-side illustration (fuse | circuit breaker), matching the immutable facts exactly.",
         outputSubfolder: "conceptual",
-        filenameBase: "protective-devices-base",
+        filenameBase: "protective-devices-fuse-vs-breaker-base",
+        sharedBaseAudit: {
+          classification: "SAFE_SHARED_BASE",
+          action: "KEEP",
+          rationale:
+            "CC-11.7B §5/§8 explicit pedagogical decision: the comparison itself (fuse must be replaced; breaker can be reset) is the teaching objective cap.fault.compare_fuse_breaker asks for, matching the brief's own 'ACCEPTABLE: Fuse vs circuit breaker comparison where comparison itself is the teaching objective' example. Confirmed as one intentional composite ProductionAsset, not two independent physical-recognition assets. ROLE corrected from the pre-audit PHYSICAL_RECOGNITION (a mismatch for a two-object comparison) to COMPARISON.",
+        },
         canonicalStates: [
           {
             stateId: "unit202.protective-devices.state.fuse-vs-breaker",
             displayName: "Fuse vs circuit breaker comparison (blocked)",
             pedagogicalState: "TEACHING",
             annotationPolicy: "TEACHING_EXPLANATORY",
-            requiredLabels: [],
+            requiredLabels: ["FUSE", "CIRCUIT BREAKER"],
             notes: "REQUIRED once a reference is sourced -- cap.fault.compare_fuse_breaker has no visual representation anywhere in the corpus (CC-11.7 finding).",
           },
         ],
@@ -2376,34 +2613,40 @@ export function isPromptable(asset: VisualAsset): boolean {
 }
 
 /**
- * CC-11.7 §5: the visual-need classification every identified need in the
- * comprehensive audit carries. Only REQUIRED assets/states count toward
- * Unit 202 visual completeness. Derived rather than separately authored
- * per asset -- every asset actually catalogued here was already judged
- * REQUIRED to exist (a USEFUL finding that has not yet been promoted to
- * a full catalogue asset is tracked in the audit report/matrix instead,
- * per task brief §5's "USEFUL assets may enter a secondary production
- * queue" -- not modelled as a placeholder catalogue entry, to avoid
- * inflating the catalogue with decorative/unbuilt imagery).
+ * CC-11.7 §5 / CC-11.7B §12: the visual-need classification every
+ * identified need in the comprehensive audit carries. Only REQUIRED
+ * assets/states count toward Unit 202 visual completeness.
+ *
+ * CC-11.7B §12 CORRECTION: this is the PEDAGOGICAL NEED dimension only --
+ * "does Unit 202 need this visual, and how badly" -- and is now fully
+ * independent of PRODUCTION READINESS ("is a reference/artwork actually
+ * available yet", tracked separately via `asset.referenceReadiness` /
+ * `isReferenceBlocked()` below). The pre-CC-11.7B version of this function
+ * returned "BLOCKED_REFERENCE" for any NOT_READY asset, which silently
+ * demoted a REQUIRED-but-blocked asset out of the REQUIRED bucket in every
+ * downstream count -- exactly the bug the brief's own "REQUIRED +
+ * BLOCKED_REFERENCE is still REQUIRED" correction targets. A REQUIRED
+ * asset that is also reference-blocked is REQUIRED here, and separately,
+ * orthogonally, blocked -- never one or the other.
  */
-export type VisualNeedClassification = "REQUIRED" | "USEFUL" | "NOT_NEEDED" | "DEFERRED_SCOPE" | "BLOCKED_REFERENCE";
+export type VisualNeedClassification = "REQUIRED" | "USEFUL" | "NOT_NEEDED" | "DEFERRED_SCOPE";
 
-/**
- * CC-11.7A §3: a missing/not-yet-sourced reference still takes priority
- * over `needOverride` -- an asset can be simultaneously "ultimately
- * USEFUL, not REQUIRED" and "currently blocked pending a reference" (task
- * brief §15). Callers that need the "is this asset one of the 10
- * materialised USEFUL findings" fact independent of its current
- * reference-blocked status should read `asset.needOverride` directly
- * (see dashboard.ts's required/useful split and audit.ts's
- * usefulFindingsMissingFromCatalogue check) rather than this function.
- */
 export function visualNeedClassificationFor(asset: VisualAsset): VisualNeedClassification {
-  if (asset.referenceReadiness === "NOT_READY") return "BLOCKED_REFERENCE";
   if (asset.needsScopeConfirmation) return "DEFERRED_SCOPE";
   if (asset.assetId === "unit202.trigonometry") return "DEFERRED_SCOPE";
   if (asset.needOverride === "USEFUL") return "USEFUL";
   return "REQUIRED";
+}
+
+/**
+ * CC-11.7B §12: the PRODUCTION READINESS dimension, orthogonal to
+ * `visualNeedClassificationFor`'s pedagogical-need dimension. An asset can
+ * be REQUIRED-and-blocked, REQUIRED-and-ready, USEFUL-and-blocked, or
+ * USEFUL-and-ready -- all four combinations are real and must never be
+ * collapsed into one axis.
+ */
+export function isReferenceBlocked(asset: VisualAsset): boolean {
+  return asset.referenceReadiness === "NOT_READY";
 }
 
 export function promptableAssets(families: VisualFamily[] = FAMILIES): VisualAsset[] {

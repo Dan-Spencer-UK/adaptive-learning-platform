@@ -153,10 +153,20 @@ describe("CC-11.7 §7 hierarchy: VISUAL FAMILY -> PRODUCTION/BASE ASSET -> CANON
     }
   });
 
-  it("a single base asset genuinely supports several canonical states without being collapsed into one (motor.effect: 8 states from one asset)", () => {
-    const asset = findAsset("unit202.motor.effect")!;
-    expect(asset.canonicalStates.length).toBe(8);
-    expect(new Set(asset.canonicalStates.map((s) => s.stateId)).size).toBe(8);
+  it("a single base asset genuinely supports several canonical states without being collapsed into one (instrument.connections: 5 states from one asset)", () => {
+    const asset = findAsset("unit202.instrument.connections")!;
+    expect(asset.canonicalStates.length).toBe(5);
+    expect(new Set(asset.canonicalStates.map((s) => s.stateId)).size).toBe(5);
+  });
+
+  it("CC-11.7B: motor.effect was split by pole orientation (a genuine apparatus-layout change) into two 4-state assets -- current direction within one orientation remains a shared deterministic-overlay concern", () => {
+    const horizontal = findAsset("unit202.motor.effect.horizontal-poles")!;
+    const vertical = findAsset("unit202.motor.effect.vertical-poles")!;
+    expect(horizontal.canonicalStates.length).toBe(4);
+    expect(vertical.canonicalStates.length).toBe(4);
+    expect(horizontal.canonicalStates.length + vertical.canonicalStates.length).toBe(8); // all 8 original states preserved
+    expect(horizontal.sharedBaseAudit?.splitFrom).toBe("unit202.motor.effect");
+    expect(vertical.sharedBaseAudit?.splitFrom).toBe("unit202.motor.effect");
   });
 
   it("assessment states differ from teaching states in annotation policy on the same base asset (never the same labelling rule)", () => {

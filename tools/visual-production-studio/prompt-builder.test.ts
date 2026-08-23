@@ -108,7 +108,7 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
   });
 
   it("includes a secondary-reference block for an asset that declares one", () => {
-    const asset = findAsset("unit202.generator.rotating-loop")!;
+    const asset = findAsset("unit202.generator.rotating-loop.horizontal")!;
     expect(asset.secondaryReference).toBeDefined();
     const text = buildAssetPrompt(asset);
     expect(text).toContain("SECONDARY / CROSS-CHECK REFERENCE");

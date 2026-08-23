@@ -71,7 +71,8 @@
     "visuals:all": "npm run visuals:render && npm run visuals:check:strict && npm run visuals:completeness:check && npm run visuals:audit:semantic && npm run visuals:report",
     "visuals:studio": "node tools/visual-production-studio/server.ts",
     "visuals:studio:audit": "node tools/visual-production-studio/audit.ts --check",
-    "visuals:studio:matrix": "node tools/visual-production-studio/generate-matrix.ts"
+    "visuals:studio:matrix": "node tools/visual-production-studio/generate-matrix.ts",
+    "visuals:studio:final-review": "node tools/visual-production-studio/generate-final-review.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
