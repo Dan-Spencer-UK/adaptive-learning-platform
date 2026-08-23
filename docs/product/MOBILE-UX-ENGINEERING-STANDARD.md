@@ -2,7 +2,7 @@
 id: PROD-003
 status: approved
 owner: project-architect
-last_reviewed: 2026-08-17
+last_reviewed: 2026-08-23
 ---
 
 # Mobile UX Engineering Standard
@@ -102,6 +102,8 @@ At minimum, expect first-class learner components (exact composition to be defin
 - diagram / interactive visual primitive
 
 This is an expected minimum set, not an exhaustive or final component inventory.
+
+The "diagram / interactive visual primitive" item is itself governed by a dedicated instructional-visual architecture, not this general UI design system: see [`docs/architecture/CC-05D-INSTRUCTIONAL-VISUAL-GOVERNANCE-AND-SEMANTIC-QA.md`](../architecture/CC-05D-INSTRUCTIONAL-VISUAL-GOVERNANCE-AND-SEMANTIC-QA.md) for how a visual is validated and [`docs/architecture/PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md`](../architecture/PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md) for how one is produced, including the future instructional-visual style guide's line hierarchy, colour roles, arrow/motion grammar and dark-theme behaviour — a narrower, visual-specific companion to this document's own general design-system scope.
 
 ## 6. Navigation
 

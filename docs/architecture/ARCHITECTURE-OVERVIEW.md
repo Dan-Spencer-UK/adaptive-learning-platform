@@ -2,7 +2,7 @@
 id: ARCH-001
 status: approved
 owner: project-architect
-last_reviewed: 2026-08-15
+last_reviewed: 2026-08-23
 ---
 
 # Architecture Overview
@@ -147,7 +147,7 @@ source
 → publication
 ```
 
-A single generation call cannot publish learner-visible governed content.
+A single generation call cannot publish learner-visible governed content. For instructional visuals specifically, this boundary is elaborated in [`PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md`](PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md) and [`ADR-0004`](adr/ADR-0004-deterministic-authority-over-generated-instructional-imagery.md): a reference-first, human-readable-reference-grounded workflow precedes any AI-generated imagery, and where generated imagery and governed deterministic geometry disagree, deterministic geometry always wins — generated imagery may never be the sole authority for circuit topology, schematic symbol geometry, mathematical geometry, or directional electromagnetism.
 
 ## Proprietary-source boundary
 
