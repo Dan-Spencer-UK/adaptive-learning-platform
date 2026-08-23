@@ -73,6 +73,78 @@ export const VISUAL_ASSET_ROLES: readonly VisualAssetRole[] = [
 export type AnnotationPolicy = "TEACHING_EXPLANATORY" | "ASSESSMENT_NON_REVEALING" | "FEEDBACK_EXPLANATORY" | "NONE";
 export const ANNOTATION_POLICIES: readonly AnnotationPolicy[] = ["TEACHING_EXPLANATORY", "ASSESSMENT_NON_REVEALING", "FEEDBACK_EXPLANATORY", "NONE"];
 
+/**
+ * CC-11.7 §8: the pedagogical state a single CANONICAL LEARNER-VISIBLE
+ * STATE is produced for. MULTI_STATE is for a state genuinely used
+ * across more than one context unchanged (mirroring the existing CC-05D
+ * canonical-variant `mode: "both"` convention) -- never a shortcut to
+ * avoid classifying.
+ */
+export type PedagogicalState = "TEACHING" | "PRACTICE" | "ASSESSMENT" | "FEEDBACK" | "MULTI_STATE";
+export const PEDAGOGICAL_STATES: readonly PedagogicalState[] = ["TEACHING", "PRACTICE", "ASSESSMENT", "FEEDBACK", "MULTI_STATE"];
+
+/**
+ * CC-11.7 §7: the third, most granular level of the visual hierarchy --
+ * VISUAL FAMILY -> PRODUCTION/BASE ASSET (`VisualAsset` below) ->
+ * CANONICAL LEARNER-VISIBLE STATE (this type). A single base asset may
+ * legitimately support several canonical states (e.g. one illustrated
+ * conductor base asset supporting both current directions, each in both
+ * teaching and assessment mode) -- states are never collapsed merely
+ * because they share a base, and a state is never silently dropped when
+ * it already exists as a governed CC-05D canonical variant.
+ */
+export interface CanonicalState {
+  /** Unique across the whole catalogue: "{assetId}.state.{slug}". */
+  stateId: string;
+  displayName: string;
+  pedagogicalState: PedagogicalState;
+  annotationPolicy: AnnotationPolicy;
+  /** Concrete labels/callouts this specific state should carry -- see `VisualAsset.requiredLabels` doc comment for the same discipline, applied per-state instead of per-asset. */
+  requiredLabels: string[];
+  /** The exact parameter combination this state corresponds to, mirroring a DiagramBlueprint's own parameter shape where this state reconciles to an existing deterministic variant. */
+  parameters?: Record<string, string | number | boolean>;
+  /**
+   * Reconciliation pointer: the exact `variantId` this state corresponds
+   * to in the existing governed CC-05D canonical-variant system
+   * (`scripts/visual-governance/data/canonical-variants.ts`), computed
+   * via `reconciledVariantId()` below using the real stable-id algorithm
+   * -- never hand-copied, so a transcription error cannot silently
+   * misreport reconciliation. Undefined for a state that is genuinely
+   * new (not a supersession/refinement of an existing deterministic
+   * variant).
+   */
+  existingCanonicalVariantId?: string;
+  notes?: string;
+}
+export const CANONICAL_STATE_ROLE_DOC = "VISUAL FAMILY -> PRODUCTION/BASE ASSET -> CANONICAL LEARNER-VISIBLE STATE";
+
+/**
+ * Reproduces `stableVariantId()` from
+ * `scripts/visual-governance/data/canonical-variants.ts` exactly (same
+ * sorted-keys-join algorithm) so every `existingCanonicalVariantId` above
+ * is computed from real inputs rather than hand-transcribed -- the
+ * mechanical reconciliation this package's acceptance criterion ("zero
+ * existing canonical variants silently lost") depends on being exact.
+ */
+export function reconciledVariantId(
+  contractId: string,
+  contractVersion: number,
+  mergedParameters: Record<string, string | number | boolean>,
+  mode: "teaching" | "assessment" | "both",
+): string {
+  // The real algorithm (canonical-variants.ts's `variant()`) folds `mode`
+  // itself into the object whose keys get sorted before the trailing
+  // `::${mode}` is appended -- e.g. "...,mode=teaching,...::teaching", not
+  // just "...::teaching". Omitting this produced 66/66 false mismatches
+  // against the real system on first pass; reproduced exactly here.
+  const withMode: Record<string, string | number | boolean> = { ...mergedParameters, mode };
+  const sortedParams = Object.keys(withMode)
+    .sort()
+    .map((key) => `${key}=${withMode[key]}`)
+    .join(",");
+  return `${contractId}@${contractVersion}::${sortedParams}::${mode}`;
+}
+
 export interface CatalogueReference {
   sourceName: string;
   sourceUrl: string;
@@ -146,6 +218,16 @@ export interface VisualAsset {
    * text replaces the default instead of the standard one being appended.
    */
   backgroundStyleOverride?: string;
+  /**
+   * CC-11.7 §7/§9: every distinct learner-visible presentation this base
+   * asset supports. Always at least one entry (an asset with zero states
+   * is meaningless) -- `validateCatalogue()` enforces non-emptiness and
+   * stateId uniqueness. Where this asset's `governedDiagramBlueprintId`
+   * has existing CC-05D canonical variants, every one of them must be
+   * reconciled here (retained as a state) or explicitly superseded --
+   * never silently dropped.
+   */
+  canonicalStates: CanonicalState[];
 }
 
 export interface VisualFamily {
@@ -217,6 +299,45 @@ export const FAMILIES: VisualFamily[] = [
         assessmentNote: "Not the mnemonic itself -- may appear in assessment context as the phenomenon being questioned, distinct from the MNEMONIC asset which never appears in assessment.",
         outputSubfolder: "hybrid",
         filenameBase: "current-conductor-magnetic-field-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.current-conductor.magnetic-field.state.into-page-teaching",
+            displayName: "Current into page — field circulation revealed (teaching)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["current-direction arrow/label", "field-circulation direction indicator"],
+            parameters: { current_direction: "into_page", show_field_arrows: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.right-hand-grip-rule", 1, { current_direction: "into_page", show_field_arrows: true, field_rotation: "clockwise" }, "teaching"),
+          },
+          {
+            stateId: "unit202.current-conductor.magnetic-field.state.into-page-assessment",
+            displayName: "Current into page — field circulation withheld (assessment)",
+            pedagogicalState: "ASSESSMENT",
+            annotationPolicy: "ASSESSMENT_NON_REVEALING",
+            requiredLabels: [],
+            notes: "Current direction is the GIVEN stimulus; field-circulation direction is the assessed answer and must not appear.",
+            parameters: { current_direction: "into_page", show_field_arrows: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.right-hand-grip-rule", 1, { current_direction: "into_page", show_field_arrows: true }, "assessment"),
+          },
+          {
+            stateId: "unit202.current-conductor.magnetic-field.state.out-of-page-teaching",
+            displayName: "Current out of page — field circulation revealed (teaching)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["current-direction arrow/label", "field-circulation direction indicator"],
+            parameters: { current_direction: "out_of_page", show_field_arrows: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.right-hand-grip-rule", 1, { current_direction: "out_of_page", show_field_arrows: true, field_rotation: "counterclockwise" }, "teaching"),
+          },
+          {
+            stateId: "unit202.current-conductor.magnetic-field.state.out-of-page-assessment",
+            displayName: "Current out of page — field circulation withheld (assessment)",
+            pedagogicalState: "ASSESSMENT",
+            annotationPolicy: "ASSESSMENT_NON_REVEALING",
+            requiredLabels: [],
+            parameters: { current_direction: "out_of_page", show_field_arrows: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.right-hand-grip-rule", 1, { current_direction: "out_of_page", show_field_arrows: true }, "assessment"),
+          },
+        ],
       },
       {
         sequence: 2,
@@ -260,6 +381,17 @@ export const FAMILIES: VisualFamily[] = [
         assessmentNote: "Assessment contains NO hand — teaching only.",
         outputSubfolder: "teaching",
         filenameBase: "right-hand-grip-teaching-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.right-hand-grip.teaching.state.teaching",
+            displayName: "Right-hand grip mnemonic (teaching only)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["THUMB = CURRENT", "FINGERS = MAGNETIC FIELD", "current-direction arrow", "magnetic-field direction indicator where appropriate"],
+            notes:
+              "One base image is sufficient: the mnemonic teaches the RULE, not a specific current direction, and reversing current for the deterministic phenomenon asset is a legitimate deterministic transform (flip/rotate), not a reason to commission a second near-duplicate hand illustration. Never appears in assessment -- the sibling PHENOMENON asset (unit202.current-conductor.magnetic-field) carries this family's assessment/teaching deterministic states instead.",
+          },
+        ],
       },
     ],
   },
@@ -308,6 +440,34 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of magnet poles with a conductor between them, ready to receive deterministic N/S, field, current and force overlays, matching the existing governed motor-effect geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "motor-effect-base",
+        canonicalStates: (
+          [
+            { poles: "N_S_horizontal", direction: "into_page", force: "down" },
+            { poles: "N_S_horizontal", direction: "out_of_page", force: "up" },
+            { poles: "N_S_vertical", direction: "into_page", force: "left" },
+            { poles: "N_S_vertical", direction: "out_of_page", force: "right" },
+          ] as const
+        ).flatMap(({ poles, direction, force }) => [
+          {
+            stateId: `unit202.motor.effect.state.${poles.toLowerCase().replace(/_/g, "-")}-${direction.replace(/_/g, "-")}-teaching`,
+            displayName: `${poles.replace(/_/g, "/")} poles, current ${direction.replace(/_/g, " ")} — force revealed (teaching)`,
+            pedagogicalState: "TEACHING" as const,
+            annotationPolicy: "TEACHING_EXPLANATORY" as const,
+            requiredLabels: ["N", "S", "current-direction indicator", "force-direction indicator"],
+            parameters: { pole_labels: poles, current_direction: direction, show_force_arrow: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.motor-principle-force", 1, { pole_labels: poles, current_direction: direction, show_force_arrow: true, force_direction: force }, "teaching"),
+          },
+          {
+            stateId: `unit202.motor.effect.state.${poles.toLowerCase().replace(/_/g, "-")}-${direction.replace(/_/g, "-")}-assessment`,
+            displayName: `${poles.replace(/_/g, "/")} poles, current ${direction.replace(/_/g, " ")} — force withheld (assessment)`,
+            pedagogicalState: "ASSESSMENT" as const,
+            annotationPolicy: "ASSESSMENT_NON_REVEALING" as const,
+            requiredLabels: [],
+            notes: "Pole orientation and current direction are the GIVEN stimulus; force direction is the assessed answer and must not appear.",
+            parameters: { pole_labels: poles, current_direction: direction, show_force_arrow: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.motor-principle-force", 1, { pole_labels: poles, current_direction: direction, show_force_arrow: true }, "assessment"),
+          },
+        ]),
       },
       {
         sequence: 4,
@@ -347,6 +507,16 @@ export const FAMILIES: VisualFamily[] = [
         assessmentNote: "Assessment: NO hand. Use the PHENOMENON asset's physical motor-effect apparatus instead.",
         outputSubfolder: "teaching",
         filenameBase: "fleming-left-hand-teaching-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.fleming-left-hand.teaching.state.teaching",
+            displayName: "Fleming's left-hand mnemonic (teaching only)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["MOTION / FORCE", "FIELD", "CURRENT"],
+            notes: "One base image is sufficient -- the mnemonic teaches the F/B/I correspondence, not a specific pole/current combination. Never appears in assessment -- the sibling PHENOMENON asset (unit202.motor.effect) carries this family's assessment/teaching deterministic states.",
+          },
+        ],
       },
     ],
   },
@@ -401,6 +571,27 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a single wire loop rotating on a central axis between clearly labelled N and S poles, with a minimal slip-ring/output connection concept, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "generator-rotating-loop-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.generator.rotating-loop.state.horizontal-near-zero-emf",
+            displayName: "Loop plane facing poles — near-zero EMF",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["N", "S", "coil/loop", "rotation indicator", "output where useful"],
+            notes: "Confirmed sufficient at two states (brief §14): near-zero and near-peak EMF are the two pedagogically load-bearing orientations; additional phase/animation-like states were considered and rejected as not materially improving understanding at Level 2 depth.",
+            parameters: { rotation_phase: "horizontal" },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.ac-generator-rotating-loop", 1, { rotation_phase: "horizontal" }, "both"),
+          },
+          {
+            stateId: "unit202.generator.rotating-loop.state.vertical-near-peak-emf",
+            displayName: "Loop plane edge-on to poles — near-peak EMF",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["N", "S", "coil/loop", "rotation indicator", "output where useful"],
+            parameters: { rotation_phase: "vertical" },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.ac-generator-rotating-loop", 1, { rotation_phase: "vertical" }, "both"),
+          },
+        ],
       },
       {
         sequence: 6,
@@ -440,6 +631,16 @@ export const FAMILIES: VisualFamily[] = [
         assessmentNote: "Assessment: NO hand.",
         outputSubfolder: "teaching",
         filenameBase: "fleming-right-hand-teaching-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.fleming-right-hand.teaching.state.teaching",
+            displayName: "Fleming's right-hand mnemonic (teaching only)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["MOTION", "FIELD", "INDUCED CURRENT / EMF"],
+            notes: "One base image is sufficient -- the mnemonic teaches the M/F/I correspondence generally. Never appears in assessment -- the sibling PHENOMENON asset (unit202.generator.rotating-loop) carries this family's deterministic states.",
+          },
+        ],
       },
     ],
   },
@@ -482,6 +683,26 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a bar with the fulcrum positioned between a clearly marked effort point and load point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "levers-class-1-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.levers.class-1.state.recognition",
+            displayName: "Class I recognition (no distances)",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["EFFORT", "LOAD", "FULCRUM"],
+            parameters: { lever_class: "class_1", show_distances: false },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.lever-class-arrangement", 1, { lever_class: "class_1", show_distances: false }, "both"),
+          },
+          {
+            stateId: "unit202.levers.class-1.state.moment-balance",
+            displayName: "Class I with effort-arm/load-arm distances",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["EFFORT", "LOAD", "FULCRUM", "effort-arm distance", "load-arm distance"],
+            parameters: { lever_class: "class_1", show_distances: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.lever-class-arrangement", 1, { lever_class: "class_1", show_distances: true }, "both"),
+          },
+        ],
       },
       {
         sequence: 8,
@@ -514,6 +735,26 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a bar with the load positioned between a clearly marked fulcrum and effort point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "levers-class-2-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.levers.class-2.state.recognition",
+            displayName: "Class II recognition (no distances)",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["EFFORT", "LOAD", "FULCRUM"],
+            parameters: { lever_class: "class_2", show_distances: false },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.lever-class-arrangement", 1, { lever_class: "class_2", show_distances: false }, "both"),
+          },
+          {
+            stateId: "unit202.levers.class-2.state.moment-balance",
+            displayName: "Class II with effort-arm/load-arm distances",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["EFFORT", "LOAD", "FULCRUM", "effort-arm distance", "load-arm distance"],
+            parameters: { lever_class: "class_2", show_distances: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.lever-class-arrangement", 1, { lever_class: "class_2", show_distances: true }, "both"),
+          },
+        ],
       },
       {
         sequence: 9,
@@ -546,6 +787,26 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a bar with the effort positioned between a clearly marked fulcrum and load point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "levers-class-3-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.levers.class-3.state.recognition",
+            displayName: "Class III recognition (no distances)",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["EFFORT", "LOAD", "FULCRUM"],
+            parameters: { lever_class: "class_3", show_distances: false },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.lever-class-arrangement", 1, { lever_class: "class_3", show_distances: false }, "both"),
+          },
+          {
+            stateId: "unit202.levers.class-3.state.moment-balance",
+            displayName: "Class III with effort-arm/load-arm distances",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["EFFORT", "LOAD", "FULCRUM", "effort-arm distance", "load-arm distance"],
+            parameters: { lever_class: "class_3", show_distances: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.lever-class-arrangement", 1, { lever_class: "class_3", show_distances: true }, "both"),
+          },
+        ],
       },
     ],
   },
@@ -588,6 +849,17 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a fixed pulley wheel with a fixed anchor point and a physically plausible rope path with effort/load ends, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "pulleys-fixed-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.pulleys.fixed.state.teaching",
+            displayName: "Fixed pulley",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["EFFORT", "LOAD", "fixed anchor point"],
+            parameters: { arrangement: "fixed" },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.pulley-fixed-vs-movable", 1, { arrangement: "fixed" }, "both"),
+          },
+        ],
       },
       {
         sequence: 11,
@@ -626,6 +898,17 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a movable pulley with exactly two supporting rope segments and a physically plausible rope path with effort/load ends, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "pulleys-movable-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.pulleys.movable.state.teaching",
+            displayName: "Movable pulley",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["EFFORT", "LOAD", "supporting-segment count"],
+            parameters: { arrangement: "movable" },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.pulley-fixed-vs-movable", 1, { arrangement: "movable" }, "both"),
+          },
+        ],
       },
     ],
   },
@@ -668,6 +951,26 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a bar magnet body ready to receive a deterministic N/S-labelled field-line overlay, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "magnet-field-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.magnet.field.state.field-only",
+            displayName: "Bar magnet field pattern (no density comparison)",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["N", "S", "field-line direction"],
+            parameters: { density_comparison: false },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.magnetic-flux-density-comparison", 1, { density_comparison: false }, "both"),
+          },
+          {
+            stateId: "unit202.magnet.field.state.density-comparison",
+            displayName: "Bar magnet field with flux-density comparison (same flux, different cross-section)",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["N", "S", "field-line direction", "flux-density comparison caption"],
+            parameters: { density_comparison: true },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.magnetic-flux-density-comparison", 1, { density_comparison: true }, "both"),
+          },
+        ],
       },
       {
         sequence: 13,
@@ -702,6 +1005,27 @@ export const FAMILIES: VisualFamily[] = [
           "Two premium illustrations (like poles facing; unlike poles facing) of two bar magnets, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "magnet-poles-base",
+        canonicalStates: (["like_poles_facing", "unlike_poles_facing"] as const).flatMap((pairing) => [
+          {
+            stateId: `unit202.magnet.poles.state.${pairing.replace(/_/g, "-")}-teaching`,
+            displayName: `${pairing === "like_poles_facing" ? "Like" : "Unlike"} poles facing — force revealed (teaching)`,
+            pedagogicalState: "TEACHING" as const,
+            annotationPolicy: "TEACHING_EXPLANATORY" as const,
+            requiredLabels: ["N", "S", "attract/repel force-arrow indicator"],
+            parameters: { pole_pairing: pairing },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.magnetic-pole-interaction", 1, { pole_pairing: pairing, show_pole_force: true }, "teaching"),
+          },
+          {
+            stateId: `unit202.magnet.poles.state.${pairing.replace(/_/g, "-")}-assessment`,
+            displayName: `${pairing === "like_poles_facing" ? "Like" : "Unlike"} poles facing — force withheld (assessment)`,
+            pedagogicalState: "ASSESSMENT" as const,
+            annotationPolicy: "ASSESSMENT_NON_REVEALING" as const,
+            requiredLabels: [],
+            notes: "Pole labels are the GIVEN stimulus; attract/repel is the assessed answer and must not appear.",
+            parameters: { pole_pairing: pairing },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.magnetic-pole-interaction", 1, { pole_pairing: pairing }, "assessment"),
+          },
+        ]),
       },
     ],
   },
@@ -749,6 +1073,15 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset): include an unmistakable cell/battery/source wherever current direction is being taught, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "circuit-series-base",
+        canonicalStates: ([2, 3, 4] as const).map((count) => ({
+          stateId: `unit202.circuit.series.state.${count}-component`,
+          displayName: `Series circuit — ${count} components`,
+          pedagogicalState: "MULTI_STATE" as const,
+          annotationPolicy: "NONE" as const,
+          requiredLabels: [],
+          parameters: { component_count: count, show_values: false, show_current_arrow: true },
+          existingCanonicalVariantId: reconciledVariantId("visual-contract.series-circuit-current-direction", 1, { component_count: count, show_values: false, show_current_arrow: true }, "both"),
+        })),
       },
     ],
   },
@@ -790,6 +1123,15 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset), matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "circuit-parallel-base",
+        canonicalStates: ([2, 3, 4] as const).map((count) => ({
+          stateId: `unit202.circuit.parallel.state.${count}-branch`,
+          displayName: `Parallel circuit — ${count} branches`,
+          pedagogicalState: "MULTI_STATE" as const,
+          annotationPolicy: "NONE" as const,
+          requiredLabels: [],
+          parameters: { branch_count: count, show_values: false, show_branch_current_arrows: true },
+          existingCanonicalVariantId: reconciledVariantId("visual-contract.parallel-circuit-branches", 1, { branch_count: count, show_values: false, show_branch_current_arrows: true }, "both"),
+        })),
       },
     ],
   },
@@ -831,6 +1173,15 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset), matching the reference topology exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "circuit-mixed-base",
+        canonicalStates: (["series_of_parallel", "parallel_of_series"] as const).map((arrangement) => ({
+          stateId: `unit202.circuit.mixed.state.${arrangement.replace(/_/g, "-")}`,
+          displayName: `Mixed circuit — ${arrangement.replace(/_/g, " ")}`,
+          pedagogicalState: "MULTI_STATE" as const,
+          annotationPolicy: "NONE" as const,
+          requiredLabels: [],
+          parameters: { branch_arrangement: arrangement, show_values: false },
+          existingCanonicalVariantId: reconciledVariantId("visual-contract.series-parallel-mixed-topology", 1, { branch_arrangement: arrangement, show_values: false }, "both"),
+        })),
       },
     ],
   },
@@ -884,6 +1235,23 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset), matching the reference connection geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "instrument-connections-base",
+        canonicalStates: (
+          [
+            { instrument_type: "voltmeter", connection_style: "parallel", standard: true },
+            { instrument_type: "voltmeter", connection_style: "series", standard: false },
+            { instrument_type: "ammeter", connection_style: "series", standard: true },
+            { instrument_type: "ammeter", connection_style: "parallel", standard: false },
+            { instrument_type: "ohmmeter", connection_style: "isolated", standard: true },
+          ] as const
+        ).map(({ instrument_type, connection_style, standard }) => ({
+          stateId: `unit202.instrument.connections.state.${instrument_type}-${connection_style}`,
+          displayName: `${instrument_type} — ${connection_style} (${standard ? "standard" : "non-standard, deliberate teaching contrast"})`,
+          pedagogicalState: "MULTI_STATE" as const,
+          annotationPolicy: "NONE" as const,
+          requiredLabels: [],
+          parameters: { instrument_type, connection_style },
+          existingCanonicalVariantId: reconciledVariantId("visual-contract.instrument-measurement-connection", 1, { instrument_type, connection_style }, "both"),
+        })),
       },
     ],
   },
@@ -925,6 +1293,15 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of two meshed gears with a clear relative-size relationship, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "gears-base",
+        canonicalStates: (["driven_larger", "driven_smaller", "equal"] as const).map((size_ratio) => ({
+          stateId: `unit202.gears.state.${size_ratio.replace(/_/g, "-")}`,
+          displayName: `Driver/driven gears — ${size_ratio.replace(/_/g, " ")}`,
+          pedagogicalState: "MULTI_STATE" as const,
+          annotationPolicy: "TEACHING_EXPLANATORY" as const,
+          requiredLabels: ["Driver", "Driven"],
+          parameters: { size_ratio },
+          existingCanonicalVariantId: reconciledVariantId("visual-contract.gear-mesh-ratio", 1, { size_ratio }, "both"),
+        })),
       },
     ],
   },
@@ -966,6 +1343,17 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of two conductor rods differing only in length, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "resistivity-length-comparison-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.resistivity.length-comparison.state.teaching",
+            displayName: "Resistance vs conductor length",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["length comparison caption", "qualitative-consequence caption (\"longer -> more resistance\")"],
+            parameters: { comparison: "length" },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.resistivity-length-area-dimensions", 1, { comparison: "length" }, "both"),
+          },
+        ],
       },
       {
         sequence: 20,
@@ -998,6 +1386,17 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of two conductor rods differing only in cross-sectional area, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "resistivity-area-comparison-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.resistivity.area-comparison.state.teaching",
+            displayName: "Resistance vs conductor cross-sectional area",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["area comparison caption", "qualitative-consequence caption (\"thicker -> less resistance\")"],
+            parameters: { comparison: "area" },
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.resistivity-length-area-dimensions", 1, { comparison: "area" }, "both"),
+          },
+        ],
       },
     ],
   },
@@ -1046,6 +1445,25 @@ export const FAMILIES: VisualFamily[] = [
           "A style/contrast reference only (not a replacement asset), matching the reference waveform exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "waveform-sine-base",
+        canonicalStates: (
+          [
+            { peak: false, rms: false, period: false, cycles: 2, name: "bare cycle (zero-axis reference only)" },
+            { peak: true, rms: false, period: false, cycles: 2, name: "peak revealed" },
+            { peak: true, rms: true, period: false, cycles: 2, name: "peak + RMS revealed" },
+            { peak: true, rms: true, period: true, cycles: 2, name: "peak + RMS + period revealed" },
+            { peak: true, rms: true, period: true, cycles: 1, name: "single cycle, fully annotated" },
+            { peak: true, rms: true, period: true, cycles: 3, name: "three cycles, fully annotated" },
+          ] as const
+        ).map(({ peak, rms, period, cycles, name }, index) => ({
+          stateId: `unit202.waveform.sine.state.progression-${index + 1}`,
+          displayName: `Sine waveform — ${name} (${cycles} cycle${cycles === 1 ? "" : "s"})`,
+          pedagogicalState: "MULTI_STATE" as const,
+          annotationPolicy: "NONE" as const,
+          requiredLabels: [],
+          notes: "REQUIRED reconciliation review confirms genuinely required learner-visible states: a progressive teaching reveal (none -> peak -> peak+RMS -> peak+RMS+period) plus two cycle-count variants distinct enough to be their own picture, not a numeric permutation. Peak-to-peak is a labelled bracket on the existing renderer, not a separate state.",
+          parameters: { show_peak_line: peak, show_rms_line: rms, show_period_marker: period, cycles_shown: cycles },
+          existingCanonicalVariantId: reconciledVariantId("visual-contract.ac-waveform-sine", 1, { show_peak_line: peak, show_rms_line: rms, show_period_marker: period, cycles_shown: cycles }, "both"),
+        })),
       },
     ],
   },
@@ -1087,6 +1505,18 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of a conductor rod across two rails ready to receive B/l/v overlay arrows, matching the existing governed geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "emf-motional-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.emf.motional.state.teaching",
+            displayName: "Motional EMF — B, l, v mutually perpendicular",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["B", "l", "v"],
+            notes: "One canonical state confirmed sufficient -- the geometry never varies (no DiagramBlueprint parameters at all), matching the existing contract's own knownAmbiguity note that exactly one variant is expected.",
+            parameters: {},
+            existingCanonicalVariantId: reconciledVariantId("visual-contract.motional-emf-geometry", 1, {}, "both"),
+          },
+        ],
       },
     ],
   },
@@ -1129,6 +1559,18 @@ export const FAMILIES: VisualFamily[] = [
         outputSubfolder: "deterministic-polish",
         filenameBase: "components-symbols-base",
         promptable: false,
+        canonicalStates: (
+          ["resistor", "capacitor", "diode", "zener_diode", "led", "photodiode", "thermistor", "diac", "triac", "transistor", "thyristor_scr", "rectifier", "inverter"] as const
+        ).map((component_type) => ({
+          stateId: `unit202.components.symbols.state.${component_type.replace(/_/g, "-")}`,
+          displayName: `UK/IEC symbol — ${component_type.replace(/_/g, " ")}`,
+          pedagogicalState: "MULTI_STATE" as const,
+          annotationPolicy: "NONE" as const,
+          requiredLabels: [],
+          notes: "NO ART PROMPT -- DETERMINISTIC. Produced by ComponentSymbols.tsx, never an art session.",
+          parameters: { component_type },
+          existingCanonicalVariantId: reconciledVariantId("visual-contract.electronic-component-symbol-card", 1, { component_type }, "both"),
+        })),
       },
       {
         sequence: 24,
@@ -1161,6 +1603,191 @@ export const FAMILIES: VisualFamily[] = [
           "One premium physical-appearance illustration per selected component, matching real, representative package forms. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "physical-components",
         filenameBase: "components-physical-base",
+        canonicalStates: (
+          [
+            { component: "resistor", note: "REQUIRED -- ubiquitous, distinctive banded-body form." },
+            { component: "capacitor", note: "REQUIRED -- distinctive cylindrical/disc forms, genuinely different from a resistor." },
+            { component: "diode", note: "REQUIRED -- small distinctive banded form, directly supports forward/reverse-bias recognition." },
+            { component: "led", note: "REQUIRED -- visually distinctive domed package, high recognition value." },
+            { component: "thermistor", note: "REQUIRED -- distinctive bead/disc form, directly supports NTC/PTC recognition." },
+            { component: "transistor", note: "REQUIRED -- distinctive 3-lead TO-92/TO-220-style package." },
+          ] as const
+        ).map(({ component, note }) => ({
+          stateId: `unit202.components.physical.state.${component}`,
+          displayName: `Physical appearance — ${component}`,
+          pedagogicalState: "MULTI_STATE" as const,
+          annotationPolicy: "TEACHING_EXPLANATORY" as const,
+          requiredLabels: ["component name"],
+          notes: note,
+        })),
+      },
+      {
+        sequence: 25,
+        assetId: "unit202.diode.bias-direction",
+        familyId: "unit202.family.electronic-components",
+        orderInFamily: 3,
+        role: "PHENOMENON",
+        displayName: "Diode forward/reverse-bias current direction",
+        loOrLesson: "LO6 — lesson.electrical.electronic-components-passive",
+        priority: "P1",
+        priorityLabel: "P1",
+        productionClass: "HYBRID",
+        productionClassLabel: "HYBRID",
+        instructionalPurpose:
+          "CC-11.7 audit finding (new, beyond the original 66): show current flowing easily in forward bias and blocked in reverse bias, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing `electronics.component_symbol_card` blueprint cannot represent since it renders only the static symbol, never current flow.",
+        primaryReference: {
+          sourceName: "Standard diode forward/reverse-bias circuit reference -- to be selected when this asset is commissioned",
+          sourceUrl: "",
+          licence: "to be recorded when selected",
+          qualityGrade: "to be assessed",
+        },
+        referenceReadiness: "READY",
+        annotationPolicy: "TEACHING_EXPLANATORY",
+        requiredLabels: ["forward bias / reverse bias", "current-flow arrow (forward) or blocked indicator (reverse)"],
+        immutableFacts: [
+          "diode conducts easily in forward bias (anode more positive than cathode)",
+          "diode blocks current in reverse bias (cathode more positive than anode)",
+          "must remain visually distinct from the plain IEC diode symbol asset",
+        ],
+        creativeFreedoms: ["premium diode/circuit-context rendering", "composition", "finish"],
+        deterministicOverlayResponsibilities: [],
+        prohibitedChanges: ["do not depict current flowing in reverse bias", "do not conflate with the zener/LED/photodiode symbol variants"],
+        exactDeliverable:
+          "Two premium illustrations (forward bias, conducting; reverse bias, blocked) of a diode in a simple test circuit, matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+        outputSubfolder: "hybrid",
+        filenameBase: "diode-bias-direction-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.diode.bias-direction.state.forward-bias",
+            displayName: "Forward bias — conducting",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["FORWARD BIAS", "current-flow arrow"],
+          },
+          {
+            stateId: "unit202.diode.bias-direction.state.reverse-bias",
+            displayName: "Reverse bias — blocked",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["REVERSE BIAS", "blocked-current indicator"],
+          },
+        ],
+      },
+      {
+        sequence: 26,
+        assetId: "unit202.rectification.waveforms",
+        familyId: "unit202.family.electronic-components",
+        orderInFamily: 4,
+        role: "TECHNICAL_DIAGRAM",
+        displayName: "Rectifier/inverter output waveform shapes",
+        loOrLesson: "LO6 — lesson.electrical.electronic-components-switching-control",
+        priority: "P1",
+        priorityLabel: "P1",
+        productionClass: "DETERMINISTIC_TECHNICAL",
+        productionClassLabel: "DETERMINISTIC TECHNICAL",
+        instructionalPurpose:
+          "CC-11.7 audit finding (new, beyond the original 66): the three distinct output-waveform SHAPES (half-wave rectified, full-wave rectified, inverter-synthesised AC) directly targeted by question blueprint `electronics.recognise_rectifier_type`, which the existing `graph.waveform_sine` blueprint cannot represent (it renders only a plain sine wave) and the existing `electronics.component_symbol_card`'s rectifier/inverter entries cannot represent either (they render only the functional-block symbol, never the resulting waveform shape).",
+        primaryReference: {
+          sourceName: "Standard half-wave/full-wave rectification and inverter output waveform references -- to be selected when this asset is commissioned",
+          sourceUrl: "",
+          licence: "to be recorded when selected",
+          qualityGrade: "to be assessed",
+        },
+        referenceReadiness: "READY",
+        annotationPolicy: "NONE",
+        requiredLabels: [],
+        immutableFacts: [
+          "half-wave: blocks one half-cycle entirely, passes the other unchanged in shape",
+          "full-wave: converts both half-cycles to the same polarity (pulsating DC, never a flat line)",
+          "inverter: DC input synthesised into an AC-shaped output via controlled switching",
+          "never a smooth sine wave for any of the three -- that is the plain graph.waveform_sine blueprint's own separate, correct depiction",
+        ],
+        creativeFreedoms: [],
+        deterministicOverlayResponsibilities: ["the curve itself remains deterministic vector -- no arbitrary raster curve for this family"],
+        prohibitedChanges: ["do not draw a smooth continuous sine wave for any of the three states", "do not conflate half-wave and full-wave shapes"],
+        exactDeliverable: "Deterministic vector waveform plots -- not a premium art-generation deliverable.",
+        outputSubfolder: "deterministic-polish",
+        filenameBase: "rectification-waveforms-base",
+        promptable: false,
+        canonicalStates: [
+          {
+            stateId: "unit202.rectification.waveforms.state.half-wave",
+            displayName: "Half-wave rectified output",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "NONE",
+            requiredLabels: [],
+            notes: "NO ART PROMPT -- DETERMINISTIC.",
+          },
+          {
+            stateId: "unit202.rectification.waveforms.state.full-wave",
+            displayName: "Full-wave rectified output",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "NONE",
+            requiredLabels: [],
+            notes: "NO ART PROMPT -- DETERMINISTIC.",
+          },
+          {
+            stateId: "unit202.rectification.waveforms.state.inverter",
+            displayName: "Inverter-synthesised AC output",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "NONE",
+            requiredLabels: [],
+            notes: "NO ART PROMPT -- DETERMINISTIC.",
+          },
+        ],
+      },
+      {
+        sequence: 27,
+        assetId: "unit202.capacitor.transient",
+        familyId: "unit202.family.electronic-components",
+        orderInFamily: 5,
+        role: "TECHNICAL_DIAGRAM",
+        displayName: "Capacitor RC charge/discharge transient curve",
+        loOrLesson: "LO6 — lesson.electrical.electronic-components-passive",
+        priority: "P1",
+        priorityLabel: "P1",
+        productionClass: "DETERMINISTIC_TECHNICAL",
+        productionClassLabel: "DETERMINISTIC TECHNICAL",
+        instructionalPurpose:
+          "CC-11.7 audit finding (new, beyond the original 66): the exponential RC charge/discharge curve directly targeted by EL-COMPONENT-CAPACITOR-TRANSIENT-001 and question blueprint `electronics.recognise_capacitor_behaviour` ('gradual_exponential_change' vs 'instant_step_change'), which no existing blueprint depicts -- an exponential curve is a genuinely different shape from the plain sine wave.",
+        primaryReference: {
+          sourceName: "Standard RC charge/discharge exponential-curve reference -- to be selected when this asset is commissioned",
+          sourceUrl: "",
+          licence: "to be recorded when selected",
+          qualityGrade: "to be assessed",
+        },
+        referenceReadiness: "READY",
+        annotationPolicy: "NONE",
+        requiredLabels: [],
+        immutableFacts: [
+          "charge/discharge follows a genuine exponential curve, never a straight-line ramp or instant step",
+          "never a sine wave -- this is a transient response, not a periodic waveform",
+        ],
+        creativeFreedoms: [],
+        deterministicOverlayResponsibilities: ["the curve itself remains deterministic vector -- no arbitrary raster curve for this family"],
+        prohibitedChanges: ["do not draw a straight-line ramp or instant step in place of the exponential curve", "do not draw a periodic/sine shape"],
+        exactDeliverable: "Deterministic vector exponential-curve plots -- not a premium art-generation deliverable.",
+        outputSubfolder: "deterministic-polish",
+        filenameBase: "capacitor-transient-base",
+        promptable: false,
+        canonicalStates: [
+          {
+            stateId: "unit202.capacitor.transient.state.charge",
+            displayName: "Charge curve (exponential rise)",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "NONE",
+            requiredLabels: [],
+            notes: "NO ART PROMPT -- DETERMINISTIC.",
+          },
+          {
+            stateId: "unit202.capacitor.transient.state.discharge",
+            displayName: "Discharge curve (exponential decay)",
+            pedagogicalState: "MULTI_STATE",
+            annotationPolicy: "NONE",
+            requiredLabels: [],
+            notes: "NO ART PROMPT -- DETERMINISTIC.",
+          },
+        ],
       },
     ],
   },
@@ -1169,10 +1796,11 @@ export const FAMILIES: VisualFamily[] = [
     displayName: "Chemical effect / electrolysis",
     instructionalPurpose: "A single, simple concept: one cell arrangement (source, electrolyte, electrodes, current path).",
     governedConcept: "LO4 — lesson.electrical.thermal-and-chemical-effects",
-    familyNotes: "Single-asset family -- one arrangement, no distinct states or configurations to separate.",
+    familyNotes:
+      "Single-asset family -- one arrangement, no distinct states or configurations to separate. CC-11.7 audit corroboration: EL-CURRENT-CHEMICAL-EFFECT-001 (electrolysis) has no representation anywhere in the deterministic CC-05D system (none of the 16 blueprints depict a chemistry apparatus), confirming this asset is REQUIRED, not merely USEFUL as originally scoped.",
     assets: [
       {
-        sequence: 25,
+        sequence: 28,
         assetId: "unit202.electrolysis",
         familyId: "unit202.family.electrolysis",
         orderInFamily: 1,
@@ -1180,7 +1808,7 @@ export const FAMILIES: VisualFamily[] = [
         displayName: "Chemical effect / electrolysis",
         loOrLesson: "LO4 — lesson.electrical.thermal-and-chemical-effects",
         priority: "P1",
-        priorityLabel: "P1/P2",
+        priorityLabel: "P1 (upgraded from P1/P2 -- CC-11.7 corpus corroboration)",
         productionClass: "HYBRID",
         productionClassLabel: "HYBRID",
         instructionalPurpose: "Show the chemical effect of current: a source, an electrolyte and electrodes, with a meaningful current path -- no chemistry beyond syllabus scope.",
@@ -1207,6 +1835,15 @@ export const FAMILIES: VisualFamily[] = [
           "One premium illustration of an electrolysis cell showing source, electrolyte and electrodes, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "electrolysis-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.electrolysis.state.teaching",
+            displayName: "Electrolysis cell — source, electrolyte, electrodes, current path",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: ["source", "electrolyte", "electrodes", "current path"],
+          },
+        ],
       },
     ],
   },
@@ -1218,7 +1855,7 @@ export const FAMILIES: VisualFamily[] = [
     familyNotes: "Single-asset family, reference not yet approved.",
     assets: [
       {
-        sequence: 26,
+        sequence: 29,
         assetId: "unit202.heating-effect",
         familyId: "unit202.family.heating-effect",
         orderInFamily: 1,
@@ -1241,6 +1878,16 @@ export const FAMILIES: VisualFamily[] = [
         exactDeliverable: "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY.",
         outputSubfolder: "conceptual",
         filenameBase: "heating-effect-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.heating-effect.state.teaching",
+            displayName: "Heating effect of electric current (blocked)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: [],
+            notes: "CC-11.7 audit: EL-CURRENT-THERMAL-EFFECT-001 has no deterministic representation either -- classification remains USEFUL (conceptual only, no spatial/topology content beyond a concept card already teaches), reference still not sourced.",
+          },
+        ],
       },
     ],
   },
@@ -1252,7 +1899,7 @@ export const FAMILIES: VisualFamily[] = [
     familyNotes: "Single-asset family, reference not yet approved.",
     assets: [
       {
-        sequence: 27,
+        sequence: 30,
         assetId: "unit202.conductor-insulator",
         familyId: "unit202.family.conductor-insulator",
         orderInFamily: 1,
@@ -1275,6 +1922,16 @@ export const FAMILIES: VisualFamily[] = [
         exactDeliverable: "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY.",
         outputSubfolder: "conceptual",
         filenameBase: "conductor-insulator-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.conductor-insulator.state.teaching",
+            displayName: "Conductor vs insulator (blocked)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: [],
+            notes: "CC-11.7 audit: every tested capability for this lesson is material-name classification by fact recall, not a spatial distinction -- USEFUL confirmed, not REQUIRED, reference still not sourced.",
+          },
+        ],
       },
     ],
   },
@@ -1283,10 +1940,11 @@ export const FAMILIES: VisualFamily[] = [
     displayName: "Fuse / MCB / RCD conceptual visual",
     instructionalPurpose: "A single conceptual recognition illustration -- blocked pending a primary reference.",
     governedConcept: "LO4 — lesson.electrical.fault-conditions-protection",
-    familyNotes: "Single-asset family, reference not yet approved.",
+    familyNotes:
+      "Single-asset family, reference not yet approved. CC-11.7 audit corroboration: a dedicated capability, cap.fault.compare_fuse_breaker, exists with zero visual representation anywhere in the corpus -- the fuse-vs-breaker reset/replace comparison specifically is REQUIRED once a reference is sourced, upgraded from the original blocked/deferred framing; the broader fuse/MCB/RCD physical-recognition need remains USEFUL.",
     assets: [
       {
-        sequence: 28,
+        sequence: 31,
         assetId: "unit202.protective-devices",
         familyId: "unit202.family.protective-devices",
         orderInFamily: 1,
@@ -1309,6 +1967,16 @@ export const FAMILIES: VisualFamily[] = [
         exactDeliverable: "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY.",
         outputSubfolder: "conceptual",
         filenameBase: "protective-devices-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.protective-devices.state.fuse-vs-breaker",
+            displayName: "Fuse vs circuit breaker comparison (blocked)",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "TEACHING_EXPLANATORY",
+            requiredLabels: [],
+            notes: "REQUIRED once a reference is sourced -- cap.fault.compare_fuse_breaker has no visual representation anywhere in the corpus (CC-11.7 finding).",
+          },
+        ],
       },
     ],
   },
@@ -1320,7 +1988,7 @@ export const FAMILIES: VisualFamily[] = [
     familyNotes: "Single-asset family, tracked for future commissioning only.",
     assets: [
       {
-        sequence: 29,
+        sequence: 32,
         assetId: "unit202.trigonometry",
         familyId: "unit202.family.trigonometry",
         orderInFamily: 1,
@@ -1348,6 +2016,16 @@ export const FAMILIES: VisualFamily[] = [
         exactDeliverable: "No lesson exists to host this asset yet -- tracked for future commissioning only, not for current production.",
         outputSubfolder: "deterministic-polish",
         filenameBase: "trigonometry-base",
+        canonicalStates: [
+          {
+            stateId: "unit202.trigonometry.state.teaching",
+            displayName: "Right-angle triangle / SOHCAHTOA",
+            pedagogicalState: "TEACHING",
+            annotationPolicy: "NONE",
+            requiredLabels: [],
+            notes: "NO ART PROMPT -- DETERMINISTIC once commissioned. No existing CC-05D blueprint yet (no lesson to attach it to); tracked for future commissioning only.",
+          },
+        ],
       },
     ],
   },
@@ -1384,6 +2062,26 @@ export function isPromptable(asset: VisualAsset): boolean {
   return asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false;
 }
 
+/**
+ * CC-11.7 §5: the visual-need classification every identified need in the
+ * comprehensive audit carries. Only REQUIRED assets/states count toward
+ * Unit 202 visual completeness. Derived rather than separately authored
+ * per asset -- every asset actually catalogued here was already judged
+ * REQUIRED to exist (a USEFUL finding that has not yet been promoted to
+ * a full catalogue asset is tracked in the audit report/matrix instead,
+ * per task brief §5's "USEFUL assets may enter a secondary production
+ * queue" -- not modelled as a placeholder catalogue entry, to avoid
+ * inflating the catalogue with decorative/unbuilt imagery).
+ */
+export type VisualNeedClassification = "REQUIRED" | "USEFUL" | "NOT_NEEDED" | "DEFERRED_SCOPE" | "BLOCKED_REFERENCE";
+
+export function visualNeedClassificationFor(asset: VisualAsset): VisualNeedClassification {
+  if (asset.referenceReadiness === "NOT_READY") return "BLOCKED_REFERENCE";
+  if (asset.needsScopeConfirmation) return "DEFERRED_SCOPE";
+  if (asset.assetId === "unit202.trigonometry") return "DEFERRED_SCOPE";
+  return "REQUIRED";
+}
+
 export function promptableAssets(families: VisualFamily[] = FAMILIES): VisualAsset[] {
   return allAssets(families).filter(isPromptable);
 }
@@ -1395,6 +2093,7 @@ export function validateCatalogue(families: VisualFamily[] = FAMILIES): string[]
   const seenAssetIds = new Set<string>();
   const seenSequences = new Set<number>();
   const seenFilenames = new Set<string>();
+  const seenStateIds = new Set<string>();
 
   for (const family of families) {
     if (seenFamilyIds.has(family.familyId)) problems.push(`duplicate familyId: ${family.familyId}`);
@@ -1432,6 +2131,37 @@ export function validateCatalogue(families: VisualFamily[] = FAMILIES): string[]
       }
       if (!/^[a-z0-9-]+$/.test(asset.filenameBase)) {
         problems.push(`${asset.assetId}: filenameBase '${asset.filenameBase}' is not a safe lowercase-kebab stem`);
+      }
+
+      // CC-11.7 §7/§9: a base asset with zero canonical states is meaningless,
+      // and every state's id/enum fields must be structurally valid --
+      // "zero existing canonical variants silently lost" starts here.
+      if (asset.canonicalStates.length === 0) {
+        problems.push(`${asset.assetId}: has zero canonicalStates -- every production asset must support at least one learner-visible state`);
+      }
+      for (const state of asset.canonicalStates) {
+        if (seenStateIds.has(state.stateId)) problems.push(`duplicate stateId: ${state.stateId}`);
+        seenStateIds.add(state.stateId);
+
+        if (!state.stateId.startsWith(asset.assetId)) {
+          problems.push(`${asset.assetId}: state '${state.stateId}' does not begin with its owning assetId`);
+        }
+        if (!PEDAGOGICAL_STATES.includes(state.pedagogicalState)) {
+          problems.push(`${asset.assetId}/${state.stateId}: invalid pedagogicalState ${state.pedagogicalState}`);
+        }
+        if (!ANNOTATION_POLICIES.includes(state.annotationPolicy)) {
+          problems.push(`${asset.assetId}/${state.stateId}: invalid annotationPolicy ${state.annotationPolicy}`);
+        }
+        // ANNOTATION FOLLOWS PEDAGOGICAL STATE, mechanically: an ASSESSMENT
+        // state must never declare an explanatory/labelling policy, and a
+        // MNEMONIC-role asset (assessment always leaks the answer via the
+        // hand itself) must never declare an ASSESSMENT state at all.
+        if (state.pedagogicalState === "ASSESSMENT" && (state.annotationPolicy === "TEACHING_EXPLANATORY" || state.annotationPolicy === "FEEDBACK_EXPLANATORY")) {
+          problems.push(`${asset.assetId}/${state.stateId}: ASSESSMENT state declares an explanatory annotationPolicy (${state.annotationPolicy}) -- known answer-bearing leak`);
+        }
+        if (asset.role === "MNEMONIC" && state.pedagogicalState === "ASSESSMENT") {
+          problems.push(`${asset.assetId}/${state.stateId}: a MNEMONIC-role asset must never declare an ASSESSMENT state (the hand itself is the answer-bearing mnemonic dependency)`);
+        }
       }
     });
   }

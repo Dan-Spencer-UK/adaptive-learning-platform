@@ -1,20 +1,31 @@
 # ALP Visual Production Studio
 
-**CC-11.5/CC-11.6.** A local, localhost-only development tool for
+**CC-11.5–CC-11.7.** A local, localhost-only development tool for
 producing and approving premium instructional artwork. **Not
 learner-facing product functionality** -- never imported by
 `apps/mobile` or `apps/web`, never part of the learner runtime.
 
-The production catalogue is organised by **Visual Family** — a
-VisualFamily is the complete governed set of visual assets needed to
-teach one concept, and may contain a single asset (most families do) or
-several (e.g. a phenomenon plus the mnemonic used to predict it, or
-several distinct configurations of one concept). **A family never
-reduces prompt granularity**: every individual asset, even one nested
-inside a four-asset family, gets its own fully independent, individually
-copyable ASSET-SPECIFIC PROMPT. See
+The production catalogue is organised by a three-level hierarchy:
+
+```text
+VISUAL FAMILY -> PRODUCTION/BASE ASSET -> CANONICAL LEARNER-VISIBLE STATE
+```
+
+A VisualFamily is the complete governed set of assets needed to teach one
+concept (a single asset for most families; several for a phenomenon plus
+its mnemonic, or genuinely distinct configurations). A production/base
+asset may itself support several canonical states (e.g. one illustrated
+base carrying both a TEACHING and an ASSESSMENT presentation, or all 8
+pole/current combinations an existing deterministic overlay system
+already governs) -- states are never collapsed merely because they share
+a base. **Neither level ever reduces prompt granularity**: every
+individual asset, even one nested inside a multi-asset family, gets its
+own fully independent, individually copyable ASSET-SPECIFIC PROMPT that
+enumerates every state it must safely support. See
 [`docs/architecture/PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md`](../../docs/architecture/PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md)
-§14/§15 for the full architecture.
+§14/§15/§17 for the full architecture, and
+[`reports/instructional-visuals/unit202-comprehensive-visual-audit.md`](../../reports/instructional-visuals/unit202-comprehensive-visual-audit.md)
+for the full-corpus audit this catalogue is derived from.
 
 This is the manual-assisted production implementation of the approved
 reference-first pipeline recorded in
@@ -85,11 +96,32 @@ unbundled HTML/CSS/JS page (`public/`), per the task brief's own
 "choose the simplest architecture" guidance.
 
 - `catalogue.ts` -- the structured Unit 202 production catalogue: 20
-  `VisualFamily` entries containing 29 individual `VisualAsset` entries
-  in total (25 currently promptable). The single source of truth every
-  prompt is built from. Exposes `FAMILIES`, `allAssets()`, `findAsset()`,
-  `findFamily()`, `familyForAsset()`, `isPromptable()`,
-  `promptableAssets()` and `validateCatalogue()`.
+  `VisualFamily` entries containing 32 `VisualAsset` (production/base
+  asset) entries, each carrying one or more `CanonicalState` (canonical
+  learner-visible state) entries -- 87 states in total, 26 assets
+  currently promptable. The single source of truth every prompt is built
+  from. Exposes `FAMILIES`, `allAssets()`, `findAsset()`, `findFamily()`,
+  `familyForAsset()`, `isPromptable()`, `promptableAssets()`,
+  `visualNeedClassificationFor()` and `validateCatalogue()`. Also exports
+  `reconciledVariantId()`, which reproduces the real CC-05D
+  `stableVariantId` algorithm so every `CanonicalState.existingCanonicalVariantId`
+  is computed from real inputs, never hand-transcribed.
+- `audit.ts` -- the comprehensive catalogue's own completeness gate
+  (`npm run visuals:studio:audit`). Fails if any of the 66 pre-existing
+  CC-05D canonical variants is no longer reconciled by any state, a
+  REQUIRED premium/hybrid asset has no working prompt or no
+  reference/BLOCKED_REFERENCE status, a canonical state has no
+  pedagogical state, an ASSESSMENT state leaks a known answer-bearing
+  mnemonic dependency, or any id is duplicated.
+- `dashboard.ts` -- computes the Studio's 12 distinct dashboard counts
+  (families / production assets / canonical states / REQUIRED / USEFUL
+  tracked-but-uncatalogued / deterministic-only / premium-hybrid art jobs
+  / approved / outstanding / BLOCKED_REFERENCE / DEFERRED_SCOPE /
+  SUPERSEDED) mechanically from live catalogue + status data -- never a
+  single misleading total.
+- `generate-matrix.ts` -- generates the machine-readable comprehensive
+  visual-coverage matrix (`npm run visuals:studio:matrix`,
+  `reports/instructional-visuals/unit202-visual-coverage-matrix.json`).
 - `master-prompt.ts` -- the permanent "start a new art session" prompt
   (PROMPT 1, used once per session).
 - `prompt-builder.ts` -- deterministically builds each individual

@@ -109,19 +109,34 @@ function renderPromptAccounting() {
 // ---------------------------------------------------------------------
 
 function renderProgress() {
-  const buckets = { total: 0, "not-started": 0, "in-progress": 0, approved: 0, "needs-review": 0, blocked: 0 };
+  const buckets = { "not-started": 0, "in-progress": 0, approved: 0, "needs-review": 0, blocked: 0 };
   for (const asset of catalogue) {
-    buckets.total += 1;
     const status = studioState[asset.assetId]?.status;
     const bucket = STATUS_BUCKET[status] || "not-started";
     buckets[bucket] += 1;
   }
-  $("#stat-total").textContent = buckets.total;
   $("#stat-not-started").textContent = buckets["not-started"];
   $("#stat-in-progress").textContent = buckets["in-progress"];
   $("#stat-approved").textContent = buckets.approved;
   $("#stat-needs-review").textContent = buckets["needs-review"];
   $("#stat-blocked").textContent = buckets.blocked;
+}
+
+/** CC-11.7 §19: the comprehensive-catalogue dashboard -- distinct counts, never one misleading total. */
+async function renderDashboard() {
+  const d = await api("/api/dashboard");
+  $("#dash-families").textContent = d.visualFamilies;
+  $("#dash-assets").textContent = d.productionBaseAssets;
+  $("#dash-states").textContent = d.canonicalLearnerVisibleStates;
+  $("#dash-required").textContent = d.required;
+  $("#dash-useful").textContent = d.usefulTrackedNotCatalogued;
+  $("#dash-deterministic").textContent = d.deterministicOnly;
+  $("#dash-artjobs").textContent = d.premiumHybridArtJobs;
+  $("#dash-approved").textContent = d.approved;
+  $("#dash-outstanding").textContent = d.outstanding;
+  $("#dash-blocked").textContent = d.blockedReference;
+  $("#dash-deferred").textContent = d.deferredScope;
+  $("#dash-superseded").textContent = d.superseded;
 }
 
 // ---------------------------------------------------------------------
@@ -335,6 +350,7 @@ async function approveAndSave(card, asset, versioning) {
     updateCardStatus(card, asset);
     renderProgress();
     renderFamilyProgressBadges();
+    void renderDashboard();
     window.alert(`Saved: ${result.outputPath}`);
   } catch (error) {
     if (error.status === 409) {
@@ -488,6 +504,7 @@ async function main() {
   await loadAll();
   renderPromptAccounting();
   renderProgress();
+  void renderDashboard();
   renderFilters();
   renderFamilyList();
   await refreshNextAsset();

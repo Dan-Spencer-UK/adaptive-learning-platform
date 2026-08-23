@@ -30,6 +30,7 @@ import { loadState, setStatus, currentManifestEntry, STUDIO_STATUSES, type Studi
 import { approveStagedImage, type VersioningChoice } from "./approval.ts";
 import { pickNextAsset } from "./next-asset.ts";
 import { buildContactSheetHtml } from "./contact-sheet.ts";
+import { buildDashboard } from "./dashboard.ts";
 
 const PORT = Number(process.env.STUDIO_PORT ?? 4756);
 const HOST = "127.0.0.1"; // local only -- never bind 0.0.0.0
@@ -148,6 +149,11 @@ async function handleRequest(req: import("node:http").IncomingMessage, res: impo
 
   if (method === "GET" && pathname === "/api/state") {
     sendJson(res, 200, { state: loadState(), manifestCurrent: manifestSnapshot() });
+    return;
+  }
+
+  if (method === "GET" && pathname === "/api/dashboard") {
+    sendJson(res, 200, buildDashboard(loadState()));
     return;
   }
 

@@ -86,6 +86,29 @@ function backgroundInstruction(asset: VisualAsset): string | null {
   return `BACKGROUND: ${text}`;
 }
 
+/**
+ * CC-11.7 §7/§20: "A single base asset may support several canonical
+ * states... If one base asset supports multiple canonical states, the
+ * asset prompt must state all states it must safely support." Never a
+ * generic family-only prompt, and never a separate prompt per state --
+ * one prompt enumerates every state this specific base asset must work
+ * for, so the art session knows up front what the finished artwork will
+ * be asked to do (e.g. survive a deterministic mirror/rotation for an
+ * opposite-current variant, or remain legible with an overlay toggled).
+ */
+function canonicalStatesInstruction(asset: VisualAsset): string {
+  const lines = ["THIS BASE ASSET MUST SAFELY SUPPORT THE FOLLOWING CANONICAL LEARNER-VISIBLE STATE(S):"];
+  for (const state of asset.canonicalStates) {
+    lines.push(`  - [${state.pedagogicalState}] ${state.displayName}`);
+    if (state.requiredLabels.length > 0) lines.push(`      labels: ${state.requiredLabels.join(", ")}`);
+    if (state.notes) lines.push(`      note: ${state.notes}`);
+  }
+  if (asset.canonicalStates.length > 1) {
+    lines.push("The artwork itself does not need to change per state where the difference is purely a deterministic overlay/annotation toggle -- only produce distinct artwork where the states genuinely require different geometry.");
+  }
+  return lines.join("\n");
+}
+
 export function buildAssetPrompt(asset: VisualAsset, families?: VisualFamily[]): string {
   const family = familyForAsset(asset.assetId, families);
 
@@ -154,6 +177,8 @@ export function buildAssetPrompt(asset: VisualAsset, families?: VisualFamily[]):
   lines.push(bulletList(asset.immutableFacts));
   lines.push("");
   lines.push(annotationInstruction(asset));
+  lines.push("");
+  lines.push(canonicalStatesInstruction(asset));
   const background = backgroundInstruction(asset);
   if (background) {
     lines.push("");

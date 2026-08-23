@@ -140,6 +140,41 @@ describe("FAMILIES", () => {
   });
 });
 
+describe("CC-11.7 §7 hierarchy: VISUAL FAMILY -> PRODUCTION/BASE ASSET -> CANONICAL LEARNER-VISIBLE STATE", () => {
+  it("every asset belongs to exactly the family that contains it, and every state belongs to exactly the asset that contains it", () => {
+    for (const family of FAMILIES) {
+      for (const asset of family.assets) {
+        expect(asset.familyId).toBe(family.familyId);
+        expect(asset.canonicalStates.length).toBeGreaterThan(0);
+        for (const state of asset.canonicalStates) {
+          expect(state.stateId.startsWith(asset.assetId)).toBe(true);
+        }
+      }
+    }
+  });
+
+  it("a single base asset genuinely supports several canonical states without being collapsed into one (motor.effect: 8 states from one asset)", () => {
+    const asset = findAsset("unit202.motor.effect")!;
+    expect(asset.canonicalStates.length).toBe(8);
+    expect(new Set(asset.canonicalStates.map((s) => s.stateId)).size).toBe(8);
+  });
+
+  it("assessment states differ from teaching states in annotation policy on the same base asset (never the same labelling rule)", () => {
+    const asset = findAsset("unit202.current-conductor.magnetic-field")!;
+    const teaching = asset.canonicalStates.find((s) => s.pedagogicalState === "TEACHING")!;
+    const assessment = asset.canonicalStates.find((s) => s.pedagogicalState === "ASSESSMENT")!;
+    expect(teaching.annotationPolicy).toBe("TEACHING_EXPLANATORY");
+    expect(assessment.annotationPolicy).toBe("ASSESSMENT_NON_REVEALING");
+    expect(teaching.requiredLabels.length).toBeGreaterThan(0);
+    expect(assessment.requiredLabels).toEqual([]);
+  });
+
+  it("the total canonical-state count across the whole catalogue is at least the 66 pre-existing CC-05D variants (never fewer -- nothing lost)", () => {
+    const totalStates = allAssets().reduce((sum, asset) => sum + asset.canonicalStates.length, 0);
+    expect(totalStates).toBeGreaterThanOrEqual(66);
+  });
+});
+
 describe("prompt accounting -- a VisualFamily is an organisational grouping only, never a reduction in prompt granularity", () => {
   it("distinguishes family count, individual asset count, and promptable artwork asset count", () => {
     const familyCount = FAMILIES.length;
