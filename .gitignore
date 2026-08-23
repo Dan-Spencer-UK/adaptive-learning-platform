@@ -57,6 +57,13 @@ next-env.d.ts
 apps/web/AGENTS.md
 apps/web/CLAUDE.md
 
+# CC-11.5: ALP Visual Production Studio local WIP state (in-progress
+# status + staged pre-approval image bytes) -- ephemeral local tool
+# scratch, never governed content. The APPROVED artwork manifest lives
+# under reports/instructional-visuals/premium-artwork/ instead and IS
+# committed, matching this repo's existing governed-evidence convention.
+tools/visual-production-studio/data/
+
 # Misc
 *.tmp
 *.bak

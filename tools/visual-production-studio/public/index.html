@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>ALP Visual Production Studio</title>
+<link rel="stylesheet" href="/studio.css" />
+</head>
+<body>
+
+<header class="page-header">
+  <h1>ALP VISUAL PRODUCTION STUDIO</h1>
+  <p class="subtitle">Unit 202 — Principles of Electrical Science</p>
+</header>
+
+<section class="progress-summary" id="progress-summary" aria-label="Progress summary">
+  <div class="stat"><span class="stat-value" id="stat-total">0</span><span class="stat-label">TOTAL</span></div>
+  <div class="stat"><span class="stat-value" id="stat-not-started">0</span><span class="stat-label">NOT STARTED</span></div>
+  <div class="stat"><span class="stat-value" id="stat-in-progress">0</span><span class="stat-label">IN PROGRESS</span></div>
+  <div class="stat"><span class="stat-value" id="stat-approved">0</span><span class="stat-label">APPROVED</span></div>
+  <div class="stat"><span class="stat-value" id="stat-needs-review">0</span><span class="stat-label">NEEDS REVIEW</span></div>
+  <div class="stat"><span class="stat-value" id="stat-blocked">0</span><span class="stat-label">BLOCKED</span></div>
+</section>
+
+<section class="master-prompt" aria-label="Master art session prompt">
+  <div class="master-prompt-header">
+    <h2>ALP ART SESSION — MASTER START PROMPT</h2>
+    <div class="master-prompt-actions">
+      <button id="btn-copy-master" class="btn btn-primary">COPY MASTER PROMPT</button>
+      <button id="btn-open-chatgpt" class="btn">OPEN CHATGPT</button>
+      <span class="copied-flash" id="master-copied-flash">Copied</span>
+    </div>
+  </div>
+  <p class="hint">Paste this once at the start of a new ChatGPT art session, before the first per-asset prompt.</p>
+</section>
+
+<section class="next-asset" id="next-asset" aria-label="Next recommended asset">
+  <div class="next-asset-inner">
+    <div>
+      <span class="next-asset-label">NEXT RECOMMENDED ASSET</span>
+      <span class="next-asset-name" id="next-asset-name">—</span>
+    </div>
+    <div class="next-asset-actions">
+      <button id="btn-copy-next" class="btn btn-primary">COPY NEXT PROMPT <span class="kbd">N</span></button>
+      <span class="copied-flash" id="next-copied-flash">Copied</span>
+    </div>
+  </div>
+</section>
+
+<section class="toolbar" aria-label="Filters and tools">
+  <div class="filters" id="filters" role="group" aria-label="Filters"></div>
+  <button id="btn-contact-sheet" class="btn">EXPORT REVIEW CONTACT SHEET</button>
+</section>
+
+<main id="asset-grid" class="asset-grid" aria-label="Visual asset catalogue"></main>
+
+<template id="asset-card-template">
+  <article class="card">
+    <div class="card-head">
+      <span class="card-seq"></span>
+      <h3 class="card-name"></h3>
+      <span class="badge status-badge"></span>
+    </div>
+    <div class="card-meta">
+      <span class="chip asset-id"></span>
+      <span class="chip lo"></span>
+      <span class="chip priority"></span>
+      <span class="chip production-class"></span>
+      <span class="chip current-family"></span>
+    </div>
+    <p class="purpose"></p>
+
+    <div class="reference-block">
+      <div class="reference-preview">
+        <div class="reference-thumb-placeholder">REFERENCE</div>
+      </div>
+      <div class="reference-info">
+        <div class="reference-source"></div>
+        <a class="reference-link" target="_blank" rel="noopener">Open source page</a>
+        <div class="reference-licence"></div>
+        <div class="reference-grade"></div>
+      </div>
+    </div>
+
+    <details class="facts-details">
+      <summary>Immutable facts / creative freedoms / deterministic overlay / prohibited</summary>
+      <div class="facts-grid">
+        <div><h4>Immutable</h4><ul class="fact-immutable"></ul></div>
+        <div><h4>Creative freedom</h4><ul class="fact-creative"></ul></div>
+        <div><h4>Deterministic overlay</h4><ul class="fact-overlay"></ul></div>
+        <div><h4>Prohibited</h4><ul class="fact-prohibited"></ul></div>
+      </div>
+    </details>
+
+    <div class="output-info">
+      <span class="output-filename"></span>
+      <span class="output-path"></span>
+    </div>
+
+    <div class="paste-zone" tabindex="0">
+      <div class="paste-zone-empty">Click here, then paste (Ctrl+V) or drag &amp; drop the approved image</div>
+      <img class="paste-preview" alt="Pasted candidate preview" hidden />
+      <input type="file" accept="image/png,image/webp,image/jpeg" class="file-input" hidden />
+    </div>
+    <div class="paste-info"></div>
+
+    <textarea class="notes-box" placeholder="Notes / rejection reason (optional)"></textarea>
+
+    <div class="conflict-panel" hidden>
+      <p>Existing approved asset found.</p>
+      <div class="conflict-actions">
+        <button class="btn conflict-cancel">CANCEL</button>
+        <button class="btn conflict-new-version">SAVE AS NEW VERSION</button>
+        <button class="btn conflict-replace">REPLACE (CONFIRM)</button>
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <button class="btn btn-view-prompt">VIEW PROMPT</button>
+      <button class="btn btn-copy-prompt">COPY PROMPT</button>
+      <button class="btn btn-open-reference">OPEN REFERENCE</button>
+      <button class="btn btn-needs-review">MARK NEEDS REVIEW</button>
+      <button class="btn btn-primary btn-approve-save" disabled>APPROVE + SAVE</button>
+      <button class="btn btn-replace-image">REPLACE IMAGE</button>
+      <button class="btn btn-open-saved" disabled>OPEN SAVED FILE</button>
+      <span class="copied-flash card-copied-flash">Copied</span>
+    </div>
+
+    <pre class="prompt-view" hidden></pre>
+  </article>
+</template>
+
+<script src="/studio.js"></script>
+</body>
+</html>

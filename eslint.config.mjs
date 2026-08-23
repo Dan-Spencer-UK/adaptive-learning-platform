@@ -23,4 +23,18 @@ export default tseslint.config(
       },
     },
   },
+  {
+    // CC-11.5: the ALP Visual Production Studio's client-side page is
+    // plain, unbundled browser JavaScript served directly by
+    // tools/visual-production-studio/server.ts -- it runs in a browser,
+    // not Node, and is not part of any TypeScript project (no tsconfig
+    // includes it), so it needs its own globals rather than the
+    // repo-wide Node set above.
+    files: ["tools/visual-production-studio/public/**/*.js"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+    },
+  },
 );

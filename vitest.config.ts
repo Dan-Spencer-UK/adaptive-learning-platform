@@ -9,6 +9,7 @@ export default defineConfig({
       "packages/**/src/**/*.test.{ts,tsx}",
       "apps/**/*.test.{ts,tsx}",
       "scripts/**/*.test.{ts,tsx}",
+      "tools/**/*.test.{ts,tsx}",
     ],
     // apps/mobile uses Jest (jest-expo), not Vitest -- see
     // docs/architecture/MOBILE-ARCHITECTURE.md §8 tier distinction. Its
