@@ -17,13 +17,15 @@
  *    "Recap", never a factual claim) -- exactly what task brief §6
  *    explicitly allows.
  */
-import type { FormulaFamily, LessonPlan, LessonStep, QuestionBlueprint, VisualAidBlueprint, WorkedExampleBlueprint } from "@alp/content-schema";
+import type { DiagramBlueprint, FormulaFamily, LessonPlan, LessonStep, QuestionBlueprint, VisualAidBlueprint, WorkedExampleBlueprint } from "@alp/content-schema";
 
 export interface ContentLookup {
   readonly questionBlueprints: readonly QuestionBlueprint[];
   readonly formulaFamilies: readonly FormulaFamily[];
   readonly workedExampleBlueprints: readonly WorkedExampleBlueprint[];
   readonly visualAidBlueprints: readonly VisualAidBlueprint[];
+  /** CC-11: the missing link in the Lesson Player diagram runtime gap (task brief §7) -- without this, `step.representation.diagramBlueprintId` had nothing to resolve against. */
+  readonly diagramBlueprints: readonly DiagramBlueprint[];
   readonly assertionStatements: Readonly<Record<string, string>>;
   /** Governed learner-facing misconception descriptions -- the feedback panel's misconception copy resolves from here, never from app-side strings (CC-06D, Correction C). */
   readonly misconceptionDescriptions: Readonly<Record<string, string>>;
@@ -38,6 +40,8 @@ export interface RenderableLessonStep {
   readonly formulaFamily: FormulaFamily | null;
   readonly workedExample: WorkedExampleBlueprint | null;
   readonly visualAid: VisualAidBlueprint | null;
+  /** CC-11: the resolved governed diagram blueprint for this step's `representation.diagramBlueprintId`, if any -- see `@/components/diagrams/DiagramRenderer`. */
+  readonly diagram: DiagramBlueprint | null;
   readonly questionBlueprint: QuestionBlueprint | null;
   /** Governed learner-facing misconception descriptions available to this step's feedback (CC-06D, Correction C). */
   readonly misconceptionDescriptions: Readonly<Record<string, string>>;
@@ -85,6 +89,7 @@ export function resolveLessonStep(lesson: LessonPlan, stepId: string, lookup: Co
     formulaFamily: find(lookup.formulaFamilies, step.representation.formulaFamilyId),
     workedExample: find(lookup.workedExampleBlueprints, step.representation.workedExampleBlueprintId),
     visualAid: find(lookup.visualAidBlueprints, step.representation.visualAidBlueprintId),
+    diagram: find(lookup.diagramBlueprints, step.representation.diagramBlueprintId),
     questionBlueprint: find(lookup.questionBlueprints, step.questionBlueprintId),
     misconceptionDescriptions: lookup.misconceptionDescriptions,
   };

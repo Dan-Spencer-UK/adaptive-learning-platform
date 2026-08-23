@@ -150,21 +150,20 @@ const assertionFamilies: AssertionFamily[] = [
     learningIntent:
       "Understand force, work, energy and power as general mechanical concepts before their electrical specialisation.",
     teachFamilyTogether: true,
-    // CC-09G (task section 4C): cap.foundational.mechanics.calculate
-    // (added CC-09B.1 for FP-CALC-WORK-001/FP-CALC-KINETIC-ENERGY-001/
-    // FP-CALC-POTENTIAL-ENERGY-001/FP-CALC-POWER-001/FP-CALC-EFFICIENCY-
-    // 001) was never added to completeness -- AC3.4 explicitly requires
-    // "calculate values of mechanical energy, power and efficiency"
-    // (5 EXPLICIT knowledge obligations, unit202-knowledge-obligations.ts
-    // acNumber "3.4"), so this capability represents required, not merely
-    // supporting, knowledge. Horizontal Foundational Physics ownership
-    // (this family remains teaching_only within the Electrical proving
-    // slice) does not make curriculum-required knowledge optional to Unit
-    // 202 mastery.
     completeness: { requiredCapabilityIds: ["cap.foundational.mechanics.recognise", "cap.foundational.mechanics.calculate"] },
-    assessmentRequirement: "teaching_only",
-    teachingOnlyReason:
-      "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3, general mechanics). The electrical specialisations of these concepts (electrical power, electrical energy, electrical efficiency) are directly assessed by the electrical.power_relationships and electrical.energy_and_efficiency families; the general-mechanics form is prerequisite/contextual only within this Electrical proving slice.",
+    // CC-11 (Workstream A): reclassified from teaching_only to assessable.
+    // Unit 202 AC3.3/AC3.4 genuinely require assessable coverage per the
+    // task brief's teach -> practice -> calculate -> evidence -> mastery
+    // requirement -- "reusable horizontal Foundational Physics knowledge"
+    // does not make curriculum-required Unit 202 knowledge optional to
+    // assess (the same principle CC-09G's completeness fix above already
+    // established for this family's own required-capability set). Before
+    // this reclassification, AC3.3/AC3.4 showed as covered only via a
+    // FALSE-GREEN artefact (a shared capability touched by an unrelated
+    // electrical.energy_and_efficiency lesson) -- see
+    // lesson-mechanics-force-work-energy-power.ts, this family's first
+    // real lesson.
+    assessmentRequirement: "assessable",
   },
   {
     id: "foundational.mass_weight",
@@ -172,18 +171,17 @@ const assertionFamilies: AssertionFamily[] = [
     learningIntent: "Understand mass, weight and their relationship (W = mg).",
     teachFamilyTogether: true,
     completeness: { requiredCapabilityIds: ["cap.foundational.mass_weight.recognise"] },
-    assessmentRequirement: "teaching_only",
-    // CC-09I (task section 1/3): the old "does not currently reach an
-    // Electrical assertion via PREREQUISITE_OF" framing conflated the
-    // Electrical-proving-slice PREREQUISITE_OF boundary (a scoping device
-    // for CC-05B's engine-proving slice) with Unit 202 qualification
-    // mastery -- the two are not the same thing, and the corrected
-    // reason no longer implies they are. This family's own governed
-    // mastery representation (completeness above) is unaffected by that
-    // proving-slice boundary; only question-blueprint authoring is
-    // deferred.
-    teachingOnlyReason:
-      "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3 AC3.1). No question blueprint authored in this knowledge-corpus package; lesson/assessment authoring is a later package.",
+    // CC-11 (Workstream A): reclassified from teaching_only to assessable.
+    // Unit 202 AC3.1 genuinely requires assessable coverage per the task
+    // brief's teach -> practice -> calculate -> evidence -> mastery
+    // requirement -- "reusable horizontal Foundational Physics knowledge"
+    // does not make curriculum-required Unit 202 knowledge optional to
+    // assess. Before this reclassification AC3.1 had zero lesson/
+    // question-blueprint coverage at all (not even a false-green
+    // artefact) -- see lesson-mass-and-weight.ts, this family's first
+    // real lesson, and mass_weight.recognise_relationship, its first
+    // question blueprint.
+    assessmentRequirement: "assessable",
   },
 
   // --- Electrical: units and core quantities ----------------------------
@@ -562,11 +560,29 @@ const assertionFamilies: AssertionFamily[] = [
     // without ever having been assessed. Added the two capabilities this
     // family's own broadening (CC-09B.1, comment above) already implied
     // but never mechanically completed.
+    // CC-11 (Workstream A): added cap.foundational.levers.calculate --
+    // AC3.2's own governed lever-calculation obligation
+    // (FP-REL-LEVER-BALANCE-001, unit202-knowledge-obligations.ts
+    // acNumber "3.2", basis OFFICIAL_TEACHING_INTERPRETATION) had no
+    // capability of its own, the same gap CC-09G's comment above already
+    // fixed for gears/pulleys recognition.
     completeness: {
-      requiredCapabilityIds: ["cap.foundational.levers.recognise", "cap.foundational.gears.recognise", "cap.foundational.pulleys.recognise"],
+      requiredCapabilityIds: [
+        "cap.foundational.levers.recognise",
+        "cap.foundational.gears.recognise",
+        "cap.foundational.pulleys.recognise",
+        "cap.foundational.levers.calculate",
+      ],
     },
-    assessmentRequirement: "teaching_only",
-    teachingOnlyReason: "Reusable horizontal Foundational Physics knowledge (Unit 202 LO3 AC3.2). No question blueprint authored in this knowledge-corpus package (CC-09B/CC-09B.1); lesson/assessment authoring is a later package.",
+    // CC-11 (Workstream A): reclassified from teaching_only to assessable.
+    // Unit 202 AC3.2 genuinely requires assessable coverage per the task
+    // brief's teach -> practice -> calculate -> evidence -> mastery
+    // requirement -- "reusable horizontal Foundational Physics knowledge"
+    // does not make curriculum-required Unit 202 knowledge optional to
+    // assess. Before this reclassification AC3.2 had zero lesson/
+    // question-blueprint coverage at all -- see lesson-simple-machines.ts,
+    // this family's first real lesson.
+    assessmentRequirement: "assessable",
   },
   {
     id: "foundational.si_quantities_general",
@@ -596,8 +612,17 @@ const assertionFamilies: AssertionFamily[] = [
         "cap.electronic_components.identify_application",
       ],
     },
-    assessmentRequirement: "teaching_only",
-    teachingOnlyReason: "LO6 (previously entirely absent) is a knowledge-corpus package (CC-09B) only -- no question blueprint or lesson authored yet; both are later packages once this governed knowledge exists to author against.",
+    // CC-11 (Workstream C): the "later package" this comment referred to.
+    // Real governed knowledge has existed since CC-09B; this package adds
+    // the first pedagogy-layer authoring against it -- 6 question
+    // blueprints (electronics.recognise_capacitor_behaviour,
+    // electronics.recognise_thermistor_type, electronics.recognise_rectifier_type,
+    // electronics.recognise_diode_family, electronics.recognise_switching_family,
+    // electronics.identify_application) and 2 lessons
+    // (lesson.electrical.electronic-components-passive,
+    // lesson.electrical.electronic-components-switching-control). No
+    // longer teaching-only.
+    assessmentRequirement: "assessable",
   },
 ];
 
@@ -1610,6 +1635,9 @@ const capabilities: Capability[] = [
   // regression pinning this.
   cap("cap.foundational.gears.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a gear provides mechanical advantage (ratio of driven/driving radii or tooth counts)."),
   cap("cap.foundational.pulleys.recognise", "foundational.levers_mechanical_advantage", "recognise", "Recognise how a pulley system provides mechanical advantage (number of supporting rope/cable sections), distinguishing fixed from movable/combination pulleys."),
+  // CC-11 (Workstream A): AC3.2's own governed lever-calculation
+  // obligation (FP-REL-LEVER-BALANCE-001) had no capability of its own.
+  cap("cap.foundational.levers.calculate", "foundational.levers_mechanical_advantage", "calculate", "Calculate the effort or load in a balanced lever using the moment-balance relationship (effort x effort-arm = load x load-arm)."),
   cap("cap.foundational.si_quantities_general.identify_unit", "foundational.si_quantities_general", "identify", "Identify the correct SI unit for a general (non-electrical) physical quantity."),
 
   // --- CC-09B: electrical.electronic_components (teaching-only) --------
@@ -2171,6 +2199,152 @@ const formulaFamilies: FormulaFamily[] = [
     ],
     requiredTargets: ["rms", "peak", "f", "T"],
   },
+  // ===================================================================
+  // CC-11 (Workstream A): Unit 202 LO3 (AC3.2/AC3.3/AC3.4) formula
+  // families reclassified from teaching-only to assessable.
+  // ===================================================================
+  {
+    // Unit 202 LO3 AC3.2's governed lever-calculation obligation
+    // (FP-REL-LEVER-BALANCE-001, unit202-knowledge-obligations.ts
+    // acNumber "3.2", basis OFFICIAL_TEACHING_INTERPRETATION) -- moment
+    // balance: effort x effort-arm = load x load-arm.
+    id: "formula.lever_balance",
+    assertionFamilyId: "foundational.levers_mechanical_advantage",
+    canonicalTarget: "Fe",
+    variables: [
+      { symbol: "Fe", name: "effort force", quantity: "force", unitName: "newton", unitSymbol: "N" },
+      { symbol: "de", name: "effort-to-pivot distance", quantity: "length", unitName: "metre", unitSymbol: "m" },
+      { symbol: "Fl", name: "load force", quantity: "force", unitName: "newton", unitSymbol: "N" },
+      { symbol: "dl", name: "load-to-pivot distance", quantity: "length", unitName: "metre", unitSymbol: "m" },
+    ],
+    forms: [
+      {
+        target: "Fe",
+        expression: { operation: "divide", numerator: { operation: "multiply", operands: ["Fl", "dl"] }, denominator: "de" },
+        instruction: "To find the effort force, multiply the load by its distance from the pivot, then divide by the effort's distance from the pivot.",
+        requiresWorkedExample: true,
+      },
+      {
+        target: "Fl",
+        expression: { operation: "divide", numerator: { operation: "multiply", operands: ["Fe", "de"] }, denominator: "dl" },
+        instruction: "To find the load, multiply the effort by its distance from the pivot, then divide by the load's distance from the pivot.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["Fe", "Fl"],
+  },
+  {
+    // General-mechanics work, FP-REL-WORK-FORCE-DISTANCE-001 (AC3.3) /
+    // FP-CALC-WORK-001 (AC3.4).
+    id: "formula.mechanics_work",
+    assertionFamilyId: "foundational.mechanics_work_energy_power",
+    canonicalTarget: "W",
+    variables: [
+      { symbol: "W", name: "work done", quantity: "work", unitName: "joule", unitSymbol: "J" },
+      { symbol: "F", name: "force", quantity: "force", unitName: "newton", unitSymbol: "N" },
+      { symbol: "d", name: "distance moved", quantity: "length", unitName: "metre", unitSymbol: "m" },
+    ],
+    forms: [
+      {
+        target: "W",
+        expression: { operation: "multiply", operands: ["F", "d"] },
+        instruction: "To find work done, multiply the force by the distance moved in the direction of that force.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["W"],
+  },
+  {
+    // FP-REL-KINETIC-ENERGY-001 (AC3.3) / FP-CALC-KINETIC-ENERGY-001
+    // (AC3.4). KE = 1/2 x m x v^2 -- "0.5" is a numeric-constant leaf, not
+    // a physical-quantity variable, the same treatment
+    // formula.ac_waveform_relationships already gives sqrt(2).
+    id: "formula.mechanics_kinetic_energy",
+    assertionFamilyId: "foundational.mechanics_work_energy_power",
+    canonicalTarget: "KE",
+    variables: [
+      { symbol: "KE", name: "kinetic energy", quantity: "energy", unitName: "joule", unitSymbol: "J" },
+      { symbol: "m", name: "mass", quantity: "mass", unitName: "kilogram", unitSymbol: "kg" },
+      { symbol: "v", name: "speed", quantity: "speed", unitName: "metre per second", unitSymbol: "m/s" },
+    ],
+    forms: [
+      {
+        target: "KE",
+        expression: { operation: "multiply", operands: [0.5, "m", { operation: "square", operand: "v" }] },
+        instruction: "To find kinetic energy, multiply one half by the mass, by the speed squared: KE = 1/2 x m x v^2.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["KE"],
+  },
+  {
+    // FP-REL-POTENTIAL-ENERGY-001 (AC3.3) / FP-CALC-POTENTIAL-ENERGY-001
+    // (AC3.4). GPE = m x g x h; gravitational field strength
+    // (g = 9.81 N/kg) is a numeric-constant leaf, exactly as the
+    // AC-waveform family already treats sqrt(2) -- never a physical-
+    // quantity variable requiring its own learner-supplied binding.
+    id: "formula.mechanics_potential_energy",
+    assertionFamilyId: "foundational.mechanics_work_energy_power",
+    canonicalTarget: "PE",
+    variables: [
+      { symbol: "PE", name: "gravitational potential energy", quantity: "energy", unitName: "joule", unitSymbol: "J" },
+      { symbol: "m", name: "mass", quantity: "mass", unitName: "kilogram", unitSymbol: "kg" },
+      { symbol: "h", name: "height", quantity: "length", unitName: "metre", unitSymbol: "m" },
+    ],
+    forms: [
+      {
+        target: "PE",
+        expression: { operation: "multiply", operands: ["m", 9.81, "h"] },
+        instruction: "To find gravitational potential energy, multiply the mass by the gravitational field strength (9.81 N/kg) by the height.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["PE"],
+  },
+  {
+    // FP-REL-POWER-WORK-TIME-001 (AC3.3) / FP-CALC-POWER-001 (AC3.4).
+    // P = W / t, the general-mechanics form electrical.power_
+    // relationships' P = V x I later specialises.
+    id: "formula.mechanics_power",
+    assertionFamilyId: "foundational.mechanics_work_energy_power",
+    canonicalTarget: "P",
+    variables: [
+      { symbol: "P", name: "power", quantity: "power", unitName: "watt", unitSymbol: "W" },
+      { symbol: "W", name: "work done (or energy transferred)", quantity: "work_or_energy", unitName: "joule", unitSymbol: "J" },
+      { symbol: "t", name: "time taken", quantity: "time", unitName: "second", unitSymbol: "s" },
+    ],
+    forms: [
+      {
+        target: "P",
+        expression: { operation: "divide", numerator: "W", denominator: "t" },
+        instruction: "To find power, divide the work done (or energy transferred) by the time taken.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["P"],
+  },
+  {
+    // FP-CONCEPT-EFFICIENCY-001 (AC3.3) / FP-CALC-EFFICIENCY-001 (AC3.4)
+    // -- the general-mechanics form electrical.energy_and_efficiency's
+    // own formula.electrical_efficiency later specialises.
+    id: "formula.mechanics_efficiency",
+    assertionFamilyId: "foundational.mechanics_work_energy_power",
+    canonicalTarget: "eta",
+    variables: [
+      { symbol: "eta", name: "efficiency", quantity: "efficiency", unitName: "percent", unitSymbol: "%" },
+      { symbol: "Eout", name: "useful output", quantity: "energy_or_power", unitName: "joule or watt", unitSymbol: "J/W" },
+      { symbol: "Ein", name: "total input", quantity: "energy_or_power", unitName: "joule or watt", unitSymbol: "J/W" },
+    ],
+    forms: [
+      {
+        target: "eta",
+        expression: { operation: "ratio_percentage", numerator: "Eout", denominator: "Ein" },
+        instruction: "To find efficiency, divide the useful output by the total input and express as a percentage.",
+        requiresWorkedExample: true,
+      },
+    ],
+    requiredTargets: ["eta"],
+  },
 ];
 
 const workedExampleBlueprints: WorkedExampleBlueprint[] = [
@@ -2293,6 +2467,57 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "f",
     knownVariables: ["T"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+  },
+  // ===================================================================
+  // CC-11 (Workstream A): Unit 202 LO3 worked examples.
+  // ===================================================================
+  {
+    id: "worked.lever_balance.calculate_effort",
+    formulaFamilyId: "formula.lever_balance",
+    target: "Fe",
+    knownVariables: ["Fl", "dl", "de"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { Fl: 100, dl: 2, de: 1 },
+  },
+  {
+    id: "worked.mechanics_work.calculate",
+    formulaFamilyId: "formula.mechanics_work",
+    target: "W",
+    knownVariables: ["F", "d"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { F: 20, d: 5 },
+  },
+  {
+    id: "worked.mechanics_kinetic_energy.calculate",
+    formulaFamilyId: "formula.mechanics_kinetic_energy",
+    target: "KE",
+    knownVariables: ["m", "v"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { m: 4, v: 5 },
+  },
+  {
+    id: "worked.mechanics_potential_energy.calculate",
+    formulaFamilyId: "formula.mechanics_potential_energy",
+    target: "PE",
+    knownVariables: ["m", "h"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { m: 4, h: 3 },
+  },
+  {
+    id: "worked.mechanics_power.calculate",
+    formulaFamilyId: "formula.mechanics_power",
+    target: "P",
+    knownVariables: ["W", "t"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { W: 200, t: 10 },
+  },
+  {
+    id: "worked.mechanics_efficiency.calculate",
+    formulaFamilyId: "formula.mechanics_efficiency",
+    target: "eta",
+    knownVariables: ["Eout", "Ein"],
+    steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { Eout: 80, Ein: 100 },
   },
 ];
 
@@ -3401,6 +3626,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["flux", "flux_density"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-MAGNETIC-FLUX-001", "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", "EL-CONCEPT-ELECTROMAGNETISM-001"],
+    presentation: { promptLines: ["Which quantity is described as: {definition_clue}?"] },
   }),
   qb({
     id: "magnetism.interpret_field_direction",
@@ -3412,6 +3638,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: { type: "direction_match" },
     assertionIdentifiers: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"],
     representation: { diagram: { required: true, blueprintId: "magnetic.field_conductor_direction" } },
+    presentation: { promptLines: ["A straight conductor carries current as shown. In which direction does the magnetic field circulate around it?"] },
   }),
   qb({
     id: "magnetism.interpret_force_direction",
@@ -3424,6 +3651,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001", "EL-CONCEPT-MOTOR-PRINCIPLE-001"],
     representation: { diagram: { required: true, blueprintId: "motor.force_field_current" } },
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "suggestive" }],
+    presentation: { promptLines: ["A current-carrying conductor sits in the magnetic field shown. In which direction does the force act on it?"] },
   }),
   qb({
     id: "magnetism.compare_permanent_electromagnet",
@@ -3434,6 +3662,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["permanent_magnet", "electromagnet"] },
     marking: exact(),
     assertionIdentifiers: ["EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"],
+    presentation: { promptLines: ["Which type of magnet is being described: it {scenario_clue}?"] },
   }),
   qb({
     id: "magnetism.compare_motor_generator",
@@ -3445,6 +3674,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-MOTOR-GENERATOR-COMPARE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "suggestive" }],
+    presentation: { promptLines: ["Which principle is being described: it {principle_clue}?"] },
   }),
   qb({
     // CC-09E.1 (Project Architect correction): restricted to magnetic
@@ -3480,6 +3710,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       sourceItemRef: "2365-602-sample-v1:item-31",
       note: "Sample item 31 (identify the SI unit of magnetic flux density among weber/henry/farad distractors) demonstrates this exact operation/representation for this same knowledge target -- the finding that originally justified authoring EL-UNIT-TESLA-001 (CC-09D).",
     },
+    presentation: { promptLines: ["What is the SI unit of magnetic flux density?"] },
   }),
   qb({
     // CC-09E.1: the companion transfer -- magnetic FLUX's own unit
@@ -3500,6 +3731,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       transferredFromBlueprintId: "magnetism.identify_flux_density_unit",
       note: "Transfers the 'identify SI unit among plausible related-unit distractors' grammar sample item 31 demonstrated for magnetic flux DENSITY to magnetic flux itself -- a closely related but distinct, already-governed Unit 202 quantity (EL-UNIT-WEBER-001, AC5.2) the sample never directly tested unit recognition for.",
     },
+    presentation: { promptLines: ["What is the SI unit of magnetic flux?"] },
   }),
 
   // ===================================================================
@@ -3515,6 +3747,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" }],
+    presentation: { promptLines: ["A source's potential difference is measured {reading_context}.", "Is this its EMF or its terminal voltage?"] },
   }),
   qb({
     id: "emf.describe_ac_generation",
@@ -3526,6 +3759,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-AC-GENERATOR-001", "EL-CONCEPT-SINE-WAVE-001"],
     representation: { diagram: { required: false, blueprintId: "motor.force_field_current" } },
+    presentation: { promptLines: ["A single loop of wire is rotated at a constant speed inside a uniform magnetic field.", "What shape is the resulting EMF waveform?"] },
   }),
   qb({
     id: "emf.calculate_flux_change",
@@ -3553,6 +3787,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       sourceItemRef: "2365-602-sample-v1:item-35",
       note: "Sample item 35 (calculate flux change from a given induced EMF and time interval) demonstrates this exact operation/formula for this same knowledge target -- the finding that originally justified authoring EL-REL-FLUX-CHANGE-EMF-001 (CC-09D).",
     },
+    presentation: { promptLines: ["{given_summary}", "Find {target_variable}."] },
   }),
 
   // ===================================================================
@@ -3568,6 +3803,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-AC-DC-DISTINCTION-001", "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-AC-DC-CONFUSION-001", evidenceStrength: "suggestive" }],
+    presentation: { promptLines: ["Which type of supply is being described: {supply_clue}?"] },
   }),
   qb({
     id: "waveform.identify_characteristic",
@@ -3595,6 +3831,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       sourceItemRef: "2365-602-sample-v1:item-36",
       note: "Sample item 36 (identify periodic time from a labelled waveform diagram) demonstrates this exact operation/representation for this same knowledge target.",
     },
+    presentation: { promptLines: ["Which characteristic of this waveform is highlighted by the marked reference line(s) on the graph?"] },
   }),
   qb({
     id: "waveform.calculate_rms_from_peak",
@@ -3610,6 +3847,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       diagram: { required: false, blueprintId: "graph.waveform_sine" },
     },
     variantDimensions: { target_variable: { allowed: ["rms", "peak"] } },
+    presentation: { promptLines: ["{given_summary}", "Find the {target_variable} value."] },
   }),
   qb({
     id: "waveform.calculate_frequency_from_period",
@@ -3622,6 +3860,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-WAVEFORM-FREQUENCY-CALC-001", "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.ac_waveform_relationships" } },
     variantDimensions: { target_variable: { allowed: ["f", "T"] } },
+    presentation: { promptLines: ["{given_summary}", "Find {target_variable}."] },
   }),
   qb({
     id: "waveform.interpret_rated_value",
@@ -3633,6 +3872,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-PEAK-RMS-CONFUSION-001", evidenceStrength: "direct" }],
+    presentation: { promptLines: ["A supply is rated at a stated voltage (for example, '230 V').", "Does this rated value refer to the RMS value or the peak value?"] },
   }),
   qb({
     id: "waveform.compare_ac_dc_behaviour",
@@ -3643,6 +3883,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["same_both", "differs_by_frequency"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"],
+    presentation: { promptLines: ["How does a {component} behave under an AC supply compared with a DC supply?"] },
   }),
 
   // ===================================================================
@@ -3759,6 +4000,258 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["FM-ALG-TRANSPOSE-ADD-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.algebraic_rearrangement_additive" } },
     presentation: { promptLines: ["a = {a}", "c = {c}", "Given a = b + c, find b."] },
+  }),
+
+  // ===================================================================
+  // CC-11 (Workstream A): Unit 202 LO3 (AC3.1-AC3.4).
+  // foundational.mass_weight (1)
+  // ===================================================================
+  qb({
+    id: "mass_weight.recognise_relationship",
+    familyId: "foundational.mass_weight",
+    capabilityId: "cap.foundational.mass_weight.recognise",
+    title: "Recognise mass or weight from its definition, and their relationship (W = mg)",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["mass", "weight"] },
+    marking: exact(),
+    assertionIdentifiers: ["FP-CONCEPT-MASS-001", "FP-CONCEPT-WEIGHT-001", "FP-REL-WEIGHT-MASS-001"],
+    presentation: { promptLines: ["Which quantity is described as: {concept_clue}?"] },
+  }),
+
+  // ===================================================================
+  // foundational.levers_mechanical_advantage (4)
+  // ===================================================================
+  qb({
+    id: "levers.identify_class",
+    familyId: "foundational.levers_mechanical_advantage",
+    capabilityId: "cap.foundational.levers.recognise",
+    title: "Identify a lever's class from the arrangement of pivot, effort and load",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["class_I", "class_II", "class_III"] },
+    marking: exact(),
+    assertionIdentifiers: ["FP-CONCEPT-LEVER-PRINCIPLE-001", "FP-LEVER-CLASS-I-001", "FP-LEVER-CLASS-II-001", "FP-LEVER-CLASS-III-001"],
+    presentation: { promptLines: ["A lever is arranged so that {arrangement_clue}.", "Which class of lever is this?"] },
+  }),
+  qb({
+    id: "gears.recognise_ratio_tradeoff",
+    familyId: "foundational.levers_mechanical_advantage",
+    capabilityId: "cap.foundational.gears.recognise",
+    title: "Recognise the torque/speed trade-off a gear ratio produces",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["torque_increases", "speed_increases"] },
+    marking: exact(),
+    assertionIdentifiers: ["FP-CONCEPT-GEAR-001", "FP-REL-GEAR-RATIO-001", "FP-GEAR-SPEED-TORQUE-TRADEOFF-001"],
+    presentation: {
+      promptLines: [
+        "{scenario_clue}",
+        "Compared with the driving gear, does the driven gear's output torque increase, or does its output speed increase?",
+      ],
+    },
+  }),
+  qb({
+    id: "pulleys.recognise_force_distance_tradeoff",
+    familyId: "foundational.levers_mechanical_advantage",
+    capabilityId: "cap.foundational.pulleys.recognise",
+    title: "Recognise the effort force/distance trade-off a pulley system's mechanical advantage produces",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["effort_force_decreases", "effort_force_increases"] },
+    marking: exact(),
+    assertionIdentifiers: [
+      "FP-CONCEPT-PULLEY-001",
+      "FP-PULLEY-FIXED-VS-MOVABLE-001",
+      "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001",
+      "FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001",
+    ],
+    presentation: {
+      promptLines: ["{scenario_clue}", "Compared with a single fixed pulley, does the effort force needed to lift the load decrease, or increase?"],
+    },
+  }),
+  qb({
+    id: "levers.calculate_effort_or_load",
+    familyId: "foundational.levers_mechanical_advantage",
+    capabilityId: "cap.foundational.levers.calculate",
+    title: "Calculate the effort or load in a balanced lever using the moment-balance relationship",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("force", "newton"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["FP-REL-LEVER-BALANCE-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.lever_balance" } },
+    variantDimensions: { target_variable: { allowed: ["Fe", "Fl"] } },
+    presentation: { promptLines: ["{given_summary}", "Find {target_variable}."] },
+  }),
+
+  // ===================================================================
+  // foundational.mechanics_work_energy_power (6)
+  // ===================================================================
+  qb({
+    id: "mechanics.recognise_concept",
+    familyId: "foundational.mechanics_work_energy_power",
+    capabilityId: "cap.foundational.mechanics.recognise",
+    title: "Recognise force, work, energy, power or efficiency from its definition",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["force", "work", "energy", "power", "efficiency"] },
+    marking: exact(),
+    assertionIdentifiers: ["FP-CONCEPT-FORCE-001", "FP-CONCEPT-WORK-001", "FP-CONCEPT-ENERGY-001", "FP-CONCEPT-POWER-001", "FP-CONCEPT-EFFICIENCY-001"],
+    presentation: { promptLines: ["Which mechanical quantity is described as: {concept_clue}?"] },
+  }),
+  qb({
+    id: "mechanics.calculate_work",
+    familyId: "foundational.mechanics_work_energy_power",
+    capabilityId: "cap.foundational.mechanics.calculate",
+    title: "Calculate work done from force and distance",
+    difficultyBand: "introductory",
+    answer: quantityAnswer("work", "joule"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["FP-REL-WORK-FORCE-DISTANCE-001", "FP-CALC-WORK-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.mechanics_work" } },
+    presentation: { promptLines: ["F = {F} N", "d = {d} m"] },
+  }),
+  qb({
+    id: "mechanics.calculate_kinetic_energy",
+    familyId: "foundational.mechanics_work_energy_power",
+    capabilityId: "cap.foundational.mechanics.calculate",
+    title: "Calculate kinetic energy from mass and speed",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("energy", "joule"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["FP-REL-KINETIC-ENERGY-001", "FP-CALC-KINETIC-ENERGY-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.mechanics_kinetic_energy" } },
+    presentation: { promptLines: ["m = {m} kg", "v = {v} m/s"] },
+  }),
+  qb({
+    id: "mechanics.calculate_potential_energy",
+    familyId: "foundational.mechanics_work_energy_power",
+    capabilityId: "cap.foundational.mechanics.calculate",
+    title: "Calculate gravitational potential energy from mass and height",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("energy", "joule"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["FP-REL-POTENTIAL-ENERGY-001", "FP-CALC-POTENTIAL-ENERGY-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.mechanics_potential_energy" } },
+    presentation: { promptLines: ["m = {m} kg", "h = {h} m", "(use g = 9.81 N/kg)"] },
+  }),
+  qb({
+    id: "mechanics.calculate_power",
+    familyId: "foundational.mechanics_work_energy_power",
+    capabilityId: "cap.foundational.mechanics.calculate",
+    title: "Calculate power from work done (or energy transferred) and time taken",
+    difficultyBand: "intermediate",
+    answer: quantityAnswer("power", "watt"),
+    marking: tolerance(2),
+    assertionIdentifiers: ["FP-REL-POWER-WORK-TIME-001", "FP-CALC-POWER-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.mechanics_power" } },
+    presentation: { promptLines: ["W = {W} J", "t = {t} s"] },
+  }),
+  qb({
+    id: "mechanics.calculate_efficiency",
+    familyId: "foundational.mechanics_work_energy_power",
+    capabilityId: "cap.foundational.mechanics.calculate",
+    title: "Calculate efficiency as a percentage from useful output and total input",
+    difficultyBand: "advanced",
+    answer: { type: "quantity", quantity: "efficiency", canonicalUnit: "percent" },
+    marking: tolerance(1),
+    assertionIdentifiers: ["FP-CONCEPT-EFFICIENCY-001", "FP-CALC-EFFICIENCY-001"],
+    representation: { formula: { required: true, formulaFamilyId: "formula.mechanics_efficiency" } },
+    presentation: { promptLines: ["Useful output: {Eout} J", "Total input: {Ein} J"] },
+  }),
+
+  // ===================================================================
+  // CC-11 (Workstream C): Unit 202 LO6 (AC6.1/AC6.2).
+  // electrical.electronic_components (6)
+  // ===================================================================
+  qb({
+    id: "electronics.recognise_capacitor_behaviour",
+    familyId: "electrical.electronic_components",
+    capabilityId: "cap.electronic_components.recognise_principle",
+    title: "Recognise a capacitor's charge/discharge transient behaviour",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["gradual_exponential_change", "instant_step_change"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-COMPONENT-CAPACITOR-TRANSIENT-001"],
+    presentation: {
+      promptLines: ["A capacitor is {scenario} through a resistor in a circuit.", "How does the voltage across the capacitor change over time?"],
+      answerOptionLabels: {
+        gradual_exponential_change: "Gradually, following an exponential curve (governed by the time constant tau = R x C)",
+        instant_step_change: "Instantly, as a sudden step change",
+      },
+    },
+  }),
+  qb({
+    id: "electronics.recognise_thermistor_type",
+    familyId: "electrical.electronic_components",
+    capabilityId: "cap.electronic_components.recognise_principle",
+    title: "Distinguish an NTC thermistor from a PTC thermistor",
+    difficultyBand: "introductory",
+    answer: { type: "multiple_choice", options: ["ntc_thermistor", "ptc_thermistor"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-COMPONENT-THERMISTOR-001", "EL-COMPONENT-THERMISTOR-PTC-001"],
+    presentation: {
+      promptLines: ["A thermistor is described as follows: {thermistor_type_clue}.", "Which type of thermistor is this?"],
+      answerOptionLabels: { ntc_thermistor: "NTC (negative-temperature-coefficient) thermistor", ptc_thermistor: "PTC (positive-temperature-coefficient) thermistor" },
+    },
+  }),
+  qb({
+    id: "electronics.recognise_rectifier_type",
+    familyId: "electrical.electronic_components",
+    capabilityId: "cap.electronic_components.recognise_principle",
+    title: "Distinguish half-wave rectification, full-wave rectification and the inverter",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["half_wave_rectifier", "full_wave_rectifier", "inverter"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-COMPONENT-RECTIFIER-001", "EL-COMPONENT-RECTIFIER-HALF-WAVE-001", "EL-COMPONENT-RECTIFIER-FULL-WAVE-001", "EL-COMPONENT-INVERTER-001"],
+    presentation: {
+      promptLines: ["A circuit {rectifier_type_clue}.", "Which of these does this describe?"],
+      answerOptionLabels: { half_wave_rectifier: "Half-wave rectifier", full_wave_rectifier: "Full-wave bridge rectifier", inverter: "Inverter" },
+    },
+  }),
+  qb({
+    id: "electronics.recognise_diode_family",
+    familyId: "electrical.electronic_components",
+    capabilityId: "cap.electronic_components.recognise_principle",
+    title: "Recognise a member of the diode family from its behaviour",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["diode", "zener_diode", "led", "photodiode"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-COMPONENT-DIODE-001", "EL-COMPONENT-ZENER-DIODE-001", "EL-COMPONENT-LED-001", "EL-COMPONENT-PHOTODIODE-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-DIODE-DIRECTION-CONFUSION-001", evidenceStrength: "suggestive" }],
+    presentation: {
+      promptLines: ["A component {diode_family_clue}.", "Which component is this?"],
+      answerOptionLabels: { diode: "Diode", zener_diode: "Zener diode", led: "LED (light-emitting diode)", photodiode: "Photodiode" },
+    },
+  }),
+  qb({
+    id: "electronics.recognise_switching_family",
+    familyId: "electrical.electronic_components",
+    capabilityId: "cap.electronic_components.recognise_principle",
+    title: "Recognise a DIAC, TRIAC, thyristor (SCR) or transistor from its behaviour",
+    difficultyBand: "advanced",
+    answer: { type: "multiple_choice", options: ["diac", "triac", "thyristor_scr", "transistor"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-COMPONENT-DIAC-001", "EL-COMPONENT-TRIAC-001", "EL-COMPONENT-THYRISTOR-SCR-001", "EL-COMPONENT-TRANSISTOR-001"],
+    presentation: {
+      promptLines: ["A component {switching_family_clue}.", "Which component is this?"],
+      answerOptionLabels: { diac: "DIAC", triac: "TRIAC", thyristor_scr: "Thyristor (silicon-controlled rectifier, SCR)", transistor: "Transistor" },
+    },
+  }),
+  qb({
+    id: "electronics.identify_application",
+    familyId: "electrical.electronic_components",
+    capabilityId: "cap.electronic_components.identify_application",
+    title: "Identify which electronic component is used for a described electrical-system application",
+    difficultyBand: "intermediate",
+    answer: { type: "multiple_choice", options: ["triac", "thyristor_scr", "thermistor", "transistor", "capacitor", "resistor"] },
+    marking: exact(),
+    assertionIdentifiers: [
+      "EL-APPLICATION-DIMMER-SWITCH-001",
+      "EL-APPLICATION-MOTOR-CONTROL-001",
+      "EL-APPLICATION-HEATING-BOILER-CONTROL-001",
+      "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001",
+      "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001",
+    ],
+    presentation: {
+      promptLines: ["{application_clue}"],
+      answerOptionLabels: { triac: "TRIAC", thyristor_scr: "Thyristor (SCR)", thermistor: "Thermistor", transistor: "Transistor", capacitor: "Capacitor", resistor: "Resistor" },
+    },
   }),
 ];
 

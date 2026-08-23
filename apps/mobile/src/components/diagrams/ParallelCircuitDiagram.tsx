@@ -36,7 +36,12 @@ export function ParallelCircuitDiagram({ diagram, testID }: ParallelCircuitDiagr
   const slot = span / count;
   const midY = top + (bottom - top - RESISTOR_HEIGHT) / 2;
 
-  const accessibilityLabel = `Parallel circuit diagram with ${count} branch${count === 1 ? "" : "es"} labelled ${labels.join(", ")}, connected between two shared rails.`;
+  const accessibilityLabel = [
+    `Parallel circuit diagram with ${count} branch${count === 1 ? "" : "es"} labelled ${labels.join(", ")}, connected between two shared rails.`,
+    showBranchArrows ? "An arrow at the top of each branch shows the current direction, flowing down the branch." : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <Svg

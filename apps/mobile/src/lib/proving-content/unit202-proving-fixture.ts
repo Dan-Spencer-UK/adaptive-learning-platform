@@ -452,6 +452,9 @@ export const QB_MAGNETISM_INTERPRET_FIELD_DIRECTION: QuestionBlueprint = {
     "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
   ]),
   difficultyBand: "advanced",
+  // CC-11: mirrors the real corpus's newly-authored presentation field
+  // (previously absent, a pre-existing gap this package closed).
+  presentation: { promptLines: ["A straight conductor carries current as shown. In which direction does the magnetic field circulate around it?"] },
 };
 
 export const QB_MAGNETISM_INTERPRET_FORCE_DIRECTION: QuestionBlueprint = {
@@ -475,6 +478,9 @@ export const QB_MAGNETISM_INTERPRET_FORCE_DIRECTION: QuestionBlueprint = {
     },
   ),
   difficultyBand: "advanced",
+  // CC-11: mirrors the real corpus's newly-authored presentation field
+  // (previously absent, a pre-existing gap this package closed).
+  presentation: { promptLines: ["A current-carrying conductor sits in the magnetic field shown. In which direction does the force act on it?"] },
 };
 
 // =========================================================================

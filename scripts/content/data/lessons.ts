@@ -33,7 +33,16 @@ import { LESSON_ELECTRICAL_POWER } from "./lesson-electrical-power.ts";
 import { LESSON_ELECTRICAL_ENERGY_EFFICIENCY } from "./lesson-electrical-energy-efficiency.ts";
 import { LESSON_FAULT_CONDITIONS_PROTECTION } from "./lesson-fault-conditions-protection.ts";
 import { LESSON_SERIES_VS_PARALLEL_COMPARISON } from "./lesson-series-vs-parallel-comparison.ts";
-import { RELEASE_UNIT202_V2, RELEASE_UNIT202_V3 } from "./content-releases.ts";
+import { LESSON_MASS_AND_WEIGHT } from "./lesson-mass-and-weight.ts";
+import { LESSON_SIMPLE_MACHINES } from "./lesson-simple-machines.ts";
+import { LESSON_MECHANICS_FORCE_WORK_ENERGY_POWER } from "./lesson-mechanics-force-work-energy-power.ts";
+import { LESSON_MAGNETISM_FUNDAMENTALS } from "./lesson-magnetism-fundamentals.ts";
+import { LESSON_MAGNETIC_EFFECTS_OF_CURRENT } from "./lesson-magnetic-effects-of-current.ts";
+import { LESSON_AC_GENERATION_PRINCIPLES } from "./lesson-ac-generation-principles.ts";
+import { LESSON_AC_DC_AND_SINE_WAVE_QUANTITIES } from "./lesson-ac-dc-and-sine-wave-quantities.ts";
+import { LESSON_ELECTRONIC_COMPONENTS_PASSIVE } from "./lesson-electronic-components-passive.ts";
+import { LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL } from "./lesson-electronic-components-switching-control.ts";
+import { RELEASE_UNIT202_V2, RELEASE_UNIT202_V3, RELEASE_UNIT202_V4 } from "./content-releases.ts";
 
 /**
  * The same real Ohm's Law step content, addressed as a member of
@@ -58,6 +67,34 @@ export const LESSON_FOUNDATION_FORMULA_REARRANGEMENT_UNIT202_V3: LessonPlan = {
 };
 export const LESSON_RESISTORS_SERIES_UNIT202_V3: LessonPlan = { ...LESSON_RESISTORS_SERIES, contentRelease: RELEASE_UNIT202_V3 };
 export const LESSON_RESISTORS_PARALLEL_UNIT202_V3: LessonPlan = { ...LESSON_RESISTORS_PARALLEL, contentRelease: RELEASE_UNIT202_V3 };
+
+/**
+ * CC-11: all 15 lessons already in `release.unit202.v3` (4 re-addressed
+ * v1-authored lessons + 11 CC-10 lessons natively authored for v3), each
+ * addressed as a member of `release.unit202.v4` too -- id/version
+ * unchanged, only the release-membership field differs, exactly the same
+ * pattern CC-10 established for v3 above. `release.unit202.v3`'s own
+ * membership is untouched (still frozen to its original CC-10 fifteen
+ * lessons).
+ */
+export const LESSON_OHMS_LAW_UNIT202_V4: LessonPlan = { ...LESSON_OHMS_LAW, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_FOUNDATION_FORMULA_REARRANGEMENT_UNIT202_V4: LessonPlan = {
+  ...LESSON_FOUNDATION_FORMULA_REARRANGEMENT,
+  contentRelease: RELEASE_UNIT202_V4,
+};
+export const LESSON_RESISTORS_SERIES_UNIT202_V4: LessonPlan = { ...LESSON_RESISTORS_SERIES, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_RESISTORS_PARALLEL_UNIT202_V4: LessonPlan = { ...LESSON_RESISTORS_PARALLEL, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_CORE_QUANTITIES_UNIT202_V4: LessonPlan = { ...LESSON_CORE_QUANTITIES, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_SI_UNITS_UNIT202_V4: LessonPlan = { ...LESSON_SI_UNITS, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_INSTRUMENTATION_UNIT202_V4: LessonPlan = { ...LESSON_INSTRUMENTATION, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_CHARGE_AND_CURRENT_UNIT202_V4: LessonPlan = { ...LESSON_CHARGE_AND_CURRENT, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_CONDUCTORS_AND_INSULATORS_UNIT202_V4: LessonPlan = { ...LESSON_CONDUCTORS_AND_INSULATORS, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_THERMAL_AND_CHEMICAL_EFFECTS_UNIT202_V4: LessonPlan = { ...LESSON_THERMAL_AND_CHEMICAL_EFFECTS, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_RESISTIVITY_UNIT202_V4: LessonPlan = { ...LESSON_RESISTIVITY, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_ELECTRICAL_POWER_UNIT202_V4: LessonPlan = { ...LESSON_ELECTRICAL_POWER, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_ELECTRICAL_ENERGY_EFFICIENCY_UNIT202_V4: LessonPlan = { ...LESSON_ELECTRICAL_ENERGY_EFFICIENCY, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_FAULT_CONDITIONS_PROTECTION_UNIT202_V4: LessonPlan = { ...LESSON_FAULT_CONDITIONS_PROTECTION, contentRelease: RELEASE_UNIT202_V4 };
+export const LESSON_SERIES_VS_PARALLEL_COMPARISON_UNIT202_V4: LessonPlan = { ...LESSON_SERIES_VS_PARALLEL_COMPARISON, contentRelease: RELEASE_UNIT202_V4 };
 
 export const lessons: LessonPlan[] = [
   LESSON_OHMS_LAW,
@@ -84,6 +121,35 @@ export const lessons: LessonPlan[] = [
   LESSON_ELECTRICAL_ENERGY_EFFICIENCY,
   LESSON_FAULT_CONDITIONS_PROTECTION,
   LESSON_SERIES_VS_PARALLEL_COMPARISON,
+  // CC-11: complete Unit 202 course production -- LO3 remainder, LO5 and
+  // LO6. All 15 pre-existing release.unit202.v3 lessons (re-addressed,
+  // never moved) plus 9 genuinely new lessons are release.unit202.v4
+  // members.
+  LESSON_OHMS_LAW_UNIT202_V4,
+  LESSON_FOUNDATION_FORMULA_REARRANGEMENT_UNIT202_V4,
+  LESSON_RESISTORS_SERIES_UNIT202_V4,
+  LESSON_RESISTORS_PARALLEL_UNIT202_V4,
+  LESSON_CORE_QUANTITIES_UNIT202_V4,
+  LESSON_SI_UNITS_UNIT202_V4,
+  LESSON_INSTRUMENTATION_UNIT202_V4,
+  LESSON_CHARGE_AND_CURRENT_UNIT202_V4,
+  LESSON_CONDUCTORS_AND_INSULATORS_UNIT202_V4,
+  LESSON_THERMAL_AND_CHEMICAL_EFFECTS_UNIT202_V4,
+  LESSON_RESISTIVITY_UNIT202_V4,
+  LESSON_ELECTRICAL_POWER_UNIT202_V4,
+  LESSON_ELECTRICAL_ENERGY_EFFICIENCY_UNIT202_V4,
+  LESSON_FAULT_CONDITIONS_PROTECTION_UNIT202_V4,
+  LESSON_SERIES_VS_PARALLEL_COMPARISON_UNIT202_V4,
+  // CC-11 new lessons:
+  LESSON_MASS_AND_WEIGHT,
+  LESSON_SIMPLE_MACHINES,
+  LESSON_MECHANICS_FORCE_WORK_ENERGY_POWER,
+  LESSON_MAGNETISM_FUNDAMENTALS,
+  LESSON_MAGNETIC_EFFECTS_OF_CURRENT,
+  LESSON_AC_GENERATION_PRINCIPLES,
+  LESSON_AC_DC_AND_SINE_WAVE_QUANTITIES,
+  LESSON_ELECTRONIC_COMPONENTS_PASSIVE,
+  LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL,
 ];
 
 export {
@@ -102,4 +168,13 @@ export {
   LESSON_ELECTRICAL_ENERGY_EFFICIENCY,
   LESSON_FAULT_CONDITIONS_PROTECTION,
   LESSON_SERIES_VS_PARALLEL_COMPARISON,
+  LESSON_MASS_AND_WEIGHT,
+  LESSON_SIMPLE_MACHINES,
+  LESSON_MECHANICS_FORCE_WORK_ENERGY_POWER,
+  LESSON_MAGNETISM_FUNDAMENTALS,
+  LESSON_MAGNETIC_EFFECTS_OF_CURRENT,
+  LESSON_AC_GENERATION_PRINCIPLES,
+  LESSON_AC_DC_AND_SINE_WAVE_QUANTITIES,
+  LESSON_ELECTRONIC_COMPONENTS_PASSIVE,
+  LESSON_ELECTRONIC_COMPONENTS_SWITCHING_CONTROL,
 };

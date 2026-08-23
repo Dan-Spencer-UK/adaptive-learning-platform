@@ -65,7 +65,7 @@ describe("LessonScreen", () => {
     expect(getByText("Motor principle (force on a current-carrying conductor)")).toBeTruthy();
 
     // Grip-rule diagram: thumb (current direction) always shown, field-curl direction revealed for teaching.
-    expect(getByLabelText(/The thumb points along the conductor, in the direction the current flows/)).toBeTruthy();
+    expect(getByLabelText(/The thumb points along the conductor, in the direction the conventional current .* flows/)).toBeTruthy();
     expect(getByLabelText(/The curled fingers show the magnetic field circling (clockwise|counterclockwise) as seen by the viewer\./)).toBeTruthy();
 
     // Motor-principle diagram: force direction revealed for teaching.

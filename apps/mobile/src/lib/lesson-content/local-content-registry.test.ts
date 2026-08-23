@@ -7,8 +7,8 @@
  *
  * The two-lesson projection here is a SYNTHETIC test fixture, deliberately
  * not fake product content -- kept even though the real bundled release
- * (CC-08A: release.unit202.v2) now itself has four lessons, since it
- * exercises resolution mechanics in isolation from real content.
+ * (CC-11: release.unit202.v4) now itself has twenty-four lessons, since
+ * it exercises resolution mechanics in isolation from real content.
  */
 import { computeLessonContentDependencies } from "@alp/learning-engine";
 import type { LessonPlan, LessonStep, MobileContentProjection } from "@alp/content-schema";
@@ -126,16 +126,17 @@ describe("local content registry -- real bundled projection", () => {
   it("resolves the real Ohm's Law lesson by identity from the generated projection", () => {
     const record = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentRelease: bundledContentReleaseId() });
     expect(record.lesson.id).toBe("lesson.electrical.ohms-law");
-    expect(record.contentRelease).toBe("release.unit202.v2");
+    expect(record.contentRelease).toBe(bundledContentReleaseId());
     expect(record.questionBlueprintVersion).toBe(1);
     // CC-08: the lookup carries the whole bundled release's question
-    // blueprints (23, across all four real lessons), not just this one
-    // lesson's own 8 -- getLocalLesson's `lookup` is release-scoped.
-    expect(record.lookup.questionBlueprints).toHaveLength(23);
+    // blueprints (CC-11: 96, across all twenty-four real lessons), not
+    // just this one lesson's own -- getLocalLesson's `lookup` is
+    // release-scoped.
+    expect(record.lookup.questionBlueprints).toHaveLength(96);
   });
 
   it("the generated projection records its release identity, and every lesson in it matches that release", () => {
-    expect(MOBILE_CONTENT_PROJECTION.contentRelease.id).toBe("release.unit202.v2");
+    expect(MOBILE_CONTENT_PROJECTION.contentRelease.id).toBe(bundledContentReleaseId());
     for (const l of MOBILE_CONTENT_PROJECTION.lessons) {
       expect(l.contentRelease).toBe(MOBILE_CONTENT_PROJECTION.contentRelease.id);
     }

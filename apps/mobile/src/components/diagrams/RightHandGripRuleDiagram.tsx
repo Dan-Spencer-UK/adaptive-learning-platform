@@ -54,10 +54,15 @@ const FIELD_LABEL_Y = 222;
 export function RightHandGripRuleDiagram({ diagram, fieldRotation, testID }: RightHandGripRuleDiagramProps): React.JSX.Element {
   const currentDirection = String(diagram.parameters.current_direction ?? "into_page");
   const currentLabel = currentDirection === "into_page" ? "into the page" : "out of the page";
+  // CC-11 (Workstream D visual audit finding): disambiguate as
+  // conventional current, matching MagneticForceDiagram.tsx's identical
+  // fix -- see that file's comment for the full rationale
+  // (MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001).
+  const conventionalCurrentLabel = `conventional current ${currentLabel}`;
 
   const accessibilityLabel = [
     "Right-hand grip rule.",
-    `The thumb points along the conductor, in the direction the current flows: ${currentLabel}.`,
+    `The thumb points along the conductor, in the direction the ${conventionalCurrentLabel} flows.`,
     fieldRotation
       ? `The curled fingers show the magnetic field circling ${fieldRotation} as seen by the viewer.`
       : "The direction the fingers curl (the magnetic field direction) is not shown.",
@@ -118,7 +123,7 @@ export function RightHandGripRuleDiagram({ diagram, fieldRotation, testID }: Rig
       {fieldRotation ? <FieldRotationArrow rotation={fieldRotation} /> : null}
 
       <SvgText x={CONDUCTOR_X} y={CURRENT_LABEL_Y} fill={color.textSecondary} fontSize={11} textAnchor="middle">
-        {`current ${currentLabel}`}
+        {conventionalCurrentLabel}
       </SvgText>
     </Svg>
   );

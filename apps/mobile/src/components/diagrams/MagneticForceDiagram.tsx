@@ -44,11 +44,20 @@ export function MagneticForceDiagram({ diagram, forceDirection, testID }: Magnet
   const currentDirection = String(diagram.parameters.current_direction ?? "into_page");
   const horizontal = poleLabels === "N_S_horizontal";
   const currentLabel = currentDirection === "into_page" ? "into the page" : "out of the page";
+  // CC-11 (Workstream D visual audit finding): "current" here means
+  // conventional current -- F = I L x B is defined in terms of
+  // conventional current, and the corpus separately teaches electron
+  // theory (electrons flow the opposite way), so an undisambiguated
+  // "current" risks reinforcing the real, governed
+  // MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001 misconception this
+  // diagram's own question blueprint (magnetism.interpret_force_direction)
+  // targets.
+  const conventionalCurrentLabel = `conventional current ${currentLabel}`;
 
   const accessibilityLabel = [
     horizontal ? "North pole on the left, south pole on the right." : "North pole at the top, south pole at the bottom.",
     `Field arrows point from north to south.`,
-    `Current in the conductor flows ${currentLabel}.`,
+    `The ${conventionalCurrentLabel} in the conductor.`,
     forceDirection ? `Resulting force on the conductor acts ${forceDirection}wards.` : "Force direction not shown.",
   ].join(" ");
 
@@ -90,7 +99,7 @@ export function MagneticForceDiagram({ diagram, forceDirection, testID }: Magnet
         </>
       )}
       <SvgText x={CENTER_X} y={CENTER_Y + CONDUCTOR_RADIUS + 16} fill={color.textSecondary} fontSize={11} textAnchor="middle">
-        {`current ${currentLabel}`}
+        {conventionalCurrentLabel}
       </SvgText>
 
       {forceDirection ? <ForceArrow direction={forceDirection} /> : null}

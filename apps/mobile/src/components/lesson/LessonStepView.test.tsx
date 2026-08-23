@@ -10,6 +10,8 @@ const record = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentR
 const LESSON_OHMS_LAW = record.lesson;
 const LOOKUP = record.lookup;
 
+const seriesRecord = getLocalLesson({ lessonId: "lesson.electrical.resistors-series", contentRelease: bundledContentReleaseId() });
+
 function instanceFor(blueprintId: string, stepId: string): GeneratedQuestionInstance {
   const blueprint = LOOKUP.questionBlueprints.find((b) => b.id === blueprintId);
   if (!blueprint) throw new Error(`missing governed blueprint ${blueprintId}`);
@@ -132,6 +134,14 @@ describe("LessonStepView", () => {
     );
     expect(getByLabelText("V region of the VIR triangle")).toBeTruthy();
     expect(getByLabelText("V equals I times R")).toBeTruthy();
+  });
+
+  it("CC-11: renders the referenced governed diagram for a pure teaching step (no generated question instance driving it)", async () => {
+    const resolved = resolveLessonStep(seriesRecord.lesson, "concept_series_structure", seriesRecord.lookup);
+    const { getByLabelText } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    expect(getByLabelText(/Series circuit diagram with/)).toBeTruthy();
   });
 
   it("renders the worked example from the blueprint's own GOVERNED teaching values (no app-side value constants)", async () => {

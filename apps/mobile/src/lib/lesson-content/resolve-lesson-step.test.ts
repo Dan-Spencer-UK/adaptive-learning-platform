@@ -5,6 +5,22 @@ const record = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentR
 const LESSON_OHMS_LAW = record.lesson;
 const LOOKUP = record.lookup;
 
+const seriesRecord = getLocalLesson({ lessonId: "lesson.electrical.resistors-series", contentRelease: bundledContentReleaseId() });
+const LESSON_RESISTORS_SERIES = seriesRecord.lesson;
+
+describe("resolveLessonStep -- diagram resolution (CC-11, the Lesson Player diagram runtime fix)", () => {
+  it("resolves a step's representation.diagramBlueprintId to the real governed DiagramBlueprint, not just preserving the id", () => {
+    const resolved = resolveLessonStep(LESSON_RESISTORS_SERIES, "concept_series_structure", seriesRecord.lookup);
+    expect(resolved.diagram?.id).toBe("circuit.series_resistors");
+    expect(resolved.diagram?.type).toBe("electrical_circuit");
+  });
+
+  it("resolves diagram to null for a step with no diagramBlueprintId reference", () => {
+    const resolved = resolveLessonStep(LESSON_OHMS_LAW, "orientation", LOOKUP);
+    expect(resolved.diagram).toBeNull();
+  });
+});
+
 describe("resolveLessonStep (against the real Ohm's Law lesson, resolved from the generated projection)", () => {
   it("resolves orientation to the lesson's own learnerFacingDescription, never step.purpose", () => {
     const resolved = resolveLessonStep(LESSON_OHMS_LAW, "orientation", LOOKUP);

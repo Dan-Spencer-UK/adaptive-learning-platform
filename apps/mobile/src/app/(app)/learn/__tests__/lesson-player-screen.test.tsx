@@ -14,6 +14,7 @@
  */
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 
+import { bundledContentReleaseId } from "@/lib/lesson-content/local-content-registry";
 import * as mockExpoSqlite from "@/lib/storage/__mocks__/expo-sqlite-jest-mock";
 import { resetFoundationDbHandleForTests } from "@/lib/storage/db";
 import { getActiveLessonInstanceId, loadLessonSession } from "@/lib/lesson-session/lesson-session-store";
@@ -153,7 +154,7 @@ describe("LessonPlayerScreen (generic lesson identity)", () => {
     const savedSession = await loadLessonSession(activeId!, "learner.test");
     expect(savedSession?.completedStepIds).toContain("orientation");
     expect(savedSession?.learnerId).toBe("learner.test");
-    expect(savedSession?.contentRelease).toBe("release.unit202.v2");
+    expect(savedSession?.contentRelease).toBe(bundledContentReleaseId());
 
     await first.unmount();
     const second = await render(<LessonPlayerScreen />);

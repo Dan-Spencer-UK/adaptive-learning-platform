@@ -1,0 +1,396 @@
+/**
+ * CC-11 Workstream B: second of a four-lesson LO5 sequence. Scope: AC5.3
+ * (the magnetic effects of current -- field production, force on a
+ * conductor, electromagnetism, and EMF vs. terminal voltage). Follows
+ * lesson-magnetism-fundamentals.ts, which taught static-magnet
+ * fundamentals (attraction/repulsion, flux/flux-density); this lesson
+ * moves to what a CURRENT does magnetically. Every assertion/family/
+ * capability/formula/diagram/question-blueprint id below is a real, live
+ * reference into cc05a-pedagogy-unit202.ts / cc04-unit202-electrical-
+ * science.ts, cross-checked mechanically by
+ * scripts/content/validate-lesson-plan.ts. No new knowledge, capability
+ * or blueprint was authored.
+ *
+ * Diagram wiring (task instruction 2): the field-direction teaching step
+ * and its guided question both carry
+ * representation.diagramBlueprintId: "magnetic.field_conductor_direction"
+ * (rendered by RightHandGripRuleDiagram); the force-direction teaching
+ * step and its guided question both carry "motor.force_field_current"
+ * (rendered by MagneticForceDiagram). Both renderers already exist; the
+ * Lesson Player's generic diagram-rendering gap (PROJECT-STATUS.md CC-10
+ * §5a) is a separate, parallel workstream's concern, not this one's.
+ *
+ * Known corpus gaps (flagged, not silently worked around): AC5.3's two
+ * OFFICIAL_TEACHING_INTERPRETATION calculation obligations --
+ * "force-on-conductor-calculation" (F = B I l via Fleming's left-hand
+ * rule, EL-REL-FORCE-ON-CONDUCTOR-001 / EL-CONCEPT-FLEMING-LEFT-HAND-001)
+ * and "induced-emf-calculation" (e = B l v via Fleming's right-hand rule,
+ * EL-REL-INDUCED-EMF-001 / EL-CONCEPT-FLEMING-RIGHT-HAND-001) -- have NO
+ * formula family, worked example, question blueprint or capability
+ * anywhere in the CC-05A corpus (confirmed by grep: these four assertion
+ * ids appear only in the family's membersOf list, never in any question
+ * blueprint's assertionIdentifiers). They are taught conceptually here
+ * (concept_force_on_conductor / concept_emf_and_terminal_voltage, both
+ * `teaches` these ids) but cannot be practised or independently tested by
+ * this lesson -- there is nothing to reference. This is the most
+ * significant LO5 assessment-coverage gap found; authoring the missing
+ * formula/blueprint/capability triple (twice) was out of scope for pure
+ * lesson-authoring and would need its own governed-content package.
+ */
+
+import type { LessonPlan } from "@alp/content-schema";
+
+export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
+  id: "lesson.magnetism.effects-of-current",
+  schemaVersion: 1,
+  version: 1,
+  title: "Magnetic Effects of Current",
+  learnerFacingDescription:
+    "Understand the magnetic field a current-carrying conductor produces and its direction, the force on a conductor in a field, electromagnetism, and the difference between EMF and terminal voltage.",
+  curriculumUnit: "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+  prerequisiteKnowledge: ["electrical.ohms_law", "electrical.magnetism_and_electromagnetism"],
+  targetAssertionFamilyIds: ["electrical.magnetism_and_electromagnetism", "electrical.emf_and_generation"],
+  remediationEligibility: [],
+  targetAssertionIdentifiers: [
+    "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
+    "EL-CONCEPT-FIELD-DIRECTION-RULE-001",
+    "EL-CONCEPT-FORCE-ON-CONDUCTOR-001",
+    "EL-REL-FORCE-ON-CONDUCTOR-001",
+    "EL-CONCEPT-FLEMING-LEFT-HAND-001",
+    "EL-CONCEPT-ELECTROMAGNETISM-001",
+    "EL-CONCEPT-EMF-001",
+    "EL-CONCEPT-TERMINAL-VOLTAGE-001",
+    "EL-REL-INDUCED-EMF-001",
+    "EL-CONCEPT-FLEMING-RIGHT-HAND-001",
+  ],
+  targetCapabilityIds: [
+    "cap.magnetism.interpret_field_direction",
+    "cap.magnetism.interpret_force_direction",
+    "cap.magnetism.recognise_concept",
+    "cap.emf.recognise_emf_terminal_voltage",
+  ],
+  estimatedDurationMinutes: 18,
+  instructionalStrategy:
+    "Field production and direction come first (the direct consequence of a current existing at all), then force on a conductor in a field (what that field, once produced, can DO -- the motor principle's foundation), then electromagnetism is named explicitly as the umbrella term for everything just covered. EMF vs. terminal voltage closes the lesson as a distinct, commonly-confused pair, checked directly against its governed misconception (MIS-EL-EMF-VOLTAGE-CONFUSION-001) with an explicit remediation route rather than assuming the distinction has landed.",
+  steps: [
+    {
+      id: "orientation",
+      type: "orientation",
+      purpose: "Frame this lesson as answering: what does a current actually DO magnetically -- and why does that let us build motors and generators?",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: [],
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "concept_field_from_current",
+      type: "concept_explanation",
+      purpose: "State that a current-carrying conductor produces a magnetic field, and how to find that field's direction (Maxwell's screw rule / right-hand grip rule).",
+      requirement: "required",
+      teaches: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "EL-CONCEPT-FIELD-DIRECTION-RULE-001"],
+      reinforces: [],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: { diagramBlueprintId: "magnetic.field_conductor_direction" },
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_interpret_field_direction",
+      type: "guided_interaction",
+      purpose: "Interpret the direction of the magnetic field produced by a current-carrying conductor from a diagram.",
+      requirement: "required",
+      teaches: [],
+      reinforces: ["EL-CONCEPT-FIELD-DIRECTION-RULE-001"],
+      tests: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.interpret_field_direction"],
+      misconceptionTargets: [],
+      representation: { diagramBlueprintId: "magnetic.field_conductor_direction" },
+      questionBlueprintId: "magnetism.interpret_field_direction",
+      presentation: { interactionRequired: true, interactionRole: "interpret", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "advanced",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.interpret_field_direction"],
+    },
+    {
+      id: "concept_force_on_conductor",
+      type: "concept_explanation",
+      purpose: "Describe the force a current-carrying conductor experiences in a magnetic field (F = B I l) and its direction (Fleming's left-hand rule) -- the motor principle's foundation.",
+      requirement: "required",
+      teaches: ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001", "EL-REL-FORCE-ON-CONDUCTOR-001", "EL-CONCEPT-FLEMING-LEFT-HAND-001"],
+      reinforces: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: { diagramBlueprintId: "motor.force_field_current" },
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "intermediate",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_interpret_force_direction",
+      type: "guided_interaction",
+      purpose: "Interpret the direction of the force on a current-carrying conductor in a magnetic field from a diagram.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.interpret_force_direction"],
+      misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "suggestive" }],
+      representation: { diagramBlueprintId: "motor.force_field_current" },
+      questionBlueprintId: "magnetism.interpret_force_direction",
+      presentation: { interactionRequired: true, interactionRole: "interpret", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "advanced",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.interpret_force_direction"],
+    },
+    {
+      id: "concept_electromagnetism",
+      type: "concept_explanation",
+      purpose: "Name electromagnetism as the umbrella relationship covering everything just seen: current produces a field, and a field exerts force on current.",
+      requirement: "required",
+      teaches: ["EL-CONCEPT-ELECTROMAGNETISM-001"],
+      reinforces: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "EL-CONCEPT-FORCE-ON-CONDUCTOR-001"],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.recognise_concept"],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_recognise_electromagnetism",
+      type: "guided_interaction",
+      purpose: "Recognise electromagnetism from its definition.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-CONCEPT-ELECTROMAGNETISM-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.recognise_concept"],
+      misconceptionTargets: [],
+      representation: {},
+      questionBlueprintId: "magnetism.recognise_concept",
+      presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.recognise_concept"],
+    },
+    {
+      id: "concept_emf_and_terminal_voltage",
+      type: "concept_explanation",
+      purpose: "Describe electromotive force (EMF) and distinguish it from terminal voltage, and introduce induced EMF (e = B l v via Fleming's right-hand rule) as the mechanism a moving conductor uses to generate it.",
+      requirement: "required",
+      teaches: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001", "EL-REL-INDUCED-EMF-001", "EL-CONCEPT-FLEMING-RIGHT-HAND-001"],
+      reinforces: ["EL-CONCEPT-ELECTROMAGNETISM-001"],
+      tests: [],
+      assertionFamilyId: "electrical.emf_and_generation",
+      capabilityIds: ["cap.emf.recognise_emf_terminal_voltage"],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "intermediate",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "misconception_check_emf_terminal_voltage",
+      type: "misconception_discrimination",
+      purpose: "Directly test for the specific, governed EMF/terminal-voltage confusion rather than assuming its absence.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001"],
+      assertionFamilyId: "electrical.emf_and_generation",
+      capabilityIds: ["cap.emf.recognise_emf_terminal_voltage"],
+      misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" }],
+      representation: {},
+      questionBlueprintId: "emf.distinguish_emf_terminal_voltage",
+      presentation: { interactionRequired: true, interactionRole: "compare", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "standard",
+      cognitiveDemand: "advanced",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [
+        {
+          trigger: "misconception_detected",
+          misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+          destinationStepId: "remediation_emf_terminal_voltage",
+          description: "Route to explicit EMF-vs-terminal-voltage remediation before continuing.",
+        },
+      ],
+      evidenceEmitted: ["cap.emf.recognise_emf_terminal_voltage"],
+    },
+    {
+      id: "remediation_emf_terminal_voltage",
+      type: "remediation",
+      purpose: "Reteach the EMF/terminal-voltage distinction, then require a fresh correct discrimination before returning to the main sequence. Entered only via a branch route -- never part of the default linear path.",
+      requirement: "conditional_remediation_only",
+      teaches: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001"],
+      reinforces: [],
+      tests: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001"],
+      assertionFamilyId: "electrical.emf_and_generation",
+      capabilityIds: ["cap.emf.recognise_emf_terminal_voltage"],
+      misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" }],
+      representation: {},
+      questionBlueprintId: "emf.distinguish_emf_terminal_voltage",
+      presentation: { interactionRequired: true, interactionRole: "compare", answerReveal: "after_submission", contentMayScroll: true, progressiveReveal: true },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "intermediate",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [
+        {
+          trigger: "remediation_cleared",
+          destinationStepId: "retrieval_check",
+          description: "Remediation cleared -- resume the main sequence at the retrieval check.",
+        },
+      ],
+      evidenceEmitted: ["cap.emf.recognise_emf_terminal_voltage"],
+    },
+    {
+      id: "retrieval_check",
+      type: "retrieval_check",
+      purpose: "Short delayed retrieval of the EMF/terminal-voltage distinction to strengthen retention before the lesson ends.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001"],
+      assertionFamilyId: "electrical.emf_and_generation",
+      capabilityIds: ["cap.emf.recognise_emf_terminal_voltage"],
+      misconceptionTargets: [],
+      representation: {},
+      questionBlueprintId: "emf.distinguish_emf_terminal_voltage",
+      presentation: { interactionRequired: true, interactionRole: "compare", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "independent",
+      cognitiveDemand: "advanced",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.emf.recognise_emf_terminal_voltage"],
+    },
+    {
+      id: "recap",
+      type: "recap",
+      purpose: "Summarise field production/direction, force on a conductor, electromagnetism, and EMF vs. terminal voltage.",
+      requirement: "required",
+      teaches: [],
+      reinforces: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "EL-CONCEPT-FORCE-ON-CONDUCTOR-001", "EL-CONCEPT-ELECTROMAGNETISM-001", "EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001"],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "independent",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "exit_completion",
+      type: "exit_completion",
+      purpose: "Confirm lesson completion against the governed completion criteria.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: [],
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "independent",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+  ],
+  misconceptionTargets: [
+    { misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "suggestive" },
+    { misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" },
+  ],
+  retrievalTags: ["electrical.magnetism_and_electromagnetism", "electrical.emf_and_generation"],
+  completionCriteria: {
+    requiredStepIds: [
+      "orientation",
+      "concept_field_from_current",
+      "guided_interpret_field_direction",
+      "concept_force_on_conductor",
+      "guided_interpret_force_direction",
+      "concept_electromagnetism",
+      "guided_recognise_electromagnetism",
+      "concept_emf_and_terminal_voltage",
+      "misconception_check_emf_terminal_voltage",
+      "retrieval_check",
+      "recap",
+      "exit_completion",
+    ],
+    requiredCapabilityEvidence: [
+      "cap.magnetism.interpret_field_direction",
+      "cap.magnetism.interpret_force_direction",
+      "cap.magnetism.recognise_concept",
+      "cap.emf.recognise_emf_terminal_voltage",
+    ],
+    // interpret_field_direction, interpret_force_direction and
+    // recognise_concept are each only evidenced through guided steps in
+    // THIS lesson's own step design (never independently or via
+    // transfer) so cannot structurally reach a secure mastery tier here
+    // -- same rationale as lesson-ohms-law.ts's excluded guided-only
+    // capability. recognise_emf_terminal_voltage IS independently
+    // re-evidenced at the retrieval_check step, so it remains eligible.
+    masteryGateCapabilityIds: ["cap.emf.recognise_emf_terminal_voltage"],
+    requiresRemediationClearance: true,
+    exitSummary:
+      "The learner has interpreted the direction of the magnetic field around a current-carrying conductor and the force on a conductor in a field, recognised electromagnetism, and distinguished EMF from terminal voltage -- clearing remediation if that misconception was detected.",
+  },
+  presentationModes: ["learn", "review"],
+  contentRelease: "release.unit202.v4",
+};
+
+export const lessons = [LESSON_MAGNETIC_EFFECTS_OF_CURRENT];

@@ -4,8 +4,8 @@ import { buildProvingReport, isProvingReportClean } from "./prove-cc05b-engine.t
 describe("CC-05B engine proving report (full governed Unit 202 question-blueprint inventory)", () => {
   const report = buildProvingReport();
 
-  it("mechanically derives the total governed blueprint count from the live manifest (currently 92 -- CC-08 adds 2 for foundational.algebraic_technique; CC-09E adds 5 for electrical.ac_reactive_quantities/magnetism/emf_and_generation archetypes; CC-09E.1 adds 1 for magnetism.identify_flux_unit, split out of magnetism.identify_flux_density_unit)", () => {
-    expect(report.totalGovernedBlueprints).toBe(92);
+  it("mechanically derives the total governed blueprint count from the live manifest (currently 109 -- CC-08 adds 2 for foundational.algebraic_technique; CC-09E adds 5 for electrical.ac_reactive_quantities/magnetism/emf_and_generation archetypes; CC-09E.1 adds 1 for magnetism.identify_flux_unit, split out of magnetism.identify_flux_density_unit; CC-11 adds 11 for foundational.mass_weight/levers_mechanical_advantage/mechanics_work_energy_power and 6 for electrical.electronic_components)", () => {
+    expect(report.totalGovernedBlueprints).toBe(109);
   });
 
   it("every governed blueprint is supported by the engine registry", () => {

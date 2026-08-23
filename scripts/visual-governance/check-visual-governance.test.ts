@@ -17,10 +17,8 @@ describe("check-visual-governance against the live CC-05A corpus + CC-05D contra
     expect(report.governedPilotBlueprintsMissingContract).toEqual([]);
   });
 
-  it("reports the 3 renderer-missing blueprints as a tracked, non-fatal gap, not silently dropped", () => {
-    expect(report.ungovernedNonPilotBlueprints.sort()).toEqual(
-      ["circuit.series_parallel_mixed", "graph.waveform_sine", "instrument.measurement_connection"].sort(),
-    );
+  it("CC-11: every governed diagram blueprint now has a renderer -- zero renderer-missing blueprints remain", () => {
+    expect(report.ungovernedNonPilotBlueprints).toEqual([]);
   });
 
   it("has zero dangling references of any kind", () => {
@@ -34,8 +32,8 @@ describe("check-visual-governance against the live CC-05A corpus + CC-05D contra
     expect(report.answerLeakageFailures).toEqual([]);
   });
 
-  it("produces 18 canonical variants: 3 series + 3 parallel + 4 grip-rule + 8 motor-force", () => {
-    expect(report.totalCanonicalVariants).toBe(18);
+  it("produces 31 canonical variants: 3 series + 3 parallel + 4 grip-rule + 8 motor-force + 2 series-parallel-mixed + 6 waveform + 5 instrument-connection", () => {
+    expect(report.totalCanonicalVariants).toBe(31);
   });
 
   it("has zero rendered-artefact geometry failures (checks 0 when renders don't exist yet, or all real arrows when they do)", () => {

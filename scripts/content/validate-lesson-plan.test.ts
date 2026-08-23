@@ -99,10 +99,10 @@ describe("buildReport (against the real canonical Ohm's Law lesson and live CC-0
     expect(isReportClean(report)).toBe(true);
   });
 
-  it("finds the twenty canonical lesson entries (CC-08A: Ohm's Law's own immutable release.unit202.v1 entry, the four-lesson release.unit202.v2 adaptive vertical, and CC-10's fifteen-lesson release.unit202.v3 course-production expansion, which re-addresses the same four v2 lessons via release-scoped entries plus eleven genuinely new lessons) with a genuinely rich, non-toy step count", () => {
-    expect(report.totalLessons).toBe(20);
-    expect(report.totalSteps).toBeGreaterThanOrEqual(200);
-    expect(report.totalSteps).toBeLessThanOrEqual(260);
+  it("finds the forty-four canonical lesson entries (CC-08A: Ohm's Law's own immutable release.unit202.v1 entry, the four-lesson release.unit202.v2 adaptive vertical, CC-10's fifteen-lesson release.unit202.v3 course-production expansion, and CC-11's twenty-four-lesson release.unit202.v4 completion -- fifteen re-addressed v3 lessons plus nine genuinely new ones) with a genuinely rich, non-toy step count", () => {
+    expect(report.totalLessons).toBe(44);
+    expect(report.totalSteps).toBeGreaterThanOrEqual(440);
+    expect(report.totalSteps).toBeLessThanOrEqual(520);
   });
 });
 

@@ -101,18 +101,18 @@ describe("report-coverage-matrix: structural gates against the real corpus", () 
     expect(isReportClean(report)).toBe(false);
   });
 
-  it("coverage gaps in the real corpus (the expected CC-09B lesson/blueprint backlog) never fail --check", () => {
+  it("CC-11: every AC has now reached the ASSESSABLE tier -- the lesson/question-blueprint backlog this report existed to expose (CC-09B through CC-10) is closed", () => {
     // CC-09B closed the CC-09A knowledge-corpus gap (every AC/Range item
-    // now has real assertion coverage -- see the "23/23 ACs" and
-    // "58/58 Range items" tests above), but lesson and question-blueprint
-    // coverage remains genuinely incomplete (task brief section 33: "may
-    // remain incomplete" for this knowledge-only package) -- not every AC
-    // has reached the ASSESSABLE tier. This is the exact backlog the
-    // report exists to expose, and must never be treated as a structural
-    // defect.
+    // has real assertion coverage), but lesson and question-blueprint
+    // coverage remained genuinely incomplete through CC-10 (LO3 partial,
+    // LO5/LO6 entirely deferred) -- not every AC had reached the
+    // ASSESSABLE tier. CC-11 completed LO3's remainder plus all of LO5
+    // and LO6, closing that exact backlog. A regression here (an AC
+    // slipping back below ASSESSABLE) is now a real structural finding,
+    // not an expected, tracked gap.
     const report = buildReport();
     const notYetAssessable = report.acCoverage.filter((ac) => ac.tier !== "ASSESSABLE");
-    expect(notYetAssessable.length).toBeGreaterThan(0);
+    expect(notYetAssessable.length).toBe(0);
     expect(report.acCoverage.every((ac) => ac.tier !== "NONE")).toBe(true);
     expect(isReportClean(report)).toBe(true);
   });

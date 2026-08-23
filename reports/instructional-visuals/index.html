@@ -57,17 +57,17 @@
   Product Owner manual review of this catalogue found the current imagery below the required eventual product standard. CC-05D's governance/QA <em>workflow</em> is approved; the visuals it currently governs are proving-slice content, not final artwork. Future work must address pedagogical fidelity, visual clarity, illustration quality, label placement, arrow/direction clarity, visual hierarchy, accessibility, consistency, native mobile legibility and overall polish before any of these images (or their style) are treated as production-ready.
 </div>
 <div class="summary">
-  <div class="stat"><div class="n">4</div><div class="l">governed contracts</div></div>
-  <div class="stat"><div class="n">18</div><div class="l">rendered variants</div></div>
-  <div class="stat"><div class="n">18 / 0</div><div class="l">mechanical pass / fail</div></div>
-  <div class="stat"><div class="n">18 / 0 / 0</div><div class="l">SIMULATED semantic pass / warn / fail (mock pipeline)</div></div>
+  <div class="stat"><div class="n">7</div><div class="l">governed contracts</div></div>
+  <div class="stat"><div class="n">31</div><div class="l">rendered variants</div></div>
+  <div class="stat"><div class="n">31 / 0</div><div class="l">mechanical pass / fail</div></div>
+  <div class="stat"><div class="n">31 / 0 / 0</div><div class="l">SIMULATED semantic pass / warn / fail (mock pipeline)</div></div>
   <div class="stat"><div class="n">0 / 0 / 0</div><div class="l">REAL AI review pass / warn / fail (none run yet)</div></div>
   <div class="stat"><div class="n">0</div><div class="l">no semantic evidence at all</div></div>
   <div class="stat"><div class="n">0 / 5</div><div class="l">human review completed / required</div></div>
 </div>
 <div class="filters">
-  <select id="filter-family"><option value="">All assertion families</option><option value="electrical.magnetism_and_electromagnetism">electrical.magnetism_and_electromagnetism</option><option value="electrical.parallel_circuits">electrical.parallel_circuits</option><option value="electrical.series_circuits">electrical.series_circuits</option></select>
-  <select id="filter-diagram-type"><option value="">All diagram types</option><option value="electrical_circuit">electrical_circuit</option><option value="magnetic_field">magnetic_field</option></select>
+  <select id="filter-family"><option value="">All assertion families</option><option value="electrical.ac_dc_waveforms">electrical.ac_dc_waveforms</option><option value="electrical.instrumentation">electrical.instrumentation</option><option value="electrical.magnetism_and_electromagnetism">electrical.magnetism_and_electromagnetism</option><option value="electrical.parallel_circuits">electrical.parallel_circuits</option><option value="electrical.series_circuits">electrical.series_circuits</option><option value="electrical.series_vs_parallel_comparison">electrical.series_vs_parallel_comparison</option></select>
+  <select id="filter-diagram-type"><option value="">All diagram types</option><option value="electrical_circuit">electrical_circuit</option><option value="instrument_connection">instrument_connection</option><option value="magnetic_field">magnetic_field</option><option value="waveform">waveform</option></select>
   <select id="filter-evidence"><option value="">Any evidence kind</option><option value="real">Real AI review</option><option value="simulated">Simulated (mock)</option><option value="unreviewed">Unreviewed</option></select>
   <select id="filter-semantic"><option value="">Any semantic status</option><option value="pass">Pass</option><option value="warn">Warn</option><option value="fail">Fail</option><option value="unreviewed">Unreviewed</option></select>
   <select id="filter-mechanical"><option value="">Any mechanical status</option><option value="pass">Pass</option><option value="fail">Fail</option></select>
@@ -76,6 +76,512 @@
   <input id="filter-search" type="search" placeholder="Search title / id..." />
 </div>
 <div class="grid" id="grid">
+
+<article class="card"
+  data-family="electrical.ac_dc_waveforms"
+  data-diagram-type="waveform"
+  data-blueprint="graph.waveform_sine"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.ac-waveform-sine@1_cycles_shown_1_mode_both_show_peak_line_true_show_period_marker_true_show_rms_line_true_both.svg" alt="Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>graph.waveform_sine</code> (waveform)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.ac-waveform-sine</code></dd>
+        <dt>Assertion family</dt><dd>electrical.ac_dc_waveforms</dd>
+        <dt>Atomic assertions</dt><dd>EL-WAVEFORM-PERIODIC-TIME-001, EL-WAVEFORM-AMPLITUDE-001, EL-WAVEFORM-PEAK-TO-PEAK-001, EL-WAVEFORM-RMS-001, EL-WAVEFORM-AVERAGE-VALUE-001, EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001, EL-WAVEFORM-RMS-CALC-001, EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001</dd>
+        <dt>Capability</dt><dd>cap.waveform.identify_characteristic, cap.waveform.calculate_rms_peak</dd>
+        <dt>Question blueprints</dt><dd>waveform.identify_characteristic, waveform.calculate_rms_from_peak</dd>
+        <dt>Must show</dt><dd>the sine curve itself over cycles_shown full periods; the zero/reference axis, which every other reference line is measured from</dd>
+        <dt>Must not show</dt><dd>an RMS line coincident with the peak line; a non-zero horizontal 'average' reference line for a full symmetric cycle (the real signed average is zero -- EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001); any numeric peak/RMS/period value embedded in the artwork itself (values belong in question/lesson prompt text, per the symbolic-only convention every diagram in this folder follows)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.ac-waveform-sine@1::cycles_shown=1,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">434d8bd27eb5baf472ac988009630c9cf8783c4ee085363a1d4c080ff47632d7</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.ac_dc_waveforms"
+  data-diagram-type="waveform"
+  data-blueprint="graph.waveform_sine"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.ac-waveform-sine@1_cycles_shown_2_mode_both_show_peak_line_false_show_period_marker_false_show_rms_line_false_both.svg" alt="Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>graph.waveform_sine</code> (waveform)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.ac-waveform-sine</code></dd>
+        <dt>Assertion family</dt><dd>electrical.ac_dc_waveforms</dd>
+        <dt>Atomic assertions</dt><dd>EL-WAVEFORM-PERIODIC-TIME-001, EL-WAVEFORM-AMPLITUDE-001, EL-WAVEFORM-PEAK-TO-PEAK-001, EL-WAVEFORM-RMS-001, EL-WAVEFORM-AVERAGE-VALUE-001, EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001, EL-WAVEFORM-RMS-CALC-001, EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001</dd>
+        <dt>Capability</dt><dd>cap.waveform.identify_characteristic, cap.waveform.calculate_rms_peak</dd>
+        <dt>Question blueprints</dt><dd>waveform.identify_characteristic, waveform.calculate_rms_from_peak</dd>
+        <dt>Must show</dt><dd>the sine curve itself over cycles_shown full periods; the zero/reference axis, which every other reference line is measured from</dd>
+        <dt>Must not show</dt><dd>an RMS line coincident with the peak line; a non-zero horizontal 'average' reference line for a full symmetric cycle (the real signed average is zero -- EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001); any numeric peak/RMS/period value embedded in the artwork itself (values belong in question/lesson prompt text, per the symbolic-only convention every diagram in this folder follows)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=false,show_period_marker=false,show_rms_line=false::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">c2752ed263b051303d8142fb2a3f7453baa876c93896eb6f6c52b07730f66689</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.ac_dc_waveforms"
+  data-diagram-type="waveform"
+  data-blueprint="graph.waveform_sine"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.ac-waveform-sine@1_cycles_shown_2_mode_both_show_peak_line_true_show_period_marker_false_show_rms_line_false_both.svg" alt="Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-required">human review: required (sampled)</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>graph.waveform_sine</code> (waveform)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.ac-waveform-sine</code></dd>
+        <dt>Assertion family</dt><dd>electrical.ac_dc_waveforms</dd>
+        <dt>Atomic assertions</dt><dd>EL-WAVEFORM-PERIODIC-TIME-001, EL-WAVEFORM-AMPLITUDE-001, EL-WAVEFORM-PEAK-TO-PEAK-001, EL-WAVEFORM-RMS-001, EL-WAVEFORM-AVERAGE-VALUE-001, EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001, EL-WAVEFORM-RMS-CALC-001, EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001</dd>
+        <dt>Capability</dt><dd>cap.waveform.identify_characteristic, cap.waveform.calculate_rms_peak</dd>
+        <dt>Question blueprints</dt><dd>waveform.identify_characteristic, waveform.calculate_rms_from_peak</dd>
+        <dt>Must show</dt><dd>the sine curve itself over cycles_shown full periods; the zero/reference axis, which every other reference line is measured from</dd>
+        <dt>Must not show</dt><dd>an RMS line coincident with the peak line; a non-zero horizontal 'average' reference line for a full symmetric cycle (the real signed average is zero -- EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001); any numeric peak/RMS/period value embedded in the artwork itself (values belong in question/lesson prompt text, per the symbolic-only convention every diagram in this folder follows)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=false::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">6ec5f719567c3b90b0e694cd6c743c099dea935c98d4aedea0892279f0e885d9</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.ac_dc_waveforms"
+  data-diagram-type="waveform"
+  data-blueprint="graph.waveform_sine"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.ac-waveform-sine@1_cycles_shown_2_mode_both_show_peak_line_true_show_period_marker_false_show_rms_line_true_both.svg" alt="Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-required">human review: required (sampled)</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>graph.waveform_sine</code> (waveform)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.ac-waveform-sine</code></dd>
+        <dt>Assertion family</dt><dd>electrical.ac_dc_waveforms</dd>
+        <dt>Atomic assertions</dt><dd>EL-WAVEFORM-PERIODIC-TIME-001, EL-WAVEFORM-AMPLITUDE-001, EL-WAVEFORM-PEAK-TO-PEAK-001, EL-WAVEFORM-RMS-001, EL-WAVEFORM-AVERAGE-VALUE-001, EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001, EL-WAVEFORM-RMS-CALC-001, EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001</dd>
+        <dt>Capability</dt><dd>cap.waveform.identify_characteristic, cap.waveform.calculate_rms_peak</dd>
+        <dt>Question blueprints</dt><dd>waveform.identify_characteristic, waveform.calculate_rms_from_peak</dd>
+        <dt>Must show</dt><dd>the sine curve itself over cycles_shown full periods; the zero/reference axis, which every other reference line is measured from</dd>
+        <dt>Must not show</dt><dd>an RMS line coincident with the peak line; a non-zero horizontal 'average' reference line for a full symmetric cycle (the real signed average is zero -- EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001); any numeric peak/RMS/period value embedded in the artwork itself (values belong in question/lesson prompt text, per the symbolic-only convention every diagram in this folder follows)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=true::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">8f434920279150bd083709b1bc9e225ede63d15e7d672754e932b186d6d0fb2f</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.ac_dc_waveforms"
+  data-diagram-type="waveform"
+  data-blueprint="graph.waveform_sine"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.ac-waveform-sine@1_cycles_shown_2_mode_both_show_peak_line_true_show_period_marker_true_show_rms_line_true_both.svg" alt="Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>graph.waveform_sine</code> (waveform)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.ac-waveform-sine</code></dd>
+        <dt>Assertion family</dt><dd>electrical.ac_dc_waveforms</dd>
+        <dt>Atomic assertions</dt><dd>EL-WAVEFORM-PERIODIC-TIME-001, EL-WAVEFORM-AMPLITUDE-001, EL-WAVEFORM-PEAK-TO-PEAK-001, EL-WAVEFORM-RMS-001, EL-WAVEFORM-AVERAGE-VALUE-001, EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001, EL-WAVEFORM-RMS-CALC-001, EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001</dd>
+        <dt>Capability</dt><dd>cap.waveform.identify_characteristic, cap.waveform.calculate_rms_peak</dd>
+        <dt>Question blueprints</dt><dd>waveform.identify_characteristic, waveform.calculate_rms_from_peak</dd>
+        <dt>Must show</dt><dd>the sine curve itself over cycles_shown full periods; the zero/reference axis, which every other reference line is measured from</dd>
+        <dt>Must not show</dt><dd>an RMS line coincident with the peak line; a non-zero horizontal 'average' reference line for a full symmetric cycle (the real signed average is zero -- EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001); any numeric peak/RMS/period value embedded in the artwork itself (values belong in question/lesson prompt text, per the symbolic-only convention every diagram in this folder follows)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">1094f117ff71061766ea2b05afcbb697b98600f45627335c001c3f303da80499</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.ac_dc_waveforms"
+  data-diagram-type="waveform"
+  data-blueprint="graph.waveform_sine"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.ac-waveform-sine@1_cycles_shown_3_mode_both_show_peak_line_true_show_period_marker_true_show_rms_line_true_both.svg" alt="Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>graph.waveform_sine</code> (waveform)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.ac-waveform-sine</code></dd>
+        <dt>Assertion family</dt><dd>electrical.ac_dc_waveforms</dd>
+        <dt>Atomic assertions</dt><dd>EL-WAVEFORM-PERIODIC-TIME-001, EL-WAVEFORM-AMPLITUDE-001, EL-WAVEFORM-PEAK-TO-PEAK-001, EL-WAVEFORM-RMS-001, EL-WAVEFORM-AVERAGE-VALUE-001, EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001, EL-WAVEFORM-RMS-CALC-001, EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001</dd>
+        <dt>Capability</dt><dd>cap.waveform.identify_characteristic, cap.waveform.calculate_rms_peak</dd>
+        <dt>Question blueprints</dt><dd>waveform.identify_characteristic, waveform.calculate_rms_from_peak</dd>
+        <dt>Must show</dt><dd>the sine curve itself over cycles_shown full periods; the zero/reference axis, which every other reference line is measured from</dd>
+        <dt>Must not show</dt><dd>an RMS line coincident with the peak line; a non-zero horizontal 'average' reference line for a full symmetric cycle (the real signed average is zero -- EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001); any numeric peak/RMS/period value embedded in the artwork itself (values belong in question/lesson prompt text, per the symbolic-only convention every diagram in this folder follows)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.ac-waveform-sine@1::cycles_shown=3,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">6b7a87090f31f79a8636d5cccbae21491fca444e93d13cc22a87313ba6078459</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.instrumentation"
+  data-diagram-type="instrument_connection"
+  data-blueprint="instrument.measurement_connection"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.instrument-measurement-connection@1_connection_style_parallel_instrument_type_ammeter_mode_both_both.svg" alt="Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>instrument.measurement_connection</code> (instrument_connection)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.instrument-measurement-connection</code></dd>
+        <dt>Assertion family</dt><dd>electrical.instrumentation</dd>
+        <dt>Atomic assertions</dt><dd>EL-INSTRUMENT-VOLTMETER-001, EL-INSTRUMENT-AMMETER-001</dd>
+        <dt>Capability</dt><dd>cap.instrumentation.recognise_connection</dd>
+        <dt>Question blueprints</dt><dd>instrumentation.recognise_connection</dd>
+        <dt>Must show</dt><dd>the instrument symbol (circle containing V/A/Omega) at the correct topological position for the requested connection_style; the component/path being measured; an explicit on-diagram caption stating whether the shown combination matches the standard, correct connection method for that instrument (never silently implying a miswiring is standard practice)</dd>
+        <dt>Must not show</dt><dd>a voltmeter spliced into the current path (the main path must remain unbroken whenever a voltmeter is shown); an ammeter drawn as a side branch (it must always be spliced into the current path); for instrument_type 'ohmmeter', any energised-source symbol in a closed loop with the meter -- ohmmeter use requires an isolated, de-energised component</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=ammeter,mode=both::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">abc783d876c7126fb998c0f2efa92a501e722987b36b6ef40b24c509eb650d0f</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.instrumentation"
+  data-diagram-type="instrument_connection"
+  data-blueprint="instrument.measurement_connection"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.instrument-measurement-connection@1_connection_style_parallel_instrument_type_voltmeter_mode_both_both.svg" alt="Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>instrument.measurement_connection</code> (instrument_connection)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.instrument-measurement-connection</code></dd>
+        <dt>Assertion family</dt><dd>electrical.instrumentation</dd>
+        <dt>Atomic assertions</dt><dd>EL-INSTRUMENT-VOLTMETER-001, EL-INSTRUMENT-AMMETER-001</dd>
+        <dt>Capability</dt><dd>cap.instrumentation.recognise_connection</dd>
+        <dt>Question blueprints</dt><dd>instrumentation.recognise_connection</dd>
+        <dt>Must show</dt><dd>the instrument symbol (circle containing V/A/Omega) at the correct topological position for the requested connection_style; the component/path being measured; an explicit on-diagram caption stating whether the shown combination matches the standard, correct connection method for that instrument (never silently implying a miswiring is standard practice)</dd>
+        <dt>Must not show</dt><dd>a voltmeter spliced into the current path (the main path must remain unbroken whenever a voltmeter is shown); an ammeter drawn as a side branch (it must always be spliced into the current path); for instrument_type 'ohmmeter', any energised-source symbol in a closed loop with the meter -- ohmmeter use requires an isolated, de-energised component</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=voltmeter,mode=both::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">3652518ae747da29b7339b1cd5202b6620f279990c67619a853329ffc3e1e429</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.instrumentation"
+  data-diagram-type="instrument_connection"
+  data-blueprint="instrument.measurement_connection"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.instrument-measurement-connection@1_connection_style_series_instrument_type_ammeter_mode_both_both.svg" alt="Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>instrument.measurement_connection</code> (instrument_connection)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.instrument-measurement-connection</code></dd>
+        <dt>Assertion family</dt><dd>electrical.instrumentation</dd>
+        <dt>Atomic assertions</dt><dd>EL-INSTRUMENT-VOLTMETER-001, EL-INSTRUMENT-AMMETER-001</dd>
+        <dt>Capability</dt><dd>cap.instrumentation.recognise_connection</dd>
+        <dt>Question blueprints</dt><dd>instrumentation.recognise_connection</dd>
+        <dt>Must show</dt><dd>the instrument symbol (circle containing V/A/Omega) at the correct topological position for the requested connection_style; the component/path being measured; an explicit on-diagram caption stating whether the shown combination matches the standard, correct connection method for that instrument (never silently implying a miswiring is standard practice)</dd>
+        <dt>Must not show</dt><dd>a voltmeter spliced into the current path (the main path must remain unbroken whenever a voltmeter is shown); an ammeter drawn as a side branch (it must always be spliced into the current path); for instrument_type 'ohmmeter', any energised-source symbol in a closed loop with the meter -- ohmmeter use requires an isolated, de-energised component</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ammeter,mode=both::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">f6f2900a78ec81249e372e4b0b65b01092948f62ac3cd846211fdb557ab9205a</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.instrumentation"
+  data-diagram-type="instrument_connection"
+  data-blueprint="instrument.measurement_connection"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.instrument-measurement-connection@1_connection_style_series_instrument_type_ohmmeter_mode_both_both.svg" alt="Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>instrument.measurement_connection</code> (instrument_connection)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.instrument-measurement-connection</code></dd>
+        <dt>Assertion family</dt><dd>electrical.instrumentation</dd>
+        <dt>Atomic assertions</dt><dd>EL-INSTRUMENT-VOLTMETER-001, EL-INSTRUMENT-AMMETER-001</dd>
+        <dt>Capability</dt><dd>cap.instrumentation.recognise_connection</dd>
+        <dt>Question blueprints</dt><dd>instrumentation.recognise_connection</dd>
+        <dt>Must show</dt><dd>the instrument symbol (circle containing V/A/Omega) at the correct topological position for the requested connection_style; the component/path being measured; an explicit on-diagram caption stating whether the shown combination matches the standard, correct connection method for that instrument (never silently implying a miswiring is standard practice)</dd>
+        <dt>Must not show</dt><dd>a voltmeter spliced into the current path (the main path must remain unbroken whenever a voltmeter is shown); an ammeter drawn as a side branch (it must always be spliced into the current path); for instrument_type 'ohmmeter', any energised-source symbol in a closed loop with the meter -- ohmmeter use requires an isolated, de-energised component</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ohmmeter,mode=both::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">3f2c9ab51a2821aa7e6838e16a351876871e6b919a7e29f450472190f5ba6961</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.instrumentation"
+  data-diagram-type="instrument_connection"
+  data-blueprint="instrument.measurement_connection"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.instrument-measurement-connection@1_connection_style_series_instrument_type_voltmeter_mode_both_both.svg" alt="Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>instrument.measurement_connection</code> (instrument_connection)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.instrument-measurement-connection</code></dd>
+        <dt>Assertion family</dt><dd>electrical.instrumentation</dd>
+        <dt>Atomic assertions</dt><dd>EL-INSTRUMENT-VOLTMETER-001, EL-INSTRUMENT-AMMETER-001</dd>
+        <dt>Capability</dt><dd>cap.instrumentation.recognise_connection</dd>
+        <dt>Question blueprints</dt><dd>instrumentation.recognise_connection</dd>
+        <dt>Must show</dt><dd>the instrument symbol (circle containing V/A/Omega) at the correct topological position for the requested connection_style; the component/path being measured; an explicit on-diagram caption stating whether the shown combination matches the standard, correct connection method for that instrument (never silently implying a miswiring is standard practice)</dd>
+        <dt>Must not show</dt><dd>a voltmeter spliced into the current path (the main path must remain unbroken whenever a voltmeter is shown); an ammeter drawn as a side branch (it must always be spliced into the current path); for instrument_type 'ohmmeter', any energised-source symbol in a closed loop with the meter -- ohmmeter use requires an isolated, de-energised component</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=voltmeter,mode=both::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">a874be2cbdbdb1a4ed27d6b657bf5fec7aeab58d46d11ef63b5a30d9c70ceaeb</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
 
 <article class="card"
   data-family="electrical.magnetism_and_electromagnetism"
@@ -110,7 +616,7 @@
         <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
         <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">f51951211b6290f59cc54a8c727133c490ab4df3fa017d35d0c58521ea2ec2e6</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">1985d86bb65702d1cfef4c08ccd47a7d6638db9e47d0a378300bfcc569ab7e5f</code></dd>
       </dl>
     </details>
     
@@ -156,7 +662,7 @@
         <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
         <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">38f6166e991991de85b9d7c8778c69d7d665492b45b03c21f96984653feb025b</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">5836031261e093530f5e73f0a64422f6e2c5117ae96aa0ac920dd709c170cc68</code></dd>
       </dl>
     </details>
     
@@ -176,7 +682,7 @@
   data-semantic-status="pass"
   data-semantic-evidence="simulated"
   data-mechanical-status="pass"
-  data-human-review="required"
+  data-human-review="not_required"
   data-mode="assessment"
   data-role="essential"
 >
@@ -188,7 +694,7 @@
       <span class="badge mode">assessment</span>
       <span class="badge mech-pass">mechanical: PASS</span>
       <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
-      <span class="badge human-required">human review: required (sampled)</span>
+      <span class="badge human-ok">human review: not required</span>
     </div>
     <details>
       <summary>Traceability &amp; contract detail</summary>
@@ -202,7 +708,7 @@
         <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
         <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">70d67e65d8099088a21d6f4641f77d2d2626219752e8192d39671e77ac8f70ca</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">78788eb67a3d68391b36e2252edac7d268cc66aa27b8c7d6d2e54246b94c8a72</code></dd>
       </dl>
     </details>
     
@@ -248,7 +754,7 @@
         <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
         <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">fc53c7a2035d542b020b3c204c72c91ba1f2d60c71e22c108078b10c01f3e966</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">7597c0be24e601828fcd58073d0f886877003bd2e2758bb973987a96d78c1880</code></dd>
       </dl>
     </details>
     
@@ -294,7 +800,7 @@
         <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
         <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=right,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">76623599d92170b8e8c75b14f52dfd5b11fa36e5102e5a1139c15f1a322e45cf</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">19f540eb82e18dd8871430f7e0f61610c7b9d5fed9d2f3a7f189e6e8f262cde5</code></dd>
       </dl>
     </details>
     
@@ -340,53 +846,7 @@
         <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
         <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=up,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">5ee7b1cf3fa472e6f992e600f8f8e3a3751c804a38ac32507595d85b04879498</code></dd>
-      </dl>
-    </details>
-    
-    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
-      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
-      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
-      <p><strong>Observed:</strong> diagram element</p>
-      <p>No issues reported.</p>
-    </details>
-  </div>
-</article>
-
-<article class="card"
-  data-family="electrical.magnetism_and_electromagnetism"
-  data-diagram-type="magnetic_field"
-  data-blueprint="motor.force_field_current"
-  data-semantic-status="pass"
-  data-semantic-evidence="simulated"
-  data-mechanical-status="pass"
-  data-human-review="not_required"
-  data-mode="assessment"
-  data-role="essential"
->
-  <div class="card-image"><img src="renders/visual-contract.motor-principle-force@1_current_direction_out_of_page_mode_assessment_pole_labels_N_S_horizontal_show_force_arrow_true_assessment.svg" alt="Teach the motor principle: the direction of the force on a current-carrying conductor in a magnetic field." loading="lazy" /></div>
-  <div class="card-body">
-    <h3>Teach the motor principle: the direction of the force on a current-carrying conductor in a magnetic field.</h3>
-    <div class="badges">
-      <span class="badge role-essential">essential</span>
-      <span class="badge mode">assessment</span>
-      <span class="badge mech-pass">mechanical: PASS</span>
-      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
-      <span class="badge human-ok">human review: not required</span>
-    </div>
-    <details>
-      <summary>Traceability &amp; contract detail</summary>
-      <dl>
-        <dt>Diagram blueprint</dt><dd><code>motor.force_field_current</code> (magnetic_field)</dd>
-        <dt>Visual semantic contract</dt><dd><code>visual-contract.motor-principle-force</code></dd>
-        <dt>Assertion family</dt><dd>electrical.magnetism_and_electromagnetism</dd>
-        <dt>Atomic assertions</dt><dd>EL-CONCEPT-FORCE-ON-CONDUCTOR-001, EL-CONCEPT-MOTOR-PRINCIPLE-001</dd>
-        <dt>Capability</dt><dd>cap.magnetism.interpret_force_direction</dd>
-        <dt>Question blueprints</dt><dd>magnetism.interpret_force_direction</dd>
-        <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
-        <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
-        <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">d09ef4b5ef838c4639181a2b3d55d74ce5ffa85d17e7544d70ee1548ab96db8e</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">35d7b5930ff386853b4230c6769d61340b9d8da7c8ecf5464b1b61e13ac8eb17</code></dd>
       </dl>
     </details>
     
@@ -410,7 +870,7 @@
   data-mode="assessment"
   data-role="essential"
 >
-  <div class="card-image"><img src="renders/visual-contract.motor-principle-force@1_current_direction_out_of_page_mode_assessment_pole_labels_N_S_vertical_show_force_arrow_true_assessment.svg" alt="Teach the motor principle: the direction of the force on a current-carrying conductor in a magnetic field." loading="lazy" /></div>
+  <div class="card-image"><img src="renders/visual-contract.motor-principle-force@1_current_direction_out_of_page_mode_assessment_pole_labels_N_S_horizontal_show_force_arrow_true_assessment.svg" alt="Teach the motor principle: the direction of the force on a current-carrying conductor in a magnetic field." loading="lazy" /></div>
   <div class="card-body">
     <h3>Teach the motor principle: the direction of the force on a current-carrying conductor in a magnetic field.</h3>
     <div class="badges">
@@ -431,8 +891,54 @@
         <dt>Question blueprints</dt><dd>magnetism.interpret_force_direction</dd>
         <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
         <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">a53858983f61db10d64d9c7ef0cd3187fc54d91931856d93296b9960622d22e2</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.magnetism_and_electromagnetism"
+  data-diagram-type="magnetic_field"
+  data-blueprint="motor.force_field_current"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="assessment"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.motor-principle-force@1_current_direction_out_of_page_mode_assessment_pole_labels_N_S_vertical_show_force_arrow_true_assessment.svg" alt="Teach the motor principle: the direction of the force on a current-carrying conductor in a magnetic field." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Teach the motor principle: the direction of the force on a current-carrying conductor in a magnetic field.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">assessment</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>motor.force_field_current</code> (magnetic_field)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.motor-principle-force</code></dd>
+        <dt>Assertion family</dt><dd>electrical.magnetism_and_electromagnetism</dd>
+        <dt>Atomic assertions</dt><dd>EL-CONCEPT-FORCE-ON-CONDUCTOR-001, EL-CONCEPT-MOTOR-PRINCIPLE-001</dd>
+        <dt>Capability</dt><dd>cap.magnetism.interpret_force_direction</dd>
+        <dt>Question blueprints</dt><dd>magnetism.interpret_force_direction</dd>
+        <dt>Must show</dt><dd>a labelled north pole; a labelled south pole; field-direction arrows from north to south; the conductor cross-section between the poles</dd>
+        <dt>Must not show</dt><dd>a hand/grip-rule visual (this is the motor-principle diagram, distinct from the right-hand-grip-rule diagram -- the two concepts must never be conflated in one image); the force arrow/label in assessment mode</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">0a39005fe153e3a7dc78464617042bb64754cb6fef4d0837236e2e87395cb187</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">cb1df0027d5ca503c936316a30441b9d1b822928451b531a05eaa108c91478c7</code></dd>
       </dl>
     </details>
     
@@ -478,7 +984,7 @@
         <dt>Must show</dt><dd>two shared horizontal rails; every branch drawn as a separate vertical connection between the rails, labelled R1..Rn</dd>
         <dt>Must not show</dt><dd>branches drawn as a single series loop; numeric component values</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.parallel-circuit-branches@1::branch_count=2,mode=both,show_branch_current_arrows=true,show_values=false::both</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">c06f123ad6a9604e9c96d45f206108afdd4d430d5c87e1009a6465320339ccb4</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">c7fa9b03660f3bbf3a8b72fd3962cfd8557f00da15c67865a827efb6ac2124b9</code></dd>
       </dl>
     </details>
     
@@ -524,7 +1030,7 @@
         <dt>Must show</dt><dd>two shared horizontal rails; every branch drawn as a separate vertical connection between the rails, labelled R1..Rn</dd>
         <dt>Must not show</dt><dd>branches drawn as a single series loop; numeric component values</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.parallel-circuit-branches@1::branch_count=3,mode=both,show_branch_current_arrows=true,show_values=false::both</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">da14cd2df5fdc1cf77a6d1b08f211fa30e6650ee3c58ee7bc566e6a85d598f12</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">f1dcc192abec4800e58b37b6d33a28a07cc7bbae189c2a20a3eac4f5f7d532ac</code></dd>
       </dl>
     </details>
     
@@ -544,7 +1050,7 @@
   data-semantic-status="pass"
   data-semantic-evidence="simulated"
   data-mechanical-status="pass"
-  data-human-review="required"
+  data-human-review="not_required"
   data-mode="both"
   data-role="essential"
 >
@@ -556,7 +1062,7 @@
       <span class="badge mode">both</span>
       <span class="badge mech-pass">mechanical: PASS</span>
       <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
-      <span class="badge human-required">human review: required (sampled)</span>
+      <span class="badge human-ok">human review: not required</span>
     </div>
     <details>
       <summary>Traceability &amp; contract detail</summary>
@@ -570,7 +1076,7 @@
         <dt>Must show</dt><dd>two shared horizontal rails; every branch drawn as a separate vertical connection between the rails, labelled R1..Rn</dd>
         <dt>Must not show</dt><dd>branches drawn as a single series loop; numeric component values</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.parallel-circuit-branches@1::branch_count=4,mode=both,show_branch_current_arrows=true,show_values=false::both</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">3c28408909d8ade91a82e6ef211f3bbc0909d4c805377bc16c0a140a8af6a410</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">7cfbbc7e88245aeb351f3d0fb0086a51827cab7e53c5c2a8f33835c945945709</code></dd>
       </dl>
     </details>
     
@@ -616,53 +1122,7 @@
         <dt>Must show</dt><dd>a recognisable right hand; a distinctly labelled thumb; distinctly labelled curled fingers; the conductor cross-section the hand grips</dd>
         <dt>Must not show</dt><dd>a generic force arrow presented as if it were the field direction (the pre-CC-05C-DIAGRAM-FIX defect: a generic magnetic-force diagram shown for a right-hand-grip-rule lesson); the field-rotation arrow/label in assessment mode (it is the assessed answer)</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.right-hand-grip-rule@1::current_direction=into_page,field_rotation=clockwise,mode=teaching,show_field_arrows=true::teaching</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">cb046dde3a6d326155f665706beecc835219696f1fdc5c5cb5b46c849cf7fc10</code></dd>
-      </dl>
-    </details>
-    
-    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
-      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
-      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
-      <p><strong>Observed:</strong> diagram element</p>
-      <p>No issues reported.</p>
-    </details>
-  </div>
-</article>
-
-<article class="card"
-  data-family="electrical.magnetism_and_electromagnetism"
-  data-diagram-type="magnetic_field"
-  data-blueprint="magnetic.field_conductor_direction"
-  data-semantic-status="pass"
-  data-semantic-evidence="simulated"
-  data-mechanical-status="pass"
-  data-human-review="not_required"
-  data-mode="assessment"
-  data-role="essential"
->
-  <div class="card-image"><img src="renders/visual-contract.right-hand-grip-rule@1_current_direction_into_page_mode_assessment_show_field_arrows_true_assessment.svg" alt="Teach the right-hand grip rule for the magnetic field circulating around a current-carrying conductor." loading="lazy" /></div>
-  <div class="card-body">
-    <h3>Teach the right-hand grip rule for the magnetic field circulating around a current-carrying conductor.</h3>
-    <div class="badges">
-      <span class="badge role-essential">essential</span>
-      <span class="badge mode">assessment</span>
-      <span class="badge mech-pass">mechanical: PASS</span>
-      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
-      <span class="badge human-ok">human review: not required</span>
-    </div>
-    <details>
-      <summary>Traceability &amp; contract detail</summary>
-      <dl>
-        <dt>Diagram blueprint</dt><dd><code>magnetic.field_conductor_direction</code> (magnetic_field)</dd>
-        <dt>Visual semantic contract</dt><dd><code>visual-contract.right-hand-grip-rule</code></dd>
-        <dt>Assertion family</dt><dd>electrical.magnetism_and_electromagnetism</dd>
-        <dt>Atomic assertions</dt><dd>EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001</dd>
-        <dt>Capability</dt><dd>cap.magnetism.interpret_field_direction</dd>
-        <dt>Question blueprints</dt><dd>magnetism.interpret_field_direction</dd>
-        <dt>Must show</dt><dd>a recognisable right hand; a distinctly labelled thumb; distinctly labelled curled fingers; the conductor cross-section the hand grips</dd>
-        <dt>Must not show</dt><dd>a generic force arrow presented as if it were the field direction (the pre-CC-05C-DIAGRAM-FIX defect: a generic magnetic-force diagram shown for a right-hand-grip-rule lesson); the field-rotation arrow/label in assessment mode (it is the assessed answer)</dd>
-        <dt>Variant id</dt><dd><code class="small">visual-contract.right-hand-grip-rule@1::current_direction=into_page,mode=assessment,show_field_arrows=true::assessment</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">131fa597d113d2e755c72922008f2bc0b12edcb8ebe6ff6fd2c6e2b56e0f8361</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">fb7f2c6350c81dcb82d3f7fb629aff139100f2bb729788e345c000d1a76d21ef</code></dd>
       </dl>
     </details>
     
@@ -683,15 +1143,15 @@
   data-semantic-evidence="simulated"
   data-mechanical-status="pass"
   data-human-review="required"
-  data-mode="teaching"
+  data-mode="assessment"
   data-role="essential"
 >
-  <div class="card-image"><img src="renders/visual-contract.right-hand-grip-rule@1_current_direction_out_of_page_field_rotation_counterclockwise_mode_teaching_show_field_arrows_true_teaching.svg" alt="Teach the right-hand grip rule for the magnetic field circulating around a current-carrying conductor." loading="lazy" /></div>
+  <div class="card-image"><img src="renders/visual-contract.right-hand-grip-rule@1_current_direction_into_page_mode_assessment_show_field_arrows_true_assessment.svg" alt="Teach the right-hand grip rule for the magnetic field circulating around a current-carrying conductor." loading="lazy" /></div>
   <div class="card-body">
     <h3>Teach the right-hand grip rule for the magnetic field circulating around a current-carrying conductor.</h3>
     <div class="badges">
       <span class="badge role-essential">essential</span>
-      <span class="badge mode">teaching</span>
+      <span class="badge mode">assessment</span>
       <span class="badge mech-pass">mechanical: PASS</span>
       <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
       <span class="badge human-required">human review: required (sampled)</span>
@@ -707,8 +1167,54 @@
         <dt>Question blueprints</dt><dd>magnetism.interpret_field_direction</dd>
         <dt>Must show</dt><dd>a recognisable right hand; a distinctly labelled thumb; distinctly labelled curled fingers; the conductor cross-section the hand grips</dd>
         <dt>Must not show</dt><dd>a generic force arrow presented as if it were the field direction (the pre-CC-05C-DIAGRAM-FIX defect: a generic magnetic-force diagram shown for a right-hand-grip-rule lesson); the field-rotation arrow/label in assessment mode (it is the assessed answer)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.right-hand-grip-rule@1::current_direction=into_page,mode=assessment,show_field_arrows=true::assessment</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">dc6feeff05d3d8864f8a5cb9b2d5a84312c82acde59f335a87a573c09800cdad</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.magnetism_and_electromagnetism"
+  data-diagram-type="magnetic_field"
+  data-blueprint="magnetic.field_conductor_direction"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="teaching"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.right-hand-grip-rule@1_current_direction_out_of_page_field_rotation_counterclockwise_mode_teaching_show_field_arrows_true_teaching.svg" alt="Teach the right-hand grip rule for the magnetic field circulating around a current-carrying conductor." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Teach the right-hand grip rule for the magnetic field circulating around a current-carrying conductor.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">teaching</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>magnetic.field_conductor_direction</code> (magnetic_field)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.right-hand-grip-rule</code></dd>
+        <dt>Assertion family</dt><dd>electrical.magnetism_and_electromagnetism</dd>
+        <dt>Atomic assertions</dt><dd>EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001</dd>
+        <dt>Capability</dt><dd>cap.magnetism.interpret_field_direction</dd>
+        <dt>Question blueprints</dt><dd>magnetism.interpret_field_direction</dd>
+        <dt>Must show</dt><dd>a recognisable right hand; a distinctly labelled thumb; distinctly labelled curled fingers; the conductor cross-section the hand grips</dd>
+        <dt>Must not show</dt><dd>a generic force arrow presented as if it were the field direction (the pre-CC-05C-DIAGRAM-FIX defect: a generic magnetic-force diagram shown for a right-hand-grip-rule lesson); the field-rotation arrow/label in assessment mode (it is the assessed answer)</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,field_rotation=counterclockwise,mode=teaching,show_field_arrows=true::teaching</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">6bee02e386bbaf8533941a981e9103390428ef663624075c41a4f094e1af6cfb</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">3f4b46052d809bb5188fbc02d00088240ee9b13616e1d85f2e0177a3d4d9ef72</code></dd>
       </dl>
     </details>
     
@@ -754,7 +1260,7 @@
         <dt>Must show</dt><dd>a recognisable right hand; a distinctly labelled thumb; distinctly labelled curled fingers; the conductor cross-section the hand grips</dd>
         <dt>Must not show</dt><dd>a generic force arrow presented as if it were the field direction (the pre-CC-05C-DIAGRAM-FIX defect: a generic magnetic-force diagram shown for a right-hand-grip-rule lesson); the field-rotation arrow/label in assessment mode (it is the assessed answer)</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.right-hand-grip-rule@1::current_direction=out_of_page,mode=assessment,show_field_arrows=true::assessment</code></dd>
-        <dt>Image SHA-256</dt><dd><code class="small">877e669438e34e85175034752b144bdbdceca55bf2925af3440d36e718f0c6e9</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">30bea0fbca30995081de0abcdf75165814d5b437e6150e26399d15fa5c0156bc</code></dd>
       </dl>
     </details>
     
@@ -893,6 +1399,98 @@
         <dt>Must not show</dt><dd>a second, parallel current path; numeric component values (symbolic labels only, per CC-05A valueEmbedding policy)</dd>
         <dt>Variant id</dt><dd><code class="small">visual-contract.series-circuit-current-direction@1::component_count=4,mode=both,show_current_arrow=true,show_values=false::both</code></dd>
         <dt>Image SHA-256</dt><dd><code class="small">67463fe37841c068a176d4596ecbcb7a41a9c0fe194e55823896e79435f66d9f</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.series_vs_parallel_comparison"
+  data-diagram-type="electrical_circuit"
+  data-blueprint="circuit.series_parallel_mixed"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.series-parallel-mixed-topology@1_branch_arrangement_parallel_of_series_mode_both_show_values_false_both.svg" alt="Show a genuinely mixed series-and-parallel topology so learners can distinguish it from pure series or pure parallel, and trace the current path(s) through it." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Show a genuinely mixed series-and-parallel topology so learners can distinguish it from pure series or pure parallel, and trace the current path(s) through it.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>circuit.series_parallel_mixed</code> (electrical_circuit)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.series-parallel-mixed-topology</code></dd>
+        <dt>Assertion family</dt><dd>electrical.series_vs_parallel_comparison</dd>
+        <dt>Atomic assertions</dt><dd>EL-CIRCUIT-SELECT-CONFIGURATION-001, EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001, EL-CIRCUIT-TRACE-CURRENT-PATH-001</dd>
+        <dt>Capability</dt><dd>cap.comparison.identify_topology, cap.comparison.recognise_mixed_circuit, cap.comparison.trace_current_path</dd>
+        <dt>Question blueprints</dt><dd>comparison.identify_topology, comparison.recognise_mixed_circuit, comparison.trace_current_path</dd>
+        <dt>Must show</dt><dd>a genuine series run (one or more components in a single current path); a genuine parallel group (two or more components between shared local rails) within the same image; symbolic R1..Rn labels in a single consistent reading order; the specific arrangement (series-of-parallel vs parallel-of-series) visually distinguishable from the other</dd>
+        <dt>Must not show</dt><dd>a topology that is actually pure series or pure parallel dressed up to look mixed; numeric component values (symbolic labels only, per CC-05A valueEmbedding policy)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.series-parallel-mixed-topology@1::branch_arrangement=parallel_of_series,mode=both,show_values=false::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">3d2ff510ec157937bb482612af48e429c24cf8d1bace66d921699465c3ae45c8</code></dd>
+      </dl>
+    </details>
+    
+    <details><summary>Pass A (blind observation) &amp; Pass B (semantic verification)</summary>
+      <p class="simulated-warning"><strong>&#9888; This is a SIMULATED result from a deterministic mock pipeline, not a real AI/vision review.</strong> It proves the QA architecture processes this image correctly end-to-end -- it is not evidence that any model has actually looked at this image and approved it. Real semantic review has not yet been run against this or any image in this catalogue (see the summary banner above).</p>
+      <p><strong>Reviewer identity:</strong> <code>mock-provider-v1</code> &mdash; <strong>cache:</strong> reused</p>
+      <p><strong>Observed:</strong> diagram element</p>
+      <p>No issues reported.</p>
+    </details>
+  </div>
+</article>
+
+<article class="card"
+  data-family="electrical.series_vs_parallel_comparison"
+  data-diagram-type="electrical_circuit"
+  data-blueprint="circuit.series_parallel_mixed"
+  data-semantic-status="pass"
+  data-semantic-evidence="simulated"
+  data-mechanical-status="pass"
+  data-human-review="not_required"
+  data-mode="both"
+  data-role="essential"
+>
+  <div class="card-image"><img src="renders/visual-contract.series-parallel-mixed-topology@1_branch_arrangement_series_of_parallel_mode_both_show_values_false_both.svg" alt="Show a genuinely mixed series-and-parallel topology so learners can distinguish it from pure series or pure parallel, and trace the current path(s) through it." loading="lazy" /></div>
+  <div class="card-body">
+    <h3>Show a genuinely mixed series-and-parallel topology so learners can distinguish it from pure series or pure parallel, and trace the current path(s) through it.</h3>
+    <div class="badges">
+      <span class="badge role-essential">essential</span>
+      <span class="badge mode">both</span>
+      <span class="badge mech-pass">mechanical: PASS</span>
+      <span class="badge evidence-simulated">SIMULATED SEMANTIC (mock pipeline, not a real review): PASS</span>
+      <span class="badge human-ok">human review: not required</span>
+    </div>
+    <details>
+      <summary>Traceability &amp; contract detail</summary>
+      <dl>
+        <dt>Diagram blueprint</dt><dd><code>circuit.series_parallel_mixed</code> (electrical_circuit)</dd>
+        <dt>Visual semantic contract</dt><dd><code>visual-contract.series-parallel-mixed-topology</code></dd>
+        <dt>Assertion family</dt><dd>electrical.series_vs_parallel_comparison</dd>
+        <dt>Atomic assertions</dt><dd>EL-CIRCUIT-SELECT-CONFIGURATION-001, EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001, EL-CIRCUIT-TRACE-CURRENT-PATH-001</dd>
+        <dt>Capability</dt><dd>cap.comparison.identify_topology, cap.comparison.recognise_mixed_circuit, cap.comparison.trace_current_path</dd>
+        <dt>Question blueprints</dt><dd>comparison.identify_topology, comparison.recognise_mixed_circuit, comparison.trace_current_path</dd>
+        <dt>Must show</dt><dd>a genuine series run (one or more components in a single current path); a genuine parallel group (two or more components between shared local rails) within the same image; symbolic R1..Rn labels in a single consistent reading order; the specific arrangement (series-of-parallel vs parallel-of-series) visually distinguishable from the other</dd>
+        <dt>Must not show</dt><dd>a topology that is actually pure series or pure parallel dressed up to look mixed; numeric component values (symbolic labels only, per CC-05A valueEmbedding policy)</dd>
+        <dt>Variant id</dt><dd><code class="small">visual-contract.series-parallel-mixed-topology@1::branch_arrangement=series_of_parallel,mode=both,show_values=false::both</code></dd>
+        <dt>Image SHA-256</dt><dd><code class="small">235e2db1285066c79b011321e3369f0339a9235f853dee4b619f7c9a838e9785</code></dd>
       </dl>
     </details>
     

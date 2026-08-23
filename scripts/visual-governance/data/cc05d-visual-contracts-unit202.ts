@@ -1,19 +1,16 @@
 /**
- * CC-05D: governed VisualSemanticContract records for the 4 instructional
- * diagram blueprints currently rendered in the mobile proving slice
+ * CC-05D: governed VisualSemanticContract records for the instructional
+ * diagram blueprints rendered in the mobile app
  * (apps/mobile/src/components/diagrams/*). Every id below is a real,
  * live reference into scripts/content/data/cc05a-pedagogy-unit202.ts --
  * cross-checked mechanically by scripts/visual-governance/check-visual-
  * governance.ts, exactly as apps/mobile's proving-content fixture is
  * cross-checked by scripts/content/check-cc05c-proving-fixture.test.ts.
  *
- * Scope note: 3 further diagram blueprints are governed in CC-05A
- * (circuit.series_parallel_mixed, graph.waveform_sine,
- * instrument.measurement_connection) but have no mobile renderer yet --
- * building those renderers is out of CC-05D's scope (see the CC-05D
- * architecture doc §S); they intentionally have no contract here, and
- * the mechanical check reports them as a tracked, non-fatal gap rather
- * than silently ignoring them.
+ * CC-11 closes the renderer gap CC-05D tracked but deliberately left open
+ * (`circuit.series_parallel_mixed`, `graph.waveform_sine`,
+ * `instrument.measurement_connection`) -- all 7 governed diagram
+ * blueprints now have both a real renderer and a contract here.
  */
 
 import type { VisualSemanticContract } from "@alp/content-schema";
@@ -183,5 +180,137 @@ export const visualSemanticContracts: VisualSemanticContract[] = [
     accessibilityExpectations: [
       { description: "Pole orientation, current direction, and (when revealed) force direction are stated in words in the accessibility label.", requiresNonColourEncoding: true },
     ],
+  },
+  {
+    id: "visual-contract.series-parallel-mixed-topology",
+    version: 1,
+    diagramBlueprintId: "circuit.series_parallel_mixed",
+    teachingIntent:
+      "Show a genuinely mixed series-and-parallel topology so learners can distinguish it from pure series or pure parallel, and trace the current path(s) through it.",
+    representationRole: "essential",
+    assertionFamilyIds: ["electrical.series_vs_parallel_comparison"],
+    assertionIdentifiers: ["EL-CIRCUIT-SELECT-CONFIGURATION-001", "EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001", "EL-CIRCUIT-TRACE-CURRENT-PATH-001"],
+    capabilityIds: ["cap.comparison.identify_topology", "cap.comparison.recognise_mixed_circuit", "cap.comparison.trace_current_path"],
+    relevantQuestionBlueprintIds: ["comparison.identify_topology", "comparison.recognise_mixed_circuit", "comparison.trace_current_path"],
+    modeApplicability: ["both"],
+    mustShow: [
+      "a genuine series run (one or more components in a single current path)",
+      "a genuine parallel group (two or more components between shared local rails) within the same image",
+      "symbolic R1..Rn labels in a single consistent reading order",
+      "the specific arrangement (series-of-parallel vs parallel-of-series) visually distinguishable from the other",
+    ],
+    mustNotShow: [
+      "a topology that is actually pure series or pure parallel dressed up to look mixed",
+      "numeric component values (symbolic labels only, per CC-05A valueEmbedding policy)",
+    ],
+    semanticMappings: [
+      { element: "series_run", concept: "components_sharing_one_current_path" },
+      { element: "parallel_group", concept: "components_between_shared_local_rails" },
+    ],
+    directionalRelationships: [],
+    variantExpectations: [
+      { parameter: "branch_arrangement", value: "series_of_parallel", expectation: "one series resistor, then a two-branch parallel group, reconnecting before the loop completes" },
+      { parameter: "branch_arrangement", value: "parallel_of_series", expectation: "two parallel branches between shared rails, each branch itself carrying two resistors in series" },
+    ],
+    invariantExpectations: [
+      "labels never overlap",
+      "the parallel sub-group's local rails/branches are visually distinct from the series loop's wires -- no ambiguity about which wires belong to which structure",
+    ],
+    answerDisclosure: [],
+    accessibilityExpectations: [
+      { description: "The exact topology (which components are in series, which are in parallel with each other) is stated in words in the accessibility label.", requiresNonColourEncoding: true },
+    ],
+    knownAmbiguity:
+      "comparison.trace_current_path's answer type is diagram_region, implying future tappable-region interactivity none of the current renderers implement -- worth a semantic reviewer's attention once interactivity is built (CC-11 Workstream D finding).",
+  },
+  {
+    id: "visual-contract.ac-waveform-sine",
+    version: 1,
+    diagramBlueprintId: "graph.waveform_sine",
+    teachingIntent:
+      "Show a sine AC waveform with correctly-positioned peak/RMS/period reference marks, teaching the RMS ~ 0.707 x peak relationship and the zero full-cycle average of symmetric AC.",
+    representationRole: "essential",
+    assertionFamilyIds: ["electrical.ac_dc_waveforms"],
+    assertionIdentifiers: [
+      "EL-WAVEFORM-PERIODIC-TIME-001",
+      "EL-WAVEFORM-AMPLITUDE-001",
+      "EL-WAVEFORM-PEAK-TO-PEAK-001",
+      "EL-WAVEFORM-RMS-001",
+      "EL-WAVEFORM-AVERAGE-VALUE-001",
+      "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001",
+      "EL-WAVEFORM-RMS-CALC-001",
+      "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001",
+    ],
+    capabilityIds: ["cap.waveform.identify_characteristic", "cap.waveform.calculate_rms_peak"],
+    relevantQuestionBlueprintIds: ["waveform.identify_characteristic", "waveform.calculate_rms_from_peak"],
+    modeApplicability: ["both"],
+    mustShow: ["the sine curve itself over cycles_shown full periods", "the zero/reference axis, which every other reference line is measured from"],
+    mustNotShow: [
+      "an RMS line coincident with the peak line",
+      "a non-zero horizontal 'average' reference line for a full symmetric cycle (the real signed average is zero -- EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001)",
+      "any numeric peak/RMS/period value embedded in the artwork itself (values belong in question/lesson prompt text, per the symbolic-only convention every diagram in this folder follows)",
+    ],
+    semanticMappings: [
+      { element: "peak_line", concept: "maximum_instantaneous_value" },
+      { element: "rms_line", concept: "root_mean_square_value" },
+      { element: "period_marker", concept: "periodic_time" },
+    ],
+    directionalRelationships: [],
+    variantExpectations: [
+      { parameter: "show_peak_line", value: true, expectation: "a dashed reference line touching the curve's maximum, measured from the zero axis" },
+      { parameter: "show_rms_line", value: true, expectation: "a distinctly-dashed reference line at exactly 1/sqrt(2) of the peak's distance from the zero axis -- never at the peak, never at zero" },
+      { parameter: "show_period_marker", value: true, expectation: "a horizontal marker spanning exactly one full cycle" },
+    ],
+    invariantExpectations: [
+      "rms_line height == 0.7071 x peak_line height (measured from the zero axis) whenever both are shown",
+      "the period marker always spans exactly one horizontal cycle-width, never a partial or arbitrary span",
+    ],
+    answerDisclosure: [],
+    accessibilityExpectations: [
+      { description: "Which reference lines are present (peak/RMS/period) and the cycle count are stated in words in the accessibility label; no numeric value is ever stated since none is ever drawn.", requiresNonColourEncoding: true },
+    ],
+    knownAmbiguity:
+      "This is the only blueprint with valueEmbedding 'values_when_assessed' rather than 'symbolic_only'. This renderer resolves that by never embedding a numeric value in the artwork under any circumstance (see WaveformSineDiagram.tsx's header comment) -- a semantic reviewer used to the other 6 blueprints' plain symbolic-only convention should not mistake the absence of numeric labels here for a defect; it is this blueprint's specific, deliberate design.",
+  },
+  {
+    id: "visual-contract.instrument-measurement-connection",
+    version: 1,
+    diagramBlueprintId: "instrument.measurement_connection",
+    teachingIntent: "Teach correct voltmeter-parallel / ammeter-series connection, and that ohmmeter use requires a de-energised, isolated component.",
+    representationRole: "essential",
+    assertionFamilyIds: ["electrical.instrumentation"],
+    assertionIdentifiers: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001"],
+    capabilityIds: ["cap.instrumentation.recognise_connection"],
+    relevantQuestionBlueprintIds: ["instrumentation.recognise_connection"],
+    modeApplicability: ["both"],
+    mustShow: [
+      "the instrument symbol (circle containing V/A/Omega) at the correct topological position for the requested connection_style",
+      "the component/path being measured",
+      "an explicit on-diagram caption stating whether the shown combination matches the standard, correct connection method for that instrument (never silently implying a miswiring is standard practice)",
+    ],
+    mustNotShow: [
+      "a voltmeter spliced into the current path (the main path must remain unbroken whenever a voltmeter is shown)",
+      "an ammeter drawn as a side branch (it must always be spliced into the current path)",
+      "for instrument_type 'ohmmeter', any energised-source symbol in a closed loop with the meter -- ohmmeter use requires an isolated, de-energised component",
+    ],
+    semanticMappings: [
+      { element: "meter_symbol", concept: "measured_quantity" },
+      { element: "connection_topology", concept: "series_or_parallel_measurement_method" },
+    ],
+    directionalRelationships: [
+      { from: "instrument_type", to: "connection_style", relationship: "determines the standard/correct connection (voltmeter->parallel, ammeter->series, ohmmeter->isolated, never in a live loop)" },
+    ],
+    variantExpectations: [
+      { parameter: "instrument_type", value: "voltmeter", expectation: "standard connection is parallel, across the component" },
+      { parameter: "instrument_type", value: "ammeter", expectation: "standard connection is series, in the current path" },
+      { parameter: "instrument_type", value: "ohmmeter", expectation: "always isolated -- no source, no closed energised loop, regardless of connection_style" },
+    ],
+    invariantExpectations: ["the ohmmeter variant never co-renders a source symbol in a closed path, regardless of the requested connection_style"],
+    answerDisclosure: [],
+    accessibilityExpectations: [
+      { description: "The connection style shown and whether it is the standard/correct method are both stated in words in the accessibility label.", requiresNonColourEncoding: true },
+    ],
+    knownAmbiguity:
+      "instrumentation.recognise_connection's answer options are literally 'series'/'parallel'. This renderer's own always-shown standard/non-standard caption directly states the answer -- fine for the diagram's current teaching-only use (lesson.electrical.instrumentation), but if this diagram is ever wired into that blueprint's own assessment-mode presentation, the caption would leak the answer and must be suppressed for that call site specifically (CC-11 Workstream D flagged this as an open design question, not silently resolved here).",
   },
 ];

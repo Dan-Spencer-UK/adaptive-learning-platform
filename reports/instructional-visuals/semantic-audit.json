@@ -1,5 +1,357 @@
 [
   {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=1,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.753Z",
+      "imageHash": "434d8bd27eb5baf472ac988009630c9cf8783c4ee085363a1d4c080ff47632d7",
+      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=false,show_period_marker=false,show_rms_line=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.755Z",
+      "imageHash": "c2752ed263b051303d8142fb2a3f7453baa876c93896eb6f6c52b07730f66689",
+      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.756Z",
+      "imageHash": "6ec5f719567c3b90b0e694cd6c743c099dea935c98d4aedea0892279f0e885d9",
+      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=true::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.756Z",
+      "imageHash": "8f434920279150bd083709b1bc9e225ede63d15e7d672754e932b186d6d0fb2f",
+      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.757Z",
+      "imageHash": "1094f117ff71061766ea2b05afcbb697b98600f45627335c001c3f303da80499",
+      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=3,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.757Z",
+      "imageHash": "6b7a87090f31f79a8636d5cccbae21491fca444e93d13cc22a87313ba6078459",
+      "contractHash": "fefaa6800d3409e72cd59b91fe0d8611320bc3eab0a638249949c86b0f75d2c9"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=ammeter,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.758Z",
+      "imageHash": "abc783d876c7126fb998c0f2efa92a501e722987b36b6ef40b24c509eb650d0f",
+      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=voltmeter,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.758Z",
+      "imageHash": "3652518ae747da29b7339b1cd5202b6620f279990c67619a853329ffc3e1e429",
+      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ammeter,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.759Z",
+      "imageHash": "f6f2900a78ec81249e372e4b0b65b01092948f62ac3cd846211fdb557ab9205a",
+      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ohmmeter,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.759Z",
+      "imageHash": "3f2c9ab51a2821aa7e6838e16a351876871e6b919a7e29f450472190f5ba6961",
+      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=voltmeter,mode=both::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.760Z",
+      "imageHash": "a874be2cbdbdb1a4ed27d6b657bf5fec7aeab58d46d11ef63b5a30d9c70ceaeb",
+      "contractHash": "7639c8702e79f6a143dc98dca099d964c1d915b9cb4444eeec1a33e35e21a61d"
+    },
+    "cacheHit": true
+  },
+  {
     "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
     "observation": {
       "visibleObjects": [
@@ -25,8 +377,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.522Z",
-      "imageHash": "f51951211b6290f59cc54a8c727133c490ab4df3fa017d35d0c58521ea2ec2e6",
+      "timestamp": "2026-08-23T00:11:19.376Z",
+      "imageHash": "1985d86bb65702d1cfef4c08ccd47a7d6638db9e47d0a378300bfcc569ab7e5f",
       "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
     },
     "cacheHit": true
@@ -57,8 +409,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.527Z",
-      "imageHash": "38f6166e991991de85b9d7c8778c69d7d665492b45b03c21f96984653feb025b",
+      "timestamp": "2026-08-23T00:11:19.378Z",
+      "imageHash": "5836031261e093530f5e73f0a64422f6e2c5117ae96aa0ac920dd709c170cc68",
       "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
     },
     "cacheHit": true
@@ -89,8 +441,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.528Z",
-      "imageHash": "70d67e65d8099088a21d6f4641f77d2d2626219752e8192d39671e77ac8f70ca",
+      "timestamp": "2026-08-23T00:11:19.378Z",
+      "imageHash": "78788eb67a3d68391b36e2252edac7d268cc66aa27b8c7d6d2e54246b94c8a72",
       "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
     },
     "cacheHit": true
@@ -121,8 +473,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.529Z",
-      "imageHash": "fc53c7a2035d542b020b3c204c72c91ba1f2d60c71e22c108078b10c01f3e966",
+      "timestamp": "2026-08-23T00:11:19.379Z",
+      "imageHash": "7597c0be24e601828fcd58073d0f886877003bd2e2758bb973987a96d78c1880",
       "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
     },
     "cacheHit": true
@@ -153,8 +505,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.530Z",
-      "imageHash": "76623599d92170b8e8c75b14f52dfd5b11fa36e5102e5a1139c15f1a322e45cf",
+      "timestamp": "2026-08-23T00:11:19.380Z",
+      "imageHash": "19f540eb82e18dd8871430f7e0f61610c7b9d5fed9d2f3a7f189e6e8f262cde5",
       "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
     },
     "cacheHit": true
@@ -185,8 +537,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.531Z",
-      "imageHash": "5ee7b1cf3fa472e6f992e600f8f8e3a3751c804a38ac32507595d85b04879498",
+      "timestamp": "2026-08-23T00:11:19.380Z",
+      "imageHash": "35d7b5930ff386853b4230c6769d61340b9d8da7c8ecf5464b1b61e13ac8eb17",
       "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
     },
     "cacheHit": true
@@ -217,8 +569,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.531Z",
-      "imageHash": "d09ef4b5ef838c4639181a2b3d55d74ce5ffa85d17e7544d70ee1548ab96db8e",
+      "timestamp": "2026-08-23T00:11:19.381Z",
+      "imageHash": "a53858983f61db10d64d9c7ef0cd3187fc54d91931856d93296b9960622d22e2",
       "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
     },
     "cacheHit": true
@@ -249,8 +601,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.531Z",
-      "imageHash": "0a39005fe153e3a7dc78464617042bb64754cb6fef4d0837236e2e87395cb187",
+      "timestamp": "2026-08-23T00:11:19.382Z",
+      "imageHash": "cb1df0027d5ca503c936316a30441b9d1b822928451b531a05eaa108c91478c7",
       "contractHash": "a277f00ea9b67417aaf73ef82d4218e79db99a691ec0ec82f485e1f4c3e4f958"
     },
     "cacheHit": true
@@ -281,8 +633,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.532Z",
-      "imageHash": "c06f123ad6a9604e9c96d45f206108afdd4d430d5c87e1009a6465320339ccb4",
+      "timestamp": "2026-08-23T00:11:19.382Z",
+      "imageHash": "c7fa9b03660f3bbf3a8b72fd3962cfd8557f00da15c67865a827efb6ac2124b9",
       "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
     },
     "cacheHit": true
@@ -313,8 +665,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.533Z",
-      "imageHash": "da14cd2df5fdc1cf77a6d1b08f211fa30e6650ee3c58ee7bc566e6a85d598f12",
+      "timestamp": "2026-08-23T00:11:19.383Z",
+      "imageHash": "f1dcc192abec4800e58b37b6d33a28a07cc7bbae189c2a20a3eac4f5f7d532ac",
       "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
     },
     "cacheHit": true
@@ -345,8 +697,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.534Z",
-      "imageHash": "3c28408909d8ade91a82e6ef211f3bbc0909d4c805377bc16c0a140a8af6a410",
+      "timestamp": "2026-08-23T00:11:19.426Z",
+      "imageHash": "7cfbbc7e88245aeb351f3d0fb0086a51827cab7e53c5c2a8f33835c945945709",
       "contractHash": "d6b689b605773ba05cfceb4b92f9b3cf77effe3a5fef8d9bda0d282432f5a3ad"
     },
     "cacheHit": true
@@ -377,8 +729,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.534Z",
-      "imageHash": "cb046dde3a6d326155f665706beecc835219696f1fdc5c5cb5b46c849cf7fc10",
+      "timestamp": "2026-08-23T00:11:19.427Z",
+      "imageHash": "fb7f2c6350c81dcb82d3f7fb629aff139100f2bb729788e345c000d1a76d21ef",
       "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
     },
     "cacheHit": true
@@ -409,8 +761,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.535Z",
-      "imageHash": "131fa597d113d2e755c72922008f2bc0b12edcb8ebe6ff6fd2c6e2b56e0f8361",
+      "timestamp": "2026-08-23T00:11:19.428Z",
+      "imageHash": "dc6feeff05d3d8864f8a5cb9b2d5a84312c82acde59f335a87a573c09800cdad",
       "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
     },
     "cacheHit": true
@@ -441,8 +793,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.535Z",
-      "imageHash": "6bee02e386bbaf8533941a981e9103390428ef663624075c41a4f094e1af6cfb",
+      "timestamp": "2026-08-23T00:11:19.428Z",
+      "imageHash": "3f4b46052d809bb5188fbc02d00088240ee9b13616e1d85f2e0177a3d4d9ef72",
       "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
     },
     "cacheHit": true
@@ -473,8 +825,8 @@
       "reviewerIdentity": "mock-provider-v1",
       "promptVersion": "pass-a.v1+pass-b.v1",
       "schemaVersion": "semantic-verification.v1",
-      "timestamp": "2026-08-17T02:36:06.536Z",
-      "imageHash": "877e669438e34e85175034752b144bdbdceca55bf2925af3440d36e718f0c6e9",
+      "timestamp": "2026-08-23T00:11:19.429Z",
+      "imageHash": "30bea0fbca30995081de0abcdf75165814d5b437e6150e26399d15fa5c0156bc",
       "contractHash": "81e821f9b45e2597a9a38d0ba2e41db770d2b87a69d8dc999e8e2af50517a8cd"
     },
     "cacheHit": true
@@ -572,6 +924,70 @@
       "timestamp": "2026-08-17T02:36:06.537Z",
       "imageHash": "67463fe37841c068a176d4596ecbcb7a41a9c0fe194e55823896e79435f66d9f",
       "contractHash": "855e45f52e52ec82194ecc77f377b4b935311a01286930b310d32c9b27d92705"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.series-parallel-mixed-topology@1::branch_arrangement=parallel_of_series,mode=both,show_values=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.762Z",
+      "imageHash": "3d2ff510ec157937bb482612af48e429c24cf8d1bace66d921699465c3ae45c8",
+      "contractHash": "2de79384d5090d8ac2742a51b8c79ffaa827aeeaff719dd30d01a306b0d3f3d1"
+    },
+    "cacheHit": true
+  },
+  {
+    "variantId": "visual-contract.series-parallel-mixed-topology@1::branch_arrangement=series_of_parallel,mode=both,show_values=false::both",
+    "observation": {
+      "visibleObjects": [
+        "diagram element"
+      ],
+      "visibleLabels": [],
+      "arrows": [],
+      "apparentRelationships": [],
+      "rotationSense": "not_applicable",
+      "labelsOverlap": false,
+      "anyClipping": false,
+      "arrowsAppearAttachedToLabelledObject": true,
+      "ambiguityNotes": [],
+      "legibilityConcerns": []
+    },
+    "verification": {
+      "status": "pass",
+      "confidence": "high",
+      "issues": [],
+      "possibleLearnerMisunderstanding": false,
+      "answerLeakage": false,
+      "requiresHumanReview": false,
+      "reviewerIdentity": "mock-provider-v1",
+      "promptVersion": "pass-a.v1+pass-b.v1",
+      "schemaVersion": "semantic-verification.v1",
+      "timestamp": "2026-08-23T00:15:32.763Z",
+      "imageHash": "235e2db1285066c79b011321e3369f0339a9235f853dee4b619f7c9a838e9785",
+      "contractHash": "2de79384d5090d8ac2742a51b8c79ffaa827aeeaff719dd30d01a306b0d3f3d1"
     },
     "cacheHit": true
   }

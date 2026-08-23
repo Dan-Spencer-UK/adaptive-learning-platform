@@ -167,9 +167,93 @@ export function motorForceVariants(contractId: string, contractVersion: number):
   return variants;
 }
 
+// ---------------------------------------------------------------------
+// circuit.series_parallel_mixed (CC-11 -- closes the CC-05D-tracked
+// renderer gap) -- branch_arrangement is the only semantically distinct
+// dimension; the diagram is always the GIVEN topology for its 3 real
+// question blueprints (comparison.identify_topology/recognise_mixed_
+// circuit/trace_current_path), never an answer-bearing element, so there
+// is no teaching/assessment mode split here (mode "both", matching
+// circuit.series_resistors/circuit.parallel_resistors above).
+// ---------------------------------------------------------------------
+
+export function seriesParallelMixedVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  return [
+    variant(contractId, contractVersion, "circuit.series_parallel_mixed", "both", { branch_arrangement: "series_of_parallel", show_values: false }, ["R1", "R2", "R3"]),
+    variant(contractId, contractVersion, "circuit.series_parallel_mixed", "both", { branch_arrangement: "parallel_of_series", show_values: false }, ["R1", "R2", "R3", "R4"]),
+  ];
+}
+
+// ---------------------------------------------------------------------
+// graph.waveform_sine (CC-11) -- the three boolean reference-line flags
+// are the pedagogically distinct dimension (progressive reveal: none,
+// peak only, peak+RMS, peak+RMS+period -- the order a teaching sequence
+// would actually introduce them in), plus the two non-default
+// `cycles_shown` values shown with every line on, since cycle count is a
+// genuinely different picture, not a numeric permutation. `mode` is
+// "both": per this blueprint's own valueEmbedding design (see
+// WaveformSineDiagram.tsx's header comment), the component never embeds
+// a numeric value regardless of context, so there is nothing for a
+// reveal/withhold split to gate at the rendering layer.
+// ---------------------------------------------------------------------
+
+export function waveformSineVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  const lineProgression = [
+    { show_peak_line: false, show_rms_line: false, show_period_marker: false },
+    { show_peak_line: true, show_rms_line: false, show_period_marker: false },
+    { show_peak_line: true, show_rms_line: true, show_period_marker: false },
+    { show_peak_line: true, show_rms_line: true, show_period_marker: true },
+  ];
+  const variants = lineProgression.map((lines) =>
+    variant(contractId, contractVersion, "graph.waveform_sine", "both", { ...lines, cycles_shown: 2 }, []),
+  );
+  for (const cycles of [1, 3]) {
+    variants.push(
+      variant(
+        contractId,
+        contractVersion,
+        "graph.waveform_sine",
+        "both",
+        { show_peak_line: true, show_rms_line: true, show_period_marker: true, cycles_shown: cycles },
+        [],
+      ),
+    );
+  }
+  return variants;
+}
+
+// ---------------------------------------------------------------------
+// instrument.measurement_connection (CC-11) -- instrument_type x
+// connection_style is a real semantic grid. Canonical variants cover
+// every instrument's STANDARD connection (voltmeter/parallel,
+// ammeter/series, ohmmeter/isolated) plus two deliberately NON-standard
+// combinations (voltmeter/series, ammeter/parallel) -- InstrumentConnection
+// Diagram.tsx's own design never silently endorses a miswiring (it always
+// captions whether the shown combination is standard), so the catalogue
+// should show both classes for QA review, not just the correct ones.
+// mode "both": this is a "which combination is depicted" parameter, not
+// a teaching/assessment reveal split (see check-visual-governance's
+// contract knownAmbiguity for the one open question this raises for a
+// future assessment-mode pairing).
+// ---------------------------------------------------------------------
+
+export function instrumentConnectionVariants(contractId: string, contractVersion: number): CanonicalVariant[] {
+  const combinations: Array<{ instrument_type: string; connection_style: string }> = [
+    { instrument_type: "voltmeter", connection_style: "parallel" },
+    { instrument_type: "voltmeter", connection_style: "series" },
+    { instrument_type: "ammeter", connection_style: "series" },
+    { instrument_type: "ammeter", connection_style: "parallel" },
+    { instrument_type: "ohmmeter", connection_style: "series" },
+  ];
+  return combinations.map((c) => variant(contractId, contractVersion, "instrument.measurement_connection", "both", c, []));
+}
+
 export const CANONICAL_VARIANT_BUILDERS: Record<string, (contractId: string, contractVersion: number) => CanonicalVariant[]> = {
   "circuit.series_resistors": seriesCircuitVariants,
   "circuit.parallel_resistors": parallelCircuitVariants,
   "magnetic.field_conductor_direction": rightHandGripRuleVariants,
   "motor.force_field_current": motorForceVariants,
+  "circuit.series_parallel_mixed": seriesParallelMixedVariants,
+  "graph.waveform_sine": waveformSineVariants,
+  "instrument.measurement_connection": instrumentConnectionVariants,
 };

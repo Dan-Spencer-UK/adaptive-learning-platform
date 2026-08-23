@@ -23,9 +23,11 @@ import { acReactiveQuantitiesExecutors } from "./families/ac-reactive-quantities
 import { algebraicRearrangementExecutors } from "./families/algebraic-rearrangement.ts";
 import { chargeExecutors } from "./families/charge.ts";
 import { comparisonExecutors } from "./families/comparison.ts";
+import { electronicComponentsExecutors } from "./families/electronic-components.ts";
 import { emfExecutors } from "./families/emf.ts";
 import { energyExecutors } from "./families/energy.ts";
 import { faultExecutors } from "./families/fault.ts";
+import { foundationalMechanicsExecutors } from "./families/foundational-mechanics.ts";
 import { instrumentationExecutors } from "./families/instrumentation.ts";
 import { magnetismExecutors } from "./families/magnetism.ts";
 import { ohmsLawExecutors } from "./families/ohms-law.ts";
@@ -76,6 +78,8 @@ const EXECUTORS: Readonly<Record<string, QuestionExecutor>> = {
   ...emfExecutors,
   ...waveformExecutors,
   ...algebraicRearrangementExecutors,
+  ...foundationalMechanicsExecutors,
+  ...electronicComponentsExecutors,
 };
 
 export const SUPPORTED_BLUEPRINT_IDS: readonly string[] = Object.freeze(Object.keys(EXECUTORS).sort());

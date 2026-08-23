@@ -24,6 +24,7 @@ import type { AnswerValue, EvaluationResult, GeneratedQuestionInstance } from "@
 import { resolvePromptLines } from "@alp/calculation-engine";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+import { buildTeachingDiagramInstance, DiagramRenderer, type DiagramRevealProps } from "@/components/diagrams/DiagramRenderer";
 import { FormulaEquation } from "@/components/formula/FormulaExpressionView";
 import { WorkedSubstitution } from "@/components/formula/WorkedSubstitution";
 import { VirTriangle } from "@/components/mnemonic/VirTriangle";
@@ -49,6 +50,34 @@ export interface LessonStepViewProps {
 export function LessonStepView({ resolved, questionInstance, evaluation, revealCorrectAnswer, onSubmit, onContinue, submitting }: LessonStepViewProps): React.JSX.Element {
   const misconceptionMessage =
     evaluation?.misconceptionIdentifier !== undefined ? resolved.misconceptionDescriptions[evaluation.misconceptionIdentifier] : undefined;
+
+  // CC-11: the diagram runtime fix (task brief §7). A step's diagram
+  // instance prefers the real generated question instance's own diagram
+  // (correct parameters for THIS specific question) when one exists for
+  // the same blueprint; otherwise it falls back to a generic teaching
+  // instance built straight from the blueprint's own declared parameters
+  // (a pure teaching illustration, no generated question driving it).
+  //
+  // The directional reveal (field-curl / force direction -- the assessed
+  // answer for the two magnetism diagrams) is withheld until feedback,
+  // mirroring exactly how `expectedAnswerText` below is withheld while a
+  // retry is pending (CC-06D Correction G) -- never shown while the
+  // learner is still answering, exactly like every other answer-bearing
+  // element in this component.
+  const diagramInstance =
+    resolved.diagram && questionInstance?.representation.diagram?.blueprintId === resolved.diagram.id
+      ? questionInstance.representation.diagram
+      : resolved.diagram
+        ? buildTeachingDiagramInstance(resolved.diagram)
+        : null;
+  const diagramReveal: DiagramRevealProps | undefined =
+    evaluation && revealCorrectAnswer && questionInstance && resolved.diagram
+      ? resolved.diagram.id === "magnetic.field_conductor_direction"
+        ? { fieldRotation: questionInstance.expected.value as "clockwise" | "counterclockwise" }
+        : resolved.diagram.id === "motor.force_field_current"
+          ? { forceDirection: questionInstance.expected.value as "up" | "down" | "left" | "right" }
+          : undefined
+      : undefined;
 
   return (
     <View style={styles.container}>
@@ -79,6 +108,12 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
       {resolved.visualAid && resolved.formulaFamily ? (
         <View style={styles.representation}>
           <VirTriangle visualAid={resolved.visualAid} formulaFamily={resolved.formulaFamily} />
+        </View>
+      ) : null}
+
+      {resolved.diagram && diagramInstance ? (
+        <View style={styles.representation}>
+          <DiagramRenderer blueprint={resolved.diagram} diagram={diagramInstance} reveal={diagramReveal} />
         </View>
       ) : null}
 

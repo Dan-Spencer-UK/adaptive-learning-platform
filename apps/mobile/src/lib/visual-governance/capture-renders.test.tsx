@@ -21,6 +21,15 @@
  * This is the same established pattern as
  * scripts/content/check-cc05c-proving-fixture.test.ts: a test file that
  * is simultaneously "a test" and "the actual mechanism".
+ *
+ * CC-11: dispatch now goes through the single shared
+ * `resolveDiagramComponent` registry (DiagramRenderer.tsx) the Lesson
+ * Player also uses -- no second, independently-maintained switch
+ * statement (task brief §7's explicit "do not copy/paste a giant second
+ * switch statement" instruction). This is also how the 3 renderers CC-05D
+ * left un-built (circuit.series_parallel_mixed, graph.waveform_sine,
+ * instrument.measurement_connection) became renderable here for free,
+ * with zero changes to this file's own dispatch logic.
  */
 import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -29,10 +38,7 @@ import { join } from "node:path";
 import { render } from "@testing-library/react-native";
 import { renderManifestSchema, type RenderedArtifact, type CanonicalVariant } from "@alp/content-schema";
 
-import { SeriesCircuitDiagram } from "@/components/diagrams/SeriesCircuitDiagram";
-import { ParallelCircuitDiagram } from "@/components/diagrams/ParallelCircuitDiagram";
-import { RightHandGripRuleDiagram } from "@/components/diagrams/RightHandGripRuleDiagram";
-import { MagneticForceDiagram } from "@/components/diagrams/MagneticForceDiagram";
+import { resolveDiagramComponent, type DiagramRevealProps } from "@/components/diagrams/DiagramRenderer";
 import { CANONICAL_VARIANTS, CC05D_CONTENT_RELEASE } from "./canonical-variants-fixture";
 import { renderTreeToSvg, type RenderTreeNode } from "./render-tree-to-svg";
 
@@ -45,28 +51,14 @@ function sanitiseFileName(variantId: string): string {
 
 async function renderVariantTree(variant: CanonicalVariant): Promise<RenderTreeNode> {
   const diagram = { blueprintId: variant.diagramBlueprintId, parameters: variant.parameters, labels: variant.labels };
-  let root: Awaited<ReturnType<typeof render>>;
-
-  switch (variant.diagramBlueprintId) {
-    case "circuit.series_resistors":
-      root = await render(<SeriesCircuitDiagram diagram={diagram} />);
-      break;
-    case "circuit.parallel_resistors":
-      root = await render(<ParallelCircuitDiagram diagram={diagram} />);
-      break;
-    case "magnetic.field_conductor_direction":
-      root = await render(
-        <RightHandGripRuleDiagram diagram={diagram} fieldRotation={variant.revealProps.field_rotation as "clockwise" | "counterclockwise" | undefined} />,
-      );
-      break;
-    case "motor.force_field_current":
-      root = await render(
-        <MagneticForceDiagram diagram={diagram} forceDirection={variant.revealProps.force_direction as "up" | "down" | "left" | "right" | undefined} />,
-      );
-      break;
-    default:
-      throw new Error(`capture-renders: no renderer dispatch for diagram blueprint '${variant.diagramBlueprintId}' -- this pilot corpus governs only 4 rendered blueprints (see CC-05D architecture doc §S).`);
-  }
+  const reveal: DiagramRevealProps = {
+    fieldRotation: variant.revealProps.field_rotation as "clockwise" | "counterclockwise" | undefined,
+    forceDirection: variant.revealProps.force_direction as "up" | "down" | "left" | "right" | undefined,
+  };
+  // Invoked as a plain function, not `<Component .../>` -- see
+  // DiagramRenderer.tsx's own comment on why (avoids react-hooks/
+  // static-components; every registry entry is stateless).
+  const root = await render(resolveDiagramComponent(variant.diagramBlueprintId)({ diagram, reveal }));
 
   const tree = root.toJSON();
   if (tree === null || Array.isArray(tree)) {

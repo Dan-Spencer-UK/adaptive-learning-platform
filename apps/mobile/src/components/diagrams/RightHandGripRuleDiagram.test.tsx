@@ -18,7 +18,7 @@ describe("RightHandGripRuleDiagram", () => {
       />,
     );
     expect(getByLabelText(/Right-hand grip rule\./)).toBeTruthy();
-    expect(getByLabelText(/The thumb points along the conductor, in the direction the current flows: into the page\./)).toBeTruthy();
+    expect(getByLabelText(/The thumb points along the conductor, in the direction the conventional current into the page flows\./)).toBeTruthy();
   });
 
   it("describes out-of-page current distinctly from into-page current", async () => {
@@ -27,7 +27,7 @@ describe("RightHandGripRuleDiagram", () => {
         diagram={{ blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "out_of_page", show_field_arrows: true }, labels: ["conductor"] }}
       />,
     );
-    expect(getByLabelText(/in the direction the current flows: out of the page\./)).toBeTruthy();
+    expect(getByLabelText(/in the direction the conventional current out of the page flows\./)).toBeTruthy();
   });
 
   it("withholds the field-curl direction (the assessed answer) when fieldRotation is omitted", async () => {

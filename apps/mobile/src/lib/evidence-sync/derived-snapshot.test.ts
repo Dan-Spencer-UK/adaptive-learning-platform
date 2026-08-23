@@ -6,6 +6,7 @@
  * deterministic derivation -> LearnerEvidenceSnapshot, with no network.
  */
 import * as mockExpoSqlite from "../storage/__mocks__/expo-sqlite-jest-mock";
+import { bundledContentReleaseId } from "../lesson-content/local-content-registry";
 import { resetFoundationDbHandleForTests } from "../storage/db";
 import { enqueueOutboxEvent, listPendingOutboxEvents, markOutboxEventSynced } from "../storage/outbox";
 import { startSession } from "../lesson-session/lesson-session-controller";
@@ -18,7 +19,12 @@ const LEARNER_A = "aaaaaaaa-0000-0000-0000-000000000001";
 const LEARNER_B = "bbbbbbbb-0000-0000-0000-000000000002";
 
 const REAL_LESSON = "lesson.electrical.ohms-law";
-const REAL_RELEASE = "release.unit202.v2";
+// CC-11: read the real bundled release id rather than hardcoding a
+// release string -- the previous hardcoded "release.unit202.v2" silently
+// went stale when CC-10 moved the bundled release to v3 (pre-existing
+// breakage this package found and fixed, unrelated to the v3->v4 move
+// CC-11 itself made).
+const REAL_RELEASE = bundledContentReleaseId();
 
 function session(learnerId: string, sessionKey: string) {
   return startSession(

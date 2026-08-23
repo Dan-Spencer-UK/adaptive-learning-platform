@@ -100,7 +100,15 @@ describe("motorForceVariants", () => {
 describe("CANONICAL_VARIANT_BUILDERS", () => {
   it("has exactly one entry per rendered diagram blueprint", () => {
     expect(Object.keys(CANONICAL_VARIANT_BUILDERS).sort()).toEqual(
-      ["circuit.parallel_resistors", "circuit.series_resistors", "magnetic.field_conductor_direction", "motor.force_field_current"].sort(),
+      [
+        "circuit.parallel_resistors",
+        "circuit.series_resistors",
+        "circuit.series_parallel_mixed",
+        "magnetic.field_conductor_direction",
+        "motor.force_field_current",
+        "graph.waveform_sine",
+        "instrument.measurement_connection",
+      ].sort(),
     );
   });
 });

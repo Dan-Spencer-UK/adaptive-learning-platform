@@ -51,8 +51,8 @@ function identityFor(blueprintId: string, seed = 1): DeterministicIdentity {
 }
 
 describe("isBlueprintSupported / SUPPORTED_BLUEPRINT_IDS", () => {
-  it("recognises all 92 governed blueprint ids (CC-05B2: full Unit 202 coverage; CC-08 adds 2 for foundational.algebraic_technique; CC-09E adds 5 for electrical.ac_reactive_quantities/magnetism/emf_and_generation archetypes; CC-09E.1 adds 1 for magnetism.identify_flux_unit)", () => {
-    expect(SUPPORTED_BLUEPRINT_IDS.length).toBe(92);
+  it("recognises all 109 governed blueprint ids (CC-05B2: full Unit 202 coverage; CC-08 adds 2 for foundational.algebraic_technique; CC-09E adds 5 for electrical.ac_reactive_quantities/magnetism/emf_and_generation archetypes; CC-09E.1 adds 1 for magnetism.identify_flux_unit; CC-11 adds 11 for foundational.mass_weight/levers_mechanical_advantage/mechanics_work_energy_power and 6 for electrical.electronic_components)", () => {
+    expect(SUPPORTED_BLUEPRINT_IDS.length).toBe(109);
     expect(isBlueprintSupported("ohms_law.solve_for_voltage")).toBe(true);
     expect(isBlueprintSupported("parallel.calculate_total")).toBe(true);
     expect(isBlueprintSupported("magnetism.interpret_force_direction")).toBe(true);

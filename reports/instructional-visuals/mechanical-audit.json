@@ -1,5 +1,60 @@
 [
   {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=1,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=false,show_period_marker=false,show_rms_line=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=false,show_rms_line=true::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=2,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.ac-waveform-sine@1::cycles_shown=3,mode=both,show_peak_line=true,show_period_marker=true,show_rms_line=true::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=ammeter,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=parallel,instrument_type=voltmeter,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ammeter,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=ohmmeter,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.instrument-measurement-connection@1::connection_style=series,instrument_type=voltmeter,mode=both::both",
+    "passed": true,
+    "failures": []
+  },
+  {
     "variantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching",
     "passed": true,
     "failures": []
@@ -86,6 +141,16 @@
   },
   {
     "variantId": "visual-contract.series-circuit-current-direction@1::component_count=4,mode=both,show_current_arrow=true,show_values=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.series-parallel-mixed-topology@1::branch_arrangement=parallel_of_series,mode=both,show_values=false::both",
+    "passed": true,
+    "failures": []
+  },
+  {
+    "variantId": "visual-contract.series-parallel-mixed-topology@1::branch_arrangement=series_of_parallel,mode=both,show_values=false::both",
     "passed": true,
     "failures": []
   }

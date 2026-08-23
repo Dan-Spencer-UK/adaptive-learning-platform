@@ -26,18 +26,30 @@ import { checkCurrentArrowGeometry } from "./artifact-geometry-check.ts";
 
 /**
  * Diagram blueprint ids with a real apps/mobile renderer component,
- * mirroring the dispatch switch in
- * apps/mobile/src/app/(app)/learn/[family]/practice.tsx. This is a
- * manually-maintained mirror (the same pattern as the CC-05C proving-
- * content fixture) because scripts/content tooling must never import
- * apps/mobile code (repository boundary rule) -- so this list, not a
- * live import, is what "governed pilot blueprint" means for CC-05D.
+ * mirroring the shared registry in
+ * apps/mobile/src/components/diagrams/DiagramRenderer.tsx (CC-11 -- the
+ * single generic dispatch point the Lesson Player and any future
+ * practice surface both use). This is a manually-maintained mirror (the
+ * same pattern as the CC-05C proving-content fixture) because
+ * scripts/content tooling must never import apps/mobile code (repository
+ * boundary rule) -- so this list, not a live import, is what "governed
+ * pilot blueprint" means for CC-05D/CC-11.
+ *
+ * CC-11 closes the 3-blueprint renderer gap CC-05D tracked but
+ * deliberately left open: `circuit.series_parallel_mixed`,
+ * `graph.waveform_sine` and `instrument.measurement_connection` all now
+ * have real renderers (SeriesParallelMixedCircuitDiagram.tsx,
+ * WaveformSineDiagram.tsx, InstrumentConnectionDiagram.tsx) -- all 7
+ * governed diagram blueprints are now rendered.
  */
 export const RENDERED_DIAGRAM_BLUEPRINT_IDS = new Set([
   "circuit.series_resistors",
   "circuit.parallel_resistors",
+  "circuit.series_parallel_mixed",
   "magnetic.field_conductor_direction",
   "motor.force_field_current",
+  "graph.waveform_sine",
+  "instrument.measurement_connection",
 ]);
 
 /**

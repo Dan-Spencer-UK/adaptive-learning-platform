@@ -2,7 +2,7 @@
  * GENERATED FILE -- DO NOT EDIT.
  *
  * Deterministic mobile learner-runtime content projection for governed
- * content release "release.unit202.v3".
+ * content release "release.unit202.v4".
  *
  * Source of truth: the governed content under scripts/content/data.
  * Regenerate with:  npm run content:mobile:generate
@@ -16,7 +16,7 @@ import type { MobileContentProjection } from "@alp/content-schema";
 export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
   "schemaVersion": 2,
   "contentRelease": {
-    "id": "release.unit202.v3",
+    "id": "release.unit202.v4",
     "questionBlueprintVersion": 1
   },
   "lessons": [
@@ -310,7 +310,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.conductors-and-insulators",
@@ -617,7 +617,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.core-quantities",
@@ -880,7 +880,1002 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.electrical.electronic-components-passive",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "Electronic Components: Capacitors, Rectification and Diodes",
+      "learnerFacingDescription": "Recognise the basic operating principle of capacitors, rectifiers (half-wave and full-wave) and the diode family (diode, Zener diode, LED, photodiode), and identify the components used in a traditional UK master telephone socket.",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [
+        "electrical.core_quantities",
+        "electrical.ac_dc_waveforms"
+      ],
+      "targetAssertionFamilyIds": [
+        "electrical.electronic_components"
+      ],
+      "targetAssertionIdentifiers": [
+        "EL-COMPONENT-RESISTOR-001",
+        "EL-COMPONENT-CAPACITOR-001",
+        "EL-COMPONENT-CAPACITOR-TRANSIENT-001",
+        "EL-COMPONENT-RECTIFIER-001",
+        "EL-COMPONENT-RECTIFIER-HALF-WAVE-001",
+        "EL-COMPONENT-RECTIFIER-FULL-WAVE-001",
+        "EL-COMPONENT-INVERTER-001",
+        "EL-COMPONENT-DIODE-001",
+        "EL-COMPONENT-ZENER-DIODE-001",
+        "EL-COMPONENT-LED-001",
+        "EL-COMPONENT-PHOTODIODE-001",
+        "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.electronic_components.recognise_principle",
+        "cap.electronic_components.identify_application"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 20,
+      "instructionalStrategy": "Passive components (resistor, capacitor) first, since they are the most familiar; the capacitor's transient charge/discharge behaviour is taught as a direct contrast to a plausible 'changes instantly' misconception, since the governed statement itself names both. Rectification is then taught alongside its DC-to-AC opposite (the inverter) as a compare-and-contrast pair rather than three unrelated facts. The diode family (diode, Zener, LED, photodiode) is taught as one family sharing the same underlying diode behaviour with one distinguishing feature each. The lesson closes with one real application (the UK master telephone socket) to show component recognition applied to something identifiable.",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame why an electrician/electrical technician needs to recognise common electronic components and their basic operating principle -- Level 2 recognition, not circuit design or internal semiconductor physics.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_passive_components",
+          "type": "concept_explanation",
+          "purpose": "Introduce the resistor (a component manufactured to provide a stable resistance, limiting current or dividing voltage) and the capacitor (stores charge/energy in an electric field between two plates), then its transient behaviour: a capacitor opposes a sudden change in voltage across it, charging/discharging exponentially over time (time constant tau = R x C) rather than changing instantly.",
+          "requirement": "required",
+          "teaches": [
+            "EL-COMPONENT-RESISTOR-001",
+            "EL-COMPONENT-CAPACITOR-001",
+            "EL-COMPONENT-CAPACITOR-TRANSIENT-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_capacitor_transient",
+          "type": "guided_interaction",
+          "purpose": "Recognise that a charging or discharging capacitor's voltage changes gradually (exponentially), not instantly.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-COMPONENT-CAPACITOR-TRANSIENT-001"
+          ],
+          "tests": [
+            "EL-COMPONENT-CAPACITOR-TRANSIENT-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.recognise_capacitor_behaviour",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.recognise_principle"
+          ]
+        },
+        {
+          "id": "concept_rectification_and_inversion",
+          "type": "concept_explanation",
+          "purpose": "Introduce rectification (a diode-based circuit converting AC to DC), its two forms -- half-wave (one diode, blocks one half-cycle) and full-wave bridge (four diodes, both half-cycles converted to the same polarity, less ripple) -- and contrast it with the inverter, which converts DC to AC using controlled electronic switching.",
+          "requirement": "required",
+          "teaches": [
+            "EL-COMPONENT-RECTIFIER-001",
+            "EL-COMPONENT-RECTIFIER-HALF-WAVE-001",
+            "EL-COMPONENT-RECTIFIER-FULL-WAVE-001",
+            "EL-COMPONENT-INVERTER-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_rectifier_type",
+          "type": "guided_interaction",
+          "purpose": "Distinguish half-wave rectification, full-wave bridge rectification and the inverter from a description of their behaviour.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-COMPONENT-RECTIFIER-HALF-WAVE-001",
+            "EL-COMPONENT-RECTIFIER-FULL-WAVE-001"
+          ],
+          "tests": [
+            "EL-COMPONENT-RECTIFIER-HALF-WAVE-001",
+            "EL-COMPONENT-RECTIFIER-FULL-WAVE-001",
+            "EL-COMPONENT-INVERTER-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.recognise_rectifier_type",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.recognise_principle"
+          ]
+        },
+        {
+          "id": "concept_diode_family",
+          "type": "concept_explanation",
+          "purpose": "Introduce the diode family: the diode (conducts one way, blocks the other), the Zener diode (operated in reverse breakdown at a defined voltage to regulate voltage), the LED (produces light by electroluminescence when forward-biased) and the photodiode (generates a photocurrent in response to light, for detection/measurement).",
+          "requirement": "required",
+          "teaches": [
+            "EL-COMPONENT-DIODE-001",
+            "EL-COMPONENT-ZENER-DIODE-001",
+            "EL-COMPONENT-LED-001",
+            "EL-COMPONENT-PHOTODIODE-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_recognise_diode_family",
+          "type": "independent_question",
+          "purpose": "Recognise which diode-family member (diode, Zener diode, LED, photodiode) a description matches, unscaffolded.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-COMPONENT-DIODE-001",
+            "EL-COMPONENT-ZENER-DIODE-001",
+            "EL-COMPONENT-LED-001",
+            "EL-COMPONENT-PHOTODIODE-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-DIODE-DIRECTION-CONFUSION-001",
+              "evidenceStrength": "suggestive"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "electronics.recognise_diode_family",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.recognise_principle"
+          ]
+        },
+        {
+          "id": "concept_telephone_application",
+          "type": "concept_explanation",
+          "purpose": "Show component recognition applied: the traditional UK master telephone socket contains a capacitor (couples the AC ringing signal to the line while blocking DC) and a resistor (provides a defined test load for line testing when no telephone is connected).",
+          "requirement": "required",
+          "teaches": [
+            "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001"
+          ],
+          "reinforces": [
+            "EL-COMPONENT-CAPACITOR-001",
+            "EL-COMPONENT-RESISTOR-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.identify_application"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_identify_telephone_application",
+          "type": "independent_question",
+          "purpose": "Identify which component fulfils a specific named role (ringing-signal coupling, or line test-load) in the master telephone socket.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.identify_application"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.identify_application",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.identify_application"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of diode-family recognition to strengthen retention before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-COMPONENT-DIODE-001",
+            "EL-COMPONENT-ZENER-DIODE-001",
+            "EL-COMPONENT-LED-001",
+            "EL-COMPONENT-PHOTODIODE-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.recognise_diode_family",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.recognise_principle"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise resistors/capacitors, capacitor transient behaviour, rectification vs inversion, the diode family, and the telephone-socket application.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-COMPONENT-CAPACITOR-TRANSIENT-001",
+            "EL-COMPONENT-RECTIFIER-001",
+            "EL-COMPONENT-DIODE-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [
+        {
+          "misconceptionIdentifier": "MIS-EL-DIODE-DIRECTION-CONFUSION-001",
+          "evidenceStrength": "suggestive"
+        }
+      ],
+      "retrievalTags": [
+        "electrical.electronic_components",
+        "electrical.ac_dc_waveforms"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_passive_components",
+          "guided_recognise_capacitor_transient",
+          "concept_rectification_and_inversion",
+          "guided_recognise_rectifier_type",
+          "concept_diode_family",
+          "independent_recognise_diode_family",
+          "concept_telephone_application",
+          "independent_identify_telephone_application",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.electronic_components.recognise_principle",
+          "cap.electronic_components.identify_application"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.electronic_components.recognise_principle",
+          "cap.electronic_components.identify_application"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has recognised capacitor transient (charge/discharge) behaviour, distinguished half-wave and full-wave rectification from the inverter, recognised the diode family (diode, Zener diode, LED, photodiode), and identified the components used in a traditional UK master telephone socket."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.electrical.electronic-components-switching-control",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "Electronic Components: Thermistors and Switching/Control Devices",
+      "learnerFacingDescription": "Recognise the basic operating principle of thermistors (NTC and PTC), the DIAC/TRIAC/thyristor/transistor switching family, and identify which of these components is used in a dimmer switch, motor control, heating/boiler control and a security-alarm circuit.",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [
+        "electrical.ac_dc_waveforms"
+      ],
+      "targetAssertionFamilyIds": [
+        "electrical.electronic_components"
+      ],
+      "targetAssertionIdentifiers": [
+        "EL-COMPONENT-THERMISTOR-001",
+        "EL-COMPONENT-THERMISTOR-PTC-001",
+        "EL-COMPONENT-DIAC-001",
+        "EL-COMPONENT-TRIAC-001",
+        "EL-COMPONENT-THYRISTOR-SCR-001",
+        "EL-COMPONENT-TRANSISTOR-001",
+        "EL-APPLICATION-DIMMER-SWITCH-001",
+        "EL-APPLICATION-MOTOR-CONTROL-001",
+        "EL-APPLICATION-HEATING-BOILER-CONTROL-001",
+        "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.electronic_components.recognise_principle",
+        "cap.electronic_components.identify_application"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 22,
+      "instructionalStrategy": "Thermistors (temperature-controlled resistance) are taught first and immediately connected to their real heating/boiler-control application, since that pairing is the most concrete. The DIAC/TRIAC/thyristor/transistor cluster is taught as one related family (DIAC triggers other thyristor devices; TRIAC and thyristor both latch/conduct once triggered, TRIAC bidirectionally; the transistor is the odd one out, a proportional/switching amplifier rather than a latching device) before three further applications (dimmer switch, motor control, security alarm) show each device recognised in context. The security-alarm application is deliberately taught as two separate roles (the transistor's break-detection role and the thyristor's latching role), never as one combined fact, since a single answer must never certify recognition of both components at once.",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame this lesson as the second half of electronic-component recognition: components that switch, control or respond to temperature, rather than simply store or convert.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_thermistors",
+          "type": "concept_explanation",
+          "purpose": "Introduce the NTC thermistor (resistance decreases as temperature increases) and the PTC thermistor (resistance increases as temperature increases), then their use in heating/boiler control: providing a temperature feedback signal so a thermostat can switch the heating load on or off.",
+          "requirement": "required",
+          "teaches": [
+            "EL-COMPONENT-THERMISTOR-001",
+            "EL-COMPONENT-THERMISTOR-PTC-001",
+            "EL-APPLICATION-HEATING-BOILER-CONTROL-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle",
+            "cap.electronic_components.identify_application"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_thermistor_type",
+          "type": "guided_interaction",
+          "purpose": "Distinguish an NTC thermistor from a PTC thermistor from a description of how its resistance responds to temperature.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-COMPONENT-THERMISTOR-001",
+            "EL-COMPONENT-THERMISTOR-PTC-001"
+          ],
+          "tests": [
+            "EL-COMPONENT-THERMISTOR-001",
+            "EL-COMPONENT-THERMISTOR-PTC-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.recognise_thermistor_type",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.recognise_principle"
+          ]
+        },
+        {
+          "id": "independent_identify_heating_application",
+          "type": "independent_question",
+          "purpose": "Identify the thermistor as the component providing the temperature feedback signal in a heating/boiler control circuit.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-APPLICATION-HEATING-BOILER-CONTROL-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.identify_application"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.identify_application",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.identify_application"
+          ]
+        },
+        {
+          "id": "concept_switching_family",
+          "type": "concept_explanation",
+          "purpose": "Introduce the DIAC (a bidirectional trigger device, almost never used alone), the thyristor/SCR (conducts one way once triggered by gate current, latches until current falls below its holding current), the TRIAC (like two SCRs back-to-back, conducts both directions once triggered -- suited to controlling AC), and the transistor (a three-terminal device whose collector-emitter current is controlled by a much smaller base current, acting as a switch or amplifier).",
+          "requirement": "required",
+          "teaches": [
+            "EL-COMPONENT-DIAC-001",
+            "EL-COMPONENT-THYRISTOR-SCR-001",
+            "EL-COMPONENT-TRIAC-001",
+            "EL-COMPONENT-TRANSISTOR-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_recognise_switching_family",
+          "type": "independent_question",
+          "purpose": "Recognise which switching device (DIAC, TRIAC, thyristor/SCR, transistor) a description matches, unscaffolded.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-COMPONENT-DIAC-001",
+            "EL-COMPONENT-THYRISTOR-SCR-001",
+            "EL-COMPONENT-TRIAC-001",
+            "EL-COMPONENT-TRANSISTOR-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.recognise_switching_family",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.recognise_principle"
+          ]
+        },
+        {
+          "id": "concept_switching_applications",
+          "type": "concept_explanation",
+          "purpose": "Show the switching family recognised in context: a household dimmer switch typically uses a TRIAC (controlling average lamp power via phase-angle switching); a motor-control circuit typically uses a thyristor/SCR; a simple security-alarm circuit uses a transistor to detect a break in a normally-closed sensor loop, which then triggers a thyristor that latches on to keep a sounder powered until the circuit is deliberately reset.",
+          "requirement": "required",
+          "teaches": [
+            "EL-APPLICATION-DIMMER-SWITCH-001",
+            "EL-APPLICATION-MOTOR-CONTROL-001",
+            "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001"
+          ],
+          "reinforces": [
+            "EL-COMPONENT-TRIAC-001",
+            "EL-COMPONENT-THYRISTOR-SCR-001",
+            "EL-COMPONENT-TRANSISTOR-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.identify_application"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_identify_dimmer_and_motor_application",
+          "type": "independent_question",
+          "purpose": "Identify the component used in a dimmer switch or a motor-control circuit from a description of the application's need.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-APPLICATION-DIMMER-SWITCH-001",
+            "EL-APPLICATION-MOTOR-CONTROL-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.identify_application"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.identify_application",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.identify_application"
+          ]
+        },
+        {
+          "id": "transfer_identify_security_alarm_roles",
+          "type": "transfer_application",
+          "purpose": "Transfer to a two-component application: identify which component fulfils each of the two distinct, independent roles in a security-alarm circuit (break-detection versus latching) -- never both at once from a single answer.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.identify_application"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.identify_application",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "apply",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.identify_application"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of the DIAC/TRIAC/thyristor/transistor switching-family recognition to strengthen retention before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-COMPONENT-DIAC-001",
+            "EL-COMPONENT-THYRISTOR-SCR-001",
+            "EL-COMPONENT-TRIAC-001",
+            "EL-COMPONENT-TRANSISTOR-001"
+          ],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [
+            "cap.electronic_components.recognise_principle"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "electronics.recognise_switching_family",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.electronic_components.recognise_principle"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise thermistors (NTC/PTC), the DIAC/TRIAC/thyristor/transistor switching family, and their four applications (dimmer switch, motor control, heating/boiler control, security alarm).",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-COMPONENT-THERMISTOR-001",
+            "EL-COMPONENT-THYRISTOR-SCR-001",
+            "EL-COMPONENT-TRIAC-001",
+            "EL-COMPONENT-TRANSISTOR-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.electronic_components",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [],
+      "retrievalTags": [
+        "electrical.electronic_components",
+        "electrical.ac_dc_waveforms"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_thermistors",
+          "guided_recognise_thermistor_type",
+          "independent_identify_heating_application",
+          "concept_switching_family",
+          "independent_recognise_switching_family",
+          "concept_switching_applications",
+          "independent_identify_dimmer_and_motor_application",
+          "transfer_identify_security_alarm_roles",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.electronic_components.recognise_principle",
+          "cap.electronic_components.identify_application"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.electronic_components.recognise_principle",
+          "cap.electronic_components.identify_application"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has distinguished NTC from PTC thermistors, recognised the DIAC/TRIAC/thyristor/transistor switching family, and identified the correct component for a dimmer switch, motor control, heating/boiler control and each of the two independent roles in a security-alarm circuit."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.energy-and-efficiency",
@@ -1274,7 +2269,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.fault-conditions-protection",
@@ -1657,7 +2652,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.instrumentation",
@@ -2052,7 +3047,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.ohms-law",
@@ -2775,7 +3770,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.power",
@@ -3312,7 +4307,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.resistivity",
@@ -3730,7 +4725,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.resistors-parallel",
@@ -4371,7 +5366,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.resistors-series",
@@ -4887,7 +5882,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.series-vs-parallel-comparison",
@@ -5342,7 +6337,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.si-units",
@@ -5745,7 +6740,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.electrical.thermal-and-chemical-effects",
@@ -6003,7 +6998,468 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.emf.ac-generation-principles",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "A.C. Generation Principles",
+      "learnerFacingDescription": "Understand how a rotating single-loop generator produces alternating EMF, calculate the EMF induced by a changing magnetic flux, and compare the motor principle with the generator principle.",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [
+        "electrical.ohms_law",
+        "electrical.magnetism_and_electromagnetism",
+        "electrical.emf_and_generation"
+      ],
+      "targetAssertionFamilyIds": [
+        "electrical.emf_and_generation",
+        "electrical.magnetism_and_electromagnetism"
+      ],
+      "targetAssertionIdentifiers": [
+        "EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001",
+        "EL-CONCEPT-AC-GENERATOR-001",
+        "EL-CONCEPT-SINE-WAVE-001",
+        "EL-REL-FLUX-CHANGE-EMF-001",
+        "EL-MOTOR-GENERATOR-COMPARE-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.emf.describe_ac_generation",
+        "cap.emf.calculate_flux_change",
+        "cap.magnetism.compare_motor_generator"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 15,
+      "instructionalStrategy": "Electromagnetic induction is introduced first as the single causal principle that explains generation (a changing flux induces an EMF), then the rotating-loop A.C. generator and its sine-wave output are taught as a direct consequence of that principle -- not a separate fact to memorise. The flux-change EMF calculation is practised immediately after as the quantitative form of the same causal principle. Motor-vs-generator comparison closes the lesson, deliberately positioned last so the learner has both principles (force-from-current from the previous lesson, EMF-from-changing-flux from this one) available to contrast.",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame this lesson as answering the reverse question to the last one: instead of current producing force, how does a CHANGING field produce EMF -- the principle behind every generator.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_electromagnetic_induction_and_generator",
+          "type": "concept_explanation",
+          "purpose": "State that a changing magnetic flux induces an EMF (electromagnetic induction), and describe how a single loop rotating within a field uses this to produce an alternating, sine-wave EMF.",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001",
+            "EL-CONCEPT-AC-GENERATOR-001",
+            "EL-CONCEPT-SINE-WAVE-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-ELECTROMAGNETISM-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {
+            "diagramBlueprintId": "motor.force_field_current"
+          },
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_describe_ac_generation",
+          "type": "guided_interaction",
+          "purpose": "Describe the basic principle of a rotating-loop A.C. generator.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-AC-GENERATOR-001",
+            "EL-CONCEPT-SINE-WAVE-001"
+          ],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.describe_ac_generation"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "diagramBlueprintId": "motor.force_field_current"
+          },
+          "questionBlueprintId": "emf.describe_ac_generation",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.emf.describe_ac_generation"
+          ]
+        },
+        {
+          "id": "concept_flux_change_emf",
+          "type": "concept_explanation",
+          "purpose": "State the quantitative form of electromagnetic induction for a single loop: induced EMF equals the change in flux divided by the time taken.",
+          "requirement": "required",
+          "teaches": [
+            "EL-REL-FLUX-CHANGE-EMF-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.flux_change_emf"
+          },
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_calculate_flux_change_emf",
+          "type": "guided_interaction",
+          "purpose": "First learner-performed flux-change EMF calculation, more heavily scaffolded than usual since no worked-example blueprint exists for this relationship (see file header).",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-REL-FLUX-CHANGE-EMF-001"
+          ],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.calculate_flux_change"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.flux_change_emf"
+          },
+          "questionBlueprintId": "emf.calculate_flux_change",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.emf.calculate_flux_change"
+          ]
+        },
+        {
+          "id": "independent_calculate_flux_change_emf",
+          "type": "independent_question",
+          "purpose": "Unscaffolded flux-change EMF calculation, potentially solving for a different unknown than the guided attempt.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-REL-FLUX-CHANGE-EMF-001"
+          ],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.calculate_flux_change"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.flux_change_emf"
+          },
+          "questionBlueprintId": "emf.calculate_flux_change",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.emf.calculate_flux_change"
+          ]
+        },
+        {
+          "id": "concept_motor_vs_generator",
+          "type": "concept_explanation",
+          "purpose": "Compare the motor principle (current + field -> force) with the generator principle (changing flux -> EMF) just taught, as two directions of the same electromagnetic relationship.",
+          "requirement": "required",
+          "teaches": [
+            "EL-MOTOR-GENERATOR-COMPARE-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-MOTOR-PRINCIPLE-001",
+            "EL-CONCEPT-AC-GENERATOR-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.compare_motor_generator"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_compare_motor_generator",
+          "type": "guided_interaction",
+          "purpose": "Compare the motor principle with the generator principle.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-MOTOR-GENERATOR-COMPARE-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.compare_motor_generator"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+              "evidenceStrength": "suggestive"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "magnetism.compare_motor_generator",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.compare_motor_generator"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of the flux-change EMF calculation to strengthen retention before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-REL-FLUX-CHANGE-EMF-001"
+          ],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.calculate_flux_change"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.flux_change_emf"
+          },
+          "questionBlueprintId": "emf.calculate_flux_change",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.emf.calculate_flux_change"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise electromagnetic induction, the A.C. generator's sine-wave output, the flux-change EMF calculation, and motor-vs-generator comparison.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001",
+            "EL-CONCEPT-AC-GENERATOR-001",
+            "EL-REL-FLUX-CHANGE-EMF-001",
+            "EL-MOTOR-GENERATOR-COMPARE-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [
+        {
+          "misconceptionIdentifier": "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+          "evidenceStrength": "suggestive"
+        }
+      ],
+      "retrievalTags": [
+        "electrical.emf_and_generation",
+        "formula.flux_change_emf",
+        "electrical.magnetism_and_electromagnetism"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_electromagnetic_induction_and_generator",
+          "guided_describe_ac_generation",
+          "concept_flux_change_emf",
+          "guided_calculate_flux_change_emf",
+          "independent_calculate_flux_change_emf",
+          "concept_motor_vs_generator",
+          "guided_compare_motor_generator",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.emf.describe_ac_generation",
+          "cap.emf.calculate_flux_change",
+          "cap.magnetism.compare_motor_generator"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.emf.calculate_flux_change"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has described the rotating-loop A.C. generator principle, calculated the EMF induced by a changing magnetic flux, and compared the motor principle with the generator principle."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
     },
     {
       "id": "lesson.foundation.maths.formula-rearrangement",
@@ -6452,7 +7908,3271 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v3"
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.foundation.physics.mass-and-weight",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "Mass and Weight",
+      "learnerFacingDescription": "Understand what mass and weight are, how they differ, and how weight relates to mass and gravitational field strength (W = m x g).",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [],
+      "targetAssertionFamilyIds": [
+        "foundational.mass_weight"
+      ],
+      "targetAssertionIdentifiers": [
+        "FP-CONCEPT-MASS-001",
+        "FP-CONCEPT-WEIGHT-001",
+        "FP-REL-WEIGHT-MASS-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.foundational.mass_weight.recognise"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 8,
+      "instructionalStrategy": "Mass and weight are taught as a genuinely distinct pair (amount of matter vs. the force of gravity acting on it), immediately connected by their governed relationship (W = m x g), then practised with the lesson's single recognition capability at guided, independent and retrieval scaffolding.",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame why an electrician needs to distinguish mass from weight -- e.g. safe manual handling and lifting-equipment ratings depend on weight (a force in newtons), not mass alone.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_mass_and_weight",
+          "type": "concept_explanation",
+          "purpose": "Define mass (the amount of matter an object contains, in kilograms, unchanged by location) and weight (the force of gravity acting on that mass, in newtons, dependent on location), then state W = m x g.",
+          "requirement": "required",
+          "teaches": [
+            "FP-CONCEPT-MASS-001",
+            "FP-CONCEPT-WEIGHT-001",
+            "FP-REL-WEIGHT-MASS-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.mass_weight",
+          "capabilityIds": [
+            "cap.foundational.mass_weight.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_mass_weight",
+          "type": "guided_interaction",
+          "purpose": "Recognise mass or weight from its definition, with immediate feedback.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "FP-CONCEPT-MASS-001",
+            "FP-CONCEPT-WEIGHT-001"
+          ],
+          "tests": [
+            "FP-CONCEPT-MASS-001",
+            "FP-CONCEPT-WEIGHT-001",
+            "FP-REL-WEIGHT-MASS-001"
+          ],
+          "assertionFamilyId": "foundational.mass_weight",
+          "capabilityIds": [
+            "cap.foundational.mass_weight.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "mass_weight.recognise_relationship",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mass_weight.recognise"
+          ]
+        },
+        {
+          "id": "independent_recognise_mass_weight",
+          "type": "independent_question",
+          "purpose": "Unscaffolded recognition of mass or weight from its definition.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-CONCEPT-MASS-001",
+            "FP-CONCEPT-WEIGHT-001",
+            "FP-REL-WEIGHT-MASS-001"
+          ],
+          "assertionFamilyId": "foundational.mass_weight",
+          "capabilityIds": [
+            "cap.foundational.mass_weight.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "mass_weight.recognise_relationship",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mass_weight.recognise"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of the mass/weight distinction before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-CONCEPT-MASS-001",
+            "FP-CONCEPT-WEIGHT-001",
+            "FP-REL-WEIGHT-MASS-001"
+          ],
+          "assertionFamilyId": "foundational.mass_weight",
+          "capabilityIds": [
+            "cap.foundational.mass_weight.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "mass_weight.recognise_relationship",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mass_weight.recognise"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise the mass/weight distinction and W = m x g.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "FP-CONCEPT-MASS-001",
+            "FP-CONCEPT-WEIGHT-001",
+            "FP-REL-WEIGHT-MASS-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "foundational.mass_weight",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [],
+      "retrievalTags": [
+        "foundational.mass_weight"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_mass_and_weight",
+          "guided_recognise_mass_weight",
+          "independent_recognise_mass_weight",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.foundational.mass_weight.recognise"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.foundational.mass_weight.recognise"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has distinguished mass from weight and recognised their governed relationship (W = m x g)."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.foundation.physics.mechanics-force-work-energy-power",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "Mechanics: Force, Work, Energy, Power and Efficiency",
+      "learnerFacingDescription": "Understand force, work, energy, power and efficiency as general mechanical principles, and calculate work done, kinetic energy, gravitational potential energy, power and efficiency.",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [],
+      "targetAssertionFamilyIds": [
+        "foundational.mechanics_work_energy_power"
+      ],
+      "targetAssertionIdentifiers": [
+        "FP-CONCEPT-FORCE-001",
+        "FP-CONCEPT-WORK-001",
+        "FP-REL-WORK-FORCE-DISTANCE-001",
+        "FP-CALC-WORK-001",
+        "FP-CONCEPT-ENERGY-001",
+        "FP-CONCEPT-KINETIC-ENERGY-001",
+        "FP-REL-KINETIC-ENERGY-001",
+        "FP-CALC-KINETIC-ENERGY-001",
+        "FP-CONCEPT-POTENTIAL-ENERGY-001",
+        "FP-REL-POTENTIAL-ENERGY-001",
+        "FP-CALC-POTENTIAL-ENERGY-001",
+        "FP-CONCEPT-POWER-001",
+        "FP-REL-POWER-WORK-TIME-001",
+        "FP-CALC-POWER-001",
+        "FP-CONCEPT-EFFICIENCY-001",
+        "FP-CALC-EFFICIENCY-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.foundational.mechanics.recognise",
+        "cap.foundational.mechanics.calculate"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 24,
+      "instructionalStrategy": "Concepts are taught first, in two steps (force/work/energy, then power/efficiency), then practised together as a single recognition capability -- then each of the five AC3.4 calculation forms is taught with its own worked example immediately followed by practice, closing with a transfer-application efficiency question that ties the whole family together (mirrors lesson-electrical-power.ts's own teach -> practise -> transfer structure).",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame force, work, energy, power and efficiency as the general mechanics every electrician's later electrical-power/energy/efficiency work specialises.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_force_work_energy",
+          "type": "concept_explanation",
+          "purpose": "Describe force, work (W = F x d), energy in general, and its kinetic (KE = 1/2 m v^2) and gravitational potential (PE = m g h) forms.",
+          "requirement": "required",
+          "teaches": [
+            "FP-CONCEPT-FORCE-001",
+            "FP-CONCEPT-WORK-001",
+            "FP-REL-WORK-FORCE-DISTANCE-001",
+            "FP-CONCEPT-ENERGY-001",
+            "FP-CONCEPT-KINETIC-ENERGY-001",
+            "FP-REL-KINETIC-ENERGY-001",
+            "FP-CONCEPT-POTENTIAL-ENERGY-001",
+            "FP-REL-POTENTIAL-ENERGY-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_power_efficiency",
+          "type": "concept_explanation",
+          "purpose": "Describe power (P = W / t) as the rate of doing work, and efficiency as useful output over total input.",
+          "requirement": "required",
+          "teaches": [
+            "FP-CONCEPT-POWER-001",
+            "FP-REL-POWER-WORK-TIME-001",
+            "FP-CONCEPT-EFFICIENCY-001"
+          ],
+          "reinforces": [
+            "FP-CONCEPT-WORK-001",
+            "FP-CONCEPT-ENERGY-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_mechanics_concept",
+          "type": "guided_interaction",
+          "purpose": "Recognise force, work, energy, power or efficiency from its definition, with immediate feedback.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "FP-CONCEPT-FORCE-001",
+            "FP-CONCEPT-WORK-001",
+            "FP-CONCEPT-ENERGY-001",
+            "FP-CONCEPT-POWER-001",
+            "FP-CONCEPT-EFFICIENCY-001"
+          ],
+          "tests": [
+            "FP-CONCEPT-FORCE-001",
+            "FP-CONCEPT-WORK-001",
+            "FP-CONCEPT-ENERGY-001",
+            "FP-CONCEPT-POWER-001",
+            "FP-CONCEPT-EFFICIENCY-001"
+          ],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "mechanics.recognise_concept",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mechanics.recognise"
+          ]
+        },
+        {
+          "id": "worked_example_calculate_work",
+          "type": "worked_example",
+          "purpose": "Model W = F x d before asking the learner to calculate work done unaided.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_work",
+            "workedExampleBlueprintId": "worked.mechanics_work.calculate"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_calculate_work",
+          "type": "guided_interaction",
+          "purpose": "First learner-performed work calculation (W = F x d).",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-REL-WORK-FORCE-DISTANCE-001",
+            "FP-CALC-WORK-001"
+          ],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_work"
+          },
+          "questionBlueprintId": "mechanics.calculate_work",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mechanics.calculate"
+          ]
+        },
+        {
+          "id": "worked_example_calculate_kinetic_energy",
+          "type": "worked_example",
+          "purpose": "Model KE = 1/2 m v^2 before the learner practises it.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_kinetic_energy",
+            "workedExampleBlueprintId": "worked.mechanics_kinetic_energy.calculate"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_calculate_kinetic_energy",
+          "type": "independent_question",
+          "purpose": "Unscaffolded kinetic energy calculation.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-REL-KINETIC-ENERGY-001",
+            "FP-CALC-KINETIC-ENERGY-001"
+          ],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_kinetic_energy"
+          },
+          "questionBlueprintId": "mechanics.calculate_kinetic_energy",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mechanics.calculate"
+          ]
+        },
+        {
+          "id": "worked_example_calculate_potential_energy",
+          "type": "worked_example",
+          "purpose": "Model GPE = m g h before the learner practises it.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_potential_energy",
+            "workedExampleBlueprintId": "worked.mechanics_potential_energy.calculate"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_calculate_potential_energy",
+          "type": "independent_question",
+          "purpose": "Unscaffolded gravitational potential energy calculation.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-REL-POTENTIAL-ENERGY-001",
+            "FP-CALC-POTENTIAL-ENERGY-001"
+          ],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_potential_energy"
+          },
+          "questionBlueprintId": "mechanics.calculate_potential_energy",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mechanics.calculate"
+          ]
+        },
+        {
+          "id": "worked_example_calculate_power",
+          "type": "worked_example",
+          "purpose": "Model P = W / t before the learner practises it.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_power",
+            "workedExampleBlueprintId": "worked.mechanics_power.calculate"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_calculate_power",
+          "type": "independent_question",
+          "purpose": "Unscaffolded power calculation.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-REL-POWER-WORK-TIME-001",
+            "FP-CALC-POWER-001"
+          ],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_power"
+          },
+          "questionBlueprintId": "mechanics.calculate_power",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mechanics.calculate"
+          ]
+        },
+        {
+          "id": "worked_example_calculate_efficiency",
+          "type": "worked_example",
+          "purpose": "Model efficiency as a percentage of useful output over total input before the learner practises it.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_efficiency",
+            "workedExampleBlueprintId": "worked.mechanics_efficiency.calculate"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "transfer_calculate_efficiency",
+          "type": "transfer_application",
+          "purpose": "Transfer to a full efficiency calculation, tying together the family's concept of useful output vs. total input introduced earlier in the lesson.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "FP-CONCEPT-EFFICIENCY-001"
+          ],
+          "tests": [
+            "FP-CALC-EFFICIENCY-001"
+          ],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_efficiency"
+          },
+          "questionBlueprintId": "mechanics.calculate_efficiency",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mechanics.calculate"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of the work calculation to strengthen retention before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-CALC-WORK-001"
+          ],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [
+            "cap.foundational.mechanics.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.mechanics_work"
+          },
+          "questionBlueprintId": "mechanics.calculate_work",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.mechanics.calculate"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise force, work, energy (kinetic and potential), power and efficiency, and their five governed calculation forms.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "FP-CONCEPT-ENERGY-001",
+            "FP-CONCEPT-POWER-001",
+            "FP-CONCEPT-EFFICIENCY-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "foundational.mechanics_work_energy_power",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [],
+      "retrievalTags": [
+        "foundational.mechanics_work_energy_power"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_force_work_energy",
+          "concept_power_efficiency",
+          "guided_recognise_mechanics_concept",
+          "worked_example_calculate_work",
+          "guided_calculate_work",
+          "worked_example_calculate_kinetic_energy",
+          "independent_calculate_kinetic_energy",
+          "worked_example_calculate_potential_energy",
+          "independent_calculate_potential_energy",
+          "worked_example_calculate_power",
+          "independent_calculate_power",
+          "worked_example_calculate_efficiency",
+          "transfer_calculate_efficiency",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.foundational.mechanics.recognise",
+          "cap.foundational.mechanics.calculate"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.foundational.mechanics.recognise",
+          "cap.foundational.mechanics.calculate"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has recognised force, work, energy, power and efficiency, and calculated work done, kinetic energy, gravitational potential energy, power and efficiency."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.foundation.physics.simple-machines",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "Simple Machines: Levers, Gears and Pulleys",
+      "learnerFacingDescription": "Understand how levers, gears and pulleys each provide mechanical advantage, identify lever classes, and calculate the effort or load in a balanced lever.",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [],
+      "targetAssertionFamilyIds": [
+        "foundational.levers_mechanical_advantage"
+      ],
+      "targetAssertionIdentifiers": [
+        "FP-CONCEPT-MECHANICAL-ADVANTAGE-001",
+        "FP-CONCEPT-LEVER-PRINCIPLE-001",
+        "FP-LEVER-CLASS-I-001",
+        "FP-LEVER-CLASS-II-001",
+        "FP-LEVER-CLASS-III-001",
+        "FP-REL-LEVER-BALANCE-001",
+        "FP-CONCEPT-GEAR-001",
+        "FP-REL-GEAR-RATIO-001",
+        "FP-CONCEPT-PULLEY-001",
+        "FP-PULLEY-FIXED-VS-MOVABLE-001",
+        "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001",
+        "FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.foundational.levers.recognise",
+        "cap.foundational.levers.calculate",
+        "cap.foundational.gears.recognise",
+        "cap.foundational.pulleys.recognise"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 16,
+      "instructionalStrategy": "Levers are taught first and in most depth (three classes, then a worked moment-balance calculation before guided and independent practice), since they carry the family's only calculation capability. Gears and pulleys follow the same teach-then-practise pattern at recognition depth only, each ending with an independent question so all four capabilities are demonstrated unaided at least once, not only under guidance.",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame mechanical advantage as the common idea behind levers, gears and pulleys -- getting more output force, torque or motion than the effort put in.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_levers",
+          "type": "concept_explanation",
+          "purpose": "Explain the lever principle (pivot, effort, load) and the three lever classes, distinguished by the relative arrangement of pivot/effort/load.",
+          "requirement": "required",
+          "teaches": [
+            "FP-CONCEPT-MECHANICAL-ADVANTAGE-001",
+            "FP-CONCEPT-LEVER-PRINCIPLE-001",
+            "FP-LEVER-CLASS-I-001",
+            "FP-LEVER-CLASS-II-001",
+            "FP-LEVER-CLASS-III-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.levers.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_identify_lever_class",
+          "type": "guided_interaction",
+          "purpose": "Identify a lever's class from the arrangement of pivot, effort and load, with immediate feedback.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "FP-CONCEPT-LEVER-PRINCIPLE-001"
+          ],
+          "tests": [
+            "FP-CONCEPT-LEVER-PRINCIPLE-001",
+            "FP-LEVER-CLASS-I-001",
+            "FP-LEVER-CLASS-II-001",
+            "FP-LEVER-CLASS-III-001"
+          ],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.levers.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "levers.identify_class",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.levers.recognise"
+          ]
+        },
+        {
+          "id": "worked_example_lever_balance",
+          "type": "worked_example",
+          "purpose": "Model the moment-balance calculation (effort x effort-arm = load x load-arm) before asking the learner to do it unaided.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.levers.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.lever_balance",
+            "workedExampleBlueprintId": "worked.lever_balance.calculate_effort"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_calculate_lever_balance",
+          "type": "guided_interaction",
+          "purpose": "First learner-performed lever moment-balance calculation.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-REL-LEVER-BALANCE-001"
+          ],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.levers.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.lever_balance"
+          },
+          "questionBlueprintId": "levers.calculate_effort_or_load",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.levers.calculate"
+          ]
+        },
+        {
+          "id": "concept_gears",
+          "type": "concept_explanation",
+          "purpose": "Explain how meshed gears transmit rotary motion and torque, and that mechanical advantage is the ratio of driven to driving radius (or tooth count).",
+          "requirement": "required",
+          "teaches": [
+            "FP-CONCEPT-GEAR-001",
+            "FP-REL-GEAR-RATIO-001"
+          ],
+          "reinforces": [
+            "FP-CONCEPT-MECHANICAL-ADVANTAGE-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.gears.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_gear_tradeoff",
+          "type": "guided_interaction",
+          "purpose": "Recognise whether a gear pair's arrangement increases output torque or output speed, with immediate feedback.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "FP-REL-GEAR-RATIO-001"
+          ],
+          "tests": [
+            "FP-CONCEPT-GEAR-001",
+            "FP-REL-GEAR-RATIO-001"
+          ],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.gears.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "gears.recognise_ratio_tradeoff",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.gears.recognise"
+          ]
+        },
+        {
+          "id": "independent_recognise_gear_tradeoff",
+          "type": "independent_question",
+          "purpose": "Unscaffolded gear torque/speed trade-off recognition.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-CONCEPT-GEAR-001",
+            "FP-REL-GEAR-RATIO-001"
+          ],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.gears.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "gears.recognise_ratio_tradeoff",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.gears.recognise"
+          ]
+        },
+        {
+          "id": "concept_pulleys",
+          "type": "concept_explanation",
+          "purpose": "Explain how a pulley changes the direction of an applied force and/or provides mechanical advantage, and the fixed-vs-movable distinction.",
+          "requirement": "required",
+          "teaches": [
+            "FP-CONCEPT-PULLEY-001",
+            "FP-PULLEY-FIXED-VS-MOVABLE-001",
+            "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001"
+          ],
+          "reinforces": [
+            "FP-CONCEPT-MECHANICAL-ADVANTAGE-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.pulleys.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_recognise_pulley_tradeoff",
+          "type": "independent_question",
+          "purpose": "Unscaffolded recognition of the pulley effort-force/distance trade-off.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-CONCEPT-PULLEY-001",
+            "FP-PULLEY-FIXED-VS-MOVABLE-001",
+            "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001",
+            "FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001"
+          ],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.pulleys.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "pulleys.recognise_force_distance_tradeoff",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.pulleys.recognise"
+          ]
+        },
+        {
+          "id": "independent_calculate_lever_balance",
+          "type": "independent_question",
+          "purpose": "Unscaffolded lever moment-balance calculation.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-REL-LEVER-BALANCE-001"
+          ],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.levers.calculate"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.lever_balance"
+          },
+          "questionBlueprintId": "levers.calculate_effort_or_load",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.levers.calculate"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of lever class identification before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "FP-LEVER-CLASS-I-001",
+            "FP-LEVER-CLASS-II-001",
+            "FP-LEVER-CLASS-III-001"
+          ],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [
+            "cap.foundational.levers.recognise"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "levers.identify_class",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.foundational.levers.recognise"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise how levers, gears and pulleys each provide mechanical advantage, and the lever moment-balance calculation.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "FP-CONCEPT-MECHANICAL-ADVANTAGE-001",
+            "FP-REL-LEVER-BALANCE-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "foundational.levers_mechanical_advantage",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [],
+      "retrievalTags": [
+        "foundational.levers_mechanical_advantage"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_levers",
+          "guided_identify_lever_class",
+          "worked_example_lever_balance",
+          "guided_calculate_lever_balance",
+          "concept_gears",
+          "guided_recognise_gear_tradeoff",
+          "independent_recognise_gear_tradeoff",
+          "concept_pulleys",
+          "independent_recognise_pulley_tradeoff",
+          "independent_calculate_lever_balance",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.foundational.levers.recognise",
+          "cap.foundational.levers.calculate",
+          "cap.foundational.gears.recognise",
+          "cap.foundational.pulleys.recognise"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.foundational.levers.recognise",
+          "cap.foundational.levers.calculate",
+          "cap.foundational.gears.recognise",
+          "cap.foundational.pulleys.recognise"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has identified lever classes, calculated the effort or load in a balanced lever, and recognised how gears and pulleys each provide mechanical advantage."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.magnetism.effects-of-current",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "Magnetic Effects of Current",
+      "learnerFacingDescription": "Understand the magnetic field a current-carrying conductor produces and its direction, the force on a conductor in a field, electromagnetism, and the difference between EMF and terminal voltage.",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [
+        "electrical.ohms_law",
+        "electrical.magnetism_and_electromagnetism"
+      ],
+      "targetAssertionFamilyIds": [
+        "electrical.magnetism_and_electromagnetism",
+        "electrical.emf_and_generation"
+      ],
+      "targetAssertionIdentifiers": [
+        "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
+        "EL-CONCEPT-FIELD-DIRECTION-RULE-001",
+        "EL-CONCEPT-FORCE-ON-CONDUCTOR-001",
+        "EL-REL-FORCE-ON-CONDUCTOR-001",
+        "EL-CONCEPT-FLEMING-LEFT-HAND-001",
+        "EL-CONCEPT-ELECTROMAGNETISM-001",
+        "EL-CONCEPT-EMF-001",
+        "EL-CONCEPT-TERMINAL-VOLTAGE-001",
+        "EL-REL-INDUCED-EMF-001",
+        "EL-CONCEPT-FLEMING-RIGHT-HAND-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.magnetism.interpret_field_direction",
+        "cap.magnetism.interpret_force_direction",
+        "cap.magnetism.recognise_concept",
+        "cap.emf.recognise_emf_terminal_voltage"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 18,
+      "instructionalStrategy": "Field production and direction come first (the direct consequence of a current existing at all), then force on a conductor in a field (what that field, once produced, can DO -- the motor principle's foundation), then electromagnetism is named explicitly as the umbrella term for everything just covered. EMF vs. terminal voltage closes the lesson as a distinct, commonly-confused pair, checked directly against its governed misconception (MIS-EL-EMF-VOLTAGE-CONFUSION-001) with an explicit remediation route rather than assuming the distinction has landed.",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame this lesson as answering: what does a current actually DO magnetically -- and why does that let us build motors and generators?",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_field_from_current",
+          "type": "concept_explanation",
+          "purpose": "State that a current-carrying conductor produces a magnetic field, and how to find that field's direction (Maxwell's screw rule / right-hand grip rule).",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
+            "EL-CONCEPT-FIELD-DIRECTION-RULE-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {
+            "diagramBlueprintId": "magnetic.field_conductor_direction"
+          },
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_interpret_field_direction",
+          "type": "guided_interaction",
+          "purpose": "Interpret the direction of the magnetic field produced by a current-carrying conductor from a diagram.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-CONCEPT-FIELD-DIRECTION-RULE-001"
+          ],
+          "tests": [
+            "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.interpret_field_direction"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "diagramBlueprintId": "magnetic.field_conductor_direction"
+          },
+          "questionBlueprintId": "magnetism.interpret_field_direction",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "interpret",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.interpret_field_direction"
+          ]
+        },
+        {
+          "id": "concept_force_on_conductor",
+          "type": "concept_explanation",
+          "purpose": "Describe the force a current-carrying conductor experiences in a magnetic field (F = B I l) and its direction (Fleming's left-hand rule) -- the motor principle's foundation.",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-FORCE-ON-CONDUCTOR-001",
+            "EL-REL-FORCE-ON-CONDUCTOR-001",
+            "EL-CONCEPT-FLEMING-LEFT-HAND-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {
+            "diagramBlueprintId": "motor.force_field_current"
+          },
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_interpret_force_direction",
+          "type": "guided_interaction",
+          "purpose": "Interpret the direction of the force on a current-carrying conductor in a magnetic field from a diagram.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-FORCE-ON-CONDUCTOR-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.interpret_force_direction"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+              "evidenceStrength": "suggestive"
+            }
+          ],
+          "representation": {
+            "diagramBlueprintId": "motor.force_field_current"
+          },
+          "questionBlueprintId": "magnetism.interpret_force_direction",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "interpret",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.interpret_force_direction"
+          ]
+        },
+        {
+          "id": "concept_electromagnetism",
+          "type": "concept_explanation",
+          "purpose": "Name electromagnetism as the umbrella relationship covering everything just seen: current produces a field, and a field exerts force on current.",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-ELECTROMAGNETISM-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
+            "EL-CONCEPT-FORCE-ON-CONDUCTOR-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.recognise_concept"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_electromagnetism",
+          "type": "guided_interaction",
+          "purpose": "Recognise electromagnetism from its definition.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-ELECTROMAGNETISM-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.recognise_concept"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "magnetism.recognise_concept",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.recognise_concept"
+          ]
+        },
+        {
+          "id": "concept_emf_and_terminal_voltage",
+          "type": "concept_explanation",
+          "purpose": "Describe electromotive force (EMF) and distinguish it from terminal voltage, and introduce induced EMF (e = B l v via Fleming's right-hand rule) as the mechanism a moving conductor uses to generate it.",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-EMF-001",
+            "EL-CONCEPT-TERMINAL-VOLTAGE-001",
+            "EL-REL-INDUCED-EMF-001",
+            "EL-CONCEPT-FLEMING-RIGHT-HAND-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-ELECTROMAGNETISM-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.recognise_emf_terminal_voltage"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "misconception_check_emf_terminal_voltage",
+          "type": "misconception_discrimination",
+          "purpose": "Directly test for the specific, governed EMF/terminal-voltage confusion rather than assuming its absence.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-EMF-001",
+            "EL-CONCEPT-TERMINAL-VOLTAGE-001"
+          ],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.recognise_emf_terminal_voltage"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+              "evidenceStrength": "direct"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "emf.distinguish_emf_terminal_voltage",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "standard",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [
+            {
+              "trigger": "misconception_detected",
+              "misconceptionIdentifier": "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+              "destinationStepId": "remediation_emf_terminal_voltage",
+              "description": "Route to explicit EMF-vs-terminal-voltage remediation before continuing."
+            }
+          ],
+          "evidenceEmitted": [
+            "cap.emf.recognise_emf_terminal_voltage"
+          ]
+        },
+        {
+          "id": "remediation_emf_terminal_voltage",
+          "type": "remediation",
+          "purpose": "Reteach the EMF/terminal-voltage distinction, then require a fresh correct discrimination before returning to the main sequence. Entered only via a branch route -- never part of the default linear path.",
+          "requirement": "conditional_remediation_only",
+          "teaches": [
+            "EL-CONCEPT-EMF-001",
+            "EL-CONCEPT-TERMINAL-VOLTAGE-001"
+          ],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-EMF-001",
+            "EL-CONCEPT-TERMINAL-VOLTAGE-001"
+          ],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.recognise_emf_terminal_voltage"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+              "evidenceStrength": "direct"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "emf.distinguish_emf_terminal_voltage",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [
+            {
+              "trigger": "remediation_cleared",
+              "destinationStepId": "retrieval_check",
+              "description": "Remediation cleared -- resume the main sequence at the retrieval check."
+            }
+          ],
+          "evidenceEmitted": [
+            "cap.emf.recognise_emf_terminal_voltage"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of the EMF/terminal-voltage distinction to strengthen retention before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-EMF-001",
+            "EL-CONCEPT-TERMINAL-VOLTAGE-001"
+          ],
+          "assertionFamilyId": "electrical.emf_and_generation",
+          "capabilityIds": [
+            "cap.emf.recognise_emf_terminal_voltage"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "emf.distinguish_emf_terminal_voltage",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.emf.recognise_emf_terminal_voltage"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise field production/direction, force on a conductor, electromagnetism, and EMF vs. terminal voltage.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
+            "EL-CONCEPT-FORCE-ON-CONDUCTOR-001",
+            "EL-CONCEPT-ELECTROMAGNETISM-001",
+            "EL-CONCEPT-EMF-001",
+            "EL-CONCEPT-TERMINAL-VOLTAGE-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [
+        {
+          "misconceptionIdentifier": "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+          "evidenceStrength": "suggestive"
+        },
+        {
+          "misconceptionIdentifier": "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+          "evidenceStrength": "direct"
+        }
+      ],
+      "retrievalTags": [
+        "electrical.magnetism_and_electromagnetism",
+        "electrical.emf_and_generation"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_field_from_current",
+          "guided_interpret_field_direction",
+          "concept_force_on_conductor",
+          "guided_interpret_force_direction",
+          "concept_electromagnetism",
+          "guided_recognise_electromagnetism",
+          "concept_emf_and_terminal_voltage",
+          "misconception_check_emf_terminal_voltage",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.magnetism.interpret_field_direction",
+          "cap.magnetism.interpret_force_direction",
+          "cap.magnetism.recognise_concept",
+          "cap.emf.recognise_emf_terminal_voltage"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.emf.recognise_emf_terminal_voltage"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has interpreted the direction of the magnetic field around a current-carrying conductor and the force on a conductor in a field, recognised electromagnetism, and distinguished EMF from terminal voltage -- clearing remediation if that misconception was detected."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.magnetism.fundamentals",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "Magnetism Fundamentals",
+      "learnerFacingDescription": "Understand magnetic attraction and repulsion, the difference between magnetic flux and flux density (and their SI units), and how a permanent magnet differs from an electromagnet.",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [
+        "electrical.ohms_law"
+      ],
+      "targetAssertionFamilyIds": [
+        "electrical.magnetism_and_electromagnetism"
+      ],
+      "targetAssertionIdentifiers": [
+        "EL-CONCEPT-MAGNETISM-001",
+        "EL-CONCEPT-MAGNETIC-FLUX-001",
+        "EL-UNIT-WEBER-001",
+        "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001",
+        "EL-UNIT-TESLA-001",
+        "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.magnetism.recognise_concept",
+        "cap.magnetism.identify_unit",
+        "cap.magnetism.compare_permanent_electromagnet"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 16,
+      "instructionalStrategy": "Attraction/repulsion is introduced first as the intuitive, everyday phenomenon underlying everything else in LO5. Flux and flux density are then taught as a deliberately paired distinction (what exists vs. how concentrated it is), immediately followed by their SI units so the quantity and its unit are never learned apart. Permanent magnet vs. electromagnet closes the lesson, explicitly reinforcing attraction/repulsion as the shared underlying mechanism and previewing that the NEXT lesson explains exactly how a current produces that magnetism.",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame magnetism as the foundation for motors, generators and instruments the learner will meet throughout the rest of Unit 202.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_magnetism_attraction_repulsion",
+          "type": "concept_explanation",
+          "purpose": "Describe magnetic attraction and repulsion between poles as the basic behaviour all magnetism -- permanent or electromagnetic -- exhibits.",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-MAGNETISM-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.compare_permanent_electromagnet"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_flux_and_flux_density",
+          "type": "concept_explanation",
+          "purpose": "Distinguish magnetic flux (the total magnetic field produced) from magnetic flux density (how concentrated that field is).",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-MAGNETIC-FLUX-001",
+            "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.recognise_concept"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_flux_concepts",
+          "type": "guided_interaction",
+          "purpose": "Recognise magnetic flux or flux density from its definition.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-MAGNETIC-FLUX-001",
+            "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.recognise_concept"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "magnetism.recognise_concept",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.recognise_concept"
+          ]
+        },
+        {
+          "id": "concept_flux_and_flux_density_units",
+          "type": "concept_explanation",
+          "purpose": "Name the SI units of magnetic flux (weber) and magnetic flux density (tesla), paired directly with the quantities they measure.",
+          "requirement": "required",
+          "teaches": [
+            "EL-UNIT-WEBER-001",
+            "EL-UNIT-TESLA-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-MAGNETIC-FLUX-001",
+            "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.identify_unit"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_identify_flux_density_unit",
+          "type": "guided_interaction",
+          "purpose": "Identify the SI unit of magnetic flux density among plausible related-unit distractors (weber, henry, farad).",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-UNIT-TESLA-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.identify_unit"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "magnetism.identify_flux_density_unit",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.identify_unit"
+          ]
+        },
+        {
+          "id": "independent_identify_flux_unit",
+          "type": "independent_question",
+          "purpose": "Unscaffolded transfer: identify the SI unit of magnetic flux itself, using the same recognition skill just practised for flux density.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-UNIT-WEBER-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.identify_unit"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "magnetism.identify_flux_unit",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.identify_unit"
+          ]
+        },
+        {
+          "id": "concept_permanent_vs_electromagnet",
+          "type": "concept_explanation",
+          "purpose": "Compare a permanent magnet with an electromagnet, explicitly reinforcing that both exhibit the same attraction/repulsion behaviour.",
+          "requirement": "required",
+          "teaches": [
+            "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-MAGNETISM-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.compare_permanent_electromagnet"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_compare_permanent_electromagnet",
+          "type": "guided_interaction",
+          "purpose": "Compare a permanent magnet with an electromagnet.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-CONCEPT-MAGNETISM-001"
+          ],
+          "tests": [
+            "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.compare_permanent_electromagnet"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "magnetism.compare_permanent_electromagnet",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.compare_permanent_electromagnet"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of flux/flux-density recognition to strengthen retention before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-MAGNETIC-FLUX-001",
+            "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.recognise_concept"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "magnetism.recognise_concept",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.magnetism.recognise_concept"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise attraction/repulsion, the flux vs. flux-density distinction with their SI units, and permanent magnet vs. electromagnet.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-CONCEPT-MAGNETISM-001",
+            "EL-CONCEPT-MAGNETIC-FLUX-001",
+            "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001",
+            "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [],
+      "retrievalTags": [
+        "electrical.magnetism_and_electromagnetism"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_magnetism_attraction_repulsion",
+          "concept_flux_and_flux_density",
+          "guided_recognise_flux_concepts",
+          "concept_flux_and_flux_density_units",
+          "guided_identify_flux_density_unit",
+          "independent_identify_flux_unit",
+          "concept_permanent_vs_electromagnet",
+          "guided_compare_permanent_electromagnet",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.magnetism.recognise_concept",
+          "cap.magnetism.identify_unit",
+          "cap.magnetism.compare_permanent_electromagnet"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.magnetism.recognise_concept",
+          "cap.magnetism.identify_unit"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has described magnetic attraction and repulsion, distinguished magnetic flux from flux density with their SI units, and compared a permanent magnet with an electromagnet."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
+    },
+    {
+      "id": "lesson.waveforms.ac-dc-and-sine-wave-quantities",
+      "schemaVersion": 1,
+      "version": 1,
+      "title": "A.C./D.C. and Sine-Wave Quantities",
+      "learnerFacingDescription": "Distinguish A.C. from D.C., identify sine-wave characteristics (periodic time, amplitude, peak-to-peak, RMS, average value, frequency) from a waveform, calculate RMS from peak and frequency from periodic time, and compare how components behave under A.C. versus D.C.",
+      "curriculumUnit": "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+      "prerequisiteKnowledge": [
+        "electrical.ohms_law",
+        "electrical.magnetism_and_electromagnetism",
+        "electrical.emf_and_generation"
+      ],
+      "targetAssertionFamilyIds": [
+        "electrical.ac_dc_waveforms"
+      ],
+      "targetAssertionIdentifiers": [
+        "EL-CONCEPT-AC-DC-DISTINCTION-001",
+        "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001",
+        "EL-CONCEPT-FREQUENCY-001",
+        "EL-WAVEFORM-PERIODIC-TIME-001",
+        "EL-WAVEFORM-AMPLITUDE-001",
+        "EL-WAVEFORM-PEAK-TO-PEAK-001",
+        "EL-WAVEFORM-RMS-001",
+        "EL-WAVEFORM-AVERAGE-VALUE-001",
+        "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001",
+        "EL-WAVEFORM-RMS-CALC-001",
+        "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001",
+        "EL-WAVEFORM-FREQUENCY-CALC-001",
+        "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001",
+        "EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001",
+        "EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"
+      ],
+      "targetCapabilityIds": [
+        "cap.waveform.recognise_ac_dc",
+        "cap.waveform.identify_characteristic",
+        "cap.waveform.calculate_rms_peak",
+        "cap.waveform.calculate_frequency_period",
+        "cap.waveform.interpret_rated_value",
+        "cap.waveform.compare_ac_dc_behaviour"
+      ],
+      "remediationEligibility": [],
+      "estimatedDurationMinutes": 20,
+      "instructionalStrategy": "A.C./D.C. distinction opens the lesson (the categorical distinction the rest of the lesson's quantities apply to). Sine-wave characteristics are taught as one connected set read off a single waveform diagram, then practised together with one recognition question before splitting into the two genuinely separate NUMERIC skills -- RMS/peak and frequency/period -- each given its own worked example before practice, mirroring lesson-electrical-power.ts's worked-example-before-calculation pattern. The peak-vs-RMS supply-rating interpretation is checked directly against its governed misconception (MIS-EL-PEAK-RMS-CONFUSION-001) with an explicit remediation route, since it is the single most examinable real-world confusion in this family. AC-vs-DC component behaviour closes the lesson as a transfer-application synthesis of everything before it.",
+      "steps": [
+        {
+          "id": "orientation",
+          "type": "orientation",
+          "purpose": "Frame this lesson as answering: now that we know how A.C. is generated, how do we describe and measure it precisely?",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "concept_ac_dc_distinction",
+          "type": "concept_explanation",
+          "purpose": "Distinguish A.C. (alternating, reverses direction periodically) from D.C. (constant direction), and recognise an A.C. supply in context.",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-AC-DC-DISTINCTION-001",
+            "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.recognise_ac_dc"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_recognise_ac_dc",
+          "type": "guided_interaction",
+          "purpose": "Distinguish A.C. from D.C. supply behaviour.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-AC-DC-DISTINCTION-001",
+            "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001"
+          ],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.recognise_ac_dc"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-AC-DC-CONFUSION-001",
+              "evidenceStrength": "suggestive"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "waveform.recognise_ac_dc",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.waveform.recognise_ac_dc"
+          ]
+        },
+        {
+          "id": "concept_sine_wave_characteristics",
+          "type": "concept_explanation",
+          "purpose": "Define frequency, periodic time, amplitude, peak-to-peak value, RMS value and average value, read together from one sine-wave diagram.",
+          "requirement": "required",
+          "teaches": [
+            "EL-CONCEPT-FREQUENCY-001",
+            "EL-WAVEFORM-PERIODIC-TIME-001",
+            "EL-WAVEFORM-AMPLITUDE-001",
+            "EL-WAVEFORM-PEAK-TO-PEAK-001",
+            "EL-WAVEFORM-RMS-001",
+            "EL-WAVEFORM-AVERAGE-VALUE-001",
+            "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001"
+          ],
+          "reinforces": [
+            "EL-CONCEPT-AC-DC-DISTINCTION-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {
+            "diagramBlueprintId": "graph.waveform_sine"
+          },
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_identify_characteristic",
+          "type": "guided_interaction",
+          "purpose": "Identify a named sine-wave characteristic from a waveform diagram.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-WAVEFORM-PERIODIC-TIME-001",
+            "EL-WAVEFORM-AMPLITUDE-001",
+            "EL-WAVEFORM-PEAK-TO-PEAK-001",
+            "EL-WAVEFORM-RMS-001",
+            "EL-WAVEFORM-AVERAGE-VALUE-001",
+            "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001"
+          ],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.identify_characteristic"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "diagramBlueprintId": "graph.waveform_sine"
+          },
+          "questionBlueprintId": "waveform.identify_characteristic",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "identify",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.waveform.identify_characteristic"
+          ]
+        },
+        {
+          "id": "worked_example_calculate_rms",
+          "type": "worked_example",
+          "purpose": "Model calculating RMS value from peak value before the learner practises it.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.calculate_rms_peak"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.ac_waveform_relationships",
+            "workedExampleBlueprintId": "worked.waveform.calculate_rms"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "guided_calculate_rms_from_peak",
+          "type": "guided_interaction",
+          "purpose": "Calculate RMS value from peak value, or peak value from RMS value.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-WAVEFORM-RMS-CALC-001",
+            "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001"
+          ],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.calculate_rms_peak"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.ac_waveform_relationships"
+          },
+          "questionBlueprintId": "waveform.calculate_rms_from_peak",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.waveform.calculate_rms_peak"
+          ]
+        },
+        {
+          "id": "worked_example_calculate_frequency",
+          "type": "worked_example",
+          "purpose": "Model calculating frequency from periodic time before the learner practises it.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.calculate_frequency_period"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.ac_waveform_relationships",
+            "workedExampleBlueprintId": "worked.waveform.calculate_frequency"
+          },
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "predict",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "independent_calculate_frequency_from_period",
+          "type": "independent_question",
+          "purpose": "Unscaffolded calculation of frequency from periodic time, or periodic time from frequency.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-WAVEFORM-FREQUENCY-CALC-001",
+            "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001"
+          ],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.calculate_frequency_period"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.ac_waveform_relationships"
+          },
+          "questionBlueprintId": "waveform.calculate_frequency_from_period",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.waveform.calculate_frequency_period"
+          ]
+        },
+        {
+          "id": "misconception_check_rated_value",
+          "type": "misconception_discrimination",
+          "purpose": "Directly test for the specific, governed peak-vs-RMS confusion in quoted A.C. supply ratings (e.g. 230 V) rather than assuming its absence.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001"
+          ],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.interpret_rated_value"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-PEAK-RMS-CONFUSION-001",
+              "evidenceStrength": "direct"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "waveform.interpret_rated_value",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "interpret",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "standard",
+          "cognitiveDemand": "diagnostic",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [
+            {
+              "trigger": "misconception_detected",
+              "misconceptionIdentifier": "MIS-EL-PEAK-RMS-CONFUSION-001",
+              "destinationStepId": "remediation_peak_rms",
+              "description": "Route to explicit peak-vs-RMS remediation before continuing."
+            }
+          ],
+          "evidenceEmitted": [
+            "cap.waveform.interpret_rated_value"
+          ]
+        },
+        {
+          "id": "remediation_peak_rms",
+          "type": "remediation",
+          "purpose": "Reteach the RMS/peak relationship using the formula representation again, then require a fresh correct interpretation before returning to the main sequence. Entered only via a branch route -- never part of the default linear path.",
+          "requirement": "conditional_remediation_only",
+          "teaches": [
+            "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001"
+          ],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001"
+          ],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.interpret_rated_value"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-PEAK-RMS-CONFUSION-001",
+              "evidenceStrength": "direct"
+            }
+          ],
+          "representation": {
+            "formulaFamilyId": "formula.ac_waveform_relationships"
+          },
+          "questionBlueprintId": "waveform.interpret_rated_value",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "interpret",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [
+            {
+              "trigger": "remediation_cleared",
+              "destinationStepId": "transfer_compare_ac_dc_behaviour",
+              "description": "Remediation cleared -- resume the main sequence at the AC-vs-DC behaviour transfer step."
+            }
+          ],
+          "evidenceEmitted": [
+            "cap.waveform.interpret_rated_value"
+          ]
+        },
+        {
+          "id": "transfer_compare_ac_dc_behaviour",
+          "type": "transfer_application",
+          "purpose": "Transfer everything covered so far: compare how a resistor, inductor and capacitor behave under A.C. versus D.C. supply.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-CONCEPT-AC-DC-DISTINCTION-001"
+          ],
+          "tests": [
+            "EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"
+          ],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.compare_ac_dc_behaviour"
+          ],
+          "misconceptionTargets": [],
+          "representation": {},
+          "questionBlueprintId": "waveform.compare_ac_dc_behaviour",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.waveform.compare_ac_dc_behaviour"
+          ]
+        },
+        {
+          "id": "retrieval_check",
+          "type": "retrieval_check",
+          "purpose": "Short delayed retrieval of the RMS/peak calculation to strengthen retention before the lesson ends.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-WAVEFORM-RMS-CALC-001"
+          ],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [
+            "cap.waveform.calculate_rms_peak"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "formulaFamilyId": "formula.ac_waveform_relationships"
+          },
+          "questionBlueprintId": "waveform.calculate_rms_from_peak",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "calculate",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [],
+          "evidenceEmitted": [
+            "cap.waveform.calculate_rms_peak"
+          ]
+        },
+        {
+          "id": "recap",
+          "type": "recap",
+          "purpose": "Summarise A.C./D.C. distinction, the six sine-wave characteristics, RMS/peak and frequency/period calculations, and AC-vs-DC component behaviour.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [
+            "EL-CONCEPT-AC-DC-DISTINCTION-001",
+            "EL-WAVEFORM-RMS-001",
+            "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001",
+            "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001",
+            "EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.ac_dc_waveforms",
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": true,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        },
+        {
+          "id": "exit_completion",
+          "type": "exit_completion",
+          "purpose": "Confirm lesson completion against the governed completion criteria.",
+          "requirement": "required",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [],
+          "capabilityIds": [],
+          "misconceptionTargets": [],
+          "representation": {},
+          "presentation": {
+            "interactionRequired": false,
+            "answerReveal": "not_applicable",
+            "contentMayScroll": false,
+            "progressiveReveal": false
+          },
+          "scaffoldingLevel": "independent",
+          "cognitiveDemand": "introductory",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": false
+          },
+          "completionCondition": "view_acknowledged",
+          "branchRoutes": [],
+          "evidenceEmitted": []
+        }
+      ],
+      "misconceptionTargets": [
+        {
+          "misconceptionIdentifier": "MIS-EL-AC-DC-CONFUSION-001",
+          "evidenceStrength": "suggestive"
+        },
+        {
+          "misconceptionIdentifier": "MIS-EL-PEAK-RMS-CONFUSION-001",
+          "evidenceStrength": "direct"
+        }
+      ],
+      "retrievalTags": [
+        "electrical.ac_dc_waveforms",
+        "formula.ac_waveform_relationships"
+      ],
+      "completionCriteria": {
+        "requiredStepIds": [
+          "orientation",
+          "concept_ac_dc_distinction",
+          "guided_recognise_ac_dc",
+          "concept_sine_wave_characteristics",
+          "guided_identify_characteristic",
+          "worked_example_calculate_rms",
+          "guided_calculate_rms_from_peak",
+          "worked_example_calculate_frequency",
+          "independent_calculate_frequency_from_period",
+          "misconception_check_rated_value",
+          "transfer_compare_ac_dc_behaviour",
+          "retrieval_check",
+          "recap",
+          "exit_completion"
+        ],
+        "requiredCapabilityEvidence": [
+          "cap.waveform.recognise_ac_dc",
+          "cap.waveform.identify_characteristic",
+          "cap.waveform.calculate_rms_peak",
+          "cap.waveform.calculate_frequency_period",
+          "cap.waveform.interpret_rated_value",
+          "cap.waveform.compare_ac_dc_behaviour"
+        ],
+        "masteryGateCapabilityIds": [
+          "cap.waveform.calculate_rms_peak",
+          "cap.waveform.calculate_frequency_period",
+          "cap.waveform.compare_ac_dc_behaviour"
+        ],
+        "requiresRemediationClearance": true,
+        "exitSummary": "The learner has distinguished A.C. from D.C., identified the six sine-wave characteristics from a waveform, calculated RMS from peak and frequency from periodic time, correctly interpreted a quoted A.C. supply rating -- clearing remediation if the peak/RMS misconception was detected -- and compared component behaviour under A.C. versus D.C."
+      },
+      "presentationModes": [
+        "learn",
+        "review"
+      ],
+      "contentRelease": "release.unit202.v4"
     }
   ],
   "questionBlueprints": [
@@ -6919,6 +11639,434 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       }
     },
     {
+      "id": "electronics.identify_application",
+      "assertionFamilyId": "electrical.electronic_components",
+      "capabilityId": "cap.electronic_components.identify_application",
+      "title": "Identify which electronic component is used for a described electrical-system application",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "triac",
+          "thyristor_scr",
+          "thermistor",
+          "transistor",
+          "capacitor",
+          "resistor"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.electronic_components.identify_application",
+        "familyId": "electrical.electronic_components",
+        "assertionIdentifiers": [
+          "EL-APPLICATION-DIMMER-SWITCH-001",
+          "EL-APPLICATION-MOTOR-CONTROL-001",
+          "EL-APPLICATION-HEATING-BOILER-CONTROL-001",
+          "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001",
+          "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "{application_clue}"
+        ],
+        "answerOptionLabels": {
+          "triac": "TRIAC",
+          "thyristor_scr": "Thyristor (SCR)",
+          "thermistor": "Thermistor",
+          "transistor": "Transistor",
+          "capacitor": "Capacitor",
+          "resistor": "Resistor"
+        }
+      }
+    },
+    {
+      "id": "electronics.recognise_capacitor_behaviour",
+      "assertionFamilyId": "electrical.electronic_components",
+      "capabilityId": "cap.electronic_components.recognise_principle",
+      "title": "Recognise a capacitor's charge/discharge transient behaviour",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "gradual_exponential_change",
+          "instant_step_change"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.electronic_components.recognise_principle",
+        "familyId": "electrical.electronic_components",
+        "assertionIdentifiers": [
+          "EL-COMPONENT-CAPACITOR-TRANSIENT-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "A capacitor is {scenario} through a resistor in a circuit.",
+          "How does the voltage across the capacitor change over time?"
+        ],
+        "answerOptionLabels": {
+          "gradual_exponential_change": "Gradually, following an exponential curve (governed by the time constant tau = R x C)",
+          "instant_step_change": "Instantly, as a sudden step change"
+        }
+      }
+    },
+    {
+      "id": "electronics.recognise_diode_family",
+      "assertionFamilyId": "electrical.electronic_components",
+      "capabilityId": "cap.electronic_components.recognise_principle",
+      "title": "Recognise a member of the diode family from its behaviour",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "diode",
+          "zener_diode",
+          "led",
+          "photodiode"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.electronic_components.recognise_principle",
+        "familyId": "electrical.electronic_components",
+        "assertionIdentifiers": [
+          "EL-COMPONENT-DIODE-001",
+          "EL-COMPONENT-ZENER-DIODE-001",
+          "EL-COMPONENT-LED-001",
+          "EL-COMPONENT-PHOTODIODE-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": [
+          {
+            "misconceptionIdentifier": "MIS-EL-DIODE-DIRECTION-CONFUSION-001",
+            "evidenceStrength": "suggestive"
+          }
+        ]
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "A component {diode_family_clue}.",
+          "Which component is this?"
+        ],
+        "answerOptionLabels": {
+          "diode": "Diode",
+          "zener_diode": "Zener diode",
+          "led": "LED (light-emitting diode)",
+          "photodiode": "Photodiode"
+        }
+      }
+    },
+    {
+      "id": "electronics.recognise_rectifier_type",
+      "assertionFamilyId": "electrical.electronic_components",
+      "capabilityId": "cap.electronic_components.recognise_principle",
+      "title": "Distinguish half-wave rectification, full-wave rectification and the inverter",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "half_wave_rectifier",
+          "full_wave_rectifier",
+          "inverter"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.electronic_components.recognise_principle",
+        "familyId": "electrical.electronic_components",
+        "assertionIdentifiers": [
+          "EL-COMPONENT-RECTIFIER-001",
+          "EL-COMPONENT-RECTIFIER-HALF-WAVE-001",
+          "EL-COMPONENT-RECTIFIER-FULL-WAVE-001",
+          "EL-COMPONENT-INVERTER-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "A circuit {rectifier_type_clue}.",
+          "Which of these does this describe?"
+        ],
+        "answerOptionLabels": {
+          "half_wave_rectifier": "Half-wave rectifier",
+          "full_wave_rectifier": "Full-wave bridge rectifier",
+          "inverter": "Inverter"
+        }
+      }
+    },
+    {
+      "id": "electronics.recognise_switching_family",
+      "assertionFamilyId": "electrical.electronic_components",
+      "capabilityId": "cap.electronic_components.recognise_principle",
+      "title": "Recognise a DIAC, TRIAC, thyristor (SCR) or transistor from its behaviour",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "diac",
+          "triac",
+          "thyristor_scr",
+          "transistor"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.electronic_components.recognise_principle",
+        "familyId": "electrical.electronic_components",
+        "assertionIdentifiers": [
+          "EL-COMPONENT-DIAC-001",
+          "EL-COMPONENT-TRIAC-001",
+          "EL-COMPONENT-THYRISTOR-SCR-001",
+          "EL-COMPONENT-TRANSISTOR-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "A component {switching_family_clue}.",
+          "Which component is this?"
+        ],
+        "answerOptionLabels": {
+          "diac": "DIAC",
+          "triac": "TRIAC",
+          "thyristor_scr": "Thyristor (silicon-controlled rectifier, SCR)",
+          "transistor": "Transistor"
+        }
+      }
+    },
+    {
+      "id": "electronics.recognise_thermistor_type",
+      "assertionFamilyId": "electrical.electronic_components",
+      "capabilityId": "cap.electronic_components.recognise_principle",
+      "title": "Distinguish an NTC thermistor from a PTC thermistor",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "ntc_thermistor",
+          "ptc_thermistor"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.electronic_components.recognise_principle",
+        "familyId": "electrical.electronic_components",
+        "assertionIdentifiers": [
+          "EL-COMPONENT-THERMISTOR-001",
+          "EL-COMPONENT-THERMISTOR-PTC-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "A thermistor is described as follows: {thermistor_type_clue}.",
+          "Which type of thermistor is this?"
+        ],
+        "answerOptionLabels": {
+          "ntc_thermistor": "NTC (negative-temperature-coefficient) thermistor",
+          "ptc_thermistor": "PTC (positive-temperature-coefficient) thermistor"
+        }
+      }
+    },
+    {
+      "id": "emf.calculate_flux_change",
+      "assertionFamilyId": "electrical.emf_and_generation",
+      "capabilityId": "cap.emf.calculate_flux_change",
+      "title": "Calculate the EMF induced in a single loop from a changing magnetic flux",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.flux_change_emf"
+        }
+      },
+      "variantDimensions": {
+        "target_variable": {
+          "allowed": [
+            "e",
+            "deltaPhi",
+            "deltaT"
+          ]
+        }
+      },
+      "parameterGenerators": [
+        {
+          "variable": "deltaPhi",
+          "min": 1,
+          "max": 20,
+          "constraints": [
+            "positive",
+            "pedagogically_sensible"
+          ]
+        },
+        {
+          "variable": "deltaT",
+          "min": 1,
+          "max": 60,
+          "constraints": [
+            "positive",
+            "pedagogically_sensible"
+          ]
+        }
+      ],
+      "answer": {
+        "type": "quantity",
+        "quantity": "emf",
+        "canonicalUnit": "volt"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 2
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.emf.calculate_flux_change",
+        "familyId": "electrical.emf_and_generation",
+        "assertionIdentifiers": [
+          "EL-REL-FLUX-CHANGE-EMF-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "{given_summary}",
+          "Find {target_variable}."
+        ]
+      }
+    },
+    {
+      "id": "emf.describe_ac_generation",
+      "assertionFamilyId": "electrical.emf_and_generation",
+      "capabilityId": "cap.emf.describe_ac_generation",
+      "title": "Describe the basic principle of a rotating-loop A.C. generator",
+      "representation": {
+        "diagram": {
+          "required": false,
+          "blueprintId": "motor.force_field_current"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "sine_wave",
+          "constant_dc",
+          "square_wave"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.emf.describe_ac_generation",
+        "familyId": "electrical.emf_and_generation",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-AC-GENERATOR-001",
+          "EL-CONCEPT-SINE-WAVE-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "A single loop of wire is rotated at a constant speed inside a uniform magnetic field.",
+          "What shape is the resulting EMF waveform?"
+        ]
+      }
+    },
+    {
+      "id": "emf.distinguish_emf_terminal_voltage",
+      "assertionFamilyId": "electrical.emf_and_generation",
+      "capabilityId": "cap.emf.recognise_emf_terminal_voltage",
+      "title": "Distinguish EMF from terminal voltage",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "emf",
+          "terminal_voltage"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.emf.recognise_emf_terminal_voltage",
+        "familyId": "electrical.emf_and_generation",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-EMF-001",
+          "EL-CONCEPT-TERMINAL-VOLTAGE-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": [
+          {
+            "misconceptionIdentifier": "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+            "evidenceStrength": "direct"
+          }
+        ]
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "A source's potential difference is measured {reading_context}.",
+          "Is this its EMF or its terminal voltage?"
+        ]
+      }
+    },
+    {
       "id": "energy.calculate_efficiency",
       "assertionFamilyId": "electrical.energy_and_efficiency",
       "capabilityId": "cap.energy.calculate_efficiency",
@@ -7306,6 +12454,44 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       }
     },
     {
+      "id": "gears.recognise_ratio_tradeoff",
+      "assertionFamilyId": "foundational.levers_mechanical_advantage",
+      "capabilityId": "cap.foundational.gears.recognise",
+      "title": "Recognise the torque/speed trade-off a gear ratio produces",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "torque_increases",
+          "speed_increases"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.gears.recognise",
+        "familyId": "foundational.levers_mechanical_advantage",
+        "assertionIdentifiers": [
+          "FP-CONCEPT-GEAR-001",
+          "FP-REL-GEAR-RATIO-001",
+          "FP-GEAR-SPEED-TORQUE-TRADEOFF-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "{scenario_clue}",
+          "Compared with the driving gear, does the driven gear's output torque increase, or does its output speed increase?"
+        ]
+      }
+    },
+    {
       "id": "instrumentation.recognise_connection",
       "assertionFamilyId": "electrical.instrumentation",
       "capabilityId": "cap.instrumentation.recognise_connection",
@@ -7461,6 +12647,642 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which instrument should be used to measure {quantity}?"
+        ]
+      }
+    },
+    {
+      "id": "levers.calculate_effort_or_load",
+      "assertionFamilyId": "foundational.levers_mechanical_advantage",
+      "capabilityId": "cap.foundational.levers.calculate",
+      "title": "Calculate the effort or load in a balanced lever using the moment-balance relationship",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.lever_balance"
+        }
+      },
+      "variantDimensions": {
+        "target_variable": {
+          "allowed": [
+            "Fe",
+            "Fl"
+          ]
+        }
+      },
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "force",
+        "canonicalUnit": "newton"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 2
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.levers.calculate",
+        "familyId": "foundational.levers_mechanical_advantage",
+        "assertionIdentifiers": [
+          "FP-REL-LEVER-BALANCE-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "{given_summary}",
+          "Find {target_variable}."
+        ]
+      }
+    },
+    {
+      "id": "levers.identify_class",
+      "assertionFamilyId": "foundational.levers_mechanical_advantage",
+      "capabilityId": "cap.foundational.levers.recognise",
+      "title": "Identify a lever's class from the arrangement of pivot, effort and load",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "class_I",
+          "class_II",
+          "class_III"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.levers.recognise",
+        "familyId": "foundational.levers_mechanical_advantage",
+        "assertionIdentifiers": [
+          "FP-CONCEPT-LEVER-PRINCIPLE-001",
+          "FP-LEVER-CLASS-I-001",
+          "FP-LEVER-CLASS-II-001",
+          "FP-LEVER-CLASS-III-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "A lever is arranged so that {arrangement_clue}.",
+          "Which class of lever is this?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.compare_motor_generator",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.compare_motor_generator",
+      "title": "Compare the motor principle with the generator principle",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "motor",
+          "generator"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.compare_motor_generator",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-MOTOR-GENERATOR-COMPARE-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": [
+          {
+            "misconceptionIdentifier": "MIS-EL-EMF-VOLTAGE-CONFUSION-001",
+            "evidenceStrength": "suggestive"
+          }
+        ]
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "Which principle is being described: it {principle_clue}?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.compare_permanent_electromagnet",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.compare_permanent_electromagnet",
+      "title": "Compare a permanent magnet with an electromagnet",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "permanent_magnet",
+          "electromagnet"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.compare_permanent_electromagnet",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "Which type of magnet is being described: it {scenario_clue}?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.identify_flux_density_unit",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.identify_unit",
+      "title": "Identify the SI unit of magnetic flux density",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "tesla",
+          "weber",
+          "henry",
+          "farad"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.identify_unit",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-UNIT-TESLA-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "What is the SI unit of magnetic flux density?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.identify_flux_unit",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.identify_unit",
+      "title": "Identify the SI unit of magnetic flux",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "weber",
+          "tesla",
+          "henry",
+          "farad"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.identify_unit",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-UNIT-WEBER-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "What is the SI unit of magnetic flux?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.interpret_field_direction",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.interpret_field_direction",
+      "title": "Interpret the direction of the magnetic field produced by a current-carrying conductor",
+      "representation": {
+        "diagram": {
+          "required": true,
+          "blueprintId": "magnetic.field_conductor_direction"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "direction"
+      },
+      "marking": {
+        "type": "direction_match"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.interpret_field_direction",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "A straight conductor carries current as shown. In which direction does the magnetic field circulate around it?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.interpret_force_direction",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.interpret_force_direction",
+      "title": "Interpret the direction of the force on a current-carrying conductor in a magnetic field",
+      "representation": {
+        "diagram": {
+          "required": true,
+          "blueprintId": "motor.force_field_current"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "direction"
+      },
+      "marking": {
+        "type": "direction_match"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.interpret_force_direction",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-FORCE-ON-CONDUCTOR-001",
+          "EL-CONCEPT-MOTOR-PRINCIPLE-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": [
+          {
+            "misconceptionIdentifier": "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+            "evidenceStrength": "suggestive"
+          }
+        ]
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "A current-carrying conductor sits in the magnetic field shown. In which direction does the force act on it?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.recognise_concept",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.recognise_concept",
+      "title": "Recognise magnetic flux or flux density from its definition",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "flux",
+          "flux_density"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.recognise_concept",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-MAGNETIC-FLUX-001",
+          "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001",
+          "EL-CONCEPT-ELECTROMAGNETISM-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "Which quantity is described as: {definition_clue}?"
+        ]
+      }
+    },
+    {
+      "id": "mass_weight.recognise_relationship",
+      "assertionFamilyId": "foundational.mass_weight",
+      "capabilityId": "cap.foundational.mass_weight.recognise",
+      "title": "Recognise mass or weight from its definition, and their relationship (W = mg)",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "mass",
+          "weight"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.mass_weight.recognise",
+        "familyId": "foundational.mass_weight",
+        "assertionIdentifiers": [
+          "FP-CONCEPT-MASS-001",
+          "FP-CONCEPT-WEIGHT-001",
+          "FP-REL-WEIGHT-MASS-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "Which quantity is described as: {concept_clue}?"
+        ]
+      }
+    },
+    {
+      "id": "mechanics.calculate_efficiency",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "capabilityId": "cap.foundational.mechanics.calculate",
+      "title": "Calculate efficiency as a percentage from useful output and total input",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.mechanics_efficiency"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "efficiency",
+        "canonicalUnit": "percent"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 1
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.mechanics.calculate",
+        "familyId": "foundational.mechanics_work_energy_power",
+        "assertionIdentifiers": [
+          "FP-CONCEPT-EFFICIENCY-001",
+          "FP-CALC-EFFICIENCY-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "Useful output: {Eout} J",
+          "Total input: {Ein} J"
+        ]
+      }
+    },
+    {
+      "id": "mechanics.calculate_kinetic_energy",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "capabilityId": "cap.foundational.mechanics.calculate",
+      "title": "Calculate kinetic energy from mass and speed",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.mechanics_kinetic_energy"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "energy",
+        "canonicalUnit": "joule"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 2
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.mechanics.calculate",
+        "familyId": "foundational.mechanics_work_energy_power",
+        "assertionIdentifiers": [
+          "FP-REL-KINETIC-ENERGY-001",
+          "FP-CALC-KINETIC-ENERGY-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "m = {m} kg",
+          "v = {v} m/s"
+        ]
+      }
+    },
+    {
+      "id": "mechanics.calculate_potential_energy",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "capabilityId": "cap.foundational.mechanics.calculate",
+      "title": "Calculate gravitational potential energy from mass and height",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.mechanics_potential_energy"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "energy",
+        "canonicalUnit": "joule"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 2
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.mechanics.calculate",
+        "familyId": "foundational.mechanics_work_energy_power",
+        "assertionIdentifiers": [
+          "FP-REL-POTENTIAL-ENERGY-001",
+          "FP-CALC-POTENTIAL-ENERGY-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "m = {m} kg",
+          "h = {h} m",
+          "(use g = 9.81 N/kg)"
+        ]
+      }
+    },
+    {
+      "id": "mechanics.calculate_power",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "capabilityId": "cap.foundational.mechanics.calculate",
+      "title": "Calculate power from work done (or energy transferred) and time taken",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.mechanics_power"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "power",
+        "canonicalUnit": "watt"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 2
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.mechanics.calculate",
+        "familyId": "foundational.mechanics_work_energy_power",
+        "assertionIdentifiers": [
+          "FP-REL-POWER-WORK-TIME-001",
+          "FP-CALC-POWER-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "W = {W} J",
+          "t = {t} s"
+        ]
+      }
+    },
+    {
+      "id": "mechanics.calculate_work",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "capabilityId": "cap.foundational.mechanics.calculate",
+      "title": "Calculate work done from force and distance",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.mechanics_work"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "work",
+        "canonicalUnit": "joule"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 2
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.mechanics.calculate",
+        "familyId": "foundational.mechanics_work_energy_power",
+        "assertionIdentifiers": [
+          "FP-REL-WORK-FORCE-DISTANCE-001",
+          "FP-CALC-WORK-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "F = {F} N",
+          "d = {d} m"
+        ]
+      }
+    },
+    {
+      "id": "mechanics.recognise_concept",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "capabilityId": "cap.foundational.mechanics.recognise",
+      "title": "Recognise force, work, energy, power or efficiency from its definition",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "force",
+          "work",
+          "energy",
+          "power",
+          "efficiency"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.mechanics.recognise",
+        "familyId": "foundational.mechanics_work_energy_power",
+        "assertionIdentifiers": [
+          "FP-CONCEPT-FORCE-001",
+          "FP-CONCEPT-WORK-001",
+          "FP-CONCEPT-ENERGY-001",
+          "FP-CONCEPT-POWER-001",
+          "FP-CONCEPT-EFFICIENCY-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "Which mechanical quantity is described as: {concept_clue}?"
         ]
       }
     },
@@ -8367,6 +14189,45 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       }
     },
     {
+      "id": "pulleys.recognise_force_distance_tradeoff",
+      "assertionFamilyId": "foundational.levers_mechanical_advantage",
+      "capabilityId": "cap.foundational.pulleys.recognise",
+      "title": "Recognise the effort force/distance trade-off a pulley system's mechanical advantage produces",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "effort_force_decreases",
+          "effort_force_increases"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.foundational.pulleys.recognise",
+        "familyId": "foundational.levers_mechanical_advantage",
+        "assertionIdentifiers": [
+          "FP-CONCEPT-PULLEY-001",
+          "FP-PULLEY-FIXED-VS-MOVABLE-001",
+          "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001",
+          "FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "{scenario_clue}",
+          "Compared with a single fixed pulley, does the effort force needed to lift the load decrease, or increase?"
+        ]
+      }
+    },
+    {
       "id": "resistivity.calculate_resistance",
       "assertionFamilyId": "electrical.resistivity",
       "capabilityId": "cap.resistivity.calculate",
@@ -9027,9 +14888,365 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "Is this the thermal effect or the chemical effect of current?"
         ]
       }
+    },
+    {
+      "id": "waveform.calculate_frequency_from_period",
+      "assertionFamilyId": "electrical.ac_dc_waveforms",
+      "capabilityId": "cap.waveform.calculate_frequency_period",
+      "title": "Calculate frequency from periodic time, or periodic time from frequency",
+      "representation": {
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.ac_waveform_relationships"
+        }
+      },
+      "variantDimensions": {
+        "target_variable": {
+          "allowed": [
+            "f",
+            "T"
+          ]
+        }
+      },
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "frequency_or_time",
+        "canonicalUnit": "hertz_or_second"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 1
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.waveform.calculate_frequency_period",
+        "familyId": "electrical.ac_dc_waveforms",
+        "assertionIdentifiers": [
+          "EL-WAVEFORM-FREQUENCY-CALC-001",
+          "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "{given_summary}",
+          "Find {target_variable}."
+        ]
+      }
+    },
+    {
+      "id": "waveform.calculate_rms_from_peak",
+      "assertionFamilyId": "electrical.ac_dc_waveforms",
+      "capabilityId": "cap.waveform.calculate_rms_peak",
+      "title": "Calculate RMS value from peak value, or peak value from RMS value",
+      "representation": {
+        "diagram": {
+          "required": false,
+          "blueprintId": "graph.waveform_sine"
+        },
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.ac_waveform_relationships"
+        }
+      },
+      "variantDimensions": {
+        "target_variable": {
+          "allowed": [
+            "rms",
+            "peak"
+          ]
+        }
+      },
+      "parameterGenerators": [],
+      "answer": {
+        "type": "quantity",
+        "quantity": "voltage_or_current",
+        "canonicalUnit": "volt_or_ampere"
+      },
+      "marking": {
+        "type": "numeric_tolerance",
+        "tolerancePercent": 1
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.waveform.calculate_rms_peak",
+        "familyId": "electrical.ac_dc_waveforms",
+        "assertionIdentifiers": [
+          "EL-WAVEFORM-RMS-CALC-001",
+          "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "{given_summary}",
+          "Find the {target_variable} value."
+        ]
+      }
+    },
+    {
+      "id": "waveform.compare_ac_dc_behaviour",
+      "assertionFamilyId": "electrical.ac_dc_waveforms",
+      "capabilityId": "cap.waveform.compare_ac_dc_behaviour",
+      "title": "Compare how a resistor, inductor and capacitor behave under AC versus DC supply",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "same_both",
+          "differs_by_frequency"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.waveform.compare_ac_dc_behaviour",
+        "familyId": "electrical.ac_dc_waveforms",
+        "assertionIdentifiers": [
+          "EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "advanced",
+      "presentation": {
+        "promptLines": [
+          "How does a {component} behave under an AC supply compared with a DC supply?"
+        ]
+      }
+    },
+    {
+      "id": "waveform.identify_characteristic",
+      "assertionFamilyId": "electrical.ac_dc_waveforms",
+      "capabilityId": "cap.waveform.identify_characteristic",
+      "title": "Identify a named sine-wave characteristic from a waveform graph",
+      "representation": {
+        "diagram": {
+          "required": true,
+          "blueprintId": "graph.waveform_sine"
+        }
+      },
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "periodic_time",
+          "amplitude",
+          "peak_to_peak",
+          "rms",
+          "average_value"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.waveform.identify_characteristic",
+        "familyId": "electrical.ac_dc_waveforms",
+        "assertionIdentifiers": [
+          "EL-WAVEFORM-PERIODIC-TIME-001",
+          "EL-WAVEFORM-AMPLITUDE-001",
+          "EL-WAVEFORM-PEAK-TO-PEAK-001",
+          "EL-WAVEFORM-RMS-001",
+          "EL-WAVEFORM-AVERAGE-VALUE-001",
+          "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": []
+      },
+      "difficultyBand": "intermediate",
+      "presentation": {
+        "promptLines": [
+          "Which characteristic of this waveform is highlighted by the marked reference line(s) on the graph?"
+        ]
+      }
+    },
+    {
+      "id": "waveform.interpret_rated_value",
+      "assertionFamilyId": "electrical.ac_dc_waveforms",
+      "capabilityId": "cap.waveform.interpret_rated_value",
+      "title": "Interpret whether a quoted AC supply rating (e.g. 230 V) refers to RMS or peak value",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "rms",
+          "peak"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.waveform.interpret_rated_value",
+        "familyId": "electrical.ac_dc_waveforms",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": [
+          {
+            "misconceptionIdentifier": "MIS-EL-PEAK-RMS-CONFUSION-001",
+            "evidenceStrength": "direct"
+          }
+        ]
+      },
+      "difficultyBand": "diagnostic",
+      "presentation": {
+        "promptLines": [
+          "A supply is rated at a stated voltage (for example, '230 V').",
+          "Does this rated value refer to the RMS value or the peak value?"
+        ]
+      }
+    },
+    {
+      "id": "waveform.recognise_ac_dc",
+      "assertionFamilyId": "electrical.ac_dc_waveforms",
+      "capabilityId": "cap.waveform.recognise_ac_dc",
+      "title": "Distinguish A.C. from D.C. supply behaviour",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "ac",
+          "dc"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.waveform.recognise_ac_dc",
+        "familyId": "electrical.ac_dc_waveforms",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-AC-DC-DISTINCTION-001",
+          "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": [
+          {
+            "misconceptionIdentifier": "MIS-EL-AC-DC-CONFUSION-001",
+            "evidenceStrength": "suggestive"
+          }
+        ]
+      },
+      "difficultyBand": "introductory",
+      "presentation": {
+        "promptLines": [
+          "Which type of supply is being described: {supply_clue}?"
+        ]
+      }
     }
   ],
   "formulaFamilies": [
+    {
+      "id": "formula.ac_waveform_relationships",
+      "assertionFamilyId": "electrical.ac_dc_waveforms",
+      "canonicalTarget": "rms",
+      "variables": [
+        {
+          "symbol": "rms",
+          "name": "RMS value",
+          "quantity": "voltage_or_current",
+          "unitName": "volt or ampere",
+          "unitSymbol": "V/A"
+        },
+        {
+          "symbol": "peak",
+          "name": "peak value",
+          "quantity": "voltage_or_current",
+          "unitName": "volt or ampere",
+          "unitSymbol": "V/A"
+        },
+        {
+          "symbol": "f",
+          "name": "frequency",
+          "quantity": "frequency",
+          "unitName": "hertz",
+          "unitSymbol": "Hz"
+        },
+        {
+          "symbol": "T",
+          "name": "periodic time",
+          "quantity": "time",
+          "unitName": "second",
+          "unitSymbol": "s"
+        }
+      ],
+      "forms": [
+        {
+          "target": "rms",
+          "expression": {
+            "operation": "divide",
+            "numerator": "peak",
+            "denominator": {
+              "operation": "sqrt",
+              "operand": 2
+            }
+          },
+          "instruction": "To find the RMS value, divide the peak value by the square root of two.",
+          "requiresWorkedExample": true
+        },
+        {
+          "target": "peak",
+          "expression": {
+            "operation": "multiply",
+            "operands": [
+              "rms",
+              {
+                "operation": "sqrt",
+                "operand": 2
+              }
+            ]
+          },
+          "instruction": "To find the peak value, multiply the RMS value by the square root of two.",
+          "requiresWorkedExample": true
+        },
+        {
+          "target": "f",
+          "expression": {
+            "operation": "divide",
+            "numerator": 1,
+            "denominator": "T"
+          },
+          "instruction": "To find frequency, divide one by the periodic time.",
+          "requiresWorkedExample": true
+        },
+        {
+          "target": "T",
+          "expression": {
+            "operation": "divide",
+            "numerator": 1,
+            "denominator": "f"
+          },
+          "instruction": "To find periodic time, divide one by the frequency.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "rms",
+        "peak",
+        "f",
+        "T"
+      ]
+    },
     {
       "id": "formula.algebraic_rearrangement_additive",
       "assertionFamilyId": "foundational.algebraic_technique",
@@ -9444,6 +15661,371 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "mnemonicId": "mnemonic.power_triangle"
     },
     {
+      "id": "formula.flux_change_emf",
+      "assertionFamilyId": "electrical.emf_and_generation",
+      "canonicalTarget": "e",
+      "variables": [
+        {
+          "symbol": "e",
+          "name": "induced EMF",
+          "quantity": "emf",
+          "unitName": "volt",
+          "unitSymbol": "V"
+        },
+        {
+          "symbol": "deltaPhi",
+          "name": "change in magnetic flux",
+          "quantity": "magnetic flux",
+          "unitName": "weber",
+          "unitSymbol": "Wb"
+        },
+        {
+          "symbol": "deltaT",
+          "name": "time taken",
+          "quantity": "time",
+          "unitName": "second",
+          "unitSymbol": "s"
+        }
+      ],
+      "forms": [
+        {
+          "target": "e",
+          "expression": {
+            "operation": "divide",
+            "numerator": "deltaPhi",
+            "denominator": "deltaT"
+          },
+          "instruction": "To find the induced EMF, divide the change in flux by the time taken.",
+          "requiresWorkedExample": true
+        },
+        {
+          "target": "deltaPhi",
+          "expression": {
+            "operation": "multiply",
+            "operands": [
+              "e",
+              "deltaT"
+            ]
+          },
+          "instruction": "To find the change in flux, multiply the induced EMF by the time taken.",
+          "requiresWorkedExample": true
+        },
+        {
+          "target": "deltaT",
+          "expression": {
+            "operation": "divide",
+            "numerator": "deltaPhi",
+            "denominator": "e"
+          },
+          "instruction": "To find the time taken, divide the change in flux by the induced EMF.",
+          "requiresWorkedExample": false
+        }
+      ],
+      "requiredTargets": [
+        "e",
+        "deltaPhi"
+      ]
+    },
+    {
+      "id": "formula.lever_balance",
+      "assertionFamilyId": "foundational.levers_mechanical_advantage",
+      "canonicalTarget": "Fe",
+      "variables": [
+        {
+          "symbol": "Fe",
+          "name": "effort force",
+          "quantity": "force",
+          "unitName": "newton",
+          "unitSymbol": "N"
+        },
+        {
+          "symbol": "de",
+          "name": "effort-to-pivot distance",
+          "quantity": "length",
+          "unitName": "metre",
+          "unitSymbol": "m"
+        },
+        {
+          "symbol": "Fl",
+          "name": "load force",
+          "quantity": "force",
+          "unitName": "newton",
+          "unitSymbol": "N"
+        },
+        {
+          "symbol": "dl",
+          "name": "load-to-pivot distance",
+          "quantity": "length",
+          "unitName": "metre",
+          "unitSymbol": "m"
+        }
+      ],
+      "forms": [
+        {
+          "target": "Fe",
+          "expression": {
+            "operation": "divide",
+            "numerator": {
+              "operation": "multiply",
+              "operands": [
+                "Fl",
+                "dl"
+              ]
+            },
+            "denominator": "de"
+          },
+          "instruction": "To find the effort force, multiply the load by its distance from the pivot, then divide by the effort's distance from the pivot.",
+          "requiresWorkedExample": true
+        },
+        {
+          "target": "Fl",
+          "expression": {
+            "operation": "divide",
+            "numerator": {
+              "operation": "multiply",
+              "operands": [
+                "Fe",
+                "de"
+              ]
+            },
+            "denominator": "dl"
+          },
+          "instruction": "To find the load, multiply the effort by its distance from the pivot, then divide by the load's distance from the pivot.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "Fe",
+        "Fl"
+      ]
+    },
+    {
+      "id": "formula.mechanics_efficiency",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "canonicalTarget": "eta",
+      "variables": [
+        {
+          "symbol": "eta",
+          "name": "efficiency",
+          "quantity": "efficiency",
+          "unitName": "percent",
+          "unitSymbol": "%"
+        },
+        {
+          "symbol": "Eout",
+          "name": "useful output",
+          "quantity": "energy_or_power",
+          "unitName": "joule or watt",
+          "unitSymbol": "J/W"
+        },
+        {
+          "symbol": "Ein",
+          "name": "total input",
+          "quantity": "energy_or_power",
+          "unitName": "joule or watt",
+          "unitSymbol": "J/W"
+        }
+      ],
+      "forms": [
+        {
+          "target": "eta",
+          "expression": {
+            "operation": "ratio_percentage",
+            "numerator": "Eout",
+            "denominator": "Ein"
+          },
+          "instruction": "To find efficiency, divide the useful output by the total input and express as a percentage.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "eta"
+      ]
+    },
+    {
+      "id": "formula.mechanics_kinetic_energy",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "canonicalTarget": "KE",
+      "variables": [
+        {
+          "symbol": "KE",
+          "name": "kinetic energy",
+          "quantity": "energy",
+          "unitName": "joule",
+          "unitSymbol": "J"
+        },
+        {
+          "symbol": "m",
+          "name": "mass",
+          "quantity": "mass",
+          "unitName": "kilogram",
+          "unitSymbol": "kg"
+        },
+        {
+          "symbol": "v",
+          "name": "speed",
+          "quantity": "speed",
+          "unitName": "metre per second",
+          "unitSymbol": "m/s"
+        }
+      ],
+      "forms": [
+        {
+          "target": "KE",
+          "expression": {
+            "operation": "multiply",
+            "operands": [
+              0.5,
+              "m",
+              {
+                "operation": "square",
+                "operand": "v"
+              }
+            ]
+          },
+          "instruction": "To find kinetic energy, multiply one half by the mass, by the speed squared: KE = 1/2 x m x v^2.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "KE"
+      ]
+    },
+    {
+      "id": "formula.mechanics_potential_energy",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "canonicalTarget": "PE",
+      "variables": [
+        {
+          "symbol": "PE",
+          "name": "gravitational potential energy",
+          "quantity": "energy",
+          "unitName": "joule",
+          "unitSymbol": "J"
+        },
+        {
+          "symbol": "m",
+          "name": "mass",
+          "quantity": "mass",
+          "unitName": "kilogram",
+          "unitSymbol": "kg"
+        },
+        {
+          "symbol": "h",
+          "name": "height",
+          "quantity": "length",
+          "unitName": "metre",
+          "unitSymbol": "m"
+        }
+      ],
+      "forms": [
+        {
+          "target": "PE",
+          "expression": {
+            "operation": "multiply",
+            "operands": [
+              "m",
+              9.81,
+              "h"
+            ]
+          },
+          "instruction": "To find gravitational potential energy, multiply the mass by the gravitational field strength (9.81 N/kg) by the height.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "PE"
+      ]
+    },
+    {
+      "id": "formula.mechanics_power",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "canonicalTarget": "P",
+      "variables": [
+        {
+          "symbol": "P",
+          "name": "power",
+          "quantity": "power",
+          "unitName": "watt",
+          "unitSymbol": "W"
+        },
+        {
+          "symbol": "W",
+          "name": "work done (or energy transferred)",
+          "quantity": "work_or_energy",
+          "unitName": "joule",
+          "unitSymbol": "J"
+        },
+        {
+          "symbol": "t",
+          "name": "time taken",
+          "quantity": "time",
+          "unitName": "second",
+          "unitSymbol": "s"
+        }
+      ],
+      "forms": [
+        {
+          "target": "P",
+          "expression": {
+            "operation": "divide",
+            "numerator": "W",
+            "denominator": "t"
+          },
+          "instruction": "To find power, divide the work done (or energy transferred) by the time taken.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "P"
+      ]
+    },
+    {
+      "id": "formula.mechanics_work",
+      "assertionFamilyId": "foundational.mechanics_work_energy_power",
+      "canonicalTarget": "W",
+      "variables": [
+        {
+          "symbol": "W",
+          "name": "work done",
+          "quantity": "work",
+          "unitName": "joule",
+          "unitSymbol": "J"
+        },
+        {
+          "symbol": "F",
+          "name": "force",
+          "quantity": "force",
+          "unitName": "newton",
+          "unitSymbol": "N"
+        },
+        {
+          "symbol": "d",
+          "name": "distance moved",
+          "quantity": "length",
+          "unitName": "metre",
+          "unitSymbol": "m"
+        }
+      ],
+      "forms": [
+        {
+          "target": "W",
+          "expression": {
+            "operation": "multiply",
+            "operands": [
+              "F",
+              "d"
+            ]
+          },
+          "instruction": "To find work done, multiply the force by the distance moved in the direction of that force.",
+          "requiresWorkedExample": true
+        }
+      ],
+      "requiredTargets": [
+        "W"
+      ]
+    },
+    {
       "id": "formula.ohms_law",
       "assertionFamilyId": "electrical.ohms_law",
       "canonicalTarget": "V",
@@ -9762,6 +16344,122 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       ]
     },
     {
+      "id": "worked.lever_balance.calculate_effort",
+      "formulaFamilyId": "formula.lever_balance",
+      "target": "Fe",
+      "knownVariables": [
+        "Fl",
+        "dl",
+        "de"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "Fl": 100,
+        "dl": 2,
+        "de": 1
+      }
+    },
+    {
+      "id": "worked.mechanics_efficiency.calculate",
+      "formulaFamilyId": "formula.mechanics_efficiency",
+      "target": "eta",
+      "knownVariables": [
+        "Eout",
+        "Ein"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "Eout": 80,
+        "Ein": 100
+      }
+    },
+    {
+      "id": "worked.mechanics_kinetic_energy.calculate",
+      "formulaFamilyId": "formula.mechanics_kinetic_energy",
+      "target": "KE",
+      "knownVariables": [
+        "m",
+        "v"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "m": 4,
+        "v": 5
+      }
+    },
+    {
+      "id": "worked.mechanics_potential_energy.calculate",
+      "formulaFamilyId": "formula.mechanics_potential_energy",
+      "target": "PE",
+      "knownVariables": [
+        "m",
+        "h"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "m": 4,
+        "h": 3
+      }
+    },
+    {
+      "id": "worked.mechanics_power.calculate",
+      "formulaFamilyId": "formula.mechanics_power",
+      "target": "P",
+      "knownVariables": [
+        "W",
+        "t"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "W": 200,
+        "t": 10
+      }
+    },
+    {
+      "id": "worked.mechanics_work.calculate",
+      "formulaFamilyId": "formula.mechanics_work",
+      "target": "W",
+      "knownVariables": [
+        "F",
+        "d"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ],
+      "teachingValues": {
+        "F": 20,
+        "d": 5
+      }
+    },
+    {
       "id": "worked.ohms_law.solve_current",
       "formulaFamilyId": "formula.ohms_law",
       "target": "I",
@@ -9899,6 +16597,34 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "show_answer_with_unit",
         "sanity_check_result"
       ]
+    },
+    {
+      "id": "worked.waveform.calculate_frequency",
+      "formulaFamilyId": "formula.ac_waveform_relationships",
+      "target": "f",
+      "knownVariables": [
+        "T"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ]
+    },
+    {
+      "id": "worked.waveform.calculate_rms",
+      "formulaFamilyId": "formula.ac_waveform_relationships",
+      "target": "rms",
+      "knownVariables": [
+        "peak"
+      ],
+      "steps": [
+        "show_formula",
+        "substitute_values",
+        "calculate",
+        "show_answer_with_unit"
+      ]
     }
   ],
   "visualAidBlueprints": [
@@ -10002,6 +16728,37 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "valueEmbedding": "symbolic_only"
     },
     {
+      "id": "graph.waveform_sine",
+      "type": "waveform",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "show_peak_line",
+          "kind": "boolean"
+        },
+        {
+          "name": "show_rms_line",
+          "kind": "boolean"
+        },
+        {
+          "name": "show_period_marker",
+          "kind": "boolean"
+        },
+        {
+          "name": "cycles_shown",
+          "kind": "number_range",
+          "min": 1,
+          "max": 3
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "marker-{index}"
+      },
+      "valueEmbedding": "values_when_assessed"
+    },
+    {
       "id": "instrument.measurement_connection",
       "type": "instrument_connection",
       "renderer": "svg",
@@ -10030,9 +16787,80 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "identifierLabelPattern": "instrument-{index}"
       },
       "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "magnetic.field_conductor_direction",
+      "type": "magnetic_field",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "current_direction",
+          "kind": "enum",
+          "allowed": [
+            "into_page",
+            "out_of_page",
+            "left_to_right"
+          ]
+        },
+        {
+          "name": "show_field_arrows",
+          "kind": "boolean"
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "arrow-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
+    },
+    {
+      "id": "motor.force_field_current",
+      "type": "magnetic_field",
+      "renderer": "svg",
+      "parameters": [
+        {
+          "name": "pole_labels",
+          "kind": "enum",
+          "allowed": [
+            "N_S_horizontal",
+            "N_S_vertical"
+          ]
+        },
+        {
+          "name": "current_direction",
+          "kind": "enum",
+          "allowed": [
+            "into_page",
+            "out_of_page"
+          ]
+        },
+        {
+          "name": "show_force_arrow",
+          "kind": "boolean"
+        }
+      ],
+      "accessibility": {
+        "semanticDescriptionRequired": true,
+        "colourOnlyEncodingProhibited": true,
+        "identifierLabelPattern": "arrow-{index}"
+      },
+      "valueEmbedding": "symbolic_only"
     }
   ],
   "assertionFamilies": [
+    {
+      "id": "electrical.ac_dc_waveforms",
+      "requiredCapabilityIds": [
+        "cap.waveform.recognise_ac_dc",
+        "cap.waveform.identify_characteristic",
+        "cap.waveform.calculate_rms_peak",
+        "cap.waveform.calculate_frequency_period",
+        "cap.waveform.interpret_rated_value",
+        "cap.waveform.compare_ac_dc_behaviour"
+      ],
+      "assessmentRequirement": "assessable"
+    },
     {
       "id": "electrical.charge_and_current",
       "requiredCapabilityIds": [
@@ -10054,6 +16882,23 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "requiredCapabilityIds": [
         "cap.core_quantities.recognise",
         "cap.core_quantities.distinguish"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
+      "id": "electrical.electronic_components",
+      "requiredCapabilityIds": [
+        "cap.electronic_components.recognise_principle",
+        "cap.electronic_components.identify_application"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
+      "id": "electrical.emf_and_generation",
+      "requiredCapabilityIds": [
+        "cap.emf.recognise_emf_terminal_voltage",
+        "cap.emf.describe_ac_generation",
+        "cap.emf.calculate_flux_change"
       ],
       "assessmentRequirement": "assessable"
     },
@@ -10084,6 +16929,18 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "cap.instrumentation.recognise_connection",
         "cap.instrumentation.recognise_internal_resistance_property",
         "cap.instrumentation.recognise_purpose"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
+      "id": "electrical.magnetism_and_electromagnetism",
+      "requiredCapabilityIds": [
+        "cap.magnetism.recognise_concept",
+        "cap.magnetism.interpret_field_direction",
+        "cap.magnetism.interpret_force_direction",
+        "cap.magnetism.compare_permanent_electromagnet",
+        "cap.magnetism.compare_motor_generator",
+        "cap.magnetism.identify_unit"
       ],
       "assessmentRequirement": "assessable"
     },
@@ -10204,6 +17061,31 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "assessmentRequirement": "teaching_only"
     },
     {
+      "id": "foundational.levers_mechanical_advantage",
+      "requiredCapabilityIds": [
+        "cap.foundational.levers.recognise",
+        "cap.foundational.gears.recognise",
+        "cap.foundational.pulleys.recognise",
+        "cap.foundational.levers.calculate"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
+      "id": "foundational.mass_weight",
+      "requiredCapabilityIds": [
+        "cap.foundational.mass_weight.recognise"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
+      "id": "foundational.mechanics_work_energy_power",
+      "requiredCapabilityIds": [
+        "cap.foundational.mechanics.recognise",
+        "cap.foundational.mechanics.calculate"
+      ],
+      "assessmentRequirement": "assessable"
+    },
+    {
       "id": "foundational.proportion_and_units",
       "requiredCapabilityIds": [
         "cap.foundational.proportion_and_units.apply"
@@ -10212,8 +17094,15 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     }
   ],
   "assertionStatements": {
+    "EL-APPLICATION-DIMMER-SWITCH-001": "A household dimmer switch typically uses a TRIAC to control the average power delivered to a lamp, by switching on at a controlled phase angle within each AC half-cycle.",
+    "EL-APPLICATION-HEATING-BOILER-CONTROL-001": "Thermistors are used for temperature sensing in heating and ventilation systems, including central-heating and boiler controls, providing a feedback signal a control circuit (such as a thermostat) uses to switch a heating load on or off at set temperatures.",
+    "EL-APPLICATION-MOTOR-CONTROL-001": "Silicon-controlled rectifiers are commonly used in motor-control circuits to control the electrical power delivered to a motor.",
+    "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001": "A simple electronic security-alarm circuit uses a transistor to detect a break in a normally-closed sensor loop; the transistor then triggers a thyristor, which latches on and continues to power a sounder even if the loop is reclosed, until the circuit is deliberately reset.",
+    "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001": "The traditional UK master telephone socket arrangement contains a capacitor that couples the AC ringing signal to the line while blocking the line's DC, and a resistor that provides a defined test load for line testing when no telephone is connected; older master sockets also included a surge protector to suppress transient overvoltages on the line. Secondary (extension) sockets, wired in parallel from the master socket, contain none of these components.",
     "EL-CALC-ELECTRICAL-EFFICIENCY-001": "Calculate the efficiency of an electrical device as a percentage from its useful power output and its power input.",
+    "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001": "UK domestic and industrial electrical supplies are alternating current, with a standard frequency of 50 Hz.",
     "EL-CIRCUIT-BREAKER-VS-FUSE-001": "Compare a fuse, which must be replaced after operating, with a circuit breaker, which can be reset and reused after tripping.",
+    "EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001": "Compare how a resistor behaves the same way under AC or DC supply (Ohm's law applies using RMS values), while an inductor or capacitor's opposition to current depends on whether the supply is AC or DC.",
     "EL-CIRCUIT-COMPARE-CURRENT-001": "Compare current behaviour in series versus parallel circuits: current is the same throughout a series circuit, but divides between branches in a parallel circuit.",
     "EL-CIRCUIT-COMPARE-ENERGY-001": "Compare the total electrical energy transferred over a given time by the same set of resistors when connected in series versus in parallel at the same supply voltage.",
     "EL-CIRCUIT-COMPARE-POWER-001": "Compare the total power dissipated by the same set of resistors at the same supply voltage when connected in series versus in parallel.",
@@ -10231,12 +17120,47 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "EL-CIRCUIT-SUPPLY-CURRENT-SERIES-001": "Calculate the supply current in a series circuit from the supply voltage and the total resistance of the circuit.",
     "EL-CIRCUIT-TRACE-CURRENT-PATH-001": "Trace the path or paths current takes through a given series or parallel circuit diagram.",
     "EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001": "An ideal conductor with zero resistance has zero voltage drop across it, regardless of the current flowing through it.",
+    "EL-COMPONENT-CAPACITOR-001": "A capacitor is a component that stores electrical charge and energy by separating charge in an electric field between two conductive plates; a charged capacitor stores this energy in the electric field between its plates.",
+    "EL-COMPONENT-CAPACITOR-TRANSIENT-001": "A capacitor opposes a sudden change in the voltage across it: connected in a circuit with resistance, it charges and discharges exponentially over time (governed by the time constant tau = R times C) rather than the voltage across it changing instantaneously.",
+    "EL-COMPONENT-DIAC-001": "A DIAC is a bidirectional thyristor that remains a high-impedance, non-conducting device until the voltage across it exceeds its breakover voltage, at which point it switches into conduction in either direction; it is almost never used alone, but to trigger other thyristor devices.",
+    "EL-COMPONENT-DIODE-001": "A diode is a semiconductor device formed at a p-n junction that conducts current easily in one direction (forward bias, depletion layer narrows) and blocks current in the other direction (reverse bias, depletion layer widens).",
+    "EL-COMPONENT-INVERTER-001": "An inverter converts a direct-current supply into an alternating-current output, by using electronic switching circuits to switch the DC input in a controlled sequence and generate the AC voltage or current waveform.",
+    "EL-COMPONENT-LED-001": "A light-emitting diode (LED) produces light by electroluminescence: when forward-biased, recombination of electrons and holes at the junction releases energy as photons.",
+    "EL-COMPONENT-PHOTODIODE-001": "A photodiode is a diode optimised to generate a photocurrent in response to incident light falling on its junction, allowing it to detect or measure light.",
+    "EL-COMPONENT-RECTIFIER-001": "A rectifier circuit uses one or more diodes to convert an alternating-current supply into a direct-current (or pulsating direct-current) output.",
+    "EL-COMPONENT-RECTIFIER-FULL-WAVE-001": "A full-wave bridge rectifier uses four diodes arranged so that both half-cycles of an AC waveform are converted to the same output polarity, producing a pulsating DC output with less ripple than a half-wave rectifier.",
+    "EL-COMPONENT-RECTIFIER-HALF-WAVE-001": "A half-wave rectifier uses a single diode to allow only one half-cycle of an AC waveform through to the load, blocking the other half-cycle, producing a pulsating DC output.",
+    "EL-COMPONENT-RESISTOR-001": "A resistor is a component manufactured to provide a specific, stable value of resistance, used in circuits to limit current or to divide voltage.",
+    "EL-COMPONENT-THERMISTOR-001": "An NTC (negative-temperature-coefficient) thermistor's electrical resistance decreases as its temperature increases, allowing it to be used as a temperature-sensing component.",
+    "EL-COMPONENT-THERMISTOR-PTC-001": "A PTC (positive-temperature-coefficient) thermistor's electrical resistance increases as its temperature increases, in contrast to an NTC thermistor's resistance, which decreases as temperature increases.",
+    "EL-COMPONENT-THYRISTOR-SCR-001": "A silicon-controlled rectifier (SCR) conducts current in one direction only once a sufficient gate current triggers it into conduction, and continues conducting until the current through it falls below the device's holding current.",
+    "EL-COMPONENT-TRANSISTOR-001": "A bipolar junction transistor is a three-terminal semiconductor device whose collector-emitter current is controlled by a much smaller base current, allowing it to act as an electrically controlled switch (fully off with no base current, fully on/saturated with sufficient base current) or as an amplifier.",
+    "EL-COMPONENT-TRIAC-001": "A TRIAC acts much like two silicon-controlled rectifiers connected back-to-back, allowing it to conduct current in both directions once triggered by gate current, making it suitable for controlling alternating current.",
+    "EL-COMPONENT-ZENER-DIODE-001": "A Zener diode is a special-purpose diode designed to be operated in reverse breakdown at a well-defined breakdown voltage without damage, so it maintains a substantially constant voltage across itself and can be used to regulate voltage.",
+    "EL-CONCEPT-AC-DC-DISTINCTION-001": "Direct current (D.C.) flows in one direction, and its magnitude may be steady or may vary (as with pulsating D.C.); alternating current (A.C.) periodically reverses direction and ordinarily varies in magnitude, typically following a sine wave.",
+    "EL-CONCEPT-AC-GENERATOR-001": "A simple AC generator produces an alternating EMF by rotating a single loop of wire at constant speed within a magnetic field, continuously changing the flux linking the loop.",
     "EL-CONCEPT-CONDUCTOR-001": "A metallic conductor is a material containing many free electrons, which allows electric current (the flow of those electrons) to pass through it easily.",
     "EL-CONCEPT-CURRENT-001": "Electric current is the rate of flow of electric charge through a conductor.",
+    "EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001": "A changing magnetic flux through a circuit or coil induces an electromotive force (EMF) in that circuit -- the principle of electromagnetic induction.",
+    "EL-CONCEPT-ELECTROMAGNETISM-001": "Electromagnetism is the branch of physics concerned with the relationship between electric current and magnetic fields, including how one can produce the other.",
     "EL-CONCEPT-ELECTRON-THEORY-001": "In a metallic conductor, electric current is the flow of free electrons, driven by a potential difference across the conductor.",
+    "EL-CONCEPT-EMF-001": "Electromotive force (EMF) is the electrical energy per unit charge supplied by a source, which drives current around a circuit.",
+    "EL-CONCEPT-FIELD-DIRECTION-RULE-001": "The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): with the thumb pointing in the direction of current flow, the curled fingers give the direction of the circular field around the conductor.",
+    "EL-CONCEPT-FLEMING-LEFT-HAND-001": "Fleming's left-hand rule gives the direction of the force on a current-carrying conductor in a magnetic field: with the First finger, seCond finger and thuMb of the left hand mutually at right angles, the First finger points along the Field, the seCond finger along the Current, and the thuMb gives the direction of Motion (force).",
+    "EL-CONCEPT-FLEMING-RIGHT-HAND-001": "Fleming's right-hand rule gives the direction of the current induced in a conductor moving through a magnetic field: with the thumb, First finger and seCond finger of the right hand mutually at right angles, the thumb points in the direction of Motion, the First finger along the Field, and the seCond finger gives the direction of the induced Current.",
+    "EL-CONCEPT-FORCE-ON-CONDUCTOR-001": "A current-carrying conductor placed in a magnetic field experiences a mechanical force.",
+    "EL-CONCEPT-FREQUENCY-001": "Frequency is the number of complete cycles of a repeating waveform that occur in one second.",
     "EL-CONCEPT-INSULATOR-001": "Compared to a metallic conductor, an insulator is a material with very few free electrons available to move, which strongly opposes the flow of electric current through it.",
+    "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001": "A current-carrying conductor produces a magnetic field around it.",
+    "EL-CONCEPT-MAGNETIC-FLUX-001": "Magnetic flux is a measure of the total amount of magnetic field passing through a given area.",
+    "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001": "Magnetic flux density is the amount of magnetic flux passing through a unit area, describing how concentrated a magnetic field is.",
+    "EL-CONCEPT-MAGNETISM-001": "Magnetic poles exert forces on one another: like poles repel and unlike poles attract.",
+    "EL-CONCEPT-MOTOR-PRINCIPLE-001": "An electric motor uses the force on a current-carrying conductor in a magnetic field to produce rotational motion.",
+    "EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001": "The rated voltage of an AC supply refers to its RMS value, not its peak value, which is higher.",
     "EL-CONCEPT-RESISTANCE-001": "Electrical resistance is the opposition a component presents to the flow of electric current.",
     "EL-CONCEPT-RESISTIVITY-001": "Resistivity is a material property describing how strongly a material opposes current flow, independent of the conductor's length or cross-sectional area.",
+    "EL-CONCEPT-SINE-WAVE-001": "The EMF produced by a simple rotating-loop AC generator varies with time as a sine wave.",
+    "EL-CONCEPT-TERMINAL-VOLTAGE-001": "Terminal voltage is the potential difference measured across the terminals of a source while it is supplying current, which is less than its EMF due to the source's own internal resistance.",
     "EL-CONCEPT-VOLTAGE-001": "Potential difference (voltage) is the electrical energy transferred per unit charge between two points in a circuit.",
     "EL-CURRENT-CHARGE-CALC-001": "Calculate charge or current from the relationship I = Q divided by t, given the other two quantities.",
     "EL-CURRENT-CHARGE-RELATIONSHIP-001": "Electric current equals the rate of flow of charge: I = Q divided by t.",
@@ -10260,7 +17184,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "EL-INSULATOR-BREAKDOWN-001": "If the voltage across an insulator becomes too high, the insulator can break down and allow current to flow, which is why insulation has a rated maximum voltage.",
     "EL-INTERPRET-PARALLEL-RESULT-001": "A calculated total resistance for resistors in parallel that is greater than the smallest branch resistance indicates a calculation error, since total parallel resistance is always less than the smallest branch resistance.",
     "EL-INTERPRET-SERIES-RESULT-001": "A calculated total resistance for resistors in series that is less than the largest individual resistance indicates a calculation error, since total series resistance is always at least as great as the largest individual resistance.",
+    "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001": "Compare a permanent magnet, which retains its magnetism without a current, with an electromagnet, whose magnetic field depends on a current flowing through a coil.",
     "EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001": "Common conductors used in electrical installation work include copper and aluminium; common insulators include PVC and rubber.",
+    "EL-MOTOR-GENERATOR-COMPARE-001": "Compare an electric motor, which converts electrical energy into mechanical motion using force on a current-carrying conductor, with a generator, which converts mechanical motion into electrical energy using electromagnetic induction.",
     "EL-OHM-PROPORTIONALITY-001": "At constant resistance, current is directly proportional to voltage; at constant voltage, current is inversely proportional to resistance.",
     "EL-OHM-REARRANGE-001": "Rearrange V = I times R algebraically to make voltage, current or resistance the subject.",
     "EL-OHM-RELATIONSHIP-001": "For a component obeying Ohm's law, potential difference, current and resistance are related by V = I times R.",
@@ -10279,6 +17205,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "EL-POWER-SOLVE-IR-001": "Calculate electrical power from known current and resistance using P = I squared times R.",
     "EL-POWER-SOLVE-V2R-001": "Calculate electrical power from known voltage and resistance using P = V squared divided by R.",
     "EL-PROTECTIVE-DEVICE-PURPOSE-001": "A protective device, such as a fuse or circuit breaker, is designed to automatically disconnect a circuit when current exceeds a safe value.",
+    "EL-REL-FLUX-CHANGE-EMF-001": "The magnitude of the EMF induced in a single loop equals the rate of change of the magnetic flux through it: e = (change in flux) / (time taken).",
+    "EL-REL-FORCE-ON-CONDUCTOR-001": "The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I l, where B is the magnetic flux density, I is the current and l is the length of the conductor in the field.",
+    "EL-REL-INDUCED-EMF-001": "For a straight conductor of effective length l moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B l v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.",
     "EL-RESISTIVITY-AREA-EFFECT-001": "Increasing the cross-sectional area of a conductor decreases its resistance, since resistance is inversely proportional to cross-sectional area.",
     "EL-RESISTIVITY-COMPARE-MATERIALS-001": "Compare the resistivity of different materials to determine which is the better conductor: a lower resistivity indicates a better conductor.",
     "EL-RESISTIVITY-LENGTH-EFFECT-001": "Increasing the length of a conductor increases its resistance, since resistance is directly proportional to length.",
@@ -10296,26 +17225,72 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "EL-UNIT-JOULE-001": "The joule (J) is the SI derived unit of energy.",
     "EL-UNIT-OHM-001": "The ohm is the SI derived unit of electrical resistance.",
     "EL-UNIT-OHM-METRE-001": "The ohm-metre is the SI derived unit of resistivity.",
+    "EL-UNIT-TESLA-001": "The tesla (T) is the SI derived unit of magnetic flux density.",
     "EL-UNIT-VOLT-001": "The volt (V) is the SI derived unit of electric potential difference (voltage).",
     "EL-UNIT-WATT-001": "The watt (W) is the SI derived unit of power.",
+    "EL-UNIT-WEBER-001": "The weber (Wb) is the SI derived unit of magnetic flux.",
+    "EL-WAVEFORM-AMPLITUDE-001": "Amplitude is the maximum displacement of a waveform from its zero (mean) value.",
+    "EL-WAVEFORM-AVERAGE-VALUE-001": "The conventional (non-zero) average value quoted for an alternating waveform in AC calculations is the average taken over one half-cycle of the waveform; this is equivalent to averaging the full-wave-rectified waveform over a complete cycle, since rectification makes every half-cycle the same shape.",
+    "EL-WAVEFORM-AVERAGE-ZERO-INTERPRETATION-001": "The average value of a symmetrical sine wave taken over a full cycle is zero, because the positive and negative half-cycles cancel; the conventional non-zero 'average value' quoted for AC calculations is instead taken over one half-cycle, equivalently the average of the full-wave-rectified waveform over a full cycle.",
+    "EL-WAVEFORM-FREQUENCY-CALC-001": "Calculate frequency from periodic time, or periodic time from frequency, using their reciprocal relationship.",
+    "EL-WAVEFORM-FREQUENCY-PERIOD-RELATIONSHIP-001": "Frequency and periodic time are reciprocals of each other: frequency equals one divided by periodic time.",
+    "EL-WAVEFORM-PEAK-TO-PEAK-001": "The peak-to-peak value of a waveform is the difference between its maximum positive and maximum negative values.",
+    "EL-WAVEFORM-PERIODIC-TIME-001": "Periodic time is the time taken to complete one full cycle of a repeating waveform.",
+    "EL-WAVEFORM-RMS-001": "The RMS (root mean square) value of an alternating quantity is the value of direct current or voltage that would produce the same heating effect in a resistor.",
+    "EL-WAVEFORM-RMS-CALC-001": "Calculate the RMS value of a sine wave from its peak value, or the peak value from its RMS value.",
+    "EL-WAVEFORM-RMS-PEAK-RELATIONSHIP-001": "For a pure sine wave, the RMS value equals the peak value divided by the square root of two.",
     "FM-ALG-EQUALITY-ADD-001": "In an equation, adding or subtracting the same value from both sides preserves the equality between the two sides.",
     "FM-ALG-EQUALITY-MULT-001": "In an equation, multiplying or dividing both sides by the same non-zero value preserves the equality between the two sides.",
     "FM-ALG-INVERSE-OPS-ADD-001": "Addition and subtraction are inverse operations: subtracting a number undoes adding that number, and vice versa.",
     "FM-ALG-INVERSE-OPS-MULT-001": "Multiplication and division are inverse operations: dividing by a non-zero number undoes multiplying by that number, and vice versa.",
     "FM-ALG-TRANSPOSE-ADD-001": "Given a relationship of the form a = b + c, rearrange it algebraically to make b or c the subject.",
     "FM-ALG-TRANSPOSE-MULT-001": "Given a relationship of the form a = b times c, rearrange it algebraically to make b or c the subject.",
-    "FP-CONCEPT-EFFICIENCY-001": "Efficiency is the ratio of useful energy or power output to total energy or power input, usually expressed as a percentage."
+    "FP-CALC-EFFICIENCY-001": "Calculate the efficiency of a process as a percentage from its useful output and total input.",
+    "FP-CALC-KINETIC-ENERGY-001": "Calculate the kinetic energy of an object from its mass and speed, using KE = one half times m times v squared.",
+    "FP-CALC-POTENTIAL-ENERGY-001": "Calculate the gravitational potential energy of an object from its mass, gravitational field strength and height, using GPE = m times g times h.",
+    "FP-CALC-POWER-001": "Calculate power from known work done (or energy transferred) and time taken, using P = W / t.",
+    "FP-CALC-WORK-001": "Calculate the work done by a force from its magnitude and the distance moved in its direction, using W = F times d.",
+    "FP-CONCEPT-EFFICIENCY-001": "Efficiency is the ratio of useful energy or power output to total energy or power input, usually expressed as a percentage.",
+    "FP-CONCEPT-ENERGY-001": "Energy is the capacity to do work, and exists in different forms including kinetic energy (due to motion) and potential energy (due to position or state).",
+    "FP-CONCEPT-FORCE-001": "A force is a push or a pull that can change the motion, shape or state of rest of an object.",
+    "FP-CONCEPT-GEAR-001": "A gear is a toothed wheel; when two gears mesh, their teeth engage so that one gear (the driving gear) transmits rotary motion and torque to the other (the driven gear) from one shaft to another.",
+    "FP-CONCEPT-KINETIC-ENERGY-001": "Kinetic energy is the energy an object possesses because of its motion.",
+    "FP-CONCEPT-LEVER-PRINCIPLE-001": "A lever is a rigid bar that rotates about a fixed pivot (fulcrum); the mechanical advantage it provides depends on the ratio of the effort's distance from the pivot to the load's distance from the pivot.",
+    "FP-CONCEPT-MASS-001": "Mass is the amount of matter in an object, measured in kilograms.",
+    "FP-CONCEPT-MECHANICAL-ADVANTAGE-001": "A simple machine such as a lever, gear or pulley provides mechanical advantage: the ratio of the output (load) effect it produces to the input (effort) applied -- commonly output force divided by input force for a lever or pulley, or the corresponding output torque divided by input torque for a gear.",
+    "FP-CONCEPT-POTENTIAL-ENERGY-001": "Gravitational potential energy is the energy an object possesses because of its position (height) within a gravitational field.",
+    "FP-CONCEPT-POWER-001": "Power is the rate at which work is done or energy is transferred.",
+    "FP-CONCEPT-PULLEY-001": "A pulley is a wheel with a grooved rim, used with a rope or cable running over it to change the direction of an applied force and/or to provide mechanical advantage.",
+    "FP-CONCEPT-WEIGHT-001": "Weight is the force of gravity acting on an object's mass, measured in newtons.",
+    "FP-CONCEPT-WORK-001": "Work is done when a force causes its point of application to move through a distance in the direction of the force.",
+    "FP-LEVER-CLASS-I-001": "In a class I lever, the pivot is positioned between the effort and the load (for example a see-saw or a pair of pliers).",
+    "FP-LEVER-CLASS-II-001": "In a class II lever, the load is positioned between the pivot and the effort (for example a wheelbarrow).",
+    "FP-LEVER-CLASS-III-001": "In a class III lever, the effort is positioned between the pivot and the load (for example a pair of tweezers or the human forearm).",
+    "FP-PULLEY-FIXED-VS-MOVABLE-001": "A single fixed pulley has a mechanical advantage of one -- it changes the direction of the effort but does not reduce the force needed; a movable pulley, or a combination of pulleys, can provide a mechanical advantage greater than one.",
+    "FP-REL-GEAR-RATIO-001": "For two meshed gears, mechanical advantage (the ratio of output torque to input torque) equals the ratio of their radii (the driven gear's radius to the driving gear's radius); because gear teeth are evenly spaced and shared between meshed gears, a gear's radius is proportional to its number of teeth, so this same mechanical advantage can equivalently be expressed as the ratio of their tooth counts (driven tooth count to driving tooth count).",
+    "FP-REL-KINETIC-ENERGY-001": "Kinetic energy is calculated from an object's mass and speed using KE = one half times m times v squared.",
+    "FP-REL-LEVER-BALANCE-001": "A lever is in balance (equilibrium) when the effort multiplied by its distance from the pivot equals the load multiplied by its distance from the pivot; this relationship can be used to calculate the effort needed to balance a known load, or vice versa.",
+    "FP-REL-POTENTIAL-ENERGY-001": "Gravitational potential energy near the Earth's surface is calculated from an object's mass, gravitational field strength and height using GPE = m times g times h.",
+    "FP-REL-POWER-WORK-TIME-001": "Power is calculated by dividing the work done (or energy transferred) by the time taken: P = W / t.",
+    "FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001": "The mechanical advantage a pulley system provides in reduced effort force is accompanied by a proportional increase in the distance the effort must move to lift the load.",
+    "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001": "For a movable or combination pulley system, the mechanical advantage is approximately equal to the number of rope or cable sections that directly support the load.",
+    "FP-REL-WEIGHT-MASS-001": "Weight is calculated from mass and gravitational field strength using W = m times g.",
+    "FP-REL-WORK-FORCE-DISTANCE-001": "Work done is calculated by multiplying the force applied by the distance moved in the direction of that force: W = F times d."
   },
   "misconceptionDescriptions": {
+    "MIS-EL-AC-DC-CONFUSION-001": "Treats alternating current and direct current as the same, or believes an AC supply has a single constant unchanging value like a DC supply.",
     "MIS-EL-CONDUCTOR-INSULATOR-CONFUSION-001": "Confuses which materials are good conductors versus insulators, or believes conductivity and resistance are unrelated properties.",
     "MIS-EL-CURRENT-VOLTAGE-CONFUSION-001": "Confuses current and voltage as concepts, for example treating current as something a source 'has' independent of the circuit rather than voltage driving current through resistance.",
+    "MIS-EL-DIODE-DIRECTION-CONFUSION-001": "Confuses which direction a diode allows current to flow (forward bias) versus blocks it (reverse bias), or assumes a diode conducts equally in both directions like a plain resistor.",
     "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001": "Confuses conventional current direction (positive to negative) with the actual direction of electron flow (negative to positive) in a conductor.",
+    "MIS-EL-EMF-VOLTAGE-CONFUSION-001": "Confuses EMF (the source's own electrical energy per unit charge) with terminal voltage, treating them as always identical rather than recognising terminal voltage is reduced by the source's internal resistance when supplying current.",
     "MIS-EL-ENERGY-UNIT-CONFUSION-001": "Confuses the joule and the kilowatt-hour as interchangeable without converting between them, or is unaware that they measure the same quantity (energy) at different scales.",
     "MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001": "Connects a voltmeter in series or an ammeter in parallel, swapping the correct connection method for the two instruments.",
     "MIS-EL-OHM-REARRANGE-ERROR-001": "Incorrectly rearranges a multiplicative relationship such as V = I times R or P = V times I (for example moving a variable to the wrong side, or inverting the wrong pair of variables) when isolating a different subject.",
     "MIS-EL-OHM-UNRELATED-SYMBOLS-001": "Treats V, I and R as three unrelated symbols to memorise rather than as a single relationship connecting voltage, current and resistance (V = I times R).",
     "MIS-EL-OHM-WRONG-OPERATION-001": "Selects the wrong arithmetic operation when calculating an unknown quantity from V = I times R (for example multiplying instead of dividing when solving for current or resistance, or dividing the two known quantities in the wrong order).",
     "MIS-EL-PARALLEL-RESISTANCE-ADDITION-001": "Calculates the total resistance of a parallel circuit by simply adding the branch resistances, as if they were in series, instead of using the reciprocal-of-sum-of-reciprocals relationship.",
+    "MIS-EL-PEAK-RMS-CONFUSION-001": "Confuses the peak value of an AC waveform with its RMS value, for example assuming a stated AC supply voltage (such as 230 V) is a peak value rather than an RMS value.",
     "MIS-EL-RECIPROCAL-FORGOTTEN-INVERT-001": "Correctly sums the reciprocals of the branch resistances in a parallel circuit but forgets to take the reciprocal of the result, giving an answer that is the reciprocal of the correct total resistance rather than the total resistance itself.",
     "MIS-EL-SERIES-PARALLEL-CONFUSION-001": "Confuses series and parallel circuit structure, for example treating components wired in parallel as if they were in series (or vice versa) when identifying current and voltage relationships.",
     "MIS-EL-SI-PREFIX-ERROR-001": "Confuses SI-prefix magnitudes when converting between units (for example treating milliamps and amps as numerically equal, or converting in the wrong direction, such as multiplying instead of dividing by the scale factor).",

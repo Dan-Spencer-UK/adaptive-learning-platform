@@ -96,9 +96,20 @@ function forceDiagram(poleLabels: PoleLabels, currentDirection: ConductorCurrent
   };
 }
 
+// CC-11: `concept` is itself the blueprint's own correct answer -- a
+// prompt template referencing it directly would hand the learner the
+// answer (the exact leak class CC-10 found and fixed for 7 other
+// blueprints). `definitionClue` is an additive, governed-statement-
+// derived description that identifies the concept without naming it,
+// following the same pattern.
+const CONCEPT_DEFINITION_CLUE: Readonly<Record<"flux" | "flux_density", string>> = {
+  flux: "the total magnetic field passing through a given area",
+  flux_density: "the amount of magnetic flux per unit area",
+};
+
 const recogniseConcept: QuestionExecutor = (ctx) => {
   const concept = pick(ctx.rng, ["flux", "flux_density"] as const);
-  return assembleInstance(ctx, { concept }, {}, { answer: ctx.blueprint.answer, value: concept });
+  return assembleInstance(ctx, { concept, definition_clue: CONCEPT_DEFINITION_CLUE[concept] }, {}, { answer: ctx.blueprint.answer, value: concept });
 };
 
 const interpretFieldDirection: QuestionExecutor = (ctx) => {
@@ -126,14 +137,26 @@ const interpretForceDirection: QuestionExecutor = (ctx) => {
   );
 };
 
+// CC-11: `scenario` is itself the correct answer for both blueprints
+// below -- same leak class as `CONCEPT_DEFINITION_CLUE` above.
+const MAGNET_TYPE_CLUE: Readonly<Record<"permanent_magnet" | "electromagnet", string>> = {
+  permanent_magnet: "retains its magnetism without any electrical supply",
+  electromagnet: "only produces a magnetic field while current flows through its coil",
+};
+
 const comparePermanentElectromagnet: QuestionExecutor = (ctx) => {
   const scenario = pick(ctx.rng, ["permanent_magnet", "electromagnet"] as const);
-  return assembleInstance(ctx, { scenario }, {}, { answer: ctx.blueprint.answer, value: scenario });
+  return assembleInstance(ctx, { scenario, scenario_clue: MAGNET_TYPE_CLUE[scenario] }, {}, { answer: ctx.blueprint.answer, value: scenario });
+};
+
+const MOTOR_GENERATOR_CLUE: Readonly<Record<"motor" | "generator", string>> = {
+  motor: "converts electrical energy into mechanical motion",
+  generator: "converts mechanical motion into electrical energy (EMF)",
 };
 
 const compareMotorGenerator: QuestionExecutor = (ctx) => {
   const scenario = pick(ctx.rng, ["motor", "generator"] as const);
-  return assembleInstance(ctx, { scenario }, {}, { answer: ctx.blueprint.answer, value: scenario });
+  return assembleInstance(ctx, { scenario, principle_clue: MOTOR_GENERATOR_CLUE[scenario] }, {}, { answer: ctx.blueprint.answer, value: scenario });
 };
 
 /**

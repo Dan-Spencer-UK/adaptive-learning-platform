@@ -25,9 +25,16 @@ function quantityAnswer(quantity: string, canonicalUnit: string, value: number):
   return { answer: { type: "quantity", quantity, canonicalUnit }, value };
 }
 
+// CC-11: `supply` is itself the blueprint's own correct answer -- same
+// leak class CC-10 found and fixed for 7 other blueprints.
+const SUPPLY_CLUE: Readonly<Record<"ac" | "dc", string>> = {
+  ac: "a supply whose current periodically reverses direction",
+  dc: "a supply whose current flows in one direction only",
+};
+
 const recogniseAcDc: QuestionExecutor = (ctx) => {
   const supply = pick(ctx.rng, ["ac", "dc"] as const);
-  return assembleInstance(ctx, { supply }, {}, { answer: ctx.blueprint.answer, value: supply });
+  return assembleInstance(ctx, { supply, supply_clue: SUPPLY_CLUE[supply] }, {}, { answer: ctx.blueprint.answer, value: supply });
 };
 
 const CHARACTERISTIC_TO_DIAGRAM_PARAMETERS: Readonly<
@@ -51,6 +58,10 @@ const identifyCharacteristic: QuestionExecutor = (ctx) => {
   return assembleInstance(ctx, { characteristic }, { diagram }, { answer: ctx.blueprint.answer, value: characteristic });
 };
 
+// `given_summary` is a safe, always-present param for presentation
+// (CC-10 precedent, charge.ts/power.ts): both blueprints below have a
+// branching known-variable shape a single static prompt template cannot
+// safely reference directly.
 const calculateRmsFromPeak: QuestionExecutor = (ctx) => {
   const formulaFamily = requireFormulaFamily(ctx, WAVEFORM_FORMULA_ID);
   const peak = cleanInteger(ctx.rng, 1, 350);
@@ -59,7 +70,7 @@ const calculateRmsFromPeak: QuestionExecutor = (ctx) => {
   if (target === "rms") {
     return assembleInstance(
       ctx,
-      { peak, target_variable: target },
+      { peak, target_variable: target, given_summary: `peak = ${peak}` },
       { formula: rmsFormulaInstance },
       quantityAnswer("voltage_or_current", "volt_or_ampere", rmsFormulaInstance.result),
     );
@@ -68,7 +79,7 @@ const calculateRmsFromPeak: QuestionExecutor = (ctx) => {
   const peakFormulaInstance = buildFormulaInstance(formulaFamily, "peak", { rms });
   return assembleInstance(
     ctx,
-    { rms, target_variable: target },
+    { rms, target_variable: target, given_summary: `rms = ${rms}` },
     { formula: peakFormulaInstance },
     quantityAnswer("voltage_or_current", "volt_or_ampere", peakFormulaInstance.result),
   );
@@ -82,7 +93,7 @@ const calculateFrequencyFromPeriod: QuestionExecutor = (ctx) => {
     const formulaInstance = buildFormulaInstance(formulaFamily, "T", { f });
     return assembleInstance(
       ctx,
-      { f, target_variable: target },
+      { f, target_variable: target, given_summary: `f = ${f} Hz` },
       { formula: formulaInstance },
       quantityAnswer("frequency_or_time", "hertz_or_second", formulaInstance.result),
     );
@@ -92,7 +103,7 @@ const calculateFrequencyFromPeriod: QuestionExecutor = (ctx) => {
   const formulaInstance = buildFormulaInstance(formulaFamily, "f", { T });
   return assembleInstance(
     ctx,
-    { T, target_variable: target },
+    { T, target_variable: target, given_summary: `T = ${T} s` },
     { formula: formulaInstance },
     quantityAnswer("frequency_or_time", "hertz_or_second", formulaInstance.result),
   );

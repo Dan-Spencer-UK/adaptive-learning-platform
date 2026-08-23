@@ -75,15 +75,19 @@ describe("generated mobile content projection", () => {
     expect(projection.contentRelease.id).toBe(MOBILE_BUNDLED_RELEASE_ID);
     // CC-08A: release.unit202.v1 (Ohm's Law only) and release.unit202.v2
     // (the CC-08 four-lesson adaptive vertical) both remain exact,
-    // untouched immutable snapshots -- CC-10's eleven new lessons live
-    // entirely in the separate release.unit202.v3 (which reuses the same
-    // four real lessons via a release-scoped membership entry, never a
-    // mutation), and that is what this projection now bundles.
+    // untouched immutable snapshots. CC-10's fifteen-lesson
+    // release.unit202.v3 and CC-11's twenty-four-lesson
+    // release.unit202.v4 (fifteen re-addressed v3 lessons plus nine
+    // genuinely new LO3/LO5/LO6 lessons) each reuse the same underlying
+    // lesson objects via release-scoped membership entries, never a
+    // mutation -- v4 is what this projection now bundles.
     expect(projection.lessons.map((l) => l.id).sort()).toEqual(
       [
         "lesson.electrical.charge-and-current",
         "lesson.electrical.conductors-and-insulators",
         "lesson.electrical.core-quantities",
+        "lesson.electrical.electronic-components-passive",
+        "lesson.electrical.electronic-components-switching-control",
         "lesson.electrical.energy-and-efficiency",
         "lesson.electrical.fault-conditions-protection",
         "lesson.electrical.instrumentation",
@@ -95,7 +99,14 @@ describe("generated mobile content projection", () => {
         "lesson.electrical.series-vs-parallel-comparison",
         "lesson.electrical.si-units",
         "lesson.electrical.thermal-and-chemical-effects",
+        "lesson.emf.ac-generation-principles",
         "lesson.foundation.maths.formula-rearrangement",
+        "lesson.foundation.physics.mass-and-weight",
+        "lesson.foundation.physics.mechanics-force-work-energy-power",
+        "lesson.foundation.physics.simple-machines",
+        "lesson.magnetism.effects-of-current",
+        "lesson.magnetism.fundamentals",
+        "lesson.waveforms.ac-dc-and-sine-wave-quantities",
       ].sort(),
     );
     for (const lesson of projection.lessons) {
@@ -103,7 +114,7 @@ describe("generated mobile content projection", () => {
     }
   });
 
-  it("carries exactly the 62 governed question blueprints the release's lessons reference (CC-10 expansion), each WITH governed presentation", () => {
+  it("carries exactly the 96 governed question blueprints the release's lessons reference (CC-11 expansion), each WITH governed presentation", () => {
     const projection = buildMobileContentProjection(realInputs());
     expect(projection.questionBlueprints.map((b) => b.id).sort()).toEqual(
       [
@@ -119,6 +130,15 @@ describe("generated mobile content projection", () => {
         "conductors.recognise_breakdown",
         "core_quantities.diagnose_current_voltage_confusion",
         "core_quantities.recognise_from_definition",
+        "electronics.identify_application",
+        "electronics.recognise_capacitor_behaviour",
+        "electronics.recognise_diode_family",
+        "electronics.recognise_rectifier_type",
+        "electronics.recognise_switching_family",
+        "electronics.recognise_thermistor_type",
+        "emf.calculate_flux_change",
+        "emf.describe_ac_generation",
+        "emf.distinguish_emf_terminal_voltage",
         "energy.calculate_efficiency",
         "energy.calculate_energy",
         "energy.calculate_energy_kwh",
@@ -129,10 +149,27 @@ describe("generated mobile content projection", () => {
         "fault.select_protective_device",
         "foundational.rearrange_additive",
         "foundational.rearrange_multiplicative",
+        "gears.recognise_ratio_tradeoff",
         "instrumentation.recognise_connection",
         "instrumentation.recognise_internal_resistance_property",
         "instrumentation.recognise_purpose",
         "instrumentation.select_instrument",
+        "levers.calculate_effort_or_load",
+        "levers.identify_class",
+        "magnetism.compare_motor_generator",
+        "magnetism.compare_permanent_electromagnet",
+        "magnetism.identify_flux_density_unit",
+        "magnetism.identify_flux_unit",
+        "magnetism.interpret_field_direction",
+        "magnetism.interpret_force_direction",
+        "magnetism.recognise_concept",
+        "mass_weight.recognise_relationship",
+        "mechanics.calculate_efficiency",
+        "mechanics.calculate_kinetic_energy",
+        "mechanics.calculate_potential_energy",
+        "mechanics.calculate_power",
+        "mechanics.calculate_work",
+        "mechanics.recognise_concept",
         "ohms_law.diagnose_rearrangement_error",
         "ohms_law.diagnose_wrong_operation",
         "ohms_law.match_variables_units",
@@ -154,6 +191,7 @@ describe("generated mobile content projection", () => {
         "power.calculate_total",
         "power.recognise_relationship",
         "power.select_form",
+        "pulleys.recognise_force_distance_tradeoff",
         "resistivity.calculate_resistance",
         "resistivity.compare_materials",
         "resistivity.predict_area_effect",
@@ -170,6 +208,12 @@ describe("generated mobile content projection", () => {
         "si_units.identify_unit",
         "thermal_chemical.recognise_application",
         "thermal_chemical.recognise_effect",
+        "waveform.calculate_frequency_from_period",
+        "waveform.calculate_rms_from_peak",
+        "waveform.compare_ac_dc_behaviour",
+        "waveform.identify_characteristic",
+        "waveform.interpret_rated_value",
+        "waveform.recognise_ac_dc",
       ].sort(),
     );
     for (const blueprint of projection.questionBlueprints) {
@@ -222,6 +266,8 @@ describe("generated mobile content projection", () => {
         "lesson.electrical.charge-and-current",
         "lesson.electrical.conductors-and-insulators",
         "lesson.electrical.core-quantities",
+        "lesson.electrical.electronic-components-passive",
+        "lesson.electrical.electronic-components-switching-control",
         "lesson.electrical.energy-and-efficiency",
         "lesson.electrical.fault-conditions-protection",
         "lesson.electrical.instrumentation",
@@ -233,8 +279,15 @@ describe("generated mobile content projection", () => {
         "lesson.electrical.series-vs-parallel-comparison",
         "lesson.electrical.si-units",
         "lesson.electrical.thermal-and-chemical-effects",
+        "lesson.emf.ac-generation-principles",
         "lesson.foundation.maths.formula-rearrangement",
+        "lesson.foundation.physics.mass-and-weight",
+        "lesson.foundation.physics.mechanics-force-work-energy-power",
+        "lesson.foundation.physics.simple-machines",
+        "lesson.magnetism.effects-of-current",
+        "lesson.magnetism.fundamentals",
         "lesson.synthetic.second",
+        "lesson.waveforms.ac-dc-and-sine-wave-quantities",
       ].sort(),
     );
     // The whole projection still validates against its governed schema.

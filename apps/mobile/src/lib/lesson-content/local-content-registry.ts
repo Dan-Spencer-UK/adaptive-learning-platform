@@ -47,6 +47,7 @@ function lookupFrom(projection: MobileContentProjection): ContentLookup {
     formulaFamilies: projection.formulaFamilies,
     workedExampleBlueprints: projection.workedExampleBlueprints,
     visualAidBlueprints: projection.visualAidBlueprints,
+    diagramBlueprints: projection.diagramBlueprints,
     assertionStatements: projection.assertionStatements,
     misconceptionDescriptions: projection.misconceptionDescriptions,
   };

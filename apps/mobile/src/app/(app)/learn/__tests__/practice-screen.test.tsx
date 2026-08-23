@@ -116,7 +116,10 @@ describe("PracticeScreen", () => {
 
     const { getByLabelText, findByText } = await render(<PracticeScreen />);
     await findByText("Interpret the direction of the magnetic field produced by a current-carrying conductor");
-    await findByText("Apply the right-hand grip rule to determine the direction the magnetic field curls around the conductor.");
+    // CC-11: the blueprint now carries governed presentation.promptLines,
+    // so the screen resolves via resolvePromptLines() (real corpus copy)
+    // instead of the legacy prompt-text.ts fallback it used previously.
+    await findByText("A straight conductor carries current as shown. In which direction does the magnetic field circulate around it?");
 
     await fireEvent.press(getByLabelText(correctLabelMap[expectedInstance.expected.value as string]!));
     await findByText("Correct");

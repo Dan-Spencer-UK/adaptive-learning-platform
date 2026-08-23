@@ -8,7 +8,7 @@ describe("MagneticForceDiagram", () => {
       <MagneticForceDiagram diagram={{ blueprintId: "motor.force_field_current", parameters: { pole_labels: "N_S_horizontal", current_direction: "into_page", show_force_arrow: true }, labels: ["conductor"] }} />,
     );
     expect(
-      getByLabelText(/North pole on the left, south pole on the right\..*Current in the conductor flows into the page\./),
+      getByLabelText(/North pole on the left, south pole on the right\..*conventional current into the page in the conductor\./),
     ).toBeTruthy();
   });
 
@@ -17,7 +17,7 @@ describe("MagneticForceDiagram", () => {
       <MagneticForceDiagram diagram={{ blueprintId: "motor.force_field_current", parameters: { pole_labels: "N_S_vertical", current_direction: "out_of_page", show_force_arrow: true }, labels: ["conductor"] }} />,
     );
     expect(
-      getByLabelText(/North pole at the top, south pole at the bottom\..*Current in the conductor flows out of the page\./),
+      getByLabelText(/North pole at the top, south pole at the bottom\..*conventional current out of the page in the conductor\./),
     ).toBeTruthy();
   });
 

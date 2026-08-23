@@ -466,7 +466,7 @@ exports[`proving-slice visual QA -- structural snapshots VIR triangle mnemonic (
 
 exports[`proving-slice visual QA -- structural snapshots directional/magnetic diagram (force revealed, teaching mode) 1`] = `
 <RNSVGSvgView
-  accessibilityLabel="North pole on the left, south pole on the right. Field arrows point from north to south. Current in the conductor flows out of the page. Resulting force on the conductor acts upwards."
+  accessibilityLabel="North pole on the left, south pole on the right. Field arrows point from north to south. The conventional current out of the page in the conductor. Resulting force on the conductor acts upwards."
   accessibilityRole="image"
   accessible={true}
   align="xMidYMid"
@@ -838,7 +838,7 @@ exports[`proving-slice visual QA -- structural snapshots directional/magnetic di
       }
     >
       <RNSVGTSpan
-        content="current out of the page"
+        content="conventional current out of the page"
         dx={[]}
         dy={[]}
         fill={
@@ -1265,7 +1265,7 @@ exports[`proving-slice visual QA -- structural snapshots formula family: Ohm's l
 
 exports[`proving-slice visual QA -- structural snapshots parallel circuit diagram (3 branches, symbolic labels) 1`] = `
 <RNSVGSvgView
-  accessibilityLabel="Parallel circuit diagram with 3 branches labelled R1, R2, R3, connected between two shared rails."
+  accessibilityLabel="Parallel circuit diagram with 3 branches labelled R1, R2, R3, connected between two shared rails. An arrow at the top of each branch shows the current direction, flowing down the branch."
   accessibilityRole="image"
   accessible={true}
   align="xMidYMid"
@@ -1800,7 +1800,7 @@ exports[`proving-slice visual QA -- structural snapshots parallel circuit diagra
 
 exports[`proving-slice visual QA -- structural snapshots right-hand grip rule diagram (field direction revealed, teaching mode) 1`] = `
 <RNSVGSvgView
-  accessibilityLabel="Right-hand grip rule. The thumb points along the conductor, in the direction the current flows: into the page. The curled fingers show the magnetic field circling clockwise as seen by the viewer."
+  accessibilityLabel="Right-hand grip rule. The thumb points along the conductor, in the direction the conventional current into the page flows. The curled fingers show the magnetic field circling clockwise as seen by the viewer."
   accessibilityRole="image"
   accessible={true}
   align="xMidYMid"
@@ -2355,7 +2355,7 @@ exports[`proving-slice visual QA -- structural snapshots right-hand grip rule di
       }
     >
       <RNSVGTSpan
-        content="current into the page"
+        content="conventional current into the page"
         dx={[]}
         dy={[]}
         fill={
