@@ -99,8 +99,11 @@ function flashConflict(message) {
   window.alert(message);
 }
 
+// Mirrors catalogue.ts's isPromptable() exactly (CC-11.7C §3: a
+// DETERMINISTIC_TECHNICAL asset is never promptable, regardless of its own
+// promptable field -- its authoritative output is always vector geometry).
 function isPromptable(asset) {
-  return asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false;
+  return asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false && asset.productionClass !== "DETERMINISTIC_TECHNICAL";
 }
 
 // Mirrors catalogue.ts's visualNeedClassificationFor() exactly -- the
@@ -320,8 +323,31 @@ function renderCard(asset) {
   fillList(card.querySelector(".fact-overlay"), asset.deterministicOverlayResponsibilities);
   fillList(card.querySelector(".fact-prohibited"), asset.prohibitedChanges);
 
-  card.querySelector(".output-filename").textContent = asset.filenameBase + "-v{N}." + "(png|webp|jpg)";
-  card.querySelector(".output-path").textContent = `apps/mobile/src/assets/instructional/unit202/${asset.outputSubfolder}/`;
+  // CC-11.7C §3: PNG/WEBP/JPG is only the authoritative production format
+  // for a real generated-art job. A DETERMINISTIC_TECHNICAL asset's
+  // authoritative output is deterministic vector geometry (SVG / React
+  // Native SVG / equivalent rendering code); a raster file, if any, is a
+  // review/render preview only, never listed as the production format.
+  if (asset.productionClass === "DETERMINISTIC_TECHNICAL") {
+    card.querySelector(".output-filename").textContent = "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file";
+    card.querySelector(".output-path").textContent = "produced by ALP's own rendering code, not saved via this Studio";
+  } else {
+    card.querySelector(".output-filename").textContent = asset.filenameBase + "-v{N}." + "(png|webp|jpg)";
+    card.querySelector(".output-path").textContent = `apps/mobile/src/assets/instructional/unit202/${asset.outputSubfolder}/`;
+  }
+
+  // CC-11.7C §3: a DETERMINISTIC_TECHNICAL asset has no ChatGPT
+  // image-generation deliverable at all -- remove COPY PROMPT / VIEW
+  // PROMPT entirely rather than offering buttons that only ever produce a
+  // "no art job" notice.
+  if (asset.productionClass === "DETERMINISTIC_TECHNICAL") {
+    card.querySelector(".btn-view-prompt").remove();
+    card.querySelector(".btn-copy-prompt").remove();
+    const notice = document.createElement("span");
+    notice.className = "badge badge-deterministic";
+    notice.textContent = "NO CHATGPT ART JOB -- VECTOR AUTHORITATIVE";
+    card.querySelector(".card-actions").prepend(notice);
+  }
 
   wireCardControls(card, asset);
   updateCardStatus(card, asset);
@@ -451,7 +477,10 @@ function wireCardControls(card, asset) {
     event.target.classList.toggle("zoomed");
   });
 
-  card.querySelector(".btn-view-prompt").addEventListener("click", async () => {
+  // CC-11.7C §3: these buttons are removed entirely for DETERMINISTIC_TECHNICAL
+  // assets (see renderCard) -- guard with optional chaining rather than
+  // assuming they exist.
+  card.querySelector(".btn-view-prompt")?.addEventListener("click", async () => {
     if (promptView.hidden) {
       const { text } = await api(`/api/prompt/${encodeURIComponent(asset.assetId)}`);
       promptView.textContent = text;
@@ -461,7 +490,7 @@ function wireCardControls(card, asset) {
     }
   });
 
-  card.querySelector(".btn-copy-prompt").addEventListener("click", async () => {
+  card.querySelector(".btn-copy-prompt")?.addEventListener("click", async () => {
     const { text } = await api(`/api/prompt/${encodeURIComponent(asset.assetId)}`);
     await copyToClipboard(text, flash);
     zone.focus();

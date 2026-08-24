@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { allAssets, familyForAsset, findAsset } from "./catalogue.ts";
+import { allAssets, familyForAsset, findAsset, isPromptable } from "./catalogue.ts";
 import { buildAssetPrompt } from "./prompt-builder.ts";
 import { MASTER_PROMPT } from "./master-prompt.ts";
 
@@ -32,7 +32,7 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
 
   it("includes the critical direction-verification rule (§11) in every generated production prompt (READY, non-scope-blocked entries only)", () => {
     for (const asset of allAssets()) {
-      if (asset.referenceReadiness !== "READY" || asset.needsScopeConfirmation || asset.promptable === false) continue;
+      if (asset.referenceReadiness !== "READY" || asset.needsScopeConfirmation || asset.promptable === false || asset.productionClass === "DETERMINISTIC_TECHNICAL") continue;
       const text = buildAssetPrompt(asset);
       expect(text).toContain("Do NOT rely on the text label of an arrow or diagram to infer correctness");
       expect(text).toContain("inspect arrowheads");
@@ -40,7 +40,7 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
   });
 
   it("CC-11.7A §11: every promptable asset's generated prompt is byte-unique -- one distinct image job, one distinct prompt, never a shared/generic family prompt", () => {
-    const promptableAssets = allAssets().filter((asset) => asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false);
+    const promptableAssets = allAssets().filter(isPromptable);
     const prompts = promptableAssets.map((asset) => buildAssetPrompt(asset));
     expect(new Set(prompts).size).toBe(prompts.length);
   });
@@ -57,7 +57,7 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
 
   it('every generated prompt tells the art session to produce ONLY this asset and not the rest of the family', () => {
     for (const asset of allAssets()) {
-      if (asset.referenceReadiness !== "READY" || asset.needsScopeConfirmation || asset.promptable === false) continue;
+      if (asset.referenceReadiness !== "READY" || asset.needsScopeConfirmation || asset.promptable === false || asset.productionClass === "DETERMINISTIC_TECHNICAL") continue;
       const text = buildAssetPrompt(asset);
       expect(text).toContain("Produce ONLY this asset. Do not automatically create the other members of the visual family.");
     }
@@ -92,8 +92,21 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
   it("a promptable:false asset (no image-generation deliverable) produces a short notice, never a full production prompt", () => {
     const asset = findAsset("unit202.components.symbols")!;
     const text = buildAssetPrompt(asset);
-    expect(text).toContain("NO IMAGE-GENERATION DELIVERABLE");
+    expect(text).toContain("NO CHATGPT ART JOB -- VECTOR AUTHORITATIVE");
     expect(text).not.toContain("IMMUTABLE TECHNICAL FACTS");
+  });
+
+  it("CC-11.7C §3: every DETERMINISTIC_TECHNICAL asset produces the vector-authoritative notice, never a real art prompt, even when it has not explicitly set promptable:false", () => {
+    const withoutExplicitFlag = findAsset("unit202.circuit.series")!;
+    expect(withoutExplicitFlag.productionClass).toBe("DETERMINISTIC_TECHNICAL");
+    expect(withoutExplicitFlag.promptable).not.toBe(false); // no explicit override -- the productionClass check alone must catch it
+    for (const asset of allAssets()) {
+      if (asset.productionClass !== "DETERMINISTIC_TECHNICAL") continue;
+      const text = buildAssetPrompt(asset);
+      expect(text).toContain("NO CHATGPT ART JOB -- VECTOR AUTHORITATIVE");
+      expect(text).not.toContain("IMMUTABLE TECHNICAL FACTS");
+      expect(isPromptable(asset)).toBe(false);
+    }
   });
 
   it("produces a unique prompt per catalogue asset (no two assets share identical prompt text)", () => {
@@ -124,9 +137,10 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
       expect(text).toContain("FINGERS = MAGNETIC FIELD");
     });
 
-    it("a NONE-policy (deterministic style-reference) asset's prompt says labels are OMITTED", () => {
-      const asset = findAsset("unit202.circuit.series")!;
-      const text = buildAssetPrompt(asset);
+    it("a NONE-policy asset's prompt says labels are OMITTED (synthetic: every real NONE-policy asset is DETERMINISTIC_TECHNICAL since CC-11.7C §3, so this branch is exercised via an override rather than a live fixture)", () => {
+      const base = findAsset("unit202.right-hand-grip.teaching")!;
+      const synthetic = { ...base, annotationPolicy: "NONE" as const };
+      const text = buildAssetPrompt(synthetic);
       expect(text).toContain("LABELS FOR THIS ASSET: OMIT");
     });
 
@@ -151,9 +165,14 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
     });
 
     it("a PREMIUM_CONCEPTUAL asset's prompt also inherits the default background instruction", () => {
-      const asset = findAsset("unit202.components.physical.resistor")!;
-      expect(asset.productionClass).toBe("PREMIUM_CONCEPTUAL");
-      const text = buildAssetPrompt(asset);
+      // unit202.components.physical.resistor is currently BLOCKED_REFERENCE
+      // (CC-11.7C §1 correction) -- override readiness on a clone to still
+      // exercise the READY-path background-instruction logic for this
+      // productionClass.
+      const base = findAsset("unit202.components.physical.resistor")!;
+      expect(base.productionClass).toBe("PREMIUM_CONCEPTUAL");
+      const ready = { ...base, referenceReadiness: "READY" as const, primaryReference: { sourceName: "test", sourceUrl: "", licence: "test", qualityGrade: "test" } };
+      const text = buildAssetPrompt(ready);
       expect(text).toContain("BACKGROUND:");
     });
 

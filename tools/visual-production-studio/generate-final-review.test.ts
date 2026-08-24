@@ -80,6 +80,12 @@ describe("buildReviewData -- CC-11.7B §27: PDF/JSON source model must match the
     expect(ids).toEqual(["unit202.family.right-hand-grip", "unit202.family.fleming-left-hand-motor", "unit202.family.fleming-right-hand-generator"]);
   });
 
+  it("CC-11.7C §2/§4: every directional-safety row states an explicit MIRRORING PROHIBITED policy, computed live from the family's own MNEMONIC asset governance", () => {
+    for (const row of data.directionalSafety) {
+      expect(row.mirroringPolicy).toContain("DO NOT MIRROR");
+    }
+  });
+
   it("component recognition section lists every PHYSICAL_RECOGNITION asset individually, never grouped behind a family count", () => {
     const physicalRecognitionCount = allAssets().filter((a) => a.role === "PHYSICAL_RECOGNITION").length;
     expect(data.componentRecognition.length).toBe(physicalRecognitionCount);

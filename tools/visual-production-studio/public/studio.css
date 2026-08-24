@@ -196,6 +196,7 @@ details[open] > .family-summary::before { content: "▾"; }
 .need-badge.need-useful { color: var(--warn); border-color: var(--warn); }
 .need-badge.need-blocked-reference { color: var(--bad); border-color: var(--bad); }
 .need-badge.need-deferred-scope { color: var(--text2); border-color: var(--border); }
+.badge-deterministic { color: var(--accent); border-color: var(--accent); }
 
 .card-meta { display: flex; gap: 6px; flex-wrap: wrap; }
 .chip { font-size: 10px; color: var(--text2); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; }

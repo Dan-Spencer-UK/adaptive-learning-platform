@@ -12,7 +12,7 @@
  * unit-testable.
  */
 
-import { allAssets, FAMILIES, type Priority, type VisualAsset, type VisualFamily } from "./catalogue.ts";
+import { allAssets, FAMILIES, isPromptable, type Priority, type VisualAsset, type VisualFamily } from "./catalogue.ts";
 import type { StudioState } from "./state-store.ts";
 
 const PRIORITY_RANK: Record<Priority, number> = { P0: 0, P1: 1, P2: 2 };
@@ -22,9 +22,10 @@ const ACTIONABLE_STATUSES = new Set(["READY_TO_PROMPT", "IN_ART_SESSION", "IMAGE
 
 export function pickNextAsset(families: VisualFamily[] = FAMILIES, state: StudioState): VisualAsset | null {
   const candidates = allAssets(families).filter((asset) => {
-    if (asset.referenceReadiness !== "READY") return false;
-    if (asset.needsScopeConfirmation) return false;
-    if (asset.promptable === false) return false;
+    // CC-11.7C §3: isPromptable() already excludes DETERMINISTIC_TECHNICAL
+    // assets -- NEXT RECOMMENDED ASSET must never suggest "copy prompt" for
+    // something with no real ChatGPT art job.
+    if (!isPromptable(asset)) return false;
     const status = state[asset.assetId]?.status;
     return status !== undefined && ACTIONABLE_STATUSES.has(status);
   });

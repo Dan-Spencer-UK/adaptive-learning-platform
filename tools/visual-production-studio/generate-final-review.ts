@@ -166,7 +166,13 @@ function assetRow(asset: VisualAsset, svgByVariantId: Map<string, string>): Revi
     splitFrom: asset.sharedBaseAudit?.splitFrom,
     splitSiblings: asset.sharedBaseAudit?.splitSiblings,
     annotationPolicy: asset.annotationPolicy,
-    expectedOutputFile: `apps/mobile/src/assets/instructional/unit202/${asset.outputSubfolder}/${asset.filenameBase}-v{N}.(png|webp|jpg)`,
+    // CC-11.7C §3: PNG/WEBP/JPG is only the authoritative production
+    // format for a real generated-art job. A DETERMINISTIC_TECHNICAL
+    // asset's authoritative output is deterministic vector geometry.
+    expectedOutputFile:
+      asset.productionClass === "DETERMINISTIC_TECHNICAL"
+        ? "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file"
+        : `apps/mobile/src/assets/instructional/unit202/${asset.outputSubfolder}/${asset.filenameBase}-v{N}.(png|webp|jpg)`,
     studioPromptAvailable: isPromptable(asset),
     existingPreviewSvg: firstExistingPreview(asset, svgByVariantId),
   };
@@ -200,6 +206,8 @@ export interface DirectionalSafetyRow {
   generatedArtBoundary: string;
   statesRequiringSeparateArtwork: string[];
   deterministicStates: string[];
+  /** CC-11.7C §2: computed live from the family's own MNEMONIC asset(s) prohibitedChanges -- never hand-typed, so it can never silently drift from the real governance rule. */
+  mirroringPolicy: string;
 }
 
 export interface ReviewData {
@@ -243,14 +251,20 @@ function directionalSafetyRow(familyId: string, technicalAuthority: string, gene
   const family = FAMILIES.find((f) => f.familyId === familyId)!;
   const statesRequiringSeparateArtwork: string[] = [];
   const deterministicStates: string[] = [];
+  const mnemonicMirrorRules: string[] = [];
   for (const asset of family.assets) {
+    if (asset.role === "MNEMONIC") {
+      const rule = asset.prohibitedChanges.find((p) => p.includes("MIRROR"));
+      if (rule) mnemonicMirrorRules.push(`${asset.assetId}: ${rule}`);
+    }
     for (const state of asset.canonicalStates) {
       const label = `${asset.assetId} / ${state.stateId}`;
       if (asset.productionClass === "DETERMINISTIC_TECHNICAL") deterministicStates.push(label);
       else if (asset.sharedBaseAudit?.classification === "SEPARATE_ARTWORK_REQUIRED") statesRequiringSeparateArtwork.push(label);
     }
   }
-  return { familyId, familyDisplayName: family.displayName, technicalAuthority, generatedArtBoundary, statesRequiringSeparateArtwork, deterministicStates };
+  const mirroringPolicy = mnemonicMirrorRules.length > 0 ? mnemonicMirrorRules.join(" | ") : "no MNEMONIC asset in this family";
+  return { familyId, familyDisplayName: family.displayName, technicalAuthority, generatedArtBoundary, statesRequiringSeparateArtwork, deterministicStates, mirroringPolicy };
 }
 
 export function buildReviewData(families: VisualFamily[] = FAMILIES): ReviewData {
@@ -457,7 +471,7 @@ function assetCardHtml(row: ReviewAssetRow & { existingPreviewSvg?: string }): s
     <span class="seq">#${String(row.sequence).padStart(2, "0")}</span>
     <h4>${esc(row.displayName)}</h4>
     ${needBadgeHtml(row.needClassification)}
-    ${row.artPromptRequired ? blockedBadgeHtml(row.referenceBlocked) : `<span class="badge badge-deterministic">NO ART PROMPT</span>`}
+    ${row.artPromptRequired ? blockedBadgeHtml(row.referenceBlocked) : `<span class="badge badge-deterministic">NO CHATGPT ART JOB / VECTOR AUTHORITATIVE</span>`}
   </div>
   <div class="asset-card-meta">
     <code>${esc(row.assetId)}</code> &middot; family: ${esc(row.familyDisplayName)} &middot; ${esc(row.loOrLesson)} &middot; role: ${esc(row.role)} &middot; class: ${esc(row.productionClass)}
@@ -577,6 +591,7 @@ function directionalSafetyHtml(data: ReviewData): string {
     <table class="mini-table">
       <tr><th>Technical authority</th><td>${esc(r.technicalAuthority)}</td></tr>
       <tr><th>Generated-art boundary</th><td>${esc(r.generatedArtBoundary)}</td></tr>
+      <tr><th>Mirroring policy</th><td><strong>${esc(r.mirroringPolicy)}</strong></td></tr>
       <tr><th>States requiring separate artwork</th><td>${r.statesRequiringSeparateArtwork.length ? r.statesRequiringSeparateArtwork.map(esc).join("<br/>") : "none"}</td></tr>
       <tr><th>Deterministic states</th><td>${r.deterministicStates.length ? r.deterministicStates.map(esc).join("<br/>") : "none"}</td></tr>
     </table>

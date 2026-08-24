@@ -358,7 +358,7 @@ export const FAMILIES: VisualFamily[] = [
           classification: "SHARED_BASE_WITH_CONDITIONS",
           action: "KEEP_WITH_CONDITIONS",
           rationale:
-            "CC-11.7B: a straight conductor's concentric field-line pattern is rotationally symmetric -- reversing current only reverses which way the circulation arrows point, never the field-line geometry, conductor position, or composition. This is the same 'legitimate deterministic transform, not a reason to commission a near-duplicate image' reasoning already applied to the sibling MNEMONIC hand asset. CORRECTION APPLIED: the pre-audit config incorrectly asked the art session to bake in 'current direction indicated' as part of the artwork (exactDeliverable) while also requiring 4 states covering both directions from one image -- an internal inconsistency. Fixed by moving both direction indicators to deterministicOverlayResponsibilities and removing direction-specific language from exactDeliverable/immutableFacts.",
+            "CC-11.7B: a straight conductor's concentric field-line pattern is rotationally symmetric -- reversing current only reverses which way the circulation arrows point, never the field-line geometry, conductor position, or composition. The base artwork itself is produced ONCE, direction-neutral, and the two current directions are distinguished entirely by a deterministic dot/cross + arrowhead OVERLAY added afterward -- the generated artwork is never mirrored, flipped, or redrawn to represent the opposite direction (CC-11.7C §2: mirroring hand-rule/directional artwork is prohibited outright, since it can silently invalidate a geometry-dependent mnemonic or phenomenon; this asset never relies on it). CORRECTION APPLIED (CC-11.7B): the pre-audit config incorrectly asked the art session to bake in 'current direction indicated' as part of the artwork (exactDeliverable) while also requiring 4 states covering both directions from one image -- an internal inconsistency. Fixed by moving both direction indicators to deterministicOverlayResponsibilities and removing direction-specific language from exactDeliverable/immutableFacts.",
           conditions: [
             "base artwork must show field lines with NO baked arrowheads/direction sense",
             "base artwork must show the conductor cross-section with no baked dot/cross current-direction symbol",
@@ -441,6 +441,7 @@ export const FAMILIES: VisualFamily[] = [
         prohibitedChanges: [
           "do not swap to the left hand",
           "do not depict the thumb pointing anywhere other than along the conductor's conventional current direction",
+          "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored right hand can read as a left hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image to represent a reversed current direction.",
         ],
         exactDeliverable:
           "One premium illustration of a right hand gripping a straight current-carrying conductor, thumb and curled fingers clearly demonstrating the rule. Include the explanatory annotations THUMB = CURRENT and FINGERS = MAGNETIC FIELD plus the correct current and magnetic-field direction indicators -- this is a TEACHING asset and clear labels are part of the deliverable, not something to omit for visual cleanliness. Matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
@@ -451,7 +452,7 @@ export const FAMILIES: VisualFamily[] = [
           classification: "SAFE_SHARED_BASE",
           action: "KEEP",
           rationale:
-            "CC-11.7B: single canonical state, single learner-facing object (one hand demonstrating one rule) -- no sharing/composite question applies. Confirmed this asset does not need a reversed-current companion image: the mnemonic teaches the RULE itself, not a specific current direction, and a reversed-current illustration would be a legitimate deterministic mirror/rotate transform of the same hand pose, not a genuinely different pose.",
+            "CC-11.7B/CC-11.7C: single canonical state, single learner-facing object (one hand demonstrating one rule) -- no sharing/composite question applies. One base image remains sufficient because the mnemonic teaches the RULE itself (thumb = current, curled fingers = field), not a specific current direction. CC-11.7C correction: this is NOT achieved by mirroring or flipping the hand artwork for a reversed-current companion image -- that approach is explicitly prohibited (mirroring can silently change handedness and invalidate the mnemonic). Directional application for a specific current direction continues entirely through the sibling governed PHENOMENON/deterministic states (unit202.current-conductor.magnetic-field), never through a transformed copy of this mnemonic image.",
         },
         canonicalStates: [
           {
@@ -461,7 +462,7 @@ export const FAMILIES: VisualFamily[] = [
             annotationPolicy: "TEACHING_EXPLANATORY",
             requiredLabels: ["THUMB = CURRENT", "FINGERS = MAGNETIC FIELD", "current-direction arrow", "magnetic-field direction indicator where appropriate"],
             notes:
-              "One base image is sufficient: the mnemonic teaches the RULE, not a specific current direction, and reversing current for the deterministic phenomenon asset is a legitimate deterministic transform (flip/rotate), not a reason to commission a second near-duplicate hand illustration. Never appears in assessment -- the sibling PHENOMENON asset (unit202.current-conductor.magnetic-field) carries this family's assessment/teaching deterministic states instead.",
+              "One base image is sufficient: the mnemonic teaches the RULE, not a specific current direction. Directional application for a specific current continues through the sibling PHENOMENON asset's governed deterministic states, never through a mirrored/flipped copy of this hand image (CC-11.7C: mirroring hand-rule artwork is prohibited -- see prohibitedChanges). Never appears in assessment -- the sibling PHENOMENON asset (unit202.current-conductor.magnetic-field) carries this family's assessment/teaching deterministic states instead.",
           },
         ],
       },
@@ -506,13 +507,12 @@ export const FAMILIES: VisualFamily[] = [
         productionClassLabel: "HYBRID",
         governedDiagramBlueprintId: "motor.force_field_current",
         instructionalPurpose: `Show a current-carrying conductor between magnetic poles (${label}) experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.`,
-        primaryReference: {
-          sourceName: "Existing governed ALP motor-effect geometry (motor.force_field_current) plus a reputable human-readable motor-effect reference",
-          sourceUrl: "",
-          licence: "internal governed geometry -- external reference to be added when sourced",
-          qualityGrade: "internal A (geometry); external reference pending",
-        },
-        referenceReadiness: "READY" as const,
+        // CC-11.7C §1: was marked READY with a placeholder reference
+        // ("external reference pending") -- no specific, locked external
+        // reference is actually available yet. Corrected to BLOCKED;
+        // pedagogical classification (REQUIRED) is unchanged.
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY" as const,
         annotationPolicy: "TEACHING_EXPLANATORY" as const,
         requiredLabels: [],
         immutableFacts: [
@@ -530,7 +530,7 @@ export const FAMILIES: VisualFamily[] = [
           `do not depict the ${poles === "N_S_horizontal" ? "vertical" : "horizontal"} pole arrangement in this asset -- that is the sibling ProductionAsset`,
           "do not bake a specific current or force direction into the base artwork -- this base must safely serve both current directions via deterministic overlay",
         ],
-        exactDeliverable: `One premium illustration of magnet poles arranged ${poles === "N_S_horizontal" ? "horizontally" : "vertically"} with a conductor between them, direction-neutral (no baked current/force arrows), ready to receive deterministic N/S, current and force overlays, matching the existing governed motor-effect geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        exactDeliverable: `BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of magnet poles arranged ${poles === "N_S_horizontal" ? "horizontally" : "vertically"} with a conductor between them, direction-neutral (no baked current/force arrows), ready to receive deterministic N/S, current and force overlays, matching the existing governed motor-effect geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
         outputSubfolder: "hybrid" as const,
         filenameBase: `motor-effect-${slug}-base`,
         sharedBaseAudit: {
@@ -604,7 +604,11 @@ export const FAMILIES: VisualFamily[] = [
         ],
         creativeFreedoms: ["premium hand rendering", "finger-labelling styling", "composition", "finish"],
         deterministicOverlayResponsibilities: [],
-        prohibitedChanges: ["do not swap to the right hand", "do not reassign which finger represents which quantity"],
+        prohibitedChanges: [
+          "do not swap to the right hand",
+          "do not reassign which finger represents which quantity",
+          "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored left hand can read as a right hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image for any other pole/current combination.",
+        ],
         exactDeliverable:
           "One premium illustration of a left hand with thumb, first finger and second finger held mutually perpendicular, clearly and unambiguously demonstrating Force/Field/Current correspondence. Include the explanatory annotations MOTION / FORCE, FIELD and CURRENT on the corresponding digit -- this is a TEACHING asset and clear labels are part of the deliverable. Matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         assessmentNote: "Assessment: NO hand. Use the PHENOMENON asset's physical motor-effect apparatus instead.",
@@ -614,7 +618,7 @@ export const FAMILIES: VisualFamily[] = [
           classification: "SAFE_SHARED_BASE",
           action: "KEEP",
           rationale:
-            "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Force/Field/Current correspondence itself, not a specific pole/current combination, so it does not need a companion image per pole-orientation the way the sibling PHENOMENON assets do.",
+            "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Force/Field/Current correspondence itself, not a specific pole/current combination, so it does not need a companion image per pole-orientation the way the sibling PHENOMENON assets do. CC-11.7C: this is never achieved by mirroring/flipping the hand artwork -- see prohibitedChanges.",
         },
         canonicalStates: [
           {
@@ -752,7 +756,11 @@ export const FAMILIES: VisualFamily[] = [
         ],
         creativeFreedoms: ["premium hand rendering", "finger-labelling styling", "composition", "finish"],
         deterministicOverlayResponsibilities: [],
-        prohibitedChanges: ["do not swap to the left hand", "do not reassign which finger represents which quantity"],
+        prohibitedChanges: [
+          "do not swap to the left hand",
+          "do not reassign which finger represents which quantity",
+          "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored right hand can read as a left hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image for any other rotation phase.",
+        ],
         exactDeliverable:
           "One premium illustration of a right hand with thumb, first finger and second finger held mutually perpendicular, clearly and unambiguously demonstrating Motion/Field/induced-Current correspondence. Include the explanatory annotations MOTION, FIELD and INDUCED CURRENT / EMF on the corresponding digit -- this is a TEACHING asset and clear labels are part of the deliverable. Matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         assessmentNote: "Assessment: NO hand.",
@@ -762,7 +770,7 @@ export const FAMILIES: VisualFamily[] = [
           classification: "SAFE_SHARED_BASE",
           action: "KEEP",
           rationale:
-            "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Motion/Field/induced-Current correspondence itself, not a specific loop pose, so it does not need a companion image per rotation phase the way the sibling PHENOMENON assets do.",
+            "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Motion/Field/induced-Current correspondence itself, not a specific loop pose, so it does not need a companion image per rotation phase the way the sibling PHENOMENON assets do. CC-11.7C: this is never achieved by mirroring/flipping the hand artwork -- see prohibitedChanges.",
         },
         canonicalStates: [
           {
@@ -1154,13 +1162,12 @@ export const FAMILIES: VisualFamily[] = [
         productionClassLabel: "HYBRID",
         governedDiagramBlueprintId: "magnetic.pole_interaction",
         instructionalPurpose: `Show ${label} from the pole labels on two bar magnets.`,
-        primaryReference: {
-          sourceName: "Public-domain historical iron-filings attraction/repulsion illustrations, plus the approved bar-magnet reference (unit202.magnet.field)",
-          sourceUrl: "",
-          licence: "public-domain historical -- record exact source when selected",
-          qualityGrade: "B+",
-        },
-        referenceReadiness: "READY" as const,
+        // CC-11.7C §1: "historical iron-filings illustrations" was a
+        // category description, not a specific locked reference (no URL,
+        // no named source) -- corrected to BLOCKED; pedagogical
+        // classification (REQUIRED) is unchanged.
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY" as const,
         annotationPolicy: "TEACHING_EXPLANATORY" as const,
         requiredLabels: ["N", "S", "attract/repel force-arrow indicator"],
         immutableFacts: [
@@ -1174,7 +1181,7 @@ export const FAMILIES: VisualFamily[] = [
           "this premium asset is TEACHING-only -- the separate deterministic magnetic.pole_interaction diagram (not this asset) is what governs the assessment-mode reveal/withhold state; do not treat this teaching image's own labels as an assessment-answer leak",
           `do not depict the ${pairing === "like_poles_facing" ? "unlike-poles/attracting" : "like-poles/repelling"} arrangement in this asset -- that is the sibling ProductionAsset`,
         ],
-        exactDeliverable: `One premium illustration of two bar magnets arranged ${label}, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        exactDeliverable: `BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of two bar magnets arranged ${label}, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
         outputSubfolder: "hybrid" as const,
         filenameBase: `magnet-poles-${slug}-base`,
         sharedBaseAudit: {
@@ -1776,13 +1783,12 @@ export const FAMILIES: VisualFamily[] = [
         productionClassLabel: "HYBRID / POLISHED DETERMINISTIC",
         governedDiagramBlueprintId: "mechanical.resistivity_dimensions",
         instructionalPurpose: "Show two conductor rods differing only in length so a learner predicts the qualitative effect on resistance.",
-        primaryReference: {
-          sourceName: "OpenStax wire/conductor cylinder diagrams",
-          sourceUrl: "",
-          licence: "OpenStax -- CC BY, record exact chapter/figure when selected",
-          qualityGrade: "A",
-        },
-        referenceReadiness: "READY",
+        // CC-11.7C §1: "OpenStax wire/conductor cylinder diagrams" named a
+        // publisher/category, not a specific chapter/figure/URL -- not
+        // sufficiently specific to count as locked. Corrected to BLOCKED;
+        // pedagogical classification (REQUIRED) is unchanged.
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY",
         annotationPolicy: "TEACHING_EXPLANATORY",
         requiredLabels: ["length comparison caption", "qualitative-consequence caption (\"longer -> more resistance\")"],
         immutableFacts: ["increased length -> greater resistance (cross-sectional area unchanged)"],
@@ -1790,7 +1796,7 @@ export const FAMILIES: VisualFamily[] = [
         deterministicOverlayResponsibilities: [],
         prohibitedChanges: ["do not embed a numeric R = rho L / A calculation", "do not also vary cross-sectional area in this asset"],
         exactDeliverable:
-          "One premium illustration of two conductor rods differing only in length, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+          "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of two conductor rods differing only in length, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "resistivity-length-comparison-base",
         canonicalStates: [
@@ -1819,13 +1825,11 @@ export const FAMILIES: VisualFamily[] = [
         productionClassLabel: "HYBRID / POLISHED DETERMINISTIC",
         governedDiagramBlueprintId: "mechanical.resistivity_dimensions",
         instructionalPurpose: "Show two conductor rods differing only in cross-sectional area so a learner predicts the qualitative effect on resistance.",
-        primaryReference: {
-          sourceName: "OpenStax wire/conductor cylinder diagrams",
-          sourceUrl: "",
-          licence: "OpenStax -- CC BY, record exact chapter/figure when selected",
-          qualityGrade: "A",
-        },
-        referenceReadiness: "READY",
+        // CC-11.7C §1: same correction as the sibling length-comparison
+        // asset -- "OpenStax wire/conductor cylinder diagrams" named a
+        // publisher/category, not a locked chapter/figure/URL.
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY",
         annotationPolicy: "TEACHING_EXPLANATORY",
         requiredLabels: ["area comparison caption", "qualitative-consequence caption (\"thicker -> less resistance\")"],
         immutableFacts: ["increased cross-sectional area -> lower resistance (length unchanged)"],
@@ -1833,7 +1837,7 @@ export const FAMILIES: VisualFamily[] = [
         deterministicOverlayResponsibilities: [],
         prohibitedChanges: ["do not embed a numeric R = rho L / A calculation", "do not also vary length in this asset"],
         exactDeliverable:
-          "One premium illustration of two conductor rods differing only in cross-sectional area, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+          "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of two conductor rods differing only in cross-sectional area, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "resistivity-area-comparison-base",
         canonicalStates: [
@@ -1939,13 +1943,13 @@ export const FAMILIES: VisualFamily[] = [
         productionClassLabel: "DETERMINISTIC / HYBRID",
         governedDiagramBlueprintId: "emf.motional_emf_geometry",
         instructionalPurpose: "Show that conductor length, its velocity and the magnetic field are mutually perpendicular -- the geometric fact behind e = Blv.",
-        primaryReference: {
-          sourceName: "Existing governed ALP motional-EMF geometry (emf.motional_emf_geometry) -- add a human-readable physics reference before premium rebuild",
-          sourceUrl: "",
-          licence: "internal governed geometry -- external reference pending",
-          qualityGrade: "internal A; external reference pending",
-        },
-        referenceReadiness: "READY",
+        // CC-11.7C §1: was marked READY with a placeholder reference
+        // ("external reference pending", "add a human-readable physics
+        // reference before premium rebuild") -- no specific, locked
+        // external reference is actually available yet. Corrected to
+        // BLOCKED; pedagogical classification (REQUIRED) is unchanged.
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY",
         annotationPolicy: "TEACHING_EXPLANATORY",
         requiredLabels: ["B", "l", "v"],
         immutableFacts: ["B, l and v mutually perpendicular for the governed e = Blv case", "rod across rails", "velocity along the rails", "field perpendicular to the rail plane"],
@@ -1953,7 +1957,7 @@ export const FAMILIES: VisualFamily[] = [
         deterministicOverlayResponsibilities: [],
         prohibitedChanges: ["do not draw B, l or v as anything other than mutually perpendicular"],
         exactDeliverable:
-          "One premium illustration of a conductor rod across two rails ready to receive B/l/v overlay arrows, matching the existing governed geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+          "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of a conductor rod across two rails ready to receive B/l/v overlay arrows, matching the existing governed geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
         filenameBase: "emf-motional-base",
         canonicalStates: [
@@ -2058,20 +2062,18 @@ export const FAMILIES: VisualFamily[] = [
         productionClass: "PREMIUM_CONCEPTUAL" as const,
         productionClassLabel: "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
         instructionalPurpose: `A physical-appearance companion image for the ${component}, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.`,
-        primaryReference: {
-          sourceName: `Physical reference material for the ${component} (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned`,
-          sourceUrl: "",
-          licence: "to be recorded when selected",
-          qualityGrade: "to be assessed",
-        },
-        referenceReadiness: "READY" as const,
+        // CC-11.7C §1: "to be selected when this asset is commissioned" is
+        // placeholder wording, not a locked reference. Corrected to
+        // BLOCKED; pedagogical classification (REQUIRED) is unchanged.
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY" as const,
         annotationPolicy: "TEACHING_EXPLANATORY" as const,
         requiredLabels: ["component name"],
         immutableFacts: [`package form must be a real, representative physical form for a ${component}`],
         creativeFreedoms: ["premium photographic-impression rendering", "composition", "lighting"],
         deterministicOverlayResponsibilities: ["pairing with the existing deterministic UK/IEC symbol card"],
         prohibitedChanges: [`do not invent a misleading package form for the ${component}`, "do not depict any other component in this asset"],
-        exactDeliverable: `One premium physical-appearance illustration of a ${component}, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        exactDeliverable: `BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a ${component}, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
         outputSubfolder: "physical-components" as const,
         filenameBase: `components-physical-${component}-base`,
         canonicalStates: [
@@ -2115,13 +2117,11 @@ export const FAMILIES: VisualFamily[] = [
         productionClass: "HYBRID" as const,
         productionClassLabel: "HYBRID",
         instructionalPurpose: `CC-11.7 audit finding (new, beyond the original 66): show current ${bias === "forward" ? "flowing easily in forward bias" : "blocked in reverse bias"}, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing \`electronics.component_symbol_card\` blueprint cannot represent since it renders only the static symbol, never current flow.`,
-        primaryReference: {
-          sourceName: "Standard diode forward/reverse-bias circuit reference -- to be selected when this asset is commissioned",
-          sourceUrl: "",
-          licence: "to be recorded when selected",
-          qualityGrade: "to be assessed",
-        },
-        referenceReadiness: "READY" as const,
+        // CC-11.7C §1: "to be selected when this asset is commissioned" is
+        // placeholder wording, not a locked reference. Corrected to
+        // BLOCKED; pedagogical classification (REQUIRED) is unchanged.
+        primaryReference: NOT_READY_REF,
+        referenceReadiness: "NOT_READY" as const,
         annotationPolicy: "TEACHING_EXPLANATORY" as const,
         requiredLabels: bias === "forward" ? ["FORWARD BIAS", "current-flow arrow"] : ["REVERSE BIAS", "blocked-current indicator"],
         immutableFacts: [
@@ -2135,7 +2135,7 @@ export const FAMILIES: VisualFamily[] = [
           bias === "forward" ? "do not depict blocked/no current flow -- that is the reverse-bias sibling asset" : "do not depict current flowing -- that is the forward-bias sibling asset",
           "do not conflate with the zener/LED/photodiode symbol variants",
         ],
-        exactDeliverable: `One premium illustration (${label}) of a diode in a simple test circuit, matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
+        exactDeliverable: `BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration (${label}) of a diode in a simple test circuit, matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.`,
         outputSubfolder: "hybrid" as const,
         filenameBase: `diode-bias-direction-${bias}-base`,
         sharedBaseAudit: {
@@ -2604,12 +2604,25 @@ export function familyForAsset(assetId: string, families: VisualFamily[] = FAMIL
 /**
  * An asset is genuinely promptable (i.e. the Studio should ever offer a
  * real ChatGPT ASSET-SPECIFIC PROMPT for it) only when its reference is
- * ready, its scope is not still pending confirmation, and it has not
- * been explicitly marked `promptable: false` (a deterministic-only asset
- * with no image-generation deliverable at all).
+ * ready, its scope is not still pending confirmation, it has not been
+ * explicitly marked `promptable: false`, AND its production class is not
+ * `DETERMINISTIC_TECHNICAL`.
+ *
+ * CC-11.7C §3 correction: a `DETERMINISTIC_TECHNICAL` asset's
+ * authoritative output is always deterministic vector geometry (SVG /
+ * React Native SVG / equivalent rendering code) produced by ALP's own
+ * tooling -- never a ChatGPT image-generation job, regardless of whether
+ * its own `promptable` field happens to be set. Before this fix, an
+ * asset that was DETERMINISTIC_TECHNICAL but had not explicitly set
+ * `promptable: false` (e.g. `unit202.circuit.series`, `.parallel`,
+ * `.mixed`, `unit202.instrument.connections`, `unit202.waveform.sine`,
+ * `unit202.current-direction.electron-flow-vs-conventional`,
+ * `unit202.gears.rotation-direction`) was incorrectly reported as
+ * promptable, offering a real ChatGPT art prompt for something with no
+ * art-generation deliverable at all.
  */
 export function isPromptable(asset: VisualAsset): boolean {
-  return asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false;
+  return asset.referenceReadiness === "READY" && !asset.needsScopeConfirmation && asset.promptable !== false && asset.productionClass !== "DETERMINISTIC_TECHNICAL";
 }
 
 /**

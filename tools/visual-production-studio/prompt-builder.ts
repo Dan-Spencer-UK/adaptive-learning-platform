@@ -112,13 +112,19 @@ function canonicalStatesInstruction(asset: VisualAsset): string {
 export function buildAssetPrompt(asset: VisualAsset, families?: VisualFamily[]): string {
   const family = familyForAsset(asset.assetId, families);
 
-  if (asset.promptable === false) {
+  // CC-11.7C §3: a DETERMINISTIC_TECHNICAL asset's authoritative output is
+  // always deterministic vector geometry produced by ALP's own rendering
+  // code -- never a ChatGPT image-generation job, regardless of the
+  // `promptable` field (which some deterministic assets never explicitly
+  // set to false, relying on this productionClass check instead).
+  if (asset.promptable === false || asset.productionClass === "DETERMINISTIC_TECHNICAL") {
     return [
       `ASSET ${asset.sequence} -- ${asset.assetId}`,
       `"${asset.displayName}"`,
       family ? `Visual family: ${family.displayName} (${family.familyId})` : "",
       "",
-      "THIS ASSET HAS NO IMAGE-GENERATION DELIVERABLE.",
+      "NO CHATGPT ART JOB -- VECTOR AUTHORITATIVE.",
+      "This asset's authoritative output is deterministic SVG / React Native SVG / equivalent vector geometry, produced entirely by ALP's own rendering code. A PNG/WEBP/JPG may exist only as a review/render preview, never as the production format.",
       asset.exactDeliverable,
       "Do not request artwork for this asset from an art session.",
     ]

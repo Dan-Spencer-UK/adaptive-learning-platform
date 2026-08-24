@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T23:42:45.446Z",
+  "generatedAt": "2026-08-24T00:25:48.459Z",
   "rows": [
     {
       "kind": "CATALOGUED_ASSET",
@@ -64,7 +64,7 @@
       "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged horizontally)",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
@@ -88,7 +88,7 @@
         }
       ],
       "existing66Mapped": true,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -99,7 +99,7 @@
       "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged vertically)",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
@@ -123,7 +123,7 @@
         }
       ],
       "existing66Mapped": true,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -352,7 +352,7 @@
       "displayName": "Magnetic pole repulsion — like poles facing (repel)",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.magnet.poles.like.state.teaching",
@@ -366,7 +366,7 @@
         }
       ],
       "existing66Mapped": true,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -377,7 +377,7 @@
       "displayName": "Magnetic pole attraction — unlike poles facing (attract)",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.magnet.poles.unlike.state.teaching",
@@ -391,7 +391,7 @@
         }
       ],
       "existing66Mapped": true,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -686,7 +686,7 @@
       "displayName": "Resistance vs conductor length",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.resistivity.length-comparison.state.teaching",
@@ -695,7 +695,7 @@
         }
       ],
       "existing66Mapped": true,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -706,7 +706,7 @@
       "displayName": "Resistance vs conductor cross-sectional area",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.resistivity.area-comparison.state.teaching",
@@ -715,7 +715,7 @@
         }
       ],
       "existing66Mapped": true,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -771,7 +771,7 @@
       "displayName": "Motional EMF geometry",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.emf.motional.state.teaching",
@@ -780,7 +780,7 @@
         }
       ],
       "existing66Mapped": true,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -871,7 +871,7 @@
       "displayName": "Physical electronic component — resistor",
       "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.components.physical.resistor.state.teaching",
@@ -879,7 +879,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -890,7 +890,7 @@
       "displayName": "Physical electronic component — capacitor",
       "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.components.physical.capacitor.state.teaching",
@@ -898,7 +898,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -909,7 +909,7 @@
       "displayName": "Physical electronic component — diode",
       "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.components.physical.diode.state.teaching",
@@ -917,7 +917,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -928,7 +928,7 @@
       "displayName": "Physical electronic component — led",
       "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.components.physical.led.state.teaching",
@@ -936,7 +936,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -947,7 +947,7 @@
       "displayName": "Physical electronic component — thermistor",
       "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.components.physical.thermistor.state.teaching",
@@ -955,7 +955,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -966,7 +966,7 @@
       "displayName": "Physical electronic component — transistor",
       "needClassification": "REQUIRED",
       "productionClass": "PREMIUM_CONCEPTUAL",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.components.physical.transistor.state.teaching",
@@ -974,7 +974,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -985,7 +985,7 @@
       "displayName": "Diode forward bias — conducting",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.diode.bias-direction.forward.state.teaching",
@@ -993,7 +993,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",
@@ -1004,7 +1004,7 @@
       "displayName": "Diode reverse bias — blocked",
       "needClassification": "REQUIRED",
       "productionClass": "HYBRID",
-      "referenceReadiness": "READY",
+      "referenceReadiness": "NOT_READY",
       "canonicalStates": [
         {
           "stateId": "unit202.diode.bias-direction.reverse.state.teaching",
@@ -1012,7 +1012,7 @@
         }
       ],
       "existing66Mapped": false,
-      "gapStatus": "SATISFIED"
+      "gapStatus": "REQUIRED_BLOCKED"
     },
     {
       "kind": "CATALOGUED_ASSET",

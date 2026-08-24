@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-23T23:42:42.746Z",
-  "commit": "288bd2a63a20dee02dd00b6e68caa084bd445e7c",
+  "generatedAt": "2026-08-24T00:25:44.870Z",
+  "commit": "038f97356f080dc9b60159814d46489254fcbdca",
   "executiveSummary": {
     "visualFamilies": 21,
     "productionAssets": 53,
@@ -8,8 +8,8 @@
     "historicalVariantsReconciled": 66,
     "historicalVariantsTotal": 66,
     "requiredTotal": 42,
-    "requiredReady": 39,
-    "requiredBlocked": 3,
+    "requiredReady": 24,
+    "requiredBlocked": 18,
     "usefulTotal": 10,
     "usefulReady": 2,
     "usefulBlocked": 8,
@@ -76,7 +76,7 @@
       ],
       "historical66Mapped": true,
       "sharedBaseClassification": "SHARED_BASE_WITH_CONDITIONS",
-      "sharedBaseRationale": "CC-11.7B: a straight conductor's concentric field-line pattern is rotationally symmetric -- reversing current only reverses which way the circulation arrows point, never the field-line geometry, conductor position, or composition. This is the same 'legitimate deterministic transform, not a reason to commission a near-duplicate image' reasoning already applied to the sibling MNEMONIC hand asset. CORRECTION APPLIED: the pre-audit config incorrectly asked the art session to bake in 'current direction indicated' as part of the artwork (exactDeliverable) while also requiring 4 states covering both directions from one image -- an internal inconsistency. Fixed by moving both direction indicators to deterministicOverlayResponsibilities and removing direction-specific language from exactDeliverable/immutableFacts.",
+      "sharedBaseRationale": "CC-11.7B: a straight conductor's concentric field-line pattern is rotationally symmetric -- reversing current only reverses which way the circulation arrows point, never the field-line geometry, conductor position, or composition. The base artwork itself is produced ONCE, direction-neutral, and the two current directions are distinguished entirely by a deterministic dot/cross + arrowhead OVERLAY added afterward -- the generated artwork is never mirrored, flipped, or redrawn to represent the opposite direction (CC-11.7C §2: mirroring hand-rule/directional artwork is prohibited outright, since it can silently invalidate a geometry-dependent mnemonic or phenomenon; this asset never relies on it). CORRECTION APPLIED (CC-11.7B): the pre-audit config incorrectly asked the art session to bake in 'current direction indicated' as part of the artwork (exactDeliverable) while also requiring 4 states covering both directions from one image -- an internal inconsistency. Fixed by moving both direction indicators to deterministicOverlayResponsibilities and removing direction-specific language from exactDeliverable/immutableFacts.",
       "sharedBaseConditions": [
         "base artwork must show field lines with NO baked arrowheads/direction sense",
         "base artwork must show the conductor cross-section with no baked dot/cross current-direction symbol",
@@ -120,7 +120,7 @@
       ],
       "historical66Mapped": false,
       "sharedBaseClassification": "SAFE_SHARED_BASE",
-      "sharedBaseRationale": "CC-11.7B: single canonical state, single learner-facing object (one hand demonstrating one rule) -- no sharing/composite question applies. Confirmed this asset does not need a reversed-current companion image: the mnemonic teaches the RULE itself, not a specific current direction, and a reversed-current illustration would be a legitimate deterministic mirror/rotate transform of the same hand pose, not a genuinely different pose.",
+      "sharedBaseRationale": "CC-11.7B/CC-11.7C: single canonical state, single learner-facing object (one hand demonstrating one rule) -- no sharing/composite question applies. One base image remains sufficient because the mnemonic teaches the RULE itself (thumb = current, curled fingers = field), not a specific current direction. CC-11.7C correction: this is NOT achieved by mirroring or flipping the hand artwork for a reversed-current companion image -- that approach is explicitly prohibited (mirroring can silently change handedness and invalidate the mnemonic). Directional application for a specific current direction continues entirely through the sibling governed PHENOMENON/deterministic states (unit202.current-conductor.magnetic-field), never through a transformed copy of this mnemonic image.",
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/teaching/right-hand-grip-teaching-base-v{N}.(png|webp|jpg)",
       "studioPromptAvailable": true
@@ -133,13 +133,13 @@
       "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged horizontally)",
       "loOrLesson": "LO5 — lesson.magnetism.effects-of-current",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Existing governed ALP motor-effect geometry (motor.force_field_current) plus a reputable human-readable motor-effect reference",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "internal governed geometry -- external reference to be added when sourced",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHENOMENON",
       "instructionalPurpose": "Show a current-carrying conductor between magnetic poles (N/S poles arranged horizontally) experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.",
       "immutableFacts": [
@@ -189,7 +189,7 @@
       ],
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"180\" viewBox=\"0 0 260 180\" role=\"img\" aria-label=\"North pole on the left, south pole on the right. Field arrows point from north to south. The conventional current into the page in the conductor. Resulting force on the conductor acts downwards.\"><title>North pole on the left, south pole on the right. Field arrows point from north to south. The conventional current into the page in the conductor. Resulting force on the conductor acts downwards.</title><g><rect x=\"16\" y=\"60\" width=\"28\" height=\"60\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"30\" y=\"96\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"216\" y=\"60\" width=\"28\" height=\"60\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"230\" y=\"96\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><line x1=\"54\" y1=\"66\" x2=\"206\" y2=\"66\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M206 66 199.93782217350892 69.5 199.93782217350892 62.5z\" fill=\"#9aa3b2\" /><line x1=\"54\" y1=\"90\" x2=\"206\" y2=\"90\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M206 90 199.93782217350892 93.5 199.93782217350892 86.5z\" fill=\"#9aa3b2\" /><line x1=\"54\" y1=\"114\" x2=\"206\" y2=\"114\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M206 114 199.93782217350892 117.5 199.93782217350892 110.5z\" fill=\"#9aa3b2\" /><circle cx=\"130\" cy=\"90\" r=\"12\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"124\" y1=\"84\" x2=\"136\" y2=\"96\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"124\" y1=\"96\" x2=\"136\" y2=\"84\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"130\" y=\"118\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>conventional current into the page</tspan></text><line x1=\"130\" y1=\"106\" x2=\"130\" y2=\"136\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M130 136 126.5 129.93782217350892 133.5 129.93782217350892z\" fill=\"#9aa3b2\" /><text x=\"130\" y=\"152\" fill=\"#4cd07a\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Force: down</tspan></text></g></svg>"
     },
     {
@@ -200,13 +200,13 @@
       "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged vertically)",
       "loOrLesson": "LO5 — lesson.magnetism.effects-of-current",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Existing governed ALP motor-effect geometry (motor.force_field_current) plus a reputable human-readable motor-effect reference",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "internal governed geometry -- external reference to be added when sourced",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHENOMENON",
       "instructionalPurpose": "Show a current-carrying conductor between magnetic poles (N/S poles arranged vertically) experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.",
       "immutableFacts": [
@@ -256,7 +256,7 @@
       ],
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/motor-effect-vertical-poles-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"180\" viewBox=\"0 0 260 180\" role=\"img\" aria-label=\"North pole at the top, south pole at the bottom. Field arrows point from north to south. The conventional current into the page in the conductor. Resulting force on the conductor acts leftwards.\"><title>North pole at the top, south pole at the bottom. Field arrows point from north to south. The conventional current into the page in the conductor. Resulting force on the conductor acts leftwards.</title><g><rect x=\"100\" y=\"16\" width=\"60\" height=\"28\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"130\" y=\"36\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"100\" y=\"136\" width=\"60\" height=\"28\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"130\" y=\"156\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><line x1=\"106\" y1=\"54\" x2=\"106\" y2=\"126\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M106 126 102.5 119.93782217350893 109.5 119.93782217350893z\" fill=\"#9aa3b2\" /><line x1=\"130\" y1=\"54\" x2=\"130\" y2=\"126\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M130 126 126.5 119.93782217350893 133.5 119.93782217350893z\" fill=\"#9aa3b2\" /><line x1=\"154\" y1=\"54\" x2=\"154\" y2=\"126\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M154 126 150.5 119.93782217350893 157.5 119.93782217350893z\" fill=\"#9aa3b2\" /><circle cx=\"130\" cy=\"90\" r=\"12\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"124\" y1=\"84\" x2=\"136\" y2=\"96\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"124\" y1=\"96\" x2=\"136\" y2=\"84\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"130\" y=\"118\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>conventional current into the page</tspan></text><line x1=\"114\" y1=\"90\" x2=\"84\" y2=\"90\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M84 90 90.06217782649107 86.5 90.06217782649107 93.5z\" fill=\"#9aa3b2\" /><text x=\"66\" y=\"94\" fill=\"#4cd07a\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Force: left</tspan></text></g></svg>"
     },
     {
@@ -292,7 +292,7 @@
       ],
       "historical66Mapped": false,
       "sharedBaseClassification": "SAFE_SHARED_BASE",
-      "sharedBaseRationale": "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Force/Field/Current correspondence itself, not a specific pole/current combination, so it does not need a companion image per pole-orientation the way the sibling PHENOMENON assets do.",
+      "sharedBaseRationale": "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Force/Field/Current correspondence itself, not a specific pole/current combination, so it does not need a companion image per pole-orientation the way the sibling PHENOMENON assets do. CC-11.7C: this is never achieved by mirroring/flipping the hand artwork -- see prohibitedChanges.",
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/teaching/fleming-left-hand-teaching-base-v{N}.(png|webp|jpg)",
       "studioPromptAvailable": true
@@ -420,7 +420,7 @@
       ],
       "historical66Mapped": false,
       "sharedBaseClassification": "SAFE_SHARED_BASE",
-      "sharedBaseRationale": "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Motion/Field/induced-Current correspondence itself, not a specific loop pose, so it does not need a companion image per rotation phase the way the sibling PHENOMENON assets do.",
+      "sharedBaseRationale": "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Motion/Field/induced-Current correspondence itself, not a specific loop pose, so it does not need a companion image per rotation phase the way the sibling PHENOMENON assets do. CC-11.7C: this is never achieved by mirroring/flipping the hand artwork -- see prohibitedChanges.",
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/teaching/fleming-right-hand-teaching-base-v{N}.(png|webp|jpg)",
       "studioPromptAvailable": true
@@ -676,13 +676,13 @@
       "displayName": "Magnetic pole repulsion — like poles facing (repel)",
       "loOrLesson": "LO5 — lesson.magnetism.fundamentals",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Public-domain historical iron-filings attraction/repulsion illustrations, plus the approved bar-magnet reference (unit202.magnet.field)",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "public-domain historical -- record exact source when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "COMPARISON",
       "instructionalPurpose": "Show like poles facing (repel) from the pole labels on two bar magnets.",
       "immutableFacts": [
@@ -713,7 +713,7 @@
       ],
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/magnet-poles-like-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"140\" viewBox=\"0 0 260 140\" role=\"img\" aria-label=\"Two bar magnets facing each other: the north pole of the left magnet faces the north pole of the right magnet. Because both facing poles are north (like poles), the magnets repel each other.\"><title>Two bar magnets facing each other: the north pole of the left magnet faces the north pole of the right magnet. Because both facing poles are north (like poles), the magnets repel each other.</title><g><text x=\"40\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><text x=\"80\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"20\" y=\"45\" width=\"80\" height=\"50\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"180\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><text x=\"220\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><rect x=\"160\" y=\"45\" width=\"80\" height=\"50\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"110\" y1=\"70\" x2=\"88\" y2=\"70\" stroke=\"#4cd07a\" stroke-width=\"2.5\" /><path d=\"M88 70 94.92820323027551 66 94.92820323027551 74z\" fill=\"#4cd07a\" /><line x1=\"150\" y1=\"70\" x2=\"172\" y2=\"70\" stroke=\"#4cd07a\" stroke-width=\"2.5\" /><path d=\"M172 70 165.0717967697245 74 165.0717967697245 66z\" fill=\"#4cd07a\" /><text x=\"130\" y=\"40\" fill=\"#4cd07a\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Repel</tspan></text><text x=\"130\" y=\"128\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>like poles facing</tspan></text></g></svg>"
     },
     {
@@ -724,13 +724,13 @@
       "displayName": "Magnetic pole attraction — unlike poles facing (attract)",
       "loOrLesson": "LO5 — lesson.magnetism.fundamentals",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Public-domain historical iron-filings attraction/repulsion illustrations, plus the approved bar-magnet reference (unit202.magnet.field)",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "public-domain historical -- record exact source when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "COMPARISON",
       "instructionalPurpose": "Show unlike poles facing (attract) from the pole labels on two bar magnets.",
       "immutableFacts": [
@@ -761,7 +761,7 @@
       ],
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/magnet-poles-unlike-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"140\" viewBox=\"0 0 260 140\" role=\"img\" aria-label=\"Two bar magnets facing each other: the north pole of the left magnet faces the south pole of the right magnet. Because the facing poles are north and south (unlike poles), the magnets attract each other.\"><title>Two bar magnets facing each other: the north pole of the left magnet faces the south pole of the right magnet. Because the facing poles are north and south (unlike poles), the magnets attract each other.</title><g><text x=\"40\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><text x=\"80\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"20\" y=\"45\" width=\"80\" height=\"50\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"180\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><text x=\"220\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"160\" y=\"45\" width=\"80\" height=\"50\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"88\" y1=\"70\" x2=\"110\" y2=\"70\" stroke=\"#4cd07a\" stroke-width=\"2.5\" /><path d=\"M110 70 103.07179676972449 74 103.07179676972449 66z\" fill=\"#4cd07a\" /><line x1=\"172\" y1=\"70\" x2=\"150\" y2=\"70\" stroke=\"#4cd07a\" stroke-width=\"2.5\" /><path d=\"M150 70 156.9282032302755 66 156.9282032302755 74z\" fill=\"#4cd07a\" /><text x=\"130\" y=\"40\" fill=\"#4cd07a\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Attract</tspan></text><text x=\"130\" y=\"128\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>unlike poles facing</tspan></text></g></svg>"
     },
     {
@@ -847,8 +847,8 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: DETERMINISTIC_TECHNICAL -- component-count states are deterministic vector geometry, no generated artwork involved at all.",
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/circuit-series-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"420\" height=\"140\" viewBox=\"0 0 420 140\" role=\"img\" aria-label=\"Series circuit diagram with 2 resistors labelled R1, R2, connected one after another in a single loop. A battery is shown on the left wire, and an arrow on the return wire shows the current direction, flowing left to right -- consistent with the battery's own polarity.\"><title>Series circuit diagram with 2 resistors labelled R1, R2, connected one after another in a single loop. A battery is shown on the left wire, and an arrow on the return wire shows the current direction, flowing left to right -- consistent with the battery's own polarity.</title><g><line x1=\"24\" y1=\"24\" x2=\"24\" y2=\"60\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"24\" y1=\"80\" x2=\"24\" y2=\"116\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"19\" y1=\"60\" x2=\"29\" y2=\"60\" stroke=\"#f2f4f8\" stroke-width=\"3\" /><text x=\"36\" y=\"64\" fill=\"#f2f4f8\" font-size=\"11\" font-weight=\"700\" text-anchor=\"start\"><tspan>-</tspan></text><line x1=\"15\" y1=\"80\" x2=\"33\" y2=\"80\" stroke=\"#f2f4f8\" stroke-width=\"1.5\" /><text x=\"36\" y=\"84\" fill=\"#f2f4f8\" font-size=\"11\" font-weight=\"700\" text-anchor=\"start\"><tspan>+</tspan></text><line x1=\"396\" y1=\"24\" x2=\"396\" y2=\"116\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"24\" y1=\"116\" x2=\"396\" y2=\"116\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"24\" y1=\"24\" x2=\"94\" y2=\"24\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><path d=\"M94,24 L97.83333333333333,16 L105.5,32 L113.16666666666667,16 L120.83333333333334,32 L128.5,16 L136.16666666666669,32 L140,24\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2\" /><line x1=\"140\" y1=\"24\" x2=\"210\" y2=\"24\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"117\" y=\"14\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>R1</tspan></text><line x1=\"210\" y1=\"24\" x2=\"280\" y2=\"24\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"210\" y1=\"24\" x2=\"280\" y2=\"24\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><path d=\"M280,24 L283.8333333333333,16 L291.5,32 L299.1666666666667,16 L306.8333333333333,32 L314.5,16 L322.1666666666667,32 L326,24\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2\" /><line x1=\"326\" y1=\"24\" x2=\"396\" y2=\"24\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"303\" y=\"14\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>R2</tspan></text><line x1=\"194\" y1=\"116\" x2=\"226\" y2=\"116\" stroke=\"#4c8dff\" stroke-width=\"2.5\" /><path d=\"M226,116 L219,120.2 L219,111.8 Z\" fill=\"#4c8dff\" /><text x=\"210\" y=\"136\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>current direction</tspan></text></g></svg>"
     },
     {
@@ -898,8 +898,8 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: DETERMINISTIC_TECHNICAL -- branch-count states are deterministic vector geometry, no generated artwork involved at all.",
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/circuit-parallel-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"420\" height=\"150\" viewBox=\"0 0 420 150\" role=\"img\" aria-label=\"Parallel circuit diagram with 2 branches labelled R1, R2, connected between two shared rails. A battery is shown on the left rail, and an arrow at the top of each branch shows the current direction, flowing down the branch -- consistent with the battery's own polarity.\"><title>Parallel circuit diagram with 2 branches labelled R1, R2, connected between two shared rails. A battery is shown on the left rail, and an arrow at the top of each branch shows the current direction, flowing down the branch -- consistent with the battery's own polarity.</title><g><line x1=\"24\" y1=\"24\" x2=\"396\" y2=\"24\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"24\" y1=\"126\" x2=\"396\" y2=\"126\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"24\" y1=\"24\" x2=\"24\" y2=\"65\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"24\" y1=\"85\" x2=\"24\" y2=\"126\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"15\" y1=\"65\" x2=\"33\" y2=\"65\" stroke=\"#f2f4f8\" stroke-width=\"1.5\" /><text x=\"38\" y=\"69\" fill=\"#f2f4f8\" font-size=\"11\" font-weight=\"700\" text-anchor=\"start\"><tspan>+</tspan></text><line x1=\"19\" y1=\"85\" x2=\"29\" y2=\"85\" stroke=\"#f2f4f8\" stroke-width=\"3\" /><text x=\"38\" y=\"89\" fill=\"#f2f4f8\" font-size=\"11\" font-weight=\"700\" text-anchor=\"start\"><tspan>-</tspan></text><line x1=\"396\" y1=\"24\" x2=\"396\" y2=\"126\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"117\" y1=\"24\" x2=\"117\" y2=\"52\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><path d=\"M117,52 L109,55.833333333333336 L125,63.5 L109,71.16666666666667 L125,78.83333333333334 L109,86.5 L125,94.16666666666667 L117,98\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2\" /><line x1=\"117\" y1=\"98\" x2=\"117\" y2=\"126\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"131\" y=\"79\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\"><tspan>R1</tspan></text><path d=\"M112 34 122 34 117 44z\" fill=\"#4c8dff\" /><line x1=\"303\" y1=\"24\" x2=\"303\" y2=\"52\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><path d=\"M303,52 L295,55.833333333333336 L311,63.5 L295,71.16666666666667 L311,78.83333333333334 L295,86.5 L311,94.16666666666667 L303,98\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2\" /><line x1=\"303\" y1=\"98\" x2=\"303\" y2=\"126\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"317\" y=\"79\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\"><tspan>R2</tspan></text><path d=\"M298 34 308 34 303 44z\" fill=\"#4c8dff\" /></g></svg>"
     },
     {
@@ -943,8 +943,8 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: DETERMINISTIC_TECHNICAL -- arrangement states are deterministic vector topology, no generated artwork involved at all.",
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/circuit-mixed-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"460\" height=\"180\" viewBox=\"0 0 460 180\" role=\"img\" aria-label=\"Mixed circuit: R1 connected in series with R2 and R3, which are connected in parallel with each other.\"><title>Mixed circuit: R1 connected in series with R2 and R3, which are connected in parallel with each other.</title><g><line x1=\"26\" y1=\"34\" x2=\"26\" y2=\"154\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"434\" y1=\"34\" x2=\"434\" y2=\"154\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"26\" y1=\"154\" x2=\"434\" y2=\"154\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"26\" y1=\"34\" x2=\"54\" y2=\"34\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><path d=\"M54,34 L57.5,26 L64.5,42 L71.5,26 L78.5,42 L85.5,26 L92.5,42 L96,34\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2\" /><text x=\"75\" y=\"24\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>R1</tspan></text><line x1=\"96\" y1=\"34\" x2=\"126\" y2=\"34\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"126\" y1=\"34\" x2=\"126\" y2=\"4\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"126\" y1=\"34\" x2=\"126\" y2=\"64\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"126\" y1=\"4\" x2=\"160\" y2=\"4\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><path d=\"M160,4 L163.5,-4 L170.5,12 L177.5,-4 L184.5,12 L191.5,-4 L198.5,12 L202,4\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2\" /><line x1=\"202\" y1=\"4\" x2=\"236\" y2=\"4\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"202\" y=\"-6\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>R2</tspan></text><line x1=\"126\" y1=\"64\" x2=\"160\" y2=\"64\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><path d=\"M160,64 L163.5,56 L170.5,72 L177.5,56 L184.5,72 L191.5,56 L198.5,72 L202,64\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2\" /><line x1=\"202\" y1=\"64\" x2=\"236\" y2=\"64\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"202\" y=\"84\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>R3</tspan></text><line x1=\"236\" y1=\"4\" x2=\"236\" y2=\"34\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"236\" y1=\"64\" x2=\"236\" y2=\"34\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"236\" y1=\"34\" x2=\"434\" y2=\"34\" stroke=\"#f2f4f8\" stroke-width=\"2\" /></g></svg>"
     },
     {
@@ -1007,8 +1007,8 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: DETERMINISTIC_TECHNICAL -- instrument/connection-style states are deterministic vector topology, no generated artwork involved at all.",
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/instrument-connections-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"420\" height=\"170\" viewBox=\"0 0 420 170\" role=\"img\" aria-label=\"Voltmeter connected in parallel with the component under test. This is the standard, correct way to connect a voltmeter (in parallel, across the component).\"><title>Voltmeter connected in parallel with the component under test. This is the standard, correct way to connect a voltmeter (in parallel, across the component).</title><g><line x1=\"26\" y1=\"32\" x2=\"26\" y2=\"144\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"16\" y1=\"78\" x2=\"36\" y2=\"78\" stroke=\"#f2f4f8\" stroke-width=\"3\" /><line x1=\"20\" y1=\"98\" x2=\"32\" y2=\"98\" stroke=\"#f2f4f8\" stroke-width=\"1.5\" /><line x1=\"26\" y1=\"32\" x2=\"40\" y2=\"32\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"40\" y1=\"32\" x2=\"188\" y2=\"32\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><path d=\"M188,32 L191.66666666666666,24 L199,40 L206.33333333333334,24 L213.66666666666666,40 L221,24 L228.33333333333331,40 L232,32\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2\" /><text x=\"210\" y=\"22\" fill=\"#f2f4f8\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Component</tspan></text><line x1=\"232\" y1=\"32\" x2=\"394\" y2=\"32\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"394\" y1=\"32\" x2=\"394\" y2=\"144\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"394\" y1=\"144\" x2=\"26\" y2=\"144\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"188\" y1=\"32\" x2=\"188\" y2=\"78\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"232\" y1=\"32\" x2=\"232\" y2=\"78\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"188\" y1=\"78\" x2=\"194\" y2=\"78\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><circle cx=\"210\" cy=\"78\" r=\"16\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"210\" y=\"83\" fill=\"#f2f4f8\" font-size=\"14\" font-weight=\"700\" text-anchor=\"middle\"><tspan>V</tspan></text><line x1=\"226\" y1=\"78\" x2=\"232\" y2=\"78\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"210\" y=\"164\" fill=\"#9aa3b2\" font-size=\"10\" text-anchor=\"middle\"><tspan>(standard connection)</tspan></text></g></svg>"
     },
     {
@@ -1106,7 +1106,7 @@
       ],
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/current-direction-electron-flow-vs-conventional-base-v{N}.(png|webp|jpg)",
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
       "studioPromptAvailable": false
     },
     {
@@ -1279,7 +1279,7 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: purely deterministic annotation (rotation-direction arrows, idler presence) on whichever sibling driver/driven gear base artwork applies -- no generated artwork involved at all, unaffected by the CC-11.7B size-ratio split.",
       "annotationPolicy": "TEACHING_EXPLANATORY",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/gears-rotation-direction-base-v{N}.(png|webp|jpg)",
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
       "studioPromptAvailable": false
     },
     {
@@ -1290,13 +1290,13 @@
       "displayName": "Resistance vs conductor length",
       "loOrLesson": "LO4 — lesson.electrical.resistivity",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "OpenStax wire/conductor cylinder diagrams",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "OpenStax -- CC BY, record exact chapter/figure when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "COMPARISON",
       "instructionalPurpose": "Show two conductor rods differing only in length so a learner predicts the qualitative effect on resistance.",
       "immutableFacts": [
@@ -1313,7 +1313,7 @@
       "historical66Mapped": true,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/resistivity-length-comparison-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"200\" viewBox=\"0 0 260 200\" role=\"img\" aria-label=\"Comparing conductor length, with cross-sectional area and material held the same: the shorter rod has less resistance, and the longer rod has more resistance.\"><title>Comparing conductor length, with cross-sectional area and material held the same: the shorter rod has less resistance, and the longer rod has more resistance.</title><g><rect x=\"46\" y=\"39\" width=\"58\" height=\"22\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"104\" cy=\"50\" rx=\"6\" ry=\"11\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"46\" cy=\"50\" rx=\"6\" ry=\"11\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"40\" y1=\"75\" x2=\"110\" y2=\"75\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"40\" y1=\"70\" x2=\"40\" y2=\"80\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"110\" y1=\"70\" x2=\"110\" y2=\"80\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"75\" y=\"67\" fill=\"#9aa3b2\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>L</tspan></text><text x=\"75\" y=\"29\" fill=\"#f2f4f8\" font-size=\"11\" text-anchor=\"middle\"><tspan>shorter -&gt; less resistance</tspan></text><rect x=\"46\" y=\"119\" width=\"158\" height=\"22\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"204\" cy=\"130\" rx=\"6\" ry=\"11\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"46\" cy=\"130\" rx=\"6\" ry=\"11\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"40\" y1=\"155\" x2=\"210\" y2=\"155\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"40\" y1=\"150\" x2=\"40\" y2=\"160\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"210\" y1=\"150\" x2=\"210\" y2=\"160\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"125\" y=\"147\" fill=\"#9aa3b2\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>L</tspan></text><text x=\"125\" y=\"109\" fill=\"#f2f4f8\" font-size=\"11\" text-anchor=\"middle\"><tspan>longer -&gt; more resistance</tspan></text></g></svg>"
     },
     {
@@ -1324,13 +1324,13 @@
       "displayName": "Resistance vs conductor cross-sectional area",
       "loOrLesson": "LO4 — lesson.electrical.resistivity",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "OpenStax wire/conductor cylinder diagrams",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "OpenStax -- CC BY, record exact chapter/figure when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "COMPARISON",
       "instructionalPurpose": "Show two conductor rods differing only in cross-sectional area so a learner predicts the qualitative effect on resistance.",
       "immutableFacts": [
@@ -1347,7 +1347,7 @@
       "historical66Mapped": true,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/resistivity-area-comparison-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"200\" viewBox=\"0 0 260 200\" role=\"img\" aria-label=\"Comparing conductor cross-sectional area, with length and material held the same: the thinner rod has more resistance, and the thicker rod has less resistance.\"><title>Comparing conductor cross-sectional area, with length and material held the same: the thinner rod has more resistance, and the thicker rod has less resistance.</title><g><rect x=\"46\" y=\"44\" width=\"138\" height=\"12\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"184\" cy=\"50\" rx=\"6\" ry=\"6\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"46\" cy=\"50\" rx=\"6\" ry=\"6\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"32\" y1=\"44\" x2=\"32\" y2=\"56\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"22\" y=\"54\" fill=\"#9aa3b2\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>A</tspan></text><text x=\"115\" y=\"34\" fill=\"#f2f4f8\" font-size=\"11\" text-anchor=\"middle\"><tspan>thinner -&gt; more resistance</tspan></text><rect x=\"46\" y=\"113\" width=\"138\" height=\"34\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"184\" cy=\"130\" rx=\"6\" ry=\"17\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"46\" cy=\"130\" rx=\"6\" ry=\"17\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"32\" y1=\"113\" x2=\"32\" y2=\"147\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"22\" y=\"134\" fill=\"#9aa3b2\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>A</tspan></text><text x=\"115\" y=\"103\" fill=\"#f2f4f8\" font-size=\"11\" text-anchor=\"middle\"><tspan>thicker -&gt; less resistance</tspan></text></g></svg>"
     },
     {
@@ -1417,8 +1417,8 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: DETERMINISTIC_TECHNICAL -- peak/RMS/period-marker/cycle-count states are deterministic vector plots, no generated artwork involved at all.",
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/waveform-sine-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"440\" height=\"180\" viewBox=\"0 0 440 180\" role=\"img\" aria-label=\"Sine waveform, 2 cycles shown, oscillating symmetrically above and below a zero reference axis.\"><title>Sine waveform, 2 cycles shown, oscillating symmetrically above and below a zero reference axis.</title><g><line x1=\"20\" y1=\"90\" x2=\"420\" y2=\"90\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"422\" y=\"94\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"start\"><tspan>t</tspan></text><text x=\"12\" y=\"94\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"end\"><tspan>0</tspan></text><path d=\"M20.0,90.0 L28.3,78.1 L36.7,67.0 L45.0,57.5 L53.3,50.2 L61.7,45.6 L70.0,44.0 L78.3,45.6 L86.7,50.2 L95.0,57.5 L103.3,67.0 L111.7,78.1 L120.0,90.0 L128.3,101.9 L136.7,113.0 L145.0,122.5 L153.3,129.8 L161.7,134.4 L170.0,136.0 L178.3,134.4 L186.7,129.8 L195.0,122.5 L203.3,113.0 L211.7,101.9 L220.0,90.0 L228.3,78.1 L236.7,67.0 L245.0,57.5 L253.3,50.2 L261.7,45.6 L270.0,44.0 L278.3,45.6 L286.7,50.2 L295.0,57.5 L303.3,67.0 L311.7,78.1 L320.0,90.0 L328.3,101.9 L336.7,113.0 L345.0,122.5 L353.3,129.8 L361.7,134.4 L370.0,136.0 L378.3,134.4 L386.7,129.8 L395.0,122.5 L403.3,113.0 L411.7,101.9 L420.0,90.0\" fill=\"none\" stroke=\"#4c8dff\" stroke-width=\"2.5\" /></g></svg>"
     },
     {
@@ -1429,13 +1429,13 @@
       "displayName": "Motional EMF geometry",
       "loOrLesson": "LO5 — lesson.magnetism.effects-of-current",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Existing governed ALP motional-EMF geometry (emf.motional_emf_geometry) -- add a human-readable physics reference before premium rebuild",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "internal governed geometry -- external reference pending",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHENOMENON",
       "instructionalPurpose": "Show that conductor length, its velocity and the magnetic field are mutually perpendicular -- the geometric fact behind e = Blv.",
       "immutableFacts": [
@@ -1455,7 +1455,7 @@
       "historical66Mapped": true,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/emf-motional-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true,
+      "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"280\" height=\"230\" viewBox=\"0 0 280 230\" role=\"img\" aria-label=\"A conductor of length l lies across two parallel rails, at right angles to them, and can slide along the rails with velocity v. The magnetic field B points straight down through the plane containing the rails, at right angles to that plane. The conductor's length, its velocity and the magnetic field are mutually perpendicular to one another, which is why the simple formula e = B x l x v applies.\"><title>A conductor of length l lies across two parallel rails, at right angles to them, and can slide along the rails with velocity v. The magnetic field B points straight down through the plane containing the rails, at right angles to that plane. The conductor's length, its velocity and the magnetic field are mutually perpendicular to one another, which is why the simple formula e = B x l x v applies.</title><g><line x1=\"105\" y1=\"55\" x2=\"40\" y2=\"195\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"175\" y1=\"55\" x2=\"240\" y2=\"195\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"105\" y1=\"55\" x2=\"175\" y2=\"55\" stroke=\"#9aa3b2\" stroke-width=\"1\" /><line x1=\"40\" y1=\"195\" x2=\"240\" y2=\"195\" stroke=\"#9aa3b2\" stroke-width=\"1\" /><line x1=\"105\" y1=\"14\" x2=\"105\" y2=\"51\" stroke=\"#4cd07a\" stroke-width=\"2\" /><path d=\"M105,51 L101.4,45 L108.6,45 Z\" fill=\"#4cd07a\" /><line x1=\"140\" y1=\"14\" x2=\"140\" y2=\"51\" stroke=\"#4cd07a\" stroke-width=\"2\" /><path d=\"M140,51 L136.4,45 L143.6,45 Z\" fill=\"#4cd07a\" /><line x1=\"175\" y1=\"14\" x2=\"175\" y2=\"51\" stroke=\"#4cd07a\" stroke-width=\"2\" /><path d=\"M175,51 L171.4,45 L178.6,45 Z\" fill=\"#4cd07a\" /><text x=\"140\" y=\"10\" fill=\"#4cd07a\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>B</tspan></text><line x1=\"140\" y1=\"87\" x2=\"140\" y2=\"120\" stroke=\"#4c8dff\" stroke-width=\"2.5\" /><path d=\"M140,120 L135.2,112 L144.8,112 Z\" fill=\"#4c8dff\" /><text x=\"156\" y=\"107\" fill=\"#4c8dff\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>v</tspan></text><line x1=\"69.25\" y1=\"132\" x2=\"210.75\" y2=\"132\" stroke=\"#f2f4f8\" stroke-width=\"3.5\" stroke-linecap=\"round\" /><text x=\"140\" y=\"150\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>l</tspan></text><text x=\"140\" y=\"222\" fill=\"#9aa3b2\" font-size=\"10\" text-anchor=\"middle\"><tspan>B, l and v are mutually perpendicular</tspan></text></g></svg>"
     },
     {
@@ -1562,7 +1562,7 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: DETERMINISTIC_TECHNICAL -- governed UK/IEC symbol geometry, produced by ComponentSymbols.tsx, never an art session. No generated-artwork sharing question applies.",
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/components-symbols-base-v{N}.(png|webp|jpg)",
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
       "studioPromptAvailable": false,
       "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"210\" viewBox=\"0 0 240 210\" role=\"img\" aria-label=\"Resistor: a plain rectangle symbol (BS EN 60617 / IEC 60617), not the US zigzag.\"><title>Resistor: a plain rectangle symbol (BS EN 60617 / IEC 60617), not the US zigzag.</title><g><text x=\"120\" y=\"20\" fill=\"#f2f4f8\" font-size=\"14\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Resistor</tspan></text><rect x=\"20\" y=\"34\" width=\"200\" height=\"90\" rx=\"8\" fill=\"#151821\" stroke=\"#262b38\" stroke-width=\"1\" /><g><line x1=\"0\" y1=\"20\" x2=\"18\" y2=\"20\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><rect x=\"18\" y=\"12\" width=\"24\" height=\"16\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"42\" y1=\"20\" x2=\"60\" y2=\"20\" stroke=\"#f2f4f8\" stroke-width=\"2\" /></g><text x=\"120\" y=\"146\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>Limits current or divides</tspan></text><text x=\"120\" y=\"160\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>voltage.</tspan></text></g></svg>"
     },
@@ -1574,13 +1574,13 @@
       "displayName": "Physical electronic component — resistor",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the resistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the resistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -1596,7 +1596,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-resistor-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 25,
@@ -1606,13 +1606,13 @@
       "displayName": "Physical electronic component — capacitor",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the capacitor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the capacitor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -1628,7 +1628,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-capacitor-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 26,
@@ -1638,13 +1638,13 @@
       "displayName": "Physical electronic component — diode",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the diode (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the diode, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -1660,7 +1660,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-diode-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 27,
@@ -1670,13 +1670,13 @@
       "displayName": "Physical electronic component — led",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the led (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the led, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -1692,7 +1692,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-led-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 28,
@@ -1702,13 +1702,13 @@
       "displayName": "Physical electronic component — thermistor",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the thermistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the thermistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -1724,7 +1724,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-thermistor-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 29,
@@ -1734,13 +1734,13 @@
       "displayName": "Physical electronic component — transistor",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the transistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the transistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -1756,7 +1756,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-transistor-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 30,
@@ -1766,13 +1766,13 @@
       "displayName": "Diode forward bias — conducting",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Standard diode forward/reverse-bias circuit reference -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHENOMENON",
       "instructionalPurpose": "CC-11.7 audit finding (new, beyond the original 66): show current flowing easily in forward bias, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing `electronics.component_symbol_card` blueprint cannot represent since it renders only the static symbol, never current flow.",
       "immutableFacts": [
@@ -1796,7 +1796,7 @@
       ],
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/diode-bias-direction-forward-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 53,
@@ -1806,13 +1806,13 @@
       "displayName": "Diode reverse bias — blocked",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "HYBRID",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Standard diode forward/reverse-bias circuit reference -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHENOMENON",
       "instructionalPurpose": "CC-11.7 audit finding (new, beyond the original 66): show current blocked in reverse bias, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing `electronics.component_symbol_card` blueprint cannot represent since it renders only the static symbol, never current flow.",
       "immutableFacts": [
@@ -1836,7 +1836,7 @@
       ],
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/diode-bias-direction-reverse-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 31,
@@ -1882,7 +1882,7 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: DETERMINISTIC_TECHNICAL -- half-wave/full-wave/inverter waveform shapes are deterministic vector plots, no generated artwork involved at all.",
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/rectification-waveforms-base-v{N}.(png|webp|jpg)",
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
       "studioPromptAvailable": false
     },
     {
@@ -1922,7 +1922,7 @@
       "sharedBaseClassification": "SAFE_SHARED_BASE",
       "sharedBaseRationale": "CC-11.7B: DETERMINISTIC_TECHNICAL -- charge/discharge exponential curves are deterministic vector plots, no generated artwork involved at all.",
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/capacitor-transient-base-v{N}.(png|webp|jpg)",
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
       "studioPromptAvailable": false
     },
     {
@@ -2246,8 +2246,8 @@
       ],
       "historical66Mapped": false,
       "annotationPolicy": "NONE",
-      "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/trigonometry-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "expectedOutputFile": "SVG / React Native SVG (deterministic vector geometry) -- VECTOR AUTHORITATIVE, no raster production file",
+      "studioPromptAvailable": false
     }
   ],
   "multiStateSharing": [
@@ -2256,7 +2256,7 @@
       "displayName": "Magnetic field around a current-carrying conductor",
       "stateCount": 4,
       "decision": "SHARED_BASE_WITH_CONDITIONS",
-      "rationale": "CC-11.7B: a straight conductor's concentric field-line pattern is rotationally symmetric -- reversing current only reverses which way the circulation arrows point, never the field-line geometry, conductor position, or composition. This is the same 'legitimate deterministic transform, not a reason to commission a near-duplicate image' reasoning already applied to the sibling MNEMONIC hand asset. CORRECTION APPLIED: the pre-audit config incorrectly asked the art session to bake in 'current direction indicated' as part of the artwork (exactDeliverable) while also requiring 4 states covering both directions from one image -- an internal inconsistency. Fixed by moving both direction indicators to deterministicOverlayResponsibilities and removing direction-specific language from exactDeliverable/immutableFacts.",
+      "rationale": "CC-11.7B: a straight conductor's concentric field-line pattern is rotationally symmetric -- reversing current only reverses which way the circulation arrows point, never the field-line geometry, conductor position, or composition. The base artwork itself is produced ONCE, direction-neutral, and the two current directions are distinguished entirely by a deterministic dot/cross + arrowhead OVERLAY added afterward -- the generated artwork is never mirrored, flipped, or redrawn to represent the opposite direction (CC-11.7C §2: mirroring hand-rule/directional artwork is prohibited outright, since it can silently invalidate a geometry-dependent mnemonic or phenomenon; this asset never relies on it). CORRECTION APPLIED (CC-11.7B): the pre-audit config incorrectly asked the art session to bake in 'current direction indicated' as part of the artwork (exactDeliverable) while also requiring 4 states covering both directions from one image -- an internal inconsistency. Fixed by moving both direction indicators to deterministicOverlayResponsibilities and removing direction-specific language from exactDeliverable/immutableFacts.",
       "action": "KEEP_WITH_CONDITIONS"
     },
     {
@@ -2264,7 +2264,7 @@
       "displayName": "Right-hand grip rule — teaching mnemonic",
       "stateCount": 1,
       "decision": "SAFE_SHARED_BASE",
-      "rationale": "CC-11.7B: single canonical state, single learner-facing object (one hand demonstrating one rule) -- no sharing/composite question applies. Confirmed this asset does not need a reversed-current companion image: the mnemonic teaches the RULE itself, not a specific current direction, and a reversed-current illustration would be a legitimate deterministic mirror/rotate transform of the same hand pose, not a genuinely different pose.",
+      "rationale": "CC-11.7B/CC-11.7C: single canonical state, single learner-facing object (one hand demonstrating one rule) -- no sharing/composite question applies. One base image remains sufficient because the mnemonic teaches the RULE itself (thumb = current, curled fingers = field), not a specific current direction. CC-11.7C correction: this is NOT achieved by mirroring or flipping the hand artwork for a reversed-current companion image -- that approach is explicitly prohibited (mirroring can silently change handedness and invalidate the mnemonic). Directional application for a specific current direction continues entirely through the sibling governed PHENOMENON/deterministic states (unit202.current-conductor.magnetic-field), never through a transformed copy of this mnemonic image.",
       "action": "KEEP"
     },
     {
@@ -2296,7 +2296,7 @@
       "displayName": "Fleming left-hand rule — motor teaching mnemonic",
       "stateCount": 1,
       "decision": "SAFE_SHARED_BASE",
-      "rationale": "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Force/Field/Current correspondence itself, not a specific pole/current combination, so it does not need a companion image per pole-orientation the way the sibling PHENOMENON assets do.",
+      "rationale": "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Force/Field/Current correspondence itself, not a specific pole/current combination, so it does not need a companion image per pole-orientation the way the sibling PHENOMENON assets do. CC-11.7C: this is never achieved by mirroring/flipping the hand artwork -- see prohibitedChanges.",
       "action": "KEEP"
     },
     {
@@ -2328,7 +2328,7 @@
       "displayName": "Fleming right-hand rule — generator teaching mnemonic",
       "stateCount": 1,
       "decision": "SAFE_SHARED_BASE",
-      "rationale": "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Motion/Field/induced-Current correspondence itself, not a specific loop pose, so it does not need a companion image per rotation phase the way the sibling PHENOMENON assets do.",
+      "rationale": "CC-11.7B: single canonical state, single learner-facing object -- no sharing/composite question applies. The mnemonic teaches the Motion/Field/induced-Current correspondence itself, not a specific loop pose, so it does not need a companion image per rotation phase the way the sibling PHENOMENON assets do. CC-11.7C: this is never achieved by mirroring/flipping the hand artwork -- see prohibitedChanges.",
       "action": "KEEP"
     },
     {
@@ -2570,8 +2570,8 @@
       "assetId": "unit202.motor.effect.horizontal-poles",
       "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged horizontally)",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Existing governed ALP motor-effect geometry (motor.force_field_current) plus a reputable human-readable motor-effect reference",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "N/S/horizontal poles, current into page — force revealed (teaching)",
         "N/S/horizontal poles, current into page — force withheld (assessment)",
@@ -2687,8 +2687,8 @@
       "assetId": "unit202.motor.effect.vertical-poles",
       "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged vertically)",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Existing governed ALP motor-effect geometry (motor.force_field_current) plus a reputable human-readable motor-effect reference",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "N/S/vertical poles, current into page — force revealed (teaching)",
         "N/S/vertical poles, current into page — force withheld (assessment)",
@@ -2712,8 +2712,8 @@
       "assetId": "unit202.magnet.poles.like",
       "displayName": "Magnetic pole repulsion — like poles facing (repel)",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Public-domain historical iron-filings attraction/repulsion illustrations, plus the approved bar-magnet reference (unit202.magnet.field)",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "like poles facing (repel) — force revealed (teaching)",
         "like poles facing (repel) — force withheld (assessment)"
@@ -2735,8 +2735,8 @@
       "assetId": "unit202.resistivity.length-comparison",
       "displayName": "Resistance vs conductor length",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "OpenStax wire/conductor cylinder diagrams",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Resistance vs conductor length"
       ]
@@ -2746,8 +2746,8 @@
       "assetId": "unit202.resistivity.area-comparison",
       "displayName": "Resistance vs conductor cross-sectional area",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "OpenStax wire/conductor cylinder diagrams",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Resistance vs conductor cross-sectional area"
       ]
@@ -2757,8 +2757,8 @@
       "assetId": "unit202.emf.motional",
       "displayName": "Motional EMF geometry",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Existing governed ALP motional-EMF geometry (emf.motional_emf_geometry) -- add a human-readable physics reference before premium rebuild",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Motional EMF — B, l, v mutually perpendicular"
       ]
@@ -2768,8 +2768,8 @@
       "assetId": "unit202.components.physical.resistor",
       "displayName": "Physical electronic component — resistor",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Physical reference material for the resistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Physical appearance — resistor"
       ]
@@ -2779,8 +2779,8 @@
       "assetId": "unit202.components.physical.capacitor",
       "displayName": "Physical electronic component — capacitor",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Physical reference material for the capacitor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Physical appearance — capacitor"
       ]
@@ -2790,8 +2790,8 @@
       "assetId": "unit202.components.physical.diode",
       "displayName": "Physical electronic component — diode",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Physical reference material for the diode (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Physical appearance — diode"
       ]
@@ -2801,8 +2801,8 @@
       "assetId": "unit202.components.physical.led",
       "displayName": "Physical electronic component — led",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Physical reference material for the led (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Physical appearance — led"
       ]
@@ -2812,8 +2812,8 @@
       "assetId": "unit202.components.physical.thermistor",
       "displayName": "Physical electronic component — thermistor",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Physical reference material for the thermistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Physical appearance — thermistor"
       ]
@@ -2823,8 +2823,8 @@
       "assetId": "unit202.components.physical.transistor",
       "displayName": "Physical electronic component — transistor",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Physical reference material for the transistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Physical appearance — transistor"
       ]
@@ -2834,8 +2834,8 @@
       "assetId": "unit202.diode.bias-direction.forward",
       "displayName": "Diode forward bias — conducting",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Standard diode forward/reverse-bias circuit reference -- to be selected when this asset is commissioned",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Forward bias — conducting"
       ]
@@ -2856,8 +2856,8 @@
       "assetId": "unit202.magnet.poles.unlike",
       "displayName": "Magnetic pole attraction — unlike poles facing (attract)",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Public-domain historical iron-filings attraction/repulsion illustrations, plus the approved bar-magnet reference (unit202.magnet.field)",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "unlike poles facing (attract) — force revealed (teaching)",
         "unlike poles facing (attract) — force withheld (assessment)"
@@ -2890,8 +2890,8 @@
       "assetId": "unit202.diode.bias-direction.reverse",
       "displayName": "Diode reverse bias — blocked",
       "needClassification": "REQUIRED",
-      "readiness": "READY",
-      "referenceName": "Standard diode forward/reverse-bias circuit reference -- to be selected when this asset is commissioned",
+      "readiness": "BLOCKED",
+      "referenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "statesSupported": [
         "Reverse bias — blocked"
       ]
@@ -3088,6 +3088,613 @@
   ],
   "blockedReferences": {
     "required": [
+      {
+        "sequence": 3,
+        "assetId": "unit202.motor.effect.horizontal-poles",
+        "familyId": "unit202.family.fleming-left-hand-motor",
+        "familyDisplayName": "Fleming's left-hand rule / motor effect",
+        "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged horizontally)",
+        "loOrLesson": "LO5 — lesson.magnetism.effects-of-current",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHENOMENON",
+        "instructionalPurpose": "Show a current-carrying conductor between magnetic poles (N/S poles arranged horizontally) experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.",
+        "immutableFacts": [
+          "N to S field direction",
+          "conductor positioned between the poles",
+          "poles arranged horizontally -- this specific orientation is the defining physical fact of this asset, never mixed with the sibling orientation asset",
+          "current explicitly into or out of the page -- the base artwork must not bake in either direction (deterministic overlay per state)",
+          "resulting force perpendicular to both field and current",
+          "must remain visually distinct from the hand-rule mnemonic asset"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
+            "displayName": "N/S/horizontal poles, current into page — force revealed (teaching)",
+            "pedagogicalState": "TEACHING",
+            "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=down,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching"
+          },
+          {
+            "stateId": "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
+            "displayName": "N/S/horizontal poles, current into page — force withheld (assessment)",
+            "pedagogicalState": "ASSESSMENT",
+            "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment"
+          },
+          {
+            "stateId": "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching",
+            "displayName": "N/S/horizontal poles, current out of page — force revealed (teaching)",
+            "pedagogicalState": "TEACHING",
+            "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=up,mode=teaching,pole_labels=N_S_horizontal,show_force_arrow=true::teaching"
+          },
+          {
+            "stateId": "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment",
+            "displayName": "N/S/horizontal poles, current out of page — force withheld (assessment)",
+            "pedagogicalState": "ASSESSMENT",
+            "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_horizontal,show_force_arrow=true::assessment"
+          }
+        ],
+        "historical66Mapped": true,
+        "sharedBaseClassification": "SHARED_BASE_WITH_CONDITIONS",
+        "sharedBaseRationale": "CC-11.7B: split from the original unit202.motor.effect (8 states, all 4 pole/current combinations on one asset). Pole orientation is a genuine apparatus-layout change requiring separate artwork; current direction within one fixed orientation is a deterministic overlay concern, matching the right-hand-grip conductor asset's reasoning.",
+        "sharedBaseConditions": [
+          "base artwork must show N/S pole labels ready for deterministic overlay, not baked as final text",
+          "base artwork must leave the conductor and the space around it clear of any baked current-direction or force-direction arrow"
+        ],
+        "splitFrom": "unit202.motor.effect",
+        "splitSiblings": [
+          "unit202.motor.effect.vertical-poles"
+        ],
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false,
+        "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"180\" viewBox=\"0 0 260 180\" role=\"img\" aria-label=\"North pole on the left, south pole on the right. Field arrows point from north to south. The conventional current into the page in the conductor. Resulting force on the conductor acts downwards.\"><title>North pole on the left, south pole on the right. Field arrows point from north to south. The conventional current into the page in the conductor. Resulting force on the conductor acts downwards.</title><g><rect x=\"16\" y=\"60\" width=\"28\" height=\"60\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"30\" y=\"96\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"216\" y=\"60\" width=\"28\" height=\"60\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"230\" y=\"96\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><line x1=\"54\" y1=\"66\" x2=\"206\" y2=\"66\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M206 66 199.93782217350892 69.5 199.93782217350892 62.5z\" fill=\"#9aa3b2\" /><line x1=\"54\" y1=\"90\" x2=\"206\" y2=\"90\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M206 90 199.93782217350892 93.5 199.93782217350892 86.5z\" fill=\"#9aa3b2\" /><line x1=\"54\" y1=\"114\" x2=\"206\" y2=\"114\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M206 114 199.93782217350892 117.5 199.93782217350892 110.5z\" fill=\"#9aa3b2\" /><circle cx=\"130\" cy=\"90\" r=\"12\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"124\" y1=\"84\" x2=\"136\" y2=\"96\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"124\" y1=\"96\" x2=\"136\" y2=\"84\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"130\" y=\"118\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>conventional current into the page</tspan></text><line x1=\"130\" y1=\"106\" x2=\"130\" y2=\"136\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M130 136 126.5 129.93782217350892 133.5 129.93782217350892z\" fill=\"#9aa3b2\" /><text x=\"130\" y=\"152\" fill=\"#4cd07a\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Force: down</tspan></text></g></svg>"
+      },
+      {
+        "sequence": 48,
+        "assetId": "unit202.motor.effect.vertical-poles",
+        "familyId": "unit202.family.fleming-left-hand-motor",
+        "familyDisplayName": "Fleming's left-hand rule / motor effect",
+        "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged vertically)",
+        "loOrLesson": "LO5 — lesson.magnetism.effects-of-current",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHENOMENON",
+        "instructionalPurpose": "Show a current-carrying conductor between magnetic poles (N/S poles arranged vertically) experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.",
+        "immutableFacts": [
+          "N to S field direction",
+          "conductor positioned between the poles",
+          "poles arranged vertically -- this specific orientation is the defining physical fact of this asset, never mixed with the sibling orientation asset",
+          "current explicitly into or out of the page -- the base artwork must not bake in either direction (deterministic overlay per state)",
+          "resulting force perpendicular to both field and current",
+          "must remain visually distinct from the hand-rule mnemonic asset"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
+            "displayName": "N/S/vertical poles, current into page — force revealed (teaching)",
+            "pedagogicalState": "TEACHING",
+            "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=into_page,force_direction=left,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching"
+          },
+          {
+            "stateId": "unit202.motor.effect.vertical-poles.state.into-page-assessment",
+            "displayName": "N/S/vertical poles, current into page — force withheld (assessment)",
+            "pedagogicalState": "ASSESSMENT",
+            "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=into_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment"
+          },
+          {
+            "stateId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
+            "displayName": "N/S/vertical poles, current out of page — force revealed (teaching)",
+            "pedagogicalState": "TEACHING",
+            "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,force_direction=right,mode=teaching,pole_labels=N_S_vertical,show_force_arrow=true::teaching"
+          },
+          {
+            "stateId": "unit202.motor.effect.vertical-poles.state.out-of-page-assessment",
+            "displayName": "N/S/vertical poles, current out of page — force withheld (assessment)",
+            "pedagogicalState": "ASSESSMENT",
+            "existingCanonicalVariantId": "visual-contract.motor-principle-force@1::current_direction=out_of_page,mode=assessment,pole_labels=N_S_vertical,show_force_arrow=true::assessment"
+          }
+        ],
+        "historical66Mapped": true,
+        "sharedBaseClassification": "SHARED_BASE_WITH_CONDITIONS",
+        "sharedBaseRationale": "CC-11.7B: split from the original unit202.motor.effect (8 states, all 4 pole/current combinations on one asset). Pole orientation is a genuine apparatus-layout change requiring separate artwork; current direction within one fixed orientation is a deterministic overlay concern, matching the right-hand-grip conductor asset's reasoning.",
+        "sharedBaseConditions": [
+          "base artwork must show N/S pole labels ready for deterministic overlay, not baked as final text",
+          "base artwork must leave the conductor and the space around it clear of any baked current-direction or force-direction arrow"
+        ],
+        "splitFrom": "unit202.motor.effect",
+        "splitSiblings": [
+          "unit202.motor.effect.horizontal-poles"
+        ],
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/motor-effect-vertical-poles-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false,
+        "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"180\" viewBox=\"0 0 260 180\" role=\"img\" aria-label=\"North pole at the top, south pole at the bottom. Field arrows point from north to south. The conventional current into the page in the conductor. Resulting force on the conductor acts leftwards.\"><title>North pole at the top, south pole at the bottom. Field arrows point from north to south. The conventional current into the page in the conductor. Resulting force on the conductor acts leftwards.</title><g><rect x=\"100\" y=\"16\" width=\"60\" height=\"28\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"130\" y=\"36\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"100\" y=\"136\" width=\"60\" height=\"28\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"130\" y=\"156\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><line x1=\"106\" y1=\"54\" x2=\"106\" y2=\"126\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M106 126 102.5 119.93782217350893 109.5 119.93782217350893z\" fill=\"#9aa3b2\" /><line x1=\"130\" y1=\"54\" x2=\"130\" y2=\"126\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M130 126 126.5 119.93782217350893 133.5 119.93782217350893z\" fill=\"#9aa3b2\" /><line x1=\"154\" y1=\"54\" x2=\"154\" y2=\"126\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M154 126 150.5 119.93782217350893 157.5 119.93782217350893z\" fill=\"#9aa3b2\" /><circle cx=\"130\" cy=\"90\" r=\"12\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"124\" y1=\"84\" x2=\"136\" y2=\"96\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"124\" y1=\"96\" x2=\"136\" y2=\"84\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"130\" y=\"118\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>conventional current into the page</tspan></text><line x1=\"114\" y1=\"90\" x2=\"84\" y2=\"90\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><path d=\"M84 90 90.06217782649107 86.5 90.06217782649107 93.5z\" fill=\"#9aa3b2\" /><text x=\"66\" y=\"94\" fill=\"#4cd07a\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Force: left</tspan></text></g></svg>"
+      },
+      {
+        "sequence": 13,
+        "assetId": "unit202.magnet.poles.like",
+        "familyId": "unit202.family.magnetism",
+        "familyDisplayName": "Magnetism — field and pole interaction",
+        "displayName": "Magnetic pole repulsion — like poles facing (repel)",
+        "loOrLesson": "LO5 — lesson.magnetism.fundamentals",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "COMPARISON",
+        "instructionalPurpose": "Show like poles facing (repel) from the pole labels on two bar magnets.",
+        "immutableFacts": [
+          "like poles repel",
+          "magnets must be composed with a spacing appropriate to repulsion (visible gap, compressed/deflected field lines) -- this specific spacing is the defining physical fact of this asset, never mixed with the sibling asset",
+          "field behaviour between the two magnets must remain physically meaningful"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.magnet.poles.like.state.teaching",
+            "displayName": "like poles facing (repel) — force revealed (teaching)",
+            "pedagogicalState": "TEACHING",
+            "existingCanonicalVariantId": "visual-contract.magnetic-pole-interaction@1::mode=teaching,pole_pairing=like_poles_facing,show_pole_force=true::teaching"
+          },
+          {
+            "stateId": "unit202.magnet.poles.like.state.assessment",
+            "displayName": "like poles facing (repel) — force withheld (assessment)",
+            "pedagogicalState": "ASSESSMENT",
+            "existingCanonicalVariantId": "visual-contract.magnetic-pole-interaction@1::mode=assessment,pole_pairing=like_poles_facing::assessment"
+          }
+        ],
+        "historical66Mapped": true,
+        "sharedBaseClassification": "SEPARATE_ARTWORK_REQUIRED",
+        "sharedBaseRationale": "CC-11.7B: split from the original unit202.magnet.poles (4 states on 1 asset whose own exactDeliverable already literally asked for 'Two premium illustrations' in one prompt). Attracting vs repelling poles are conventionally composed with genuinely different magnet spacing/field-line behaviour, not merely a different arrow direction on identical geometry.",
+        "splitFrom": "unit202.magnet.poles",
+        "splitSiblings": [
+          "unit202.magnet.poles.unlike"
+        ],
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/magnet-poles-like-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false,
+        "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"140\" viewBox=\"0 0 260 140\" role=\"img\" aria-label=\"Two bar magnets facing each other: the north pole of the left magnet faces the north pole of the right magnet. Because both facing poles are north (like poles), the magnets repel each other.\"><title>Two bar magnets facing each other: the north pole of the left magnet faces the north pole of the right magnet. Because both facing poles are north (like poles), the magnets repel each other.</title><g><text x=\"40\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><text x=\"80\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"20\" y=\"45\" width=\"80\" height=\"50\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"180\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><text x=\"220\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><rect x=\"160\" y=\"45\" width=\"80\" height=\"50\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"110\" y1=\"70\" x2=\"88\" y2=\"70\" stroke=\"#4cd07a\" stroke-width=\"2.5\" /><path d=\"M88 70 94.92820323027551 66 94.92820323027551 74z\" fill=\"#4cd07a\" /><line x1=\"150\" y1=\"70\" x2=\"172\" y2=\"70\" stroke=\"#4cd07a\" stroke-width=\"2.5\" /><path d=\"M172 70 165.0717967697245 74 165.0717967697245 66z\" fill=\"#4cd07a\" /><text x=\"130\" y=\"40\" fill=\"#4cd07a\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Repel</tspan></text><text x=\"130\" y=\"128\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>like poles facing</tspan></text></g></svg>"
+      },
+      {
+        "sequence": 50,
+        "assetId": "unit202.magnet.poles.unlike",
+        "familyId": "unit202.family.magnetism",
+        "familyDisplayName": "Magnetism — field and pole interaction",
+        "displayName": "Magnetic pole attraction — unlike poles facing (attract)",
+        "loOrLesson": "LO5 — lesson.magnetism.fundamentals",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "COMPARISON",
+        "instructionalPurpose": "Show unlike poles facing (attract) from the pole labels on two bar magnets.",
+        "immutableFacts": [
+          "unlike poles attract",
+          "magnets must be composed with a spacing appropriate to attraction (close together, merging field lines) -- this specific spacing is the defining physical fact of this asset, never mixed with the sibling asset",
+          "field behaviour between the two magnets must remain physically meaningful"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.magnet.poles.unlike.state.teaching",
+            "displayName": "unlike poles facing (attract) — force revealed (teaching)",
+            "pedagogicalState": "TEACHING",
+            "existingCanonicalVariantId": "visual-contract.magnetic-pole-interaction@1::mode=teaching,pole_pairing=unlike_poles_facing,show_pole_force=true::teaching"
+          },
+          {
+            "stateId": "unit202.magnet.poles.unlike.state.assessment",
+            "displayName": "unlike poles facing (attract) — force withheld (assessment)",
+            "pedagogicalState": "ASSESSMENT",
+            "existingCanonicalVariantId": "visual-contract.magnetic-pole-interaction@1::mode=assessment,pole_pairing=unlike_poles_facing::assessment"
+          }
+        ],
+        "historical66Mapped": true,
+        "sharedBaseClassification": "SEPARATE_ARTWORK_REQUIRED",
+        "sharedBaseRationale": "CC-11.7B: split from the original unit202.magnet.poles (4 states on 1 asset whose own exactDeliverable already literally asked for 'Two premium illustrations' in one prompt). Attracting vs repelling poles are conventionally composed with genuinely different magnet spacing/field-line behaviour, not merely a different arrow direction on identical geometry.",
+        "splitFrom": "unit202.magnet.poles",
+        "splitSiblings": [
+          "unit202.magnet.poles.like"
+        ],
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/magnet-poles-unlike-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false,
+        "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"140\" viewBox=\"0 0 260 140\" role=\"img\" aria-label=\"Two bar magnets facing each other: the north pole of the left magnet faces the south pole of the right magnet. Because the facing poles are north and south (unlike poles), the magnets attract each other.\"><title>Two bar magnets facing each other: the north pole of the left magnet faces the south pole of the right magnet. Because the facing poles are north and south (unlike poles), the magnets attract each other.</title><g><text x=\"40\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><text x=\"80\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"20\" y=\"45\" width=\"80\" height=\"50\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><text x=\"180\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>S</tspan></text><text x=\"220\" y=\"76\" fill=\"#f2f4f8\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\"><tspan>N</tspan></text><rect x=\"160\" y=\"45\" width=\"80\" height=\"50\" rx=\"3\" fill=\"none\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"88\" y1=\"70\" x2=\"110\" y2=\"70\" stroke=\"#4cd07a\" stroke-width=\"2.5\" /><path d=\"M110 70 103.07179676972449 74 103.07179676972449 66z\" fill=\"#4cd07a\" /><line x1=\"172\" y1=\"70\" x2=\"150\" y2=\"70\" stroke=\"#4cd07a\" stroke-width=\"2.5\" /><path d=\"M150 70 156.9282032302755 66 156.9282032302755 74z\" fill=\"#4cd07a\" /><text x=\"130\" y=\"40\" fill=\"#4cd07a\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>Attract</tspan></text><text x=\"130\" y=\"128\" fill=\"#9aa3b2\" font-size=\"11\" text-anchor=\"middle\"><tspan>unlike poles facing</tspan></text></g></svg>"
+      },
+      {
+        "sequence": 19,
+        "assetId": "unit202.resistivity.length-comparison",
+        "familyId": "unit202.family.resistivity",
+        "familyDisplayName": "Resistance vs conductor dimensions",
+        "displayName": "Resistance vs conductor length",
+        "loOrLesson": "LO4 — lesson.electrical.resistivity",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "COMPARISON",
+        "instructionalPurpose": "Show two conductor rods differing only in length so a learner predicts the qualitative effect on resistance.",
+        "immutableFacts": [
+          "increased length -> greater resistance (cross-sectional area unchanged)"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.resistivity.length-comparison.state.teaching",
+            "displayName": "Resistance vs conductor length",
+            "pedagogicalState": "MULTI_STATE",
+            "existingCanonicalVariantId": "visual-contract.resistivity-length-area-dimensions@1::comparison=length,mode=both::both"
+          }
+        ],
+        "historical66Mapped": true,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/resistivity-length-comparison-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false,
+        "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"200\" viewBox=\"0 0 260 200\" role=\"img\" aria-label=\"Comparing conductor length, with cross-sectional area and material held the same: the shorter rod has less resistance, and the longer rod has more resistance.\"><title>Comparing conductor length, with cross-sectional area and material held the same: the shorter rod has less resistance, and the longer rod has more resistance.</title><g><rect x=\"46\" y=\"39\" width=\"58\" height=\"22\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"104\" cy=\"50\" rx=\"6\" ry=\"11\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"46\" cy=\"50\" rx=\"6\" ry=\"11\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"40\" y1=\"75\" x2=\"110\" y2=\"75\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"40\" y1=\"70\" x2=\"40\" y2=\"80\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"110\" y1=\"70\" x2=\"110\" y2=\"80\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"75\" y=\"67\" fill=\"#9aa3b2\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>L</tspan></text><text x=\"75\" y=\"29\" fill=\"#f2f4f8\" font-size=\"11\" text-anchor=\"middle\"><tspan>shorter -&gt; less resistance</tspan></text><rect x=\"46\" y=\"119\" width=\"158\" height=\"22\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"204\" cy=\"130\" rx=\"6\" ry=\"11\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"46\" cy=\"130\" rx=\"6\" ry=\"11\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"40\" y1=\"155\" x2=\"210\" y2=\"155\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"40\" y1=\"150\" x2=\"40\" y2=\"160\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"210\" y1=\"150\" x2=\"210\" y2=\"160\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"125\" y=\"147\" fill=\"#9aa3b2\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>L</tspan></text><text x=\"125\" y=\"109\" fill=\"#f2f4f8\" font-size=\"11\" text-anchor=\"middle\"><tspan>longer -&gt; more resistance</tspan></text></g></svg>"
+      },
+      {
+        "sequence": 20,
+        "assetId": "unit202.resistivity.area-comparison",
+        "familyId": "unit202.family.resistivity",
+        "familyDisplayName": "Resistance vs conductor dimensions",
+        "displayName": "Resistance vs conductor cross-sectional area",
+        "loOrLesson": "LO4 — lesson.electrical.resistivity",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "COMPARISON",
+        "instructionalPurpose": "Show two conductor rods differing only in cross-sectional area so a learner predicts the qualitative effect on resistance.",
+        "immutableFacts": [
+          "increased cross-sectional area -> lower resistance (length unchanged)"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.resistivity.area-comparison.state.teaching",
+            "displayName": "Resistance vs conductor cross-sectional area",
+            "pedagogicalState": "MULTI_STATE",
+            "existingCanonicalVariantId": "visual-contract.resistivity-length-area-dimensions@1::comparison=area,mode=both::both"
+          }
+        ],
+        "historical66Mapped": true,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/resistivity-area-comparison-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false,
+        "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"200\" viewBox=\"0 0 260 200\" role=\"img\" aria-label=\"Comparing conductor cross-sectional area, with length and material held the same: the thinner rod has more resistance, and the thicker rod has less resistance.\"><title>Comparing conductor cross-sectional area, with length and material held the same: the thinner rod has more resistance, and the thicker rod has less resistance.</title><g><rect x=\"46\" y=\"44\" width=\"138\" height=\"12\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"184\" cy=\"50\" rx=\"6\" ry=\"6\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"46\" cy=\"50\" rx=\"6\" ry=\"6\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"32\" y1=\"44\" x2=\"32\" y2=\"56\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"22\" y=\"54\" fill=\"#9aa3b2\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>A</tspan></text><text x=\"115\" y=\"34\" fill=\"#f2f4f8\" font-size=\"11\" text-anchor=\"middle\"><tspan>thinner -&gt; more resistance</tspan></text><rect x=\"46\" y=\"113\" width=\"138\" height=\"34\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"184\" cy=\"130\" rx=\"6\" ry=\"17\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><ellipse cx=\"46\" cy=\"130\" rx=\"6\" ry=\"17\" fill=\"#0b0d12\" stroke=\"#f2f4f8\" stroke-width=\"2\" /><line x1=\"32\" y1=\"113\" x2=\"32\" y2=\"147\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><text x=\"22\" y=\"134\" fill=\"#9aa3b2\" font-size=\"12\" font-weight=\"700\" text-anchor=\"middle\"><tspan>A</tspan></text><text x=\"115\" y=\"103\" fill=\"#f2f4f8\" font-size=\"11\" text-anchor=\"middle\"><tspan>thicker -&gt; less resistance</tspan></text></g></svg>"
+      },
+      {
+        "sequence": 22,
+        "assetId": "unit202.emf.motional",
+        "familyId": "unit202.family.emf-motional",
+        "familyDisplayName": "Motional EMF geometry",
+        "displayName": "Motional EMF geometry",
+        "loOrLesson": "LO5 — lesson.magnetism.effects-of-current",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHENOMENON",
+        "instructionalPurpose": "Show that conductor length, its velocity and the magnetic field are mutually perpendicular -- the geometric fact behind e = Blv.",
+        "immutableFacts": [
+          "B, l and v mutually perpendicular for the governed e = Blv case",
+          "rod across rails",
+          "velocity along the rails",
+          "field perpendicular to the rail plane"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.emf.motional.state.teaching",
+            "displayName": "Motional EMF — B, l, v mutually perpendicular",
+            "pedagogicalState": "MULTI_STATE",
+            "existingCanonicalVariantId": "visual-contract.motional-emf-geometry@1::mode=both::both"
+          }
+        ],
+        "historical66Mapped": true,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/emf-motional-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false,
+        "existingPreviewSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"280\" height=\"230\" viewBox=\"0 0 280 230\" role=\"img\" aria-label=\"A conductor of length l lies across two parallel rails, at right angles to them, and can slide along the rails with velocity v. The magnetic field B points straight down through the plane containing the rails, at right angles to that plane. The conductor's length, its velocity and the magnetic field are mutually perpendicular to one another, which is why the simple formula e = B x l x v applies.\"><title>A conductor of length l lies across two parallel rails, at right angles to them, and can slide along the rails with velocity v. The magnetic field B points straight down through the plane containing the rails, at right angles to that plane. The conductor's length, its velocity and the magnetic field are mutually perpendicular to one another, which is why the simple formula e = B x l x v applies.</title><g><line x1=\"105\" y1=\"55\" x2=\"40\" y2=\"195\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"175\" y1=\"55\" x2=\"240\" y2=\"195\" stroke=\"#9aa3b2\" stroke-width=\"1.5\" /><line x1=\"105\" y1=\"55\" x2=\"175\" y2=\"55\" stroke=\"#9aa3b2\" stroke-width=\"1\" /><line x1=\"40\" y1=\"195\" x2=\"240\" y2=\"195\" stroke=\"#9aa3b2\" stroke-width=\"1\" /><line x1=\"105\" y1=\"14\" x2=\"105\" y2=\"51\" stroke=\"#4cd07a\" stroke-width=\"2\" /><path d=\"M105,51 L101.4,45 L108.6,45 Z\" fill=\"#4cd07a\" /><line x1=\"140\" y1=\"14\" x2=\"140\" y2=\"51\" stroke=\"#4cd07a\" stroke-width=\"2\" /><path d=\"M140,51 L136.4,45 L143.6,45 Z\" fill=\"#4cd07a\" /><line x1=\"175\" y1=\"14\" x2=\"175\" y2=\"51\" stroke=\"#4cd07a\" stroke-width=\"2\" /><path d=\"M175,51 L171.4,45 L178.6,45 Z\" fill=\"#4cd07a\" /><text x=\"140\" y=\"10\" fill=\"#4cd07a\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>B</tspan></text><line x1=\"140\" y1=\"87\" x2=\"140\" y2=\"120\" stroke=\"#4c8dff\" stroke-width=\"2.5\" /><path d=\"M140,120 L135.2,112 L144.8,112 Z\" fill=\"#4c8dff\" /><text x=\"156\" y=\"107\" fill=\"#4c8dff\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>v</tspan></text><line x1=\"69.25\" y1=\"132\" x2=\"210.75\" y2=\"132\" stroke=\"#f2f4f8\" stroke-width=\"3.5\" stroke-linecap=\"round\" /><text x=\"140\" y=\"150\" fill=\"#f2f4f8\" font-size=\"13\" font-weight=\"700\" text-anchor=\"middle\"><tspan>l</tspan></text><text x=\"140\" y=\"222\" fill=\"#9aa3b2\" font-size=\"10\" text-anchor=\"middle\"><tspan>B, l and v are mutually perpendicular</tspan></text></g></svg>"
+      },
+      {
+        "sequence": 24,
+        "assetId": "unit202.components.physical.resistor",
+        "familyId": "unit202.family.electronic-components",
+        "familyDisplayName": "Electronic components — recognition",
+        "displayName": "Physical electronic component — resistor",
+        "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "PREMIUM_CONCEPTUAL",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHYSICAL_RECOGNITION",
+        "instructionalPurpose": "A physical-appearance companion image for the resistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+        "immutableFacts": [
+          "package form must be a real, representative physical form for a resistor"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.components.physical.resistor.state.teaching",
+            "displayName": "Physical appearance — resistor",
+            "pedagogicalState": "TEACHING"
+          }
+        ],
+        "historical66Mapped": false,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-resistor-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false
+      },
+      {
+        "sequence": 25,
+        "assetId": "unit202.components.physical.capacitor",
+        "familyId": "unit202.family.electronic-components",
+        "familyDisplayName": "Electronic components — recognition",
+        "displayName": "Physical electronic component — capacitor",
+        "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "PREMIUM_CONCEPTUAL",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHYSICAL_RECOGNITION",
+        "instructionalPurpose": "A physical-appearance companion image for the capacitor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+        "immutableFacts": [
+          "package form must be a real, representative physical form for a capacitor"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.components.physical.capacitor.state.teaching",
+            "displayName": "Physical appearance — capacitor",
+            "pedagogicalState": "TEACHING"
+          }
+        ],
+        "historical66Mapped": false,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-capacitor-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false
+      },
+      {
+        "sequence": 26,
+        "assetId": "unit202.components.physical.diode",
+        "familyId": "unit202.family.electronic-components",
+        "familyDisplayName": "Electronic components — recognition",
+        "displayName": "Physical electronic component — diode",
+        "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "PREMIUM_CONCEPTUAL",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHYSICAL_RECOGNITION",
+        "instructionalPurpose": "A physical-appearance companion image for the diode, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+        "immutableFacts": [
+          "package form must be a real, representative physical form for a diode"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.components.physical.diode.state.teaching",
+            "displayName": "Physical appearance — diode",
+            "pedagogicalState": "TEACHING"
+          }
+        ],
+        "historical66Mapped": false,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-diode-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false
+      },
+      {
+        "sequence": 27,
+        "assetId": "unit202.components.physical.led",
+        "familyId": "unit202.family.electronic-components",
+        "familyDisplayName": "Electronic components — recognition",
+        "displayName": "Physical electronic component — led",
+        "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "PREMIUM_CONCEPTUAL",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHYSICAL_RECOGNITION",
+        "instructionalPurpose": "A physical-appearance companion image for the led, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+        "immutableFacts": [
+          "package form must be a real, representative physical form for a led"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.components.physical.led.state.teaching",
+            "displayName": "Physical appearance — led",
+            "pedagogicalState": "TEACHING"
+          }
+        ],
+        "historical66Mapped": false,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-led-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false
+      },
+      {
+        "sequence": 28,
+        "assetId": "unit202.components.physical.thermistor",
+        "familyId": "unit202.family.electronic-components",
+        "familyDisplayName": "Electronic components — recognition",
+        "displayName": "Physical electronic component — thermistor",
+        "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "PREMIUM_CONCEPTUAL",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHYSICAL_RECOGNITION",
+        "instructionalPurpose": "A physical-appearance companion image for the thermistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+        "immutableFacts": [
+          "package form must be a real, representative physical form for a thermistor"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.components.physical.thermistor.state.teaching",
+            "displayName": "Physical appearance — thermistor",
+            "pedagogicalState": "TEACHING"
+          }
+        ],
+        "historical66Mapped": false,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-thermistor-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false
+      },
+      {
+        "sequence": 29,
+        "assetId": "unit202.components.physical.transistor",
+        "familyId": "unit202.family.electronic-components",
+        "familyDisplayName": "Electronic components — recognition",
+        "displayName": "Physical electronic component — transistor",
+        "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "PREMIUM_CONCEPTUAL",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHYSICAL_RECOGNITION",
+        "instructionalPurpose": "A physical-appearance companion image for the transistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+        "immutableFacts": [
+          "package form must be a real, representative physical form for a transistor"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.components.physical.transistor.state.teaching",
+            "displayName": "Physical appearance — transistor",
+            "pedagogicalState": "TEACHING"
+          }
+        ],
+        "historical66Mapped": false,
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-transistor-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false
+      },
+      {
+        "sequence": 30,
+        "assetId": "unit202.diode.bias-direction.forward",
+        "familyId": "unit202.family.electronic-components",
+        "familyDisplayName": "Electronic components — recognition",
+        "displayName": "Diode forward bias — conducting",
+        "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHENOMENON",
+        "instructionalPurpose": "CC-11.7 audit finding (new, beyond the original 66): show current flowing easily in forward bias, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing `electronics.component_symbol_card` blueprint cannot represent since it renders only the static symbol, never current flow.",
+        "immutableFacts": [
+          "diode conducts easily in forward bias (anode more positive than cathode)",
+          "must remain visually distinct from the plain IEC diode symbol asset",
+          "must depict ONLY the forward-bias state -- the sibling ProductionAsset covers the other"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.diode.bias-direction.forward.state.teaching",
+            "displayName": "Forward bias — conducting",
+            "pedagogicalState": "TEACHING"
+          }
+        ],
+        "historical66Mapped": false,
+        "sharedBaseClassification": "SEPARATE_ARTWORK_REQUIRED",
+        "sharedBaseRationale": "CC-11.7B: split from the original unit202.diode.bias-direction (2 states on 1 asset whose own exactDeliverable already literally asked for 'Two premium illustrations' in one prompt). Conducting vs blocked current flow is a genuine presence/absence scene difference (visible current-flow indication vs a visibly blocked path), not a label swap on identical geometry.",
+        "splitFrom": "unit202.diode.bias-direction",
+        "splitSiblings": [
+          "unit202.diode.bias-direction.reverse"
+        ],
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/diode-bias-direction-forward-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false
+      },
+      {
+        "sequence": 53,
+        "assetId": "unit202.diode.bias-direction.reverse",
+        "familyId": "unit202.family.electronic-components",
+        "familyDisplayName": "Electronic components — recognition",
+        "displayName": "Diode reverse bias — blocked",
+        "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive",
+        "needClassification": "REQUIRED",
+        "referenceBlocked": true,
+        "productionClass": "HYBRID",
+        "artPromptRequired": true,
+        "referenceReadiness": "NOT_READY",
+        "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
+        "primaryReferenceUrl": "",
+        "referenceLicence": "unknown -- not yet sourced",
+        "role": "PHENOMENON",
+        "instructionalPurpose": "CC-11.7 audit finding (new, beyond the original 66): show current blocked in reverse bias, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing `electronics.component_symbol_card` blueprint cannot represent since it renders only the static symbol, never current flow.",
+        "immutableFacts": [
+          "diode blocks current in reverse bias (cathode more positive than anode)",
+          "must remain visually distinct from the plain IEC diode symbol asset",
+          "must depict ONLY the reverse-bias state -- the sibling ProductionAsset covers the other"
+        ],
+        "canonicalStates": [
+          {
+            "stateId": "unit202.diode.bias-direction.reverse.state.teaching",
+            "displayName": "Reverse bias — blocked",
+            "pedagogicalState": "TEACHING"
+          }
+        ],
+        "historical66Mapped": false,
+        "sharedBaseClassification": "SEPARATE_ARTWORK_REQUIRED",
+        "sharedBaseRationale": "CC-11.7B: split from the original unit202.diode.bias-direction (2 states on 1 asset whose own exactDeliverable already literally asked for 'Two premium illustrations' in one prompt). Conducting vs blocked current flow is a genuine presence/absence scene difference (visible current-flow indication vs a visibly blocked path), not a label swap on identical geometry.",
+        "splitFrom": "unit202.diode.bias-direction",
+        "splitSiblings": [
+          "unit202.diode.bias-direction.forward"
+        ],
+        "annotationPolicy": "TEACHING_EXPLANATORY",
+        "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/hybrid/diode-bias-direction-reverse-base-v{N}.(png|webp|jpg)",
+        "studioPromptAvailable": false
+      },
       {
         "sequence": 39,
         "assetId": "unit202.heating-effect",
@@ -3454,7 +4061,8 @@
       "technicalAuthority": "Right-hand grip rule: thumb = conventional current, curled fingers = magnetic-field circulation direction. Governed by the deterministic magnetic.field_conductor_direction blueprint for assessment; the premium phenomenon/mnemonic assets are teaching-only illustrations of the same governed geometry.",
       "generatedArtBoundary": "The conductor's concentric field-line pattern is direction-neutral in the base artwork -- current-direction and field-circulation indicators are added as a deterministic overlay, never baked in, so one base image safely serves both current directions (CC-11.7B correction).",
       "statesRequiringSeparateArtwork": [],
-      "deterministicStates": []
+      "deterministicStates": [],
+      "mirroringPolicy": "unit202.right-hand-grip.teaching: DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored right hand can read as a left hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image to represent a reversed current direction."
     },
     {
       "familyId": "unit202.family.fleming-left-hand-motor",
@@ -3462,7 +4070,8 @@
       "technicalAuthority": "Fleming's left-hand rule (motor effect): thumb = force/motion, first finger = field, second finger = current, mutually perpendicular. Governed by the deterministic motor.force_field_current blueprint for assessment.",
       "generatedArtBoundary": "Pole orientation (horizontal vs vertical) is a genuine apparatus-layout change requiring separate artwork (CC-11.7B split into .horizontal-poles / .vertical-poles); current direction within one fixed orientation remains a deterministic overlay concern.",
       "statesRequiringSeparateArtwork": [],
-      "deterministicStates": []
+      "deterministicStates": [],
+      "mirroringPolicy": "unit202.fleming-left-hand.teaching: DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored left hand can read as a right hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image for any other pole/current combination."
     },
     {
       "familyId": "unit202.family.fleming-right-hand-generator",
@@ -3473,7 +4082,8 @@
         "unit202.generator.rotating-loop.horizontal / unit202.generator.rotating-loop.horizontal.state.near-zero-emf",
         "unit202.generator.rotating-loop.vertical / unit202.generator.rotating-loop.vertical.state.near-peak-emf"
       ],
-      "deterministicStates": []
+      "deterministicStates": [],
+      "mirroringPolicy": "unit202.fleming-right-hand.teaching: DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored right hand can read as a left hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image for any other rotation phase."
     }
   ],
   "componentRecognition": [
@@ -3549,13 +4159,13 @@
       "displayName": "Physical electronic component — resistor",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the resistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the resistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -3571,7 +4181,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-resistor-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 25,
@@ -3581,13 +4191,13 @@
       "displayName": "Physical electronic component — capacitor",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the capacitor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the capacitor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -3603,7 +4213,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-capacitor-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 26,
@@ -3613,13 +4223,13 @@
       "displayName": "Physical electronic component — diode",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the diode (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the diode, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -3635,7 +4245,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-diode-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 27,
@@ -3645,13 +4255,13 @@
       "displayName": "Physical electronic component — led",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the led (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the led, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -3667,7 +4277,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-led-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 28,
@@ -3677,13 +4287,13 @@
       "displayName": "Physical electronic component — thermistor",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the thermistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the thermistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -3699,7 +4309,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-thermistor-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 29,
@@ -3709,13 +4319,13 @@
       "displayName": "Physical electronic component — transistor",
       "loOrLesson": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
       "needClassification": "REQUIRED",
-      "referenceBlocked": false,
+      "referenceBlocked": true,
       "productionClass": "PREMIUM_CONCEPTUAL",
       "artPromptRequired": true,
-      "referenceReadiness": "READY",
-      "primaryReferenceName": "Physical reference material for the transistor (manufacturer/datasheet photography or equivalent) -- to be selected when this asset is commissioned",
+      "referenceReadiness": "NOT_READY",
+      "primaryReferenceName": "PRIMARY REFERENCE STILL TO BE APPROVED",
       "primaryReferenceUrl": "",
-      "referenceLicence": "to be recorded when selected",
+      "referenceLicence": "unknown -- not yet sourced",
       "role": "PHYSICAL_RECOGNITION",
       "instructionalPurpose": "A physical-appearance companion image for the transistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
       "immutableFacts": [
@@ -3731,7 +4341,7 @@
       "historical66Mapped": false,
       "annotationPolicy": "TEACHING_EXPLANATORY",
       "expectedOutputFile": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-transistor-base-v{N}.(png|webp|jpg)",
-      "studioPromptAvailable": true
+      "studioPromptAvailable": false
     },
     {
       "sequence": 33,
@@ -3911,13 +4521,13 @@
       "assetId": "unit202.motor.effect.horizontal-poles",
       "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged horizontally)",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.motor.effect.vertical-poles",
       "displayName": "Motor effect — conductor in magnetic field (N/S poles arranged vertically)",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.fleming-left-hand.teaching",
@@ -3983,13 +4593,13 @@
       "assetId": "unit202.magnet.poles.like",
       "displayName": "Magnetic pole repulsion — like poles facing (repel)",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.magnet.poles.unlike",
       "displayName": "Magnetic pole attraction — unlike poles facing (attract)",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.magnet.permanent-vs-electromagnet",
@@ -4031,67 +4641,67 @@
       "assetId": "unit202.resistivity.length-comparison",
       "displayName": "Resistance vs conductor length",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.resistivity.area-comparison",
       "displayName": "Resistance vs conductor cross-sectional area",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.emf.motional",
       "displayName": "Motional EMF geometry",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.components.physical.resistor",
       "displayName": "Physical electronic component — resistor",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.components.physical.capacitor",
       "displayName": "Physical electronic component — capacitor",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.components.physical.diode",
       "displayName": "Physical electronic component — diode",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.components.physical.led",
       "displayName": "Physical electronic component — led",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.components.physical.thermistor",
       "displayName": "Physical electronic component — thermistor",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.components.physical.transistor",
       "displayName": "Physical electronic component — transistor",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.diode.bias-direction.forward",
       "displayName": "Diode forward bias — conducting",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.diode.bias-direction.reverse",
       "displayName": "Diode reverse bias — blocked",
       "needClassification": "REQUIRED",
-      "status": "READY TO GENERATE"
+      "status": "BLOCKED"
     },
     {
       "assetId": "unit202.components.physical.zener-diode",
@@ -4170,14 +4780,14 @@
     "productionBaseAssets": 53,
     "canonicalLearnerVisibleStates": 98,
     "requiredTotal": 42,
-    "requiredReady": 39,
-    "requiredBlocked": 3,
+    "requiredReady": 24,
+    "requiredBlocked": 18,
     "usefulTotal": 10,
     "usefulReady": 2,
     "usefulBlocked": 8,
     "requiredArtJobsTotal": 34,
-    "requiredArtJobsReady": 31,
-    "requiredArtJobsBlocked": 3,
+    "requiredArtJobsReady": 16,
+    "requiredArtJobsBlocked": 18,
     "requiredArtJobsApproved": 0,
     "usefulArtJobsTotal": 8,
     "usefulArtJobsReady": 0,
@@ -4192,8 +4802,8 @@
     "requiredPremiumHybridArtJobs": 34,
     "usefulPremiumHybridArtJobs": 8,
     "premiumHybridArtJobs": 42,
-    "blockedReference": 11,
-    "blockedReferenceRequired": 3,
+    "blockedReference": 26,
+    "blockedReferenceRequired": 18,
     "blockedReferenceUseful": 8,
     "approved": 0,
     "outstanding": 42,

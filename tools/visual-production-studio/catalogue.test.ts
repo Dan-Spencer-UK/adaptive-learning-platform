@@ -214,9 +214,10 @@ describe("prompt accounting -- a VisualFamily is an organisational grouping only
     expect(family.assets.length).toBe(3);
   });
 
-  it("an ordinary style-reference deterministic asset (not explicitly promptable:false) still counts as promptable", () => {
+  it("CC-11.7C §3: a DETERMINISTIC_TECHNICAL asset never counts as promptable, even one that never explicitly set promptable:false -- its authoritative output is always vector geometry, never a ChatGPT job", () => {
     const asset = findAsset("unit202.waveform.sine")!;
-    expect(isPromptable(asset)).toBe(true);
+    expect(asset.promptable).not.toBe(false); // no explicit override -- the productionClass check alone must catch it
+    expect(isPromptable(asset)).toBe(false);
   });
 
   it("every promptable asset has a globally unique filenameBase -- one distinct image job, one independent save destination", () => {
@@ -264,5 +265,68 @@ describe("CC-11.7A: ONE ART PROMPT PER DISTINCT IMAGE JOB -- physical electronic
     const classes = new Set(family.assets.map((asset) => visualNeedClassificationFor(asset)));
     expect(classes.has("REQUIRED")).toBe(true);
     expect(classes.has("USEFUL") || family.assets.some((a) => a.needOverride === "USEFUL")).toBe(true);
+  });
+});
+
+describe("CC-11.7C §1: every READY premium/hybrid art job has a genuinely locked reference", () => {
+  const PLACEHOLDER_RE = /to be selected|when commissioned|when sourced|reference pending|reference to be added|to be recorded when selected|to be assessed/i;
+
+  it("contains no placeholder reference wording, and every one has a real sourceUrl", () => {
+    const readyArtJobs = allAssets().filter((a) => (a.productionClass === "PREMIUM_CONCEPTUAL" || a.productionClass === "HYBRID") && a.referenceReadiness === "READY");
+    expect(readyArtJobs.length).toBeGreaterThan(0);
+    for (const asset of readyArtJobs) {
+      const text = `${asset.primaryReference.sourceName} ${asset.primaryReference.qualityGrade}`;
+      expect(PLACEHOLDER_RE.test(text), `${asset.assetId} has placeholder reference wording: ${text}`).toBe(false);
+      expect(asset.primaryReference.sourceUrl, `${asset.assetId} has no sourceUrl`).not.toBe("");
+    }
+  });
+
+  it("regression: the 15 assets found with placeholder references are now BLOCKED_REFERENCE, not READY", () => {
+    const blockedIds = [
+      "unit202.motor.effect.horizontal-poles",
+      "unit202.motor.effect.vertical-poles",
+      "unit202.magnet.poles.like",
+      "unit202.magnet.poles.unlike",
+      "unit202.resistivity.length-comparison",
+      "unit202.resistivity.area-comparison",
+      "unit202.emf.motional",
+      "unit202.components.physical.resistor",
+      "unit202.components.physical.capacitor",
+      "unit202.components.physical.diode",
+      "unit202.components.physical.led",
+      "unit202.components.physical.thermistor",
+      "unit202.components.physical.transistor",
+      "unit202.diode.bias-direction.forward",
+      "unit202.diode.bias-direction.reverse",
+    ];
+    expect(blockedIds.length).toBe(15);
+    for (const id of blockedIds) {
+      const asset = findAsset(id)!;
+      expect(asset, `${id} not found`).toBeDefined();
+      expect(asset.referenceReadiness, `${id} should be NOT_READY`).toBe("NOT_READY");
+      // pedagogical classification unchanged -- still REQUIRED, never demoted
+      expect(visualNeedClassificationFor(asset)).toBe("REQUIRED");
+    }
+  });
+});
+
+describe("CC-11.7C §2: hand-rule governance prohibits mirroring/flipping", () => {
+  it("every MNEMONIC hand-rule asset explicitly prohibits mirroring/flipping in its prompt", () => {
+    const handRuleIds = ["unit202.right-hand-grip.teaching", "unit202.fleming-left-hand.teaching", "unit202.fleming-right-hand.teaching"];
+    for (const id of handRuleIds) {
+      const asset = findAsset(id)!;
+      expect(asset.role).toBe("MNEMONIC");
+      const mirrorRule = asset.prohibitedChanges.find((p) => p.includes("DO NOT MIRROR"));
+      expect(mirrorRule, `${id} has no explicit no-mirroring rule`).toBeDefined();
+    }
+  });
+
+  it("no hand-rule asset's own governance text claims mirroring/flipping is a legitimate way to produce a reversed-direction companion image", () => {
+    const handRuleIds = ["unit202.right-hand-grip.teaching", "unit202.fleming-left-hand.teaching", "unit202.fleming-right-hand.teaching"];
+    for (const id of handRuleIds) {
+      const asset = findAsset(id)!;
+      const allText = [asset.sharedBaseAudit?.rationale ?? "", ...asset.canonicalStates.map((s) => s.notes ?? "")].join(" ");
+      expect(allText, `${id} still claims mirroring is legitimate`).not.toMatch(/legitimate.*(mirror|flip)/i);
+    }
   });
 });
