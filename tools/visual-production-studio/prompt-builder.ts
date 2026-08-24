@@ -63,16 +63,17 @@ function annotationInstruction(asset: VisualAsset): string {
 }
 
 /**
- * Product Owner correction (default premium surface): the preferred
- * default background for premium ALP teaching illustrations is a muted
- * dark slate/blue-grey, never pure black -- softer, cooler, and more
- * compatible with a future dark-theme app surface than a harsh black
- * void. Not an absolute rule: an asset with a genuine, justified reason
- * to depart from it sets `backgroundStyleOverride`, which replaces this
- * text instead of it being appended.
+ * CC-11.9: Product Owner reference-handover correction (2026-08-24) --
+ * supersedes the prior dark-slate default. The governed default is now
+ * white/near-white (see docs/design/ALP-INSTRUCTIONAL-VISUAL-STYLE-GUIDE.md
+ * §2). Not an absolute rule: an asset with a genuine, justified reason to
+ * depart from it (e.g. an oscilloscope's own dark screen area) sets
+ * `backgroundStyleOverride`, which replaces this text instead of it being
+ * appended -- the surrounding illustration background must still be
+ * white/near-white even then.
  */
 const DEFAULT_BACKGROUND_INSTRUCTION =
-  "Use a muted medium-dark slate / blue-grey background with a subtle smooth gradient. It should be softer and less harsh than pure black while retaining excellent contrast and a premium technical-learning aesthetic. Avoid strong texture, scenery, neon/cyberpunk treatment or a black void.";
+  "Use a clean near-white background (#FBFBFA) with an optional extremely subtle gradient toward a very light cool-grey (#F0F1F3). Premium, adult, technically credible, contemporary, calm, uncluttered, mobile-first. Subtle neutral-grey shadow/depth only (soft, low-opacity, never colour-tinted). Avoid black voids, dark slate, strong texture, decorative scenery, neon/cyberpunk treatment or advertising-dramatic lighting.";
 
 /**
  * Applies only to asset with real generated-artwork responsibility

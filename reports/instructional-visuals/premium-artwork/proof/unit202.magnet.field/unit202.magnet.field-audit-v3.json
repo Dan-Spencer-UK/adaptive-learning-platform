@@ -1,0 +1,27 @@
+{
+  "assetId": "unit202.magnet.field",
+  "attempt": 2,
+  "productionRun": "CC-11.9",
+  "verdict": "HUMAN_REVIEW_REQUIRED",
+  "factChecks": [
+    { "fact": "meaningful field-line geometry", "result": "PASS", "note": "Field-line loops are present again, correctly nested above and below the bar, matching the reference's tiered arc structure." },
+    {
+      "fact": "external field direction runs N to S",
+      "result": "UNCERTAIN",
+      "note": "The nested ARC loops are directionally correct: every arc's peak arrowhead points toward S (left, matching this image's own S-on-left/N-on-right orientation, same as the reference), consistent with field exiting N, arcing over, and entering S. HOWEVER: direct side-by-side comparison with the cached reference (unit202.magnet.field.raster.png) shows the reference deliberately draws its two straight horizontal axis rays (extending left from S and right from N to the frame edge) WITH NO ARROWHEADS AT ALL. This generation invented arrowheads on both horizontal rays that the reference does not have. The right (N-side) ray's invented arrow points outward/rightward, which happens to be directionally consistent with exiting N -- but the left (S-side) ray's invented arrow also points outward/leftward (away from the magnet), which is backward for a field that should be entering S from outside. This is exactly the defect class the corrected asset contract explicitly prohibits (\"do not invent arrowheads on cropped/incomplete field lines\" / \"no arrowheads added to partial lines unless their correct direction is unambiguous and explicitly permitted\")."
+    },
+    { "fact": "field-line density used meaningfully where density is taught", "result": "PASS", "note": "Not applicable to this state (density_comparison=false)." }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "do not draw field lines that reverse direction or cross incorrectly",
+      "result": "FAIL",
+      "note": "The invented arrowhead on the S-side horizontal ray points away from the magnet (outward), the reverse of the direction a field line entering S should point. This is a genuine, confirmable directional error, not a matter of interpretation -- verified by direct comparison against the reference's own (unarrowed) horizontal rays."
+    }
+  ],
+  "styleComplianceNotes": "Strong: white/near-white background correctly applied, N/S labels correctly present on the correct halves, material rendering remains premium/industrial. This attempt resolved both defects from the previous attempt (missing labels, missing field lines).",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None beyond the S-side arrow direction error noted above.",
+  "overallFindings": "Retry budget exhausted (1 initial + 1 correction, both used). The image is substantially improved and close to correct -- N/S labels present and correctly placed, field-line topology and arc-loop directions correct, white background correct -- but a specific, real, confirmable defect remains: an invented arrowhead on the S-side horizontal ray points the wrong way (outward instead of into S), a defect the reference image itself avoids by simply not arrowing that line at all. Per the task brief's bounded-retry rule, this is not run a third time. Marked HUMAN_REVIEW_REQUIRED rather than PASS or FAIL: the core geometry is largely correct and the residual defect is narrow and specific, but 'looks close' is not the same as verified-correct, and an incorrect directional arrow on an assessment-adjacent asset is not something to auto-promote. A human (Product Owner/ChatGPT) should judge whether this is acceptable as-is, needs the arrow manually removed/corrected, or needs a further prompt-engineering pass explicitly forbidding any arrowhead on the two straight axis rays.",
+  "auditedAt": "2026-08-25T00:15:00.000Z"
+}

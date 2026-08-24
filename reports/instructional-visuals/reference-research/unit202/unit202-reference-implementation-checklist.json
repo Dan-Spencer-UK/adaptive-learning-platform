@@ -1,0 +1,818 @@
+{
+  "version": "1.0",
+  "globalActions": [
+    {
+      "id": "STYLE-WHITE",
+      "action": "Update canonical visual style guide and prompt builders to white/near-white background default."
+    },
+    {
+      "id": "MAGNET-PROOF-REJECT",
+      "action": "Reclassify prior unit202.magnet.field Gemini proof from PASS to rejected/failed and record reasons: missing N/S labels; incorrect arrows on partial field lines."
+    },
+    {
+      "id": "ACTUAL-REFERENCE-BYTES",
+      "action": "Enforce actual image bytes / prepared crop/reference sheet for every Gemini job; URL-only references prohibited."
+    },
+    {
+      "id": "COMPOSITE-CROP",
+      "action": "Enforce deterministic crop/isolation for composite technical references before generation."
+    },
+    {
+      "id": "STATE-SPECIFIC",
+      "action": "Support state-specific illustration generation for direction-sensitive assets where visible technical semantics change."
+    },
+    {
+      "id": "DISTRACTOR-GOVERNANCE",
+      "action": "Allow deliberately wrong assessment images only from a governed misconception contract and approved correct reference geometry."
+    }
+  ],
+  "assetActions": [
+    {
+      "assetId": "unit202.current-conductor.magnetic-field",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Wire fieldlines.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Wire_fieldlines.svg",
+        "licence": "CC BY 3.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Dedicated reference for concentric magnetic field geometry around a straight current-carrying conductor."
+      },
+      "referencePreparation": "Acquire original SVG and a high-quality raster input. Use it as the dedicated phenomenon reference rather than the hand mnemonic.",
+      "contractCorrections": [
+        "Revise the old 'one direction-neutral base for both current directions' assumption. For direction-sensitive teaching/assessment, commission state-specific final imagery so the visible arrows/current marker are correct in the image itself."
+      ]
+    },
+    {
+      "assetId": "unit202.right-hand-grip.teaching",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Right-hand grip rule.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Right-hand_grip_rule.svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Handedness and thumb/finger relationship authority. Never mirror or horizontally flip."
+      },
+      "referencePreparation": "Acquire original SVG; pass it directly to Gemini.",
+      "contractCorrections": [
+        "Keep required teaching labels in the final illustration; do not defer them to a later overlay."
+      ]
+    },
+    {
+      "assetId": "unit202.motor.effect.horizontal-poles",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — VFPt wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg",
+        "licence": "CC BY-SA 4.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Current-carrying conductor between magnets with Lorentz-force relationship."
+      },
+      "referencePreparation": "Create an approved isolated reference sheet from the source: show only the magnet pair and conductor for the requested horizontal pole arrangement. For the vertical sibling, rotate the ENTIRE technical geometry together by 90°—magnets, N/S, current marker and force relationship—rather than rotating individual elements independently.",
+      "contractCorrections": [
+        "Replace the old direction-neutral-base requirement with state-specific final imagery for teaching and assessment where current/force direction is visible."
+      ]
+    },
+    {
+      "assetId": "unit202.motor.effect.vertical-poles",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — VFPt wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg",
+        "licence": "CC BY-SA 4.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Current-carrying conductor between magnets with Lorentz-force relationship."
+      },
+      "referencePreparation": "Create an approved isolated reference sheet from the source: show only the magnet pair and conductor for the requested vertical pole arrangement. For the vertical sibling, rotate the ENTIRE technical geometry together by 90°—magnets, N/S, current marker and force relationship—rather than rotating individual elements independently.",
+      "contractCorrections": [
+        "Replace the old direction-neutral-base requirement with state-specific final imagery for teaching and assessment where current/force direction is visible."
+      ]
+    },
+    {
+      "assetId": "unit202.fleming-left-hand.teaching",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Fleming's Left Hand Rule.png",
+        "url": "https://commons.wikimedia.org/wiki/File:Fleming%27s_Left_Hand_Rule.png",
+        "licence": "CC BY-SA 3.0 / GFDL as recorded on Commons",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Use for semantic hand geometry; low-resolution source, so do not imitate pixels/style."
+      },
+      "referencePreparation": "Acquire the actual image; use as geometry/semantic reference, not as style reference.",
+      "contractCorrections": [
+        "Keep required mnemonic labels in the final artwork."
+      ]
+    },
+    {
+      "assetId": "unit202.generator.rotating-loop.horizontal",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "U.S. DOE Fundamentals Handbook — Electrical Science, Volume 3 — AC Generators",
+        "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+        "licence": "U.S. Government work / public-domain reference",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Primary topology authority: loop/rotor, two slip rings, stationary brushes and AC generation phase positions."
+      },
+      "referencePreparation": "Create a clean approved reference image from the DOE generator figure(s) showing the complete loop/shaft/slip-ring/brush topology plus the 0°/near-zero EMF, loop plane facing poles phase position. Gemini must receive that prepared image, not only the PDF/URL.",
+      "contractCorrections": [
+        "Strengthen immutable facts to spell out the complete slip-ring topology, not merely 'slip-ring concept'. Required N/S/coil/rotation/output teaching semantics must appear correctly in the final image."
+      ]
+    },
+    {
+      "assetId": "unit202.generator.rotating-loop.vertical",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "U.S. DOE Fundamentals Handbook — Electrical Science, Volume 3 — AC Generators",
+        "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+        "licence": "U.S. Government work / public-domain reference",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Primary topology authority: loop/rotor, two slip rings, stationary brushes and AC generation phase positions."
+      },
+      "referencePreparation": "Create a clean approved reference image from the DOE generator figure(s) showing the complete loop/shaft/slip-ring/brush topology plus the 90°/near-peak EMF, loop plane edge-on to poles phase position. Gemini must receive that prepared image, not only the PDF/URL.",
+      "contractCorrections": [
+        "Strengthen immutable facts to spell out the complete slip-ring topology, not merely 'slip-ring concept'. Required N/S/coil/rotation/output teaching semantics must appear correctly in the final image."
+      ]
+    },
+    {
+      "assetId": "unit202.fleming-right-hand.teaching",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Fleming's right hand rule.png",
+        "url": "https://commons.wikimedia.org/wiki/File:Fleming%27s_right_hand_rule.png",
+        "licence": "Public-domain historical work",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Right-hand generator mnemonic geometry. Never mirror or horizontally flip."
+      },
+      "referencePreparation": "Acquire original historical figure; use only as geometry authority.",
+      "contractCorrections": [
+        "Keep required mnemonic labels in final artwork."
+      ]
+    },
+    {
+      "assetId": "unit202.levers.class-1",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Pearson Scott Foresman — Lever (PSF).svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Composite containing all three lever classes; MUST be cropped to one class before Gemini receives it."
+      },
+      "referencePreparation": "Deterministically crop/isolate ONLY the TOP / Class I subfigure. Remove the other two lever classes before Gemini sees the reference.",
+      "contractCorrections": [
+        "Reference status should become APPROVED_WITH_CROP after storing the per-class crop."
+      ]
+    },
+    {
+      "assetId": "unit202.levers.class-2",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Pearson Scott Foresman — Lever (PSF).svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Composite containing all three lever classes; MUST be cropped to one class before Gemini receives it."
+      },
+      "referencePreparation": "Deterministically crop/isolate ONLY the MIDDLE / Class II subfigure. Remove the other two lever classes before Gemini sees the reference.",
+      "contractCorrections": [
+        "Reference status should become APPROVED_WITH_CROP after storing the per-class crop."
+      ]
+    },
+    {
+      "assetId": "unit202.levers.class-3",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Pearson Scott Foresman — Lever (PSF).svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Composite containing all three lever classes; MUST be cropped to one class before Gemini receives it."
+      },
+      "referencePreparation": "Deterministically crop/isolate ONLY the BOTTOM / Class III subfigure. Remove the other two lever classes before Gemini sees the reference.",
+      "contractCorrections": [
+        "Reference status should become APPROVED_WITH_CROP after storing the per-class crop."
+      ]
+    },
+    {
+      "assetId": "unit202.pulleys.fixed",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Polea-simple 01.png",
+        "url": "https://commons.wikimedia.org/wiki/File:Polea-simple_01.png",
+        "licence": "CC BY-SA 4.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Explicitly depicts a simple fixed pulley; replaces the unsuitable compound pulley reference."
+      },
+      "referencePreparation": "Acquire the full source; crop whitespace only if needed.",
+      "contractCorrections": [
+        "Replace current Pulley1a.svg primary reference."
+      ]
+    },
+    {
+      "assetId": "unit202.pulleys.movable",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Pulley1.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Pulley1.svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Single movable-pulley force arrangement; use the relevant isolated diagram only."
+      },
+      "referencePreparation": "Acquire original SVG and isolate the simple movable-pulley diagram only. If the source includes force labels, preserve geometry but redraw labels to ALP wording.",
+      "contractCorrections": [
+        "Replace current Pulley1a.svg primary reference."
+      ]
+    },
+    {
+      "assetId": "unit202.magnet.field",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — DipolMagnet.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:DipolMagnet.svg",
+        "licence": "Public-domain dedication",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Bar-magnet field geometry reference. Final ALP image must itself show correct N/S and direction semantics."
+      },
+      "referencePreparation": "Acquire the original SVG. In the Gemini instruction, explicitly preserve the source's arrow-placement policy: do not invent arrowheads on cropped/incomplete field lines.",
+      "contractCorrections": [
+        "The previous proof PASS is invalid. Mark it failed/rejected. N/S and correct field-direction arrows are required in the final image, not deferred."
+      ]
+    },
+    {
+      "assetId": "unit202.magnet.poles.like",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — VFPt cylindrical magnets repelling.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_repelling.svg",
+        "licence": "CC BY-SA 3.0 / GFDL",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Like-pole repulsion geometry and field-line pattern."
+      },
+      "referencePreparation": "Acquire original SVG and use the two-magnet repulsion geometry.",
+      "contractCorrections": []
+    },
+    {
+      "assetId": "unit202.magnet.poles.unlike",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — VFPt cylindrical magnets attracting.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_attracting.svg",
+        "licence": "CC BY-SA 3.0 / GFDL",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Unlike-pole attraction geometry and field-line pattern."
+      },
+      "referencePreparation": "Acquire original SVG and use the two-magnet attraction geometry.",
+      "contractCorrections": []
+    },
+    {
+      "assetId": "unit202.magnet.permanent-vs-electromagnet",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — VFPt cylindrical tightly-wound coil-and-bar-magnet-comparison.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_tightly-wound_coil-and-bar-magnet-comparison.svg",
+        "licence": "CC BY-SA 3.0 / GFDL",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Side-by-side physically modelled comparison of coil field and bar magnet field."
+      },
+      "referencePreparation": "Build one approved side-by-side reference sheet: solid permanent magnet on one side; coil wound around ferromagnetic core with visible current source/path on the other. Use the comparison SVG for field analogy and Simple electromagnet2.gif for physical topology.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder with this two-source prepared reference sheet."
+      ]
+    },
+    {
+      "assetId": "unit202.circuit.series",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Battery symbols and circuit.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Battery_symbols_and_circuit.svg",
+        "licence": "recorded per source page",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": ""
+      },
+      "referencePreparation": "Keep the existing deterministic SVG/React-Native renderer as output authority. External diagram is cross-check only.",
+      "contractCorrections": [
+        "No Gemini art generation for this asset."
+      ]
+    },
+    {
+      "assetId": "unit202.circuit.parallel",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "Same circuit reference family as series (see unit202.circuit.series)",
+        "url": "https://commons.wikimedia.org/wiki/File:Series_and_parallel_circuits2.svg",
+        "licence": "recorded per source page",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": ""
+      },
+      "referencePreparation": "Keep the existing deterministic SVG/React-Native renderer as output authority. External diagram is cross-check only.",
+      "contractCorrections": [
+        "No Gemini art generation for this asset."
+      ]
+    },
+    {
+      "assetId": "unit202.circuit.mixed",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "Wikimedia Commons — SeriesParallelCircuit.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:SeriesParallelCircuit.svg",
+        "licence": "use only as topology/reference, not a close stylistic derivative",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": ""
+      },
+      "referencePreparation": "Keep the existing deterministic SVG/React-Native renderer as output authority. External diagram is cross-check only.",
+      "contractCorrections": [
+        "No Gemini art generation for this asset."
+      ]
+    },
+    {
+      "assetId": "unit202.instrument.connections",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "Wikimedia Commons — SimpleCircuit.SVG",
+        "url": "https://commons.wikimedia.org/wiki/File:SimpleCircuit.SVG",
+        "licence": "recorded per source page",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": ""
+      },
+      "referencePreparation": "Keep the existing deterministic SVG/React-Native renderer as output authority. External diagram is cross-check only.",
+      "contractCorrections": [
+        "No Gemini art generation for this asset."
+      ]
+    },
+    {
+      "assetId": "unit202.instrument.clamp-meter",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Clampmeter.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Clampmeter.jpg",
+        "licence": "CC BY-SA 3.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Physical-recognition reference; redraw brand-neutral."
+      },
+      "referencePreparation": "Acquire the photo and crop to the instrument. Redraw without brand-specific markings.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.instrument.oscilloscope",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Oscilloscope Clean.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Oscilloscope_Clean.svg",
+        "licence": "CC0 / public-domain dedication where recorded",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Front-panel/screen recognition reference; redraw brand-neutral."
+      },
+      "referencePreparation": "Acquire SVG; use front-panel/screen layout as the recognition reference while simplifying controls.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.current-direction.electron-flow-vs-conventional",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "ALP governed current-direction diagram",
+        "url": "internal://current-direction/electron-flow-vs-conventional",
+        "licence": "Internal governed geometry",
+        "authorityRole": "INTERNAL_AUTHORITY",
+        "note": ""
+      },
+      "referencePreparation": "Use the existing governed deterministic blueprint; no external pictorial reference is necessary.",
+      "contractCorrections": [
+        "Change catalogue's empty external reference to INTERNAL_AUTHORITY rather than 'missing'."
+      ]
+    },
+    {
+      "assetId": "unit202.gears.driven-larger",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Two spur gears 1 2.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_2.svg",
+        "licence": "CC0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Two meshing spur gears, 14:28 ratio; use role-specific crop/label plan for driver/driven."
+      },
+      "referencePreparation": "Acquire CC0 SVG. Treat the small gear as DRIVER and large gear as DRIVEN in the final labelled illustration.",
+      "contractCorrections": [
+        "Replace compound gear-train reference."
+      ]
+    },
+    {
+      "assetId": "unit202.gears.driven-smaller",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Two spur gears 1 2.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_2.svg",
+        "licence": "CC0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Two meshing spur gears, 14:28 ratio; use role-specific crop/label plan for driver/driven."
+      },
+      "referencePreparation": "Create an approved role-specific reference copy of the same 1:2 geometry with the LARGE gear explicitly designated DRIVER and SMALL gear DRIVEN. Do not mirror tooth geometry; role assignment changes, not geometry.",
+      "contractCorrections": [
+        "Replace compound gear-train reference."
+      ]
+    },
+    {
+      "assetId": "unit202.gears.equal",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Two spur gears 1 1.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_1.svg",
+        "licence": "CC0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Two meshing equal spur gears, 14:14 ratio."
+      },
+      "referencePreparation": "Acquire CC0 1:1 SVG.",
+      "contractCorrections": [
+        "Replace compound gear-train reference."
+      ]
+    },
+    {
+      "assetId": "unit202.gears.rotation-direction",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Two spur gears 1 1.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_1.svg",
+        "licence": "CC0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Two meshing equal spur gears, 14:14 ratio."
+      },
+      "referencePreparation": "Use CC0 two-gear geometry as cross-check; draw rotation arrows deterministically.",
+      "contractCorrections": []
+    },
+    {
+      "assetId": "unit202.resistivity.length-comparison",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Resistivity geometry-1.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg",
+        "licence": "CC0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Geometry authority for conductor length and cross-sectional area in resistivity."
+      },
+      "referencePreparation": "Build an approved two-specimen reference sheet from the CC0 geometry. Keep material and cross-sectional area identical; vary ONLY length.",
+      "contractCorrections": [
+        "Replace missing reference with prepared comparison sheet."
+      ]
+    },
+    {
+      "assetId": "unit202.resistivity.area-comparison",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Resistivity geometry-1.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg",
+        "licence": "CC0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Geometry authority for conductor length and cross-sectional area in resistivity."
+      },
+      "referencePreparation": "Build an approved two-specimen reference sheet from the CC0 geometry. Keep material and length identical; vary ONLY cross-sectional area.",
+      "contractCorrections": [
+        "Replace missing reference with prepared comparison sheet."
+      ]
+    },
+    {
+      "assetId": "unit202.waveform.sine",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Sine wave 2.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Sine_wave_2.svg",
+        "licence": "Public-domain dedication",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": ""
+      },
+      "referencePreparation": "Retain current sine-wave reference as cross-check; output remains deterministic.",
+      "contractCorrections": []
+    },
+    {
+      "assetId": "unit202.emf.motional",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Faraday's law of induction.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Faraday%27s_law_of_induction.svg",
+        "licence": "CC0 / public-domain dedication where recorded",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Use/crop the motional-EMF panel only; keep rod/field/motion geometry at Level-2 scope."
+      },
+      "referencePreparation": "Acquire source and crop/isolate ONLY the motional-EMF panel. Simplify the prepared reference to the governed conductor/rails, B-field and motion geometry.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.symbols",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "IEC — IEC 60617 Graphical Symbols for Diagrams database",
+        "url": "https://std.iec.ch/iec60617",
+        "licence": "Official standards database; subscription/reuse restrictions apply",
+        "authorityRole": "STANDARDS_AUTHORITY",
+        "note": "Authority for symbol meaning/shape; do not copy restricted artwork into generative prompts. Use ALP's governed deterministic symbols."
+      },
+      "referencePreparation": "Use IEC 60617 as standards authority and the existing ALP symbol renderer for production. Do not feed restricted IEC symbol artwork to Gemini.",
+      "contractCorrections": [
+        "Catalogue should explicitly record IEC 60617 as standards authority, not a generative reference."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.resistor",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — 4-Band Resistor.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:4-Band_Resistor.svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative axial through-hole resistor form."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.capacitor",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Electrolytic Capacitor, Radial, 16x30 (Coloured).svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Electrolytic_Capacitor,_Radial,_16x30_(Coloured).svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative radial electrolytic capacitor form."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.diode",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — DO-41 (shaded).svg",
+        "url": "https://commons.wikimedia.org/wiki/File:DO-41_(shaded).svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative axial diode package; polarity band must remain visible."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.led",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — LED, 5mm, clear (unlabelled, full).svg",
+        "url": "https://commons.wikimedia.org/wiki/File:LED,_5mm,_clear_(unlabelled,_full).svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative 5 mm through-hole LED physical form."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.thermistor",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — NTC Thermistor.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:NTC_Thermistor.jpg",
+        "licence": "CC BY-SA 4.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative bead/disc thermistor physical form; preserve attribution/share-alike requirements if treated as an adaptation."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.transistor",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — TO-92, BC548 (front, shaded).svg",
+        "url": "https://commons.wikimedia.org/wiki/File:TO-92,_BC548_(front,_shaded).svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative small-signal TO-92 transistor package."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.diode.bias-direction.forward",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Forward-Biased pn Junction.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Forward-Biased_pn_Junction.svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Bias-polarity cross-check only. ALP reference sheet should simplify away depletion-zone detail."
+      },
+      "referencePreparation": "Use the source only to verify forward-bias polarity. Build a simplified Level-2 reference sheet showing a diode, source polarity, and conventional current flowing; omit semiconductor depletion-zone detail.",
+      "contractCorrections": [
+        "Replace missing reference; require final semantic labels/current arrow in the image."
+      ]
+    },
+    {
+      "assetId": "unit202.diode.bias-direction.reverse",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Reverse-Biased pn Junction Bands.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Reverse-Biased_pn_Junction_Bands.svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Reverse-bias cross-check; prefer this over misleading metadata on similarly named alternatives."
+      },
+      "referencePreparation": "Use the source only to verify reverse-bias polarity. Build a simplified Level-2 reference sheet showing a diode, source polarity, and blocked-current indication; omit semiconductor band/depletion detail.",
+      "contractCorrections": [
+        "Replace missing reference; require final semantic labels/blocked-current indication in the image."
+      ]
+    },
+    {
+      "assetId": "unit202.rectification.waveforms",
+      "researchDecision": "CONTRACT_CORRECTION_REQUIRED",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Rectification.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Rectification.svg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Half-wave/full-wave waveform-shape authority."
+      },
+      "referencePreparation": "Use Rectification.svg for half/full-wave cross-check and an inverter switched-output reference only for the governed inverter state. Continue rendering all waveforms deterministically.",
+      "contractCorrections": [
+        "Replace 'never a smooth sine wave for any of the three' with state-specific wording: for this governed inverter waveform state, draw the specified switched/square/modified waveform; do not imply all inverter outputs are non-sinusoidal."
+      ]
+    },
+    {
+      "assetId": "unit202.capacitor.transient",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "ALP governed RC charge/discharge equations and curve renderer",
+        "url": "internal://capacitor-transient/rc-exponential",
+        "licence": "Internal governed geometry",
+        "authorityRole": "INTERNAL_AUTHORITY",
+        "note": ""
+      },
+      "referencePreparation": "Generate the exponential charge/discharge curves from governed RC relationships; no pictorial reference is needed.",
+      "contractCorrections": [
+        "Replace placeholder external-reference wording with internal mathematical authority."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.zener-diode",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — 1N829 Zener Diode.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:1N829_Zener_Diode.jpg",
+        "licence": "CC BY-SA 4.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "High-resolution representative physical zener diode."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.photodiode",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Photodiode-closeup.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Photodiode-closeup.jpg",
+        "licence": "CC BY-SA 2.5",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative photodiode physical form; visible active area/polarity features."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.diac",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Diac 01.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Diac_01.jpg",
+        "licence": "CC BY-SA 4.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative DB3 DIAC physical form."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.triac",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE",
+      "primaryReference": {
+        "title": "Wikimedia Commons — TRIAC Image.png",
+        "url": "https://commons.wikimedia.org/wiki/File:TRIAC_Image.png",
+        "licence": "CC BY-SA 4.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative TRIAC package; redraw brand-neutral."
+      },
+      "referencePreparation": "Acquire the actual source image/vector; isolate one representative component package and remove branding/background clutter before generation.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.components.physical.thyristor-scr",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Thyristors thyristoren.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Thyristors_thyristoren.jpg",
+        "licence": "CC BY-SA 3.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Crop the small TO-220-style thyristor/SCR only; do not reproduce the whole multi-package photograph."
+      },
+      "referencePreparation": "Acquire the source photo and crop ONLY the small TO-220-style thyristor/SCR; exclude the larger modules before Gemini receives it.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.electrolysis",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Elektrolyse Allgemein.svg",
+        "url": "https://commons.wikimedia.org/wiki/File:Elektrolyse_Allgemein.svg",
+        "licence": "CC0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Electrolysis topology reference; simplify to Unit-202 scope and preserve a physically meaningful source/electrode/electrolyte circuit."
+      },
+      "referencePreparation": "Acquire the CC0 source and simplify/crop it to the governed source–electrolyte–electrode circuit. Remove chemistry detail outside Unit 202.",
+      "contractCorrections": [
+        "Require final labelled artwork; explicitly prohibit an invented wire path directly joining the electrodes."
+      ]
+    },
+    {
+      "assetId": "unit202.heating-effect",
+      "researchDecision": "CONTRACT_CORRECTION_REQUIRED",
+      "primaryReference": {
+        "title": "Wikimedia Commons — 30kw resistance heating coil.JPG",
+        "url": "https://commons.wikimedia.org/wiki/File:30kw_resistance_heating_coil.JPG",
+        "licence": "CC BY-SA 3.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Physical-context reference for resistive heating element. Do not imply all current-carrying conductors visibly glow."
+      },
+      "referencePreparation": "Acquire the actual heating-coil photo and use it as physical-context reference. Redraw a generic resistive element on white/light background.",
+      "contractCorrections": [
+        "Add immutable facts: resistive element carries current and dissipates electrical energy as heat; no flame/combustion; do not imply all conductors visibly glow. Remove 'do not generate until primary reference READY' placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.conductor-insulator",
+      "researchDecision": "CONTRACT_CORRECTION_REQUIRED",
+      "primaryReference": {
+        "title": "Wikimedia Commons — Stranded lamp wire.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Stranded_lamp_wire.jpg",
+        "licence": "Public domain",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Physical reference showing conductive copper strands and insulating sheath."
+      },
+      "referencePreparation": "Acquire the public-domain cable photo. Use the exposed copper strands and insulating sheath as the geometry reference; redraw cleanly on white/light background.",
+      "contractCorrections": [
+        "Add immutable facts for conductive core and insulating sheath; remove reference-block placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.protective-devices",
+      "researchDecision": "APPROVED_WITH_PREPARATION",
+      "primaryReference": {
+        "title": "Wikimedia Commons — 10A ceramic 6x32 fuse.JPG",
+        "url": "https://commons.wikimedia.org/wiki/File:10A_ceramic_6x32_fuse.JPG",
+        "licence": "CC BY-SA 3.0",
+        "authorityRole": "TECHNICAL_REFERENCE",
+        "note": "Representative cartridge fuse; redraw brand-neutral."
+      },
+      "referencePreparation": "Build one approved side-by-side reference sheet from a single generic cartridge fuse and a single generic DIN-rail circuit breaker selected/cropped from the two sources. Remove logos/brand-specific markings before Gemini.",
+      "contractCorrections": [
+        "Replace missing-reference placeholder."
+      ]
+    },
+    {
+      "assetId": "unit202.trigonometry",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY",
+      "primaryReference": {
+        "title": "ALP governed right-triangle/SOHCAHTOA geometry",
+        "url": "internal://trigonometry/right-triangle",
+        "licence": "Internal governed geometry",
+        "authorityRole": "INTERNAL_AUTHORITY",
+        "note": ""
+      },
+      "referencePreparation": "If/when scope is activated, construct the triangle deterministically from geometry; no external image is required.",
+      "contractCorrections": [
+        "Change placeholder reference to internal mathematical authority; retain DEFERRED_SCOPE until curriculum integration decision."
+      ]
+    }
+  ]
+}

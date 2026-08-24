@@ -28,20 +28,23 @@ Explicitly **not**:
 
 ## 2. Background standard (governed, not improvised)
 
-Every prior manually-produced batch drifted on background treatment because each session re-invented it from an adjective ("dark and premium"). That drift is unacceptable. The background is **governed**: a generation request states it explicitly and must never leave it to model interpretation.
+**SUPERSEDED 2026-08-24 (Product Owner reference handover, CC-11.9): the background default is now WHITE / NEAR-WHITE, not dark slate.** The dark slate/blue-grey default below (`#151821` → `#262B38`) is retired as the *default* and retained in this document only as a historical record and as an explicit per-asset override for the narrow case named at the end of this section. Every prior manually-produced batch drifted on background treatment because each session re-invented it from an adjective; the background remains **governed** either way -- a generation request states it explicitly and must never leave it to model interpretation.
 
-**Canonical values** -- reused directly from the shipped app's own token file (`apps/mobile/src/lib/tokens.ts`, `color` export), never invented separately:
+**New canonical values (white/light default):**
 
-| Role | Token | Hex |
+| Role | Hex | Notes |
 |---|---|---|
-| Background gradient start | `color.surface` | `#151821` |
-| Background gradient end | `color.border` | `#262B38` |
+| Primary surface | `#FBFBFA` | near-white, very slightly warm to avoid a clinical pure-`#FFFFFF` void |
+| Secondary tonal depth | `#F0F1F3` | extremely light cool-grey, for a subtle gradient or panel distinction against the primary surface |
+| Shadow/depth | neutral grey, low opacity (≤12%) | soft, short-throw shadow only -- never a hard drop-shadow, never colour-tinted |
 
 **Instruction text (use verbatim in generation prompts):**
 
-> Background: a muted, medium-dark slate/blue-grey surface with a subtle, restrained gradient from `#151821` toward `#262B38`. Visibly softer and less harsh than pure black (`#0B0D12`, the app's own UI background, is deliberately NOT used for illustration backgrounds -- it reads as a void behind artwork). Low saturation. No visible texture, no scenery, no vignette beyond the gradient itself, no neon or cyberpunk treatment, no pure-black void.
+> Background: a clean near-white surface, `#FBFBFA` with an optional extremely subtle gradient toward `#F0F1F3`. Premium, adult, technically credible, contemporary, calm, uncluttered, mobile-first, high-contrast against the subject. Subtle neutral-grey shadow/depth only (soft, low-opacity, never colour-tinted). No black voids, no dark slate as default, no cyberpunk/neon, no decorative scenery, no visible texture beyond the gradient itself, no children's-book brightness, no corporate clip-art flatness, no advertising-dramatic lighting.
 
-**Tolerance:** the gradient may vary in angle/softness for compositional reasons, but both endpoint colours must stay within roughly ±10% lightness/hue of the values above. A background that reads as pure black, pure white, saturated colour, or a photographic scene is a style-guide violation regardless of technical correctness elsewhere in the image.
+**Tolerance:** the gradient may vary in angle/softness for compositional reasons, but both endpoint colours must stay within roughly ±10% lightness/hue of the values above. A background that reads as pure black, saturated colour, dark slate, or a photographic scene is a style-guide violation regardless of technical correctness elsewhere in the image.
+
+**Narrow dark-surface exception:** an asset may use a dark background only where the apparatus being depicted is itself inherently a dark-screened device (e.g. an oscilloscope's own screen area) -- and even then, only the device's own screen may be dark; the illustration's surrounding background remains white/near-white per this section. This is recorded per-asset via `backgroundStyleOverride` in `tools/visual-production-studio/catalogue.ts`, exactly as the narrow-exception mechanism already worked for the retired dark default -- it is not a general licence to keep using dark backgrounds.
 
 **Exemption:** `DETERMINISTIC_TECHNICAL` assets (schematics, waveforms, symbol cards, assessment-tile geometry) have no illustrated background at all -- this section does not apply to them (see §3).
 
@@ -110,6 +113,10 @@ Do not allow every generation call to reinterpret the brand independently. When 
 ## 7. Style-reference assets
 
 Approved canonical style-reference images (once any exist) live at `docs/design/visual-style-references/` -- see that directory's own `README.md` for the registration process and current inventory. A style-reference image, when one has been approved, is supplied to the generative model *alongside* this text guide and the per-asset technical reference; it is never a substitute for either.
+
+## 8. Instructional visuals are reusable platform assets, not course-owned images
+
+**Recorded 2026-08-24 (mid-task architecture amendment).** A course/unit (e.g. Unit 202) is the *initial commissioning context* for a generated visual, not its permanent owner. Where a later course, unit, or lesson needs the same technical concept in a technically and pedagogically compatible state (same immutable facts, same learner-visible state, compatible annotations/labels, compatible curriculum scope, compatible assessment-leakage rules), it should reuse the existing approved canonical asset and its already-approved reference provenance rather than re-researching a reference or regenerating an equivalent image from scratch. Reuse is never forced: a materially different technical or pedagogical state gets its own governed variant/version, never a silent mutation of a shared asset. See `tools/visual-production-studio/reference-corrections.ts`'s header comment and `docs/architecture/PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md` §21 for the conceptual `CanonicalVisualAsset` → `UsageBinding` model this implies; existing Unit-202-prefixed `assetId`s are not renamed for this -- the assetId namespace is not treated as a claim of permanent ownership by that course.
 
 ---
 

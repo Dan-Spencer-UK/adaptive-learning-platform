@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.magnet.field",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:DipolMagnet.svg",
+  "sourceReferenceSha256": "6165248fd264c9b455b837b6703308735afa6385737c6eacbd2411c873219311",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.field\\unit202.magnet.field-master-v2.png",
+  "masterSha256": "6681888e2fff92546d7e4b00ace273592deb1bd6aebbb1ce36f9587d04decc02",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.field\\unit202.magnet.field-derivative-v2.png",
+  "derivativeSha256": "82f07e1910964c101cc4a3b256d92391622bbd7050c915f6f3dde8fb98f7c0f6",
+  "generatedAt": "2026-08-24T23:18:02.383Z"
+}

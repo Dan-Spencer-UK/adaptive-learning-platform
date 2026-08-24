@@ -1,0 +1,440 @@
+{
+  "generatedAt": "2026-08-24T23:39:15.338Z",
+  "totals": {
+    "total": 53,
+    "generative": 42,
+    "deterministicExempt": 11
+  },
+  "generativeAssetsReady": 37,
+  "generativeAssetsTotal": 42,
+  "missingReferences": 0,
+  "unresolvedPlaceholders": 0,
+  "unpreparedComposites": 5,
+  "gatePasses": false,
+  "rows": [
+    {
+      "assetId": "unit202.current-conductor.magnetic-field",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wire_fieldlines.svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.right-hand-grip.teaching",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Right-hand_grip_rule.svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.motor.effect.horizontal-poles",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.motor.effect.vertical-poles",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.fleming-left-hand.teaching",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fleming%27s_Left_Hand_Rule.png",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.generator.rotating-loop.horizontal",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.generator.rotating-loop.vertical",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.fleming-right-hand.teaching",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fleming%27s_right_hand_rule.png",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.levers.class-1",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.levers.class-2",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.levers.class-3",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.pulleys.fixed",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Polea-simple_01.png",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.pulleys.movable",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pulley1.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.magnet.field",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:DipolMagnet.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.magnet.poles.like",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_repelling.svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.magnet.poles.unlike",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_attracting.svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.magnet.permanent-vs-electromagnet",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_tightly-wound_coil-and-bar-magnet-comparison.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.circuit.series",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Battery_symbols_and_circuit.svg",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.circuit.parallel",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Series_and_parallel_circuits2.svg",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.circuit.mixed",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SeriesParallelCircuit.svg",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.instrument.connections",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SimpleCircuit.SVG",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.instrument.clamp-meter",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Clampmeter.jpg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.instrument.oscilloscope",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Oscilloscope_Clean.svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.current-direction.electron-flow-vs-conventional",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "internal://current-direction/electron-flow-vs-conventional",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.gears.driven-larger",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_2.svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.gears.driven-smaller",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_2.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.gears.equal",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_1.svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.gears.rotation-direction",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_1.svg",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.resistivity.length-comparison",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.resistivity.area-comparison",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.waveform.sine",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sine_wave_2.svg",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.emf.motional",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Faraday%27s_law_of_induction.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.components.symbols",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://std.iec.ch/iec60617",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.components.physical.resistor",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:4-Band_Resistor.svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.capacitor",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Electrolytic_Capacitor,_Radial,_16x30_(Coloured).svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.diode",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:DO-41_(shaded).svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.led",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LED,_5mm,_clear_(unlabelled,_full).svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.thermistor",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:NTC_Thermistor.jpg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.transistor",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:TO-92,_BC548_(front,_shaded).svg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.diode.bias-direction.forward",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Forward-Biased_pn_Junction.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.diode.bias-direction.reverse",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Reverse-Biased_pn_Junction_Bands.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.rectification.waveforms",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rectification.svg",
+      "researchDecision": "CONTRACT_CORRECTION_REQUIRED"
+    },
+    {
+      "assetId": "unit202.capacitor.transient",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "internal://capacitor-transient/rc-exponential",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    },
+    {
+      "assetId": "unit202.components.physical.zener-diode",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:1N829_Zener_Diode.jpg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.photodiode",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Photodiode-closeup.jpg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.diac",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Diac_01.jpg",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.triac",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:TRIAC_Image.png",
+      "researchDecision": "APPROVED_PRODUCTION_REFERENCE"
+    },
+    {
+      "assetId": "unit202.components.physical.thyristor-scr",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thyristors_thyristoren.jpg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.electrolysis",
+      "productionClass": "HYBRID",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elektrolyse_Allgemein.svg",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.heating-effect",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:30kw_resistance_heating_coil.JPG",
+      "researchDecision": "CONTRACT_CORRECTION_REQUIRED"
+    },
+    {
+      "assetId": "unit202.conductor-insulator",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stranded_lamp_wire.jpg",
+      "researchDecision": "CONTRACT_CORRECTION_REQUIRED"
+    },
+    {
+      "assetId": "unit202.protective-devices",
+      "productionClass": "PREMIUM_CONCEPTUAL",
+      "exempt": false,
+      "referenceStatus": "READY",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:10A_ceramic_6x32_fuse.JPG",
+      "researchDecision": "APPROVED_WITH_PREPARATION"
+    },
+    {
+      "assetId": "unit202.trigonometry",
+      "productionClass": "DETERMINISTIC_TECHNICAL",
+      "exempt": true,
+      "referenceStatus": "READY",
+      "sourceUrl": "internal://trigonometry/right-triangle",
+      "researchDecision": "DETERMINISTIC_INTERNAL_AUTHORITY"
+    }
+  ]
+}

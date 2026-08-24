@@ -1,0 +1,17 @@
+{
+  "assetId": "unit202.levers.class-1",
+  "attempt": 1,
+  "productionRun": "CC-11.9",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "fulcrum positioned between the effort point and the load point", "result": "PASS", "note": "Single lever bar with the fulcrum wedge clearly positioned between the EFFORT end (left, with a hand-grip loop) and the LOAD end (right, with a cube load). Correct Class I ordering." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not blend this with the Class II or Class III arrangement", "result": "PASS", "note": "Exactly one lever diagram is present. No trace of the Class II or Class III sibling arrangements -- the prepared/cropped reference (isolating only the top subfigure) resolved the composite-reference defect that caused attempts 1-2 (CC-11.8) to fail on this exact point." }
+  ],
+  "styleComplianceNotes": "White/near-white background correctly applied. Premium brushed-metal 3D rendering (industrial precision, tactile, adult/vocational character). Labels EFFORT, LOAD, FULCRUM all present, legible, and correctly positioned over their respective elements -- matches this asset's requiredLabels exactly.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- a single rigid bar pivoting on a triangular fulcrum with a hand-grip effort end and a cube load is physically coherent and plausible.",
+  "overallFindings": "Strong PASS on first attempt of this production run. The composite-reference crop (isolating the Class I subfigure before sending to Gemini) fully resolved the defect that blocked this asset in the earlier CC-11.8 proof (which had sent the full 3-class composite and got a blended result). No immutable fact violated, no prohibited change made, required labels present and correct.",
+  "auditedAt": "2026-08-25T00:20:00.000Z"
+}

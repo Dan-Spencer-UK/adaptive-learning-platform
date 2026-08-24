@@ -47,11 +47,12 @@ function sha256(buffer: Buffer): string {
  * error/redirect page (task brief E2: "verify it is actual image/SVG
  * data, not an HTML error/download page"), not a full format parser.
  */
-function detectRealImageOrSvg(buffer: Buffer): "svg" | "png" | "jpeg" | "webp" | null {
+function detectRealImageOrSvg(buffer: Buffer): "svg" | "png" | "jpeg" | "webp" | "pdf" | null {
   const head = buffer.subarray(0, 16);
   if (head.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) return "png";
   if (head[0] === 0xff && head[1] === 0xd8 && head[2] === 0xff) return "jpeg";
   if (head.subarray(0, 4).toString("ascii") === "RIFF" && buffer.subarray(8, 12).toString("ascii") === "WEBP") return "webp";
+  if (head.subarray(0, 5).toString("ascii") === "%PDF-") return "pdf";
   const textHead = buffer.subarray(0, Math.min(buffer.length, 500)).toString("utf8").trimStart().toLowerCase();
   if (textHead.startsWith("<?xml") || textHead.startsWith("<svg")) {
     // Reject an HTML page that merely contains the substring "<svg" somewhere in a script tag etc. -- require it near the very start, and reject anything that looks like an HTML document shell.
@@ -62,23 +63,43 @@ function detectRealImageOrSvg(buffer: Buffer): "svg" | "png" | "jpeg" | "webp" |
 }
 
 /**
+ * A Wikimedia Commons "File:" URL (e.g. https://commons.wikimedia.org/wiki/File:X.svg)
+ * is the human-readable description PAGE, not the raw file -- fetching it
+ * returns an HTML document, which acquireReference correctly rejects as
+ * REFERENCE_UNSUITABLE. Commons' own stable raw-file redirect endpoint is
+ * Special:FilePath/<filename>. This is a well-known, documented Commons
+ * convention (the same one already used successfully in the CC-11.8
+ * two-asset proof), not a substitute reference -- it resolves to the exact
+ * same file the page cites.
+ */
+function canonicaliseSourceUrl(sourceUrl: string): string {
+  const match = /^https:\/\/commons\.wikimedia\.org\/wiki\/File:(.+)$/i.exec(sourceUrl);
+  if (!match) return sourceUrl;
+  return `https://commons.wikimedia.org/wiki/Special:FilePath/${match[1]}`;
+}
+
+/**
  * Downloads a reference file, validates it is real image/SVG data, caches
  * it locally with a deterministic filename, and (for SVG) rasterises a
  * clean PNG copy. Idempotent -- re-running with the same assetId/URL
  * reuses the existing cached file rather than re-downloading, but always
  * re-validates and re-hashes what is on disk.
  */
-export async function acquireReference(assetId: string, sourceUrl: string): Promise<AcquiredReference> {
+export async function acquireReference(assetId: string, rawSourceUrl: string): Promise<AcquiredReference> {
   mkdirSync(REFERENCE_CACHE_DIR, { recursive: true });
+  const sourceUrl = canonicaliseSourceUrl(rawSourceUrl);
 
-  const extGuess = sourceUrl.toLowerCase().endsWith(".svg") ? "svg" : sourceUrl.toLowerCase().match(/\.(png|jpe?g|webp)$/)?.[1] || "bin";
+  const extGuess = sourceUrl.toLowerCase().endsWith(".svg") ? "svg" : sourceUrl.toLowerCase().match(/\.(png|jpe?g|webp|pdf)$/)?.[1] || "bin";
   const localPath = join(REFERENCE_CACHE_DIR, `${assetId}.${extGuess === "jpg" ? "jpeg" : extGuess}`);
 
   let buffer: Buffer;
   if (existsSync(localPath)) {
     buffer = readFileSync(localPath);
   } else {
-    const res = await fetch(sourceUrl, { redirect: "follow" });
+    const res = await fetch(sourceUrl, {
+      redirect: "follow",
+      headers: { "User-Agent": "ALP-InstructionalVisualPipeline/1.0 (adaptive-learning-platform; contact: repository maintainer) node-fetch" },
+    });
     if (!res.ok) throw new Error(`Reference fetch failed for ${assetId}: HTTP ${res.status} ${res.statusText} (${sourceUrl})`);
     buffer = Buffer.from(await res.arrayBuffer());
     writeFileSync(localPath, buffer);
@@ -89,7 +110,7 @@ export async function acquireReference(assetId: string, sourceUrl: string): Prom
     throw new Error(`REFERENCE_UNSUITABLE: ${assetId}'s downloaded content at ${sourceUrl} is not recognisable image/SVG data (looks like an HTML page or unknown format) -- ${buffer.length} bytes cached at ${localPath} for inspection.`);
   }
 
-  const mimeType = kind === "svg" ? "image/svg+xml" : `image/${kind}`;
+  const mimeType = kind === "svg" ? "image/svg+xml" : kind === "pdf" ? "application/pdf" : `image/${kind}`;
   const result: AcquiredReference = { assetId, sourceUrl, localPath, mimeType, sha256: sha256(buffer), byteLength: buffer.length };
 
   if (kind === "svg") {

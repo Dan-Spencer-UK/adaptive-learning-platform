@@ -75,6 +75,10 @@
     "visuals:studio:final-review": "node tools/visual-production-studio/generate-final-review.ts",
     "visuals:proof": "node tools/visual-production-studio/visual-proof/run-proof.ts",
     "visuals:proof:review": "node tools/visual-production-studio/visual-proof/generate-proof-review.ts",
+    "visuals:studio:reference-pack": "node tools/visual-production-studio/generate-reference-research-pack.ts",
+    "visuals:acquire-all": "node tools/visual-production-studio/acquire-all-references.ts",
+    "visuals:reference-gate": "node tools/visual-production-studio/generate-reference-readiness-final.ts",
+    "visuals:pilot-review": "node tools/visual-production-studio/visual-proof/generate-pilot-review.ts",
     "project:dashboard": "node tools/project-dashboard/server.ts"
   },
   "devDependencies": {

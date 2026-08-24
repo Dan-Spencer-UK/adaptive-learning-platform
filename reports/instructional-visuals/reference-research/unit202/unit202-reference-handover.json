@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0",
+  "unit": "City & Guilds 2365-02 Unit 202 — Principles of Electrical Science",
+  "generatedAt": "2026-08-24",
+  "sourceCatalogue": "unit202-reference-research-pack.json",
+  "globalProductionDecisions": {
+    "background": "White or near-white by default. Clean premium adult technical-learning presentation; subtle neutral depth/shadow only. Retire dark/slate default.",
+    "referenceRule": "For any reference-dependent generative asset, Gemini receives the actual approved reference image bytes (or an approved crop/reference sheet), never a URL alone.",
+    "compositeRule": "Composite sources must be deterministically cropped/isolated to the exact governed state before Gemini receives them.",
+    "labelsAndDirections": "Where labels/arrows are part of the technical teaching state, get the final image itself correct. Do not rely on a later deterministic-overlay assumption to excuse missing/incorrect semantics.",
+    "assessmentDistractors": "Wrong assessment images are permitted, but must be intentionally derived from an approved correct reference and encode a specific governed misconception. They require an audit against both the correct geometry and the intended wrong fact.",
+    "auditing": "Claude may orchestrate and perform first-pass visual audit, but uncertain technical semantics must be surfaced for Product Owner/ChatGPT review; never auto-promote based on plausibility alone.",
+    "mastersAndDerivatives": "Retain high-resolution master artwork; create optimized production derivatives for the app."
+  },
+  "note": "This file's per-asset externalResearch content (53 assets) as supplied by the Product Owner is reproduced in full, asset-by-asset, in unit202-reference-implementation-checklist.json (assetActions[]) in this same directory -- that file carries the identical recommendedPrimaryReference/referencePreparation/contractCorrections data for every asset and is the file tools/visual-production-studio/reference-corrections.ts actually reads to correct the live catalogue. Kept as a separate file here rather than re-inlining the full ~4500-line asset array a second time in this file, to avoid two independently-editable copies of the same authority data drifting apart. unit202-reference-handover.csv (this directory) is the flattened one-row-per-asset equivalent.",
+  "globalActions": [
+    { "id": "STYLE-WHITE", "action": "Update canonical visual style guide and prompt builders to white/near-white background default." },
+    { "id": "MAGNET-PROOF-REJECT", "action": "Reclassify prior unit202.magnet.field Gemini proof from PASS to rejected/failed and record reasons: missing N/S labels; incorrect arrows on partial field lines." },
+    { "id": "ACTUAL-REFERENCE-BYTES", "action": "Enforce actual image bytes / prepared crop/reference sheet for every Gemini job; URL-only references prohibited." },
+    { "id": "COMPOSITE-CROP", "action": "Enforce deterministic crop/isolation for composite technical references before generation." },
+    { "id": "STATE-SPECIFIC", "action": "Support state-specific illustration generation for direction-sensitive assets where visible technical semantics change." },
+    { "id": "DISTRACTOR-GOVERNANCE", "action": "Allow deliberately wrong assessment images only from a governed misconception contract and approved correct reference geometry." }
+  ]
+}

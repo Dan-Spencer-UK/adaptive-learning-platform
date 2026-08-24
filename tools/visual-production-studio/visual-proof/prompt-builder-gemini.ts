@@ -35,7 +35,20 @@ You MUST NOT alter: topology, component count, electrical connectivity, mechanic
 
 export interface GeminiPromptOptions {
   asset: VisualAsset;
-  /** CC-11.8 E4: this proof treats every prior asset-contract requiredLabels wording as legacy guidance -- generate clean base art regardless of the asset's own annotationPolicy. Not a catalogue-wide migration. */
+  /**
+   * CC-11.9 correction: the CC-11.8 proof forced clean base art
+   * unconditionally, treating every asset's own requiredLabels as legacy
+   * guidance not yet migrated -- that default is now reversed. Required
+   * technical semantics (N/S, arrows, polarity, hand identity, finger
+   * assignment, lever/component labels, bias direction, generator
+   * topology, output path, etc.) are part of ACCEPTANCE for a generated
+   * teaching illustration and must be present in the final image, not
+   * deferred to "add it later as an overlay". Pass true only for an asset
+   * whose own `deterministicOverlayResponsibilities` genuinely cover every
+   * one of its `requiredLabels` (i.e. requiredLabels is empty and the
+   * asset explicitly defers all annotation to a deterministic overlay
+   * system) -- never as a blanket default.
+   */
   forceCleanBaseArt: boolean;
   /** When the technical reference image contains more than this one asset's geometry (e.g. a composite reference showing all three lever classes in one file), state exactly which part establishes this asset's facts and which parts to ignore. */
   referenceExtractionNote?: string;
@@ -73,16 +86,23 @@ export function buildGeminiPrompt(options: GeminiPromptOptions): string {
   lines.push("");
 
   if (forceCleanBaseArt) {
-    lines.push("=== CC-11.8 LABEL OVERRIDE FOR THIS PROOF ===");
+    lines.push("=== CLEAN BASE ART (deterministic overlay covers all labels for this asset) ===");
     lines.push(
-      "Generate CLEAN BASE ART for this job. Do not bake any text label, callout, or annotation into the image (this overrides any label wording implied by the asset's own catalogue entry, which is legacy per-asset guidance not yet migrated to the deterministic-overlay default -- see the style guide §4). Labels for this concept are added afterward by ALP's own deterministic rendering code, never by you.",
+      "Generate CLEAN BASE ART for this job. Do not bake any text label, callout, or annotation into the image -- every label this concept needs is added afterward by ALP's own deterministic rendering code, per this asset's own deterministicOverlayResponsibilities.",
     );
+    lines.push("");
+  } else if (asset.requiredLabels.length > 0) {
+    lines.push("=== REQUIRED LABELS (must be visibly and correctly present in the FINAL IMAGE) ===");
+    lines.push(
+      "The following labels/markings are part of this asset's acceptance criteria, not something to defer to a later overlay. They must actually appear in the generated image, correctly positioned on the correct element:",
+    );
+    for (const label of asset.requiredLabels) lines.push(`  - ${label}`);
     lines.push("");
   }
 
   lines.push(`EXACT DELIVERABLE: ${asset.exactDeliverable}`);
   lines.push("");
-  lines.push("CRITICAL RULE: inspect the actual geometry you have drawn before presenting it. Do not rely on a caption or label to assert correctness -- the pixels themselves must match the reference's technical relationships and every immutable fact above.");
+  lines.push("CRITICAL RULE: inspect the actual geometry you have drawn before presenting it. Do not rely on a caption or label to assert correctness -- the pixels themselves must match the reference's technical relationships and every immutable fact above. Where labels/pole markings/directional semantics are required above, they must be TECHNICALLY CORRECT in the image, not merely present.");
 
   if (correctionNote) {
     lines.push("");

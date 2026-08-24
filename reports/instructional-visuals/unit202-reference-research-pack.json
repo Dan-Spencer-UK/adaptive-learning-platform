@@ -1,0 +1,3758 @@
+[
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.current-conductor.magnetic-field",
+    "familyId": "unit202.family.right-hand-grip",
+    "familyTitle": "Right-hand grip rule / field around a conductor",
+    "finalImageTitle": "Magnetic field around a current-carrying conductor",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "TEACHING",
+      "ASSESSMENT"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.magnetism.effects-of-current",
+    "instructionalPurpose": "Show the actual electromagnetic phenomenon that the right-hand grip mnemonic predicts, independent of the mnemonic itself.",
+    "learnerVisiblePurpose": "One premium illustration of a straight conductor with concentric magnetic field lines circulating around it -- direction-neutral, with no baked current-direction or circulation arrowheads (those are added deterministically per state), matching the reference field geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "straight current-carrying conductor",
+      "magnetic field circulates around the conductor (closed concentric loops, not radiating outward)",
+      "reversing the current reverses the direction of circulation",
+      "any depiction of field strength must not contradict a stronger field nearer the conductor",
+      "the concentric field-line pattern is rotationally symmetric -- do not bake in a specific current direction or circulation sense"
+    ],
+    "prohibitedChanges": [
+      "do not include a hand in this asset -- that is the separate MNEMONIC asset in this family",
+      "do not bake a specific current direction or circulation-arrow sense into the base artwork -- CC-11.7B correction: this base must safely serve BOTH current directions via deterministic overlay, never a redraw"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "CLEAN_BASE_ART_WITH_DETERMINISTIC_OVERLAY",
+    "currentReferenceTitle": "Wikimedia Commons — Right-hand grip rule.svg (field-line geometry only, not the hand)",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Right-hand_grip_rule.svg",
+    "currentReferenceLicence": "Public-domain dedication",
+    "currentReferenceQualityGrade": "A",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.current-conductor.magnetic-field.state.into-page-teaching",
+        "displayName": "Current into page — field circulation revealed (teaching)",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.current-conductor.magnetic-field.state.into-page-assessment",
+        "displayName": "Current into page — field circulation withheld (assessment)",
+        "pedagogicalState": "ASSESSMENT"
+      },
+      {
+        "stateId": "unit202.current-conductor.magnetic-field.state.out-of-page-teaching",
+        "displayName": "Current out of page — field circulation revealed (teaching)",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.current-conductor.magnetic-field.state.out-of-page-assessment",
+        "displayName": "Current out of page — field circulation withheld (assessment)",
+        "pedagogicalState": "ASSESSMENT"
+      }
+    ],
+    "canonicalStateCount": 4,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "current-conductor-magnetic-field-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/current-conductor-magnetic-field-base",
+    "governedDiagramBlueprintId": "magnetic.field_conductor_direction",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Shares the identical reference URL with 1 sibling asset(s) (unit202.right-hand-grip.teaching) -- verify this file is not an unlabelled composite requiring per-asset isolation (cf. unit202.levers.class-1, confirmed composite in the CC-11.8 proof) before treating it as fully approved for this specific asset.",
+    "sharedReferenceSiblings": [
+      "unit202.right-hand-grip.teaching"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.right-hand-grip.teaching",
+    "familyId": "unit202.family.right-hand-grip",
+    "familyTitle": "Right-hand grip rule / field around a conductor",
+    "finalImageTitle": "Right-hand grip rule — teaching mnemonic",
+    "roleInFamily": "MNEMONIC",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID / PREMIUM TEACHING",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.magnetism.effects-of-current",
+    "instructionalPurpose": "Teach that gripping a current-carrying conductor with the right hand, thumb along conventional current direction, gives the direction the magnetic field circulates as shown by the curled fingers.",
+    "learnerVisiblePurpose": "One premium illustration of a right hand gripping a straight current-carrying conductor, thumb and curled fingers clearly demonstrating the rule. Include the explanatory annotations THUMB = CURRENT and FINGERS = MAGNETIC FIELD plus the correct current and magnetic-field direction indicators -- this is a TEACHING asset and clear labels are part of the deliverable, not something to omit for visual cleanliness. Matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "RIGHT hand",
+      "thumb = conventional current direction",
+      "curled fingers = magnetic-field circulation direction",
+      "reversing current reverses magnetic-field rotation",
+      "straight conductor axis"
+    ],
+    "prohibitedChanges": [
+      "do not swap to the left hand",
+      "do not depict the thumb pointing anywhere other than along the conductor's conventional current direction",
+      "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored right hand can read as a left hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image to represent a reversed current direction."
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "THUMB = CURRENT",
+      "FINGERS = MAGNETIC FIELD",
+      "current-direction arrow",
+      "magnetic-field direction indicator where appropriate"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Right-hand grip rule.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Right-hand_grip_rule.svg",
+    "currentReferenceLicence": "Public-domain dedication",
+    "currentReferenceQualityGrade": "A",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.right-hand-grip.teaching.state.teaching",
+        "displayName": "Right-hand grip mnemonic (teaching only)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "teaching",
+    "filenameBase": "right-hand-grip-teaching-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/teaching/right-hand-grip-teaching-base",
+    "governedDiagramBlueprintId": "magnetic.field_conductor_direction",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Shares the identical reference URL with 1 sibling asset(s) (unit202.current-conductor.magnetic-field) -- verify this file is not an unlabelled composite requiring per-asset isolation (cf. unit202.levers.class-1, confirmed composite in the CC-11.8 proof) before treating it as fully approved for this specific asset.",
+    "sharedReferenceSiblings": [
+      "unit202.current-conductor.magnetic-field"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.motor.effect.horizontal-poles",
+    "familyId": "unit202.family.fleming-left-hand-motor",
+    "familyTitle": "Fleming's left-hand rule / motor effect",
+    "finalImageTitle": "Motor effect — conductor in magnetic field (N/S poles arranged horizontally)",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "TEACHING",
+      "ASSESSMENT"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.magnetism.effects-of-current",
+    "instructionalPurpose": "Show a current-carrying conductor between magnetic poles (N/S poles arranged horizontally) experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of magnet poles arranged horizontally with a conductor between them, direction-neutral (no baked current/force arrows), ready to receive deterministic N/S, current and force overlays, matching the existing governed motor-effect geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "N to S field direction",
+      "conductor positioned between the poles",
+      "poles arranged horizontally -- this specific orientation is the defining physical fact of this asset, never mixed with the sibling orientation asset",
+      "current explicitly into or out of the page -- the base artwork must not bake in either direction (deterministic overlay per state)",
+      "resulting force perpendicular to both field and current",
+      "must remain visually distinct from the hand-rule mnemonic asset"
+    ],
+    "prohibitedChanges": [
+      "do not include a hand in this asset -- that is the separate MNEMONIC asset in this family",
+      "do not depict the vertical pole arrangement in this asset -- that is the sibling ProductionAsset",
+      "do not bake a specific current or force direction into the base artwork -- this base must safely serve both current directions via deterministic overlay"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "CLEAN_BASE_ART_WITH_DETERMINISTIC_OVERLAY",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
+        "displayName": "N/S/horizontal poles, current into page — force revealed (teaching)",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
+        "displayName": "N/S/horizontal poles, current into page — force withheld (assessment)",
+        "pedagogicalState": "ASSESSMENT"
+      },
+      {
+        "stateId": "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching",
+        "displayName": "N/S/horizontal poles, current out of page — force revealed (teaching)",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment",
+        "displayName": "N/S/horizontal poles, current out of page — force withheld (assessment)",
+        "pedagogicalState": "ASSESSMENT"
+      }
+    ],
+    "canonicalStateCount": 4,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "motor-effect-horizontal-poles-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-base",
+    "governedDiagramBlueprintId": "motor.force_field_current",
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.motor.effect.vertical-poles",
+    "familyId": "unit202.family.fleming-left-hand-motor",
+    "familyTitle": "Fleming's left-hand rule / motor effect",
+    "finalImageTitle": "Motor effect — conductor in magnetic field (N/S poles arranged vertically)",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "TEACHING",
+      "ASSESSMENT"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.magnetism.effects-of-current",
+    "instructionalPurpose": "Show a current-carrying conductor between magnetic poles (N/S poles arranged vertically) experiencing a force perpendicular to both the field and the current (the motor effect), distinct from the Fleming's-left-hand mnemonic itself.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of magnet poles arranged vertically with a conductor between them, direction-neutral (no baked current/force arrows), ready to receive deterministic N/S, current and force overlays, matching the existing governed motor-effect geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "N to S field direction",
+      "conductor positioned between the poles",
+      "poles arranged vertically -- this specific orientation is the defining physical fact of this asset, never mixed with the sibling orientation asset",
+      "current explicitly into or out of the page -- the base artwork must not bake in either direction (deterministic overlay per state)",
+      "resulting force perpendicular to both field and current",
+      "must remain visually distinct from the hand-rule mnemonic asset"
+    ],
+    "prohibitedChanges": [
+      "do not include a hand in this asset -- that is the separate MNEMONIC asset in this family",
+      "do not depict the horizontal pole arrangement in this asset -- that is the sibling ProductionAsset",
+      "do not bake a specific current or force direction into the base artwork -- this base must safely serve both current directions via deterministic overlay"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "CLEAN_BASE_ART_WITH_DETERMINISTIC_OVERLAY",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
+        "displayName": "N/S/vertical poles, current into page — force revealed (teaching)",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.motor.effect.vertical-poles.state.into-page-assessment",
+        "displayName": "N/S/vertical poles, current into page — force withheld (assessment)",
+        "pedagogicalState": "ASSESSMENT"
+      },
+      {
+        "stateId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
+        "displayName": "N/S/vertical poles, current out of page — force revealed (teaching)",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.motor.effect.vertical-poles.state.out-of-page-assessment",
+        "displayName": "N/S/vertical poles, current out of page — force withheld (assessment)",
+        "pedagogicalState": "ASSESSMENT"
+      }
+    ],
+    "canonicalStateCount": 4,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "motor-effect-vertical-poles-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/motor-effect-vertical-poles-base",
+    "governedDiagramBlueprintId": "motor.force_field_current",
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.fleming-left-hand.teaching",
+    "familyId": "unit202.family.fleming-left-hand-motor",
+    "familyTitle": "Fleming's left-hand rule / motor effect",
+    "finalImageTitle": "Fleming left-hand rule — motor teaching mnemonic",
+    "roleInFamily": "MNEMONIC",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID / PREMIUM TEACHING",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.magnetism.effects-of-current",
+    "instructionalPurpose": "Teach the motor-effect hand mnemonic: thuMb = Motion/force, First finger = Field, seCond finger = Current, each mutually perpendicular on the left hand.",
+    "learnerVisiblePurpose": "One premium illustration of a left hand with thumb, first finger and second finger held mutually perpendicular, clearly and unambiguously demonstrating Force/Field/Current correspondence. Include the explanatory annotations MOTION / FORCE, FIELD and CURRENT on the corresponding digit -- this is a TEACHING asset and clear labels are part of the deliverable. Matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "LEFT hand",
+      "thumb = force/motion",
+      "first (index) finger = magnetic FIELD",
+      "second (middle) finger = conventional CURRENT",
+      "mutually perpendicular relationship between all three"
+    ],
+    "prohibitedChanges": [
+      "do not swap to the right hand",
+      "do not reassign which finger represents which quantity",
+      "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored left hand can read as a right hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image for any other pole/current combination."
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "MOTION / FORCE",
+      "FIELD",
+      "CURRENT"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Fleming's Left Hand Rule.png",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Fleming%27s_Left_Hand_Rule.png",
+    "currentReferenceLicence": "Openly licensed -- treat primarily as geometry/reference, not artwork to imitate",
+    "currentReferenceQualityGrade": "B visual / strong semantic cross-check",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.fleming-left-hand.teaching.state.teaching",
+        "displayName": "Fleming's left-hand mnemonic (teaching only)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "teaching",
+    "filenameBase": "fleming-left-hand-teaching-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/teaching/fleming-left-hand-teaching-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.generator.rotating-loop.horizontal",
+    "familyId": "unit202.family.fleming-right-hand-generator",
+    "familyTitle": "Fleming's right-hand rule / AC generator effect",
+    "finalImageTitle": "Simple rotating-loop AC generator — loop plane facing poles — near-zero EMF",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.emf.ac-generation-principles",
+    "instructionalPurpose": "Show a single loop of wire, loop plane facing the poles head-on (widest visible loop face), rotating on a central axis between N and S poles, establishing the physical basis of single-loop AC generation at Level 2 depth.",
+    "learnerVisiblePurpose": "One premium illustration of a single wire loop, loop plane facing the poles head-on (widest visible loop face), rotating on a central axis between clearly labelled N and S poles, with a minimal slip-ring/output connection concept, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "N/S magnetic poles",
+      "loop/coil between the poles",
+      "loop plane facing the poles head-on (widest visible loop face) -- this specific pose is the defining physical fact of this asset, never mixed with the sibling pose asset",
+      "central rotational axis",
+      "output/slip-ring concept at governed Level-2 abstraction",
+      "rotating conductor cuts magnetic flux"
+    ],
+    "prohibitedChanges": [
+      "do not substitute a detailed modern alternator",
+      "do not add three-phase windings, phasors or brushes/commutator detail beyond governed scope",
+      "do not depict the edge-on loop pose in this asset -- that is the sibling ProductionAsset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "N",
+      "S",
+      "coil/loop",
+      "rotation indicator",
+      "output where useful"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Diagram of single-phase generator with two poles.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Diagram_of_single-phase_generator_with_two_poles.svg",
+    "currentReferenceLicence": "CC0/public-domain reference material where recorded",
+    "currentReferenceQualityGrade": "A concept",
+    "secondaryReferenceTitle": "Pearson Scott Foresman — Dynamo (PSF).png",
+    "secondaryReferenceUrl": "https://commons.wikimedia.org/wiki/File:Dynamo_(PSF).png",
+    "secondaryReferenceLicence": "CC0/public-domain",
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.generator.rotating-loop.horizontal.state.near-zero-emf",
+        "displayName": "Loop plane facing poles — near-zero EMF",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "generator-rotating-loop-horizontal-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/generator-rotating-loop-horizontal-base",
+    "governedDiagramBlueprintId": "generator.rotating_loop",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Shares the identical reference URL with 1 sibling asset(s) (unit202.generator.rotating-loop.vertical) -- verify this file is not an unlabelled composite requiring per-asset isolation (cf. unit202.levers.class-1, confirmed composite in the CC-11.8 proof) before treating it as fully approved for this specific asset.",
+    "sharedReferenceSiblings": [
+      "unit202.generator.rotating-loop.vertical"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.generator.rotating-loop.vertical",
+    "familyId": "unit202.family.fleming-right-hand-generator",
+    "familyTitle": "Fleming's right-hand rule / AC generator effect",
+    "finalImageTitle": "Simple rotating-loop AC generator — loop plane edge-on to poles — near-peak EMF",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.emf.ac-generation-principles",
+    "instructionalPurpose": "Show a single loop of wire, loop plane edge-on to the poles (loop seen from the side, near its thinnest silhouette), rotating on a central axis between N and S poles, establishing the physical basis of single-loop AC generation at Level 2 depth.",
+    "learnerVisiblePurpose": "One premium illustration of a single wire loop, loop plane edge-on to the poles (loop seen from the side, near its thinnest silhouette), rotating on a central axis between clearly labelled N and S poles, with a minimal slip-ring/output connection concept, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "N/S magnetic poles",
+      "loop/coil between the poles",
+      "loop plane edge-on to the poles (loop seen from the side, near its thinnest silhouette) -- this specific pose is the defining physical fact of this asset, never mixed with the sibling pose asset",
+      "central rotational axis",
+      "output/slip-ring concept at governed Level-2 abstraction",
+      "rotating conductor cuts magnetic flux"
+    ],
+    "prohibitedChanges": [
+      "do not substitute a detailed modern alternator",
+      "do not add three-phase windings, phasors or brushes/commutator detail beyond governed scope",
+      "do not depict the face-on loop pose in this asset -- that is the sibling ProductionAsset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "N",
+      "S",
+      "coil/loop",
+      "rotation indicator",
+      "output where useful"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Diagram of single-phase generator with two poles.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Diagram_of_single-phase_generator_with_two_poles.svg",
+    "currentReferenceLicence": "CC0/public-domain reference material where recorded",
+    "currentReferenceQualityGrade": "A concept",
+    "secondaryReferenceTitle": "Pearson Scott Foresman — Dynamo (PSF).png",
+    "secondaryReferenceUrl": "https://commons.wikimedia.org/wiki/File:Dynamo_(PSF).png",
+    "secondaryReferenceLicence": "CC0/public-domain",
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.generator.rotating-loop.vertical.state.near-peak-emf",
+        "displayName": "Loop plane edge-on to poles — near-peak EMF",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "generator-rotating-loop-vertical-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/generator-rotating-loop-vertical-base",
+    "governedDiagramBlueprintId": "generator.rotating_loop",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Shares the identical reference URL with 1 sibling asset(s) (unit202.generator.rotating-loop.horizontal) -- verify this file is not an unlabelled composite requiring per-asset isolation (cf. unit202.levers.class-1, confirmed composite in the CC-11.8 proof) before treating it as fully approved for this specific asset.",
+    "sharedReferenceSiblings": [
+      "unit202.generator.rotating-loop.horizontal"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.fleming-right-hand.teaching",
+    "familyId": "unit202.family.fleming-right-hand-generator",
+    "familyTitle": "Fleming's right-hand rule / AC generator effect",
+    "finalImageTitle": "Fleming right-hand rule — generator teaching mnemonic",
+    "roleInFamily": "MNEMONIC",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID / PREMIUM TEACHING",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.magnetism.effects-of-current",
+    "instructionalPurpose": "Teach the generator-effect hand mnemonic: thuMb = Motion of the conductor, First finger = Field, seCond finger = induced Current/EMF, each mutually perpendicular on the right hand.",
+    "learnerVisiblePurpose": "One premium illustration of a right hand with thumb, first finger and second finger held mutually perpendicular, clearly and unambiguously demonstrating Motion/Field/induced-Current correspondence. Include the explanatory annotations MOTION, FIELD and INDUCED CURRENT / EMF on the corresponding digit -- this is a TEACHING asset and clear labels are part of the deliverable. Matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "RIGHT hand",
+      "thumb = conductor MOTION",
+      "first (index) finger = magnetic FIELD",
+      "second (middle) finger = induced current/EMF",
+      "three directions mutually perpendicular"
+    ],
+    "prohibitedChanges": [
+      "do not swap to the left hand",
+      "do not reassign which finger represents which quantity",
+      "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK. Mirroring may change handedness (a mirrored right hand can read as a left hand) and invalidate the mnemonic -- never use a mirror/flip transform of this image for any other rotation phase."
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "MOTION",
+      "FIELD",
+      "INDUCED CURRENT / EMF"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Fleming's original 1902 right-hand-rule figure (Wikimedia Commons)",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Fleming%27s_right_hand_rule.png",
+    "currentReferenceLicence": "Public-domain historical work",
+    "currentReferenceQualityGrade": "A+",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.fleming-right-hand.teaching.state.teaching",
+        "displayName": "Fleming's right-hand mnemonic (teaching only)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "teaching",
+    "filenameBase": "fleming-right-hand-teaching-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/teaching/fleming-right-hand-teaching-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "HIGH",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.levers.class-1",
+    "familyId": "unit202.family.levers",
+    "familyTitle": "Lever classes",
+    "finalImageTitle": "Lever — Class I",
+    "roleInFamily": "CONFIGURATION",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "Show a Class I lever arrangement (fulcrum between effort and load) so a learner can recognise it from the arrangement itself.",
+    "learnerVisiblePurpose": "One premium illustration of a bar with the fulcrum positioned between a clearly marked effort point and load point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "fulcrum positioned between the effort point and the load point"
+    ],
+    "prohibitedChanges": [
+      "do not blend this with the Class II or Class III arrangement"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "EFFORT",
+      "LOAD",
+      "FULCRUM"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Pearson Scott Foresman — Lever (PSF).svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+    "currentReferenceLicence": "Public domain",
+    "currentReferenceQualityGrade": "A+",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": true,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.levers.class-1.state.recognition",
+        "displayName": "Class I recognition (no distances)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.levers.class-1.state.moment-balance",
+        "displayName": "Class I with effort-arm/load-arm distances",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "levers-class-1-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/levers-class-1-base",
+    "governedDiagramBlueprintId": "mechanical.lever_arrangement",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "COMPOSITE_NEEDS_CROP",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "Confirmed composite (CC-11.8 proof): Lever_(PSF).svg contains 3 stacked lever-class diagrams. This asset is the TOP diagram.",
+    "sharedReferenceSiblings": [
+      "unit202.levers.class-2",
+      "unit202.levers.class-3"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.levers.class-2",
+    "familyId": "unit202.family.levers",
+    "familyTitle": "Lever classes",
+    "finalImageTitle": "Lever — Class II",
+    "roleInFamily": "CONFIGURATION",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "Show a Class II lever arrangement (load between fulcrum and effort) so a learner can recognise it from the arrangement itself.",
+    "learnerVisiblePurpose": "One premium illustration of a bar with the load positioned between a clearly marked fulcrum and effort point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "load positioned between the fulcrum and the effort point"
+    ],
+    "prohibitedChanges": [
+      "do not blend this with the Class I or Class III arrangement"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "EFFORT",
+      "LOAD",
+      "FULCRUM"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Pearson Scott Foresman — Lever (PSF).svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+    "currentReferenceLicence": "Public domain",
+    "currentReferenceQualityGrade": "A+",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": true,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.levers.class-2.state.recognition",
+        "displayName": "Class II recognition (no distances)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.levers.class-2.state.moment-balance",
+        "displayName": "Class II with effort-arm/load-arm distances",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "levers-class-2-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/levers-class-2-base",
+    "governedDiagramBlueprintId": "mechanical.lever_arrangement",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "COMPOSITE_NEEDS_CROP",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "Shares the identical Lever_(PSF).svg file with unit202.levers.class-1 (confirmed composite, CC-11.8 proof). This asset is the MIDDLE diagram.",
+    "sharedReferenceSiblings": [
+      "unit202.levers.class-1",
+      "unit202.levers.class-3"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.levers.class-3",
+    "familyId": "unit202.family.levers",
+    "familyTitle": "Lever classes",
+    "finalImageTitle": "Lever — Class III",
+    "roleInFamily": "CONFIGURATION",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "Show a Class III lever arrangement (effort between fulcrum and load) so a learner can recognise it from the arrangement itself.",
+    "learnerVisiblePurpose": "One premium illustration of a bar with the effort positioned between a clearly marked fulcrum and load point, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "effort positioned between the fulcrum and the load point"
+    ],
+    "prohibitedChanges": [
+      "do not blend this with the Class I or Class II arrangement"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "EFFORT",
+      "LOAD",
+      "FULCRUM"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Pearson Scott Foresman — Lever (PSF).svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
+    "currentReferenceLicence": "Public domain",
+    "currentReferenceQualityGrade": "A+",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": true,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.levers.class-3.state.recognition",
+        "displayName": "Class III recognition (no distances)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.levers.class-3.state.moment-balance",
+        "displayName": "Class III with effort-arm/load-arm distances",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "levers-class-3-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/levers-class-3-base",
+    "governedDiagramBlueprintId": "mechanical.lever_arrangement",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "COMPOSITE_NEEDS_CROP",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "Shares the identical Lever_(PSF).svg file with unit202.levers.class-1 (confirmed composite, CC-11.8 proof). This asset is the BOTTOM diagram.",
+    "sharedReferenceSiblings": [
+      "unit202.levers.class-1",
+      "unit202.levers.class-2"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.pulleys.fixed",
+    "familyId": "unit202.family.pulleys",
+    "familyTitle": "Pulleys",
+    "finalImageTitle": "Fixed pulley",
+    "roleInFamily": "CONFIGURATION",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "Show a fixed pulley: direction change only, mechanical advantage approximately 1.",
+    "learnerVisiblePurpose": "One premium illustration of a fixed pulley wheel with a fixed anchor point and a physically plausible rope path with effort/load ends, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "fixed anchor point",
+      "pulley wheel changes rope direction only",
+      "mechanical advantage approximately 1",
+      "physically continuous/plausible rope path"
+    ],
+    "prohibitedChanges": [
+      "do NOT introduce block-and-tackle complexity"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "EFFORT",
+      "LOAD",
+      "fixed anchor point"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Pulley1a.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Pulley1a.svg",
+    "currentReferenceLicence": "Public-domain where recorded",
+    "currentReferenceQualityGrade": "B+ overall -- simplify to governed Unit 202 scope",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": true,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.pulleys.fixed.state.teaching",
+        "displayName": "Fixed pulley",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "pulleys-fixed-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/pulleys-fixed-base",
+    "governedDiagramBlueprintId": "mechanical.pulley_arrangement",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "SUSPECT_UNSUITABLE",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "CONFIRMED unsuitable in the CC-11.8 Gemini proof session: the cited reference depicts a compound fixed+movable block-and-tackle pulley system, directly contradicting this asset's own prohibitedChanges (\"do NOT introduce block-and-tackle complexity\"). Needs a genuinely isolated fixed-pulley-only reference.",
+    "sharedReferenceSiblings": [
+      "unit202.pulleys.movable"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.pulleys.movable",
+    "familyId": "unit202.family.pulleys",
+    "familyTitle": "Pulleys",
+    "finalImageTitle": "Movable pulley",
+    "roleInFamily": "CONFIGURATION",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "Show a simple movable pulley: two supporting rope segments, mechanical advantage approximately 2.",
+    "learnerVisiblePurpose": "One premium illustration of a movable pulley with exactly two supporting rope segments and a physically plausible rope path with effort/load ends, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "exactly two supporting rope segments",
+      "mechanical advantage approximately 2",
+      "physically continuous/plausible rope path"
+    ],
+    "prohibitedChanges": [
+      "do NOT introduce block-and-tackle complexity"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "EFFORT",
+      "LOAD",
+      "supporting-segment count"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Pulley1a.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Pulley1a.svg",
+    "currentReferenceLicence": "Public-domain where recorded",
+    "currentReferenceQualityGrade": "B+ overall -- simplify to governed Unit 202 scope",
+    "secondaryReferenceTitle": "Historical simple-pulley material (secondary geometry cross-check)",
+    "secondaryReferenceUrl": "",
+    "secondaryReferenceLicence": "to be recorded when selected",
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.pulleys.movable.state.teaching",
+        "displayName": "Movable pulley",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "pulleys-movable-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/pulleys-movable-base",
+    "governedDiagramBlueprintId": "mechanical.pulley_arrangement",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "LOW",
+    "notesForReferenceResearch": "Shares the identical Pulley1a.svg reference file with unit202.pulleys.fixed, which was directly inspected in the CC-11.8 proof and found to depict a compound block-and-tackle system contradicting its own prohibitedChanges. This asset's own suitability against its own prohibitedChanges has NOT been independently re-verified -- treat with the same scrutiny before use.",
+    "sharedReferenceSiblings": [
+      "unit202.pulleys.fixed"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.magnet.field",
+    "familyId": "unit202.family.magnetism",
+    "familyTitle": "Magnetism — field and pole interaction",
+    "finalImageTitle": "Bar magnet and magnetic field",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P0",
+    "priorityLabel": "P0",
+    "curriculumContext": "LO5 — lesson.magnetism.fundamentals",
+    "instructionalPurpose": "Show a bar magnet with its external magnetic field pattern, N to S, as the basis for flux/flux-density teaching.",
+    "learnerVisiblePurpose": "One premium illustration of a bar magnet body ready to receive a deterministic N/S-labelled field-line overlay, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "meaningful field-line geometry",
+      "external field direction runs N to S",
+      "field-line density used meaningfully where density is taught"
+    ],
+    "prohibitedChanges": [
+      "do not draw field lines that reverse direction or cross incorrectly"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "N",
+      "S",
+      "field-line direction"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — DipolMagnet.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:DipolMagnet.svg",
+    "currentReferenceLicence": "Public-domain dedication",
+    "currentReferenceQualityGrade": "A+",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.magnet.field.state.field-only",
+        "displayName": "Bar magnet field pattern (no density comparison)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.magnet.field.state.density-comparison",
+        "displayName": "Bar magnet field with flux-density comparison (same flux, different cross-section)",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "magnet-field-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/magnet-field-base",
+    "governedDiagramBlueprintId": "magnetic.flux_field_lines",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "HIGH",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.magnet.poles.like",
+    "familyId": "unit202.family.magnetism",
+    "familyTitle": "Magnetism — field and pole interaction",
+    "finalImageTitle": "Magnetic pole repulsion — like poles facing (repel)",
+    "roleInFamily": "COMPARISON",
+    "pedagogicalStatesPresent": [
+      "TEACHING",
+      "ASSESSMENT"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO5 — lesson.magnetism.fundamentals",
+    "instructionalPurpose": "Show like poles facing (repel) from the pole labels on two bar magnets.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of two bar magnets arranged like poles facing (repel), matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "like poles repel",
+      "magnets must be composed with a spacing appropriate to repulsion (visible gap, compressed/deflected field lines) -- this specific spacing is the defining physical fact of this asset, never mixed with the sibling asset",
+      "field behaviour between the two magnets must remain physically meaningful"
+    ],
+    "prohibitedChanges": [
+      "this premium asset is TEACHING-only -- the separate deterministic magnetic.pole_interaction diagram (not this asset) is what governs the assessment-mode reveal/withhold state; do not treat this teaching image's own labels as an assessment-answer leak",
+      "do not depict the unlike-poles/attracting arrangement in this asset -- that is the sibling ProductionAsset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "N",
+      "S",
+      "attract/repel force-arrow indicator"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.magnet.poles.like.state.teaching",
+        "displayName": "like poles facing (repel) — force revealed (teaching)",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.magnet.poles.like.state.assessment",
+        "displayName": "like poles facing (repel) — force withheld (assessment)",
+        "pedagogicalState": "ASSESSMENT"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "magnet-poles-like-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/magnet-poles-like-base",
+    "governedDiagramBlueprintId": "magnetic.pole_interaction",
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.magnet.poles.unlike",
+    "familyId": "unit202.family.magnetism",
+    "familyTitle": "Magnetism — field and pole interaction",
+    "finalImageTitle": "Magnetic pole attraction — unlike poles facing (attract)",
+    "roleInFamily": "COMPARISON",
+    "pedagogicalStatesPresent": [
+      "TEACHING",
+      "ASSESSMENT"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO5 — lesson.magnetism.fundamentals",
+    "instructionalPurpose": "Show unlike poles facing (attract) from the pole labels on two bar magnets.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of two bar magnets arranged unlike poles facing (attract), matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "unlike poles attract",
+      "magnets must be composed with a spacing appropriate to attraction (close together, merging field lines) -- this specific spacing is the defining physical fact of this asset, never mixed with the sibling asset",
+      "field behaviour between the two magnets must remain physically meaningful"
+    ],
+    "prohibitedChanges": [
+      "this premium asset is TEACHING-only -- the separate deterministic magnetic.pole_interaction diagram (not this asset) is what governs the assessment-mode reveal/withhold state; do not treat this teaching image's own labels as an assessment-answer leak",
+      "do not depict the like-poles/repelling arrangement in this asset -- that is the sibling ProductionAsset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "N",
+      "S",
+      "attract/repel force-arrow indicator"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.magnet.poles.unlike.state.teaching",
+        "displayName": "unlike poles facing (attract) — force revealed (teaching)",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.magnet.poles.unlike.state.assessment",
+        "displayName": "unlike poles facing (attract) — force withheld (assessment)",
+        "pedagogicalState": "ASSESSMENT"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "magnet-poles-unlike-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/magnet-poles-unlike-base",
+    "governedDiagramBlueprintId": "magnetic.pole_interaction",
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.magnet.permanent-vs-electromagnet",
+    "familyId": "unit202.family.magnetism",
+    "familyTitle": "Magnetism — field and pole interaction",
+    "finalImageTitle": "Permanent magnet vs electromagnet comparison",
+    "roleInFamily": "COMPARISON",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P2",
+    "priorityLabel": "P2 (USEFUL, not REQUIRED)",
+    "curriculumContext": "LO5 — lesson.magnetism.fundamentals",
+    "instructionalPurpose": "CC-11.7 audit finding: a genuine physical-topology comparison (coiled wire around a core vs a solid bar magnet) the learner can use to distinguish the two magnet types by appearance -- USEFUL enrichment, Level 2 depth keeps it below REQUIRED.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium side-by-side illustration (permanent magnet | electromagnet), matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "permanent magnet depicted as a solid bar/horseshoe magnet, no coil or power source",
+      "electromagnet depicted as a coil of wire around a core with a visible power source/current path",
+      "one side-by-side comparison image, not two separate images"
+    ],
+    "prohibitedChanges": [
+      "do not generate until a primary reference is marked READY",
+      "do not split into two separate images -- this is one comparison deliverable"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "PERMANENT MAGNET",
+      "ELECTROMAGNET"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.magnet.permanent-vs-electromagnet.state.teaching",
+        "displayName": "Permanent magnet vs electromagnet (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "magnet-permanent-vs-electromagnet-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/magnet-permanent-vs-electromagnet-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.circuit.series",
+    "familyId": "unit202.family.circuit-series",
+    "familyTitle": "Series circuit",
+    "finalImageTitle": "Series circuit",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO4 — lesson.electrical.resistors-series",
+    "instructionalPurpose": "A visually polished series-circuit reference for style/contrast QA against the existing deterministic renderer -- topology and correctness are already governed.",
+    "learnerVisiblePurpose": "A style/contrast reference only (not a replacement asset): include an unmistakable cell/battery/source wherever current direction is being taught, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "complete source",
+      "one continuous loop",
+      "UK/IEC component convention",
+      "current direction consistent with polarity when shown"
+    ],
+    "prohibitedChanges": [
+      "do not replace the governed deterministic SVG renderer's output with generated raster geometry"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Wikimedia Commons — Battery symbols and circuit.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Battery_symbols_and_circuit.svg",
+    "currentReferenceLicence": "recorded per source page",
+    "currentReferenceQualityGrade": "A",
+    "secondaryReferenceTitle": "Wikimedia Commons — Series and parallel circuits2.svg",
+    "secondaryReferenceUrl": "https://commons.wikimedia.org/wiki/File:Series_and_parallel_circuits2.svg",
+    "secondaryReferenceLicence": "recorded per source page",
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.circuit.series.state.2-component",
+        "displayName": "Series circuit — 2 components",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.circuit.series.state.3-component",
+        "displayName": "Series circuit — 3 components",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.circuit.series.state.4-component",
+        "displayName": "Series circuit — 4 components",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 3,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "circuit-series-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/circuit-series-base",
+    "governedDiagramBlueprintId": "circuit.series_resistors",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "HIGH",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.circuit.parallel",
+    "familyId": "unit202.family.circuit-parallel",
+    "familyTitle": "Parallel circuit",
+    "finalImageTitle": "Parallel circuit",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO4 — lesson.electrical.resistors-parallel",
+    "instructionalPurpose": "A visually polished parallel-circuit reference for style/contrast QA against the existing deterministic renderer -- topology and correctness are already governed.",
+    "learnerVisiblePurpose": "A style/contrast reference only (not a replacement asset), matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "source present",
+      "common pair of nodes/rails",
+      "separate branches",
+      "current direction consistent with source polarity"
+    ],
+    "prohibitedChanges": [
+      "do not replace the governed deterministic SVG renderer's output with generated raster geometry"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Same circuit reference family as series (see unit202.circuit.series)",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Series_and_parallel_circuits2.svg",
+    "currentReferenceLicence": "recorded per source page",
+    "currentReferenceQualityGrade": "A",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.circuit.parallel.state.2-branch",
+        "displayName": "Parallel circuit — 2 branches",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.circuit.parallel.state.3-branch",
+        "displayName": "Parallel circuit — 3 branches",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.circuit.parallel.state.4-branch",
+        "displayName": "Parallel circuit — 4 branches",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 3,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "circuit-parallel-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/circuit-parallel-base",
+    "governedDiagramBlueprintId": "circuit.parallel_resistors",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "HIGH",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.circuit.mixed",
+    "familyId": "unit202.family.circuit-mixed",
+    "familyTitle": "Mixed series/parallel circuit",
+    "finalImageTitle": "Mixed series/parallel circuit",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO4 — lesson.electrical.series-vs-parallel-comparison",
+    "instructionalPurpose": "A visually polished mixed-topology reference for style/contrast QA against the existing deterministic renderer -- topology and correctness are already governed.",
+    "learnerVisiblePurpose": "A style/contrast reference only (not a replacement asset), matching the reference topology exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "genuinely mixed topology",
+      "obvious junctions",
+      "traceable current paths",
+      "source included where pedagogically necessary"
+    ],
+    "prohibitedChanges": [
+      "use only as topology/reference, not a close stylistic derivative",
+      "do not replace the governed deterministic SVG renderer's output with generated raster geometry"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Wikimedia Commons — SeriesParallelCircuit.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:SeriesParallelCircuit.svg",
+    "currentReferenceLicence": "use only as topology/reference, not a close stylistic derivative",
+    "currentReferenceQualityGrade": "B",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.circuit.mixed.state.series-of-parallel",
+        "displayName": "Mixed circuit — series of parallel",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.circuit.mixed.state.parallel-of-series",
+        "displayName": "Mixed circuit — parallel of series",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "circuit-mixed-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/circuit-mixed-base",
+    "governedDiagramBlueprintId": "circuit.series_parallel_mixed",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.instrument.connections",
+    "familyId": "unit202.family.instrument-connections",
+    "familyTitle": "Instrument connections",
+    "finalImageTitle": "Ammeter / voltmeter / ohmmeter connections",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL / SELECTIVE HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO2 — lesson.electrical.instrumentation",
+    "instructionalPurpose": "A visually polished instrument-connection reference for style/contrast QA against the existing deterministic renderer -- connection correctness is already governed.",
+    "learnerVisiblePurpose": "A style/contrast reference only (not a replacement asset), matching the reference connection geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "ammeter connects in series",
+      "voltmeter connects in parallel",
+      "resistance measurement requires a de-energised circuit",
+      "isolation/disconnection of an individual component is required only where necessary to avoid parallel-path readings, never claimed as a universal requirement",
+      "source/load context understandable"
+    ],
+    "prohibitedChanges": [
+      "do not restate isolation as a universal requirement -- see immutable facts"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Wikimedia Commons — SimpleCircuit.SVG",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:SimpleCircuit.SVG",
+    "currentReferenceLicence": "recorded per source page",
+    "currentReferenceQualityGrade": "A",
+    "secondaryReferenceTitle": "Fluke resistance-measurement guidance (technical cross-check)",
+    "secondaryReferenceUrl": "",
+    "secondaryReferenceLicence": "reference/technical grounding only -- not a redistributable asset",
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.instrument.connections.state.voltmeter-parallel",
+        "displayName": "voltmeter — parallel (standard)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.instrument.connections.state.voltmeter-series",
+        "displayName": "voltmeter — series (non-standard, deliberate teaching contrast)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.instrument.connections.state.ammeter-series",
+        "displayName": "ammeter — series (standard)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.instrument.connections.state.ammeter-parallel",
+        "displayName": "ammeter — parallel (non-standard, deliberate teaching contrast)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.instrument.connections.state.ohmmeter-isolated",
+        "displayName": "ohmmeter — isolated (standard)",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 5,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "instrument-connections-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/instrument-connections-base",
+    "governedDiagramBlueprintId": "instrument.measurement_connection",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "HIGH",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.instrument.clamp-meter",
+    "familyId": "unit202.family.instrument-connections",
+    "familyTitle": "Instrument connections",
+    "finalImageTitle": "Clamp meter recognition",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL",
+    "priority": "P2",
+    "priorityLabel": "P2 (USEFUL, not REQUIRED)",
+    "curriculumContext": "LO2 — lesson.electrical.instrumentation",
+    "instructionalPurpose": "CC-11.7 audit finding: physical recognition of a clamp meter by its distinctive ferrite-jaw form -- genuinely different from the series/parallel/isolated connection topology the sibling TECHNICAL_DIAGRAM asset models. USEFUL enrichment, not REQUIRED.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a clamp meter. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "ferrite clamp jaw must be clearly visible and open-able around a conductor -- the defining recognition feature"
+    ],
+    "prohibitedChanges": [
+      "do not generate until a primary reference is marked READY",
+      "do not make one manufacturer's product appearance canonical"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "instrument name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.instrument.clamp-meter.state.teaching",
+        "displayName": "Clamp meter recognition (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "instrument-clamp-meter-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/instrument-clamp-meter-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.instrument.oscilloscope",
+    "familyId": "unit202.family.instrument-connections",
+    "familyTitle": "Instrument connections",
+    "finalImageTitle": "Oscilloscope recognition",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL",
+    "priority": "P2",
+    "priorityLabel": "P2 (USEFUL, not REQUIRED)",
+    "curriculumContext": "LO2 — lesson.electrical.instrumentation",
+    "instructionalPurpose": "CC-11.7 audit finding: physical recognition of an oscilloscope by its distinctive screen/trace form. USEFUL enrichment, not REQUIRED.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a oscilloscope. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "screen with a visible waveform trace must be clearly depicted -- the defining recognition feature"
+    ],
+    "prohibitedChanges": [
+      "do not generate until a primary reference is marked READY",
+      "do not make one manufacturer's product appearance canonical"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "instrument name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.instrument.oscilloscope.state.teaching",
+        "displayName": "Oscilloscope recognition (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "instrument-oscilloscope-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/instrument-oscilloscope-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.current-direction.electron-flow-vs-conventional",
+    "familyId": "unit202.family.current-direction",
+    "familyTitle": "Conventional current vs electron flow",
+    "finalImageTitle": "Conventional current vs electron flow",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P2",
+    "priorityLabel": "P2 (USEFUL, not REQUIRED)",
+    "curriculumContext": "LO4 — lesson.electrical.charge-and-current",
+    "instructionalPurpose": "CC-11.7 audit finding: a single wire with two labelled arrows -- conventional current (+ to -) and actual electron flow (- to +) -- shown together so the direction distinction and the underlying reason (electrons are negative, so they physically move opposite to the conventional-current convention) are both visible at a glance.",
+    "learnerVisiblePurpose": "Deterministic vector dual-arrow diagram -- not a premium art-generation deliverable.",
+    "immutableFacts": [
+      "conventional current direction: positive terminal to negative terminal",
+      "electron flow direction: negative terminal to positive terminal -- opposite to conventional current",
+      "both arrows on the same single wire/conductor, never on separate wires"
+    ],
+    "prohibitedChanges": [
+      "do not draw the two arrows pointing the same direction",
+      "do not omit either arrow"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "CONVENTIONAL CURRENT (+ to -)",
+      "ELECTRON FLOW (- to +)"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Standard conventional-current/electron-flow dual-arrow reference -- to be selected when this asset is commissioned",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "to be recorded when selected",
+    "currentReferenceQualityGrade": "to be assessed",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.current-direction.electron-flow-vs-conventional.state.teaching",
+        "displayName": "Conventional current vs electron flow (dual arrow)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "current-direction-electron-flow-vs-conventional-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/current-direction-electron-flow-vs-conventional-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "Deterministic vector asset -- no external pictorial reference required; authoritative geometry is governed by ALP's own deterministic renderer, not redrawn from an external image. No reference research action needed.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.gears.driven-larger",
+    "familyId": "unit202.family.gears",
+    "familyTitle": "Driver/driven gears",
+    "finalImageTitle": "Driver/driven gears — driven gear larger than the driver",
+    "roleInFamily": "CONFIGURATION",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "POLISHED DETERMINISTIC / HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "Show a driver gear meshed with a driven gear, driven gear larger than the driver, representing the gear ratio and the resulting torque/speed trade-off.",
+    "learnerVisiblePurpose": "One premium illustration of two meshed gears, driven gear larger than the driver, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "meaningful driver/driven relationship",
+      "physically plausible mesh",
+      "driven gear larger than the driver -- this specific size relationship is the defining physical fact of this asset, never mixed with a sibling size-ratio asset",
+      "correct rotation relationship when shown"
+    ],
+    "prohibitedChanges": [
+      "do not depict a mesh that is not physically plausible",
+      "do not depict a different size relationship than stated -- that is a sibling ProductionAsset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "Driver",
+      "Driven"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Example of a Compound Gear Train.png",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Example_of_a_Compound_Gear_Train.png",
+    "currentReferenceLicence": "CC0",
+    "currentReferenceQualityGrade": "A",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.gears.driven-larger.state.teaching",
+        "displayName": "Driver/driven gears — driven larger",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "gears-driven-larger-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/gears-driven-larger-base",
+    "governedDiagramBlueprintId": "mechanical.gear_mesh",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Shares the identical reference URL with 2 sibling asset(s) (unit202.gears.driven-smaller, unit202.gears.equal) -- verify this file is not an unlabelled composite requiring per-asset isolation (cf. unit202.levers.class-1, confirmed composite in the CC-11.8 proof) before treating it as fully approved for this specific asset.",
+    "sharedReferenceSiblings": [
+      "unit202.gears.driven-smaller",
+      "unit202.gears.equal"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.gears.driven-smaller",
+    "familyId": "unit202.family.gears",
+    "familyTitle": "Driver/driven gears",
+    "finalImageTitle": "Driver/driven gears — driven gear smaller than the driver",
+    "roleInFamily": "CONFIGURATION",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "POLISHED DETERMINISTIC / HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "Show a driver gear meshed with a driven gear, driven gear smaller than the driver, representing the gear ratio and the resulting torque/speed trade-off.",
+    "learnerVisiblePurpose": "One premium illustration of two meshed gears, driven gear smaller than the driver, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "meaningful driver/driven relationship",
+      "physically plausible mesh",
+      "driven gear smaller than the driver -- this specific size relationship is the defining physical fact of this asset, never mixed with a sibling size-ratio asset",
+      "correct rotation relationship when shown"
+    ],
+    "prohibitedChanges": [
+      "do not depict a mesh that is not physically plausible",
+      "do not depict a different size relationship than stated -- that is a sibling ProductionAsset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "Driver",
+      "Driven"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Example of a Compound Gear Train.png",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Example_of_a_Compound_Gear_Train.png",
+    "currentReferenceLicence": "CC0",
+    "currentReferenceQualityGrade": "A",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.gears.driven-smaller.state.teaching",
+        "displayName": "Driver/driven gears — driven smaller",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "gears-driven-smaller-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/gears-driven-smaller-base",
+    "governedDiagramBlueprintId": "mechanical.gear_mesh",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Shares the identical reference URL with 2 sibling asset(s) (unit202.gears.driven-larger, unit202.gears.equal) -- verify this file is not an unlabelled composite requiring per-asset isolation (cf. unit202.levers.class-1, confirmed composite in the CC-11.8 proof) before treating it as fully approved for this specific asset.",
+    "sharedReferenceSiblings": [
+      "unit202.gears.driven-larger",
+      "unit202.gears.equal"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.gears.equal",
+    "familyId": "unit202.family.gears",
+    "familyTitle": "Driver/driven gears",
+    "finalImageTitle": "Driver/driven gears — driver and driven gears equal size",
+    "roleInFamily": "CONFIGURATION",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "POLISHED DETERMINISTIC / HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "Show a driver gear meshed with a driven gear, driver and driven gears equal size, representing the gear ratio and the resulting torque/speed trade-off.",
+    "learnerVisiblePurpose": "One premium illustration of two meshed gears, driver and driven gears equal size, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "meaningful driver/driven relationship",
+      "physically plausible mesh",
+      "driver and driven gears equal size -- this specific size relationship is the defining physical fact of this asset, never mixed with a sibling size-ratio asset",
+      "correct rotation relationship when shown"
+    ],
+    "prohibitedChanges": [
+      "do not depict a mesh that is not physically plausible",
+      "do not depict a different size relationship than stated -- that is a sibling ProductionAsset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "Driver",
+      "Driven"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Example of a Compound Gear Train.png",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Example_of_a_Compound_Gear_Train.png",
+    "currentReferenceLicence": "CC0",
+    "currentReferenceQualityGrade": "A",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.gears.equal.state.teaching",
+        "displayName": "Driver/driven gears — equal",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "gears-equal-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/gears-equal-base",
+    "governedDiagramBlueprintId": "mechanical.gear_mesh",
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Shares the identical reference URL with 2 sibling asset(s) (unit202.gears.driven-larger, unit202.gears.driven-smaller) -- verify this file is not an unlabelled composite requiring per-asset isolation (cf. unit202.levers.class-1, confirmed composite in the CC-11.8 proof) before treating it as fully approved for this specific asset.",
+    "sharedReferenceSiblings": [
+      "unit202.gears.driven-larger",
+      "unit202.gears.driven-smaller"
+    ]
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.gears.rotation-direction",
+    "familyId": "unit202.family.gears",
+    "familyTitle": "Driver/driven gears",
+    "finalImageTitle": "Gear rotation-direction reversal / idler gear",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL (annotation overlay on whichever sibling driver/driven gear base artwork applies)",
+    "priority": "P2",
+    "priorityLabel": "P2 (USEFUL, not REQUIRED)",
+    "curriculumContext": "LO3 — lesson.foundation.physics.simple-machines",
+    "instructionalPurpose": "CC-11.7 audit finding: two meshed gears rotate in opposite directions; adding a third idler gear reverses the output direction back to match the driver without changing the overall ratio. Governed SUPPORTS-only content (non-mandatory).",
+    "learnerVisiblePurpose": "Deterministic rotation-direction overlay states on a sibling driver/driven gear base artwork -- not a separate premium art-generation deliverable.",
+    "immutableFacts": [
+      "two directly meshed gears rotate in opposite directions",
+      "an idler gear between driver and driven reverses the output direction back to match the driver's own direction",
+      "an idler gear does not change the overall driver:driven ratio"
+    ],
+    "prohibitedChanges": [
+      "do not commission a new premium base image for this asset -- it reuses a sibling gear asset's own overlay system"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "rotation-direction arrows",
+      "idler (where present)"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Deterministic rotation-direction annotation on the sibling driver/driven gear reference geometry -- no separate photographic reference required",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "n/a -- deterministic annotation, not generated artwork",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.gears.rotation-direction.state.direct-mesh-opposite-directions",
+        "displayName": "Two directly meshed gears — opposite rotation directions",
+        "pedagogicalState": "TEACHING"
+      },
+      {
+        "stateId": "unit202.gears.rotation-direction.state.idler-preserves-driver-direction",
+        "displayName": "Idler gear — output direction matches driver, ratio unchanged",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "gears-rotation-direction-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/gears-rotation-direction-base",
+    "governedDiagramBlueprintId": "mechanical.gear_mesh",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "Deterministic vector asset -- no external pictorial reference required; authoritative geometry is governed by ALP's own deterministic renderer, not redrawn from an external image. No reference research action needed.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.resistivity.length-comparison",
+    "familyId": "unit202.family.resistivity",
+    "familyTitle": "Resistance vs conductor dimensions",
+    "finalImageTitle": "Resistance vs conductor length",
+    "roleInFamily": "COMPARISON",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID / POLISHED DETERMINISTIC",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO4 — lesson.electrical.resistivity",
+    "instructionalPurpose": "Show two conductor rods differing only in length so a learner predicts the qualitative effect on resistance.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of two conductor rods differing only in length, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "increased length -> greater resistance (cross-sectional area unchanged)"
+    ],
+    "prohibitedChanges": [
+      "do not embed a numeric R = rho L / A calculation",
+      "do not also vary cross-sectional area in this asset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "length comparison caption",
+      "qualitative-consequence caption (\"longer -> more resistance\")"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.resistivity.length-comparison.state.teaching",
+        "displayName": "Resistance vs conductor length",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "resistivity-length-comparison-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/resistivity-length-comparison-base",
+    "governedDiagramBlueprintId": "mechanical.resistivity_dimensions",
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.resistivity.area-comparison",
+    "familyId": "unit202.family.resistivity",
+    "familyTitle": "Resistance vs conductor dimensions",
+    "finalImageTitle": "Resistance vs conductor cross-sectional area",
+    "roleInFamily": "COMPARISON",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID / POLISHED DETERMINISTIC",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO4 — lesson.electrical.resistivity",
+    "instructionalPurpose": "Show two conductor rods differing only in cross-sectional area so a learner predicts the qualitative effect on resistance.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of two conductor rods differing only in cross-sectional area, matching the reference relationship exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "increased cross-sectional area -> lower resistance (length unchanged)"
+    ],
+    "prohibitedChanges": [
+      "do not embed a numeric R = rho L / A calculation",
+      "do not also vary length in this asset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "area comparison caption",
+      "qualitative-consequence caption (\"thicker -> less resistance\")"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.resistivity.area-comparison.state.teaching",
+        "displayName": "Resistance vs conductor cross-sectional area",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "resistivity-area-comparison-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/resistivity-area-comparison-base",
+    "governedDiagramBlueprintId": "mechanical.resistivity_dimensions",
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.waveform.sine",
+    "familyId": "unit202.family.waveform-sine",
+    "familyTitle": "AC sine waveform",
+    "finalImageTitle": "AC sine waveform",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO5 — lesson.waveforms.ac-dc-and-sine-wave-quantities",
+    "instructionalPurpose": "A visually polished sine-waveform reference for style/contrast QA against the existing deterministic renderer -- waveform correctness is already governed.",
+    "learnerVisiblePurpose": "A style/contrast reference only (not a replacement asset), matching the reference waveform exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "mathematically correct sine curve",
+      "zero axis shown",
+      "peak shown",
+      "peak-to-peak shown",
+      "period shown",
+      "RMS is approximately 0.707 x peak where taught"
+    ],
+    "prohibitedChanges": [
+      "do not approximate the sine curve with a freehand/raster curve"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Wikimedia Commons — Sine wave 2.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Sine_wave_2.svg",
+    "currentReferenceLicence": "Public-domain dedication",
+    "currentReferenceQualityGrade": "A+",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.waveform.sine.state.progression-1",
+        "displayName": "Sine waveform — bare cycle (zero-axis reference only) (2 cycles)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.waveform.sine.state.progression-2",
+        "displayName": "Sine waveform — peak revealed (2 cycles)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.waveform.sine.state.progression-3",
+        "displayName": "Sine waveform — peak + RMS revealed (2 cycles)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.waveform.sine.state.progression-4",
+        "displayName": "Sine waveform — peak + RMS + period revealed (2 cycles)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.waveform.sine.state.progression-5",
+        "displayName": "Sine waveform — single cycle, fully annotated (1 cycle)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.waveform.sine.state.progression-6",
+        "displayName": "Sine waveform — three cycles, fully annotated (3 cycles)",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 6,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "waveform-sine-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/waveform-sine-base",
+    "governedDiagramBlueprintId": "graph.waveform_sine",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "HIGH",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.emf.motional",
+    "familyId": "unit202.family.emf-motional",
+    "familyTitle": "Motional EMF geometry",
+    "finalImageTitle": "Motional EMF geometry",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "DETERMINISTIC / HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO5 — lesson.magnetism.effects-of-current",
+    "instructionalPurpose": "Show that conductor length, its velocity and the magnetic field are mutually perpendicular -- the geometric fact behind e = Blv.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of a conductor rod across two rails ready to receive B/l/v overlay arrows, matching the existing governed geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "B, l and v mutually perpendicular for the governed e = Blv case",
+      "rod across rails",
+      "velocity along the rails",
+      "field perpendicular to the rail plane"
+    ],
+    "prohibitedChanges": [
+      "do not draw B, l or v as anything other than mutually perpendicular"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "B",
+      "l",
+      "v"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.emf.motional.state.teaching",
+        "displayName": "Motional EMF — B, l, v mutually perpendicular",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "emf-motional-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/emf-motional-base",
+    "governedDiagramBlueprintId": "emf.motional_emf_geometry",
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.symbols",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Electronic component symbol system",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+    "instructionalPurpose": "The governed UK/IEC schematic-symbol system for component recognition -- symbol geometry must never be AI-generated.",
+    "learnerVisiblePurpose": "No image-generation deliverable -- this catalogue entry exists for tracking/QA only; symbols remain produced by ComponentSymbols.tsx.",
+    "immutableFacts": [
+      "every symbol must match the governed BS EN 60617 / IEC 60617 convention exactly"
+    ],
+    "prohibitedChanges": [
+      "do NOT use AI-generated schematic symbols",
+      "do NOT use US/ANSI substitutes where UK/IEC differs"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "IEC 60617 graphical-symbol system / current UK technical-drawing convention",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "standards reference -- verify against the current governed BS EN 60617 / IEC 60617 convention",
+    "currentReferenceQualityGrade": "A (standards authority)",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.symbols.state.resistor",
+        "displayName": "UK/IEC symbol — resistor",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.capacitor",
+        "displayName": "UK/IEC symbol — capacitor",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.diode",
+        "displayName": "UK/IEC symbol — diode",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.zener-diode",
+        "displayName": "UK/IEC symbol — zener diode",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.led",
+        "displayName": "UK/IEC symbol — led",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.photodiode",
+        "displayName": "UK/IEC symbol — photodiode",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.thermistor",
+        "displayName": "UK/IEC symbol — thermistor",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.diac",
+        "displayName": "UK/IEC symbol — diac",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.triac",
+        "displayName": "UK/IEC symbol — triac",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.transistor",
+        "displayName": "UK/IEC symbol — transistor",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.thyristor-scr",
+        "displayName": "UK/IEC symbol — thyristor scr",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.rectifier",
+        "displayName": "UK/IEC symbol — rectifier",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.components.symbols.state.inverter",
+        "displayName": "UK/IEC symbol — inverter",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 13,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "components-symbols-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/components-symbols-base",
+    "governedDiagramBlueprintId": "electronics.component_symbol_card",
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "Deterministic vector asset -- no external pictorial reference required; authoritative geometry is governed by ALP's own deterministic renderer, not redrawn from an external image. No reference research action needed.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.resistor",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — resistor",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P1",
+    "priorityLabel": "P1/P2",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the resistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a resistor, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a resistor"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the resistor",
+      "do not depict any other component in this asset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.resistor.state.teaching",
+        "displayName": "Physical appearance — resistor",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-resistor-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-resistor-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.capacitor",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — capacitor",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P1",
+    "priorityLabel": "P1/P2",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the capacitor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a capacitor, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a capacitor"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the capacitor",
+      "do not depict any other component in this asset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.capacitor.state.teaching",
+        "displayName": "Physical appearance — capacitor",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-capacitor-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-capacitor-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.diode",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — diode",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P1",
+    "priorityLabel": "P1/P2",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the diode, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a diode, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a diode"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the diode",
+      "do not depict any other component in this asset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.diode.state.teaching",
+        "displayName": "Physical appearance — diode",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-diode-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-diode-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.led",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — led",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P1",
+    "priorityLabel": "P1/P2",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the led, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a led, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a led"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the led",
+      "do not depict any other component in this asset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.led.state.teaching",
+        "displayName": "Physical appearance — led",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-led-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-led-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.thermistor",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — thermistor",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P1",
+    "priorityLabel": "P1/P2",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the thermistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a thermistor, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a thermistor"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the thermistor",
+      "do not depict any other component in this asset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.thermistor.state.teaching",
+        "displayName": "Physical appearance — thermistor",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-thermistor-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-thermistor-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.transistor",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — transistor",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P1",
+    "priorityLabel": "P1/P2",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive / -switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the transistor, paired with its existing deterministic UK/IEC symbol card, so a learner can recognise this component both on a circuit diagram and in physical form.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a transistor, matching a real, representative package form. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a transistor"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the transistor",
+      "do not depict any other component in this asset"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.transistor.state.teaching",
+        "displayName": "Physical appearance — transistor",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-transistor-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-transistor-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.diode.bias-direction.forward",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Diode forward bias — conducting",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive",
+    "instructionalPurpose": "CC-11.7 audit finding (new, beyond the original 66): show current flowing easily in forward bias, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing `electronics.component_symbol_card` blueprint cannot represent since it renders only the static symbol, never current flow.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration (forward bias — conducting) of a diode in a simple test circuit, matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "diode conducts easily in forward bias (anode more positive than cathode)",
+      "must remain visually distinct from the plain IEC diode symbol asset",
+      "must depict ONLY the forward-bias state -- the sibling ProductionAsset covers the other"
+    ],
+    "prohibitedChanges": [
+      "do not depict blocked/no current flow -- that is the reverse-bias sibling asset",
+      "do not conflate with the zener/LED/photodiode symbol variants"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "FORWARD BIAS",
+      "current-flow arrow"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.diode.bias-direction.forward.state.teaching",
+        "displayName": "Forward bias — conducting",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "diode-bias-direction-forward-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/diode-bias-direction-forward-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.diode.bias-direction.reverse",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Diode reverse bias — blocked",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive",
+    "instructionalPurpose": "CC-11.7 audit finding (new, beyond the original 66): show current blocked in reverse bias, distinct from the static IEC symbol -- directly targets EL-COMPONENT-DIODE-001 and the named misconception MIS-EL-DIODE-DIRECTION-CONFUSION-001 (confusing which direction a diode conducts), which the existing `electronics.component_symbol_card` blueprint cannot represent since it renders only the static symbol, never current flow.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration (reverse bias — blocked) of a diode in a simple test circuit, matching the immutable facts exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "diode blocks current in reverse bias (cathode more positive than anode)",
+      "must remain visually distinct from the plain IEC diode symbol asset",
+      "must depict ONLY the reverse-bias state -- the sibling ProductionAsset covers the other"
+    ],
+    "prohibitedChanges": [
+      "do not depict current flowing -- that is the forward-bias sibling asset",
+      "do not conflate with the zener/LED/photodiode symbol variants"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "REVERSE BIAS",
+      "blocked-current indicator"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.diode.bias-direction.reverse.state.teaching",
+        "displayName": "Reverse bias — blocked",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "diode-bias-direction-reverse-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/diode-bias-direction-reverse-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.rectification.waveforms",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Rectifier/inverter output waveform shapes",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-switching-control",
+    "instructionalPurpose": "CC-11.7 audit finding (new, beyond the original 66): the three distinct output-waveform SHAPES (half-wave rectified, full-wave rectified, inverter-synthesised AC) directly targeted by question blueprint `electronics.recognise_rectifier_type`, which the existing `graph.waveform_sine` blueprint cannot represent (it renders only a plain sine wave) and the existing `electronics.component_symbol_card`'s rectifier/inverter entries cannot represent either (they render only the functional-block symbol, never the resulting waveform shape).",
+    "learnerVisiblePurpose": "Deterministic vector waveform plots -- not a premium art-generation deliverable.",
+    "immutableFacts": [
+      "half-wave: blocks one half-cycle entirely, passes the other unchanged in shape",
+      "full-wave: converts both half-cycles to the same polarity (pulsating DC, never a flat line)",
+      "inverter: DC input synthesised into an AC-shaped output via controlled switching",
+      "never a smooth sine wave for any of the three -- that is the plain graph.waveform_sine blueprint's own separate, correct depiction"
+    ],
+    "prohibitedChanges": [
+      "do not draw a smooth continuous sine wave for any of the three states",
+      "do not conflate half-wave and full-wave shapes"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Standard half-wave/full-wave rectification and inverter output waveform references -- to be selected when this asset is commissioned",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "to be recorded when selected",
+    "currentReferenceQualityGrade": "to be assessed",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.rectification.waveforms.state.half-wave",
+        "displayName": "Half-wave rectified output",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.rectification.waveforms.state.full-wave",
+        "displayName": "Full-wave rectified output",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.rectification.waveforms.state.inverter",
+        "displayName": "Inverter-synthesised AC output",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 3,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "rectification-waveforms-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/rectification-waveforms-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "Deterministic vector asset -- no external pictorial reference required; authoritative geometry is governed by ALP's own deterministic renderer, not redrawn from an external image. No reference research action needed.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.capacitor.transient",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Capacitor RC charge/discharge transient curve",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "MULTI_STATE"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P1",
+    "priorityLabel": "P1",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-passive",
+    "instructionalPurpose": "CC-11.7 audit finding (new, beyond the original 66): the exponential RC charge/discharge curve directly targeted by EL-COMPONENT-CAPACITOR-TRANSIENT-001 and question blueprint `electronics.recognise_capacitor_behaviour` ('gradual_exponential_change' vs 'instant_step_change'), which no existing blueprint depicts -- an exponential curve is a genuinely different shape from the plain sine wave.",
+    "learnerVisiblePurpose": "Deterministic vector exponential-curve plots -- not a premium art-generation deliverable.",
+    "immutableFacts": [
+      "charge/discharge follows a genuine exponential curve, never a straight-line ramp or instant step",
+      "never a sine wave -- this is a transient response, not a periodic waveform"
+    ],
+    "prohibitedChanges": [
+      "do not draw a straight-line ramp or instant step in place of the exponential curve",
+      "do not draw a periodic/sine shape"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Standard RC charge/discharge exponential-curve reference -- to be selected when this asset is commissioned",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "to be recorded when selected",
+    "currentReferenceQualityGrade": "to be assessed",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.capacitor.transient.state.charge",
+        "displayName": "Charge curve (exponential rise)",
+        "pedagogicalState": "MULTI_STATE"
+      },
+      {
+        "stateId": "unit202.capacitor.transient.state.discharge",
+        "displayName": "Discharge curve (exponential decay)",
+        "pedagogicalState": "MULTI_STATE"
+      }
+    ],
+    "canonicalStateCount": 2,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "capacitor-transient-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/capacitor-transient-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "Deterministic vector asset -- no external pictorial reference required; authoritative geometry is governed by ALP's own deterministic renderer, not redrawn from an external image. No reference research action needed.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.zener-diode",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — zener diode",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P2",
+    "priorityLabel": "P2 (secondary queue)",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the zener diode, paired with its existing deterministic UK/IEC symbol card -- more specialist than the six REQUIRED components, genuinely useful but not REQUIRED for Unit 202 visual completeness (CC-11.7 audit finding).",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a zener diode, matching a real, representative package form.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a zener diode"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the zener diode",
+      "do not generate until a primary reference is marked READY"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.zener-diode.state.teaching",
+        "displayName": "Physical appearance — zener diode (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-zener-diode-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-zener-diode-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.photodiode",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — photodiode",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P2",
+    "priorityLabel": "P2 (secondary queue)",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the photodiode, paired with its existing deterministic UK/IEC symbol card -- more specialist than the six REQUIRED components, genuinely useful but not REQUIRED for Unit 202 visual completeness (CC-11.7 audit finding).",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a photodiode, matching a real, representative package form.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a photodiode"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the photodiode",
+      "do not generate until a primary reference is marked READY"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.photodiode.state.teaching",
+        "displayName": "Physical appearance — photodiode (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-photodiode-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-photodiode-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.diac",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — DIAC",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P2",
+    "priorityLabel": "P2 (secondary queue)",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the DIAC, paired with its existing deterministic UK/IEC symbol card -- more specialist than the six REQUIRED components, genuinely useful but not REQUIRED for Unit 202 visual completeness (CC-11.7 audit finding).",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a DIAC, matching a real, representative package form.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a DIAC"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the DIAC",
+      "do not generate until a primary reference is marked READY"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.diac.state.teaching",
+        "displayName": "Physical appearance — DIAC (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-diac-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-diac-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.triac",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — TRIAC",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P2",
+    "priorityLabel": "P2 (secondary queue)",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the TRIAC, paired with its existing deterministic UK/IEC symbol card -- more specialist than the six REQUIRED components, genuinely useful but not REQUIRED for Unit 202 visual completeness (CC-11.7 audit finding).",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a TRIAC, matching a real, representative package form.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a TRIAC"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the TRIAC",
+      "do not generate until a primary reference is marked READY"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.triac.state.teaching",
+        "displayName": "Physical appearance — TRIAC (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-triac-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-triac-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.components.physical.thyristor-scr",
+    "familyId": "unit202.family.electronic-components",
+    "familyTitle": "Electronic components — recognition",
+    "finalImageTitle": "Physical electronic component — thyristor/SCR",
+    "roleInFamily": "PHYSICAL_RECOGNITION",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "USEFUL",
+    "needOverride": "USEFUL",
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic UK/IEC symbol",
+    "priority": "P2",
+    "priorityLabel": "P2 (secondary queue)",
+    "curriculumContext": "LO6 — lesson.electrical.electronic-components-switching-control",
+    "instructionalPurpose": "A physical-appearance companion image for the thyristor/SCR, paired with its existing deterministic UK/IEC symbol card -- more specialist than the six REQUIRED components, genuinely useful but not REQUIRED for Unit 202 visual completeness (CC-11.7 audit finding).",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium physical-appearance illustration of a thyristor/SCR, matching a real, representative package form.",
+    "immutableFacts": [
+      "package form must be a real, representative physical form for a thyristor/SCR"
+    ],
+    "prohibitedChanges": [
+      "do not invent a misleading package form for the thyristor/SCR",
+      "do not generate until a primary reference is marked READY"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "component name"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.components.physical.thyristor-scr.state.teaching",
+        "displayName": "Physical appearance — thyristor/SCR (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "physical-components",
+    "filenameBase": "components-physical-thyristor-scr-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/physical-components/components-physical-thyristor-scr-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.electrolysis",
+    "familyId": "unit202.family.electrolysis",
+    "familyTitle": "Chemical effect / electrolysis",
+    "finalImageTitle": "Chemical effect / electrolysis",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "HYBRID",
+    "productionClassLabel": "HYBRID",
+    "priority": "P1",
+    "priorityLabel": "P1 (upgraded from P1/P2 -- CC-11.7 corpus corroboration)",
+    "curriculumContext": "LO4 — lesson.electrical.thermal-and-chemical-effects",
+    "instructionalPurpose": "Show the chemical effect of current: a source, an electrolyte and electrodes, with a meaningful current path -- no chemistry beyond syllabus scope.",
+    "learnerVisiblePurpose": "One premium illustration of an electrolysis cell showing source, electrolyte and electrodes, matching the reference geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
+    "immutableFacts": [
+      "source present",
+      "electrolyte present",
+      "electrodes present",
+      "meaningful current path"
+    ],
+    "prohibitedChanges": [
+      "do not introduce chemistry detail beyond Unit 202 syllabus scope"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "source",
+      "electrolyte",
+      "electrodes",
+      "current path"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "Wikimedia Commons — Elektrolyse Allgemein.svg",
+    "currentReferenceUrl": "https://commons.wikimedia.org/wiki/File:Elektrolyse_Allgemein.svg",
+    "currentReferenceLicence": "prefer CC0/public-domain reference where available",
+    "currentReferenceQualityGrade": "B+",
+    "secondaryReferenceTitle": "Wikimedia Commons — Electrolysis diagram.png",
+    "secondaryReferenceUrl": "https://commons.wikimedia.org/wiki/File:Electrolysis_diagram.png",
+    "secondaryReferenceLicence": "recorded per source page",
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.electrolysis.state.teaching",
+        "displayName": "Electrolysis cell — source, electrolyte, electrodes, current path",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "hybrid",
+    "filenameBase": "electrolysis-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/hybrid/electrolysis-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "SAVED",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "MEDIUM",
+    "notesForReferenceResearch": "No confirmed problem on record. Standard appraisal welcome (geometry/topology match, licence, provenance) as part of this pack's general research pass.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.heating-effect",
+    "familyId": "unit202.family.heating-effect",
+    "familyTitle": "Heating effect of electric current",
+    "finalImageTitle": "Heating effect of electric current",
+    "roleInFamily": "PHENOMENON",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL / HYBRID",
+    "priority": "P2",
+    "priorityLabel": "P2",
+    "curriculumContext": "LO4 — lesson.electrical.thermal-and-chemical-effects",
+    "instructionalPurpose": "Show the heating effect of electric current (resistive heating) at a conceptual level.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY.",
+    "immutableFacts": [],
+    "prohibitedChanges": [
+      "do not generate until a primary reference is marked READY"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "CLEAN_BASE_ART",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.heating-effect.state.teaching",
+        "displayName": "Heating effect of electric current (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "conceptual",
+    "filenameBase": "heating-effect-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/conceptual/heating-effect-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.conductor-insulator",
+    "familyId": "unit202.family.conductor-insulator",
+    "familyTitle": "Conductor vs insulator",
+    "finalImageTitle": "Conductor vs insulator",
+    "roleInFamily": "COMPARISON",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL",
+    "priority": "P2",
+    "priorityLabel": "P2",
+    "curriculumContext": "LO4 — lesson.electrical.conductors-and-insulators",
+    "instructionalPurpose": "Show a material-recognition comparison between conductors and insulators.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY.",
+    "immutableFacts": [],
+    "prohibitedChanges": [
+      "do not generate until a primary reference is marked READY"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "CLEAN_BASE_ART",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.conductor-insulator.state.teaching",
+        "displayName": "Conductor vs insulator (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "conceptual",
+    "filenameBase": "conductor-insulator-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/conceptual/conductor-insulator-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.protective-devices",
+    "familyId": "unit202.family.protective-devices",
+    "familyTitle": "Fuse vs circuit breaker comparison",
+    "finalImageTitle": "Fuse vs circuit breaker comparison",
+    "roleInFamily": "COMPARISON",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "REQUIRED",
+    "needOverride": null,
+    "productionClass": "PREMIUM_CONCEPTUAL",
+    "productionClassLabel": "PREMIUM CONCEPTUAL + deterministic functional explanation",
+    "priority": "P2",
+    "priorityLabel": "P2",
+    "curriculumContext": "LO4 — lesson.electrical.fault-conditions-protection",
+    "instructionalPurpose": "Show a fuse and a circuit breaker side by side, supporting cap.fault.compare_fuse_breaker (fuse must be replaced once blown; breaker can be reset), without endorsing one manufacturer's product appearance as canonical.",
+    "learnerVisiblePurpose": "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium side-by-side illustration (fuse | circuit breaker), matching the immutable facts exactly.",
+    "immutableFacts": [
+      "one fuse and one circuit breaker shown side by side, not as two separate images",
+      "must not endorse one manufacturer's product appearance as canonical"
+    ],
+    "prohibitedChanges": [
+      "do not generate until a primary reference is marked READY",
+      "avoid making one manufacturer's product appearance canonical",
+      "do not split into two separate images -- this is one comparison deliverable"
+    ],
+    "requiredLabelsPresent": true,
+    "requiredLabelsList": [
+      "FUSE",
+      "CIRCUIT BREAKER"
+    ],
+    "labelsPedagogicallyRequired": true,
+    "annotationPolicy": "TEACHING_EXPLANATORY",
+    "artExpectation": "LABELLED_ARTWORK",
+    "currentReferenceTitle": "PRIMARY REFERENCE STILL TO BE APPROVED",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "unknown -- not yet sourced",
+    "currentReferenceQualityGrade": "n/a",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": true,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": "No reference sourced yet.",
+    "canonicalStates": [
+      {
+        "stateId": "unit202.protective-devices.state.fuse-vs-breaker",
+        "displayName": "Fuse vs circuit breaker comparison (blocked)",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "conceptual",
+    "filenameBase": "protective-devices-fuse-vs-breaker-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/conceptual/protective-devices-fuse-vs-breaker-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "REFERENCE_NOT_READY",
+    "hiddenFromStudio": false,
+    "requiresReferenceResearch": true,
+    "referenceStatus": "MISSING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "No reference has been sourced/approved yet. Needs ChatGPT reference research: a real image whose geometry/topology matches this asset's immutableFacts and does not conflict with its prohibitedChanges.",
+    "sharedReferenceSiblings": []
+  },
+  {
+    "unit": "Unit 202",
+    "assetId": "unit202.trigonometry",
+    "familyId": "unit202.family.trigonometry",
+    "familyTitle": "Right-angle triangle / SOHCAHTOA",
+    "finalImageTitle": "Right-angle triangle / SOHCAHTOA",
+    "roleInFamily": "TECHNICAL_DIAGRAM",
+    "pedagogicalStatesPresent": [
+      "TEACHING"
+    ],
+    "needClassification": "DEFERRED_SCOPE",
+    "needOverride": null,
+    "productionClass": "DETERMINISTIC_TECHNICAL",
+    "productionClassLabel": "DETERMINISTIC TECHNICAL",
+    "priority": "P2",
+    "priorityLabel": "future / P2",
+    "curriculumContext": "LO1 — no current lesson (integration deferred, see reports/instructional-visuals/visual-needs-matrix.md)",
+    "instructionalPurpose": "A right-angle triangle showing hypotenuse/opposite/adjacent relative to a selected acute angle, supporting SOHCAHTOA -- lesson integration remains deferred.",
+    "learnerVisiblePurpose": "No lesson exists to host this asset yet -- tracked for future commissioning only, not for current production.",
+    "immutableFacts": [
+      "right angle present",
+      "hypotenuse opposite the right angle",
+      "opposite/adjacent sides correctly identified relative to the selected acute angle"
+    ],
+    "prohibitedChanges": [
+      "do not build a new lesson to host this asset -- current lesson integration remains deferred per the content freeze"
+    ],
+    "requiredLabelsPresent": false,
+    "requiredLabelsList": [],
+    "labelsPedagogicallyRequired": false,
+    "annotationPolicy": "NONE",
+    "artExpectation": "DETERMINISTIC_VECTOR_NOT_ART_GENERATED",
+    "currentReferenceTitle": "Standard right-triangle trigonometry reference -- to be selected when this asset is actually commissioned",
+    "currentReferenceUrl": null,
+    "currentReferenceLicence": "to be recorded when selected",
+    "currentReferenceQualityGrade": "to be assessed",
+    "secondaryReferenceTitle": null,
+    "secondaryReferenceUrl": null,
+    "secondaryReferenceLicence": null,
+    "referenceMissing": false,
+    "referenceComposite": false,
+    "referenceSuspectUnsuitable": false,
+    "blockedNotes": null,
+    "canonicalStates": [
+      {
+        "stateId": "unit202.trigonometry.state.teaching",
+        "displayName": "Right-angle triangle / SOHCAHTOA",
+        "pedagogicalState": "TEACHING"
+      }
+    ],
+    "canonicalStateCount": 1,
+    "outputSubfolder": "deterministic-polish",
+    "filenameBase": "trigonometry-base",
+    "expectedOutputPathStem": "apps/mobile/src/assets/instructional/unit202/deterministic-polish/trigonometry-base",
+    "governedDiagramBlueprintId": null,
+    "currentWorkflowStatus": "READY_TO_PROMPT",
+    "hiddenFromStudio": true,
+    "requiresReferenceResearch": false,
+    "referenceStatus": "APPROVED_EXISTING",
+    "currentReferenceConfidence": "NONE",
+    "notesForReferenceResearch": "Deterministic vector asset -- no external pictorial reference required; authoritative geometry is governed by ALP's own deterministic renderer, not redrawn from an external image. No reference research action needed.",
+    "sharedReferenceSiblings": []
+  }
+]

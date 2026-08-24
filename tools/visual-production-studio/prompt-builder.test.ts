@@ -155,13 +155,14 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
   });
 
   describe("default premium surface -- background instruction", () => {
-    it("a HYBRID asset's prompt automatically inherits the standard muted slate/blue-grey background instruction, discouraging (never requiring) pure black", () => {
+    it("a HYBRID asset's prompt automatically inherits the standard white/near-white background instruction (CC-11.9)", () => {
       const asset = findAsset("unit202.right-hand-grip.teaching")!;
       expect(asset.productionClass).toBe("HYBRID");
       const text = buildAssetPrompt(asset);
       expect(text).toContain("BACKGROUND:");
-      expect(text).toMatch(/slate.*blue-grey/i);
-      expect(text).toMatch(/softer and less harsh than pure black/i);
+      expect(text).toMatch(/near-white/i);
+      expect(text).toMatch(/#FBFBFA/);
+      expect(text).not.toMatch(/slate.*blue-grey/i);
     });
 
     it("a PREMIUM_CONCEPTUAL asset's prompt also inherits the default background instruction", () => {
@@ -190,11 +191,11 @@ describe("buildAssetPrompt (PROMPT 2 -- ASSET-SPECIFIC PROMPT)", () => {
       expect(text).not.toMatch(/slate.*blue-grey/i);
     });
 
-    it("the Product Owner's own approved instruction wording is reproduced exactly for the standard (non-overridden) case", () => {
+    it("the CC-11.9 white/near-white default instruction wording is reproduced exactly for the standard (non-overridden) case", () => {
       const asset = findAsset("unit202.right-hand-grip.teaching")!;
       const text = buildAssetPrompt(asset);
       expect(text).toContain(
-        "Use a muted medium-dark slate / blue-grey background with a subtle smooth gradient. It should be softer and less harsh than pure black while retaining excellent contrast and a premium technical-learning aesthetic. Avoid strong texture, scenery, neon/cyberpunk treatment or a black void.",
+        "Use a clean near-white background (#FBFBFA) with an optional extremely subtle gradient toward a very light cool-grey (#F0F1F3). Premium, adult, technically credible, contemporary, calm, uncluttered, mobile-first. Subtle neutral-grey shadow/depth only (soft, low-opacity, never colour-tinted). Avoid black voids, dark slate, strong texture, decorative scenery, neon/cyberpunk treatment or advertising-dramatic lighting.",
       );
     });
   });

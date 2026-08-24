@@ -1,34 +1,42 @@
 {
   "assetId": "unit202.magnet.field",
   "attempt": 1,
-  "verdict": "PASS",
+  "verdict": "REJECTED",
+  "verdictHistory": [
+    {
+      "verdict": "PASS",
+      "recordedAt": "2026-08-24T22:05:00.000Z",
+      "supersededAt": "2026-08-25T00:00:00.000Z",
+      "supersededReason": "RECLASSIFIED REJECTED/FAILED (CC-11.9, Product Owner correction + independent re-audit against the actual pixels, not re-asserted on authority alone). The original PASS incorrectly treated the absence of N/S pole identity as an acceptable deferral to a deterministic overlay. On CC-11.9 re-inspection: (1) no N or S label/marking of any kind is present anywhere in the image -- confirmed by direct re-inspection; (2) the field-line arrows are NOT self-consistent -- the two horizontal rays at the magnet's ends and the nested arc loops imply OPPOSITE pole assignments. Tracing the horizontal rays: the left ray's arrowhead points further left (away from the magnet -- outward flow at the left end); the right ray's arrowhead points left, i.e. toward/into the magnet (inward flow at the right end). That pattern alone implies LEFT=N (field exits), RIGHT=S (field enters). Tracing the arc loops instead: every loop's peak arrowhead (top set and bottom set) points left, meaning flow along each loop runs right-to-left -- consistent with exiting the RIGHT end and entering the LEFT end, i.e. RIGHT=N, LEFT=S. These two readings directly contradict each other on which end is N and which is S. A field-line diagram whose own arrows disagree with each other about pole identity is a genuine technical defect, not a matter of deferred labelling. This is independently confirmed on this re-inspection (not merely restated from the correction brief), though the precise original description ('arrows added to partial/incomplete field lines') does not exactly match this image -- every visible line here reads as a complete, closed loop or a full-length ray, not a truncated one; the defect is a direction self-contradiction between complete lines, which is the substantively same class of error (an unearned directional claim) even if the mechanism differs slightly from the original description."
+    }
+  ],
   "factChecks": [
     {
       "fact": "meaningful field-line geometry",
       "result": "PASS",
-      "note": "Concentric-loop dipole field pattern with the same tiered arc structure (multiple nested loops above and below the bar plus one straight central line each side) as the DipolMagnet.svg reference. Topology matches: loops emerge from one pole, curve around, and terminate at the other, symmetric above/below the bar."
+      "note": "Concentric-loop dipole field pattern with the same tiered arc structure (multiple nested loops above and below the bar plus one straight central line each side) as the DipolMagnet.svg reference. Topology matches: loops emerge from one pole, curve around, and terminate at the other, symmetric above/below the bar. This part of the original finding still holds."
     },
     {
       "fact": "external field direction runs N to S",
-      "result": "PASS",
-      "note": "Field-line circulation is self-consistent across every visible loop (all arrowheads follow the same rotational sense, exiting one pole and entering the other on both the top and bottom loop sets) -- no arrow contradicts its neighbours. The reference's N/S colour-coding (red/blue halves) and letter labels were correctly NOT baked into the image per this proof's clean-base-art override -- pole identity (which end is N vs S) is therefore not independently re-verifiable from this image alone and is deferred to ALP's deterministic N/S label overlay, exactly as the asset's own deterministicOverlayResponsibilities design intends. This is the expected division of responsibility, not a generation defect."
+      "result": "FAIL",
+      "note": "N and S are not identified anywhere in the image (no label, no colour-coding, no marking of any kind), and the visible arrowheads contradict each other on which end the field exits vs enters (see verdictHistory for the specific contradiction between the horizontal-ray arrows and the arc-loop arrows). A learner cannot determine -- and the image does not correctly assert -- which end is N and which is S. This is a hard requirement for this asset per the CC-11.9 correction: required pole identity and direction semantics must be present and correct in the final image itself, not deferred to a later overlay."
     },
     {
       "fact": "field-line density used meaningfully where density is taught",
       "result": "PASS",
-      "note": "Not applicable to this state (density_comparison=false) -- no density-comparison claim is made by this image, correctly."
+      "note": "Not applicable to this state (density_comparison=false) -- no density-comparison claim is made by this image."
     }
   ],
   "prohibitedChangeChecks": [
     {
       "prohibition": "do not draw field lines that reverse direction or cross incorrectly",
-      "result": "PASS",
-      "note": "All loops are cleanly nested with no line-crossing artefacts, and no arrowhead reverses direction against its own loop."
+      "result": "FAIL",
+      "note": "Re-audited: the loop-arrow direction contradicts the horizontal-ray-arrow direction on pole assignment (see verdictHistory). This is exactly the class of error this prohibition exists to catch -- field-line arrows that cannot all be simultaneously correct for one consistent magnet -- and was missed on the original attempt-1 pass, which checked only whether individual loops were internally self-consistent, not whether all lines agreed with each other."
     }
   ],
-  "styleComplianceNotes": "Background is a muted dark slate/blue-grey gradient, a very close match to the governed #151821 -> #262B38 specification -- no black void, no neon, no scenery. The magnet bar is rendered as brushed metal with real material/lighting cues (premium, tactile, industrial-precision character, not cartoon or flat-icon). Field-line colour (green) happens to match the pre-existing 'magnetic field = green/turquoise' semantic-colour convention referenced in master-prompt.ts, but the new style guide document does not yet explicitly state semantic field colours -- noted as a prompt-builder gap for a future package, not a defect in this image (the reference itself uses green, and the result is consistent with the platform's existing convention).",
+  "styleComplianceNotes": "Background is the (now-superseded) dark slate/blue-grey gradient -- style-compliant against the guide version active at generation time, but the guide has since moved to a white/near-white default (CC-11.9); this image would need regenerating against the new background standard regardless of the field-line defect. The magnet bar's material rendering remains a strong match to the premium/industrial-precision character.",
   "bakedLabelsFound": false,
-  "physicalImplausibilityNotes": "None found -- a solid metal bar with a coherent surrounding field halo is physically plausible and internally consistent.",
-  "overallFindings": "Strong pass. Topologically faithful redraw of the reference's dipole field-line geometry in premium ALP style, correctly omitting baked labels/pole colour-coding per this proof's clean-base-art policy, with a governed-style-compliant background. No immutable fact violated, no prohibited change made. Recommended: PASS, no retry needed.",
-  "auditedAt": "2026-08-24T22:05:00.000Z"
+  "physicalImplausibilityNotes": "None beyond the arrow self-contradiction and missing pole identity noted above.",
+  "overallFindings": "REJECTED on CC-11.9 re-audit. Two disqualifying defects, both confirmed by direct re-inspection of the actual pixels: (1) no N/S pole identity anywhere in the image; (2) the field-line arrows are directionally self-contradictory (horizontal rays and arc loops imply opposite pole assignments). The original PASS is invalid and is superseded -- see verdictHistory. This master is retained on disk as failed evidence only; it is not approved art and must not be treated as production-ready. A corrected regeneration is required, sending real reference bytes plus explicit N/S + direction requirements per the corrected asset contract, against the new white/near-white style guide.",
+  "auditedAt": "2026-08-25T00:00:00.000Z"
 }

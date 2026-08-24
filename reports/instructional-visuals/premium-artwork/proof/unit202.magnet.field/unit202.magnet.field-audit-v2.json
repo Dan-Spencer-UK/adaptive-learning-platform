@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.magnet.field",
+  "attempt": 1,
+  "productionRun": "CC-11.9",
+  "verdict": "RETRY",
+  "factChecks": [
+    { "fact": "meaningful field-line geometry", "result": "FAIL", "note": "No field lines are present anywhere in the image -- only the bar magnet itself. The reference (DipolMagnet.svg) explicitly depicts concentric field-line loops; this generation dropped them entirely." },
+    { "fact": "external field direction runs N to S", "result": "FAIL", "note": "Cannot be assessed -- there are no field-line arrows to check, since no field lines were drawn." },
+    { "fact": "field-line density used meaningfully where density is taught", "result": "UNCERTAIN", "note": "Not applicable to this state (density_comparison=false), but moot regardless since no field lines exist to show density." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not draw field lines that reverse direction or cross incorrectly", "result": "PASS", "note": "Vacuously true -- no field lines were drawn to reverse or cross." }
+  ],
+  "styleComplianceNotes": "Background is correctly white/near-white per the corrected style guide -- clean, premium, uncluttered. N and S labels are now present and embossed into the correct halves, correctly resolving the CC-11.9 correction's primary complaint about missing pole identity.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None beyond the missing field-line content.",
+  "overallFindings": "Progress on two fronts (white background achieved; N/S pole identity now correctly baked in) but a new regression: the field-line geometry -- the asset's own primary immutable fact -- is completely absent. Likely cause: the corrected prompt's REQUIRED LABELS section emphasised N/S so strongly that the model treated the labelled magnet body as the complete deliverable and dropped the field-line content that was still described in the reference/immutable-facts text. Correction needed: explicitly re-state that BOTH the N/S labels AND the field-line pattern are required together, referencing the reference image's field-line geometry specifically.",
+  "auditedAt": "2026-08-25T00:00:00.000Z"
+}

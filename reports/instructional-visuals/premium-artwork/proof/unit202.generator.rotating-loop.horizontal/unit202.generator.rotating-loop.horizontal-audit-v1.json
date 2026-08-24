@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.generator.rotating-loop.horizontal",
+  "attempt": 1,
+  "productionRun": "CC-11.9",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "N/S magnetic poles", "result": "PASS", "note": "N (left) and S (right) clearly labelled on the pole pieces." },
+    { "fact": "loop/coil between the poles", "result": "PASS", "note": "Single copper loop visible, positioned between the N and S pole faces." },
+    { "fact": "loop plane facing poles head-on (widest visible loop face) -- defining fact of this asset", "result": "PASS", "note": "The loop's rectangular face is substantially visible from this viewing angle (not an edge-on sliver), consistent with the near-zero-EMF, face-on pose requested." },
+    { "fact": "central rotational axis", "result": "PASS", "note": "A single common shaft runs through the loop and both slip rings." },
+    { "fact": "output/slip-ring concept at governed Level-2 abstraction", "result": "PASS", "note": "TWO separate slip rings are visible, mounted concentrically on the shaft, each contacted by its own stationary brush, with wires running from the brushes to a resistor labelled OUTPUT. This is a materially complete topology, not merely a vague 'concept' -- directly resolves the CC-11.9 handover's complaint about the prior catalogue's under-specified slip-ring wording." },
+    { "fact": "rotating conductor cuts magnetic flux", "result": "PASS", "note": "Implied correctly by the loop-between-poles + rotation-indicator composition; not contradicted anywhere." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not substitute a detailed modern alternator", "result": "PASS", "note": "Kept at the elementary single-loop/two-slip-ring level matching the DOE reference, not an over-detailed modern machine." },
+    { "prohibition": "do not add three-phase windings, phasors or brushes/commutator detail beyond governed scope", "result": "PASS", "note": "Exactly two brushes, two rings -- no commutator (a commutator would be a single split ring; this is unambiguously two separate full rings), no three-phase winding." },
+    { "prohibition": "do not depict the edge-on loop pose in this asset -- that is the sibling ProductionAsset", "result": "PASS", "note": "The loop is shown face-on, not edge-on -- correct pose for the horizontal/near-zero-EMF asset." }
+  ],
+  "styleComplianceNotes": "White/near-white background correctly applied. Premium brushed-metal magnet poles and shaft, copper-toned loop -- reads as a real, tactile apparatus. Labels N, S, coil/loop, rotation indicator, output are all present and legible, matching this asset's requiredLabels.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- the two-slip-ring/two-brush/output topology is mechanically coherent and matches the DOE reference figure's own topology exactly.",
+  "overallFindings": "Strong PASS on first attempt. The prepared DOE Figure 1 crop (a genuine, complete, technically authoritative topology reference -- selected via real text search of the handbook for 'slip ring' rather than guessed) gave Gemini an unambiguous topology to redraw, and it preserved every required structural element: two separate slip rings, two brushes, correct output path, no commutator, correct N/S, correct face-on pose. This directly satisfies the CC-11.9 handover's specific concern that the previous generic Commons SVG reference under-specified the slip-ring mechanism.",
+  "auditedAt": "2026-08-25T00:25:00.000Z"
+}
