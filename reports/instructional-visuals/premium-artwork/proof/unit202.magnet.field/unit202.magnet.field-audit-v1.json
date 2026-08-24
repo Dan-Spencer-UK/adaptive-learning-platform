@@ -1,0 +1,34 @@
+{
+  "assetId": "unit202.magnet.field",
+  "attempt": 1,
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "meaningful field-line geometry",
+      "result": "PASS",
+      "note": "Concentric-loop dipole field pattern with the same tiered arc structure (multiple nested loops above and below the bar plus one straight central line each side) as the DipolMagnet.svg reference. Topology matches: loops emerge from one pole, curve around, and terminate at the other, symmetric above/below the bar."
+    },
+    {
+      "fact": "external field direction runs N to S",
+      "result": "PASS",
+      "note": "Field-line circulation is self-consistent across every visible loop (all arrowheads follow the same rotational sense, exiting one pole and entering the other on both the top and bottom loop sets) -- no arrow contradicts its neighbours. The reference's N/S colour-coding (red/blue halves) and letter labels were correctly NOT baked into the image per this proof's clean-base-art override -- pole identity (which end is N vs S) is therefore not independently re-verifiable from this image alone and is deferred to ALP's deterministic N/S label overlay, exactly as the asset's own deterministicOverlayResponsibilities design intends. This is the expected division of responsibility, not a generation defect."
+    },
+    {
+      "fact": "field-line density used meaningfully where density is taught",
+      "result": "PASS",
+      "note": "Not applicable to this state (density_comparison=false) -- no density-comparison claim is made by this image, correctly."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "do not draw field lines that reverse direction or cross incorrectly",
+      "result": "PASS",
+      "note": "All loops are cleanly nested with no line-crossing artefacts, and no arrowhead reverses direction against its own loop."
+    }
+  ],
+  "styleComplianceNotes": "Background is a muted dark slate/blue-grey gradient, a very close match to the governed #151821 -> #262B38 specification -- no black void, no neon, no scenery. The magnet bar is rendered as brushed metal with real material/lighting cues (premium, tactile, industrial-precision character, not cartoon or flat-icon). Field-line colour (green) happens to match the pre-existing 'magnetic field = green/turquoise' semantic-colour convention referenced in master-prompt.ts, but the new style guide document does not yet explicitly state semantic field colours -- noted as a prompt-builder gap for a future package, not a defect in this image (the reference itself uses green, and the result is consistent with the platform's existing convention).",
+  "bakedLabelsFound": false,
+  "physicalImplausibilityNotes": "None found -- a solid metal bar with a coherent surrounding field halo is physically plausible and internally consistent.",
+  "overallFindings": "Strong pass. Topologically faithful redraw of the reference's dipole field-line geometry in premium ALP style, correctly omitting baked labels/pole colour-coding per this proof's clean-base-art policy, with a governed-style-compliant background. No immutable fact violated, no prohibited change made. Recommended: PASS, no retry needed.",
+  "auditedAt": "2026-08-24T22:05:00.000Z"
+}

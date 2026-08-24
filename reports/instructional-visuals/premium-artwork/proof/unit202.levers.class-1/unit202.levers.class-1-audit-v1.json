@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.levers.class-1",
+  "attempt": 1,
+  "verdict": "RETRY",
+  "factChecks": [
+    {
+      "fact": "fulcrum positioned between the effort point and the load point",
+      "result": "FAIL",
+      "note": "The image contains THREE separate lever schematics reproduced from the composite reference file, not one isolated Class I lever. In the top schematic the fulcrum does sit between EFFORT and LOAD (correct Class I ordering). But in the bottom schematic the left-to-right order is RESISTANCE, MOTION, EFFORT, FULCRUM -- the fulcrum sits at the far end, past the effort point, which is a Class II/III arrangement, not Class I. Because this is delivered as the unit202.levers.class-1 asset, the presence of a non-Class-I arrangement in the same image is a direct fact violation."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "do not blend this with the Class II or Class III arrangement",
+      "result": "FAIL",
+      "note": "The bottom schematic (fulcrum at the far right end, past EFFORT) is a Class II/III-type arrangement, reproduced in the same image as the Class I asset. This is exactly the prohibited blending. Root cause: the source reference (Lever_(PSF).svg) is a 3-diagram composite covering multiple lever classes, and the generation prompt did not constrain Gemini narrowly enough to extract and redraw only the single Class I portion -- Gemini instead redrew the entire composite file end-to-end."
+    }
+  ],
+  "styleComplianceNotes": "Background gradient and the central 3D premium lever-rig render (brushed metal beam, dark cast fulcrum wedge, granite/concrete load block) are a strong match to the style guide and read as premium/industrial. However this is undermined by the surrounding schematic reproductions.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None beyond the composite-diagram and labelling defects noted above.",
+  "overallFindings": "REJECTED. Two compounding defects: (1) large baked text labels (EFFORT, RESISTANCE, LOAD, MOTION, FULCRUM) directly contradicting the clean-base-art instruction for this proof, and (2) the image reproduces the reference's full multi-class composite rather than isolating the single Class I arrangement, causing a genuine Class II/III blend to appear alongside the Class I diagram -- a direct prohibited-change violation. Requires a corrected regeneration with an explicit, narrower prompt: draw exactly ONE Class I lever rig only, no other schematics, no baked text of any kind.",
+  "auditedAt": "2026-08-24T22:20:00.000Z"
+}

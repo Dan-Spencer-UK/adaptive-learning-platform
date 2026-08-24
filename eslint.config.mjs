@@ -37,4 +37,15 @@ export default tseslint.config(
       },
     },
   },
+  {
+    // CC-11.8: same reasoning as tools/visual-production-studio's public
+    // client-side page above -- tools/project-dashboard's page also runs
+    // in a browser, not Node.
+    files: ["tools/project-dashboard/public/**/*.js"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+    },
+  },
 );

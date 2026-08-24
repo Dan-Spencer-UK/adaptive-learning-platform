@@ -187,4 +187,54 @@ CC-11.7B is the final pre-production audit: it does not re-derive REQUIRED/USEFU
 
 ---
 
-*This document is the durable design authority for premium instructional artwork production methodology. It does not itself constitute implementation evidence — no artwork was produced or changed by this document. See [`ADR-0004`](adr/ADR-0004-deterministic-authority-over-generated-instructional-imagery.md) for the specific hard authority-boundary decision, and `PROJECT-STATUS.md` §CC-11.7B for the current, honest state of Unit 202's visual layer.*
+## 20. Automated production pipeline and the Gemini two-asset proof (CC-11.8)
+
+CC-11.7B/C established a fully accounted, correctly-blocked production queue but every job still required a human to run ChatGPT manually through the Studio's copy/paste workflow. CC-11.8 locks the **canonical automated operating model** -- who/what does what -- and proves the render step of it end-to-end with two real generated assets.
+
+### 20.1 Division of responsibility
+
+| Role | Responsibility |
+|---|---|
+| **Claude / Claude Code** | Determines what visuals are required from the governed corpus; creates and maintains visual asset contracts (`catalogue.ts`); classifies production method; orchestrates the pipeline; downloads/caches APPROVED references from the governed reference catalogue; sends reference + prompt + style information to Gemini; saves masters and production derivatives with full provenance; performs an independent technical/pedagogical audit of the actual generated pixels (never trusts a caption); performs bounded automatic retries (max one per asset); produces the human-readable review pack; **never silently promotes an uncertain image to Product Owner review as if it were confidently correct.** |
+| **ChatGPT / Product Owner (reference-research stage)** | Researches suitable technical/pedagogical reference images; verifies a proposed reference actually supports the required geometry/topology; records provenance/licence/suitability; a reference is APPROVED at this stage before it may enter generative production. |
+| **Gemini** | Implementation renderer only. Receives the actual approved reference-image file (never merely a URL), the individual asset's production contract, and the canonical ALP visual style specification (`docs/design/ALP-INSTRUCTIONAL-VISUAL-STYLE-GUIDE.md`). Redraws/re-illustrates the governed asset. **Is never technical authority** -- unchanged from ADR-0004. |
+| **Product Owner** | Receives the final human-readable visual review pack; remains final approval authority. |
+
+**Governance rule (hard, no exception process short of a superseding ADR):** no generative asset may enter production without an approved technical/pedagogical reference when that asset requires reference-locked geometry. Claude may identify that a reference is missing; Claude must not independently select an arbitrary replacement reference and continue generation -- an asset with no approved reference stays `BLOCKED_REFERENCE` (§19) until the reference-research stage approves one.
+
+### 20.2 Production path
+
+```text
+GOVERNED CORPUS
+  -> VISUAL-NEED DETERMINATION            (visualNeedClassificationFor -- §17)
+  -> VISUAL ASSET CONTRACT                (catalogue.ts VisualAsset)
+  -> REFERENCE_REQUIRED?
+  -> APPROVED REFERENCE CATALOGUE         (ChatGPT/PO reference-research stage)
+  -> LOCAL REFERENCE ACQUISITION          (tools/visual-production-studio/reference-acquisition.ts)
+  -> REFERENCE VALIDATION                 (real image/SVG bytes, not an HTML error page; SHA-256 recorded)
+  -> GEMINI REFERENCE-DRIVEN REDRAW       (tools/visual-production-studio/gemini-client.ts)
+  -> AUTOMATED INDEPENDENT AUDIT          (Claude inspects the actual candidate pixels against immutable facts)
+  -> BOUNDED CORRECTION                   (max one automatic retry)
+  -> HUMAN-READABLE REVIEW PACK           (generate-visual-proof-review.ts)
+  -> PRODUCT OWNER APPROVAL
+  -> MASTER ASSET
+  -> OPTIMISED PRODUCTION DERIVATIVE
+  -> CONTENT RELEASE
+```
+
+Standing rules this path enforces, unchanged from earlier sections and ADR-0004:
+
+- assessment visuals default to deterministic production (§8/§17/§19) -- generative imagery never defines assessment answer geometry;
+- exact geometry and directional relationships remain deterministic overlay, never a generative claim (§3 of the style guide; ADR-0004 §Decision);
+- generated imagery is never authority -- deterministic geometry wins on any disagreement (ADR-0004, unchanged);
+- Product Owner approval remains the final gate; nothing in this automated path writes to the governed manifest or the shipped app asset tree on Claude's own authority.
+
+### 20.3 Two-asset proof
+
+Proved end-to-end on two already-`READY` (genuinely reference-locked, per the CC-11.7C correction) assets: `unit202.magnet.field` (a straightforward physical/conceptual subject) and `unit202.pulleys.fixed` (a technically constrained subject -- fixed anchor, direction-change-only rope path). Each: real reference file acquired and hashed, generated via `gemini-3.1-flash-image` with the reference image supplied as actual bytes (never a URL), independently audited by Claude against the asset's immutable facts, saved as a versioned master + mobile derivative under `reports/instructional-visuals/premium-artwork/proof/` (a review/audit-trail location, deliberately not the shipped `apps/mobile/src/assets/...` tree or the approved-artwork manifest -- these are unapproved candidates pending Product Owner review, not production assets). Full results: `reports/instructional-visuals/unit202-visual-production-proof-review.pdf` and `PROJECT-STATUS.md` §CC-11.8.
+
+This proof establishes the pipeline mechanism only. It does not constitute Product Owner approval of either candidate image, and it does not process the remaining Unit 202 art-job queue -- see §19's dashboard/blocked-reference accounting for the real remaining workload.
+
+---
+
+*This document is the durable design authority for premium instructional artwork production methodology. It does not itself constitute implementation evidence — no artwork was produced or changed by this document. See [`ADR-0004`](adr/ADR-0004-deterministic-authority-over-generated-instructional-imagery.md) for the specific hard authority-boundary decision, [`ALP-INSTRUCTIONAL-VISUAL-STYLE-GUIDE.md`](../design/ALP-INSTRUCTIONAL-VISUAL-STYLE-GUIDE.md) for how generated imagery must look, and `PROJECT-STATUS.md` §CC-11.8 for the current, honest state of Unit 202's visual layer.*

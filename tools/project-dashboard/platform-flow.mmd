@@ -1,0 +1,103 @@
+%% CC-11.8 §G2 -- version-controlled platform-flow data source.
+%% ARCHITECTURAL RULE: material changes to the course-factory or learner-platform
+%% architecture/process flow must update THIS file. The dashboard renders it
+%% directly (Mermaid) -- it never hardcodes a duplicate diagram of its own.
+%% This is a process/architecture map, not a call graph: depth stops at the
+%% level a new contributor needs to orient, not at function-level detail.
+
+flowchart TD
+    subgraph FACTORY["ALP COURSE FACTORY"]
+        A["A. Course Selection<br/>qualification / unit chosen for production"]
+        B["B. Course Research<br/>syllabus, official sample papers, source grounding"]
+        C["C. Ingestion<br/>source material -> provenance-linked raw corpus"]
+        D["D. Knowledge Model<br/>governed assertions, relationships, curriculum mappings, misconceptions"]
+        E["E. Lesson Creation<br/>governed lesson plans compiled from the knowledge model"]
+        F["F. Visual Determination<br/>Claude classifies visual need from the governed corpus:<br/>DETERMINISTIC_TECHNICAL vs PREMIUM_CONCEPTUAL vs HYBRID"]
+        G["G. Image Research<br/>ChatGPT / Product Owner sources + verifies candidate<br/>technical references (geometry, provenance, licence)"]
+        H["H. Visual Production"]
+        I["I. Assessment Creation<br/>question blueprints compiled deterministically; generative<br/>imagery never defines assessment answer geometry"]
+        J["J. Content Release<br/>versioned ContentRelease (e.g. release.unit202.v4)"]
+
+        A --> B --> C --> D --> E --> F
+        F -- "reference required" --> G
+        F -- "no reference needed" --> H
+        G --> H
+        E --> I
+        H --> I
+        I --> J
+    end
+
+    subgraph HDETAIL["H. Visual Production -- detail"]
+        H1["Visual Asset Contract<br/>(Claude creates/maintains: immutable facts,<br/>prohibited changes, exact deliverable)"]
+        H2{"Production route"}
+        H3["Deterministic route<br/>SVG/vector renderer -- exact geometry,<br/>labels, waveforms, assessment-state, answer-revealing annotation"]
+        H4["Reference acquisition<br/>Claude downloads + caches the APPROVED reference,<br/>SHA-256, validates real image data"]
+        H5["Gemini reference-driven redraw<br/>(implementation renderer only): reference image +<br/>asset contract + ALP style guide -> clean base raster"]
+        H6["Deterministic overlays<br/>labels / arrows / dimensions applied on top of raster where taught"]
+        H7["Claude independent audit<br/>fact-by-fact PASS/FAIL/UNCERTAIN vs immutable facts<br/>+ prohibited changes -- audits pixels, not labels"]
+        H8{"Audit verdict"}
+        H9["Bounded automatic correction<br/>(max 1 retry per asset)"]
+        H10["Human-readable review pack<br/>(PDF/JSON, reference vs final side by side)"]
+        H11["Master asset + optimised production derivative"]
+        H12["HUMAN_REVIEW_REQUIRED<br/>never silently promoted"]
+
+        H1 --> H2
+        H2 -- "DETERMINISTIC_TECHNICAL" --> H3
+        H2 -- "PREMIUM_CONCEPTUAL / HYBRID" --> H4
+        H4 --> H5 --> H7
+        H3 --> H6
+        H7 --> H8
+        H8 -- PASS --> H6
+        H8 -- RETRY --> H9 --> H5
+        H8 -- "still uncertain after retry" --> H12
+        H6 --> H10
+        H12 --> H10
+        H10 --> H11
+    end
+
+    H --> H1
+    H11 --> J
+
+    subgraph GOV["Governance (applies across H)"]
+        GA["Product Owner: final approval authority"]
+        GB["ADR-0004: deterministic geometry always wins over generated imagery"]
+    end
+    H10 -. "sent for approval" .-> GA
+    H3 -. "authoritative for exact geometry" .-> GB
+    H7 -. "checked against" .-> GB
+
+    subgraph LEARNER["LEARNER PLATFORM"]
+        J --> K
+        K["K. Learner Engine"]
+        K1["Shared learner model<br/>(mastery gates, evidence, diagnostic confidence -- all distinct)"]
+        K2["Diagnostic loop<br/>wrong answer -> relationship/formula test -> evidence-supported cause"]
+        K3["MAKE ME PASS<br/>targeted remediation toward assessment readiness"]
+        K4["MAKE ME UNDERSTAND<br/>deeper conceptual remediation + foundational transfer"]
+        K5["Spaced retrieval<br/>scheduled review from historical evidence"]
+        K6["Misconception evidence<br/>tracked per learner, tied to the originating ContentRelease"]
+
+        K --> K1
+        K1 --> K2
+        K2 --> K3
+        K2 --> K4
+        K1 --> K5
+        K2 --> K6
+        K3 --> K1
+        K4 --> K1
+    end
+
+    subgraph ANALYTICS["L. Analytics / Governance"]
+        L1["Cohort + content-quality signals<br/>(which ContentRelease, which assertion, which misconception)"]
+        L2["Feeds back into B/D/F<br/>(course research, knowledge-model gaps, visual-need re-classification)"]
+    end
+    K6 --> L1 --> L2
+    L2 -.-> B
+    L2 -.-> D
+    L2 -.-> F
+
+    classDef complete fill:#1f6f43,stroke:#153d26,color:#fff;
+    classDef inprogress fill:#8a6d1a,stroke:#5a4610,color:#fff;
+    classDef notstarted fill:#3a3f4c,stroke:#23262e,color:#cbd0dc;
+    class A,B,C,D,E,I,J,K,K1,K2,K3,K4,K5,K6 complete;
+    class F,H,H1,H2,H3,H4,H5,H6,H7,H8,H9,H10,H11,H12,GA,GB inprogress;
+    class G,L1,L2 notstarted;

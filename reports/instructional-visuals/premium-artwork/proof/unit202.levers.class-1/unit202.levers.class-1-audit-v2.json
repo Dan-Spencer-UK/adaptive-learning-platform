@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.levers.class-1",
+  "attempt": 2,
+  "verdict": "HUMAN_REVIEW_REQUIRED",
+  "factChecks": [
+    {
+      "fact": "fulcrum positioned between the effort point and the load point",
+      "result": "UNCERTAIN",
+      "note": "In the central 3D render itself, the fulcrum wedge IS positioned between the effort handle (far left) and the load cube (far right), which is correct in isolation. But the corrected prompt's two explicit instructions -- (a) render exactly one lever diagram, and (b) bake no text -- were both still not followed: the top and bottom schematic reproductions from the source composite are still present in full, including the bottom schematic where FULCRUM sits past EFFORT at the far right end (a Class II/III-type ordering), so the delivered image still juxtaposes a non-Class-I arrangement against the Class I asset."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "do not blend this with the Class II or Class III arrangement",
+      "result": "FAIL",
+      "note": "Unchanged from attempt 1: the bottom schematic (order RESISTANCE, MOTION, EFFORT, FULCRUM left-to-right) still places the fulcrum at the far end past the effort point, which is not a Class I ordering, and still appears in the same delivered image."
+    }
+  ],
+  "styleComplianceNotes": "Background and central 3D lever-rig render remain a strong style match. Unchanged from attempt 1 in every respect the correction targeted.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None beyond the composite-diagram and labelling defects.",
+  "overallFindings": "The bounded correction attempt did not resolve either defect identified in attempt 1: the model again reproduced the full multi-diagram composite reference end-to-end (including the non-Class-I bottom schematic) and again baked every text label onto the image, despite the correction prompt explicitly and separately instructing against both. This exhausts this asset's permitted attempt budget (1 initial + 1 correction, task brief E7). Per the brief's explicit instruction not to burn further attempts chasing a fix, this asset is marked HUMAN_REVIEW_REQUIRED rather than retried again. Likely root cause for a future prompt-engineering pass: the reference image itself is a dense multi-diagram composite, and the model appears to be treating the entire reference frame as content to reproduce rather than as a geometry source to selectively extract from -- a cropped/pre-isolated reference (showing only the Class I portion) would likely be a more reliable fix than prompt wording alone.",
+  "auditedAt": "2026-08-24T22:35:00.000Z"
+}
