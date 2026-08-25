@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.gears.driven-smaller",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_2.svg",
+  "sourceReferenceSha256": "1eaf5fd9f69f487b75bb366976c66b9127ea5b0d534b6544dfb770925e3fcad8",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.driven-smaller\\unit202.gears.driven-smaller-master-v1.png",
+  "masterSha256": "7710e3562dfc986d9e6a65097388fde9b4dafe3d775a5f9526000335616b4e7d",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.driven-smaller\\unit202.gears.driven-smaller-derivative-v1.png",
+  "derivativeSha256": "99ba0941d48bedefcaf1a4b21e1fdee1ac3e66ffc6be6401247453d49d011082",
+  "generatedAt": "2026-08-25T18:24:13.147Z"
+}

@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.gears.driven-smaller",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "large driver directly meshes with small driven gear", "result": "PASS", "note": "Large gear (green) labelled Driver, small gear (red) labelled Driven -- correctly reversed role assignment from the driven-larger sibling, same 1:2 tooth geometry, not mirrored." },
+    { "fact": "small driven rotates faster in ideal gear relation", "result": "PASS", "note": "Consistent with the large-drives-small relationship." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not depict a mesh that is not physically plausible", "result": "PASS", "note": "Plausible tooth contact." },
+    { "prohibition": "do not depict a different size relationship than stated", "result": "PASS", "note": "Large=driver, small=driven, as required -- role reversal achieved without mirroring tooth geometry." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Driver/Driven labels present and correctly assigned.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:20:00.000Z"
+}

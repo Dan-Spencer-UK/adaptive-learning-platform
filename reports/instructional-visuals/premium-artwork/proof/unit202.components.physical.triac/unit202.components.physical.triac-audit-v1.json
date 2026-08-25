@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.triac",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a TRIAC", "result": "PASS", "note": "TO-220-style package with metal heatsink tab and three leads -- matches the reference exactly." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the TRIAC", "result": "PASS", "note": "Standard, correct form." },
+    { "prohibition": "do not depict any other component in this asset", "result": "PASS", "note": "Only the TRIAC is depicted." }
+  ],
+  "styleComplianceNotes": "White/near-white background, brand-neutral (no manufacturer logo). Label \"TRIAC\" embossed on the package.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T03:15:00.000Z"
+}

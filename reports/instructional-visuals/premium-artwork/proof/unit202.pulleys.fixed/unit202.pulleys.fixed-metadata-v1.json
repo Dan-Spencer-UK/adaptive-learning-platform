@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.pulleys.fixed",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Polea-simple_01.png",
+  "sourceReferenceSha256": "c4c6c2027fd4c6af9017457e41a854dc2599214fe0bd7fbe4e4edaa1de43ede0",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.pulleys.fixed\\unit202.pulleys.fixed-master-v1.png",
+  "masterSha256": "3ec46b4f802c99951b081ac43bca2f73a2ba1aee5716d6988a71c1bcac7fe2d2",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.pulleys.fixed\\unit202.pulleys.fixed-derivative-v1.png",
+  "derivativeSha256": "12c6bdf61cdc97b61da1afbf99cfb089487c1e2c49e113c9634c0a55cdfd281c",
+  "generatedAt": "2026-08-25T18:05:11.191Z"
+}

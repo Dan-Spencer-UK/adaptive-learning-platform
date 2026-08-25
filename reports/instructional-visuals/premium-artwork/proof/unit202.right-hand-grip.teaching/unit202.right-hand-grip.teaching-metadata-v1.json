@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.right-hand-grip.teaching",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Right-hand_grip_rule.svg",
+  "sourceReferenceSha256": "47e812186f1172e4bc4959d19845a4bb14481d039bf906a7bd8a6dcce0b85aea",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-master-v1.png",
+  "masterSha256": "dbbf29250696f3f21b73399c7bcd417e0228a73f651c70463dc0f30b25b86a24",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-derivative-v1.png",
+  "derivativeSha256": "69a466fbf3be12927ff711ca2525144d7d2555777fa381d7980c3e5132c34b62",
+  "generatedAt": "2026-08-25T18:09:43.495Z"
+}

@@ -1,0 +1,23 @@
+{
+  "assetId": "unit202.fleming-right-hand.teaching",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "RIGHT hand", "result": "PASS", "note": "Directly compared against the cached historical reference (explicitly captioned 'RIGHT HAND' twice): identical finger/thumb geometry (fore finger up=flux, middle finger left=current, thumb right=motion) -- not mirrored. Image itself is also explicitly captioned 'RIGHT HAND' twice." },
+    { "fact": "thumb = conductor MOTION", "result": "PASS", "note": "Labelled MOTION, thumb pointing right, matching the reference's 'thuMb / direction of line of Motion'." },
+    { "fact": "first (index) finger = magnetic FIELD", "result": "PASS", "note": "Labelled FIELD / magnetic FIELD, index finger pointing up, matching the reference's 'FORE finger / direction of line of Flux'." },
+    { "fact": "second (middle) finger = induced current/EMF", "result": "PASS", "note": "Labelled INDUCED CURRENT / EMF, middle finger pointing left, matching the reference's 'direction of Current Induced'." },
+    { "fact": "mutual perpendicularity", "result": "PASS", "note": "Thumb, index and middle fingers held at mutually perpendicular angles." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not swap to the left hand", "result": "PASS", "note": "Confirmed right hand by direct reference comparison and explicit on-image caption." },
+    { "prohibition": "do not reassign which finger represents which quantity", "result": "PASS", "note": "Assignment matches the governed mnemonic and the reference exactly." },
+    { "prohibition": "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK", "result": "PASS", "note": "Exact compositional match to the reference, not flipped." }
+  ],
+  "styleComplianceNotes": "White/near-white background. All required labels present and correctly positioned; the generation additionally added its own 'RIGHT HAND' caption twice, reinforcing correctness.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Strong, faithful, independently re-verified reproduction.",
+  "auditedAt": "2026-08-25T01:50:00.000Z"
+}

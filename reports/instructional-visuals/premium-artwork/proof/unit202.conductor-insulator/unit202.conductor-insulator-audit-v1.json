@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.conductor-insulator",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "auditCriteriaNote": "The live catalogue.ts entry for this asset still has an empty immutableFacts array pending a contract-text update (tracked as remaining work, same as heating-effect). This audit applies the handover's own explicit corrected facts directly.",
+  "factChecks": [
+    { "fact": "conductive metal/copper core", "result": "PASS", "note": "Exposed copper strands clearly visible on both cable ends, unmistakably conductive-metal in appearance." },
+    { "fact": "electrically insulating polymer/sheath surrounding conductor", "result": "PASS", "note": "White polymer sheath clearly surrounds the copper core on both cables." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not swap conductor/insulator labels", "result": "PASS", "note": "No text labels are baked into this image at all (the live catalogue's requiredLabels field is currently empty for this asset), so no label can be swapped; the two materials are visually unambiguous regardless (copper-coloured strands vs. white sheath)." }
+  ],
+  "styleComplianceNotes": "White/near-white background. No baked text labels -- acceptable given the asset's current empty requiredLabels field, though a future contract-correction pass adding explicit 'conductor'/'insulator' labels would strengthen this for less visually-literate learners.",
+  "bakedLabelsFound": false,
+  "physicalImplausibilityNotes": "None -- two real stranded-copper cable ends with insulation stripped back is physically accurate and clear.",
+  "overallFindings": "PASS. Final asset of the full-production run.",
+  "auditedAt": "2026-08-25T03:25:00.000Z"
+}

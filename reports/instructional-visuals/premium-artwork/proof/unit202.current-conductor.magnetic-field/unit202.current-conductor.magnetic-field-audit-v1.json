@@ -1,0 +1,20 @@
+{
+  "assetId": "unit202.current-conductor.magnetic-field",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "straight current-carrying conductor", "result": "PASS", "note": "Single straight vertical conductor." },
+    { "fact": "magnetic field circulates around the conductor (closed concentric loops, not radiating outward)", "result": "PASS", "note": "Closed concentric loops circling the conductor at regular intervals, not radiating lines." },
+    { "fact": "the concentric field-line pattern is rotationally symmetric -- do not bake in a specific current direction or circulation sense", "result": "PASS", "note": "No arrowheads or direction indicators baked in -- correctly direction-neutral, ready for the deterministic per-state overlay." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not include a hand in this asset -- that is the separate MNEMONIC asset in this family", "result": "PASS", "note": "No hand present -- only the conductor and field pattern." },
+    { "prohibition": "do not bake a specific current direction or circulation-arrow sense into the base artwork", "result": "PASS", "note": "Correctly clean/direction-neutral." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Clean base art with no baked labels, as required (deterministicOverlayResponsibilities covers direction indicators for this asset).",
+  "bakedLabelsFound": false,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:50:00.000Z"
+}

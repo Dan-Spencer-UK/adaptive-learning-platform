@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.heating-effect",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:30kw_resistance_heating_coil.JPG",
+  "sourceReferenceSha256": "38a719a6124a2c808c275edd98365eef18a7025340d8e95788b9724283061d09",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.heating-effect\\unit202.heating-effect-master-v1.png",
+  "masterSha256": "8cc9088541e352e30cf8f5b1db8c7d705569760526231d76e90ca793df001c50",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.heating-effect\\unit202.heating-effect-derivative-v1.png",
+  "derivativeSha256": "55be0903a6734fe1df88cbe6e3ff6002a6e2e1258011664a262723d509a5f05b",
+  "generatedAt": "2026-08-25T18:19:13.564Z"
+}

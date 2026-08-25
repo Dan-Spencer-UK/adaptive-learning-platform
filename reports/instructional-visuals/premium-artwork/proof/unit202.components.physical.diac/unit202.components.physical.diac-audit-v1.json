@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.diac",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a DIAC", "result": "PASS", "note": "DB3-style axial glass/ceramic package, matching the reference exactly." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the DIAC", "result": "PASS", "note": "Standard, correct DIAC form." },
+    { "prohibition": "do not depict any other component in this asset", "result": "PASS", "note": "Only the DIAC is depicted." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Label \"DIAC DB3\" printed on the component itself -- a generic component-type + standard part designation, not a brand.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:50:00.000Z"
+}

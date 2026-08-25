@@ -1,0 +1,17 @@
+{
+  "assetId": "unit202.levers.class-2",
+  "attempt": 2,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "HUMAN_REVIEW_REQUIRED",
+  "factChecks": [
+    { "fact": "load positioned between the fulcrum and the effort point", "result": "PASS", "note": "Geometry remains correct: EFFORT (left) -> LOAD (middle) -> FULCRUM (right, triangle)." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not blend this with the Class I or Class III arrangement", "result": "PASS", "note": "Only Class II shown." }
+  ],
+  "styleComplianceNotes": "White/near-white background, correct single lever arrangement.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "The correction attempt did NOT fix the defect: FULCRUM is still labelled twice -- once correctly at the actual triangle, and once still floating beneath the LOAD block. The explicit correction instruction (draw each label exactly once) was not followed.",
+  "overallFindings": "HUMAN_REVIEW_REQUIRED. Retry budget exhausted (1 initial + 1 correction, both used) without resolving the duplicate/misplaced FULCRUM label. The underlying physical geometry is correct throughout both attempts -- this is purely a labelling-repetition defect the model would not reliably self-correct within budget. A human reviewer should judge whether to accept as-is (the CORRECT fulcrum label is present and unambiguous despite the stray duplicate) or request a differently-prompted regeneration outside this run's budget.",
+  "auditedAt": "2026-08-25T02:00:00.000Z"
+}

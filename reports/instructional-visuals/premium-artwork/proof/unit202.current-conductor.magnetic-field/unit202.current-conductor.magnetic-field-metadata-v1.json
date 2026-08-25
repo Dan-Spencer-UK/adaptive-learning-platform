@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.current-conductor.magnetic-field",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Wire_fieldlines.svg",
+  "sourceReferenceSha256": "806e38d77056a5b6a097aa467ccf37219239b1224f2f619ea54c3fa1fc29330e",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field-master-v1.png",
+  "masterSha256": "1d8be4a60030fceec07290835f863cd8ea6c316adb2b443bc9fe3b5f929f0f98",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field-derivative-v1.png",
+  "derivativeSha256": "395ec9bc7dab91ee85a150cd5e08c2f9ff1ff40f80f40f9ea760416767eee0f1",
+  "generatedAt": "2026-08-25T18:10:28.357Z"
+}

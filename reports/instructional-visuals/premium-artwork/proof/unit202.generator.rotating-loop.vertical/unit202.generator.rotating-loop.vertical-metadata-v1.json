@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.generator.rotating-loop.vertical",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.generator.figure1-cropped.prepared.png)",
+  "sourceReferenceSha256": "b374f5859b737b5265874100ea80efcf169eb5195847273765df44555c2f020b",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-master-v1.png",
+  "masterSha256": "4d8014d7f5309ab5ef733bd1d604d02f7f87629fc70fcc7e83c8efd2a1ba0f6e",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-derivative-v1.png",
+  "derivativeSha256": "a9203f93fe463d34fc0f3fc0ce8e29eef067b1bbc7a8b8526e92ccf4f4a117a2",
+  "generatedAt": "2026-08-25T18:21:36.423Z"
+}

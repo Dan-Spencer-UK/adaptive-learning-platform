@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.resistor",
+  "attempt": 1,
+  "productionRun": "CC-11.9-continuation",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a resistor", "result": "PASS", "note": "A real axial through-hole resistor package: cylindrical body, colour-band sequence (red, violet, green, gold), two wire leads. Matches the reference's own 1st-band/2nd-band/multiplier/tolerance band structure and ordering exactly." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the resistor", "result": "PASS", "note": "Package form is a standard, recognisable axial resistor -- not misleading." },
+    { "prohibition": "do not depict any other component in this asset", "result": "PASS", "note": "Only the resistor is depicted." }
+  ],
+  "styleComplianceNotes": "White/near-white background correctly applied. Photo-realistic material rendering (ceramic/resin body texture, metallic leads) reads as premium and technically credible. Brand-neutral -- no manufacturer markings or logos. \"Resistor\" label present and legible.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- a standard 4-band axial resistor is exactly what is depicted, physically coherent in every respect.",
+  "overallFindings": "Strong PASS on first attempt. Fourth and final four-asset pilot member complete.",
+  "auditedAt": "2026-08-25T01:20:00.000Z"
+}

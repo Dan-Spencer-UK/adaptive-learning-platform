@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.pulleys.movable",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Pulley1.svg",
+  "sourceReferenceSha256": "cc6b6390cd632d056aa59f6e65ca5d5279023d0af890f0f4886706ec16d29294",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.pulleys.movable\\unit202.pulleys.movable-master-v1.png",
+  "masterSha256": "b34c94ebbccfc14f0b366a3c5d8271caf386f1cb36521b0b85c41e50f3348cc7",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.pulleys.movable\\unit202.pulleys.movable-derivative-v1.png",
+  "derivativeSha256": "6fdf83be384c0f447eb0a5ee5abe6321ca1437effdf290cca610b8562da53313",
+  "generatedAt": "2026-08-25T18:05:25.087Z"
+}

@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.protective-devices",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:10A_ceramic_6x32_fuse.JPG",
+  "sourceReferenceSha256": "4bb06a2eb3924a9e9d57029b003029fc5c4ff8aa34fe42e0acc3bf2cc33db2f8",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.protective-devices\\unit202.protective-devices-master-v2.png",
+  "masterSha256": "2440680823176984902826132bc90c243b8f47307f0600579ea0eb84efa9c840",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.protective-devices\\unit202.protective-devices-derivative-v2.png",
+  "derivativeSha256": "122cc664ef4ca2280a4d9840b2044639dfeaf1e8ef04ed50c4bb251fb24e9727",
+  "generatedAt": "2026-08-25T18:38:43.432Z"
+}

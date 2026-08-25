@@ -3,6 +3,8 @@
   "attempt": 2,
   "productionRun": "CC-11.9",
   "verdict": "HUMAN_REVIEW_REQUIRED",
+  "supersededBy": "unit202.magnet.field-audit-v4.json",
+  "correctionNote": "SUPERSEDED. The 'external field direction runs N to S' UNCERTAIN finding and the resulting HUMAN_REVIEW_REQUIRED verdict below were based on a visual-reading error: on zoomed pixel-level re-inspection (a tight crop of just the S-side arrowhead), that arrowhead in fact points TOWARD the magnet (into S), not away from it as originally read. The image's field direction was technically correct throughout. The only genuine defect in this version was a faint cosmetic duplicate 'ghost' arc, addressed in v4 via a narrow cleanup pass. Retained here unmodified as an honest record of the original (incorrect) audit, per this repository's discipline of never silently rewriting a past finding.",
   "factChecks": [
     { "fact": "meaningful field-line geometry", "result": "PASS", "note": "Field-line loops are present again, correctly nested above and below the bar, matching the reference's tiered arc structure." },
     {

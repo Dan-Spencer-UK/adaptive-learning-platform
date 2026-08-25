@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.protective-devices",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "RETRY",
+  "factChecks": [
+    { "fact": "one fuse and one circuit breaker shown side by side, not as two separate images", "result": "PASS", "note": "Single combined image, ceramic cartridge fuse (left) and DIN-rail circuit breaker (right)." },
+    { "fact": "must not endorse one manufacturer's product appearance as canonical", "result": "PASS", "note": "Generic grey devices, no logos." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "avoid making one manufacturer's product appearance canonical", "result": "PASS", "note": "No brand markings." },
+    { "prohibition": "do not split into two separate images", "result": "PASS", "note": "Single image." }
+  ],
+  "styleComplianceNotes": "White/near-white background. FUSE and CIRCUIT BREAKER labels present, correct, and legible.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "A garbled, nonsensical caption appears above the circuit breaker: \"GENERIC INQMITO / DINRAIL BROARD\" -- not real words (a text-rendering artefact), and not a label that was requested. This is a genuine legibility/quality defect, though it does not misstate any governed technical fact (the correct FUSE/CIRCUIT BREAKER labels are present and unaffected).",
+  "overallFindings": "RETRY. Core content (both devices, correct labels, brand-neutral) is correct; the only defect is an extraneous garbled caption that should not be present. One correction attempt warranted to remove it.",
+  "auditedAt": "2026-08-25T02:50:00.000Z"
+}

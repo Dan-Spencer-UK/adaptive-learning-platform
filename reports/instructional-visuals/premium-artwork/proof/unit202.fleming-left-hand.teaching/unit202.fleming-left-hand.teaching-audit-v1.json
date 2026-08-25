@@ -1,0 +1,23 @@
+{
+  "assetId": "unit202.fleming-left-hand.teaching",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "LEFT hand", "result": "PASS", "note": "Directly compared against the cached reference (explicitly labelled 左手/'left hand'): same silhouette and finger/thumb arrangement -- not mirrored." },
+    { "fact": "thumb = force/motion", "result": "PASS", "note": "Labelled MOTION / FORCE, thumb pointing up." },
+    { "fact": "first (index) finger = magnetic FIELD", "result": "PASS", "note": "Labelled FIELD, index finger pointing right." },
+    { "fact": "second (middle) finger = conventional CURRENT", "result": "PASS", "note": "Labelled CURRENT, middle finger pointing down-right." },
+    { "fact": "mutually perpendicular relationship between all three", "result": "PASS", "note": "Thumb, index and middle fingers are held at roughly mutually perpendicular angles, matching the mnemonic's geometry." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not swap to the right hand", "result": "PASS", "note": "Confirmed left hand by direct reference comparison." },
+    { "prohibition": "do not reassign which finger represents which quantity", "result": "PASS", "note": "Thumb/index/middle assignment matches the governed mnemonic exactly." },
+    { "prohibition": "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK", "result": "PASS", "note": "Composition matches the reference silhouette, not flipped." }
+  ],
+  "styleComplianceNotes": "White/near-white background. All three required labels present and correctly positioned.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Handedness independently re-verified by direct comparison against the actual reference silhouette.",
+  "auditedAt": "2026-08-25T01:50:00.000Z"
+}

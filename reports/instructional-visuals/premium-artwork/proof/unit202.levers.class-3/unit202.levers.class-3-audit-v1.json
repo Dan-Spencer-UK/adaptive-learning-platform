@@ -1,0 +1,17 @@
+{
+  "assetId": "unit202.levers.class-3",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "effort positioned between the fulcrum and the load point", "result": "PASS", "note": "Left-to-right order is LOAD (gearbox-like block) -> EFFORT (cylinder actuator) -> FULCRUM (pivot mount, right end). Effort is correctly between load and fulcrum." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not blend this with the Class I or Class II arrangement", "result": "PASS", "note": "Only the Class III arrangement is shown." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Each label (LOAD, EFFORT, FULCRUM) present exactly once, no duplication (unlike the sibling Class II attempt). Stylistically more elaborate than a plain bar -- an excavator-arm-inspired industrial mechanism rather than an abstract bar+markers -- but this is within the asset's own declared creative freedoms (\"premium physical lever-rig rendering, material/finish, composition\") and does not affect the governed ordering or labels, which are both correct.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- the depicted mechanism (bucket/arm/pivot) is a coherent, if elaborate, industrial assembly.",
+  "overallFindings": "PASS. Geometry and labels correct; noted stylistic elaboration is a non-blocking observation, not a defect.",
+  "auditedAt": "2026-08-25T02:00:00.000Z"
+}

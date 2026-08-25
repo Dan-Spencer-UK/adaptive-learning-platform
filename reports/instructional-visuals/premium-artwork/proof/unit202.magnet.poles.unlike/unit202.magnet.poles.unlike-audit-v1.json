@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.magnet.poles.unlike",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "unlike poles facing", "result": "PASS", "note": "Left magnet: S|N left-to-right (N faces the gap). Right magnet: S|N left-to-right (S faces the gap). Facing poles are N (left) and S (right) -- genuinely unlike." },
+    { "fact": "magnets must be composed with a spacing appropriate to attraction (close together, merging field lines)", "result": "PASS", "note": "Magnets are close together; some connecting loops bridge the gap between them, consistent with attraction. The merge pattern is not a textbook-perfect single-field-line diagram, but the governing requirement (\"correct N/S labels/field geometry IF SHOWN\") is conditional, and the core semantic content is unambiguous and correct." },
+    { "fact": "field behaviour between the two magnets must remain physically meaningful", "result": "PASS", "note": "No physically impossible behaviour (no crossing/contradictory arrows observed)." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not depict the like-poles/repelling arrangement in this asset", "result": "PASS", "note": "The image explicitly labels \"attract\" and shows \"repel\" struck through with a red X -- unambiguous, correct, and additionally reinforced against misreading." }
+  ],
+  "styleComplianceNotes": "White/near-white background. N/S labels present and correctly assigned on both magnets. \"attract\" (affirmed) and \"repel\" (explicitly crossed out) labels present.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. The explicit 'repel' struck-through treatment is a clear, unambiguous way to disambiguate the interaction, going beyond the minimum requirement.",
+  "auditedAt": "2026-08-25T01:45:00.000Z"
+}

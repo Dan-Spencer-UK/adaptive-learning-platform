@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.zener-diode",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a zener diode", "result": "PASS", "note": "Glass-encapsulated diode package with visible internal die/lead-frame construction, red-coated leads -- matches the reference's own glass-body zener diode form closely." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the zener diode", "result": "PASS", "note": "Real, representative glass-diode form." },
+    { "prohibition": "do not generate until a primary reference is marked READY", "result": "PASS", "note": "Reference was acquired and READY before generation." }
+  ],
+  "styleComplianceNotes": "White/near-white background, brand-neutral. Label \"Zener Diode\" present and legible.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:40:00.000Z"
+}

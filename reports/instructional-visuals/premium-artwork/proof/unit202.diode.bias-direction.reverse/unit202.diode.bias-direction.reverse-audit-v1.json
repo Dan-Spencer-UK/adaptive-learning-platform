@@ -1,0 +1,21 @@
+{
+  "assetId": "unit202.diode.bias-direction.reverse",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "RETRY",
+  "factChecks": [
+    {
+      "fact": "cathode more positive than anode",
+      "result": "FAIL",
+      "note": "Traced via three independent zoomed crops (diode band/lead identification, battery terminal identification, and the connecting wire paths), not inferred from the label. The diode's cathode (marked by both the physical band and an explicit '-' text mark) connects via the top wire path to the battery terminal that is NOT the explicitly marked '+' terminal (i.e. the '-' terminal, by elimination). The anode (unmarked lead) connects via the bottom wire path to the battery's explicitly marked '+' terminal. This means anode is connected toward '+' and cathode toward '-' -- which is FORWARD bias wiring, the opposite of what this asset requires and the opposite of what its own 'REVERSE BIAS' label and blocked-current (X) arrows claim."
+    },
+    { "fact": "reverse current blocked at Level-2 abstraction", "result": "FAIL", "note": "The blocked-current (X) indicators are present, but they contradict the actual traced polarity, which is wired as forward bias (where current would in fact flow)." },
+    { "fact": "only reverse-bias state", "result": "UNCERTAIN", "note": "Cannot be confirmed as the correct reverse-bias state given the polarity contradiction above." }
+  ],
+  "prohibitedChangeChecks": [],
+  "styleComplianceNotes": "White/near-white background. Label text 'REVERSE BIAS' is present and reads correctly, but does not match the actual traced circuit polarity -- exactly the class of defect the audit standard exists to catch ('do not trust labels as proof, inspect the actual geometry').",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "The image is internally self-contradictory: it is captioned and marked (via blocked-arrow icons) as reverse bias, but the actual anode/cathode-to-battery-terminal wiring traced from the pixels is a forward-bias configuration.",
+  "overallFindings": "RETRY. A genuine, carefully-verified polarity defect (not a labelling-only issue) -- the wiring itself is backwards relative to the asset's own stated purpose. Requires one correction attempt with an explicit, unambiguous instruction on which diode lead must connect to which battery terminal.",
+  "auditedAt": "2026-08-25T03:00:00.000Z"
+}

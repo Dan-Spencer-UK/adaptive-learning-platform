@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.transistor",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a transistor", "result": "PASS", "note": "TO-92 package: black half-cylinder plastic body, three leads. A genuine, recognisable representative small-signal transistor form, matching the reference exactly." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the transistor", "result": "PASS", "note": "Standard, correct TO-92 form." },
+    { "prohibition": "do not depict any other component in this asset", "result": "PASS", "note": "Only the transistor is depicted." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Part number \"BC548\" printed on the case, inherited from the reference itself (a real, common JEDEC part-number marking, not a manufacturer brand/logo) -- consistent with the reference's own convention, not a style-guide violation. Label \"TRANSISTOR\" present and legible.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:40:00.000Z"
+}

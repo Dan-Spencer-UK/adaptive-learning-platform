@@ -1,0 +1,13 @@
+{
+  "assetId": "unit202.magnet.field",
+  "attempt": 4,
+  "note": "CC-11.9 continuation: narrow cosmetic cleanup pass on v3 (removes a faint duplicate ghost arc), not a technical-fact retry. v3's own technical geometry was independently re-verified correct via zoomed pixel inspection before this pass.",
+  "sourceReferenceUrl": "self-reference: unit202.magnet.field-master-v3.png (cleanup pass, not the external DipolMagnet.svg reference)",
+  "sourceReferenceSha256": "5384112762b66c9f42bbbb61a04ad04adb1dd3d89844e9ce736e959930e910dd",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "reports/instructional-visuals/premium-artwork/proof/unit202.magnet.field/unit202.magnet.field-master-v4.png",
+  "masterSha256": "ea86b4bf8f43a635aa7e06e6fb8b86dfdad5e197b7afbcb07082098737f4a3ca",
+  "derivativePath": "reports/instructional-visuals/premium-artwork/proof/unit202.magnet.field/unit202.magnet.field-derivative-v4.png",
+  "derivativeSha256": "f29789c476892277810849ccd3ff06e72c68cc30429462805a15562cb59e5abb",
+  "generatedAt": "2026-08-25T17:37:57.971Z"
+}

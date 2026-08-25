@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.protective-devices",
+  "attempt": 2,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "one fuse and one circuit breaker shown side by side, not as two separate images", "result": "PASS", "note": "Single combined image." },
+    { "fact": "must not endorse one manufacturer's product appearance as canonical", "result": "PASS", "note": "Generic grey devices, no logos." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "avoid making one manufacturer's product appearance canonical", "result": "PASS", "note": "No brand markings." },
+    { "prohibition": "do not split into two separate images", "result": "PASS", "note": "Single image." }
+  ],
+  "styleComplianceNotes": "White/near-white background. FUSE and CIRCUIT BREAKER labels present, correct, legible. The garbled caption from attempt 1 is gone -- no extraneous text remains.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS after one correction attempt.",
+  "auditedAt": "2026-08-25T02:55:00.000Z"
+}

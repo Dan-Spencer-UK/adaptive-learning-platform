@@ -35,6 +35,8 @@ export interface AcquiredReference {
   byteLength: number;
   /** Present only when the source was SVG -- the rasterised PNG copy actually sent to Gemini. */
   rasterPath?: string;
+  /** True if the full-resolution fetch was rate-limited and a Wikimedia thumbnail (width=1400) was used instead -- recorded for honest provenance, never silently hidden. */
+  viaThumbnailFallback?: boolean;
   rasterSha256?: string;
 }
 
@@ -85,24 +87,41 @@ function canonicaliseSourceUrl(sourceUrl: string): string {
  * reuses the existing cached file rather than re-downloading, but always
  * re-validates and re-hashes what is on disk.
  */
+const FETCH_HEADERS = { "User-Agent": "ALP-InstructionalVisualPipeline/1.0 (adaptive-learning-platform; contact: repository maintainer) node-fetch" };
+
 export async function acquireReference(assetId: string, rawSourceUrl: string): Promise<AcquiredReference> {
   mkdirSync(REFERENCE_CACHE_DIR, { recursive: true });
   const sourceUrl = canonicaliseSourceUrl(rawSourceUrl);
 
-  const extGuess = sourceUrl.toLowerCase().endsWith(".svg") ? "svg" : sourceUrl.toLowerCase().match(/\.(png|jpe?g|webp|pdf)$/)?.[1] || "bin";
+  const isSvg = sourceUrl.toLowerCase().endsWith(".svg");
+  const extGuess = isSvg ? "svg" : sourceUrl.toLowerCase().match(/\.(png|jpe?g|webp|pdf)$/)?.[1] || "bin";
   const localPath = join(REFERENCE_CACHE_DIR, `${assetId}.${extGuess === "jpg" ? "jpeg" : extGuess}`);
+  // Only used when the primary fetch is rate-limited -- Wikimedia's own 429
+  // response text recommends this ("instead use thumbnail images"). For an
+  // SVG source this returns a rendered PNG thumbnail, not the SVG itself.
+  const thumbnailFallbackPath = join(REFERENCE_CACHE_DIR, `${assetId}.png`);
 
   let buffer: Buffer;
+  let usedThumbnailFallback = false;
   if (existsSync(localPath)) {
     buffer = readFileSync(localPath);
+  } else if (existsSync(thumbnailFallbackPath)) {
+    buffer = readFileSync(thumbnailFallbackPath);
+    usedThumbnailFallback = true;
   } else {
-    const res = await fetch(sourceUrl, {
-      redirect: "follow",
-      headers: { "User-Agent": "ALP-InstructionalVisualPipeline/1.0 (adaptive-learning-platform; contact: repository maintainer) node-fetch" },
-    });
-    if (!res.ok) throw new Error(`Reference fetch failed for ${assetId}: HTTP ${res.status} ${res.statusText} (${sourceUrl})`);
-    buffer = Buffer.from(await res.arrayBuffer());
-    writeFileSync(localPath, buffer);
+    const res = await fetch(sourceUrl, { redirect: "follow", headers: FETCH_HEADERS });
+    if (res.status === 429) {
+      const thumbRes = await fetch(`${sourceUrl}?width=1400`, { redirect: "follow", headers: FETCH_HEADERS });
+      if (!thumbRes.ok) throw new Error(`Reference fetch failed for ${assetId}: HTTP ${res.status} (full) then HTTP ${thumbRes.status} (width=1400 thumbnail fallback) (${sourceUrl})`);
+      buffer = Buffer.from(await thumbRes.arrayBuffer());
+      writeFileSync(thumbnailFallbackPath, buffer);
+      usedThumbnailFallback = true;
+    } else if (!res.ok) {
+      throw new Error(`Reference fetch failed for ${assetId}: HTTP ${res.status} ${res.statusText} (${sourceUrl})`);
+    } else {
+      buffer = Buffer.from(await res.arrayBuffer());
+      writeFileSync(localPath, buffer);
+    }
   }
 
   const kind = detectRealImageOrSvg(buffer);
@@ -111,7 +130,16 @@ export async function acquireReference(assetId: string, rawSourceUrl: string): P
   }
 
   const mimeType = kind === "svg" ? "image/svg+xml" : kind === "pdf" ? "application/pdf" : `image/${kind}`;
-  const result: AcquiredReference = { assetId, sourceUrl, localPath, mimeType, sha256: sha256(buffer), byteLength: buffer.length };
+  const actualLocalPath = usedThumbnailFallback ? thumbnailFallbackPath : localPath;
+  const result: AcquiredReference = {
+    assetId,
+    sourceUrl,
+    localPath: actualLocalPath,
+    mimeType,
+    sha256: sha256(buffer),
+    byteLength: buffer.length,
+    ...(usedThumbnailFallback ? { viaThumbnailFallback: true } : {}),
+  };
 
   if (kind === "svg") {
     const rasterPath = join(REFERENCE_CACHE_DIR, `${assetId}.raster.png`);

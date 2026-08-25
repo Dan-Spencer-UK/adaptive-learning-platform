@@ -1,0 +1,16 @@
+{
+  "assetId": "unit202.gears.equal",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "equal-size meshing gears", "result": "PASS", "note": "Both gears visibly equal diameter and tooth count." },
+    { "fact": "1:1 speed ratio magnitude", "result": "PASS", "note": "Consistent with equal-size gears." }
+  ],
+  "prohibitedChangeChecks": [],
+  "styleComplianceNotes": "White/near-white background. Labelled Driver (red) / Driven (green), teeth visibly meshed.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:05:00.000Z"
+}

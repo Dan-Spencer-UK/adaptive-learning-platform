@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.magnet.permanent-vs-electromagnet",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "permanent magnet depicted as a solid bar/horseshoe magnet, no coil or power source", "result": "PASS", "note": "Left side: solid bar magnet, no coil, no source." },
+    { "fact": "electromagnet depicted as a coil of wire around a core with a visible power source/current path", "result": "PASS", "note": "Right side: coil wound around a core, connected via wires to a source/component and a switch -- a visible current path structurally present." },
+    { "fact": "one side-by-side comparison image, not two separate images", "result": "PASS", "note": "Single combined image." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not split into two separate images", "result": "PASS", "note": "Single image." }
+  ],
+  "styleComplianceNotes": "White/near-white background. PERMANENT MAGNET / ELECTROMAGNET labels present. Achieved using only one of the two handover-recommended sources (the second, Simple_electromagnet2.gif, was not acquired) plus explicit prompt instructions describing the required electromagnet topology directly -- a viable substitute for a bespoke pre-built two-source reference sheet.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "The circuit's switch is drawn open (a small gap), so the circuit as drawn is not actively energised -- a minor schematic nuance, not a violation of the governed requirement (which asks for a visible source/current path, not necessarily a closed/energised circuit).",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:45:00.000Z"
+}

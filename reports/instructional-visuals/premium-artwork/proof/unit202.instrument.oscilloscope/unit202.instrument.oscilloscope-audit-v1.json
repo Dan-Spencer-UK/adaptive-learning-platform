@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.instrument.oscilloscope",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "screen with a visible waveform trace must be clearly depicted -- the defining recognition feature", "result": "PASS", "note": "Clear cyan sine-wave trace visible on the CRT-style graticule screen." },
+    { "fact": "recognisable bench oscilloscope form", "result": "PASS", "note": "Front panel with vertical/horizontal/trigger control sections, BNC input connectors -- a genuine bench oscilloscope form." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not make one manufacturer's product appearance canonical", "result": "PASS", "note": "Generic grey/black instrument styling, no manufacturer logo." }
+  ],
+  "styleComplianceNotes": "Screen area is dark (its own display, an acceptable narrow exception), surrounding body is light grey/white per the style guide. Label \"OSCILLOSCOPE\" present.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:45:00.000Z"
+}

@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.resistivity.area-comparison",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "increased cross-sectional area -> lower resistance (length unchanged)", "result": "PASS", "note": "Two rods of visibly identical length (both labelled L), cross-sectional areas labelled Area A and Area 2A (thin vs thick), with the explicit conclusion \"Thicker conductor -> Less resistance\"." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not embed a numeric R = rho L / A calculation", "result": "PASS", "note": "No formula shown." },
+    { "prohibition": "do not also vary length in this asset", "result": "PASS", "note": "Both rods visibly the same length." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Clear controlled two-specimen comparison.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:25:00.000Z"
+}

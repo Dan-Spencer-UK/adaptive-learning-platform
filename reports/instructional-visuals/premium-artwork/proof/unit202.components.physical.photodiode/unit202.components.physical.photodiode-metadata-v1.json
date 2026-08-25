@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.components.physical.photodiode",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Photodiode-closeup.jpg",
+  "sourceReferenceSha256": "8dde86a00f86f22125f22421acc02a8a2a47eb744ac3f81d99b7a1b899a8cd0f",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.photodiode\\unit202.components.physical.photodiode-master-v1.png",
+  "masterSha256": "be564d3a9c78424803288ba19f675d38332a93b43745284d1e6c856475770851",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.photodiode\\unit202.components.physical.photodiode-derivative-v1.png",
+  "derivativeSha256": "6c83c80e83989ce7f0d33e7c3b5116c5a4f357e89c65d7c81d3c2d4e7a087cf7",
+  "generatedAt": "2026-08-25T18:53:42.460Z"
+}

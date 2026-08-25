@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.pulleys.movable",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "exactly two supporting rope segments", "result": "PASS", "note": "Explicitly labelled \"2 SUPPORTING SEGMENTS\" with markers on both the fixed-end and effort-end rope runs, and visually exactly two segments support the wheel." },
+    { "fact": "mechanical advantage approximately 2", "result": "PASS", "note": "Consistent with the two-supporting-segment topology." },
+    { "fact": "physically continuous/plausible rope path", "result": "PASS", "note": "Rope is tied at the fixed top bar, runs down around the movable wheel, back up to EFFORT -- continuous and plausible." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do NOT introduce block-and-tackle complexity", "result": "PASS", "note": "Exactly one wheel, travelling with the load -- no extra fixed pulley or block-and-tackle." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Labels EFFORT, LOAD, 2 SUPPORTING SEGMENTS present and clear.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:45:00.000Z"
+}

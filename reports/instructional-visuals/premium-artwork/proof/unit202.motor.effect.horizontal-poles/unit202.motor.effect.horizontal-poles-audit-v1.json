@@ -1,0 +1,22 @@
+{
+  "assetId": "unit202.motor.effect.horizontal-poles",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "N to S field direction", "result": "PASS", "note": "N (blue, left) and S (green, right) clearly labelled, field lines flow between them." },
+    { "fact": "conductor positioned between the poles", "result": "PASS", "note": "Circular conductor cross-section visible in the centre, between the two poles." },
+    { "fact": "poles arranged horizontally -- defining fact of this asset", "result": "PASS", "note": "N and S poles are side by side (left-right of the conductor) -- horizontal arrangement, correctly distinct from the vertical sibling." },
+    { "fact": "current explicitly into or out of the page -- base artwork must not bake in either direction", "result": "PASS", "note": "No current-direction dot/cross symbol convention is baked in -- the central circle reads as the conductor's plain cross-section shape (realistic 3D shading), not a direction indicator." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not include a hand in this asset", "result": "PASS", "note": "No hand present." },
+    { "prohibition": "do not depict the vertical pole arrangement in this asset", "result": "PASS", "note": "Only horizontal arrangement shown." },
+    { "prohibition": "do not bake a specific current or force direction into the base artwork", "result": "PASS", "note": "No current-direction symbol or force arrow baked in." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Clean base art, no baked labels beyond N/S pole identity (which is a fixed apparatus fact, not a per-state overlay concern).",
+  "bakedLabelsFound": false,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:35:00.000Z"
+}

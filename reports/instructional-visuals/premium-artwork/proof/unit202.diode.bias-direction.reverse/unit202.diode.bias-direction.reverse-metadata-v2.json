@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.diode.bias-direction.reverse",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Reverse-Biased_pn_Junction_Bands.svg",
+  "sourceReferenceSha256": "ecf15fa5068484eaa96dd7fd6d841d7d2b60fe7cb71b59a5cc88c20e52cefc5c",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-master-v2.png",
+  "masterSha256": "e3808bc0c4efdce1635662fe4f2ea56379f8495a94dc3e57f2077b827557450b",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-derivative-v2.png",
+  "derivativeSha256": "f99da21982c7fc94c1f9523794fa48a625e0ff3b381adb583e1f278597464443",
+  "generatedAt": "2026-08-25T18:45:21.439Z"
+}

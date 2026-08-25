@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.thyristor-scr",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a thyristor/SCR", "result": "PASS", "note": "TO-220-style package, three leads, matching the cropped reference exactly." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form", "result": "PASS", "note": "Standard, correct form." },
+    { "prohibition": "do not reproduce the whole multi-package photograph (handover instruction)", "result": "PASS", "note": "Only the small TO-220 package is depicted -- no trace of the larger stud-mount module from the original reference photo. The prepared crop (using the reference photo's own conveniently-provided inset box) correctly resolved this." }
+  ],
+  "styleComplianceNotes": "White/near-white background, brand-neutral. Label \"Thyristor / SCR\" present. Real part-number marking (BT152) retained from the reference, not a brand.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T03:20:00.000Z"
+}

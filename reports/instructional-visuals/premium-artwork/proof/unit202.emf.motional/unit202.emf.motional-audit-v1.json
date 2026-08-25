@@ -1,0 +1,20 @@
+{
+  "assetId": "unit202.emf.motional",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "B, l and v mutually perpendicular for the governed e = Blv case", "result": "PASS", "note": "Field B is into-the-page (X symbols), rod length l is vertical, velocity v is horizontal -- all three mutually perpendicular as required." },
+    { "fact": "rod across rails", "result": "PASS", "note": "Conductor rod slides across two parallel horizontal rails." },
+    { "fact": "velocity along the rails", "result": "PASS", "note": "v arrow points along the rail direction." },
+    { "fact": "field perpendicular to the rail plane", "result": "PASS", "note": "Field region (X symbols) is perpendicular to the rail/rod plane." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not draw B, l or v as anything other than mutually perpendicular", "result": "PASS", "note": "Correctly mutually perpendicular." }
+  ],
+  "styleComplianceNotes": "White/near-white background. B, l, v all labelled. Correctly simplified from the composite Faraday's-law reference to just the governed motional-EMF panel's geometry.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:30:00.000Z"
+}

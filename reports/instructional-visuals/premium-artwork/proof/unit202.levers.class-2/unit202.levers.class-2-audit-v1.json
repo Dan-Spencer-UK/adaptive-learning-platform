@@ -1,0 +1,17 @@
+{
+  "assetId": "unit202.levers.class-2",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "RETRY",
+  "factChecks": [
+    { "fact": "load positioned between the fulcrum and the effort point", "result": "PASS", "note": "Left-to-right order is EFFORT (hand) -> LOAD (grey block) -> FULCRUM (triangle) -- load is correctly between effort and fulcrum. The physical geometry itself is correct." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not blend this with the Class I or Class III arrangement", "result": "PASS", "note": "Only the Class II arrangement is shown -- the prepared crop resolved the composite-reference risk." }
+  ],
+  "styleComplianceNotes": "White/near-white background, single lever arrangement rendered correctly.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "Label duplication defect: both EFFORT and FULCRUM are labelled TWICE. The duplicate EFFORT labels are both near the correct location (harmless redundancy). The duplicate FULCRUM label is a genuine problem: one instance is correctly positioned next to the actual triangular fulcrum at the right end, but the other floats near the LOAD block in the middle of the image -- exactly where a learner could mistake it for marking the fulcrum's position. This is a real, confirmable label-placement defect, not a geometry error.",
+  "overallFindings": "RETRY. Underlying physical geometry (fulcrum/effort/load ordering) is correct, but a duplicated and misplaced FULCRUM label risks teaching the wrong fulcrum position. Requires one correction attempt with an explicit instruction against duplicate/floating labels.",
+  "auditedAt": "2026-08-25T01:55:00.000Z"
+}

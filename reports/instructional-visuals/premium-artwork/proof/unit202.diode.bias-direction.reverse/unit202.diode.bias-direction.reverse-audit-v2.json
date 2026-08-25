@@ -1,0 +1,21 @@
+{
+  "assetId": "unit202.diode.bias-direction.reverse",
+  "attempt": 2,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "cathode more positive than anode",
+      "result": "PASS",
+      "note": "Re-traced independently via zoomed inspection. The RED wire (standard positive-circuit-colour convention) connects to the diode's cathode (the banded end, matching a small diode-symbol legend also included in the image). The BLACK wire connects to the anode (unbanded end). Explicit '+'/'-' battery terminal marks are also consistent with this. Multiple independent signals (wire colour, physical band, explicit legend, explicit terminal labels) all agree -- this is genuinely correct reverse-bias wiring, resolving the attempt-1 defect."
+    },
+    { "fact": "reverse current blocked at Level-2 abstraction", "result": "PASS", "note": "A clear X blocked-current indicator is drawn directly on the diode body, consistent with the now-correct reverse-bias wiring." },
+    { "fact": "only reverse-bias state", "result": "PASS", "note": "Only one state depicted, correctly reverse-biased." }
+  ],
+  "prohibitedChangeChecks": [],
+  "styleComplianceNotes": "White/near-white background. REVERSE BIAS label present. A small diode-symbol legend (triangle-bar convention) is a helpful addition beyond what was requested, reinforcing correctness rather than detracting from it.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- the attempt-1 self-contradiction (label vs. actual wiring) is resolved.",
+  "overallFindings": "PASS after one correction attempt. This asset is a strong example of why pixel-level verification (not label-trusting) matters: attempt 1 would have shipped a genuinely backwards reverse-bias diagram had it not been caught by tracing the actual wiring.",
+  "auditedAt": "2026-08-25T03:10:00.000Z"
+}

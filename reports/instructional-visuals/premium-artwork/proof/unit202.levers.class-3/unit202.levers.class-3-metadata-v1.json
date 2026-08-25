@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.levers.class-3",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.levers.class-3.prepared.png)",
+  "sourceReferenceSha256": "f17467f63d49084c8b0e1a7378b37c4c0260810ea0dae2f4003aad461e06582a",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-master-v1.png",
+  "masterSha256": "7d0e537861f29cbefbc07f0e395e6d68766057266b6d0ff58feaa2842d5a7930",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-derivative-v1.png",
+  "derivativeSha256": "9dee89e51e2f2bc21b8d871d8c2220963ccec5fb4090a55de770ec0b99da021f",
+  "generatedAt": "2026-08-25T18:15:13.037Z"
+}

@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.instrument.clamp-meter",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Clampmeter.jpg",
+  "sourceReferenceSha256": "f1b071c764119b6af2c0f9a3c3eafdb4663b70d2fb6b805975acbafdf64aafa5",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.instrument.clamp-meter\\unit202.instrument.clamp-meter-master-v1.png",
+  "masterSha256": "927c7c3f235ba261626033c9a1eb5728603e9383fb9944c2343d74bff25d5146",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.instrument.clamp-meter\\unit202.instrument.clamp-meter-derivative-v1.png",
+  "derivativeSha256": "af40cb55f2f268aa91daedfb22f493594971e2fabeb502173416a79ee9641fd7",
+  "generatedAt": "2026-08-25T18:05:39.376Z"
+}

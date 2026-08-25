@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.thermistor",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a thermistor", "result": "PASS", "note": "Disc/bead NTC thermistor form with two leads, matching the reference closely." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the thermistor", "result": "PASS", "note": "Standard, correct thermistor form." },
+    { "prohibition": "do not depict any other component in this asset", "result": "PASS", "note": "Only the thermistor is depicted." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Label \"component name: thermistor\" present. A printed alphanumeric code (\"WMEC 9R 08D050 0811B\") is retained from the reference photo -- a real-world date/batch-style stamp, not a recognisable brand/marketing logo, similar in kind to the transistor asset's retained JEDEC part number; not treated as a brand-endorsement violation.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:50:00.000Z"
+}

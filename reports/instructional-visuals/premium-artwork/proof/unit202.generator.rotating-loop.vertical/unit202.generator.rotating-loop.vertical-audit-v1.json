@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.generator.rotating-loop.vertical",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "RETRY",
+  "factChecks": [
+    { "fact": "N/S magnetic poles", "result": "PASS", "note": "Correctly labelled." },
+    { "fact": "loop/coil between the poles", "result": "PASS", "note": "Present." },
+    {
+      "fact": "loop plane edge-on to the poles (loop seen from the side, near its thinnest visible silhouette) -- defining fact of this asset",
+      "result": "FAIL",
+      "note": "The loop is still shown from a broadly face-on/three-quarter angle, very similar to the horizontal sibling asset's own pose -- not meaningfully rotated to a thin edge-on silhouette. This is the one fact that specifically distinguishes this asset from its sibling, and it was not achieved."
+    },
+    { "fact": "two separate slip rings, brushes, output path", "result": "PASS", "note": "Topology correctly preserved, same as the horizontal sibling." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not depict the face-on loop pose in this asset -- that is the sibling ProductionAsset", "result": "FAIL", "note": "The pose is not clearly differentiated from the face-on sibling." }
+  ],
+  "styleComplianceNotes": "White/near-white background, correct labels otherwise.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None beyond the pose-differentiation defect.",
+  "overallFindings": "RETRY. Topology is correct and reused faithfully from the horizontal sibling's own successful generation, but the defining edge-on pose was not achieved -- the image reads too similarly to the face-on sibling. Needs one correction attempt with a more forceful, explicit rotation instruction.",
+  "auditedAt": "2026-08-25T02:10:00.000Z"
+}

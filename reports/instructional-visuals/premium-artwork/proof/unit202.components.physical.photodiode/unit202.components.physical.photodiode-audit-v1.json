@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.photodiode",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a photodiode", "result": "PASS", "note": "Open can-style package with visible active die (blue/purple light-sensitive area), bond wires, gold leads -- matches the reference closely." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the photodiode", "result": "PASS", "note": "Standard, correct form." },
+    { "prohibition": "do not depict any other component in this asset", "result": "PASS", "note": "Only the photodiode is depicted." }
+  ],
+  "styleComplianceNotes": "White/near-white background, brand-neutral. Label \"Photodiode\" present.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Final component-recognition asset -- completes the full components.physical.* family.",
+  "auditedAt": "2026-08-25T03:25:00.000Z"
+}

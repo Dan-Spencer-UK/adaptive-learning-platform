@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-24T23:39:15.338Z",
+  "generatedAt": "2026-08-25T18:56:05.996Z",
   "totals": {
     "total": 53,
     "generative": 42,
     "deterministicExempt": 11
   },
-  "generativeAssetsReady": 37,
+  "generativeAssetsReady": 42,
   "generativeAssetsTotal": 42,
   "missingReferences": 0,
   "unresolvedPlaceholders": 0,
-  "unpreparedComposites": 5,
-  "gatePasses": false,
+  "unpreparedComposites": 0,
+  "gatePasses": true,
   "rows": [
     {
       "assetId": "unit202.current-conductor.magnetic-field",
@@ -80,7 +80,7 @@
       "assetId": "unit202.levers.class-1",
       "productionClass": "HYBRID",
       "exempt": false,
-      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "referenceStatus": "READY",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
       "researchDecision": "APPROVED_WITH_PREPARATION"
     },
@@ -88,7 +88,7 @@
       "assetId": "unit202.levers.class-2",
       "productionClass": "HYBRID",
       "exempt": false,
-      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "referenceStatus": "READY",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
       "researchDecision": "APPROVED_WITH_PREPARATION"
     },
@@ -96,7 +96,7 @@
       "assetId": "unit202.levers.class-3",
       "productionClass": "HYBRID",
       "exempt": false,
-      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "referenceStatus": "READY",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg",
       "researchDecision": "APPROVED_WITH_PREPARATION"
     },
@@ -264,7 +264,7 @@
       "assetId": "unit202.emf.motional",
       "productionClass": "HYBRID",
       "exempt": false,
-      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "referenceStatus": "READY",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Faraday%27s_law_of_induction.svg",
       "researchDecision": "APPROVED_WITH_PREPARATION"
     },
@@ -392,7 +392,7 @@
       "assetId": "unit202.components.physical.thyristor-scr",
       "productionClass": "PREMIUM_CONCEPTUAL",
       "exempt": false,
-      "referenceStatus": "COMPOSITE_UNPREPARED",
+      "referenceStatus": "READY",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thyristors_thyristoren.jpg",
       "researchDecision": "APPROVED_WITH_PREPARATION"
     },

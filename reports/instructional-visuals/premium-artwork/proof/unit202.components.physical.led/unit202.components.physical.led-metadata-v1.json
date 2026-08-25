@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.components.physical.led",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:LED,_5mm,_clear_(unlabelled,_full).svg",
+  "sourceReferenceSha256": "39074356fa02c4a13e54c7b625b5ff65301f779df1dd654b4ad48382586b2ebf",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.led\\unit202.components.physical.led-master-v1.png",
+  "masterSha256": "e07492bcf0fbd6cb68d50b4f0fe9b3b7e822e23d707582965b578142b5cd71fe",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.led\\unit202.components.physical.led-derivative-v1.png",
+  "derivativeSha256": "968ec392e22bf5725a62cff315b2081f8d3fb91cb2f8e82c05243751aaee3ff2",
+  "generatedAt": "2026-08-25T18:01:24.868Z"
+}

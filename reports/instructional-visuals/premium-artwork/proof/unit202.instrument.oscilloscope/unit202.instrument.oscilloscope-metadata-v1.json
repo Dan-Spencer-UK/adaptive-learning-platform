@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.instrument.oscilloscope",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Oscilloscope_Clean.svg",
+  "sourceReferenceSha256": "736fcb5d852cea659aaef4b2722583a5a11df6219b26046471b4ee573e3967be",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.instrument.oscilloscope\\unit202.instrument.oscilloscope-master-v1.png",
+  "masterSha256": "275db81934d7b732829bbe1de560a9ece581c38a58f6157de6eddf483f7a6349",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.instrument.oscilloscope\\unit202.instrument.oscilloscope-derivative-v1.png",
+  "derivativeSha256": "9b5c3fcfb6f992521eb71fce44b03c36859b120553d37b6da2aaa8c8a9c723fb",
+  "generatedAt": "2026-08-25T18:05:58.033Z"
+}

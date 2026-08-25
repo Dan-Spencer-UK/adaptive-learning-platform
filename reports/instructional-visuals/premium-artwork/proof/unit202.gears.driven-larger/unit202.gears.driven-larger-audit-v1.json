@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.gears.driven-larger",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "small driver meshes directly with larger driven gear", "result": "PASS", "note": "Small gear labelled Driver (left), large gear labelled Driven (right), teeth interlocking at the contact boundary." },
+    { "fact": "larger driven rotates slower in ideal gear relation", "result": "PASS", "note": "Consistent with the correct small-drives-large size relationship." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not depict a mesh that is not physically plausible", "result": "PASS", "note": "Gears are positioned with plausible tooth contact." },
+    { "prohibition": "do not depict a different size relationship than stated", "result": "PASS", "note": "Small=driver, large=driven, as required." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Driver/Driven labels present and correctly assigned.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:20:00.000Z"
+}

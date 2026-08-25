@@ -79,6 +79,7 @@
     "visuals:acquire-all": "node tools/visual-production-studio/acquire-all-references.ts",
     "visuals:reference-gate": "node tools/visual-production-studio/generate-reference-readiness-final.ts",
     "visuals:pilot-review": "node tools/visual-production-studio/visual-proof/generate-pilot-review.ts",
+    "visuals:production-review": "node tools/visual-production-studio/visual-proof/generate-production-review.ts",
     "project:dashboard": "node tools/project-dashboard/server.ts"
   },
   "devDependencies": {

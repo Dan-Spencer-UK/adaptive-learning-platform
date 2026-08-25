@@ -1,0 +1,22 @@
+{
+  "assetId": "unit202.motor.effect.vertical-poles",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "N to S field direction", "result": "PASS", "note": "N (bottom) and S (top) labelled, field-line arrows flow upward from N to S." },
+    { "fact": "conductor positioned between the poles", "result": "PASS", "note": "Conductor cross-section visible between the two poles." },
+    { "fact": "poles arranged vertically -- defining fact of this asset", "result": "PASS", "note": "N below, S above -- correctly rotated 90 degrees from the horizontal sibling as a whole rigid apparatus, not individual elements." },
+    { "fact": "current explicitly into or out of the page -- base artwork must not bake in either direction", "result": "PASS", "note": "No current-direction symbol baked in." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not include a hand in this asset", "result": "PASS", "note": "No hand present." },
+    { "prohibition": "do not depict the horizontal pole arrangement in this asset", "result": "PASS", "note": "Only vertical arrangement shown." },
+    { "prohibition": "do not bake a specific current or force direction into the base artwork", "result": "PASS", "note": "No current/force direction baked in." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Minor family-consistency observation: N/S pole colours (red/green) differ from the horizontal sibling's (blue/green) -- not a technical defect (letters are correct and unambiguous), but worth normalising in a future colour-convention pass for visual family consistency.",
+  "bakedLabelsFound": false,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:40:00.000Z"
+}

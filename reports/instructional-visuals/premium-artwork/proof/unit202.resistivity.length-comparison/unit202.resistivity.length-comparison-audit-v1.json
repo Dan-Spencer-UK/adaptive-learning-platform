@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.resistivity.length-comparison",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "increased length -> greater resistance (cross-sectional area unchanged)", "result": "PASS", "note": "Two rods of visibly identical material and cross-section, lengths labelled L and 2L (\"Longer Length\"), with the explicit conclusion \"INCREASED LENGTH -> GREATER RESISTANCE\"." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not embed a numeric R = rho L / A calculation", "result": "PASS", "note": "No formula/calculation shown, only qualitative labels." },
+    { "prohibition": "do not also vary cross-sectional area in this asset", "result": "PASS", "note": "Both rods have visibly identical thickness/cross-section." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Clear controlled two-specimen comparison, correct dimension labels.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. A genuinely controlled comparison (one variable changed) built directly from the single-specimen geometry reference plus explicit prompt instructions -- confirms this approach is a viable substitute for a bespoke pre-built comparison sheet.",
+  "auditedAt": "2026-08-25T02:25:00.000Z"
+}

@@ -1,0 +1,20 @@
+{
+  "assetId": "unit202.pulleys.fixed",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "fixed anchor point", "result": "PASS", "note": "Wheel mounted on a bracket attached to a fixed anchor point, correctly labelled." },
+    { "fact": "pulley wheel changes rope direction only", "result": "PASS", "note": "Rope passes over the single wheel: one end goes to EFFORT (diagonal), the other down to LOAD via a hook. Direction-change only." },
+    { "fact": "mechanical advantage approximately 1", "result": "PASS", "note": "Simple single-wheel topology, consistent with MA≈1." },
+    { "fact": "physically continuous/plausible rope path", "result": "PASS", "note": "Rope path is continuous and plausible." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do NOT introduce block-and-tackle complexity", "result": "PASS", "note": "Exactly one wheel, no second pulley, no block-and-tackle -- this directly resolves the CC-11.8 REFERENCE_UNSUITABLE finding (the old Pulley1a.svg reference was a compound system; the corrected Polea-simple_01.png reference is a genuine single fixed pulley, and the generation correctly reflects that)." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Labels EFFORT, LOAD, fixed anchor point present and correctly positioned.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Resolves the long-standing pulley reference-unsuitability issue from CC-11.8.",
+  "auditedAt": "2026-08-25T01:45:00.000Z"
+}

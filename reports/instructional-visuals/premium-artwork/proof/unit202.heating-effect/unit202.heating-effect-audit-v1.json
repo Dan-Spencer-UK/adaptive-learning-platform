@@ -1,0 +1,20 @@
+{
+  "assetId": "unit202.heating-effect",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "auditCriteriaNote": "The live catalogue.ts entry for this asset still has an empty immutableFacts array pending a contract-text update (a mechanical catalogue.ts edit, not yet applied -- tracked as remaining work). This audit applies the handover's own explicit corrected facts directly, since the handover is the governing authority for this asset's contract per CC-11.9.",
+  "factChecks": [
+    { "fact": "resistive element carries current and dissipates electrical energy as heat", "result": "PASS", "note": "Visibly glowing orange resistive coil elements in a wire-guarded heater housing -- a genuine resistive-heating device." },
+    { "fact": "conceptual resistive heating, not combustion", "result": "PASS", "note": "No flame, no combustion -- purely an electrically-heated glowing element." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no flame/combustion", "result": "PASS", "note": "Confirmed no flame present." },
+    { "prohibition": "do not imply all current-carrying conductors visibly glow", "result": "PASS", "note": "The image depicts one specific heating device, not a general claim about all conductors -- no overgeneralising caption/label present." }
+  ],
+  "styleComplianceNotes": "Close macro product shot -- device fills the frame, consistent with a legitimate premium product-photography composition. Metal housing and mesh guard rendered with real material/lighting cues.",
+  "bakedLabelsFound": false,
+  "physicalImplausibilityNotes": "None -- a resistive heating element glowing orange under load is physically accurate.",
+  "overallFindings": "PASS. Resolves the previously-blocked/missing-immutable-facts state via the handover's corrected contract.",
+  "auditedAt": "2026-08-25T02:05:00.000Z"
+}

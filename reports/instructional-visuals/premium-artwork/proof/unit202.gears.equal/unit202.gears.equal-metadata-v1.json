@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.gears.equal",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_1.svg",
+  "sourceReferenceSha256": "b7270d3c8f1961ed835fc6b883926690302d27f32e71b67b4ee1d143beb49030",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.equal\\unit202.gears.equal-master-v1.png",
+  "masterSha256": "16197e868f2fdcf8cad68709be2b4febd11481a2baaa14d8e73542cc3ac4e5f3",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.equal\\unit202.gears.equal-derivative-v1.png",
+  "derivativeSha256": "f8fc2421bc6061106383d34c1e0dcce7944774765303ab3fedeb6c44af329782",
+  "generatedAt": "2026-08-25T18:18:43.872Z"
+}

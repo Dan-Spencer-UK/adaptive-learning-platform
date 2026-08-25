@@ -1,0 +1,21 @@
+{
+  "assetId": "unit202.electrolysis",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "source", "result": "PASS", "note": "Bench power supply, labelled, with ammeter/voltmeter in circuit." },
+    { "fact": "electrolyte", "result": "PASS", "note": "Liquid in the vessel, labelled electrolyte." },
+    { "fact": "electrodes", "result": "PASS", "note": "Two electrodes, labelled Cathode and Anode." },
+    { "fact": "meaningful external current path", "result": "PASS", "note": "Wires run from each electrode up to the source circuit (through the ammeter/voltmeter), not directly to each other." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not introduce chemistry detail beyond Unit 202 syllabus scope", "result": "PASS", "note": "No bubbles/ion/chemical-equation detail added -- stays at circuit level." },
+    { "prohibition": "explicitly prohibit an invented wire path directly joining the electrodes (CC-11.9 handover correction)", "result": "PASS", "note": "No direct conductor joins the two electrodes through or across the vessel -- each connects independently to the external circuit, exactly as required." }
+  ],
+  "styleComplianceNotes": "White/near-white background. All required labels present: source, electrodes, electrolyte, current path.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- correctly resolves the exact defect flagged by the handover for this asset (no invented electrode-shorting wire).",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T02:05:00.000Z"
+}

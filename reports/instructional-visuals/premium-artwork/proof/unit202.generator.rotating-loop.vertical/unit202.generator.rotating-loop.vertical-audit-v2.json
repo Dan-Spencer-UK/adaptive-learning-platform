@@ -1,0 +1,20 @@
+{
+  "assetId": "unit202.generator.rotating-loop.vertical",
+  "attempt": 2,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "N/S magnetic poles", "result": "PASS", "note": "Correctly labelled on both pole pieces, matching the reference's own pole-facing arrangement (one N, one S facing the gap -- never N-N or S-S)." },
+    { "fact": "loop/coil between the poles", "result": "PASS", "note": "Present." },
+    { "fact": "loop plane edge-on to the poles (loop seen from the side, near its thinnest visible silhouette) -- defining fact of this asset", "result": "PASS", "note": "The loop now reads as a narrow, nearly-vertical U-shape -- genuinely edge-on, clearly distinct from the horizontal sibling's open-rectangle face-on pose. The correction resolved the defect." },
+    { "fact": "two separate slip rings, brushes, output path", "result": "PASS", "note": "Topology correctly preserved from the reference." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not depict the face-on loop pose in this asset -- that is the sibling ProductionAsset", "result": "PASS", "note": "Pose is now clearly edge-on, not face-on." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Labels N, S, coil/loop, direction of rotation, output all present.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS after one correction attempt. The explicit, forceful rotation instruction resolved the pose-differentiation defect from attempt 1.",
+  "auditedAt": "2026-08-25T02:15:00.000Z"
+}

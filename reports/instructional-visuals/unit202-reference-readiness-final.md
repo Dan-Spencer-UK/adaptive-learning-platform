@@ -1,21 +1,13 @@
 # Unit 202 -- Final Reference Readiness (Gate Check)
 
-Generated: 2026-08-24T23:39:15.338Z
+Generated: 2026-08-25T18:56:05.996Z
 
-**GENERATIVE ASSETS READY: 37 / 42**
+**GENERATIVE ASSETS READY: 42 / 42**
 **MISSING REFERENCES: 0**
 **UNRESOLVED PLACEHOLDERS: 0**
-**UNPREPARED COMPOSITES: 5**
+**UNPREPARED COMPOSITES: 0**
 
-Gate status: **BLOCKED -- do not begin production**
-
-## Composite sources requiring preparation before use
-
-- `unit202.levers.class-1` -- https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg
-- `unit202.levers.class-2` -- https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg
-- `unit202.levers.class-3` -- https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg
-- `unit202.emf.motional` -- https://commons.wikimedia.org/wiki/File:Faraday%27s_law_of_induction.svg
-- `unit202.components.physical.thyristor-scr` -- https://commons.wikimedia.org/wiki/File:Thyristors_thyristoren.jpg
+Gate status: **PASS -- production may proceed**
 
 ## All generative assets
 
@@ -29,9 +21,9 @@ Gate status: **BLOCKED -- do not begin production**
 | `unit202.generator.rotating-loop.horizontal` | READY | APPROVED_WITH_PREPARATION | https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf |
 | `unit202.generator.rotating-loop.vertical` | READY | APPROVED_WITH_PREPARATION | https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf |
 | `unit202.fleming-right-hand.teaching` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:Fleming%27s_right_hand_rule.png |
-| `unit202.levers.class-1` | COMPOSITE_UNPREPARED | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg |
-| `unit202.levers.class-2` | COMPOSITE_UNPREPARED | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg |
-| `unit202.levers.class-3` | COMPOSITE_UNPREPARED | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg |
+| `unit202.levers.class-1` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg |
+| `unit202.levers.class-2` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg |
+| `unit202.levers.class-3` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg |
 | `unit202.pulleys.fixed` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:Polea-simple_01.png |
 | `unit202.pulleys.movable` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Pulley1.svg |
 | `unit202.magnet.field` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:DipolMagnet.svg |
@@ -45,7 +37,7 @@ Gate status: **BLOCKED -- do not begin production**
 | `unit202.gears.equal` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_1.svg |
 | `unit202.resistivity.length-comparison` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg |
 | `unit202.resistivity.area-comparison` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg |
-| `unit202.emf.motional` | COMPOSITE_UNPREPARED | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Faraday%27s_law_of_induction.svg |
+| `unit202.emf.motional` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Faraday%27s_law_of_induction.svg |
 | `unit202.components.physical.resistor` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:4-Band_Resistor.svg |
 | `unit202.components.physical.capacitor` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:Electrolytic_Capacitor,_Radial,_16x30_(Coloured).svg |
 | `unit202.components.physical.diode` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:DO-41_(shaded).svg |
@@ -58,7 +50,7 @@ Gate status: **BLOCKED -- do not begin production**
 | `unit202.components.physical.photodiode` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:Photodiode-closeup.jpg |
 | `unit202.components.physical.diac` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:Diac_01.jpg |
 | `unit202.components.physical.triac` | READY | APPROVED_PRODUCTION_REFERENCE | https://commons.wikimedia.org/wiki/File:TRIAC_Image.png |
-| `unit202.components.physical.thyristor-scr` | COMPOSITE_UNPREPARED | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Thyristors_thyristoren.jpg |
+| `unit202.components.physical.thyristor-scr` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Thyristors_thyristoren.jpg |
 | `unit202.electrolysis` | READY | APPROVED_WITH_PREPARATION | https://commons.wikimedia.org/wiki/File:Elektrolyse_Allgemein.svg |
 | `unit202.heating-effect` | READY | CONTRACT_CORRECTION_REQUIRED | https://commons.wikimedia.org/wiki/File:30kw_resistance_heating_coil.JPG |
 | `unit202.conductor-insulator` | READY | CONTRACT_CORRECTION_REQUIRED | https://commons.wikimedia.org/wiki/File:Stranded_lamp_wire.jpg |

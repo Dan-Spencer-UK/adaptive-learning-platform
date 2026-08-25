@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.fleming-left-hand.teaching",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Fleming%27s_Left_Hand_Rule.png",
+  "sourceReferenceSha256": "26cfd0a5420da3a48494651b196162394b7f7f5f46add19c6793238dd45db174",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.fleming-left-hand.teaching\\unit202.fleming-left-hand.teaching-master-v1.png",
+  "masterSha256": "81a19bebe64abf570045d16d3054910f34d16a06da3e4076b0faf2ecd84b3432",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.fleming-left-hand.teaching\\unit202.fleming-left-hand.teaching-derivative-v1.png",
+  "derivativeSha256": "cb47898c535925fe1a4226e6c94e122b193bf955e6fbca989a826226516b3bae",
+  "generatedAt": "2026-08-25T18:09:58.347Z"
+}

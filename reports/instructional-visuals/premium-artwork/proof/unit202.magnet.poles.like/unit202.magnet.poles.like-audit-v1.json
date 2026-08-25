@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.magnet.poles.like",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "like poles facing", "result": "PASS", "note": "Left magnet: S|N left-to-right (N faces the gap). Right magnet: N|S left-to-right (N also faces the gap). Both inner-facing poles are N -- genuinely like poles facing." },
+    { "fact": "magnets must be composed with a spacing appropriate to repulsion (visible gap, compressed/deflected field lines)", "result": "PASS", "note": "Clear visible gap between the two magnets; field-line loops on each magnet curve away from the other rather than merging, consistent with repulsion." },
+    { "fact": "field behaviour between the two magnets must remain physically meaningful", "result": "PASS", "note": "Field lines on each magnet's facing side deflect outward/around rather than connecting to the other magnet -- correct repulsion behaviour." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not depict the unlike-poles/attracting arrangement in this asset", "result": "PASS", "note": "Only the like-pole/repel arrangement is shown, explicitly labelled \"Repel\" with a double-outward arrow." }
+  ],
+  "styleComplianceNotes": "White/near-white background. N/S labels present on both magnets, correctly assigned. \"Repel\" label with directional arrows present and unambiguous.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:45:00.000Z"
+}

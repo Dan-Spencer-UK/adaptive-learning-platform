@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.led",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a led", "result": "PASS", "note": "5mm clear through-hole LED: dome epoxy lens, internal die visible on lead frame, flat-edge flange indicating polarity, two leads. A genuine, recognisable representative form." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the led", "result": "PASS", "note": "Standard, correct 5mm LED form." },
+    { "prohibition": "do not depict any other component in this asset", "result": "PASS", "note": "Only the LED is depicted." }
+  ],
+  "styleComplianceNotes": "White/near-white background, brand-neutral. Label \"LED (Light Emitting Diode)\" present and legible.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:40:00.000Z"
+}

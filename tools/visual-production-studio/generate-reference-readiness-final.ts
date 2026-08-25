@@ -5,19 +5,23 @@
  * placeholders, zero unprepared composites passed raw to Gemini.
  */
 
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, writeFileSync } from "node:fs";
+import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { allAssets } from "./catalogue.ts";
 import { effectivePrimaryReference, effectiveReferenceReadiness, REFERENCE_CORRECTIONS } from "./reference-corrections.ts";
 import { REPO_ROOT } from "./paths.ts";
+import { PREPARED_REFERENCE_DIR } from "./reference-preparation.ts";
 
 const OUT_DIR = resolve(REPO_ROOT, "reports", "instructional-visuals");
 
 // Composite sources that must be cropped/isolated before Gemini receives
 // them -- known from direct inspection (levers, confirmed CC-11.8) plus
-// the handover's own explicit composite/crop instructions.
+// the handover's own explicit composite/crop instructions. An asset here
+// is only actually COMPOSITE_UNPREPARED if no prepared file exists for it
+// yet at PREPARED_REFERENCE_DIR/<assetId>.prepared.png -- checked live
+// below, not assumed from this membership alone.
 const KNOWN_COMPOSITE_ASSET_IDS = new Set([
   "unit202.levers.class-1",
   "unit202.levers.class-2",
@@ -25,6 +29,10 @@ const KNOWN_COMPOSITE_ASSET_IDS = new Set([
   "unit202.components.physical.thyristor-scr", // multi-package photo, crop required
   "unit202.emf.motional", // multi-panel Faraday's-law figure, crop required
 ]);
+
+function hasPreparedReference(assetId: string): boolean {
+  return existsSync(join(PREPARED_REFERENCE_DIR, `${assetId}.prepared.png`));
+}
 
 export interface GateRow {
   assetId: string;
@@ -46,7 +54,7 @@ export function buildGateRows(): GateRow[] {
     if (exempt) status = "READY";
     else if (readiness !== "READY" || !ref.sourceUrl) status = "MISSING";
     else if (ref.sourceUrl.includes("STILL TO BE APPROVED") || ref.sourceUrl.trim() === "") status = "UNRESOLVED_PLACEHOLDER";
-    else if (KNOWN_COMPOSITE_ASSET_IDS.has(asset.assetId)) status = "COMPOSITE_UNPREPARED";
+    else if (KNOWN_COMPOSITE_ASSET_IDS.has(asset.assetId) && !hasPreparedReference(asset.assetId)) status = "COMPOSITE_UNPREPARED";
     else status = "READY";
 
     return {

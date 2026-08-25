@@ -1,0 +1,21 @@
+{
+  "assetId": "unit202.diode.bias-direction.forward",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "anode more positive than cathode",
+      "result": "PASS",
+      "note": "Verified via zoomed inspection of the diode symbol printed on the component (triangle pointing right into a bar -- current flows left-to-right, so the left lead is the anode) and tracing that anode-side wire back to the battery's explicitly marked '+' terminal."
+    },
+    { "fact": "forward current flows easily", "result": "PASS", "note": "Consistent with the traced correct polarity." },
+    { "fact": "only forward-bias state", "result": "PASS", "note": "Only one state depicted." }
+  ],
+  "prohibitedChangeChecks": [],
+  "styleComplianceNotes": "White/near-white background. FORWARD BIAS label present, current-direction arrows shown.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS, independently verified by tracing the diode symbol direction and wire connection rather than trusting the label alone.",
+  "auditedAt": "2026-08-25T03:00:00.000Z"
+}

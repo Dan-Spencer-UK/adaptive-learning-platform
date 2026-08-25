@@ -1,0 +1,27 @@
+{
+  "assetId": "unit202.magnet.field",
+  "attempt": 3,
+  "productionRun": "CC-11.9-continuation",
+  "verdict": "PASS",
+  "correctsPriorMisreadIn": "unit202.magnet.field-audit-v3.json",
+  "priorMisreadCorrection": "The v3 audit (this package's own prior work) incorrectly found the S-side horizontal ray's arrowhead pointing outward (away from the magnet). On a zoomed pixel-level re-inspection (cropping a tight region around each horizontal ray's arrowhead independently, prompted by a Product Owner correction), the S-side arrowhead in fact points RIGHTWARD -- toward the magnet, i.e. into S -- exactly as it should for a field line entering S. The N-side arrowhead points rightward/outward, away from the magnet, correctly exiting N. Both are directionally correct; v3's field-line topology and direction were technically correct all along. This was a genuine visual-reading error in the prior audit, not a defect in the image -- corrected here after independent re-verification, not merely asserted on the Product Owner's authority.",
+  "factChecks": [
+    { "fact": "meaningful field-line geometry", "result": "PASS", "note": "Full nested-loop topology present and unchanged from v3, minus one non-topological rendering artefact (see below)." },
+    { "fact": "external field direction runs N to S", "result": "PASS", "note": "Re-verified via zoomed crops of both horizontal-ray arrowheads: the N-side (right) ray points outward, away from the magnet (field exiting N); the S-side (left) ray points inward, toward the magnet (field entering S). The nested arc loops all point toward S at their peaks, consistent with the same N-to-S circulation. All three line families agree with each other -- no self-contradiction." },
+    { "fact": "field-line density used meaningfully where density is taught", "result": "PASS", "note": "Not applicable to this state (density_comparison=false)." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not draw field lines that reverse direction or cross incorrectly", "result": "PASS", "note": "No reversal or incorrect crossing found on re-inspection." }
+  ],
+  "cleanupPass": {
+    "priorMasterVersion": "v3",
+    "defectFound": "A faint, pale, lower-opacity duplicate 'ghost' arc (no arrowhead) nested between the outermost loop and the next loop in, present both above and below the magnet in v3 -- a rendering artefact, not an intended field line.",
+    "action": "One narrow, bounded correction call: v3's own image supplied as the reference (not the original external DipolMagnet.svg reference), with an instruction to remove ONLY the faint duplicate arcs and change nothing else.",
+    "result": "Ghost arcs removed cleanly. Zoomed-crop comparison of both horizontal-ray arrowheads against v3 confirms identical direction/position -- no regression introduced. N/S labels, magnet body, background, and every solid field line preserved."
+  },
+  "styleComplianceNotes": "White/near-white background correct. N/S labels correct and legible. Premium brushed-metal magnet rendering unchanged from v3.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. This asset's technical geometry (field-line topology and direction) was correct as of v3; the only real defect was a cosmetic rendering artefact (a faint duplicate ghost arc), now removed via one narrow cleanup pass that left every technical element unchanged (independently re-verified via zoomed pixel comparison, not merely assumed). unit202.magnet.field is production-candidate-ready pending Product Owner review.",
+  "auditedAt": "2026-08-25T01:00:00.000Z"
+}

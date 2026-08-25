@@ -1,0 +1,21 @@
+{
+  "assetId": "unit202.right-hand-grip.teaching",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "RIGHT hand", "result": "PASS", "note": "Directly compared against the cached reference (Right-hand_grip_rule.svg): identical composition (fingers curled on the left, thumb wrapping up from the right, forearm extending down-right) -- not mirrored." },
+    { "fact": "thumb = conventional current direction", "result": "PASS", "note": "Labelled THUMB = CURRENT, correctly on the thumb." },
+    { "fact": "curled fingers = magnetic-field circulation direction", "result": "PASS", "note": "Labelled FINGERS = MAGNETIC FIELD, with the small curl-direction icon matching the reference's own curl-arrow." },
+    { "fact": "straight conductor axis", "result": "PASS", "note": "Single straight rod through the fist." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not swap to the left hand", "result": "PASS", "note": "Confirmed right hand by direct reference comparison." },
+    { "prohibition": "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK", "result": "PASS", "note": "Composition matches the reference exactly, not flipped." }
+  ],
+  "styleComplianceNotes": "White/near-white background. Both required labels present and correctly positioned.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Handedness independently re-verified by direct side-by-side comparison against the actual reference image, not assumed.",
+  "auditedAt": "2026-08-25T01:50:00.000Z"
+}

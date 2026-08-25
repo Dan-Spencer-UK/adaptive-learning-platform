@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.instrument.clamp-meter",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "opening ferrite clamp jaw must be clearly visible and open-able around a conductor -- the defining recognition feature", "result": "PASS", "note": "Yellow clamp jaw clearly visible at the top, unmistakably an opening clamp mechanism." },
+    { "fact": "handheld meter body", "result": "PASS", "note": "Body includes rotary function selector, LCD display, and input jacks -- a genuine handheld clamp meter form." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not make one manufacturer's product appearance canonical", "result": "PASS", "note": "Generic yellow/black industrial colour scheme, no manufacturer logo." }
+  ],
+  "styleComplianceNotes": "White/near-white background (screen/display area is its own small dark LCD, an acceptable narrow exception per the style guide -- the surrounding body is light). Label \"CLAMP METER\" present.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:45:00.000Z"
+}

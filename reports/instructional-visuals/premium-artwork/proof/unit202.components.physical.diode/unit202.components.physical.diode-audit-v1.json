@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.components.physical.diode",
+  "attempt": 1,
+  "productionRun": "CC-11.9-full-production",
+  "verdict": "PASS",
+  "factChecks": [
+    { "fact": "package form must be a real, representative physical form for a diode", "result": "PASS", "note": "DO-41 axial diode: black cylindrical body, visible silver/grey cathode polarity band near one end, two axial leads. Polarity band correctly retained as required by the handover's own note on this reference." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a misleading package form for the diode", "result": "PASS", "note": "Standard, correct axial diode form." },
+    { "prohibition": "do not depict any other component in this asset", "result": "PASS", "note": "Only the diode is depicted." }
+  ],
+  "styleComplianceNotes": "White/near-white background, brand-neutral. Label reads \"component name / DIODE\" -- functionally correct and legible, though the wording is slightly more template-literal than the other assets' clean single-word labels; acceptable, not a fact/geometry defect.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS.",
+  "auditedAt": "2026-08-25T01:40:00.000Z"
+}
