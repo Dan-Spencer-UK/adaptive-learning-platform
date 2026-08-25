@@ -22,7 +22,9 @@ import type { DiagramInstance } from "@alp/calculation-engine";
 import type { DiagramBlueprint } from "@alp/content-schema";
 
 import { ACGeneratorDiagram } from "./ACGeneratorDiagram";
+import { CapacitorTransientDiagram } from "./CapacitorTransientDiagram";
 import { ComponentSymbolCard } from "./ComponentSymbolCard";
+import { ElectronFlowVsConventionalDiagram } from "./ElectronFlowVsConventionalDiagram";
 import { GearDiagram } from "./GearDiagram";
 import { InstrumentConnectionDiagram } from "./InstrumentConnectionDiagram";
 import { LeverDiagram } from "./LeverDiagram";
@@ -32,6 +34,7 @@ import { MagneticPoleDiagram } from "./MagneticPoleDiagram";
 import { MotionalEmfDiagram } from "./MotionalEmfDiagram";
 import { ParallelCircuitDiagram } from "./ParallelCircuitDiagram";
 import { PulleyDiagram } from "./PulleyDiagram";
+import { RectificationWaveformDiagram } from "./RectificationWaveformDiagram";
 import { ResistivityDimensionsDiagram } from "./ResistivityDimensionsDiagram";
 import { RightHandGripRuleDiagram } from "./RightHandGripRuleDiagram";
 import { SeriesCircuitDiagram } from "./SeriesCircuitDiagram";
@@ -89,6 +92,16 @@ const REGISTRY: Readonly<Record<string, DiagramComponent>> = {
   "emf.motional_emf_geometry": ({ diagram, testID }) => <MotionalEmfDiagram diagram={diagram} testID={testID} />,
   "generator.rotating_loop": ({ diagram, testID }) => <ACGeneratorDiagram diagram={diagram} testID={testID} />,
   "electronics.component_symbol_card": ({ diagram, testID }) => <ComponentSymbolCard diagram={diagram} testID={testID} />,
+  // CC-11.11: Unit 202 visual-completeness pass -- three canonical states
+  // (rectification.waveforms x3, capacitor.transient x2,
+  // current-direction.electron-flow-vs-conventional x1) had a governed
+  // DETERMINISTIC_TECHNICAL production class but no renderer at all. Added
+  // here as real, working, production-ready renderers; not yet referenced
+  // by any lesson step's `representation.diagramBlueprintId` (that wiring
+  // is content-layer integration work for a future package).
+  "electronics.rectification_waveform": ({ diagram, testID }) => <RectificationWaveformDiagram diagram={diagram} testID={testID} />,
+  "electronics.capacitor_transient_curve": ({ diagram, testID }) => <CapacitorTransientDiagram diagram={diagram} testID={testID} />,
+  "electronics.electron_flow_vs_conventional_current": ({ diagram, testID }) => <ElectronFlowVsConventionalDiagram diagram={diagram} testID={testID} />,
 };
 
 /** The exact set of diagram blueprint ids this registry can render -- the mechanical renderer-coverage gate cross-checks the live corpus against this list. */

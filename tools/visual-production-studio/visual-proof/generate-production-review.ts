@@ -262,11 +262,30 @@ ${entries
 </body></html>`;
 }
 
+/**
+ * CC-11.11 §13: the review JSON must stay lightweight (paths/hashes/audit
+ * results/provenance) -- earlier packages embedded full base64 image data
+ * URIs directly in this file, which grew it to ~54.67 MB and crossed
+ * GitHub's recommended 50 MB threshold. Strips `referenceDataUri` /
+ * `masterDataUri` (base64 blobs, only ever needed for the HTML/PDF render)
+ * recursively, including nested `stateEntries` -- the real image files
+ * remain the source of truth, already addressable via
+ * `metadata.masterPath` / `metadata.sourceReferenceUrl`.
+ */
+function toJsonSafeEntry(entry: ProductionReviewEntry): Omit<ProductionReviewEntry, "referenceDataUri" | "masterDataUri"> {
+  const { referenceDataUri: _referenceDataUri, masterDataUri: _masterDataUri, stateEntries, ...rest } = entry;
+  return { ...rest, stateEntries: stateEntries?.map(toJsonSafeEntry) };
+}
+
 export async function generateProductionReview(): Promise<{ pdfPath: string; jsonPath: string; entries: ProductionReviewEntry[] }> {
   const entries = buildProductionReviewEntries();
   const reportsDir = join(REPO_ROOT, "reports", "instructional-visuals");
   mkdirSync(reportsDir, { recursive: true });
-  writeFileSync(JSON_PATH, JSON.stringify({ generatedAt: new Date().toISOString(), summary: summaryCounts(entries), entries }, null, 2) + "\n", "utf8");
+  writeFileSync(
+    JSON_PATH,
+    JSON.stringify({ generatedAt: new Date().toISOString(), summary: summaryCounts(entries), entries: entries.map(toJsonSafeEntry) }, null, 2) + "\n",
+    "utf8",
+  );
 
   const html = buildProductionReviewHtml(entries);
   const scratchDir = mkdtempSync(join(tmpdir(), "unit202-production-review-"));

@@ -218,11 +218,21 @@ ${entries.map(assetPageHtml).join("\n")}
 </body></html>`;
 }
 
+/** CC-11.11 §13: strip base64 image blobs before writing JSON -- same fix as generate-production-review.ts's `toJsonSafeEntry`. */
+function toJsonSafeEntry(entry: PilotAssetReviewEntry): Omit<PilotAssetReviewEntry, "referenceDataUri" | "masterDataUri"> {
+  const { referenceDataUri: _referenceDataUri, masterDataUri: _masterDataUri, ...rest } = entry;
+  return rest;
+}
+
 export async function generatePilotReview(): Promise<{ pdfPath: string; jsonPath: string; entries: PilotAssetReviewEntry[] }> {
   const entries = buildPilotReviewEntries();
   const reportsDir = join(REPO_ROOT, "reports", "instructional-visuals");
   mkdirSync(reportsDir, { recursive: true });
-  writeFileSync(JSON_PATH, JSON.stringify({ generatedAt: new Date().toISOString(), summary: summaryCounts(entries), entries }, null, 2) + "\n", "utf8");
+  writeFileSync(
+    JSON_PATH,
+    JSON.stringify({ generatedAt: new Date().toISOString(), summary: summaryCounts(entries), entries: entries.map(toJsonSafeEntry) }, null, 2) + "\n",
+    "utf8",
+  );
 
   const html = buildPilotReviewHtml(entries);
   const scratchDir = mkdtempSync(join(tmpdir(), "unit202-pilot-review-"));

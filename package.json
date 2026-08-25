@@ -80,6 +80,9 @@
     "visuals:reference-gate": "node tools/visual-production-studio/generate-reference-readiness-final.ts",
     "visuals:pilot-review": "node tools/visual-production-studio/visual-proof/generate-pilot-review.ts",
     "visuals:production-review": "node tools/visual-production-studio/visual-proof/generate-production-review.ts",
+    "visuals:state-completeness": "node tools/visual-production-studio/generate-final-state-completeness.ts",
+    "visuals:canonical-registry": "node tools/visual-production-studio/generate-canonical-visual-registry.ts",
+    "visuals:final-suite-review": "node tools/visual-production-studio/visual-proof/generate-final-visual-suite-review.ts",
     "project:dashboard": "node tools/project-dashboard/server.ts"
   },
   "devDependencies": {

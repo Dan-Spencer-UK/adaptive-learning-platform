@@ -1,0 +1,1025 @@
+{
+  "generatedAt": "2026-08-25T21:42:14.982Z",
+  "note": "Shipment-candidate registry, CC-11.11. Every approvalStatus is AWAITING_PRODUCT_OWNER_APPROVAL -- nothing here is RELEASED. Does not touch unit202-artwork-manifest.json or any ContentRelease.",
+  "canonicalAssetCount": 63,
+  "assets": [
+    {
+      "canonicalAssetId": "unit202.capacitor.transient",
+      "states": [
+        "unit202.capacitor.transient.state.charge",
+        "unit202.capacitor.transient.state.discharge"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "electronics.capacitor_transient_curve",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.circuit.mixed",
+      "states": [
+        "unit202.circuit.mixed.state.series-of-parallel",
+        "unit202.circuit.mixed.state.parallel-of-series"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "circuit.series_parallel_mixed",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.circuit.parallel",
+      "states": [
+        "unit202.circuit.parallel.state.2-branch",
+        "unit202.circuit.parallel.state.3-branch",
+        "unit202.circuit.parallel.state.4-branch"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "circuit.parallel_resistors",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.circuit.series",
+      "states": [
+        "unit202.circuit.series.state.2-component",
+        "unit202.circuit.series.state.3-component",
+        "unit202.circuit.series.state.4-component"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "circuit.series_resistors",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.capacitor",
+      "states": [
+        "unit202.components.physical.capacitor.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-master-v1.png",
+      "masterSha256": "99b60b42738b7ec50174888125d2d2e0ad1ee16048a4da06144782e2580bb49c",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.diac",
+      "states": [
+        "unit202.components.physical.diac.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.diac\\unit202.components.physical.diac-master-v1.png",
+      "masterSha256": "80d60a089433d2dc26fad51bc74e2efd94237a11f75102887f0113f554fa3e50",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.diac\\unit202.components.physical.diac-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.diode",
+      "states": [
+        "unit202.components.physical.diode.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.diode\\unit202.components.physical.diode-master-v1.png",
+      "masterSha256": "44f6675a6bc5005554f54cd40a9422d6c6ca70d68e81dfea26f79ddff49307db",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.diode\\unit202.components.physical.diode-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.led",
+      "states": [
+        "unit202.components.physical.led.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.led\\unit202.components.physical.led-master-v1.png",
+      "masterSha256": "e07492bcf0fbd6cb68d50b4f0fe9b3b7e822e23d707582965b578142b5cd71fe",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.led\\unit202.components.physical.led-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.photodiode",
+      "states": [
+        "unit202.components.physical.photodiode.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.photodiode\\unit202.components.physical.photodiode-master-v1.png",
+      "masterSha256": "be564d3a9c78424803288ba19f675d38332a93b43745284d1e6c856475770851",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.photodiode\\unit202.components.physical.photodiode-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.resistor",
+      "states": [
+        "unit202.components.physical.resistor.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.resistor\\unit202.components.physical.resistor-master-v1.png",
+      "masterSha256": "e483ea3a72535207e8b24d19eb45696e90e6e86ebdc95f1ff128ea0c0ad79f93",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.resistor\\unit202.components.physical.resistor-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.thermistor",
+      "states": [
+        "unit202.components.physical.thermistor.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.thermistor\\unit202.components.physical.thermistor-master-v1.png",
+      "masterSha256": "1681f4796946c8f747047dab981b57ea815aabd9c9cdcd6725c9e3ddd7feda7b",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.thermistor\\unit202.components.physical.thermistor-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.thyristor-scr",
+      "states": [
+        "unit202.components.physical.thyristor-scr.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.thyristor-scr\\unit202.components.physical.thyristor-scr-master-v1.png",
+      "masterSha256": "0108247d051f12943f32c44a80e82fa190e205c3901c3f60d54348f55d341d65",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.thyristor-scr\\unit202.components.physical.thyristor-scr-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.transistor",
+      "states": [
+        "unit202.components.physical.transistor.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.transistor\\unit202.components.physical.transistor-master-v1.png",
+      "masterSha256": "f8f200e684e5d0ae7af125194cd8d77b197693c43fbfa32594d7c7e361ad7549",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.transistor\\unit202.components.physical.transistor-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.triac",
+      "states": [
+        "unit202.components.physical.triac.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.triac\\unit202.components.physical.triac-master-v1.png",
+      "masterSha256": "28bb89d1a389df68531bdb8a345a0c4c218ead8c1d03d364ae1e04cf685f7ff2",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.triac\\unit202.components.physical.triac-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.physical.zener-diode",
+      "states": [
+        "unit202.components.physical.zener-diode.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.zener-diode\\unit202.components.physical.zener-diode-master-v1.png",
+      "masterSha256": "ce9370dbbcf61ecd74167de93b4db41f32c20237c43c631fc79cbecb6b877ef4",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.zener-diode\\unit202.components.physical.zener-diode-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.components.symbols",
+      "states": [
+        "unit202.components.symbols.state.resistor",
+        "unit202.components.symbols.state.capacitor",
+        "unit202.components.symbols.state.diode",
+        "unit202.components.symbols.state.zener-diode",
+        "unit202.components.symbols.state.led",
+        "unit202.components.symbols.state.photodiode",
+        "unit202.components.symbols.state.thermistor",
+        "unit202.components.symbols.state.diac",
+        "unit202.components.symbols.state.triac",
+        "unit202.components.symbols.state.transistor",
+        "unit202.components.symbols.state.thyristor-scr",
+        "unit202.components.symbols.state.rectifier",
+        "unit202.components.symbols.state.inverter"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "electronics.component_symbol_card",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.conductor-insulator",
+      "states": [
+        "unit202.conductor-insulator.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-master-v1.png",
+      "masterSha256": "afab3d2c94453f1f54967bd62f63700fc8bf90c871b5743f51ec5c072049ed2d",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.current-conductor.magnetic-field",
+      "states": [
+        "unit202.current-conductor.magnetic-field.state.into-page-teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.into-page-teaching-master-v2.png",
+      "masterSha256": "1923cfcbcd51df84f78940cb51f25bc36d496e30f692861afb9d719b1df326dc",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.into-page-teaching-derivative-v2.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.current-conductor.magnetic-field",
+      "states": [
+        "unit202.current-conductor.magnetic-field.state.into-page-assessment"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.into-page-assessment-master-v1.png",
+      "masterSha256": "df8da72332d5ace44e149508ed608bf1cab5097bfcc678a5f2939317daab88ef",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.into-page-assessment-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.current-conductor.magnetic-field",
+      "states": [
+        "unit202.current-conductor.magnetic-field.state.out-of-page-teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.out-of-page-teaching-master-v1.png",
+      "masterSha256": "ac25a9bb00d8b60a991a1b03afecdce2a0fc24273f3fd18569cc3fc6151c14f5",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.out-of-page-teaching-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.current-conductor.magnetic-field",
+      "states": [
+        "unit202.current-conductor.magnetic-field.state.out-of-page-assessment"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.out-of-page-assessment-master-v1.png",
+      "masterSha256": "667d3319d477e9570da6851be0802330da1959987037aa89c22d3d375c22fbe0",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.out-of-page-assessment-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.current-direction.electron-flow-vs-conventional",
+      "states": [
+        "unit202.current-direction.electron-flow-vs-conventional.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "electronics.electron_flow_vs_conventional_current",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.diode.bias-direction.forward",
+      "states": [
+        "unit202.diode.bias-direction.forward.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-master-v1.png",
+      "masterSha256": "5f8c69b284cc06b219e0c19c48056c605ad126a45c3edc4501fdb679b72d3899",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.diode.bias-direction.reverse",
+      "states": [
+        "unit202.diode.bias-direction.reverse.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-master-v2.png",
+      "masterSha256": "e3808bc0c4efdce1635662fe4f2ea56379f8495a94dc3e57f2077b827557450b",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-derivative-v2.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.electrolysis",
+      "states": [
+        "unit202.electrolysis.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-master-v2.png",
+      "masterSha256": "b9887d7dc74204e395cebe7f864276507f3791aa047c28df80840ffdd430749f",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-derivative-v2.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.emf.motional",
+      "states": [
+        "unit202.emf.motional.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-master-v1.png",
+      "masterSha256": "0c5260c3b6081f4e6a7bd98295d879a8878c0a2058a46e83ae5c4cc1c868e24e",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.fleming-left-hand.teaching",
+      "states": [
+        "unit202.fleming-left-hand.teaching.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.fleming-left-hand.teaching\\unit202.fleming-left-hand.teaching-master-v1.png",
+      "masterSha256": "81a19bebe64abf570045d16d3054910f34d16a06da3e4076b0faf2ecd84b3432",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.fleming-left-hand.teaching\\unit202.fleming-left-hand.teaching-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.fleming-right-hand.teaching",
+      "states": [
+        "unit202.fleming-right-hand.teaching.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.fleming-right-hand.teaching\\unit202.fleming-right-hand.teaching-master-v1.png",
+      "masterSha256": "81b556e067e3003d52e9e57ab8efafa2627a8bbe46f46b7e8c06fcd5320f6549",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.fleming-right-hand.teaching\\unit202.fleming-right-hand.teaching-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.gears.driven-larger",
+      "states": [
+        "unit202.gears.driven-larger.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.driven-larger\\unit202.gears.driven-larger-master-v1.png",
+      "masterSha256": "e7759fd4bfaf48ed2f9d5f9790ea2c25226589f1574ea47031d535b30d1ace59",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.driven-larger\\unit202.gears.driven-larger-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.gears.driven-smaller",
+      "states": [
+        "unit202.gears.driven-smaller.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.driven-smaller\\unit202.gears.driven-smaller-master-v1.png",
+      "masterSha256": "7710e3562dfc986d9e6a65097388fde9b4dafe3d775a5f9526000335616b4e7d",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.driven-smaller\\unit202.gears.driven-smaller-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.gears.equal",
+      "states": [
+        "unit202.gears.equal.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.equal\\unit202.gears.equal-master-v1.png",
+      "masterSha256": "16197e868f2fdcf8cad68709be2b4febd11481a2baaa14d8e73542cc3ac4e5f3",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.gears.equal\\unit202.gears.equal-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.gears.rotation-direction",
+      "states": [
+        "unit202.gears.rotation-direction.state.direct-mesh-opposite-directions",
+        "unit202.gears.rotation-direction.state.idler-preserves-driver-direction"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "mechanical.gear_mesh",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.generator.rotating-loop.horizontal",
+      "states": [
+        "unit202.generator.rotating-loop.horizontal.state.near-zero-emf"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-master-v1.png",
+      "masterSha256": "46d423a90d69b50d9e4dede228691e81c65604e4906f701e19a639dfb9f15577",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.generator.rotating-loop.vertical",
+      "states": [
+        "unit202.generator.rotating-loop.vertical.state.near-peak-emf"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-master-v2.png",
+      "masterSha256": "3c9083de87bf6b541c8345e21afa2e9fb96e4d3c230a73d1f88c771ddb7b9ad3",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-derivative-v2.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.heating-effect",
+      "states": [
+        "unit202.heating-effect.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.heating-effect\\unit202.heating-effect-master-v1.png",
+      "masterSha256": "8cc9088541e352e30cf8f5b1db8c7d705569760526231d76e90ca793df001c50",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.heating-effect\\unit202.heating-effect-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.instrument.clamp-meter",
+      "states": [
+        "unit202.instrument.clamp-meter.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.instrument.clamp-meter\\unit202.instrument.clamp-meter-master-v1.png",
+      "masterSha256": "927c7c3f235ba261626033c9a1eb5728603e9383fb9944c2343d74bff25d5146",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.instrument.clamp-meter\\unit202.instrument.clamp-meter-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.instrument.connections",
+      "states": [
+        "unit202.instrument.connections.state.voltmeter-parallel",
+        "unit202.instrument.connections.state.voltmeter-series",
+        "unit202.instrument.connections.state.ammeter-series",
+        "unit202.instrument.connections.state.ammeter-parallel",
+        "unit202.instrument.connections.state.ohmmeter-isolated"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "instrument.measurement_connection",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.instrument.oscilloscope",
+      "states": [
+        "unit202.instrument.oscilloscope.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.instrument.oscilloscope\\unit202.instrument.oscilloscope-master-v1.png",
+      "masterSha256": "275db81934d7b732829bbe1de560a9ece581c38a58f6157de6eddf483f7a6349",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.instrument.oscilloscope\\unit202.instrument.oscilloscope-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.levers.class-1",
+      "states": [
+        "unit202.levers.class-1.state.recognition",
+        "unit202.levers.class-1.state.moment-balance"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "SHARED_BASE_VALID",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-1\\unit202.levers.class-1-master-v3.png",
+      "masterSha256": "44a8e608cd66113cc831e6163bd743c513b01108bb68717063301d67f3333f43",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-1\\unit202.levers.class-1-derivative-v3.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.levers.class-2",
+      "states": [
+        "unit202.levers.class-2.state.recognition",
+        "unit202.levers.class-2.state.moment-balance"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "SHARED_BASE_VALID",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-2\\unit202.levers.class-2-master-v6.png",
+      "masterSha256": "624b665096a859c821cfb565ffe4e008d0ec7d901f9624fc8b8ac91654fac94e",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-2\\unit202.levers.class-2-derivative-v6.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.levers.class-3",
+      "states": [
+        "unit202.levers.class-3.state.recognition",
+        "unit202.levers.class-3.state.moment-balance"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "SHARED_BASE_VALID",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-master-v1.png",
+      "masterSha256": "7d0e537861f29cbefbc07f0e395e6d68766057266b6d0ff58feaa2842d5a7930",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.magnet.field",
+      "states": [
+        "unit202.magnet.field.state.field-only",
+        "unit202.magnet.field.state.density-comparison"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "SHARED_BASE_VALID",
+      "masterPath": "reports/instructional-visuals/premium-artwork/proof/unit202.magnet.field/unit202.magnet.field-master-v4.png",
+      "masterSha256": "ea86b4bf8f43a635aa7e06e6fb8b86dfdad5e197b7afbcb07082098737f4a3ca",
+      "derivativePath": "reports/instructional-visuals/premium-artwork/proof/unit202.magnet.field/unit202.magnet.field-derivative-v4.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.magnet.permanent-vs-electromagnet",
+      "states": [
+        "unit202.magnet.permanent-vs-electromagnet.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.permanent-vs-electromagnet\\unit202.magnet.permanent-vs-electromagnet-master-v2.png",
+      "masterSha256": "d8d90ace44de96cc443e6e296bbc5459add74daf1e074bb397550c9d17aeed5b",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.permanent-vs-electromagnet\\unit202.magnet.permanent-vs-electromagnet-derivative-v2.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.magnet.poles.like",
+      "states": [
+        "unit202.magnet.poles.like.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-master-v1.png",
+      "masterSha256": "d452ebe28f8b496bb520de8346833c87416712b0be1f360054d020f69b6bc717",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.magnet.poles.like",
+      "states": [
+        "unit202.magnet.poles.like.state.assessment"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "magnetic.pole_interaction",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.magnet.poles.unlike",
+      "states": [
+        "unit202.magnet.poles.unlike.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-master-v2.png",
+      "masterSha256": "fd1fa724cd9714da599974872a0235f368df5fc8d376b15f5016ad92649bcc05",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-derivative-v2.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.magnet.poles.unlike",
+      "states": [
+        "unit202.magnet.poles.unlike.state.assessment"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "magnetic.pole_interaction",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.motor.effect.horizontal-poles",
+      "states": [
+        "unit202.motor.effect.horizontal-poles.state.into-page-teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-master-v1.png",
+      "masterSha256": "83a3d6e3992774308481aaafbee2548499102bd769f5dfb65e244f0107ae93ba",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.motor.effect.horizontal-poles",
+      "states": [
+        "unit202.motor.effect.horizontal-poles.state.into-page-assessment"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-master-v1.png",
+      "masterSha256": "3d7ef1648edb3dc3fd90ca5e70f586a0191d826c6edeb90b7d1cbc456152bd3a",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.motor.effect.horizontal-poles",
+      "states": [
+        "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-master-v1.png",
+      "masterSha256": "5a96c1dd7156873c59908c4b344c6d58928f43d7aad74a9ee85a0aceab05b423",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.motor.effect.horizontal-poles",
+      "states": [
+        "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-master-v1.png",
+      "masterSha256": "73d7717f74238f6d249f3445045d75b9327c7caf6e47979028c3ea783fd5c90e",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.motor.effect.vertical-poles",
+      "states": [
+        "unit202.motor.effect.vertical-poles.state.into-page-teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-master-v1.png",
+      "masterSha256": "f6c05710510f8cc43ade4219c0ae92110ed761c7ff0b088b380ff3b57331670e",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.motor.effect.vertical-poles",
+      "states": [
+        "unit202.motor.effect.vertical-poles.state.into-page-assessment"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-master-v1.png",
+      "masterSha256": "05917091aff9e382d444c20ed804ee60813dab3639177148e7c7d141fabd9430",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.motor.effect.vertical-poles",
+      "states": [
+        "unit202.motor.effect.vertical-poles.state.out-of-page-teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-master-v1.png",
+      "masterSha256": "1449b25dce497295a34ee05cdfbc4155154273e6c4855b41bfe2283abd640d92",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.motor.effect.vertical-poles",
+      "states": [
+        "unit202.motor.effect.vertical-poles.state.out-of-page-assessment"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-master-v1.png",
+      "masterSha256": "dc3fd1eda18ce6ffdb88069607aa215ec630f31d356e4099088015eeb6f20f34",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.protective-devices",
+      "states": [
+        "unit202.protective-devices.state.fuse-vs-breaker"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.protective-devices\\unit202.protective-devices-master-v2.png",
+      "masterSha256": "2440680823176984902826132bc90c243b8f47307f0600579ea0eb84efa9c840",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.protective-devices\\unit202.protective-devices-derivative-v2.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.pulleys.fixed",
+      "states": [
+        "unit202.pulleys.fixed.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.pulleys.fixed\\unit202.pulleys.fixed-master-v1.png",
+      "masterSha256": "3ec46b4f802c99951b081ac43bca2f73a2ba1aee5716d6988a71c1bcac7fe2d2",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.pulleys.fixed\\unit202.pulleys.fixed-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.pulleys.movable",
+      "states": [
+        "unit202.pulleys.movable.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.pulleys.movable\\unit202.pulleys.movable-master-v1.png",
+      "masterSha256": "b34c94ebbccfc14f0b366a3c5d8271caf386f1cb36521b0b85c41e50f3348cc7",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.pulleys.movable\\unit202.pulleys.movable-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.rectification.waveforms",
+      "states": [
+        "unit202.rectification.waveforms.state.half-wave",
+        "unit202.rectification.waveforms.state.full-wave",
+        "unit202.rectification.waveforms.state.inverter"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "electronics.rectification_waveform",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.resistivity.area-comparison",
+      "states": [
+        "unit202.resistivity.area-comparison.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-master-v1.png",
+      "masterSha256": "e8aa625d4643a22e3b3514ed2ea4baef8141166174523ab1296c4fba88f5a004",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.resistivity.length-comparison",
+      "states": [
+        "unit202.resistivity.length-comparison.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-master-v1.png",
+      "masterSha256": "ffaa3558805f2c29b1277b35d3c034d2f9be0f1f27d7e5a8571c22ee5a20ba9b",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.right-hand-grip.teaching",
+      "states": [
+        "unit202.right-hand-grip.teaching.state.teaching"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "GENERATED",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-master-v1.png",
+      "masterSha256": "dbbf29250696f3f21b73399c7bcd417e0228a73f651c70463dc0f30b25b86a24",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-derivative-v1.png",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    },
+    {
+      "canonicalAssetId": "unit202.waveform.sine",
+      "states": [
+        "unit202.waveform.sine.state.progression-1",
+        "unit202.waveform.sine.state.progression-2",
+        "unit202.waveform.sine.state.progression-3",
+        "unit202.waveform.sine.state.progression-4",
+        "unit202.waveform.sine.state.progression-5",
+        "unit202.waveform.sine.state.progression-6"
+      ],
+      "reusable": true,
+      "commissioningContext": "unit202",
+      "usageBindings": [
+        "unit202"
+      ],
+      "resolutionType": "DETERMINISTIC",
+      "rendererBlueprintId": "graph.waveform_sine",
+      "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
+    }
+  ]
+}

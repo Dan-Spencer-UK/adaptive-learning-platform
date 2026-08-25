@@ -38,7 +38,7 @@ describe("DiagramRenderer registry", () => {
     );
   });
 
-  it("SUPPORTED_DIAGRAM_BLUEPRINT_IDS lists exactly the 16 governed diagram blueprints (CC-11.3 adds 9: lever/gear/pulley/resistivity-dimensions, pole-interaction/flux/motional-emf-geometry/rotating-loop, component-symbol-card)", () => {
+  it("SUPPORTED_DIAGRAM_BLUEPRINT_IDS lists exactly the 19 governed diagram blueprints (CC-11.11 adds 3: rectification-waveform, capacitor-transient-curve, electron-flow-vs-conventional-current)", () => {
     expect([...SUPPORTED_DIAGRAM_BLUEPRINT_IDS]).toEqual(
       [
         "circuit.parallel_resistors",
@@ -57,8 +57,41 @@ describe("DiagramRenderer registry", () => {
         "emf.motional_emf_geometry",
         "generator.rotating_loop",
         "electronics.component_symbol_card",
+        "electronics.rectification_waveform",
+        "electronics.capacitor_transient_curve",
+        "electronics.electron_flow_vs_conventional_current",
       ].sort(),
     );
+  });
+
+  it("CC-11.11: renders the rectification-waveform diagram for each of the three governed shapes", async () => {
+    const rectBlueprint = blueprint({ id: "electronics.rectification_waveform", type: "waveform", parameters: [{ name: "waveform_shape", kind: "enum", allowed: ["half_wave", "full_wave", "inverter"] }] });
+    for (const shape of ["half_wave", "full_wave", "inverter"] as const) {
+      const { getByLabelText } = await render(
+        <DiagramRenderer blueprint={rectBlueprint} diagram={{ blueprintId: "electronics.rectification_waveform", parameters: { waveform_shape: shape }, labels: [] }} />,
+      );
+      expect(getByLabelText(shape === "half_wave" ? /Half-wave/ : shape === "full_wave" ? /Full-wave/ : /Inverter-synthesised/)).toBeTruthy();
+    }
+  });
+
+  it("CC-11.11: renders the capacitor-transient diagram for both charge and discharge", async () => {
+    const capBlueprint = blueprint({ id: "electronics.capacitor_transient_curve", type: "graph", parameters: [{ name: "transient_mode", kind: "enum", allowed: ["charge", "discharge"] }] });
+    const { getByLabelText: getCharge } = await render(
+      <DiagramRenderer blueprint={capBlueprint} diagram={{ blueprintId: "electronics.capacitor_transient_curve", parameters: { transient_mode: "charge" }, labels: [] }} />,
+    );
+    expect(getCharge(/exponential rise/)).toBeTruthy();
+    const { getByLabelText: getDischarge } = await render(
+      <DiagramRenderer blueprint={capBlueprint} diagram={{ blueprintId: "electronics.capacitor_transient_curve", parameters: { transient_mode: "discharge" }, labels: [] }} />,
+    );
+    expect(getDischarge(/exponential decay/)).toBeTruthy();
+  });
+
+  it("CC-11.11: renders the electron-flow-vs-conventional diagram with both arrows on one wire", async () => {
+    const wireBlueprint = blueprint({ id: "electronics.electron_flow_vs_conventional_current", type: "electrical_circuit", parameters: [] });
+    const { getByLabelText } = await render(
+      <DiagramRenderer blueprint={wireBlueprint} diagram={{ blueprintId: "electronics.electron_flow_vs_conventional_current", parameters: {}, labels: [] }} />,
+    );
+    expect(getByLabelText(/conventional current flowing from positive to negative.*electron flow.*opposite direction/s)).toBeTruthy();
   });
 
   it("passes the reveal prop through to a magnetism diagram only when explicitly supplied", async () => {

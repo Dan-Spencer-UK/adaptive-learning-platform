@@ -1,0 +1,20 @@
+{
+  "assetId": "unit202.levers.class-2",
+  "attempt": 6,
+  "productionRun": "CC-11.11-visual-completeness-finalization",
+  "verdict": "PASS",
+  "correctionNote": "RESOLVED. CC-11.10 left this HUMAN_REVIEW_REQUIRED after two failed correction attempts (v3: wrong reference, regressed to raw composite; v4: correct reference but the duplication persisted and worsened to a triplicate). CC-11.11 first tried a deterministic raster patch (attempt recorded as v5, not committed as a candidate): a composited clean-background patch left a visible mismatched-shadow seam, and a heavy in-place Gaussian blur left a visible smudge artifact -- both rejected as not premium-quality. The approach that worked: fed the ALREADY-CORRECT v2 image itself (not the raw multi-class external reference) back to Gemini as the technical reference, with an explicit CLEANUP-ONLY instruction (mirroring the successful magnet.field ghost-line cleanup pattern from CC-11.9) -- redraw pixel-for-pixel identical, removing only the one stray floating FULCRUM text. Succeeded on the first attempt of this specific technique.",
+  "factChecks": [
+    { "fact": "load positioned between the fulcrum and the effort point (Class II)", "result": "PASS", "note": "Unchanged from v2 -- fulcrum at right (triangle), load in middle, effort at left." },
+    { "fact": "exactly one FULCRUM label, positioned beside the triangular pivot", "result": "PASS", "note": "Verified via full-image inspection and a targeted zoomed crop (x:700-1250,y:350-550) of the previously-defective region: completely clean, only the natural beam shadow line, no ghost/faint/duplicate text of any kind." },
+    { "fact": "exactly one EFFORT label, exactly one LOAD label", "result": "PASS", "note": "Unchanged from v2, single instance each." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not change lever geometry, metallic finish, or background while cleaning up the label", "result": "PASS", "note": "Visually identical to v2 in every respect except the removed stray text." }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. HUMAN_REVIEW_REQUIRED status is now resolved -- this is the final approved candidate for unit202.levers.class-2.",
+  "auditedAt": "2026-08-26T09:15:00.000Z"
+}
