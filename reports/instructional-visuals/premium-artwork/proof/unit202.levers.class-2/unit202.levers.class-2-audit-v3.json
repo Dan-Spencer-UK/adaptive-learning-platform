@@ -1,0 +1,17 @@
+{
+  "assetId": "unit202.levers.class-2",
+  "attempt": 3,
+  "productionRun": "CC-11.10-bounded-remediation",
+  "verdict": "HUMAN_REVIEW_REQUIRED",
+  "factChecks": [
+    { "fact": "single premium Class-II illustration matching the established style", "result": "FAIL", "note": "This attempt regressed to near-literally reproducing the raw multi-class composite reference: all three lever classes shown, cheap flat black-and-white icon style (wheelbarrow, pickaxe, excavator icons), not the premium 3D metallic style used elsewhere in this asset's own history. Root cause: this correction call omitted --prepared-reference and fell back to the raw composite SVG instead of the Class-II-only crop." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not depict the Class I/III siblings in this asset", "result": "FAIL", "note": "All three classes visible." }
+  ],
+  "styleComplianceNotes": "Style regression -- not the ALP premium style.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "N/A -- wrong composition entirely.",
+  "overallFindings": "FAIL -- wrong reference used for this correction call (raw composite instead of the prepared Class-II crop). Immediately re-attempted (attempt 4) with the correct prepared reference.",
+  "auditedAt": "2026-08-25T20:20:00.000Z"
+}

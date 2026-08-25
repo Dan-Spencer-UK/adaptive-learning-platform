@@ -1,0 +1,35 @@
+{
+  "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
+  "attempt": 1,
+  "productionRun": "CC-11.10-state-specific-remediation",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "current direction: out of page (dot symbol)",
+      "result": "PASS",
+      "note": "Dot correctly drawn."
+    },
+    {
+      "fact": "force direction: LEFT (matches the original external reference image directly -- same current/force combination)",
+      "result": "PASS",
+      "note": "Force arrow points left, with an added 'Force' text label."
+    },
+    {
+      "fact": "N (red, bottom) / S (green, top) preserved",
+      "result": "PASS",
+      "note": "Unchanged from approved base."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+      "result": "PASS",
+      "note": "Base composition unchanged from the approved shared base master."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- direction-specific teaching state correctly generated on first attempt, matches original reference directly.",
+  "auditedAt": "2026-08-25T19:51:22.646Z"
+}

@@ -54,10 +54,17 @@ export interface GeminiPromptOptions {
   referenceExtractionNote?: string;
   /** Bounded correction note for the one permitted automatic retry (task brief E7) -- appended, never replacing the base prompt. */
   correctionNote?: string;
+  /**
+   * CC-11.10: when generating one specific canonicalState's final
+   * learner-visible output (not the asset's shared neutral base), the exact
+   * state requirement -- which direction-specific labels/indicators this
+   * state must show, and which it must withhold as the assessed answer.
+   */
+  stateRequirement?: string;
 }
 
 export function buildGeminiPrompt(options: GeminiPromptOptions): string {
-  const { asset, forceCleanBaseArt, referenceExtractionNote, correctionNote } = options;
+  const { asset, forceCleanBaseArt, referenceExtractionNote, correctionNote, stateRequirement } = options;
   const lines: string[] = [];
 
   lines.push("=== ALP CANONICAL VISUAL STYLE GUIDE (governed -- do not reinterpret) ===");
@@ -102,6 +109,12 @@ export function buildGeminiPrompt(options: GeminiPromptOptions): string {
 
   lines.push(`EXACT DELIVERABLE: ${asset.exactDeliverable}`);
   lines.push("");
+
+  if (stateRequirement) {
+    lines.push("=== REQUIRED LEARNER-VISIBLE STATE (this generation is a specific final state, not a direction-neutral shared base) ===");
+    lines.push(stateRequirement);
+    lines.push("");
+  }
   lines.push("CRITICAL RULE: inspect the actual geometry you have drawn before presenting it. Do not rely on a caption or label to assert correctness -- the pixels themselves must match the reference's technical relationships and every immutable fact above. Where labels/pole markings/directional semantics are required above, they must be TECHNICALLY CORRECT in the image, not merely present.");
 
   if (correctionNote) {

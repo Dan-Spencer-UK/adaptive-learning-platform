@@ -1,0 +1,30 @@
+{
+  "assetId": "unit202.current-conductor.magnetic-field.state.into-page-assessment",
+  "attempt": 1,
+  "productionRun": "CC-11.10-state-specific-remediation",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "current direction (given stimulus): into page (X symbol)",
+      "result": "PASS",
+      "note": "Matches teaching sibling."
+    },
+    {
+      "fact": "field-circulation direction (assessed answer) correctly WITHHELD",
+      "result": "PASS",
+      "note": "No arrowheads present on any ring."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "field-line pattern must circulate around the conductor (closed concentric loops)",
+      "result": "PASS",
+      "note": "Concentric circles preserved."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background. Flat 2D cross-sectional composition -- a permitted compositional freedom (viewing angle is not an immutable fact), chosen over attempt 1's 3D receding-perspective stack because the flat composition makes the circulation direction unambiguous and reliably auditable.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- assessment state correctly shows given stimulus only, withholds the answer.",
+  "auditedAt": "2026-08-25T19:58:42.561Z"
+}

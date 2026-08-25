@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.vertical-poles/unit202.motor.effect.vertical-poles-master-v1.png)",
+  "sourceReferenceSha256": "f00d06f43d35186bff57eb9f695c369238a436ca670febfa93fa3e4248f02009",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-master-v1.png",
+  "masterSha256": "1449b25dce497295a34ee05cdfbc4155154273e6c4855b41bfe2283abd640d92",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-derivative-v1.png",
+  "derivativeSha256": "ad2b37fcfabf27aeab6dc7dda1868620d9c225ffc76757519317b58977d19eff",
+  "generatedAt": "2026-08-25T19:49:39.658Z"
+}

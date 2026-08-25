@@ -20,6 +20,7 @@ import { findAsset } from "../catalogue.ts";
 import { REPO_ROOT } from "../paths.ts";
 import type { ProofAuditResult, ProofGenerationMetadata } from "./proof-types.ts";
 import { REFERENCE_CACHE_DIR } from "../reference-acquisition.ts";
+import { effectivePrimaryReference } from "../reference-corrections.ts";
 import { PRODUCTION_CANDIDATE_ROOT } from "./run-production.ts";
 
 const PDF_PATH = join(REPO_ROOT, "reports", "instructional-visuals", "unit202-four-asset-pilot-review.pdf");
@@ -132,7 +133,7 @@ function assetPageHtml(entry: PilotAssetReviewEntry): string {
     <div class="compare-col">
       <h3>REFERENCE (as sent to Gemini)</h3>
       ${entry.referenceDataUri ? `<img class="compare-img" src="${entry.referenceDataUri}" />` : '<div class="missing">reference preview not found</div>'}
-      <p class="small">${esc(asset?.primaryReference.sourceName ?? "")}</p>
+      <p class="small">${esc(asset ? effectivePrimaryReference(asset).sourceName : "")}</p>
     </div>
     <div class="compare-col">
       <h3>FINAL ALP ARTWORK (attempt ${entry.latestAttempt})</h3>

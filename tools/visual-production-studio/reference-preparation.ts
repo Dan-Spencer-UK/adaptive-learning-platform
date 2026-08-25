@@ -129,6 +129,49 @@ export async function composeReferenceSheet(panels: ComposePanel[], caption: str
   }
 }
 
+/**
+ * CC-11.10: rotates a source raster image as a single rigid whole (never
+ * individual elements independently) -- e.g. turning the generic
+ * wire-in-field Lorentz-force reference (poles stacked vertically, force
+ * horizontal) into the isolated reference for the sibling asset that needs
+ * poles arranged horizontally (force vertical), per this asset family's own
+ * "rotate the ENTIRE governed technical relationship together" rule.
+ */
+export async function rotateReference(sourcePngPath: string, degrees: 90 | 180 | 270, outPath: string): Promise<PreparedReference> {
+  mkdirSync(PREPARED_REFERENCE_DIR, { recursive: true });
+  const sourceBuffer = readFileSync(sourcePngPath);
+  const sourceB64 = sourceBuffer.toString("base64");
+
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage();
+    await page.setContent(
+      `<!doctype html><html><body style="margin:0;padding:0;"><img id="src" src="data:image/png;base64,${sourceB64}" /></body></html>`,
+    );
+    const dims = await page.evaluate(() => {
+      const img = document.getElementById("src");
+      if (!img) throw new Error("source <img> not found in prepared reference page");
+      return { width: img.naturalWidth, height: img.naturalHeight };
+    });
+    const swapDimensions = degrees === 90 || degrees === 270;
+    const outWidth = swapDimensions ? dims.height : dims.width;
+    const outHeight = swapDimensions ? dims.width : dims.height;
+    await page.setContent(
+      `<!doctype html><html><body style="margin:0;padding:0;width:${outWidth}px;height:${outHeight}px;overflow:hidden;">
+        <div style="width:${outWidth}px;height:${outHeight}px;display:flex;align-items:center;justify-content:center;">
+          <img src="data:image/png;base64,${sourceB64}" style="width:${dims.width}px;height:${dims.height}px;transform:rotate(${degrees}deg);" />
+        </div>
+      </body></html>`,
+    );
+    await page.setViewportSize({ width: outWidth, height: outHeight });
+    const buffer = await page.screenshot();
+    writeFileSync(outPath, buffer);
+    return record(outPath, [sha256(sourceBuffer)], `rotate ${degrees}deg (whole-image rigid rotation) from ${sourcePngPath}`);
+  } finally {
+    await browser.close();
+  }
+}
+
 /** Extracts one page of a PDF to a high-resolution PNG via the system `pdftoppm` (Poppler) binary. */
 export function extractPdfPage(pdfPath: string, pageNumber: number, outPathBase: string): PreparedReference {
   mkdirSync(PREPARED_REFERENCE_DIR, { recursive: true });

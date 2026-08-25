@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.current-conductor.magnetic-field.state.into-page-assessment",
+  "attempt": 1,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Wire_fieldlines.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.current-conductor.magnetic-field/unit202.current-conductor.magnetic-field.state.into-page-teaching-master-v2.png)",
+  "sourceReferenceSha256": "1923cfcbcd51df84f78940cb51f25bc36d496e30f692861afb9d719b1df326dc",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.into-page-assessment-master-v1.png",
+  "masterSha256": "df8da72332d5ace44e149508ed608bf1cab5097bfcc678a5f2939317daab88ef",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.current-conductor.magnetic-field\\unit202.current-conductor.magnetic-field.state.into-page-assessment-derivative-v1.png",
+  "derivativeSha256": "12d424520d6cbb5149456180d0842f4f90b9403eaeb8a02405437b59c612c4e8",
+  "generatedAt": "2026-08-25T19:57:17.615Z"
+}

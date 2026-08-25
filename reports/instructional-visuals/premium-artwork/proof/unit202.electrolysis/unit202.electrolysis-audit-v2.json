@@ -1,0 +1,25 @@
+{
+  "assetId": "unit202.electrolysis",
+  "attempt": 2,
+  "productionRun": "CC-11.10-bounded-remediation",
+  "verdict": "PASS",
+  "correctionNote": "CC-11.10 external review correctly identified that attempt 1 had regressed to the raw external reference's full textbook instrumentation (voltmeter + ammeter + a redundant bench power-supply box) with no ion movement shown at all -- not the intended simplified teaching model. attempt 1's audit is retained unmodified as a record of that regression.",
+  "factChecks": [
+    { "fact": "source present", "result": "PASS", "note": "Simple two-line battery/cell symbol with clearly marked - and + terminals." },
+    { "fact": "electrolyte present", "result": "PASS", "note": "Labelled liquid inside the vessel, unchanged from attempt 1." },
+    { "fact": "electrodes present", "result": "PASS", "note": "Cathode (left) and Anode (right), labelled, unchanged from attempt 1." },
+    { "fact": "meaningful current path", "result": "PASS", "note": "Labelled 'current path' external wire from battery to each electrode -- no invented wire directly shorting the two electrodes." },
+    { "fact": "no voltmeter", "result": "PASS", "note": "Verified absent -- full image inspected, no V-in-circle symbol anywhere." },
+    { "fact": "no ammeter", "result": "PASS", "note": "Verified absent -- full image inspected, no A-in-circle symbol anywhere." },
+    { "fact": "no redundant separate bench power-supply unit", "result": "PASS", "note": "Only the simple battery symbol remains as the source." },
+    { "fact": "ion movement shown correctly: cations (+) toward cathode, anions (-) toward anode", "result": "PASS", "note": "Circled-plus symbols with arrows pointing toward the Cathode; circled-minus symbols with arrows pointing toward the Anode -- correct electrolytic-cell polarity (cathode wired to the battery's negative terminal, anode to positive, matching an electrolytic as opposed to galvanic cell) and correct ion-attraction direction." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not introduce chemistry detail beyond Unit 202 syllabus scope", "result": "PASS", "note": "No bubbles, no gas formulae, no electrode half-reactions -- ion movement only." }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved. Clean premium teaching style, simple symbolic ion notation as requested.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- electrode polarity and ion-migration directions are physically consistent with an electrolytic cell.",
+  "overallFindings": "PASS -- all three named defects (voltmeter, ammeter, missing ion movement) resolved; the corrected teaching model is restored.",
+  "auditedAt": "2026-08-25T20:10:00.000Z"
+}

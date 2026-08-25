@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.magnet.permanent-vs-electromagnet",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_tightly-wound_coil-and-bar-magnet-comparison.svg",
+  "sourceReferenceSha256": "dd8215b1f78ff37e38917745e7d348037f42bb97327307c48747b40088ba7e40",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.permanent-vs-electromagnet\\unit202.magnet.permanent-vs-electromagnet-master-v2.png",
+  "masterSha256": "d8d90ace44de96cc443e6e296bbc5459add74daf1e074bb397550c9d17aeed5b",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.permanent-vs-electromagnet\\unit202.magnet.permanent-vs-electromagnet-derivative-v2.png",
+  "derivativeSha256": "544a8484ac66004aee01af1496ccfafcb14cd50a0f3e64c7c76b3d7d48bb3caa",
+  "generatedAt": "2026-08-25T19:59:25.167Z"
+}

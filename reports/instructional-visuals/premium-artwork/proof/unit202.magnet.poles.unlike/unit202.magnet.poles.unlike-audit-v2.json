@@ -1,0 +1,19 @@
+{
+  "assetId": "unit202.magnet.poles.unlike",
+  "attempt": 2,
+  "productionRun": "CC-11.10-bounded-remediation",
+  "verdict": "PASS",
+  "correctionNote": "Optional low-risk cleanup (CC-11.10 item B): removed the unnecessary crossed-out 'repel' icon.",
+  "factChecks": [
+    { "fact": "S-N / S-N facing arrangement (unlike poles facing), attract", "result": "PASS", "note": "Unchanged from attempt 1 -- N of left magnet faces S of right magnet, correct for the 'unlike poles attract' asset." },
+    { "fact": "crossed-out 'repel' icon removed", "result": "PASS", "note": "Verified absent -- only the 'attract' label and double-headed arrow remain between the magnets." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "keep field lines, magnet colours/labels and background unchanged", "result": "PASS", "note": "Unchanged from attempt 1." }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- cleanup applied successfully with no regression to the underlying physics content.",
+  "auditedAt": "2026-08-25T20:25:00.000Z"
+}

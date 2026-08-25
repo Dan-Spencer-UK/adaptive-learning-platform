@@ -1,0 +1,18 @@
+{
+  "assetId": "unit202.levers.class-2",
+  "attempt": 4,
+  "productionRun": "CC-11.10-bounded-remediation",
+  "verdict": "HUMAN_REVIEW_REQUIRED",
+  "factChecks": [
+    { "fact": "geometry: Class II arrangement (fulcrum at one end, load in the middle, effort at the other end)", "result": "PASS", "note": "Geometry itself is correct and matches the established correct style (premium metallic beam, correct block/pivot positions)." },
+    { "fact": "exactly one FULCRUM label, positioned beside the triangular pivot", "result": "FAIL", "note": "The label duplication was NOT fixed -- it got WORSE: the word FULCRUM now appears THREE times (once floating below the LOAD block, twice near the actual pivot triangle), plus a stray extra black triangle icon has appeared near the LOAD block in addition to the real gold pivot triangle at the right." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not add extra label instances", "result": "FAIL", "note": "3 FULCRUM instances where there must be exactly 1." }
+  ],
+  "styleComplianceNotes": "Premium metallic style correctly restored (using the prepared Class-II-only crop as reference this time). Style is fine; the label-duplication defect is not.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- geometry itself is physically sound.",
+  "overallFindings": "HUMAN_REVIEW_REQUIRED. Two correction attempts in this remediation pass (attempt 3: wrong reference used, regressed style; attempt 4: correct reference and style, but the FULCRUM-label duplication defect persisted and worsened to a triplicate). Per this task's own bounded-retry discipline (no endless stylistic-variant attempts), this asset is left for human resolution rather than retried further. The lever geometry itself is correct and has been correct since attempt 2 -- only the automated placement of the FULCRUM text label is unreliable for this asset across four attempts total (v1, v2, v3, v4). Recommend a deterministic text-overlay/relabelling fix (crop out the model-generated FULCRUM text and place a single governed text label programmatically) rather than a further generative attempt, if this is picked up again.",
+  "auditedAt": "2026-08-25T20:22:00.000Z"
+}

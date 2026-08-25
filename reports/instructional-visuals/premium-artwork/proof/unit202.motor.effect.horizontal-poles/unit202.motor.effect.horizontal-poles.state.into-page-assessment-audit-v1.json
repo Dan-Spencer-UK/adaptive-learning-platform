@@ -1,0 +1,30 @@
+{
+  "assetId": "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
+  "attempt": 1,
+  "productionRun": "CC-11.10-state-specific-remediation",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "current direction (given stimulus): into page (cross symbol)",
+      "result": "PASS",
+      "note": "Cross symbol present, matching the teaching sibling's given stimulus."
+    },
+    {
+      "fact": "force direction (assessed answer) correctly WITHHELD",
+      "result": "PASS",
+      "note": "No force arrow present anywhere in the image."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+      "result": "PASS",
+      "note": "Base composition (magnets, field lines, N/S labels) visually unchanged from the approved shared base master."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- assessment state correctly shows the given stimulus only, withholds the answer.",
+  "auditedAt": "2026-08-25T19:49:06.448Z"
+}

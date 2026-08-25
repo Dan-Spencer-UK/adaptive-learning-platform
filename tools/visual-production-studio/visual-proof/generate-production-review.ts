@@ -17,6 +17,7 @@ import { allAssets, findAsset } from "../catalogue.ts";
 import { REPO_ROOT } from "../paths.ts";
 import type { ProofAuditResult, ProofGenerationMetadata } from "./proof-types.ts";
 import { REFERENCE_CACHE_DIR } from "../reference-acquisition.ts";
+import { effectivePrimaryReference } from "../reference-corrections.ts";
 import { PRODUCTION_CANDIDATE_ROOT } from "./run-production.ts";
 
 const PDF_PATH = join(REPO_ROOT, "reports", "instructional-visuals", "unit202-visual-production-review.pdf");
@@ -45,22 +46,37 @@ export interface ProductionReviewEntry {
   audit?: ProofAuditResult;
   referenceDataUri?: string;
   masterDataUri?: string;
+  /** CC-11.10: for a direction-sensitive asset whose required learner-visible output is one or more specific canonicalStates rather than a single shared neutral base, the per-state final outputs (in addition to, or in place of, the base entry above). */
+  stateEntries?: ProductionReviewEntry[];
 }
 
-function highestAuditedAttempt(assetId: string): { attempt: number; metadata: ProofGenerationMetadata; audit: ProofAuditResult } | undefined {
-  const assetDir = join(PRODUCTION_CANDIDATE_ROOT, assetId);
+/**
+ * Scans `ownerDir` for the highest-attempt audit+metadata pair whose
+ * filenames are prefixed with `outputId` -- `outputId` equals `ownerDir`'s
+ * assetId for a shared-base lookup, or a specific `stateId` (CC-11.10) when
+ * looking up one canonicalState's own final output, which is stored
+ * alongside the base files in the same owning asset's directory.
+ */
+function highestAuditedAttemptFor(ownerAssetId: string, outputId: string): { attempt: number; metadata: ProofGenerationMetadata; audit: ProofAuditResult } | undefined {
+  const assetDir = join(PRODUCTION_CANDIDATE_ROOT, ownerAssetId);
   if (!existsSync(assetDir)) return undefined;
+  const prefix = outputId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const auditPattern = new RegExp(`^${prefix}-audit-v(\\d+)\\.json$`);
   const attempts = readdirSync(assetDir)
-    .map((f) => /-audit-v(\d+)\.json$/.exec(f)?.[1])
+    .map((f) => auditPattern.exec(f)?.[1])
     .filter((n): n is string => !!n)
     .map(Number)
     .sort((a, b) => b - a);
   for (const attempt of attempts) {
-    const metadata = readJsonIfExists<ProofGenerationMetadata>(join(assetDir, `${assetId}-metadata-v${attempt}.json`));
-    const audit = readJsonIfExists<ProofAuditResult>(join(assetDir, `${assetId}-audit-v${attempt}.json`));
+    const metadata = readJsonIfExists<ProofGenerationMetadata>(join(assetDir, `${outputId}-metadata-v${attempt}.json`));
+    const audit = readJsonIfExists<ProofAuditResult>(join(assetDir, `${outputId}-audit-v${attempt}.json`));
     if (metadata && audit) return { attempt, metadata, audit };
   }
   return undefined;
+}
+
+function highestAuditedAttempt(assetId: string) {
+  return highestAuditedAttemptFor(assetId, assetId);
 }
 
 function referencePathFor(assetId: string): string | undefined {
@@ -79,60 +95,90 @@ export function buildProductionReviewEntries(): ProductionReviewEntry[] {
   const generativeAssets = allAssets().filter((a) => a.productionClass !== "DETERMINISTIC_TECHNICAL");
   return generativeAssets.map((asset): ProductionReviewEntry => {
     const reviewed = highestAuditedAttempt(asset.assetId);
-    if (!reviewed) return { assetId: asset.assetId, found: false };
+    const stateEntries: ProductionReviewEntry[] = asset.canonicalStates
+      .map((state): ProductionReviewEntry | undefined => {
+        const stateReviewed = highestAuditedAttemptFor(asset.assetId, state.stateId);
+        if (!stateReviewed) return undefined;
+        return {
+          assetId: state.stateId,
+          found: true,
+          latestAttempt: stateReviewed.attempt,
+          metadata: stateReviewed.metadata,
+          audit: stateReviewed.audit,
+          referenceDataUri: imageDataUri(referencePathFor(asset.assetId)),
+          masterDataUri: imageDataUri(stateReviewed.metadata.masterPath),
+        };
+      })
+      .filter((e): e is ProductionReviewEntry => !!e);
+
+    if (!reviewed && stateEntries.length === 0) return { assetId: asset.assetId, found: false };
     return {
       assetId: asset.assetId,
-      found: true,
-      latestAttempt: reviewed.attempt,
-      metadata: reviewed.metadata,
-      audit: reviewed.audit,
-      referenceDataUri: imageDataUri(referencePathFor(asset.assetId)),
-      masterDataUri: imageDataUri(reviewed.metadata.masterPath),
+      found: !!reviewed,
+      latestAttempt: reviewed?.attempt,
+      metadata: reviewed?.metadata,
+      audit: reviewed?.audit,
+      referenceDataUri: reviewed ? imageDataUri(referencePathFor(asset.assetId)) : undefined,
+      masterDataUri: reviewed ? imageDataUri(reviewed.metadata.masterPath) : undefined,
+      stateEntries: stateEntries.length > 0 ? stateEntries : undefined,
     };
   });
 }
 
+/** Flattens an asset-level entry plus any of its CC-11.10 state-specific sub-entries into one flat list for counting purposes. */
+function flattenForCounting(entries: ProductionReviewEntry[]): ProductionReviewEntry[] {
+  return entries.flatMap((e) => (e.stateEntries && e.stateEntries.length > 0 ? e.stateEntries : [e]));
+}
+
 function summaryCounts(entries: ProductionReviewEntry[]) {
-  const reviewed = entries.filter((e) => e.found && e.audit);
-  const totalCalls = entries.reduce((sum, e) => sum + (e.latestAttempt ?? 0), 0);
+  const flat = flattenForCounting(entries);
+  const reviewed = flat.filter((e) => e.found && e.audit);
+  const totalCalls = flat.reduce((sum, e) => sum + (e.latestAttempt ?? 0), 0);
   return {
-    totalGenerativeAssets: entries.length,
+    totalGenerativeAssets: flat.length,
     attempted: reviewed.length,
     pass: reviewed.filter((e) => e.audit!.verdict === "PASS").length,
     firstAttemptPass: reviewed.filter((e) => e.audit!.verdict === "PASS" && e.latestAttempt === 1).length,
     retryPass: reviewed.filter((e) => e.audit!.verdict === "PASS" && (e.latestAttempt ?? 0) > 1).length,
     humanReviewRequired: reviewed.filter((e) => e.audit!.verdict === "HUMAN_REVIEW_REQUIRED").length,
-    notCompleted: entries.filter((e) => !e.found).length,
+    notCompleted: flat.filter((e) => !e.found).length,
     totalGeminiCalls: totalCalls,
   };
 }
 
-function assetPageHtml(entry: ProductionReviewEntry): string {
+/** CC-11.10: the actual effective reference name for display -- the live, handover-corrected reference (via effectivePrimaryReference), never the raw catalogue field, which can still carry a stale "PRIMARY REFERENCE STILL TO BE APPROVED" placeholder for an asset whose real reference was supplied by the overlay. */
+function effectiveReferenceLabel(asset: ReturnType<typeof findAsset>, metadata: ProofGenerationMetadata | undefined): string {
+  if (asset) return effectivePrimaryReference(asset).sourceName;
+  return metadata?.sourceReferenceUrl ?? "";
+}
+
+function assetPageHtml(entry: ProductionReviewEntry, headingSuffix?: string): string {
   if (!entry.found || !entry.metadata || !entry.audit) {
     return `<section class="sheet"><h2>${esc(entry.assetId)}</h2><p class="notice notice-bad">Not completed in this production run -- see the summary for the reason (e.g. reference source unavailable at the time).</p></section>`;
   }
-  const asset = findAsset(entry.assetId);
+  const asset = findAsset(entry.assetId.split(".state.")[0] ?? entry.assetId);
   const a = entry.audit;
   const m = entry.metadata;
   const verdictClass = a.verdict === "PASS" ? "notice-good" : a.verdict === "RETRY" ? "notice-warn" : "notice-bad";
+  const state = asset?.canonicalStates.find((s) => s.stateId === entry.assetId);
 
   return `
 <section class="sheet">
   <div class="page-header">
-    <h2>${esc(asset?.displayName ?? entry.assetId)}</h2>
+    <h2>${esc(asset?.displayName ?? entry.assetId)}${headingSuffix ? ` -- ${esc(headingSuffix)}` : ""}</h2>
     <span class="badge">${esc(entry.assetId)}</span>
   </div>
   <table class="kv-table">
     <tr><th>Family</th><td>${esc(asset?.familyId ?? "n/a")}</td></tr>
     <tr><th>Curriculum context</th><td>${esc(asset?.loOrLesson ?? "n/a")}</td></tr>
-    <tr><th>Role / pedagogical state</th><td>${esc(asset?.role ?? "n/a")} / ${esc((asset?.canonicalStates ?? []).map((s) => s.pedagogicalState).join(", "))}</td></tr>
+    <tr><th>Role / pedagogical state</th><td>${esc(asset?.role ?? "n/a")} / ${esc(state ? state.pedagogicalState : (asset?.canonicalStates ?? []).map((s) => s.pedagogicalState).join(", "))}</td></tr>
     <tr><th>Purpose</th><td>${esc(asset?.instructionalPurpose ?? "n/a")}</td></tr>
   </table>
   <div class="compare-grid">
     <div class="compare-col">
       <h3>REFERENCE (as sent to Gemini)</h3>
       ${entry.referenceDataUri ? `<img class="compare-img" src="${entry.referenceDataUri}" />` : '<div class="missing">reference preview not found</div>'}
-      <p class="small">${esc(asset?.primaryReference.sourceName ?? "")}</p>
+      <p class="small">${esc(effectiveReferenceLabel(asset, m))}</p>
     </div>
     <div class="compare-col">
       <h3>FINAL ARTWORK (attempt ${entry.latestAttempt})</h3>
@@ -200,7 +246,19 @@ export function buildProductionReviewHtml(entries: ProductionReviewEntry[]): str
   code { font-size: 9px; }
 </style></head><body>
 ${coverHtml(entries)}
-${entries.map(assetPageHtml).join("\n")}
+${entries
+  .map((e) => {
+    const basePage = e.stateEntries && e.stateEntries.length > 0 ? "" : assetPageHtml(e);
+    const asset = findAsset(e.assetId);
+    const statePages = (e.stateEntries ?? [])
+      .map((se) => {
+        const state = asset?.canonicalStates.find((s) => s.stateId === se.assetId);
+        return assetPageHtml(se, state?.displayName ?? se.assetId);
+      })
+      .join("\n");
+    return basePage + statePages;
+  })
+  .join("\n")}
 </body></html>`;
 }
 

@@ -1,0 +1,30 @@
+{
+  "assetId": "unit202.current-conductor.magnetic-field.state.out-of-page-teaching",
+  "attempt": 1,
+  "productionRun": "CC-11.10-state-specific-remediation",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "current direction: out of page (dot symbol)",
+      "result": "PASS",
+      "note": "Dot symbol + 'CURRENT / OUT OF PAGE' label correct."
+    },
+    {
+      "fact": "field circulation: counterclockwise (correct for current out of page)",
+      "result": "PASS",
+      "note": "Flat composition: top=left, left=down, bottom=right, right=up -- all 4 cardinal arrowheads verified individually, fully consistent counterclockwise rotation."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "field-line pattern must circulate around the conductor (closed concentric loops)",
+      "result": "PASS",
+      "note": "Concentric circles preserved."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background. Flat 2D cross-sectional composition -- a permitted compositional freedom (viewing angle is not an immutable fact), chosen over attempt 1's 3D receding-perspective stack because the flat composition makes the circulation direction unambiguous and reliably auditable.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- flat composition (applied directly from the sibling state's correction) correct on first attempt.",
+  "auditedAt": "2026-08-25T19:58:42.560Z"
+}

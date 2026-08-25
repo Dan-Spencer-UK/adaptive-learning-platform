@@ -1,0 +1,30 @@
+{
+  "assetId": "unit202.current-conductor.magnetic-field.state.into-page-teaching",
+  "attempt": 2,
+  "productionRun": "CC-11.10-state-specific-remediation",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "current direction: into page (X symbol)",
+      "result": "PASS",
+      "note": "X symbol + 'CURRENT / INTO PAGE' label correct."
+    },
+    {
+      "fact": "field circulation: clockwise (correct for current into page)",
+      "result": "PASS",
+      "note": "Simplified to a flat 2D composition: top=right, right=down, bottom=left, left=up -- all 4 cardinal arrowheads verified individually, a fully consistent clockwise rotation with no contradiction."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "field-line pattern must circulate around the conductor (closed concentric loops)",
+      "result": "PASS",
+      "note": "Concentric circles preserved."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background. Flat 2D cross-sectional composition -- a permitted compositional freedom (viewing angle is not an immutable fact), chosen over attempt 1's 3D receding-perspective stack because the flat composition makes the circulation direction unambiguous and reliably auditable.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- correction attempt (simplified flat composition) resolved the contradictory arrowhead.",
+  "auditedAt": "2026-08-25T19:58:42.560Z"
+}

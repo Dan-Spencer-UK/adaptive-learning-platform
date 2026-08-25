@@ -1,0 +1,35 @@
+{
+  "assetId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
+  "attempt": 1,
+  "productionRun": "CC-11.10-state-specific-remediation",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "current direction: into page (cross symbol)",
+      "result": "PASS",
+      "note": "Cross correctly drawn."
+    },
+    {
+      "fact": "force direction: RIGHT (Fleming's-left-hand-rule correct for N-bottom/S-top field, current into page)",
+      "result": "PASS",
+      "note": "Force arrow points right -- independently re-derived via F=BIL cross product, cross-checked against the original external reference image's own out-of-page/force-left combination (reversing both current and force together is the physically consistent complementary case)."
+    },
+    {
+      "fact": "N (red, bottom) / S (green, top) preserved",
+      "result": "PASS",
+      "note": "Unchanged from approved base."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+      "result": "PASS",
+      "note": "Base composition unchanged from the approved shared base master."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- direction-specific teaching state correctly generated on first attempt.",
+  "auditedAt": "2026-08-25T19:51:22.643Z"
+}

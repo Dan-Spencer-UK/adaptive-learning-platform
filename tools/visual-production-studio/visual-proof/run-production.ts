@@ -39,27 +39,40 @@ export interface RunProductionOptions {
   /** A prepared (cropped/composed) reference image path to use instead of the raw acquired reference -- required for composite sources. */
   preparedReferencePath?: string;
   referenceExtractionNote?: string;
+  /**
+   * CC-11.10: generate one specific canonicalState's final learner-visible
+   * output instead of the asset's shared neutral base. Must match a
+   * `stateId` in `asset.canonicalStates`. Output files are named after the
+   * stateId, nested in the same per-asset directory as the base files.
+   */
+  stateId?: string;
+  /** CC-11.10: explicit override for whether this generation must bake labels -- a state-specific generation always needs this true even when the asset-level heuristic would say otherwise, so pass it explicitly rather than relying on the asset-level default. */
+  forceCleanBaseArtOverride?: boolean;
 }
 
 export async function runProduction(options: RunProductionOptions): Promise<ProofGenerationMetadata> {
-  const { assetId, correctionNote, preparedReferencePath, referenceExtractionNote } = options;
+  const { assetId, correctionNote, preparedReferencePath, referenceExtractionNote, stateId, forceCleanBaseArtOverride } = options;
   const asset = findAsset(assetId);
   if (!asset) throw new Error(`${assetId} not found in the live catalogue.`);
   if (effectiveReferenceReadiness(asset) !== "READY") {
     throw new Error(`${assetId} is not READY after handover correction -- refusing to generate.`);
   }
 
+  const state = stateId ? asset.canonicalStates.find((s) => s.stateId === stateId) : undefined;
+  if (stateId && !state) throw new Error(`${stateId} is not a canonicalState of ${assetId}.`);
+
+  const outputId = state ? state.stateId : assetId;
   const assetDir = join(PRODUCTION_CANDIDATE_ROOT, assetId);
   mkdirSync(assetDir, { recursive: true });
 
-  // Attempt number = 1 + however many master versions already exist for this asset.
+  // Attempt number = 1 + however many master versions already exist for this output (asset base, or this specific state).
   let attempt = 1;
-  while (existsSync(join(assetDir, `${assetId}-master-v${attempt}.png`))) attempt++;
-  if (correctionNote && attempt === 1) throw new Error(`Cannot run a --correction attempt for ${assetId} before attempt 1 exists.`);
+  while (existsSync(join(assetDir, `${outputId}-master-v${attempt}.png`))) attempt++;
+  if (correctionNote && attempt === 1) throw new Error(`Cannot run a --correction attempt for ${outputId} before attempt 1 exists.`);
 
-  const masterPath = join(assetDir, `${assetId}-master-v${attempt}.png`);
-  const derivativePath = join(assetDir, `${assetId}-derivative-v${attempt}.png`);
-  const metadataPath = join(assetDir, `${assetId}-metadata-v${attempt}.json`);
+  const masterPath = join(assetDir, `${outputId}-master-v${attempt}.png`);
+  const derivativePath = join(assetDir, `${outputId}-derivative-v${attempt}.png`);
+  const metadataPath = join(assetDir, `${outputId}-metadata-v${attempt}.json`);
 
   const ref = effectivePrimaryReference(asset);
   let inlineRef: { mimeType: string; bytes: Buffer };
@@ -80,13 +93,29 @@ export async function runProduction(options: RunProductionOptions): Promise<Proo
 
   // Force clean base art only when this asset genuinely has no baked-label
   // requirement of its own (CC-11.9 §3 correction -- see prompt-builder-gemini.ts).
-  const forceCleanBaseArt = asset.requiredLabels.length === 0 && asset.deterministicOverlayResponsibilities.length > 0;
+  // A state-specific generation always bakes its own state's labels, so it
+  // is never clean base art unless explicitly overridden.
+  const forceCleanBaseArt = forceCleanBaseArtOverride ?? (asset.requiredLabels.length === 0 && asset.deterministicOverlayResponsibilities.length > 0);
+
+  const stateRequirement = state
+    ? [
+        `State: ${state.displayName} (${state.pedagogicalState})`,
+        state.requiredLabels.length > 0
+          ? `This state's required labels/indicators (must be visibly and correctly present, technically correct, not merely present): ${state.requiredLabels.join(", ")}`
+          : "This state deliberately WITHHOLDS the assessed-answer indicator described in the notes below -- do not draw it, even though the given stimulus below must still be shown.",
+        state.parameters ? `Parameters: ${JSON.stringify(state.parameters)}` : undefined,
+        state.notes ? `Notes: ${state.notes}` : undefined,
+      ]
+        .filter((l): l is string => !!l)
+        .join("\n")
+    : undefined;
 
   const promptText = buildGeminiPrompt({
     asset,
     forceCleanBaseArt,
     referenceExtractionNote: referenceExtractionNote ?? referencePreparationFor(asset),
     correctionNote,
+    stateRequirement,
   });
 
   const result = await generateImage({ promptText, technicalReference: inlineRef });
@@ -96,7 +125,7 @@ export async function runProduction(options: RunProductionOptions): Promise<Proo
   const derivativeBuffer = readFileSync(derivativePath);
 
   const metadata: ProofGenerationMetadata = {
-    assetId,
+    assetId: outputId,
     attempt: attempt as 1 | 2,
     sourceReferenceUrl: referenceUrlForRecord,
     sourceReferenceSha256: referenceSha,
@@ -127,13 +156,15 @@ if (isMainModule()) {
   const preparedReferencePath = preparedFlagIndex >= 0 ? process.argv[preparedFlagIndex + 1] : undefined;
   const extractionNoteFlagIndex = process.argv.indexOf("--extraction-note");
   const referenceExtractionNote = extractionNoteFlagIndex >= 0 ? process.argv[extractionNoteFlagIndex + 1] : undefined;
+  const stateFlagIndex = process.argv.indexOf("--state");
+  const stateId = stateFlagIndex >= 0 ? process.argv[stateFlagIndex + 1] : undefined;
 
   if (!assetId) {
-    console.error("Usage: node run-production.ts <assetId> [--correction \"<note>\"] [--prepared-reference <path>] [--extraction-note \"<note>\"]");
+    console.error("Usage: node run-production.ts <assetId> [--correction \"<note>\"] [--prepared-reference <path>] [--extraction-note \"<note>\"] [--state <stateId>]");
     process.exit(1);
   }
 
-  runProduction({ assetId, correctionNote, preparedReferencePath, referenceExtractionNote })
+  runProduction({ assetId, correctionNote, preparedReferencePath, referenceExtractionNote, stateId, forceCleanBaseArtOverride: stateId ? false : undefined })
     .then((metadata) => {
       console.log(`Generated ${metadata.assetId} attempt ${metadata.attempt} via ${metadata.model}`);
       console.log(`  Reference: ${metadata.sourceReferenceUrl}`);

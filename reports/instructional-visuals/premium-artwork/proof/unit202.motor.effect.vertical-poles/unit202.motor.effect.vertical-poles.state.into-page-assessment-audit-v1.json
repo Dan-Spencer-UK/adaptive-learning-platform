@@ -1,0 +1,30 @@
+{
+  "assetId": "unit202.motor.effect.vertical-poles.state.into-page-assessment",
+  "attempt": 1,
+  "productionRun": "CC-11.10-state-specific-remediation",
+  "verdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "current direction (given stimulus): into page (cross symbol)",
+      "result": "PASS",
+      "note": "Matches teaching sibling."
+    },
+    {
+      "fact": "force direction (assessed answer) correctly WITHHELD",
+      "result": "PASS",
+      "note": "No force arrow or 'Force' label present."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+      "result": "PASS",
+      "note": "Base composition unchanged from the approved shared base master."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- assessment state correctly shows given stimulus only.",
+  "auditedAt": "2026-08-25T19:51:22.648Z"
+}

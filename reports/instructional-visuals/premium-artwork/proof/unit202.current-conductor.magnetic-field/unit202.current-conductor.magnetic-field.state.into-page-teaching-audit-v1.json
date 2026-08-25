@@ -1,0 +1,30 @@
+{
+  "assetId": "unit202.current-conductor.magnetic-field.state.into-page-teaching",
+  "attempt": 1,
+  "productionRun": "CC-11.10-state-specific-remediation",
+  "verdict": "RETRY",
+  "factChecks": [
+    {
+      "fact": "current direction: into page (X symbol)",
+      "result": "PASS",
+      "note": "X symbol correct."
+    },
+    {
+      "fact": "field circulation: clockwise (correct for current into page)",
+      "result": "FAIL",
+      "note": "3 of 4 checked arrowheads (top=right, left=up) were clockwise-consistent, but the right-edge arrowhead ALSO pointed up (correct only for counterclockwise) -- a genuine contradictory arrowhead, verified via 2 independent zoomed crops of the left and right edges of the central ring before concluding this was a real defect and not a misread."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "field-line pattern must circulate around the conductor (closed concentric loops)",
+      "result": "PASS",
+      "note": "Concentric circles preserved."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background. Flat 2D cross-sectional composition -- a permitted compositional freedom (viewing angle is not an immutable fact), chosen over attempt 1's 3D receding-perspective stack because the flat composition makes the circulation direction unambiguous and reliably auditable.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "RETRY -- one contradictory arrowhead broke the otherwise-consistent clockwise rotation in the 3D receding-perspective composition.",
+  "auditedAt": "2026-08-25T19:58:42.557Z"
+}

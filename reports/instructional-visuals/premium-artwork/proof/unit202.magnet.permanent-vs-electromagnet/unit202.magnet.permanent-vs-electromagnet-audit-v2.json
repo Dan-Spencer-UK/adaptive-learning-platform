@@ -1,0 +1,23 @@
+{
+  "assetId": "unit202.magnet.permanent-vs-electromagnet",
+  "attempt": 2,
+  "productionRun": "CC-11.10-bounded-remediation",
+  "verdict": "PASS",
+  "correctionNote": "CC-11.10 external review correctly identified that attempt 1's PASS was too lenient: the wire loop connected to an ambiguous striped/banded component (read as a resistor or diode, not a battery) with no unmistakable power source. attempt 1's audit is retained unmodified as a record of that miss.",
+  "factChecks": [
+    { "fact": "permanent magnet depicted as a solid bar magnet, no coil or power source", "result": "PASS", "note": "Left side unchanged from attempt 1: solid bar magnet, no coil, no source." },
+    { "fact": "electromagnet depicted with an unmistakable visible power source, a clear connection path to the coil, and a recognisable coil around the core", "result": "PASS", "note": "The ambiguous striped component is replaced with a standard, unmistakable two-line battery/cell symbol (one long thin line, one short thick line), wired through a switch to the coil -- verified via a zoomed crop of the source/switch area, not just the full-image view." },
+    { "fact": "pedagogically clear contrast between permanent magnet and electromagnet", "result": "PASS", "note": "Coil + core + battery on the right vs. solid bar on the left is now unambiguous." },
+    { "fact": "one side-by-side comparison image, not two separate images", "result": "PASS", "note": "Single combined image, unchanged." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not overcomplicate / introduce irrelevant lab clutter", "result": "PASS", "note": "Only the battery symbol changed; no extra components added." },
+    { "prohibition": "do not change the permanent-magnet panel", "result": "PASS", "note": "Left panel pixel-equivalent in content to attempt 1." },
+    { "prohibition": "do not change the field-line patterns, labels or background", "result": "PASS", "note": "Unchanged." }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved. PERMANENT MAGNET / ELECTROMAGNET labels preserved.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- circuit path (battery -> switch -> coil -> back to battery) is visually complete and coherent.",
+  "overallFindings": "PASS -- the specific defect named in external review (no unmistakable power source) is resolved.",
+  "auditedAt": "2026-08-25T20:05:00.000Z"
+}
