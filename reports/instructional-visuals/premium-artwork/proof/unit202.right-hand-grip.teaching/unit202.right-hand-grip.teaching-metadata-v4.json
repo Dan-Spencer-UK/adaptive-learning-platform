@@ -1,0 +1,14 @@
+{
+  "assetId": "unit202.right-hand-grip.teaching",
+  "attempt": 4,
+  "productionMode": "HYBRID_REDRAW_PLUS_DETERMINISTIC_OVERLAY",
+  "note": "CC-11.14: v4 = v3 (Gemini cleanup, both defective arrows removed) + a DETERMINISTIC field-circulation-cue overlay composited programmatically (not generated). NOT a Gemini call. Overlay is a single ellipse arrow, geometry derived by rigidly rotating the Product-Owner-approved Wikimedia \"Right-hand grip rule.svg\" reference's own loop path (svg path 'M85 338a68 28 23 1 0 -41-17') by -22deg about its current-arrow start point (73,304) -- the angle that straightens that reference's own tilted current arrow to vertical -- then scaled/translated onto this asset's vertical conductor. Sweep direction (CCW on screen, sweep-flag=0) preserved unchanged from the reference, so the field arrow crosses the front of the rod moving right-to-left, matching both (a) the reference's own measured direction and (b) this asset's visible finger curl (base near the palm on the right, fingertips on the left).",
+  "sourceMasterPath": "reports/instructional-visuals/premium-artwork/proof/unit202.right-hand-grip.teaching/unit202.right-hand-grip.teaching-master-v3.png",
+  "sourceMasterSha256": "834982a8a1063558c413de272814d2286d54a43c18b3d85f137e978d2aade194",
+  "masterPath": "reports/instructional-visuals/premium-artwork/proof/unit202.right-hand-grip.teaching/unit202.right-hand-grip.teaching-master-v4.png",
+  "masterSha256": "85f1ff3141ac5fba12254372667d7f82701f7a02f786fd19c2c205d12645cac6",
+  "derivativePath": "reports/instructional-visuals/premium-artwork/proof/unit202.right-hand-grip.teaching/unit202.right-hand-grip.teaching-derivative-v4.png",
+  "derivativeSha256": "d3d034a450ffc39bc77b37139709b232bc74f5b36cfd526bab6b8373d2cc416d",
+  "generatedAt": "2026-08-26T02:09:21.455Z",
+  "geminiCall": false
+}

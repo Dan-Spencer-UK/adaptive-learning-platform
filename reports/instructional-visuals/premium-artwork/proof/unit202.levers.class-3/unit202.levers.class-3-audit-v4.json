@@ -1,0 +1,28 @@
+{
+  "assetId": "unit202.levers.class-3",
+  "attempt": 4,
+  "productionRun": "CC-11.14-three-asset-correctness-proof",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.14: generated directly from a hand-authored prepared board (tools/visual-production-studio/reference-cache/prepared/unit202.levers.class-3.cc-11.14-corrected-labels.prepared.png) derived from the approved reference with RESISTANCE removed, MOTION removed, and the resistance glyph relabelled LOAD -- an original ALP redraw of that corrected skeleton, per ORIGINAL_REDRAW_FROM_REFERENCE, not a reinterpretation.",
+  "factChecks": [
+    { "fact": "EFFORT is between FULCRUM and LOAD (§12 check 1; governed immutableFact per catalogue.ts)", "result": "PASS", "note": "Pixel-measured on the actual 1885x560 candidate: LOAD glyph centre x~210, EFFORT arrow x~780, FULCRUM triangle x~1440. EFFORT sits strictly between the other two. (The catalogue's own immutableFact is exactly 'effort positioned between the fulcrum and the load point' -- no additional relative-distance requirement.)" },
+    { "fact": "exactly one Class III arrangement (§12 check 2)", "result": "PASS", "note": "Single beam, single set of three markers." },
+    { "fact": "exactly the intended learner-visible labels (§12 check 3)", "result": "PASS", "note": "Text reads exactly FULCRUM, EFFORT, LOAD. RESISTANCE and MOTION -- present in v1/v2/v3 -- are verified absent." },
+    { "fact": "no machinery/context contamination (§12 check 4)", "result": "PASS", "note": "Plain background, no excavator, no decorative scene objects." },
+    { "fact": "no unnecessary 3D (§12 check 5)", "result": "PASS", "note": "Flat line/shape art: a plain beam, a flat box-and-arrow load glyph, a flat effort arrow, a flat fulcrum triangle -- no photoreal metallic shading, no perspective, no depth cues. v2/v3's 3D metallic beam-and-wedge rendering is gone." },
+    { "fact": "at least as legible as the reference (§12 check 6)", "result": "PASS", "note": "Simpler than v2/v3 (3 labels vs 5) and than the raw reference itself (which still carried RESISTANCE/MOTION) -- immediately readable." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no excavators/machinery/real-world scenes", "result": "PASS", "note": "None present." },
+    { "prohibition": "no bent beams", "result": "PASS", "note": "Single straight beam." },
+    { "prohibition": "no duplicated labels", "result": "PASS", "note": "Each of FULCRUM/EFFORT/LOAD appears exactly once." }
+  ],
+  "styleComplianceNotes": "Clean vocational/premium sans-serif typography, flat dark-grey line work on a plain light background. Deliberately does not match Class I/II's soft-3D metallic-beam rendering style (those two assets predate the CC-11.13 2D-diagrammatic-default rule and were not in this package's scope to revisit) -- recorded as a known, out-of-scope cross-asset style difference, not a defect of this asset in isolation.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS on all three dimensions, first attempt. Directly corrects both CC-11.13/13A-identified defects (RESISTANCE/MOTION label clutter, and the general instruction to avoid a 3D beam) in one clean redraw. Clear improvement over v2/v3.",
+  "auditedAt": "2026-08-26T03:30:00.000Z"
+}

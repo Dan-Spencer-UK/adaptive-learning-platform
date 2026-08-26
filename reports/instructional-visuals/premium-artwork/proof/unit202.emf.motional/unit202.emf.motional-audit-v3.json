@@ -1,0 +1,27 @@
+{
+  "assetId": "unit202.emf.motional",
+  "attempt": 3,
+  "productionRun": "CC-11.14-three-asset-correctness-proof",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.14: generated directly from a hand-authored prepared technical board (tools/visual-production-studio/reference-cache/prepared/unit202.emf.motional.cc-11.14-corrected-l-dimension.prepared.png) in which l was already drawn vertically, along the active conductor, before Gemini saw it -- the geometry was established deterministically first, not left to the generator to infer, per the brief's own requirement.",
+  "factChecks": [
+    { "fact": "l is drawn ALONG the active conductor (§11 check 1)", "result": "PASS", "note": "The l bracket is vertical, running from the top rail to the bottom rail immediately beside the red conductor bar, matching the conductor's own extent exactly -- not the horizontal rail-span bracket v2 had at the bottom of the diagram." },
+    { "fact": "v perpendicular to l (§11 check 2)", "result": "PASS", "note": "v is horizontal (pointing right, direction of motion); l is now vertical. Perpendicular." },
+    { "fact": "B perpendicular to l (§11 check 3)", "result": "PASS", "note": "B is into the page (X marks); l is vertical, in the plane of the page. Perpendicular." },
+    { "fact": "B perpendicular to v (§11 check 4)", "result": "PASS", "note": "B into the page, v in the plane of the page. Perpendicular." },
+    { "fact": "one active conductor only (§11 check 5)", "result": "PASS", "note": "Single red vertical bar visible, sliding on the two rails." },
+    { "fact": "no misleading extra dimension (§11 check 6)", "result": "PASS", "note": "The old horizontal l bracket is completely absent from this candidate -- verified by direct inspection, not merely assumed from the prompt." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no photoreal rails/pipes or pseudo-3D apparatus", "result": "PASS", "note": "Flat 2D metallic-look rails matching the established style, no depth/perspective." },
+    { "prohibition": "do not let the generator decide where l goes, which way v points, the B convention, or conductor orientation", "result": "PASS", "note": "All four were fixed in the prepared board before generation; the model's job was restyling only." }
+  ],
+  "styleComplianceNotes": "Matches the established style for this asset closely: metallic rail rendering, warm red/copper conductor, bold green v arrow with its own label, navy X marks and B label. No extraneous formula text added.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS on all three dimensions, first attempt. Directly corrects the CC-11.13A-identified defect (l drawn along the wrong geometric dimension) -- l, v and B are now mutually perpendicular and l is unambiguously the active conductor's own length. Clear improvement over v2.",
+  "auditedAt": "2026-08-26T03:25:00.000Z"
+}

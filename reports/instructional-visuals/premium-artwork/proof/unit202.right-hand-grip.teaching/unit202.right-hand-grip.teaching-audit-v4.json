@@ -1,0 +1,28 @@
+{
+  "assetId": "unit202.right-hand-grip.teaching",
+  "attempt": 4,
+  "productionRun": "CC-11.14-three-asset-correctness-proof",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.14: v3 = Gemini self-referential cleanup of v2, removing BOTH defective arrows (the two-arrowhead copper crescent and the detached dark wrist arrow), hand/thumb/conductor/labels otherwise pixel-preserved. v4 = v3 with a DETERMINISTIC (non-generated) wrap-around field-circulation ellipse composited on top, so this specific v2 audit's own past mistake (self-reported PASS on a wrong-plane, ambiguous arrow) cannot recur -- the geometry is provable by construction, not by inspection of a generative attempt.",
+  "factChecks": [
+    { "fact": "RIGHT hand, unchanged pose", "result": "PASS", "note": "Verified pixel-identical hand/thumb/conductor/label geometry against v2 (Gemini cleanup only removed the two arrows)." },
+    { "fact": "thumb = conventional current direction", "result": "PASS", "note": "Thumb points up along the conductor; unchanged, correct." },
+    { "fact": "field arrow wraps around the copper conductor (CC-11.14 §10 check 1)", "result": "PASS", "note": "The new ellipse visibly encircles the rod/fist -- it is not a floating shape beside the hand." },
+    { "fact": "occupies the correct rotational plane (§10 check 2)", "result": "PASS", "note": "Horizontal-ish ellipse centred on the vertical rod at the hand's grip height, consistent with a field loop perpendicular to the conductor." },
+    { "fact": "direction agrees with the finger curl (§10 check 3)", "result": "PASS", "note": "Measured directly from the image: the visible fingers wrap from their base near the palm/thumb (right side, x~650) across the front to the fingertips/nails (left side, x~430). The new arrow's visible front arc sweeps right-to-left across that same span, ending in a single left-pointing arrowhead -- matching. Independently cross-checked against the Product-Owner-approved Wikimedia \"Right-hand grip rule.svg\" reference (tools/visual-production-studio/reference-cache/unit202.right-hand-grip.teaching.svg): that reference's own loop path (`M85 338a68 28 23 1 0 -41-17`, sweep-flag=0) sweeps counterclockwise on screen; rigidly rotating the reference by -22deg about its current-arrow's start point (the angle that straightens its own tilted current arrow to vertical) preserves that same sense and gives right-to-left motion at the point nearest the conductor -- the exact geometry composited here." },
+    { "fact": "visual progression follows finger base toward fingertip (§10 check 4)", "result": "PASS", "note": "Visible arc runs from near the base of the fingers (right, close to the palm/thumb) to the arrowhead near the fingertips (left)." },
+    { "fact": "cannot reasonably be read as a separate hand gesture (§10 check 5)", "result": "PASS", "note": "Unlike the removed dark arrow (which sat beside the wrist, unconnected to the rod), the new ellipse visibly encircles the rod/fist as a single loop." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not mirror/flip the hand or alter handedness", "result": "PASS", "note": "Not mirrored; right hand preserved." },
+    { "prohibition": "do not let the generator infer the field direction", "result": "PASS", "note": "The field cue was not generated at all in this step -- it is a deterministic SVG ellipse composited programmatically with a geometry derived from the reference, not from a Gemini prompt." }
+  ],
+  "styleComplianceNotes": "White/near-white background and both text labels preserved exactly. The new arrow's flat dark-brown stroke is a close match to the existing THUMB = CURRENT arrow's colour, though it lacks that arrow's subtle copper gradient/shading -- a minor finish item, not a correctness defect, noted for the suite-level polish pass rather than blocking.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS on all three dimensions. This is a genuine improvement over both v1 and v2: v1 had no field-circulation cue at all beyond a small ring icon, v2 had two conflicting/ambiguous arrows (one with contradictory double arrowheads, one detached and readable as a separate hand gesture). v4 has exactly one arrow, provably correct by construction, satisfying every item in the brief's own §10 special verification checklist.",
+  "auditedAt": "2026-08-26T03:20:00.000Z"
+}

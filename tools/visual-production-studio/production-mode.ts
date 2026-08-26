@@ -150,12 +150,8 @@ export const PRODUCTION_MODE: Record<string, ProductionModeRecord> = {
 
   // --- right-hand-grip: the flagged model case (Product Owner decision item 6) ---
   "unit202.right-hand-grip.teaching": mode(
-    "ORIGINAL_REDRAW_FROM_REFERENCE",
-    "Grounded on the Wikimedia right-hand-grip-rule reference; hand/thumb/conductor geometry is correctly preserved across two attempts, but the field-circulation cue (which must wrap the conductor in the plane of the curled fingers, base-to-fingertip) has been freely invented by the generative model both times and has NOT reliably matched the governed relationship -- see the CC-11.13 visual-debt register (BLOCKING_CORRECTNESS) and PROJECT-STATUS.md §CC-11.13.",
-    {
-      recommendedFutureMode: "HYBRID_REDRAW_PLUS_DETERMINISTIC_OVERLAY",
-      recommendedFutureModeRationale: "The hand/thumb/conductor base is reliably correct as a pure redraw; the field-circulation wrap cue is exactly the class of directional geometry this platform's own rule says must never be left to generative inference (see NO_GENERATIVE_INFERENCE_RELATIONSHIPS above). Recommended target: keep the original ALP hand redraw as the base, add the wrap-around circulation cue as a deterministic overlay (a governed curved-arrow primitive following the finger curl geometrically, not a freehand generative stroke).",
-    },
+    "HYBRID_REDRAW_PLUS_DETERMINISTIC_OVERLAY",
+    "CC-11.14: the recommended future mode below has now been REALISED, correcting the two prior generative-only attempts. Master v3 = a Gemini self-referential cleanup of v2 that removes both defective field-circulation arrows while pixel-preserving the hand/thumb/conductor/labels (still ORIGINAL_REDRAW_FROM_REFERENCE lineage for the base). Master v4 = v3 with a DETERMINISTIC wrap-around field-circulation ellipse composited programmatically on top -- geometry derived by rigidly rotating the Product-Owner-approved reference's own loop path to a vertical current direction, never generated freehand. All three audit verdicts PASS (unit202.right-hand-grip.teaching-audit-v4.json). This is exactly the governed directional relationship in NO_GENERATIVE_INFERENCE_RELATIONSHIPS above, now produced by construction rather than by generative inference.",
   ),
 
   "unit202.fleming-left-hand.teaching": mode("ORIGINAL_REDRAW_FROM_REFERENCE", "Grounded on the Fleming's-left-hand-rule reference; digit assignment and mutual perpendicularity preserved correctly. Broadly acceptable per Product Owner review."),
@@ -169,11 +165,7 @@ export const PRODUCTION_MODE: Record<string, ProductionModeRecord> = {
   "unit202.levers.class-2": mode("HYBRID_REDRAW_PLUS_DETERMINISTIC_OVERLAY", "Same pattern as Class I; base redraw includes the corrected single FULCRUM label (CC-11.11), distance callouts are the deterministic overlay."),
   "unit202.levers.class-3": mode(
     "ORIGINAL_REDRAW_FROM_REFERENCE",
-    "Excavator contamination removed (CC-11.12), correct Class III geometry (effort between fulcrum and load) achieved -- but the result is technically interpretable rather than pedagogically clear, and carries 2 extra inherited labels (RESISTANCE/MOTION) beyond the governed EFFORT/LOAD/FULCRUM set; one correction attempt made this worse (a bent-beam regression), not better. Not accepted as a successful improvement merely because it is interpretable -- see the CC-11.13 visual-debt register.",
-    {
-      recommendedFutureMode: "ORIGINAL_REDRAW_FROM_REFERENCE",
-      recommendedFutureModeRationale: "Mode itself is correct and does not need to change -- the fix is a cleaner, more carefully constrained redraw pass (exact label set enforced up front, beam geometry locked from the reference, no mid-generation reinterpretation), not a different production mode. Evidence for why ORIGINAL_REDRAW_FROM_REFERENCE (never a forced 3D flourish, never continued retrying a poor re-interpretation) is the right default for this asset family.",
-    },
+    "CC-11.14: redrawn (master v4) directly from a hand-authored prepared board -- the approved reference's own composition with RESISTANCE and MOTION removed and the resistance glyph relabelled LOAD, i.e. the exact 'more carefully constrained redraw pass, label set enforced up front' this entry previously recommended. Result: flat 2D, exactly FULCRUM/EFFORT/LOAD, no 3D beam, EFFORT verified strictly between FULCRUM and LOAD, no decorative contamination. All three audit verdicts PASS (unit202.levers.class-3-audit-v4.json). Confirms ORIGINAL_REDRAW_FROM_REFERENCE was always the right mode for this asset -- the earlier defects were a redraw-discipline problem, not a mode problem.",
   ),
   "unit202.pulleys.fixed": mode("HYBRID_REDRAW_PLUS_DETERMINISTIC_OVERLAY", "Base pulley-rig redraw is original; any state-varying rope/load annotation is a deterministic overlay."),
   "unit202.pulleys.movable": mode("HYBRID_REDRAW_PLUS_DETERMINISTIC_OVERLAY", "Same pattern as the fixed-pulley sibling."),
@@ -190,11 +182,7 @@ export const PRODUCTION_MODE: Record<string, ProductionModeRecord> = {
   "unit202.resistivity.area-comparison": mode("ORIGINAL_REDRAW_FROM_REFERENCE", "Course-governed L/A notation enforced, unified with its sibling's bar-shape style (CC-11.12)."),
   "unit202.emf.motional": mode(
     "ORIGINAL_REDRAW_FROM_REFERENCE",
-    "Redrawn as a minimal flat 2D board after CC-11.12 removed a photoreal 3D pipe-apparatus treatment -- direct evidence for the 2D-diagrammatic default (item D). CC-11.13A correction: the B/v/l geometry was NOT, in fact, fully preserved correctly -- Product Owner review found `l` placed along the wrong geometric dimension in the corrected board. Mode itself is unaffected (still the right choice); see the CC-11.13A-corrected asset-lifecycle.ts entry for the specific governed geometry the next board must establish.",
-    {
-      recommendedFutureMode: "ORIGINAL_REDRAW_FROM_REFERENCE",
-      recommendedFutureModeRationale: "Same mode, a geometrically corrected hand-authored board. The governed relationship for the next fix: l = active conductor length; v perpendicular to l; B perpendicular to both l and v. All three must be established deterministically/reference-first in the prepared board before any redraw -- never re-derived by the generator, per NO_GENERATIVE_INFERENCE_RELATIONSHIPS.",
-    },
+    "CC-11.14: redrawn (master v3) directly from a hand-authored prepared board with l already drawn VERTICALLY, along the active conductor, before generation -- the exact corrected geometry this entry previously called for. l/v/B are now mutually perpendicular (l vertical along the conductor, v horizontal, B into the page). All three audit verdicts PASS (unit202.emf.motional-audit-v3.json). Remains a minimal flat 2D board -- direct evidence for the 2D-diagrammatic default (item D) continues to hold.",
   ),
   "unit202.diode.bias-direction.forward": mode("ORIGINAL_REDRAW_FROM_REFERENCE", "Rebuilt as a flat schematic circuit (governed diode symbol + simple DC source + conventional-current arrow), replacing a photoreal/semiconductor-band composition (CC-11.12)."),
   "unit202.diode.bias-direction.reverse": mode("ORIGINAL_REDRAW_FROM_REFERENCE", "Same flat schematic family as the forward sibling -- only source polarity/current state differs (CC-11.12)."),

@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-08-26T02:21:50.479Z",
+  "status": "THREE-ASSET BOUNDED CORRECTNESS PACKAGE COMPLETE — AWAITING PRODUCT OWNER / CHATGPT REVIEW",
+  "totalGeminiCalls": 3,
+  "otherAssetsRegenerated": 0,
+  "globalPolishRunPerformed": false,
+  "componentFamilyModified": false,
+  "entries": [
+    {
+      "visualId": "unit202.right-hand-grip.teaching",
+      "oldAttempt": 2,
+      "newAttempt": 4,
+      "geminiCalls": 1,
+      "verdict": "PASS",
+      "technicalVerdict": "PASS",
+      "pedagogicalClarityVerdict": "PASS",
+      "visualProductQualityVerdict": "PASS",
+      "remediationContract": {
+        "preserve": [
+          "right hand identity and pose",
+          "thumb pointing along the conductor (current direction)",
+          "copper conductor rod",
+          "\"THUMB = CURRENT\" label and its pointer arrow",
+          "\"FINGERS = MAGNETIC FIELD\" label and its pointer arrow"
+        ],
+        "add": [
+          "a single deterministic, geometry-locked wrap-around field-circulation cue: an ellipse encircling the conductor at the hand's grip height, ONE arrowhead only, sweeping right-to-left across the front of the rod (matching the visible finger curl from base near the palm to fingertip, and matching the direction independently measured from the Product-Owner-approved Wikimedia \"Right-hand grip rule.svg\" reference after rigidly rotating it to a vertical current direction) -- composited programmatically, not generated, so its correctness is provable by construction"
+        ],
+        "remove": [
+          "the existing copper-coloured crescent arrow (defective: two arrowheads on one stroke, ambiguous direction)",
+          "the existing dark detached arrow near the wrist/thumb (defective: does not wrap the conductor, reads as a separate hand gesture, fails audit criterion #5)"
+        ],
+        "replace": [
+          {
+            "from": "both existing field-circulation arrows",
+            "to": "one deterministic wrap-around ellipse arrow, geometry derived from the reference, not generated"
+          }
+        ]
+      },
+      "lifecycle": {
+        "gate": "POLISH_PENDING",
+        "debtClass": "DEVELOPMENT_USABLE_POLISH_PENDING",
+        "notes": "CC-11.14: TECHNICAL_MASTER_APPROVED and PEDAGOGICAL_MASTER_APPROVED now both genuinely earned (master v4, audit v4, all three verdicts PASS). v3 = Gemini self-referential cleanup removing both defective field arrows (v2's two-arrowhead crescent and detached wrist arrow) while pixel-preserving the hand/thumb/conductor/labels; v4 = v3 plus a DETERMINISTIC (non-Gemini-generated) wrap-around field-circulation ellipse, geometry derived by rigidly rotating the Product-Owner-approved reference's own loop path to a vertical current direction -- provably correct by construction, independently cross-checked against the visible finger curl. See unit202.right-hand-grip.teaching-audit-v4.json for the full §10 special-verification checklist. Minor noted finish item (the new arrow lacks the rod's copper gradient/shading) deferred to the suite polish pass, not blocking."
+      }
+    },
+    {
+      "visualId": "unit202.emf.motional",
+      "oldAttempt": 2,
+      "newAttempt": 3,
+      "geminiCalls": 1,
+      "verdict": "PASS",
+      "technicalVerdict": "PASS",
+      "pedagogicalClarityVerdict": "PASS",
+      "visualProductQualityVerdict": "PASS",
+      "remediationContract": {
+        "preserve": [
+          "simple flat 2D board treatment (no photoreal rails/pipes, no pseudo-3D)",
+          "two horizontal rails",
+          "one active conductor (the red vertical bar)",
+          "B-field convention: uniform field into the page, drawn as a grid of X marks",
+          "v arrow: horizontal, perpendicular to the conductor, in the direction of motion"
+        ],
+        "add": [
+          "a correct l dimension bracket, drawn VERTICALLY along the active conductor, spanning exactly the conductor's length between the two rails"
+        ],
+        "remove": [
+          "the incorrect horizontal l bracket at the bottom of the diagram (measured a horizontal rail-span, not the conductor's length -- the named CC-11.13A defect)"
+        ],
+        "replace": [
+          {
+            "from": "horizontal l bracket (wrong dimension)",
+            "to": "vertical l bracket along the active conductor (l ⊥ v, l ⊥ B, v ⊥ B all satisfied)"
+          }
+        ]
+      },
+      "lifecycle": {
+        "gate": "POLISH_PENDING",
+        "debtClass": "DEVELOPMENT_USABLE_POLISH_PENDING",
+        "notes": "CC-11.14: TECHNICAL_MASTER_APPROVED and PEDAGOGICAL_MASTER_APPROVED now both genuinely earned (master v3, audit v3, all three verdicts PASS). Generated directly from a hand-authored prepared board with l already drawn vertically, along the active conductor, before Gemini saw it -- l/v/B are now mutually perpendicular (l vertical along the conductor, v horizontal, B into the page), correcting the CC-11.13A-identified wrong-dimension defect. See unit202.emf.motional-audit-v3.json for the full §11 special-verification checklist."
+      }
+    },
+    {
+      "visualId": "unit202.levers.class-3",
+      "oldAttempt": 2,
+      "newAttempt": 4,
+      "geminiCalls": 1,
+      "verdict": "PASS",
+      "technicalVerdict": "PASS",
+      "pedagogicalClarityVerdict": "PASS",
+      "visualProductQualityVerdict": "PASS",
+      "remediationContract": {
+        "preserve": [
+          "Class III ordering: FULCRUM at one end, LOAD at the other end, EFFORT positioned between them (the catalogue's own governed immutableFact for this asset -- no additional relative-distance requirement)",
+          "the approved reference's simple flat line-diagram composition (beam, load glyph, effort arrow, fulcrum marker) as the geometry/composition skeleton"
+        ],
+        "add": [
+          "clean, flat, original ALP visual styling only (premium typography and line work) -- no new semantic content"
+        ],
+        "remove": [
+          "the \"RESISTANCE\" label (inherited from the raw reference, not part of the governed FULCRUM/EFFORT/LOAD label set)",
+          "the \"MOTION\" label and its arrow (inherited from the raw reference, not part of the governed label set)",
+          "the 3D photoreal metallic beam/wedge rendering, the beam-geometry regression from the CC-11.12 attempt, and all decorative/contextual elements"
+        ],
+        "replace": [
+          {
+            "from": "\"RESISTANCE\" box+arrow",
+            "to": "\"LOAD\" box+arrow (same glyph, governed label)"
+          },
+          {
+            "from": "3D photoreal redraw with 5 labels",
+            "to": "clean flat 2D original ALP redraw with exactly 3 labels: FULCRUM, EFFORT, LOAD"
+          }
+        ]
+      },
+      "lifecycle": {
+        "gate": "POLISH_PENDING",
+        "debtClass": "DEVELOPMENT_USABLE_POLISH_PENDING",
+        "notes": "CC-11.14: TECHNICAL_MASTER_APPROVED and PEDAGOGICAL_MASTER_APPROVED now both genuinely earned (master v4, audit v4, all three verdicts PASS). Generated directly from a hand-authored prepared board (the approved reference's own composition with RESISTANCE and MOTION removed and the resistance glyph relabelled LOAD) as a clean, flat, original ALP redraw -- exactly FULCRUM/EFFORT/LOAD, no 3D beam, no decorative contamination, EFFORT verified strictly between FULCRUM and LOAD. See unit202.levers.class-3-audit-v4.json for the full §12 special-verification checklist. Noted, out-of-scope-for-this-package cross-asset style difference: Class I/II remain the pre-CC-11.13 soft-3D metallic-beam style, not revisited here."
+      }
+    }
+  ]
+}
