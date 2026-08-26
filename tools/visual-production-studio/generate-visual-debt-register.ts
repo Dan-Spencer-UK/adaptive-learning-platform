@@ -13,7 +13,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { findAsset } from "./catalogue.ts";
-import { ASSET_LIFECYCLE, isDevelopmentUsable, type VisualDebtClass } from "./asset-lifecycle.ts";
+import { ASSET_LIFECYCLE, isDevelopmentUsable, UNIT202_GENERATIVE_SUITE_STATUS, type VisualDebtClass } from "./asset-lifecycle.ts";
 import { productionModeFor } from "./production-mode.ts";
 import { REPO_ROOT } from "./paths.ts";
 
@@ -51,9 +51,17 @@ function toMarkdown(rows: DebtRow[]): string {
   lines.push("");
   lines.push(`Generated: ${new Date().toISOString()}`);
   lines.push("");
-  lines.push("Concise triage register of KNOWN visual debt only -- not a full 98-state inventory (see `unit202-final-state-completeness.md` for that). Assets with no entry here carry no recorded debt finding.");
+  lines.push("Concise triage register of KNOWN, INDIVIDUALLY-IDENTIFIED visual debt only -- not a full 98-state inventory (see `unit202-final-state-completeness.md` for that). Assets with no entry here carry no individually-identified defect, but see the suite-level status immediately below: they are NOT thereby claimed visually finished.");
   lines.push("");
-  lines.push(`Of the 51 generative learner-visible outputs produced through CC-11.12, ${rows.length} carry a recorded debt finding below; the remaining ${51 - rows.length} are POLISHED (all three of technical/pedagogical-clarity/visual-product-quality PASS per \`unit202-semantic-qa-remediation-review.json\` and the CC-11.9-CC-11.11 production review) with no individually identified finish complaint, and are intentionally not padded into this register.`);
+  lines.push(`## ${UNIT202_GENERATIVE_SUITE_STATUS.id} — ${UNIT202_GENERATIVE_SUITE_STATUS.status}`);
+  lines.push("");
+  lines.push(`Applies to: ${UNIT202_GENERATIVE_SUITE_STATUS.appliesTo}`);
+  lines.push("");
+  for (const m of UNIT202_GENERATIVE_SUITE_STATUS.meaning) lines.push(`- ${m}`);
+  lines.push("");
+  lines.push(UNIT202_GENERATIVE_SUITE_STATUS.notes);
+  lines.push("");
+  lines.push(`Of the 51 generative learner-visible outputs produced through CC-11.12, ${rows.length} carry an individually-identified debt finding below; the remaining ${51 - rows.length} fall under the suite-level ${UNIT202_GENERATIVE_SUITE_STATUS.status} status above rather than being padded into per-asset entries here.`);
   lines.push("");
 
   for (const cls of ["BLOCKING_CORRECTNESS", "DEVELOPMENT_USABLE_POLISH_PENDING", "DEFERRED_SCOPE"] as VisualDebtClass[]) {
@@ -84,7 +92,11 @@ export function generateVisualDebtRegister(): { jsonPath: string; mdPath: string
     DEFERRED_SCOPE: rows.filter((r) => r.debtClass === "DEFERRED_SCOPE").length,
   };
   mkdirSync(join(REPO_ROOT, "reports", "instructional-visuals"), { recursive: true });
-  writeFileSync(JSON_PATH, JSON.stringify({ generatedAt: new Date().toISOString(), counts, rows }, null, 2) + "\n", "utf8");
+  writeFileSync(
+    JSON_PATH,
+    JSON.stringify({ generatedAt: new Date().toISOString(), suiteStatus: UNIT202_GENERATIVE_SUITE_STATUS, counts, rows }, null, 2) + "\n",
+    "utf8",
+  );
   writeFileSync(MD_PATH, toMarkdown(rows), "utf8");
   return { jsonPath: JSON_PATH, mdPath: MD_PATH, counts };
 }
