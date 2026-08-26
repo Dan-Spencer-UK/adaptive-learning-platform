@@ -29,6 +29,7 @@ flowchart TD
 
     subgraph HDETAIL["H. Visual Production -- detail"]
         H1["Visual Asset Contract<br/>(Claude creates/maintains: immutable facts,<br/>required labels are part of ACCEPTANCE, prohibited changes)"]
+        HPM{"Production-mode selection (CC-11.13)<br/>DETERMINISTIC_TECHNICAL / ORIGINAL_REDRAW_FROM_REFERENCE (default) /<br/>HYBRID_REDRAW_PLUS_DETERMINISTIC_OVERLAY / GENERATIVE_CONCEPTUAL<br/>reference is authority, redraw is original -- no artistic licence over technical relationships"}
         H2{"Production route"}
         H3["Deterministic route<br/>SVG/vector renderer -- exact geometry,<br/>labels, waveforms, assessment-state, answer-revealing annotation"]
         HG["ChatGPT / Product Owner: external reference research<br/>-> APPROVED REFERENCE HANDOVER (reference-decision authority)"]
@@ -45,10 +46,11 @@ flowchart TD
         H12["HUMAN_REVIEW_REQUIRED<br/>never silently promoted"]
         HD{"Assessment distractor?"}
         HDX["Governed misconception contract<br/>+ approved correct geometry -> ONE deliberate error -> audit against BOTH the correct geometry and the intended error"]
+        HPOL["Polish gate (CC-11.13)<br/>POLISH_PENDING -> POLISHED -- development-usable while POLISH_PENDING;<br/>a BLOCKING_CORRECTNESS defect is never waved through regardless of polish"]
 
-        H1 --> H2
+        H1 --> HPM --> H2
         H2 -- "DETERMINISTIC_TECHNICAL" --> H3
-        H2 -- "PREMIUM_CONCEPTUAL / HYBRID" --> HG
+        H2 -- "ORIGINAL_REDRAW / HYBRID / GENERATIVE_CONCEPTUAL" --> HG
         HG --> H4 --> HP --> HSQ
         HSQ -- "APPROVED_DIRECT / APPROVED_PREPARED" --> H5
         HSQ -- "REPLACE_REFERENCE / REJECT_REFERENCE" --> HP
@@ -57,10 +59,10 @@ flowchart TD
         HD -- "no -- correct image" --> H7
         H3 --> H6
         H7 --> H8
-        H8 -- PASS --> H6
+        H8 -- "PASS (TECHNICAL_MASTER_APPROVED + PEDAGOGICAL_MASTER_APPROVED)" --> H6
         H8 -- RETRY --> H9 --> H5
         H8 -- "still uncertain after retry" --> H12
-        H6 --> H10
+        H6 --> HPOL --> H10
         H12 --> H10
         H10 --> H11
     end
@@ -69,12 +71,13 @@ flowchart TD
     H11 --> J
 
     subgraph GOV["Governance (applies across H)"]
-        GA["Product Owner: final approval authority"]
-        GB["ADR-0004: deterministic geometry always wins over generated imagery"]
+        GA["Product Owner: final approval authority<br/>-> PRODUCT_OWNER_APPROVED gate (CC-11.13) -- never inferred from an internal audit PASS alone"]
+        GB["ADR-0004: deterministic geometry always wins over generated imagery<br/>+ NO_GENERATIVE_INFERENCE_RELATIONSHIPS (CC-11.13): right-hand-grip, Fleming, motor/generator, motional-EMF B/l/v, lever-class, circuit topology, diode polarity, electrolysis ion direction, IEC/switching symbols"]
     end
     H10 -. "sent for approval" .-> GA
     H3 -. "authoritative for exact geometry" .-> GB
     H7 -. "checked against" .-> GB
+    HPM -. "governed by" .-> GB
 
     subgraph LEARNER["LEARNER PLATFORM"]
         J --> K
@@ -109,5 +112,5 @@ flowchart TD
     classDef inprogress fill:#8a6d1a,stroke:#5a4610,color:#fff;
     classDef notstarted fill:#3a3f4c,stroke:#23262e,color:#cbd0dc;
     class A,B,C,D,E,I,J,K,K1,K2,K3,K4,K5,K6 complete;
-    class F,H,H1,H2,H3,HG,H4,HP,HSQ,H5,H6,H7,H8,H9,H10,H11,H12,HD,HDX,GA,GB inprogress;
+    class F,H,H1,HPM,H2,H3,HG,H4,HP,HSQ,H5,H6,HPOL,H7,H8,H9,H10,H11,H12,HD,HDX,GA,GB inprogress;
     class G,L1,L2 notstarted;
