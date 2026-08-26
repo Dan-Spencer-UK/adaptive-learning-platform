@@ -1,0 +1,28 @@
+{
+  "assetId": "unit202.generator.rotating-loop.horizontal",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: the review pack's own 'reference preview not found' finding was correct -- no real reference had ever actually been visible for this asset, and the resulting topology was ambiguous. Acquired a real, visible, unambiguous public-domain reference (Elementary_generator.svg, FAA) and regenerated directly from it.",
+  "factChecks": [
+    { "fact": "ONE unmistakable rectangular loop only", "result": "PASS", "note": "Single loop, explicitly labelled 'coil/loop'. No second loop-like structure anywhere in the image." },
+    { "fact": "one shaft", "result": "PASS", "note": "Single shaft with a rotation-indicator arrow, connecting the loop to the slip rings." },
+    { "fact": "two separate slip rings, one per loop end", "result": "PASS", "note": "Two distinct copper rings visible, each with its own carbon brush." },
+    { "fact": "two stationary brushes", "result": "PASS", "note": "Labelled 'carbon' at each ring." },
+    { "fact": "N/S poles", "result": "PASS", "note": "Labelled N (right) and S (left)." },
+    { "fact": "coherent output path", "result": "PASS", "note": "Output wires trace clearly from the brushes to the labelled Load." },
+    { "fact": "no split-ring commutator", "result": "PASS", "note": "Two full concentric rings, not a split ring -- correct for an AC generator, not a DC motor." },
+    { "fact": "learner must not reasonably read this as two coils", "result": "PASS", "note": "Single continuous copper loop traced from one slip ring, around the shaft, to the other -- unambiguous." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a second loop/coil", "result": "PASS", "note": "Verified absent." }
+  ],
+  "styleComplianceNotes": "White/near-white background, premium metallic finish, ALP style. Labels (coil/loop, N, S, rotation indicator, carbon, Slip ring, Load, Brush, output) all legible.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None -- a physically coherent elementary AC generator.",
+  "overallFindings": "PASS. The core semantic QA defect (reference never actually visible, topology ambiguous) is resolved by using a real, visible, unambiguous reference directly.",
+  "auditedAt": "2026-08-26T10:00:00.000Z"
+}

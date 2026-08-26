@@ -1,0 +1,23 @@
+{
+  "assetId": "unit202.conductor-insulator",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: replaced the two-near-identical-cables composition (which did not teach the comparison) with a single labelled cutaway diagram, retiring 'Stranded lamp wire.jpg' as the primary composition authority.",
+  "factChecks": [
+    { "fact": "unmistakable conductor role", "result": "PASS", "note": "Exposed copper strand core, clearly labelled CONDUCTOR with a leader line pointing directly at the copper strands." },
+    { "fact": "unmistakable insulator role", "result": "PASS", "note": "White polymer sheath, clearly labelled INSULATOR with a leader line pointing directly at the sheath material." },
+    { "fact": "single unified teaching diagram, not two separate cable photos", "result": "PASS", "note": "One cable in cutaway, both roles visible and labelled on the same object." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not present two near-identical cables as the comparison", "result": "PASS", "note": "Single cutaway composition used instead." }
+  ],
+  "styleComplianceNotes": "White/near-white background, premium finish, bold clear labels with leader lines.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. The pedagogical-weakness defect (two identical cables, no clear comparison) is resolved.",
+  "auditedAt": "2026-08-26T11:05:00.000Z"
+}

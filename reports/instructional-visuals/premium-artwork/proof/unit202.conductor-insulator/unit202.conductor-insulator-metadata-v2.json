@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.conductor-insulator",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Stranded_lamp_wire.jpg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.conductor-insulator/unit202.conductor-insulator-master-v1.png)",
+  "sourceReferenceSha256": "afab3d2c94453f1f54967bd62f63700fc8bf90c871b5743f51ec5c072049ed2d",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-master-v2.png",
+  "masterSha256": "88275258112c8888212f52369f3e30ee9ddb464630f6e8f5b28d45d7d7cbc603",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-derivative-v2.png",
+  "derivativeSha256": "be060d5e6229da4cf35ebaeeeeb6b8715290b0b7d60031bf62271951209aee07",
+  "generatedAt": "2026-08-25T23:33:38.428Z"
+}

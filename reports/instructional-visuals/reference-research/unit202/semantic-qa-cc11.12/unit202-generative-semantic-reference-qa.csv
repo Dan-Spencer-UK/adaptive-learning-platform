@@ -1,0 +1,52 @@
+reviewPage,visualId,decision,referenceDisposition,requiredAction,semanticFinding
+2,unit202.current-conductor.magnetic-field.state.into-page-teaching,KEEP,KEEP_REFERENCE,Keep current output/reference.,"Simple, legible state-specific 2D teaching diagram."
+3,unit202.current-conductor.magnetic-field.state.into-page-assessment,KEEP,KEEP_REFERENCE,Keep current output/reference.,Assessment retains X stimulus and withholds circulation.
+4,unit202.current-conductor.magnetic-field.state.out-of-page-teaching,KEEP,KEEP_REFERENCE,Keep current output/reference.,Dot stimulus and counter-clockwise field circulation are clear.
+5,unit202.current-conductor.magnetic-field.state.out-of-page-assessment,KEEP,KEEP_REFERENCE,Keep current output/reference.,Assessment withholds circulation.
+6,unit202.right-hand-grip.teaching,REDO,KEEP_REFERENCE_PREPARE_EXACT_ARROW,Keep right-hand reference but require the magnetic-field arrow to follow the curl of the fingers around the conductor; remove detached little-finger-to-index-finger arrow.,"Handedness is correct, but the field-direction cue does not visually teach curled fingers = field circulation."
+7,unit202.motor.effect.horizontal-poles.state.into-page-teaching,REDO_FAMILY,REFERENCE_REDESIGN_STATE_SPECIFIC,"Build exact state reference: one N/S pair, one N→S magnetic-field-line system, X conductor marker, one reference-authorised force arrow. No direction re-derivation.",Pedagogically opaque; competing/duplicated field/force cues.
+8,unit202.motor.effect.horizontal-poles.state.into-page-assessment,REDO_FAMILY,REFERENCE_REDESIGN_STATE_SPECIFIC,Same exact apparatus as teaching sibling but withhold force arrow only.,Assessment sibling should differ only by answer cue.
+9,unit202.motor.effect.horizontal-poles.state.out-of-page-teaching,REDO_FAMILY,REFERENCE_REDESIGN_STATE_SPECIFIC,"Exact state reference: one N/S pair, one field system, dot marker, one reference-authorised force arrow.",Same family-level clarity failure.
+10,unit202.motor.effect.horizontal-poles.state.out-of-page-assessment,REDO_FAMILY,REFERENCE_REDESIGN_STATE_SPECIFIC,Same apparatus as teaching sibling; withhold force arrow only.,Same family-level clarity failure.
+11,unit202.motor.effect.vertical-poles.state.into-page-teaching,REDO_FAMILY,REFERENCE_REDESIGN_STATE_SPECIFIC,"Build separately verified vertical state reference with one field system, X marker and one force arrow.",Current image is not immediately interpretable.
+12,unit202.motor.effect.vertical-poles.state.into-page-assessment,REDO_FAMILY,REFERENCE_REDESIGN_STATE_SPECIFIC,Use verified vertical apparatus; withhold force arrow only.,Assessment sibling must preserve only givens.
+13,unit202.motor.effect.vertical-poles.state.out-of-page-teaching,REDO_FAMILY,REFERENCE_REDESIGN_STATE_SPECIFIC,"Verified vertical state reference with one field system, dot marker and one force arrow; no extra Force text unless used consistently.",Current family is visually inconsistent.
+14,unit202.motor.effect.vertical-poles.state.out-of-page-assessment,REDO_FAMILY,REFERENCE_REDESIGN_STATE_SPECIFIC,Use verified sibling apparatus; withhold force arrow only.,Assessment sibling must be visually identical apart from withheld answer.
+15,unit202.fleming-left-hand.teaching,KEEP,KEEP_REFERENCE,Keep.,Clear mnemonic.
+16,unit202.generator.rotating-loop.horizontal,REDO,REPLACE_WITH_VISIBLE_EXACT_REFERENCE,"Use an actual visible exact reference. Preferred: FAA-derived public-domain Elementary generator.svg or explicit DOE Figure 1 crop. Prepare simplified face-on frame: ONE loop, shaft, two slip rings, two brushes, N/S, output.",Review says reference preview not found; generated topology is visually ambiguous and can read as two loops/coils.
+17,unit202.generator.rotating-loop.vertical,REDO,REPLACE_WITH_VISIBLE_EXACT_REFERENCE,"Second exact frame from the same one-loop topology, rotated to edge-on/near-peak state. Must visibly be the same one loop/shaft/two-ring system.",Current output is too complicated.
+18,unit202.fleming-right-hand.teaching,KEEP,KEEP_REFERENCE,Keep.,Clear mnemonic.
+19,unit202.levers.class-1,KEEP,KEEP_PREPARED_CROP,Keep.,Single-class crop worked.
+20,unit202.levers.class-2,KEEP,KEEP_PREPARED_CROP,Keep latest corrected v6.,Clear Class II geometry and label defect resolved.
+21,unit202.levers.class-3,REDO,REFERENCE_CROP_STRIP_REAL_WORLD_ICON,"Crop ONLY abstract Class-III schematic from PSF source, excluding excavator/digger, or use direct ThirdClassLever.svg. Match Class I/II family.",Digger cue contaminated generation into gearbox/actuator/bucket.
+22,unit202.pulleys.fixed,KEEP,KEEP_REFERENCE,Keep.,Clear.
+23,unit202.pulleys.movable,KEEP,KEEP_REFERENCE,Keep.,Clear.
+24,unit202.magnet.field,KEEP,KEEP_REFERENCE,Keep cleaned v4.,Field direction and topology now good.
+25,unit202.magnet.poles.like,REDO_MINOR,KEEP_REFERENCE_STRICT_NO_TEXT,"Clean/regenerate: no Repel word, no explanatory force label; field geometry and N/S should communicate repulsion; improve sharpness.",Current output is fuzzy and adds unnecessary answer-like text.
+26,unit202.magnet.poles.unlike,REDO_MINOR,KEEP_REFERENCE_STRICT_NO_TEXT,Clean/regenerate: remove Attract and double-headed arrow; retain N/S and physically meaningful connecting field lines.,Field pattern should communicate attraction without baked answer words.
+27,unit202.magnet.permanent-vs-electromagnet,KEEP,KEEP_REFERENCE,Keep current corrected version.,Battery/current-path defect fixed.
+28,unit202.instrument.clamp-meter,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+29,unit202.instrument.oscilloscope,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+30,unit202.gears.driven-larger,KEEP,KEEP_REFERENCE,Keep.,Clear.
+31,unit202.gears.driven-smaller,KEEP,KEEP_REFERENCE,Keep.,Clear.
+32,unit202.gears.equal,KEEP,KEEP_REFERENCE,Keep.,Clear.
+33,unit202.resistivity.length-comparison,REDO_FAMILY,REFERENCE_PREPARE_USING_A_NOT_S,"Prepare controlled board using A for cross-sectional area or no area symbol. Remove inherited S. Same material/A, vary only L; avoid baked conclusion if reuse/assessment needs neutrality.",Source notation S conflicts with course R=ρL/A.
+34,unit202.resistivity.area-comparison,REDO_FAMILY,REFERENCE_PREPARE_USING_A_NOT_S,"Rebuild as matched sibling: same material/L, vary only A; use A/2A consistently; minimal labels.",Family should use one governed notation/grammar.
+35,unit202.emf.motional,REDO,REFERENCE_REDESIGN_SIMPLE_2D,"Minimal verified 2D reference: one moving conductor, rails only if needed, one B convention, one v arrow, one l dimension. Forbid photoreal/3D pipe-like apparatus.",Current pseudo-3D output destroys clarity.
+36,unit202.components.physical.resistor,KEEP_WITH_ANNOTATION,KEEP_REFERENCE,"Keep physical resistor; add native/deterministic labels for 1st band, 2nd band, multiplier, tolerance when colour-code teaching is active.",Physical form is strong; band-role labels are pedagogically important.
+37,unit202.components.physical.capacitor,REDO_MINOR,KEEP_PHYSICAL_REFERENCE_REMOVE_SYMBOL,Keep physical capacitor reference but remove UK/IEC symbol from physical-recognition raster if present. Symbol remains separate deterministic card.,Capacitor breaks family consistency if it alone includes the symbol.
+38,unit202.components.physical.diode,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+39,unit202.components.physical.led,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+40,unit202.components.physical.thermistor,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+41,unit202.components.physical.transistor,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+42,unit202.diode.bias-direction.forward,REDO_FAMILY,REPLACE_WITH_INTERNAL_EXACT_CIRCUIT_REFERENCE,"Build exact Level-2 reference using governed diode symbol, simple DC source and conventional-current arrow. Same composition as reverse sibling.",Current image is hard to understand; semiconductor-band reference is the wrong composition authority.
+43,unit202.diode.bias-direction.reverse,REDO_FAMILY,REPLACE_WITH_INTERNAL_EXACT_CIRCUIT_REFERENCE,Use same circuit as forward sibling; reverse only source polarity/state and show blocked current clearly.,Forward/reverse should be a one-variable comparison.
+44,unit202.components.physical.zener-diode,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+45,unit202.components.physical.photodiode,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+46,unit202.components.physical.diac,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+47,unit202.components.physical.triac,KEEP,KEEP_REFERENCE,Keep.,Good recognition asset.
+48,unit202.components.physical.thyristor-scr,KEEP,KEEP_PREPARED_CROP,Keep.,Crop was appropriate.
+49,unit202.electrolysis,REDO,REPLACE_WITH_INTERNAL_EXACT_STATE_REFERENCE,"Prepare exact board with battery, electrodes, electrolyte, cations/anions and EVERY ion arrow already correct. Cations→cathode; anions→anode. No meters. Gemini may restyle but not add/remove/reverse arrows.",At least one cation-side arrow is visibly wrong despite automated PASS.
+50,unit202.heating-effect,KEEP,KEEP_REFERENCE,Keep.,Adequate Level-2 phenomenon image.
+51,unit202.conductor-insulator,REDO,REPLACE_REFERENCE_WITH_PURPOSE_BUILT_COMPARISON,Retire Stranded lamp wire.jpg as primary teaching reference. Build purpose-specific cable cutaway or controlled metal-vs-polymer comparison with unmistakable conductor/insulator roles.,Two near-identical stripped cables do not teach the conceptual comparison.
+52,unit202.protective-devices,KEEP,KEEP_MULTI_REFERENCE,Keep.,Clear generic comparison.

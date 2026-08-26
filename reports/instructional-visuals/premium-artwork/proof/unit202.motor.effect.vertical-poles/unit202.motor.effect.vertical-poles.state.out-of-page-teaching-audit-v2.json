@@ -1,0 +1,43 @@
+{
+  "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "ONE N/S pole pair only",
+      "result": "PASS",
+      "note": "Single pair, correctly positioned per the prepared board."
+    },
+    {
+      "fact": "ONE clean field-line system (no tangling/crossing lines)",
+      "result": "PASS",
+      "note": "5 clean parallel lines."
+    },
+    {
+      "fact": "current marker correct for this state",
+      "result": "PASS",
+      "note": "Dot symbol clear."
+    },
+    {
+      "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+      "result": "PASS",
+      "note": "Leftward arrow present, matches derivation."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "no competing/duplicated second field or force line system",
+      "result": "PASS",
+      "note": "Single clean system, matches prepared board exactly."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS -- semantic QA REDO resolved. Clean field system, correct dot marker, correct leftward force arrow.",
+  "auditedAt": "2026-08-25T23:06:29.755Z"
+}

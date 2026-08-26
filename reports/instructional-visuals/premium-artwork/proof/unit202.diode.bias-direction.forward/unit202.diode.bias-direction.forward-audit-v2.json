@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.diode.bias-direction.forward",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: replaced the photoreal 3D battery/diode component render with a simplified Level-2 flat schematic circuit, regenerated from a hand-authored circuit board.",
+  "factChecks": [
+    { "fact": "anode more positive than cathode", "result": "PASS", "note": "Battery + terminal wired to the diode's flat/anode side via the top wire." },
+    { "fact": "current flows, shown clearly", "result": "PASS", "note": "Green arrow labelled I, pointing through the diode in the anode-to-cathode direction (matching the triangle)." },
+    { "fact": "governed diode symbol, simple DC source, conventional-current arrow", "result": "PASS", "note": "Standard triangle+bar diode symbol, standard two-line battery symbol, labelled current arrow -- exactly the Level-2 composition requested." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no semiconductor-band diagram as composition authority", "result": "PASS", "note": "Flat schematic circuit only." },
+    { "prohibition": "no photoreal 3D component render", "result": "PASS", "note": "Flat line-drawing schematic, not a 3D render." }
+  ],
+  "styleComplianceNotes": "White/near-white background, clean flat schematic style.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Wrong-composition-authority defect resolved.",
+  "auditedAt": "2026-08-26T10:50:00.000Z"
+}

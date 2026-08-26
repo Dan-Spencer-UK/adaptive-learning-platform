@@ -1,6 +1,6 @@
 # Unit 202 -- Final State-Level Completeness Matrix (CC-11.11)
 
-Generated: 2026-08-25T21:42:10.515Z
+Generated: 2026-08-25T23:38:27.850Z
 
 ## Summary
 
@@ -44,7 +44,7 @@ Generated: 2026-08-25T21:42:10.515Z
 
 | stateId | resolutionType | approvalStatus | needClassification | assessmentLeakage | notes |
 |---|---|---|---|---|---|
-| `unit202.conductor-insulator.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
+| `unit202.conductor-insulator.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
 
 ## Conventional current vs electron flow (`unit202.family.current-direction`)
 
@@ -56,7 +56,7 @@ Generated: 2026-08-25T21:42:10.515Z
 
 | stateId | resolutionType | approvalStatus | needClassification | assessmentLeakage | notes |
 |---|---|---|---|---|---|
-| `unit202.electrolysis.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
+| `unit202.electrolysis.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 3. |
 
 ## Electronic components — recognition (`unit202.family.electronic-components`)
 
@@ -76,13 +76,13 @@ Generated: 2026-08-25T21:42:10.515Z
 | `unit202.components.symbols.state.rectifier` | DETERMINISTIC | N/A_DETERMINISTIC | REQUIRED | N/A | Deterministic vector renderer registered in apps/mobile/src/components/diagrams/DiagramRenderer.tsx under blueprint id "electronics.component_symbol_card". |
 | `unit202.components.symbols.state.inverter` | DETERMINISTIC | N/A_DETERMINISTIC | REQUIRED | N/A | Deterministic vector renderer registered in apps/mobile/src/components/diagrams/DiagramRenderer.tsx under blueprint id "electronics.component_symbol_card". |
 | `unit202.components.physical.resistor.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
-| `unit202.components.physical.capacitor.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
+| `unit202.components.physical.capacitor.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
 | `unit202.components.physical.diode.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
 | `unit202.components.physical.led.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
 | `unit202.components.physical.thermistor.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
 | `unit202.components.physical.transistor.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
-| `unit202.diode.bias-direction.forward.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
-| `unit202.diode.bias-direction.reverse.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
+| `unit202.diode.bias-direction.forward.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
+| `unit202.diode.bias-direction.reverse.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 4. |
 | `unit202.rectification.waveforms.state.half-wave` | DETERMINISTIC | N/A_DETERMINISTIC | REQUIRED | N/A | Deterministic vector renderer registered in apps/mobile/src/components/diagrams/DiagramRenderer.tsx under blueprint id "electronics.rectification_waveform". CC-11.11: renderer newly added this package |
 | `unit202.rectification.waveforms.state.full-wave` | DETERMINISTIC | N/A_DETERMINISTIC | REQUIRED | N/A | Deterministic vector renderer registered in apps/mobile/src/components/diagrams/DiagramRenderer.tsx under blueprint id "electronics.rectification_waveform". CC-11.11: renderer newly added this package |
 | `unit202.rectification.waveforms.state.inverter` | DETERMINISTIC | N/A_DETERMINISTIC | REQUIRED | N/A | Deterministic vector renderer registered in apps/mobile/src/components/diagrams/DiagramRenderer.tsx under blueprint id "electronics.rectification_waveform". CC-11.11: renderer newly added this package |
@@ -98,28 +98,28 @@ Generated: 2026-08-25T21:42:10.515Z
 
 | stateId | resolutionType | approvalStatus | needClassification | assessmentLeakage | notes |
 |---|---|---|---|---|---|
-| `unit202.emf.motional.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
+| `unit202.emf.motional.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
 
 ## Fleming's left-hand rule / motor effect (`unit202.family.fleming-left-hand-motor`)
 
 | stateId | resolutionType | approvalStatus | needClassification | assessmentLeakage | notes |
 |---|---|---|---|---|---|
-| `unit202.motor.effect.horizontal-poles.state.into-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
-| `unit202.motor.effect.horizontal-poles.state.into-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
-| `unit202.motor.effect.horizontal-poles.state.out-of-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
-| `unit202.motor.effect.horizontal-poles.state.out-of-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
-| `unit202.motor.effect.vertical-poles.state.into-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
-| `unit202.motor.effect.vertical-poles.state.into-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
-| `unit202.motor.effect.vertical-poles.state.out-of-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
-| `unit202.motor.effect.vertical-poles.state.out-of-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
+| `unit202.motor.effect.horizontal-poles.state.into-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 2. |
+| `unit202.motor.effect.horizontal-poles.state.into-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 2. |
+| `unit202.motor.effect.horizontal-poles.state.out-of-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 2. |
+| `unit202.motor.effect.horizontal-poles.state.out-of-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 2. |
+| `unit202.motor.effect.vertical-poles.state.into-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 2. |
+| `unit202.motor.effect.vertical-poles.state.into-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 2. |
+| `unit202.motor.effect.vertical-poles.state.out-of-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 2. |
+| `unit202.motor.effect.vertical-poles.state.out-of-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 3. |
 | `unit202.fleming-left-hand.teaching.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
 
 ## Fleming's right-hand rule / AC generator effect (`unit202.family.fleming-right-hand-generator`)
 
 | stateId | resolutionType | approvalStatus | needClassification | assessmentLeakage | notes |
 |---|---|---|---|---|---|
-| `unit202.generator.rotating-loop.horizontal.state.near-zero-emf` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
-| `unit202.generator.rotating-loop.vertical.state.near-peak-emf` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
+| `unit202.generator.rotating-loop.horizontal.state.near-zero-emf` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
+| `unit202.generator.rotating-loop.vertical.state.near-peak-emf` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 3. |
 | `unit202.fleming-right-hand.teaching.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
 
 ## Driver/driven gears (`unit202.family.gears`)
@@ -190,8 +190,8 @@ Generated: 2026-08-25T21:42:10.515Z
 
 | stateId | resolutionType | approvalStatus | needClassification | assessmentLeakage | notes |
 |---|---|---|---|---|---|
-| `unit202.resistivity.length-comparison.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
-| `unit202.resistivity.area-comparison.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
+| `unit202.resistivity.length-comparison.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
+| `unit202.resistivity.area-comparison.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
 
 ## Right-hand grip rule / field around a conductor (`unit202.family.right-hand-grip`)
 
@@ -201,7 +201,7 @@ Generated: 2026-08-25T21:42:10.515Z
 | `unit202.current-conductor.magnetic-field.state.into-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
 | `unit202.current-conductor.magnetic-field.state.out-of-page-teaching` | GENERATED | PASS | REQUIRED | N/A | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
 | `unit202.current-conductor.magnetic-field.state.out-of-page-assessment` | GENERATED | PASS | REQUIRED | OK_NO_LEAKAGE | State-specific final generated output (CC-11.10/CC-11.11), attempt 1. |
-| `unit202.right-hand-grip.teaching.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 1. |
+| `unit202.right-hand-grip.teaching.state.teaching` | GENERATED | PASS | REQUIRED | N/A | The asset's own base generated image fully represents this, its only state actually requiring generated artwork, attempt 2. |
 
 ## Right-angle triangle / SOHCAHTOA (`unit202.family.trigonometry`)
 

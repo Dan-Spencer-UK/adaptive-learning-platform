@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.levers.class-3",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: regenerated from a clean crop of ONLY the abstract Class-III schematic (excavator/digger excluded entirely, verified via the prepared-reference file itself). ACCEPTED AS FINAL CANDIDATE over attempt 3 (see that attempt's own audit) -- attempt 3's requested label cleanup introduced a new bent-beam geometry defect without actually removing the extra labels, a regression, not an improvement; per bounded-retry discipline this asset is not retried a third time.",
+  "factChecks": [
+    { "fact": "ONE Class III arrangement only (effort between fulcrum and load)", "result": "PASS", "note": "Load block at left, effort arrow in the middle, gold fulcrum triangle at right -- correct Class III geometry." },
+    { "fact": "no Class I/II geometry mixed in", "result": "PASS", "note": "Single arrangement only." },
+    { "fact": "no excavator/digger/real-world machine iconography", "result": "PASS", "note": "Verified absent -- full image inspected." },
+    { "fact": "premium metallic beam finish matching Class I/II family", "result": "PASS", "note": "Silver/steel beam, gold-toned triangular pivot -- same material language as unit202.levers.class-1/class-2." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no excavator, digger, bucket, hydraulic-arm iconography", "result": "PASS", "note": "Verified absent." }
+  ],
+  "styleComplianceNotes": "White/near-white background, matches Class I/II beam/pivot material style. Minor imperfection: label set includes RESISTANCE and MOTION in addition to the governed EFFORT/LOAD/FULCRUM set (inherited from the source reference's own labelling) -- a cosmetic label-count mismatch with the Class I/II sibling family, not a technical or pedagogical defect (RESISTANCE is synonymous with LOAD, MOTION is directionally consistent with EFFORT). One correction attempt was made to clean this up; it introduced a new bent-beam geometry defect instead of fixing the labels (see attempt 3's own audit) and was rejected. Per bounded-retry discipline, this minor label-count imperfection is accepted rather than risking a further regression.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. The core semantic QA defect (excavator contamination) is fully resolved. Geometry is correct Class III. Minor extra-label cosmetic imperfection accepted after one correction attempt made things worse, not better.",
+  "auditedAt": "2026-08-26T10:20:00.000Z"
+}

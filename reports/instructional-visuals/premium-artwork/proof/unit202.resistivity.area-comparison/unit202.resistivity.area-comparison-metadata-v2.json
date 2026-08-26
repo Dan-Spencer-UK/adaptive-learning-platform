@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.resistivity.area-comparison",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.resistivity.area-comparison/unit202.resistivity.area-comparison-master-v1.png)",
+  "sourceReferenceSha256": "e8aa625d4643a22e3b3514ed2ea4baef8141166174523ab1296c4fba88f5a004",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-master-v2.png",
+  "masterSha256": "4961dd018a8861e3eebf8cb1d3ee0a993c373c58e577e894eaf00682be2fae82",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-derivative-v2.png",
+  "derivativeSha256": "80ff21b04e61949d5df664253b95f3fb5709f1bdd3043f9e30c449ed4de02943",
+  "generatedAt": "2026-08-25T23:22:19.524Z"
+}

@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.magnet.poles.like",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_repelling.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.magnet.poles.like/unit202.magnet.poles.like-master-v1.png)",
+  "sourceReferenceSha256": "d452ebe28f8b496bb520de8346833c87416712b0be1f360054d020f69b6bc717",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-master-v2.png",
+  "masterSha256": "ba3cf983ba11d59f3dce870b5e80975ac09894adeb54bae4fd3682373c6c2043",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-derivative-v2.png",
+  "derivativeSha256": "1b242befe0f94f021b46601172cd68acecc8765f6eef78ead781bf8a75202bed",
+  "generatedAt": "2026-08-25T23:18:11.437Z"
+}

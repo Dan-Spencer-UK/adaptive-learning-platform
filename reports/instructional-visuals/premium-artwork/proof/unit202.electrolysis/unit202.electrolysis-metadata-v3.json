@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.electrolysis",
+  "attempt": 3,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Elektrolyse_Allgemein.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.electrolysis.board.png)",
+  "sourceReferenceSha256": "b1c63a54fa2e2ef0465eb8fa3eadd791eef89feaed72706f8336452368fa5302",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-master-v3.png",
+  "masterSha256": "cd29ac44b450e00d166e55748397c9ea671dadace0a9e539c6a074c914ba1f1d",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-derivative-v3.png",
+  "derivativeSha256": "4f794b58137b902c5796a70cd435babe50d94cb5bafb9c6d58a24398d531254d",
+  "generatedAt": "2026-08-25T23:32:13.772Z"
+}

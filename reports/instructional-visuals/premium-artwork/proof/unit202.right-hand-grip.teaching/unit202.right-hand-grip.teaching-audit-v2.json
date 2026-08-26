@@ -1,0 +1,25 @@
+{
+  "assetId": "unit202.right-hand-grip.teaching",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: removed the detached copper-ring icon; replaced the small separate curved arrow with one that visibly wraps around the conductor tracing the actual curl of the fingers.",
+  "factChecks": [
+    { "fact": "RIGHT hand", "result": "PASS", "note": "Unchanged from v1." },
+    { "fact": "thumb = conventional current direction", "result": "PASS", "note": "Thumb points up along the conductor, arrow confirms upward current direction." },
+    { "fact": "field-direction arrow follows the curl of the fingers around the conductor", "result": "PASS", "note": "The curved arrow now visibly wraps around the copper rod in front of and behind the curled fingers, rather than floating as a small separate stroke -- a learner can see the field arrow IS tracing the finger curl." },
+    { "fact": "no detached/disconnected decorative element", "result": "PASS", "note": "The small floating copper-ring icon from v1 is verified absent." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not swap to the left hand", "result": "PASS", "note": "Right hand preserved." },
+    { "prohibition": "do not mirror/flip the artwork", "result": "PASS", "note": "Not mirrored." }
+  ],
+  "styleComplianceNotes": "White/near-white background, THUMB = CURRENT / FINGERS = MAGNETIC FIELD labels preserved.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Both named defects (detached arrow icon, non-curl-tracing field arrow) resolved.",
+  "auditedAt": "2026-08-26T10:10:00.000Z"
+}

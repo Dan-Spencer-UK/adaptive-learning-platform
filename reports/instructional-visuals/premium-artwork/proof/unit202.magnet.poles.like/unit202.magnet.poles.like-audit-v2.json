@@ -1,0 +1,23 @@
+{
+  "assetId": "unit202.magnet.poles.like",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: removed 'Repel' text; sharpened field-line and magnet rendering.",
+  "factChecks": [
+    { "fact": "like poles facing (N meets N)", "result": "PASS", "note": "Both magnets' N poles face the central gap -- unchanged geometry from v1." },
+    { "fact": "no answer-bearing text", "result": "PASS", "note": "'Repel' word and arrow verified absent." },
+    { "fact": "sharp, crisp rendering", "result": "PASS", "note": "Field lines and magnet surfaces noticeably crisper than v1." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no force-direction text/arrow", "result": "PASS", "note": "Verified absent." }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Both named defects (Repel text, fuzzy rendering) resolved.",
+  "auditedAt": "2026-08-26T10:25:00.000Z"
+}

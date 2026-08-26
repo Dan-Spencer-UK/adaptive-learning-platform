@@ -1,0 +1,25 @@
+{
+  "assetId": "unit202.emf.motional",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: replaced the photoreal 3D chrome-pipe rails/conductor with a minimal flat 2D technical board (thin rails, simple rod conductor), regenerated from a hand-authored clean reference.",
+  "factChecks": [
+    { "fact": "one moving conductor", "result": "PASS", "note": "Single red rod conductor, clearly distinct from the rails." },
+    { "fact": "rails present, minimal", "result": "PASS", "note": "Thin rails, no photoreal pipe/tube casing." },
+    { "fact": "one B convention", "result": "PASS", "note": "X markers (into page) shown consistently across the field region." },
+    { "fact": "one v arrow", "result": "PASS", "note": "Single green arrow, correct direction (rightward, matching the reference board)." },
+    { "fact": "one l dimension", "result": "PASS", "note": "Bracket dimension labelled l, matching the conductor's field-region span." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no photoreal/3D pipe-like apparatus", "result": "PASS", "note": "Rails and conductor now read as flat 2D technical elements, not chrome tubing." }
+  ],
+  "styleComplianceNotes": "White/near-white background, clean minimal technical-diagram style.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Photoreal 3D clutter removed; minimal 2D clarity achieved.",
+  "auditedAt": "2026-08-26T10:40:00.000Z"
+}

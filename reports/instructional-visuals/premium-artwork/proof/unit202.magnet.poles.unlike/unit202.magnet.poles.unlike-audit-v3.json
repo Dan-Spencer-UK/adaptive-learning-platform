@@ -1,0 +1,23 @@
+{
+  "assetId": "unit202.magnet.poles.unlike",
+  "attempt": 3,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: removed 'attract' text and the double-headed arrow.",
+  "factChecks": [
+    { "fact": "unlike poles facing (N meets S)", "result": "PASS", "note": "Left magnet's N (right side) faces right magnet's S (left side) across the gap -- correct attract configuration, unchanged from v2." },
+    { "fact": "no answer-bearing text", "result": "PASS", "note": "'attract' word and double-headed arrow verified absent." },
+    { "fact": "physically meaningful connecting field lines", "result": "PASS", "note": "Field lines merge across the gap, consistent with attraction." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no force-direction text/arrow", "result": "PASS", "note": "Verified absent." }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Named defect (attract text + arrow) resolved.",
+  "auditedAt": "2026-08-26T10:26:00.000Z"
+}

@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.generator.rotating-loop.vertical",
+  "attempt": 3,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: 'current output is too complicated' -- regenerated from the same real Elementary_generator.svg reference as the horizontal sibling, explicitly instructed to rotate the SAME rig to the edge-on pose.",
+  "factChecks": [
+    { "fact": "ONE unmistakable rectangular loop only, now edge-on (thin sliver, not an open rectangle)", "result": "PASS", "note": "Loop clearly rotated 90 degrees from the horizontal sibling -- appears as a narrow vertical sliver, correct for the edge-on/near-peak-EMF pose." },
+    { "fact": "same one-shaft/two-ring/two-brush/N-S/output system as the horizontal sibling", "result": "PASS", "note": "Same magnet colours/labels (S left, N right), same shaft, two slip rings each with a carbon brush, same Load/output labelling -- visibly the same physical rig, only rotated." },
+    { "fact": "no split-ring commutator", "result": "PASS", "note": "Two full concentric rings preserved." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not invent a second loop/coil", "result": "PASS", "note": "Verified absent." },
+    { "prohibition": "must not look like a different machine from its horizontal sibling", "result": "PASS", "note": "Same apparatus, same labels, same style -- only the loop's rotational angle differs." }
+  ],
+  "styleComplianceNotes": "White/near-white background, premium metallic finish, matches horizontal sibling's style exactly.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Clearly the same one-loop system as the horizontal sibling, correctly rotated to the edge-on pose.",
+  "auditedAt": "2026-08-26T10:05:00.000Z"
+}

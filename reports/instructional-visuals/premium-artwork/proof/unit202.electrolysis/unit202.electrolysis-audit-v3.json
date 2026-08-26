@@ -1,0 +1,25 @@
+{
+  "assetId": "unit202.electrolysis",
+  "attempt": 3,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: prior automated PASS missed a wrong-direction cation arrow (bottom-left cation pointed away from the cathode). Regenerated from a hand-authored exact board with every ion arrow independently verified correct before generation, and re-verified again here pixel-by-pixel against the actual output.",
+  "factChecks": [
+    { "fact": "every cation (+) arrow points toward the cathode", "result": "PASS", "note": "All 4 cation arrows traced individually: top, upper-middle, lower-middle, bottom -- all point left, toward the cathode. No exceptions (this is the exact defect the prior automated PASS missed)." },
+    { "fact": "every anion (-) arrow points toward the anode", "result": "PASS", "note": "All 4 anion arrows traced individually -- all point right, toward the anode." },
+    { "fact": "no voltmeter", "result": "PASS", "note": "Verified absent." },
+    { "fact": "no ammeter", "result": "PASS", "note": "Verified absent." },
+    { "fact": "battery polarity correct for an electrolytic cell", "result": "PASS", "note": "- terminal wired to cathode, + terminal wired to anode." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "Gemini must not add/remove/reverse any ion arrow", "result": "PASS", "note": "Arrow count (4 cations, 4 anions) and each individual direction matches the prepared board exactly." }
+  ],
+  "styleComplianceNotes": "White/near-white background, premium glass beaker and metallic electrodes. Minor cosmetic note: the 'current path' label appears twice (duplicated) -- not misleading, not corrected, does not affect technical/pedagogical correctness.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. The specific micro-directional defect the semantic QA found (wrong cation arrow) is resolved and independently re-verified pixel-by-pixel, not merely re-trusted.",
+  "auditedAt": "2026-08-26T11:00:00.000Z"
+}

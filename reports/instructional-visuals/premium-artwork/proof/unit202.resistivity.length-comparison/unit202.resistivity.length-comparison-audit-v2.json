@@ -1,0 +1,23 @@
+{
+  "assetId": "unit202.resistivity.length-comparison",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: removed the course-notation-conflicting 'S' end-face label and the baked 'INCREASED LENGTH -> GREATER RESISTANCE' conclusion text.",
+  "factChecks": [
+    { "fact": "no S notation anywhere", "result": "PASS", "note": "Verified absent -- no end-face label at all now." },
+    { "fact": "same material/cross-section, only length varies", "result": "PASS", "note": "Both bars visually identical material/thickness, only length (L vs 2L) differs." },
+    { "fact": "no baked conclusion text", "result": "PASS", "note": "'INCREASED LENGTH -> GREATER RESISTANCE' and 'LENGTH COMPARISON: LONGER' both verified absent." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no second varying variable", "result": "PASS", "note": "Area/material held fixed, only length varies." }
+  ],
+  "styleComplianceNotes": "White/near-white background, minimal labels (L, 2L only).",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Notation conflict and baked conclusion both resolved.",
+  "auditedAt": "2026-08-26T10:30:00.000Z"
+}

@@ -34,9 +34,10 @@ flowchart TD
         HG["ChatGPT / Product Owner: external reference research<br/>-> APPROVED REFERENCE HANDOVER (reference-decision authority)"]
         H4["Reference acquisition<br/>Claude downloads + caches the approved reference,<br/>SHA-256, validates real image data (never a URL alone)"]
         HP["Reference preparation<br/>crop/isolate a composite subfigure, extract a PDF page,<br/>compose a multi-source sheet -- boring, technically clear, never learner-facing"]
+        HSQ{"Semantic Reference QA (CC-11.12 hard gate)<br/>is THIS exact frame fit for THIS exact governed state?<br/>APPROVED_DIRECT / APPROVED_PREPARED / REPLACE_REFERENCE / REJECT_REFERENCE"}
         H5["Gemini reference-driven redraw<br/>(implementation renderer only): prepared reference +<br/>asset contract + ALP white/light style guide -> illustration WITH required labels"]
         H6["Deterministic overlays<br/>exact geometry / topology / answer-revealing annotation only<br/>(never a substitute for a required label already missing from the raster)"]
-        H7["Claude independent audit<br/>fact-by-fact PASS/FAIL/UNCERTAIN vs immutable facts<br/>+ prohibited changes -- audits pixels, not labels"]
+        H7["Claude independent audit -- THREE verdicts (CC-11.12)<br/>TECHNICAL / PEDAGOGICAL_CLARITY / VISUAL_PRODUCT_QUALITY,<br/>overall PASS requires all three PASS -- audits pixels, not labels"]
         H8{"Audit verdict"}
         H9["Bounded automatic correction<br/>(max 1 retry per asset)"]
         H10["Human-readable review pack<br/>(PDF/JSON, reference vs final side by side)"]
@@ -48,7 +49,10 @@ flowchart TD
         H1 --> H2
         H2 -- "DETERMINISTIC_TECHNICAL" --> H3
         H2 -- "PREMIUM_CONCEPTUAL / HYBRID" --> HG
-        HG --> H4 --> HP --> H5 --> HD
+        HG --> H4 --> HP --> HSQ
+        HSQ -- "APPROVED_DIRECT / APPROVED_PREPARED" --> H5
+        HSQ -- "REPLACE_REFERENCE / REJECT_REFERENCE" --> HP
+        H5 --> HD
         HD -- "yes -- wrong-answer image" --> HDX --> H7
         HD -- "no -- correct image" --> H7
         H3 --> H6
@@ -105,5 +109,5 @@ flowchart TD
     classDef inprogress fill:#8a6d1a,stroke:#5a4610,color:#fff;
     classDef notstarted fill:#3a3f4c,stroke:#23262e,color:#cbd0dc;
     class A,B,C,D,E,I,J,K,K1,K2,K3,K4,K5,K6 complete;
-    class F,H,H1,H2,H3,HG,H4,HP,H5,H6,H7,H8,H9,H10,H11,H12,HD,HDX,GA,GB inprogress;
+    class F,H,H1,H2,H3,HG,H4,HP,HSQ,H5,H6,H7,H8,H9,H10,H11,H12,HD,HDX,GA,GB inprogress;
     class G,L1,L2 notstarted;

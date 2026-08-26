@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.resistivity.area-comparison",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: notation was already correct (A/2A); removed the baked 'Thicker conductor -> Less resistance' conclusion and 'Increased cross-sectional area' caption; unified bar shape with the length-comparison sibling for family consistency.",
+  "factChecks": [
+    { "fact": "consistent A/2A notation", "result": "PASS", "note": "Area A (left, thinner) / Area 2A (right, thicker), matching the length-comparison sibling's L/2L pattern." },
+    { "fact": "same material/length, only area varies", "result": "PASS", "note": "Both bars same length (L) and material, only cross-sectional thickness differs." },
+    { "fact": "no baked conclusion text", "result": "PASS", "note": "'Thicker conductor -> Less resistance' and 'Increased cross-sectional area' both verified absent." },
+    { "fact": "family-consistent rectangular bar shape", "result": "PASS", "note": "Replaced the odd cylindrical rod/axle-stub shape with a plain rectangular bar matching the length-comparison sibling." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no second varying variable", "result": "PASS", "note": "Length/material held fixed, only area varies." }
+  ],
+  "styleComplianceNotes": "White/near-white background, minimal labels (L, Area A, Area 2A).",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Baked conclusion removed; family style now matches its sibling.",
+  "auditedAt": "2026-08-26T10:31:00.000Z"
+}

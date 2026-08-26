@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.diode.bias-direction.forward",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Forward-Biased_pn_Junction.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.diode.bias-direction.forward.board.png)",
+  "sourceReferenceSha256": "90fffe77a0867cbaf5c1e847291af26a82315fc74aebebbc0340e8217f9b2fa7",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-master-v2.png",
+  "masterSha256": "077473faf4f6431d7c0497891dbfcabb2afced93858a728dc94ffe2709443098",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-derivative-v2.png",
+  "derivativeSha256": "99b6a5081a2f1f1b5731c945a22132a13ab102585730e6b31d35cf9c14177b48",
+  "generatedAt": "2026-08-25T23:28:12.760Z"
+}

@@ -1,0 +1,23 @@
+{
+  "assetId": "unit202.components.physical.capacitor",
+  "attempt": 2,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO: removed the baked UK/IEC schematic symbol -- this asset now shows component + name only, matching every other components.physical.* asset.",
+  "factChecks": [
+    { "fact": "physical capacitor component depicted", "result": "PASS", "note": "Unchanged from v1 -- electrolytic capacitor with printed specs and polarity markings." },
+    { "fact": "no schematic/circuit symbol baked in", "result": "PASS", "note": "The two-line capacitor symbol from v1 is verified absent." },
+    { "fact": "component + name only, matching family convention", "result": "PASS", "note": "'Capacitor' label retained; no symbol -- now consistent with diode/LED/thermistor/transistor/etc." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "do not regenerate the physical component raster itself", "result": "PASS", "note": "Component geometry/finish unchanged from v1, only the symbol removed." }
+  ],
+  "styleComplianceNotes": "White/near-white background preserved.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Family-consistency defect (symbol only on this one asset) resolved.",
+  "auditedAt": "2026-08-26T10:45:00.000Z"
+}

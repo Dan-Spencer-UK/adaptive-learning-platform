@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T21:42:14.982Z",
+  "generatedAt": "2026-08-25T23:38:42.950Z",
   "note": "Shipment-candidate registry, CC-11.11. Every approvalStatus is AWAITING_PRODUCT_OWNER_APPROVAL -- nothing here is RELEASED. Does not touch unit202-artwork-manifest.json or any ContentRelease.",
   "canonicalAssetCount": 63,
   "assets": [
@@ -76,9 +76,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-master-v1.png",
-      "masterSha256": "99b60b42738b7ec50174888125d2d2e0ad1ee16048a4da06144782e2580bb49c",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-master-v2.png",
+      "masterSha256": "59ca74ed18741ccaef3a047386e1635bf8538c7fea635be27c98e30fb4467009",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -278,9 +278,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-master-v1.png",
-      "masterSha256": "afab3d2c94453f1f54967bd62f63700fc8bf90c871b5743f51ec5c072049ed2d",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-master-v2.png",
+      "masterSha256": "88275258112c8888212f52369f3e30ee9ddb464630f6e8f5b28d45d7d7cbc603",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -372,9 +372,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-master-v1.png",
-      "masterSha256": "5f8c69b284cc06b219e0c19c48056c605ad126a45c3edc4501fdb679b72d3899",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-master-v2.png",
+      "masterSha256": "077473faf4f6431d7c0497891dbfcabb2afced93858a728dc94ffe2709443098",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -388,9 +388,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-master-v2.png",
-      "masterSha256": "e3808bc0c4efdce1635662fe4f2ea56379f8495a94dc3e57f2077b827557450b",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-derivative-v2.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-master-v4.png",
+      "masterSha256": "9aa7bde273d9171381945c198ab588da01be32e66a9f7514d8d8f1f982b643d2",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-derivative-v4.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -404,9 +404,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-master-v2.png",
-      "masterSha256": "b9887d7dc74204e395cebe7f864276507f3791aa047c28df80840ffdd430749f",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-derivative-v2.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-master-v3.png",
+      "masterSha256": "cd29ac44b450e00d166e55748397c9ea671dadace0a9e539c6a074c914ba1f1d",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-derivative-v3.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -420,9 +420,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-master-v1.png",
-      "masterSha256": "0c5260c3b6081f4e6a7bd98295d879a8878c0a2058a46e83ae5c4cc1c868e24e",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-master-v2.png",
+      "masterSha256": "8f4842f6f407136e223b0d866b0e425fe38849b0bdba9026843d4eb8a77f35dc",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -531,9 +531,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-master-v1.png",
-      "masterSha256": "46d423a90d69b50d9e4dede228691e81c65604e4906f701e19a639dfb9f15577",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-master-v2.png",
+      "masterSha256": "eaae96ee2744ff83ec632ac2da466f3115e8949d2a9d62f4e651c2201d88dd0c",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -547,9 +547,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-master-v2.png",
-      "masterSha256": "3c9083de87bf6b541c8345e21afa2e9fb96e4d3c230a73d1f88c771ddb7b9ad3",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-derivative-v2.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-master-v3.png",
+      "masterSha256": "9842eb16624ceebc4429248aa5f3b1f078c18cc475ec0e25c3085a0f77bf4047",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-derivative-v3.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -664,9 +664,9 @@
         "unit202"
       ],
       "resolutionType": "SHARED_BASE_VALID",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-master-v1.png",
-      "masterSha256": "7d0e537861f29cbefbc07f0e395e6d68766057266b6d0ff58feaa2842d5a7930",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-master-v2.png",
+      "masterSha256": "3b4d14b7e91e20ce8aea1e797305e70f2a26be9e646280f0ee9ba1f0eeeffd34",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -713,9 +713,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-master-v1.png",
-      "masterSha256": "d452ebe28f8b496bb520de8346833c87416712b0be1f360054d020f69b6bc717",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-master-v2.png",
+      "masterSha256": "ba3cf983ba11d59f3dce870b5e80975ac09894adeb54bae4fd3682373c6c2043",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -743,9 +743,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-master-v2.png",
-      "masterSha256": "fd1fa724cd9714da599974872a0235f368df5fc8d376b15f5016ad92649bcc05",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-derivative-v2.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-master-v3.png",
+      "masterSha256": "5018e7c7ae5783e9210d1e572da51bb0c49048629f597905ef5a5f515d74c3ea",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-derivative-v3.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -773,9 +773,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-master-v1.png",
-      "masterSha256": "83a3d6e3992774308481aaafbee2548499102bd769f5dfb65e244f0107ae93ba",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-master-v2.png",
+      "masterSha256": "baacf82389470774488677dcb655e0765ae1dbf405bdbfb644da45b04d960546",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -789,9 +789,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-master-v1.png",
-      "masterSha256": "3d7ef1648edb3dc3fd90ca5e70f586a0191d826c6edeb90b7d1cbc456152bd3a",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-master-v2.png",
+      "masterSha256": "0b676366d93f12aa3f8b70ca2c0d23d7d32637ec8da258f8932256bd2802f60a",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -805,9 +805,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-master-v1.png",
-      "masterSha256": "5a96c1dd7156873c59908c4b344c6d58928f43d7aad74a9ee85a0aceab05b423",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-master-v2.png",
+      "masterSha256": "3fd0cb57be2c9f57be8729e9991b50a5500db4e08858a0f77b26e59307293375",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -821,9 +821,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-master-v1.png",
-      "masterSha256": "73d7717f74238f6d249f3445045d75b9327c7caf6e47979028c3ea783fd5c90e",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-master-v2.png",
+      "masterSha256": "d1b12c67973561fa2ec7f3d78d8be3661cf0eda18aff6e08446ceaee5716c292",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -837,9 +837,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-master-v1.png",
-      "masterSha256": "f6c05710510f8cc43ade4219c0ae92110ed761c7ff0b088b380ff3b57331670e",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-master-v2.png",
+      "masterSha256": "82f43d10d4ba0da69a848ed11691a123c2d3a4db5077bf0060ac57cf2ebd466a",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -853,9 +853,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-master-v1.png",
-      "masterSha256": "05917091aff9e382d444c20ed804ee60813dab3639177148e7c7d141fabd9430",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-master-v2.png",
+      "masterSha256": "8f2089854c7bfed9f4a7f14777ad443ca6c02619326be144941657f2cbbf724d",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -869,9 +869,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-master-v1.png",
-      "masterSha256": "1449b25dce497295a34ee05cdfbc4155154273e6c4855b41bfe2283abd640d92",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-master-v2.png",
+      "masterSha256": "7ee8b63c3d75fb8844738f8fa0d73a8319f9ff6ce2751455f7229b795fcf22f8",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -885,9 +885,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-master-v1.png",
-      "masterSha256": "dc3fd1eda18ce6ffdb88069607aa215ec630f31d356e4099088015eeb6f20f34",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-master-v3.png",
+      "masterSha256": "486471953b1c869bf3a1063a0e792a1b5414844cee493085105e1042382261c9",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-derivative-v3.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -965,9 +965,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-master-v1.png",
-      "masterSha256": "e8aa625d4643a22e3b3514ed2ea4baef8141166174523ab1296c4fba88f5a004",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-master-v2.png",
+      "masterSha256": "4961dd018a8861e3eebf8cb1d3ee0a993c373c58e577e894eaf00682be2fae82",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -981,9 +981,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-master-v1.png",
-      "masterSha256": "ffaa3558805f2c29b1277b35d3c034d2f9be0f1f27d7e5a8571c22ee5a20ba9b",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-master-v2.png",
+      "masterSha256": "2342c56f98a69e3708de8ea1e4d18569faa8347a3437a2080c46b5f52d1203f7",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {
@@ -997,9 +997,9 @@
         "unit202"
       ],
       "resolutionType": "GENERATED",
-      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-master-v1.png",
-      "masterSha256": "dbbf29250696f3f21b73399c7bcd417e0228a73f651c70463dc0f30b25b86a24",
-      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-derivative-v1.png",
+      "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-master-v2.png",
+      "masterSha256": "118e44ed8b9ceea785cad71c7638b93115db6292c8c17d0b201106bd913ac38b",
+      "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-derivative-v2.png",
       "approvalStatus": "AWAITING_PRODUCT_OWNER_APPROVAL"
     },
     {

@@ -1,0 +1,43 @@
+{
+  "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-assessment",
+  "attempt": 3,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "factChecks": [
+    {
+      "fact": "ONE N/S pole pair only",
+      "result": "PASS",
+      "note": "Single pair, correctly positioned per the prepared board."
+    },
+    {
+      "fact": "ONE clean field-line system (no tangling/crossing lines)",
+      "result": "PASS",
+      "note": "5 clean parallel lines after correction."
+    },
+    {
+      "fact": "current marker correct for this state",
+      "result": "PASS",
+      "note": "Corrected to a clear flat circle-with-dot marker (attempt 2's 3D cylinder was ambiguous)."
+    },
+    {
+      "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+      "result": "PASS",
+      "note": "Correctly absent."
+    }
+  ],
+  "prohibitedChangeChecks": [
+    {
+      "prohibition": "no competing/duplicated second field or force line system",
+      "result": "PASS",
+      "note": "Single clean system, matches prepared board exactly."
+    }
+  ],
+  "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS after 1 bounded correction -- attempt 2 rendered the conductor as a 3D copper cylinder with no clear dot marker (ambiguous current-direction stimulus); corrected to a clear flat circular dot marker matching its sibling's style. Field-line density also normalised to 5 (attempt 2 had ~10).",
+  "auditedAt": "2026-08-25T23:06:29.756Z"
+}

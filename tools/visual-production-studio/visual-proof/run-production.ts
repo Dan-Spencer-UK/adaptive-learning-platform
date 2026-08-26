@@ -23,6 +23,7 @@ import { REPO_ROOT } from "../paths.ts";
 import { generateImage } from "../gemini-client.ts";
 import { acquireReference, asInlineImage } from "../reference-acquisition.ts";
 import { effectivePrimaryReference, effectiveReferenceReadiness, referencePreparationFor } from "../reference-corrections.ts";
+import { semanticQaFor } from "../semantic-reference-qa.ts";
 import { buildGeminiPrompt } from "./prompt-builder-gemini.ts";
 import { createMobileDerivative } from "./derivative.ts";
 import type { ProofGenerationMetadata } from "./proof-types.ts";
@@ -62,6 +63,19 @@ export async function runProduction(options: RunProductionOptions): Promise<Proo
   if (stateId && !state) throw new Error(`${stateId} is not a canonicalState of ${assetId}.`);
 
   const outputId = state ? state.stateId : assetId;
+
+  // CC-11.12 hard gate: a state that HAS been through semantic reference QA
+  // (SEMANTIC_QA has a record for it) must carry an APPROVED_DIRECT or
+  // APPROVED_PREPARED disposition before generation may proceed -- this is
+  // what stops a REDO entry from being silently regenerated with its old,
+  // semantically-rejected reference/composition. A state with no QA record
+  // at all (never part of a semantic review) is not blocked by this check.
+  const semanticQa = semanticQaFor(outputId) ?? semanticQaFor(assetId);
+  if (semanticQa && semanticQa.referenceDisposition !== "APPROVED_DIRECT" && semanticQa.referenceDisposition !== "APPROVED_PREPARED") {
+    throw new Error(
+      `${outputId} has semantic-QA disposition "${semanticQa.referenceDisposition}", not APPROVED_DIRECT/APPROVED_PREPARED -- refusing to generate until a new reference frame is prepared and re-reviewed.`,
+    );
+  }
   const assetDir = join(PRODUCTION_CANDIDATE_ROOT, assetId);
   mkdirSync(assetDir, { recursive: true });
 

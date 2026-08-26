@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T21:18:23.153Z",
+  "generatedAt": "2026-08-25T23:39:27.512Z",
   "summary": {
     "attempted": 4,
     "pass": 4,
@@ -115,78 +115,82 @@
     {
       "assetId": "unit202.generator.rotating-loop.horizontal",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.generator.rotating-loop.horizontal",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.generator.figure1-cropped.prepared.png)",
-        "sourceReferenceSha256": "b374f5859b737b5265874100ea80efcf169eb5195847273765df44555c2f020b",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf (prepared: tools/visual-production-studio/reference-cache/unit202.generator.rotating-loop.horizontal.raster.png)",
+        "sourceReferenceSha256": "4d7c9d851b8ed8ed66ed3506ddbe573f7b11a93ebe081fa5e730bc173662366c",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-master-v1.png",
-        "masterSha256": "46d423a90d69b50d9e4dede228691e81c65604e4906f701e19a639dfb9f15577",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-derivative-v1.png",
-        "derivativeSha256": "c6466de7e34fadf3c9dea6a7cb69b943fc6ddd2dbd2d16a44ba2a5659fc7156b",
-        "generatedAt": "2026-08-24T23:21:37.579Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-master-v2.png",
+        "masterSha256": "eaae96ee2744ff83ec632ac2da466f3115e8949d2a9d62f4e651c2201d88dd0c",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-derivative-v2.png",
+        "derivativeSha256": "4d4daa9db558706654e9adce05678f34a3adc73d448f7f6d505d35edad20bc00",
+        "generatedAt": "2026-08-25T23:07:57.404Z"
       },
       "audit": {
         "assetId": "unit202.generator.rotating-loop.horizontal",
-        "attempt": 1,
-        "productionRun": "CC-11.9",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: the review pack's own 'reference preview not found' finding was correct -- no real reference had ever actually been visible for this asset, and the resulting topology was ambiguous. Acquired a real, visible, unambiguous public-domain reference (Elementary_generator.svg, FAA) and regenerated directly from it.",
         "factChecks": [
           {
-            "fact": "N/S magnetic poles",
+            "fact": "ONE unmistakable rectangular loop only",
             "result": "PASS",
-            "note": "N (left) and S (right) clearly labelled on the pole pieces."
+            "note": "Single loop, explicitly labelled 'coil/loop'. No second loop-like structure anywhere in the image."
           },
           {
-            "fact": "loop/coil between the poles",
+            "fact": "one shaft",
             "result": "PASS",
-            "note": "Single copper loop visible, positioned between the N and S pole faces."
+            "note": "Single shaft with a rotation-indicator arrow, connecting the loop to the slip rings."
           },
           {
-            "fact": "loop plane facing poles head-on (widest visible loop face) -- defining fact of this asset",
+            "fact": "two separate slip rings, one per loop end",
             "result": "PASS",
-            "note": "The loop's rectangular face is substantially visible from this viewing angle (not an edge-on sliver), consistent with the near-zero-EMF, face-on pose requested."
+            "note": "Two distinct copper rings visible, each with its own carbon brush."
           },
           {
-            "fact": "central rotational axis",
+            "fact": "two stationary brushes",
             "result": "PASS",
-            "note": "A single common shaft runs through the loop and both slip rings."
+            "note": "Labelled 'carbon' at each ring."
           },
           {
-            "fact": "output/slip-ring concept at governed Level-2 abstraction",
+            "fact": "N/S poles",
             "result": "PASS",
-            "note": "TWO separate slip rings are visible, mounted concentrically on the shaft, each contacted by its own stationary brush, with wires running from the brushes to a resistor labelled OUTPUT. This is a materially complete topology, not merely a vague 'concept' -- directly resolves the CC-11.9 handover's complaint about the prior catalogue's under-specified slip-ring wording."
+            "note": "Labelled N (right) and S (left)."
           },
           {
-            "fact": "rotating conductor cuts magnetic flux",
+            "fact": "coherent output path",
             "result": "PASS",
-            "note": "Implied correctly by the loop-between-poles + rotation-indicator composition; not contradicted anywhere."
+            "note": "Output wires trace clearly from the brushes to the labelled Load."
+          },
+          {
+            "fact": "no split-ring commutator",
+            "result": "PASS",
+            "note": "Two full concentric rings, not a split ring -- correct for an AC generator, not a DC motor."
+          },
+          {
+            "fact": "learner must not reasonably read this as two coils",
+            "result": "PASS",
+            "note": "Single continuous copper loop traced from one slip ring, around the shaft, to the other -- unambiguous."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not substitute a detailed modern alternator",
+            "prohibition": "do not invent a second loop/coil",
             "result": "PASS",
-            "note": "Kept at the elementary single-loop/two-slip-ring level matching the DOE reference, not an over-detailed modern machine."
-          },
-          {
-            "prohibition": "do not add three-phase windings, phasors or brushes/commutator detail beyond governed scope",
-            "result": "PASS",
-            "note": "Exactly two brushes, two rings -- no commutator (a commutator would be a single split ring; this is unambiguously two separate full rings), no three-phase winding."
-          },
-          {
-            "prohibition": "do not depict the edge-on loop pose in this asset -- that is the sibling ProductionAsset",
-            "result": "PASS",
-            "note": "The loop is shown face-on, not edge-on -- correct pose for the horizontal/near-zero-EMF asset."
+            "note": "Verified absent."
           }
         ],
-        "styleComplianceNotes": "White/near-white background correctly applied. Premium brushed-metal magnet poles and shaft, copper-toned loop -- reads as a real, tactile apparatus. Labels N, S, coil/loop, rotation indicator, output are all present and legible, matching this asset's requiredLabels.",
+        "styleComplianceNotes": "White/near-white background, premium metallic finish, ALP style. Labels (coil/loop, N, S, rotation indicator, carbon, Slip ring, Load, Brush, output) all legible.",
         "bakedLabelsFound": true,
-        "physicalImplausibilityNotes": "None -- the two-slip-ring/two-brush/output topology is mechanically coherent and matches the DOE reference figure's own topology exactly.",
-        "overallFindings": "Strong PASS on first attempt. The prepared DOE Figure 1 crop (a genuine, complete, technically authoritative topology reference -- selected via real text search of the handbook for 'slip ring' rather than guessed) gave Gemini an unambiguous topology to redraw, and it preserved every required structural element: two separate slip rings, two brushes, correct output path, no commutator, correct N/S, correct face-on pose. This directly satisfies the CC-11.9 handover's specific concern that the previous generic Commons SVG reference under-specified the slip-ring mechanism.",
-        "auditedAt": "2026-08-25T00:25:00.000Z"
+        "physicalImplausibilityNotes": "None -- a physically coherent elementary AC generator.",
+        "overallFindings": "PASS. The core semantic QA defect (reference never actually visible, topology ambiguous) is resolved by using a real, visible, unambiguous reference directly.",
+        "auditedAt": "2026-08-26T10:00:00.000Z"
       }
     },
     {

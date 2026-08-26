@@ -1,0 +1,24 @@
+{
+  "assetId": "unit202.diode.bias-direction.reverse",
+  "attempt": 4,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "PASS",
+  "technicalVerdict": "PASS",
+  "pedagogicalClarityVerdict": "PASS",
+  "visualProductQualityVerdict": "PASS",
+  "correctionNote": "CC-11.12 semantic QA REDO, attempt 2 of this correction: attempt 3 drifted into a photoreal 3D render with confusing polarity labels (rejected, see that attempt's own audit). Corrected by supplying the forward sibling's own approved flat-schematic image as the reference, instructing an exact style match with only polarity/current-state changes.",
+  "factChecks": [
+    { "fact": "cathode more positive than anode", "result": "PASS", "note": "Battery + terminal (bottom) wires around to the diode's cathode/bar side (right); - terminal (top) wires to the anode/flat side (left) -- traced the full loop to confirm, not just read the terminal symbols in isolation." },
+    { "fact": "current clearly blocked", "result": "PASS", "note": "Red X mark directly over the diode symbol; no current-flow arrow or 'I' label present." },
+    { "fact": "identical circuit layout to forward sibling, only polarity/state changed", "result": "PASS", "note": "Same flat schematic style, same battery symbol, same diode symbol/position, same wire loop -- a true one-variable comparison now achieved." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "no semiconductor-band diagram as composition authority", "result": "PASS", "note": "Flat schematic circuit only." },
+    { "prohibition": "no photoreal 3D component render", "result": "PASS", "note": "Matches the forward sibling's flat line-drawing style." }
+  ],
+  "styleComplianceNotes": "White/near-white background, matches forward sibling's schematic style exactly.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "None.",
+  "overallFindings": "PASS. Family-consistency and polarity-ambiguity defects from attempt 3 both resolved.",
+  "auditedAt": "2026-08-26T10:55:00.000Z"
+}

@@ -17,6 +17,15 @@
  * asset's real primary/secondary reference or true readiness must call
  * effectivePrimaryReference()/effectiveSecondaryReference()/
  * effectiveReferenceReadiness() below, not asset.primaryReference directly.
+ *
+ * CC-11.12: a reference resolving READY here is necessary but NOT
+ * sufficient for a generative job to proceed -- see the sibling additive
+ * overlay `semantic-reference-qa.ts` (`SEMANTIC_QA`,
+ * `requiresApprovedSemanticQa()`). That file records the separate,
+ * permanent product/content-governance judgement of whether the *exact
+ * frame* this overlay resolves to has itself passed semantic reference QA
+ * against the exact governed learner-visible state. `run-production.ts`
+ * checks both gates.
  */
 
 import type { CatalogueReference, ReferenceReadiness, VisualAsset } from "./catalogue.ts";
@@ -100,24 +109,36 @@ export const REFERENCE_CORRECTIONS: Record<string, ReferenceCorrection> = {
   "unit202.generator.rotating-loop.horizontal": {
     researchDecision: "APPROVED_WITH_PREPARATION",
     primaryReference: {
-      sourceName: "U.S. DOE Fundamentals Handbook — Electrical Science, Volume 3 — AC Generators",
+      sourceName: "Wikimedia Commons — Elementary generator.svg (FAA, public domain)",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Elementary_generator.svg",
+      licence: "U.S. Government work / public domain",
+      qualityGrade: "A (CC-11.12 semantic-QA REDO: real visible reference replacing the prior DOE-PDF-only source, whose absence from the review pack -- 'reference preview not found' -- was itself the finding)",
+    },
+    secondaryReference: {
+      sourceName: "U.S. DOE Fundamentals Handbook — Electrical Science, Volume 3 — AC Generators, Figure 1",
       sourceUrl: "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
       licence: "U.S. Government work / public-domain reference",
-      qualityGrade: "A (Product Owner-approved reference handover, 2026-08-24)",
+      qualityGrade: "Topology cross-check only, per unit202-revised-reference-strategy.md",
     },
-    referencePreparation: "Create a clean approved reference image from the DOE generator figure(s) showing the complete loop/shaft/slip-ring/brush topology plus the 0°/near-zero EMF, loop plane facing poles phase position. Gemini must receive that prepared image, not only the PDF/URL.",
-    contractCorrections: ["Strengthen immutable facts to spell out the complete slip-ring topology, not merely 'slip-ring concept'. Required N/S/coil/rotation/output teaching semantics must appear correctly in the final image."],
+    referencePreparation: "Elementary_generator.svg is used directly (already an unambiguous single-loop/two-slip-ring/two-brush topology with labelled parts) for the face-on pose. The DOE Figure 1 remains a cross-check only, never the sole composition authority.",
+    contractCorrections: ["CC-11.12: replaced the prior reference (never actually visible in review) with a real, visible, unambiguous public-domain source. Immutable facts: ONE rectangular loop only, never two; two separate slip rings; two brushes; coherent output path; no split-ring commutator."],
   },
   "unit202.generator.rotating-loop.vertical": {
     researchDecision: "APPROVED_WITH_PREPARATION",
     primaryReference: {
-      sourceName: "U.S. DOE Fundamentals Handbook — Electrical Science, Volume 3 — AC Generators",
+      sourceName: "Wikimedia Commons — Elementary generator.svg (FAA, public domain)",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Elementary_generator.svg",
+      licence: "U.S. Government work / public domain",
+      qualityGrade: "A (CC-11.12 semantic-QA REDO: same real reference as the horizontal sibling, rotated to the edge-on pose)",
+    },
+    secondaryReference: {
+      sourceName: "U.S. DOE Fundamentals Handbook — Electrical Science, Volume 3 — AC Generators, Figure 1",
       sourceUrl: "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
       licence: "U.S. Government work / public-domain reference",
-      qualityGrade: "A (Product Owner-approved reference handover, 2026-08-24)",
+      qualityGrade: "Topology cross-check only, per unit202-revised-reference-strategy.md",
     },
-    referencePreparation: "Create a clean approved reference image from the DOE generator figure(s) showing the complete loop/shaft/slip-ring/brush topology plus the 90°/near-peak EMF, loop plane edge-on to poles phase position. Gemini must receive that prepared image, not only the PDF/URL.",
-    contractCorrections: ["Strengthen immutable facts to spell out the complete slip-ring topology, not merely 'slip-ring concept'. Required N/S/coil/rotation/output teaching semantics must appear correctly in the final image."],
+    referencePreparation: "Same Elementary_generator.svg topology authority as the horizontal sibling, rotated to the edge-on/near-peak-EMF pose -- must visibly be the same one-loop/one-shaft/two-ring system, not a different apparatus.",
+    contractCorrections: ["CC-11.12: replaced the prior reference with the same real, visible source as the horizontal sibling. Immutable facts: ONE rectangular loop only, never two; two separate slip rings; two brushes; coherent output path; no split-ring commutator; must read as the same physical rig as the horizontal sibling."],
   },
   "unit202.fleming-right-hand.teaching": {
     researchDecision: "APPROVED_PRODUCTION_REFERENCE",

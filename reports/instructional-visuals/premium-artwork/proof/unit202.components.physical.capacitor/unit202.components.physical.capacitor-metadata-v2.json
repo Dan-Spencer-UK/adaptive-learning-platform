@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.components.physical.capacitor",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Electrolytic_Capacitor,_Radial,_16x30_(Coloured).svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.components.physical.capacitor/unit202.components.physical.capacitor-master-v1.png)",
+  "sourceReferenceSha256": "99b60b42738b7ec50174888125d2d2e0ad1ee16048a4da06144782e2580bb49c",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-master-v2.png",
+  "masterSha256": "59ca74ed18741ccaef3a047386e1635bf8538c7fea635be27c98e30fb4467009",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-derivative-v2.png",
+  "derivativeSha256": "decae633e774a7116b31acb180fd38cc8c6f00f2c3740509eac1c6382d720b72",
+  "generatedAt": "2026-08-25T23:25:51.295Z"
+}

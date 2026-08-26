@@ -1,0 +1,21 @@
+{
+  "assetId": "unit202.levers.class-3",
+  "attempt": 3,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "HUMAN_REVIEW_REQUIRED",
+  "technicalVerdict": "FAIL",
+  "pedagogicalClarityVerdict": "UNCERTAIN",
+  "visualProductQualityVerdict": "FAIL",
+  "factChecks": [
+    { "fact": "extra RESISTANCE/MOTION labels removed", "result": "FAIL", "note": "Both labels still present -- the requested correction was not applied." },
+    { "fact": "premium straight beam matching Class I/II family", "result": "FAIL", "note": "The beam is now visibly bent/kinked partway along its length, and the pivot renders as an unusual bowtie/hourglass shape rather than a clean triangle -- a new geometry defect not present in attempt 2." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "keep beam geometry unchanged while fixing labels", "result": "FAIL", "note": "Beam geometry changed (and regressed) despite being explicitly asked to keep it unchanged." }
+  ],
+  "styleComplianceNotes": "Regression from attempt 2 -- not premium quality.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "Bent beam with no mechanical justification.",
+  "overallFindings": "NOT SELECTED. This correction attempt failed to fix the requested label issue and introduced a new bent-beam geometry defect. attempt 2 is used as the final candidate instead. Not retried a third time per bounded-retry discipline.",
+  "auditedAt": "2026-08-26T10:21:00.000Z"
+}

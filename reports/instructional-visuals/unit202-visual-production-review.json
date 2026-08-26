@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-08-25T21:43:25.132Z",
+  "generatedAt": "2026-08-25T23:39:45.743Z",
   "summary": {
     "totalGenerativeAssets": 51,
     "attempted": 51,
     "pass": 51,
-    "firstAttemptPass": 41,
-    "retryPass": 10,
+    "firstAttemptPass": 23,
+    "retryPass": 28,
     "humanReviewRequired": 0,
     "notCompleted": 0,
-    "totalGeminiCalls": 68
+    "totalGeminiCalls": 92
   },
   "entries": [
     {
@@ -261,63 +261,67 @@
     {
       "assetId": "unit202.right-hand-grip.teaching",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.right-hand-grip.teaching",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Right-hand_grip_rule.svg",
-        "sourceReferenceSha256": "47e812186f1172e4bc4959d19845a4bb14481d039bf906a7bd8a6dcce0b85aea",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Right-hand_grip_rule.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.right-hand-grip.teaching/unit202.right-hand-grip.teaching-master-v1.png)",
+        "sourceReferenceSha256": "dbbf29250696f3f21b73399c7bcd417e0228a73f651c70463dc0f30b25b86a24",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-master-v1.png",
-        "masterSha256": "dbbf29250696f3f21b73399c7bcd417e0228a73f651c70463dc0f30b25b86a24",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-derivative-v1.png",
-        "derivativeSha256": "69a466fbf3be12927ff711ca2525144d7d2555777fa381d7980c3e5132c34b62",
-        "generatedAt": "2026-08-25T18:09:43.495Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-master-v2.png",
+        "masterSha256": "118e44ed8b9ceea785cad71c7638b93115db6292c8c17d0b201106bd913ac38b",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.right-hand-grip.teaching\\unit202.right-hand-grip.teaching-derivative-v2.png",
+        "derivativeSha256": "0afa39bf01771463ef490691ad682fb1f5a6fb92c127570fd1687ce996df04f8",
+        "generatedAt": "2026-08-25T23:11:38.779Z"
       },
       "audit": {
         "assetId": "unit202.right-hand-grip.teaching",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: removed the detached copper-ring icon; replaced the small separate curved arrow with one that visibly wraps around the conductor tracing the actual curl of the fingers.",
         "factChecks": [
           {
             "fact": "RIGHT hand",
             "result": "PASS",
-            "note": "Directly compared against the cached reference (Right-hand_grip_rule.svg): identical composition (fingers curled on the left, thumb wrapping up from the right, forearm extending down-right) -- not mirrored."
+            "note": "Unchanged from v1."
           },
           {
             "fact": "thumb = conventional current direction",
             "result": "PASS",
-            "note": "Labelled THUMB = CURRENT, correctly on the thumb."
+            "note": "Thumb points up along the conductor, arrow confirms upward current direction."
           },
           {
-            "fact": "curled fingers = magnetic-field circulation direction",
+            "fact": "field-direction arrow follows the curl of the fingers around the conductor",
             "result": "PASS",
-            "note": "Labelled FINGERS = MAGNETIC FIELD, with the small curl-direction icon matching the reference's own curl-arrow."
+            "note": "The curved arrow now visibly wraps around the copper rod in front of and behind the curled fingers, rather than floating as a small separate stroke -- a learner can see the field arrow IS tracing the finger curl."
           },
           {
-            "fact": "straight conductor axis",
+            "fact": "no detached/disconnected decorative element",
             "result": "PASS",
-            "note": "Single straight rod through the fist."
+            "note": "The small floating copper-ring icon from v1 is verified absent."
           }
         ],
         "prohibitedChangeChecks": [
           {
             "prohibition": "do not swap to the left hand",
             "result": "PASS",
-            "note": "Confirmed right hand by direct reference comparison."
+            "note": "Right hand preserved."
           },
           {
-            "prohibition": "DO NOT MIRROR OR HORIZONTALLY FLIP HAND-RULE ARTWORK",
+            "prohibition": "do not mirror/flip the artwork",
             "result": "PASS",
-            "note": "Composition matches the reference exactly, not flipped."
+            "note": "Not mirrored."
           }
         ],
-        "styleComplianceNotes": "White/near-white background. Both required labels present and correctly positioned.",
+        "styleComplianceNotes": "White/near-white background, THUMB = CURRENT / FINGERS = MAGNETIC FIELD labels preserved.",
         "bakedLabelsFound": true,
         "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS. Handedness independently re-verified by direct side-by-side comparison against the actual reference image, not assumed.",
-        "auditedAt": "2026-08-25T01:50:00.000Z"
+        "overallFindings": "PASS. Both named defects (detached arrow icon, non-curl-tracing field arrow) resolved.",
+        "auditedAt": "2026-08-26T10:10:00.000Z"
       }
     },
     {
@@ -390,199 +394,241 @@
         {
           "assetId": "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
           "found": true,
-          "latestAttempt": 1,
+          "latestAttempt": 2,
           "metadata": {
             "assetId": "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
-            "attempt": 1,
-            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles-master-v1.png)",
-            "sourceReferenceSha256": "18054d5bfa77ffb7b2a23c8dfe4e9da17e38f6c6d02ba8ff8c87742926cf4e7b",
+            "attempt": 2,
+            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.horizontal-poles.state.into-page-teaching.board.png)",
+            "sourceReferenceSha256": "93fe71a074d12671ee120b7b56c8d5576066185fd24f6734b1a312c314287430",
             "model": "gemini-3.1-flash-image",
-            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-master-v1.png",
-            "masterSha256": "83a3d6e3992774308481aaafbee2548499102bd769f5dfb65e244f0107ae93ba",
-            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-derivative-v1.png",
-            "derivativeSha256": "dea644c7ebc24caac4f364faab109103f8deb950dfb15d5cc80e720034368334",
-            "generatedAt": "2026-08-25T19:46:49.999Z"
+            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-master-v2.png",
+            "masterSha256": "baacf82389470774488677dcb655e0765ae1dbf405bdbfb644da45b04d960546",
+            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-teaching-derivative-v2.png",
+            "derivativeSha256": "56064c724fe06acae4736ca3bd6c6f4ceedbcabc650312b2825d7b5c86ba6608",
+            "generatedAt": "2026-08-25T22:59:49.980Z"
           },
           "audit": {
             "assetId": "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
-            "attempt": 1,
-            "productionRun": "CC-11.10-state-specific-remediation",
+            "attempt": 2,
+            "productionRun": "CC-11.12-semantic-qa-remediation",
             "verdict": "PASS",
+            "technicalVerdict": "PASS",
+            "pedagogicalClarityVerdict": "PASS",
+            "visualProductQualityVerdict": "PASS",
             "factChecks": [
               {
-                "fact": "current direction: into page (cross symbol)",
+                "fact": "ONE N/S pole pair only",
                 "result": "PASS",
-                "note": "Cross (X) symbol correctly drawn inside the conductor circle."
+                "note": "Single pair, correctly positioned per the prepared board."
               },
               {
-                "fact": "force direction: DOWN (Fleming's-left-hand-rule correct for N-left/S-right field, current into page)",
+                "fact": "ONE clean field-line system (no tangling/crossing lines)",
                 "result": "PASS",
-                "note": "Force arrow drawn pointing straight down from the conductor -- verified against F=BIL cross-product derivation, independently re-derived, not assumed from the old catalogue force-direction bookkeeping field."
+                "note": "4 clean parallel horizontal lines, no crossing."
               },
               {
-                "fact": "N (blue, left) / S (green, right) labels preserved",
+                "fact": "current marker correct for this state",
                 "result": "PASS",
-                "note": "Unchanged from approved base."
+                "note": "X (cross) symbol clear."
+              },
+              {
+                "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+                "result": "PASS",
+                "note": "Downward arrow present, matches F=BIL derivation."
               }
             ],
             "prohibitedChangeChecks": [
               {
-                "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+                "prohibition": "no competing/duplicated second field or force line system",
                 "result": "PASS",
-                "note": "Base composition (magnets, field lines, N/S labels) visually unchanged from the approved shared base master."
+                "note": "Single clean system, matches prepared board exactly."
               }
             ],
-            "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+            "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
             "bakedLabelsFound": true,
             "physicalImplausibilityNotes": "None.",
-            "overallFindings": "PASS -- direction-specific teaching state correctly generated on first attempt.",
-            "auditedAt": "2026-08-25T19:49:06.444Z"
+            "overallFindings": "PASS -- semantic QA REDO resolved. Clean single field-line system, correct X marker, correct downward force arrow.",
+            "auditedAt": "2026-08-25T23:06:29.748Z"
           }
         },
         {
           "assetId": "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
           "found": true,
-          "latestAttempt": 1,
+          "latestAttempt": 2,
           "metadata": {
             "assetId": "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
-            "attempt": 1,
-            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles-master-v1.png)",
-            "sourceReferenceSha256": "18054d5bfa77ffb7b2a23c8dfe4e9da17e38f6c6d02ba8ff8c87742926cf4e7b",
+            "attempt": 2,
+            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.horizontal-poles.state.into-page-assessment.board.png)",
+            "sourceReferenceSha256": "6b2aa4e768b0d2db9bc547c181aca211bfe885773032bc59017ebee30e70743e",
             "model": "gemini-3.1-flash-image",
-            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-master-v1.png",
-            "masterSha256": "3d7ef1648edb3dc3fd90ca5e70f586a0191d826c6edeb90b7d1cbc456152bd3a",
-            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-derivative-v1.png",
-            "derivativeSha256": "94fc3cf2404483b247318b1b6325b79422570d4f2a10b52cd9393bc46bff766b",
-            "generatedAt": "2026-08-25T19:48:03.033Z"
+            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-master-v2.png",
+            "masterSha256": "0b676366d93f12aa3f8b70ca2c0d23d7d32637ec8da258f8932256bd2802f60a",
+            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.into-page-assessment-derivative-v2.png",
+            "derivativeSha256": "bad3875579c70f3fe2b98d8072be45e1fc16dc0a846e9b799eb672276fcc2bd9",
+            "generatedAt": "2026-08-25T23:01:14.004Z"
           },
           "audit": {
             "assetId": "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
-            "attempt": 1,
-            "productionRun": "CC-11.10-state-specific-remediation",
+            "attempt": 2,
+            "productionRun": "CC-11.12-semantic-qa-remediation",
             "verdict": "PASS",
+            "technicalVerdict": "PASS",
+            "pedagogicalClarityVerdict": "PASS",
+            "visualProductQualityVerdict": "PASS",
             "factChecks": [
               {
-                "fact": "current direction (given stimulus): into page (cross symbol)",
+                "fact": "ONE N/S pole pair only",
                 "result": "PASS",
-                "note": "Cross symbol present, matching the teaching sibling's given stimulus."
+                "note": "Single pair, correctly positioned per the prepared board."
               },
               {
-                "fact": "force direction (assessed answer) correctly WITHHELD",
+                "fact": "ONE clean field-line system (no tangling/crossing lines)",
                 "result": "PASS",
-                "note": "No force arrow present anywhere in the image."
+                "note": "3 clean parallel lines."
+              },
+              {
+                "fact": "current marker correct for this state",
+                "result": "PASS",
+                "note": "X symbol clear."
+              },
+              {
+                "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+                "result": "PASS",
+                "note": "Correctly absent."
               }
             ],
             "prohibitedChangeChecks": [
               {
-                "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+                "prohibition": "no competing/duplicated second field or force line system",
                 "result": "PASS",
-                "note": "Base composition (magnets, field lines, N/S labels) visually unchanged from the approved shared base master."
+                "note": "Single clean system, matches prepared board exactly."
               }
             ],
-            "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+            "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
             "bakedLabelsFound": true,
             "physicalImplausibilityNotes": "None.",
-            "overallFindings": "PASS -- assessment state correctly shows the given stimulus only, withholds the answer.",
-            "auditedAt": "2026-08-25T19:49:06.448Z"
+            "overallFindings": "PASS -- semantic QA REDO resolved. Given stimulus (X) shown, force withheld.",
+            "auditedAt": "2026-08-25T23:06:29.749Z"
           }
         },
         {
           "assetId": "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching",
           "found": true,
-          "latestAttempt": 1,
+          "latestAttempt": 2,
           "metadata": {
             "assetId": "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching",
-            "attempt": 1,
-            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles-master-v1.png)",
-            "sourceReferenceSha256": "18054d5bfa77ffb7b2a23c8dfe4e9da17e38f6c6d02ba8ff8c87742926cf4e7b",
+            "attempt": 2,
+            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.horizontal-poles.state.out-of-page-teaching.board.png)",
+            "sourceReferenceSha256": "4401c649e0ac38a6081f8ab4c61cbbccdff637e1060a3fdc1e35b0daa2860bec",
             "model": "gemini-3.1-flash-image",
-            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-master-v1.png",
-            "masterSha256": "5a96c1dd7156873c59908c4b344c6d58928f43d7aad74a9ee85a0aceab05b423",
-            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-derivative-v1.png",
-            "derivativeSha256": "9dafdc6ab7625d2678eb6fa40398f6a254c61485d101ae98e854a089c558129d",
-            "generatedAt": "2026-08-25T19:47:24.766Z"
+            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-master-v2.png",
+            "masterSha256": "3fd0cb57be2c9f57be8729e9991b50a5500db4e08858a0f77b26e59307293375",
+            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-derivative-v2.png",
+            "derivativeSha256": "b7bb7fdf56911e834030cd69254a748934cb3319215efbce65b6311c6f065eac",
+            "generatedAt": "2026-08-25T23:00:05.570Z"
           },
           "audit": {
             "assetId": "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching",
-            "attempt": 1,
-            "productionRun": "CC-11.10-state-specific-remediation",
+            "attempt": 2,
+            "productionRun": "CC-11.12-semantic-qa-remediation",
             "verdict": "PASS",
+            "technicalVerdict": "PASS",
+            "pedagogicalClarityVerdict": "PASS",
+            "visualProductQualityVerdict": "PASS",
             "factChecks": [
               {
-                "fact": "current direction: out of page (dot symbol)",
+                "fact": "ONE N/S pole pair only",
                 "result": "PASS",
-                "note": "Dot symbol correctly drawn inside the conductor circle."
+                "note": "Single pair, correctly positioned per the prepared board."
               },
               {
-                "fact": "force direction: UP (Fleming's-left-hand-rule correct for N-left/S-right field, current out of page)",
+                "fact": "ONE clean field-line system (no tangling/crossing lines)",
                 "result": "PASS",
-                "note": "Force arrow drawn pointing straight up -- independently re-derived via F=BIL cross product."
+                "note": "6 clean parallel lines, all same direction."
               },
               {
-                "fact": "N (blue, left) / S (green, right) labels preserved",
+                "fact": "current marker correct for this state",
                 "result": "PASS",
-                "note": "Unchanged from approved base."
+                "note": "Dot symbol clear."
+              },
+              {
+                "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+                "result": "PASS",
+                "note": "Upward arrow present, matches derivation."
               }
             ],
             "prohibitedChangeChecks": [
               {
-                "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+                "prohibition": "no competing/duplicated second field or force line system",
                 "result": "PASS",
-                "note": "Base composition (magnets, field lines, N/S labels) visually unchanged from the approved shared base master."
+                "note": "Single clean system, matches prepared board exactly."
               }
             ],
-            "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+            "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
             "bakedLabelsFound": true,
             "physicalImplausibilityNotes": "None.",
-            "overallFindings": "PASS -- direction-specific teaching state correctly generated on first attempt.",
-            "auditedAt": "2026-08-25T19:49:06.447Z"
+            "overallFindings": "PASS -- semantic QA REDO resolved. Clean field system, correct dot marker, correct upward force arrow.",
+            "auditedAt": "2026-08-25T23:06:29.751Z"
           }
         },
         {
           "assetId": "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment",
           "found": true,
-          "latestAttempt": 1,
+          "latestAttempt": 2,
           "metadata": {
             "assetId": "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment",
-            "attempt": 1,
-            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles-master-v1.png)",
-            "sourceReferenceSha256": "18054d5bfa77ffb7b2a23c8dfe4e9da17e38f6c6d02ba8ff8c87742926cf4e7b",
+            "attempt": 2,
+            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.horizontal-poles.state.out-of-page-assessment.board.png)",
+            "sourceReferenceSha256": "28f72c80e1f2a943b0c06c70e54259206150ed08da5a46a788b60a39ea59249d",
             "model": "gemini-3.1-flash-image",
-            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-master-v1.png",
-            "masterSha256": "73d7717f74238f6d249f3445045d75b9327c7caf6e47979028c3ea783fd5c90e",
-            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-derivative-v1.png",
-            "derivativeSha256": "2e0646be1d4f9f3f65cb5d086720628f61cd5fa51bd3583cc23b3350a391bf4a",
-            "generatedAt": "2026-08-25T19:48:18.048Z"
+            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-master-v2.png",
+            "masterSha256": "d1b12c67973561fa2ec7f3d78d8be3661cf0eda18aff6e08446ceaee5716c292",
+            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.horizontal-poles\\unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-derivative-v2.png",
+            "derivativeSha256": "5b15708d9ce72faa0f325ad6ac960f66c96cbf1c7664a63fb2c852950b6ba8b7",
+            "generatedAt": "2026-08-25T23:01:33.919Z"
           },
           "audit": {
             "assetId": "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment",
-            "attempt": 1,
-            "productionRun": "CC-11.10-state-specific-remediation",
+            "attempt": 2,
+            "productionRun": "CC-11.12-semantic-qa-remediation",
             "verdict": "PASS",
+            "technicalVerdict": "PASS",
+            "pedagogicalClarityVerdict": "PASS",
+            "visualProductQualityVerdict": "PASS",
             "factChecks": [
               {
-                "fact": "current direction (given stimulus): out of page (dot symbol)",
+                "fact": "ONE N/S pole pair only",
                 "result": "PASS",
-                "note": "Dot symbol present, matching the teaching sibling's given stimulus."
+                "note": "Single pair, correctly positioned per the prepared board."
               },
               {
-                "fact": "force direction (assessed answer) correctly WITHHELD",
+                "fact": "ONE clean field-line system (no tangling/crossing lines)",
                 "result": "PASS",
-                "note": "No force arrow present anywhere in the image."
+                "note": "Denser than sibling (~10 lines) but all parallel, same direction -- not a repeat of the original tangled-grid defect."
+              },
+              {
+                "fact": "current marker correct for this state",
+                "result": "PASS",
+                "note": "Dot symbol clear."
+              },
+              {
+                "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+                "result": "PASS",
+                "note": "Correctly absent."
               }
             ],
             "prohibitedChangeChecks": [
               {
-                "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+                "prohibition": "no competing/duplicated second field or force line system",
                 "result": "PASS",
-                "note": "Base composition (magnets, field lines, N/S labels) visually unchanged from the approved shared base master."
+                "note": "Single clean system, matches prepared board exactly."
               }
             ],
-            "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+            "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
             "bakedLabelsFound": true,
             "physicalImplausibilityNotes": "None.",
-            "overallFindings": "PASS -- assessment state correctly shows the given stimulus only, withholds the answer.",
-            "auditedAt": "2026-08-25T19:49:06.449Z"
+            "overallFindings": "PASS -- semantic QA REDO resolved. Given stimulus (dot) shown, force withheld. Field-line density slightly higher than ideal but all lines consistent direction, no tangling/contradiction -- accepted.",
+            "auditedAt": "2026-08-25T23:06:29.752Z"
           }
         }
       ]
@@ -657,199 +703,241 @@
         {
           "assetId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
           "found": true,
-          "latestAttempt": 1,
+          "latestAttempt": 2,
           "metadata": {
             "assetId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
-            "attempt": 1,
-            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.vertical-poles/unit202.motor.effect.vertical-poles-master-v1.png)",
-            "sourceReferenceSha256": "f00d06f43d35186bff57eb9f695c369238a436ca670febfa93fa3e4248f02009",
+            "attempt": 2,
+            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.vertical-poles.state.into-page-teaching.board.png)",
+            "sourceReferenceSha256": "f52058f7d4344c567d08610505caa812433f1861e01ff02b80f39f306f5568da",
             "model": "gemini-3.1-flash-image",
-            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-master-v1.png",
-            "masterSha256": "f6c05710510f8cc43ade4219c0ae92110ed761c7ff0b088b380ff3b57331670e",
-            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-derivative-v1.png",
-            "derivativeSha256": "728ef7188f45199728b53deffe4056adf3cbff299fc50869457901fc83f1426f",
-            "generatedAt": "2026-08-25T19:49:25.038Z"
+            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-master-v2.png",
+            "masterSha256": "82f43d10d4ba0da69a848ed11691a123c2d3a4db5077bf0060ac57cf2ebd466a",
+            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-derivative-v2.png",
+            "derivativeSha256": "c76eb11b8c388991e16e0a955f9ba74ce98de0155199c628f1c617899e01afe0",
+            "generatedAt": "2026-08-25T23:02:40.365Z"
           },
           "audit": {
             "assetId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
-            "attempt": 1,
-            "productionRun": "CC-11.10-state-specific-remediation",
+            "attempt": 2,
+            "productionRun": "CC-11.12-semantic-qa-remediation",
             "verdict": "PASS",
+            "technicalVerdict": "PASS",
+            "pedagogicalClarityVerdict": "PASS",
+            "visualProductQualityVerdict": "PASS",
             "factChecks": [
               {
-                "fact": "current direction: into page (cross symbol)",
+                "fact": "ONE N/S pole pair only",
                 "result": "PASS",
-                "note": "Cross correctly drawn."
+                "note": "Single pair, correctly positioned per the prepared board."
               },
               {
-                "fact": "force direction: RIGHT (Fleming's-left-hand-rule correct for N-bottom/S-top field, current into page)",
+                "fact": "ONE clean field-line system (no tangling/crossing lines)",
                 "result": "PASS",
-                "note": "Force arrow points right -- independently re-derived via F=BIL cross product, cross-checked against the original external reference image's own out-of-page/force-left combination (reversing both current and force together is the physically consistent complementary case)."
+                "note": "7 clean parallel vertical lines."
               },
               {
-                "fact": "N (red, bottom) / S (green, top) preserved",
+                "fact": "current marker correct for this state",
                 "result": "PASS",
-                "note": "Unchanged from approved base."
+                "note": "X symbol clear."
+              },
+              {
+                "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+                "result": "PASS",
+                "note": "Rightward arrow present, matches derivation."
               }
             ],
             "prohibitedChangeChecks": [
               {
-                "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+                "prohibition": "no competing/duplicated second field or force line system",
                 "result": "PASS",
-                "note": "Base composition unchanged from the approved shared base master."
+                "note": "Single clean system, matches prepared board exactly."
               }
             ],
-            "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+            "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
             "bakedLabelsFound": true,
             "physicalImplausibilityNotes": "None.",
-            "overallFindings": "PASS -- direction-specific teaching state correctly generated on first attempt.",
-            "auditedAt": "2026-08-25T19:51:22.643Z"
+            "overallFindings": "PASS -- semantic QA REDO resolved. Clean field system, correct X marker, correct rightward force arrow.",
+            "auditedAt": "2026-08-25T23:06:29.752Z"
           }
         },
         {
           "assetId": "unit202.motor.effect.vertical-poles.state.into-page-assessment",
           "found": true,
-          "latestAttempt": 1,
+          "latestAttempt": 2,
           "metadata": {
             "assetId": "unit202.motor.effect.vertical-poles.state.into-page-assessment",
-            "attempt": 1,
-            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.vertical-poles/unit202.motor.effect.vertical-poles-master-v1.png)",
-            "sourceReferenceSha256": "f00d06f43d35186bff57eb9f695c369238a436ca670febfa93fa3e4248f02009",
+            "attempt": 2,
+            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.vertical-poles.state.into-page-assessment.board.png)",
+            "sourceReferenceSha256": "b02216435c4d7aceceb0020de718fe2dfcb9e4a91923dc10700e56bfcd901a83",
             "model": "gemini-3.1-flash-image",
-            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-master-v1.png",
-            "masterSha256": "05917091aff9e382d444c20ed804ee60813dab3639177148e7c7d141fabd9430",
-            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-derivative-v1.png",
-            "derivativeSha256": "864a4efd31286a20a7364ba49928d03938c0625a80c15aaac32f97ac47912be1",
-            "generatedAt": "2026-08-25T19:50:22.822Z"
+            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-master-v2.png",
+            "masterSha256": "8f2089854c7bfed9f4a7f14777ad443ca6c02619326be144941657f2cbbf724d",
+            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-assessment-derivative-v2.png",
+            "derivativeSha256": "f49ae71193591c7f462f6bfbd1789d02d52b0a7c8a8d6948375cda34c6b30073",
+            "generatedAt": "2026-08-25T23:03:49.920Z"
           },
           "audit": {
             "assetId": "unit202.motor.effect.vertical-poles.state.into-page-assessment",
-            "attempt": 1,
-            "productionRun": "CC-11.10-state-specific-remediation",
+            "attempt": 2,
+            "productionRun": "CC-11.12-semantic-qa-remediation",
             "verdict": "PASS",
+            "technicalVerdict": "PASS",
+            "pedagogicalClarityVerdict": "PASS",
+            "visualProductQualityVerdict": "PASS",
             "factChecks": [
               {
-                "fact": "current direction (given stimulus): into page (cross symbol)",
+                "fact": "ONE N/S pole pair only",
                 "result": "PASS",
-                "note": "Matches teaching sibling."
+                "note": "Single pair, correctly positioned per the prepared board."
               },
               {
-                "fact": "force direction (assessed answer) correctly WITHHELD",
+                "fact": "ONE clean field-line system (no tangling/crossing lines)",
                 "result": "PASS",
-                "note": "No force arrow or 'Force' label present."
+                "note": "5 clean parallel lines."
+              },
+              {
+                "fact": "current marker correct for this state",
+                "result": "PASS",
+                "note": "X symbol clear."
+              },
+              {
+                "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+                "result": "PASS",
+                "note": "Correctly absent."
               }
             ],
             "prohibitedChangeChecks": [
               {
-                "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+                "prohibition": "no competing/duplicated second field or force line system",
                 "result": "PASS",
-                "note": "Base composition unchanged from the approved shared base master."
+                "note": "Single clean system, matches prepared board exactly."
               }
             ],
-            "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+            "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
             "bakedLabelsFound": true,
             "physicalImplausibilityNotes": "None.",
-            "overallFindings": "PASS -- assessment state correctly shows given stimulus only.",
-            "auditedAt": "2026-08-25T19:51:22.648Z"
+            "overallFindings": "PASS -- semantic QA REDO resolved. Given stimulus (X) shown, force withheld.",
+            "auditedAt": "2026-08-25T23:06:29.754Z"
           }
         },
         {
           "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
           "found": true,
-          "latestAttempt": 1,
+          "latestAttempt": 2,
           "metadata": {
             "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
-            "attempt": 1,
-            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.vertical-poles/unit202.motor.effect.vertical-poles-master-v1.png)",
-            "sourceReferenceSha256": "f00d06f43d35186bff57eb9f695c369238a436ca670febfa93fa3e4248f02009",
+            "attempt": 2,
+            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.vertical-poles.state.out-of-page-teaching.board.png)",
+            "sourceReferenceSha256": "5ef1c96778c74edea0ceb910fc8a007499e892ca0cdab82b1cf070a42019b83b",
             "model": "gemini-3.1-flash-image",
-            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-master-v1.png",
-            "masterSha256": "1449b25dce497295a34ee05cdfbc4155154273e6c4855b41bfe2283abd640d92",
-            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-derivative-v1.png",
-            "derivativeSha256": "ad2b37fcfabf27aeab6dc7dda1868620d9c225ffc76757519317b58977d19eff",
-            "generatedAt": "2026-08-25T19:49:39.658Z"
+            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-master-v2.png",
+            "masterSha256": "7ee8b63c3d75fb8844738f8fa0d73a8319f9ff6ce2751455f7229b795fcf22f8",
+            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-teaching-derivative-v2.png",
+            "derivativeSha256": "7e007552b64a7617d898660b5659dc33ba1f2c8be9cff46855c640d30e32db83",
+            "generatedAt": "2026-08-25T23:02:52.304Z"
           },
           "audit": {
             "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-teaching",
-            "attempt": 1,
-            "productionRun": "CC-11.10-state-specific-remediation",
+            "attempt": 2,
+            "productionRun": "CC-11.12-semantic-qa-remediation",
             "verdict": "PASS",
+            "technicalVerdict": "PASS",
+            "pedagogicalClarityVerdict": "PASS",
+            "visualProductQualityVerdict": "PASS",
             "factChecks": [
               {
-                "fact": "current direction: out of page (dot symbol)",
+                "fact": "ONE N/S pole pair only",
                 "result": "PASS",
-                "note": "Dot correctly drawn."
+                "note": "Single pair, correctly positioned per the prepared board."
               },
               {
-                "fact": "force direction: LEFT (matches the original external reference image directly -- same current/force combination)",
+                "fact": "ONE clean field-line system (no tangling/crossing lines)",
                 "result": "PASS",
-                "note": "Force arrow points left, with an added 'Force' text label."
+                "note": "5 clean parallel lines."
               },
               {
-                "fact": "N (red, bottom) / S (green, top) preserved",
+                "fact": "current marker correct for this state",
                 "result": "PASS",
-                "note": "Unchanged from approved base."
+                "note": "Dot symbol clear."
+              },
+              {
+                "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+                "result": "PASS",
+                "note": "Leftward arrow present, matches derivation."
               }
             ],
             "prohibitedChangeChecks": [
               {
-                "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+                "prohibition": "no competing/duplicated second field or force line system",
                 "result": "PASS",
-                "note": "Base composition unchanged from the approved shared base master."
+                "note": "Single clean system, matches prepared board exactly."
               }
             ],
-            "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+            "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
             "bakedLabelsFound": true,
             "physicalImplausibilityNotes": "None.",
-            "overallFindings": "PASS -- direction-specific teaching state correctly generated on first attempt, matches original reference directly.",
-            "auditedAt": "2026-08-25T19:51:22.646Z"
+            "overallFindings": "PASS -- semantic QA REDO resolved. Clean field system, correct dot marker, correct leftward force arrow.",
+            "auditedAt": "2026-08-25T23:06:29.755Z"
           }
         },
         {
           "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-assessment",
           "found": true,
-          "latestAttempt": 1,
+          "latestAttempt": 3,
           "metadata": {
             "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-assessment",
-            "attempt": 1,
-            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.vertical-poles/unit202.motor.effect.vertical-poles-master-v1.png)",
-            "sourceReferenceSha256": "f00d06f43d35186bff57eb9f695c369238a436ca670febfa93fa3e4248f02009",
+            "attempt": 3,
+            "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.vertical-poles.state.out-of-page-assessment.board.png)",
+            "sourceReferenceSha256": "ea463aadab36652ce959b73e37662ba5dd5cd11610dc0d69673d79a797d560da",
             "model": "gemini-3.1-flash-image",
-            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-master-v1.png",
-            "masterSha256": "dc3fd1eda18ce6ffdb88069607aa215ec630f31d356e4099088015eeb6f20f34",
-            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-derivative-v1.png",
-            "derivativeSha256": "262d5e1704c85cbf5d7d30e829b3d4bd080b5da422d4ca38e660ff680d73124e",
-            "generatedAt": "2026-08-25T19:50:36.798Z"
+            "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-master-v3.png",
+            "masterSha256": "486471953b1c869bf3a1063a0e792a1b5414844cee493085105e1042382261c9",
+            "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.out-of-page-assessment-derivative-v3.png",
+            "derivativeSha256": "b8ecfba385aa91cf85908772fbb4d1b282bca0088686f7bf2e21844332359563",
+            "generatedAt": "2026-08-25T23:05:09.756Z"
           },
           "audit": {
             "assetId": "unit202.motor.effect.vertical-poles.state.out-of-page-assessment",
-            "attempt": 1,
-            "productionRun": "CC-11.10-state-specific-remediation",
+            "attempt": 3,
+            "productionRun": "CC-11.12-semantic-qa-remediation",
             "verdict": "PASS",
+            "technicalVerdict": "PASS",
+            "pedagogicalClarityVerdict": "PASS",
+            "visualProductQualityVerdict": "PASS",
             "factChecks": [
               {
-                "fact": "current direction (given stimulus): out of page (dot symbol)",
+                "fact": "ONE N/S pole pair only",
                 "result": "PASS",
-                "note": "Matches teaching sibling."
+                "note": "Single pair, correctly positioned per the prepared board."
               },
               {
-                "fact": "force direction (assessed answer) correctly WITHHELD",
+                "fact": "ONE clean field-line system (no tangling/crossing lines)",
                 "result": "PASS",
-                "note": "No force arrow or 'Force' label present."
+                "note": "5 clean parallel lines after correction."
+              },
+              {
+                "fact": "current marker correct for this state",
+                "result": "PASS",
+                "note": "Corrected to a clear flat circle-with-dot marker (attempt 2's 3D cylinder was ambiguous)."
+              },
+              {
+                "fact": "force arrow correct (teaching: present and correctly directed; assessment: absent)",
+                "result": "PASS",
+                "note": "Correctly absent."
               }
             ],
             "prohibitedChangeChecks": [
               {
-                "prohibition": "do not change magnet positions, colours, N/S labels or field-line pattern from the approved base",
+                "prohibition": "no competing/duplicated second field or force line system",
                 "result": "PASS",
-                "note": "Base composition unchanged from the approved shared base master."
+                "note": "Single clean system, matches prepared board exactly."
               }
             ],
-            "styleComplianceNotes": "White/near-white background preserved from approved base. No extraneous labels added.",
+            "styleComplianceNotes": "White/near-white background, premium metallic magnet blocks, ALP style. CC-11.12: regenerated from a hand-authored clean technical board (not the original tangled photoreal reference) per semantic QA finding.",
             "bakedLabelsFound": true,
             "physicalImplausibilityNotes": "None.",
-            "overallFindings": "PASS -- assessment state correctly shows given stimulus only.",
-            "auditedAt": "2026-08-25T19:51:22.649Z"
+            "overallFindings": "PASS after 1 bounded correction -- attempt 2 rendered the conductor as a 3D copper cylinder with no clear dot marker (ambiguous current-direction stimulus); corrected to a clear flat circular dot marker matching its sibling's style. Field-line density also normalised to 5 (attempt 2 had ~10).",
+            "auditedAt": "2026-08-25T23:06:29.756Z"
           }
         }
       ]
@@ -929,135 +1017,143 @@
     {
       "assetId": "unit202.generator.rotating-loop.horizontal",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.generator.rotating-loop.horizontal",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.generator.figure1-cropped.prepared.png)",
-        "sourceReferenceSha256": "b374f5859b737b5265874100ea80efcf169eb5195847273765df44555c2f020b",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf (prepared: tools/visual-production-studio/reference-cache/unit202.generator.rotating-loop.horizontal.raster.png)",
+        "sourceReferenceSha256": "4d7c9d851b8ed8ed66ed3506ddbe573f7b11a93ebe081fa5e730bc173662366c",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-master-v1.png",
-        "masterSha256": "46d423a90d69b50d9e4dede228691e81c65604e4906f701e19a639dfb9f15577",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-derivative-v1.png",
-        "derivativeSha256": "c6466de7e34fadf3c9dea6a7cb69b943fc6ddd2dbd2d16a44ba2a5659fc7156b",
-        "generatedAt": "2026-08-24T23:21:37.579Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-master-v2.png",
+        "masterSha256": "eaae96ee2744ff83ec632ac2da466f3115e8949d2a9d62f4e651c2201d88dd0c",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.horizontal\\unit202.generator.rotating-loop.horizontal-derivative-v2.png",
+        "derivativeSha256": "4d4daa9db558706654e9adce05678f34a3adc73d448f7f6d505d35edad20bc00",
+        "generatedAt": "2026-08-25T23:07:57.404Z"
       },
       "audit": {
         "assetId": "unit202.generator.rotating-loop.horizontal",
-        "attempt": 1,
-        "productionRun": "CC-11.9",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: the review pack's own 'reference preview not found' finding was correct -- no real reference had ever actually been visible for this asset, and the resulting topology was ambiguous. Acquired a real, visible, unambiguous public-domain reference (Elementary_generator.svg, FAA) and regenerated directly from it.",
         "factChecks": [
           {
-            "fact": "N/S magnetic poles",
+            "fact": "ONE unmistakable rectangular loop only",
             "result": "PASS",
-            "note": "N (left) and S (right) clearly labelled on the pole pieces."
+            "note": "Single loop, explicitly labelled 'coil/loop'. No second loop-like structure anywhere in the image."
           },
           {
-            "fact": "loop/coil between the poles",
+            "fact": "one shaft",
             "result": "PASS",
-            "note": "Single copper loop visible, positioned between the N and S pole faces."
+            "note": "Single shaft with a rotation-indicator arrow, connecting the loop to the slip rings."
           },
           {
-            "fact": "loop plane facing poles head-on (widest visible loop face) -- defining fact of this asset",
+            "fact": "two separate slip rings, one per loop end",
             "result": "PASS",
-            "note": "The loop's rectangular face is substantially visible from this viewing angle (not an edge-on sliver), consistent with the near-zero-EMF, face-on pose requested."
+            "note": "Two distinct copper rings visible, each with its own carbon brush."
           },
           {
-            "fact": "central rotational axis",
+            "fact": "two stationary brushes",
             "result": "PASS",
-            "note": "A single common shaft runs through the loop and both slip rings."
+            "note": "Labelled 'carbon' at each ring."
           },
           {
-            "fact": "output/slip-ring concept at governed Level-2 abstraction",
+            "fact": "N/S poles",
             "result": "PASS",
-            "note": "TWO separate slip rings are visible, mounted concentrically on the shaft, each contacted by its own stationary brush, with wires running from the brushes to a resistor labelled OUTPUT. This is a materially complete topology, not merely a vague 'concept' -- directly resolves the CC-11.9 handover's complaint about the prior catalogue's under-specified slip-ring wording."
+            "note": "Labelled N (right) and S (left)."
           },
           {
-            "fact": "rotating conductor cuts magnetic flux",
+            "fact": "coherent output path",
             "result": "PASS",
-            "note": "Implied correctly by the loop-between-poles + rotation-indicator composition; not contradicted anywhere."
+            "note": "Output wires trace clearly from the brushes to the labelled Load."
+          },
+          {
+            "fact": "no split-ring commutator",
+            "result": "PASS",
+            "note": "Two full concentric rings, not a split ring -- correct for an AC generator, not a DC motor."
+          },
+          {
+            "fact": "learner must not reasonably read this as two coils",
+            "result": "PASS",
+            "note": "Single continuous copper loop traced from one slip ring, around the shaft, to the other -- unambiguous."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not substitute a detailed modern alternator",
+            "prohibition": "do not invent a second loop/coil",
             "result": "PASS",
-            "note": "Kept at the elementary single-loop/two-slip-ring level matching the DOE reference, not an over-detailed modern machine."
-          },
-          {
-            "prohibition": "do not add three-phase windings, phasors or brushes/commutator detail beyond governed scope",
-            "result": "PASS",
-            "note": "Exactly two brushes, two rings -- no commutator (a commutator would be a single split ring; this is unambiguously two separate full rings), no three-phase winding."
-          },
-          {
-            "prohibition": "do not depict the edge-on loop pose in this asset -- that is the sibling ProductionAsset",
-            "result": "PASS",
-            "note": "The loop is shown face-on, not edge-on -- correct pose for the horizontal/near-zero-EMF asset."
+            "note": "Verified absent."
           }
         ],
-        "styleComplianceNotes": "White/near-white background correctly applied. Premium brushed-metal magnet poles and shaft, copper-toned loop -- reads as a real, tactile apparatus. Labels N, S, coil/loop, rotation indicator, output are all present and legible, matching this asset's requiredLabels.",
+        "styleComplianceNotes": "White/near-white background, premium metallic finish, ALP style. Labels (coil/loop, N, S, rotation indicator, carbon, Slip ring, Load, Brush, output) all legible.",
         "bakedLabelsFound": true,
-        "physicalImplausibilityNotes": "None -- the two-slip-ring/two-brush/output topology is mechanically coherent and matches the DOE reference figure's own topology exactly.",
-        "overallFindings": "Strong PASS on first attempt. The prepared DOE Figure 1 crop (a genuine, complete, technically authoritative topology reference -- selected via real text search of the handbook for 'slip ring' rather than guessed) gave Gemini an unambiguous topology to redraw, and it preserved every required structural element: two separate slip rings, two brushes, correct output path, no commutator, correct N/S, correct face-on pose. This directly satisfies the CC-11.9 handover's specific concern that the previous generic Commons SVG reference under-specified the slip-ring mechanism.",
-        "auditedAt": "2026-08-25T00:25:00.000Z"
+        "physicalImplausibilityNotes": "None -- a physically coherent elementary AC generator.",
+        "overallFindings": "PASS. The core semantic QA defect (reference never actually visible, topology ambiguous) is resolved by using a real, visible, unambiguous reference directly.",
+        "auditedAt": "2026-08-26T10:00:00.000Z"
       }
     },
     {
       "assetId": "unit202.generator.rotating-loop.vertical",
       "found": true,
-      "latestAttempt": 2,
+      "latestAttempt": 3,
       "metadata": {
         "assetId": "unit202.generator.rotating-loop.vertical",
-        "attempt": 2,
-        "sourceReferenceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.generator.figure1-cropped.prepared.png)",
-        "sourceReferenceSha256": "b374f5859b737b5265874100ea80efcf169eb5195847273765df44555c2f020b",
+        "attempt": 3,
+        "sourceReferenceUrl": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf (prepared: tools/visual-production-studio/reference-cache/unit202.generator.rotating-loop.horizontal.raster.png)",
+        "sourceReferenceSha256": "4d7c9d851b8ed8ed66ed3506ddbe573f7b11a93ebe081fa5e730bc173662366c",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-master-v2.png",
-        "masterSha256": "3c9083de87bf6b541c8345e21afa2e9fb96e4d3c230a73d1f88c771ddb7b9ad3",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-derivative-v2.png",
-        "derivativeSha256": "0adba7f4a4b9bcca1bf4974d5109347d2bc8e440b94d48f43cbc9d1be510e816",
-        "generatedAt": "2026-08-25T18:22:46.821Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-master-v3.png",
+        "masterSha256": "9842eb16624ceebc4429248aa5f3b1f078c18cc475ec0e25c3085a0f77bf4047",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.generator.rotating-loop.vertical\\unit202.generator.rotating-loop.vertical-derivative-v3.png",
+        "derivativeSha256": "c3a996a6a0dc1c0076718b287ae4d98569fcb2759b56e92247b73f1c2197561a",
+        "generatedAt": "2026-08-25T23:08:54.280Z"
       },
       "audit": {
         "assetId": "unit202.generator.rotating-loop.vertical",
-        "attempt": 2,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 3,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: 'current output is too complicated' -- regenerated from the same real Elementary_generator.svg reference as the horizontal sibling, explicitly instructed to rotate the SAME rig to the edge-on pose.",
         "factChecks": [
           {
-            "fact": "N/S magnetic poles",
+            "fact": "ONE unmistakable rectangular loop only, now edge-on (thin sliver, not an open rectangle)",
             "result": "PASS",
-            "note": "Correctly labelled on both pole pieces, matching the reference's own pole-facing arrangement (one N, one S facing the gap -- never N-N or S-S)."
+            "note": "Loop clearly rotated 90 degrees from the horizontal sibling -- appears as a narrow vertical sliver, correct for the edge-on/near-peak-EMF pose."
           },
           {
-            "fact": "loop/coil between the poles",
+            "fact": "same one-shaft/two-ring/two-brush/N-S/output system as the horizontal sibling",
             "result": "PASS",
-            "note": "Present."
+            "note": "Same magnet colours/labels (S left, N right), same shaft, two slip rings each with a carbon brush, same Load/output labelling -- visibly the same physical rig, only rotated."
           },
           {
-            "fact": "loop plane edge-on to the poles (loop seen from the side, near its thinnest visible silhouette) -- defining fact of this asset",
+            "fact": "no split-ring commutator",
             "result": "PASS",
-            "note": "The loop now reads as a narrow, nearly-vertical U-shape -- genuinely edge-on, clearly distinct from the horizontal sibling's open-rectangle face-on pose. The correction resolved the defect."
-          },
-          {
-            "fact": "two separate slip rings, brushes, output path",
-            "result": "PASS",
-            "note": "Topology correctly preserved from the reference."
+            "note": "Two full concentric rings preserved."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not depict the face-on loop pose in this asset -- that is the sibling ProductionAsset",
+            "prohibition": "do not invent a second loop/coil",
             "result": "PASS",
-            "note": "Pose is now clearly edge-on, not face-on."
+            "note": "Verified absent."
+          },
+          {
+            "prohibition": "must not look like a different machine from its horizontal sibling",
+            "result": "PASS",
+            "note": "Same apparatus, same labels, same style -- only the loop's rotational angle differs."
           }
         ],
-        "styleComplianceNotes": "White/near-white background. Labels N, S, coil/loop, direction of rotation, output all present.",
+        "styleComplianceNotes": "White/near-white background, premium metallic finish, matches horizontal sibling's style exactly.",
         "bakedLabelsFound": true,
         "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS after one correction attempt. The explicit, forceful rotation instruction resolved the pose-differentiation defect from attempt 1.",
-        "auditedAt": "2026-08-25T02:15:00.000Z"
+        "overallFindings": "PASS. Clearly the same one-loop system as the horizontal sibling, correctly rotated to the edge-on pose.",
+        "auditedAt": "2026-08-26T10:05:00.000Z"
       }
     },
     {
@@ -1230,43 +1326,62 @@
     {
       "assetId": "unit202.levers.class-3",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.levers.class-3",
-        "attempt": 1,
+        "attempt": 2,
         "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Lever_(PSF).svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.levers.class-3.prepared.png)",
-        "sourceReferenceSha256": "f17467f63d49084c8b0e1a7378b37c4c0260810ea0dae2f4003aad461e06582a",
+        "sourceReferenceSha256": "0129a904ab644ab7722b7c2a61b5d63cd652f5d57f237b80d03f44f9c7d4c002",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-master-v1.png",
-        "masterSha256": "7d0e537861f29cbefbc07f0e395e6d68766057266b6d0ff58feaa2842d5a7930",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-derivative-v1.png",
-        "derivativeSha256": "9dee89e51e2f2bc21b8d871d8c2220963ccec5fb4090a55de770ec0b99da021f",
-        "generatedAt": "2026-08-25T18:15:13.037Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-master-v2.png",
+        "masterSha256": "3b4d14b7e91e20ce8aea1e797305e70f2a26be9e646280f0ee9ba1f0eeeffd34",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.levers.class-3\\unit202.levers.class-3-derivative-v2.png",
+        "derivativeSha256": "3f885d369c3b9a9de459f67e6d47ea6793ef17efba3c7d04beb96ffe7ce20f83",
+        "generatedAt": "2026-08-25T23:14:47.372Z"
       },
       "audit": {
         "assetId": "unit202.levers.class-3",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: regenerated from a clean crop of ONLY the abstract Class-III schematic (excavator/digger excluded entirely, verified via the prepared-reference file itself). ACCEPTED AS FINAL CANDIDATE over attempt 3 (see that attempt's own audit) -- attempt 3's requested label cleanup introduced a new bent-beam geometry defect without actually removing the extra labels, a regression, not an improvement; per bounded-retry discipline this asset is not retried a third time.",
         "factChecks": [
           {
-            "fact": "effort positioned between the fulcrum and the load point",
+            "fact": "ONE Class III arrangement only (effort between fulcrum and load)",
             "result": "PASS",
-            "note": "Left-to-right order is LOAD (gearbox-like block) -> EFFORT (cylinder actuator) -> FULCRUM (pivot mount, right end). Effort is correctly between load and fulcrum."
+            "note": "Load block at left, effort arrow in the middle, gold fulcrum triangle at right -- correct Class III geometry."
+          },
+          {
+            "fact": "no Class I/II geometry mixed in",
+            "result": "PASS",
+            "note": "Single arrangement only."
+          },
+          {
+            "fact": "no excavator/digger/real-world machine iconography",
+            "result": "PASS",
+            "note": "Verified absent -- full image inspected."
+          },
+          {
+            "fact": "premium metallic beam finish matching Class I/II family",
+            "result": "PASS",
+            "note": "Silver/steel beam, gold-toned triangular pivot -- same material language as unit202.levers.class-1/class-2."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not blend this with the Class I or Class II arrangement",
+            "prohibition": "no excavator, digger, bucket, hydraulic-arm iconography",
             "result": "PASS",
-            "note": "Only the Class III arrangement is shown."
+            "note": "Verified absent."
           }
         ],
-        "styleComplianceNotes": "White/near-white background. Each label (LOAD, EFFORT, FULCRUM) present exactly once, no duplication (unlike the sibling Class II attempt). Stylistically more elaborate than a plain bar -- an excavator-arm-inspired industrial mechanism rather than an abstract bar+markers -- but this is within the asset's own declared creative freedoms (\"premium physical lever-rig rendering, material/finish, composition\") and does not affect the governed ordering or labels, which are both correct.",
+        "styleComplianceNotes": "White/near-white background, matches Class I/II beam/pivot material style. Minor imperfection: label set includes RESISTANCE and MOTION in addition to the governed EFFORT/LOAD/FULCRUM set (inherited from the source reference's own labelling) -- a cosmetic label-count mismatch with the Class I/II sibling family, not a technical or pedagogical defect (RESISTANCE is synonymous with LOAD, MOTION is directionally consistent with EFFORT). One correction attempt was made to clean this up; it introduced a new bent-beam geometry defect instead of fixing the labels (see attempt 3's own audit) and was rejected. Per bounded-retry discipline, this minor label-count imperfection is accepted rather than risking a further regression.",
         "bakedLabelsFound": true,
-        "physicalImplausibilityNotes": "None -- the depicted mechanism (bucket/arm/pivot) is a coherent, if elaborate, industrial assembly.",
-        "overallFindings": "PASS. Geometry and labels correct; noted stylistic elaboration is a non-blocking observation, not a defect.",
-        "auditedAt": "2026-08-25T02:00:00.000Z"
+        "physicalImplausibilityNotes": "None.",
+        "overallFindings": "PASS. The core semantic QA defect (excavator contamination) is fully resolved. Geometry is correct Class III. Minor extra-label cosmetic imperfection accepted after one correction attempt made things worse, not better.",
+        "auditedAt": "2026-08-26T10:20:00.000Z"
       }
     },
     {
@@ -1442,101 +1557,114 @@
     {
       "assetId": "unit202.magnet.poles.like",
       "found": true,
-      "latestAttempt": 1,
-      "metadata": {
-        "assetId": "unit202.magnet.poles.like",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_repelling.svg",
-        "sourceReferenceSha256": "d37464dd2287800128ff26fbe1503543fe4049eb5cbdcf625c57365fa07e5a0a",
-        "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-master-v1.png",
-        "masterSha256": "d452ebe28f8b496bb520de8346833c87416712b0be1f360054d020f69b6bc717",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-derivative-v1.png",
-        "derivativeSha256": "59c763aebc71bcb491bf02bb76b6bb2150580d8409f01d4df2fcf52de24e48f4",
-        "generatedAt": "2026-08-25T18:06:12.786Z"
-      },
-      "audit": {
-        "assetId": "unit202.magnet.poles.like",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
-        "verdict": "PASS",
-        "factChecks": [
-          {
-            "fact": "like poles facing",
-            "result": "PASS",
-            "note": "Left magnet: S|N left-to-right (N faces the gap). Right magnet: N|S left-to-right (N also faces the gap). Both inner-facing poles are N -- genuinely like poles facing."
-          },
-          {
-            "fact": "magnets must be composed with a spacing appropriate to repulsion (visible gap, compressed/deflected field lines)",
-            "result": "PASS",
-            "note": "Clear visible gap between the two magnets; field-line loops on each magnet curve away from the other rather than merging, consistent with repulsion."
-          },
-          {
-            "fact": "field behaviour between the two magnets must remain physically meaningful",
-            "result": "PASS",
-            "note": "Field lines on each magnet's facing side deflect outward/around rather than connecting to the other magnet -- correct repulsion behaviour."
-          }
-        ],
-        "prohibitedChangeChecks": [
-          {
-            "prohibition": "do not depict the unlike-poles/attracting arrangement in this asset",
-            "result": "PASS",
-            "note": "Only the like-pole/repel arrangement is shown, explicitly labelled \"Repel\" with a double-outward arrow."
-          }
-        ],
-        "styleComplianceNotes": "White/near-white background. N/S labels present on both magnets, correctly assigned. \"Repel\" label with directional arrows present and unambiguous.",
-        "bakedLabelsFound": true,
-        "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS.",
-        "auditedAt": "2026-08-25T01:45:00.000Z"
-      }
-    },
-    {
-      "assetId": "unit202.magnet.poles.unlike",
-      "found": true,
       "latestAttempt": 2,
       "metadata": {
-        "assetId": "unit202.magnet.poles.unlike",
+        "assetId": "unit202.magnet.poles.like",
         "attempt": 2,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_attracting.svg",
-        "sourceReferenceSha256": "e05eb74f1db4415967acaf311f316e172dee8ded2eb53e0b7e9cabfdf329aabd",
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_repelling.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.magnet.poles.like/unit202.magnet.poles.like-master-v1.png)",
+        "sourceReferenceSha256": "d452ebe28f8b496bb520de8346833c87416712b0be1f360054d020f69b6bc717",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-master-v2.png",
-        "masterSha256": "fd1fa724cd9714da599974872a0235f368df5fc8d376b15f5016ad92649bcc05",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-derivative-v2.png",
-        "derivativeSha256": "7e3b5adba912bc809d69f8666991c577bc7b4f876754eeeeb1dde3182316f48e",
-        "generatedAt": "2026-08-25T20:04:52.150Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-master-v2.png",
+        "masterSha256": "ba3cf983ba11d59f3dce870b5e80975ac09894adeb54bae4fd3682373c6c2043",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.like\\unit202.magnet.poles.like-derivative-v2.png",
+        "derivativeSha256": "1b242befe0f94f021b46601172cd68acecc8765f6eef78ead781bf8a75202bed",
+        "generatedAt": "2026-08-25T23:18:11.437Z"
       },
       "audit": {
-        "assetId": "unit202.magnet.poles.unlike",
+        "assetId": "unit202.magnet.poles.like",
         "attempt": 2,
-        "productionRun": "CC-11.10-bounded-remediation",
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
-        "correctionNote": "Optional low-risk cleanup (CC-11.10 item B): removed the unnecessary crossed-out 'repel' icon.",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: removed 'Repel' text; sharpened field-line and magnet rendering.",
         "factChecks": [
           {
-            "fact": "S-N / S-N facing arrangement (unlike poles facing), attract",
+            "fact": "like poles facing (N meets N)",
             "result": "PASS",
-            "note": "Unchanged from attempt 1 -- N of left magnet faces S of right magnet, correct for the 'unlike poles attract' asset."
+            "note": "Both magnets' N poles face the central gap -- unchanged geometry from v1."
           },
           {
-            "fact": "crossed-out 'repel' icon removed",
+            "fact": "no answer-bearing text",
             "result": "PASS",
-            "note": "Verified absent -- only the 'attract' label and double-headed arrow remain between the magnets."
+            "note": "'Repel' word and arrow verified absent."
+          },
+          {
+            "fact": "sharp, crisp rendering",
+            "result": "PASS",
+            "note": "Field lines and magnet surfaces noticeably crisper than v1."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "keep field lines, magnet colours/labels and background unchanged",
+            "prohibition": "no force-direction text/arrow",
             "result": "PASS",
-            "note": "Unchanged from attempt 1."
+            "note": "Verified absent."
           }
         ],
         "styleComplianceNotes": "White/near-white background preserved.",
         "bakedLabelsFound": true,
         "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS -- cleanup applied successfully with no regression to the underlying physics content.",
-        "auditedAt": "2026-08-25T20:25:00.000Z"
+        "overallFindings": "PASS. Both named defects (Repel text, fuzzy rendering) resolved.",
+        "auditedAt": "2026-08-26T10:25:00.000Z"
+      }
+    },
+    {
+      "assetId": "unit202.magnet.poles.unlike",
+      "found": true,
+      "latestAttempt": 3,
+      "metadata": {
+        "assetId": "unit202.magnet.poles.unlike",
+        "attempt": 3,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_attracting.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.magnet.poles.unlike/unit202.magnet.poles.unlike-master-v2.png)",
+        "sourceReferenceSha256": "fd1fa724cd9714da599974872a0235f368df5fc8d376b15f5016ad92649bcc05",
+        "model": "gemini-3.1-flash-image",
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-master-v3.png",
+        "masterSha256": "5018e7c7ae5783e9210d1e572da51bb0c49048629f597905ef5a5f515d74c3ea",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-derivative-v3.png",
+        "derivativeSha256": "cd6735d677af5d7a7d302d3b5a7b9ed4f0f385aed59639c6fe2fde4f96cf8fbf",
+        "generatedAt": "2026-08-25T23:19:17.057Z",
+        "modelResponseText": "I have generated the premium instructional image of unlike magnetic pole attraction by redrawing the provided technical reference in the ALP style. The two bar magnets are positioned with unlike poles (N facing S) across the gap, and the connecting field-line geometry clearly communicates the force of attraction, while the text 'attract' and its double-headed arrow have been completely removed."
+      },
+      "audit": {
+        "assetId": "unit202.magnet.poles.unlike",
+        "attempt": 3,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
+        "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: removed 'attract' text and the double-headed arrow.",
+        "factChecks": [
+          {
+            "fact": "unlike poles facing (N meets S)",
+            "result": "PASS",
+            "note": "Left magnet's N (right side) faces right magnet's S (left side) across the gap -- correct attract configuration, unchanged from v2."
+          },
+          {
+            "fact": "no answer-bearing text",
+            "result": "PASS",
+            "note": "'attract' word and double-headed arrow verified absent."
+          },
+          {
+            "fact": "physically meaningful connecting field lines",
+            "result": "PASS",
+            "note": "Field lines merge across the gap, consistent with attraction."
+          }
+        ],
+        "prohibitedChangeChecks": [
+          {
+            "prohibition": "no force-direction text/arrow",
+            "result": "PASS",
+            "note": "Verified absent."
+          }
+        ],
+        "styleComplianceNotes": "White/near-white background preserved.",
+        "bakedLabelsFound": true,
+        "physicalImplausibilityNotes": "None.",
+        "overallFindings": "PASS. Named defect (attract text + arrow) resolved.",
+        "auditedAt": "2026-08-26T10:26:00.000Z"
       }
     },
     {
@@ -1849,152 +1977,184 @@
     {
       "assetId": "unit202.resistivity.length-comparison",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.resistivity.length-comparison",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg",
-        "sourceReferenceSha256": "d5cd082f45443dfcf299543d971395ca5bf38199e50f4b8f6d3bbf4baaee5682",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.resistivity.length-comparison/unit202.resistivity.length-comparison-master-v1.png)",
+        "sourceReferenceSha256": "ffaa3558805f2c29b1277b35d3c034d2f9be0f1f27d7e5a8571c22ee5a20ba9b",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-master-v1.png",
-        "masterSha256": "ffaa3558805f2c29b1277b35d3c034d2f9be0f1f27d7e5a8571c22ee5a20ba9b",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-derivative-v1.png",
-        "derivativeSha256": "384d2fdca3d6deb6ff8b0b897d8ca07dd265b74d0c37bb72d3697eb0008b5ce7",
-        "generatedAt": "2026-08-25T18:25:49.634Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-master-v2.png",
+        "masterSha256": "2342c56f98a69e3708de8ea1e4d18569faa8347a3437a2080c46b5f52d1203f7",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.length-comparison\\unit202.resistivity.length-comparison-derivative-v2.png",
+        "derivativeSha256": "0472f44d891ef790549042ac51a5cf7d34dc20ed7ea2f16a7e2f055a0f6fb23c",
+        "generatedAt": "2026-08-25T23:21:10.682Z"
       },
       "audit": {
         "assetId": "unit202.resistivity.length-comparison",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: removed the course-notation-conflicting 'S' end-face label and the baked 'INCREASED LENGTH -> GREATER RESISTANCE' conclusion text.",
         "factChecks": [
           {
-            "fact": "increased length -> greater resistance (cross-sectional area unchanged)",
+            "fact": "no S notation anywhere",
             "result": "PASS",
-            "note": "Two rods of visibly identical material and cross-section, lengths labelled L and 2L (\"Longer Length\"), with the explicit conclusion \"INCREASED LENGTH -> GREATER RESISTANCE\"."
+            "note": "Verified absent -- no end-face label at all now."
+          },
+          {
+            "fact": "same material/cross-section, only length varies",
+            "result": "PASS",
+            "note": "Both bars visually identical material/thickness, only length (L vs 2L) differs."
+          },
+          {
+            "fact": "no baked conclusion text",
+            "result": "PASS",
+            "note": "'INCREASED LENGTH -> GREATER RESISTANCE' and 'LENGTH COMPARISON: LONGER' both verified absent."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not embed a numeric R = rho L / A calculation",
+            "prohibition": "no second varying variable",
             "result": "PASS",
-            "note": "No formula/calculation shown, only qualitative labels."
-          },
-          {
-            "prohibition": "do not also vary cross-sectional area in this asset",
-            "result": "PASS",
-            "note": "Both rods have visibly identical thickness/cross-section."
+            "note": "Area/material held fixed, only length varies."
           }
         ],
-        "styleComplianceNotes": "White/near-white background. Clear controlled two-specimen comparison, correct dimension labels.",
+        "styleComplianceNotes": "White/near-white background, minimal labels (L, 2L only).",
         "bakedLabelsFound": true,
         "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS. A genuinely controlled comparison (one variable changed) built directly from the single-specimen geometry reference plus explicit prompt instructions -- confirms this approach is a viable substitute for a bespoke pre-built comparison sheet.",
-        "auditedAt": "2026-08-25T02:25:00.000Z"
+        "overallFindings": "PASS. Notation conflict and baked conclusion both resolved.",
+        "auditedAt": "2026-08-26T10:30:00.000Z"
       }
     },
     {
       "assetId": "unit202.resistivity.area-comparison",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.resistivity.area-comparison",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg",
-        "sourceReferenceSha256": "d5cd082f45443dfcf299543d971395ca5bf38199e50f4b8f6d3bbf4baaee5682",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Resistivity_geometry-1.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.resistivity.area-comparison/unit202.resistivity.area-comparison-master-v1.png)",
+        "sourceReferenceSha256": "e8aa625d4643a22e3b3514ed2ea4baef8141166174523ab1296c4fba88f5a004",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-master-v1.png",
-        "masterSha256": "e8aa625d4643a22e3b3514ed2ea4baef8141166174523ab1296c4fba88f5a004",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-derivative-v1.png",
-        "derivativeSha256": "70fa72e997f1cd58af97ac783edf83a56004da282ec022f2225a3f1f0b4e155b",
-        "generatedAt": "2026-08-25T18:26:03.126Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-master-v2.png",
+        "masterSha256": "4961dd018a8861e3eebf8cb1d3ee0a993c373c58e577e894eaf00682be2fae82",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.resistivity.area-comparison\\unit202.resistivity.area-comparison-derivative-v2.png",
+        "derivativeSha256": "80ff21b04e61949d5df664253b95f3fb5709f1bdd3043f9e30c449ed4de02943",
+        "generatedAt": "2026-08-25T23:22:19.524Z"
       },
       "audit": {
         "assetId": "unit202.resistivity.area-comparison",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: notation was already correct (A/2A); removed the baked 'Thicker conductor -> Less resistance' conclusion and 'Increased cross-sectional area' caption; unified bar shape with the length-comparison sibling for family consistency.",
         "factChecks": [
           {
-            "fact": "increased cross-sectional area -> lower resistance (length unchanged)",
+            "fact": "consistent A/2A notation",
             "result": "PASS",
-            "note": "Two rods of visibly identical length (both labelled L), cross-sectional areas labelled Area A and Area 2A (thin vs thick), with the explicit conclusion \"Thicker conductor -> Less resistance\"."
+            "note": "Area A (left, thinner) / Area 2A (right, thicker), matching the length-comparison sibling's L/2L pattern."
+          },
+          {
+            "fact": "same material/length, only area varies",
+            "result": "PASS",
+            "note": "Both bars same length (L) and material, only cross-sectional thickness differs."
+          },
+          {
+            "fact": "no baked conclusion text",
+            "result": "PASS",
+            "note": "'Thicker conductor -> Less resistance' and 'Increased cross-sectional area' both verified absent."
+          },
+          {
+            "fact": "family-consistent rectangular bar shape",
+            "result": "PASS",
+            "note": "Replaced the odd cylindrical rod/axle-stub shape with a plain rectangular bar matching the length-comparison sibling."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not embed a numeric R = rho L / A calculation",
+            "prohibition": "no second varying variable",
             "result": "PASS",
-            "note": "No formula shown."
-          },
-          {
-            "prohibition": "do not also vary length in this asset",
-            "result": "PASS",
-            "note": "Both rods visibly the same length."
+            "note": "Length/material held fixed, only area varies."
           }
         ],
-        "styleComplianceNotes": "White/near-white background. Clear controlled two-specimen comparison.",
+        "styleComplianceNotes": "White/near-white background, minimal labels (L, Area A, Area 2A).",
         "bakedLabelsFound": true,
         "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS.",
-        "auditedAt": "2026-08-25T02:25:00.000Z"
+        "overallFindings": "PASS. Baked conclusion removed; family style now matches its sibling.",
+        "auditedAt": "2026-08-26T10:31:00.000Z"
       }
     },
     {
       "assetId": "unit202.emf.motional",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.emf.motional",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Faraday%27s_law_of_induction.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.emf.motional.prepared.png)",
-        "sourceReferenceSha256": "1f70a252bc913961ab3a6fcd08e306877025505cacf37e61400118b29936b93e",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Faraday%27s_law_of_induction.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.emf.motional.board.png)",
+        "sourceReferenceSha256": "51e37dd9eeb6cfa458b1c9ea6081061ff2460d8510876e3fa0e36eb1bd1a2d31",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-master-v1.png",
-        "masterSha256": "0c5260c3b6081f4e6a7bd98295d879a8878c0a2058a46e83ae5c4cc1c868e24e",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-derivative-v1.png",
-        "derivativeSha256": "a654c7cfef2d8897b157c1d386d50f0624196c0d04a6f8f49b1cbbc681a3f2d7",
-        "generatedAt": "2026-08-25T18:27:35.902Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-master-v2.png",
+        "masterSha256": "8f4842f6f407136e223b0d866b0e425fe38849b0bdba9026843d4eb8a77f35dc",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.emf.motional\\unit202.emf.motional-derivative-v2.png",
+        "derivativeSha256": "7691d8a2bcf5abd071a465b9365e4d0bba9a59f083cab5c27fb60d778148466a",
+        "generatedAt": "2026-08-25T23:24:32.314Z"
       },
       "audit": {
         "assetId": "unit202.emf.motional",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: replaced the photoreal 3D chrome-pipe rails/conductor with a minimal flat 2D technical board (thin rails, simple rod conductor), regenerated from a hand-authored clean reference.",
         "factChecks": [
           {
-            "fact": "B, l and v mutually perpendicular for the governed e = Blv case",
+            "fact": "one moving conductor",
             "result": "PASS",
-            "note": "Field B is into-the-page (X symbols), rod length l is vertical, velocity v is horizontal -- all three mutually perpendicular as required."
+            "note": "Single red rod conductor, clearly distinct from the rails."
           },
           {
-            "fact": "rod across rails",
+            "fact": "rails present, minimal",
             "result": "PASS",
-            "note": "Conductor rod slides across two parallel horizontal rails."
+            "note": "Thin rails, no photoreal pipe/tube casing."
           },
           {
-            "fact": "velocity along the rails",
+            "fact": "one B convention",
             "result": "PASS",
-            "note": "v arrow points along the rail direction."
+            "note": "X markers (into page) shown consistently across the field region."
           },
           {
-            "fact": "field perpendicular to the rail plane",
+            "fact": "one v arrow",
             "result": "PASS",
-            "note": "Field region (X symbols) is perpendicular to the rail/rod plane."
+            "note": "Single green arrow, correct direction (rightward, matching the reference board)."
+          },
+          {
+            "fact": "one l dimension",
+            "result": "PASS",
+            "note": "Bracket dimension labelled l, matching the conductor's field-region span."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not draw B, l or v as anything other than mutually perpendicular",
+            "prohibition": "no photoreal/3D pipe-like apparatus",
             "result": "PASS",
-            "note": "Correctly mutually perpendicular."
+            "note": "Rails and conductor now read as flat 2D technical elements, not chrome tubing."
           }
         ],
-        "styleComplianceNotes": "White/near-white background. B, l, v all labelled. Correctly simplified from the composite Faraday's-law reference to just the governed motional-EMF panel's geometry.",
+        "styleComplianceNotes": "White/near-white background, clean minimal technical-diagram style.",
         "bakedLabelsFound": true,
         "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS.",
-        "auditedAt": "2026-08-25T02:30:00.000Z"
+        "overallFindings": "PASS. Photoreal 3D clutter removed; minimal 2D clarity achieved.",
+        "auditedAt": "2026-08-26T10:40:00.000Z"
       }
     },
     {
@@ -2047,48 +2207,57 @@
     {
       "assetId": "unit202.components.physical.capacitor",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.components.physical.capacitor",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Electrolytic_Capacitor,_Radial,_16x30_(Coloured).svg",
-        "sourceReferenceSha256": "ee70fe3001e4aafd0c479c4a616de84ca0505fefd3b045376dd4ce0860d738a0",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Electrolytic_Capacitor,_Radial,_16x30_(Coloured).svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.components.physical.capacitor/unit202.components.physical.capacitor-master-v1.png)",
+        "sourceReferenceSha256": "99b60b42738b7ec50174888125d2d2e0ad1ee16048a4da06144782e2580bb49c",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-master-v1.png",
-        "masterSha256": "99b60b42738b7ec50174888125d2d2e0ad1ee16048a4da06144782e2580bb49c",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-derivative-v1.png",
-        "derivativeSha256": "f9a4301bc481dd4f696ad636dd3496d10de93fb45f1e136ba57c9921b1a5da4c",
-        "generatedAt": "2026-08-25T18:00:47.191Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-master-v2.png",
+        "masterSha256": "59ca74ed18741ccaef3a047386e1635bf8538c7fea635be27c98e30fb4467009",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.components.physical.capacitor\\unit202.components.physical.capacitor-derivative-v2.png",
+        "derivativeSha256": "decae633e774a7116b31acb180fd38cc8c6f00f2c3740509eac1c6382d720b72",
+        "generatedAt": "2026-08-25T23:25:51.295Z"
       },
       "audit": {
         "assetId": "unit202.components.physical.capacitor",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: removed the baked UK/IEC schematic symbol -- this asset now shows component + name only, matching every other components.physical.* asset.",
         "factChecks": [
           {
-            "fact": "package form must be a real, representative physical form for a capacitor",
+            "fact": "physical capacitor component depicted",
             "result": "PASS",
-            "note": "Radial electrolytic capacitor: cylindrical body, correct top safety-vent groove pattern, polarity stripe with rectangle markings, printed value/rating text, two leads. A genuine, recognisable representative form."
+            "note": "Unchanged from v1 -- electrolytic capacitor with printed specs and polarity markings."
+          },
+          {
+            "fact": "no schematic/circuit symbol baked in",
+            "result": "PASS",
+            "note": "The two-line capacitor symbol from v1 is verified absent."
+          },
+          {
+            "fact": "component + name only, matching family convention",
+            "result": "PASS",
+            "note": "'Capacitor' label retained; no symbol -- now consistent with diode/LED/thermistor/transistor/etc."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not invent a misleading package form for the capacitor",
+            "prohibition": "do not regenerate the physical component raster itself",
             "result": "PASS",
-            "note": "Standard, correct electrolytic capacitor form."
-          },
-          {
-            "prohibition": "do not depict any other component in this asset",
-            "result": "PASS",
-            "note": "Only the capacitor is depicted."
+            "note": "Component geometry/finish unchanged from v1, only the symbol removed."
           }
         ],
-        "styleComplianceNotes": "White/near-white background, brand-neutral (no manufacturer logo), \"Capacitor\" label plus schematic symbol present and legible.",
+        "styleComplianceNotes": "White/near-white background preserved.",
         "bakedLabelsFound": true,
         "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS.",
-        "auditedAt": "2026-08-25T01:40:00.000Z"
+        "overallFindings": "PASS. Family-consistency defect (symbol only on this one asset) resolved.",
+        "auditedAt": "2026-08-26T10:45:00.000Z"
       }
     },
     {
@@ -2282,93 +2451,123 @@
     {
       "assetId": "unit202.diode.bias-direction.forward",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.diode.bias-direction.forward",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Forward-Biased_pn_Junction.svg",
-        "sourceReferenceSha256": "ca4ff384eca074cd4e1d388e057486715d311874c0eeb227dd009f0cd16a09d0",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Forward-Biased_pn_Junction.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.diode.bias-direction.forward.board.png)",
+        "sourceReferenceSha256": "90fffe77a0867cbaf5c1e847291af26a82315fc74aebebbc0340e8217f9b2fa7",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-master-v1.png",
-        "masterSha256": "5f8c69b284cc06b219e0c19c48056c605ad126a45c3edc4501fdb679b72d3899",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-derivative-v1.png",
-        "derivativeSha256": "9fd4be109caa6a2594e34102421618521ce3fb3b2b6b33686afd61f7676f8b80",
-        "generatedAt": "2026-08-25T18:40:11.526Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-master-v2.png",
+        "masterSha256": "077473faf4f6431d7c0497891dbfcabb2afced93858a728dc94ffe2709443098",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.forward\\unit202.diode.bias-direction.forward-derivative-v2.png",
+        "derivativeSha256": "99b6a5081a2f1f1b5731c945a22132a13ab102585730e6b31d35cf9c14177b48",
+        "generatedAt": "2026-08-25T23:28:12.760Z"
       },
       "audit": {
         "assetId": "unit202.diode.bias-direction.forward",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: replaced the photoreal 3D battery/diode component render with a simplified Level-2 flat schematic circuit, regenerated from a hand-authored circuit board.",
         "factChecks": [
           {
             "fact": "anode more positive than cathode",
             "result": "PASS",
-            "note": "Verified via zoomed inspection of the diode symbol printed on the component (triangle pointing right into a bar -- current flows left-to-right, so the left lead is the anode) and tracing that anode-side wire back to the battery's explicitly marked '+' terminal."
+            "note": "Battery + terminal wired to the diode's flat/anode side via the top wire."
           },
           {
-            "fact": "forward current flows easily",
+            "fact": "current flows, shown clearly",
             "result": "PASS",
-            "note": "Consistent with the traced correct polarity."
+            "note": "Green arrow labelled I, pointing through the diode in the anode-to-cathode direction (matching the triangle)."
           },
           {
-            "fact": "only forward-bias state",
+            "fact": "governed diode symbol, simple DC source, conventional-current arrow",
             "result": "PASS",
-            "note": "Only one state depicted."
+            "note": "Standard triangle+bar diode symbol, standard two-line battery symbol, labelled current arrow -- exactly the Level-2 composition requested."
           }
         ],
-        "prohibitedChangeChecks": [],
-        "styleComplianceNotes": "White/near-white background. FORWARD BIAS label present, current-direction arrows shown.",
+        "prohibitedChangeChecks": [
+          {
+            "prohibition": "no semiconductor-band diagram as composition authority",
+            "result": "PASS",
+            "note": "Flat schematic circuit only."
+          },
+          {
+            "prohibition": "no photoreal 3D component render",
+            "result": "PASS",
+            "note": "Flat line-drawing schematic, not a 3D render."
+          }
+        ],
+        "styleComplianceNotes": "White/near-white background, clean flat schematic style.",
         "bakedLabelsFound": true,
         "physicalImplausibilityNotes": "None.",
-        "overallFindings": "PASS, independently verified by tracing the diode symbol direction and wire connection rather than trusting the label alone.",
-        "auditedAt": "2026-08-25T03:00:00.000Z"
+        "overallFindings": "PASS. Wrong-composition-authority defect resolved.",
+        "auditedAt": "2026-08-26T10:50:00.000Z"
       }
     },
     {
       "assetId": "unit202.diode.bias-direction.reverse",
       "found": true,
-      "latestAttempt": 2,
+      "latestAttempt": 4,
       "metadata": {
         "assetId": "unit202.diode.bias-direction.reverse",
-        "attempt": 2,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Reverse-Biased_pn_Junction_Bands.svg",
-        "sourceReferenceSha256": "ecf15fa5068484eaa96dd7fd6d841d7d2b60fe7cb71b59a5cc88c20e52cefc5c",
+        "attempt": 4,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Reverse-Biased_pn_Junction_Bands.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.diode.bias-direction.forward/unit202.diode.bias-direction.forward-master-v2.png)",
+        "sourceReferenceSha256": "077473faf4f6431d7c0497891dbfcabb2afced93858a728dc94ffe2709443098",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-master-v2.png",
-        "masterSha256": "e3808bc0c4efdce1635662fe4f2ea56379f8495a94dc3e57f2077b827557450b",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-derivative-v2.png",
-        "derivativeSha256": "f99da21982c7fc94c1f9523794fa48a625e0ff3b381adb583e1f278597464443",
-        "generatedAt": "2026-08-25T18:45:21.439Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-master-v4.png",
+        "masterSha256": "9aa7bde273d9171381945c198ab588da01be32e66a9f7514d8d8f1f982b643d2",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.diode.bias-direction.reverse\\unit202.diode.bias-direction.reverse-derivative-v4.png",
+        "derivativeSha256": "b70ca85dafc45960e453f20e8447cc66196cf9a688acf1e5e9aea8caf051c4bb",
+        "generatedAt": "2026-08-25T23:29:27.582Z"
       },
       "audit": {
         "assetId": "unit202.diode.bias-direction.reverse",
-        "attempt": 2,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 4,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO, attempt 2 of this correction: attempt 3 drifted into a photoreal 3D render with confusing polarity labels (rejected, see that attempt's own audit). Corrected by supplying the forward sibling's own approved flat-schematic image as the reference, instructing an exact style match with only polarity/current-state changes.",
         "factChecks": [
           {
             "fact": "cathode more positive than anode",
             "result": "PASS",
-            "note": "Re-traced independently via zoomed inspection. The RED wire (standard positive-circuit-colour convention) connects to the diode's cathode (the banded end, matching a small diode-symbol legend also included in the image). The BLACK wire connects to the anode (unbanded end). Explicit '+'/'-' battery terminal marks are also consistent with this. Multiple independent signals (wire colour, physical band, explicit legend, explicit terminal labels) all agree -- this is genuinely correct reverse-bias wiring, resolving the attempt-1 defect."
+            "note": "Battery + terminal (bottom) wires around to the diode's cathode/bar side (right); - terminal (top) wires to the anode/flat side (left) -- traced the full loop to confirm, not just read the terminal symbols in isolation."
           },
           {
-            "fact": "reverse current blocked at Level-2 abstraction",
+            "fact": "current clearly blocked",
             "result": "PASS",
-            "note": "A clear X blocked-current indicator is drawn directly on the diode body, consistent with the now-correct reverse-bias wiring."
+            "note": "Red X mark directly over the diode symbol; no current-flow arrow or 'I' label present."
           },
           {
-            "fact": "only reverse-bias state",
+            "fact": "identical circuit layout to forward sibling, only polarity/state changed",
             "result": "PASS",
-            "note": "Only one state depicted, correctly reverse-biased."
+            "note": "Same flat schematic style, same battery symbol, same diode symbol/position, same wire loop -- a true one-variable comparison now achieved."
           }
         ],
-        "prohibitedChangeChecks": [],
-        "styleComplianceNotes": "White/near-white background. REVERSE BIAS label present. A small diode-symbol legend (triangle-bar convention) is a helpful addition beyond what was requested, reinforcing correctness rather than detracting from it.",
+        "prohibitedChangeChecks": [
+          {
+            "prohibition": "no semiconductor-band diagram as composition authority",
+            "result": "PASS",
+            "note": "Flat schematic circuit only."
+          },
+          {
+            "prohibition": "no photoreal 3D component render",
+            "result": "PASS",
+            "note": "Matches the forward sibling's flat line-drawing style."
+          }
+        ],
+        "styleComplianceNotes": "White/near-white background, matches forward sibling's schematic style exactly.",
         "bakedLabelsFound": true,
-        "physicalImplausibilityNotes": "None -- the attempt-1 self-contradiction (label vs. actual wiring) is resolved.",
-        "overallFindings": "PASS after one correction attempt. This asset is a strong example of why pixel-level verification (not label-trusting) matters: attempt 1 would have shipped a genuinely backwards reverse-bias diagram had it not been caught by tracing the actual wiring.",
-        "auditedAt": "2026-08-25T03:10:00.000Z"
+        "physicalImplausibilityNotes": "None.",
+        "overallFindings": "PASS. Family-consistency and polarity-ambiguity defects from attempt 3 both resolved.",
+        "auditedAt": "2026-08-26T10:55:00.000Z"
       }
     },
     {
@@ -2609,79 +2808,67 @@
     {
       "assetId": "unit202.electrolysis",
       "found": true,
-      "latestAttempt": 2,
+      "latestAttempt": 3,
       "metadata": {
         "assetId": "unit202.electrolysis",
-        "attempt": 2,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Elektrolyse_Allgemein.svg",
-        "sourceReferenceSha256": "d6600c00d41a41267d683077144f2e2e1bc4ca25e8b29829413317912d95eba0",
+        "attempt": 3,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Elektrolyse_Allgemein.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.electrolysis.board.png)",
+        "sourceReferenceSha256": "b1c63a54fa2e2ef0465eb8fa3eadd791eef89feaed72706f8336452368fa5302",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-master-v2.png",
-        "masterSha256": "b9887d7dc74204e395cebe7f864276507f3791aa047c28df80840ffdd430749f",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-derivative-v2.png",
-        "derivativeSha256": "2f37c776d36143b512b218160c8ef9cfc98c2a13d34797327e4c4f29cc6f6149",
-        "generatedAt": "2026-08-25T20:01:09.327Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-master-v3.png",
+        "masterSha256": "cd29ac44b450e00d166e55748397c9ea671dadace0a9e539c6a074c914ba1f1d",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.electrolysis\\unit202.electrolysis-derivative-v3.png",
+        "derivativeSha256": "4f794b58137b902c5796a70cd435babe50d94cb5bafb9c6d58a24398d531254d",
+        "generatedAt": "2026-08-25T23:32:13.772Z"
       },
       "audit": {
         "assetId": "unit202.electrolysis",
-        "attempt": 2,
-        "productionRun": "CC-11.10-bounded-remediation",
+        "attempt": 3,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
-        "correctionNote": "CC-11.10 external review correctly identified that attempt 1 had regressed to the raw external reference's full textbook instrumentation (voltmeter + ammeter + a redundant bench power-supply box) with no ion movement shown at all -- not the intended simplified teaching model. attempt 1's audit is retained unmodified as a record of that regression.",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: prior automated PASS missed a wrong-direction cation arrow (bottom-left cation pointed away from the cathode). Regenerated from a hand-authored exact board with every ion arrow independently verified correct before generation, and re-verified again here pixel-by-pixel against the actual output.",
         "factChecks": [
           {
-            "fact": "source present",
+            "fact": "every cation (+) arrow points toward the cathode",
             "result": "PASS",
-            "note": "Simple two-line battery/cell symbol with clearly marked - and + terminals."
+            "note": "All 4 cation arrows traced individually: top, upper-middle, lower-middle, bottom -- all point left, toward the cathode. No exceptions (this is the exact defect the prior automated PASS missed)."
           },
           {
-            "fact": "electrolyte present",
+            "fact": "every anion (-) arrow points toward the anode",
             "result": "PASS",
-            "note": "Labelled liquid inside the vessel, unchanged from attempt 1."
-          },
-          {
-            "fact": "electrodes present",
-            "result": "PASS",
-            "note": "Cathode (left) and Anode (right), labelled, unchanged from attempt 1."
-          },
-          {
-            "fact": "meaningful current path",
-            "result": "PASS",
-            "note": "Labelled 'current path' external wire from battery to each electrode -- no invented wire directly shorting the two electrodes."
+            "note": "All 4 anion arrows traced individually -- all point right, toward the anode."
           },
           {
             "fact": "no voltmeter",
             "result": "PASS",
-            "note": "Verified absent -- full image inspected, no V-in-circle symbol anywhere."
+            "note": "Verified absent."
           },
           {
             "fact": "no ammeter",
             "result": "PASS",
-            "note": "Verified absent -- full image inspected, no A-in-circle symbol anywhere."
+            "note": "Verified absent."
           },
           {
-            "fact": "no redundant separate bench power-supply unit",
+            "fact": "battery polarity correct for an electrolytic cell",
             "result": "PASS",
-            "note": "Only the simple battery symbol remains as the source."
-          },
-          {
-            "fact": "ion movement shown correctly: cations (+) toward cathode, anions (-) toward anode",
-            "result": "PASS",
-            "note": "Circled-plus symbols with arrows pointing toward the Cathode; circled-minus symbols with arrows pointing toward the Anode -- correct electrolytic-cell polarity (cathode wired to the battery's negative terminal, anode to positive, matching an electrolytic as opposed to galvanic cell) and correct ion-attraction direction."
+            "note": "- terminal wired to cathode, + terminal wired to anode."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not introduce chemistry detail beyond Unit 202 syllabus scope",
+            "prohibition": "Gemini must not add/remove/reverse any ion arrow",
             "result": "PASS",
-            "note": "No bubbles, no gas formulae, no electrode half-reactions -- ion movement only."
+            "note": "Arrow count (4 cations, 4 anions) and each individual direction matches the prepared board exactly."
           }
         ],
-        "styleComplianceNotes": "White/near-white background preserved. Clean premium teaching style, simple symbolic ion notation as requested.",
+        "styleComplianceNotes": "White/near-white background, premium glass beaker and metallic electrodes. Minor cosmetic note: the 'current path' label appears twice (duplicated) -- not misleading, not corrected, does not affect technical/pedagogical correctness.",
         "bakedLabelsFound": true,
-        "physicalImplausibilityNotes": "None -- electrode polarity and ion-migration directions are physically consistent with an electrolytic cell.",
-        "overallFindings": "PASS -- all three named defects (voltmeter, ammeter, missing ion movement) resolved; the corrected teaching model is restored.",
-        "auditedAt": "2026-08-25T20:10:00.000Z"
+        "physicalImplausibilityNotes": "None.",
+        "overallFindings": "PASS. The specific micro-directional defect the semantic QA found (wrong cation arrow) is resolved and independently re-verified pixel-by-pixel, not merely re-trusted.",
+        "auditedAt": "2026-08-26T11:00:00.000Z"
       }
     },
     {
@@ -2740,49 +2927,57 @@
     {
       "assetId": "unit202.conductor-insulator",
       "found": true,
-      "latestAttempt": 1,
+      "latestAttempt": 2,
       "metadata": {
         "assetId": "unit202.conductor-insulator",
-        "attempt": 1,
-        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Stranded_lamp_wire.jpg",
-        "sourceReferenceSha256": "c614eaa9cad29ee0a8df7b9131d938d8ebbf469954c7607535c7744ab06c1d1a",
+        "attempt": 2,
+        "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:Stranded_lamp_wire.jpg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.conductor-insulator/unit202.conductor-insulator-master-v1.png)",
+        "sourceReferenceSha256": "afab3d2c94453f1f54967bd62f63700fc8bf90c871b5743f51ec5c072049ed2d",
         "model": "gemini-3.1-flash-image",
-        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-master-v1.png",
-        "masterSha256": "afab3d2c94453f1f54967bd62f63700fc8bf90c871b5743f51ec5c072049ed2d",
-        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-derivative-v1.png",
-        "derivativeSha256": "e9e1c83bc47545dc05aeabb165ea49d7be7360b7e5108b85367a1e447d6041af",
-        "generatedAt": "2026-08-25T18:53:57.218Z"
+        "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-master-v2.png",
+        "masterSha256": "88275258112c8888212f52369f3e30ee9ddb464630f6e8f5b28d45d7d7cbc603",
+        "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.conductor-insulator\\unit202.conductor-insulator-derivative-v2.png",
+        "derivativeSha256": "be060d5e6229da4cf35ebaeeeeb6b8715290b0b7d60031bf62271951209aee07",
+        "generatedAt": "2026-08-25T23:33:38.428Z"
       },
       "audit": {
         "assetId": "unit202.conductor-insulator",
-        "attempt": 1,
-        "productionRun": "CC-11.9-full-production",
+        "attempt": 2,
+        "productionRun": "CC-11.12-semantic-qa-remediation",
         "verdict": "PASS",
-        "auditCriteriaNote": "The live catalogue.ts entry for this asset still has an empty immutableFacts array pending a contract-text update (tracked as remaining work, same as heating-effect). This audit applies the handover's own explicit corrected facts directly.",
+        "technicalVerdict": "PASS",
+        "pedagogicalClarityVerdict": "PASS",
+        "visualProductQualityVerdict": "PASS",
+        "correctionNote": "CC-11.12 semantic QA REDO: replaced the two-near-identical-cables composition (which did not teach the comparison) with a single labelled cutaway diagram, retiring 'Stranded lamp wire.jpg' as the primary composition authority.",
         "factChecks": [
           {
-            "fact": "conductive metal/copper core",
+            "fact": "unmistakable conductor role",
             "result": "PASS",
-            "note": "Exposed copper strands clearly visible on both cable ends, unmistakably conductive-metal in appearance."
+            "note": "Exposed copper strand core, clearly labelled CONDUCTOR with a leader line pointing directly at the copper strands."
           },
           {
-            "fact": "electrically insulating polymer/sheath surrounding conductor",
+            "fact": "unmistakable insulator role",
             "result": "PASS",
-            "note": "White polymer sheath clearly surrounds the copper core on both cables."
+            "note": "White polymer sheath, clearly labelled INSULATOR with a leader line pointing directly at the sheath material."
+          },
+          {
+            "fact": "single unified teaching diagram, not two separate cable photos",
+            "result": "PASS",
+            "note": "One cable in cutaway, both roles visible and labelled on the same object."
           }
         ],
         "prohibitedChangeChecks": [
           {
-            "prohibition": "do not swap conductor/insulator labels",
+            "prohibition": "do not present two near-identical cables as the comparison",
             "result": "PASS",
-            "note": "No text labels are baked into this image at all (the live catalogue's requiredLabels field is currently empty for this asset), so no label can be swapped; the two materials are visually unambiguous regardless (copper-coloured strands vs. white sheath)."
+            "note": "Single cutaway composition used instead."
           }
         ],
-        "styleComplianceNotes": "White/near-white background. No baked text labels -- acceptable given the asset's current empty requiredLabels field, though a future contract-correction pass adding explicit 'conductor'/'insulator' labels would strengthen this for less visually-literate learners.",
-        "bakedLabelsFound": false,
-        "physicalImplausibilityNotes": "None -- two real stranded-copper cable ends with insulation stripped back is physically accurate and clear.",
-        "overallFindings": "PASS. Final asset of the full-production run.",
-        "auditedAt": "2026-08-25T03:25:00.000Z"
+        "styleComplianceNotes": "White/near-white background, premium finish, bold clear labels with leader lines.",
+        "bakedLabelsFound": true,
+        "physicalImplausibilityNotes": "None.",
+        "overallFindings": "PASS. The pedagogical-weakness defect (two identical cables, no clear comparison) is resolved.",
+        "auditedAt": "2026-08-26T11:05:00.000Z"
       }
     },
     {

@@ -1,0 +1,12 @@
+{
+  "assetId": "unit202.motor.effect.vertical-poles.state.into-page-teaching",
+  "attempt": 2,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_wire-in-homogenous-magnetic-field-with-magnets-and-lorentz-force.svg (prepared: tools/visual-production-studio/reference-cache/prepared/unit202.motor.effect.vertical-poles.state.into-page-teaching.board.png)",
+  "sourceReferenceSha256": "f52058f7d4344c567d08610505caa812433f1861e01ff02b80f39f306f5568da",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-master-v2.png",
+  "masterSha256": "82f43d10d4ba0da69a848ed11691a123c2d3a4db5077bf0060ac57cf2ebd466a",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.motor.effect.vertical-poles\\unit202.motor.effect.vertical-poles.state.into-page-teaching-derivative-v2.png",
+  "derivativeSha256": "c76eb11b8c388991e16e0a955f9ba74ce98de0155199c628f1c617899e01afe0",
+  "generatedAt": "2026-08-25T23:02:40.365Z"
+}

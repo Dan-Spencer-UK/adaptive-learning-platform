@@ -97,6 +97,8 @@ Two different kinds of reference material feed a generation job, and they must n
 
 A generation prompt must state both, and must state explicitly that the technical reference's relationships are preserved exactly while its appearance is re-illustrated in ALP style.
 
+**Reference-first is necessary but not sufficient (CC-11.12 — see §9).** A technical reference being authoritative, relevant, licensed and mechanically marked `READY` does not by itself mean the *actual frame supplied to the model* is fit to compose from. The exact reference frame must separately pass semantic reference QA against the exact governed learner-visible state before any generation call may use it.
+
 ## 6. Family consistency
 
 Assets in the same `VisualFamily` (e.g. the three lever classes, or fixed/movable pulleys) must look like they belong to the same physical product line:
@@ -117,6 +119,40 @@ Approved canonical style-reference images (once any exist) live at `docs/design/
 ## 8. Instructional visuals are reusable platform assets, not course-owned images
 
 **Recorded 2026-08-24 (mid-task architecture amendment).** A course/unit (e.g. Unit 202) is the *initial commissioning context* for a generated visual, not its permanent owner. Where a later course, unit, or lesson needs the same technical concept in a technically and pedagogically compatible state (same immutable facts, same learner-visible state, compatible annotations/labels, compatible curriculum scope, compatible assessment-leakage rules), it should reuse the existing approved canonical asset and its already-approved reference provenance rather than re-researching a reference or regenerating an equivalent image from scratch. Reuse is never forced: a materially different technical or pedagogical state gets its own governed variant/version, never a silent mutation of a shared asset. See `tools/visual-production-studio/reference-corrections.ts`'s header comment and `docs/architecture/PREMIUM-INSTRUCTIONAL-VISUAL-PRODUCTION-PIPELINE.md` §21 for the conceptual `CanonicalVisualAsset` → `UsageBinding` model this implies; existing Unit-202-prefixed `assetId`s are not renamed for this -- the assetId namespace is not treated as a claim of permanent ownership by that course.
+
+## 9. Semantic reference QA is a hard pre-generation gate
+
+**Recorded 2026-08-26 (CC-11.12 — Product Owner / ChatGPT approved product-governance decision, applies to all future modules, courses and qualifications).** Full decision record: `docs/architecture/adr/ADR-0004-deterministic-authority-over-generated-instructional-imagery.md` and `reports/instructional-visuals/reference-research/unit202/semantic-qa-cc11.12/VISUAL-REFERENCE-SEMANTIC-QA-PRODUCT-DECISION.md`.
+
+Unit 202's first full production run exposed a class of failure that "technical reference is authoritative" (§5 above) does not, by itself, prevent: a source can be genuinely relevant and correctly licensed and still be the *wrong composition input* for a specific governed state -- a composite reference lets irrelevant sibling content leak into the output, a direction-sensitive reference gets re-derived instead of preserved, a reference is acquired but never actually shown in review while the output drifts, or a reference's own notation conflicts with the course's governed notation.
+
+The corrected sequence:
+
+```
+GOVERNED VISUAL STATE
+  -> REFERENCE RESEARCH
+  -> SEMANTIC REFERENCE QA          (new hard gate)
+  -> CROP / ISOLATE / PREPARE EXACT FRAME
+  -> EXTERNAL/HUMAN REFERENCE APPROVAL
+  -> GENERATION
+  -> TECHNICAL AUDIT
+  -> PEDAGOGICAL-CLARITY AUDIT      (new, independent of technical)
+  -> VISUAL-PRODUCT AUDIT           (new, independent of technical)
+  -> BOUNDED RETRY
+  -> PRODUCT OWNER REVIEW
+  -> APPROVED VERSION
+  -> USAGE BINDING / CONTENT RELEASE
+```
+
+A generative job may only proceed once the exact reference frame it will actually receive is recorded with a `referenceDisposition` of `APPROVED_DIRECT` or `APPROVED_PREPARED` for the exact commissioned state (`tools/visual-production-studio/reference-corrections.ts`'s `SemanticQa` fields -- `semanticQaStatus`, `exactLearnerVisiblePurpose`, `keepElements`, `cropRemoveElements`, `requiredFinalElements`, `prohibitedFinalElements`, `modelMustNotInfer`, `familyConsistencyRequirements`, `assessmentLeakageConstraints`, `ambiguityRisk`, `referenceDisposition`). `REPLACE_REFERENCE` and `REJECT_REFERENCE` block generation until a new frame is prepared and re-reviewed.
+
+**Smallest-frame rule.** The generator receives the smallest approved frame containing exactly the commissioned state -- extra lever classes, real-world examples (an excavator bucket contaminating a Class III lever crop), other generator phases, extra circuit states, instruments, unrelated panels or irrelevant labels are removed before generation unless intentionally required.
+
+**No model re-derivation.** For meaningful direction, topology, polarity or handedness, the prepared reference frame itself must already encode the correct relationship -- the generation prompt re-illustrates it in ALP style, it does not derive or re-choose it. If a contract and its reference appear to disagree, the correct action is to stop and escalate, never to silently pick one or invent a resolution.
+
+**Three independent audit verdicts, not one.** Every generated candidate now carries three separate PASS/FAIL/UNCERTAIN verdicts -- `TECHNICAL` (geometry/topology/direction/polarity/labels/state correct), `PEDAGOGICAL_CLARITY` (the intended idea is quickly understandable, no competing or irrelevant visual ideas), `VISUAL_PRODUCT_QUALITY` (premium, crisp, mobile-legible, family-consistent). Overall PASS requires all three PASS; any `UNCERTAIN` blocks an automatic PASS. A technical PASS alone is explicitly insufficient -- this replaces the single-verdict audit used through CC-11.11.
+
+**Review-package rule.** The review pack for a reference-driven asset must show the actual reference frame sent to the model. `reference preview not found` is a hard review failure, not a cosmetic gap -- it previously masked exactly this class of defect (`unit202.generator.rotating-loop.horizontal`'s CC-11.12 finding).
 
 ---
 

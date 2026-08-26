@@ -172,6 +172,31 @@ export async function rotateReference(sourcePngPath: string, degrees: 90 | 180 |
   }
 }
 
+/**
+ * CC-11.12: renders a hand-authored, technically-exact SVG board as the
+ * PREPARED REFERENCE itself -- for the state-specific families semantic
+ * QA found competing/duplicated/tangled cues in a photoreal reference
+ * (motor effect, diode bias, electrolysis, resistivity, motional EMF).
+ * Deliberately boring/schematic (same "never beautify a prepared
+ * reference" discipline as the rest of this file) -- Gemini's job is to
+ * re-illustrate this exact, unambiguous geometry in ALP premium style,
+ * never to interpret or complete an ambiguous photoreal source.
+ */
+export async function renderTechnicalBoard(svgBody: string, width: number, height: number, outPath: string): Promise<PreparedReference> {
+  mkdirSync(PREPARED_REFERENCE_DIR, { recursive: true });
+  const html = `<!doctype html><html><body style="margin:0;padding:0;">${svgBody}</body></html>`;
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage({ viewport: { width, height } });
+    await page.setContent(html);
+    const buffer = await page.screenshot({ clip: { x: 0, y: 0, width, height } });
+    writeFileSync(outPath, buffer);
+    return record(outPath, [], `hand-authored technical board, ${width}x${height}`);
+  } finally {
+    await browser.close();
+  }
+}
+
 /** Extracts one page of a PDF to a high-resolution PNG via the system `pdftoppm` (Poppler) binary. */
 export function extractPdfPage(pdfPath: string, pageNumber: number, outPathBase: string): PreparedReference {
   mkdirSync(PREPARED_REFERENCE_DIR, { recursive: true });

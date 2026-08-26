@@ -1,0 +1,13 @@
+{
+  "assetId": "unit202.magnet.poles.unlike",
+  "attempt": 3,
+  "sourceReferenceUrl": "https://commons.wikimedia.org/wiki/File:VFPt_cylindrical_magnets_attracting.svg (prepared: reports/instructional-visuals/premium-artwork/proof/unit202.magnet.poles.unlike/unit202.magnet.poles.unlike-master-v2.png)",
+  "sourceReferenceSha256": "fd1fa724cd9714da599974872a0235f368df5fc8d376b15f5016ad92649bcc05",
+  "model": "gemini-3.1-flash-image",
+  "masterPath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-master-v3.png",
+  "masterSha256": "5018e7c7ae5783e9210d1e572da51bb0c49048629f597905ef5a5f515d74c3ea",
+  "derivativePath": "D:\\Development\\adaptive-learning-platform\\reports\\instructional-visuals\\premium-artwork\\proof\\unit202.magnet.poles.unlike\\unit202.magnet.poles.unlike-derivative-v3.png",
+  "derivativeSha256": "cd6735d677af5d7a7d302d3b5a7b9ed4f0f385aed59639c6fe2fde4f96cf8fbf",
+  "generatedAt": "2026-08-25T23:19:17.057Z",
+  "modelResponseText": "I have generated the premium instructional image of unlike magnetic pole attraction by redrawing the provided technical reference in the ALP style. The two bar magnets are positioned with unlike poles (N facing S) across the gap, and the connecting field-line geometry clearly communicates the force of attraction, while the text 'attract' and its double-headed arrow have been completely removed."
+}

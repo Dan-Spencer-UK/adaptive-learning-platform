@@ -1,0 +1,21 @@
+{
+  "assetId": "unit202.diode.bias-direction.reverse",
+  "attempt": 3,
+  "productionRun": "CC-11.12-semantic-qa-remediation",
+  "verdict": "HUMAN_REVIEW_REQUIRED",
+  "technicalVerdict": "UNCERTAIN",
+  "pedagogicalClarityVerdict": "FAIL",
+  "visualProductQualityVerdict": "FAIL",
+  "factChecks": [
+    { "fact": "same schematic style as forward sibling", "result": "FAIL", "note": "Drifted into a photoreal 3D metallic battery/diode component render, inconsistent with the forward sibling's flat schematic style." },
+    { "fact": "unambiguous battery polarity", "result": "UNCERTAIN", "note": "Battery terminal markings appeared self-contradictory/confusing (both '-' and '+' shown close together near the top end) -- not confidently readable." }
+  ],
+  "prohibitedChangeChecks": [
+    { "prohibition": "same circuit/layout as forward sibling, only polarity/state changes", "result": "FAIL", "note": "Style diverged significantly from the forward sibling." }
+  ],
+  "styleComplianceNotes": "Photoreal 3D render, not the required flat schematic -- family-consistency failure.",
+  "bakedLabelsFound": true,
+  "physicalImplausibilityNotes": "Confusing/ambiguous battery terminal labelling.",
+  "overallFindings": "NOT SELECTED. Corrected in attempt 4 by using the forward sibling's own approved image as the style reference.",
+  "auditedAt": "2026-08-26T10:51:00.000Z"
+}
