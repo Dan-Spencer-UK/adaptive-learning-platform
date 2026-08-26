@@ -229,10 +229,19 @@ const calculateForceOnConductor: QuestionExecutor = (ctx) => {
   return assembleInstance(ctx, { B, I, l }, { formula: formulaInstance }, { answer: ctx.blueprint.answer, value: formulaInstance.result });
 };
 
+// CC-12: a fixed, non-randomised root-cause diagnostic (no pick() call --
+// the same constant-output pattern identifyFluxDensityUnit/identifyFluxUnit
+// already use below). The correct answer is always "conventional_current":
+// Fleming's left-hand rule is always applied with conventional current, so
+// this is a single canonical check, not a parameterised question.
+const diagnoseCurrentConvention: QuestionExecutor = (ctx) =>
+  assembleInstance(ctx, {}, {}, { answer: ctx.blueprint.answer, value: "conventional_current" });
+
 export const magnetismExecutors: Readonly<Record<string, QuestionExecutor>> = {
   "magnetism.recognise_concept": recogniseConcept,
   "magnetism.interpret_field_direction": interpretFieldDirection,
   "magnetism.interpret_force_direction": interpretForceDirection,
+  "magnetism.diagnose_current_convention": diagnoseCurrentConvention,
   "magnetism.compare_permanent_electromagnet": comparePermanentElectromagnet,
   "magnetism.compare_motor_generator": compareMotorGenerator,
   "magnetism.identify_flux_density_unit": identifyFluxDensityUnit,

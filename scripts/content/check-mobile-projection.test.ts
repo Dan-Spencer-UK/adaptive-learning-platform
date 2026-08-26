@@ -114,7 +114,7 @@ describe("generated mobile content projection", () => {
     }
   });
 
-  it("carries exactly the 100 governed question blueprints the release's lessons reference (CC-11.1 adds magnetism.recognise_attraction_repulsion, magnetism.calculate_force_on_conductor and emf.calculate_motional_emf; CC-11.2 adds conductors.recognise_electron_theory), each WITH governed presentation", () => {
+  it("carries exactly the 101 governed question blueprints the release's lessons reference (CC-11.1 adds magnetism.recognise_attraction_repulsion, magnetism.calculate_force_on_conductor and emf.calculate_motional_emf; CC-11.2 adds conductors.recognise_electron_theory; CC-12 adds magnetism.diagnose_current_convention), each WITH governed presentation", () => {
     const projection = buildMobileContentProjection(realInputs());
     expect(projection.questionBlueprints.map((b) => b.id).sort()).toEqual(
       [
@@ -161,6 +161,7 @@ describe("generated mobile content projection", () => {
         "magnetism.calculate_force_on_conductor",
         "magnetism.compare_motor_generator",
         "magnetism.compare_permanent_electromagnet",
+        "magnetism.diagnose_current_convention",
         "magnetism.identify_flux_density_unit",
         "magnetism.identify_flux_unit",
         "magnetism.interpret_field_direction",

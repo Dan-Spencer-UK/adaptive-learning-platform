@@ -19,6 +19,7 @@ describe("Course orchestration proving report (real cross-lesson adaptive vertic
       "SHARED-PREREQUISITE",
       "MISCONCEPTION-SAFE",
       "CONVERGE",
+      "ADVANCE-TO-MAGNETISM",
       "COMPLETE-SLICE",
     ]);
   });

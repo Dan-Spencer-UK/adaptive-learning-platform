@@ -14,6 +14,13 @@
  * debug overlay toggle. The real governed misconception branch is
  * already reachable interactively from the lesson itself (answer a
  * misconception-check step incorrectly).
+ *
+ * CC-12: previously hardcoded to Ohm's Law only. Generalised with a small
+ * lesson picker (task brief §18 -- inspecting the adaptive engine must not
+ * be tied to a single lesson) and a new card surfacing the real course-
+ * orchestration decision (`computeNextCourseActivity`) -- the "adaptive
+ * next-step decision" this screen previously had no visibility into at
+ * all.
  */
 import { useEffect, useState } from "react";
 import { Link } from "expo-router";
@@ -21,6 +28,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { computeLessonContentDependencies } from "@alp/learning-engine";
+import type { ActivityDecision } from "@alp/diagnostic-engine";
 
 import { deriveLocalLearnerEvidence } from "@/lib/evidence-sync/derived-snapshot";
 import { syncPendingLessonEvidence, type EvidenceSyncResult } from "@/lib/evidence-sync/evidence-sync";
@@ -33,12 +41,17 @@ import { useSession } from "@/lib/auth/session-context";
 import { setFoundationState } from "@/lib/storage/foundation-state";
 import { getFoundationDb } from "@/lib/storage/db";
 import { DEV_LESSON_DEBUG_OVERLAY_KEY, useLessonDebugOverlay } from "@/lib/lesson-content/dev-debug-overlay";
+import { computeNextCourseActivity } from "@/lib/course/next-activity";
 import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
 
-const QA_LESSON_ID = 'lesson.electrical.ohms-law';
+const QA_LESSON_CHOICES = [
+  { id: "lesson.electrical.ohms-law", label: "Ohm's Law" },
+  { id: "lesson.magnetism.effects-of-current", label: "Magnetism / effects of current" },
+] as const;
 
 export default function DevLessonQaScreen(): React.JSX.Element {
-  const qaLesson = getLocalLesson({ lessonId: QA_LESSON_ID, contentRelease: bundledContentReleaseId() });
+  const [qaLessonId, setQaLessonId] = useState<string>(QA_LESSON_CHOICES[0].id);
+  const qaLesson = getLocalLesson({ lessonId: qaLessonId, contentRelease: bundledContentReleaseId() });
   const { session: authSession } = useSession();
   const learnerId = authSession?.user.id ?? null;
   const [contentRecord, setContentRecord] = useState<LocalContentRecord | null>(null);
@@ -46,7 +59,23 @@ export default function DevLessonQaScreen(): React.JSX.Element {
   const [evidenceSummary, setEvidenceSummary] = useState<string>("(checking...)");
   const [derivedSummary, setDerivedSummary] = useState<string>("(checking...)");
   const [syncSummary, setSyncSummary] = useState<string>("(not yet run this visit)");
+  const [courseDecisionSummary, setCourseDecisionSummary] = useState<string>("(checking...)");
   const debugOverlayEnabled = useLessonDebugOverlay();
+
+  async function refreshCourseDecision(): Promise<void> {
+    if (!learnerId) {
+      setCourseDecisionSummary("(no authenticated learner)");
+      return;
+    }
+    try {
+      const decision: ActivityDecision = await computeNextCourseActivity(learnerId);
+      setCourseDecisionSummary(
+        `${decision.decisionType}${decision.lessonId ? ` -> ${decision.lessonId}` : ""}\nreason: ${decision.reason}\n${decision.detail}`,
+      );
+    } catch (error) {
+      setCourseDecisionSummary(`(failed: ${error instanceof Error ? error.message : "unknown"})`);
+    }
+  }
 
   async function refreshEvidenceAndDerived(): Promise<void> {
     if (!learnerId) {
@@ -107,12 +136,13 @@ export default function DevLessonQaScreen(): React.JSX.Element {
     void (async () => {
       try {
         await refresh();
+        await refreshCourseDecision();
       } catch (error) {
         console.warn("Dev QA refresh failed", error);
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [learnerId]);
+  }, [learnerId, qaLessonId]);
 
   const manifest = computeLessonContentDependencies(qaLesson.lesson);
 
@@ -122,6 +152,36 @@ export default function DevLessonQaScreen(): React.JSX.Element {
         <Text style={styles.title} accessibilityRole="header">
           Lesson Player QA (dev only)
         </Text>
+
+        <View style={styles.card}>
+          <Text style={styles.cardLabel}>Inspect lesson</Text>
+          <View style={styles.choiceRow}>
+            {QA_LESSON_CHOICES.map((choice) => (
+              <Pressable
+                key={choice.id}
+                style={({ pressed }) => [styles.choiceButton, choice.id === qaLessonId && styles.choiceButtonActive, pressed && styles.pressed]}
+                accessibilityRole="button"
+                accessibilityLabel={`Inspect ${choice.label}`}
+                onPress={() => setQaLessonId(choice.id)}
+              >
+                <Text style={[styles.secondaryButtonText, choice.id === qaLessonId && styles.choiceButtonTextActive]}>{choice.label}</Text>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardLabel}>Adaptive next-step decision (course orchestration)</Text>
+          <Text style={styles.mono}>{courseDecisionSummary}</Text>
+          <Pressable
+            style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}
+            accessibilityRole="button"
+            accessibilityLabel="Re-compute the adaptive next-step decision"
+            onPress={() => void refreshCourseDecision()}
+          >
+            <Text style={styles.secondaryButtonText}>Re-compute decision</Text>
+          </Pressable>
+        </View>
 
         <View style={styles.card}>
           <Text style={styles.cardLabel}>Content dependency manifest</Text>
@@ -255,9 +315,9 @@ export default function DevLessonQaScreen(): React.JSX.Element {
           </Pressable>
         </View>
 
-        <Link href={{ pathname: "/learn/lesson-player", params: { lessonId: QA_LESSON_ID } }} asChild>
-          <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]} accessibilityRole="button" accessibilityLabel="Open the Ohm's Law lesson">
-            <Text style={styles.primaryButtonText}>Open the Ohm&apos;s Law lesson</Text>
+        <Link href={{ pathname: "/learn/lesson-player", params: { lessonId: qaLessonId } }} asChild>
+          <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]} accessibilityRole="button" accessibilityLabel={`Open the ${qaLesson.lesson.title} lesson`}>
+            <Text style={styles.primaryButtonText}>Open the {qaLesson.lesson.title} lesson</Text>
           </Pressable>
         </Link>
       </ScrollView>
@@ -273,6 +333,10 @@ const styles = StyleSheet.create({
   mono: { ...typography.caption, color: color.textSecondary, fontFamily: "monospace" },
   card: { backgroundColor: color.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: color.border, padding: spacing.md, gap: spacing.sm },
   cardLabel: { ...typography.caption, color: color.accent, textTransform: "uppercase" },
+  choiceRow: { flexDirection: "row", gap: spacing.sm },
+  choiceButton: { flex: 1, minHeight: minTouchTarget, borderRadius: radius.md, borderWidth: 1, borderColor: color.border, alignItems: "center", justifyContent: "center", paddingHorizontal: spacing.sm },
+  choiceButtonActive: { borderColor: color.accent, backgroundColor: color.surface },
+  choiceButtonTextActive: { color: color.accent, fontWeight: "700" },
   primaryButton: { minHeight: minTouchTarget, borderRadius: radius.md, backgroundColor: color.accent, alignItems: "center", justifyContent: "center" },
   primaryButtonText: { ...typography.body, color: "#fff", fontWeight: "700" },
   secondaryButton: { minHeight: minTouchTarget, borderRadius: radius.md, borderWidth: 1, borderColor: color.border, alignItems: "center", justifyContent: "center" },

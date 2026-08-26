@@ -29,6 +29,7 @@ import { FormulaEquation } from "@/components/formula/FormulaExpressionView";
 import { WorkedSubstitution } from "@/components/formula/WorkedSubstitution";
 import { VirTriangle } from "@/components/mnemonic/VirTriangle";
 import { FeedbackPanel } from "@/components/question/FeedbackPanel";
+import { LayeredFeedbackPanel } from "@/components/question/LayeredFeedbackPanel";
 import { QuestionPromptCard } from "@/components/question/QuestionPromptCard";
 import { AnswerInputDispatch } from "@/lib/lesson-content/answer-input-dispatch";
 import type { RenderableLessonStep } from "@/lib/lesson-content/resolve-lesson-step";
@@ -47,9 +48,34 @@ export interface LessonStepViewProps {
   readonly submitting?: boolean;
 }
 
+// CC-12: an additional, explicitly-informational "commonly confused with"
+// hint for one specific residual hypothesis the engine did not (and, by
+// its own honest design, could not) positively confirm from an ambiguous
+// wrong answer alone -- never asserted as a confirmed diagnosis, only
+// offered as context. Shown only in the DEEPER feedback layer, and only
+// on the two steps in the magnetism force-direction diagnostic chain
+// where it is pedagogically warranted (task brief §11): once the
+// current-convention hypothesis has been ruled out (either by answering
+// the diagnostic correctly, or by clearing it via remediation and still
+// failing the recheck), Fleming's-rule finger-assignment confusion is the
+// more likely remaining explanation.
+const DEEPER_NOTE_MISCONCEPTION_ID = "MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001";
+const DEEPER_NOTE_STEPS: Readonly<Record<string, (correct: boolean) => boolean>> = {
+  diagnose_force_direction_error: (correct) => correct,
+  recheck_force_direction: (correct) => !correct,
+};
+
+function deeperNoteFor(stepId: string, correct: boolean, misconceptionDescriptions: Readonly<Record<string, string>>): string | undefined {
+  const shows = DEEPER_NOTE_STEPS[stepId]?.(correct) ?? false;
+  if (!shows) return undefined;
+  const description = misconceptionDescriptions[DEEPER_NOTE_MISCONCEPTION_ID];
+  return description ? `A common related mix-up: ${description}` : undefined;
+}
+
 export function LessonStepView({ resolved, questionInstance, evaluation, revealCorrectAnswer, onSubmit, onContinue, submitting }: LessonStepViewProps): React.JSX.Element {
   const misconceptionMessage =
     evaluation?.misconceptionIdentifier !== undefined ? resolved.misconceptionDescriptions[evaluation.misconceptionIdentifier] : undefined;
+  const deeperNote = evaluation ? deeperNoteFor(resolved.step.id, evaluation.correct, resolved.misconceptionDescriptions) : undefined;
 
   // CC-11: the diagram runtime fix (task brief §7). A step's diagram
   // instance prefers the real generated question instance's own diagram
@@ -134,18 +160,35 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
       ) : null}
 
       {evaluation ? (
-        <FeedbackPanel
-          correct={evaluation.correct}
-          // The engine's marking detail states the expected answer -- while a
-          // retry of the same question is pending it must not surface either
-          // (CC-06D Correction G). The replacement line is interface
-          // microcopy, not factual content.
-          detail={revealCorrectAnswer ? evaluation.detail : "Have another look and try again."}
-          expectedAnswerText={revealCorrectAnswer ? String(questionInstance?.expected.value ?? "") : null}
-          misconceptionMessage={misconceptionMessage}
-          onContinue={onContinue}
-          continueLabel={revealCorrectAnswer ? "Continue" : "Try again"}
-        />
+        // CC-12: layered (Quick/Explain/Deeper) feedback is opt-in per
+        // step via the governed `progressiveReveal` flag -- every other
+        // step in the platform renders the plain, unmodified
+        // `FeedbackPanel` exactly as before.
+        resolved.step.presentation.progressiveReveal ? (
+          <LayeredFeedbackPanel
+            correct={evaluation.correct}
+            detail={revealCorrectAnswer ? evaluation.detail : "Have another look and try again."}
+            expectedAnswerText={revealCorrectAnswer ? String(questionInstance?.expected.value ?? "") : null}
+            misconceptionMessage={misconceptionMessage}
+            deeperNote={deeperNote}
+            explainReasoning={resolved.bodyStatements}
+            onContinue={onContinue}
+            continueLabel={revealCorrectAnswer ? "Continue" : "Try again"}
+          />
+        ) : (
+          <FeedbackPanel
+            correct={evaluation.correct}
+            // The engine's marking detail states the expected answer -- while a
+            // retry of the same question is pending it must not surface either
+            // (CC-06D Correction G). The replacement line is interface
+            // microcopy, not factual content.
+            detail={revealCorrectAnswer ? evaluation.detail : "Have another look and try again."}
+            expectedAnswerText={revealCorrectAnswer ? String(questionInstance?.expected.value ?? "") : null}
+            misconceptionMessage={misconceptionMessage}
+            onContinue={onContinue}
+            continueLabel={revealCorrectAnswer ? "Continue" : "Try again"}
+          />
+        )
       ) : !resolved.questionBlueprint ? (
         <Pressable
           style={({ pressed }) => [styles.continueButton, pressed && styles.pressed]}

@@ -156,6 +156,14 @@ export const branchTriggerSchema = z.enum([
   "capability_not_evidenced",
   "below_tolerance",
   "remediation_cleared",
+  // CC-12: a wrong answer with no positively-identified governed
+  // misconception (or one with no matching route) -- the honest "ambiguous
+  // wrong answer, cause not yet known" case task brief §11 requires
+  // (EVIDENCE -> HYPOTHESIS -> DIAGNOSTIC CHECK -> TARGETED REMEDIATION,
+  // never WRONG ANSWER -> ASSUME MISCONCEPTION). Never implies a specific
+  // misconception was found -- only that this step's own answer was
+  // incorrect and no more specific route already claimed it.
+  "incorrect_answer",
 ]);
 export type BranchTrigger = z.infer<typeof branchTriggerSchema>;
 

@@ -11,13 +11,21 @@ const LESSON_OHMS_LAW = record.lesson;
 const LOOKUP = record.lookup;
 
 const seriesRecord = getLocalLesson({ lessonId: "lesson.electrical.resistors-series", contentRelease: bundledContentReleaseId() });
+const magnetismRecord = getLocalLesson({ lessonId: "lesson.magnetism.effects-of-current", contentRelease: bundledContentReleaseId() });
 
-function instanceFor(blueprintId: string, stepId: string): GeneratedQuestionInstance {
-  const blueprint = LOOKUP.questionBlueprints.find((b) => b.id === blueprintId);
+function instanceFor(blueprintId: string, stepId: string, lookup: typeof LOOKUP = LOOKUP): GeneratedQuestionInstance {
+  const blueprint = lookup.questionBlueprints.find((b) => b.id === blueprintId);
   if (!blueprint) throw new Error(`missing governed blueprint ${blueprintId}`);
   return generateLessonQuestion({
     blueprint,
-    formulaFamilies: LOOKUP.formulaFamilies,
+    formulaFamilies: lookup.formulaFamilies,
+    // CC-12 fix: previously omitted here too -- see
+    // generate-lesson-question.ts's own header comment. Several real
+    // magnetism blueprints require a diagram blueprint to be present in
+    // the generation context (requireDiagramBlueprint) even though the
+    // rendered diagram itself is resolved separately by resolveLessonStep.
+    diagramBlueprints: lookup.diagramBlueprints,
+    workedExampleBlueprints: lookup.workedExampleBlueprints,
     contentRelease: record.contentRelease,
     blueprintVersion: record.questionBlueprintVersion,
     instanceId: "li1_t",
@@ -151,5 +159,83 @@ describe("LessonStepView", () => {
     );
     // Governed teachingValues { I: 4, R: 6 } -> V = 24, rendered by the worked substitution.
     expect(getByText(/24/)).toBeTruthy();
+  });
+
+  describe("CC-12: layered (Quick/Explain/Deeper) feedback", () => {
+    it("renders the plain FeedbackPanel (no Explain toggle) for a step with progressiveReveal: false, unchanged from before CC-12", async () => {
+      const resolved = resolveLessonStep(LESSON_OHMS_LAW, "guided_calculation_current", LOOKUP);
+      const instance = instanceFor("ohms_law.solve_for_current", "guided_calculation_current");
+      const { queryByLabelText } = await render(
+        <LessonStepView
+          resolved={resolved}
+          questionInstance={instance}
+          evaluation={{ correct: true, detail: "exact match" }}
+          revealCorrectAnswer={true}
+          onSubmit={jest.fn()}
+          onContinue={jest.fn()}
+        />,
+      );
+      expect(queryByLabelText("Explain why")).toBeNull();
+    });
+
+    it("renders LayeredFeedbackPanel with a real governed Explain layer for the real magnetism force-direction step (progressiveReveal: true)", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_force_direction", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.interpret_force_direction", "guided_interpret_force_direction", magnetismRecord.lookup);
+      const { getByLabelText, getAllByText } = await render(
+        <LessonStepView
+          resolved={resolved}
+          questionInstance={instance}
+          evaluation={{ correct: true, detail: "matches" }}
+          revealCorrectAnswer={true}
+          onSubmit={jest.fn()}
+          onContinue={jest.fn()}
+        />,
+      );
+      await fireEvent.press(getByLabelText("Explain why"));
+      // The same governed statement legitimately appears twice: once as the
+      // step's own lead-in body text (rendered unconditionally, above the
+      // question), and again inside the opened Explain layer -- a
+      // deliberate reinforcement at the point of feedback, not a bug.
+      expect(getAllByText(magnetismRecord.lookup.assertionStatements["EL-CONCEPT-FORCE-ON-CONDUCTOR-001"]!)).toHaveLength(2);
+    });
+
+    it("reveals the Fleming finger-assignment deeperNote, framed as a related mix-up rather than a confirmed diagnosis, once the current-convention diagnostic is answered correctly", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "diagnose_force_direction_error", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.diagnose_current_convention", "diagnose_force_direction_error", magnetismRecord.lookup);
+      const { getByLabelText, getByText } = await render(
+        <LessonStepView
+          resolved={resolved}
+          questionInstance={instance}
+          evaluation={{ correct: true, detail: "correct -- conventional current confirmed" }}
+          revealCorrectAnswer={true}
+          onSubmit={jest.fn()}
+          onContinue={jest.fn()}
+        />,
+      );
+      await fireEvent.press(getByLabelText("Show my weakness"));
+      expect(getByText(/A common related mix-up:/)).toBeTruthy();
+      expect(getByText(new RegExp(magnetismRecord.lookup.misconceptionDescriptions["MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001"]!.slice(0, 20)))).toBeTruthy();
+    });
+
+    it("does NOT show the Fleming finger-assignment deeperNote when the current-convention diagnostic is answered incorrectly (that IS the confirmed cause instead)", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "diagnose_force_direction_error", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.diagnose_current_convention", "diagnose_force_direction_error", magnetismRecord.lookup);
+      const { getByLabelText, getByText, queryByText } = await render(
+        <LessonStepView
+          resolved={resolved}
+          questionInstance={instance}
+          evaluation={{ correct: false, detail: "not matched", misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "direct" }}
+          revealCorrectAnswer={true}
+          onSubmit={jest.fn()}
+          onContinue={jest.fn()}
+        />,
+      );
+      // The Deeper toggle exists (a real, confirmed misconceptionMessage IS present) and shows
+      // it -- but never the unrelated finger-assignment deeperNote too (that hypothesis was
+      // ruled out, not merely unconfirmed, by this specific wrong answer).
+      await fireEvent.press(getByLabelText("Show my weakness"));
+      expect(getByText(magnetismRecord.lookup.misconceptionDescriptions["MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001"]!)).toBeTruthy();
+      expect(queryByText(/A common related mix-up:/)).toBeNull();
+    });
   });
 });

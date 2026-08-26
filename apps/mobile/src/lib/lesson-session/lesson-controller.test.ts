@@ -55,6 +55,29 @@ const REMEDIATION: LessonStep = buildStep({
   branchRoutes: [{ trigger: "remediation_cleared", destinationStepId: "transfer", description: "resume" }],
 });
 const NEXT_QUESTION: LessonStep = buildStep({ id: "next_question", type: "independent_question", questionBlueprintId: "qb.next" });
+// CC-12: a step that declares an `incorrect_answer` fallback branch but
+// NO `misconception_detected` route -- the honest "ambiguous wrong
+// answer" case (task brief §11).
+const AMBIGUOUS_DIAGNOSTIC_STEP: LessonStep = buildStep({
+  id: "ambiguous_question",
+  type: "guided_interaction",
+  questionBlueprintId: "qb.ambiguous",
+  branchRoutes: [{ trigger: "incorrect_answer", destinationStepId: "diagnose", description: "route to diagnosis" }],
+});
+// CC-12: a step that declares BOTH a specific misconception_detected
+// route AND an incorrect_answer fallback -- proves the specific route
+// still wins when it actually matches, and the fallback only fires when
+// it does not (e.g. a different/no misconception was identified).
+const DUAL_ROUTE_STEP: LessonStep = buildStep({
+  id: "dual_route_question",
+  type: "guided_interaction",
+  questionBlueprintId: "qb.dual",
+  branchRoutes: [
+    { trigger: "misconception_detected", misconceptionIdentifier: "MIS-TEST-001", destinationStepId: "remediation", description: "specific route" },
+    { trigger: "incorrect_answer", destinationStepId: "diagnose", description: "ambiguous fallback" },
+  ],
+});
+const DIAGNOSE: LessonStep = buildStep({ id: "diagnose", type: "misconception_discrimination", questionBlueprintId: "qb.diagnose2" });
 const TRANSFER: LessonStep = buildStep({ id: "transfer", type: "transfer_application", questionBlueprintId: "qb.transfer" });
 const ACKNOWLEDGE_ONLY: LessonStep = buildStep({ id: "intro", type: "orientation", completionCondition: "view_acknowledged", presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false } });
 
@@ -82,6 +105,11 @@ const LESSON: LessonPlan = {
 
 /** LESSON_WITH_REMEDIATION mirrors LESSON but includes the conditional remediation step for the remediation-cleared round trip. */
 const LESSON_WITH_REMEDIATION: LessonPlan = { ...LESSON, steps: [ACKNOWLEDGE_ONLY, MISCONCEPTION_CHECK, REMEDIATION, NEXT_QUESTION, TRANSFER] };
+/** LESSON_WITH_AMBIGUOUS_DIAGNOSTIC mirrors LESSON but includes the incorrect_answer-fallback and dual-route steps (CC-12). */
+const LESSON_WITH_AMBIGUOUS_DIAGNOSTIC: LessonPlan = {
+  ...LESSON,
+  steps: [ACKNOWLEDGE_ONLY, AMBIGUOUS_DIAGNOSTIC_STEP, DUAL_ROUTE_STEP, DIAGNOSE, REMEDIATION, NEXT_QUESTION, TRANSFER],
+};
 
 function questionInstance(overrides: Partial<GeneratedQuestionInstance> = {}): GeneratedQuestionInstance {
   return {
@@ -184,6 +212,54 @@ describe("submitStepAnswer -- correct_answer_required gating", () => {
     });
     expect(result.advanced).toBe(false);
     expect(currentStepId(result.nextState)).toBe("misconception_check");
+  });
+
+  it("CC-12: an ambiguous wrong answer (no misconception identified at all) routes via the incorrect_answer fallback, never held for a blind retry", async () => {
+    const state = startAt("ambiguous_question", ["intro", "ambiguous_question", "diagnose", "next_question", "transfer"], LESSON_WITH_AMBIGUOUS_DIAGNOSTIC);
+    const result = await submitStepAnswer({
+      lesson: LESSON_WITH_AMBIGUOUS_DIAGNOSTIC,
+      state,
+      questionInstance: questionInstance({ evidence: { ...questionInstance().evidence, misconceptionTargets: [] } }),
+      given: "wrong",
+      now: () => "t1",
+    });
+    expect(result.evaluation.correct).toBe(false);
+    expect(result.evaluation.misconceptionIdentifier).toBeUndefined();
+    expect(result.advanced).toBe(true);
+    expect(currentStepId(result.nextState)).toBe("diagnose");
+  });
+
+  it("CC-12: a suggestive-only misconceptionIdentifier with no matching misconception_detected route still falls back to incorrect_answer -- never treated as confirmed", async () => {
+    const state = startAt("ambiguous_question", ["intro", "ambiguous_question", "diagnose", "next_question", "transfer"], LESSON_WITH_AMBIGUOUS_DIAGNOSTIC);
+    const result = await submitStepAnswer({
+      lesson: LESSON_WITH_AMBIGUOUS_DIAGNOSTIC,
+      state,
+      questionInstance: questionInstance({
+        evidence: { ...questionInstance().evidence, misconceptionTargets: [{ misconceptionIdentifier: "MIS-UNROUTED-001", evidenceStrength: "suggestive" }] },
+      }),
+      given: "wrong",
+      now: () => "t1",
+    });
+    expect(result.evaluation.misconceptionIdentifier).toBe("MIS-UNROUTED-001");
+    expect(result.advanced).toBe(true);
+    // Not routed to a misconception-specific destination (none declared for
+    // MIS-UNROUTED-001) -- falls back to the generic diagnostic step.
+    expect(currentStepId(result.nextState)).toBe("diagnose");
+  });
+
+  it("CC-12: a real matching misconception_detected route still wins over the incorrect_answer fallback when both are declared", async () => {
+    const state = startAt("dual_route_question", ["intro", "dual_route_question", "diagnose", "remediation", "next_question", "transfer"], LESSON_WITH_AMBIGUOUS_DIAGNOSTIC);
+    const result = await submitStepAnswer({
+      lesson: LESSON_WITH_AMBIGUOUS_DIAGNOSTIC,
+      state,
+      questionInstance: questionInstance({
+        evidence: { ...questionInstance().evidence, misconceptionTargets: [{ misconceptionIdentifier: "MIS-TEST-001", evidenceStrength: "direct" }] },
+      }),
+      given: "wrong",
+      now: () => "t1",
+    });
+    expect(result.evaluation.misconceptionIdentifier).toBe("MIS-TEST-001");
+    expect(currentStepId(result.nextState)).toBe("remediation");
   });
 
   it("clearing remediation (correct answer on a conditional_remediation_only step) jumps to the governed resume destination", async () => {

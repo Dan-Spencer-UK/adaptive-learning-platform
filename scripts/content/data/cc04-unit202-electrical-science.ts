@@ -3811,7 +3811,13 @@ const A: AssertionDef[] = [
     // physics term (right-hand rule) per task section 10: never modernised
     // so aggressively that a learner fails to recognise the exam language.
     id: "EL-CONCEPT-FIELD-DIRECTION-RULE-001", domain: "EL",
-    statement: "The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): with the thumb pointing in the direction of current flow, the curled fingers give the direction of the circular field around the conductor.",
+    // CC-12: wording refined (same governed fact, no relationship/id
+    // change) to satisfy the task brief's own explicit requirement that
+    // the lesson teach the mnemonic fully in words -- naming the RIGHT
+    // hand explicitly (not just "the right-hand rule" as a label) and
+    // "conventional current" explicitly (this exact family is where the
+    // electron-vs-conventional-current misconception is diagnosed).
+    statement: "The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): grip the conductor with the RIGHT hand so the thumb points in the direction of conventional current flow -- the curled fingers then give the direction of the circular field around the conductor.",
     provenance: [
       { locator: "loc-openstax-up2-straight-wire-field-direction", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
@@ -4771,6 +4777,16 @@ const M: MisconceptionDef[] = [
     id: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
     description: "Confuses conventional current direction (positive to negative) with the actual direction of electron flow (negative to positive) in a conductor.",
     conflicts: ["EL-CONCEPT-ELECTRON-THEORY-001", "EL-CURRENT-CHARGE-RELATIONSHIP-001"],
+  },
+  {
+    // CC-12: distinct from MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001
+    // above -- that misconception is about WHICH current convention to
+    // use; this one is about correctly applying Fleming's left-hand rule's
+    // own finger-to-quantity mapping once the right current convention is
+    // already understood (a genuinely separate, common source of error).
+    id: "MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001",
+    description: "Mixes up which finger in Fleming's left-hand rule represents Field, Current and Motion (force) -- e.g. treating the thumb as current or the first finger as motion -- rather than the governed First finger=Field, seCond finger=Current, thuMb=Motion mapping.",
+    conflicts: ["EL-CONCEPT-FLEMING-LEFT-HAND-001"],
   },
   {
     id: "MIS-EL-AC-DC-CONFUSION-001",

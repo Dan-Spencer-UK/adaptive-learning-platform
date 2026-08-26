@@ -52,12 +52,13 @@ import {
 } from "@alp/diagnostic-engine";
 
 import { cc05aPedagogyUnit202 } from "./data/cc05a-pedagogy-unit202.ts";
-import { contentReleases, RELEASE_UNIT202_V2 } from "./data/content-releases.ts";
+import { contentReleases, RELEASE_UNIT202_V2, RELEASE_UNIT202_V8 } from "./data/content-releases.ts";
 import {
   LESSON_OHMS_LAW_UNIT202_V2 as LESSON_OHMS_LAW,
   LESSON_FOUNDATION_FORMULA_REARRANGEMENT,
   LESSON_RESISTORS_SERIES,
   LESSON_RESISTORS_PARALLEL,
+  LESSON_MAGNETIC_EFFECTS_OF_CURRENT,
   lessons as realLessons,
 } from "./data/lessons.ts";
 
@@ -75,7 +76,7 @@ export interface CourseOrchestrationProvingReport {
 }
 
 export const REAL_CONTENT_GAPS = [
-  "COMPLETE_SLICE is proven against the real three-node course (Ohm's Law, resistors-series, resistors-parallel) -- the representative ~8-9 lesson mini-unit itself remains out of CC-08 scope, so a longer real course sequence is not exercised here.",
+  "COMPLETE_SLICE is proven against the real four-node course (Ohm's Law, resistors-series, resistors-parallel, magnetism/effects-of-current, CC-12) -- the representative ~8-9 lesson mini-unit itself remains out of CC-08/CC-12 scope, so a longer real course sequence is not exercised here.",
   "The real parallel lesson's within-lesson misconception branch (remediation_reciprocal_technique) is exercised by @alp/learning-engine's own assembly/branching layer, not by this course-level orchestration script -- MISCONCEPTION-SAFE below proves the course-level decision ignores misconceptionsEvidenced, not the within-lesson branch itself (that is proven separately by lesson-assembly/evidence-derivation proving scripts).",
 ];
 
@@ -127,6 +128,17 @@ function submit(args: {
   readonly given: AnswerValue;
   readonly sessionKey: string;
   readonly attemptIndex?: number;
+  // CC-12: `deriveLearnerState` resolves a `LearnerAttemptRecord`'s step
+  // definition by matching (lessonId, lessonVersion, contentRelease)
+  // against `CONTENT.lessons` -- the pre-existing lessons here (Ohm's Law/
+  // series/parallel/foundation-rearrangement) all happen to have a real
+  // release.unit202.v2-tagged entry available, so the hardcoded default
+  // below has always resolved for them, but `lesson.magnetism.effects-of-
+  // current` was only ever added starting at v4/v5 -- attempts against it
+  // must stamp a `contentRelease` that a real matching lesson entry
+  // actually exists under (its own native release.unit202.v8 tag, or any
+  // release its content is re-addressed under).
+  readonly contentRelease?: string;
 }): LearnerAttemptRecord {
   clock += 1;
   const question = realQuestion(args.lesson, args.instanceId, args.stepId, args.sessionKey);
@@ -137,7 +149,7 @@ function submit(args: {
     sessionKey: args.sessionKey,
     lessonId: args.lesson.id,
     lessonVersion: args.lesson.version,
-    contentRelease: RELEASE_UNIT202_V2,
+    contentRelease: args.contentRelease ?? RELEASE_UNIT202_V2,
     stepId: args.stepId,
     attemptIndex: args.attemptIndex ?? 1,
     answerRevealedBeforeAttempt: false,
@@ -545,14 +557,65 @@ function parallelCompletionAttempts(): LearnerAttemptRecord[] {
   ];
 }
 
-function scenarioCompleteSlice(): ScenarioResult {
+// CC-12: `lesson.magnetism.effects-of-current`'s own declared mastery gate
+// (see its own completionCriteria comment) is exactly
+// cap.emf.recognise_emf_terminal_voltage, independently evidenced by its
+// misconception_check_emf_terminal_voltage step (standard scaffolding) and
+// its own retrieval_check step (independent scaffolding) -- two real
+// correct, independently-scaffolded attempts across those two steps reach
+// PROVISIONALLY_SECURE, mirroring seriesCompletionAttempts'/
+// parallelCompletionAttempts' own two-independent-attempt pattern above.
+const MAGNETISM_INSTANCE = "li1_proving_magnetism";
+
+function magnetismCompletionAttempts(): LearnerAttemptRecord[] {
+  const lesson = LESSON_MAGNETIC_EFFECTS_OF_CURRENT;
+  const id = MAGNETISM_INSTANCE;
+  return [
+    submit({
+      lesson,
+      instanceId: id,
+      stepId: "misconception_check_emf_terminal_voltage",
+      given: correctAnswer(lesson, id, "misconception_check_emf_terminal_voltage", "s1"),
+      sessionKey: "s1",
+      contentRelease: RELEASE_UNIT202_V8,
+    }),
+    submit({
+      lesson,
+      instanceId: id,
+      stepId: "retrieval_check",
+      given: correctAnswer(lesson, id, "retrieval_check", "s2"),
+      sessionKey: "s2",
+      contentRelease: RELEASE_UNIT202_V8,
+    }),
+  ];
+}
+
+function scenarioAdvanceToMagnetism(): ScenarioResult {
   const attempts = [...advanceAttempts(), ...seriesCompletionAttempts(), ...parallelCompletionAttempts()];
+  const snap = deriveSnapshot(attempts);
+  const decision = select(snap);
+  // CC-12: adding the magnetism/effects-of-current node means completing
+  // the original three-node vocational sequence now correctly ADVANCEs
+  // into it, rather than reporting COMPLETE_SLICE early -- proving the
+  // course definition change actually took effect end to end.
+  const passed = decision.decisionType === "ADVANCE" && decision.lessonId === LESSON_MAGNETIC_EFFECTS_OF_CURRENT.id;
+  return ok(
+    "ADVANCE-TO-MAGNETISM",
+    "Once Ohm's Law, resistors-series and resistors-parallel are all complete, the course deterministically advances to the real fourth vocational node -- magnetism/effects-of-current (CC-12) -- rather than reporting COMPLETE_SLICE early",
+    "real",
+    passed,
+    `decisionType=${decision.decisionType}, lessonId=${decision.lessonId}`,
+  );
+}
+
+function scenarioCompleteSlice(): ScenarioResult {
+  const attempts = [...advanceAttempts(), ...seriesCompletionAttempts(), ...parallelCompletionAttempts(), ...magnetismCompletionAttempts()];
   const snap = deriveSnapshot(attempts);
   const decision = select(snap);
   const passed = decision.decisionType === "COMPLETE_SLICE" && decision.lessonId === undefined;
   return ok(
     "COMPLETE-SLICE",
-    "Once every real course node's completion capabilities are evidenced and transfer-secure (Ohm's Law, resistors-series, resistors-parallel), the course deterministically reports COMPLETE_SLICE with no further activity",
+    "Once every real course node's completion capabilities are evidenced and transfer-secure (Ohm's Law, resistors-series, resistors-parallel, magnetism/effects-of-current), the course deterministically reports COMPLETE_SLICE with no further activity",
     "real",
     passed,
     `decisionType=${decision.decisionType}, reason=${decision.reason}`,
@@ -576,6 +639,7 @@ export function buildReport(): CourseOrchestrationProvingReport {
       scenarioSharedPrerequisite(),
       scenarioMisconceptionSafe(),
       scenarioConverge(),
+      scenarioAdvanceToMagnetism(),
       scenarioCompleteSlice(),
     ],
     realContentGaps: REAL_CONTENT_GAPS,

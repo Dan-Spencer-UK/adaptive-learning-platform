@@ -55,7 +55,7 @@ import {
 } from "@alp/learning-engine";
 import type { LessonPlan } from "@alp/content-schema";
 
-import { LESSON_OHMS_LAW, LESSON_OHMS_LAW_UNIT202_V2, lessons as realLessons } from "./data/lessons.ts";
+import { LESSON_OHMS_LAW, LESSON_OHMS_LAW_UNIT202_V2, LESSON_MAGNETIC_EFFECTS_OF_CURRENT, lessons as realLessons } from "./data/lessons.ts";
 
 export interface ScenarioResult {
   readonly scenarioId: string;
@@ -136,6 +136,67 @@ function scenarioC(): ScenarioResult {
     "real",
     passed,
     `-> ${toRemediation}, cleared -> ${backToMain}, plain-wrong -> ${noRouteOnPlainWrongAnswer}`,
+  );
+}
+
+// ---------------------------------------------------------------------
+// H -- CC-12: ambiguous force-direction wrong answer, REAL content,
+// full multi-step diagnostic chain (task brief §11: EVIDENCE ->
+// HYPOTHESIS -> DIAGNOSTIC CHECK -> TARGETED REMEDIATION, never WRONG
+// ANSWER -> ASSUME MISCONCEPTION)
+// ---------------------------------------------------------------------
+function scenarioH(): ScenarioResult {
+  // 1. The original question's own suggestive-strength misconception tag
+  // alone must NOT resolve a route (no misconception_detected route is
+  // declared on this step) -- an ambiguous wrong answer is never silently
+  // treated as confirmed evidence of MIS-EL-ELECTRON-CURRENT-DIRECTION-
+  // CONFUSION-001.
+  const noMisconceptionRouteOnAmbiguousAnswer = resolveWithinSessionBranch(LESSON_MAGNETIC_EFFECTS_OF_CURRENT, "guided_interpret_force_direction", {
+    trigger: "misconception_detected",
+    misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+  });
+  // 2. The real fallback: any wrong answer with no resolved misconception
+  // route falls back to the generic incorrect_answer trigger, which DOES
+  // route -- to a real, separate diagnostic step, never a blind retry.
+  const toDiagnostic = resolveWithinSessionBranch(LESSON_MAGNETIC_EFFECTS_OF_CURRENT, "guided_interpret_force_direction", { trigger: "incorrect_answer" });
+  // 3. On the diagnostic step itself: a wrong answer THERE is real, direct
+  // evidence of the current-convention misconception, and does route.
+  const diagnosticWrongToRemediation = resolveWithinSessionBranch(LESSON_MAGNETIC_EFFECTS_OF_CURRENT, "diagnose_force_direction_error", {
+    trigger: "misconception_detected",
+    misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+  });
+  // 4. A correct answer on the diagnostic step (itself conditional_
+  // remediation_only) rules out the current-convention hypothesis and
+  // proceeds straight to the fresh recheck -- by elimination, never
+  // asserting the residual Fleming's-rule finger-assignment hypothesis as
+  // confirmed (that lives only in the UI's own "Deeper" feedback layer).
+  const diagnosticCorrectToRecheck = resolveWithinSessionBranch(LESSON_MAGNETIC_EFFECTS_OF_CURRENT, "diagnose_force_direction_error", { trigger: "remediation_cleared" });
+  // 5. Remediation, once cleared with a fresh correct discrimination, also
+  // proceeds to the same recheck step -- both diagnostic paths converge.
+  const remediationClearedToRecheck = resolveWithinSessionBranch(LESSON_MAGNETIC_EFFECTS_OF_CURRENT, "remediation_current_convention", { trigger: "remediation_cleared" });
+  // 6. The three new conditional_remediation_only steps are excluded from
+  // the default pre-session sequence -- a strong learner who never
+  // triggers the ambiguous-answer branch never sees any of them.
+  const assembled = assembleLessonInstance(LESSON_MAGNETIC_EFFECTS_OF_CURRENT, evidence(), realContext());
+  const conditionalStepsExcludedByDefault =
+    assembled.status === "ready" &&
+    !assembled.instance.includedStepIds.includes("diagnose_force_direction_error") &&
+    !assembled.instance.includedStepIds.includes("remediation_current_convention") &&
+    !assembled.instance.includedStepIds.includes("recheck_force_direction");
+
+  const passed =
+    noMisconceptionRouteOnAmbiguousAnswer === null &&
+    toDiagnostic === "diagnose_force_direction_error" &&
+    diagnosticWrongToRemediation === "remediation_current_convention" &&
+    diagnosticCorrectToRecheck === "recheck_force_direction" &&
+    remediationClearedToRecheck === "recheck_force_direction" &&
+    conditionalStepsExcludedByDefault;
+  return ok(
+    "H",
+    "CC-12: an ambiguous force-direction wrong answer never assumes a misconception -- it routes to a real diagnostic check, which itself distinguishes current-convention confusion (confirmed -> remediate -> recheck) from a ruled-out hypothesis (-> recheck directly); all three new steps are excluded from the default sequence for a learner who never triggers the branch",
+    "real",
+    passed,
+    `ambiguous-misconception-route=${noMisconceptionRouteOnAmbiguousAnswer}, ->${toDiagnostic}, diagnostic-wrong->${diagnosticWrongToRemediation}, diagnostic-correct->${diagnosticCorrectToRecheck}, remediation-cleared->${remediationClearedToRecheck}, excludedByDefault=${conditionalStepsExcludedByDefault}`,
   );
 }
 
@@ -483,7 +544,7 @@ function scenarioF(): ScenarioResult {
 
 export function buildReport(): LessonAssemblyProvingReport {
   return {
-    scenarios: [scenarioA(), scenarioB(), scenarioC(), scenarioD(), scenarioE(), scenarioF(), scenarioG()],
+    scenarios: [scenarioA(), scenarioB(), scenarioC(), scenarioD(), scenarioE(), scenarioF(), scenarioG(), scenarioH()],
     realContentGaps: REAL_CONTENT_GAPS,
   };
 }

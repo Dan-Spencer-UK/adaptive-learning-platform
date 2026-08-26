@@ -1,81 +1,353 @@
 /**
- * CC-11 Workstream B: second of a four-lesson LO5 sequence. Scope: AC5.3
- * (the magnetic effects of current -- field production, force on a
- * conductor, electromagnetism, and EMF vs. terminal voltage). Follows
- * lesson-magnetism-fundamentals.ts, which taught static-magnet
- * fundamentals (attraction/repulsion, flux/flux-density); this lesson
- * moves to what a CURRENT does magnetically. Every assertion/family/
- * capability/formula/diagram/question-blueprint id below is a real, live
- * reference into cc05a-pedagogy-unit202.ts / cc04-unit202-electrical-
- * science.ts, cross-checked mechanically by
- * scripts/content/validate-lesson-plan.ts. No new knowledge, capability
- * or blueprint was authored.
- *
- * Diagram wiring (task instruction 2): the field-direction teaching step
- * and its guided question both carry
- * representation.diagramBlueprintId: "magnetic.field_conductor_direction"
- * (rendered by RightHandGripRuleDiagram); the force-direction teaching
- * step and its guided question both carry "motor.force_field_current"
- * (rendered by MagneticForceDiagram). Both renderers already exist; the
- * Lesson Player's generic diagram-rendering gap (PROJECT-STATUS.md CC-10
- * §5a) is a separate, parallel workstream's concern, not this one's.
- *
- * CC-11.1: closes the two gaps CC-11 flagged -- AC5.3's
- * OFFICIAL_TEACHING_INTERPRETATION calculation obligations
- * "force-on-conductor-calculation" (F = B I l, Fleming's left-hand rule)
- * and "induced-emf-calculation" (e = B l v, Fleming's right-hand rule)
- * previously had no formula family, worked example, question blueprint
- * or capability anywhere. Both now exist
- * (cap.magnetism.calculate_force_on_conductor /
- * magnetism.calculate_force_on_conductor;
- * cap.emf.calculate_motional_emf / emf.calculate_motional_emf) and are
- * taught + practised directly in this lesson
- * (worked_force_on_conductor / guided_calculate_force_on_conductor;
- * worked_motional_emf / guided_calculate_motional_emf).
- *
- * CC-11.3: e = B l v's own governing "mutually perpendicular" geometry
- * (B, l and v) had a formula card but zero visual support -- closed
- * with `emf.motional_emf_geometry` (MotionalEmfDiagram.tsx), wired into
- * the EMF concept step and both the worked example and guided
- * calculation. `contentRelease` moved to `release.unit202.v7`; see
- * lesson-cc11-3-historical-snapshot.ts for how v5/v6's own immutable
- * membership remains resolvable against this lesson's pre-CC-11.3
- * content.
- *
- * CC-12: adds a genuine root-cause diagnostic chain after
- * `guided_interpret_force_direction` (task brief §11) -- an incorrect
- * force-direction answer is ambiguous (could trace to current-convention
- * confusion, general Fleming's-rule finger-assignment confusion, or a
- * simple slip), so it is never assumed to BE
- * MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001 merely because that is
- * the blueprint's own suggestive target. The new `incorrect_answer`
- * branch trigger (content-schema) routes any such ambiguous wrong answer
- * to `diagnose_force_direction_error`, a real, separate, governed
- * discriminating check (`magnetism.diagnose_current_convention`) -- wrong
- * there is DIRECT evidence of the current-convention misconception
- * (-> `remediation_current_convention`, re-teach + re-check); right there
- * rules that hypothesis out, converging by elimination on Fleming's-rule
- * finger-assignment as the more likely residual cause (surfaced in that
- * step's own layered feedback, never asserted as confirmed evidence).
- * Both paths converge at `recheck_force_direction` -- a FRESH equivalent
- * question (the same reused `magnetism.interpret_force_direction`
- * blueprint, deterministically reseeded by its own new step id, never a
- * repeat of the original question) proving whether the weakness was
- * actually repaired. `progressiveReveal: true` is set on every step in
- * this chain plus the original guided question, demonstrating the new
- * layered (Quick/Explain/Deeper) feedback panel end-to-end. See
- * `packages/learning-engine/src/branching.ts` and
- * `apps/mobile/src/lib/lesson-session/lesson-controller.ts`'s
- * `resolveBranchDestination` for exactly how the chain resolves; neither
- * needed structural change beyond the one new trigger. `contentRelease`
- * moved to `release.unit202.v8`; see
- * lesson-cc12-v7-historical-snapshot.ts for how v7's own immutable
- * membership remains resolvable against this lesson's pre-CC-12 content.
+ * CC-12: frozen, byte-identical copies of `lesson.magnetism.fundamentals`
+ * and `lesson.magnetism.effects-of-current`'s exact step content as it
+ * stood at the end of CC-11.3 (their native `release.unit202.v7`
+ * content), before this package's edits (a `remediationEligibility`
+ * addition on the fundamentals lesson; a new ambiguous-wrong-answer
+ * diagnostic chain plus layered-feedback flags on the effects-of-current
+ * lesson). `release.unit202.v7`'s own declared membership must keep
+ * resolving to exactly this content forever -- a `ContentRelease` is an
+ * immutable governed snapshot (CC-08A) -- so `lessons.ts` re-addresses
+ * v7's own entries for these two lessons through this file instead of the
+ * now-edited live objects, exactly the same pattern
+ * `lesson-cc11-3-historical-snapshot.ts` established for v5/v6 against
+ * CC-11.3's own edits. The live, edited objects in
+ * `lesson-magnetism-fundamentals.ts` / `lesson-magnetic-effects-of-
+ * current.ts` now carry `contentRelease: "release.unit202.v8"` --
+ * `release.unit202.v8` is their first, and only, true release identity
+ * for the CC-12 content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
 
-export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
+export const LESSON_MAGNETISM_FUNDAMENTALS_V7_HISTORICAL: LessonPlan = {
+  id: "lesson.magnetism.fundamentals",
+  schemaVersion: 1,
+  version: 1,
+  title: "Magnetism Fundamentals",
+  learnerFacingDescription:
+    "Understand magnetic attraction and repulsion, the difference between magnetic flux and flux density (and their SI units), and how a permanent magnet differs from an electromagnet.",
+  curriculumUnit: "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
+  prerequisiteKnowledge: ["electrical.ohms_law"],
+  targetAssertionFamilyIds: ["electrical.magnetism_and_electromagnetism"],
+  remediationEligibility: [],
+  targetAssertionIdentifiers: [
+    "EL-CONCEPT-MAGNETISM-001",
+    "EL-CONCEPT-MAGNETIC-FLUX-001",
+    "EL-UNIT-WEBER-001",
+    "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001",
+    "EL-UNIT-TESLA-001",
+    "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001",
+  ],
+  targetCapabilityIds: [
+    "cap.magnetism.recognise_attraction_repulsion",
+    "cap.magnetism.recognise_concept",
+    "cap.magnetism.identify_unit",
+    "cap.magnetism.compare_permanent_electromagnet",
+  ],
+  estimatedDurationMinutes: 16,
+  instructionalStrategy:
+    "Attraction/repulsion is introduced first as the intuitive, everyday phenomenon underlying everything else in LO5. Flux and flux density are then taught as a deliberately paired distinction (what exists vs. how concentrated it is), immediately followed by their SI units so the quantity and its unit are never learned apart. Permanent magnet vs. electromagnet closes the lesson, explicitly reinforcing attraction/repulsion as the shared underlying mechanism and previewing that the NEXT lesson explains exactly how a current produces that magnetism.",
+  steps: [
+    {
+      id: "orientation",
+      type: "orientation",
+      purpose: "Frame magnetism as the foundation for motors, generators and instruments the learner will meet throughout the rest of Unit 202.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: [],
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "concept_magnetism_attraction_repulsion",
+      type: "concept_explanation",
+      purpose: "Describe magnetic attraction and repulsion between poles as the basic behaviour all magnetism -- permanent or electromagnetic -- exhibits.",
+      requirement: "required",
+      teaches: ["EL-CONCEPT-MAGNETISM-001"],
+      reinforces: [],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.recognise_attraction_repulsion"],
+      misconceptionTargets: [],
+      representation: { diagramBlueprintId: "magnetic.pole_interaction" },
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_recognise_attraction_repulsion",
+      type: "guided_interaction",
+      purpose: "Recognise magnetic attraction and repulsion between poles.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-CONCEPT-MAGNETISM-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.recognise_attraction_repulsion"],
+      misconceptionTargets: [],
+      representation: { diagramBlueprintId: "magnetic.pole_interaction" },
+      questionBlueprintId: "magnetism.recognise_attraction_repulsion",
+      presentation: { interactionRequired: true, interactionRole: "predict", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.recognise_attraction_repulsion"],
+    },
+    {
+      id: "concept_flux_and_flux_density",
+      type: "concept_explanation",
+      purpose: "Distinguish magnetic flux (the total magnetic field produced) from magnetic flux density (how concentrated that field is).",
+      requirement: "required",
+      teaches: ["EL-CONCEPT-MAGNETIC-FLUX-001", "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"],
+      reinforces: [],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.recognise_concept"],
+      misconceptionTargets: [],
+      representation: { diagramBlueprintId: "magnetic.flux_field_lines", diagramParameters: { density_comparison: true } },
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_recognise_flux_concepts",
+      type: "guided_interaction",
+      purpose: "Recognise magnetic flux or flux density from its definition.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-CONCEPT-MAGNETIC-FLUX-001", "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.recognise_concept"],
+      misconceptionTargets: [],
+      representation: {},
+      questionBlueprintId: "magnetism.recognise_concept",
+      presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.recognise_concept"],
+    },
+    {
+      id: "concept_flux_and_flux_density_units",
+      type: "concept_explanation",
+      purpose: "Name the SI units of magnetic flux (weber) and magnetic flux density (tesla), paired directly with the quantities they measure.",
+      requirement: "required",
+      teaches: ["EL-UNIT-WEBER-001", "EL-UNIT-TESLA-001"],
+      reinforces: ["EL-CONCEPT-MAGNETIC-FLUX-001", "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.identify_unit"],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_identify_flux_density_unit",
+      type: "guided_interaction",
+      purpose: "Identify the SI unit of magnetic flux density among plausible related-unit distractors (weber, henry, farad).",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-UNIT-TESLA-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.identify_unit"],
+      misconceptionTargets: [],
+      representation: {},
+      questionBlueprintId: "magnetism.identify_flux_density_unit",
+      presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.identify_unit"],
+    },
+    {
+      id: "independent_identify_flux_unit",
+      type: "independent_question",
+      purpose: "Unscaffolded transfer: identify the SI unit of magnetic flux itself, using the same recognition skill just practised for flux density.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-UNIT-WEBER-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.identify_unit"],
+      misconceptionTargets: [],
+      representation: {},
+      questionBlueprintId: "magnetism.identify_flux_unit",
+      presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "independent",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.identify_unit"],
+    },
+    {
+      id: "concept_permanent_vs_electromagnet",
+      type: "concept_explanation",
+      purpose: "Compare a permanent magnet with an electromagnet, explicitly reinforcing that both exhibit the same attraction/repulsion behaviour.",
+      requirement: "required",
+      teaches: ["EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"],
+      reinforces: ["EL-CONCEPT-MAGNETISM-001"],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.compare_permanent_electromagnet"],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "intermediate",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "guided_compare_permanent_electromagnet",
+      type: "guided_interaction",
+      purpose: "Compare a permanent magnet with an electromagnet.",
+      requirement: "required",
+      teaches: [],
+      reinforces: ["EL-CONCEPT-MAGNETISM-001"],
+      tests: ["EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.compare_permanent_electromagnet"],
+      misconceptionTargets: [],
+      representation: {},
+      questionBlueprintId: "magnetism.compare_permanent_electromagnet",
+      presentation: { interactionRequired: true, interactionRole: "compare", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "intermediate",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.compare_permanent_electromagnet"],
+    },
+    {
+      id: "retrieval_check",
+      type: "retrieval_check",
+      purpose: "Short delayed retrieval of flux/flux-density recognition to strengthen retention before the lesson ends.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: ["EL-CONCEPT-MAGNETIC-FLUX-001", "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001"],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: ["cap.magnetism.recognise_concept"],
+      misconceptionTargets: [],
+      representation: {},
+      questionBlueprintId: "magnetism.recognise_concept",
+      presentation: { interactionRequired: true, interactionRole: "identify", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "independent",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "correct_answer_required",
+      branchRoutes: [],
+      evidenceEmitted: ["cap.magnetism.recognise_concept"],
+    },
+    {
+      id: "recap",
+      type: "recap",
+      purpose: "Summarise attraction/repulsion, the flux vs. flux-density distinction with their SI units, and permanent magnet vs. electromagnet.",
+      requirement: "required",
+      teaches: [],
+      reinforces: ["EL-CONCEPT-MAGNETISM-001", "EL-CONCEPT-MAGNETIC-FLUX-001", "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", "EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"],
+      tests: [],
+      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: true, progressiveReveal: false },
+      scaffoldingLevel: "independent",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+    {
+      id: "exit_completion",
+      type: "exit_completion",
+      purpose: "Confirm lesson completion against the governed completion criteria.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: [],
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: {},
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "independent",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: false },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+    },
+  ],
+  misconceptionTargets: [],
+  retrievalTags: ["electrical.magnetism_and_electromagnetism"],
+  completionCriteria: {
+    requiredStepIds: [
+      "orientation",
+      "concept_magnetism_attraction_repulsion",
+      "guided_recognise_attraction_repulsion",
+      "concept_flux_and_flux_density",
+      "guided_recognise_flux_concepts",
+      "concept_flux_and_flux_density_units",
+      "guided_identify_flux_density_unit",
+      "independent_identify_flux_unit",
+      "concept_permanent_vs_electromagnet",
+      "guided_compare_permanent_electromagnet",
+      "retrieval_check",
+      "recap",
+      "exit_completion",
+    ],
+    requiredCapabilityEvidence: [
+      "cap.magnetism.recognise_attraction_repulsion",
+      "cap.magnetism.recognise_concept",
+      "cap.magnetism.identify_unit",
+      "cap.magnetism.compare_permanent_electromagnet",
+    ],
+    masteryGateCapabilityIds: ["cap.magnetism.recognise_concept", "cap.magnetism.identify_unit"],
+    requiresRemediationClearance: true,
+    exitSummary:
+      "The learner has described magnetic attraction and repulsion, distinguished magnetic flux from flux density with their SI units, and compared a permanent magnet with an electromagnet.",
+  },
+  presentationModes: ["learn", "review"],
+  contentRelease: "release.unit202.v7",
+};
+
+export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT_V7_HISTORICAL: LessonPlan = {
   id: "lesson.magnetism.effects-of-current",
   schemaVersion: 1,
   version: 1,
@@ -244,117 +516,8 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "suggestive" }],
       representation: { diagramBlueprintId: "motor.force_field_current" },
       questionBlueprintId: "magnetism.interpret_force_direction",
-      presentation: { interactionRequired: true, interactionRole: "interpret", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: true },
+      presentation: { interactionRequired: true, interactionRole: "interpret", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "guided",
-      cognitiveDemand: "advanced",
-      feedback: { mode: "immediate", explainWhy: true },
-      completionCondition: "correct_answer_required",
-      // CC-12: the declared misconceptionTarget above is only SUGGESTIVE
-      // and has no matching misconception_detected route here on purpose
-      // -- an ambiguous wrong answer must not be silently treated as
-      // confirmed evidence of that one specific misconception. Every
-      // incorrect answer instead falls back to a real diagnostic check.
-      branchRoutes: [
-        {
-          trigger: "incorrect_answer",
-          destinationStepId: "diagnose_force_direction_error",
-          description: "Ambiguous wrong answer -- run a targeted diagnostic before assuming which cause, if any, applies (task brief §11).",
-        },
-      ],
-      evidenceEmitted: ["cap.magnetism.interpret_force_direction"],
-    },
-    {
-      id: "diagnose_force_direction_error",
-      type: "misconception_discrimination",
-      purpose: "Discriminate whether an ambiguous wrong force-direction answer traces to current-convention confusion, before assuming it does or does not.",
-      requirement: "conditional_remediation_only",
-      teaches: [],
-      reinforces: ["EL-CONCEPT-FLEMING-LEFT-HAND-001"],
-      tests: [],
-      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
-      capabilityIds: ["cap.magnetism.interpret_force_direction"],
-      // The FIRST entry is what `evaluateAnswer()` actually attaches on a
-      // wrong answer (governed engine behaviour, unaffected by declaring a
-      // second entry). The second entry exists so the mobile content
-      // generator bundles MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001's
-      // governed description at all -- it is never engine-attached here,
-      // only surfaced as an explicitly-informational "Deeper" feedback
-      // hint on the residual (correct-answer) path, per this lesson's own
-      // header comment.
-      misconceptionTargets: [
-        { misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "direct" },
-        { misconceptionIdentifier: "MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001", evidenceStrength: "suggestive" },
-      ],
-      representation: {},
-      questionBlueprintId: "magnetism.diagnose_current_convention",
-      presentation: { interactionRequired: true, interactionRole: "compare", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: true },
-      scaffoldingLevel: "standard",
-      cognitiveDemand: "diagnostic",
-      feedback: { mode: "immediate", explainWhy: true },
-      completionCondition: "correct_answer_required",
-      branchRoutes: [
-        {
-          trigger: "misconception_detected",
-          misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
-          destinationStepId: "remediation_current_convention",
-          description: "Current-convention confusion confirmed by a direct discriminating check -- reteach before rechecking.",
-        },
-        {
-          trigger: "remediation_cleared",
-          destinationStepId: "recheck_force_direction",
-          description: "Current-convention hypothesis ruled out (answered correctly) -- proceed straight to the fresh recheck; the residual Fleming's-rule finger-assignment hypothesis is surfaced in this step's own deeper feedback layer, not asserted as confirmed evidence.",
-        },
-      ],
-      evidenceEmitted: ["cap.magnetism.interpret_force_direction"],
-    },
-    {
-      id: "remediation_current_convention",
-      type: "remediation",
-      purpose: "Reteach that Fleming's left-hand rule always uses conventional current, then require a fresh correct discrimination before rechecking force direction. Entered only via a branch route -- never part of the default linear path.",
-      requirement: "conditional_remediation_only",
-      teaches: ["EL-CONCEPT-FLEMING-LEFT-HAND-001"],
-      reinforces: [],
-      tests: [],
-      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
-      capabilityIds: ["cap.magnetism.interpret_force_direction"],
-      misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "direct" }],
-      representation: {},
-      questionBlueprintId: "magnetism.diagnose_current_convention",
-      presentation: { interactionRequired: true, interactionRole: "compare", answerReveal: "after_submission", contentMayScroll: true, progressiveReveal: true },
-      scaffoldingLevel: "guided",
-      cognitiveDemand: "intermediate",
-      feedback: { mode: "immediate", explainWhy: true },
-      completionCondition: "correct_answer_required",
-      branchRoutes: [
-        {
-          trigger: "remediation_cleared",
-          destinationStepId: "recheck_force_direction",
-          description: "Remediation cleared -- proceed to the fresh recheck of force direction.",
-        },
-      ],
-      evidenceEmitted: ["cap.magnetism.interpret_force_direction"],
-    },
-    {
-      id: "recheck_force_direction",
-      type: "retrieval_check",
-      purpose: "Ask a fresh, equivalent force-direction question (never a repeat of the original) to check whether the weakness identified above has actually been repaired.",
-      requirement: "conditional_remediation_only",
-      teaches: [],
-      reinforces: [],
-      tests: ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001"],
-      assertionFamilyId: "electrical.magnetism_and_electromagnetism",
-      capabilityIds: ["cap.magnetism.interpret_force_direction"],
-      misconceptionTargets: [],
-      representation: { diagramBlueprintId: "motor.force_field_current" },
-      // Reusing the SAME blueprint as guided_interpret_force_direction is
-      // deliberate: the deterministic engine reseeds from this step's own
-      // id, so it generates a genuinely different pole/current-direction
-      // combination in the large majority of cases -- a fresh but
-      // equivalent question, never a byte-identical repeat (task brief
-      // §11: "Do not simply repeat the same question").
-      questionBlueprintId: "magnetism.interpret_force_direction",
-      presentation: { interactionRequired: true, interactionRole: "interpret", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: true },
-      scaffoldingLevel: "independent",
       cognitiveDemand: "advanced",
       feedback: { mode: "immediate", explainWhy: true },
       completionCondition: "correct_answer_required",
@@ -615,21 +778,11 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
       "cap.emf.recognise_emf_terminal_voltage",
       "cap.emf.calculate_motional_emf",
     ],
-    // interpret_field_direction, interpret_force_direction,
-    // calculate_force_on_conductor, calculate_motional_emf and
-    // recognise_concept are each only evidenced through guided steps in
-    // THIS lesson's own step design (never independently or via
-    // transfer) so cannot structurally reach a secure mastery tier here
-    // -- same rationale as lesson-ohms-law.ts's excluded guided-only
-    // capability. recognise_emf_terminal_voltage IS independently
-    // re-evidenced at the retrieval_check step, so it remains eligible.
     masteryGateCapabilityIds: ["cap.emf.recognise_emf_terminal_voltage"],
     requiresRemediationClearance: true,
     exitSummary:
       "The learner has interpreted the direction of the magnetic field around a current-carrying conductor, calculated the force on a conductor in a field, recognised electromagnetism, calculated induced EMF from a moving conductor, and distinguished EMF from terminal voltage -- clearing remediation if that misconception was detected.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v8",
+  contentRelease: "release.unit202.v7",
 };
-
-export const lessons = [LESSON_MAGNETIC_EFFECTS_OF_CURRENT];

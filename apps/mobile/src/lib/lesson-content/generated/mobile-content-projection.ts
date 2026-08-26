@@ -2,7 +2,7 @@
  * GENERATED FILE -- DO NOT EDIT.
  *
  * Deterministic mobile learner-runtime content projection for governed
- * content release "release.unit202.v7".
+ * content release "release.unit202.v8".
  *
  * Source of truth: the governed content under scripts/content/data.
  * Regenerate with:  npm run content:mobile:generate
@@ -16,7 +16,7 @@ import type { MobileContentProjection } from "@alp/content-schema";
 export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
   "schemaVersion": 2,
   "contentRelease": {
-    "id": "release.unit202.v7",
+    "id": "release.unit202.v8",
     "questionBlueprintVersion": 1
   },
   "lessons": [
@@ -310,7 +310,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.conductors-and-insulators",
@@ -662,7 +662,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.core-quantities",
@@ -925,7 +925,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.electronic-components-passive",
@@ -1432,7 +1432,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.electronic-components-switching-control",
@@ -1935,7 +1935,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.energy-and-efficiency",
@@ -2329,7 +2329,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.fault-conditions-protection",
@@ -2712,7 +2712,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.instrumentation",
@@ -3107,7 +3107,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.ohms-law",
@@ -3830,7 +3830,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.power",
@@ -4367,7 +4367,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.resistivity",
@@ -4795,7 +4795,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.resistors-parallel",
@@ -5436,7 +5436,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.resistors-series",
@@ -5952,7 +5952,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.series-vs-parallel-comparison",
@@ -6407,7 +6407,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.si-units",
@@ -6810,7 +6810,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.electrical.thermal-and-chemical-effects",
@@ -7068,7 +7068,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.emf.ac-generation-principles",
@@ -7564,7 +7564,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.foundation.maths.formula-rearrangement",
@@ -8013,7 +8013,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.foundation.physics.mass-and-weight",
@@ -8303,7 +8303,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.foundation.physics.mechanics-force-work-energy-power",
@@ -8994,7 +8994,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.foundation.physics.simple-machines",
@@ -9596,7 +9596,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.magnetism.effects-of-current",
@@ -9874,9 +9874,157 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "interactionRole": "interpret",
             "answerReveal": "after_submission",
             "contentMayScroll": false,
-            "progressiveReveal": false
+            "progressiveReveal": true
           },
           "scaffoldingLevel": "guided",
+          "cognitiveDemand": "advanced",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [
+            {
+              "trigger": "incorrect_answer",
+              "destinationStepId": "diagnose_force_direction_error",
+              "description": "Ambiguous wrong answer -- run a targeted diagnostic before assuming which cause, if any, applies (task brief §11)."
+            }
+          ],
+          "evidenceEmitted": [
+            "cap.magnetism.interpret_force_direction"
+          ]
+        },
+        {
+          "id": "diagnose_force_direction_error",
+          "type": "misconception_discrimination",
+          "purpose": "Discriminate whether an ambiguous wrong force-direction answer traces to current-convention confusion, before assuming it does or does not.",
+          "requirement": "conditional_remediation_only",
+          "teaches": [],
+          "reinforces": [
+            "EL-CONCEPT-FLEMING-LEFT-HAND-001"
+          ],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.interpret_force_direction"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+              "evidenceStrength": "direct"
+            },
+            {
+              "misconceptionIdentifier": "MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001",
+              "evidenceStrength": "suggestive"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "magnetism.diagnose_current_convention",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "standard",
+          "cognitiveDemand": "diagnostic",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [
+            {
+              "trigger": "misconception_detected",
+              "misconceptionIdentifier": "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+              "destinationStepId": "remediation_current_convention",
+              "description": "Current-convention confusion confirmed by a direct discriminating check -- reteach before rechecking."
+            },
+            {
+              "trigger": "remediation_cleared",
+              "destinationStepId": "recheck_force_direction",
+              "description": "Current-convention hypothesis ruled out (answered correctly) -- proceed straight to the fresh recheck; the residual Fleming's-rule finger-assignment hypothesis is surfaced in this step's own deeper feedback layer, not asserted as confirmed evidence."
+            }
+          ],
+          "evidenceEmitted": [
+            "cap.magnetism.interpret_force_direction"
+          ]
+        },
+        {
+          "id": "remediation_current_convention",
+          "type": "remediation",
+          "purpose": "Reteach that Fleming's left-hand rule always uses conventional current, then require a fresh correct discrimination before rechecking force direction. Entered only via a branch route -- never part of the default linear path.",
+          "requirement": "conditional_remediation_only",
+          "teaches": [
+            "EL-CONCEPT-FLEMING-LEFT-HAND-001"
+          ],
+          "reinforces": [],
+          "tests": [],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.interpret_force_direction"
+          ],
+          "misconceptionTargets": [
+            {
+              "misconceptionIdentifier": "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+              "evidenceStrength": "direct"
+            }
+          ],
+          "representation": {},
+          "questionBlueprintId": "magnetism.diagnose_current_convention",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "compare",
+            "answerReveal": "after_submission",
+            "contentMayScroll": true,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "guided",
+          "cognitiveDemand": "intermediate",
+          "feedback": {
+            "mode": "immediate",
+            "explainWhy": true
+          },
+          "completionCondition": "correct_answer_required",
+          "branchRoutes": [
+            {
+              "trigger": "remediation_cleared",
+              "destinationStepId": "recheck_force_direction",
+              "description": "Remediation cleared -- proceed to the fresh recheck of force direction."
+            }
+          ],
+          "evidenceEmitted": [
+            "cap.magnetism.interpret_force_direction"
+          ]
+        },
+        {
+          "id": "recheck_force_direction",
+          "type": "retrieval_check",
+          "purpose": "Ask a fresh, equivalent force-direction question (never a repeat of the original) to check whether the weakness identified above has actually been repaired.",
+          "requirement": "conditional_remediation_only",
+          "teaches": [],
+          "reinforces": [],
+          "tests": [
+            "EL-CONCEPT-FORCE-ON-CONDUCTOR-001"
+          ],
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "capabilityIds": [
+            "cap.magnetism.interpret_force_direction"
+          ],
+          "misconceptionTargets": [],
+          "representation": {
+            "diagramBlueprintId": "motor.force_field_current"
+          },
+          "questionBlueprintId": "magnetism.interpret_force_direction",
+          "presentation": {
+            "interactionRequired": true,
+            "interactionRole": "interpret",
+            "answerReveal": "after_submission",
+            "contentMayScroll": false,
+            "progressiveReveal": true
+          },
+          "scaffoldingLevel": "independent",
           "cognitiveDemand": "advanced",
           "feedback": {
             "mode": "immediate",
@@ -10322,7 +10470,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.magnetism.fundamentals",
@@ -10351,7 +10499,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "cap.magnetism.identify_unit",
         "cap.magnetism.compare_permanent_electromagnet"
       ],
-      "remediationEligibility": [],
+      "remediationEligibility": [
+        {
+          "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+          "isDefaultRemediation": true
+        }
+      ],
       "estimatedDurationMinutes": 16,
       "instructionalStrategy": "Attraction/repulsion is introduced first as the intuitive, everyday phenomenon underlying everything else in LO5. Flux and flux density are then taught as a deliberately paired distinction (what exists vs. how concentrated it is), immediately followed by their SI units so the quantity and its unit are never learned apart. Permanent magnet vs. electromagnet closes the lesson, explicitly reinforcing attraction/repulsion as the shared underlying mechanism and previewing that the NEXT lesson explains exactly how a current produces that magnetism.",
       "steps": [
@@ -10844,7 +10997,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     },
     {
       "id": "lesson.waveforms.ac-dc-and-sine-wave-quantities",
@@ -11509,7 +11662,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "learn",
         "review"
       ],
-      "contentRelease": "release.unit202.v7"
+      "contentRelease": "release.unit202.v8"
     }
   ],
   "questionBlueprints": [
@@ -13275,6 +13428,47 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which type of magnet is being described: it {scenario_clue}?"
+        ]
+      }
+    },
+    {
+      "id": "magnetism.diagnose_current_convention",
+      "assertionFamilyId": "electrical.magnetism_and_electromagnetism",
+      "capabilityId": "cap.magnetism.interpret_force_direction",
+      "title": "Diagnose which current convention was used for Fleming's left-hand rule",
+      "representation": {},
+      "variantDimensions": {},
+      "parameterGenerators": [],
+      "answer": {
+        "type": "multiple_choice",
+        "options": [
+          "conventional_current",
+          "electron_flow"
+        ]
+      },
+      "marking": {
+        "type": "exact"
+      },
+      "evidence": {
+        "primaryCapabilityId": "cap.magnetism.interpret_force_direction",
+        "familyId": "electrical.magnetism_and_electromagnetism",
+        "assertionIdentifiers": [
+          "EL-CONCEPT-FLEMING-LEFT-HAND-001"
+        ],
+        "supportingCapabilityIds": [],
+        "representationDependency": [],
+        "misconceptionTargets": [
+          {
+            "misconceptionIdentifier": "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001",
+            "evidenceStrength": "direct"
+          }
+        ]
+      },
+      "difficultyBand": "diagnostic",
+      "presentation": {
+        "promptLines": [
+          "Fleming's left-hand rule's seCond finger represents the direction of CONVENTIONAL current (positive to negative), never electron flow.",
+          "Which direction convention did you use when you last answered a force-direction question?"
         ]
       }
     },
@@ -18019,7 +18213,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "EL-CONCEPT-ELECTROMAGNETISM-001": "Electromagnetism is the branch of physics concerned with the relationship between electric current and magnetic fields, including how one can produce the other.",
     "EL-CONCEPT-ELECTRON-THEORY-001": "In a metallic conductor, electric current is the flow of free electrons, driven by a potential difference across the conductor.",
     "EL-CONCEPT-EMF-001": "Electromotive force (EMF) is the electrical energy per unit charge supplied by a source, which drives current around a circuit.",
-    "EL-CONCEPT-FIELD-DIRECTION-RULE-001": "The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): with the thumb pointing in the direction of current flow, the curled fingers give the direction of the circular field around the conductor.",
+    "EL-CONCEPT-FIELD-DIRECTION-RULE-001": "The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): grip the conductor with the RIGHT hand so the thumb points in the direction of conventional current flow -- the curled fingers then give the direction of the circular field around the conductor.",
     "EL-CONCEPT-FLEMING-LEFT-HAND-001": "Fleming's left-hand rule gives the direction of the force on a current-carrying conductor in a magnetic field: with the First finger, seCond finger and thuMb of the left hand mutually at right angles, the First finger points along the Field, the seCond finger along the Current, and the thuMb gives the direction of Motion (force).",
     "EL-CONCEPT-FLEMING-RIGHT-HAND-001": "Fleming's right-hand rule gives the direction of the current induced in a conductor moving through a magnetic field: with the thumb, First finger and seCond finger of the right hand mutually at right angles, the thumb points in the direction of Motion, the First finger along the Field, and the seCond finger gives the direction of the induced Current.",
     "EL-CONCEPT-FORCE-ON-CONDUCTOR-001": "A current-carrying conductor placed in a magnetic field experiences a mechanical force.",
@@ -18159,6 +18353,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001": "Confuses conventional current direction (positive to negative) with the actual direction of electron flow (negative to positive) in a conductor.",
     "MIS-EL-EMF-VOLTAGE-CONFUSION-001": "Confuses EMF (the source's own electrical energy per unit charge) with terminal voltage, treating them as always identical rather than recognising terminal voltage is reduced by the source's internal resistance when supplying current.",
     "MIS-EL-ENERGY-UNIT-CONFUSION-001": "Confuses the joule and the kilowatt-hour as interchangeable without converting between them, or is unaware that they measure the same quantity (energy) at different scales.",
+    "MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001": "Mixes up which finger in Fleming's left-hand rule represents Field, Current and Motion (force) -- e.g. treating the thumb as current or the first finger as motion -- rather than the governed First finger=Field, seCond finger=Current, thuMb=Motion mapping.",
     "MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001": "Connects a voltmeter in series or an ammeter in parallel, swapping the correct connection method for the two instruments.",
     "MIS-EL-OHM-REARRANGE-ERROR-001": "Incorrectly rearranges a multiplicative relationship such as V = I times R or P = V times I (for example moving a variable to the wrong side, or inverting the wrong pair of variables) when isolating a different subject.",
     "MIS-EL-OHM-UNRELATED-SYMBOLS-001": "Treats V, I and R as three unrelated symbols to memorise rather than as a single relationship connecting voltage, current and resistance (V = I times R).",

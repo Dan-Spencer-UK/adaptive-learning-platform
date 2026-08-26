@@ -5,7 +5,7 @@ describe("Lesson assembly engine proving report (real Ohm's Law content + synthe
   const report = buildReport();
 
   it("covers all 7 representative scenarios from task brief §19", () => {
-    expect(report.scenarios.map((s) => s.scenarioId)).toEqual(["A", "B", "C", "D", "E", "F", "G"]);
+    expect(report.scenarios.map((s) => s.scenarioId)).toEqual(["A", "B", "C", "D", "E", "F", "G", "H"]);
   });
 
   it("every scenario passes", () => {

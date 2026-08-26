@@ -38,6 +38,20 @@
  * lesson-cc11-3-historical-snapshot.ts for how v5/v6's own immutable
  * membership remains resolvable against this lesson's pre-CC-11.3
  * content.
+ *
+ * CC-12: declares itself remediation-eligible for its own target family
+ * (`electrical.magnetism_and_electromagnetism`) -- a small, bounded fix
+ * (task brief §16's "add a small bounded [fallback] one if missing"),
+ * closing a real dead-end: `lesson.magnetism.effects-of-current` lists
+ * this same family in its own `prerequisiteKnowledge`, but before this
+ * fix NO lesson in the corpus declared eligibility to remediate it, so a
+ * genuinely WEAK/CONFLICTING evidence state on this family would resolve
+ * to `prerequisite_unresolved` / a `BLOCKED` course decision with no way
+ * forward -- exactly the "does not endlessly loop" case task brief §16
+ * requires a real answer for, not silence. `contentRelease` moved to
+ * `release.unit202.v8`; see lesson-cc12-v7-historical-snapshot.ts for how
+ * v7's own immutable membership remains resolvable against this lesson's
+ * pre-CC-12 content.
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -52,7 +66,11 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
   curriculumUnit: "City & Guilds 2365-02 Unit 202 -- Principles of Electrical Science",
   prerequisiteKnowledge: ["electrical.ohms_law"],
   targetAssertionFamilyIds: ["electrical.magnetism_and_electromagnetism"],
-  remediationEligibility: [],
+  // CC-12: this lesson teaches the family's own static-magnetism
+  // fundamentals, so it is the natural, well-justified default remediation
+  // target if `electrical.magnetism_and_electromagnetism` is ever
+  // evidenced WEAK/CONFLICTING for a learner further into LO5.
+  remediationEligibility: [{ assertionFamilyId: "electrical.magnetism_and_electromagnetism", isDefaultRemediation: true }],
   targetAssertionIdentifiers: [
     "EL-CONCEPT-MAGNETISM-001",
     "EL-CONCEPT-MAGNETIC-FLUX-001",
@@ -373,7 +391,7 @@ export const LESSON_MAGNETISM_FUNDAMENTALS: LessonPlan = {
       "The learner has described magnetic attraction and repulsion, distinguished magnetic flux from flux density with their SI units, and compared a permanent magnet with an electromagnet.",
   },
   presentationModes: ["learn", "review"],
-  contentRelease: "release.unit202.v7",
+  contentRelease: "release.unit202.v8",
 };
 
 export const lessons = [LESSON_MAGNETISM_FUNDAMENTALS];

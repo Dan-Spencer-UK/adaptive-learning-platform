@@ -129,10 +129,10 @@ describe("local content registry -- real bundled projection", () => {
     expect(record.contentRelease).toBe(bundledContentReleaseId());
     expect(record.questionBlueprintVersion).toBe(1);
     // CC-08: the lookup carries the whole bundled release's question
-    // blueprints (CC-11: 96, CC-11.1: 99, CC-11.2: 100, across all
-    // twenty-four real lessons), not just this one lesson's own --
+    // blueprints (CC-11: 96, CC-11.1: 99, CC-11.2: 100, CC-12: 101, across
+    // all twenty-four real lessons), not just this one lesson's own --
     // getLocalLesson's `lookup` is release-scoped.
-    expect(record.lookup.questionBlueprints).toHaveLength(100);
+    expect(record.lookup.questionBlueprints).toHaveLength(101);
   });
 
   it("the generated projection records its release identity, and every lesson in it matches that release", () => {

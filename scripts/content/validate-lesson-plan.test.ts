@@ -99,10 +99,10 @@ describe("buildReport (against the real canonical Ohm's Law lesson and live CC-0
     expect(isReportClean(report)).toBe(true);
   });
 
-  it("finds the one-hundred-and-sixteen canonical lesson entries (CC-08A/v1, CC-08/v2, CC-10/v3, CC-11/v4, CC-11.1/v5, CC-11.2/v6 as before, plus CC-11.3's twenty-four-lesson release.unit202.v7 closeout -- seven frozen historical snapshots standing in for the seven lessons that gained REQUIRED instructional-visual integration) with a genuinely rich, non-toy step count", () => {
-    expect(report.totalLessons).toBe(116);
+  it("finds the one-hundred-and-forty canonical lesson entries (CC-08A/v1, CC-08/v2, CC-10/v3, CC-11/v4, CC-11.1/v5, CC-11.2/v6, CC-11.3/v7 as before, plus CC-12's twenty-four-lesson release.unit202.v8 closeout -- two frozen historical snapshots standing in for the two lessons that gained the magnetism vertical-slice correction) with a genuinely rich, non-toy step count", () => {
+    expect(report.totalLessons).toBe(140);
     expect(report.totalSteps).toBeGreaterThanOrEqual(1200);
-    expect(report.totalSteps).toBeLessThanOrEqual(1400);
+    expect(report.totalSteps).toBeLessThanOrEqual(1600);
   });
 });
 

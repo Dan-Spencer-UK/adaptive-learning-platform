@@ -81,6 +81,10 @@ function questionInstanceFor(record: LocalLessonRecord, session: LessonSessionSt
   return generateLessonQuestion({
     blueprint,
     formulaFamilies: record.lookup.formulaFamilies,
+    // CC-12 fix: previously omitted -- see generate-lesson-question.ts's
+    // own header comment for the real production crash this caused.
+    diagramBlueprints: record.lookup.diagramBlueprints,
+    workedExampleBlueprints: record.lookup.workedExampleBlueprints,
     contentRelease: record.contentRelease,
     blueprintVersion: record.questionBlueprintVersion,
     instanceId: session.instanceId,

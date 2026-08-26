@@ -52,12 +52,22 @@ function findStep(lesson: LessonPlan, stepId: string): LessonStep {
 }
 
 function resolveBranchDestination(lesson: LessonPlan, step: LessonStep, evaluation: EvaluationResult): string | null {
-  if (!evaluation.correct && evaluation.misconceptionIdentifier) {
-    const destination = resolveWithinSessionBranch(lesson, step.id, {
-      trigger: "misconception_detected",
-      misconceptionIdentifier: evaluation.misconceptionIdentifier,
-    });
-    if (destination) return destination;
+  if (!evaluation.correct) {
+    if (evaluation.misconceptionIdentifier) {
+      const destination = resolveWithinSessionBranch(lesson, step.id, {
+        trigger: "misconception_detected",
+        misconceptionIdentifier: evaluation.misconceptionIdentifier,
+      });
+      if (destination) return destination;
+    }
+    // CC-12: no specific misconception route matched (or none was
+    // identified at all) -- fall back to the generic "this was wrong,
+    // cause not yet known" branch, if the step declares one. Never
+    // invents certainty from an ambiguous wrong answer (task brief
+    // §11/§16): a suggestive-only misconceptionIdentifier without its own
+    // matching route is deliberately NOT treated as confirmed here.
+    const fallback = resolveWithinSessionBranch(lesson, step.id, { trigger: "incorrect_answer" });
+    if (fallback) return fallback;
   }
   if (evaluation.correct && step.requirement === "conditional_remediation_only") {
     return resolveWithinSessionBranch(lesson, step.id, { trigger: "remediation_cleared" });

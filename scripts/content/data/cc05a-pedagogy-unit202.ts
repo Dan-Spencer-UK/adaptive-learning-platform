@@ -3903,7 +3903,7 @@ const questionBlueprints: QuestionBlueprint[] = [
   }),
 
   // ===================================================================
-  // electrical.magnetism_and_electromagnetism (5)
+  // electrical.magnetism_and_electromagnetism (6)
   // ===================================================================
   qb({
     id: "magnetism.recognise_concept",
@@ -3944,6 +3944,36 @@ const questionBlueprints: QuestionBlueprint[] = [
     representation: { diagram: { required: true, blueprintId: "motor.force_field_current" } },
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "suggestive" }],
     presentation: { promptLines: ["A current-carrying conductor sits in the magnetic field shown. In which direction does the force act on it?"] },
+  }),
+  // CC-12: a genuine root-cause DIAGNOSTIC, not a teaching/assessment
+  // question -- deliberately fixed (no parameterGenerators), single
+  // canonical scenario, mirroring identifyFluxDensityUnit/
+  // identifyFluxUnit's own constant-output pattern. Reused by the
+  // ambiguous-wrong-answer branch on magnetism.interpret_force_direction
+  // (see lesson-magnetic-effects-of-current.ts's diagnose_force_direction_
+  // error step) to distinguish, before assuming a specific cause, whether
+  // an incorrect force-direction answer traces to current-convention
+  // confusion (this blueprint's own 2-option discriminating check, the
+  // governed pattern emf.distinguish_emf_terminal_voltage already
+  // established) or -- by elimination when answered correctly -- to
+  // Fleming's-rule finger-assignment confusion instead (task brief §11:
+  // EVIDENCE -> HYPOTHESIS -> DIAGNOSTIC CHECK -> TARGETED REMEDIATION).
+  qb({
+    id: "magnetism.diagnose_current_convention",
+    familyId: "electrical.magnetism_and_electromagnetism",
+    capabilityId: "cap.magnetism.interpret_force_direction",
+    title: "Diagnose which current convention was used for Fleming's left-hand rule",
+    difficultyBand: "diagnostic",
+    answer: { type: "multiple_choice", options: ["conventional_current", "electron_flow"] },
+    marking: exact(),
+    assertionIdentifiers: ["EL-CONCEPT-FLEMING-LEFT-HAND-001"],
+    misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001", evidenceStrength: "direct" }],
+    presentation: {
+      promptLines: [
+        "Fleming's left-hand rule's seCond finger represents the direction of CONVENTIONAL current (positive to negative), never electron flow.",
+        "Which direction convention did you use when you last answered a force-direction question?",
+      ],
+    },
   }),
   qb({
     id: "magnetism.compare_permanent_electromagnet",
