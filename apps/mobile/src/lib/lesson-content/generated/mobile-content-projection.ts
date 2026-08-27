@@ -13469,7 +13469,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "Fleming's left-hand rule's seCond finger represents the direction of CONVENTIONAL current (positive to negative), never electron flow.",
           "Which direction convention did you use when you last answered a force-direction question?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "conventional_current": "Conventional current (positive to negative)",
+          "electron_flow": "Electron flow (negative to positive)"
+        }
       }
     },
     {
@@ -13700,7 +13704,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which quantity is described as: {definition_clue}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "flux": "Magnetic flux",
+          "flux_density": "Magnetic flux density"
+        }
       }
     },
     {

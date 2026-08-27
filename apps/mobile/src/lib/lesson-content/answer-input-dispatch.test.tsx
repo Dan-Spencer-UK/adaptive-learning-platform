@@ -5,6 +5,7 @@ import { bundledContentReleaseId, getLocalLesson } from "./local-content-registr
 
 const record = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentRelease: bundledContentReleaseId() });
 const FORMULA_OHMS_LAW = record.lookup.formulaFamilies.find((f) => f.id === "formula.ohms_law")!;
+const magnetismRecord = getLocalLesson({ lessonId: "lesson.magnetism.effects-of-current", contentRelease: bundledContentReleaseId() });
 import { generateLessonQuestion } from "./generate-lesson-question";
 import { AnswerInputDispatch } from "./answer-input-dispatch";
 
@@ -20,6 +21,25 @@ function instanceFor(id: string): GeneratedQuestionInstance {
     formulaFamilies: record.lookup.formulaFamilies,
     contentRelease: record.contentRelease,
     blueprintVersion: record.questionBlueprintVersion,
+    instanceId: "li1_t",
+    stepId: id,
+  });
+}
+
+function magnetismBlueprintFor(id: string) {
+  const blueprint = magnetismRecord.lookup.questionBlueprints.find((b) => b.id === id);
+  if (!blueprint) throw new Error(`missing governed blueprint ${id}`);
+  return blueprint;
+}
+
+function magnetismInstanceFor(id: string): GeneratedQuestionInstance {
+  return generateLessonQuestion({
+    blueprint: magnetismBlueprintFor(id),
+    formulaFamilies: magnetismRecord.lookup.formulaFamilies,
+    diagramBlueprints: magnetismRecord.lookup.diagramBlueprints,
+    workedExampleBlueprints: magnetismRecord.lookup.workedExampleBlueprints,
+    contentRelease: magnetismRecord.contentRelease,
+    blueprintVersion: magnetismRecord.questionBlueprintVersion,
     instanceId: "li1_t",
     stepId: id,
   });
@@ -78,5 +98,32 @@ describe("AnswerInputDispatch", () => {
     );
     await fireEvent.press(getByLabelText("Used the wrong operation (multiplied instead of divided, or vice versa)"));
     expect(onSubmit).toHaveBeenCalledWith("wrong_operation");
+  });
+
+  // CC-12A: real-emulator acceptance found this blueprint permanently
+  // unanswerable -- its answer domain is clockwise/counterclockwise (see
+  // @alp/calculation-engine's interpretFieldDirection executor), but this
+  // dispatch's generic "direction" case rendered DirectionAnswerInput
+  // (up/down/left/right), a disjoint value domain, so every submission
+  // failed marking regardless of which button the learner pressed.
+  it("renders a rotation input (not the up/down/left/right one) for magnetism.interpret_field_direction, whose answer domain is clockwise/counterclockwise", async () => {
+    const onSubmit = jest.fn();
+    const blueprint = magnetismBlueprintFor("magnetism.interpret_field_direction");
+    const { getByLabelText, queryByLabelText } = await render(
+      <AnswerInputDispatch blueprint={blueprint} instance={magnetismInstanceFor(blueprint.id)} formulaFamily={null} onSubmit={onSubmit} />,
+    );
+    expect(queryByLabelText("Force acts Up")).toBeNull();
+    await fireEvent.press(getByLabelText("Field direction: Clockwise"));
+    expect(onSubmit).toHaveBeenCalledWith("clockwise");
+  });
+
+  it("still renders the up/down/left/right input for magnetism.interpret_force_direction", async () => {
+    const onSubmit = jest.fn();
+    const blueprint = magnetismBlueprintFor("magnetism.interpret_force_direction");
+    const { getByLabelText } = await render(
+      <AnswerInputDispatch blueprint={blueprint} instance={magnetismInstanceFor(blueprint.id)} formulaFamily={null} onSubmit={onSubmit} />,
+    );
+    await fireEvent.press(getByLabelText("Force acts Up"));
+    expect(onSubmit).toHaveBeenCalledWith("up");
   });
 });

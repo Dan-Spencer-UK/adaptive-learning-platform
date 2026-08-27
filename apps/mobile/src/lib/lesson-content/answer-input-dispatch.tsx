@@ -23,7 +23,19 @@ import { DirectionAnswerInput, type Direction } from "@/components/question/Dire
 import { MultiSelectMatchAnswerInput, type MatchRow } from "@/components/question/MultiSelectMatchAnswerInput";
 import { MultipleChoiceAnswerInput, type MultipleChoiceOption } from "@/components/question/MultipleChoiceAnswerInput";
 import { NumericAnswerInput } from "@/components/question/NumericAnswerInput";
+import { RotationAnswerInput, type Rotation } from "@/components/question/RotationAnswerInput";
 import { WorkedErrorClassificationAnswerInput } from "@/components/question/WorkedErrorClassificationAnswerInput";
+
+/**
+ * `magnetism.interpret_field_direction`'s answer domain is a field-rotation
+ * sense (clockwise/counterclockwise -- see @alp/calculation-engine's
+ * `interpretFieldDirection` executor), not a screen direction, even though
+ * its blueprint is tagged answer.type "direction" alongside
+ * `magnetism.interpret_force_direction` (which genuinely is up/down/left/
+ * right). Must be checked before the generic "direction" case below --
+ * mirrors the same special case already proven in practice.tsx.
+ */
+const ROTATION_DOMAIN_BLUEPRINT_IDS: ReadonlySet<string> = new Set(["magnetism.interpret_field_direction"]);
 
 function requireFormulaFamily(blueprint: QuestionBlueprint, formulaFamily: FormulaFamily | null): FormulaFamily {
   if (!formulaFamily) {
@@ -98,6 +110,9 @@ export function AnswerInputDispatch({ blueprint, instance, formulaFamily, onSubm
       );
 
     case "direction":
+      if (ROTATION_DOMAIN_BLUEPRINT_IDS.has(blueprint.id)) {
+        return <RotationAnswerInput onSubmit={(value: Rotation) => onSubmit(value)} disabled={disabled} testID={testID} />;
+      }
       return <DirectionAnswerInput onSubmit={(value: Direction) => onSubmit(value)} disabled={disabled} testID={testID} />;
 
     default:

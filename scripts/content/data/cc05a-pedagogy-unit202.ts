@@ -3914,7 +3914,10 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["flux", "flux_density"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-MAGNETIC-FLUX-001", "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001", "EL-CONCEPT-ELECTROMAGNETISM-001"],
-    presentation: { promptLines: ["Which quantity is described as: {definition_clue}?"] },
+    presentation: {
+      promptLines: ["Which quantity is described as: {definition_clue}?"],
+      answerOptionLabels: { flux: "Magnetic flux", flux_density: "Magnetic flux density" },
+    },
   }),
   qb({
     id: "magnetism.interpret_field_direction",
@@ -3973,6 +3976,10 @@ const questionBlueprints: QuestionBlueprint[] = [
         "Fleming's left-hand rule's seCond finger represents the direction of CONVENTIONAL current (positive to negative), never electron flow.",
         "Which direction convention did you use when you last answered a force-direction question?",
       ],
+      answerOptionLabels: {
+        conventional_current: "Conventional current (positive to negative)",
+        electron_flow: "Electron flow (negative to positive)",
+      },
     },
   }),
   qb({
