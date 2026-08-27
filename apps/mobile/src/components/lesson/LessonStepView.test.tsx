@@ -238,4 +238,67 @@ describe("LessonStepView", () => {
       expect(queryByText(/A common related mix-up:/)).toBeNull();
     });
   });
+
+  describe("CC-12B: teaching vs assessment visual binding", () => {
+    it("the right-hand-grip TEACHING step resolves to the governed premium master, not the old schematic diagram", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "concept_field_from_current", magnetismRecord.lookup);
+      const { getByLabelText, queryByLabelText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+      );
+      expect(getByLabelText(/Right-hand grip rule\. A right hand grips/)).toBeTruthy();
+      // The old schematic SVG's own accessibility text must NOT also be present.
+      expect(queryByLabelText(/thumb points along the conductor/)).toBeNull();
+    });
+
+    it("the motor-principle TEACHING step resolves to the governed premium master, not the old schematic diagram", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "concept_force_on_conductor", magnetismRecord.lookup);
+      const { getByLabelText, queryByLabelText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+      );
+      expect(getByLabelText(/A current-carrying conductor between a north pole on the left/)).toBeTruthy();
+      // The old schematic SVG's own accessibility text must NOT also be present.
+      expect(queryByLabelText(/North pole on the left, south pole on the right\./)).toBeNull();
+    });
+
+    it("the field-direction ASSESSMENT step (unanswered) uses the SVG diagram and withholds the field-rotation answer -- never the premium teaching master", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_field_direction", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.interpret_field_direction", "guided_interpret_field_direction", magnetismRecord.lookup);
+      const { getByLabelText, queryByLabelText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={instance} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+      );
+      expect(getByLabelText(/direction the fingers curl.*is not shown/)).toBeTruthy();
+      expect(queryByLabelText(/Right-hand grip rule\. A right hand grips/)).toBeNull();
+    });
+
+    it("the force-direction ASSESSMENT step (unanswered) uses the SVG diagram and shows no force arrow/text -- never the premium teaching master", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_force_direction", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.interpret_force_direction", "guided_interpret_force_direction", magnetismRecord.lookup);
+      const { getByLabelText, queryByLabelText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={instance} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+      );
+      // The diagram's own accessibility label is the reliable signal for its rendered content
+      // (react-native-testing-library does not match text embedded inside react-native-svg
+      // Text/TSpan nodes via getByText/queryByText the way it matches plain RN <Text>).
+      expect(getByLabelText(/Force direction not shown\./)).toBeTruthy();
+      expect(queryByLabelText(/Resulting force on the conductor acts/)).toBeNull();
+      expect(queryByLabelText(/A current-carrying conductor between a north pole on the left/)).toBeNull();
+    });
+
+    it("the force-direction ASSESSMENT step reveals the force direction via the SVG diagram only AFTER submission, still never the premium teaching master", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_force_direction", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.interpret_force_direction", "guided_interpret_force_direction", magnetismRecord.lookup);
+      const { queryByLabelText, getByLabelText } = await render(
+        <LessonStepView
+          resolved={resolved}
+          questionInstance={instance}
+          evaluation={{ correct: true, detail: "direction match" }}
+          revealCorrectAnswer={true}
+          onSubmit={jest.fn()}
+          onContinue={jest.fn()}
+        />,
+      );
+      expect(getByLabelText(new RegExp(`Resulting force on the conductor acts ${String(instance.expected.value)}wards\\.`))).toBeTruthy();
+      expect(queryByLabelText(/A current-carrying conductor between a north pole on the left/)).toBeNull();
+    });
+  });
 });

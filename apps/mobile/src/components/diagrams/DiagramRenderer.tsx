@@ -20,7 +20,9 @@
  */
 import type { DiagramInstance } from "@alp/calculation-engine";
 import type { DiagramBlueprint } from "@alp/content-schema";
+import { Image, StyleSheet, View, type ImageSourcePropType } from "react-native";
 
+import { color, radius, spacing } from "@/lib/tokens";
 import { ACGeneratorDiagram } from "./ACGeneratorDiagram";
 import { CapacitorTransientDiagram } from "./CapacitorTransientDiagram";
 import { ComponentSymbolCard } from "./ComponentSymbolCard";
@@ -132,26 +134,116 @@ export function resolveDiagramComponent(blueprintId: string): DiagramComponent {
   return Component;
 }
 
+/**
+ * CC-12B: the governed CC-11 canonical-visual-registry premium masters
+ * (`reports/instructional-visuals/unit202-canonical-visual-registry.json`)
+ * for the two magnetism diagram blueprints, keyed by the SAME governed
+ * `DiagramBlueprint.id` the SVG registry above uses -- one governed
+ * identity, not a parallel one. Both entries are audited
+ * (technical/pedagogical-clarity/visual-product-quality all PASS -- see
+ * the corresponding `*-audit-v*.json` files) TEACHING-state masters only;
+ * their `masterSha256` matches the shipped file byte-for-byte.
+ *
+ * Deliberately teaching-state only: assessment rendering keeps using the
+ * SVG registry above unchanged, which already withholds the assessed
+ * answer until after submission (`reveal` prop, LessonStepView.tsx) --
+ * swapping assessment rendering to a premium master too would mean
+ * shipping and selecting 4 additional per-parameter image variants per
+ * blueprint for no governed benefit, which is out of this fix's bounded
+ * scope. A blueprint with no entry here (or a `context` of
+ * `"assessment"`) always falls through to the SVG registry, so this is
+ * purely additive over the existing dispatch, never a replacement of it.
+ */
+interface CanonicalTeachingVisual {
+  readonly canonicalAssetId: string;
+  readonly source: ImageSourcePropType;
+  readonly accessibilityLabel: string;
+}
+
+const CANONICAL_TEACHING_VISUALS: Readonly<Record<string, CanonicalTeachingVisual>> = {
+  "magnetic.field_conductor_direction": {
+    canonicalAssetId: "unit202.right-hand-grip.teaching",
+    // Metro's asset resolver does not honour the "@/" module alias for
+    // require() image literals (only the JS/TS module graph does) -- a
+    // relative path is required here even though every other import in
+    // this file uses "@/".
+    source: require("../../assets/instructional/unit202/teaching/right-hand-grip-teaching-base-v1.png"),
+    accessibilityLabel:
+      "Right-hand grip rule. A right hand grips a straight current-carrying conductor with the thumb extended along it, pointing in the direction of the conventional current. The four curled fingers wrap around the conductor showing the direction the magnetic field circulates.",
+  },
+  "motor.force_field_current": {
+    canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
+    source: require("../../assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-into-page-teaching-base-v1.png"),
+    accessibilityLabel:
+      "A current-carrying conductor between a north pole on the left and a south pole on the right, with the magnetic field running left to right between them. The conventional current flows into the page. The resulting force on the conductor is shown acting downward.",
+  },
+};
+
 export interface DiagramRendererProps {
   readonly blueprint: DiagramBlueprint;
   readonly diagram: DiagramInstance;
   readonly reveal?: DiagramRevealProps;
+  /**
+   * CC-12B: which presentation context this render is for. `"teaching"`
+   * may resolve to a governed premium master (falling back to the SVG
+   * registry if none is registered for this blueprint); `"assessment"`
+   * (the default -- the safe choice for any caller that doesn't pass this
+   * explicitly) always uses the SVG registry, whose reveal is separately
+   * gated by the `reveal` prop above. Callers should pass this explicitly
+   * rather than relying on the default whenever the render context is
+   * actually known.
+   */
+  readonly context?: "teaching" | "assessment";
   readonly testID?: string;
 }
 
 /**
- * Resolves and renders any governed diagram blueprint via the shared
- * registry -- the single call site both the Lesson Player and any future
- * practice surface should use. Invokes the resolved component as a plain
+ * Resolves and renders any governed diagram blueprint -- the single call
+ * site both the Lesson Player and any future practice surface should use.
+ * In `"teaching"` context, prefers a governed premium master image
+ * (CANONICAL_TEACHING_VISUALS above) when one is registered for this
+ * blueprint id; otherwise (assessment context, or no premium master
+ * registered) resolves and invokes the SVG registry component as a plain
  * function (never `<Component .../>`) -- every registry entry is a
  * stateless presentational SVG component with nothing to lose across
  * re-renders, and this avoids resolving a fresh "component identity" on
  * every render (react-hooks/static-components) that a JSX-position call
  * would create.
  */
-export function DiagramRenderer({ blueprint, diagram, reveal, testID }: DiagramRendererProps): React.JSX.Element {
+export function DiagramRenderer({ blueprint, diagram, reveal, context = "assessment", testID }: DiagramRendererProps): React.JSX.Element {
+  const canonical = context === "teaching" ? CANONICAL_TEACHING_VISUALS[blueprint.id] : undefined;
+  if (canonical) {
+    return (
+      <View style={styles.canonicalTeachingCard} testID={testID}>
+        <Image
+          source={canonical.source}
+          accessibilityLabel={canonical.accessibilityLabel}
+          accessibilityRole="image"
+          accessible
+          resizeMode="contain"
+          style={styles.canonicalTeachingImage}
+        />
+      </View>
+    );
+  }
   return resolveDiagramComponent(blueprint.id)({ diagram, reveal, testID });
 }
+
+const styles = StyleSheet.create({
+  // Premium masters are produced on a white/near-white photographic
+  // background (CC-11 style guide); a plain light card, rather than
+  // letting that white rectangle sit directly on the app's dark theme,
+  // reads as an intentional "artwork" treatment instead of a layout bug.
+  canonicalTeachingCard: {
+    width: "100%",
+    maxWidth: 340,
+    aspectRatio: 1,
+    borderRadius: radius.md,
+    backgroundColor: color.text,
+    padding: spacing.sm,
+  },
+  canonicalTeachingImage: { width: "100%", height: "100%" },
+});
 
 /**
  * Builds a deterministic, symbolic-only `DiagramInstance` straight from a

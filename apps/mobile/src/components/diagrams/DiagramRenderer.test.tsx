@@ -108,6 +108,60 @@ describe("DiagramRenderer registry", () => {
     const withReveal = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={diagram} reveal={{ fieldRotation: "clockwise" }} />);
     expect(withReveal.getByLabelText(/circling clockwise/)).toBeTruthy();
   });
+
+  describe("CC-12B: canonical teaching visual resolution", () => {
+    const fieldBlueprint = blueprint({
+      id: "magnetic.field_conductor_direction",
+      type: "magnetic_field",
+      parameters: [{ name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page"] }],
+    });
+    const fieldDiagram = { blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "into_page" }, labels: [] };
+
+    const motorBlueprint = blueprint({
+      id: "motor.force_field_current",
+      type: "magnetic_field",
+      parameters: [
+        { name: "pole_labels", kind: "enum", allowed: ["N_S_horizontal", "N_S_vertical"] },
+        { name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page"] },
+      ],
+    });
+    const motorDiagram = { blueprintId: "motor.force_field_current", parameters: { pole_labels: "N_S_horizontal", current_direction: "into_page" }, labels: [] };
+
+    it("context='teaching' resolves the right-hand-grip blueprint to the governed premium master, not the SVG mnemonic", async () => {
+      const { getByLabelText, queryByLabelText } = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={fieldDiagram} context="teaching" />);
+      expect(getByLabelText(/Right-hand grip rule\. A right hand grips/)).toBeTruthy();
+      expect(queryByLabelText(/thumb points along the conductor/)).toBeNull();
+    });
+
+    it("context='teaching' resolves the motor blueprint to the governed premium master, not the SVG diagram", async () => {
+      const { getByLabelText, queryByLabelText } = await render(<DiagramRenderer blueprint={motorBlueprint} diagram={motorDiagram} context="teaching" />);
+      expect(getByLabelText(/A current-carrying conductor between a north pole on the left/)).toBeTruthy();
+      expect(queryByLabelText(/North pole on the left, south pole on the right\./)).toBeNull();
+    });
+
+    it("context='assessment' always uses the SVG diagram, even for a blueprint that has a registered premium teaching master", async () => {
+      const { getByLabelText, queryByLabelText } = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={fieldDiagram} context="assessment" />);
+      expect(getByLabelText(/direction the fingers curl.*is not shown/)).toBeTruthy();
+      expect(queryByLabelText(/Right-hand grip rule\. A right hand grips/)).toBeNull();
+    });
+
+    it("omitting context defaults to the safe 'assessment' behaviour -- never silently resolves to a premium master", async () => {
+      const { getByLabelText, queryByLabelText } = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={fieldDiagram} />);
+      expect(getByLabelText(/direction the fingers curl.*is not shown/)).toBeTruthy();
+      expect(queryByLabelText(/Right-hand grip rule\. A right hand grips/)).toBeNull();
+    });
+
+    it("context='teaching' for a blueprint with no registered premium master falls back to the SVG diagram unchanged", async () => {
+      const { getByLabelText } = await render(
+        <DiagramRenderer
+          blueprint={SERIES_BLUEPRINT}
+          diagram={{ blueprintId: "circuit.series_resistors", parameters: { component_count: 2, show_values: false, show_current_arrow: false }, labels: ["R1", "R2"] }}
+          context="teaching"
+        />,
+      );
+      expect(getByLabelText(/Series circuit diagram/)).toBeTruthy();
+    });
+  });
 });
 
 describe("buildTeachingDiagramInstance", () => {

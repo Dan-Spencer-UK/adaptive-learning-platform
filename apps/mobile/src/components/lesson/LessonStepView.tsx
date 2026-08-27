@@ -96,6 +96,14 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
       : resolved.diagram
         ? buildTeachingDiagramInstance(resolved.diagram, [], resolved.step.representation.diagramParameters)
         : null;
+  // CC-12B: the same "does a real generated question instance drive this
+  // diagram" test above, restated as the teaching/assessment context the
+  // renderer needs -- assessment steps must never resolve to a premium
+  // teaching master (task brief §6/§7: withhold the answer-bearing
+  // relationship under test), only the SVG registry's separately-gated
+  // `reveal` prop may do that, and only after submission (below).
+  const diagramContext: "teaching" | "assessment" =
+    resolved.diagram && questionInstance?.representation.diagram?.blueprintId === resolved.diagram.id ? "assessment" : "teaching";
   const diagramReveal: DiagramRevealProps | undefined =
     evaluation && revealCorrectAnswer && questionInstance && resolved.diagram
       ? resolved.diagram.id === "magnetic.field_conductor_direction"
@@ -141,7 +149,7 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
 
       {resolved.diagram && diagramInstance ? (
         <View style={styles.representation}>
-          <DiagramRenderer blueprint={resolved.diagram} diagram={diagramInstance} reveal={diagramReveal} />
+          <DiagramRenderer blueprint={resolved.diagram} diagram={diagramInstance} reveal={diagramReveal} context={diagramContext} />
         </View>
       ) : null}
 
