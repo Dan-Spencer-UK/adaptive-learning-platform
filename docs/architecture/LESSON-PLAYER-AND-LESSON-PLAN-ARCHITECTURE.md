@@ -7,18 +7,22 @@ last_reviewed: 2026-08-28
 
 # Lesson Player & Lesson Plan Architecture
 
-**Status:** Approved durable product/architecture decision (Product Owner / Project Architect, 2026-08-17). **Documentation only — the lesson player is not implemented by this document and implementation has not begun.** No lesson screens, components, database schema or migrations exist as a result of this document.
-**Applies to:** the future learner-facing lesson experience across `apps/mobile` (primary) and `apps/web` (secondary), and any CC package that later implements it.
+**Status:** Approved durable product/architecture decision (Product Owner / Project Architect, 2026-08-17).
+
+**Original design status (2026-08-17, when this document was approved):** documentation only — no lesson player, lesson screens, components, database schema or migrations existed yet. The document existed to specify the target shape *before* implementation began.
+
+**CC-12E.1 current-status correction (2026-08-28):** that original framing is now stale and was found to still read as current guidance to a fresh contributor, which is false. Since 2026-08-17 the repository has implemented a governed Lesson Plan schema (`packages/content-schema/src/lesson-plan.ts`), deterministic learner-specific lesson assembly (CC-06B), a production-intent native Lesson Player (CC-06C, hardened CC-06D), evidence/mastery persistence and durable sync (CC-07), full adaptive cross-lesson behaviour (CC-08), and a real learner-facing vertical slice with diagnostic/remediation/recheck branching, qualified on a real Android emulator (CC-12, CC-12A-D). This document's architectural decisions were not violated by that work — see §5-§10, §13, §15-§16 below for exactly what is now implemented versus what remains open, corrected section by section rather than by rewriting the original rationale.
+**Applies to:** the learner-facing lesson experience across `apps/mobile` (primary, now the real implemented Lesson Player) and `apps/web` (secondary), and any CC package that extends it further.
 **Relationship to CC-05:** this document sits *above* CC-05A-D (pedagogical knowledge structure, deterministic engine, native proving slice, instructional-visual governance) as an orchestration layer. It references those governed primitives; it does not duplicate or redefine them.
-**Design intent:** capture the approved shape of the eventual lesson-player product before implementation begins, so that work is designed deliberately against this document rather than emerging incrementally from proving-slice screens.
+**Design intent (as originally recorded, 2026-08-17):** capture the approved shape of the eventual lesson-player product before implementation begins, so that work is designed deliberately against this document rather than emerging incrementally from proving-slice screens. That design-first sequencing is exactly what happened — the CC-06 through CC-12 implementation packages built against this specification.
 
 ---
 
 ## 1. Why this document exists now
 
-CC-05C's native proving slice demonstrated the pedagogical/technical path end-to-end but was always explicitly *not* production learner UX (see its own evidence document and PROJECT-STATUS.md's scope note). CC-05D then built the governance/QA layer for instructional visuals and, in doing so, surfaced a Product Owner finding that the current proving visuals are below the required eventual product standard. Before any further learner-facing work is built — visual or interactive — the Product Owner / Project Architect has recorded the approved target shape of the lesson experience itself, so future work is designed against a real specification rather than by incrementally polishing proving-slice screens into an accidental product.
+**Historical context, as it stood on 2026-08-17 (unchanged below; read against the current-status correction above):** CC-05C's native proving slice demonstrated the pedagogical/technical path end-to-end but was always explicitly *not* production learner UX (see its own evidence document and PROJECT-STATUS.md's scope note). CC-05D then built the governance/QA layer for instructional visuals and, in doing so, surfaced a Product Owner finding that the current proving visuals are below the required eventual product standard. Before any further learner-facing work is built — visual or interactive — the Product Owner / Project Architect has recorded the approved target shape of the lesson experience itself, so future work is designed against a real specification rather than by incrementally polishing proving-slice screens into an accidental product.
 
-This document is that specification. It does not implement anything.
+This document was that specification, written before implementation began. It is now also the durable rationale behind the real, implemented Lesson Player — see the current-status correction at the top of this document and §5-§16 below for what has since been built against it.
 
 ## 2. Experience benchmark
 
@@ -114,7 +118,7 @@ This is intentionally specified as *capability requirements*, not a finalised sc
 - completion rule;
 - optional remediation destination.
 
-A future implementation package must define the exact Zod/TypeScript shape of these; this document fixes only the *capability surface* they must cover.
+At the time this architecture was approved, a future implementation package was expected to define the exact Zod/TypeScript shape of these; this document fixed only the *capability surface* they must cover. **CC-12E.1 correction: that schema now exists** — `packages/content-schema/src/lesson-plan.ts` defines `lessonPlanSchema` and `lessonStepSchema` with, among others, `prerequisiteKnowledge`, `estimatedDurationMinutes`, `completionCriteria`, `lessonStepTypeSchema`, `stepRequirementSchema`, `stepRepresentationRefsSchema`, `interactionRoleSchema`, `answerRevealSchema` and `stepPresentationContractSchema` — covering this capability surface substantially, not merely aspirationally. This document was not re-audited field-by-field against that schema in this correction pass; a future package should do that reconciliation explicitly if a gap is suspected, rather than this document being trusted as the literal current field list.
 
 ## 6. Canonical plan vs. learner-specific lesson instance
 
@@ -144,7 +148,7 @@ Representative scenarios the Lesson Plan model must be capable of expressing (no
 - mastery demonstrated → advance;
 - spaced retrieval may be scheduled later (outside the single-lesson session).
 
-Lesson plans must therefore represent branching and evidence targets, not just a linear step list. **The adaptive engine itself is not implemented by this document** unless it already exists within an approved package (it does not).
+Lesson plans must therefore represent branching and evidence targets, not just a linear step list. This document does not itself implement the adaptive engine — it never has, that is not this kind of document's job. **CC-12E.1 correction: at the time this section was written, no approved package implemented that engine either; that is now false.** The deterministic adaptive-assembly engine is real and implemented — `@alp/learning-engine`/`@alp/diagnostic-engine` plus `apps/mobile/src/lib/lesson-session/lesson-controller.ts` (CC-06B, CC-08, CC-12), all still zero-LLM/deterministic exactly as this section requires. Five of the six representative scenarios listed above are now proven, not merely representable: see CC-12's own diagnostic-chain proof (`PROJECT-STATUS.md` §CC-12) for the misconception-branch/remediate/retest/return sequence, and CC-08 for cross-lesson mastery-driven advancement/skip. The sixth — cross-session spaced retrieval — remains genuinely open; see §17.6.
 
 ## 8. Interaction-first philosophy
 
@@ -176,11 +180,11 @@ Two distinct presentation modes over the same governed knowledge, never conflate
 
 **Review / Reference Mode** — concise; structured; continuous-scroll/article-style presentation may be appropriate; useful for rapid revision/reference; can reuse the same underlying governed knowledge and representations (the same `FormulaFamily`/`DiagramBlueprint`/worked-example content CC-05A/B/D already govern) without the interaction/adaptation machinery.
 
-Neither mode is implemented by this document. The architecture must not conflate them — a future player choosing to build only one must not accidentally make it structurally impossible to add the other later.
+**CC-12E.1 correction:** at the time this section was written neither mode existed. **Learn Mode is now real and implemented** (the production Lesson Player, `apps/mobile/src/app/(app)/learn/lesson-player.tsx`, CC-06C onward). **Review/Reference Mode remains genuinely not built** — no continuous-scroll/article-style presentation of the same governed knowledge exists yet. The architecture must not conflate the two modes — Learn Mode's real implementation must not have accidentally made Review/Reference Mode structurally impossible to add later; nothing found while correcting this document suggests it has (Learn Mode consumes the same governed `FormulaFamily`/`DiagramBlueprint`/worked-example content via reference, per §13, rather than owning it).
 
 ## 11. Native UX requirements
 
-The future lesson player should be designed for: mobile-native primary use; instant local interaction/marking where possible (the CC-05B/CC-05C deterministic local-marking pattern already proves this is achievable); prefetching; smooth transitions; haptics where appropriate; animation/motion tokens where appropriate; reduced-motion/accessibility support; phone/tablet responsive layouts; offline/cached lesson continuity; deterministic restoration (as CC-05C's session-store already proves for the proving slice); minimal perceived loading; a clear, thin lesson-progress indicator; deep-link/session restoration where appropriate.
+The lesson player (now implemented, §11's requirements below still govern it going forward, not only at design time) should be designed for: mobile-native primary use; instant local interaction/marking where possible (the CC-05B/CC-05C deterministic local-marking pattern already proves this is achievable); prefetching; smooth transitions; haptics where appropriate; animation/motion tokens where appropriate; reduced-motion/accessibility support; phone/tablet responsive layouts; offline/cached lesson continuity; deterministic restoration (as CC-05C's session-store already proves for the proving slice); minimal perceived loading; a clear, thin lesson-progress indicator; deep-link/session restoration where appropriate.
 
 No arbitrary millisecond SLA is invented here. Measurable performance governance is [`docs/product/MOBILE-UX-ENGINEERING-STANDARD.md`](../product/MOBILE-UX-ENGINEERING-STANDARD.md)'s job, not this document's — the lesson player must be held to that existing standard, not a new one.
 
@@ -233,18 +237,21 @@ This document is the durable rationale/detail behind those four principles; the 
 
 ## 15. Explicit scope boundary for this decision
 
-This document:
+**As originally recorded (2026-08-17):** this document did not itself implement the lesson player, any lesson screen, lesson-plan UI component, database schema/migration/`packages/content-schema` type, or the adaptive-assembly engine described in §6/§7; it did not change anything about the CC-05A-D proving-slice/governance implementation as it stood then; and it did not itself authorise starting lesson-player implementation — that was left for a future, separately-scoped CC package.
 
-- **does** record durable product/architecture direction for the future lesson player and its governed Lesson Plan model;
-- **does not** implement the lesson player, any lesson screen, or any lesson-plan UI component;
-- **does not** create or modify any database schema, migration, or `packages/content-schema` type;
-- **does not** implement the adaptive-assembly engine described in §6/§7;
-- **does not** change anything about the current CC-05A-D proving-slice/governance implementation;
-- **does not** authorise starting lesson-player implementation — that remains a future, separately-scoped CC package.
+**CC-12E.1 status correction:** that future package sequence happened — CC-06 (governed lesson plan schema and first canonical lesson), CC-06B (adaptive assembly engine), CC-06C/D (native Lesson Player), CC-07 (evidence/mastery/sync), CC-08 (full adaptive cross-lesson vertical), CC-12/CC-12A-D (real learner-facing vertical slice, real-emulator-qualified). This document's own scope boundary is unchanged going forward — it still is not itself an implementation, schema, or migration, and any future extension of it still requires its own separately-scoped package — but the specific "not yet started" claims above describe 2026-08-17, not today. What genuinely remains **not** implemented as of this correction: Review/Reference Mode (§10); the floating scroll-discoverability affordance (§4); dedicated `diagnostic_check`/`recheck` step-type values (§17.3/§17.5/§18); topic/unit/course-level summative assessment and exam-practice experiences (§17.7-§17.8, §19); cross-session spaced retrieval (§17.6/§7).
 
 ## 16. Open questions for the future implementation package
 
-Deliberately left open, not decided here: exact Lesson/LessonStep schema field names and Zod shape; which package owns the schema (`packages/content-schema` is the natural candidate, consistent with CC-05A/D); exact adaptive-assembly algorithm; exact native navigation/animation implementation; exact completion-screen content model; how review/reference mode's content authoring relates to learn-mode content authoring (shared source, different projection, per §10); versioning/backwards-compatibility policy for published lesson plans, mirroring CC-05's existing content-release model.
+Deliberately left open at the time this document was approved (2026-08-17), not decided here. **CC-12E.1 status correction — most of these are now resolved by real implementation, not merely predicted:**
+
+- Exact Lesson/LessonStep schema field names and Zod shape — **resolved**: `lessonPlanSchema`/`lessonStepSchema`, `packages/content-schema/src/lesson-plan.ts` (§5).
+- Which package owns the schema — **resolved as predicted**: `packages/content-schema`.
+- Exact adaptive-assembly algorithm — **resolved**: `@alp/learning-engine`/`@alp/diagnostic-engine` plus `lesson-controller.ts` (§7).
+- Exact native navigation implementation — **resolved**: Expo Router, `apps/mobile/src/app/(app)/learn/lesson-player.tsx`. Animation/motion-token polish specifically was not verified in this correction pass — do not treat as proven finished.
+- Exact completion-screen content model — **resolved at component level**: `LessonCompletionView.tsx` exists and renders. Whether its current content fully matches §12's illustrative example was not re-verified here.
+- Versioning/backwards-compatibility policy for published lesson plans — **resolved as predicted**: lesson plans carry a `contentRelease` field and historical-snapshot files preserve prior releases' immutable membership (e.g. `lesson-cc12-v7-historical-snapshot.ts`), mirroring CC-05's content-release model exactly as anticipated.
+- How review/reference mode's content authoring relates to learn-mode content authoring — **still genuinely open**: Review/Reference Mode itself does not exist yet (§10), so this question has not been reached.
 
 ## 17. Pedagogical interaction classes (CC-12E)
 

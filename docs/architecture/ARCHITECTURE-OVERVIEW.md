@@ -11,30 +11,31 @@ last_reviewed: 2026-08-28
 
 The initial product is a **modular monolith**: one deployable application with strong internal module boundaries, rather than separately deployed microservices.
 
-Native iOS/Android are the primary learner platforms; web is secondary (see [`docs/product/PRODUCT-PRINCIPLES.md`](../product/PRODUCT-PRINCIPLES.md)). The Phase 1 proving slice is implemented against the web client below because it is the fastest path to proving the deterministic domain engines end-to-end; this is a proving-slice implementation choice, not a statement that the web client is the durable primary learner surface. The mobile-native client technology is decided in [`ADR-0001`](adr/ADR-0001-mobile-client-technology.md) (Expo + React Native; status: accepted); the resulting target topology, offline/sync architecture and testing/release architecture are in [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md) (status: approved). Whatever client(s) exist, they must consume the same application services and domain engines below rather than duplicating business logic.
+Native iOS/Android are the primary learner platforms; web is secondary (see [`docs/product/PRODUCT-PRINCIPLES.md`](../product/PRODUCT-PRINCIPLES.md)). This is current fact, not aspiration: `apps/mobile` (Expo + React Native, [`ADR-0001`](adr/ADR-0001-mobile-client-technology.md), status accepted) is the real, implemented, real-emulator-qualified primary learner client (CC-04N foundation; CC-06C/D native Lesson Player; CC-12/CC-12A-D real learner-facing vertical slice) — it is not a future client "expected to" arrive. The Phase 1 proving slice's *earliest* domain-engine proof happened against the secondary web client (`apps/web`) first, because it was the fastest path to proving the deterministic engines end-to-end before any native client existed; that historical sequencing choice is why `apps/web` is mentioned first in some older evidence documents, but it is not the current primary-client story. The resulting native target topology, offline/sync architecture and testing/release architecture are in [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md) (status: approved). Both clients consume the same application services and domain engines below rather than duplicating business logic.
 
 ```text
-Learner browser (Phase 1 proving-slice client)
-      ↓
-Next.js application
-      ↓
-Application services
-      ↓
-────────────────────────────────
-Domain / deterministic engines
-────────────────────────────────
-calculation
-learner evidence
-Diagnosis
-learning / next activity
-────────────────────────────────
-      ↓
-Supabase PostgreSQL
-      ↓
-RLS / governed persistence
+Native mobile client (apps/mobile, primary)   Web client (apps/web, secondary)
+Expo + React Native                            Next.js application
+      ↓                                               ↓
+      └───────────────────┬───────────────────────────┘
+                           ↓
+                  Application services
+                           ↓
+              ────────────────────────────────
+              Domain / deterministic engines
+              ────────────────────────────────
+              calculation
+              learner evidence
+              Diagnosis
+              learning / next activity
+              ────────────────────────────────
+                           ↓
+                  Supabase PostgreSQL
+                           ↓
+              RLS / governed persistence
 ```
 
-A future native client is expected to sit alongside or in place of the browser at the top of this diagram, consuming the same application services/domain engines/persistence layer without duplicating business logic in the client.
+Neither client owns business logic — both are thin consumers of the same shared, framework-independent domain-engine packages (`packages/domain`, `packages/calculation-engine`, `packages/evidence-engine`, `packages/diagnostic-engine`, `packages/learning-engine`, `packages/content-schema`; see "Core internal packages" below) and the same Supabase backend.
 
 ## Technical baseline
 
