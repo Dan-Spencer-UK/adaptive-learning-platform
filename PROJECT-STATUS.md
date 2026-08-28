@@ -1470,7 +1470,7 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **11. PROJECT-STATUS update.** This section, plus the punch-list correction above marking items A-D resolved (pointer to this section) and item E still open.
 
-**12. Commit/push:** see repository HEAD for this package's commit.
+**12. Commit/push:** `f1c8c8f`.
 
 **Next package:** none recommended by this package. Per its own explicit instruction, this is the stopping point — the Product Owner will use the real emulator again before scoping further expansion. The one remaining open item from the original punch-list is **E (humanising/readability pass)**, still not started.
 
