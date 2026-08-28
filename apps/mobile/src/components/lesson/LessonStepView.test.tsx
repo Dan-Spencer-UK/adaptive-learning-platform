@@ -260,34 +260,25 @@ describe("LessonStepView", () => {
       expect(queryByLabelText(/North pole on the left, south pole on the right\./)).toBeNull();
     });
 
-    it("the field-direction ASSESSMENT step (unanswered) uses the SVG diagram and withholds the field-rotation answer -- never the premium teaching master", async () => {
+    // CC-13: `guided_interpret_field_direction` drives a REAL randomly-generated
+    // instance (current_direction: into_page | out_of_page), and both states now
+    // have a registered CC-13 withheld/revealed image pair -- the SVG's own
+    // reveal/withhold pattern is fully superseded for this blueprint, not merely
+    // duplicated. See DiagramRenderer.tsx's CANONICAL_ASSESSMENT_VISUALS.
+    it("the field-direction ASSESSMENT step (unanswered) shows the CC-13 withheld state image for whichever current_direction this instance generated, never the field-rotation answer or the fixed-default teaching master", async () => {
       const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_field_direction", magnetismRecord.lookup);
       const instance = instanceFor("magnetism.interpret_field_direction", "guided_interpret_field_direction", magnetismRecord.lookup);
       const { getByLabelText, queryByLabelText } = await render(
         <LessonStepView resolved={resolved} questionInstance={instance} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
       );
-      expect(getByLabelText(/direction the fingers curl.*is not shown/)).toBeTruthy();
-      expect(queryByLabelText(/Right-hand grip rule\. A right hand grips/)).toBeNull();
+      expect(getByLabelText(/direction it circulates is not shown/)).toBeTruthy();
+      expect(queryByLabelText(/circulates (clockwise|counterclockwise)/)).toBeNull();
     });
 
-    it("the force-direction ASSESSMENT step (unanswered) uses the SVG diagram and shows no force arrow/text -- never the premium teaching master", async () => {
-      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_force_direction", magnetismRecord.lookup);
-      const instance = instanceFor("magnetism.interpret_force_direction", "guided_interpret_force_direction", magnetismRecord.lookup);
-      const { getByLabelText, queryByLabelText } = await render(
-        <LessonStepView resolved={resolved} questionInstance={instance} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
-      );
-      // The diagram's own accessibility label is the reliable signal for its rendered content
-      // (react-native-testing-library does not match text embedded inside react-native-svg
-      // Text/TSpan nodes via getByText/queryByText the way it matches plain RN <Text>).
-      expect(getByLabelText(/Force direction not shown\./)).toBeTruthy();
-      expect(queryByLabelText(/Resulting force on the conductor acts/)).toBeNull();
-      expect(queryByLabelText(/A current-carrying conductor between a north pole on the left/)).toBeNull();
-    });
-
-    it("the force-direction ASSESSMENT step reveals the force direction via the SVG diagram only AFTER submission, still never the premium teaching master", async () => {
-      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_force_direction", magnetismRecord.lookup);
-      const instance = instanceFor("magnetism.interpret_force_direction", "guided_interpret_force_direction", magnetismRecord.lookup);
-      const { queryByLabelText, getByLabelText } = await render(
+    it("the field-direction ASSESSMENT step reveals the field-rotation answer only AFTER submission, matching whichever current_direction this instance generated", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_field_direction", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.interpret_field_direction", "guided_interpret_field_direction", magnetismRecord.lookup);
+      const { getByLabelText } = await render(
         <LessonStepView
           resolved={resolved}
           questionInstance={instance}
@@ -297,8 +288,54 @@ describe("LessonStepView", () => {
           onContinue={jest.fn()}
         />,
       );
-      expect(getByLabelText(new RegExp(`Resulting force on the conductor acts ${String(instance.expected.value)}wards\\.`))).toBeTruthy();
-      expect(queryByLabelText(/A current-carrying conductor between a north pole on the left/)).toBeNull();
+      expect(getByLabelText(new RegExp(`circulates ${String(instance.expected.value)}`))).toBeTruthy();
+    });
+
+    // CC-13: `guided_interpret_force_direction` randomises BOTH pole_labels and
+    // current_direction. N_S_horizontal states have a registered CC-13
+    // withheld/revealed pair; N_S_vertical states are deliberately NOT wired
+    // (a known content defect in that asset family's own audit trail -- see
+    // DiagramRenderer.tsx's CANONICAL_ASSESSMENT_VISUALS header comment) and
+    // must keep falling through to the verified-correct SVG. Either way, the
+    // force direction must never leak before submission.
+    it("the force-direction ASSESSMENT step (unanswered) withholds the force answer regardless of which pole orientation this instance generated -- never the fixed-default premium teaching master", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_force_direction", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.interpret_force_direction", "guided_interpret_force_direction", magnetismRecord.lookup);
+      const poleLabels = instance.representation.diagram?.parameters.pole_labels;
+      const { getByLabelText, queryByLabelText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={instance} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+      );
+      // The diagram's own accessibility label is the reliable signal for its rendered content
+      // (react-native-testing-library does not match text embedded inside react-native-svg
+      // Text/TSpan nodes via getByText/queryByText the way it matches plain RN <Text>).
+      if (poleLabels === "N_S_horizontal") {
+        expect(getByLabelText(/resulting force on the conductor is not shown/)).toBeTruthy();
+      } else {
+        expect(getByLabelText(/Force direction not shown\./)).toBeTruthy();
+      }
+      expect(queryByLabelText(/shown acting (up|down|left|right)wards?\./)).toBeNull();
+    });
+
+    it("the force-direction ASSESSMENT step reveals the force direction only AFTER submission, matching whichever pole orientation/current direction this instance generated", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_force_direction", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.interpret_force_direction", "guided_interpret_force_direction", magnetismRecord.lookup);
+      const poleLabels = instance.representation.diagram?.parameters.pole_labels;
+      const { getByLabelText } = await render(
+        <LessonStepView
+          resolved={resolved}
+          questionInstance={instance}
+          evaluation={{ correct: true, detail: "direction match" }}
+          revealCorrectAnswer={true}
+          onSubmit={jest.fn()}
+          onContinue={jest.fn()}
+        />,
+      );
+      const expected = String(instance.expected.value);
+      if (poleLabels === "N_S_horizontal") {
+        expect(getByLabelText(new RegExp(`shown acting ${expected}ward`))).toBeTruthy();
+      } else {
+        expect(getByLabelText(new RegExp(`Resulting force on the conductor acts ${expected}wards\\.`))).toBeTruthy();
+      }
     });
   });
 

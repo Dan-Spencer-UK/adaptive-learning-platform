@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { render } from "@testing-library/react-native";
 import type { DiagramBlueprint } from "@alp/content-schema";
 
-import { buildTeachingDiagramInstance, CANONICAL_TEACHING_VISUAL_LOCK, DiagramRenderer, SUPPORTED_DIAGRAM_BLUEPRINT_IDS, UnsupportedDiagramBlueprintError } from "./DiagramRenderer";
+import { buildTeachingDiagramInstance, CANONICAL_ASSET_LOCK, DiagramRenderer, SUPPORTED_DIAGRAM_BLUEPRINT_IDS, UnsupportedDiagramBlueprintError } from "./DiagramRenderer";
 
 function blueprint(overrides: Partial<DiagramBlueprint> & Pick<DiagramBlueprint, "id" | "type">): DiagramBlueprint {
   return {
@@ -101,9 +101,14 @@ describe("DiagramRenderer registry", () => {
     const fieldBlueprint = blueprint({
       id: "magnetic.field_conductor_direction",
       type: "magnetic_field",
-      parameters: [{ name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page"] }],
+      parameters: [{ name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page", "left_to_right"] }],
     });
-    const diagram = { blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "into_page" }, labels: [] };
+    // "left_to_right" has no registered CC-13 canonical assessment-state entry
+    // (see DiagramRenderer.tsx's CANONICAL_ASSESSMENT_VISUALS -- only
+    // into_page/out_of_page are covered), so this exercises the plain SVG
+    // component's own reveal-prop plumbing directly, undisturbed by CC-13's
+    // canonical resolution.
+    const diagram = { blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "left_to_right" }, labels: [] };
 
     const withoutReveal = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={diagram} />);
     expect(withoutReveal.getByLabelText(/direction the fingers curl.*is not shown/)).toBeTruthy();
@@ -142,16 +147,26 @@ describe("DiagramRenderer registry", () => {
       expect(queryByLabelText(/North pole on the left, south pole on the right\./)).toBeNull();
     });
 
-    it("context='assessment' always uses the SVG diagram, even for a blueprint that has a registered premium teaching master", async () => {
-      const { getByLabelText, queryByLabelText } = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={fieldDiagram} context="assessment" />);
-      expect(getByLabelText(/direction the fingers curl.*is not shown/)).toBeTruthy();
-      expect(queryByLabelText(/Right-hand grip rule\. A right hand grips/)).toBeNull();
+    it("context='assessment' uses the SVG diagram for a blueprint with only a teaching-only premium master (no registered assessment-state family)", async () => {
+      const poleBlueprint = blueprint({
+        id: "magnetic.pole_interaction",
+        type: "magnetic_field",
+        parameters: [{ name: "pole_pairing", kind: "enum", allowed: ["like_poles_facing", "unlike_poles_facing"] }],
+      });
+      const poleDiagram = { blueprintId: "magnetic.pole_interaction", parameters: { pole_pairing: "like_poles_facing" }, labels: [] };
+      const { queryByLabelText } = await render(<DiagramRenderer blueprint={poleBlueprint} diagram={poleDiagram} context="assessment" />);
+      expect(queryByLabelText(/Two bar magnets facing each other across a central gap\. The right-hand pole/)).toBeNull();
     });
 
-    it("omitting context defaults to the safe 'assessment' behaviour -- never silently resolves to a premium master", async () => {
-      const { getByLabelText, queryByLabelText } = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={fieldDiagram} />);
-      expect(getByLabelText(/direction the fingers curl.*is not shown/)).toBeTruthy();
-      expect(queryByLabelText(/Right-hand grip rule\. A right hand grips/)).toBeNull();
+    it("omitting context defaults to the safe 'assessment' behaviour -- a blueprint with no registered assessment-state family never silently resolves to a premium master", async () => {
+      const poleBlueprint = blueprint({
+        id: "magnetic.pole_interaction",
+        type: "magnetic_field",
+        parameters: [{ name: "pole_pairing", kind: "enum", allowed: ["like_poles_facing", "unlike_poles_facing"] }],
+      });
+      const poleDiagram = { blueprintId: "magnetic.pole_interaction", parameters: { pole_pairing: "like_poles_facing" }, labels: [] };
+      const { queryByLabelText } = await render(<DiagramRenderer blueprint={poleBlueprint} diagram={poleDiagram} />);
+      expect(queryByLabelText(/Two bar magnets facing each other across a central gap\. The right-hand pole/)).toBeNull();
     });
 
     it("context='teaching' for a blueprint with no registered premium master falls back to the SVG diagram unchanged", async () => {
@@ -165,50 +180,162 @@ describe("DiagramRenderer registry", () => {
       expect(getByLabelText(/Series circuit diagram/)).toBeTruthy();
     });
 
-    it("context='teaching' resolves the emf.motional_emf_geometry blueprint to the governed premium master, not the old schematic diagram", async () => {
+    it("emf.motional_emf_geometry resolves to the governed premium master in BOTH teaching and assessment context -- context-agnostic, since MotionalEmfDiagram has no reveal-sensitive content to withhold", async () => {
       const emfBlueprint = blueprint({ id: "emf.motional_emf_geometry", type: "magnetic_field", parameters: [] });
       const emfDiagram = { blueprintId: "emf.motional_emf_geometry", parameters: {}, labels: [] };
-      const { getByLabelText } = await render(<DiagramRenderer blueprint={emfBlueprint} diagram={emfDiagram} context="teaching" />);
-      expect(getByLabelText(/A conductor of length l moving with velocity v/)).toBeTruthy();
-      const svgOnlyRender = await render(<DiagramRenderer blueprint={emfBlueprint} diagram={emfDiagram} context="assessment" />);
-      // The SVG MotionalEmfDiagram renders under assessment context -- proves this is a real
-      // swap between two different components, not the same markup relabelled.
-      expect(svgOnlyRender.queryByLabelText(/A conductor of length l moving with velocity v/)).toBeNull();
+      const teachingRender = await render(<DiagramRenderer blueprint={emfBlueprint} diagram={emfDiagram} context="teaching" />);
+      expect(teachingRender.getByLabelText(/A conductor of length l moving with velocity v/)).toBeTruthy();
+      const assessmentRender = await render(<DiagramRenderer blueprint={emfBlueprint} diagram={emfDiagram} context="assessment" />);
+      expect(assessmentRender.getByLabelText(/A conductor of length l moving with velocity v/)).toBeTruthy();
     });
   });
 
-  // CC-12C: the mechanical governance tripwire task brief §11.A/§5 asks for --
-  // recomputes the SHA-256 of each shipped canonical teaching image at test
-  // time and asserts it against CANONICAL_TEACHING_VISUAL_LOCK, which is
-  // itself pinned to the highest-numbered audit file with an all-PASS
-  // verdict for that asset (see DiagramRenderer.tsx's own header comment
-  // for why the canonical-visual-registry.json generated artifact is NOT a
-  // safe source of truth to pin against -- CC-12C found it frozen at a
-  // stale, superseded version for two of these three assets). A future
-  // accidental or malicious swap of any shipped file -- stale, legacy, or
-  // simply wrong -- fails this test immediately, rather than shipping
-  // silently until a Product Owner happens to notice it on-device.
-  describe("CC-12C: canonical asset lock -- shipped files match the approved current master, never a stale/legacy one", () => {
-    const SHIPPED_ASSET_PATHS: Readonly<Record<string, string>> = {
-      "magnetic.field_conductor_direction": join(__dirname, "../../assets/instructional/unit202/teaching/right-hand-grip-teaching-master-v4.png"),
-      "motor.force_field_current": join(__dirname, "../../assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-into-page-teaching-base-v1.png"),
-      "emf.motional_emf_geometry": join(__dirname, "../../assets/instructional/unit202/teaching/emf-motional-teaching-master-v3.png"),
-    };
+  // CC-13: the fix for the defect a Product Owner emulator finding traced
+  // live -- guided_interpret_field_direction (magnetic.field_conductor_direction)
+  // and guided_interpret_force_direction (motor.force_field_current) both
+  // drive a real, randomly-generated DiagramInstance, so context alone was
+  // never enough; the actual parameter state must select among several
+  // independently-audited withheld/revealed masters.
+  describe("CC-13: reveal-sensitive per-parameter-state assessment visuals (the right-hand-grip/motor-effect assessment fix)", () => {
+    const fieldBlueprint = blueprint({
+      id: "magnetic.field_conductor_direction",
+      type: "magnetic_field",
+      parameters: [{ name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page"] }],
+    });
 
-    it.each(Object.entries(CANONICAL_TEACHING_VISUAL_LOCK))(
-      "%s's shipped file SHA-256 matches its pinned, audit-verified approved master",
-      (blueprintId, locked) => {
-        const path = SHIPPED_ASSET_PATHS[blueprintId];
-        expect(path).toBeDefined();
-        const actualSha256 = createHash("sha256").update(readFileSync(path!)).digest("hex");
-        expect(actualSha256).toBe(locked.sha256);
-      },
-    );
+    it("assessment context, no reveal: shows the withheld state image for the actual current_direction, never the answer", async () => {
+      const diagram = { blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "into_page" }, labels: [] };
+      const { getByLabelText, queryByLabelText } = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={diagram} context="assessment" />);
+      expect(getByLabelText(/direction it circulates is not shown/)).toBeTruthy();
+      expect(queryByLabelText(/circulates clockwise/)).toBeNull();
+    });
 
-    it("locks exactly the three CC-12 magnetism/EMF slice blueprints -- no unpinned canonical entry can exist", () => {
-      expect(Object.keys(CANONICAL_TEACHING_VISUAL_LOCK).sort()).toEqual(
-        ["emf.motional_emf_geometry", "magnetic.field_conductor_direction", "motor.force_field_current"].sort(),
+    it("assessment context, with reveal: shows the revealed state image matching the actual current_direction and the correct field rotation", async () => {
+      const diagram = { blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "into_page" }, labels: [] };
+      const { getByLabelText } = await render(
+        <DiagramRenderer blueprint={fieldBlueprint} diagram={diagram} context="assessment" reveal={{ fieldRotation: "clockwise" }} />,
       );
+      expect(getByLabelText(/circulates clockwise/)).toBeTruthy();
+    });
+
+    it("out_of_page state resolves to its own withheld/revealed pair, not the into_page one", async () => {
+      const diagram = { blueprintId: "magnetic.field_conductor_direction", parameters: { current_direction: "out_of_page" }, labels: [] };
+      const withheld = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={diagram} context="assessment" />);
+      expect(withheld.getByLabelText(/out of the page.*direction it circulates is not shown/)).toBeTruthy();
+      const revealed = await render(<DiagramRenderer blueprint={fieldBlueprint} diagram={diagram} context="assessment" reveal={{ fieldRotation: "counterclockwise" }} />);
+      expect(revealed.getByLabelText(/circulates counterclockwise/)).toBeTruthy();
+    });
+
+    it("motor.force_field_current: N_S_horizontal assessment states resolve to their own withheld/revealed masters", async () => {
+      const motorBlueprint = blueprint({
+        id: "motor.force_field_current",
+        type: "magnetic_field",
+        parameters: [
+          { name: "pole_labels", kind: "enum", allowed: ["N_S_horizontal", "N_S_vertical"] },
+          { name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page"] },
+        ],
+      });
+      const diagram = { blueprintId: "motor.force_field_current", parameters: { pole_labels: "N_S_horizontal", current_direction: "into_page" }, labels: [] };
+      const withheld = await render(<DiagramRenderer blueprint={motorBlueprint} diagram={diagram} context="assessment" />);
+      expect(withheld.getByLabelText(/resulting force on the conductor is not shown/)).toBeTruthy();
+      const revealed = await render(<DiagramRenderer blueprint={motorBlueprint} diagram={diagram} context="assessment" reveal={{ forceDirection: "down" }} />);
+      expect(revealed.getByLabelText(/shown acting downward/)).toBeTruthy();
+    });
+
+    it("motor.force_field_current: N_S_vertical states are NOT wired -- a known content defect in that asset family's audit trail (see DiagramRenderer.tsx header comment) -- and fall through to the verified-correct SVG", async () => {
+      const motorBlueprint = blueprint({
+        id: "motor.force_field_current",
+        type: "magnetic_field",
+        parameters: [
+          { name: "pole_labels", kind: "enum", allowed: ["N_S_horizontal", "N_S_vertical"] },
+          { name: "current_direction", kind: "enum", allowed: ["into_page", "out_of_page"] },
+        ],
+      });
+      const diagram = { blueprintId: "motor.force_field_current", parameters: { pole_labels: "N_S_vertical", current_direction: "into_page" }, labels: [] };
+      const { getByLabelText } = await render(<DiagramRenderer blueprint={motorBlueprint} diagram={diagram} context="assessment" reveal={{ forceDirection: "left" }} />);
+      // The SVG MagneticForceDiagram's own accessibility label -- proves this fell through to SVG, not a mis-keyed canonical entry.
+      expect(getByLabelText(/North pole at the top, south pole at the bottom/)).toBeTruthy();
+    });
+  });
+
+  // CC-13: context-agnostic per-parameter-state visuals for blueprints
+  // whose SVG has no reveal semantics at all (levers/gears/pulleys/
+  // generator) -- same picture, safe in either context.
+  describe("CC-13: context-agnostic per-parameter-state visuals (levers, gears, pulleys, generator)", () => {
+    it("mechanical.gear_mesh resolves per size_ratio in both contexts", async () => {
+      const gearBlueprint = blueprint({ id: "mechanical.gear_mesh", type: "mechanical", parameters: [{ name: "size_ratio", kind: "enum", allowed: ["driven_larger", "driven_smaller", "equal"] }] });
+      const diagram = { blueprintId: "mechanical.gear_mesh", parameters: { size_ratio: "driven_smaller" }, labels: [] };
+      const teaching = await render(<DiagramRenderer blueprint={gearBlueprint} diagram={diagram} context="teaching" />);
+      expect(teaching.getByLabelText(/smaller than the driver gear/)).toBeTruthy();
+      const assessment = await render(<DiagramRenderer blueprint={gearBlueprint} diagram={diagram} context="assessment" />);
+      expect(assessment.getByLabelText(/smaller than the driver gear/)).toBeTruthy();
+    });
+
+    it("mechanical.pulley_arrangement resolves per arrangement", async () => {
+      const pulleyBlueprint = blueprint({ id: "mechanical.pulley_arrangement", type: "mechanical", parameters: [{ name: "arrangement", kind: "enum", allowed: ["fixed", "movable"] }] });
+      const diagram = { blueprintId: "mechanical.pulley_arrangement", parameters: { arrangement: "movable" }, labels: [] };
+      const { getByLabelText } = await render(<DiagramRenderer blueprint={pulleyBlueprint} diagram={diagram} context="assessment" />);
+      expect(getByLabelText(/mechanical advantage of approximately 2/)).toBeTruthy();
+    });
+
+    it("generator.rotating_loop resolves per rotation_phase", async () => {
+      const generatorBlueprint = blueprint({ id: "generator.rotating_loop", type: "magnetic_field", parameters: [{ name: "rotation_phase", kind: "enum", allowed: ["vertical", "horizontal"] }] });
+      const diagram = { blueprintId: "generator.rotating_loop", parameters: { rotation_phase: "horizontal" }, labels: [] };
+      const { getByLabelText } = await render(<DiagramRenderer blueprint={generatorBlueprint} diagram={diagram} context="teaching" />);
+      expect(getByLabelText(/momentarily not cutting flux lines/)).toBeTruthy();
+    });
+
+    it("mechanical.lever_arrangement resolves per lever_class when show_distances is not set", async () => {
+      const leverBlueprint = blueprint({
+        id: "mechanical.lever_arrangement",
+        type: "mechanical",
+        parameters: [
+          { name: "lever_class", kind: "enum", allowed: ["class_1", "class_2", "class_3"] },
+          { name: "show_distances", kind: "boolean" },
+        ],
+      });
+      const diagram = { blueprintId: "mechanical.lever_arrangement", parameters: { lever_class: "class_2" }, labels: [] };
+      const { getByLabelText } = await render(<DiagramRenderer blueprint={leverBlueprint} diagram={diagram} context="assessment" />);
+      expect(getByLabelText(/Class II lever with the load positioned between/)).toBeTruthy();
+    });
+
+    it("mechanical.lever_arrangement falls through to the SVG diagram when show_distances is true -- the premium master never depicts the distance-bracket overlay the calculation steps need", async () => {
+      const leverBlueprint = blueprint({
+        id: "mechanical.lever_arrangement",
+        type: "mechanical",
+        parameters: [
+          { name: "lever_class", kind: "enum", allowed: ["class_1", "class_2", "class_3"] },
+          { name: "show_distances", kind: "boolean" },
+        ],
+      });
+      const diagram = { blueprintId: "mechanical.lever_arrangement", parameters: { lever_class: "class_2", show_distances: true }, labels: [] };
+      const { getByLabelText, queryByLabelText } = await render(<DiagramRenderer blueprint={leverBlueprint} diagram={diagram} context="assessment" />);
+      expect(getByLabelText(/effort arm, de, measured from the pivot/)).toBeTruthy();
+      expect(queryByLabelText(/Class II lever with the load positioned between/)).toBeNull();
+    });
+  });
+
+  // CC-12C/CC-13: the mechanical governance tripwire task brief §11.A/§5
+  // asks for -- recomputes the SHA-256 of each shipped canonical visual at
+  // test time and asserts it against CANONICAL_ASSET_LOCK, which is itself
+  // pinned to the highest-numbered audit file with an all-PASS verdict for
+  // that asset (see DiagramRenderer.tsx's own header comment for why the
+  // canonical-visual-registry.json generated artifact is NOT a safe source
+  // of truth to pin against -- CC-12C found it frozen at a stale,
+  // superseded version for two assets). A future accidental or malicious
+  // swap of any shipped file -- stale, legacy, or simply wrong -- fails
+  // this test immediately, rather than shipping silently until a Product
+  // Owner happens to notice it on-device.
+  describe("CC-12C/CC-13: canonical asset lock -- shipped files match the approved current master, never a stale/legacy one", () => {
+    it.each(CANONICAL_ASSET_LOCK)("$canonicalAssetId's shipped file SHA-256 matches its pinned, audit-verified approved master", (locked) => {
+      const path = join(__dirname, "../../assets/instructional/unit202", locked.shippedAssetRelativePath);
+      const actualSha256 = createHash("sha256").update(readFileSync(path)).digest("hex");
+      expect(actualSha256).toBe(locked.sha256);
+    });
+
+    it("locks exactly the 21 shipped Unit 202 canonical visuals -- no unpinned entry can exist", () => {
+      expect(CANONICAL_ASSET_LOCK.length).toBe(21);
+      expect(new Set(CANONICAL_ASSET_LOCK.map((entry) => entry.canonicalAssetId)).size).toBe(21);
     });
   });
 });

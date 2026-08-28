@@ -151,23 +151,22 @@ export function resolveDiagramComponent(blueprintId: string): DiagramComponent {
  * only trustworthy source of truth is the highest-numbered `*-audit-vN.json`
  * with `verdict/technicalVerdict/pedagogicalClarityVerdict/
  * visualProductQualityVerdict` all `"PASS"` for a given assetId -- see
- * CANONICAL_TEACHING_VISUAL_LOCK below, which pins exactly that, and the
- * governance test (`DiagramRenderer.test.tsx`, "CC-12C" block) that proves
- * the shipped file's own SHA-256 still matches it. Deliberately
- * teaching-state only: assessment rendering keeps using the SVG registry
- * above unchanged, which already withholds the assessed answer until after
- * submission (`reveal` prop, LessonStepView.tsx). A blueprint with no
- * entry here (or a `context` of `"assessment"`) always falls through to
- * the SVG registry, so this is purely additive over the existing dispatch,
- * never a replacement of it.
+ * CANONICAL_ASSET_LOCK below, which pins exactly that, and the governance
+ * test (`DiagramRenderer.test.tsx`, "CC-12C"/"CC-13" blocks) that proves
+ * each shipped file's own SHA-256 still matches it.
+ *
+ * Entries here resolve only in `context="teaching"` (or, for
+ * `CONTEXT_AGNOSTIC_BLUEPRINT_IDS` below, in either context) -- see
+ * CANONICAL_ASSESSMENT_VISUALS and CANONICAL_PARAMETER_VISUALS further
+ * down for the other two resolution paths `DiagramRenderer` tries first.
  */
-interface CanonicalTeachingVisual {
+interface CanonicalVisual {
   readonly canonicalAssetId: string;
   readonly source: ImageSourcePropType;
   readonly accessibilityLabel: string;
 }
 
-const CANONICAL_TEACHING_VISUALS: Readonly<Record<string, CanonicalTeachingVisual>> = {
+const CANONICAL_TEACHING_VISUALS: Readonly<Record<string, CanonicalVisual>> = {
   "magnetic.field_conductor_direction": {
     canonicalAssetId: "unit202.right-hand-grip.teaching",
     // Metro's asset resolver does not honour the "@/" module alias for
@@ -190,88 +189,505 @@ const CANONICAL_TEACHING_VISUALS: Readonly<Record<string, CanonicalTeachingVisua
     accessibilityLabel:
       "A conductor of length l moving with velocity v through a magnetic field of flux density B, with l, v and B mutually perpendicular, inducing an EMF in the conductor.",
   },
+  // CC-13: bar-magnet pole interaction. This asset never bakes in the
+  // attract/repel force arrows (audit-verified absent), so it is safe as a
+  // structural illustration in teaching context -- but with no revealed
+  // variant, it cannot replace the SVG's post-submission force-arrow
+  // reveal in assessment context (LessonStepView.tsx's `showPoleForce`),
+  // so this entry deliberately stays teaching-only, never added to
+  // CONTEXT_AGNOSTIC_BLUEPRINT_IDS.
+  "magnetic.pole_interaction": {
+    canonicalAssetId: "unit202.magnet.poles.like",
+    source: require("../../assets/instructional/unit202/teaching/magnet-poles-like-teaching-master-v2.png"),
+    accessibilityLabel:
+      "Two bar magnets facing each other across a central gap. The right-hand pole of the left magnet and the left-hand pole of the right magnet -- the two facing poles -- are both labelled N (north).",
+  },
 };
 
 /**
- * CC-12C: the exact currently-approved master for each canonical teaching
- * visual above, pinned to the specific audit file that gave it its final
- * all-PASS verdict -- never the (proven stale) canonical-visual-registry.json.
- * `DiagramRenderer.test.tsx`'s "CC-12C" block recomputes each shipped
- * file's real SHA-256 and asserts it against this table, so a future silent
- * asset swap -- stale, superseded, or simply wrong -- fails a test loudly
- * instead of shipping unnoticed.
+ * CC-13: blueprints whose CANONICAL_TEACHING_VISUALS entry never depends on
+ * teaching-vs-assessment context, because the underlying SVG component has
+ * no `reveal` prop at all for this blueprint -- the same fixed picture is
+ * given information in every context, never an assessed answer. Currently
+ * only `emf.motional_emf_geometry` (MotionalEmfDiagram always shows the
+ * full B/l/v geometry unconditionally); `magnetic.pole_interaction` is
+ * deliberately NOT here (see its entry's own comment above).
  */
-export const CANONICAL_TEACHING_VISUAL_LOCK: Readonly<
-  Record<string, { readonly canonicalAssetId: string; readonly approvedVersion: string; readonly sha256: string; readonly auditFile: string }>
-> = {
+const CONTEXT_AGNOSTIC_BLUEPRINT_IDS: ReadonlySet<string> = new Set(["emf.motional_emf_geometry"]);
+
+/**
+ * CC-13: reveal-sensitive, per-parameter-state canonical visuals for
+ * `context="assessment"` -- the fix for the defect a Product Owner
+ * emulator finding traced live: `guided_interpret_field_direction`
+ * (magnetic.field_conductor_direction) and `guided_interpret_force_direction`
+ * / `recheck_force_direction` (motor.force_field_current) both drive a
+ * REAL randomly-generated `DiagramInstance` (see
+ * @alp/calculation-engine's `interpretFieldDirection`/`interpretForceDirection`),
+ * so `context` alone is not enough to pick one static image -- the actual
+ * generated parameter combination (current direction; pole orientation +
+ * current direction) must select among several state-specific masters,
+ * each independently produced and audited in both a "withheld" variant
+ * (the given stimulus only, answer-bearing element absent -- shown before
+ * submission) and a "revealed" variant (same stimulus, answer-bearing
+ * element present -- shown after submission, replacing the SVG registry's
+ * own `reveal` prop for these two blueprints specifically).
+ *
+ * `motor.force_field_current`'s `N_S_vertical` states are deliberately
+ * NOT included: independently re-deriving F = I L x B for this course's
+ * own axis convention (cross-checked against @alp/calculation-engine's
+ * `FORCE_DIRECTION` table, which matches the N_S_horizontal states'
+ * shipped imagery exactly) found the vertical-pole assets' own audit
+ * files self-contradict that physics -- both `state.into-page-teaching`
+ * and `state.out-of-page-teaching`'s audit records describe a force
+ * arrow direction that is the MIRROR of the governed engine's actual
+ * expected value for that same state (a real content defect in the
+ * asset production/audit run, not a provenance or wiring question this
+ * package is scoped to fix -- see the completion report). Wiring a
+ * physically wrong revealed force direction to a learner would be worse
+ * than the SVG gap it would replace, so `N_S_vertical` stays on the SVG
+ * registry (verified correct) until that defect is independently
+ * corrected by a future content-production package.
+ */
+interface CanonicalAssessmentState {
+  readonly withheld: CanonicalVisual;
+  readonly revealed: CanonicalVisual;
+}
+interface CanonicalAssessmentFamily {
+  readonly paramNames: readonly string[];
+  readonly variants: Readonly<Record<string, CanonicalAssessmentState>>;
+}
+
+function assessmentStateKey(diagram: DiagramInstance, paramNames: readonly string[]): string {
+  return paramNames.map((name) => String(diagram.parameters[name])).join("|");
+}
+
+const CANONICAL_ASSESSMENT_VISUALS: Readonly<Record<string, CanonicalAssessmentFamily>> = {
   "magnetic.field_conductor_direction": {
+    paramNames: ["current_direction"],
+    variants: {
+      into_page: {
+        withheld: {
+          canonicalAssetId: "unit202.current-conductor.magnetic-field.state.into-page-assessment",
+          source: require("../../assets/instructional/unit202/hybrid/current-conductor-magnetic-field-state-into-page-assessment-master-v1.png"),
+          accessibilityLabel:
+            "A straight current-carrying conductor, seen end-on, with the conventional current flowing into the page. Concentric circles around the conductor show where the magnetic field acts, but the direction it circulates is not shown.",
+        },
+        revealed: {
+          canonicalAssetId: "unit202.current-conductor.magnetic-field.state.into-page-teaching",
+          source: require("../../assets/instructional/unit202/hybrid/current-conductor-magnetic-field-state-into-page-teaching-master-v2.png"),
+          accessibilityLabel:
+            "A straight current-carrying conductor, seen end-on, with the conventional current flowing into the page. The magnetic field circulates clockwise around the conductor, as seen by the viewer.",
+        },
+      },
+      out_of_page: {
+        withheld: {
+          canonicalAssetId: "unit202.current-conductor.magnetic-field.state.out-of-page-assessment",
+          source: require("../../assets/instructional/unit202/hybrid/current-conductor-magnetic-field-state-out-of-page-assessment-master-v1.png"),
+          accessibilityLabel:
+            "A straight current-carrying conductor, seen end-on, with the conventional current flowing out of the page. Concentric circles around the conductor show where the magnetic field acts, but the direction it circulates is not shown.",
+        },
+        revealed: {
+          canonicalAssetId: "unit202.current-conductor.magnetic-field.state.out-of-page-teaching",
+          source: require("../../assets/instructional/unit202/hybrid/current-conductor-magnetic-field-state-out-of-page-teaching-master-v1.png"),
+          accessibilityLabel:
+            "A straight current-carrying conductor, seen end-on, with the conventional current flowing out of the page. The magnetic field circulates counterclockwise around the conductor, as seen by the viewer.",
+        },
+      },
+    },
+  },
+  "motor.force_field_current": {
+    paramNames: ["pole_labels", "current_direction"],
+    variants: {
+      "N_S_horizontal|into_page": {
+        withheld: {
+          canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
+          source: require("../../assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-into-page-assessment-master-v2.png"),
+          accessibilityLabel:
+            "A current-carrying conductor between a north pole on the left and a south pole on the right, with the magnetic field running left to right between them. The conventional current flows into the page. The resulting force on the conductor is not shown.",
+        },
+        revealed: {
+          canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
+          source: require("../../assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-into-page-teaching-base-v1.png"),
+          accessibilityLabel:
+            "A current-carrying conductor between a north pole on the left and a south pole on the right, with the magnetic field running left to right between them. The conventional current flows into the page. The resulting force on the conductor is shown acting downward.",
+        },
+      },
+      "N_S_horizontal|out_of_page": {
+        withheld: {
+          canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment",
+          source: require("../../assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-out-of-page-assessment-master-v2.png"),
+          accessibilityLabel:
+            "A current-carrying conductor between a north pole on the left and a south pole on the right, with the magnetic field running left to right between them. The conventional current flows out of the page. The resulting force on the conductor is not shown.",
+        },
+        revealed: {
+          canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching",
+          source: require("../../assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-out-of-page-teaching-master-v2.png"),
+          accessibilityLabel:
+            "A current-carrying conductor between a north pole on the left and a south pole on the right, with the magnetic field running left to right between them. The conventional current flows out of the page. The resulting force on the conductor is shown acting upward.",
+        },
+      },
+    },
+  },
+};
+
+/**
+ * CC-13: context-agnostic, per-parameter-state canonical visuals -- for
+ * blueprints whose SVG component has no `reveal` prop at all (the picture
+ * is always fully shown, in every context, per each component's own
+ * header comment: LeverDiagram "the class is never withheld", GearDiagram/
+ * PulleyDiagram/ACGeneratorDiagram likewise), so the same single image per
+ * parameter state is safe for both teaching and assessment. Governed
+ * lesson content never overrides these parameters (each state is reached
+ * only through the corresponding question blueprint's own randomised
+ * generation -- see `lesson-simple-machines.ts` / `lesson-ac-generation-
+ * principles.ts`), so every reachable state is covered here.
+ *
+ * `mechanical.lever_arrangement`'s `guard` is load-bearing: the audited
+ * masters show only FULCRUM/EFFORT/LOAD labels, never the `show_distances`
+ * distance-bracket (de/dl) overlay `worked_example_lever_balance` /
+ * `guided_calculate_lever_balance` / `independent_calculate_lever_balance`
+ * require -- using the static image there would silently drop essential
+ * calculation-teaching content, so those steps always fall through to the
+ * SVG registry, unchanged.
+ */
+interface CanonicalParameterFamily {
+  readonly paramName: string;
+  readonly variants: Readonly<Record<string, CanonicalVisual>>;
+  readonly guard?: (diagram: DiagramInstance) => boolean;
+}
+
+const CANONICAL_PARAMETER_VISUALS: Readonly<Record<string, CanonicalParameterFamily>> = {
+  "mechanical.gear_mesh": {
+    paramName: "size_ratio",
+    variants: {
+      equal: {
+        canonicalAssetId: "unit202.gears.equal",
+        source: require("../../assets/instructional/unit202/hybrid/gears-equal-master-v1.png"),
+        accessibilityLabel: "The driver gear meshes with the driven gear. The driven gear is the same size as the driver gear, so speed and torque are unchanged.",
+      },
+      driven_larger: {
+        canonicalAssetId: "unit202.gears.driven-larger",
+        source: require("../../assets/instructional/unit202/hybrid/gears-driven-larger-master-v1.png"),
+        accessibilityLabel:
+          "The driver gear meshes with the driven gear. The driven gear is larger than the driver gear, meaning it turns more slowly and produces higher output torque.",
+      },
+      driven_smaller: {
+        canonicalAssetId: "unit202.gears.driven-smaller",
+        source: require("../../assets/instructional/unit202/hybrid/gears-driven-smaller-master-v1.png"),
+        accessibilityLabel:
+          "The driver gear meshes with the driven gear. The driven gear is smaller than the driver gear, meaning it turns faster and produces lower output torque.",
+      },
+    },
+  },
+  "mechanical.pulley_arrangement": {
+    paramName: "arrangement",
+    variants: {
+      fixed: {
+        canonicalAssetId: "unit202.pulleys.fixed",
+        source: require("../../assets/instructional/unit202/hybrid/pulleys-fixed-master-v1.png"),
+        accessibilityLabel:
+          "A fixed pulley: the wheel is mounted to a fixed anchor at the top. Effort pulls down on one side of the rope, and the load hangs from the other side. One rope segment supports the load -- the pulley changes the direction of the force but gives no mechanical advantage.",
+      },
+      movable: {
+        canonicalAssetId: "unit202.pulleys.movable",
+        source: require("../../assets/instructional/unit202/hybrid/pulleys-movable-master-v1.png"),
+        accessibilityLabel:
+          "A movable pulley: the wheel is attached directly to the load and moves with it. One end of the rope is anchored to a fixed point at the top; the rope runs down around the movable pulley and back up to where the effort pulls. Two rope segments support the load, giving a mechanical advantage of approximately 2.",
+      },
+    },
+  },
+  "mechanical.lever_arrangement": {
+    paramName: "lever_class",
+    guard: (diagram) => diagram.parameters.show_distances !== true,
+    variants: {
+      class_1: {
+        canonicalAssetId: "unit202.levers.class-1",
+        source: require("../../assets/instructional/unit202/hybrid/levers-class-1-master-v3.png"),
+        accessibilityLabel: "A Class I lever with the fulcrum positioned between the effort point and the load point.",
+      },
+      class_2: {
+        canonicalAssetId: "unit202.levers.class-2",
+        source: require("../../assets/instructional/unit202/hybrid/levers-class-2-master-v6.png"),
+        accessibilityLabel: "A Class II lever with the load positioned between the fulcrum and the effort point.",
+      },
+      class_3: {
+        canonicalAssetId: "unit202.levers.class-3",
+        source: require("../../assets/instructional/unit202/hybrid/levers-class-3-master-v4.png"),
+        accessibilityLabel: "A Class III lever with the effort positioned between the fulcrum and the load point.",
+      },
+    },
+  },
+  "generator.rotating_loop": {
+    paramName: "rotation_phase",
+    variants: {
+      vertical: {
+        canonicalAssetId: "unit202.generator.rotating-loop.vertical",
+        source: require("../../assets/instructional/unit202/hybrid/generator-rotating-loop-vertical-master-v3.png"),
+        accessibilityLabel:
+          "A single rectangular wire loop rotates on a shaft between a north pole and a south pole, connected via two slip rings and brushes to an external load. The loop is shown edge-on, its plane aligned with the field lines -- the position where it cuts the magnetic flux at the fastest rate, producing an EMF near its peak.",
+      },
+      horizontal: {
+        canonicalAssetId: "unit202.generator.rotating-loop.horizontal",
+        source: require("../../assets/instructional/unit202/hybrid/generator-rotating-loop-horizontal-master-v2.png"),
+        accessibilityLabel:
+          "A single rectangular wire loop rotates on a shaft between a north pole and a south pole, connected via two slip rings and brushes to an external load. The loop is shown face-on, its plane at right angles to the field lines -- the position where it is momentarily not cutting flux lines, producing an EMF near zero.",
+      },
+    },
+  },
+};
+
+/**
+ * CC-12C/CC-13: the exact currently-approved master for every shipped
+ * canonical visual above, pinned to the specific audit file that gave it
+ * its final all-PASS verdict -- never the (proven stale)
+ * canonical-visual-registry.json. `DiagramRenderer.test.tsx`'s
+ * "CC-12C"/"CC-13" blocks recompute each shipped file's real SHA-256 and
+ * assert it against this table, so a future silent asset swap -- stale,
+ * superseded, or simply wrong -- fails a test loudly instead of shipping
+ * unnoticed. `shippedAssetRelativePath` is relative to
+ * `apps/mobile/src/assets/instructional/unit202/`.
+ */
+export interface CanonicalAssetLockEntry {
+  readonly canonicalAssetId: string;
+  readonly approvedVersion: string;
+  readonly sha256: string;
+  readonly auditFile: string;
+  readonly shippedAssetRelativePath: string;
+}
+
+const PROOF = "reports/instructional-visuals/premium-artwork/proof";
+
+export const CANONICAL_ASSET_LOCK: readonly CanonicalAssetLockEntry[] = [
+  {
     canonicalAssetId: "unit202.right-hand-grip.teaching",
     approvedVersion: "v4",
     sha256: "85f1ff3141ac5fba12254372667d7f82701f7a02f786fd19c2c205d12645cac6",
-    auditFile: "reports/instructional-visuals/premium-artwork/proof/unit202.right-hand-grip.teaching/unit202.right-hand-grip.teaching-audit-v4.json",
+    auditFile: `${PROOF}/unit202.right-hand-grip.teaching/unit202.right-hand-grip.teaching-audit-v4.json`,
+    shippedAssetRelativePath: "teaching/right-hand-grip-teaching-master-v4.png",
   },
-  "motor.force_field_current": {
+  {
+    canonicalAssetId: "unit202.current-conductor.magnetic-field.state.into-page-assessment",
+    approvedVersion: "v1",
+    sha256: "df8da72332d5ace44e149508ed608bf1cab5097bfcc678a5f2939317daab88ef",
+    auditFile: `${PROOF}/unit202.current-conductor.magnetic-field/unit202.current-conductor.magnetic-field.state.into-page-assessment-audit-v1.json`,
+    shippedAssetRelativePath: "hybrid/current-conductor-magnetic-field-state-into-page-assessment-master-v1.png",
+  },
+  {
+    canonicalAssetId: "unit202.current-conductor.magnetic-field.state.into-page-teaching",
+    approvedVersion: "v2",
+    sha256: "1923cfcbcd51df84f78940cb51f25bc36d496e30f692861afb9d719b1df326dc",
+    auditFile: `${PROOF}/unit202.current-conductor.magnetic-field/unit202.current-conductor.magnetic-field.state.into-page-teaching-audit-v2.json`,
+    shippedAssetRelativePath: "hybrid/current-conductor-magnetic-field-state-into-page-teaching-master-v2.png",
+  },
+  {
+    canonicalAssetId: "unit202.current-conductor.magnetic-field.state.out-of-page-assessment",
+    approvedVersion: "v1",
+    sha256: "667d3319d477e9570da6851be0802330da1959987037aa89c22d3d375c22fbe0",
+    auditFile: `${PROOF}/unit202.current-conductor.magnetic-field/unit202.current-conductor.magnetic-field.state.out-of-page-assessment-audit-v1.json`,
+    shippedAssetRelativePath: "hybrid/current-conductor-magnetic-field-state-out-of-page-assessment-master-v1.png",
+  },
+  {
+    canonicalAssetId: "unit202.current-conductor.magnetic-field.state.out-of-page-teaching",
+    approvedVersion: "v1",
+    sha256: "ac25a9bb00d8b60a991a1b03afecdce2a0fc24273f3fd18569cc3fc6151c14f5",
+    auditFile: `${PROOF}/unit202.current-conductor.magnetic-field/unit202.current-conductor.magnetic-field.state.out-of-page-teaching-audit-v1.json`,
+    shippedAssetRelativePath: "hybrid/current-conductor-magnetic-field-state-out-of-page-teaching-master-v1.png",
+  },
+  {
     canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
     approvedVersion: "v2",
     sha256: "baacf82389470774488677dcb655e0765ae1dbf405bdbfb644da45b04d960546",
-    auditFile:
-      "reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles.state.into-page-teaching-audit-v2.json",
+    auditFile: `${PROOF}/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles.state.into-page-teaching-audit-v2.json`,
+    shippedAssetRelativePath: "hybrid/motor-effect-horizontal-poles-into-page-teaching-base-v1.png",
   },
-  "emf.motional_emf_geometry": {
+  {
+    canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.into-page-assessment",
+    approvedVersion: "v2",
+    sha256: "0b676366d93f12aa3f8b70ca2c0d23d7d32637ec8da258f8932256bd2802f60a",
+    auditFile: `${PROOF}/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles.state.into-page-assessment-audit-v2.json`,
+    shippedAssetRelativePath: "hybrid/motor-effect-horizontal-poles-into-page-assessment-master-v2.png",
+  },
+  {
+    canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.out-of-page-teaching",
+    approvedVersion: "v2",
+    sha256: "3fd0cb57be2c9f57be8729e9991b50a5500db4e08858a0f77b26e59307293375",
+    auditFile: `${PROOF}/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles.state.out-of-page-teaching-audit-v2.json`,
+    shippedAssetRelativePath: "hybrid/motor-effect-horizontal-poles-out-of-page-teaching-master-v2.png",
+  },
+  {
+    canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.out-of-page-assessment",
+    approvedVersion: "v2",
+    sha256: "d1b12c67973561fa2ec7f3d78d8be3661cf0eda18aff6e08446ceaee5716c292",
+    auditFile: `${PROOF}/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles.state.out-of-page-assessment-audit-v2.json`,
+    shippedAssetRelativePath: "hybrid/motor-effect-horizontal-poles-out-of-page-assessment-master-v2.png",
+  },
+  {
     canonicalAssetId: "unit202.emf.motional",
     approvedVersion: "v3",
     sha256: "6272b40a0c4455eb72b8a5514beba492db8ea8ff029212bf352e388cf5f3ae78",
-    auditFile: "reports/instructional-visuals/premium-artwork/proof/unit202.emf.motional/unit202.emf.motional-audit-v3.json",
+    auditFile: `${PROOF}/unit202.emf.motional/unit202.emf.motional-audit-v3.json`,
+    shippedAssetRelativePath: "teaching/emf-motional-teaching-master-v3.png",
   },
-};
+  {
+    canonicalAssetId: "unit202.magnet.poles.like",
+    approvedVersion: "v2",
+    sha256: "ba3cf983ba11d59f3dce870b5e80975ac09894adeb54bae4fd3682373c6c2043",
+    auditFile: `${PROOF}/unit202.magnet.poles.like/unit202.magnet.poles.like-audit-v2.json`,
+    shippedAssetRelativePath: "teaching/magnet-poles-like-teaching-master-v2.png",
+  },
+  {
+    canonicalAssetId: "unit202.gears.equal",
+    approvedVersion: "v1",
+    sha256: "16197e868f2fdcf8cad68709be2b4febd11481a2baaa14d8e73542cc3ac4e5f3",
+    auditFile: `${PROOF}/unit202.gears.equal/unit202.gears.equal-audit-v1.json`,
+    shippedAssetRelativePath: "hybrid/gears-equal-master-v1.png",
+  },
+  {
+    canonicalAssetId: "unit202.gears.driven-larger",
+    approvedVersion: "v1",
+    sha256: "e7759fd4bfaf48ed2f9d5f9790ea2c25226589f1574ea47031d535b30d1ace59",
+    auditFile: `${PROOF}/unit202.gears.driven-larger/unit202.gears.driven-larger-audit-v1.json`,
+    shippedAssetRelativePath: "hybrid/gears-driven-larger-master-v1.png",
+  },
+  {
+    canonicalAssetId: "unit202.gears.driven-smaller",
+    approvedVersion: "v1",
+    sha256: "7710e3562dfc986d9e6a65097388fde9b4dafe3d775a5f9526000335616b4e7d",
+    auditFile: `${PROOF}/unit202.gears.driven-smaller/unit202.gears.driven-smaller-audit-v1.json`,
+    shippedAssetRelativePath: "hybrid/gears-driven-smaller-master-v1.png",
+  },
+  {
+    canonicalAssetId: "unit202.pulleys.fixed",
+    approvedVersion: "v1",
+    sha256: "3ec46b4f802c99951b081ac43bca2f73a2ba1aee5716d6988a71c1bcac7fe2d2",
+    auditFile: `${PROOF}/unit202.pulleys.fixed/unit202.pulleys.fixed-audit-v1.json`,
+    shippedAssetRelativePath: "hybrid/pulleys-fixed-master-v1.png",
+  },
+  {
+    canonicalAssetId: "unit202.pulleys.movable",
+    approvedVersion: "v1",
+    sha256: "b34c94ebbccfc14f0b366a3c5d8271caf386f1cb36521b0b85c41e50f3348cc7",
+    auditFile: `${PROOF}/unit202.pulleys.movable/unit202.pulleys.movable-audit-v1.json`,
+    shippedAssetRelativePath: "hybrid/pulleys-movable-master-v1.png",
+  },
+  {
+    canonicalAssetId: "unit202.levers.class-1",
+    approvedVersion: "v3",
+    sha256: "44a8e608cd66113cc831e6163bd743c513b01108bb68717063301d67f3333f43",
+    auditFile: `${PROOF}/unit202.levers.class-1/unit202.levers.class-1-audit-v3.json`,
+    shippedAssetRelativePath: "hybrid/levers-class-1-master-v3.png",
+  },
+  {
+    canonicalAssetId: "unit202.levers.class-2",
+    approvedVersion: "v6",
+    sha256: "624b665096a859c821cfb565ffe4e008d0ec7d901f9624fc8b8ac91654fac94e",
+    auditFile: `${PROOF}/unit202.levers.class-2/unit202.levers.class-2-audit-v6.json`,
+    shippedAssetRelativePath: "hybrid/levers-class-2-master-v6.png",
+  },
+  {
+    canonicalAssetId: "unit202.levers.class-3",
+    approvedVersion: "v4",
+    sha256: "7c14e7602aba5218c9e0dca0a9a1e6f55a093c3feaea1fb39ebca4f779767e6a",
+    auditFile: `${PROOF}/unit202.levers.class-3/unit202.levers.class-3-audit-v4.json`,
+    shippedAssetRelativePath: "hybrid/levers-class-3-master-v4.png",
+  },
+  {
+    canonicalAssetId: "unit202.generator.rotating-loop.horizontal",
+    approvedVersion: "v2",
+    sha256: "eaae96ee2744ff83ec632ac2da466f3115e8949d2a9d62f4e651c2201d88dd0c",
+    auditFile: `${PROOF}/unit202.generator.rotating-loop.horizontal/unit202.generator.rotating-loop.horizontal-audit-v2.json`,
+    shippedAssetRelativePath: "hybrid/generator-rotating-loop-horizontal-master-v2.png",
+  },
+  {
+    canonicalAssetId: "unit202.generator.rotating-loop.vertical",
+    approvedVersion: "v3",
+    sha256: "9842eb16624ceebc4429248aa5f3b1f078c18cc475ec0e25c3085a0f77bf4047",
+    auditFile: `${PROOF}/unit202.generator.rotating-loop.vertical/unit202.generator.rotating-loop.vertical-audit-v3.json`,
+    shippedAssetRelativePath: "hybrid/generator-rotating-loop-vertical-master-v3.png",
+  },
+];
 
 export interface DiagramRendererProps {
   readonly blueprint: DiagramBlueprint;
   readonly diagram: DiagramInstance;
   readonly reveal?: DiagramRevealProps;
   /**
-   * CC-12B: which presentation context this render is for. `"teaching"`
-   * may resolve to a governed premium master (falling back to the SVG
-   * registry if none is registered for this blueprint); `"assessment"`
-   * (the default -- the safe choice for any caller that doesn't pass this
-   * explicitly) always uses the SVG registry, whose reveal is separately
-   * gated by the `reveal` prop above. Callers should pass this explicitly
-   * rather than relying on the default whenever the render context is
-   * actually known.
+   * CC-12B/CC-13: which presentation context this render is for.
+   * `"teaching"` may resolve to a governed premium master (falling back
+   * to the SVG registry if none is registered for this blueprint).
+   * `"assessment"` (the default -- the safe choice for any caller that
+   * doesn't pass this explicitly) may ALSO resolve to a governed premium
+   * master, but only for blueprints with a registered, reveal-sensitive
+   * `CANONICAL_ASSESSMENT_VISUALS` state family (picked withheld/revealed
+   * by whether `reveal` is supplied) or a context-agnostic
+   * `CANONICAL_PARAMETER_VISUALS` family (no reveal semantics at all);
+   * every other blueprint still always uses the SVG registry, whose
+   * reveal is separately gated by the `reveal` prop above. Callers should
+   * pass this explicitly rather than relying on the default whenever the
+   * render context is actually known.
    */
   readonly context?: "teaching" | "assessment";
   readonly testID?: string;
 }
 
+function renderCanonicalVisual(visual: CanonicalVisual, testID: string | undefined): React.JSX.Element {
+  return (
+    <View style={styles.canonicalTeachingCard} testID={testID}>
+      <Image
+        source={visual.source}
+        accessibilityLabel={visual.accessibilityLabel}
+        accessibilityRole="image"
+        accessible
+        resizeMode="contain"
+        style={styles.canonicalTeachingImage}
+      />
+    </View>
+  );
+}
+
 /**
  * Resolves and renders any governed diagram blueprint -- the single call
  * site both the Lesson Player and any future practice surface should use.
- * In `"teaching"` context, prefers a governed premium master image
- * (CANONICAL_TEACHING_VISUALS above) when one is registered for this
- * blueprint id; otherwise (assessment context, or no premium master
- * registered) resolves and invokes the SVG registry component as a plain
- * function (never `<Component .../>`) -- every registry entry is a
- * stateless presentational SVG component with nothing to lose across
- * re-renders, and this avoids resolving a fresh "component identity" on
- * every render (react-hooks/static-components) that a JSX-position call
- * would create.
+ * Prefers a governed premium master image when one is registered for this
+ * exact blueprint id + parameter state + context (see the resolution
+ * order in the function body); otherwise resolves and invokes the SVG
+ * registry component as a plain function (never `<Component .../>`) --
+ * every registry entry is a stateless presentational SVG component with
+ * nothing to lose across re-renders, and this avoids resolving a fresh
+ * "component identity" on every render (react-hooks/static-components)
+ * that a JSX-position call would create.
  */
 export function DiagramRenderer({ blueprint, diagram, reveal, context = "assessment", testID }: DiagramRendererProps): React.JSX.Element {
-  const canonical = context === "teaching" ? CANONICAL_TEACHING_VISUALS[blueprint.id] : undefined;
-  if (canonical) {
-    return (
-      <View style={styles.canonicalTeachingCard} testID={testID}>
-        <Image
-          source={canonical.source}
-          accessibilityLabel={canonical.accessibilityLabel}
-          accessibilityRole="image"
-          accessible
-          resizeMode="contain"
-          style={styles.canonicalTeachingImage}
-        />
-      </View>
-    );
+  // CC-13, resolution order:
+  // 1. context="assessment" reveal-sensitive, per-parameter-state visuals
+  //    (the actual generated question instance's state selects among
+  //    several independently-audited withheld/revealed masters).
+  // 2. context-agnostic, per-parameter-state visuals with no reveal
+  //    semantics at all (guarded where a parameter combination isn't
+  //    covered, e.g. mechanical.lever_arrangement's show_distances).
+  // 3. the single fixed-default teaching master (context="teaching", or
+  //    CONTEXT_AGNOSTIC_BLUEPRINT_IDS in either context).
+  // 4. the SVG registry -- the safe fallback whenever nothing above
+  //    matches, exactly as before CC-13.
+  if (context === "assessment") {
+    const assessmentFamily = CANONICAL_ASSESSMENT_VISUALS[blueprint.id];
+    if (assessmentFamily) {
+      const key = assessmentStateKey(diagram, assessmentFamily.paramNames);
+      const state = assessmentFamily.variants[key];
+      if (state) return renderCanonicalVisual(reveal ? state.revealed : state.withheld, testID);
+    }
   }
+
+  const parameterFamily = CANONICAL_PARAMETER_VISUALS[blueprint.id];
+  if (parameterFamily && (!parameterFamily.guard || parameterFamily.guard(diagram))) {
+    const value = String(diagram.parameters[parameterFamily.paramName]);
+    const variant = parameterFamily.variants[value];
+    if (variant) return renderCanonicalVisual(variant, testID);
+  }
+
+  const canonical = context === "teaching" || CONTEXT_AGNOSTIC_BLUEPRINT_IDS.has(blueprint.id) ? CANONICAL_TEACHING_VISUALS[blueprint.id] : undefined;
+  if (canonical) return renderCanonicalVisual(canonical, testID);
+
   return resolveDiagramComponent(blueprint.id)({ diagram, reveal, testID });
 }
 
