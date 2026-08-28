@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/react-native";
-import type { GeneratedQuestionInstance } from "@alp/calculation-engine";
+import { evaluateAnswer, type GeneratedQuestionInstance } from "@alp/calculation-engine";
 
 import { generateLessonQuestion } from "@/lib/lesson-content/generate-lesson-question";
 import { bundledContentReleaseId, getLocalLesson } from "@/lib/lesson-content/local-content-registry";
@@ -299,6 +299,46 @@ describe("LessonStepView", () => {
       );
       expect(getByLabelText(new RegExp(`Resulting force on the conductor acts ${String(instance.expected.value)}wards\\.`))).toBeTruthy();
       expect(queryByLabelText(/A current-carrying conductor between a north pole on the left/)).toBeNull();
+    });
+  });
+
+  // CC-12C: Product Owner emulator finding -- a force-calculation question
+  // appeared to show inconsistent values for `l` between the displayed
+  // givens and "the working/evaluation". Root cause turned out to be
+  // representational (uppercase "I" and lowercase "l" render as visually
+  // identical vertical strokes in this UI font, not a real value mismatch
+  // -- see the promptLines clarity fix in cc05a-pedagogy-unit202.ts), but
+  // this proves the underlying numeric path is, and stays, genuinely
+  // single-sourced at the real lesson-resolution layer -- not merely
+  // inside the calculation-engine's own generation helpers (already
+  // covered by magnetism.test.ts) in isolation.
+  describe("CC-12C: calculation integrity -- displayed givens, formula, and evaluation all derive from the SAME generated instance", () => {
+    it("the rendered B/I/l givens for magnetism.calculate_force_on_conductor are exactly the instance's own parameters, and the expected answer is derivable from those same displayed numbers", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_calculate_force_on_conductor", magnetismRecord.lookup);
+      const instance = instanceFor("magnetism.calculate_force_on_conductor", "guided_calculate_force_on_conductor", magnetismRecord.lookup);
+      const { getByText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={instance} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+      );
+      const { B, I, l } = instance.parameters as { B: number; I: number; l: number };
+      // The rendered prompt lines must show the SAME numbers the instance carries -- no
+      // separately-derived or hardcoded duplicate value set -- and the "(current)"/"(conductor
+      // length)" clarity annotations that disambiguate the visually-identical "I"/"l" glyphs.
+      expect(getByText(`B = ${B} T`)).toBeTruthy();
+      expect(getByText(`I = ${I} A (current)`)).toBeTruthy();
+      expect(getByText(`l = ${l} m (conductor length)`)).toBeTruthy();
+      // What marking grades against (instance.expected.value) must be reproducible from those
+      // SAME displayed B/I/l -- proving display and evaluation share one generated instance.
+      expect(Number(instance.expected.value)).toBeCloseTo(B * I * l, 6);
+    });
+
+    it("submitting the value computed from the displayed givens is marked correct via the real evaluation path, for several independently-generated instances", async () => {
+      for (const seedStepId of ["li1_t", "li2_t", "li3_t", "li4_t", "li5_t"]) {
+        const instance = instanceFor("magnetism.calculate_force_on_conductor", seedStepId, magnetismRecord.lookup);
+        const { B, I, l } = instance.parameters as { B: number; I: number; l: number };
+        const givenFromDisplayedValues = B * I * l;
+        const evaluation = evaluateAnswer(instance, givenFromDisplayedValues);
+        expect(evaluation.correct).toBe(true);
+      }
     });
   });
 });

@@ -1,7 +1,10 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { render } from "@testing-library/react-native";
 import type { DiagramBlueprint } from "@alp/content-schema";
 
-import { buildTeachingDiagramInstance, DiagramRenderer, SUPPORTED_DIAGRAM_BLUEPRINT_IDS, UnsupportedDiagramBlueprintError } from "./DiagramRenderer";
+import { buildTeachingDiagramInstance, CANONICAL_TEACHING_VISUAL_LOCK, DiagramRenderer, SUPPORTED_DIAGRAM_BLUEPRINT_IDS, UnsupportedDiagramBlueprintError } from "./DiagramRenderer";
 
 function blueprint(overrides: Partial<DiagramBlueprint> & Pick<DiagramBlueprint, "id" | "type">): DiagramBlueprint {
   return {
@@ -160,6 +163,52 @@ describe("DiagramRenderer registry", () => {
         />,
       );
       expect(getByLabelText(/Series circuit diagram/)).toBeTruthy();
+    });
+
+    it("context='teaching' resolves the emf.motional_emf_geometry blueprint to the governed premium master, not the old schematic diagram", async () => {
+      const emfBlueprint = blueprint({ id: "emf.motional_emf_geometry", type: "magnetic_field", parameters: [] });
+      const emfDiagram = { blueprintId: "emf.motional_emf_geometry", parameters: {}, labels: [] };
+      const { getByLabelText } = await render(<DiagramRenderer blueprint={emfBlueprint} diagram={emfDiagram} context="teaching" />);
+      expect(getByLabelText(/A conductor of length l moving with velocity v/)).toBeTruthy();
+      const svgOnlyRender = await render(<DiagramRenderer blueprint={emfBlueprint} diagram={emfDiagram} context="assessment" />);
+      // The SVG MotionalEmfDiagram renders under assessment context -- proves this is a real
+      // swap between two different components, not the same markup relabelled.
+      expect(svgOnlyRender.queryByLabelText(/A conductor of length l moving with velocity v/)).toBeNull();
+    });
+  });
+
+  // CC-12C: the mechanical governance tripwire task brief §11.A/§5 asks for --
+  // recomputes the SHA-256 of each shipped canonical teaching image at test
+  // time and asserts it against CANONICAL_TEACHING_VISUAL_LOCK, which is
+  // itself pinned to the highest-numbered audit file with an all-PASS
+  // verdict for that asset (see DiagramRenderer.tsx's own header comment
+  // for why the canonical-visual-registry.json generated artifact is NOT a
+  // safe source of truth to pin against -- CC-12C found it frozen at a
+  // stale, superseded version for two of these three assets). A future
+  // accidental or malicious swap of any shipped file -- stale, legacy, or
+  // simply wrong -- fails this test immediately, rather than shipping
+  // silently until a Product Owner happens to notice it on-device.
+  describe("CC-12C: canonical asset lock -- shipped files match the approved current master, never a stale/legacy one", () => {
+    const SHIPPED_ASSET_PATHS: Readonly<Record<string, string>> = {
+      "magnetic.field_conductor_direction": join(__dirname, "../../assets/instructional/unit202/teaching/right-hand-grip-teaching-master-v4.png"),
+      "motor.force_field_current": join(__dirname, "../../assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-into-page-teaching-base-v1.png"),
+      "emf.motional_emf_geometry": join(__dirname, "../../assets/instructional/unit202/teaching/emf-motional-teaching-master-v3.png"),
+    };
+
+    it.each(Object.entries(CANONICAL_TEACHING_VISUAL_LOCK))(
+      "%s's shipped file SHA-256 matches its pinned, audit-verified approved master",
+      (blueprintId, locked) => {
+        const path = SHIPPED_ASSET_PATHS[blueprintId];
+        expect(path).toBeDefined();
+        const actualSha256 = createHash("sha256").update(readFileSync(path!)).digest("hex");
+        expect(actualSha256).toBe(locked.sha256);
+      },
+    );
+
+    it("locks exactly the three CC-12 magnetism/EMF slice blueprints -- no unpinned canonical entry can exist", () => {
+      expect(Object.keys(CANONICAL_TEACHING_VISUAL_LOCK).sort()).toEqual(
+        ["emf.motional_emf_geometry", "magnetic.field_conductor_direction", "motor.force_field_current"].sort(),
+      );
     });
   });
 });

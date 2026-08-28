@@ -13349,8 +13349,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "B = {B} T",
-          "I = {I} A",
-          "l = {l} m",
+          "I = {I} A (current)",
+          "l = {l} m (conductor length)",
           "The conductor is at right angles to the field.",
           "Find the force on the conductor."
         ]

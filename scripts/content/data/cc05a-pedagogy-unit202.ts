@@ -4612,7 +4612,18 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: tolerance(2),
     assertionIdentifiers: ["EL-REL-FORCE-ON-CONDUCTOR-001"],
     representation: { formula: { required: true, formulaFamilyId: "formula.force_on_conductor" } },
-    presentation: { promptLines: ["B = {B} T", "I = {I} A", "l = {l} m", "The conductor is at right angles to the field.", "Find the force on the conductor."] },
+    // CC-12C: uppercase "I" (current) and lowercase "l" (length) render as
+    // visually identical vertical strokes in the app's UI font -- adjacent
+    // givens "I = {I} A" / "l = {l} m" were indistinguishable by symbol
+    // shape alone (Product Owner emulator finding, misread as a numeric
+    // inconsistency; the underlying generated values were verified
+    // correct/single-sourced -- see magnetism.ts's calculateForceOnConductor).
+    // Short parenthetical disambiguation, using the same wording as this
+    // variable's own governed name in formula.force_on_conductor, resolves
+    // the ambiguity without altering the governed physics symbol itself.
+    presentation: {
+      promptLines: ["B = {B} T", "I = {I} A (current)", "l = {l} m (conductor length)", "The conductor is at right angles to the field.", "Find the force on the conductor."],
+    },
   }),
   qb({
     id: "emf.calculate_motional_emf",

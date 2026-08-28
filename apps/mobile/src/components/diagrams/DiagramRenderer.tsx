@@ -135,24 +135,31 @@ export function resolveDiagramComponent(blueprintId: string): DiagramComponent {
 }
 
 /**
- * CC-12B: the governed CC-11 canonical-visual-registry premium masters
- * (`reports/instructional-visuals/unit202-canonical-visual-registry.json`)
- * for the two magnetism diagram blueprints, keyed by the SAME governed
- * `DiagramBlueprint.id` the SVG registry above uses -- one governed
- * identity, not a parallel one. Both entries are audited
- * (technical/pedagogical-clarity/visual-product-quality all PASS -- see
- * the corresponding `*-audit-v*.json` files) TEACHING-state masters only;
- * their `masterSha256` matches the shipped file byte-for-byte.
+ * CC-12B/CC-12C: governed CC-11 premium teaching masters, keyed by the SAME
+ * governed `DiagramBlueprint.id` the SVG registry above uses -- one
+ * governed identity, not a parallel one.
  *
- * Deliberately teaching-state only: assessment rendering keeps using the
- * SVG registry above unchanged, which already withholds the assessed
- * answer until after submission (`reveal` prop, LessonStepView.tsx) --
- * swapping assessment rendering to a premium master too would mean
- * shipping and selecting 4 additional per-parameter image variants per
- * blueprint for no governed benefit, which is out of this fix's bounded
- * scope. A blueprint with no entry here (or a `context` of
- * `"assessment"`) always falls through to the SVG registry, so this is
- * purely additive over the existing dispatch, never a replacement of it.
+ * CC-12C correction: CC-12B's own right-hand-grip entry shipped a stale,
+ * orphaned file -- byte-identical to an early, disconnected approval
+ * record (`unit202-artwork-manifest.json`, 2026-08-24) that predates and
+ * was never reconciled with the real audit lineage
+ * (`reports/instructional-visuals/premium-artwork/proof/unit202.right-hand-grip.teaching/`,
+ * v1 through the CC-11.14-proven v4). The canonical-visual-registry.json
+ * generated-artifact is ALSO not a safe source of truth here: CC-12C found
+ * it frozen at v2 for this same asset and at v2 for emf.motional, one and
+ * two revisions behind their actual final-PASS masters respectively. The
+ * only trustworthy source of truth is the highest-numbered `*-audit-vN.json`
+ * with `verdict/technicalVerdict/pedagogicalClarityVerdict/
+ * visualProductQualityVerdict` all `"PASS"` for a given assetId -- see
+ * CANONICAL_TEACHING_VISUAL_LOCK below, which pins exactly that, and the
+ * governance test (`DiagramRenderer.test.tsx`, "CC-12C" block) that proves
+ * the shipped file's own SHA-256 still matches it. Deliberately
+ * teaching-state only: assessment rendering keeps using the SVG registry
+ * above unchanged, which already withholds the assessed answer until after
+ * submission (`reveal` prop, LessonStepView.tsx). A blueprint with no
+ * entry here (or a `context` of `"assessment"`) always falls through to
+ * the SVG registry, so this is purely additive over the existing dispatch,
+ * never a replacement of it.
  */
 interface CanonicalTeachingVisual {
   readonly canonicalAssetId: string;
@@ -167,15 +174,54 @@ const CANONICAL_TEACHING_VISUALS: Readonly<Record<string, CanonicalTeachingVisua
     // require() image literals (only the JS/TS module graph does) -- a
     // relative path is required here even though every other import in
     // this file uses "@/".
-    source: require("../../assets/instructional/unit202/teaching/right-hand-grip-teaching-base-v1.png"),
+    source: require("../../assets/instructional/unit202/teaching/right-hand-grip-teaching-master-v4.png"),
     accessibilityLabel:
-      "Right-hand grip rule. A right hand grips a straight current-carrying conductor with the thumb extended along it, pointing in the direction of the conventional current. The four curled fingers wrap around the conductor showing the direction the magnetic field circulates.",
+      "Right-hand grip rule. A right hand grips a straight current-carrying conductor with the thumb extended along it, pointing in the direction of the conventional current. The four curled fingers wrap around the conductor showing the direction the magnetic field circulates, with a single arrow showing the field wrapping the conductor.",
   },
   "motor.force_field_current": {
     canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
     source: require("../../assets/instructional/unit202/hybrid/motor-effect-horizontal-poles-into-page-teaching-base-v1.png"),
     accessibilityLabel:
       "A current-carrying conductor between a north pole on the left and a south pole on the right, with the magnetic field running left to right between them. The conventional current flows into the page. The resulting force on the conductor is shown acting downward.",
+  },
+  "emf.motional_emf_geometry": {
+    canonicalAssetId: "unit202.emf.motional",
+    source: require("../../assets/instructional/unit202/teaching/emf-motional-teaching-master-v3.png"),
+    accessibilityLabel:
+      "A conductor of length l moving with velocity v through a magnetic field of flux density B, with l, v and B mutually perpendicular, inducing an EMF in the conductor.",
+  },
+};
+
+/**
+ * CC-12C: the exact currently-approved master for each canonical teaching
+ * visual above, pinned to the specific audit file that gave it its final
+ * all-PASS verdict -- never the (proven stale) canonical-visual-registry.json.
+ * `DiagramRenderer.test.tsx`'s "CC-12C" block recomputes each shipped
+ * file's real SHA-256 and asserts it against this table, so a future silent
+ * asset swap -- stale, superseded, or simply wrong -- fails a test loudly
+ * instead of shipping unnoticed.
+ */
+export const CANONICAL_TEACHING_VISUAL_LOCK: Readonly<
+  Record<string, { readonly canonicalAssetId: string; readonly approvedVersion: string; readonly sha256: string; readonly auditFile: string }>
+> = {
+  "magnetic.field_conductor_direction": {
+    canonicalAssetId: "unit202.right-hand-grip.teaching",
+    approvedVersion: "v4",
+    sha256: "85f1ff3141ac5fba12254372667d7f82701f7a02f786fd19c2c205d12645cac6",
+    auditFile: "reports/instructional-visuals/premium-artwork/proof/unit202.right-hand-grip.teaching/unit202.right-hand-grip.teaching-audit-v4.json",
+  },
+  "motor.force_field_current": {
+    canonicalAssetId: "unit202.motor.effect.horizontal-poles.state.into-page-teaching",
+    approvedVersion: "v2",
+    sha256: "baacf82389470774488677dcb655e0765ae1dbf405bdbfb644da45b04d960546",
+    auditFile:
+      "reports/instructional-visuals/premium-artwork/proof/unit202.motor.effect.horizontal-poles/unit202.motor.effect.horizontal-poles.state.into-page-teaching-audit-v2.json",
+  },
+  "emf.motional_emf_geometry": {
+    canonicalAssetId: "unit202.emf.motional",
+    approvedVersion: "v3",
+    sha256: "6272b40a0c4455eb72b8a5514beba492db8ea8ff029212bf352e388cf5f3ae78",
+    auditFile: "reports/instructional-visuals/premium-artwork/proof/unit202.emf.motional/unit202.emf.motional-audit-v3.json",
   },
 };
 
