@@ -96,7 +96,11 @@ describe("AnswerInputDispatch", () => {
     const { getByLabelText } = await render(
       <AnswerInputDispatch blueprint={blueprint} instance={instanceFor(blueprint.id)} formulaFamily={FORMULA_OHMS_LAW} onSubmit={onSubmit} />,
     );
-    await fireEvent.press(getByLabelText("Used the wrong operation (multiplied instead of divided, or vice versa)"));
+    // CC-12F: label text now describes this blueprint's own shown working
+    // specifically ("Multiplied V and R instead of dividing V by R"), not
+    // a generic shared label -- see cc05a-pedagogy-unit202.ts's own
+    // comment for why (a Product Owner-found diagnostic-ambiguity defect).
+    await fireEvent.press(getByLabelText("Multiplied V and R instead of dividing V by R"));
     expect(onSubmit).toHaveBeenCalledWith("wrong_operation");
   });
 

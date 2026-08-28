@@ -2994,7 +2994,27 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: { type: "set_equality" },
     assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
     supportingCapabilityIds: ["cap.si_units.identify_unit"],
-    presentation: { promptLines: ["V = {V} V", "I = {I} A", "R = {R} Ω"] },
+    // CC-12F: this is a FORMATIVE evidence-bearing check (ARCH-003 §17.2),
+    // not a teaching step -- the whole task is identifying which SI unit
+    // belongs to which quantity, so the prompt must never itself state
+    // the unit (a Product Owner emulator finding: the previous
+    // `["V = {V} V", "I = {I} A", "R = {R} Ω"]` promptLines displayed
+    // exactly the V->volt/I->ampere/R->ohm mapping being assessed, before
+    // the learner answered). No numeric givens are needed either -- the
+    // task is pure quantity-to-unit recognition, not a calculation; the
+    // answer-input's own row prompts ("V (voltage)", "I (current)",
+    // "R (resistance)", see answer-input-dispatch.tsx) already state
+    // what's being matched without leaking the answer. The V/I/R
+    // instance values are still generated (assembled into the instance
+    // for audit-trail/evidence completeness) but are deliberately never
+    // referenced by this blueprint's own presentation. `presentation` must
+    // still declare a real, non-empty `promptLines`
+    // (`questionPresentationManifestSchema`'s own `.min(1)` -- and
+    // @alp/calculation-engine's `resolvePromptLines` throws
+    // `MissingPresentationError` for a blueprint with no `presentation`
+    // at all), so the single line below restates the task itself --
+    // never a value, symbol or unit -- rather than being left blank.
+    presentation: { promptLines: ["Match each quantity to its correct SI unit."] },
   }),
   qb({
     id: "ohms_law.substitution",
@@ -3018,13 +3038,24 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: enumMarking(),
     assertionIdentifiers: ["EL-OHM-REARRANGE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-OHM-REARRANGE-ERROR-001", evidenceStrength: "direct" }],
+    // CC-12F: this blueprint's own stimulus (executor:
+    // diagnoseRearrangementError, ohms-law.ts) always shows the SAME
+    // operation as the correct one (division) with numerator/denominator
+    // swapped -- R = I / V shown, R = V / I correct. The option labels
+    // below are written to describe exactly that shown working, not a
+    // generic "rearranged wrong" restatement that could equally describe
+    // the sibling wrong_operation blueprint's different stimulus (a
+    // Product Owner emulator finding: both blueprints previously shared
+    // identical, vaguely-overlapping option text, so a learner shown
+    // "I = V x R" could defensibly pick either "used the wrong operation"
+    // or "rearranged the formula incorrectly" -- see task brief §10-13).
     presentation: {
       promptLines: ["A learner was asked to find resistance (R) from a known voltage and current:", "V = {V} V", "I = {I} A"],
       shownWorkingLines: ["V = {V} V, I = {I} A", "R = I / V = {shown_R} Ω"],
       answerOptionLabels: {
-        wrong_operation: "Used the wrong operation (multiplied instead of divided, or vice versa)",
-        rearrangement_error: "Rearranged the formula incorrectly",
-        unrelated_symbols: "Substituted an unrelated value",
+        wrong_operation: "Multiplied instead of dividing",
+        rearrangement_error: "Divided, but the wrong way round -- I ÷ V instead of V ÷ I",
+        unrelated_symbols: "Substituted a value that isn't V or I",
         no_error: "The working shown is actually correct",
       },
     },
@@ -3039,13 +3070,20 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: enumMarking(),
     assertionIdentifiers: ["EL-OHM-RELATIONSHIP-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-OHM-WRONG-OPERATION-001", evidenceStrength: "direct" }],
+    // CC-12F: this blueprint's own stimulus (executor: diagnoseWrongOperation,
+    // ohms-law.ts) always shows a genuinely DIFFERENT operation from the
+    // correct one (multiplication shown, division correct) with V and R
+    // correctly identified as the inputs -- no division of any kind
+    // appears in the shown working at all, so "divided the wrong way
+    // round" is factually inapplicable here, unlike its sibling blueprint
+    // above. See that blueprint's own comment for the shared root cause.
     presentation: {
       promptLines: ["A learner was asked to find current (I) from a known voltage and resistance:", "V = {V} V", "R = {R} Ω"],
       shownWorkingLines: ["V = {V} V, R = {R} Ω", "I = V x R = {shown_I} A"],
       answerOptionLabels: {
-        wrong_operation: "Used the wrong operation (multiplied instead of divided, or vice versa)",
-        rearrangement_error: "Rearranged the formula incorrectly",
-        unrelated_symbols: "Substituted an unrelated value",
+        wrong_operation: "Multiplied V and R instead of dividing V by R",
+        rearrangement_error: "Divided, but the wrong way round (numerator and denominator swapped)",
+        unrelated_symbols: "Substituted a value that isn't V or R",
         no_error: "The working shown is actually correct",
       },
     },

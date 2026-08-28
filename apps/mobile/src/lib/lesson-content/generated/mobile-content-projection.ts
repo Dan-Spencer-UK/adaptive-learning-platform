@@ -14043,9 +14043,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "R = I / V = {shown_R} Ω"
         ],
         "answerOptionLabels": {
-          "wrong_operation": "Used the wrong operation (multiplied instead of divided, or vice versa)",
-          "rearrangement_error": "Rearranged the formula incorrectly",
-          "unrelated_symbols": "Substituted an unrelated value",
+          "wrong_operation": "Multiplied instead of dividing",
+          "rearrangement_error": "Divided, but the wrong way round -- I ÷ V instead of V ÷ I",
+          "unrelated_symbols": "Substituted a value that isn't V or I",
           "no_error": "The working shown is actually correct"
         }
       }
@@ -14097,9 +14097,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "I = V x R = {shown_I} A"
         ],
         "answerOptionLabels": {
-          "wrong_operation": "Used the wrong operation (multiplied instead of divided, or vice versa)",
-          "rearrangement_error": "Rearranged the formula incorrectly",
-          "unrelated_symbols": "Substituted an unrelated value",
+          "wrong_operation": "Multiplied V and R instead of dividing V by R",
+          "rearrangement_error": "Divided, but the wrong way round (numerator and denominator swapped)",
+          "unrelated_symbols": "Substituted a value that isn't V or R",
           "no_error": "The working shown is actually correct"
         }
       }
@@ -14133,9 +14133,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "difficultyBand": "introductory",
       "presentation": {
         "promptLines": [
-          "V = {V} V",
-          "I = {I} A",
-          "R = {R} Ω"
+          "Match each quantity to its correct SI unit."
         ]
       }
     },

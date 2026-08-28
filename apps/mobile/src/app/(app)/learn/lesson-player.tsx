@@ -24,11 +24,12 @@ import { ASSEMBLY_POLICY_VERSION, assembleLessonInstance, computeLessonContentDe
 import type { AnswerValue, EvaluationResult, GeneratedQuestionInstance } from "@alp/calculation-engine";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { LessonCompletionView } from "@/components/lesson/LessonCompletionView";
 import { LessonStepView } from "@/components/lesson/LessonStepView";
+import { ScrollableLessonStep } from "@/components/lesson/ScrollableLessonStep";
 import { ProgressIndicator } from "@/components/question/ProgressIndicator";
 import { triggerHaptic } from "@/lib/haptics";
 import { useSession } from "@/lib/auth/session-context";
@@ -404,7 +405,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
           </Text>
         </View>
       ) : null}
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollableLessonStep key={resolved.step.id} testID="lesson-step-scroll-container">
         <LessonStepView
           resolved={resolved}
           questionInstance={state.questionInstance}
@@ -414,7 +415,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
           onContinue={() => void handleContinue()}
           submitting={state.submitting}
         />
-      </ScrollView>
+      </ScrollableLessonStep>
     </SafeAreaView>
   );
 }
@@ -425,7 +426,6 @@ const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", gap: spacing.md, paddingHorizontal: spacing.lg, paddingTop: spacing.sm },
   exitButton: { padding: spacing.xs },
   exitText: { ...typography.body, color: color.textSecondary },
-  container: { padding: spacing.lg, gap: spacing.md },
   title: { ...typography.title, fontSize: 18, color: color.text, textAlign: "center" },
   bodyText: { ...typography.body, color: color.textSecondary, textAlign: "center" },
   secondaryButton: {

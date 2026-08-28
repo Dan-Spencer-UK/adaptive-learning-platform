@@ -1,4 +1,4 @@
-import { evaluateAnswer } from "@alp/calculation-engine";
+import { evaluateAnswer, resolvePromptLines, resolveShownWorkingLines } from "@alp/calculation-engine";
 import { deriveStepSeed, generateLessonQuestion } from "./generate-lesson-question";
 import { bundledContentReleaseId, getLocalLesson, getQuestionBlueprintFrom } from "./local-content-registry";
 import { MOBILE_CONTENT_PROJECTION } from "./generated/mobile-content-projection";
@@ -63,5 +63,75 @@ describe("generateLessonQuestion (generic -- content resolved from the local rel
       const evaluation = evaluateAnswer(instance, instance.expected.value);
       expect(evaluation.correct).toBe(true);
     }
+  });
+});
+
+// CC-12F: a Product Owner emulator finding -- the unanswered "match each
+// Ohm's-law variable to its correct SI unit" formative check (ARCH-003
+// §17.2 -- an evidence-bearing formative check, answer must be withheld
+// before response) displayed exactly the mapping it was measuring
+// ("V = 301 V", "I = 7 A", "R = 43 Ω") before the learner had answered.
+// Fixed by removing the leaking promptLines entirely. This test proves
+// it against the REAL governed blueprint/content, not a synthetic
+// fixture, so a future content edit that reintroduces a unit-bearing
+// promptLine here fails loudly.
+describe("CC-12F: ohms_law.match_variables_units withholds the unit mapping it measures", () => {
+  it("resolved prompt lines never contain a unit symbol/name for any of several independently-generated instances", () => {
+    const blueprint = getQuestionBlueprintFrom(MOBILE_CONTENT_PROJECTION, "ohms_law.match_variables_units");
+    for (const instanceId of ["li1_a", "li1_b", "li1_c", "li1_d", "li1_e"]) {
+      const instance = generate("ohms_law.match_variables_units", instanceId, "interpret_variables_and_units");
+      const promptLines = resolvePromptLines(blueprint, instance);
+      const joined = promptLines.join(" ");
+      // Neither the unit symbols (V/A/Ω) nor their names (volt/ampere/ohm)
+      // may appear, and no numeric V/I/R value may appear either -- the
+      // single governed prompt line restates the task only.
+      expect(promptLines).toEqual(["Match each quantity to its correct SI unit."]);
+      expect(joined).not.toMatch(/volt|ampere|ohm|Ω/i);
+    }
+  });
+});
+
+// CC-12F: a Product Owner emulator finding -- `ohms_law.diagnose_wrong_operation`
+// and `ohms_law.diagnose_rearrangement_error` previously shared byte-identical
+// answerOptionLabels, so a learner shown "I = V x R" (wrong_operation's own
+// stimulus) could defensibly pick either "used the wrong operation" or
+// "rearranged the formula incorrectly" -- the options did not actually
+// discriminate the hypothesis from its stated alternative (ARCH-003 §17.3:
+// "a diagnostic check cannot infer two distinct misconceptions from
+// behaviour that does not distinguish them"). Fixed by writing each
+// blueprint's own option labels to describe exactly its own shown working.
+describe("CC-12F: the two ohms_law diagnostic blueprints have distinguishable, non-overlapping option labels", () => {
+  it("diagnose_wrong_operation's own shown working exhibits no division at all, so its 'rearrangement/swapped' option text does not apply to it", () => {
+    const blueprint = getQuestionBlueprintFrom(MOBILE_CONTENT_PROJECTION, "ohms_law.diagnose_wrong_operation");
+    const instance = generate("ohms_law.diagnose_wrong_operation", "li1_a", "misconception_check_wrong_operation");
+    const shownWorking = resolveShownWorkingLines(blueprint, instance).join(" ");
+    expect(shownWorking).toMatch(/x|×/); // multiplication shown
+    expect(shownWorking).not.toMatch(/[÷/]/); // never division
+
+    const labels = blueprint.presentation?.answerOptionLabels ?? {};
+    expect(labels.wrong_operation).toMatch(/multipli.*divid/i);
+    // The rearrangement_error option must describe a SWAPPED DIVISION --
+    // a fact that is simply false of this blueprint's own multiplication
+    // stimulus, so it can never be defensibly confused with the correct answer.
+    expect(labels.rearrangement_error).toMatch(/divid.*wrong way round|swap/i);
+  });
+
+  it("diagnose_rearrangement_error's own shown working uses the correct operation (division), so its 'multiplied instead of divided' option text does not apply to it", () => {
+    const blueprint = getQuestionBlueprintFrom(MOBILE_CONTENT_PROJECTION, "ohms_law.diagnose_rearrangement_error");
+    const instance = generate("ohms_law.diagnose_rearrangement_error", "li1_a", "misconception_check_rearrangement");
+    const shownWorking = resolveShownWorkingLines(blueprint, instance).join(" ");
+    expect(shownWorking).toMatch(/\//); // division shown
+    expect(shownWorking).not.toMatch(/x |×/); // never multiplication
+
+    const labels = blueprint.presentation?.answerOptionLabels ?? {};
+    expect(labels.rearrangement_error).toMatch(/wrong way round/i);
+    expect(labels.wrong_operation).toMatch(/multipli/i);
+  });
+
+  it("the two blueprints' own option-label text for the same enum key differs -- proving they were actually rewritten per-blueprint, not left as one shared copy-pasted set", () => {
+    const wrongOp = getQuestionBlueprintFrom(MOBILE_CONTENT_PROJECTION, "ohms_law.diagnose_wrong_operation");
+    const rearrangement = getQuestionBlueprintFrom(MOBILE_CONTENT_PROJECTION, "ohms_law.diagnose_rearrangement_error");
+    expect(wrongOp.presentation?.answerOptionLabels?.wrong_operation).not.toBe(rearrangement.presentation?.answerOptionLabels?.wrong_operation);
+    expect(wrongOp.presentation?.answerOptionLabels?.rearrangement_error).not.toBe(rearrangement.presentation?.answerOptionLabels?.rearrangement_error);
   });
 });

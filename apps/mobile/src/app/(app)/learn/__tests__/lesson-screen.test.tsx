@@ -37,7 +37,7 @@ describe("LessonScreen", () => {
     expect(getAllByLabelText("R equals V divided by I").length).toBeGreaterThanOrEqual(1);
 
     // VIR mnemonic present (region hit areas)
-    expect(getByLabelText("V region of the VIR triangle")).toBeTruthy();
+    expect(getByLabelText("Cover voltage V")).toBeTruthy();
 
     // Worked substitutions for all three targets, using the shared teaching value set (V=24, I=4, R=6):
     // the numeric substitution line, then the final answer-with-unit line.
@@ -53,7 +53,7 @@ describe("LessonScreen", () => {
     mockFamilyId = "electrical.series_circuits";
     const { getAllByLabelText, queryByLabelText } = await render(<LessonScreen />);
     expect(getAllByLabelText(/Rt equals R1 plus R2 plus R3 plus R4/).length).toBeGreaterThanOrEqual(1);
-    expect(queryByLabelText("V region of the VIR triangle")).toBeNull();
+    expect(queryByLabelText("Cover voltage V")).toBeNull();
   });
 
   it("magnetism: presents the right-hand grip rule as a genuine hand-based diagram, distinct from the motor-principle force diagram", async () => {

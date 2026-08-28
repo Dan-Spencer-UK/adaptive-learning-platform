@@ -140,7 +140,7 @@ describe("LessonStepView", () => {
     const { getByLabelText } = await render(
       <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
     );
-    expect(getByLabelText("V region of the VIR triangle")).toBeTruthy();
+    expect(getByLabelText("Cover voltage V")).toBeTruthy();
     expect(getByLabelText("V equals I times R")).toBeTruthy();
   });
 

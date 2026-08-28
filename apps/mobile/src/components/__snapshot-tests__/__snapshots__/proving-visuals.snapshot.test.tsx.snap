@@ -285,7 +285,7 @@ exports[`proving-slice visual QA -- structural snapshots VIR triangle mnemonic (
     >
       <View
         accessibilityHint="Reveals the relationship you get by covering V"
-        accessibilityLabel="V region of the VIR triangle"
+        accessibilityLabel="Cover voltage V"
         accessibilityRole="button"
         accessibilityState={
           {
@@ -340,7 +340,7 @@ exports[`proving-slice visual QA -- structural snapshots VIR triangle mnemonic (
       >
         <View
           accessibilityHint="Reveals the relationship you get by covering I"
-          accessibilityLabel="I region of the VIR triangle"
+          accessibilityLabel="Cover current I"
           accessibilityRole="button"
           accessibilityState={
             {
@@ -388,7 +388,7 @@ exports[`proving-slice visual QA -- structural snapshots VIR triangle mnemonic (
         />
         <View
           accessibilityHint="Reveals the relationship you get by covering R"
-          accessibilityLabel="R region of the VIR triangle"
+          accessibilityLabel="Cover resistance R"
           accessibilityRole="button"
           accessibilityState={
             {
@@ -459,7 +459,7 @@ exports[`proving-slice visual QA -- structural snapshots VIR triangle mnemonic (
       }
     }
   >
-    Tap a letter to reveal the relationship it stands for.
+    Tap a letter to cover it and reveal the relationship it stands for.
   </Text>
 </View>
 `;
