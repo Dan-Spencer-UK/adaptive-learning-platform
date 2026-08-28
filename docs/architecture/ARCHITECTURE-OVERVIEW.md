@@ -2,7 +2,7 @@
 id: ARCH-001
 status: approved
 owner: project-architect
-last_reviewed: 2026-08-23
+last_reviewed: 2026-08-28
 ---
 
 # Architecture Overview
@@ -160,6 +160,10 @@ Do not add Redis/Kafka/etc. initially. If durable async work becomes necessary, 
 ## UI architecture
 
 This section describes the web client. Open-source primitives solve mechanics, not product design. Use shadcn/ui selectively. The project owns lesson UX, adaptive branching, remediation return, progress/readiness, visual identity and accessibility. Do not import a wholesale SaaS theme. The equivalent native mobile UI architecture is [`MOBILE-UX-ENGINEERING-STANDARD.md`](../product/MOBILE-UX-ENGINEERING-STANDARD.md) and [`MOBILE-ARCHITECTURE.md`](MOBILE-ARCHITECTURE.md) — it is a separate, native-specific design system, not a shadcn/ui port.
+
+## Generated reports are not runtime authority (CC-12E)
+
+A generated report, manifest or registry (a coverage matrix, a visual-production manifest, an audit/proof-pack export) is evidence or a snapshot of a specific run, never itself a source of truth a system component may casually consume, unless a document explicitly designs it as runtime authority. Every such artefact needs a clearly defined owner and generation path; runtime code must resolve against the real governed source (the actual audited asset/content, traced to its own audit trail) rather than a historical output file that can silently go stale the moment the real source moves on. This was learned the hard way: a disconnected, never-audited `unit202-artwork-manifest.json` snapshot was briefly mistaken for the current Unit 202 image set (CC-12B) before being traced back to the real audit lineage and corrected (CC-12C, then generalised across the whole unit by the CC-12 imagery cleanup — see `PROJECT-STATUS.md` §CC-12). The fix in each case was tracing to the real audit trail, never trusting the generated report at face value.
 
 ## Architecture-change rule
 
