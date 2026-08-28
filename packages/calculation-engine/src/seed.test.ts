@@ -1,7 +1,18 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { createRng, createRngFromIdentity, deriveSeed, fnv1a32, nextInt, pick, pickDistinctIndices, type DeterministicIdentity } from "./seed.ts";
+import {
+  createRng,
+  createRngForDomain,
+  createRngFromIdentity,
+  deriveSeed,
+  fnv1a32,
+  nextInt,
+  pick,
+  pickDistinctIndices,
+  shuffleDeterministic,
+  type DeterministicIdentity,
+} from "./seed.ts";
 
 const IDENTITY: DeterministicIdentity = {
   blueprintId: "ohms_law.solve_for_voltage",
@@ -119,6 +130,63 @@ describe("pickDistinctIndices", () => {
   it("throws when count exceeds size", () => {
     const rng = createRng(11);
     expect(() => pickDistinctIndices(rng, 3, 4)).toThrow(RangeError);
+  });
+});
+
+describe("shuffleDeterministic (CC-12G answer-option randomisation)", () => {
+  it("same rng state produces the exact same reordering, every time", () => {
+    const items = ["a", "b", "c", "d", "e"];
+    const a = shuffleDeterministic(createRng(42), items);
+    const b = shuffleDeterministic(createRng(42), items);
+    expect(a).toEqual(b);
+  });
+
+  it("does not mutate the input array", () => {
+    const items = ["a", "b", "c", "d"];
+    const copy = [...items];
+    shuffleDeterministic(createRng(1), items);
+    expect(items).toEqual(copy);
+  });
+
+  it("preserves the exact same set of elements, only reordered", () => {
+    const items = ["a", "b", "c", "d", "e"];
+    const shuffled = shuffleDeterministic(createRng(7), items);
+    expect([...shuffled].sort()).toEqual([...items].sort());
+  });
+
+  it("different rng seeds produce at least one different ordering across several draws", () => {
+    const items = ["a", "b", "c", "d", "e", "f"];
+    const orderings = new Set(Array.from({ length: 8 }, (_, i) => shuffleDeterministic(createRng(i + 1), items).join(",")));
+    expect(orderings.size).toBeGreaterThan(1);
+  });
+
+  it("a single-element (or empty) array is unaffected", () => {
+    expect(shuffleDeterministic(createRng(1), ["only"])).toEqual(["only"]);
+    expect(shuffleDeterministic(createRng(1), [])).toEqual([]);
+  });
+});
+
+describe("createRngForDomain", () => {
+  const IDENTITY_A: DeterministicIdentity = { blueprintId: "ohms_law.match_variables_units", blueprintVersion: 1, contentRelease: "release.test", seed: 1 };
+
+  it("the same (identity, domain) pair always yields the same sequence", () => {
+    const a = Array.from({ length: 10 }, createRngForDomain(IDENTITY_A, "answerOptions"));
+    const b = Array.from({ length: 10 }, createRngForDomain(IDENTITY_A, "answerOptions"));
+    expect(a).toEqual(b);
+  });
+
+  it("different domains against the SAME identity are independently seeded (uncorrelated sequences)", () => {
+    const a = Array.from({ length: 10 }, createRngForDomain(IDENTITY_A, "answerOptions"));
+    const b = Array.from({ length: 10 }, createRngForDomain(IDENTITY_A, "matchRows"));
+    expect(a).not.toEqual(b);
+  });
+
+  it("a different identity (fresh generated instance) with the SAME domain can produce a different sequence", () => {
+    const a = createRngForDomain(IDENTITY_A, "answerOptions");
+    const b = createRngForDomain({ ...IDENTITY_A, seed: 2 }, "answerOptions");
+    const seqA = Array.from({ length: 10 }, a);
+    const seqB = Array.from({ length: 10 }, b);
+    expect(seqA).not.toEqual(seqB);
   });
 });
 

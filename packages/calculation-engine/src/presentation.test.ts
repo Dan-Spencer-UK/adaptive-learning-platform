@@ -34,9 +34,9 @@ function blueprint(overrides: Partial<QuestionBlueprint> = {}): QuestionBlueprin
   };
 }
 
-function instance(parameters: Record<string, number | string>): GeneratedQuestionInstance {
+function instance(parameters: Record<string, number | string>, identityOverrides: Partial<GeneratedQuestionInstance["identity"]> = {}): GeneratedQuestionInstance {
   return {
-    identity: { blueprintId: "qb.test", blueprintVersion: 1, contentRelease: "release.test", seed: 1 },
+    identity: { blueprintId: "qb.test", blueprintVersion: 1, contentRelease: "release.test", seed: 1, ...identityOverrides },
     assertionFamilyId: "fam.test",
     capabilityId: "cap.test",
     title: "Test",
@@ -94,6 +94,66 @@ describe("resolveAnswerOptions", () => {
   it("throws when the blueprint declares no answer options at all", () => {
     const noOptions = blueprint({ answer: { type: "quantity", quantity: "voltage", canonicalUnit: "volt" } });
     expect(() => resolveAnswerOptions(noOptions)).toThrow(/no governed answer.options/);
+  });
+
+  // CC-12G: deterministic per-instance display-order randomisation.
+  describe("with an instance -- deterministic shuffle", () => {
+    const bp = blueprint({ answer: { type: "multiple_choice", options: ["a", "b", "c", "d", "e"] } });
+    const presentedBp = blueprint({
+      answer: { type: "multiple_choice", options: ["a", "b", "c", "d", "e"] },
+      presentation: { promptLines: ["x"], answerOptionLabels: { a: "Option A", b: "Option B", c: "Option C", d: "Option D", e: "Option E" } },
+    });
+
+    // A. Stable within instance: same generated instance -> same order,
+    // across independent calls (re-render/resume never reshuffles).
+    it("A: the same instance always resolves the same option order", () => {
+      const inst = instance({});
+      const first = resolveAnswerOptions(presentedBp, inst);
+      const second = resolveAnswerOptions(presentedBp, inst);
+      expect(second).toEqual(first);
+    });
+
+    // B. Variable across instances: independently generated instances
+    // are not pinned to one fixed order.
+    it("B: independently generated instances produce more than one observed ordering", () => {
+      const orderings = new Set(
+        Array.from({ length: 6 }, (_, i) =>
+          resolveAnswerOptions(presentedBp, instance({}, { seed: i + 1 }))
+            .map((o) => o.value)
+            .join(","),
+        ),
+      );
+      expect(orderings.size).toBeGreaterThan(1);
+    });
+
+    // C. Correctness independent of position: the full set of option
+    // values (what marking/evaluation actually compares against) is
+    // unchanged by shuffling -- only display order moves.
+    it("C: the resolved value set is unchanged by shuffling, only its order", () => {
+      const shuffled = resolveAnswerOptions(presentedBp, instance({}));
+      expect([...shuffled.map((o) => o.value)].sort()).toEqual([...bp.answer.options!].sort());
+    });
+
+    // D. Diagnostics remain valid: each option's value keeps its own
+    // governed label regardless of where it lands -- a value-to-label
+    // (and, in the real dispatch, value-to-evidence) mapping is never
+    // built from array position.
+    it("D: every option's label stays correctly paired with its own value regardless of order", () => {
+      const shuffled = resolveAnswerOptions(presentedBp, instance({}));
+      for (const option of shuffled) {
+        expect(option.label).toBe(presentedBp.presentation!.answerOptionLabels![option.value]);
+      }
+    });
+
+    it("omitting instance returns the governed authored order, unshuffled", () => {
+      expect(resolveAnswerOptions(presentedBp)).toEqual([
+        { value: "a", label: "Option A" },
+        { value: "b", label: "Option B" },
+        { value: "c", label: "Option C" },
+        { value: "d", label: "Option D" },
+        { value: "e", label: "Option E" },
+      ]);
+    });
   });
 });
 

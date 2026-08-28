@@ -135,3 +135,30 @@ describe("CC-12F: the two ohms_law diagnostic blueprints have distinguishable, n
     expect(wrongOp.presentation?.answerOptionLabels?.rearrangement_error).not.toBe(rearrangement.presentation?.answerOptionLabels?.rearrangement_error);
   });
 });
+
+// CC-12G: a Product Owner emulator finding -- ohms_law.select_rearrangement's
+// prompt ("Select the correct arrangement of V = I x R to use, based on
+// which two quantities are known and which quantity is required") never
+// actually stated which quantity this generated instance's own random
+// target_variable was, while its answer options were just the bare
+// variable names ("V (voltage)") -- neither the prompt nor the
+// interaction actually asked "which equation should I use". Fixed by
+// naming the target explicitly (target_variable_name, set by this
+// blueprint's own executor) and switching the answer options (in
+// answer-input-dispatch.tsx) to the actual rearranged equations.
+describe("CC-12G: ohms_law.select_rearrangement's prompt names the actual target this instance generated", () => {
+  it("the resolved prompt always names a real quantity word (voltage/current/resistance), matching this instance's own target_variable", () => {
+    const blueprint = getQuestionBlueprintFrom(MOBILE_CONTENT_PROJECTION, "ohms_law.select_rearrangement");
+    const targetNameByVariable: Record<string, string> = { V: "voltage", I: "current", R: "resistance" };
+    for (const instanceId of ["li1_a", "li1_b", "li1_c", "li1_d", "li1_e", "li1_f"]) {
+      const instance = generate("ohms_law.select_rearrangement", instanceId, "select_rearrangement_transfer");
+      const target = instance.expected.value as string;
+      const promptLines = resolvePromptLines(blueprint, instance);
+      expect(promptLines).toEqual([`Which equation should you use to calculate ${targetNameByVariable[target]}?`]);
+    }
+  });
+
+  it("the prompt never uses prose 'times' notation for the canonical relationship", () => {
+    expect(getQuestionBlueprintFrom(MOBILE_CONTENT_PROJECTION, "ohms_law.select_rearrangement").title).not.toMatch(/\btimes\b/i);
+  });
+});

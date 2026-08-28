@@ -161,6 +161,39 @@ describe("LessonStepView", () => {
     expect(getByText(/24/)).toBeTruthy();
   });
 
+  describe("CC-12G: readOnly (previous-step review)", () => {
+    it("never renders an interactive answer input for a graded step, showing a read-only notice instead", async () => {
+      const resolved = resolveLessonStep(LESSON_OHMS_LAW, "guided_calculation_current", LOOKUP);
+      const instance = instanceFor("ohms_law.solve_for_current", "guided_calculation_current");
+      const { getByText, queryByLabelText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={instance} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} readOnly />,
+      );
+      expect(getByText(resolved.questionBlueprint!.title)).toBeTruthy();
+      expect(queryByLabelText("Your answer, in A")).toBeNull();
+      expect(queryByLabelText("Submit answer")).toBeNull();
+      expect(getByText(/Reviewing a completed step/)).toBeTruthy();
+    });
+
+    it("never renders a Continue affordance for a non-graded step -- the Lesson Player's own header controls review navigation instead", async () => {
+      const resolved = resolveLessonStep(LESSON_OHMS_LAW, "introduce_relationship", LOOKUP);
+      const { queryByLabelText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} readOnly />,
+      );
+      expect(queryByLabelText("Continue")).toBeNull();
+    });
+
+    it("never renders a feedback panel, even if an evaluation happens to be passed in", async () => {
+      const resolved = resolveLessonStep(LESSON_OHMS_LAW, "guided_calculation_current", LOOKUP);
+      const instance = instanceFor("ohms_law.solve_for_current", "guided_calculation_current");
+      const evaluation = evaluateAnswer(instance, instance.expected.value as number);
+      const { queryByLabelText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={instance} evaluation={evaluation} revealCorrectAnswer readOnly onSubmit={jest.fn()} onContinue={jest.fn()} />,
+      );
+      expect(queryByLabelText(/^(Correct\.|Not quite\.)/)).toBeNull();
+      expect(queryByLabelText("Try again")).toBeNull();
+    });
+  });
+
   describe("CC-12: layered (Quick/Explain/Deeper) feedback", () => {
     it("renders the plain FeedbackPanel (no Explain toggle) for a step with progressiveReveal: false, unchanged from before CC-12", async () => {
       const resolved = resolveLessonStep(LESSON_OHMS_LAW, "guided_calculation_current", LOOKUP);
@@ -236,6 +269,35 @@ describe("LessonStepView", () => {
       await fireEvent.press(getByLabelText("Show my weakness"));
       expect(getByText(magnetismRecord.lookup.misconceptionDescriptions["MIS-EL-ELECTRON-CURRENT-DIRECTION-CONFUSION-001"]!)).toBeTruthy();
       expect(queryByText(/A common related mix-up:/)).toBeNull();
+    });
+  });
+
+  // CC-12G: the x/dot into/out-of-page diagram convention was previously
+  // only ever shown, never explicitly taught -- a Product Owner review
+  // finding. Taught once, before the first diagram that uses it
+  // (concept_field_from_current), as a real governed assertion.
+  describe("CC-12G: page-direction (x/dot) notation legend", () => {
+    it("teaches the x/dot convention on concept_field_from_current, before either diagram that uses it", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "concept_field_from_current", magnetismRecord.lookup);
+      const legend = magnetismRecord.lookup.assertionStatements["EL-CONCEPT-PAGE-DIRECTION-NOTATION-001"]!;
+      expect(legend).toMatch(/×.*into the page/);
+      expect(legend).toMatch(/•.*out of the page/);
+      const { getByText } = await render(
+        <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+      );
+      expect(getByText(legend)).toBeTruthy();
+    });
+
+    it("does not re-teach it on concept_force_on_conductor -- already taught once, earlier in the lesson", async () => {
+      const resolved = resolveLessonStep(magnetismRecord.lesson, "concept_force_on_conductor", magnetismRecord.lookup);
+      expect(resolved.step.teaches).not.toContain("EL-CONCEPT-PAGE-DIRECTION-NOTATION-001");
+    });
+
+    it("never appears in either graded direction-interpretation step's own body text -- the symbol meaning is taught, but the assessed direction is still for the learner to infer", async () => {
+      const fieldStep = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_field_direction", magnetismRecord.lookup);
+      const forceStep = resolveLessonStep(magnetismRecord.lesson, "guided_interpret_force_direction", magnetismRecord.lookup);
+      expect(fieldStep.step.teaches).not.toContain("EL-CONCEPT-PAGE-DIRECTION-NOTATION-001");
+      expect(forceStep.step.teaches).not.toContain("EL-CONCEPT-PAGE-DIRECTION-NOTATION-001");
     });
   });
 
@@ -350,29 +412,31 @@ describe("LessonStepView", () => {
   // inside the calculation-engine's own generation helpers (already
   // covered by magnetism.test.ts) in isolation.
   describe("CC-12C: calculation integrity -- displayed givens, formula, and evaluation all derive from the SAME generated instance", () => {
-    it("the rendered B/I/l givens for magnetism.calculate_force_on_conductor are exactly the instance's own parameters, and the expected answer is derivable from those same displayed numbers", async () => {
+    it("the rendered B/I/L givens for magnetism.calculate_force_on_conductor are exactly the instance's own parameters, and the expected answer is derivable from those same displayed numbers", async () => {
       const resolved = resolveLessonStep(magnetismRecord.lesson, "guided_calculate_force_on_conductor", magnetismRecord.lookup);
       const instance = instanceFor("magnetism.calculate_force_on_conductor", "guided_calculate_force_on_conductor", magnetismRecord.lookup);
       const { getByText } = await render(
         <LessonStepView resolved={resolved} questionInstance={instance} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
       );
-      const { B, I, l } = instance.parameters as { B: number; I: number; l: number };
+      const { B, I, L } = instance.parameters as { B: number; I: number; L: number };
       // The rendered prompt lines must show the SAME numbers the instance carries -- no
       // separately-derived or hardcoded duplicate value set -- and the "(current)"/"(conductor
-      // length)" clarity annotations that disambiguate the visually-identical "I"/"l" glyphs.
+      // length)" clarity annotations plus the CC-12G I-vs-L notation fix (governed symbol
+      // renamed from lowercase "l" to plain capital "L") that together disambiguate the
+      // previously visually-identical "I"/"l" glyphs.
       expect(getByText(`B = ${B} T`)).toBeTruthy();
       expect(getByText(`I = ${I} A (current)`)).toBeTruthy();
-      expect(getByText(`l = ${l} m (conductor length)`)).toBeTruthy();
+      expect(getByText(`L = ${L} m (conductor length)`)).toBeTruthy();
       // What marking grades against (instance.expected.value) must be reproducible from those
-      // SAME displayed B/I/l -- proving display and evaluation share one generated instance.
-      expect(Number(instance.expected.value)).toBeCloseTo(B * I * l, 6);
+      // SAME displayed B/I/L -- proving display and evaluation share one generated instance.
+      expect(Number(instance.expected.value)).toBeCloseTo(B * I * L, 6);
     });
 
     it("submitting the value computed from the displayed givens is marked correct via the real evaluation path, for several independently-generated instances", async () => {
       for (const seedStepId of ["li1_t", "li2_t", "li3_t", "li4_t", "li5_t"]) {
         const instance = instanceFor("magnetism.calculate_force_on_conductor", seedStepId, magnetismRecord.lookup);
-        const { B, I, l } = instance.parameters as { B: number; I: number; l: number };
-        const givenFromDisplayedValues = B * I * l;
+        const { B, I, L } = instance.parameters as { B: number; I: number; L: number };
+        const givenFromDisplayedValues = B * I * L;
         const evaluation = evaluateAnswer(instance, givenFromDisplayedValues);
         expect(evaluation.correct).toBe(true);
       }

@@ -143,7 +143,9 @@ function ExpressionNode({ expression, resolve }: ExpressionNodeProps): React.JSX
 
 function OperandNode({ operand, resolve }: { operand: FormulaOperand; resolve: SymbolResolver }): React.JSX.Element {
   if (typeof operand === "number") return <Text style={styles.symbolText}>{operand}</Text>;
-  if (typeof operand === "string") return <Text style={styles.symbolText}>{resolve(operand)}</Text>;
+  if (typeof operand === "string") {
+    return <Text style={styles.symbolText}>{resolve(operand)}</Text>;
+  }
   return <ExpressionNode expression={operand} resolve={resolve} />;
 }
 

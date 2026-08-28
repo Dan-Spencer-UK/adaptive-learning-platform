@@ -441,7 +441,7 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
         // SmartScreen handout dedicates an entire handout to F = B I l and
         // Fleming's left-hand rule under this exact AC5.3 sub-topic.
         id: "force-on-conductor-calculation", basis: "OFFICIAL_TEACHING_INTERPRETATION",
-        description: "Calculate the force on a current-carrying conductor using F = B I l, and determine its direction using Fleming's left-hand rule.",
+        description: "Calculate the force on a current-carrying conductor using F = B I L, and determine its direction using Fleming's left-hand rule.",
         satisfiedBy: ["EL-REL-FORCE-ON-CONDUCTOR-001", "EL-CONCEPT-FLEMING-LEFT-HAND-001"],
       },
       { id: "electromagnetism-meaning", basis: "EXPLICIT", description: "Describe electromagnetism as the current/magnetism relationship.", satisfiedBy: ["EL-CONCEPT-ELECTROMAGNETISM-001"] },
@@ -450,7 +450,7 @@ export const AC_OBLIGATIONS: readonly AcObligationSet[] = [
         // CC-09B.6: as above, for e = B l v and Fleming's right-hand rule
         // (Handout 10, "Generation of an EMF").
         id: "induced-emf-calculation", basis: "OFFICIAL_TEACHING_INTERPRETATION",
-        description: "Calculate the EMF induced in a conductor moving through a magnetic field using e = B l v, and determine the induced current's direction using Fleming's right-hand rule.",
+        description: "Calculate the EMF induced in a conductor moving through a magnetic field using e = B L v, and determine the induced current's direction using Fleming's right-hand rule.",
         satisfiedBy: ["EL-REL-INDUCED-EMF-001", "EL-CONCEPT-FLEMING-RIGHT-HAND-001"],
       },
     ],

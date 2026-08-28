@@ -20,7 +20,7 @@
  * blueprint -> @alp/calculation-engine -> evaluation/feedback ->
  * learner-owned evidence -> within-session governed branch -> next step.
  */
-import { ASSEMBLY_POLICY_VERSION, assembleLessonInstance, computeLessonContentDependencies, type AssemblyContext } from "@alp/learning-engine";
+import { ASSEMBLY_POLICY_VERSION, assembleLessonInstance, computeLessonContentDependencies, type AssemblyContext, type PrerequisiteAdvisory } from "@alp/learning-engine";
 import type { AnswerValue, EvaluationResult, GeneratedQuestionInstance } from "@alp/calculation-engine";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -50,14 +50,13 @@ import { acknowledgeStep, submitStepAnswer } from "@/lib/lesson-session/lesson-c
 import { currentStepId, isSessionComplete, startSession, type LessonSessionState } from "@/lib/lesson-session/lesson-session-controller";
 import { getActiveLessonInstanceId, loadLessonSession, saveLessonSession } from "@/lib/lesson-session/lesson-session-store";
 import { recordRecentCourseCompletion } from "@/lib/course/recent-completion-store";
-import { color, radius, spacing, typography } from "@/lib/tokens";
+import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
 
 type ScreenState =
   | { readonly kind: "loading" }
   | { readonly kind: "identity_unavailable" }
   | { readonly kind: "unknown_lesson"; readonly detail: string }
   | { readonly kind: "content_unavailable"; readonly missing: readonly { category: string; id: string }[] }
-  | { readonly kind: "prerequisite_blocked"; readonly reason: string }
   | {
       readonly kind: "active";
       readonly record: LocalLessonRecord;
@@ -67,12 +66,22 @@ type ScreenState =
       readonly evaluation: EvaluationResult | null;
       readonly revealCorrectAnswer: boolean;
       readonly submitting: boolean;
+      // CC-12G: prerequisite evidence is advisory only -- it must never
+      // block direct lesson access (Product Owner product-architecture
+      // decision; see @alp/learning-engine's PrerequisiteAdvisory doc
+      // comment for the full rationale). Plain-language readiness notes,
+      // never an internal family id or engine term.
+      readonly prerequisiteAdvisories: readonly string[];
     }
   | { readonly kind: "complete"; readonly record: LocalLessonRecord; readonly session: LessonSessionState };
 
-function questionInstanceFor(record: LocalLessonRecord, session: LessonSessionState): GeneratedQuestionInstance | null {
-  const stepId = currentStepId(session);
-  if (!stepId) return null;
+function describeAdvisory(advisory: PrerequisiteAdvisory): string {
+  return advisory.remediation.status === "available"
+    ? `Your recent evidence suggests "${advisory.remediation.lesson.title}" might be worth reviewing before this lesson -- entirely optional, you can carry on here.`
+    : "Your recent evidence suggests some earlier material may be worth revisiting before this lesson -- entirely optional, you can carry on here.";
+}
+
+function questionInstanceForStep(record: LocalLessonRecord, session: LessonSessionState, stepId: string): GeneratedQuestionInstance | null {
   const step = record.lesson.steps.find((s) => s.id === stepId);
   if (!step?.questionBlueprintId) return null;
   const blueprint = record.lookup.questionBlueprints.find((b) => b.id === step.questionBlueprintId);
@@ -93,6 +102,12 @@ function questionInstanceFor(record: LocalLessonRecord, session: LessonSessionSt
   });
 }
 
+function questionInstanceFor(record: LocalLessonRecord, session: LessonSessionState): GeneratedQuestionInstance | null {
+  const stepId = currentStepId(session);
+  if (!stepId) return null;
+  return questionInstanceForStep(record, session, stepId);
+}
+
 export default function LessonPlayerScreen(): React.JSX.Element {
   const router = useRouter();
   const params = useLocalSearchParams<{ lessonId?: string; contentRelease?: string; version?: string }>();
@@ -104,6 +119,16 @@ export default function LessonPlayerScreen(): React.JSX.Element {
   const learnerId = authSession?.user.id ?? null;
   const [state, setState] = useState<ScreenState>({ kind: "loading" });
   const debugOverlayEnabled = useLessonDebugOverlay();
+  // CC-12G: "previous step" review. Deliberately a plain index into the
+  // session's own `completedStepIds` (the true, branch-skip-free
+  // chronological walk history -- never `stepSequence`/`currentIndex`,
+  // which can contain steps a branch jump skipped over and the learner
+  // never actually saw) -- not a call into lesson-session-controller.ts,
+  // which stays exactly the forward-only adaptive-routing/resume source
+  // of truth it already is. `null` means "showing the live current
+  // step" (normal mode); reviewing never mutates `displaySession` and is
+  // reset whenever a fresh/resumed session is loaded.
+  const [reviewIndex, setReviewIndex] = useState<number | null>(null);
 
   const exitToLearn = useCallback(() => {
     if (router.canGoBack()) {
@@ -164,6 +189,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
           !isSessionComplete(resumed)
         ) {
           if (cancelled) return;
+          setReviewIndex(null);
           setState({
             kind: "active",
             record,
@@ -173,6 +199,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
             evaluation: null,
             revealCorrectAnswer: false,
             submitting: false,
+            prerequisiteAdvisories: [],
           });
           return;
         }
@@ -188,18 +215,17 @@ export default function LessonPlayerScreen(): React.JSX.Element {
       const result = assembleLessonInstance(record.lesson, snapshot, context);
       if (cancelled) return;
 
-      if (result.status === "prerequisite_unresolved") {
-        setState({ kind: "prerequisite_blocked", reason: "A prerequisite for this lesson has not yet been mastered, and no remediation lesson is available yet." });
-        return;
-      }
-      if (result.status === "prerequisite_required") {
-        setState({ kind: "prerequisite_blocked", reason: "A prerequisite lesson needs to be completed first." });
-        return;
-      }
+      // CC-12G: prerequisite evidence never blocks direct lesson access
+      // (Product Owner product-architecture decision) -- `result.instance`
+      // is always the requested lesson's own playable instance; any
+      // unmet-prerequisite evidence surfaces only as an advisory note
+      // inside the lesson, never a dead-end screen.
+      const prerequisiteAdvisories = result.status === "ready_with_prerequisite_advisory" ? result.advisories.map(describeAdvisory) : [];
 
       const fresh = startSession(result.instance, learnerId, new Date().toISOString(), randomId());
       await saveLessonSession(fresh);
       if (cancelled) return;
+      setReviewIndex(null);
       setState({
         kind: "active",
         record,
@@ -209,6 +235,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
         evaluation: null,
         revealCorrectAnswer: false,
         submitting: false,
+        prerequisiteAdvisories,
       });
     }
 
@@ -227,6 +254,10 @@ export default function LessonPlayerScreen(): React.JSX.Element {
 
   const handleSubmit = useCallback(
     async (given: AnswerValue) => {
+      // Reviewing a previous step must never be able to reach this --
+      // the review render never wires onSubmit to this handler, but this
+      // guard makes it structurally impossible even if that ever changed.
+      if (reviewIndex !== null) return;
       if (state.kind !== "active" || !state.questionInstance || state.submitting) return;
       setState({ ...state, submitting: true });
       const result = await submitStepAnswer({ lesson: state.record.lesson, state: state.displaySession, questionInstance: state.questionInstance, given });
@@ -241,12 +272,14 @@ export default function LessonPlayerScreen(): React.JSX.Element {
         evaluation: result.evaluation,
         revealCorrectAnswer: result.revealCorrectAnswer,
         submitting: false,
+        prerequisiteAdvisories: state.prerequisiteAdvisories,
       });
     },
-    [state],
+    [state, reviewIndex],
   );
 
   const handleContinue = useCallback(async () => {
+    if (reviewIndex !== null) return;
     if (state.kind !== "active") return;
     const record = state.record;
 
@@ -270,6 +303,7 @@ export default function LessonPlayerScreen(): React.JSX.Element {
         evaluation: null,
         revealCorrectAnswer: false,
         submitting: false,
+        prerequisiteAdvisories: state.prerequisiteAdvisories,
       });
       return;
     }
@@ -290,8 +324,9 @@ export default function LessonPlayerScreen(): React.JSX.Element {
       evaluation: null,
       revealCorrectAnswer: false,
       submitting: false,
+      prerequisiteAdvisories: state.prerequisiteAdvisories,
     });
-  }, [state]);
+  }, [state, reviewIndex]);
 
   useEffect(() => {
     // CC-08: record "what was just completed" for the course orchestrator
@@ -355,20 +390,6 @@ export default function LessonPlayerScreen(): React.JSX.Element {
     );
   }
 
-  if (state.kind === "prerequisite_blocked") {
-    return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.centered}>
-          <Text style={styles.title}>Not ready yet</Text>
-          <Text style={styles.bodyText}>{state.reason}</Text>
-          <Pressable accessibilityRole="button" accessibilityLabel="Back to Learn" style={styles.secondaryButton} onPress={exitToLearn}>
-            <Text style={styles.secondaryButtonText}>Back to Learn</Text>
-          </Pressable>
-        </View>
-      </SafeAreaView>
-    );
-  }
-
   if (state.kind === "complete") {
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -377,7 +398,26 @@ export default function LessonPlayerScreen(): React.JSX.Element {
     );
   }
 
-  const stepId = currentStepId(state.displaySession);
+  // CC-12G: "previous step" review, sourced from completedStepIds (the
+  // real chronological walk history) -- see reviewIndex's own declaration
+  // comment above for why this must never be stepSequence/currentIndex
+  // arithmetic.
+  const completedStepIds = state.displaySession.completedStepIds;
+  const isReviewing = reviewIndex !== null;
+  const canGoPrevious = isReviewing ? reviewIndex > 0 : completedStepIds.length > 0;
+  const goPrevious = () => {
+    if (isReviewing) {
+      if (reviewIndex > 0) setReviewIndex(reviewIndex - 1);
+    } else if (completedStepIds.length > 0) {
+      setReviewIndex(completedStepIds.length - 1);
+    }
+  };
+  const goNext = () => {
+    if (!isReviewing) return;
+    setReviewIndex(reviewIndex < completedStepIds.length - 1 ? reviewIndex + 1 : null);
+  };
+
+  const stepId = isReviewing ? completedStepIds[reviewIndex] : currentStepId(state.displaySession);
   if (!stepId) {
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -389,15 +429,51 @@ export default function LessonPlayerScreen(): React.JSX.Element {
   }
   const resolved = resolveLessonStep(state.record.lesson, stepId, state.record.lookup);
   const progress = { completed: state.displaySession.completedStepIds.length, total: state.displaySession.stepSequence.length };
+  // Reviewing renders the SAME deterministic question instance the
+  // learner originally saw (same instanceId + stepId seed -- see
+  // generate-lesson-question.ts's deriveStepSeed), never a fresh one, and
+  // never with evaluation/reveal state -- this is a read-only look, not a
+  // fresh attempt.
+  const displayedQuestionInstance = isReviewing ? questionInstanceForStep(state.record, state.displaySession, stepId) : state.questionInstance;
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
       <View style={styles.header}>
-        <ProgressIndicator current={progress.completed} total={progress.total} testID="lesson-progress" />
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Previous lesson step"
+          accessibilityState={{ disabled: !canGoPrevious }}
+          style={styles.navButton}
+          onPress={goPrevious}
+          disabled={!canGoPrevious}
+        >
+          <Text style={[styles.navText, !canGoPrevious && styles.navTextDisabled]}>‹</Text>
+        </Pressable>
+        <View style={styles.progressWrap}>
+          <ProgressIndicator current={progress.completed} total={progress.total} testID="lesson-progress" />
+        </View>
+        {isReviewing ? (
+          <Pressable accessibilityRole="button" accessibilityLabel="Next lesson step" style={styles.navButton} onPress={goNext}>
+            <Text style={styles.navText}>›</Text>
+          </Pressable>
+        ) : null}
         <Pressable accessibilityRole="button" accessibilityLabel="Exit lesson" style={styles.exitButton} onPress={exitToLearn}>
           <Text style={styles.exitText}>Exit</Text>
         </Pressable>
       </View>
+      {isReviewing ? (
+        <View style={styles.reviewBanner} testID="lesson-review-banner">
+          <Text style={styles.reviewBannerText}>Reviewing a previous step -- use Next to return to where you left off.</Text>
+        </View>
+      ) : state.prerequisiteAdvisories.length > 0 ? (
+        <View style={styles.reviewBanner} testID="lesson-prerequisite-advisory">
+          {state.prerequisiteAdvisories.map((advisory) => (
+            <Text key={advisory} style={styles.reviewBannerText}>
+              {advisory}
+            </Text>
+          ))}
+        </View>
+      ) : null}
       {debugOverlayEnabled ? (
         <View style={styles.debugBadge} testID="lesson-debug-overlay">
           <Text style={styles.debugBadgeText}>
@@ -405,15 +481,16 @@ export default function LessonPlayerScreen(): React.JSX.Element {
           </Text>
         </View>
       ) : null}
-      <ScrollableLessonStep key={resolved.step.id} testID="lesson-step-scroll-container">
+      <ScrollableLessonStep key={`${resolved.step.id}:${isReviewing}`} testID="lesson-step-scroll-container">
         <LessonStepView
           resolved={resolved}
-          questionInstance={state.questionInstance}
-          evaluation={state.evaluation}
-          revealCorrectAnswer={state.revealCorrectAnswer}
+          questionInstance={displayedQuestionInstance}
+          evaluation={isReviewing ? null : state.evaluation}
+          revealCorrectAnswer={isReviewing ? false : state.revealCorrectAnswer}
           onSubmit={(value) => void handleSubmit(value)}
           onContinue={() => void handleContinue()}
           submitting={state.submitting}
+          readOnly={isReviewing}
         />
       </ScrollableLessonStep>
     </SafeAreaView>
@@ -426,6 +503,12 @@ const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", gap: spacing.md, paddingHorizontal: spacing.lg, paddingTop: spacing.sm },
   exitButton: { padding: spacing.xs },
   exitText: { ...typography.body, color: color.textSecondary },
+  progressWrap: { flex: 1 },
+  navButton: { minHeight: minTouchTarget, minWidth: minTouchTarget, alignItems: "center", justifyContent: "center" },
+  navText: { fontSize: 24, lineHeight: 28, color: color.accent, fontWeight: "700" },
+  navTextDisabled: { color: color.textSecondary, opacity: 0.4 },
+  reviewBanner: { marginHorizontal: spacing.lg, marginTop: spacing.xs, paddingVertical: spacing.xs, paddingHorizontal: spacing.sm, borderRadius: radius.sm, backgroundColor: color.surface, borderWidth: 1, borderColor: color.border },
+  reviewBannerText: { ...typography.caption, color: color.textSecondary, textAlign: "center" },
   title: { ...typography.title, fontSize: 18, color: color.text, textAlign: "center" },
   bodyText: { ...typography.body, color: color.textSecondary, textAlign: "center" },
   secondaryButton: {

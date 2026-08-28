@@ -20,7 +20,6 @@ function cleanReport(): LessonPlanReport {
     teachingStepsWithNoGovernedReference: [],
     unreachableConditionalSteps: [],
     circularRemediationRoutes: [],
-    lessonsWithNoExitStep: [],
     ambiguousRemediationCandidates: [],
     undeclaredContentReleaseRefs: [],
     releaseMembershipMismatches: [],
@@ -62,10 +61,6 @@ describe("isReportClean", () => {
     expect(isReportClean({ ...cleanReport(), circularRemediationRoutes: ["lesson.x: a -> b -> a"] })).toBe(false);
   });
 
-  it("returns false for a lesson with no exit_completion step", () => {
-    expect(isReportClean({ ...cleanReport(), lessonsWithNoExitStep: ["lesson.x"] })).toBe(false);
-  });
-
   it("returns false for an ambiguous remediation candidate finding", () => {
     expect(isReportClean({ ...cleanReport(), ambiguousRemediationCandidates: ["content release 'r.1': assertion family 'f' has 2 remediation-eligible lessons but none is designated the default"] })).toBe(false);
   });
@@ -86,12 +81,11 @@ describe("buildReport (against the real canonical Ohm's Law lesson and live CC-0
     expect(report.danglingMisconceptionRefs).toEqual([]);
   });
 
-  it("has zero missing-assessment, unreachable-step, circular-route or missing-exit findings", () => {
+  it("has zero missing-assessment, unreachable-step or circular-route findings", () => {
     expect(report.assessableStepsMissingAssessmentReference).toEqual([]);
     expect(report.teachingStepsWithNoGovernedReference).toEqual([]);
     expect(report.unreachableConditionalSteps).toEqual([]);
     expect(report.circularRemediationRoutes).toEqual([]);
-    expect(report.lessonsWithNoExitStep).toEqual([]);
     expect(report.ambiguousRemediationCandidates).toEqual([]);
   });
 
@@ -148,7 +142,6 @@ describe("formatReport", () => {
     expect(text).toContain("Assessable steps missing a question-blueprint reference");
     expect(text).toContain("Unreachable conditional steps");
     expect(text).toContain("Circular remediation routes");
-    expect(text).toContain("Lessons with no exit_completion step");
     expect(text).toContain("Ambiguous remediation candidates");
   });
 });

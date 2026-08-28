@@ -41,7 +41,6 @@ interface LessonPlanReport {
   teachingStepsWithNoGovernedReference: string[];
   unreachableConditionalSteps: string[];
   circularRemediationRoutes: string[];
-  lessonsWithNoExitStep: string[];
   ambiguousRemediationCandidates: string[];
   undeclaredContentReleaseRefs: string[];
   releaseMembershipMismatches: string[];
@@ -100,7 +99,6 @@ function buildReport(overrides?: {
   const teachingStepsWithNoGovernedReference: string[] = [];
   const unreachableConditionalSteps: string[] = [];
   const circularRemediationRoutes: string[] = [];
-  const lessonsWithNoExitStep: string[] = [];
   const ambiguousRemediationCandidates: string[] = [];
   const undeclaredContentReleaseRefs: string[] = [];
   const releaseMembershipMismatches: string[] = [];
@@ -182,9 +180,16 @@ function buildReport(overrides?: {
       checkCapability(capabilityId, `${lesson.id}.completionCriteria.masteryGateCapabilityIds`);
     }
 
-    if (!lesson.steps.some((s) => s.type === "exit_completion")) {
-      lessonsWithNoExitStep.push(lesson.id);
-    }
+    // CC-12G: no longer gated on an in-sequence `exit_completion`-typed
+    // step -- `completionCriteria.exitSummary` is independently
+    // schema-required (`z.string().min(1)`, lesson-plan.ts) and the
+    // Lesson Player's own completion screen (`LessonCompletionView.tsx`)
+    // always renders it the moment the last step finishes, regardless of
+    // that last step's type. An in-sequence `exit_completion` step is
+    // therefore optional content, not a structural requirement -- for
+    // `lesson.electrical.ohms-law` specifically, keeping one produced two
+    // back-to-back, near-duplicate "Lesson complete" screens (a Product
+    // Owner emulator finding; see that lesson's own header comment).
 
     const conditionalStepIds = new Set(lesson.steps.filter((s) => s.requirement !== "required").map((s) => s.id));
     const branchTargets = new Set<string>();
@@ -319,7 +324,6 @@ function buildReport(overrides?: {
     teachingStepsWithNoGovernedReference,
     unreachableConditionalSteps,
     circularRemediationRoutes,
-    lessonsWithNoExitStep,
     ambiguousRemediationCandidates,
     undeclaredContentReleaseRefs,
     releaseMembershipMismatches,
@@ -347,7 +351,6 @@ function formatReport(report: LessonPlanReport): string {
     ["Teaching steps with no governed reference at all", report.teachingStepsWithNoGovernedReference],
     ["Unreachable conditional steps", report.unreachableConditionalSteps],
     ["Circular remediation routes", report.circularRemediationRoutes],
-    ["Lessons with no exit_completion step", report.lessonsWithNoExitStep],
     ["Ambiguous remediation candidates (no unique default among multiple eligible lessons)", report.ambiguousRemediationCandidates],
     ["Undeclared content-release references", report.undeclaredContentReleaseRefs],
     ["Release membership mismatches", report.releaseMembershipMismatches],
@@ -376,7 +379,6 @@ export function isReportClean(report: LessonPlanReport): boolean {
     report.teachingStepsWithNoGovernedReference.length === 0 &&
     report.unreachableConditionalSteps.length === 0 &&
     report.circularRemediationRoutes.length === 0 &&
-    report.lessonsWithNoExitStep.length === 0 &&
     report.ambiguousRemediationCandidates.length === 0 &&
     report.undeclaredContentReleaseRefs.length === 0 &&
     report.releaseMembershipMismatches.length === 0 &&

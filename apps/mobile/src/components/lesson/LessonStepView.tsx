@@ -46,6 +46,17 @@ export interface LessonStepViewProps {
   readonly onSubmit: (value: AnswerValue) => void;
   readonly onContinue: () => void;
   readonly submitting?: boolean;
+  /**
+   * CC-12G: renders this step for review only -- no answer input, no
+   * feedback panel, no Continue affordance. Used by the Lesson Player's
+   * "previous step" navigation to show an already-completed step without
+   * making it possible to resubmit it (evidence is only ever emitted
+   * from a real Submit press -- see lesson-controller.ts's
+   * `submitStepAnswer`, the sole call site -- so never wiring a submit
+   * handler here makes duplicate evidence structurally impossible, not
+   * merely policy).
+   */
+  readonly readOnly?: boolean;
 }
 
 // CC-12: an additional, explicitly-informational "commonly confused with"
@@ -72,7 +83,7 @@ function deeperNoteFor(stepId: string, correct: boolean, misconceptionDescriptio
   return description ? `A common related mix-up: ${description}` : undefined;
 }
 
-export function LessonStepView({ resolved, questionInstance, evaluation, revealCorrectAnswer, onSubmit, onContinue, submitting }: LessonStepViewProps): React.JSX.Element {
+export function LessonStepView({ resolved, questionInstance, evaluation, revealCorrectAnswer, onSubmit, onContinue, submitting, readOnly }: LessonStepViewProps): React.JSX.Element {
   const misconceptionMessage =
     evaluation?.misconceptionIdentifier !== undefined ? resolved.misconceptionDescriptions[evaluation.misconceptionIdentifier] : undefined;
   const deeperNote = evaluation ? deeperNoteFor(resolved.step.id, evaluation.correct, resolved.misconceptionDescriptions) : undefined;
@@ -155,7 +166,9 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
 
       {resolved.questionBlueprint && questionInstance ? (
         <QuestionPromptCard title={resolved.questionBlueprint.title} parameterLines={resolvePromptLines(resolved.questionBlueprint, questionInstance)}>
-          {evaluation ? null : (
+          {readOnly ? (
+            <Text style={styles.reviewNotice}>Reviewing a completed step -- nothing you do here is recorded.</Text>
+          ) : evaluation ? null : (
             <AnswerInputDispatch
               blueprint={resolved.questionBlueprint}
               instance={questionInstance}
@@ -167,7 +180,7 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
         </QuestionPromptCard>
       ) : null}
 
-      {evaluation ? (
+      {readOnly ? null : evaluation ? (
         // CC-12: layered (Quick/Explain/Deeper) feedback is opt-in per
         // step via the governed `progressiveReveal` flag -- every other
         // step in the platform renders the plain, unmodified
@@ -215,6 +228,7 @@ const styles = StyleSheet.create({
   container: { gap: spacing.md },
   sectionLabel: { ...typography.caption, color: color.textSecondary, textTransform: "uppercase", letterSpacing: 0.5 },
   bodyText: { ...typography.body, color: color.text },
+  reviewNotice: { ...typography.caption, color: color.textSecondary, fontStyle: "italic" },
   representation: { alignItems: "center", paddingVertical: spacing.sm },
   continueButton: {
     minHeight: minTouchTarget,

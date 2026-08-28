@@ -117,30 +117,45 @@ describe("assembleLessonInstance -- retrieval participation", () => {
   });
 });
 
-describe("assembleLessonInstance -- prerequisite resolution", () => {
-  it("returns prerequisite_required with the prerequisite lesson's own assembled instance when exactly one candidate exists and the family is WEAK", () => {
+// CC-12G: a Product Owner product-architecture decision -- prerequisite
+// evidence may inform recommendations/readiness/remediation routing, but
+// must NEVER block a learner from directly opening the requested lesson.
+// `assembleLessonInstance` now always returns the requested lesson's own
+// playable `instance`; a WEAK/CONFLICTING prerequisite family only adds
+// an advisory (with the remediation lesson's own instance already
+// assembled too, when one resolves) rather than refusing to assemble the
+// requested lesson at all.
+describe("assembleLessonInstance -- prerequisite resolution (advisory, never blocking)", () => {
+  it("still returns the requested lesson's own playable instance, plus an advisory naming the resolved remediation lesson, when exactly one candidate exists and the family is WEAK", () => {
     const result = assembleLessonInstance(
       SYNTHETIC_MAIN_LESSON,
       evidence({ familyStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
       context([SYNTHETIC_MAIN_LESSON, SYNTHETIC_PREREQ_LESSON]),
     );
-    expect(result.status).toBe("prerequisite_required");
-    if (result.status !== "prerequisite_required") return;
-    expect(result.unmetFamilyId).toBe(SYNTH_PREREQ_FAMILY);
-    expect(result.prerequisiteInstance.lessonId).toBe(SYNTHETIC_PREREQ_LESSON.id);
-    expect(result.mainLessonPending.id).toBe(SYNTHETIC_MAIN_LESSON.id);
+    expect(result.status).toBe("ready_with_prerequisite_advisory");
+    if (result.status !== "ready_with_prerequisite_advisory") return;
+    expect(result.instance.lessonId).toBe(SYNTHETIC_MAIN_LESSON.id);
+    expect(result.advisories).toHaveLength(1);
+    expect(result.advisories[0]!.unmetFamilyId).toBe(SYNTH_PREREQ_FAMILY);
+    expect(result.advisories[0]!.remediation).toEqual({
+      status: "available",
+      lesson: SYNTHETIC_PREREQ_LESSON,
+      instance: expect.objectContaining({ lessonId: SYNTHETIC_PREREQ_LESSON.id }),
+    });
   });
 
-  it("also gates on CONFLICTING prerequisite evidence", () => {
+  it("also produces an advisory for CONFLICTING prerequisite evidence, still returning the requested lesson's own instance", () => {
     const result = assembleLessonInstance(
       SYNTHETIC_MAIN_LESSON,
       evidence({ familyStatus: new Map([[SYNTH_PREREQ_FAMILY, "CONFLICTING"]]) }),
       context([SYNTHETIC_MAIN_LESSON, SYNTHETIC_PREREQ_LESSON]),
     );
-    expect(result.status).toBe("prerequisite_required");
+    expect(result.status).toBe("ready_with_prerequisite_advisory");
+    if (result.status !== "ready_with_prerequisite_advisory") return;
+    expect(result.instance.lessonId).toBe(SYNTHETIC_MAIN_LESSON.id);
   });
 
-  it("does NOT gate teaching on NOT_ASSESSED/INSUFFICIENT_EVIDENCE/EMERGING prerequisite status (WP1.3 §39.1)", () => {
+  it("does NOT produce any advisory for NOT_ASSESSED/INSUFFICIENT_EVIDENCE/EMERGING prerequisite status (WP1.3 §39.1)", () => {
     for (const status of ["NOT_ASSESSED", "INSUFFICIENT_EVIDENCE", "EMERGING"] as const) {
       const result = assembleLessonInstance(
         SYNTHETIC_MAIN_LESSON,
@@ -151,19 +166,19 @@ describe("assembleLessonInstance -- prerequisite resolution", () => {
     }
   });
 
-  it("returns prerequisite_unresolved (never proceeds as if the weakness did not exist) when zero remediation candidates exist", () => {
+  it("still returns the requested lesson's own playable instance, with an 'unresolved' advisory (never silently dropping the weakness), when zero remediation candidates exist", () => {
     const result = assembleLessonInstance(
       SYNTHETIC_MAIN_LESSON,
       evidence({ familyStatus: new Map([[SYNTH_PREREQ_FAMILY, "WEAK"]]) }),
       context([SYNTHETIC_MAIN_LESSON]),
     );
-    expect(result).toEqual({
-      status: "prerequisite_unresolved",
-      unresolved: [{ assertionFamilyId: SYNTH_PREREQ_FAMILY, reason: "no_candidate_lesson" }],
-    });
+    expect(result.status).toBe("ready_with_prerequisite_advisory");
+    if (result.status !== "ready_with_prerequisite_advisory") return;
+    expect(result.instance.lessonId).toBe(SYNTHETIC_MAIN_LESSON.id);
+    expect(result.advisories).toEqual([{ unmetFamilyId: SYNTH_PREREQ_FAMILY, remediation: { status: "unresolved", reason: "no_candidate_lesson" } }]);
   });
 
-  it("throws (fails deterministically, never guesses) when multiple ambiguous remediation candidates exist", () => {
+  it("throws (fails deterministically, never guesses) when multiple ambiguous remediation candidates exist -- an authoring defect, not a per-learner evidence case, untouched by the advisory-not-blocking change", () => {
     expect(() =>
       assembleLessonInstance(
         SYNTHETIC_MAIN_LESSON,

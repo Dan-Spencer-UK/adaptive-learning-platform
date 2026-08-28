@@ -1,14 +1,14 @@
 /**
- * Governed geometry diagram for motional EMF (e = B x l x v,
+ * Governed geometry diagram for motional EMF (e = B x L x v,
  * EL-REL-INDUCED-EMF-001), backing the `emf.calculate_motional_emf`
  * question blueprint's formula-only representation with the one thing it
- * currently has zero visual support for: WHY the simple e = B l v formula
- * applies -- because B, l and v are always mutually perpendicular in this
+ * currently has zero visual support for: WHY the simple e = B L v formula
+ * applies -- because B, L and v are always mutually perpendicular in this
  * governed scope. Two horizontal rails (receding into the distance, a
  * simple axonometric-flavoured sketch, never full 3D) carry a conductor
  * rod sliding across them at right angles. B is drawn straight down onto
  * the rail-plane from above (perpendicular to it); v runs along the
- * rails, in the plane; l labels the rod itself, which lies across the
+ * rails, in the plane; L labels the rod itself, which lies across the
  * rails, perpendicular to v.
  *
  * This is always the SAME given geometry (the governed formula family
@@ -51,9 +51,9 @@ const ROD_RIGHT_X = BACK_RIGHT_X + ROD_T * (FRONT_RIGHT_X - BACK_RIGHT_X);
 
 export function MotionalEmfDiagram({ diagram: _diagram, testID }: MotionalEmfDiagramProps): React.JSX.Element {
   const accessibilityLabel =
-    "A conductor of length l lies across two parallel rails, at right angles to them, and can slide along the rails with velocity v. " +
+    "A conductor of length L lies across two parallel rails, at right angles to them, and can slide along the rails with velocity v. " +
     "The magnetic field B points straight down through the plane containing the rails, at right angles to that plane. " +
-    "The conductor's length, its velocity and the magnetic field are mutually perpendicular to one another, which is why the simple formula e = B x l x v applies.";
+    "The conductor's length, its velocity and the magnetic field are mutually perpendicular to one another, which is why the simple formula e equals B times L times v applies.";
 
   return (
     <Svg
@@ -90,15 +90,15 @@ export function MotionalEmfDiagram({ diagram: _diagram, testID }: MotionalEmfDia
         v
       </SvgText>
 
-      {/* l -- the conductor rod itself, lying across the rails at right
+      {/* L -- the conductor rod itself, lying across the rails at right
           angles to them: the primary teaching element, drawn boldest. */}
       <Line x1={ROD_LEFT_X} y1={ROD_Y} x2={ROD_RIGHT_X} y2={ROD_Y} stroke={color.text} strokeWidth={3.5} strokeLinecap="round" />
       <SvgText x={CENTER_X} y={ROD_Y + 18} fill={color.text} fontSize={13} fontWeight="700" textAnchor="middle">
-        l
+        L
       </SvgText>
 
       <SvgText x={CENTER_X} y={HEIGHT - 8} fill={color.textSecondary} fontSize={10} textAnchor="middle">
-        B, l and v are mutually perpendicular
+        B, L and v are mutually perpendicular
       </SvgText>
     </Svg>
   );

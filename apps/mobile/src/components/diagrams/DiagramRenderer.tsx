@@ -186,8 +186,13 @@ const CANONICAL_TEACHING_VISUALS: Readonly<Record<string, CanonicalVisual>> = {
   "emf.motional_emf_geometry": {
     canonicalAssetId: "unit202.emf.motional",
     source: require("../../assets/instructional/unit202/teaching/emf-motional-teaching-master-v3.png"),
+    // CC-12G: the governed length symbol is "L" (see MotionalEmfDiagram.tsx's
+    // own header comment) -- this text label is updated accordingly, even
+    // though the approved image asset itself (out of this package's "no
+    // image regen" scope) still bakes in a lowercase "l" pixel label with
+    // no adjacent "I" to be ambiguous with.
     accessibilityLabel:
-      "A conductor of length l moving with velocity v through a magnetic field of flux density B, with l, v and B mutually perpendicular, inducing an EMF in the conductor.",
+      "A conductor of length L moving with velocity v through a magnetic field of flux density B, with L, v and B mutually perpendicular, inducing an EMF in the conductor.",
   },
   // CC-13: bar-magnet pole interaction. This asset never bakes in the
   // attract/repel force arrows (audit-verified absent), so it is safe as a

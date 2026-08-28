@@ -16,8 +16,10 @@
  * copy. Only the answer-TYPE dispatch itself is app logic.
  */
 import type { AnswerValue, GeneratedQuestionInstance } from "@alp/calculation-engine";
-import { resolveAnswerOptions, resolveShownWorkingLines } from "@alp/calculation-engine";
+import { createRngForDomain, resolveAnswerOptions, resolveShownWorkingLines, shuffleDeterministic } from "@alp/calculation-engine";
 import type { FormulaFamily, QuestionBlueprint } from "@alp/content-schema";
+
+import { formatExpressionInline } from "@/lib/formula-rendering/format-formula";
 
 import { DirectionAnswerInput, type Direction } from "@/components/question/DirectionAnswerInput";
 import { MultiSelectMatchAnswerInput, type MatchRow } from "@/components/question/MultiSelectMatchAnswerInput";
@@ -73,28 +75,42 @@ export function AnswerInputDispatch({ blueprint, instance, formulaFamily, onSubm
       return <NumericAnswerInput unitSymbol={unitSymbolForAnswer(blueprint, formulaFamily)} onSubmit={(value) => onSubmit(value)} disabled={disabled} testID={testID} />;
 
     case "multiple_choice": {
-      const options: readonly MultipleChoiceOption[] = resolveAnswerOptions(blueprint);
+      const options: readonly MultipleChoiceOption[] = resolveAnswerOptions(blueprint, instance);
       return <MultipleChoiceAnswerInput options={options} onSubmit={(value) => onSubmit(value)} disabled={disabled} testID={testID} />;
     }
 
     case "formula_selection": {
       const family = requireFormulaFamily(blueprint, formulaFamily);
-      const options: readonly MultipleChoiceOption[] = family.variables.map((v) => ({
-        value: v.symbol,
-        label: `${v.symbol} (${v.name})`,
-      }));
+      // CC-12G: the answer choice is the actual rearranged equation for
+      // each variable ("V = I × R"), not the bare variable name ("V
+      // (voltage)") -- the interaction asks "which equation should you
+      // use", so the options must be equations. Falls back to the
+      // variable-name label only if this family has no governed form for
+      // a variable (never true for any family currently reachable from a
+      // real lesson, but keeps this generic dispatch from throwing for a
+      // family authored without full forms coverage).
+      const baseOptions: readonly MultipleChoiceOption[] = family.variables.map((v) => {
+        const form = family.forms.find((f) => f.target === v.symbol);
+        return { value: v.symbol, label: form ? `${v.symbol} = ${formatExpressionInline(form.expression)}` : `${v.symbol} (${v.name})` };
+      });
+      const options = shuffleDeterministic(createRngForDomain(instance.identity, "formulaOptions"), baseOptions);
       return <MultipleChoiceAnswerInput options={options} onSubmit={(value) => onSubmit(value)} disabled={disabled} testID={testID} />;
     }
 
     case "multi_select": {
       const variables = requireFormulaFamily(blueprint, formulaFamily).variables;
-      const choices = variables.map((v) => ({ value: v.unitSymbol, label: v.unitSymbol }));
-      const rows: readonly MatchRow[] = variables.map((v) => ({
+      const baseChoices = variables.map((v) => ({ value: v.unitSymbol, label: v.unitSymbol }));
+      const baseRows: readonly MatchRow[] = variables.map((v) => ({
         key: v.symbol,
         prompt: `${v.symbol} (${v.name})`,
-        choices,
+        // CC-12G: each row's own choice order is shuffled independently
+        // (a distinct domain per row key) so the correct unit isn't
+        // always in the same position across every row of the same
+        // instance.
+        choices: shuffleDeterministic(createRngForDomain(instance.identity, `matchChoices:${v.symbol}`), baseChoices),
         encode: (chosen) => `${v.symbol}:${chosen}`,
       }));
+      const rows = shuffleDeterministic(createRngForDomain(instance.identity, "matchRows"), baseRows);
       return <MultiSelectMatchAnswerInput rows={rows} onSubmit={(values) => onSubmit(values)} disabled={disabled} testID={testID} />;
     }
 
@@ -102,7 +118,7 @@ export function AnswerInputDispatch({ blueprint, instance, formulaFamily, onSubm
       return (
         <WorkedErrorClassificationAnswerInput
           shownWorkingLines={resolveShownWorkingLines(blueprint, instance)}
-          options={resolveAnswerOptions(blueprint)}
+          options={resolveAnswerOptions(blueprint, instance)}
           onSubmit={(value) => onSubmit(value)}
           disabled={disabled}
           testID={testID}

@@ -75,7 +75,7 @@ const calculateFluxChange: QuestionExecutor = (ctx) => {
 };
 
 // CC-11.1: AC5.3's own governed "induced-emf-calculation" obligation --
-// e = B l v, the single governed mutually-perpendicular case only.
+// e = B L v, the single governed mutually-perpendicular case only.
 // Single target (e) only, matching formula.motional_emf's own single
 // declared form. Distinct from calculateFluxChange above (e = deltaPhi /
 // deltaT, the general rate-of-change-of-flux form) -- the two governed
@@ -83,10 +83,10 @@ const calculateFluxChange: QuestionExecutor = (ctx) => {
 const calculateMotionalEmf: QuestionExecutor = (ctx) => {
   const formulaFamily = requireFormulaFamily(ctx, MOTIONAL_EMF_FORMULA_ID);
   const B = cleanInteger(ctx.rng, 1, 20) / 10; // 0.1 - 2.0 T
-  const l = cleanInteger(ctx.rng, 5, 100) / 100; // 0.05 - 1.00 m
+  const L = cleanInteger(ctx.rng, 5, 100) / 100; // 0.05 - 1.00 m
   const v = cleanInteger(ctx.rng, 1, 10); // m/s
-  const formulaInstance = buildFormulaInstance(formulaFamily, "e", { B, l, v });
-  return assembleInstance(ctx, { B, l, v }, { formula: formulaInstance }, { answer: ctx.blueprint.answer, value: formulaInstance.result });
+  const formulaInstance = buildFormulaInstance(formulaFamily, "e", { B, L, v });
+  return assembleInstance(ctx, { B, L, v }, { formula: formulaInstance }, { answer: ctx.blueprint.answer, value: formulaInstance.result });
 };
 
 export const emfExecutors: Readonly<Record<string, QuestionExecutor>> = {

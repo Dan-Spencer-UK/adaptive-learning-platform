@@ -527,7 +527,7 @@ export const visualSemanticContracts: VisualSemanticContract[] = [
     id: "visual-contract.motional-emf-geometry",
     version: 1,
     diagramBlueprintId: "emf.motional_emf_geometry",
-    teachingIntent: "Show that the conductor length, its velocity and the magnetic field are mutually perpendicular -- the given geometric fact behind the simple e = B l v formula.",
+    teachingIntent: "Show that the conductor length, its velocity and the magnetic field are mutually perpendicular -- the given geometric fact behind the simple e = B L v formula.",
     representationRole: "essential",
     assertionFamilyIds: ["electrical.emf_and_generation"],
     assertionIdentifiers: ["EL-REL-INDUCED-EMF-001"],

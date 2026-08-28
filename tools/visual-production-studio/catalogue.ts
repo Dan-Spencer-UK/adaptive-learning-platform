@@ -1951,11 +1951,11 @@ export const FAMILIES: VisualFamily[] = [
         primaryReference: NOT_READY_REF,
         referenceReadiness: "NOT_READY",
         annotationPolicy: "TEACHING_EXPLANATORY",
-        requiredLabels: ["B", "l", "v"],
-        immutableFacts: ["B, l and v mutually perpendicular for the governed e = Blv case", "rod across rails", "velocity along the rails", "field perpendicular to the rail plane"],
+        requiredLabels: ["B", "L", "v"],
+        immutableFacts: ["B, L and v mutually perpendicular for the governed e = BLv case", "rod across rails", "velocity along the rails", "field perpendicular to the rail plane"],
         creativeFreedoms: ["premium rail/rod material rendering", "composition"],
         deterministicOverlayResponsibilities: [],
-        prohibitedChanges: ["do not draw B, l or v as anything other than mutually perpendicular"],
+        prohibitedChanges: ["do not draw B, L or v as anything other than mutually perpendicular"],
         exactDeliverable:
           "BLOCKED -- primary reference still to be approved. Do not generate until reference is marked READY. Once ready: one premium illustration of a conductor rod across two rails ready to receive B/l/v overlay arrows, matching the existing governed geometry exactly. Produce ONLY this asset -- do not automatically create the other members of this visual family.",
         outputSubfolder: "hybrid",
@@ -1963,10 +1963,10 @@ export const FAMILIES: VisualFamily[] = [
         canonicalStates: [
           {
             stateId: "unit202.emf.motional.state.teaching",
-            displayName: "Motional EMF — B, l, v mutually perpendicular",
+            displayName: "Motional EMF — B, L, v mutually perpendicular",
             pedagogicalState: "MULTI_STATE",
             annotationPolicy: "TEACHING_EXPLANATORY",
-            requiredLabels: ["B", "l", "v"],
+            requiredLabels: ["B", "L", "v"],
             notes: "One canonical state confirmed sufficient -- the geometry never varies (no DiagramBlueprint parameters at all), matching the existing contract's own knownAmbiguity note that exactly one variant is expected.",
             parameters: {},
             existingCanonicalVariantId: reconciledVariantId("visual-contract.motional-emf-geometry", 1, {}, "both"),

@@ -11,7 +11,7 @@
  * only, per ARCH-003 §13.
  *
  * Shape: DO -> RESPOND -> FEEDBACK -> NEXT (ARCH-003 §7), not
- * READ -> READ -> READ -> QUIZ. 16 steps: orientation, activation,
+ * READ -> READ -> READ -> QUIZ. 15 steps: orientation, activation,
  * concept, formula/mnemonic representation, a guided interaction, a
  * worked example, a guided calculation, a misconception-discrimination
  * check (with an explicit branch route to remediation), an independent
@@ -19,7 +19,20 @@
  * check (also branching to the same remediation step), the remediation
  * step itself (conditional -- entered only via a branch route, never
  * part of the default linear path), a plausibility/transfer question, a
- * retrieval check, a recap, and exit completion.
+ * retrieval check, and a recap.
+ *
+ * CC-12G: no separate `exit_completion` step. The Lesson Player already
+ * shows a dedicated completion screen (`LessonCompletionView.tsx`,
+ * `lesson-player.tsx`'s "complete" screen state) the moment the last step
+ * in `steps` is finished -- title, duration and `completionCriteria.
+ * exitSummary`. An `exit_completion`-typed step rendered through the
+ * normal step pipeline (`resolve-lesson-step.ts` maps it to the exact
+ * same `exitSummary` text, under the exact same "Lesson complete"
+ * section label) produced two back-to-back, near-identical "you're done"
+ * screens with an extra Continue tap between them -- a Product Owner
+ * emulator finding, not a hypothetical. Removed for this lesson only
+ * (other lessons' own `exit_completion` steps are unaffected; this is
+ * not a schema/step-type change).
  */
 
 import type { LessonPlan } from "@alp/content-schema";
@@ -403,25 +416,6 @@ export const LESSON_OHMS_LAW: LessonPlan = {
       branchRoutes: [],
       evidenceEmitted: [],
     },
-    {
-      id: "exit_completion",
-      type: "exit_completion",
-      purpose: "Confirm lesson completion against the governed completion criteria and surface what was strengthened.",
-      requirement: "required",
-      teaches: [],
-      reinforces: [],
-      tests: [],
-      capabilityIds: [],
-      misconceptionTargets: [],
-      representation: {},
-      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false },
-      scaffoldingLevel: "independent",
-      cognitiveDemand: "introductory",
-      feedback: { mode: "immediate", explainWhy: false },
-      completionCondition: "view_acknowledged",
-      branchRoutes: [],
-      evidenceEmitted: [],
-    },
   ],
   misconceptionTargets: [
     { misconceptionIdentifier: "MIS-EL-OHM-UNRELATED-SYMBOLS-001", evidenceStrength: "generic" },
@@ -445,7 +439,6 @@ export const LESSON_OHMS_LAW: LessonPlan = {
       "plausibility_check_transfer",
       "retrieval_check",
       "recap",
-      "exit_completion",
     ],
     requiredCapabilityEvidence: [
       "cap.ohms_law.solve_for_voltage",
@@ -467,8 +460,13 @@ export const LESSON_OHMS_LAW: LessonPlan = {
       "cap.ohms_law.check_plausibility",
     ],
     requiresRemediationClearance: true,
+    // CC-12G: reworded into plain learner-facing language -- the
+    // previous wording ("governed misconception", "cleared the
+    // remediation route") was internal-engine phrasing surfaced directly
+    // to the learner on the completion screen (a Product Owner emulator
+    // finding). Same real content, just not machine-facing terms.
     exitSummary:
-      "The learner has calculated voltage, current and resistance from V = I x R, selected the correct rearrangement for an unknown quantity, judged the plausibility of a result, and -- if either governed misconception was detected -- cleared the remediation route before completion.",
+      "You've practised calculating voltage, current and resistance using V = I × R, chosen the right equation for an unknown quantity, and checked whether a result made real-world sense. If a mix-up was spotted along the way, you also worked through it before finishing.",
   },
   presentationModes: ["learn", "review"],
   contentRelease: "release.unit202.v1",

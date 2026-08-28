@@ -61,19 +61,22 @@ function decisionTable(decisions: readonly AssembledStepDecision[]): string {
 }
 
 function renderResult(result: LessonAssemblyResult): string {
+  const readyLine = `Status: **${result.status}** -- instance \`${result.instance.instanceId}\` (${result.instance.includedStepIds.length}/${result.instance.stepDecisions.length} steps included)`;
   if (result.status === "ready") {
-    return [`Status: **ready** -- instance \`${result.instance.instanceId}\` (${result.instance.includedStepIds.length}/${result.instance.stepDecisions.length} steps included)`, "", decisionTable(result.instance.stepDecisions)].join("\n");
+    return [readyLine, "", decisionTable(result.instance.stepDecisions)].join("\n");
   }
-  if (result.status === "prerequisite_required") {
-    return [
-      `Status: **prerequisite_required** -- unmet family \`${result.unmetFamilyId}\`; main lesson \`${result.mainLessonPending.id}\` deferred until the prerequisite is cleared.`,
-      "",
-      `Prerequisite instance \`${result.prerequisiteInstance.instanceId}\` (lesson \`${result.prerequisiteInstance.lessonId}\`):`,
-      "",
-      decisionTable(result.prerequisiteInstance.stepDecisions),
-    ].join("\n");
-  }
-  return [`Status: **prerequisite_unresolved** -- ${result.unresolved.map((u) => `\`${u.assertionFamilyId}\` (${u.reason})`).join(", ")}. The learner is not silently taught as if the weakness did not exist.`].join("\n");
+  // CC-12G: prerequisite evidence is advisory only -- it never blocks
+  // assembly of the requested lesson's own instance (a Product Owner
+  // product-architecture decision; see @alp/learning-engine's
+  // PrerequisiteAdvisory doc comment). The requested lesson's own
+  // decision table is shown first; each advisory (one per unmet
+  // prerequisite family) is reported alongside it, never in its place.
+  const advisoryLines = result.advisories.map((advisory) =>
+    advisory.remediation.status === "available"
+      ? `- \`${advisory.unmetFamilyId}\`: remediation available -- \`${advisory.remediation.lesson.id}\` (instance \`${advisory.remediation.instance.instanceId}\`, ${advisory.remediation.instance.includedStepIds.length}/${advisory.remediation.instance.stepDecisions.length} steps)`
+      : `- \`${advisory.unmetFamilyId}\`: unresolved (${advisory.remediation.reason}) -- no remediation candidate exists; the weakness is reported, never silently dropped`,
+  );
+  return [readyLine, "", "Prerequisite advisories (informational only -- the lesson above is always assembled and playable regardless):", "", ...advisoryLines, "", decisionTable(result.instance.stepDecisions)].join("\n");
 }
 
 function buildReport(): string {

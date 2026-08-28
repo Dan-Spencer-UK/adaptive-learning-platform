@@ -239,10 +239,10 @@ export const SEMANTIC_QA: Record<string, SemanticQa> = {
   "unit202.emf.motional": {
     reviewPage: 35,
     semanticQaStatus: "REDO_REQUIRED",
-    exactLearnerVisiblePurpose: "Teach motional EMF geometry: one conductor moving with velocity v through a magnetic field B, generating an EMF along length l -- a minimal, unambiguous 2D technical diagram, not a photoreal apparatus render.",
-    keepElements: ["one moving conductor", "B-field convention (dot/cross or arrows)", "v arrow", "l dimension"],
+    exactLearnerVisiblePurpose: "Teach motional EMF geometry: one conductor moving with velocity v through a magnetic field B, generating an EMF along length L -- a minimal, unambiguous 2D technical diagram, not a photoreal apparatus render.",
+    keepElements: ["one moving conductor", "B-field convention (dot/cross or arrows)", "v arrow", "L dimension"],
     cropRemoveElements: ["photoreal pipe-like / 3D-surface apparatus rendering from any prior attempt"],
-    requiredFinalElements: ["one conductor (rails only if strictly needed for the circuit)", "one B convention", "one v arrow", "one l dimension label"],
+    requiredFinalElements: ["one conductor (rails only if strictly needed for the circuit)", "one B convention", "one v arrow", "one L dimension label"],
     prohibitedFinalElements: ["photoreal 3D pipes, tubes, or apparatus casings", "any second competing conductor/rail system not needed for the minimal circuit"],
     modelMustNotInfer: ["the B/v/l geometric relationship -- must be preserved from the authoritative motional-EMF panel, not re-imagined as a 3D scene"],
     familyConsistencyRequirements: [],

@@ -6,10 +6,10 @@ Generated deterministically by `scripts/content/generate-corpus-review.ts` from
 only, never rendered to learners. Regenerate with:
 `node scripts/content/generate-corpus-review.ts`.
 
-Total assertions: 258
+Total assertions: 259
 - Foundational Maths (FM): 26
 - Foundational Physics (FP): 44
-- Electrical (EL): 188
+- Electrical (EL): 189
 
 The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150). Foundational Maths/Physics are additional reusable horizontal knowledge and do not count toward that target.
 
@@ -32,8 +32,8 @@ The Electrical count is the CC-04B Product-Owner-approved target (140-160, ~150)
 | Describe the chemical and thermal effects of electric currents | 16 |
 | Describe the effects of magnetism in terms of attraction and repulsion | 2 |
 | Describe the function and application of electronic components that are used in electrical systems | 8 |
-| Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force | 12 |
-| Describe the magnetic effects of electrical currents | 12 |
+| Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force | 13 |
+| Describe the magnetic effects of electrical currents | 13 |
 | Describe the main principles of force, work, energy, power and efficiency and their inter-relationships | 1 |
 | Describe the main principles of the following and their inter-relationships: force, work, energy (kinetic and potential), power, efficiency | 1 |
 | Describe what is meant by resistance and resistivity in relation to electrical circuits | 14 |
@@ -149,8 +149,8 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
   - DERIVED_FROM: 39
   - PREREQUISITE_OF: 328
   - SUPPORTS: 10
-- Misconceptions: 21; conflict links: 45
-- Curriculum mappings: 504
+- Misconceptions: 22; conflict links: 46
+- Curriculum mappings: 506
 - Self edges, duplicate edges, unintended prerequisite cycles, broken relationship targets, unmapped Electrical assertions and approved-versions-without-provenance: all mechanically proven 0 -- see supabase/tests/database/10_unit202_knowledge_graph.sql and the CC-04B completion report for the live query evidence.
 
 ## Foundational Maths (FM)
@@ -1365,7 +1365,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-OHM-RELATIONSHIP-001
 
-**Statement (v1, APPROVED):** For a component obeying Ohm's law, potential difference, current and resistance are related by V = I times R.
+**Statement (v1, APPROVED):** For a component obeying Ohm's law, potential difference, current and resistance are related by V = I × R.
 
 **Direct prerequisites:** EL-CONCEPT-VOLTAGE-001 (REQUIRED); EL-CONCEPT-CURRENT-001 (REQUIRED); EL-CONCEPT-RESISTANCE-001 (REQUIRED)
 **Direct dependents:** EL-OHM-PROPORTIONALITY-001; EL-OHM-REARRANGE-001; EL-OHM-SOLVE-V-001; EL-VOLTAGE-DROP-001; EL-OHM-SELECT-RELATIONSHIP-001; EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001; EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001; EL-CIRCUIT-OPEN-CIRCUIT-RESISTANCE-INTERPRETATION-001
@@ -1389,7 +1389,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-OHM-REARRANGE-001
 
-**Statement (v1, APPROVED):** Rearrange V = I times R algebraically to make voltage, current or resistance the subject.
+**Statement (v1, APPROVED):** Rearrange V = I × R algebraically to make voltage, current or resistance the subject.
 
 **Direct prerequisites:** EL-OHM-RELATIONSHIP-001 (REQUIRED); FM-ALG-TRANSPOSE-MULT-001 (REQUIRED)
 **Direct dependents:** EL-OHM-SOLVE-I-001; EL-OHM-SOLVE-R-001
@@ -1402,7 +1402,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-OHM-SOLVE-V-001
 
-**Statement (v1, APPROVED):** Calculate an unknown voltage from known current and resistance using V = I times R.
+**Statement (v1, APPROVED):** Calculate an unknown voltage from known current and resistance using V = I × R.
 
 **Direct prerequisites:** EL-OHM-RELATIONSHIP-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED); FM-NUM-SI-PREFIX-CONVERT-001 (STRONG)
 **Direct dependents:** EL-SERIES-VOLTAGE-CALC-001
@@ -1415,7 +1415,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-OHM-SOLVE-I-001
 
-**Statement (v1, APPROVED):** Calculate an unknown current from known voltage and resistance by rearranging and applying V = I times R.
+**Statement (v1, APPROVED):** Calculate an unknown current from known voltage and resistance by rearranging and applying V = I × R.
 
 **Direct prerequisites:** EL-OHM-REARRANGE-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED); FM-NUM-SI-PREFIX-CONVERT-001 (STRONG)
 **Direct dependents:** EL-PARALLEL-CURRENT-CALC-001; EL-CIRCUIT-SUPPLY-CURRENT-SERIES-001; EL-CIRCUIT-SUPPLY-CURRENT-PARALLEL-001
@@ -1428,7 +1428,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-OHM-SOLVE-R-001
 
-**Statement (v1, APPROVED):** Calculate an unknown resistance from known voltage and current by rearranging and applying V = I times R.
+**Statement (v1, APPROVED):** Calculate an unknown resistance from known voltage and current by rearranging and applying V = I × R.
 
 **Direct prerequisites:** EL-OHM-REARRANGE-001 (REQUIRED); FM-ALG-SUBSTITUTION-001 (REQUIRED); FM-NUM-SI-PREFIX-CONVERT-001 (STRONG)
 **Direct dependents:** (none — leaf capability)
@@ -1854,7 +1854,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-OHM-SELECT-RELATIONSHIP-001
 
-**Statement (v1, APPROVED):** Select the correct arrangement of V = I times R to use, based on which two quantities are known and which quantity is required.
+**Statement (v1, APPROVED):** Given two known quantities from V = I × R, select the correct rearranged equation to calculate the third.
 
 **Direct prerequisites:** EL-OHM-RELATIONSHIP-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
@@ -2397,7 +2397,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-CONCEPT-FIELD-DIRECTION-RULE-001
 
-**Statement (v1, APPROVED):** The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): with the thumb pointing in the direction of current flow, the curled fingers give the direction of the circular field around the conductor.
+**Statement (v1, APPROVED):** The direction of the magnetic field around a straight current-carrying conductor is given by Maxwell's screw rule (equivalently, the right-hand rule): grip the conductor with the RIGHT hand so the thumb points in the direction of conventional current flow -- the curled fingers then give the direction of the circular field around the conductor.
 
 **Direct prerequisites:** EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001 (REQUIRED)
 **Direct dependents:** (none — leaf capability)
@@ -2419,7 +2419,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-REL-FORCE-ON-CONDUCTOR-001
 
-**Statement (v1, APPROVED):** The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I l, where B is the magnetic flux density, I is the current and l is the length of the conductor in the field.
+**Statement (v1, APPROVED):** The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I L, where B is the magnetic flux density, I is the current and L is the length of the conductor in the field.
 
 **Direct prerequisites:** EL-CONCEPT-FORCE-ON-CONDUCTOR-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-FLEMING-LEFT-HAND-001
@@ -2427,6 +2427,17 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Provenance:** University Physics Volume 2 — "F = I l x B. This is the force on a straight, current-carrying wire in a uniform magnetic field" -- the magnitude relationship F = B I l (for a conductor perpendicular to the field); direction is given by "RHR-1, where you point your fingers in the direction of the current and curl them toward the field; your thumb then points in the direction of the force" [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+
+### EL-CONCEPT-PAGE-DIRECTION-NOTATION-001
+
+**Statement (v1, APPROVED):** In a diagram, a cross (×) represents a direction pointing into the page, away from the viewer, and a dot (•) represents a direction pointing out of the page, towards the viewer -- used to show a direction, such as current or magnetic field, that runs perpendicular to the page itself.
+
+**Direct prerequisites:** (none — root assertion)
+**Direct dependents:** (none — leaf capability)
+**Curriculum mapping(s):** Describe the magnetic effects of electrical currents (SUPPORTS); Describe the magnetic effects of electrical currents in terms of: production of a magnetic field, force on a current-carrying conductor in a magnetic field, electromagnetism, electromotive force (SUPPORTS)
+**Provenance:** University Physics Volume 2 — "F = I l x B. This is the force on a straight, current-carrying wire in a uniform magnetic field" -- the magnitude relationship F = B I l (for a conductor perpendicular to the field); direction is given by "RHR-1, where you point your fingers in the direction of the current and curl them toward the field; your thumb then points in the direction of the force" [SUPPORTS, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
+**Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
+**Scope status (CC-09B.5):** IN_SCOPE_SUPPORTING
 
 ### EL-CONCEPT-FLEMING-LEFT-HAND-001
 
@@ -2438,6 +2449,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 **Provenance:** Fleming's left-hand rule for motors — "The Thumb represents the direction of the Motion (Force) of the conductor. The Fore finger represents the direction of the magnetic Field. The Centre finger represents the direction of the Current" -- the UK vocational-trade naming/mnemonic for the same force-direction rule OpenStax states as RHR-1, citing Fleming, John Ambrose (1902), Magnets and Electric Currents, 2nd ed., pp.173-174 [DEFINES, support=DIRECT, verification=UNVERIFIED] | City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) — Qualification Handbook — AC5.3: describe the magnetic effects of electrical currents in terms of production of a magnetic field, force on a current-carrying conductor, electromagnetism and electromotive force [CURRICULUM_REQUIRES, verification=VERIFIED]
 **Entailment result:** FULLY_SUPPORTED_SINGLE_SOURCE
 **Scope status (CC-09B.5):** IN_SCOPE_REQUIRED
+**Misconceptions targeting this assertion:** MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001
 
 ### EL-CONCEPT-ELECTROMAGNETISM-001
 
@@ -2464,7 +2476,7 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### EL-REL-INDUCED-EMF-001
 
-**Statement (v1, APPROVED):** For a straight conductor of effective length l moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B l v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.
+**Statement (v1, APPROVED):** For a straight conductor of effective length L moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B L v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.
 
 **Direct prerequisites:** EL-CONCEPT-EMF-001 (REQUIRED)
 **Direct dependents:** EL-CONCEPT-FLEMING-RIGHT-HAND-001
@@ -3057,19 +3069,19 @@ Re-verified directly from each book's own copyright page (not assumed from a gen
 
 ### MIS-EL-OHM-UNRELATED-SYMBOLS-001
 
-Treats V, I and R as three unrelated symbols to memorise rather than as a single relationship connecting voltage, current and resistance (V = I times R).
+Treats V, I and R as three unrelated symbols to memorise rather than as a single relationship connecting voltage, current and resistance (V = I × R).
 
 **Conflicts with:** EL-OHM-RELATIONSHIP-001
 
 ### MIS-EL-OHM-REARRANGE-ERROR-001
 
-Incorrectly rearranges a multiplicative relationship such as V = I times R or P = V times I (for example moving a variable to the wrong side, or inverting the wrong pair of variables) when isolating a different subject.
+Incorrectly rearranges a multiplicative relationship such as V = I × R or P = V × I (for example moving a variable to the wrong side, or inverting the wrong pair of variables) when isolating a different subject.
 
 **Conflicts with:** EL-OHM-REARRANGE-001, EL-POWER-REARRANGE-001
 
 ### MIS-EL-OHM-WRONG-OPERATION-001
 
-Selects the wrong arithmetic operation when calculating an unknown quantity from V = I times R (for example multiplying instead of dividing when solving for current or resistance, or dividing the two known quantities in the wrong order).
+Selects the wrong arithmetic operation when calculating an unknown quantity from V = I × R (for example multiplying instead of dividing when solving for current or resistance, or dividing the two known quantities in the wrong order).
 
 **Conflicts with:** EL-OHM-SOLVE-I-001, EL-OHM-SOLVE-R-001
 
@@ -3150,6 +3162,12 @@ Connects a voltmeter in series or an ammeter in parallel, swapping the correct c
 Confuses conventional current direction (positive to negative) with the actual direction of electron flow (negative to positive) in a conductor.
 
 **Conflicts with:** EL-CONCEPT-ELECTRON-THEORY-001, EL-CURRENT-CHARGE-RELATIONSHIP-001
+
+### MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001
+
+Mixes up which finger in Fleming's left-hand rule represents Field, Current and Motion (force) -- e.g. treating the thumb as current or the first finger as motion -- rather than the governed First finger=Field, seCond finger=Current, thuMb=Motion mapping.
+
+**Conflicts with:** EL-CONCEPT-FLEMING-LEFT-HAND-001
 
 ### MIS-EL-AC-DC-CONFUSION-001
 

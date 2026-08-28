@@ -22,8 +22,8 @@
  *
  * CC-11.1: closes the two gaps CC-11 flagged -- AC5.3's
  * OFFICIAL_TEACHING_INTERPRETATION calculation obligations
- * "force-on-conductor-calculation" (F = B I l, Fleming's left-hand rule)
- * and "induced-emf-calculation" (e = B l v, Fleming's right-hand rule)
+ * "force-on-conductor-calculation" (F = B I L, Fleming's left-hand rule)
+ * and "induced-emf-calculation" (e = B L v, Fleming's right-hand rule)
  * previously had no formula family, worked example, question blueprint
  * or capability anywhere. Both now exist
  * (cap.magnetism.calculate_force_on_conductor /
@@ -33,8 +33,8 @@
  * (worked_force_on_conductor / guided_calculate_force_on_conductor;
  * worked_motional_emf / guided_calculate_motional_emf).
  *
- * CC-11.3: e = B l v's own governing "mutually perpendicular" geometry
- * (B, l and v) had a formula card but zero visual support -- closed
+ * CC-11.3: e = B L v's own governing "mutually perpendicular" geometry
+ * (B, L and v) had a formula card but zero visual support -- closed
  * with `emf.motional_emf_geometry` (MotionalEmfDiagram.tsx), wired into
  * the EMF concept step and both the worked example and guided
  * calculation. `contentRelease` moved to `release.unit202.v7`; see
@@ -91,6 +91,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     "EL-CONCEPT-FIELD-DIRECTION-RULE-001",
     "EL-CONCEPT-FORCE-ON-CONDUCTOR-001",
     "EL-REL-FORCE-ON-CONDUCTOR-001",
+    "EL-CONCEPT-PAGE-DIRECTION-NOTATION-001",
     "EL-CONCEPT-FLEMING-LEFT-HAND-001",
     "EL-CONCEPT-ELECTROMAGNETISM-001",
     "EL-CONCEPT-EMF-001",
@@ -132,9 +133,10 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     {
       id: "concept_field_from_current",
       type: "concept_explanation",
-      purpose: "State that a current-carrying conductor produces a magnetic field, and how to find that field's direction (Maxwell's screw rule / right-hand grip rule).",
+      purpose:
+        "State that a current-carrying conductor produces a magnetic field, and how to find that field's direction (Maxwell's screw rule / right-hand grip rule). Also teaches the ×/• into/out-of-page diagram convention (CC-12G) before the first diagram that uses it, so every later use in this lesson (this diagram and the force-direction diagram) is never unexplained.",
       requirement: "required",
-      teaches: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "EL-CONCEPT-FIELD-DIRECTION-RULE-001"],
+      teaches: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001", "EL-CONCEPT-FIELD-DIRECTION-RULE-001", "EL-CONCEPT-PAGE-DIRECTION-NOTATION-001"],
       reinforces: [],
       tests: [],
       assertionFamilyId: "electrical.magnetism_and_electromagnetism",
@@ -173,7 +175,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     {
       id: "concept_force_on_conductor",
       type: "concept_explanation",
-      purpose: "Describe the force a current-carrying conductor experiences in a magnetic field (F = B I l) and its direction (Fleming's left-hand rule) -- the motor principle's foundation.",
+      purpose: "Describe the force a current-carrying conductor experiences in a magnetic field (F = B I L) and its direction (Fleming's left-hand rule) -- the motor principle's foundation.",
       requirement: "required",
       teaches: ["EL-CONCEPT-FORCE-ON-CONDUCTOR-001", "EL-REL-FORCE-ON-CONDUCTOR-001", "EL-CONCEPT-FLEMING-LEFT-HAND-001"],
       reinforces: ["EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001"],
@@ -193,7 +195,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     {
       id: "worked_force_on_conductor",
       type: "worked_example",
-      purpose: "Model calculating the force on a current-carrying conductor using F = B I l, before the learner practises it unaided.",
+      purpose: "Model calculating the force on a current-carrying conductor using F = B I L, before the learner practises it unaided.",
       requirement: "required",
       teaches: [],
       reinforces: [],
@@ -213,7 +215,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     {
       id: "guided_calculate_force_on_conductor",
       type: "guided_interaction",
-      purpose: "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I l.",
+      purpose: "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I L.",
       requirement: "required",
       teaches: [],
       reinforces: [],
@@ -405,7 +407,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     {
       id: "concept_emf_and_terminal_voltage",
       type: "concept_explanation",
-      purpose: "Describe electromotive force (EMF) and distinguish it from terminal voltage, and introduce induced EMF (e = B l v via Fleming's right-hand rule) as the mechanism a moving conductor uses to generate it.",
+      purpose: "Describe electromotive force (EMF) and distinguish it from terminal voltage, and introduce induced EMF (e = B L v via Fleming's right-hand rule) as the mechanism a moving conductor uses to generate it.",
       requirement: "required",
       teaches: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001", "EL-REL-INDUCED-EMF-001", "EL-CONCEPT-FLEMING-RIGHT-HAND-001"],
       reinforces: ["EL-CONCEPT-ELECTROMAGNETISM-001"],
@@ -425,7 +427,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     {
       id: "worked_motional_emf",
       type: "worked_example",
-      purpose: "Model calculating the EMF induced in a conductor moving through a magnetic field using e = B l v, before the learner practises it unaided.",
+      purpose: "Model calculating the EMF induced in a conductor moving through a magnetic field using e = B L v, before the learner practises it unaided.",
       requirement: "required",
       teaches: [],
       reinforces: [],
@@ -449,7 +451,7 @@ export const LESSON_MAGNETIC_EFFECTS_OF_CURRENT: LessonPlan = {
     {
       id: "guided_calculate_motional_emf",
       type: "guided_interaction",
-      purpose: "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B l v.",
+      purpose: "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B L v.",
       requirement: "required",
       teaches: [],
       reinforces: [],

@@ -156,15 +156,27 @@ export interface LessonInstance {
 // Prerequisite resolution result
 // ---------------------------------------------------------------------
 
-export interface UnresolvedPrerequisite {
-  readonly assertionFamilyId: string;
-  readonly reason: "no_candidate_lesson";
+/**
+ * CC-12G: a Product Owner product-architecture decision -- prerequisite
+ * evidence may inform recommendations, readiness warnings, and
+ * diagnostic/remediation routing, but must NEVER hard-block a learner
+ * from directly opening a lesson (previously `prerequisite_required`/
+ * `prerequisite_unresolved` refused to assemble the requested lesson's
+ * own instance at all). One entry per unmet prerequisite family (a
+ * lesson may have more than one); `instance` on `LessonAssemblyResult`
+ * is always the REQUESTED lesson's own playable instance regardless of
+ * how many advisories are present.
+ */
+export interface PrerequisiteAdvisory {
+  readonly unmetFamilyId: string;
+  readonly remediation:
+    | { readonly status: "available"; readonly lesson: LessonPlan; readonly instance: LessonInstance }
+    | { readonly status: "unresolved"; readonly reason: "no_candidate_lesson" };
 }
 
 export type LessonAssemblyResult =
   | { readonly status: "ready"; readonly instance: LessonInstance }
-  | { readonly status: "prerequisite_required"; readonly prerequisiteInstance: LessonInstance; readonly unmetFamilyId: string; readonly mainLessonPending: LessonPlan }
-  | { readonly status: "prerequisite_unresolved"; readonly unresolved: readonly UnresolvedPrerequisite[] };
+  | { readonly status: "ready_with_prerequisite_advisory"; readonly instance: LessonInstance; readonly advisories: readonly PrerequisiteAdvisory[] };
 
 /** Thrown, never silently resolved, when more than one lesson is `remediationEligibility`-eligible for the same prerequisite family and no exactly-one of them is marked `isDefaultRemediation` for it (task brief §8, corrected by the Package B remediation-selection correction: "fail assembly deterministically rather than choosing arbitrarily"). A valid manifest cannot reach this -- see scripts/content/validate-lesson-plan.ts's `ambiguousRemediationCandidates` gate -- but the assembler re-verifies defensively rather than trusting that upstream gate ran. */
 export class AmbiguousPrerequisiteCandidatesError extends Error {

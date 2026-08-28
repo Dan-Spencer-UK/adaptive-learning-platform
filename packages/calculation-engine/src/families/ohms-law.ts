@@ -68,9 +68,15 @@ const selectRearrangement: QuestionExecutor = (ctx) => {
   const { I, R, V } = generateFromIR(ctx);
   const formulaFamily = requireFormulaFamily(ctx, FORMULA_FAMILY_ID);
   const formulaInstance = buildFormulaInstance(formulaFamily, target, { V, I, R });
+  // CC-12G: the prompt must name the target quantity in words (not just
+  // display all three numeric givens, which never actually indicated
+  // which one the learner is being asked to find) -- see this blueprint's
+  // presentation.promptLines. target_variable_name is the target
+  // variable's own governed formula-family name, never an app-side label.
+  const targetVariableName = formulaFamily.variables.find((v) => v.symbol === target)!.name;
   return assembleInstance(
     ctx,
-    { V, I, R, target_variable: target },
+    { V, I, R, target_variable: target, target_variable_name: targetVariableName },
     { formula: formulaInstance },
     { answer: ctx.blueprint.answer, value: target },
   );

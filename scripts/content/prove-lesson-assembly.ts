@@ -296,25 +296,34 @@ function scenarioE(): ScenarioResult {
   // CC-08 closes the real-content gap this scenario used to document: the
   // real corpus now contains lesson.foundation.maths.formula-rearrangement,
   // a real, governed remediationEligibility-declared default candidate for
-  // foundational.algebraic_technique -- so a WEAK prerequisite now resolves
-  // to prerequisite_required against REAL content, not merely "unresolved".
-  // CC-08A: this is proven against LESSON_OHMS_LAW_UNIT202_V2 specifically
-  // -- release.unit202.v1's own Ohm's Law entry is immutable and remains
-  // exactly as originally shipped (no remediation candidate exists under
-  // v1, since the foundation lesson is a v2-only member); the real
-  // remediation relationship holds for the v2 release, where all four
-  // CC-08 lessons genuinely coexist.
+  // foundational.algebraic_technique -- so a WEAK prerequisite resolves an
+  // "available" advisory pointing at that REAL remediation lesson, not
+  // merely "unresolved". CC-12G: this NO LONGER blocks assembly of the
+  // requested lesson itself -- `realResult.instance` is always
+  // LESSON_OHMS_LAW_UNIT202_V2's own playable instance, per the Product
+  // Owner's product-architecture decision that prerequisite evidence must
+  // never hard-block direct lesson access (see @alp/learning-engine's
+  // PrerequisiteAdvisory doc comment). CC-08A: this is proven against
+  // LESSON_OHMS_LAW_UNIT202_V2 specifically -- release.unit202.v1's own
+  // Ohm's Law entry is immutable and remains exactly as originally
+  // shipped (no remediation candidate exists under v1, since the
+  // foundation lesson is a v2-only member); the real remediation
+  // relationship holds for the v2 release, where all four CC-08 lessons
+  // genuinely coexist.
   const realResult = assembleLessonInstance(LESSON_OHMS_LAW_UNIT202_V2, weakEvidence, realContext());
+  const realAdvisory = realResult.status === "ready_with_prerequisite_advisory" ? realResult.advisories[0] : undefined;
   const realHalfPassed =
-    realResult.status === "prerequisite_required" &&
-    realResult.prerequisiteInstance.lessonId === "lesson.foundation.maths.formula-rearrangement" &&
-    realResult.mainLessonPending.id === LESSON_OHMS_LAW_UNIT202_V2.id &&
-    realResult.unmetFamilyId === "foundational.algebraic_technique";
+    realResult.status === "ready_with_prerequisite_advisory" &&
+    realResult.instance.lessonId === LESSON_OHMS_LAW_UNIT202_V2.id &&
+    realAdvisory?.remediation.status === "available" &&
+    realAdvisory.remediation.lesson.id === "lesson.foundation.maths.formula-rearrangement" &&
+    realAdvisory.unmetFamilyId === "foundational.algebraic_technique";
 
   // A family with genuinely zero remediation candidates anywhere in the
-  // corpus still resolves to prerequisite_unresolved rather than silently
-  // proceeding or guessing -- proven with a synthetic family id no real or
-  // synthetic lesson declares itself eligible for.
+  // corpus still produces an "unresolved" advisory rather than silently
+  // dropping the weakness or guessing -- proven with a synthetic family id
+  // no real or synthetic lesson declares itself eligible for. Still never
+  // blocks assembly of the requested lesson itself (CC-12G).
   const noRemediationEvidence = evidence({ familyStatus: new Map([["synthetic.family_with_no_remediation_lesson", "WEAK"]]) });
   const syntheticLessonTargetingUnresolvableFamily: LessonPlan = {
     ...LESSON_OHMS_LAW,
@@ -327,10 +336,12 @@ function scenarioE(): ScenarioResult {
     noRemediationEvidence,
     realContext([...realLessons, syntheticLessonTargetingUnresolvableFamily]),
   );
+  const syntheticAdvisory = syntheticResult.status === "ready_with_prerequisite_advisory" ? syntheticResult.advisories[0] : undefined;
   const syntheticHalfPassed =
-    syntheticResult.status === "prerequisite_unresolved" &&
-    syntheticResult.unresolved.length === 1 &&
-    syntheticResult.unresolved[0]!.assertionFamilyId === "synthetic.family_with_no_remediation_lesson";
+    syntheticResult.status === "ready_with_prerequisite_advisory" &&
+    syntheticResult.instance.lessonId === syntheticLessonTargetingUnresolvableFamily.id &&
+    syntheticAdvisory?.remediation.status === "unresolved" &&
+    syntheticAdvisory.unmetFamilyId === "synthetic.family_with_no_remediation_lesson";
 
   // CC-08A: release.unit202.v1's OWN Ohm's Law entry -- the original,
   // immutable, un-extended release -- must still resolve exactly as it
@@ -338,11 +349,16 @@ function scenarioE(): ScenarioResult {
   // the foundation lesson was never added to v1 (it is a v2-only
   // member). This is the mechanical proof that v1 was not mutated.
   const v1Result = assembleLessonInstance(LESSON_OHMS_LAW, weakEvidence, realContext());
-  const v1ImmutabilityHalfPassed = v1Result.status === "prerequisite_unresolved" && v1Result.unresolved.length === 1 && v1Result.unresolved[0]!.assertionFamilyId === "foundational.algebraic_technique";
+  const v1Advisory = v1Result.status === "ready_with_prerequisite_advisory" ? v1Result.advisories[0] : undefined;
+  const v1ImmutabilityHalfPassed =
+    v1Result.status === "ready_with_prerequisite_advisory" &&
+    v1Result.instance.lessonId === LESSON_OHMS_LAW.id &&
+    v1Advisory?.remediation.status === "unresolved" &&
+    v1Advisory.unmetFamilyId === "foundational.algebraic_technique";
 
   return ok(
     "E",
-    "Prerequisite weakness: a WEAK foundational.algebraic_technique prerequisite resolves to prerequisite_required against the REAL formula-rearrangement lesson under release.unit202.v2 [REAL]; a family with genuinely zero remediation candidates still resolves to prerequisite_unresolved rather than guessing [SYNTHETIC]; release.unit202.v1's own unextended Ohm's Law entry still has zero candidates, proving v1 was not mutated [REAL]",
+    "Prerequisite weakness is advisory, never blocking (CC-12G): a WEAK foundational.algebraic_technique prerequisite still assembles the requested lesson itself, plus an 'available' advisory naming the REAL formula-rearrangement lesson under release.unit202.v2 [REAL]; a family with genuinely zero remediation candidates still assembles the requested lesson, plus an 'unresolved' advisory rather than guessing [SYNTHETIC]; release.unit202.v1's own unextended Ohm's Law entry still has zero candidates (an 'unresolved' advisory), proving v1 was not mutated [REAL]",
     "real",
     realHalfPassed && syntheticHalfPassed && v1ImmutabilityHalfPassed,
     `v2-half status='${realResult.status}' (passed=${realHalfPassed}), synthetic-half status='${syntheticResult.status}' (passed=${syntheticHalfPassed}), v1-immutability-half status='${v1Result.status}' (passed=${v1ImmutabilityHalfPassed})`,

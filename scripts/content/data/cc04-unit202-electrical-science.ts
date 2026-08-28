@@ -2807,7 +2807,7 @@ const A: AssertionDef[] = [
   },
   {
     id: "EL-OHM-RELATIONSHIP-001", domain: "EL",
-    statement: "For a component obeying Ohm's law, potential difference, current and resistance are related by V = I times R.",
+    statement: "For a component obeying Ohm's law, potential difference, current and resistance are related by V = I × R.",
     provenance: [
       { locator: "loc-openstax-up2-ohms-law", role: "DEFINES" },
       { locator: "loc-cg-ac4.4", role: "CURRICULUM_REQUIRES" },
@@ -2838,7 +2838,7 @@ const A: AssertionDef[] = [
     // DERIVED_FROM EL-OHM-RELATIONSHIP-001 (real OpenStax provenance),
     // per task section 10.
     id: "EL-OHM-REARRANGE-001", domain: "EL",
-    statement: "Rearrange V = I times R algebraically to make voltage, current or resistance the subject.",
+    statement: "Rearrange V = I × R algebraically to make voltage, current or resistance the subject.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [
       { id: "EL-OHM-RELATIONSHIP-001", strength: "REQUIRED" },
@@ -2853,7 +2853,7 @@ const A: AssertionDef[] = [
   },
   {
     id: "EL-OHM-SOLVE-V-001", domain: "EL",
-    statement: "Calculate an unknown voltage from known current and resistance using V = I times R.",
+    statement: "Calculate an unknown voltage from known current and resistance using V = I × R.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [
       { id: "EL-OHM-RELATIONSHIP-001", strength: "REQUIRED" },
@@ -2869,7 +2869,7 @@ const A: AssertionDef[] = [
   },
   {
     id: "EL-OHM-SOLVE-I-001", domain: "EL",
-    statement: "Calculate an unknown current from known voltage and resistance by rearranging and applying V = I times R.",
+    statement: "Calculate an unknown current from known voltage and resistance by rearranging and applying V = I × R.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [
       { id: "EL-OHM-REARRANGE-001", strength: "REQUIRED" },
@@ -2885,7 +2885,7 @@ const A: AssertionDef[] = [
   },
   {
     id: "EL-OHM-SOLVE-R-001", domain: "EL",
-    statement: "Calculate an unknown resistance from known voltage and current by rearranging and applying V = I times R.",
+    statement: "Calculate an unknown resistance from known voltage and current by rearranging and applying V = I × R.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [
       { id: "EL-OHM-REARRANGE-001", strength: "REQUIRED" },
@@ -3352,7 +3352,7 @@ const A: AssertionDef[] = [
   },
   {
     id: "EL-OHM-SELECT-RELATIONSHIP-001", domain: "EL",
-    statement: "Select the correct arrangement of V = I times R to use, based on which two quantities are known and which quantity is required.",
+    statement: "Given two known quantities from V = I × R, select the correct rearranged equation to calculate the third.",
     provenance: [{ locator: "loc-cg-ac4.5", role: "CURRICULUM_REQUIRES" }],
     prereqs: [{ id: "EL-OHM-RELATIONSHIP-001", strength: "REQUIRED" }],
     derivedFrom: ["EL-OHM-RELATIONSHIP-001"],
@@ -3840,13 +3840,44 @@ const A: AssertionDef[] = [
     // Maxwell's-screw-rule fix already made for AC5.3's field-production
     // sub-topic.
     id: "EL-REL-FORCE-ON-CONDUCTOR-001", domain: "EL",
-    statement: "The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I l, where B is the magnetic flux density, I is the current and l is the length of the conductor in the field.",
+    // CC-12G (Product Owner notation correction): capital I (current) and
+    // lowercase l (length) shown side by side here ("F = B I l") were
+    // visually indistinguishable in this plain-prose statement -- fixed
+    // by renaming the governed length symbol itself from lowercase "l"
+    // to plain capital "L" (the course's own existing notation, e.g.
+    // resistivity's R = ρL/A) everywhere, including
+    // formula.force_on_conductor's own variables array, marking, and
+    // evidence -- not by introducing a special display-only glyph.
+    statement: "The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I L, where B is the magnetic flux density, I is the current and L is the length of the conductor in the field.",
     provenance: [
       { locator: "loc-openstax-up2-force-on-conductor-magnitude", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
     ],
     prereqs: [{ id: "EL-CONCEPT-FORCE-ON-CONDUCTOR-001", strength: "REQUIRED" }],
     curriculum: [{ node: NODE_AC5_3, type: "REQUIRED_FOR" }],
+  },
+  {
+    // CC-12G: the force-on-conductor/Fleming's-left-hand-rule diagrams
+    // (MagneticForceDiagram.tsx, RightHandGripRuleDiagram.tsx) already
+    // draw x/dot for into/out-of-page current direction, but the
+    // convention itself was never explicitly taught anywhere in the
+    // corpus -- only shown, then separately spelled out in words per
+    // diagram instance (a Product Owner review finding: the symbols
+    // appeared unexplained). This is a general diagram-reading
+    // convention (distinct from Fleming's-rule itself, which is about
+    // the three mutually-perpendicular directions, not how a 2-D diagram
+    // draws the one running into/out of the page), so it is its own
+    // assertion, taught once before the diagram is first assessed. Same
+    // OpenStax source section (force-on-a-conductor diagrams) that
+    // conventionally introduces this notation when drawing the field.
+    id: "EL-CONCEPT-PAGE-DIRECTION-NOTATION-001", domain: "EL",
+    statement:
+      "In a diagram, a cross (×) represents a direction pointing into the page, away from the viewer, and a dot (•) represents a direction pointing out of the page, towards the viewer -- used to show a direction, such as current or magnetic field, that runs perpendicular to the page itself.",
+    provenance: [
+      { locator: "loc-openstax-up2-force-on-conductor-magnitude", role: "SUPPORTS" },
+      { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
+    ],
+    curriculum: [{ node: NODE_AC5_3, type: "SUPPORTS" }],
   },
   {
     // CC-09B.6: preserves the vocational-trade term (task section 10) a
@@ -3892,14 +3923,16 @@ const A: AssertionDef[] = [
     // CC-09G (Project Architect correction, task section 3): "velocity v
     // perpendicular to a magnetic field of flux density B" alone does not
     // constrain the conductor's own length/orientation -- the simple
-    // e = B l v form requires the conductor's length, its velocity AND
+    // e = B L v form requires the conductor's length, its velocity AND
     // the field to be mutually perpendicular (re-confirmed directly
     // against the source above: the rod-on-rails derivation sweeps an
     // area perpendicular to B, which requires the rod and its direction
     // of travel to themselves be perpendicular too). Corrected to name
     // the full geometry, still without vector notation.
     id: "EL-REL-INDUCED-EMF-001", domain: "EL",
-    statement: "For a straight conductor of effective length l moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B l v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.",
+    // CC-12G: capital "L", not lowercase "l" -- same notation correction
+    // as EL-REL-FORCE-ON-CONDUCTOR-001, for the same governed length symbol.
+    statement: "For a straight conductor of effective length L moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B L v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.",
     provenance: [
       { locator: "loc-openstax-up2-motional-emf", role: "DEFINES", supportType: "DIRECT" },
       { locator: "loc-cg-ac5.3", role: "CURRICULUM_REQUIRES" },
@@ -3954,7 +3987,7 @@ const A: AssertionDef[] = [
     // AC5.4's "changing flux induces an EMF" obligation extends to the
     // quantitative Faraday's-law relationship, not merely the qualitative
     // principle EL-CONCEPT-ELECTROMAGNETIC-INDUCTION-001 already states.
-    // Distinct from EL-REL-INDUCED-EMF-001 (e = B l v, AC5.3's motional-EMF
+    // Distinct from EL-REL-INDUCED-EMF-001 (e = B L v, AC5.3's motional-EMF
     // special case for a conductor moving through a field) -- this is the
     // general rate-of-change-of-flux form underlying AC5.4's generator
     // principle. Formula independently inspected and verified against
@@ -4700,17 +4733,17 @@ interface MisconceptionDef {
 const M: MisconceptionDef[] = [
   {
     id: "MIS-EL-OHM-UNRELATED-SYMBOLS-001",
-    description: "Treats V, I and R as three unrelated symbols to memorise rather than as a single relationship connecting voltage, current and resistance (V = I times R).",
+    description: "Treats V, I and R as three unrelated symbols to memorise rather than as a single relationship connecting voltage, current and resistance (V = I × R).",
     conflicts: ["EL-OHM-RELATIONSHIP-001"],
   },
   {
     id: "MIS-EL-OHM-REARRANGE-ERROR-001",
-    description: "Incorrectly rearranges a multiplicative relationship such as V = I times R or P = V times I (for example moving a variable to the wrong side, or inverting the wrong pair of variables) when isolating a different subject.",
+    description: "Incorrectly rearranges a multiplicative relationship such as V = I × R or P = V × I (for example moving a variable to the wrong side, or inverting the wrong pair of variables) when isolating a different subject.",
     conflicts: ["EL-OHM-REARRANGE-001", "EL-POWER-REARRANGE-001"],
   },
   {
     id: "MIS-EL-OHM-WRONG-OPERATION-001",
-    description: "Selects the wrong arithmetic operation when calculating an unknown quantity from V = I times R (for example multiplying instead of dividing when solving for current or resistance, or dividing the two known quantities in the wrong order).",
+    description: "Selects the wrong arithmetic operation when calculating an unknown quantity from V = I × R (for example multiplying instead of dividing when solving for current or resistance, or dividing the two known quantities in the wrong order).",
     conflicts: ["EL-OHM-SOLVE-I-001", "EL-OHM-SOLVE-R-001"],
   },
   {
@@ -5318,7 +5351,7 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
       // encyclopedia article for the naming/finger-convention of Fleming's
       // left-hand rule (motors), citing Fleming, John Ambrose (1902),
       // "Magnets and Electric Currents", 2nd ed., pp.173-174, as the
-      // original historical source -- the F = B I l magnitude relationship
+      // original historical source -- the F = B I L magnitude relationship
       // itself is sourced directly from OpenStax UP2 11.4, not from this
       // encyclopedia article.
       key: SRC_WIKIPEDIA_FLEMING_LEFT_HAND,
@@ -5333,7 +5366,7 @@ export const cc04Unit202ElectricalScience: KnowledgeGraphManifest = {
     {
       // CC-09B.6: as above, for Fleming's right-hand rule (generators),
       // citing Hughes, Edward (2016), "Electrical and Electronic
-      // Technology". The e = B l v magnitude relationship itself is
+      // Technology". The e = B L v magnitude relationship itself is
       // sourced directly from OpenStax UP2 13.3, not from this article.
       key: SRC_WIKIPEDIA_FLEMING_RIGHT_HAND,
       title: "Fleming's right-hand rule",

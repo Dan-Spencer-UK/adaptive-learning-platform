@@ -15,13 +15,13 @@ function blueprintFor(id: string) {
   return blueprint;
 }
 
-function instanceFor(id: string): GeneratedQuestionInstance {
+function instanceFor(id: string, instanceId = "li1_t"): GeneratedQuestionInstance {
   return generateLessonQuestion({
     blueprint: blueprintFor(id),
     formulaFamilies: record.lookup.formulaFamilies,
     contentRelease: record.contentRelease,
     blueprintVersion: record.questionBlueprintVersion,
-    instanceId: "li1_t",
+    instanceId,
     stepId: id,
   });
 }
@@ -43,6 +43,11 @@ function magnetismInstanceFor(id: string): GeneratedQuestionInstance {
     instanceId: "li1_t",
     stepId: id,
   });
+}
+
+/** The rendered choice buttons' accessibility labels, in render order -- used to observe display ORDER. */
+function choiceLabels(screen: { getAllByRole: (role: string) => readonly { props: { accessibilityLabel?: string } }[] }): string[] {
+  return screen.getAllByRole("button").map((el) => el.props.accessibilityLabel ?? "");
 }
 
 describe("AnswerInputDispatch", () => {
@@ -67,13 +72,17 @@ describe("AnswerInputDispatch", () => {
     expect(onSubmit).toHaveBeenCalledWith("plausible");
   });
 
-  it("renders V/I/R choices derived from the formula family for a 'formula_selection' answer type", async () => {
+  // CC-12G: options are the actual rearranged equations, not bare
+  // variable names -- a Product Owner finding that "V (voltage)" never
+  // actually told the learner which equation to use (task brief §4).
+  it("renders the rearranged equation for each variable for a 'formula_selection' answer type, keyed on the variable symbol", async () => {
     const onSubmit = jest.fn();
     const blueprint = blueprintFor("ohms_law.select_rearrangement");
-    const { getByLabelText } = await render(
+    const { getByLabelText, queryByLabelText } = await render(
       <AnswerInputDispatch blueprint={blueprint} instance={instanceFor(blueprint.id)} formulaFamily={FORMULA_OHMS_LAW} onSubmit={onSubmit} />,
     );
-    await fireEvent.press(getByLabelText("V (voltage)"));
+    expect(queryByLabelText("V (voltage)")).toBeNull();
+    await fireEvent.press(getByLabelText("V = I × R"));
     expect(onSubmit).toHaveBeenCalledWith("V");
   });
 
@@ -87,7 +96,63 @@ describe("AnswerInputDispatch", () => {
     await fireEvent.press(getByLabelText("I (current): A"));
     await fireEvent.press(getByLabelText("R (resistance): Ω"));
     await fireEvent.press(getByLabelText("Submit answer"));
-    expect(onSubmit).toHaveBeenCalledWith(["V:V", "I:A", "R:Ω"]);
+    // CC-12G: row order is now deterministically shuffled per instance
+    // (task brief §2), so only the submitted VALUE SET (never row
+    // position) is asserted -- marking is set_equality, order-independent.
+    expect(onSubmit).toHaveBeenCalledTimes(1);
+    expect([...(onSubmit.mock.calls[0]![0] as readonly string[])].sort()).toEqual(["I:A", "R:Ω", "V:V"]);
+  });
+
+  // CC-12G: row and choice order must vary between independently
+  // generated instances but stay stable for the SAME instance (task
+  // brief §3 A/B), and correctness (§9's value-keyed submission, proven
+  // above) is unaffected by whichever order actually rendered.
+  // Each render lives in its own `it()` block, relying on RNTL's own
+  // automatic between-test cleanup, rather than rendering more than once
+  // inside a single test -- found to leave later renders in this file
+  // unable to find anything at all (a real RNTL hazard, distinct from
+  // and in addition to the "never fire a synthetic layout event" one
+  // documented elsewhere in this repo). Results are compared via
+  // module-scoped variables, since Jest runs `it()`s within one
+  // `describe` sequentially by default.
+  describe("CC-12G: 'multi_select' (SI-unit matching) row/choice order is deterministically shuffled per instance", () => {
+    const blueprint = blueprintFor("ohms_law.match_variables_units");
+    let stableA: string[] = [];
+    let stableB: string[] = [];
+    let varietyA: string[] = [];
+    let varietyB: string[] = [];
+
+    it("A1: renders one instance once", async () => {
+      const rendered = await render(
+        <AnswerInputDispatch blueprint={blueprint} instance={instanceFor(blueprint.id, "review_stability_check")} formulaFamily={FORMULA_OHMS_LAW} onSubmit={jest.fn()} />,
+      );
+      stableA = choiceLabels(rendered);
+      expect(stableA.length).toBeGreaterThan(0);
+    });
+
+    it("A2 (stability): rendering the SAME instance again reproduces the exact same order", async () => {
+      const rendered = await render(
+        <AnswerInputDispatch blueprint={blueprint} instance={instanceFor(blueprint.id, "review_stability_check")} formulaFamily={FORMULA_OHMS_LAW} onSubmit={jest.fn()} />,
+      );
+      stableB = choiceLabels(rendered);
+      expect(stableB).toEqual(stableA);
+    });
+
+    it("B1: renders a first independently generated instance", async () => {
+      const rendered = await render(
+        <AnswerInputDispatch blueprint={blueprint} instance={instanceFor(blueprint.id, "variety_0")} formulaFamily={FORMULA_OHMS_LAW} onSubmit={jest.fn()} />,
+      );
+      varietyA = choiceLabels(rendered);
+      expect(varietyA.length).toBeGreaterThan(0);
+    });
+
+    it("B2 (variability): a second, differently generated instance observes a different order", async () => {
+      const rendered = await render(
+        <AnswerInputDispatch blueprint={blueprint} instance={instanceFor(blueprint.id, "variety_1")} formulaFamily={FORMULA_OHMS_LAW} onSubmit={jest.fn()} />,
+      );
+      varietyB = choiceLabels(rendered);
+      expect(varietyB).not.toEqual(varietyA);
+    });
   });
 
   it("renders shown-working classification choices for a 'worked_error_classification' answer type", async () => {

@@ -20,6 +20,7 @@ import {
   type LearnerEvidenceSnapshot,
   type LessonAssemblyResult,
   type LessonInstance,
+  type PrerequisiteAdvisory,
 } from "./types.ts";
 
 /** WP1.3 §12 states treated as genuine evidence of weakness -- NOT_ASSESSED/INSUFFICIENT_EVIDENCE/EMERGING never trigger mandatory prerequisite remediation (WP1.3 §39.1: teaching must not be gated behind a diagnostic). */
@@ -103,39 +104,46 @@ function assembleOwnSequence(lesson: LessonPlan, evidence: LearnerEvidenceSnapsh
   };
 }
 
-function findUnmetPrerequisite(lesson: LessonPlan, evidence: LearnerEvidenceSnapshot): string | undefined {
+function findUnmetPrerequisites(lesson: LessonPlan, evidence: LearnerEvidenceSnapshot): readonly string[] {
+  const unmet: string[] = [];
   for (const familyId of lesson.prerequisiteKnowledge) {
     // prerequisiteKnowledge holds ASSERTION-FAMILY ids, so family-level
     // state is consulted (CC-06D §10.2) -- never the capability map.
     const status = evidence.familyStatus.get(familyId);
     if (status !== undefined && WEAK_PREREQUISITE_STATES.has(status)) {
-      return familyId;
+      unmet.push(familyId);
     }
   }
-  return undefined;
+  return unmet;
 }
 
 /**
  * Assembles the deterministic, learner-specific instance for one
- * canonical lesson. If a prerequisite family has direct evidence of
- * weakness (WP1.3 WEAK/CONFLICTING), and the manifest resolves a unique
- * remediation candidate for it, returns `prerequisite_required` with
- * that remediation lesson's own assembled instance instead of the main
- * lesson -- the caller completes the prerequisite lesson first, then
- * calls this function again once its evidence has improved. If no
- * remediation candidate exists, returns `prerequisite_unresolved`
- * rather than silently proceeding as if the weakness did not exist.
+ * canonical lesson. CC-12G (Product Owner product-architecture decision):
+ * the requested lesson's own instance is ALWAYS produced and returned --
+ * a prerequisite family with direct evidence of weakness (WP1.3 WEAK/
+ * CONFLICTING) never blocks assembly, it only adds an advisory entry
+ * (with the remediation lesson's own instance already assembled too, if
+ * the manifest resolves a unique candidate for that family) so a caller
+ * can show a readiness note or offer remediation without refusing to
+ * open the lesson. See ./types.ts's `PrerequisiteAdvisory` doc comment
+ * for the full rationale -- this replaces the previous hard-blocking
+ * `prerequisite_required`/`prerequisite_unresolved` statuses, which
+ * refused to assemble the requested lesson at all.
  */
 export function assembleLessonInstance(lesson: LessonPlan, evidence: LearnerEvidenceSnapshot, context: AssemblyContext): LessonAssemblyResult {
-  const unmetFamilyId = findUnmetPrerequisite(lesson, evidence);
-  if (unmetFamilyId) {
-    const resolution = resolvePrerequisiteCandidate(unmetFamilyId, context.allLessons, lesson);
-    if (resolution.status === "unresolved") {
-      return { status: "prerequisite_unresolved", unresolved: [{ assertionFamilyId: unmetFamilyId, reason: "no_candidate_lesson" }] };
-    }
-    const prerequisiteInstance = assembleOwnSequence(resolution.lesson, evidence, context);
-    return { status: "prerequisite_required", prerequisiteInstance, unmetFamilyId, mainLessonPending: lesson };
+  const instance = assembleOwnSequence(lesson, evidence, context);
+  const unmetFamilyIds = findUnmetPrerequisites(lesson, evidence);
+  if (unmetFamilyIds.length === 0) {
+    return { status: "ready", instance };
   }
 
-  return { status: "ready", instance: assembleOwnSequence(lesson, evidence, context) };
+  const advisories: PrerequisiteAdvisory[] = unmetFamilyIds.map((unmetFamilyId) => {
+    const resolution = resolvePrerequisiteCandidate(unmetFamilyId, context.allLessons, lesson);
+    if (resolution.status === "unresolved") {
+      return { unmetFamilyId, remediation: { status: "unresolved", reason: "no_candidate_lesson" } };
+    }
+    return { unmetFamilyId, remediation: { status: "available", lesson: resolution.lesson, instance: assembleOwnSequence(resolution.lesson, evidence, context) } };
+  });
+  return { status: "ready_with_prerequisite_advisory", instance, advisories };
 }

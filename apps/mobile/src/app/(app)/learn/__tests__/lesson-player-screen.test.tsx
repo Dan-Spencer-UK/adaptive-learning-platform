@@ -194,3 +194,86 @@ describe("LessonPlayerScreen (generic lesson identity)", () => {
     expect(mockRouter.replace).toHaveBeenCalledWith("/learn");
   });
 });
+
+// CC-12G: "previous step" review navigation. Sourced from the session's
+// own completedStepIds (never stepSequence/currentIndex arithmetic --
+// see lesson-player.tsx's own reviewIndex declaration comment for why),
+// rendered read-only (LessonStepView's readOnly prop never wires a
+// submit handler), so duplicate evidence is structurally impossible, not
+// merely policy.
+describe("LessonPlayerScreen -- previous-step review navigation", () => {
+  beforeEach(() => {
+    resetFoundationDbHandleForTests();
+    jest.clearAllMocks();
+    mockRouter.canGoBack.mockReturnValue(true);
+    mockLearnerId = "learner.test";
+    mockParams = { lessonId: "lesson.electrical.ohms-law" };
+  });
+
+  it("Previous has no effect on the very first step -- there is no history to go back to yet", async () => {
+    const screen = await render(<LessonPlayerScreen />);
+    await waitFor(() => expect(screen.getByText("Introduction")).toBeTruthy(), WAIT_OPTS);
+    await fireEvent.press(screen.getByLabelText("Previous lesson step"));
+    // Still on the live first step -- no review banner, same section.
+    expect(screen.getByText("Introduction")).toBeTruthy();
+    expect(screen.queryByTestId("lesson-review-banner")).toBeNull();
+  });
+
+  it("Previous shows the immediately preceding completed step, and Next returns to the live current step", async () => {
+    const screen = await render(<LessonPlayerScreen />);
+    await advanceTo(screen, "Try it"); // orientation -> activate_prior_knowledge
+    await advanceTo(screen, "Concept"); // -> introduce_relationship
+
+    await fireEvent.press(screen.getByLabelText("Previous lesson step"));
+    await waitFor(() => expect(screen.getByTestId("lesson-review-banner")).toBeTruthy(), WAIT_OPTS);
+    // The immediately preceding completed step is activate_prior_knowledge ("Try it"), not orientation.
+    expect(screen.getByText("Try it")).toBeTruthy();
+
+    await fireEvent.press(screen.getByLabelText("Previous lesson step"));
+    await waitFor(() => expect(screen.getByText("Introduction")).toBeTruthy(), WAIT_OPTS);
+
+    // Previous lesson step is disabled once at the earliest history entry -- a further press stays put.
+    await fireEvent.press(screen.getByLabelText("Previous lesson step"));
+    expect(screen.getByText("Introduction")).toBeTruthy();
+
+    // Next walks forward through the same history, eventually returning to the live step.
+    await fireEvent.press(screen.getByLabelText("Next lesson step"));
+    await waitFor(() => expect(screen.getByText("Try it")).toBeTruthy(), WAIT_OPTS);
+    await fireEvent.press(screen.getByLabelText("Next lesson step"));
+    await waitFor(() => expect(screen.queryByTestId("lesson-review-banner")).toBeNull(), WAIT_OPTS);
+    expect(screen.getByText("Concept")).toBeTruthy();
+  });
+
+  it("reviewing a graded step shows it read-only -- no answer input, no Submit -- and does not touch persisted session state", async () => {
+    const screen = await render(<LessonPlayerScreen />);
+    await advanceTo(screen, "Try it");
+    await advanceTo(screen, "Concept");
+    await advanceTo(screen, "How it works");
+    await advanceTo(screen, "Try it"); // interpret_variables_and_units, graded
+
+    await fireEvent.press(screen.getByLabelText("V (voltage): V"));
+    await fireEvent.press(screen.getByLabelText("I (current): A"));
+    await fireEvent.press(screen.getByLabelText("R (resistance): Ω"));
+    await submitAndAwaitFeedback(screen);
+    await advanceTo(screen, "Worked example"); // commit the advance, land on worked_example_solve_voltage
+
+    const activeId = await getActiveLessonInstanceId("learner.test");
+    const beforeReview = await loadLessonSession(activeId!, "learner.test");
+
+    // Step back into the just-completed graded step.
+    await fireEvent.press(screen.getByLabelText("Previous lesson step"));
+    await waitFor(() => expect(screen.getByText("Match each Ohm's-law variable to its correct SI unit")).toBeTruthy(), WAIT_OPTS);
+    expect(screen.getByText(/Reviewing a completed step/)).toBeTruthy();
+    expect(screen.queryByLabelText("V (voltage): V")).toBeNull();
+    expect(screen.queryByLabelText("Submit answer")).toBeNull();
+
+    const duringReview = await loadLessonSession(activeId!, "learner.test");
+    expect(duringReview).toEqual(beforeReview);
+
+    // Returning forward restores exactly the live step untouched.
+    await fireEvent.press(screen.getByLabelText("Next lesson step"));
+    await waitFor(() => expect(screen.getByText("Worked example")).toBeTruthy(), WAIT_OPTS);
+    const afterReview = await loadLessonSession(activeId!, "learner.test");
+    expect(afterReview).toEqual(beforeReview);
+  });
+});

@@ -184,9 +184,9 @@ describe("DiagramRenderer registry", () => {
       const emfBlueprint = blueprint({ id: "emf.motional_emf_geometry", type: "magnetic_field", parameters: [] });
       const emfDiagram = { blueprintId: "emf.motional_emf_geometry", parameters: {}, labels: [] };
       const teachingRender = await render(<DiagramRenderer blueprint={emfBlueprint} diagram={emfDiagram} context="teaching" />);
-      expect(teachingRender.getByLabelText(/A conductor of length l moving with velocity v/)).toBeTruthy();
+      expect(teachingRender.getByLabelText(/A conductor of length L moving with velocity v/)).toBeTruthy();
       const assessmentRender = await render(<DiagramRenderer blueprint={emfBlueprint} diagram={emfDiagram} context="assessment" />);
-      expect(assessmentRender.getByLabelText(/A conductor of length l moving with velocity v/)).toBeTruthy();
+      expect(assessmentRender.getByLabelText(/A conductor of length L moving with velocity v/)).toBeTruthy();
     });
   });
 

@@ -24,4 +24,18 @@ describe("FormulaEquation", () => {
     const { getByLabelText } = await render(<FormulaEquation target="Rt" expression={form.expression} />);
     expect(getByLabelText(/Rt equals R1 plus R2 plus R3 plus R4/)).toBeTruthy();
   });
+
+  // CC-12G: F = B x I x l originally rendered capital I (current) and
+  // lowercase l (conductor length) as visually near-identical vertical
+  // strokes (a Product Owner emulator finding). The governed length
+  // symbol is renamed to plain capital "L" (the course's own existing
+  // notation) rather than introducing a special glyph -- "I" and "L"
+  // are visually distinguishable strokes.
+  it("renders I and L as distinct plain symbols, with the accessibility label unaffected", async () => {
+    const expression = { operation: "multiply" as const, operands: ["B", "I", "L"] };
+    const { getByText, getByLabelText } = await render(<FormulaEquation target="F" expression={expression} />);
+    expect(getByText("I")).toBeTruthy();
+    expect(getByText("L")).toBeTruthy();
+    expect(getByLabelText("F equals B times I times L")).toBeTruthy();
+  });
 });

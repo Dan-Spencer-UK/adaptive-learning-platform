@@ -75,6 +75,21 @@ export function createRngFromIdentity(identity: DeterministicIdentity): Rng {
   return createRng(deriveSeed(identity));
 }
 
+/**
+ * Creates an independently-seeded Rng for one named "domain" derived from a
+ * deterministic identity tuple (CC-12G: answer-option-order randomisation).
+ * `domain` distinguishes this stream from the generation-time Rng
+ * `createRngFromIdentity` produces, and from any other domain requested
+ * against the same identity (e.g. shuffling two different option lists on
+ * the same question instance) -- each gets its own uncorrelated sequence,
+ * while remaining exactly reproducible for the same (identity, domain)
+ * pair. Never reuses the executor's own generation-time Rng, which is not
+ * exposed on `GeneratedQuestionInstance` by design.
+ */
+export function createRngForDomain(identity: DeterministicIdentity, domain: string): Rng {
+  return createRng(deriveSeed({ ...identity, blueprintId: `${identity.blueprintId}::${domain}` }));
+}
+
 /** Integer in [min, max], inclusive on both ends. */
 export function nextInt(rng: Rng, min: number, max: number): number {
   if (max < min) throw new RangeError(`nextInt: max (${max}) < min (${min})`);
@@ -87,6 +102,25 @@ export function pick<T>(rng: Rng, options: readonly T[]): T {
   const value = options[nextInt(rng, 0, options.length - 1)];
   if (value === undefined) throw new RangeError("pick: unreachable index");
   return value;
+}
+
+/**
+ * Deterministically reorders a readonly array (Fisher-Yates), leaving the
+ * input untouched. Same `rng` state -> same resulting order, always; a
+ * fresh `Rng` (a different seed) may produce a different order. Used for
+ * CC-12G's answer-option-order randomisation -- callers derive a
+ * dedicated, domain-separated `Rng` per list (see `createRng`/`fnv1a32`)
+ * so shuffling one list never correlates with another.
+ */
+export function shuffleDeterministic<T>(rng: Rng, items: readonly T[]): T[] {
+  const result = items.slice();
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = nextInt(rng, 0, i);
+    const tmp = result[i]!;
+    result[i] = result[j]!;
+    result[j] = tmp;
+  }
+  return result;
 }
 
 /**

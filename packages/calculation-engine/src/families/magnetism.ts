@@ -217,16 +217,16 @@ const recogniseAttractionRepulsion: QuestionExecutor = (ctx) => {
 };
 
 // CC-11.1: AC5.3's own governed "force-on-conductor-calculation"
-// obligation -- F = B I l, the single governed right-angles case only
+// obligation -- F = B I L, the single governed right-angles case only
 // (no vector maths, no sin(theta)). Single target (F) only, matching
 // formula.force_on_conductor's own single declared form.
 const calculateForceOnConductor: QuestionExecutor = (ctx) => {
   const formulaFamily = requireFormulaFamily(ctx, FORCE_ON_CONDUCTOR_FORMULA_ID);
   const B = cleanInteger(ctx.rng, 1, 20) / 10; // 0.1 - 2.0 T
   const I = cleanInteger(ctx.rng, 1, 15); // A
-  const l = cleanInteger(ctx.rng, 5, 100) / 100; // 0.05 - 1.00 m
-  const formulaInstance = buildFormulaInstance(formulaFamily, "F", { B, I, l });
-  return assembleInstance(ctx, { B, I, l }, { formula: formulaInstance }, { answer: ctx.blueprint.answer, value: formulaInstance.result });
+  const L = cleanInteger(ctx.rng, 5, 100) / 100; // 0.05 - 1.00 m
+  const formulaInstance = buildFormulaInstance(formulaFamily, "F", { B, I, L });
+  return assembleInstance(ctx, { B, I, L }, { formula: formulaInstance }, { answer: ctx.blueprint.answer, value: formulaInstance.result });
 };
 
 // CC-12: a fixed, non-randomised root-cause diagnostic (no pick() call --

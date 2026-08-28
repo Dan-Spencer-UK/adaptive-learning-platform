@@ -3,7 +3,7 @@ import { render } from "@testing-library/react-native";
 import { MotionalEmfDiagram } from "./MotionalEmfDiagram";
 
 describe("MotionalEmfDiagram", () => {
-  it("states that B, l and v are mutually perpendicular", async () => {
+  it("states that B, L and v are mutually perpendicular", async () => {
     const { getByLabelText } = await render(
       <MotionalEmfDiagram diagram={{ blueprintId: "emf.motional_emf_geometry", parameters: {}, labels: [] }} />,
     );
@@ -12,11 +12,11 @@ describe("MotionalEmfDiagram", () => {
     ).toBeTruthy();
   });
 
-  it("identifies what each of B, l and v represents in the accessibility label", async () => {
+  it("identifies what each of B, L and v represents in the accessibility label", async () => {
     const { getByLabelText } = await render(
       <MotionalEmfDiagram diagram={{ blueprintId: "emf.motional_emf_geometry", parameters: {}, labels: [] }} />,
     );
-    expect(getByLabelText(/A conductor of length l lies across two parallel rails/)).toBeTruthy();
+    expect(getByLabelText(/A conductor of length L lies across two parallel rails/)).toBeTruthy();
     expect(getByLabelText(/can slide along the rails with velocity v/)).toBeTruthy();
     expect(getByLabelText(/The magnetic field B points straight down through the plane/)).toBeTruthy();
   });
@@ -29,11 +29,11 @@ describe("MotionalEmfDiagram", () => {
     expect(a.toJSON()).toEqual(b.toJSON());
   });
 
-  it("draws all three of B, l and v as distinct labelled SVG elements", async () => {
+  it("draws all three of B, L and v as distinct labelled SVG elements", async () => {
     const { toJSON } = await render(<MotionalEmfDiagram diagram={{ blueprintId: "emf.motional_emf_geometry", parameters: {}, labels: [] }} />);
     const svgTree = JSON.stringify(toJSON());
     expect(svgTree).toContain('"content":"B"');
-    expect(svgTree).toContain('"content":"l"');
+    expect(svgTree).toContain('"content":"L"');
     expect(svgTree).toContain('"content":"v"');
   });
 

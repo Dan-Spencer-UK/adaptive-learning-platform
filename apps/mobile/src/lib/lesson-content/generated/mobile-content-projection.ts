@@ -3745,33 +3745,6 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "completionCondition": "view_acknowledged",
           "branchRoutes": [],
           "evidenceEmitted": []
-        },
-        {
-          "id": "exit_completion",
-          "type": "exit_completion",
-          "purpose": "Confirm lesson completion against the governed completion criteria and surface what was strengthened.",
-          "requirement": "required",
-          "teaches": [],
-          "reinforces": [],
-          "tests": [],
-          "capabilityIds": [],
-          "misconceptionTargets": [],
-          "representation": {},
-          "presentation": {
-            "interactionRequired": false,
-            "answerReveal": "not_applicable",
-            "contentMayScroll": false,
-            "progressiveReveal": false
-          },
-          "scaffoldingLevel": "independent",
-          "cognitiveDemand": "introductory",
-          "feedback": {
-            "mode": "immediate",
-            "explainWhy": false
-          },
-          "completionCondition": "view_acknowledged",
-          "branchRoutes": [],
-          "evidenceEmitted": []
         }
       ],
       "misconceptionTargets": [
@@ -3807,8 +3780,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "misconception_check_rearrangement",
           "plausibility_check_transfer",
           "retrieval_check",
-          "recap",
-          "exit_completion"
+          "recap"
         ],
         "requiredCapabilityEvidence": [
           "cap.ohms_law.solve_for_voltage",
@@ -3824,7 +3796,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "cap.ohms_law.check_plausibility"
         ],
         "requiresRemediationClearance": true,
-        "exitSummary": "The learner has calculated voltage, current and resistance from V = I x R, selected the correct rearrangement for an unknown quantity, judged the plausibility of a result, and -- if either governed misconception was detected -- cleared the remediation route before completion."
+        "exitSummary": "You've practised calculating voltage, current and resistance using V = I × R, chosen the right equation for an unknown quantity, and checked whether a result made real-world sense. If a mix-up was spotted along the way, you also worked through it before finishing."
       },
       "presentationModes": [
         "learn",
@@ -9618,6 +9590,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "EL-CONCEPT-FIELD-DIRECTION-RULE-001",
         "EL-CONCEPT-FORCE-ON-CONDUCTOR-001",
         "EL-REL-FORCE-ON-CONDUCTOR-001",
+        "EL-CONCEPT-PAGE-DIRECTION-NOTATION-001",
         "EL-CONCEPT-FLEMING-LEFT-HAND-001",
         "EL-CONCEPT-ELECTROMAGNETISM-001",
         "EL-CONCEPT-EMF-001",
@@ -9667,11 +9640,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         {
           "id": "concept_field_from_current",
           "type": "concept_explanation",
-          "purpose": "State that a current-carrying conductor produces a magnetic field, and how to find that field's direction (Maxwell's screw rule / right-hand grip rule).",
+          "purpose": "State that a current-carrying conductor produces a magnetic field, and how to find that field's direction (Maxwell's screw rule / right-hand grip rule). Also teaches the ×/• into/out-of-page diagram convention (CC-12G) before the first diagram that uses it, so every later use in this lesson (this diagram and the force-direction diagram) is never unexplained.",
           "requirement": "required",
           "teaches": [
             "EL-CONCEPT-MAGNETIC-FIELD-CURRENT-001",
-            "EL-CONCEPT-FIELD-DIRECTION-RULE-001"
+            "EL-CONCEPT-FIELD-DIRECTION-RULE-001",
+            "EL-CONCEPT-PAGE-DIRECTION-NOTATION-001"
           ],
           "reinforces": [],
           "tests": [],
@@ -9740,7 +9714,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         {
           "id": "concept_force_on_conductor",
           "type": "concept_explanation",
-          "purpose": "Describe the force a current-carrying conductor experiences in a magnetic field (F = B I l) and its direction (Fleming's left-hand rule) -- the motor principle's foundation.",
+          "purpose": "Describe the force a current-carrying conductor experiences in a magnetic field (F = B I L) and its direction (Fleming's left-hand rule) -- the motor principle's foundation.",
           "requirement": "required",
           "teaches": [
             "EL-CONCEPT-FORCE-ON-CONDUCTOR-001",
@@ -9776,7 +9750,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         {
           "id": "worked_force_on_conductor",
           "type": "worked_example",
-          "purpose": "Model calculating the force on a current-carrying conductor using F = B I l, before the learner practises it unaided.",
+          "purpose": "Model calculating the force on a current-carrying conductor using F = B I L, before the learner practises it unaided.",
           "requirement": "required",
           "teaches": [],
           "reinforces": [],
@@ -9810,7 +9784,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         {
           "id": "guided_calculate_force_on_conductor",
           "type": "guided_interaction",
-          "purpose": "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I l.",
+          "purpose": "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I L.",
           "requirement": "required",
           "teaches": [],
           "reinforces": [],
@@ -10110,7 +10084,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         {
           "id": "concept_emf_and_terminal_voltage",
           "type": "concept_explanation",
-          "purpose": "Describe electromotive force (EMF) and distinguish it from terminal voltage, and introduce induced EMF (e = B l v via Fleming's right-hand rule) as the mechanism a moving conductor uses to generate it.",
+          "purpose": "Describe electromotive force (EMF) and distinguish it from terminal voltage, and introduce induced EMF (e = B L v via Fleming's right-hand rule) as the mechanism a moving conductor uses to generate it.",
           "requirement": "required",
           "teaches": [
             "EL-CONCEPT-EMF-001",
@@ -10149,7 +10123,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         {
           "id": "worked_motional_emf",
           "type": "worked_example",
-          "purpose": "Model calculating the EMF induced in a conductor moving through a magnetic field using e = B l v, before the learner practises it unaided.",
+          "purpose": "Model calculating the EMF induced in a conductor moving through a magnetic field using e = B L v, before the learner practises it unaided.",
           "requirement": "required",
           "teaches": [],
           "reinforces": [],
@@ -10184,7 +10158,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         {
           "id": "guided_calculate_motional_emf",
           "type": "guided_interaction",
-          "purpose": "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B l v.",
+          "purpose": "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B L v.",
           "requirement": "required",
           "teaches": [],
           "reinforces": [],
@@ -12550,7 +12524,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "B = {B} T",
-          "l = {l} m",
+          "L = {L} m",
           "v = {v} m/s",
           "The conductor's length, its velocity and the magnetic field are mutually perpendicular.",
           "Find the induced EMF."
@@ -13350,7 +13324,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "B = {B} T",
           "I = {I} A (current)",
-          "l = {l} m (conductor length)",
+          "L = {L} m (conductor length)",
           "The conductor is at right angles to the field.",
           "Find the force on the conductor."
         ]
@@ -14184,7 +14158,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "id": "ohms_law.select_rearrangement",
       "assertionFamilyId": "electrical.ohms_law",
       "capabilityId": "cap.ohms_law.select_rearrangement",
-      "title": "Select the correct rearrangement of V = I x R for the target quantity",
+      "title": "Choose the correct rearrangement of V = I × R",
       "representation": {},
       "variantDimensions": {
         "target_variable": {
@@ -14218,9 +14192,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "normalisationNote": "One blueprint with target_variable as a variant dimension, rather than three separate select-rearrangement blueprints, since the selection skill being assessed is identical regardless of which variable is unknown.",
       "presentation": {
         "promptLines": [
-          "V = {V} V",
-          "I = {I} A",
-          "R = {R} Ω"
+          "Which equation should you use to calculate {target_variable_name}?"
         ]
       }
     },
@@ -16462,7 +16434,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "unitSymbol": "A"
         },
         {
-          "symbol": "l",
+          "symbol": "L",
           "name": "conductor length in the field",
           "quantity": "length",
           "unitName": "metre",
@@ -16477,10 +16449,10 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "operands": [
               "B",
               "I",
-              "l"
+              "L"
             ]
           },
-          "instruction": "To find the force on the conductor, multiply the magnetic flux density by the current, by the length of conductor in the field: F = B x I x l.",
+          "instruction": "To find the force on the conductor, multiply the magnetic flux density by the current, by the length of conductor in the field: F = B × I × L.",
           "requiresWorkedExample": true
         }
       ],
@@ -16807,7 +16779,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "unitSymbol": "T"
         },
         {
-          "symbol": "l",
+          "symbol": "L",
           "name": "conductor length",
           "quantity": "length",
           "unitName": "metre",
@@ -16828,11 +16800,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
             "operation": "multiply",
             "operands": [
               "B",
-              "l",
+              "L",
               "v"
             ]
           },
-          "instruction": "To find the induced EMF, multiply the magnetic flux density by the conductor length, by its velocity: e = B x l x v.",
+          "instruction": "To find the induced EMF, multiply the magnetic flux density by the conductor length, by its velocity: e = B × L × v.",
           "requiresWorkedExample": true
         }
       ],
@@ -17184,7 +17156,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "knownVariables": [
         "B",
         "I",
-        "l"
+        "L"
       ],
       "steps": [
         "show_formula",
@@ -17195,7 +17167,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "teachingValues": {
         "B": 0.5,
         "I": 4,
-        "l": 0.3
+        "L": 0.3
       }
     },
     {
@@ -17320,7 +17292,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "target": "e",
       "knownVariables": [
         "B",
-        "l",
+        "L",
         "v"
       ],
       "steps": [
@@ -17331,7 +17303,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       ],
       "teachingValues": {
         "B": 0.5,
-        "l": 0.3,
+        "L": 0.3,
         "v": 2
       }
     },
@@ -18230,6 +18202,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "EL-CONCEPT-MAGNETIC-FLUX-DENSITY-001": "Magnetic flux density is the amount of magnetic flux passing through a unit area, describing how concentrated a magnetic field is.",
     "EL-CONCEPT-MAGNETISM-001": "Magnetic poles exert forces on one another: like poles repel and unlike poles attract.",
     "EL-CONCEPT-MOTOR-PRINCIPLE-001": "An electric motor uses the force on a current-carrying conductor in a magnetic field to produce rotational motion.",
+    "EL-CONCEPT-PAGE-DIRECTION-NOTATION-001": "In a diagram, a cross (×) represents a direction pointing into the page, away from the viewer, and a dot (•) represents a direction pointing out of the page, towards the viewer -- used to show a direction, such as current or magnetic field, that runs perpendicular to the page itself.",
     "EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001": "The rated voltage of an AC supply refers to its RMS value, not its peak value, which is higher.",
     "EL-CONCEPT-RESISTANCE-001": "Electrical resistance is the opposition a component presents to the flow of electric current.",
     "EL-CONCEPT-RESISTIVITY-001": "Resistivity is a material property describing how strongly a material opposes current flow, independent of the conductor's length or cross-sectional area.",
@@ -18262,12 +18235,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001": "Common conductors used in electrical installation work include copper and aluminium; common insulators include PVC and rubber.",
     "EL-MOTOR-GENERATOR-COMPARE-001": "Compare an electric motor, which converts electrical energy into mechanical motion using force on a current-carrying conductor, with a generator, which converts mechanical motion into electrical energy using electromagnetic induction.",
     "EL-OHM-PROPORTIONALITY-001": "At constant resistance, current is directly proportional to voltage; at constant voltage, current is inversely proportional to resistance.",
-    "EL-OHM-REARRANGE-001": "Rearrange V = I times R algebraically to make voltage, current or resistance the subject.",
-    "EL-OHM-RELATIONSHIP-001": "For a component obeying Ohm's law, potential difference, current and resistance are related by V = I times R.",
-    "EL-OHM-SELECT-RELATIONSHIP-001": "Select the correct arrangement of V = I times R to use, based on which two quantities are known and which quantity is required.",
-    "EL-OHM-SOLVE-I-001": "Calculate an unknown current from known voltage and resistance by rearranging and applying V = I times R.",
-    "EL-OHM-SOLVE-R-001": "Calculate an unknown resistance from known voltage and current by rearranging and applying V = I times R.",
-    "EL-OHM-SOLVE-V-001": "Calculate an unknown voltage from known current and resistance using V = I times R.",
+    "EL-OHM-REARRANGE-001": "Rearrange V = I × R algebraically to make voltage, current or resistance the subject.",
+    "EL-OHM-RELATIONSHIP-001": "For a component obeying Ohm's law, potential difference, current and resistance are related by V = I × R.",
+    "EL-OHM-SELECT-RELATIONSHIP-001": "Given two known quantities from V = I × R, select the correct rearranged equation to calculate the third.",
+    "EL-OHM-SOLVE-I-001": "Calculate an unknown current from known voltage and resistance by rearranging and applying V = I × R.",
+    "EL-OHM-SOLVE-R-001": "Calculate an unknown resistance from known voltage and current by rearranging and applying V = I × R.",
+    "EL-OHM-SOLVE-V-001": "Calculate an unknown voltage from known current and resistance using V = I × R.",
     "EL-PARALLEL-CURRENT-001": "In a parallel circuit, the supply current divides between the branches, and the branch currents sum to the total current.",
     "EL-PARALLEL-CURRENT-CALC-001": "Calculate an individual branch current in a parallel circuit.",
     "EL-PARALLEL-RESISTANCE-001": "The reciprocal of the total resistance of resistors connected in parallel equals the sum of the reciprocals of the individual branch resistances.",
@@ -18280,8 +18253,8 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "EL-POWER-SOLVE-V2R-001": "Calculate electrical power from known voltage and resistance using P = V squared divided by R.",
     "EL-PROTECTIVE-DEVICE-PURPOSE-001": "A protective device, such as a fuse or circuit breaker, is designed to automatically disconnect a circuit when current exceeds a safe value.",
     "EL-REL-FLUX-CHANGE-EMF-001": "The magnitude of the EMF induced in a single loop equals the rate of change of the magnetic flux through it: e = (change in flux) / (time taken).",
-    "EL-REL-FORCE-ON-CONDUCTOR-001": "The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I l, where B is the magnetic flux density, I is the current and l is the length of the conductor in the field.",
-    "EL-REL-INDUCED-EMF-001": "For a straight conductor of effective length l moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B l v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.",
+    "EL-REL-FORCE-ON-CONDUCTOR-001": "The magnitude of the force on a straight current-carrying conductor at right angles to a magnetic field is given by F = B I L, where B is the magnetic flux density, I is the current and L is the length of the conductor in the field.",
+    "EL-REL-INDUCED-EMF-001": "For a straight conductor of effective length L moving through a magnetic field of flux density B, the magnitude of the induced EMF is given by e = B L v (where v is the conductor's velocity) when the conductor's length, its velocity and the magnetic field are all mutually perpendicular (at right angles) to one another.",
     "EL-RESISTIVITY-AREA-EFFECT-001": "Increasing the cross-sectional area of a conductor decreases its resistance, since resistance is inversely proportional to cross-sectional area.",
     "EL-RESISTIVITY-COMPARE-MATERIALS-001": "Compare the resistivity of different materials to determine which is the better conductor: a lower resistivity indicates a better conductor.",
     "EL-RESISTIVITY-LENGTH-EFFECT-001": "Increasing the length of a conductor increases its resistance, since resistance is directly proportional to length.",
@@ -18361,9 +18334,9 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
     "MIS-EL-ENERGY-UNIT-CONFUSION-001": "Confuses the joule and the kilowatt-hour as interchangeable without converting between them, or is unaware that they measure the same quantity (energy) at different scales.",
     "MIS-EL-FLEMING-FINGER-ASSIGNMENT-CONFUSION-001": "Mixes up which finger in Fleming's left-hand rule represents Field, Current and Motion (force) -- e.g. treating the thumb as current or the first finger as motion -- rather than the governed First finger=Field, seCond finger=Current, thuMb=Motion mapping.",
     "MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001": "Connects a voltmeter in series or an ammeter in parallel, swapping the correct connection method for the two instruments.",
-    "MIS-EL-OHM-REARRANGE-ERROR-001": "Incorrectly rearranges a multiplicative relationship such as V = I times R or P = V times I (for example moving a variable to the wrong side, or inverting the wrong pair of variables) when isolating a different subject.",
-    "MIS-EL-OHM-UNRELATED-SYMBOLS-001": "Treats V, I and R as three unrelated symbols to memorise rather than as a single relationship connecting voltage, current and resistance (V = I times R).",
-    "MIS-EL-OHM-WRONG-OPERATION-001": "Selects the wrong arithmetic operation when calculating an unknown quantity from V = I times R (for example multiplying instead of dividing when solving for current or resistance, or dividing the two known quantities in the wrong order).",
+    "MIS-EL-OHM-REARRANGE-ERROR-001": "Incorrectly rearranges a multiplicative relationship such as V = I × R or P = V × I (for example moving a variable to the wrong side, or inverting the wrong pair of variables) when isolating a different subject.",
+    "MIS-EL-OHM-UNRELATED-SYMBOLS-001": "Treats V, I and R as three unrelated symbols to memorise rather than as a single relationship connecting voltage, current and resistance (V = I × R).",
+    "MIS-EL-OHM-WRONG-OPERATION-001": "Selects the wrong arithmetic operation when calculating an unknown quantity from V = I × R (for example multiplying instead of dividing when solving for current or resistance, or dividing the two known quantities in the wrong order).",
     "MIS-EL-PARALLEL-RESISTANCE-ADDITION-001": "Calculates the total resistance of a parallel circuit by simply adding the branch resistances, as if they were in series, instead of using the reciprocal-of-sum-of-reciprocals relationship.",
     "MIS-EL-PEAK-RMS-CONFUSION-001": "Confuses the peak value of an AC waveform with its RMS value, for example assuming a stated AC supply voltage (such as 230 V) is a peak value rather than an RMS value.",
     "MIS-EL-RECIPROCAL-FORGOTTEN-INVERT-001": "Correctly sums the reciprocals of the branch resistances in a parallel circuit but forgets to take the reciprocal of the result, giving an answer that is the reciprocal of the correct total resistance rather than the total resistance itself.",

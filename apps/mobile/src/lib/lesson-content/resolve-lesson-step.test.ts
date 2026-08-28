@@ -28,9 +28,14 @@ describe("resolveLessonStep (against the real Ohm's Law lesson, resolved from th
     expect(resolved.bodyStatements[0]).not.toBe(resolved.step.purpose);
   });
 
+  // CC-12G: lesson.electrical.ohms-law no longer has an in-sequence
+  // exit_completion step (it duplicated the Lesson Player's own
+  // dedicated completion screen -- see that lesson's own header
+  // comment), so this generic-resolver behaviour is proven against
+  // lesson.electrical.resistors-series, which still has one.
   it("resolves exit_completion to the governed completion criteria's exitSummary", () => {
-    const resolved = resolveLessonStep(LESSON_OHMS_LAW, "exit_completion", LOOKUP);
-    expect(resolved.bodyStatements).toEqual([LESSON_OHMS_LAW.completionCriteria.exitSummary]);
+    const resolved = resolveLessonStep(LESSON_RESISTORS_SERIES, "exit_completion", seriesRecord.lookup);
+    expect(resolved.bodyStatements).toEqual([LESSON_RESISTORS_SERIES.completionCriteria.exitSummary]);
   });
 
   it("resolves introduce_relationship to the real EL-OHM-RELATIONSHIP-001 assertion statement", () => {
@@ -59,6 +64,27 @@ describe("resolveLessonStep (against the real Ohm's Law lesson, resolved from th
   it("carries the governed misconception descriptions for feedback resolution", () => {
     const resolved = resolveLessonStep(LESSON_OHMS_LAW, "misconception_check_wrong_operation", LOOKUP);
     expect(resolved.misconceptionDescriptions["MIS-EL-OHM-WRONG-OPERATION-001"]).toMatch(/wrong arithmetic operation/i);
+  });
+
+  // CC-12G: this lesson's own exit_completion step was removed -- it
+  // duplicated the Lesson Player's separate, always-shown completion
+  // screen (LessonCompletionView.tsx), producing two back-to-back,
+  // near-identical "Lesson complete" screens (a Product Owner emulator
+  // finding). completionCriteria.exitSummary is independently
+  // schema-required and still drives that one remaining completion
+  // screen -- see this lesson's own header comment.
+  describe("CC-12G: no in-sequence exit_completion step; the completion message is plain learner-facing language", () => {
+    it("has 15 steps, none of type exit_completion", () => {
+      expect(LESSON_OHMS_LAW.steps).toHaveLength(15);
+      expect(LESSON_OHMS_LAW.steps.some((s) => s.type === "exit_completion")).toBe(false);
+      expect(LESSON_OHMS_LAW.completionCriteria.requiredStepIds).not.toContain("exit_completion");
+      expect(LESSON_OHMS_LAW.steps.at(-1)?.id).toBe("recap");
+    });
+
+    it("the completion summary avoids internal-engine terminology, translated into plain language", () => {
+      const exitSummary = LESSON_OHMS_LAW.completionCriteria.exitSummary;
+      expect(exitSummary).not.toMatch(/governed misconception|cleared the remediation route|\bplausibility\b/i);
+    });
   });
 
   it("every step resolves without throwing and has a non-empty section label", () => {

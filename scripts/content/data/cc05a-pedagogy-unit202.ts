@@ -922,6 +922,11 @@ const assertionFamilyMemberships: AssertionFamilyMembership[] = [
     // CC-09B.6 (adversarial gap review): F=BIl/Fleming's left-hand rule and
     // e=Blv/Fleming's right-hand rule, official-teaching-confirmed gaps.
     ["EL-REL-FORCE-ON-CONDUCTOR-001", "consequence"],
+    // CC-12G: prerequisite_concept, not consequence -- the x/dot
+    // page-direction notation is a general diagram-reading convention
+    // needed to correctly read the force/field diagrams, not itself
+    // derived from the magnetism_and_electromagnetism relationship.
+    ["EL-CONCEPT-PAGE-DIRECTION-NOTATION-001", "prerequisite_concept"],
     ["EL-CONCEPT-FLEMING-LEFT-HAND-001", "consequence"],
     ["EL-REL-INDUCED-EMF-001", "consequence"],
     ["EL-CONCEPT-FLEMING-RIGHT-HAND-001", "consequence"],
@@ -1558,7 +1563,7 @@ const capabilities: Capability[] = [
     "Identify the SI unit of magnetic flux or magnetic flux density.",
   ),
   // CC-11.1: AC5.3's own governed "force-on-conductor-calculation"
-  // obligation (F = B I l, Fleming's left-hand rule, basis
+  // obligation (F = B I L, Fleming's left-hand rule, basis
   // OFFICIAL_TEACHING_INTERPRETATION) had no capability, formula family,
   // worked example or question blueprint anywhere -- a genuine gap CC-11
   // found and explicitly deferred, closed here.
@@ -1566,7 +1571,7 @@ const capabilities: Capability[] = [
     "cap.magnetism.calculate_force_on_conductor",
     "electrical.magnetism_and_electromagnetism",
     "calculate",
-    "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I l.",
+    "Calculate the force on a straight current-carrying conductor at right angles to a magnetic field, using F = B I L.",
   ),
 
   // --- electrical.emf_and_generation -----------------------------------------
@@ -1592,7 +1597,7 @@ const capabilities: Capability[] = [
     "Calculate the EMF induced in a single loop by a changing magnetic flux, or the flux change from a given EMF and time.",
   ),
   // CC-11.1: AC5.3's own governed "induced-emf-calculation" obligation
-  // (e = B l v, the motional-EMF special case for a conductor moving
+  // (e = B L v, the motional-EMF special case for a conductor moving
   // through a field, distinct from the general rate-of-change-of-flux
   // form above; Fleming's right-hand rule; basis
   // OFFICIAL_TEACHING_INTERPRETATION) had no capability, formula family,
@@ -1602,7 +1607,7 @@ const capabilities: Capability[] = [
     "cap.emf.calculate_motional_emf",
     "electrical.emf_and_generation",
     "calculate",
-    "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B l v (conductor length, velocity and field mutually perpendicular).",
+    "Calculate the EMF induced in a straight conductor moving through a magnetic field, using e = B L v (conductor length, velocity and field mutually perpendicular).",
   ),
 
   // --- electrical.ac_dc_waveforms ---------------------------------------------
@@ -2533,13 +2538,13 @@ const formulaFamilies: FormulaFamily[] = [
       { symbol: "F", name: "force", quantity: "force", unitName: "newton", unitSymbol: "N" },
       { symbol: "B", name: "magnetic flux density", quantity: "magnetic flux density", unitName: "tesla", unitSymbol: "T" },
       { symbol: "I", name: "current", quantity: "current", unitName: "ampere", unitSymbol: "A" },
-      { symbol: "l", name: "conductor length in the field", quantity: "length", unitName: "metre", unitSymbol: "m" },
+      { symbol: "L", name: "conductor length in the field", quantity: "length", unitName: "metre", unitSymbol: "m" },
     ],
     forms: [
       {
         target: "F",
-        expression: { operation: "multiply", operands: ["B", "I", "l"] },
-        instruction: "To find the force on the conductor, multiply the magnetic flux density by the current, by the length of conductor in the field: F = B x I x l.",
+        expression: { operation: "multiply", operands: ["B", "I", "L"] },
+        instruction: "To find the force on the conductor, multiply the magnetic flux density by the current, by the length of conductor in the field: F = B × I × L.",
         requiresWorkedExample: true,
       },
     ],
@@ -2552,14 +2557,14 @@ const formulaFamilies: FormulaFamily[] = [
     variables: [
       { symbol: "e", name: "induced EMF", quantity: "emf", unitName: "volt", unitSymbol: "V" },
       { symbol: "B", name: "magnetic flux density", quantity: "magnetic flux density", unitName: "tesla", unitSymbol: "T" },
-      { symbol: "l", name: "conductor length", quantity: "length", unitName: "metre", unitSymbol: "m" },
+      { symbol: "L", name: "conductor length", quantity: "length", unitName: "metre", unitSymbol: "m" },
       { symbol: "v", name: "conductor velocity", quantity: "speed", unitName: "metre per second", unitSymbol: "m/s" },
     ],
     forms: [
       {
         target: "e",
-        expression: { operation: "multiply", operands: ["B", "l", "v"] },
-        instruction: "To find the induced EMF, multiply the magnetic flux density by the conductor length, by its velocity: e = B x l x v.",
+        expression: { operation: "multiply", operands: ["B", "L", "v"] },
+        instruction: "To find the induced EMF, multiply the magnetic flux density by the conductor length, by its velocity: e = B × L × v.",
         requiresWorkedExample: true,
       },
     ],
@@ -2749,17 +2754,17 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     id: "worked.force_on_conductor.calculate",
     formulaFamilyId: "formula.force_on_conductor",
     target: "F",
-    knownVariables: ["B", "I", "l"],
+    knownVariables: ["B", "I", "L"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
-    teachingValues: { B: 0.5, I: 4, l: 0.3 },
+    teachingValues: { B: 0.5, I: 4, L: 0.3 },
   },
   {
     id: "worked.motional_emf.calculate",
     formulaFamilyId: "formula.motional_emf",
     target: "e",
-    knownVariables: ["B", "l", "v"],
+    knownVariables: ["B", "L", "v"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
-    teachingValues: { B: 0.5, l: 0.3, v: 2 },
+    teachingValues: { B: 0.5, L: 0.3, v: 2 },
   },
   {
     id: "worked.emf.calculate_flux_change_e",
@@ -2973,8 +2978,20 @@ const questionBlueprints: QuestionBlueprint[] = [
     id: "ohms_law.select_rearrangement",
     familyId: "electrical.ohms_law",
     capabilityId: "cap.ohms_law.select_rearrangement",
-    title: "Select the correct rearrangement of V = I x R for the target quantity",
+    title: "Choose the correct rearrangement of V = I × R",
     difficultyBand: "intermediate",
+    // CC-12G: answer choices are now the actual rearranged equations
+    // ("V = I × R", "I = V / R", "R = V / I"), rendered generically from
+    // this family's own governed `forms` by answer-input-dispatch.tsx --
+    // never a hand-typed option list here. The former interaction showed
+    // bare variable-name buttons ("V (voltage)") under a prompt that
+    // asked the learner to "select the correct arrangement... based on
+    // which quantity is required" without ever actually stating which
+    // quantity was required in that instance -- genuinely incoherent (a
+    // Product Owner emulator finding). Fixed by naming the target
+    // explicitly in the prompt (target_variable_name, set by this
+    // blueprint's own executor) and showing the question as what it
+    // actually assesses: "which equation do I use to find X".
     answer: { type: "formula_selection" },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-OHM-SELECT-RELATIONSHIP-001"],
@@ -2982,7 +2999,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     variantDimensions: { target_variable: { allowed: ["V", "I", "R"] } },
     normalisationNote:
       "One blueprint with target_variable as a variant dimension, rather than three separate select-rearrangement blueprints, since the selection skill being assessed is identical regardless of which variable is unknown.",
-    presentation: { promptLines: ["V = {V} V", "I = {I} A", "R = {R} Ω"] },
+    presentation: { promptLines: ["Which equation should you use to calculate {target_variable_name}?"] },
   }),
   qb({
     id: "ohms_law.match_variables_units",
@@ -4656,11 +4673,14 @@ const questionBlueprints: QuestionBlueprint[] = [
     // shape alone (Product Owner emulator finding, misread as a numeric
     // inconsistency; the underlying generated values were verified
     // correct/single-sourced -- see magnetism.ts's calculateForceOnConductor).
-    // Short parenthetical disambiguation, using the same wording as this
-    // variable's own governed name in formula.force_on_conductor, resolves
-    // the ambiguity without altering the governed physics symbol itself.
+    // CC-12G (Product Owner notation correction): resolved by renaming the
+    // governed length symbol itself from lowercase "l" to plain capital
+    // "L" -- the course's own existing notation (see resistivity's
+    // R = ρL/A) -- rather than introducing a special glyph. "I" and "L"
+    // are visually distinguishable strokes in the app's UI font, so no
+    // further disambiguation is needed.
     presentation: {
-      promptLines: ["B = {B} T", "I = {I} A (current)", "l = {l} m (conductor length)", "The conductor is at right angles to the field.", "Find the force on the conductor."],
+      promptLines: ["B = {B} T", "I = {I} A (current)", "L = {L} m (conductor length)", "The conductor is at right angles to the field.", "Find the force on the conductor."],
     },
   }),
   qb({
@@ -4677,9 +4697,12 @@ const questionBlueprints: QuestionBlueprint[] = [
       diagram: { required: false, blueprintId: "emf.motional_emf_geometry" },
     },
     presentation: {
+      // CC-12G: "L" (capital), not bare "l" -- same readability fix as
+      // magnetism.calculate_force_on_conductor's promptLines, for the
+      // same governed length symbol.
       promptLines: [
         "B = {B} T",
-        "l = {l} m",
+        "L = {L} m",
         "v = {v} m/s",
         "The conductor's length, its velocity and the magnetic field are mutually perpendicular.",
         "Find the induced EMF.",

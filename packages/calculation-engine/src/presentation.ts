@@ -18,6 +18,7 @@
  */
 
 import type { QuestionBlueprint, QuestionPresentation } from "@alp/content-schema";
+import { createRngForDomain, shuffleDeterministic } from "./seed.ts";
 import type { GeneratedQuestionInstance } from "./types.ts";
 
 export class MissingPresentationError extends Error {
@@ -73,21 +74,40 @@ export interface PresentedAnswerOption {
 /**
  * The learner-facing answer options for a blueprint whose choice
  * vocabulary is governed via `answer.options`, labelled from the
- * governed presentation's `answerOptionLabels`. Option order is the
- * governed `answer.options` order. Fails loudly when the blueprint
- * declares no options or a label is missing for a declared option.
+ * governed presentation's `answerOptionLabels`. Fails loudly when the
+ * blueprint declares no options or a label is missing for a declared
+ * option.
+ *
+ * CC-12G: display order is randomised, deterministically, per generated
+ * question instance -- when `instance` is supplied, the returned options
+ * are shuffled with an Rng seeded from that instance's own identity plus
+ * a fixed "answerOptions" domain (`createRngForDomain`), so the SAME
+ * instance (same `instanceId`/`stepId`, e.g. across a re-render or a
+ * resumed session) always reproduces the SAME order, while a fresh
+ * instance (a different seed) may produce a different one. Every
+ * `answer.options` list this function serves (`multiple_choice`,
+ * `worked_error_classification`) is a set of mutually-exclusive labelled
+ * choices with no governed sequential meaning (confirmed by inspection of
+ * every blueprint using this answer shape in the corpus); marking and
+ * misconception attribution are keyed entirely on each option's stable
+ * `value` string (see `marking.ts`), never on array position, so
+ * reordering here cannot affect correctness. Omitting `instance` (as
+ * dev-QA/test call sites that only need labels, not a live instance, may
+ * do) returns the governed authored order unshuffled.
  */
-export function resolveAnswerOptions(blueprint: QuestionBlueprint): readonly PresentedAnswerOption[] {
+export function resolveAnswerOptions(blueprint: QuestionBlueprint, instance?: GeneratedQuestionInstance): readonly PresentedAnswerOption[] {
   const presentation = requirePresentation(blueprint);
   const options = blueprint.answer.options;
   if (!options || options.length === 0) {
     throw new Error(`Question blueprint "${blueprint.id}" has no governed answer.options to present`);
   }
-  return options.map((value) => {
+  const resolved = options.map((value) => {
     const label = presentation.answerOptionLabels?.[value];
     if (!label) {
       throw new Error(`Question blueprint "${blueprint.id}" declares answer option "${value}" but its governed presentation has no learner-facing label for it`);
     }
     return { value, label };
   });
+  if (!instance) return resolved;
+  return shuffleDeterministic(createRngForDomain(instance.identity, "answerOptions"), resolved);
 }

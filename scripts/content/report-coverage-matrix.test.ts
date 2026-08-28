@@ -620,9 +620,12 @@ describe("report-coverage-matrix: CC-09B.5 syllabus-scope fidelity and depth con
     // security-alarm-transistor-thyristor, telephone-master-socket) while
     // removing clamp-meter/oscilloscope's R2 mapping entirely; CC-09D grew
     // it further from 242 by adding four official-assessment-evidenced R2
-    // mappings (impedance formula, weber, tesla, flux-change EMF) -- the
-    // important invariant is the zero counts below, not this exact total.
-    expect(statuses.length).toBe(246);
+    // mappings (impedance formula, weber, tesla, flux-change EMF); CC-12G
+    // grew it further from 246 by adding one new R2-mapped assertion
+    // (EL-CONCEPT-PAGE-DIRECTION-NOTATION-001, the x/dot into/out-of-page
+    // diagram-notation legend) -- the important invariant is the zero
+    // counts below, not this exact total.
+    expect(statuses.length).toBe(247);
     expect(statuses.filter((s) => s === "ENRICHMENT_NOT_REQUIRED")).toEqual([]);
     expect(statuses.filter((s) => s === "OUT_OF_SCOPE")).toEqual([]);
     expect(statuses.filter((s) => s === "SCOPE_UNRESOLVED")).toEqual([]);
