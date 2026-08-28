@@ -39,6 +39,24 @@ import { WorkedErrorClassificationAnswerInput } from "@/components/question/Work
  */
 const ROTATION_DOMAIN_BLUEPRINT_IDS: ReadonlySet<string> = new Set(["magnetism.interpret_field_direction"]);
 
+/**
+ * `diagram_region` blueprints (`series.interpret_diagram`,
+ * `parallel.identify_topology`, `comparison.trace_current_path`) have no
+ * governed `answer.options` -- @alp/calculation-engine's own executors are
+ * the sole source of truth for the answer's value domain, and every one of
+ * them draws from exactly this same fixed, closed vocabulary of three
+ * circuit-topology descriptions (confirmed: no other "region-*" value is
+ * emitted anywhere in the engine -- see families/series-resistance.ts,
+ * families/parallel-resistance.ts, families/comparison.ts). Presented as a
+ * small multiple-choice over that governed vocabulary: not invented
+ * content, not a different answer type, and no schema change required.
+ */
+const DIAGRAM_REGION_OPTIONS: readonly MultipleChoiceOption[] = [
+  { value: "region-full-loop", label: "A single loop, with every component in one path" },
+  { value: "region-multiple-branches", label: "Multiple branches, connected across the same two points" },
+  { value: "region-multi-path", label: "More than one current path from the supply and back" },
+];
+
 function requireFormulaFamily(blueprint: QuestionBlueprint, formulaFamily: FormulaFamily | null): FormulaFamily {
   if (!formulaFamily) {
     throw new Error(
@@ -124,6 +142,11 @@ export function AnswerInputDispatch({ blueprint, instance, formulaFamily, onSubm
           testID={testID}
         />
       );
+
+    case "diagram_region": {
+      const options = shuffleDeterministic(createRngForDomain(instance.identity, "diagramRegionOptions"), DIAGRAM_REGION_OPTIONS);
+      return <MultipleChoiceAnswerInput options={options} onSubmit={(value) => onSubmit(value)} disabled={disabled} testID={testID} />;
+    }
 
     case "direction":
       if (ROTATION_DOMAIN_BLUEPRINT_IDS.has(blueprint.id)) {

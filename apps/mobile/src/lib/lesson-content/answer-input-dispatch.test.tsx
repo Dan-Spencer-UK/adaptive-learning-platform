@@ -1,11 +1,12 @@
 import { fireEvent, render } from "@testing-library/react-native";
-import type { GeneratedQuestionInstance } from "@alp/calculation-engine";
+import { evaluateAnswer, type GeneratedQuestionInstance } from "@alp/calculation-engine";
 
 import { bundledContentReleaseId, getLocalLesson } from "./local-content-registry";
 
 const record = getLocalLesson({ lessonId: "lesson.electrical.ohms-law", contentRelease: bundledContentReleaseId() });
 const FORMULA_OHMS_LAW = record.lookup.formulaFamilies.find((f) => f.id === "formula.ohms_law")!;
 const magnetismRecord = getLocalLesson({ lessonId: "lesson.magnetism.effects-of-current", contentRelease: bundledContentReleaseId() });
+const parallelRecord = getLocalLesson({ lessonId: "lesson.electrical.resistors-parallel", contentRelease: bundledContentReleaseId() });
 import { generateLessonQuestion } from "./generate-lesson-question";
 import { AnswerInputDispatch } from "./answer-input-dispatch";
 
@@ -40,6 +41,24 @@ function magnetismInstanceFor(id: string): GeneratedQuestionInstance {
     workedExampleBlueprints: magnetismRecord.lookup.workedExampleBlueprints,
     contentRelease: magnetismRecord.contentRelease,
     blueprintVersion: magnetismRecord.questionBlueprintVersion,
+    instanceId: "li1_t",
+    stepId: id,
+  });
+}
+
+function parallelBlueprintFor(id: string) {
+  const blueprint = parallelRecord.lookup.questionBlueprints.find((b) => b.id === id);
+  if (!blueprint) throw new Error(`missing governed blueprint ${id}`);
+  return blueprint;
+}
+
+function parallelInstanceFor(id: string): GeneratedQuestionInstance {
+  return generateLessonQuestion({
+    blueprint: parallelBlueprintFor(id),
+    formulaFamilies: parallelRecord.lookup.formulaFamilies,
+    diagramBlueprints: parallelRecord.lookup.diagramBlueprints,
+    contentRelease: parallelRecord.contentRelease,
+    blueprintVersion: parallelRecord.questionBlueprintVersion,
     instanceId: "li1_t",
     stepId: id,
   });
@@ -194,5 +213,61 @@ describe("AnswerInputDispatch", () => {
     );
     await fireEvent.press(getByLabelText("Force acts Up"));
     expect(onSubmit).toHaveBeenCalledWith("up");
+  });
+
+  // Product Owner emulator finding: opening the parallel-resistor lesson
+  // and continuing past its first pages crashed on
+  // guided_identify_topology (parallel.identify_topology), whose answer
+  // type is "diagram_region" -- this dispatch had no case for it and hit
+  // the generic "no native input registered" throw. Fixed by adding a
+  // "diagram_region" case; these tests prove the fix and pin the governed
+  // marking semantics (parallel-resistance.ts's own identifyTopology
+  // executor emits value: "region-multiple-branches").
+  describe("'diagram_region' answer type (parallel.identify_topology -- the crashing blueprint)", () => {
+    it("dispatches successfully instead of throwing, and renders the question's own options", async () => {
+      const onSubmit = jest.fn();
+      const blueprint = parallelBlueprintFor("parallel.identify_topology");
+      const { getAllByRole } = await render(
+        <AnswerInputDispatch blueprint={blueprint} instance={parallelInstanceFor(blueprint.id)} formulaFamily={null} onSubmit={onSubmit} />,
+      );
+      expect(getAllByRole("button").length).toBe(3);
+    });
+
+    it("renders the governed circuit-topology options, with none of them revealing which one is correct before selection", async () => {
+      const blueprint = parallelBlueprintFor("parallel.identify_topology");
+      const { getByLabelText } = await render(
+        <AnswerInputDispatch blueprint={blueprint} instance={parallelInstanceFor(blueprint.id)} formulaFamily={null} onSubmit={jest.fn()} />,
+      );
+      // All three governed region descriptions are present as plain,
+      // neutral option text -- none marked/highlighted as correct.
+      expect(getByLabelText("A single loop, with every component in one path")).toBeTruthy();
+      expect(getByLabelText("Multiple branches, connected across the same two points")).toBeTruthy();
+      expect(getByLabelText("More than one current path from the supply and back")).toBeTruthy();
+    });
+
+    it("selecting the governed correct region ('multiple branches') submits the value the real executor expects, and marks correct", async () => {
+      const onSubmit = jest.fn();
+      const blueprint = parallelBlueprintFor("parallel.identify_topology");
+      const instance = parallelInstanceFor(blueprint.id);
+      const { getByLabelText } = await render(
+        <AnswerInputDispatch blueprint={blueprint} instance={instance} formulaFamily={null} onSubmit={onSubmit} />,
+      );
+      await fireEvent.press(getByLabelText("Multiple branches, connected across the same two points"));
+      expect(onSubmit).toHaveBeenCalledWith("region-multiple-branches");
+      expect(instance.expected.value).toBe("region-multiple-branches");
+      expect(evaluateAnswer(instance, "region-multiple-branches").correct).toBe(true);
+    });
+
+    it("selecting an incorrect region ('single loop') marks incorrectly", async () => {
+      const onSubmit = jest.fn();
+      const blueprint = parallelBlueprintFor("parallel.identify_topology");
+      const instance = parallelInstanceFor(blueprint.id);
+      const { getByLabelText } = await render(
+        <AnswerInputDispatch blueprint={blueprint} instance={instance} formulaFamily={null} onSubmit={onSubmit} />,
+      );
+      await fireEvent.press(getByLabelText("A single loop, with every component in one path"));
+      expect(onSubmit).toHaveBeenCalledWith("region-full-loop");
+      expect(evaluateAnswer(instance, "region-full-loop").correct).toBe(false);
+    });
   });
 });
