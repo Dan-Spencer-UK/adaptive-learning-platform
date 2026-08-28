@@ -6,9 +6,19 @@
  * evidence -- and this screen only renders that decision; it never
  * lets the learner pick a lesson id itself (task brief §20's "avoid a
  * fake manual choose-the-next-lesson button that bypasses
- * orchestration"). Below it, the CC-05C proving-slice family picker
- * remains unchanged (a separate, simpler mechanism, not the course
- * orchestrator or the Lesson Player).
+ * orchestration").
+ *
+ * CC-12D: the four topic cards below reuse CC-05C's governed
+ * `PROVING_FAMILIES` list purely as a browse-by-topic menu -- each now
+ * opens the SAME real, current Lesson Player (`/learn/lesson-player`)
+ * the top card does, via `PROVING_FAMILY_LESSON_IDS`, never the CC-05C
+ * static proving-slice screen (`/learn/[family]`) those cards used to
+ * link to. That screen is retired from all in-app navigation (see its
+ * own header comment) -- a Product Owner emulator finding traced a
+ * learner reaching an outdated, non-adaptive teaching screen with stale
+ * imagery straight to this Link. This is the ONE production learner
+ * lesson runtime for governed adaptive lessons; do not add a second
+ * production route to lesson content, here or elsewhere.
  */
 import { Link, useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
@@ -24,6 +34,24 @@ import { getLocalReleaseLessons, bundledContentReleaseId } from "@/lib/lesson-co
 import { PROVING_FAMILIES } from "@/lib/proving-content/unit202-proving-fixture";
 import { getSupabaseClient } from "@/lib/supabase/client";
 import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
+
+/**
+ * CC-12D: each proving family below corresponds 1:1 to a real governed
+ * lesson already reached by course orchestration -- the SAME four lessons
+ * `UNIT202_ADAPTIVE_VERTICAL` (packages/diagnostic-engine/src/course-
+ * definitions.ts) sequences, in the same order. There is no mechanical way
+ * to derive this mapping (a lesson's steps can span several assertion
+ * families -- e.g. this magnetism lesson also teaches
+ * electrical.emf_and_generation -- so a lesson has no single top-level
+ * assertionFamilyId to look up), so it is a small, explicit, governed-ID
+ * table, cross-checked at test time against both real corpora.
+ */
+const PROVING_FAMILY_LESSON_IDS: Readonly<Record<string, string>> = {
+  "electrical.ohms_law": "lesson.electrical.ohms-law",
+  "electrical.series_circuits": "lesson.electrical.resistors-series",
+  "electrical.parallel_circuits": "lesson.electrical.resistors-parallel",
+  "electrical.magnetism_and_electromagnetism": "lesson.magnetism.effects-of-current",
+};
 
 type NextActivityState = { kind: "loading" } | { kind: "ready"; decision: ActivityDecision; lessonTitle: string | null } | { kind: "error"; detail: string };
 
@@ -126,25 +154,23 @@ export default function LearnIndexScreen(): React.JSX.Element {
           </Pressable>
         )}
 
-        <Text style={styles.intro}>
-          A proving slice across four governed Unit 202 topics: pick one to see teaching, generated questions, local
-          marking and evidence end-to-end.
-        </Text>
-        {PROVING_FAMILIES.map((family) => (
-          <Link key={family.id} href={{ pathname: "/learn/[family]", params: { family: family.id } }} asChild>
-            <Pressable
-              style={({ pressed }) => [styles.card, pressed && styles.pressed]}
-              accessibilityRole="button"
-              accessibilityLabel={`Open ${family.title} lesson`}
-            >
-              <Text style={styles.cardTitle}>{family.title}</Text>
-              <Text style={styles.cardBody}>{family.learningIntent}</Text>
-              <View style={styles.cardMeta}>
-                <Text style={styles.cardMetaText}>{family.questionBlueprints.length} practice questions</Text>
-              </View>
-            </Pressable>
-          </Link>
-        ))}
+        <Text style={styles.intro}>Or jump directly to any of the four governed Unit 202 topics below.</Text>
+        {PROVING_FAMILIES.map((family) => {
+          const lessonId = PROVING_FAMILY_LESSON_IDS[family.id];
+          if (!lessonId) return null;
+          return (
+            <Link key={family.id} href={{ pathname: "/learn/lesson-player", params: { lessonId } }} asChild>
+              <Pressable
+                style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+                accessibilityRole="button"
+                accessibilityLabel={`Open ${family.title} lesson`}
+              >
+                <Text style={styles.cardTitle}>{family.title}</Text>
+                <Text style={styles.cardBody}>{family.learningIntent}</Text>
+              </Pressable>
+            </Link>
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );
@@ -186,6 +212,5 @@ const styles = StyleSheet.create({
   lessonPlayerCard: { borderColor: color.accent, backgroundColor: "#16223A" },
   cardTitle: { ...typography.title, fontSize: 18, color: color.text },
   cardBody: { ...typography.body, color: color.textSecondary },
-  cardMeta: { marginTop: spacing.xs },
   cardMetaText: { ...typography.caption, color: color.accent },
 });

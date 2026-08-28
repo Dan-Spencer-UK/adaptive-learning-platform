@@ -1,11 +1,21 @@
 /**
- * CC-05C: lesson (teaching) screen -- proves design doc §11/§42.1-2: "a
- * lesson teaching a formula family must present all required family
- * assertions" (every governed form, not just one target), distinct from
- * the practice screen where each question independently assesses a
- * single target. Ohm's law additionally shows the VIR mnemonic (§42.5)
- * and worked substitutions for every target, reusing one consistent set
- * of teaching values across all three views (§9).
+ * LEGACY_RETIRED (CC-12D): CC-05C's static "lesson" (teaching) screen --
+ * proved design doc §11/§42.1-2 ("a lesson teaching a formula family must
+ * present all required family assertions") before the real Lesson Player
+ * existed. Renders the old schematic diagrams (RightHandGripRuleDiagram,
+ * MagneticForceDiagram) directly, always revealed, with none of the
+ * adaptive branching / evidence engine / layered feedback / canonical
+ * teaching-visual resolution the real Lesson Player has. This is exactly
+ * the screen a Product Owner emulator finding traced a learner reaching
+ * through completely normal Learn-hub navigation (tapping a topic card),
+ * showing stale imagery for `lesson.magnetism.effects-of-current` even
+ * after CC-12C locked that lesson's canonical visuals -- because this
+ * screen never went through DiagramRenderer/CANONICAL_TEACHING_VISUALS at
+ * all. No longer linked from any in-app navigation (see ../index.tsx's
+ * own header comment). Kept, unlinked, as it still exercises real shared
+ * plumbing (proving-engine, formula-rendering) that several existing
+ * tests cover; do not link it from production navigation again -- route
+ * new topic-card/browse entries to the Lesson Player instead.
  */
 import { Link, useLocalSearchParams } from "expo-router";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";

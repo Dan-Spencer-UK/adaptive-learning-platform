@@ -1,10 +1,21 @@
 /**
- * CC-05C: the practice loop -- proves the full end-to-end path
- * (governed assertion family -> representation -> question blueprint ->
- * deterministic instance -> native interaction -> marking -> evidence)
- * for one question at a time, independently assessing a single target
- * per question (contrast with the lesson screen's "teach the whole family
- * together" -- design doc §11/§42.1-2).
+ * LEGACY_RETIRED (CC-12D): CC-05C's practice loop -- the original,
+ * pre-Lesson-Player proof of the full end-to-end path (governed assertion
+ * family -> representation -> question blueprint -> deterministic
+ * instance -> native interaction -> marking -> evidence) for one question
+ * at a time. Superseded by the real Lesson Player
+ * (apps/mobile/src/app/(app)/learn/lesson-player.tsx) for every governed
+ * lesson, including all four topics this screen once covered.
+ *
+ * No longer linked from any in-app navigation (a Product Owner emulator
+ * finding traced a learner reaching this exact screen, with stale
+ * teaching imagery and none of the adaptive/evidence/canonical-visual
+ * machinery, straight from the Learn hub's topic cards -- see
+ * ../index.tsx's own header comment for the fix). Kept, unlinked, as it
+ * still exercises real shared plumbing (proving-engine, formula-rendering,
+ * session-store) that several existing tests cover; do not link it from
+ * production navigation again -- route new topic-card/browse entries to
+ * the Lesson Player instead.
  *
  * Local-first: generation, marking and evidence creation all happen on
  * this device with zero network round trip (Mobile UX Engineering
