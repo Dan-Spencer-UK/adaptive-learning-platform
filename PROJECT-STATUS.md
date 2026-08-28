@@ -1515,7 +1515,7 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **11. PROJECT-STATUS update.** This section.
 
-**12. Commit/push:** pending — see the immediately following commit.
+**12. Commit/push:** `67b358d`.
 
 **Deferred / out-of-scope findings, not fixed in this package:**
 - The canonical `emf-motional-teaching-master-v3.png` teaching image's baked lowercase "l" pixel label (item 6) — no image regeneration was in scope; text-level notation is consistent, the image itself is not, until a future visual-production pass.
