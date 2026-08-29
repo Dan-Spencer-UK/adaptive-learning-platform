@@ -2623,6 +2623,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "Rt",
     knownVariables: ["R1", "R2", "R3"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit", "sanity_check_result"],
+    teachingValues: { R1: 10, R2: 20, R3: 30 },
   },
   {
     id: "worked.parallel_resistance.calculate_total",
@@ -2636,6 +2637,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
       "show_answer_with_unit",
       "sanity_check_result",
     ],
+    teachingValues: { R1: 4, R2: 4, R3: 2 },
   },
   {
     id: "worked.power.calculate_from_vi",
@@ -2643,6 +2645,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "P",
     knownVariables: ["V", "I"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { V: 10, I: 5 },
   },
   {
     id: "worked.power.calculate_from_ir",
@@ -2650,6 +2653,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "P",
     knownVariables: ["I", "R"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { I: 2, R: 10 },
   },
   {
     id: "worked.energy.calculate_energy",
@@ -2657,6 +2661,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "E",
     knownVariables: ["P", "t"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { P: 100, t: 60 },
   },
   {
     id: "worked.efficiency.calculate",
@@ -2664,6 +2669,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "eta",
     knownVariables: ["Pout", "Pin"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { Pout: 80, Pin: 100 },
   },
   {
     id: "worked.charge.calculate_current",
@@ -2671,6 +2677,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "I",
     knownVariables: ["Q", "t"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { Q: 12, t: 6 },
   },
   {
     id: "worked.resistivity.calculate_resistance",
@@ -2678,6 +2685,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "R",
     knownVariables: ["rho", "L", "A"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { rho: 2, L: 5, A: 10 },
   },
   {
     id: "worked.waveform.calculate_rms",
@@ -2685,6 +2693,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "rms",
     knownVariables: ["peak"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { peak: 100 },
   },
   {
     id: "worked.waveform.calculate_frequency",
@@ -2692,6 +2701,7 @@ const workedExampleBlueprints: WorkedExampleBlueprint[] = [
     target: "f",
     knownVariables: ["T"],
     steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit"],
+    teachingValues: { T: 0.02 },
   },
   // ===================================================================
   // CC-11 (Workstream A): Unit 202 LO3 worked examples.
@@ -2876,7 +2886,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       "EL-UNIT-HERTZ-001",
     ],
     variantDimensions: { quantity: { allowed: ["voltage", "current", "resistance", "power", "energy", "frequency"] } },
-    presentation: { promptLines: ["Which SI unit is used to measure {quantity}?"] },
+    presentation: { answerOptionLabels: { "V": "Volt (V)", "A": "Ampere (A)", "Ω": "Ohm (Ω)", "W": "Watt (W)", "J": "Joule (J)", "Hz": "Hertz (Hz)" }, promptLines: ["Which SI unit is used to measure {quantity}?"] },
   }),
   qb({
     id: "si_units.distinguish_base_derived",
@@ -2887,7 +2897,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["base", "derived"] },
     marking: exact(),
     assertionIdentifiers: ["EL-UNIT-BASE-VS-DERIVED-001"],
-    presentation: { promptLines: ["Is the {unit} an SI base unit or an SI derived unit?"] },
+    presentation: { answerOptionLabels: { "base": "SI base unit", "derived": "SI derived unit" }, promptLines: ["Is the {unit} an SI base unit or an SI derived unit?"] },
   }),
   qb({
     id: "si_units.diagnose_unit_confusion",
@@ -2895,14 +2905,27 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.si_units.diagnose_unit_confusion",
     title: "Diagnose confusion between similarly-presented electrical units",
     difficultyBand: "diagnostic",
-    answer: { type: "worked_error_classification" },
+    // CC-12H: `diagnoseUnitConfusion` (units-and-quantities.ts) always
+    // emits "unit_confusion" -- the scenario is always a genuine mix-up --
+    // but the learner still genuinely chooses between two real,
+    // self-consistent alternatives, exactly the same pattern already
+    // established for magnetism.diagnose_current_convention's own
+    // constant-output diagnostic ("no_confusion" is never the correct
+    // answer here, but is a coherent, real alternative to rule out).
+    answer: { type: "worked_error_classification", options: ["unit_confusion", "no_confusion"] },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-UNIT-VOLT-001", "EL-UNIT-OHM-001"],
     misconceptionTargets: [
       { misconceptionIdentifier: "MIS-EL-UNIT-CONFUSION-001", evidenceStrength: "direct" },
       { misconceptionIdentifier: "MIS-EL-SI-PREFIX-ERROR-001", evidenceStrength: "suggestive" },
     ],
-    presentation: { promptLines: ["A learner keeps mixing up {confused_pair_label}.", "Which kind of unit confusion is this?"] },
+    presentation: {
+      promptLines: ["A learner keeps mixing up {confused_pair_label}.", "Which kind of unit confusion is this?"],
+      answerOptionLabels: {
+        unit_confusion: "A genuine mix-up between these two units",
+        no_confusion: "No real confusion -- the units are being used correctly",
+      },
+    },
   }),
 
   // ===================================================================
@@ -2917,7 +2940,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["voltage", "current", "resistance"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-VOLTAGE-001", "EL-CONCEPT-CURRENT-001", "EL-CONCEPT-RESISTANCE-001"],
-    presentation: { promptLines: ["Which quantity is defined as: {definition_clause}?"] },
+    presentation: { answerOptionLabels: { "voltage": "Voltage", "current": "Current", "resistance": "Resistance" }, promptLines: ["Which quantity is defined as: {definition_clause}?"] },
   }),
   qb({
     id: "core_quantities.diagnose_current_voltage_confusion",
@@ -2925,11 +2948,23 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.core_quantities.distinguish",
     title: "Diagnose confusion between current and voltage",
     difficultyBand: "diagnostic",
-    answer: { type: "worked_error_classification" },
+    // CC-12H: `diagnoseCurrentVoltageConfusion` (units-and-quantities.ts)
+    // always emits "current_voltage_confusion" -- the scenario always
+    // demonstrates a genuine mix-up -- but the learner still genuinely
+    // chooses between two real, self-consistent alternatives, the same
+    // constant-output-diagnostic pattern already established for
+    // magnetism.diagnose_current_convention.
+    answer: { type: "worked_error_classification", options: ["current_voltage_confusion", "no_confusion"] },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-CONCEPT-VOLTAGE-001", "EL-CONCEPT-CURRENT-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-CURRENT-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" }],
-    presentation: { promptLines: ["{scenario_text}", "Which misconception does this reveal?"] },
+    presentation: {
+      promptLines: ["{scenario_text}", "Which misconception does this reveal?"],
+      answerOptionLabels: {
+        current_voltage_confusion: "Confusing current and voltage",
+        no_confusion: "No real confusion -- the description is accurate",
+      },
+    },
   }),
 
   // ===================================================================
@@ -3143,7 +3178,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["resistance", "resistivity"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-RESISTIVITY-001"],
-    presentation: { promptLines: ["Which term describes this: {recognise_clue}?"] },
+    presentation: { answerOptionLabels: { "resistance": "Resistance", "resistivity": "Resistivity" }, promptLines: ["Which term describes this: {recognise_clue}?"] },
   }),
   qb({
     id: "resistivity.calculate_resistance",
@@ -3166,7 +3201,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["material_a", "material_b"] },
     marking: exact(),
     assertionIdentifiers: ["EL-RESISTIVITY-COMPARE-MATERIALS-001"],
-    presentation: {
+    presentation: { answerOptionLabels: { "material_a": "Material A", "material_b": "Material B" },
       promptLines: [
         "Material A has a resistivity of {resistivity_a} Ω·m.",
         "Material B has a resistivity of {resistivity_b} Ω·m.",
@@ -3180,10 +3215,26 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.resistivity.predict_length_effect",
     title: "Predict the effect of increasing conductor length on resistance",
     difficultyBand: "intermediate",
-    answer: { type: "direction", canonicalUnit: undefined },
+    // CC-12H: was `{ type: "direction" }` -- a genuine content-authoring
+    // bug found live during the CC-12H runtime QA walk. "direction" is
+    // reserved for genuine spatial-direction (up/down/left/right) or
+    // field-rotation (clockwise/counterclockwise) questions -- see
+    // magnetism.interpret_force_direction / interpret_field_direction,
+    // the only two blueprints that answer type genuinely fits. This
+    // question's own executor (@alp/calculation-engine's
+    // families/resistivity.ts predictLengthEffect) has always returned
+    // the qualitative string "increase"/"decrease", never a screen
+    // direction, so it rendered four nonsensical "Force acts Up/Down/
+    // Left/Right" buttons on device. `multiple_choice` is the correct
+    // type -- the exact pattern this family's own sibling blueprint
+    // (resistivity.compare_materials, above) already uses.
+    answer: { type: "multiple_choice", options: ["increase", "decrease"] },
     marking: exact(),
     assertionIdentifiers: ["EL-RESISTIVITY-LENGTH-EFFECT-001"],
-    presentation: { promptLines: ["A conductor's length is increased while its material and cross-sectional area stay the same.", "What happens to its resistance?"] },
+    presentation: {
+      answerOptionLabels: { increase: "Increases", decrease: "Decreases" },
+      promptLines: ["A conductor's length is increased while its material and cross-sectional area stay the same.", "What happens to its resistance?"],
+    },
   }),
   qb({
     id: "resistivity.predict_area_effect",
@@ -3191,10 +3242,16 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.resistivity.predict_area_effect",
     title: "Predict the effect of increasing conductor cross-sectional area on resistance",
     difficultyBand: "intermediate",
-    answer: { type: "direction" },
+    // CC-12H: see resistivity.predict_length_effect above for the full
+    // rationale -- this blueprint's own executor (predictAreaEffect)
+    // always returns "increase"/"decrease" too.
+    answer: { type: "multiple_choice", options: ["increase", "decrease"] },
     marking: exact(),
     assertionIdentifiers: ["EL-RESISTIVITY-AREA-EFFECT-001"],
-    presentation: { promptLines: ["A conductor's cross-sectional area is increased while its material and length stay the same.", "What happens to its resistance?"] },
+    presentation: {
+      answerOptionLabels: { increase: "Increases", decrease: "Decreases" },
+      promptLines: ["A conductor's cross-sectional area is increased while its material and length stay the same.", "What happens to its resistance?"],
+    },
   }),
 
   // ===================================================================
@@ -3289,7 +3346,15 @@ const questionBlueprints: QuestionBlueprint[] = [
     // drop functionally demonstrates understanding what "voltage drop"
     // means (AC4.7's own obligation), previously uncited here.
     assertionIdentifiers: ["EL-SERIES-VOLTAGE-CALC-001", "EL-VOLTAGE-DROP-001"],
-    representation: { diagram: { required: true, blueprintId: "circuit.series_resistors" } },
+    // CC-12H: `formula.required` was missing even though the real executor
+    // (series-resistance.ts's `calculateVoltageDrop`) always computes via
+    // formula.ohms_law (V = I x R) and always includes it in the generated
+    // instance's own representation -- the blueprint's declared contract
+    // now matches what it actually produces.
+    representation: {
+      diagram: { required: true, blueprintId: "circuit.series_resistors" },
+      formula: { required: true, formulaFamilyId: "formula.ohms_law" },
+    },
     presentation: {
       promptLines: ["This series circuit carries {I} A throughout.", "Using the diagram, find the voltage drop across {target}."],
     },
@@ -3311,9 +3376,24 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.series.predict_add_component",
     title: "Predict the effect on supply current of adding a component in series",
     difficultyBand: "intermediate",
-    answer: { type: "direction" },
+    // CC-12H: was `{ type: "direction" }` with no `presentation` at all --
+    // the same miscategorisation found live on the resistivity family's
+    // predict_length_effect/predict_area_effect (see those blueprints,
+    // above, for the full rationale). This blueprint's own executor
+    // (@alp/calculation-engine's families/series-resistance.ts
+    // predictAddComponentEffect) always returns the qualitative string
+    // "decrease" (adding a series resistor raises total resistance, so
+    // supply current falls) -- never a screen direction. Currently
+    // unreferenced by any governed lesson step (so this was a latent
+    // defect, not yet learner-reachable), fixed here so the next lesson
+    // author who wires it in inherits a correct blueprint.
+    answer: { type: "multiple_choice", options: ["increase", "decrease"] },
     marking: exact(),
     assertionIdentifiers: ["EL-SERIES-PREDICT-ADD-RESISTOR-001"],
+    presentation: {
+      answerOptionLabels: { increase: "Increases", decrease: "Decreases" },
+      promptLines: ["A component is added in series to an existing series circuit, with the same supply voltage.", "What happens to the supply current?"],
+    },
   }),
   qb({
     id: "series.predict_open_circuit_effect",
@@ -3440,9 +3520,24 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.parallel.predict_add_branch",
     title: "Predict the effect on supply current of adding a branch in parallel",
     difficultyBand: "intermediate",
-    answer: { type: "direction" },
+    // CC-12H: was `{ type: "direction" }` with no `presentation` at all --
+    // see series.predict_add_component_effect (above) and the
+    // resistivity family's predict_length_effect/predict_area_effect for
+    // the full rationale. This blueprint's own executor
+    // (@alp/calculation-engine's families/parallel-resistance.ts
+    // predictAddBranchEffect) always returns the qualitative string
+    // "increase" (adding a parallel branch lowers total resistance, so
+    // supply current rises) -- never a screen direction. Currently
+    // unreferenced by any governed lesson step (so this was a latent
+    // defect, not yet learner-reachable), fixed here so the next lesson
+    // author who wires it in inherits a correct blueprint.
+    answer: { type: "multiple_choice", options: ["increase", "decrease"] },
     marking: exact(),
     assertionIdentifiers: ["EL-PARALLEL-PREDICT-ADD-RESISTOR-001"],
+    presentation: {
+      answerOptionLabels: { increase: "Increases", decrease: "Decreases" },
+      promptLines: ["A branch is added in parallel to an existing parallel circuit, with the same supply voltage.", "What happens to the supply current?"],
+    },
   }),
   qb({
     id: "parallel.predict_open_branch_effect",
@@ -3515,13 +3610,22 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.parallel.diagnose_reciprocal_error",
     title: "Diagnose the error of adding parallel branch resistances directly",
     difficultyBand: "diagnostic",
-    answer: { type: "worked_error_classification" },
+    // CC-12H: options mirror `ReciprocalErrorClassification`
+    // (parallel-resistance.ts) exactly -- the full, already-governed
+    // three-way domain this executor's `diagnoseReciprocalError` and
+    // `diagnoseMissingFinalInversion` both draw from.
+    answer: { type: "worked_error_classification", options: ["reciprocal_error", "missing_final_inversion", "no_error"] },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-PARALLEL-RESISTANCE-ADDITION-001", evidenceStrength: "direct" }],
     presentation: {
       promptLines: ["A learner calculated the total resistance of this {branch_count}-branch parallel circuit (see diagram)."],
       shownWorkingLines: ["Rt = R1 + R2 + ... = {shown_total} Ω"],
+      answerOptionLabels: {
+        reciprocal_error: "Added the branch resistances directly, instead of using the reciprocal relationship",
+        missing_final_inversion: "Summed the reciprocals correctly, but forgot to invert the sum back",
+        no_error: "The working shown is actually correct",
+      },
     },
   }),
   qb({
@@ -3530,13 +3634,20 @@ const questionBlueprints: QuestionBlueprint[] = [
     capabilityId: "cap.parallel.diagnose_missing_final_inversion",
     title: "Diagnose the error of leaving the parallel-resistance result as a reciprocal instead of inverting it back",
     difficultyBand: "diagnostic",
-    answer: { type: "worked_error_classification" },
+    // CC-12H: same governed three-way domain as the sibling blueprint
+    // above -- see that blueprint's own comment.
+    answer: { type: "worked_error_classification", options: ["reciprocal_error", "missing_final_inversion", "no_error"] },
     marking: enumMarking(),
     assertionIdentifiers: ["EL-PARALLEL-RESISTANCE-CALC-001", "FM-ARITH-RECIPROCAL-INVERT-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-RECIPROCAL-FORGOTTEN-INVERT-001", evidenceStrength: "direct" }],
     presentation: {
       promptLines: ["A learner calculated the total resistance of this {branch_count}-branch parallel circuit (see diagram)."],
       shownWorkingLines: ["1/Rt = 1/R1 + 1/R2 + ... = {shown_total} (left un-inverted)"],
+      answerOptionLabels: {
+        reciprocal_error: "Added the branch resistances directly, instead of using the reciprocal relationship",
+        missing_final_inversion: "Summed the reciprocals correctly, but forgot to invert the sum back",
+        no_error: "The working shown is actually correct",
+      },
     },
   }),
 
@@ -3553,7 +3664,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-SELECT-CONFIGURATION-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.series_parallel_mixed" } },
-    presentation: { promptLines: ["Look at the circuit diagram.", "Is this circuit's overall arrangement series or parallel?"] },
+    presentation: { answerOptionLabels: { "series": "Series", "parallel": "Parallel" }, promptLines: ["Look at the circuit diagram.", "Is this circuit's overall arrangement series or parallel?"] },
   }),
   qb({
     id: "comparison.recognise_mixed_circuit",
@@ -3565,7 +3676,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-MIXED-SERIES-PARALLEL-RECOGNITION-001"],
     representation: { diagram: { required: true, blueprintId: "circuit.series_parallel_mixed" } },
-    presentation: { promptLines: ["Look at the circuit diagram.", "Is it wired in series, parallel, or a mix of both?"] },
+    presentation: { answerOptionLabels: { "series": "Series", "parallel": "Parallel", "mixed": "A mix of both" }, promptLines: ["Look at the circuit diagram.", "Is it wired in series, parallel, or a mix of both?"] },
   }),
   qb({
     id: "comparison.trace_current_path",
@@ -3588,7 +3699,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["series_higher", "parallel_higher", "equal"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-RESISTANCE-001"],
-    presentation: {
+    presentation: { answerOptionLabels: { "series_higher": "Series is higher", "parallel_higher": "Parallel is higher", "equal": "They are equal" },
       promptLines: ["Take the same set of two or more resistors.", "Is their total resistance higher when connected in series, or when connected in parallel?"],
     },
   }),
@@ -3601,7 +3712,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["series_behaviour", "parallel_behaviour"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-CURRENT-001", "EL-CIRCUIT-COMPARE-VOLTAGE-001"],
-    presentation: { promptLines: ["{pattern_text}", "Is this series behaviour or parallel behaviour?"] },
+    presentation: { answerOptionLabels: { "series_behaviour": "Same current, voltage divides (series)", "parallel_behaviour": "Same voltage, current divides (parallel)" }, promptLines: ["{pattern_text}", "Is this series behaviour or parallel behaviour?"] },
   }),
   qb({
     id: "comparison.compare_power_energy",
@@ -3612,7 +3723,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["series_higher", "parallel_higher", "equal"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-POWER-001", "EL-CIRCUIT-COMPARE-ENERGY-001"],
-    presentation: {
+    presentation: { answerOptionLabels: { "series_higher": "Series is higher", "parallel_higher": "Parallel is higher", "equal": "They are equal" },
       promptLines: [
         "Take the same set of two or more resistors, connected to the same supply voltage.",
         "Is their total power/energy higher when connected in series, or when connected in parallel?",
@@ -3786,7 +3897,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["thermal", "chemical"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CURRENT-THERMAL-EFFECT-001", "EL-CURRENT-CHEMICAL-EFFECT-001", "EL-THERMAL-EFFECT-FACTORS-001"],
-    presentation: { promptLines: ["{effect_clue}", "Is this the thermal effect or the chemical effect of current?"] },
+    presentation: { answerOptionLabels: { "thermal": "Thermal effect", "chemical": "Chemical effect" }, promptLines: ["{effect_clue}", "Is this the thermal effect or the chemical effect of current?"] },
   }),
   qb({
     id: "thermal_chemical.recognise_application",
@@ -3797,7 +3908,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["heating_element", "filament_lamp", "relay_coil"] },
     marking: exact(),
     assertionIdentifiers: ["EL-THERMAL-EFFECT-APPLICATION-001"],
-    presentation: { promptLines: ["{application_clue}", "Which application of the thermal effect of current is this?"] },
+    presentation: { answerOptionLabels: { "heating_element": "Heating element", "filament_lamp": "Filament lamp", "relay_coil": "Relay coil" }, promptLines: ["{application_clue}", "Which application of the thermal effect of current is this?"] },
   }),
 
   // ===================================================================
@@ -3822,7 +3933,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     // evidence.
     assertionIdentifiers: ["EL-MATERIAL-CONDUCTOR-INSULATOR-EXAMPLES-001", "EL-CONCEPT-CONDUCTOR-001", "EL-CONCEPT-INSULATOR-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-CONDUCTOR-INSULATOR-CONFUSION-001", evidenceStrength: "suggestive" }],
-    presentation: { promptLines: ["Is {material} a conductor or an insulator?"] },
+    presentation: { answerOptionLabels: { "conductor": "Conductor", "insulator": "Insulator" }, promptLines: ["Is {material} a conductor or an insulator?"] },
   }),
   qb({
     id: "conductors.recognise_breakdown",
@@ -3833,7 +3944,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["breaks_down_and_conducts", "remains_insulating"] },
     marking: exact(),
     assertionIdentifiers: ["EL-INSULATOR-BREAKDOWN-001"],
-    presentation: { promptLines: ["A voltage far beyond an insulator's rating is applied across it.", "What happens to the insulator?"] },
+    presentation: { answerOptionLabels: { "breaks_down_and_conducts": "It breaks down and starts to conduct", "remains_insulating": "It remains insulating" }, promptLines: ["A voltage far beyond an insulator's rating is applied across it.", "What happens to the insulator?"] },
   }),
   // CC-11.2: closes AC4.1's own "electron-theory-of-current" obligation.
   // Distractor is "protons" rather than an ionic/semiconductor charge
@@ -3851,7 +3962,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["free_electrons", "protons"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-ELECTRON-THEORY-001", "EL-CONCEPT-ATOMIC-CHARGE-STRUCTURE-001"],
-    presentation: { promptLines: ["In a metallic conductor, a potential difference is applied across it.", "What actually moves through the conductor to create the electric current?"] },
+    presentation: { answerOptionLabels: { "free_electrons": "Free electrons", "protons": "Protons" }, promptLines: ["In a metallic conductor, a potential difference is applied across it.", "What actually moves through the conductor to create the electric current?"] },
   }),
 
   // ===================================================================
@@ -3866,7 +3977,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["voltmeter", "ammeter", "ohmmeter", "multimeter"] },
     marking: exact(),
     assertionIdentifiers: ["EL-INSTRUMENT-SELECT-001"],
-    presentation: { promptLines: ["Which instrument should be used to measure {quantity}?"] },
+    presentation: { answerOptionLabels: { "voltmeter": "Voltmeter", "ammeter": "Ammeter", "ohmmeter": "Ohmmeter", "multimeter": "Multimeter" }, promptLines: ["Which instrument should be used to measure {quantity}?"] },
   }),
   qb({
     id: "instrumentation.recognise_connection",
@@ -3879,7 +3990,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     assertionIdentifiers: ["EL-INSTRUMENT-VOLTMETER-001", "EL-INSTRUMENT-AMMETER-001"],
     representation: { diagram: { required: true, blueprintId: "instrument.measurement_connection" } },
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-INSTRUMENT-CONNECTION-CONFUSION-001", evidenceStrength: "direct" }],
-    presentation: { promptLines: ["Look at the circuit diagram.", "How should the {instrument_type} be connected to measure correctly?"] },
+    presentation: { answerOptionLabels: { "series": "Series", "parallel": "Parallel" }, promptLines: ["Look at the circuit diagram.", "How should the {instrument_type} be connected to measure correctly?"] },
   }),
   qb({
     id: "instrumentation.recognise_internal_resistance_property",
@@ -3890,7 +4001,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["very_high", "very_low"] },
     marking: exact(),
     assertionIdentifiers: ["EL-INSTRUMENT-VOLTMETER-INTERNAL-RESISTANCE-001", "EL-INSTRUMENT-AMMETER-INTERNAL-RESISTANCE-001"],
-    presentation: { promptLines: ["For accurate measurement without disturbing the circuit, what should the ideal internal resistance of a {instrument_type} be?"] },
+    presentation: { answerOptionLabels: { "very_high": "Very high", "very_low": "Very low" }, promptLines: ["For accurate measurement without disturbing the circuit, what should the ideal internal resistance of a {instrument_type} be?"] },
   }),
   qb({
     id: "instrumentation.recognise_purpose",
@@ -3901,7 +4012,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["clamp_meter", "oscilloscope", "continuity_tester"] },
     marking: exact(),
     assertionIdentifiers: ["EL-INSTRUMENT-CLAMP-METER-001", "EL-INSTRUMENT-OSCILLOSCOPE-001", "EL-INSTRUMENT-CONTINUITY-TEST-001"],
-    presentation: { promptLines: ["{purpose_clue}", "Which instrument is this?"] },
+    presentation: { answerOptionLabels: { "clamp_meter": "Clamp meter", "oscilloscope": "Oscilloscope", "continuity_tester": "Continuity tester" }, promptLines: ["{purpose_clue}", "Which instrument is this?"] },
   }),
 
   // ===================================================================
@@ -3921,7 +4032,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       "EL-CIRCUIT-ZERO-RESISTANCE-INTERPRETATION-001",
       "EL-CIRCUIT-OPEN-CIRCUIT-RESISTANCE-INTERPRETATION-001",
     ],
-    presentation: { promptLines: ["{condition_clue}", "Which fault condition is this?"] },
+    presentation: { answerOptionLabels: { "short_circuit": "Short circuit", "open_circuit": "Open circuit" }, promptLines: ["{condition_clue}", "Which fault condition is this?"] },
   }),
   qb({
     id: "fault.predict_short_effect",
@@ -3932,7 +4043,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["current_increases_sharply", "current_decreases", "no_effect"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-PREDICT-SHORT-EFFECT-001"],
-    presentation: { promptLines: ["A short circuit occurs across a component in an energised circuit.", "What happens to the current?"] },
+    presentation: { answerOptionLabels: { "current_increases_sharply": "Current increases sharply", "current_decreases": "Current decreases", "no_effect": "No effect" }, promptLines: ["A short circuit occurs across a component in an energised circuit.", "What happens to the current?"] },
   }),
   qb({
     id: "fault.select_protective_device",
@@ -3943,7 +4054,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["fuse", "circuit_breaker"] },
     marking: exact(),
     assertionIdentifiers: ["EL-PROTECTIVE-DEVICE-PURPOSE-001", "EL-FUSE-OPERATION-001"],
-    presentation: { promptLines: ["{scenario_text}", "Which protective device is most appropriate?"] },
+    presentation: { answerOptionLabels: { "fuse": "Fuse", "circuit_breaker": "Circuit breaker" }, promptLines: ["{scenario_text}", "Which protective device is most appropriate?"] },
   }),
   qb({
     id: "fault.compare_fuse_breaker",
@@ -3954,7 +4065,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["fuse", "circuit_breaker"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-BREAKER-VS-FUSE-001"],
-    presentation: { promptLines: ["Which protective device {asked_about_text}?"] },
+    presentation: { answerOptionLabels: { "fuse": "Fuse", "circuit_breaker": "Circuit breaker" }, promptLines: ["Which protective device {asked_about_text}?"] },
   }),
 
   // ===================================================================
@@ -4046,7 +4157,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["permanent_magnet", "electromagnet"] },
     marking: exact(),
     assertionIdentifiers: ["EL-MAGNETISM-COMPARE-PERMANENT-ELECTROMAGNET-001"],
-    presentation: { promptLines: ["Which type of magnet is being described: it {scenario_clue}?"] },
+    presentation: { answerOptionLabels: { "permanent_magnet": "Permanent magnet", "electromagnet": "Electromagnet" }, promptLines: ["Which type of magnet is being described: it {scenario_clue}?"] },
   }),
   qb({
     id: "magnetism.compare_motor_generator",
@@ -4058,7 +4169,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-MOTOR-GENERATOR-COMPARE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "suggestive" }],
-    presentation: { promptLines: ["Which principle is being described: it {principle_clue}?"] },
+    presentation: { answerOptionLabels: { "motor": "Motor", "generator": "Generator" }, promptLines: ["Which principle is being described: it {principle_clue}?"] },
   }),
   qb({
     // CC-09E.1 (Project Architect correction): restricted to magnetic
@@ -4094,7 +4205,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       sourceItemRef: "2365-602-sample-v1:item-31",
       note: "Sample item 31 (identify the SI unit of magnetic flux density among weber/henry/farad distractors) demonstrates this exact operation/representation for this same knowledge target -- the finding that originally justified authoring EL-UNIT-TESLA-001 (CC-09D).",
     },
-    presentation: { promptLines: ["What is the SI unit of magnetic flux density?"] },
+    presentation: { answerOptionLabels: { "tesla": "Tesla", "weber": "Weber", "henry": "Henry", "farad": "Farad" }, promptLines: ["What is the SI unit of magnetic flux density?"] },
   }),
   qb({
     // CC-09E.1: the companion transfer -- magnetic FLUX's own unit
@@ -4115,7 +4226,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       transferredFromBlueprintId: "magnetism.identify_flux_density_unit",
       note: "Transfers the 'identify SI unit among plausible related-unit distractors' grammar sample item 31 demonstrated for magnetic flux DENSITY to magnetic flux itself -- a closely related but distinct, already-governed Unit 202 quantity (EL-UNIT-WEBER-001, AC5.2) the sample never directly tested unit recognition for.",
     },
-    presentation: { promptLines: ["What is the SI unit of magnetic flux?"] },
+    presentation: { answerOptionLabels: { "weber": "Weber", "tesla": "Tesla", "henry": "Henry", "farad": "Farad" }, promptLines: ["What is the SI unit of magnetic flux?"] },
   }),
 
   // ===================================================================
@@ -4131,7 +4242,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-EMF-001", "EL-CONCEPT-TERMINAL-VOLTAGE-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-EMF-VOLTAGE-CONFUSION-001", evidenceStrength: "direct" }],
-    presentation: { promptLines: ["A source's potential difference is measured {reading_context}.", "Is this its EMF or its terminal voltage?"] },
+    presentation: { answerOptionLabels: { "emf": "EMF", "terminal_voltage": "Terminal voltage" }, promptLines: ["A source's potential difference is measured {reading_context}.", "Is this its EMF or its terminal voltage?"] },
   }),
   qb({
     id: "emf.describe_ac_generation",
@@ -4146,7 +4257,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     // (the static motor-principle diagram, not a rotating loop) this
     // package fixes; see generator.rotating_loop's own diagram-blueprint entry.
     representation: { diagram: { required: false, blueprintId: "generator.rotating_loop" } },
-    presentation: { promptLines: ["A single loop of wire is rotated at a constant speed inside a uniform magnetic field.", "What shape is the resulting EMF waveform?"] },
+    presentation: { answerOptionLabels: { "sine_wave": "A sine wave", "constant_dc": "A constant D.C. output", "square_wave": "A square wave" }, promptLines: ["A single loop of wire is rotated at a constant speed inside a uniform magnetic field.", "What shape is the resulting EMF waveform?"] },
   }),
   qb({
     id: "emf.calculate_flux_change",
@@ -4190,7 +4301,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-AC-DC-DISTINCTION-001", "EL-CIRCUIT-AC-SUPPLY-RECOGNITION-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-AC-DC-CONFUSION-001", evidenceStrength: "suggestive" }],
-    presentation: { promptLines: ["Which type of supply is being described: {supply_clue}?"] },
+    presentation: { answerOptionLabels: { "ac": "A.C. (alternating current)", "dc": "D.C. (direct current)" }, promptLines: ["Which type of supply is being described: {supply_clue}?"] },
   }),
   qb({
     id: "waveform.identify_characteristic",
@@ -4218,7 +4329,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       sourceItemRef: "2365-602-sample-v1:item-36",
       note: "Sample item 36 (identify periodic time from a labelled waveform diagram) demonstrates this exact operation/representation for this same knowledge target.",
     },
-    presentation: { promptLines: ["Which characteristic of this waveform is highlighted by the marked reference line(s) on the graph?"] },
+    presentation: { answerOptionLabels: { "periodic_time": "Periodic time", "amplitude": "Amplitude", "peak_to_peak": "Peak-to-peak value", "rms": "RMS value", "average_value": "Average value" }, promptLines: ["Which characteristic of this waveform is highlighted by the marked reference line(s) on the graph?"] },
   }),
   qb({
     id: "waveform.calculate_rms_from_peak",
@@ -4259,7 +4370,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-PEAK-VS-RMS-SUPPLY-INTERPRETATION-001"],
     misconceptionTargets: [{ misconceptionIdentifier: "MIS-EL-PEAK-RMS-CONFUSION-001", evidenceStrength: "direct" }],
-    presentation: { promptLines: ["A supply is rated at a stated voltage (for example, '230 V').", "Does this rated value refer to the RMS value or the peak value?"] },
+    presentation: { answerOptionLabels: { "rms": "RMS value", "peak": "Peak value" }, promptLines: ["A supply is rated at a stated voltage (for example, '230 V').", "Does this rated value refer to the RMS value or the peak value?"] },
   }),
   qb({
     id: "waveform.compare_ac_dc_behaviour",
@@ -4270,7 +4381,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["same_both", "differs_by_frequency"] },
     marking: exact(),
     assertionIdentifiers: ["EL-CIRCUIT-COMPARE-AC-DC-BEHAVIOUR-001"],
-    presentation: { promptLines: ["How does a {component} behave under an AC supply compared with a DC supply?"] },
+    presentation: { answerOptionLabels: { "same_both": "The same for both", "differs_by_frequency": "Different, and depends on frequency" }, promptLines: ["How does a {component} behave under an AC supply compared with a DC supply?"] },
   }),
 
   // ===================================================================
@@ -4402,7 +4513,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["mass", "weight"] },
     marking: exact(),
     assertionIdentifiers: ["FP-CONCEPT-MASS-001", "FP-CONCEPT-WEIGHT-001", "FP-REL-WEIGHT-MASS-001"],
-    presentation: { promptLines: ["Which quantity is described as: {concept_clue}?"] },
+    presentation: { answerOptionLabels: { "mass": "Mass", "weight": "Weight" }, promptLines: ["Which quantity is described as: {concept_clue}?"] },
   }),
 
   // ===================================================================
@@ -4417,7 +4528,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["class_I", "class_II", "class_III"] },
     marking: exact(),
     assertionIdentifiers: ["FP-CONCEPT-LEVER-PRINCIPLE-001", "FP-LEVER-CLASS-I-001", "FP-LEVER-CLASS-II-001", "FP-LEVER-CLASS-III-001"],
-    presentation: { promptLines: ["A lever is arranged so that {arrangement_clue}.", "Which class of lever is this?"] },
+    presentation: { answerOptionLabels: { "class_I": "Class 1 (pivot between effort and load)", "class_II": "Class 2 (load between pivot and effort)", "class_III": "Class 3 (effort between pivot and load)" }, promptLines: ["A lever is arranged so that {arrangement_clue}.", "Which class of lever is this?"] },
   }),
   qb({
     id: "gears.recognise_ratio_tradeoff",
@@ -4428,7 +4539,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["torque_increases", "speed_increases"] },
     marking: exact(),
     assertionIdentifiers: ["FP-CONCEPT-GEAR-001", "FP-REL-GEAR-RATIO-001", "FP-GEAR-SPEED-TORQUE-TRADEOFF-001"],
-    presentation: {
+    presentation: { answerOptionLabels: { "torque_increases": "Output torque increases", "speed_increases": "Output speed increases" },
       promptLines: [
         "{scenario_clue}",
         "Compared with the driving gear, does the driven gear's output torque increase, or does its output speed increase?",
@@ -4449,7 +4560,7 @@ const questionBlueprints: QuestionBlueprint[] = [
       "FP-REL-PULLEY-MECHANICAL-ADVANTAGE-001",
       "FP-REL-PULLEY-FORCE-DISTANCE-TRADEOFF-001",
     ],
-    presentation: {
+    presentation: { answerOptionLabels: { "effort_force_decreases": "The effort force decreases", "effort_force_increases": "The effort force increases" },
       promptLines: ["{scenario_clue}", "Compared with a single fixed pulley, does the effort force needed to lift the load decrease, or increase?"],
     },
   }),
@@ -4479,7 +4590,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     answer: { type: "multiple_choice", options: ["force", "work", "energy", "power", "efficiency"] },
     marking: exact(),
     assertionIdentifiers: ["FP-CONCEPT-FORCE-001", "FP-CONCEPT-WORK-001", "FP-CONCEPT-ENERGY-001", "FP-CONCEPT-POWER-001", "FP-CONCEPT-EFFICIENCY-001"],
-    presentation: { promptLines: ["Which mechanical quantity is described as: {concept_clue}?"] },
+    presentation: { answerOptionLabels: { "force": "Force", "work": "Work", "energy": "Energy", "power": "Power", "efficiency": "Efficiency" }, promptLines: ["Which mechanical quantity is described as: {concept_clue}?"] },
   }),
   qb({
     id: "mechanics.calculate_work",
@@ -4655,7 +4766,7 @@ const questionBlueprints: QuestionBlueprint[] = [
     marking: exact(),
     assertionIdentifiers: ["EL-CONCEPT-MAGNETISM-001"],
     representation: { diagram: { required: true, blueprintId: "magnetic.pole_interaction" } },
-    presentation: { promptLines: ["Two magnetic poles are brought close together: {pole_scenario_clue}.", "What happens?"] },
+    presentation: { answerOptionLabels: { "attract": "Attract", "repel": "Repel" }, promptLines: ["Two magnetic poles are brought close together: {pole_scenario_clue}.", "What happens?"] },
   }),
   qb({
     id: "magnetism.calculate_force_on_conductor",

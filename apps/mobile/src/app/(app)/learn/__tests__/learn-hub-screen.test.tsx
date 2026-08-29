@@ -54,11 +54,17 @@ describe("Learn hub topic cards route to the real Lesson Player, not the retired
   it("every topic card, including magnetism, links to /learn/lesson-player with its real governed lessonId", async () => {
     await render(<LearnIndexScreen />);
 
+    // CC-12H: labels use each lesson's own `title` field (the Learn hub now
+    // lists the full governed catalogue, not a hand-picked four -- see
+    // ../index.tsx's own header comment), which for series/magnetism reads
+    // differently from the retired proving-family names this test used to
+    // assert ("Series D.C. circuits" / "Magnetism, electromagnetism and the
+    // motor principle").
     const expected: Record<string, string> = {
       "Open Ohm's Law lesson": "lesson.electrical.ohms-law",
-      "Open Series D.C. circuits lesson": "lesson.electrical.resistors-series",
-      "Open Parallel D.C. circuits lesson": "lesson.electrical.resistors-parallel",
-      "Open Magnetism, electromagnetism and the motor principle lesson": "lesson.magnetism.effects-of-current",
+      "Open Resistors in Series lesson": "lesson.electrical.resistors-series",
+      "Open Resistors in Parallel lesson": "lesson.electrical.resistors-parallel",
+      "Open Magnetic Effects of Current lesson": "lesson.magnetism.effects-of-current",
     };
 
     for (const [accessibilityLabel, lessonId] of Object.entries(expected)) {

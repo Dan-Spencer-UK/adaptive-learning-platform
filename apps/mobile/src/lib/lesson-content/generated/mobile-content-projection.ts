@@ -5194,6 +5194,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           ],
           "misconceptionTargets": [],
           "representation": {
+            "formulaFamilyId": "formula.parallel_resistance",
             "diagramBlueprintId": "circuit.parallel_resistors"
           },
           "questionBlueprintId": "parallel.solve_missing_branch",
@@ -5677,6 +5678,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           ],
           "misconceptionTargets": [],
           "representation": {
+            "formulaFamilyId": "formula.ohms_law",
             "diagramBlueprintId": "circuit.series_resistors"
           },
           "questionBlueprintId": "series.calculate_voltage_drop",
@@ -5715,6 +5717,7 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           ],
           "misconceptionTargets": [],
           "representation": {
+            "formulaFamilyId": "formula.series_resistance",
             "diagramBlueprintId": "circuit.series_resistors"
           },
           "questionBlueprintId": "series.solve_missing_component",
@@ -11752,7 +11755,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{pattern_text}",
           "Is this series behaviour or parallel behaviour?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "series_behaviour": "Same current, voltage divides (series)",
+          "parallel_behaviour": "Same voltage, current divides (parallel)"
+        }
       }
     },
     {
@@ -11790,7 +11797,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "Take the same set of two or more resistors, connected to the same supply voltage.",
           "Is their total power/energy higher when connected in series, or when connected in parallel?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "series_higher": "Series is higher",
+          "parallel_higher": "Parallel is higher",
+          "equal": "They are equal"
+        }
       }
     },
     {
@@ -11827,7 +11839,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "Take the same set of two or more resistors.",
           "Is their total resistance higher when connected in series, or when connected in parallel?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "series_higher": "Series is higher",
+          "parallel_higher": "Parallel is higher",
+          "equal": "They are equal"
+        }
       }
     },
     {
@@ -11868,7 +11885,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "Look at the circuit diagram.",
           "Is this circuit's overall arrangement series or parallel?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "series": "Series",
+          "parallel": "Parallel"
+        }
       }
     },
     {
@@ -11910,7 +11931,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "Look at the circuit diagram.",
           "Is it wired in series, parallel, or a mix of both?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "series": "Series",
+          "parallel": "Parallel",
+          "mixed": "A mix of both"
+        }
       }
     },
     {
@@ -11989,7 +12015,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Is {material} a conductor or an insulator?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "conductor": "Conductor",
+          "insulator": "Insulator"
+        }
       }
     },
     {
@@ -12025,7 +12055,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A voltage far beyond an insulator's rating is applied across it.",
           "What happens to the insulator?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "breaks_down_and_conducts": "It breaks down and starts to conduct",
+          "remains_insulating": "It remains insulating"
+        }
       }
     },
     {
@@ -12062,7 +12096,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "In a metallic conductor, a potential difference is applied across it.",
           "What actually moves through the conductor to create the electric current?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "free_electrons": "Free electrons",
+          "protons": "Protons"
+        }
       }
     },
     {
@@ -12074,7 +12112,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "variantDimensions": {},
       "parameterGenerators": [],
       "answer": {
-        "type": "worked_error_classification"
+        "type": "worked_error_classification",
+        "options": [
+          "current_voltage_confusion",
+          "no_confusion"
+        ]
       },
       "marking": {
         "type": "enum"
@@ -12100,7 +12142,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{scenario_text}",
           "Which misconception does this reveal?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "current_voltage_confusion": "Confusing current and voltage",
+          "no_confusion": "No real confusion -- the description is accurate"
+        }
       }
     },
     {
@@ -12138,7 +12184,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which quantity is defined as: {definition_clause}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "voltage": "Voltage",
+          "current": "Current",
+          "resistance": "Resistance"
+        }
       }
     },
     {
@@ -12571,7 +12622,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A single loop of wire is rotated at a constant speed inside a uniform magnetic field.",
           "What shape is the resulting EMF waveform?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "sine_wave": "A sine wave",
+          "constant_dc": "A constant D.C. output",
+          "square_wave": "A square wave"
+        }
       }
     },
     {
@@ -12613,7 +12669,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A source's potential difference is measured {reading_context}.",
           "Is this its EMF or its terminal voltage?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "emf": "EMF",
+          "terminal_voltage": "Terminal voltage"
+        }
       }
     },
     {
@@ -12805,7 +12865,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which protective device {asked_about_text}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "fuse": "Fuse",
+          "circuit_breaker": "Circuit breaker"
+        }
       }
     },
     {
@@ -12842,7 +12906,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A short circuit occurs across a component in an energised circuit.",
           "What happens to the current?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "current_increases_sharply": "Current increases sharply",
+          "current_decreases": "Current decreases",
+          "no_effect": "No effect"
+        }
       }
     },
     {
@@ -12881,7 +12950,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{condition_clue}",
           "Which fault condition is this?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "short_circuit": "Short circuit",
+          "open_circuit": "Open circuit"
+        }
       }
     },
     {
@@ -12918,7 +12991,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{scenario_text}",
           "Which protective device is most appropriate?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "fuse": "Fuse",
+          "circuit_breaker": "Circuit breaker"
+        }
       }
     },
     {
@@ -13038,7 +13115,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{scenario_clue}",
           "Compared with the driving gear, does the driven gear's output torque increase, or does its output speed increase?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "torque_increases": "Output torque increases",
+          "speed_increases": "Output speed increases"
+        }
       }
     },
     {
@@ -13085,7 +13166,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "Look at the circuit diagram.",
           "How should the {instrument_type} be connected to measure correctly?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "series": "Series",
+          "parallel": "Parallel"
+        }
       }
     },
     {
@@ -13121,7 +13206,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "For accurate measurement without disturbing the circuit, what should the ideal internal resistance of a {instrument_type} be?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "very_high": "Very high",
+          "very_low": "Very low"
+        }
       }
     },
     {
@@ -13160,7 +13249,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{purpose_clue}",
           "Which instrument is this?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "clamp_meter": "Clamp meter",
+          "oscilloscope": "Oscilloscope",
+          "continuity_tester": "Continuity tester"
+        }
       }
     },
     {
@@ -13197,7 +13291,13 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which instrument should be used to measure {quantity}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "voltmeter": "Voltmeter",
+          "ammeter": "Ammeter",
+          "ohmmeter": "Ohmmeter",
+          "multimeter": "Multimeter"
+        }
       }
     },
     {
@@ -13284,7 +13384,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A lever is arranged so that {arrangement_clue}.",
           "Which class of lever is this?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "class_I": "Class 1 (pivot between effort and load)",
+          "class_II": "Class 2 (load between pivot and effort)",
+          "class_III": "Class 3 (effort between pivot and load)"
+        }
       }
     },
     {
@@ -13367,7 +13472,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which principle is being described: it {principle_clue}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "motor": "Motor",
+          "generator": "Generator"
+        }
       }
     },
     {
@@ -13402,7 +13511,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which type of magnet is being described: it {scenario_clue}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "permanent_magnet": "Permanent magnet",
+          "electromagnet": "Electromagnet"
+        }
       }
     },
     {
@@ -13484,7 +13597,13 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "What is the SI unit of magnetic flux density?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "tesla": "Tesla",
+          "weber": "Weber",
+          "henry": "Henry",
+          "farad": "Farad"
+        }
       }
     },
     {
@@ -13521,7 +13640,13 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "What is the SI unit of magnetic flux?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "weber": "Weber",
+          "tesla": "Tesla",
+          "henry": "Henry",
+          "farad": "Farad"
+        }
       }
     },
     {
@@ -13641,7 +13766,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "Two magnetic poles are brought close together: {pole_scenario_clue}.",
           "What happens?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "attract": "Attract",
+          "repel": "Repel"
+        }
       }
     },
     {
@@ -13719,7 +13848,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which quantity is described as: {concept_clue}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "mass": "Mass",
+          "weight": "Weight"
+        }
       }
     },
     {
@@ -13967,7 +14100,14 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which mechanical quantity is described as: {concept_clue}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "force": "Force",
+          "work": "Work",
+          "energy": "Energy",
+          "power": "Power",
+          "efficiency": "Efficiency"
+        }
       }
     },
     {
@@ -14481,7 +14621,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "variantDimensions": {},
       "parameterGenerators": [],
       "answer": {
-        "type": "worked_error_classification"
+        "type": "worked_error_classification",
+        "options": [
+          "reciprocal_error",
+          "missing_final_inversion",
+          "no_error"
+        ]
       },
       "marking": {
         "type": "enum"
@@ -14509,7 +14654,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         ],
         "shownWorkingLines": [
           "1/Rt = 1/R1 + 1/R2 + ... = {shown_total} (left un-inverted)"
-        ]
+        ],
+        "answerOptionLabels": {
+          "reciprocal_error": "Added the branch resistances directly, instead of using the reciprocal relationship",
+          "missing_final_inversion": "Summed the reciprocals correctly, but forgot to invert the sum back",
+          "no_error": "The working shown is actually correct"
+        }
       }
     },
     {
@@ -14521,7 +14671,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "variantDimensions": {},
       "parameterGenerators": [],
       "answer": {
-        "type": "worked_error_classification"
+        "type": "worked_error_classification",
+        "options": [
+          "reciprocal_error",
+          "missing_final_inversion",
+          "no_error"
+        ]
       },
       "marking": {
         "type": "enum"
@@ -14548,7 +14703,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         ],
         "shownWorkingLines": [
           "Rt = R1 + R2 + ... = {shown_total} Ω"
-        ]
+        ],
+        "answerOptionLabels": {
+          "reciprocal_error": "Added the branch resistances directly, instead of using the reciprocal relationship",
+          "missing_final_inversion": "Summed the reciprocals correctly, but forgot to invert the sum back",
+          "no_error": "The working shown is actually correct"
+        }
       }
     },
     {
@@ -14904,7 +15064,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{scenario_clue}",
           "Compared with a single fixed pulley, does the effort force needed to lift the load decrease, or increase?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "effort_force_decreases": "The effort force decreases",
+          "effort_force_increases": "The effort force increases"
+        }
       }
     },
     {
@@ -14982,7 +15146,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
           "Material A has a resistivity of {resistivity_a} Ω·m.",
           "Material B has a resistivity of {resistivity_b} Ω·m.",
           "Which material is the better conductor?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "material_a": "Material A",
+          "material_b": "Material B"
+        }
       }
     },
     {
@@ -14994,7 +15162,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "variantDimensions": {},
       "parameterGenerators": [],
       "answer": {
-        "type": "direction"
+        "type": "multiple_choice",
+        "options": [
+          "increase",
+          "decrease"
+        ]
       },
       "marking": {
         "type": "exact"
@@ -15014,7 +15186,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A conductor's cross-sectional area is increased while its material and length stay the same.",
           "What happens to its resistance?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "increase": "Increases",
+          "decrease": "Decreases"
+        }
       }
     },
     {
@@ -15026,7 +15202,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "variantDimensions": {},
       "parameterGenerators": [],
       "answer": {
-        "type": "direction"
+        "type": "multiple_choice",
+        "options": [
+          "increase",
+          "decrease"
+        ]
       },
       "marking": {
         "type": "exact"
@@ -15046,7 +15226,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A conductor's length is increased while its material and cross-sectional area stay the same.",
           "What happens to its resistance?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "increase": "Increases",
+          "decrease": "Decreases"
+        }
       }
     },
     {
@@ -15081,7 +15265,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which term describes this: {recognise_clue}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "resistance": "Resistance",
+          "resistivity": "Resistivity"
+        }
       }
     },
     {
@@ -15194,6 +15382,10 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "diagram": {
           "required": true,
           "blueprintId": "circuit.series_resistors"
+        },
+        "formula": {
+          "required": true,
+          "formulaFamilyId": "formula.ohms_law"
         }
       },
       "variantDimensions": {},
@@ -15372,7 +15564,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "variantDimensions": {},
       "parameterGenerators": [],
       "answer": {
-        "type": "worked_error_classification"
+        "type": "worked_error_classification",
+        "options": [
+          "unit_confusion",
+          "no_confusion"
+        ]
       },
       "marking": {
         "type": "enum"
@@ -15402,7 +15598,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A learner keeps mixing up {confused_pair_label}.",
           "Which kind of unit confusion is this?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "unit_confusion": "A genuine mix-up between these two units",
+          "no_confusion": "No real confusion -- the units are being used correctly"
+        }
       }
     },
     {
@@ -15437,7 +15637,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Is the {unit} an SI base unit or an SI derived unit?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "base": "SI base unit",
+          "derived": "SI derived unit"
+        }
       }
     },
     {
@@ -15492,7 +15696,15 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which SI unit is used to measure {quantity}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "V": "Volt (V)",
+          "A": "Ampere (A)",
+          "Ω": "Ohm (Ω)",
+          "W": "Watt (W)",
+          "J": "Joule (J)",
+          "Hz": "Hertz (Hz)"
+        }
       }
     },
     {
@@ -15529,7 +15741,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{application_clue}",
           "Which application of the thermal effect of current is this?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "heating_element": "Heating element",
+          "filament_lamp": "Filament lamp",
+          "relay_coil": "Relay coil"
+        }
       }
     },
     {
@@ -15567,7 +15784,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "{effect_clue}",
           "Is this the thermal effect or the chemical effect of current?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "thermal": "Thermal effect",
+          "chemical": "Chemical effect"
+        }
       }
     },
     {
@@ -15702,7 +15923,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "How does a {component} behave under an AC supply compared with a DC supply?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "same_both": "The same for both",
+          "differs_by_frequency": "Different, and depends on frequency"
+        }
       }
     },
     {
@@ -15750,7 +15975,14 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which characteristic of this waveform is highlighted by the marked reference line(s) on the graph?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "periodic_time": "Periodic time",
+          "amplitude": "Amplitude",
+          "peak_to_peak": "Peak-to-peak value",
+          "rms": "RMS value",
+          "average_value": "Average value"
+        }
       }
     },
     {
@@ -15791,7 +16023,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "promptLines": [
           "A supply is rated at a stated voltage (for example, '230 V').",
           "Does this rated value refer to the RMS value or the peak value?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "rms": "RMS value",
+          "peak": "Peak value"
+        }
       }
     },
     {
@@ -15832,7 +16068,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
       "presentation": {
         "promptLines": [
           "Which type of supply is being described: {supply_clue}?"
-        ]
+        ],
+        "answerOptionLabels": {
+          "ac": "A.C. (alternating current)",
+          "dc": "D.C. (direct current)"
+        }
       }
     }
   ],
@@ -17113,7 +17353,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "substitute_values",
         "calculate",
         "show_answer_with_unit"
-      ]
+      ],
+      "teachingValues": {
+        "Pout": 80,
+        "Pin": 100
+      }
     },
     {
       "id": "worked.emf.calculate_flux_change_e",
@@ -17147,7 +17391,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "substitute_values",
         "calculate",
         "show_answer_with_unit"
-      ]
+      ],
+      "teachingValues": {
+        "P": 100,
+        "t": 60
+      }
     },
     {
       "id": "worked.force_on_conductor.calculate",
@@ -17381,7 +17629,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "calculate",
         "show_answer_with_unit",
         "sanity_check_result"
-      ]
+      ],
+      "teachingValues": {
+        "R1": 4,
+        "R2": 4,
+        "R3": 2
+      }
     },
     {
       "id": "worked.power.calculate_from_ir",
@@ -17396,7 +17649,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "substitute_values",
         "calculate",
         "show_answer_with_unit"
-      ]
+      ],
+      "teachingValues": {
+        "I": 2,
+        "R": 10
+      }
     },
     {
       "id": "worked.power.calculate_from_vi",
@@ -17411,7 +17668,11 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "substitute_values",
         "calculate",
         "show_answer_with_unit"
-      ]
+      ],
+      "teachingValues": {
+        "V": 10,
+        "I": 5
+      }
     },
     {
       "id": "worked.resistivity.calculate_resistance",
@@ -17427,7 +17688,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "substitute_values",
         "calculate",
         "show_answer_with_unit"
-      ]
+      ],
+      "teachingValues": {
+        "rho": 2,
+        "L": 5,
+        "A": 10
+      }
     },
     {
       "id": "worked.series_resistance.calculate_total",
@@ -17444,7 +17710,12 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "calculate",
         "show_answer_with_unit",
         "sanity_check_result"
-      ]
+      ],
+      "teachingValues": {
+        "R1": 10,
+        "R2": 20,
+        "R3": 30
+      }
     },
     {
       "id": "worked.waveform.calculate_frequency",
@@ -17458,7 +17729,10 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "substitute_values",
         "calculate",
         "show_answer_with_unit"
-      ]
+      ],
+      "teachingValues": {
+        "T": 0.02
+      }
     },
     {
       "id": "worked.waveform.calculate_rms",
@@ -17472,7 +17746,10 @@ export const MOBILE_CONTENT_PROJECTION: MobileContentProjection = {
         "substitute_values",
         "calculate",
         "show_answer_with_unit"
-      ]
+      ],
+      "teachingValues": {
+        "peak": 100
+      }
     }
   ],
   "visualAidBlueprints": [

@@ -184,7 +184,11 @@ export const LESSON_RESISTORS_SERIES: LessonPlan = {
       assertionFamilyId: "electrical.series_circuits",
       capabilityIds: ["cap.series.calculate_voltage_drop"],
       misconceptionTargets: [],
-      representation: { diagramBlueprintId: "circuit.series_resistors" },
+      // CC-12H: `formulaFamilyId` was missing -- `series.calculate_voltage_drop`'s
+      // own executor (series-resistance.ts's `calculateVoltageDrop`) genuinely
+      // computes via formula.ohms_law (V = I x R), and the mobile answer input
+      // needs a resolved formula family to present the "V" unit symbol.
+      representation: { diagramBlueprintId: "circuit.series_resistors", formulaFamilyId: "formula.ohms_law" },
       questionBlueprintId: "series.calculate_voltage_drop",
       presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "independent",
@@ -205,7 +209,11 @@ export const LESSON_RESISTORS_SERIES: LessonPlan = {
       assertionFamilyId: "electrical.series_circuits",
       capabilityIds: ["cap.series.solve_missing_component"],
       misconceptionTargets: [],
-      representation: { diagramBlueprintId: "circuit.series_resistors" },
+      // CC-12H: `formulaFamilyId` was missing -- the mobile answer input
+      // needs a resolved formula family to present the "Ω" unit symbol
+      // (series.solve_missing_component's own answer.quantity is
+      // "resistance", which formula.series_resistance's variables cover).
+      representation: { diagramBlueprintId: "circuit.series_resistors", formulaFamilyId: "formula.series_resistance" },
       questionBlueprintId: "series.solve_missing_component",
       presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "independent",

@@ -8,15 +8,23 @@
  * surface -- no second per-screen switch statement.
  *
  * Every diagram blueprint actually used by any lesson/question must be
- * registered here; `scripts/content/validate-diagram-renderer-coverage.ts`
- * mechanically proves the registry has an entry for every
- * `diagramBlueprintId` referenced anywhere in the governed corpus
- * (task brief §8: "unsupported blueprint IDs must fail loudly rather than
- * silently disappear"). `resolveDiagramComponent` throws for an
- * unregistered id rather than silently rendering nothing -- by the time
- * code ships, the mechanical gate guarantees this throw is unreachable in
- * production; it exists so a regression is a loud CI/test failure, never a
- * silently missing diagram a learner just never sees.
+ * registered here. `resolveDiagramComponent` throws for an unregistered id
+ * rather than silently rendering nothing -- a regression is a loud
+ * CI/test failure, never a silently missing diagram a learner just never
+ * sees.
+ *
+ * CC-12H correction: the mechanical coverage gate this comment originally
+ * pointed at (`scripts/content/validate-diagram-renderer-coverage.ts`)
+ * was never actually created, and could not have lived there -- this
+ * component (and the SVG diagram components it dispatches to) depends on
+ * `react-native-svg`/RN, which `scripts/content`'s Vitest/Node
+ * environment cannot import (see vitest.config.ts's own explicit
+ * `apps/mobile` exclusion). The real gate is
+ * `apps/mobile/src/lib/lesson-content/mobile-runtime-contract-audit.test.tsx`,
+ * which renders every step of every lesson in the current bundled
+ * production release through the real `LessonStepView` -- including,
+ * for any step with a diagram, this renderer -- so an unregistered
+ * `diagramBlueprintId` referenced by production content fails there.
  */
 import type { DiagramInstance } from "@alp/calculation-engine";
 import type { DiagramBlueprint } from "@alp/content-schema";

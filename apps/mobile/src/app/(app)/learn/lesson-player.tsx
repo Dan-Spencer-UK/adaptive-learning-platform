@@ -45,6 +45,7 @@ import {
 } from "@/lib/lesson-content/local-content-registry";
 import { prepareLessonContent, type LocalContentStatus } from "@/lib/lesson-content/local-content-store";
 import { resolveLessonStep } from "@/lib/lesson-content/resolve-lesson-step";
+import { resolveDevDebugAnswer } from "@/lib/lesson-content/answer-input-dispatch";
 import { useLessonDebugOverlay } from "@/lib/lesson-content/dev-debug-overlay";
 import { acknowledgeStep, submitStepAnswer } from "@/lib/lesson-session/lesson-controller";
 import { currentStepId, isSessionComplete, startSession, type LessonSessionState } from "@/lib/lesson-session/lesson-session-controller";
@@ -479,6 +480,22 @@ export default function LessonPlayerScreen(): React.JSX.Element {
           <Text style={styles.debugBadgeText}>
             {resolved.step.id} ({resolved.step.type})
           </Text>
+          {/* CC-12H: dev-only ground-truth answer readout for the runtime
+              QA walker (tools/qa/) -- lets it read the correct submission
+              directly off the live screen rather than replicating
+              learner-identity/RNG seeding offline. Never shown to a real
+              learner (debugOverlayEnabled defaults off, toggled only from
+              the __DEV__-only dev-lesson-qa screen). */}
+          {resolved.questionBlueprint && displayedQuestionInstance
+            ? (() => {
+                const debugAnswer = resolveDevDebugAnswer(resolved.questionBlueprint, displayedQuestionInstance, resolved.formulaFamily);
+                return (
+                  <Text style={styles.debugBadgeText} testID="lesson-debug-expected-answer">
+                    {debugAnswer.tapLabel ? `tap: ${debugAnswer.tapLabel}` : `expected: ${debugAnswer.expectedValue}`}
+                  </Text>
+                );
+              })()
+            : null}
         </View>
       ) : null}
       <ScrollableLessonStep key={`${resolved.step.id}:${isReviewing}`} testID="lesson-step-scroll-container">

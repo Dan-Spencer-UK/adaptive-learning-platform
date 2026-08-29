@@ -245,6 +245,7 @@ export const WORKED_SERIES_CALCULATE_TOTAL: WorkedExampleBlueprint = {
   target: "Rt",
   knownVariables: ["R1", "R2", "R3"],
   steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit", "sanity_check_result"],
+  teachingValues: { R1: 10, R2: 20, R3: 30 },
 };
 
 export const WORKED_PARALLEL_CALCULATE_TOTAL: WorkedExampleBlueprint = {
@@ -253,6 +254,7 @@ export const WORKED_PARALLEL_CALCULATE_TOTAL: WorkedExampleBlueprint = {
   target: "Rt",
   knownVariables: ["R1", "R2", "R3"],
   steps: ["show_formula", "substitute_values", "calculate", "show_answer_with_unit", "sanity_check_result"],
+  teachingValues: { R1: 4, R2: 4, R3: 2 },
 };
 
 // =========================================================================

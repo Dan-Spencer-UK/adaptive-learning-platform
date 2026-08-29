@@ -1,0 +1,528 @@
+--- walking lesson.electrical.ohms-law ---
+lesson.electrical.ohms-law | FAIL | steps=0 | reason=no Continue control after submitting at step [misconception_check_wrong_operation (misconception_discrimination)]
+--- walking lesson.electrical.ohms-law ---
+    ERROR: numeric input field not found
+lesson.electrical.ohms-law | FAIL | steps=1 | reason=could not submit answer at step [remediation_rearrangement (remediation)] (expected: 13)
+--- walking lesson.electrical.ohms-law ---
+lesson.electrical.ohms-law | FAIL | steps=0 | reason=no Continue control after submitting at step [remediation_rearrangement (remediation)]
+--- walking lesson.electrical.ohms-law ---
+    ERROR: numeric input field not found
+    ERROR: numeric input field not found
+    ERROR: numeric input field not found
+lesson.electrical.ohms-law | FAIL | steps=0 | reason=could not submit+advance at step [remediation_rearrangement (remediation)] after 3 attempt(s)
+--- walking lesson.electrical.ohms-law ---
+lesson.electrical.ohms-law | PASS | steps=4 | final=Lesson complete | branch=no
+--- walking lesson.foundation.maths.formula-rearrangement ---
+lesson.foundation.maths.formula-rearrangement | FAIL | steps=11 | reason=stuck at step [] -- no graded control and no Continue
+--- walking lesson.electrical.resistors-series ---
+lesson.electrical.resistors-series | PASS | steps=12 | final=Lesson complete | branch=no
+--- walking lesson.electrical.resistors-parallel ---
+lesson.electrical.resistors-parallel | FAIL | steps=12 | reason=stuck at step [] -- no graded control and no Continue
+--- walking lesson.electrical.core-quantities ---
+lesson.electrical.core-quantities | PASS | steps=5 | final=Lesson complete | branch=no
+--- walking lesson.electrical.si-units ---
+    ERROR: choice control not found for label [Watt (W)]
+    ERROR: choice control not found for label [Watt (W)]
+    ERROR: choice control not found for label [Watt (W)]
+lesson.electrical.si-units | FAIL | steps=2 | reason=could not submit+advance at step [guided_identify_unit_1 (guided_interaction)] after 3 attempt(s)
+--- walking lesson.electrical.instrumentation ---
+lesson.electrical.instrumentation | FAIL | steps=9 | reason=stuck at step [] -- no graded control and no Continue
+--- walking lesson.foundation.maths.formula-rearrangement ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_equality_and_inverse_operations (concept_explanation)] answer_text=[]
+    [trace] step_id=[worked_example_multiplicative (worked_example)] answer_text=[]
+    [trace] step_id=[guided_rearrange_multiplicative (guided_interaction)] answer_text=[expected: 3]
+    [trace] step_id=[independent_rearrange_multiplicative (independent_question)] answer_text=[expected: 6]
+    [trace] step_id=[worked_example_additive (worked_example)] answer_text=[]
+    [trace] step_id=[guided_rearrange_additive (guided_interaction)] answer_text=[expected: 40]
+    [trace] step_id=[independent_rearrange_additive (independent_question)] answer_text=[expected: 20]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[expected: 6]
+    [trace] step_id=[recap (recap)] answer_text=[]
+lesson.foundation.maths.formula-rearrangement | PASS | steps=10 | final=Lesson complete | branch=no
+--- walking lesson.electrical.si-units ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_electrical_units (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_identify_unit_1 (guided_interaction)] answer_text=[tap: Watt (W)]
+    ERROR: choice control not found for label [Watt (W)]
+    ERROR: choice control not found for label [Watt (W)]
+    ERROR: choice control not found for label [Watt (W)]
+--- walking lesson.electrical.si-units ---
+    [trace] step_id=[guided_identify_unit_1 (guided_interaction)] answer_text=[tap: Watt (W)]
+lesson.electrical.si-units | FAIL | steps=0 | reason=could not submit+advance at step [guided_identify_unit_1 (guided_interaction)] after 4 attempt(s)
+--- walking lesson.electrical.si-units ---
+    [trace] step_id=[independent_identify_unit_2 (independent_question)] answer_text=[tap: Ampere (A)]
+    [trace] step_id=[guided_distinguish_base_derived (guided_interaction)] answer_text=[tap: SI derived unit]
+    [trace] step_id=[independent_diagnose_unit_confusion (independent_question)] answer_text=[tap: A genuine mix-up between these two units]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[tap: Ohm (Ω)]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.si-units | PASS | steps=6 | final=Lesson complete | branch=no
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_parallel_structure (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_identify_topology (guided_interaction)] answer_text=[tap: Multiple branches, connected across the same two points]
+    [trace] step_id=[worked_example_total_resistance (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_total_resistance (guided_interaction)] answer_text=[expected: 18.884211]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[guided_calculate_total_resistance (guided_interaction)] answer_text=[expected: 18.884211]
+lesson.electrical.resistors-parallel | FAIL | steps=0 | reason=could not submit+advance at step [guided_calculate_total_resistance (guided_interaction)] after 4 attempt(s)
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[guided_calculate_total_resistance (guided_interaction)] answer_text=[expected: 18.884211]
+    [trace] step_id=[guided_calculate_branch_current (guided_interaction)] answer_text=[expected: 0.035088]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[guided_calculate_branch_current (guided_interaction)] answer_text=[expected: 0.035088]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[misconception_check_reciprocal_error (misconception_discrimination)] answer_text=[tap: Added the branch resistances directly, instead of using the reciprocal relationship]
+    [trace] step_id=[remediation_reciprocal_technique (remediation)] answer_text=[expected: 17.256856]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[remediation_reciprocal_technique (remediation)] answer_text=[expected: 17.256856]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[transfer_solve_missing_branch (transfer_application)] answer_text=[expected: 65]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[transfer_plausibility_check (transfer_application)] answer_text=[tap: Possible]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[expected: 15.502735]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[expected: 15.502735]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[expected: 15.502735]
+--- walking lesson.electrical.resistors-parallel ---
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.resistors-parallel | PASS | steps=2 | final=Lesson complete | branch=no
+--- walking lesson.electrical.instrumentation ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_core_instruments (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_select_instrument (guided_interaction)] answer_text=[tap: Voltmeter]
+    [trace] step_id=[independent_recognise_connection (independent_question)] answer_text=[tap: Series]
+    [trace] step_id=[independent_internal_resistance (independent_question)] answer_text=[tap: Very low]
+    [trace] step_id=[concept_specialised_instruments (concept_explanation)] answer_text=[]
+    [trace] step_id=[independent_recognise_purpose (independent_question)] answer_text=[tap: Continuity tester]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.instrumentation | PASS | steps=9 | final=Lesson complete | branch=no
+--- walking lesson.electrical.charge-and-current ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_charge_current_relationship (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_relationship (guided_interaction)] answer_text=[tap: I = Q / t]
+    [trace] step_id=[independent_calculate_current (independent_question)] answer_text=[expected: 30]
+--- walking lesson.electrical.charge-and-current ---
+    [trace] step_id=[independent_calculate_current (independent_question)] answer_text=[expected: 30]
+--- walking lesson.electrical.charge-and-current ---
+    [trace] step_id=[transfer_calculate_charge (transfer_application)] answer_text=[expected: 150]
+    [trace] numeric submit coords=[540,1682]
+    [trace] numeric submit coords=[540,1682]
+    [trace] numeric submit coords=[540,1682]
+--- walking lesson.electrical.charge-and-current ---
+    [trace] step_id=[transfer_calculate_charge (transfer_application)] answer_text=[expected: 150]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.charge-and-current | PASS | steps=3 | final=Lesson complete | branch=no
+--- walking lesson.electrical.conductors-and-insulators ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_electron_theory (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_electron_theory (guided_interaction)] answer_text=[tap: Free electrons]
+    [trace] step_id=[concept_conductor_insulator (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_classify_material (guided_interaction)] answer_text=[tap: Insulator]
+    [trace] step_id=[independent_recognise_breakdown (independent_question)] answer_text=[tap: It breaks down and starts to conduct]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.conductors-and-insulators | PASS | steps=8 | final=Lesson complete | branch=no
+--- walking lesson.electrical.thermal-and-chemical-effects ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_thermal_and_chemical_effects (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_effect (guided_interaction)] answer_text=[tap: Thermal effect]
+    [trace] step_id=[independent_recognise_application (independent_question)] answer_text=[tap: Heating element]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.thermal-and-chemical-effects | PASS | steps=6 | final=Lesson complete | branch=no
+--- walking lesson.electrical.resistivity ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_resistivity (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_resistivity (guided_interaction)] answer_text=[tap: Resistivity]
+    [trace] step_id=[independent_compare_materials (independent_question)] answer_text=[tap: Material B]
+    [trace] step_id=[guided_predict_length_area_effects (guided_interaction)] answer_text=[]
+lesson.electrical.resistivity | FAIL | steps=4 | reason=stuck at step [guided_predict_length_area_effects (guided_interaction)] -- no graded control and no Continue
+--- walking lesson.electrical.power ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_power_relationship (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_power_relationship (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_power_relationship (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_relationship (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[worked_example_calculate_from_vi (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_from_vi (guided_interaction)] answer_text=[expected: 48]
+    [trace] numeric submit coords=[540,1867]
+    [trace] numeric submit coords=[540,1867]
+--- walking lesson.electrical.power ---
+    [trace] step_id=[guided_calculate_from_vi (guided_interaction)] answer_text=[expected: 48]
+    [trace] numeric submit coords=[540,1867]
+    [trace] numeric submit coords=[540,1867]
+    [trace] numeric submit coords=[540,1867]
+--- walking lesson.electrical.power ---
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+--- walking lesson.electrical.power ---
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+    [trace] step_id=[guided_select_form (guided_interaction)] answer_text=[tap: P = V × I]
+--- walking lesson.electrical.power ---
+    [trace] step_id=[worked_example_calculate_from_ir (worked_example)] answer_text=[]
+    [trace] step_id=[independent_calculate_from_ir (independent_question)] answer_text=[expected: 68]
+    [trace] numeric submit coords=[540,1867]
+    [trace] numeric submit coords=[540,1867]
+    [trace] numeric submit coords=[540,1867]
+--- walking lesson.electrical.power ---
+    [trace] step_id=[independent_calculate_from_vr (independent_question)] answer_text=[expected: 3.0625]
+    [trace] numeric submit coords=[540,1867]
+    [trace] numeric submit coords=[540,1867]
+    [trace] numeric submit coords=[540,1867]
+--- walking lesson.electrical.power ---
+    [trace] step_id=[transfer_calculate_total_power (transfer_application)] answer_text=[expected: 205]
+    [trace] numeric submit coords=[540,2077]
+    [trace] numeric submit coords=[540,2077]
+    [trace] numeric submit coords=[540,2077]
+--- walking lesson.electrical.power ---
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[expected: 17]
+    [trace] numeric submit coords=[540,1826]
+    [trace] numeric submit coords=[540,1826]
+    [trace] numeric submit coords=[540,1826]
+--- walking lesson.electrical.power ---
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.power | PASS | steps=2 | final=Lesson complete | branch=no
+--- walking lesson.electrical.resistivity ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_resistivity (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_resistivity (guided_interaction)] answer_text=[tap: Resistivity]
+    [trace] step_id=[independent_compare_materials (independent_question)] answer_text=[tap: Material A]
+    [trace] step_id=[guided_predict_length_area_effects (guided_interaction)] answer_text=[tap: Increases]
+--- walking lesson.electrical.resistivity ---
+    [trace] step_id=[guided_predict_length_area_effects (guided_interaction)] answer_text=[tap: Increases]
+lesson.electrical.resistivity | FAIL | steps=0 | reason=could not submit+advance at step [guided_predict_length_area_effects (guided_interaction)] after 4 attempt(s)
+--- walking lesson.electrical.resistivity ---
+    [trace] step_id=[guided_predict_length_area_effects (guided_interaction)] answer_text=[tap: Increases]
+    [trace] step_id=[guided_predict_length_area_effects (guided_interaction)] answer_text=[tap: Increases]
+    [trace] step_id=[guided_predict_length_area_effects (guided_interaction)] answer_text=[tap: Increases]
+    [trace] step_id=[] answer_text=[]
+lesson.electrical.resistivity | FAIL | steps=3 | reason=stuck at step [] -- no graded control and no Continue
+--- walking lesson.electrical.resistivity ---
+    [trace] step_id=[worked_example_calculate_resistance (worked_example)] answer_text=[]
+    [trace] step_id=[transfer_calculate_resistance (transfer_application)] answer_text=[expected: 10]
+    [trace] numeric submit coords=[540,1608]
+    [trace] numeric submit coords=[540,1608]
+    [trace] numeric submit coords=[540,1608]
+--- walking lesson.electrical.resistivity ---
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.resistivity | PASS | steps=4 | final=Lesson complete | branch=no
+--- walking lesson.electrical.energy-and-efficiency ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[worked_example_calculate_energy (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_energy (guided_interaction)] answer_text=[expected: 2867]
+    [trace] numeric submit coords=[540,1731]
+    [trace] numeric submit coords=[540,1731]
+    [trace] numeric submit coords=[540,1731]
+--- walking lesson.electrical.energy-and-efficiency ---
+    [trace] step_id=[independent_calculate_energy_kwh (independent_question)] answer_text=[expected: 180]
+    [trace] numeric submit coords=[540,1788]
+    [trace] numeric submit coords=[540,1788]
+    [trace] numeric submit coords=[540,1788]
+--- walking lesson.electrical.energy-and-efficiency ---
+    [trace] step_id=[guided_rearrange (guided_interaction)] answer_text=[tap: t = E / P]
+    [trace] step_id=[worked_example_calculate_efficiency (worked_example)] answer_text=[]
+    [trace] step_id=[worked_example_calculate_efficiency (worked_example)] answer_text=[]
+    [trace] step_id=[transfer_calculate_efficiency (transfer_application)] answer_text=[expected: 60.11236]
+    [trace] numeric submit coords=[540,1545]
+    [trace] numeric submit coords=[540,1545]
+    [trace] numeric submit coords=[540,1545]
+--- walking lesson.electrical.energy-and-efficiency ---
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.energy-and-efficiency | PASS | steps=2 | final=Lesson complete | branch=no
+--- walking lesson.electrical.fault-conditions-protection ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_fault_conditions (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_fault_conditions (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_condition (guided_interaction)] answer_text=[tap: Open circuit]
+    [trace] step_id=[transfer_predict_short_effect (transfer_application)] answer_text=[tap: Current increases sharply]
+    [trace] step_id=[concept_protective_devices (concept_explanation)] answer_text=[]
+    [trace] step_id=[independent_select_protective_device (independent_question)] answer_text=[tap: Circuit breaker]
+    [trace] step_id=[independent_compare_fuse_breaker (independent_question)] answer_text=[tap: Circuit breaker]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+--- walking lesson.electrical.series-vs-parallel-comparison ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[guided_identify_topology (guided_interaction)] answer_text=[tap: Series]
+    [trace] step_id=[guided_identify_topology (guided_interaction)] answer_text=[tap: Series]
+    [trace] step_id=[independent_trace_current_path (independent_question)] answer_text=[tap: More than one current path from the supply and back]
+    [trace] step_id=[concept_comparison (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_compare_resistance (guided_interaction)] answer_text=[tap: Series is higher]
+    [trace] step_id=[independent_compare_current_voltage (independent_question)] answer_text=[tap: Same voltage, current divides (parallel)]
+    [trace] step_id=[independent_compare_power_energy (independent_question)] answer_text=[tap: Parallel is higher]
+--- walking lesson.electrical.series-vs-parallel-comparison ---
+    [trace] step_id=[transfer_recognise_mixed_circuit (transfer_application)] answer_text=[tap: A mix of both]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.series-vs-parallel-comparison | PASS | steps=3 | final=Lesson complete | branch=no
+--- walking lesson.foundation.physics.mass-and-weight ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_mass_and_weight (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_mass_weight (guided_interaction)] answer_text=[tap: Mass]
+    [trace] step_id=[guided_recognise_mass_weight (guided_interaction)] answer_text=[tap: Mass]
+    [trace] step_id=[independent_recognise_mass_weight (independent_question)] answer_text=[tap: Mass]
+    [trace] step_id=[independent_recognise_mass_weight (independent_question)] answer_text=[tap: Mass]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[tap: Mass]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.foundation.physics.mass-and-weight | PASS | steps=10 | final=Lesson complete | branch=no
+--- walking lesson.foundation.physics.simple-machines ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_levers (concept_explanation)] answer_text=[]
+--- walking lesson.foundation.physics.simple-machines ---
+    [trace] step_id=[guided_identify_lever_class (guided_interaction)] answer_text=[tap: Class 1 (pivot between effort and load)]
+    [trace] step_id=[worked_example_lever_balance (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_lever_balance (guided_interaction)] answer_text=[expected: 68]
+    [trace] numeric submit coords=[540,2172]
+    [trace] numeric submit coords=[540,2172]
+    [trace] numeric submit coords=[540,2172]
+--- walking lesson.foundation.physics.simple-machines ---
+    [trace] step_id=[concept_gears (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_gear_tradeoff (guided_interaction)] answer_text=[tap: Output speed increases]
+    [trace] step_id=[independent_recognise_gear_tradeoff (independent_question)] answer_text=[tap: Output speed increases]
+    [trace] step_id=[concept_pulleys (concept_explanation)] answer_text=[]
+    [trace] step_id=[independent_recognise_pulley_tradeoff (independent_question)] answer_text=[tap: The effort force increases]
+    [trace] step_id=[independent_calculate_lever_balance (independent_question)] answer_text=[expected: 320]
+    [trace] numeric submit coords=[540,2172]
+    [trace] numeric submit coords=[540,2172]
+--- walking lesson.foundation.physics.simple-machines ---
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[tap: Class 2 (load between pivot and effort)]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.foundation.physics.simple-machines | PASS | steps=3 | final=Lesson complete | branch=no
+--- walking lesson.foundation.physics.mechanics-force-work-energy-power ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_force_work_energy (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_power_efficiency (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_mechanics_concept (guided_interaction)] answer_text=[tap: Work]
+    [trace] step_id=[worked_example_calculate_work (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_work (guided_interaction)] answer_text=[expected: 1767]
+    [trace] numeric submit coords=[540,1630]
+    [trace] numeric submit coords=[540,1630]
+--- walking lesson.foundation.physics.mechanics-force-work-energy-power ---
+    [trace] step_id=[worked_example_calculate_kinetic_energy (worked_example)] answer_text=[]
+    [trace] step_id=[independent_calculate_kinetic_energy (independent_question)] answer_text=[expected: 139.5]
+    [trace] numeric submit coords=[540,1671]
+    [trace] numeric submit coords=[540,1671]
+    [trace] numeric submit coords=[540,1671]
+--- walking lesson.foundation.physics.mechanics-force-work-energy-power ---
+    [trace] step_id=[worked_example_calculate_potential_energy (worked_example)] answer_text=[]
+    [trace] step_id=[worked_example_calculate_potential_energy (worked_example)] answer_text=[]
+    [trace] step_id=[independent_calculate_potential_energy (independent_question)] answer_text=[expected: 4169.25]
+    [trace] numeric submit coords=[540,1783]
+    [trace] numeric submit coords=[540,1783]
+    [trace] numeric submit coords=[540,1783]
+--- walking lesson.foundation.physics.mechanics-force-work-energy-power ---
+    [trace] step_id=[worked_example_calculate_power (worked_example)] answer_text=[]
+    [trace] step_id=[independent_calculate_power (independent_question)] answer_text=[expected: 9.306122]
+    [trace] numeric submit coords=[540,1644]
+    [trace] numeric submit coords=[540,1644]
+    [trace] numeric submit coords=[540,1644]
+--- walking lesson.foundation.physics.mechanics-force-work-energy-power ---
+    [trace] step_id=[worked_example_calculate_efficiency (worked_example)] answer_text=[]
+    [trace] step_id=[transfer_calculate_efficiency (transfer_application)] answer_text=[expected: 94.984326]
+    [trace] numeric submit coords=[540,1693]
+    [trace] numeric submit coords=[540,1693]
+    [trace] numeric submit coords=[540,1693]
+--- walking lesson.foundation.physics.mechanics-force-work-energy-power ---
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[expected: 1125]
+    [trace] numeric submit coords=[540,1433]
+    [trace] numeric submit coords=[540,1433]
+lesson.foundation.physics.mechanics-force-work-energy-power | FAIL | steps=0 | reason=CRASH_DETECTED post-submit: isn't responding
+--- walking lesson.foundation.physics.mechanics-force-work-energy-power ---
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.foundation.physics.mechanics-force-work-energy-power | PASS | steps=2 | final=Lesson complete | branch=no
+--- walking lesson.magnetism.fundamentals ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_magnetism_attraction_repulsion (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_attraction_repulsion (guided_interaction)] answer_text=[tap: Attract]
+    [trace] step_id=[concept_flux_and_flux_density (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_flux_concepts (guided_interaction)] answer_text=[tap: Magnetic flux]
+    [trace] step_id=[concept_flux_and_flux_density_units (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_identify_flux_density_unit (guided_interaction)] answer_text=[tap: Tesla]
+    [trace] step_id=[independent_identify_flux_unit (independent_question)] answer_text=[tap: Weber]
+    [trace] step_id=[concept_permanent_vs_electromagnet (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_compare_permanent_electromagnet (guided_interaction)] answer_text=[tap: Electromagnet]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[tap: Magnetic flux density]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+--- walking lesson.magnetism.effects-of-current ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_field_from_current (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_interpret_field_direction (guided_interaction)] answer_text=[tap: Field direction: Clockwise]
+    [trace] step_id=[concept_force_on_conductor (concept_explanation)] answer_text=[]
+    [trace] step_id=[worked_force_on_conductor (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_force_on_conductor (guided_interaction)] answer_text=[expected: 1.17]
+    [trace] numeric submit coords=[540,1816]
+    [trace] numeric submit coords=[540,1816]
+--- walking lesson.magnetism.effects-of-current ---
+    [trace] step_id=[guided_interpret_force_direction (guided_interaction)] answer_text=[tap: Force acts Up]
+    [trace] step_id=[diagnose_force_direction_error (misconception_discrimination)] answer_text=[tap: Conventional current (positive to negative)]
+--- walking lesson.magnetism.effects-of-current ---
+    [trace] step_id=[remediation_current_convention (remediation)] answer_text=[tap: Conventional current (positive to negative)]
+    [trace] step_id=[recheck_force_direction (retrieval_check)] answer_text=[tap: Force acts Right]
+    [trace] step_id=[concept_electromagnetism (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_electromagnetism (guided_interaction)] answer_text=[tap: Magnetic flux density]
+    [trace] step_id=[concept_emf_and_terminal_voltage (concept_explanation)] answer_text=[]
+    [trace] step_id=[worked_motional_emf (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_motional_emf (guided_interaction)] answer_text=[expected: 0.26]
+    [trace] numeric submit coords=[540,2172]
+    [trace] numeric submit coords=[540,2172]
+--- walking lesson.magnetism.effects-of-current ---
+    [trace] step_id=[misconception_check_emf_terminal_voltage (misconception_discrimination)] answer_text=[tap: EMF]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[tap: EMF]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.magnetism.effects-of-current | PASS | steps=4 | final=Lesson complete | branch=no
+--- walking lesson.emf.ac-generation-principles ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_electromagnetic_induction_and_generator (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_describe_ac_generation (guided_interaction)] answer_text=[tap: A sine wave]
+    [trace] step_id=[concept_flux_change_emf (concept_explanation)] answer_text=[]
+    [trace] step_id=[worked_flux_change_emf (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_flux_change_emf (guided_interaction)] answer_text=[expected: 13]
+    [trace] numeric submit coords=[540,1731]
+    [trace] numeric submit coords=[540,1731]
+--- walking lesson.emf.ac-generation-principles ---
+    [trace] step_id=[independent_calculate_flux_change_emf (independent_question)] answer_text=[expected: 0.212766]
+    [trace] numeric submit coords=[540,1731]
+    [trace] numeric submit coords=[540,1731]
+    [trace] numeric submit coords=[540,1731]
+--- walking lesson.emf.ac-generation-principles ---
+    [trace] step_id=[concept_motor_vs_generator (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_compare_motor_generator (guided_interaction)] answer_text=[tap: Motor]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[expected: 49]
+    [trace] numeric submit coords=[540,1690]
+    [trace] numeric submit coords=[540,1690]
+    [trace] numeric submit coords=[540,1690]
+--- walking lesson.emf.ac-generation-principles ---
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.emf.ac-generation-principles | PASS | steps=2 | final=Lesson complete | branch=no
+--- walking lesson.waveforms.ac-dc-and-sine-wave-quantities ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_ac_dc_distinction (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_ac_dc (guided_interaction)] answer_text=[tap: A.C. (alternating current)]
+    [trace] step_id=[concept_sine_wave_characteristics (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_sine_wave_characteristics (concept_explanation)] answer_text=[]
+lesson.waveforms.ac-dc-and-sine-wave-quantities | FAIL | steps=4 | reason=stuck at step [concept_sine_wave_characteristics (concept_explanation)] -- no graded control and no Continue
+--- walking lesson.waveforms.ac-dc-and-sine-wave-quantities ---
+    [trace] step_id=[worked_example_calculate_rms (worked_example)] answer_text=[]
+    [trace] step_id=[guided_calculate_rms_from_peak (guided_interaction)] answer_text=[expected: 248]
+    [trace] numeric submit coords=[540,1971]
+    [trace] numeric submit coords=[540,1971]
+    [trace] numeric submit coords=[540,1971]
+--- walking lesson.waveforms.ac-dc-and-sine-wave-quantities ---
+    [trace] step_id=[worked_example_calculate_frequency (worked_example)] answer_text=[]
+    [trace] step_id=[independent_calculate_frequency_from_period (independent_question)] answer_text=[expected: 0.005051]
+    [trace] numeric submit coords=[540,2069]
+    [trace] numeric submit coords=[540,2069]
+    [trace] numeric submit coords=[540,2069]
+--- walking lesson.waveforms.ac-dc-and-sine-wave-quantities ---
+    [trace] step_id=[misconception_check_rated_value (misconception_discrimination)] answer_text=[tap: RMS value]
+    [trace] step_id=[remediation_peak_rms (remediation)] answer_text=[tap: RMS value]
+    [trace] step_id=[transfer_compare_ac_dc_behaviour (transfer_application)] answer_text=[tap: Different, and depends on frequency]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[expected: 45.961941]
+    [trace] numeric submit coords=[540,1782]
+    [trace] numeric submit coords=[540,1782]
+--- walking lesson.waveforms.ac-dc-and-sine-wave-quantities ---
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.waveforms.ac-dc-and-sine-wave-quantities | PASS | steps=3 | final=Lesson complete | branch=no
+--- walking lesson.electrical.electronic-components-passive ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_passive_components (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_capacitor_transient (guided_interaction)] answer_text=[tap: Gradually, following an exponential curve (governed by the time constant tau = R x C)]
+    [trace] step_id=[concept_rectification_and_inversion (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_rectifier_type (guided_interaction)] answer_text=[tap: Half-wave rectifier]
+    [trace] step_id=[concept_diode_family (concept_explanation)] answer_text=[]
+    [trace] step_id=[independent_recognise_diode_family (independent_question)] answer_text=[tap: Diode]
+    [trace] step_id=[concept_telephone_application (concept_explanation)] answer_text=[]
+    [trace] step_id=[independent_identify_telephone_application (independent_question)] answer_text=[tap: TRIAC]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[tap: Photodiode]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.electronic-components-passive | PASS | steps=12 | final=Lesson complete | branch=no
+--- walking lesson.electrical.electronic-components-switching-control ---
+    [trace] step_id=[orientation (orientation)] answer_text=[]
+    [trace] step_id=[concept_thermistors (concept_explanation)] answer_text=[]
+    [trace] step_id=[guided_recognise_thermistor_type (guided_interaction)] answer_text=[tap: NTC (negative-temperature-coefficient) thermistor]
+    [trace] step_id=[independent_identify_heating_application (independent_question)] answer_text=[tap: Thermistor]
+    [trace] step_id=[concept_switching_family (concept_explanation)] answer_text=[]
+    [trace] step_id=[independent_recognise_switching_family (independent_question)] answer_text=[tap: Transistor]
+    [trace] step_id=[concept_switching_applications (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_switching_applications (concept_explanation)] answer_text=[]
+    [trace] step_id=[concept_switching_applications (concept_explanation)] answer_text=[]
+    [trace] step_id=[independent_identify_dimmer_and_motor_application (independent_question)] answer_text=[tap: Thermistor]
+    [trace] step_id=[transfer_identify_security_alarm_roles (transfer_application)] answer_text=[tap: TRIAC]
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[tap: Transistor]
+--- walking lesson.electrical.electronic-components-switching-control ---
+    [trace] step_id=[retrieval_check (retrieval_check)] answer_text=[tap: Transistor]
+    [trace] step_id=[recap (recap)] answer_text=[]
+    [trace] step_id=[exit_completion (exit_completion)] answer_text=[]
+lesson.electrical.electronic-components-switching-control | PASS | steps=3 | final=Lesson complete | branch=no

@@ -140,8 +140,16 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
 
       {resolved.formulaFamily && !resolved.workedExample ? (
         <View style={styles.representation}>
-          {resolved.formulaFamily.forms.map((form) => (
-            <FormulaEquation key={form.target} target={form.target} expression={form.expression} resolve={symbolicResolver} />
+          {/* CC-12H: keyed by target+index, not target alone -- a formula
+              family can legitimately declare MORE THAN ONE form for the
+              same target variable (e.g. formula.electrical_power has three
+              valid forms for "P": P=V×I, P=I²×R, P=V²/R), which a
+              target-only key silently collided on (React "duplicate key"
+              warning, and a real reconciliation-correctness risk on
+              re-render) -- discovered live via CC-12H's runtime walk on
+              lesson.electrical.power. */}
+          {resolved.formulaFamily.forms.map((form, index) => (
+            <FormulaEquation key={`${form.target}-${index}`} target={form.target} expression={form.expression} resolve={symbolicResolver} />
           ))}
         </View>
       ) : null}

@@ -3,22 +3,35 @@
  * @alp/diagnostic-engine's `selectNextActivity` (via
  * ./course/next-activity.ts) deterministically decides which real
  * lesson comes next -- across lesson boundaries, entirely from local
- * evidence -- and this screen only renders that decision; it never
- * lets the learner pick a lesson id itself (task brief §20's "avoid a
- * fake manual choose-the-next-lesson button that bypasses
- * orchestration").
+ * evidence -- and this screen renders that decision, but it is a
+ * RECOMMENDATION, not a gate: below it, every lesson in the current
+ * governed production release is directly listed and directly openable
+ * (task brief §20's "avoid a fake manual choose-the-next-lesson button
+ * that bypasses orchestration" is about not letting the learner steer
+ * orchestration's own choice of "what's next"; it was never a rule that
+ * only orchestration's four vertical-slice lessons may be reachable at
+ * all -- see CC-12H's own correction below).
  *
- * CC-12D: the four topic cards below reuse CC-05C's governed
- * `PROVING_FAMILIES` list purely as a browse-by-topic menu -- each now
- * opens the SAME real, current Lesson Player (`/learn/lesson-player`)
- * the top card does, via `PROVING_FAMILY_LESSON_IDS`, never the CC-05C
- * static proving-slice screen (`/learn/[family]`) those cards used to
- * link to. That screen is retired from all in-app navigation (see its
- * own header comment) -- a Product Owner emulator finding traced a
- * learner reaching an outdated, non-adaptive teaching screen with stale
- * imagery straight to this Link. This is the ONE production learner
- * lesson runtime for governed adaptive lessons; do not add a second
- * production route to lesson content, here or elsewhere.
+ * CC-12H correction: this screen previously listed only the four lessons
+ * `UNIT202_ADAPTIVE_VERTICAL` (packages/diagnostic-engine/src/course-
+ * definitions.ts) currently sequences, via a hardcoded
+ * `PROVING_FAMILY_LESSON_IDS` id map -- proving-slice scaffolding
+ * (CC-05C/CC-12D) that was never actually production lesson-availability
+ * policy, but had silently become the only route to ANY lesson once the
+ * old static proving-slice browse screen (`/learn/[family]`) was retired
+ * from navigation. The other 20 governed, content-complete Unit 202
+ * lessons were reachable by no real navigation path at all. Fixed by
+ * deriving the catalogue directly from the current bundled production
+ * release (`getLocalReleaseLessons`) instead of a hand-maintained map --
+ * every lesson the release actually carries is listed, automatically,
+ * with no per-lesson navigation code to keep in sync. Every card still
+ * opens the SAME real, current Lesson Player (`/learn/lesson-player`);
+ * this remains the ONE production learner lesson runtime for governed
+ * adaptive lessons -- do not add a second production route to lesson
+ * content, here or elsewhere. See `learn-hub-catalogue.test.ts` for the
+ * regression coverage proving the catalogue derives from release
+ * membership, recommendation stays independent of availability, and no
+ * prerequisite/mastery state can remove a lesson from it.
  */
 import { Link, useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
@@ -31,27 +44,8 @@ import { useSession } from "@/lib/auth/session-context";
 import { computeNextCourseActivity } from "@/lib/course/next-activity";
 import { syncPendingLessonEvidence } from "@/lib/evidence-sync/evidence-sync";
 import { getLocalReleaseLessons, bundledContentReleaseId } from "@/lib/lesson-content/local-content-registry";
-import { PROVING_FAMILIES } from "@/lib/proving-content/unit202-proving-fixture";
 import { getSupabaseClient } from "@/lib/supabase/client";
 import { color, minTouchTarget, radius, spacing, typography } from "@/lib/tokens";
-
-/**
- * CC-12D: each proving family below corresponds 1:1 to a real governed
- * lesson already reached by course orchestration -- the SAME four lessons
- * `UNIT202_ADAPTIVE_VERTICAL` (packages/diagnostic-engine/src/course-
- * definitions.ts) sequences, in the same order. There is no mechanical way
- * to derive this mapping (a lesson's steps can span several assertion
- * families -- e.g. this magnetism lesson also teaches
- * electrical.emf_and_generation -- so a lesson has no single top-level
- * assertionFamilyId to look up), so it is a small, explicit, governed-ID
- * table, cross-checked at test time against both real corpora.
- */
-const PROVING_FAMILY_LESSON_IDS: Readonly<Record<string, string>> = {
-  "electrical.ohms_law": "lesson.electrical.ohms-law",
-  "electrical.series_circuits": "lesson.electrical.resistors-series",
-  "electrical.parallel_circuits": "lesson.electrical.resistors-parallel",
-  "electrical.magnetism_and_electromagnetism": "lesson.magnetism.effects-of-current",
-};
 
 type NextActivityState = { kind: "loading" } | { kind: "ready"; decision: ActivityDecision; lessonTitle: string | null } | { kind: "error"; detail: string };
 
@@ -154,23 +148,19 @@ export default function LearnIndexScreen(): React.JSX.Element {
           </Pressable>
         )}
 
-        <Text style={styles.intro}>Or jump directly to any of the four governed Unit 202 topics below.</Text>
-        {PROVING_FAMILIES.map((family) => {
-          const lessonId = PROVING_FAMILY_LESSON_IDS[family.id];
-          if (!lessonId) return null;
-          return (
-            <Link key={family.id} href={{ pathname: "/learn/lesson-player", params: { lessonId } }} asChild>
-              <Pressable
-                style={({ pressed }) => [styles.card, pressed && styles.pressed]}
-                accessibilityRole="button"
-                accessibilityLabel={`Open ${family.title} lesson`}
-              >
-                <Text style={styles.cardTitle}>{family.title}</Text>
-                <Text style={styles.cardBody}>{family.learningIntent}</Text>
-              </Pressable>
-            </Link>
-          );
-        })}
+        <Text style={styles.intro}>Or browse and open any current Unit 202 lesson directly.</Text>
+        {getLocalReleaseLessons(bundledContentReleaseId()).map((lesson) => (
+          <Link key={lesson.id} href={{ pathname: "/learn/lesson-player", params: { lessonId: lesson.id } }} asChild>
+            <Pressable
+              style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+              accessibilityRole="button"
+              accessibilityLabel={`Open ${lesson.title} lesson`}
+            >
+              <Text style={styles.cardTitle}>{lesson.title}</Text>
+              <Text style={styles.cardBody}>{lesson.learnerFacingDescription}</Text>
+            </Pressable>
+          </Link>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

@@ -268,7 +268,11 @@ export const LESSON_RESISTORS_PARALLEL: LessonPlan = {
       assertionFamilyId: "electrical.parallel_circuits",
       capabilityIds: ["cap.parallel.solve_missing_branch"],
       misconceptionTargets: [],
-      representation: { diagramBlueprintId: "circuit.parallel_resistors" },
+      // CC-12H: `formulaFamilyId` was missing -- the mobile answer input
+      // needs a resolved formula family to present the "Ω" unit symbol
+      // (parallel.solve_missing_branch's own answer.quantity is
+      // "resistance", which formula.parallel_resistance's variables cover).
+      representation: { diagramBlueprintId: "circuit.parallel_resistors", formulaFamilyId: "formula.parallel_resistance" },
       questionBlueprintId: "parallel.solve_missing_branch",
       presentation: { interactionRequired: true, interactionRole: "calculate", answerReveal: "after_submission", contentMayScroll: false, progressiveReveal: false },
       scaffoldingLevel: "independent",
