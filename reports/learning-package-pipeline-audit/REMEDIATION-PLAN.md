@@ -1,8 +1,10 @@
-# Remediation Plan (CC-13B, corrected by CC-13B.1)
+# Remediation Plan (CC-13B, corrected by CC-13B.1 and CC-13B.2)
 
-**This is a plan only.** No remediation work has begun. Every package below requires Product Owner / Project Architect review and sequencing decisions before any implementation starts, per this audit's own constraints. Packages are grouped by root cause, ordered so that the six classes the V1 pilot cannot proceed without — canonical-route integrity, rich teaching-content representation, storyboard/visual-planning integration, formative/mock assessment, Guided Revision, and learner-ready publication gates — appear in a coherent dependency-respecting sequence (Packages 1, 2, 3, 7, 8, 9). Independent, low-risk cleanup packages (4, 5, 6 partially, 10, 11, 12) are interleaved near the pilot-blocking package they relate to, or placed after the blocking chain, but do not themselves gate the pilot and must not be read as displacing it.
+**This is a plan only.** No remediation work has begun. Every package below requires Product Owner / Project Architect review and sequencing decisions before any implementation starts, per this audit's own constraints. Packages are grouped by root cause, ordered so that the pilot-blocking classes — canonical-route integrity (1), rich teaching-content representation (2), storyboard/visual-planning integration (3), reference-dossier authority (4), canonical visual-eligibility authority (the pilot-blocking portion of 5), formative/mock assessment (7), Guided Revision (8), and learner-ready publication gates (9) — appear in a coherent dependency-respecting sequence. Independent, low-risk cleanup packages (the deferable portion of 5, 6, 10, 11, 12) are interleaved near the pilot-blocking package they relate to, or placed after the blocking chain, but do not themselves gate the pilot and must not be read as displacing it.
 
-**CC-13B.1 correction note**: this plan was corrected after CC-13B's own initial version omitted a remediation package for one of its own confirmed P0 findings (no schema field for extended teaching prose) and used imprecise "triple-redundant" wording for the completion-screen finding (§ Package 10 below). See `PROJECT-STATUS.md` §CC-13B for the acceptance-status note. No remediation work was performed by this correction — only the plan document changed.
+**CC-13B.1 correction note**: this plan was corrected after CC-13B's own initial version omitted a remediation package for one of its own confirmed P0 findings (no schema field for extended teaching prose) and used imprecise "triple-redundant" wording for the completion-screen finding (§ Package 10 below). No remediation work was performed by this correction — only the plan document changed.
+
+**CC-13B.2 correction note**: the visual-governance packages (originally Packages 3-6) contained a sequencing contradiction — they would have permitted a legacy-pipeline visual asset to become learner-visible before passing the new ADR-0005 reference-authority and production-eligibility chain, and implied a historical Product Owner reference handover could automatically count as an approved current `ReferenceDossier`. Corrected: Packages 3-6 below now express the dependency-correct order **visual planning mandatory (3) → reference-dossier authority (4) → canonical production-eligibility authority + release-ID fix (5) → qualify/integrate reusable legacy assets (6)**, with an explicit rule that legacy QA-PASS status and legacy reference provenance are reusable *evidence*, never automatic *authorization*, and that no automated/mechanical process may write `reviewedBy: "PROJECT_ARCHITECT"` without actual Project Architect review. Package 9's dependencies were also corrected to include the reference/eligibility authority packages, and Package 7's persistence-layer wording no longer names a specific backend vendor. No remediation work was performed by this correction — only the plan document changed. See `PROJECT-STATUS.md` §CC-13B for the acceptance-status note.
 
 ---
 
@@ -46,73 +48,107 @@
 
 ## Package 3 — Make storyboard/visual planning mandatory (wire the VRR/VOA layer to real production)
 
-**Objective**: reconcile the two disconnected visual-catalogue systems (the operative-but-non-conformant old pipeline and the conformant-but-empty new schema) into one, and make a real `VisualOpportunityAnalysis` + `VisualRequirement` a mandatory upstream artefact for any lesson before visual production begins.
+**Objective**: reconcile the two disconnected visual-catalogue systems (the operative-but-non-conformant old pipeline and the conformant-but-empty new schema) into one, and make a real `VisualOpportunityAnalysis` + `VisualRequirement` a mandatory upstream artefact for any lesson before visual production begins. This package establishes *what visuals are needed*; it does not itself decide reference authority (Package 4) or production eligibility (Package 5) — those depend on this one existing first.
 
-**Root-cause findings addressed**: `VISUAL-GOVERNANCE-AND-COVERAGE-REGISTER.md` §1, `REFERENCE-AUTHORITY-REGISTER.md`, `REPRESENTATIVE-FAILURE-ROOT-CAUSE-TRACE.md` #8/#10, `SOURCE-OF-TRUTH-MAP.md` category d/e.
+**Root-cause findings addressed**: `VISUAL-GOVERNANCE-AND-COVERAGE-REGISTER.md` §1, `REPRESENTATIVE-FAILURE-ROOT-CAUSE-TRACE.md` #8/#10, `SOURCE-OF-TRUTH-MAP.md` category d/e.
 
-**Expected files/layers**: `packages/content-schema/src/visual-governance.ts` (already built, needs real instances), a new authoring workflow/tool to populate `VisualOpportunityAnalysis`/`VisualRequirement`/`ReferenceDossier` objects (either migrating `tools/visual-production-studio/catalogue.ts`'s real data into the new shape, or building new tooling around the new shape and retiring the old), `scripts/content/validate-v1-learning-package.ts`'s `validateVisualGovernance()` (wire into the CLI entry point once real data exists to check).
+**Expected files/layers**: `packages/content-schema/src/visual-governance.ts` (already built, needs real instances), a new authoring workflow/tool to populate `VisualOpportunityAnalysis`/`VisualRequirement` objects (either migrating `tools/visual-production-studio/catalogue.ts`'s real data into the new shape, or building new tooling around the new shape and retiring the old), `scripts/content/validate-v1-learning-package.ts`'s `validateVisualGovernance()` (wire into the CLI entry point once real data exists to check).
 
-**Dependencies**: this is a genuine architectural reconciliation decision, not a mechanical fix — requires a Project Architect decision on migration approach (migrate the 53 existing catalogued assets into the new schema vs. re-plan from scratch against a genuinely re-authored Unit 202).
+**Dependencies**: none upstream — this is the first visual-governance package. Packages 4, 5 and 6 depend on this one.
 
 **Project Architect review required**: **Yes** — this is exactly the kind of "major visual-family direction" decision `INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md` §2.3 reserves for the Product Owner, with Project Architect execution.
 
 **Acceptance criteria**: every lesson entering/re-entering the pipeline has a real `VisualOpportunityAnalysis`; every REQUIRED visual need has a real `VisualRequirement`; `validateVisualGovernance()` runs against real data in CI and can fail; the contract-adoption matrix's visual-governance rows move off 0%.
 
-**Timing**: **before the V1 pilot** for the mechanism/workflow itself (the pilot's own sequence, `LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md` §7, explicitly requires this chain to be exercised end-to-end); the full migration of all 53 existing Unit 202 assets **can wait until the systematic Unit 202 rebuild**.
+**Timing**: **before the V1 pilot** for the mechanism/workflow itself (the pilot's own sequence, `LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md` §7, explicitly requires this chain to be exercised end-to-end); the full migration of all 53 existing Unit 202 assets' VRR entries **can wait until the systematic Unit 202 rebuild**.
 
 ---
 
-## Package 4 — Integrate already-produced, QA-passed visual assets that never shipped
+## Package 4 — Formalise reference authority as real, Project-Architect-reviewed `ReferenceDossier` records
 
-**Objective**: close the cheapest, lowest-risk gap found in this audit — 6 REQUIRED physical-component images (and several other REQUIRED assets) are already produced and QA-`PASS` but were never copied into the shipped asset folder or wired into `DiagramRenderer.tsx`/lesson steps.
+*(Corrected by CC-13B.2 — this package now states explicitly that legacy reference provenance is reusable evidence, not automatic authorization.)*
 
-**Root-cause findings addressed**: `VISUAL-GOVERNANCE-AND-COVERAGE-REGISTER.md` §3, `REPRESENTATIVE-FAILURE-ROOT-CAUSE-TRACE.md` #3.
+**Objective**: express reference selection/annotation as real, schema-validated `ReferenceDossier` objects, each carrying genuine Project Architect review — reference class, exact authoritative role, what must be preserved/changed/removed/added, what must never be inferred, licence/provenance, technical-authority limits, and assessment-state implications, per `docs/governance/VISUAL-REFERENCE-REVIEW-PROTOCOL.md` and `LEARNING-PACKAGE-GOVERNANCE-CONTRACTS.md` §6.
 
-**Expected files/layers**: `apps/mobile/src/assets/instructional/unit202/physical-components/` (populate from the existing produced files), `apps/mobile/src/components/diagrams/DiagramRenderer.tsx` (add `require()` entries + extend `CANONICAL_ASSET_LOCK`), relevant lesson steps' `representation.diagramBlueprintId`/`visualAidBlueprintId` (wire the 3 built-but-unwired deterministic diagram renderers too, where a Project Architect confirms the target lesson).
-
-**Dependencies**: a Project Architect should re-confirm the existing QA-PASS status is still trusted (these images were audited under the old system) before shipping — a lightweight confirmation, not new production work.
-
-**Project Architect review required**: **Yes, but lightweight** (confirm existing QA holds; does not require new visual planning).
-
-**Acceptance criteria**: `apps/mobile/src/assets/instructional/unit202/physical-components/` is no longer empty; the 6 REQUIRED component-recognition lessons show both symbol and physical-recognition imagery; `CANONICAL_ASSET_LOCK` count grows accordingly with matching hash verification.
-
-**Timing**: **can proceed independently of the pilot, at any time** — this is integration of already-complete work, lowest risk in this plan.
-
----
-
-## Package 5 — Formalise reference authority as real `ReferenceDossier` records
-
-**Objective**: express the already-sound (human-attributed, dated) reference-handover discipline currently living in `reference-corrections.ts` as real, schema-validated `ReferenceDossier` objects, closing the latent bypass risk (BP-3) of a future entry skipping the discipline.
+The existing, dated, human-attributed reference-handover discipline currently living in `reference-corrections.ts` is **valuable provenance and may substantially reduce rework** — the underlying source material does not need to be rediscovered from scratch where it remains suitable. But it is **not automatically equivalent** to a current approved `ReferenceDossier`: it predates this schema and this review protocol, and was not produced against today's `preserve`/`change`/`remove`/`add`/`never-infer` annotation requirements. **No automated or mechanical migration script may write `reviewedBy: "PROJECT_ARCHITECT"` on a `ReferenceDossier` without an actual Project Architect performing that review** — migrating an entry means presenting the existing source/provenance to a Project Architect for a real (potentially fast, since the underlying research is already done) review and annotation pass, not copying a field value. The Product Owner remains the final approver of production assets regardless.
 
 **Root-cause findings addressed**: `REFERENCE-AUTHORITY-REGISTER.md`, `BYPASS-PATH-REGISTER.md` BP-3.
 
-**Expected files/layers**: `tools/visual-production-studio/reference-corrections.ts` (migrate ~45 entries into `ReferenceDossier` shape, or build a thin adapter), `packages/content-schema/src/visual-governance.ts` (already has the schema).
+**Expected files/layers**: `tools/visual-production-studio/reference-corrections.ts` (source provenance for the review, not an auto-migration input), `packages/content-schema/src/visual-governance.ts` (already has the schema — `ReferenceDossier.reviewedBy` is already a fixed `"PROJECT_ARCHITECT"` literal type, which is correct and must remain the only way to construct an approved record).
 
-**Dependencies**: benefits from being sequenced alongside Package 3 (same underlying data).
+**Dependencies**: depends on Package 3 (a `ReferenceDossier` attaches to a `VisualRequirement`, which must exist first).
 
-**Project Architect review required**: No for the migration mechanics; the underlying reference approvals themselves were already Project-Architect/Product-Owner-equivalent (the 2026-08-24 handover) and do not need re-approval, only re-expression.
+**Project Architect review required**: **Yes, for every dossier** — both newly researched references and references migrated from the legacy handover require an actual review pass; only the *effort* differs (a migration review can reuse existing provenance and move faster; it cannot skip the review itself).
 
-**Acceptance criteria**: every real reference in production use has a corresponding `ReferenceDossier` object with `reviewedBy: "PROJECT_ARCHITECT"`; a schema validator rejects any future reference addition that doesn't follow the same shape.
+**Acceptance criteria**: every reference in production use — new or migrated — has a real `ReferenceDossier` record produced by an actual Project Architect review, not a mechanical copy; no code path exists that can construct or mark a dossier `APPROVED`/set `reviewedBy: "PROJECT_ARCHITECT"` without that review having occurred; the representative V1 pilot's own visual asset(s) travel through this real workflow end-to-end.
 
-**Timing**: **can wait until the Unit 202 systematic rebuild**, but should be done before any *new* visual production begins on new content, to avoid growing the old ad hoc table further.
+**Timing**: the **reference-authority mechanism itself is PILOT-BLOCKING** — the pilot must exercise the real workflow, not a temporary legacy bypass. Full migration/review of every one of the ~45 historical Unit 202 references does **not** have to precede the pilot; only the pilot's own asset(s) need a real dossier before the pilot can be considered representative.
 
 ---
 
-## Package 6 — Consolidate duplicate visual-eligibility and release-identity sources of truth
+## Package 5 — Establish one canonical visual-asset production-eligibility authority, and close release-ID drift
 
-**Objective**: eliminate the confirmed duplicate-source-of-truth risks — the 3+ disconnected visual-asset-status trackers (DUP-1) and the `course-definitions.ts`/`content-releases.ts` release-id drift risk (DUP-2, which already caused a real near-incident).
+*(Corrected by CC-13B.2 — renumbered/reframed from the original CC-13B Package 6's DUP-1/DUP-2, and split into a pilot-blocking mechanism vs. deferable historical cleanup.)*
+
+**Objective**: before the V1 pilot, establish which **single** authority decides whether a visual asset is `DEVELOPMENT_ONLY`, `APPROVED`, `PRODUCTION_ELIGIBLE`, or `SUPERSEDED_ARCHIVE` for any **new or pilot** asset, and make every competing legacy tracker (`studio-state.json`, `unit202-canonical-visual-registry.json`, `CANONICAL_ASSET_LOCK`, and the documented-but-missing `unit202-artwork-manifest.json`) structurally unable to independently authorize a new asset going forward. The pilot cannot meaningfully prove the new visual pipeline if multiple live systems can independently make that decision. Separately and independently, close the release-identity duplication (`course-definitions.ts` vs `content-releases.ts`) that has already once caused a real near-incident.
 
 **Root-cause findings addressed**: `DUPLICATE-SOURCE-OF-TRUTH-REGISTER.md` DUP-1/DUP-2.
 
-**Expected files/layers**: DUP-1 — reconcile `unit202-artwork-manifest.json` (missing), `studio-state.json`, `unit202-canonical-visual-registry.json`, and `CANONICAL_ASSET_LOCK` into one authority (likely `ProductionVisualAsset.eligibility`, once Package 3 lands). DUP-2 — `packages/diagnostic-engine/src/course-definitions.ts` should derive its `contentRelease` from `MOBILE_BUNDLED_RELEASE_ID` directly, or a test should assert they match.
+### Part A — canonical production-eligibility authority (**PILOT-BLOCKING**)
 
-**Dependencies**: DUP-1 depends on Package 3's schema decision; DUP-2 is fully independent and simple.
+**Expected files/layers**: `packages/content-schema/src/visual-governance.ts`'s `ProductionVisualAsset.eligibility` as the one canonical authority; a mechanism (code path/process, not just a document) ensuring only this authority can mark a **new or pilot** asset `PRODUCTION_ELIGIBLE` — e.g. runtime asset resolution (`DiagramRenderer.tsx`/`CANONICAL_ASSET_LOCK`) refuses to source a newly-added asset unless a corresponding `ProductionVisualAsset` record exists and states `PRODUCTION_ELIGIBLE`.
 
-**Project Architect review required**: DUP-1 yes (part of the same visual-authority consolidation decision as Package 3); DUP-2 no.
+**Dependencies**: depends on Packages 3 and 4 (needs a `VisualRequirement` and, where reference governance applies, an approved `ReferenceDossier` to attach `ProductionVisualAsset` to).
 
-**Acceptance criteria**: DUP-1 — one documented authority for visual eligibility, all others either removed or clearly marked derived/historical. DUP-2 — `course-definitions.ts` and `content-releases.ts` cannot silently drift (either shared constant or a passing regression test that would fail if they diverged).
+**Project Architect review required**: **Yes** — this is the visual-authority consolidation decision itself.
 
-**Timing**: DUP-2 — **before the V1 pilot** (cheap, prevents a recurrence of an already-real near-incident). DUP-1 — **can wait for the Unit 202 rebuild**, bundled with Package 3.
+**Acceptance criteria**: a mechanical check/test proves that a new visual asset cannot become runtime-resolvable/`PRODUCTION_ELIGIBLE` through any path except the one canonical authority (e.g. attempting to wire a new diagram via the legacy ad hoc registries alone, without a real `ProductionVisualAsset` record, fails).
+
+**Timing**: **PILOT-BLOCKING** — must exist and be enforced before the V1 pilot's own asset(s) can be considered to have gone through the real production-eligibility path.
+
+### Part B — historical migration/cleanup (**DEFERABLE**)
+
+**Expected files/layers**: reconcile/retire the legacy trackers' entries for the **existing 53** already-produced Unit 202 assets into the Part-A authority (or clearly mark them derived/historical/archive).
+
+**Dependencies**: depends on Part A being decided and built first.
+
+**Project Architect review required**: follows the same authority decision as Part A; execution-only for the historical entries themselves.
+
+**Acceptance criteria**: one documented authority for visual eligibility across the full existing 53-asset corpus, with every other tracker either removed or clearly marked derived/historical.
+
+**Timing**: **can wait for the Unit 202 systematic rebuild**, bundled with Package 6/13.
+
+### Part C — release-ID drift (independent, mechanical)
+
+**Expected files/layers**: `packages/diagnostic-engine/src/course-definitions.ts` should derive its `contentRelease` from `MOBILE_BUNDLED_RELEASE_ID` directly, or a test should assert they match.
+
+**Dependencies**: none — fully independent of Parts A/B.
+
+**Project Architect review required**: No.
+
+**Acceptance criteria**: `course-definitions.ts` and `content-releases.ts` cannot silently drift (either a shared constant or a passing regression test that would fail if they diverged).
+
+**Timing**: **PILOT-BLOCKING** (cheap, prevents a recurrence of an already-real near-incident) — but entirely independent of Parts A/B and can be done first.
+
+---
+
+## Package 6 — Qualify, and where appropriate integrate, reusable legacy visual assets
+
+*(Corrected by CC-13B.2 — renumbered/reframed from the original CC-13B Package 4. These assets are candidate reusable legacy assets, not automatically current production-eligible assets.)*
+
+**Objective**: the 6 REQUIRED physical-component images (and several other REQUIRED assets) that are already produced and passed QA under the **old** system are valuable, reusable work — **do not discard them, and do not assume they need regeneration.** But their old QA-`PASS` status alone must not authorize integration into learner runtime. Before any such legacy asset is newly integrated, it must be **qualified** through the current production authority established by Packages 3-5, establishing: a current `VisualRequirement` mapping; current reference-governance compliance where required (Package 4); current design-system applicability/version; technical QA status; pedagogical QA status; design QA status; Product Owner approval; a current `PRODUCTION_ELIGIBLE` state (Package 5 Part A); and a canonical runtime asset identity. Existing old-system artefacts/QA evidence may satisfy some of these requirements after review and may be imported as supporting evidence — reuse the underlying work, but do not skip the qualification gate.
+
+**Root-cause findings addressed**: `VISUAL-GOVERNANCE-AND-COVERAGE-REGISTER.md` §3, `REPRESENTATIVE-FAILURE-ROOT-CAUSE-TRACE.md` #3.
+
+**Expected files/layers**: `apps/mobile/src/assets/instructional/unit202/physical-components/` (populated only after qualification, not automatically), `apps/mobile/src/components/diagrams/DiagramRenderer.tsx` (extended only for qualified assets, via the Package 5 Part-A authority), relevant lesson steps' `representation.diagramBlueprintId`/`visualAidBlueprintId`.
+
+**Dependencies**: **hard dependency on Packages 3, 4 and 5** — there is no current authority to qualify a legacy asset against until those exist.
+
+**Project Architect review required**: **Yes** — qualifying each candidate legacy asset against the current authority (technical/pedagogical/design QA + reference-governance compliance + approval) is itself a Project Architect review, even though the underlying visual work already exists.
+
+**Acceptance criteria**: each REQUIRED legacy asset that is integrated has a real `VisualRequirement` mapping, passes current reference-governance compliance where required, has a recorded design-system version, has technical/pedagogical/design QA status recorded, has Product Owner approval, and a real `PRODUCTION_ELIGIBLE` `ProductionVisualAsset` record — before `DiagramRenderer.tsx`/`CANONICAL_ASSET_LOCK` is extended to reference it.
+
+**Timing**: **not itself required for the V1 pilot**, unless the pilot deliberately chooses to reuse a specific legacy asset for the representative pilot lesson — in which case that one asset must be qualified through Packages 3-5's mechanism as part of proving that mechanism works end-to-end. For systematic Unit 202 re-authoring (Package 13), **every** reused legacy asset must pass this qualification before reuse.
 
 ---
 
@@ -122,7 +158,7 @@
 
 **Root-cause findings addressed**: `ASSESSMENT-SUBMISSION-INTEGRITY-REGISTER.md`, `REPRESENTATIVE-FAILURE-ROOT-CAUSE-TRACE.md` #9.
 
-**Expected files/layers**: new mobile screens/routes (assessment attempt UI, result screen), a persistence layer (none currently exists anywhere in this repo — this package likely needs to establish the pattern, e.g. a Supabase table + sync mechanism analogous to `evidence-sync.ts`), question-selection/generation wiring against `v1PedagogicalRole: "FORMATIVE_MOCK"` blueprints (0 currently exist — this package likely needs at least a handful of real formative blueprints authored/tagged as a starting point), `packages/content-schema/src/assessment-instance.ts` (already built).
+**Expected files/layers**: new mobile screens/routes (assessment attempt UI, result screen), a persistence layer providing durable assessment-attempt/submission persistence consistent with the platform's governed persistence/sync architecture (no such layer currently exists anywhere in this repo for this feature; the exact backend/technology is an explicit architecture decision for this package to make during implementation, after tracing the existing storage/sync path — e.g. how `evidence-sync.ts` persists and syncs today — not a decision this audit makes), question-selection/generation wiring against `v1PedagogicalRole: "FORMATIVE_MOCK"` blueprints (0 currently exist — this package likely needs at least a handful of real formative blueprints authored/tagged as a starting point), `packages/content-schema/src/assessment-instance.ts` (already built).
 
 **Dependencies**: benefits from Package 8 (Guided Revision) being designed in parallel, since they share the same submission-boundary contract; requires at least a small set of real `FORMATIVE_MOCK`-tagged question content to exist before it can be meaningfully tested end-to-end (this may be the pilot's own content, per the pilot sequence).
 
@@ -154,13 +190,15 @@
 
 ## Package 9 — Wire learner-ready gates into release eligibility
 
+*(Dependencies corrected by CC-13B.2 — a real `VISUAL`/`PRODUCT_OWNER` gate cannot be meaningful while reference authority and production eligibility remain parallel or ambiguous, so this package now explicitly depends on Packages 4 and 5 as well.)*
+
 **Objective**: make `isPublicationReady()` a real, CI-enforced release gate rather than an uncalled function, producing real `LearningPackageGateResult` records for each lesson/package.
 
 **Root-cause findings addressed**: `MISSING-OR-INACTIVE-VALIDATORS.md`, `GUIDED-REVISION-INTEGRITY-REGISTER.md` §3.
 
 **Expected files/layers**: a new validator/report script analogous to `validate-v1-learning-package.ts` that produces real `LearningPackageGateResult` records per gate (`CURRICULUM`/`PEDAGOGY`/`ASSESSMENT_INTEGRITY`/`VISUAL`/`LEARNER_PRESENTATION`/`RUNTIME`/`FORMATIVE_ASSESSMENT`/`GUIDED_REVISION`/`PRODUCT_OWNER`) from the real signals this audit's other packages produce, and a `package.json` script + CI wiring that calls `isPublicationReady()` against them.
 
-**Dependencies**: meaningfully depends on Packages 2, 3, 7, 8 existing first (otherwise most gates have nothing real to report against, repeating the "vacuous pass" risk flagged in `MISMATCH-REGISTER.md` MM-4).
+**Dependencies**: for the pilot path, meaningfully depends on Package 2 (rich teaching-content mechanism), Package 3 (visual opportunity/requirement mechanism), Package 4 (reference-dossier authority), the pilot-blocking portion of Package 5 (canonical production-eligibility authority), Package 7 (formative assessment) and Package 8 (Guided Revision) existing first — otherwise most gates have nothing real to report against, repeating the "vacuous pass" risk flagged in `MISMATCH-REGISTER.md` MM-4. It does **not** need Package 6's full legacy-asset qualification, or Package 5 Part B's historical migration, unless the representative pilot lesson itself reuses a legacy asset — it does need the pilot's own asset(s) to have travelled through the real Package 4/5 authority path.
 
 **Project Architect review required**: **Yes** — deciding which gates are mandatory-vs-waivable for the pilot vs. for full Unit 202 release is a governance decision.
 
@@ -252,20 +290,24 @@
 
 ## Recommended sequencing summary
 
+*(Table corrected by CC-13B.2 to reflect the dependency-correct visual-governance order — Packages 3-6 titles/blocking status changed; Package 9's blocking status now explicitly reflects its Package 4/5 dependency.)*
+
 | Order | Package | Blocks pilot? | Project Architect review? |
 |---|---|---|---|
 | 1 | Close `branchRoutes` gap | Yes | No |
 | 2 | Extend teaching-content model for rich scrollable teaching | Yes | Yes |
 | 3 | Make visual planning mandatory | Yes (mechanism) | Yes |
-| 4 | Integrate already-produced visual assets | No (independent, low-risk) | Yes (lightweight) |
-| 5 | Formalise reference authority | No | No |
-| 6 | Consolidate duplicate sources of truth | Partial (DUP-2 yes, DUP-1 no) | Partial (DUP-1 yes) |
+| 4 | Formalise reference authority as real `ReferenceDossier` records | Yes (mechanism; full historical migration deferable) | Yes |
+| 5 | Canonical production-eligibility authority (Part A) + release-ID fix (Part C); historical cleanup (Part B) deferable | Yes (Parts A & C); No (Part B) | Yes (Part A); No (Parts B/C) |
+| 6 | Qualify/integrate reusable legacy visual assets | No, unless the pilot reuses a specific legacy asset | Yes |
 | 7 | Implement formative assessment | Yes | Yes |
 | 8 | Wire Guided Revision | Yes (depends on 7) | Yes |
-| 9 | Wire publication gates | Yes (mechanism) | Yes |
+| 9 | Wire publication gates | Yes (mechanism; depends on 2, 3, 4, 5-A, 7, 8) | Yes |
 | 10 | Remove redundant `exit_completion` step (23 lessons) | No (independent, low-risk, do anytime) | No |
 | 11 | V1/adaptive-engine labelling cleanup | No | No |
 | 12 | Debug-leakage defense-in-depth | No | No |
 | 13 | Rebuild Unit 202 | N/A — comes after the pilot | Yes, extensively |
+
+**Pilot prerequisites, restated**: Packages 1, 2, 3, 4, the Part-A/Part-C portion of 5, 7, 8 and 9 are pilot prerequisites. Package 6 is not generally pilot-blocking unless the pilot deliberately reuses a legacy asset. Packages 10-12 are non-blocking cleanup. Package 13 remains strictly gated on successful end-to-end pilot qualification.
 
 **This audit's own recommendation, consistent with its constraints, stops here.** No package above should begin without Product Owner / Project Architect review of this plan first.

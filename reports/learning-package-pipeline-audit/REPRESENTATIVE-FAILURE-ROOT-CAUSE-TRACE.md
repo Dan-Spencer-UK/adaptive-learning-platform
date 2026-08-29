@@ -39,7 +39,7 @@ Ten traces: the six Product-Owner-named findings (marked **[PO]**) plus four add
 - **RUNTIME CONSUMER**: `apps/mobile/src/components/diagrams/DiagramRenderer.tsx` resolves visuals only from 3 hard-coded `require()` tables (`CANONICAL_ASSESSMENT_VISUALS`/`CANONICAL_PARAMETER_VISUALS`/`CANONICAL_TEACHING_VISUALS`), and `apps/mobile/src/assets/instructional/unit202/physical-components/` — the folder the app's own README documents as their home — is confirmed **empty**.
 - **LEARNER-VISIBLE RESULT**: every component-recognition lesson shows the correct deterministic schematic symbol but no physical-appearance photo alongside it, despite the product's own stated intent and despite the images already existing, produced and QA-approved.
 - **Root cause**: a genuine, already-completed production step (image generation + QA) was never carried through the final integration step (copy into the shipped asset folder + wire into `DiagramRenderer.tsx`/lesson steps). This is the cheapest class of gap in this whole audit to close.
-- **Verdict**: **REPRODUCIBLE.** Severity: **P1** — MACHINE-FIXABLE (the assets already exist and are already QA-approved; this is an integration/wiring task, not new production), though a Project Architect should confirm the existing QA-PASS status is still trusted before shipping.
+- **Verdict**: **REPRODUCIBLE.** Severity: **P1** — **BOTH** (corrected by CC-13B.2: the assets already exist and their old QA-`PASS` status is reusable evidence, so no *new production* is required, but their old status alone does not authorise shipping — per `REMEDIATION-PLAN.md` Package 6, each must be qualified through the current production authority — a real `VisualRequirement` mapping, reference-governance compliance where required, and a real `PRODUCTION_ELIGIBLE` `ProductionVisualAsset` record — before `DiagramRenderer.tsx`/`CANONICAL_ASSET_LOCK` is extended to reference it. That qualification step is HUMAN-REVIEW-REQUIRED; the mechanical copy/wire step that follows is MACHINE-FIXABLE).
 
 ---
 
@@ -139,7 +139,7 @@ Ten traces: the six Product-Owner-named findings (marked **[PO]**) plus four add
 |---|---|---|---|---|---|
 | 1 | Thermistor tested before taught | Yes | No | P2 (non-issue) | — |
 | 2 | UK telephone socket off-syllabus | Yes | Yes | P1 | HUMAN-REVIEW-REQUIRED |
-| 3 | Missing component symbol imagery | Yes | Yes | P1 | MACHINE-FIXABLE |
+| 3 | Missing component symbol imagery | Yes | Yes | P1 | BOTH |
 | 4 | Internal debug labels visible | Yes | No (gated/inert) | P2 | BOTH |
 | 5 | Duplicated recap/completion | Yes | Yes (23/24 lessons) | P1 | MACHINE-FIXABLE |
 | 6 | Answer-leaking teaching text | Yes | Unconfirmed | P1 (unverified) | HUMAN-REVIEW-REQUIRED |
