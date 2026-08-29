@@ -32,6 +32,19 @@
  * Every field earns its place against a concrete architectural
  * requirement in ARCH-003 -- this is deliberately not a giant
  * speculative schema (task brief §4).
+ *
+ * CC-13A / ADR-0006 addendum: this module already models everything a V1
+ * canonical lesson route needs -- `requirement: "required"` steps ARE the
+ * V1 canonical route (they always execute, regardless of learner mastery/
+ * evidence/prerequisite state); `conditional_skip_if_mastered`/
+ * `conditional_remediation_only` steps and `branchRoutes` remain valid,
+ * implemented, RETAINED platform capability (consumed by
+ * @alp/learning-engine's assembler.ts/branching.ts and
+ * @alp/diagnostic-engine) -- post-V1 direction, not deleted, but not part
+ * of a `CANONICAL_FIXED_ROUTE` lesson's V1 route. `v1LessonRoutePolicySchema`
+ * and the `routePolicy` field below let a lesson opt into that V1
+ * invariant explicitly and mechanically (enforced in
+ * `lessonPlanSchema`'s `superRefine`), rather than by convention.
  */
 
 import { z } from "zod";
@@ -75,6 +88,40 @@ export const stepRequirementSchema = z.enum([
   "conditional_remediation_only",
 ]);
 export type StepRequirement = z.infer<typeof stepRequirementSchema>;
+
+// ---------------------------------------------------------------------
+// ADR-0006 / CC-13A: V1 lesson-route policy. A `LessonPlan` that declares
+// `routePolicy: "CANONICAL_FIXED_ROUTE"` (below, on `lessonPlanSchema`) is
+// asserting the ADR-0006 V1 contract: the ordered `required` step sequence
+// never changes for learner mastery/evidence/prerequisite reasons. This is
+// intentionally the ONLY value today -- richer post-V1 route policies
+// (e.g. a future mastery-adaptive route) are not modelled speculatively
+// (task brief §4's "every field earns its place" discipline extends to
+// this enum).
+// ---------------------------------------------------------------------
+
+export const v1LessonRoutePolicySchema = z.literal("CANONICAL_FIXED_ROUTE");
+export type V1LessonRoutePolicy = z.infer<typeof v1LessonRoutePolicySchema>;
+
+/**
+ * Classifies each `LessonStepType` against ADR-0006's V1 boundary --
+ * `V1_ORDINARY` roles are legitimate content in a `CANONICAL_FIXED_ROUTE`
+ * lesson's fixed route; `POST_V1_ADAPTIVE` roles exist to serve
+ * `conditional_skip_if_mastered`/`conditional_remediation_only`/branch-
+ * route machinery (retained platform capability, not deleted) and must
+ * not appear as `required` steps inside a `CANONICAL_FIXED_ROUTE` lesson.
+ * A lookup table, not a second enum, so the single `lessonStepTypeSchema`
+ * above remains the one source of truth for valid step types.
+ */
+export const POST_V1_ADAPTIVE_STEP_TYPES: ReadonlySet<LessonStepType> = new Set([
+  "misconception_discrimination",
+  "remediation",
+  "transfer_application",
+]);
+
+export function classifyV1StepRole(type: LessonStepType): "V1_ORDINARY" | "POST_V1_ADAPTIVE" {
+  return POST_V1_ADAPTIVE_STEP_TYPES.has(type) ? "POST_V1_ADAPTIVE" : "V1_ORDINARY";
+}
 
 // ---------------------------------------------------------------------
 // Governed-content references a step may carry. Every field is a stable
@@ -208,6 +255,44 @@ export const lessonStepSchema = z.object({
   evidenceEmitted: z.array(stableId).default([]),
 
   /**
+   * ADR-0005/CC-13A: this step's own coherent teaching/interaction unit
+   * name (e.g. "why-parallel-resistance-falls", "worked-example-2-branch")
+   * -- distinct from `id`, which is a stable identifier, not a semantic
+   * label. Used by the embedded-check answer-leak and one-sentence-
+   * fragmentation review gates (`scripts/content/validate-v1-learning-
+   * package.ts`) to tell "one deliberately short, focused step" apart from
+   * "a teaching concept arbitrarily sliced into one-sentence Continue
+   * screens". Optional so existing authored content is not forced to
+   * retrofit it before this package's schema lands; a missing value is a
+   * currency-audit finding, not itself a hard validation failure.
+   */
+  semanticUnit: z.string().min(1).optional(),
+  /** Required alongside `semanticUnit` when a reviewer would otherwise expect this step to be part of a larger coherent unit -- the explicit pedagogical reason a short section is legitimate (ADR-0006 Consequences: "arbitrary one-sentence fragmentation... is a review failure" but "a short focused question/interaction may be a legitimate short section"). */
+  deliberateShortSectionReason: z.string().min(1).optional(),
+  /** Required when this step is a substantive teaching step with no visual representation at all -- the explicit justification a visual-opportunity reviewer expects (ADR-0005: "text-only conceptual lessons require justification", `docs/product/PRODUCT-PRINCIPLES.md`). */
+  textOnlyJustification: z.string().min(1).optional(),
+
+  /**
+   * ADR-0005/CC-13A: explicit, authored declaration that this step's
+   * content is permitted to disclose the target answer of a governed
+   * capability/assertion (e.g. a worked example showing the final
+   * numeric answer). Distinct from `presentation.answerReveal`, which
+   * times an INTERACTIVE step's own answer reveal -- this flags TEACHING
+   * content itself as answer-bearing so the embedded-check answer-leak
+   * gate can refuse to let it precede a graded check on the same
+   * capability (matches the real Unit 202 finding: "teaching content
+   * revealing answers to following/current formative checks",
+   * `reports/architecture/2026-08-29-learning-package-architecture-
+   * reset.md`). Optional: absent and `false` both mean "no declared
+   * answer-disclosure" (kept `.optional()` rather than `.default(false)`
+   * deliberately, so this additive field never forces every existing
+   * governed lesson-step literal across scripts/content/data to be
+   * touched merely to satisfy the schema -- CC-13A does not re-author
+   * Unit 202 content).
+   */
+  mayRevealTargetAnswer: z.boolean().optional(),
+
+  /**
    * The EXPLICIT capability whose mastery state controls a
    * `conditional_skip_if_mastered` step's skip decision (CC-06D,
    * Correction F §10.3). Required on every non-retrieval
@@ -331,6 +416,34 @@ export const lessonPlanSchema = z.object({
 
   /** Ties this lesson's deterministic identity to a content release, mirroring CC-05B's `contentRelease` concept (packages/calculation-engine/src/seed.ts) -- same lesson id/version/contentRelease must always mean the same canonical plan (ARCH-003 §18, task brief §18). */
   contentRelease: stableId,
+
+  /**
+   * ADR-0006/CC-13A: opt-in V1 route-policy declaration. Absent on
+   * existing (pre-reset) lessons -- this package does not re-author Unit
+   * 202 content, so making this required would break the live corpus for
+   * no behavioural gain. When present as `CANONICAL_FIXED_ROUTE`, the
+   * `superRefine` below enforces the ADR-0006 invariant mechanically:
+   * every step must be `requirement: "required"` (no mastery-driven
+   * skip/remediation branching in the V1 route itself -- that machinery
+   * remains available on lessons that do NOT declare this policy).
+   */
+  routePolicy: v1LessonRoutePolicySchema.optional(),
+  /** Stable id of this lesson's `VisualOpportunityAnalysis` (./visual-governance.ts) -- ADR-0005: every lesson receives one before learner-ready status. Optional for the same pre-existing-corpus reason as `routePolicy`. */
+  visualOpportunityAnalysisId: stableId.optional(),
+  /**
+   * Stable ids of `QuestionGovernanceContract`-bearing formative/mock
+   * question blueprints (./pedagogy.ts's
+   * `questionBlueprintManifestSchema.revisionLessonIds`, the inverse
+   * relationship) that map onto THIS lesson as a Guided Revision
+   * destination. Referenced, not computed -- the real source of truth is
+   * each question blueprint's own `revisionLessonIds`; this is a
+   * denormalised convenience list an author/tool may populate, never
+   * authoritative on its own. Kept `.optional()` rather than
+   * `.default([])` deliberately (see `mayRevealTargetAnswer`'s comment
+   * above for why) -- absence means "not yet populated", equivalent to an
+   * empty list wherever this is consumed.
+   */
+  assessmentMappingIds: z.array(stableId).optional(),
 })
   .superRefine((lesson, ctx) => {
     const remediationFamilyIds = new Set<string>();
@@ -409,6 +522,49 @@ export const lessonPlanSchema = z.object({
           path: ["completionCriteria", "requiredStepIds", index],
           message: `completionCriteria references unknown step id '${requiredId}'`,
         });
+      }
+    }
+
+    // ADR-0006 V1 route-invariance gate: a CANONICAL_FIXED_ROUTE lesson's
+    // step sequence must not depend on learner mastery/evidence/
+    // prerequisite state at all -- so no step may be conditional. This is
+    // deliberately stricter than "the assembler happens to always include
+    // them today": it makes the invariant a structural property of the
+    // authored content itself, independent of assembler behaviour.
+    if (lesson.routePolicy === "CANONICAL_FIXED_ROUTE") {
+      for (const [index, step] of lesson.steps.entries()) {
+        if (step.requirement !== "required") {
+          ctx.addIssue({
+            code: "custom",
+            path: ["steps", index, "requirement"],
+            message: `lesson '${lesson.id}' declares routePolicy 'CANONICAL_FIXED_ROUTE' but step '${step.id}' has requirement '${step.requirement}' -- ADR-0006's V1 canonical route must not vary with learner mastery/evidence/prerequisite state; conditional steps belong only to a lesson that does not declare CANONICAL_FIXED_ROUTE (they remain valid retained platform capability there)`,
+          });
+        }
+      }
+    }
+
+    // ADR-0005 embedded-check answer-leak gate: teaching content earlier
+    // in canonical step order must not be declared `mayRevealTargetAnswer`
+    // when a later step tests overlapping capability/knowledge with a
+    // graded (`correct_answer_required`) completion condition. Real Unit
+    // 202 finding this reconstructs mechanically: "teaching content
+    // revealing answers to following/current formative checks".
+    for (const [earlierIndex, earlierStep] of lesson.steps.entries()) {
+      if (!earlierStep.mayRevealTargetAnswer) continue;
+      const revealedTargets = new Set<string>([...earlierStep.teaches, ...earlierStep.reinforces, ...earlierStep.capabilityIds]);
+      if (revealedTargets.size === 0) continue;
+      for (const [laterIndex, laterStep] of lesson.steps.entries()) {
+        if (laterIndex <= earlierIndex) continue;
+        if (laterStep.completionCondition !== "correct_answer_required") continue;
+        const checkedTargets = new Set<string>([...laterStep.tests, ...laterStep.capabilityIds]);
+        const overlap = [...revealedTargets].filter((id) => checkedTargets.has(id));
+        if (overlap.length > 0) {
+          ctx.addIssue({
+            code: "custom",
+            path: ["steps", earlierIndex, "mayRevealTargetAnswer"],
+            message: `lesson '${lesson.id}' step '${earlierStep.id}' is marked mayRevealTargetAnswer but precedes graded step '${laterStep.id}' (completionCondition 'correct_answer_required'), which tests the same target(s) (${overlap.join(", ")}) -- teaching content must not remain answer-bearing while an embedded check on the same target is still active`,
+          });
+        }
       }
     }
   });

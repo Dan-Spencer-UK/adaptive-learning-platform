@@ -9,6 +9,13 @@
  * This module resolves exactly one such decision at a time, using only
  * the governed `LessonStep.branchRoutes` Package A already defines --
  * no new schema, no new triggers invented here.
+ *
+ * ADR-0006 / CC-13A status: RETAINED platform capability, not deleted,
+ * and explicitly POST-V1 -- a V1 canonical-route lesson
+ * (`routePolicy: "CANONICAL_FIXED_ROUTE"`) has no conditional steps for
+ * a branch trigger to redirect, so this module simply has nothing to do
+ * on such a lesson. It remains fully available to any lesson that does
+ * not declare that policy.
  */
 
 import type { LessonPlan, StepBranchRoute } from "@alp/content-schema";

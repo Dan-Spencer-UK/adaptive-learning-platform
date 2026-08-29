@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { pedagogyManifestSchema, type PedagogyManifest } from "./pedagogy.ts";
+import { pedagogyManifestSchema, questionBlueprintManifestSchema, type PedagogyManifest } from "./pedagogy.ts";
 
 function minimalValidManifest(): PedagogyManifest {
   return {
@@ -102,6 +102,8 @@ function minimalValidManifest(): PedagogyManifest {
           misconceptionTargets: [],
         },
         difficultyBand: "introductory",
+        requiredKnowledgeIds: [],
+        revisionLessonIds: [],
       },
     ],
   };
@@ -297,5 +299,45 @@ describe("pedagogyManifestSchema", () => {
     const result = pedagogyManifestSchema.safeParse(manifest);
     expect(result.success).toBe(true);
     expect(result.success && result.data.questionBlueprints[0]!.assessmentStyleEvidence).toBeUndefined();
+  });
+});
+
+describe("questionBlueprintManifestSchema -- ADR-0006 V1 question governance additions", () => {
+  const minimalBlueprint = minimalValidManifest().questionBlueprints[0]!;
+
+  it("leaves v1PedagogicalRole unset when not authored, and requiredKnowledgeIds/revisionLessonIds genuinely optional (no forced default -- see field comments)", () => {
+    const result = questionBlueprintManifestSchema.safeParse(minimalBlueprint);
+    expect(result.success).toBe(true);
+    if (result.success) expect(result.data.v1PedagogicalRole).toBeUndefined();
+
+    const withoutEitherField = { ...minimalBlueprint } as Record<string, unknown>;
+    delete withoutEitherField.requiredKnowledgeIds;
+    delete withoutEitherField.revisionLessonIds;
+    const omitted = questionBlueprintManifestSchema.safeParse(withoutEitherField);
+    expect(omitted.success).toBe(true);
+    if (omitted.success) {
+      expect(omitted.data.requiredKnowledgeIds).toBeUndefined();
+      expect(omitted.data.revisionLessonIds).toBeUndefined();
+    }
+  });
+
+  it("accepts a LESSON_CHECK item with no revisionLessonIds (lesson checks do not drive Guided Revision)", () => {
+    const result = questionBlueprintManifestSchema.safeParse({ ...minimalBlueprint, v1PedagogicalRole: "LESSON_CHECK" });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects a FORMATIVE_MOCK item with no revisionLessonIds", () => {
+    const result = questionBlueprintManifestSchema.safeParse({ ...minimalBlueprint, v1PedagogicalRole: "FORMATIVE_MOCK" });
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/revisionLessonIds/);
+  });
+
+  it("accepts a FORMATIVE_MOCK item that declares at least one revisionLessonId", () => {
+    const result = questionBlueprintManifestSchema.safeParse({
+      ...minimalBlueprint,
+      v1PedagogicalRole: "FORMATIVE_MOCK",
+      revisionLessonIds: ["lesson.ohms-law"],
+    });
+    expect(result.success).toBe(true);
   });
 });

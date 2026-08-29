@@ -72,6 +72,10 @@ Never issue or act on a broad instruction such as "continue building the platfor
 
 Prefer thin end-to-end slices over constructing whole infrastructure layers. A slice should prove something observable or testable.
 
+**Learning-package reset correction (ADR-0005, CC-13A):** "thin end-to-end slice" must never be read as "a downstream layer (e.g. runtime) succeeding while an upstream layer (curriculum, pedagogy, visual planning) remains incomplete." A vertical slice builds through every applicable gate in [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md), not merely to the first gate that happens to be convenient to satisfy. No feature package may create a production path around an unmet curriculum, visual, or pedagogy contract merely because the runtime happens to render successfully — runtime PASS is one gate among several, not a substitute for the others. Before accepting a local fix, audit which upstream and downstream contracts it touches; a fix that satisfies its own layer while silently breaking an upstream contract's assumption is not complete.
+
+**V1 content-production discipline (ADR-0006):** V1 content production optimises for one excellent canonical lesson route per ordinary lesson. Do not multiply lesson branches/variants (adaptive remediation copies, mastery-conditional steps) until the core V1 loop — canonical lesson → dedicated formative/mock assessment → explicit submission → Guided Revision — is proven end-to-end. The formative/mock assessment + submit + Guided Revision loop is itself a required V1 product vertical, not an optional enhancement layered on afterward; see [`docs/architecture/V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md`](../architecture/V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md).
+
 ## Scope change
 
 If completion requires material scope expansion, stop, explain why, propose the smallest change and identify affected decisions/docs. Do not expand silently.

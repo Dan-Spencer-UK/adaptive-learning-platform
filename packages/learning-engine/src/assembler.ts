@@ -8,6 +8,20 @@
  *
  * See ./branching.ts for the separate, WITHIN-session concern this
  * function deliberately does not decide.
+ *
+ * ADR-0006 / CC-13A status: this mastery-driven conditional-skip/
+ * remediation assembly is real, implemented, RETAINED platform
+ * capability -- not deleted, and it remains available to any lesson that
+ * does not declare `LessonPlan.routePolicy: "CANONICAL_FIXED_ROUTE"`. It
+ * is explicitly a POST-V1 direction, not a V1 ordinary-lesson production
+ * requirement: a V1 canonical-route lesson's steps are all
+ * `requirement: "required"` (enforced by `lessonPlanSchema`'s own
+ * validation once `routePolicy` is declared), so `decideStep` below
+ * degenerates to unconditionally including every step for such a lesson
+ * -- its conditional-skip/remediation branches simply never activate.
+ * See docs/architecture/LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md's
+ * ADR-0006 reconciliation section for the full product-contract
+ * correction this implementation was already consistent with.
  */
 
 import type { LessonPlan, LessonStep } from "@alp/content-schema";

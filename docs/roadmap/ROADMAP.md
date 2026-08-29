@@ -58,6 +58,27 @@ Each CC package may be subdivided further.
 
 Must demonstrate real governed knowledge/provenance; plausible content pipeline; learning from zero evidence; persistent interpretable evidence; bounded diagnosis across foundational/vocational causes; targeted remediation; transfer; deterministic no-LLM routine operation; materially better-than-question-bank UX; tested auth/isolation/security; and scale-readiness without fundamental redesign.
 
+## Programme checkpoint — Learning-Package Architecture Reset & V1 Learning Model (2026-08-29)
+
+Following Product Owner review of Unit 202 after full Android runtime qualification, a mandatory checkpoint sits before any further broad-content/unit-scale expansion (Phase 2 or otherwise). See [`ADR-0005`](../architecture/adr/ADR-0005-learning-package-production-and-visual-governance.md), [`ADR-0006`](../architecture/adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md) and [`docs/architecture/ARCHITECTURE-RESET-INTEGRATION-MATRIX.md`](../architecture/ARCHITECTURE-RESET-INTEGRATION-MATRIX.md). Required sequence:
+
+```text
+1. Learning Package Architecture Reset — integrate ADR-0005/ADR-0006 into current
+   authoritative docs/tooling (this checkpoint's documentation-integration package)
+2. V1 learner-model integration — one canonical lesson route + assessment-driven
+   Guided Revision wired through the real implementation
+3. Pipeline integration/audit — audit the existing content/visual/assessment pipeline
+   against the new architecture, remediate gaps
+4. End-to-end pilot — a real lesson through the full new pipeline, including
+   formative/mock assessment → submission → Guided Revision
+5. Unit 202 re-authoring/refactor under the new pipeline
+6. Product Owner review confirms the result is representative of the class-leading
+   target
+7. Only then does further unit-scale content expansion resume
+```
+
+**Post-V1 richer adaptive lesson routing is deferred, not a blocker on V1 release.** The existing evidence/mastery/diagnostic/remediation machinery (CC-07/CC-08/CC-12) remains implemented platform capability and a legitimate post-V1 direction; V1 does not require it to ship, and its absence from V1 ordinary-lesson routing is not itself a defect to fix before release.
+
 ## Phase 2 — Expand Electrical Product
 
 **Not yet defined in implementation detail.** If Phase 1 passes, likely direction is to expand toward commercially useful Electrical coverage, improve content-authoring throughput, broaden remediation/question coverage, prove real learner demand/usability and begin paid-user experiments. Scope must be decided from Phase 1 evidence.

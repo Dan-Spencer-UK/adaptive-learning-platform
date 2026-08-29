@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { lessonPlanSchema, lessonPlanManifestSchema, type LessonPlan, type LessonStep } from "./lesson-plan.ts";
+import { lessonPlanSchema, lessonPlanManifestSchema, classifyV1StepRole, type LessonPlan, type LessonStep } from "./lesson-plan.ts";
 
 function minimalStep(overrides: Partial<LessonStep> = {}): LessonStep {
   return {
@@ -20,6 +20,7 @@ function minimalStep(overrides: Partial<LessonStep> = {}): LessonStep {
     completionCondition: "view_acknowledged",
     branchRoutes: [],
     evidenceEmitted: [],
+    mayRevealTargetAnswer: false,
     ...overrides,
   };
 }
@@ -51,6 +52,7 @@ function minimalLesson(overrides: Partial<LessonPlan> = {}): LessonPlan {
     },
     presentationModes: ["learn"],
     contentRelease: "release.synthetic-schema-test.v1",
+    assessmentMappingIds: [],
     ...overrides,
   };
 }
@@ -304,5 +306,114 @@ describe("masteryGateCapabilityId placement (CC-06D, Correction F §10.3)", () =
     const result = lessonPlanSchema.safeParse(lesson);
     expect(result.success).toBe(false);
     expect(JSON.stringify(result.error?.issues)).toMatch(/no semantic purpose/);
+  });
+});
+
+describe("classifyV1StepRole (ADR-0006 V1/post-V1 step-type classification)", () => {
+  it("classifies ordinary teaching/interaction/completion step types as V1_ORDINARY", () => {
+    for (const type of [
+      "orientation",
+      "concept_explanation",
+      "visual_explanation",
+      "worked_example",
+      "guided_interaction",
+      "independent_question",
+      "retrieval_check",
+      "recap",
+      "exit_completion",
+    ] as const) {
+      expect(classifyV1StepRole(type)).toBe("V1_ORDINARY");
+    }
+  });
+
+  it("classifies diagnostic/remediation/transfer step types as POST_V1_ADAPTIVE", () => {
+    expect(classifyV1StepRole("misconception_discrimination")).toBe("POST_V1_ADAPTIVE");
+    expect(classifyV1StepRole("remediation")).toBe("POST_V1_ADAPTIVE");
+    expect(classifyV1StepRole("transfer_application")).toBe("POST_V1_ADAPTIVE");
+  });
+});
+
+describe("ADR-0006 routePolicy: CANONICAL_FIXED_ROUTE invariance gate", () => {
+  it("accepts a CANONICAL_FIXED_ROUTE lesson where every step is required", () => {
+    const lesson = minimalLesson({ routePolicy: "CANONICAL_FIXED_ROUTE" });
+    expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
+  });
+
+  it("rejects a CANONICAL_FIXED_ROUTE lesson containing a conditional_skip_if_mastered step", () => {
+    const lesson = minimalLesson({
+      routePolicy: "CANONICAL_FIXED_ROUTE",
+      steps: [
+        minimalStep(),
+        minimalStep({ id: "skip_step", type: "guided_interaction", requirement: "conditional_skip_if_mastered", capabilityIds: ["cap.x"], masteryGateCapabilityId: "cap.x" }),
+      ],
+    });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/CANONICAL_FIXED_ROUTE/);
+  });
+
+  it("does NOT flag conditional steps on a lesson that declares no routePolicy at all (retained platform capability remains valid)", () => {
+    const lesson = minimalLesson({
+      steps: [
+        minimalStep(),
+        minimalStep({ id: "skip_step", type: "guided_interaction", requirement: "conditional_skip_if_mastered", capabilityIds: ["cap.x"], masteryGateCapabilityId: "cap.x" }),
+      ],
+    });
+    expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
+  });
+});
+
+describe("ADR-0005 embedded-check answer-leak gate (mayRevealTargetAnswer)", () => {
+  it("rejects a teaching step marked mayRevealTargetAnswer that precedes a graded check on the same capability", () => {
+    const lesson = minimalLesson({
+      steps: [
+        minimalStep({ id: "teach", type: "worked_example", mayRevealTargetAnswer: true, teaches: ["assertion.a"], capabilityIds: ["cap.ohms_law.recognise_relationship"] }),
+        minimalStep({ id: "check", type: "independent_question", completionCondition: "correct_answer_required", tests: ["assertion.a"], capabilityIds: ["cap.ohms_law.recognise_relationship"] }),
+      ],
+      completionCriteria: {
+        requiredStepIds: ["teach", "check"],
+        requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+        masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
+        requiresRemediationClearance: true,
+        exitSummary: "x",
+      },
+    });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/answer-bearing/);
+  });
+
+  it("accepts the same shape when mayRevealTargetAnswer is false (the default)", () => {
+    const lesson = minimalLesson({
+      steps: [
+        minimalStep({ id: "teach", type: "worked_example", teaches: ["assertion.a"], capabilityIds: ["cap.ohms_law.recognise_relationship"] }),
+        minimalStep({ id: "check", type: "independent_question", completionCondition: "correct_answer_required", tests: ["assertion.a"], capabilityIds: ["cap.ohms_law.recognise_relationship"] }),
+      ],
+      completionCriteria: {
+        requiredStepIds: ["teach", "check"],
+        requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+        masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
+        requiresRemediationClearance: true,
+        exitSummary: "x",
+      },
+    });
+    expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
+  });
+
+  it("accepts mayRevealTargetAnswer on a step with no LATER overlapping graded check (e.g. a worked example after the only check, or on an unrelated capability)", () => {
+    const lesson = minimalLesson({
+      steps: [
+        minimalStep({ id: "check", type: "independent_question", completionCondition: "correct_answer_required", tests: ["assertion.a"], capabilityIds: ["cap.ohms_law.recognise_relationship"] }),
+        minimalStep({ id: "teach", type: "worked_example", mayRevealTargetAnswer: true, teaches: ["assertion.a"], capabilityIds: ["cap.ohms_law.recognise_relationship"] }),
+      ],
+      completionCriteria: {
+        requiredStepIds: ["check", "teach"],
+        requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+        masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
+        requiresRemediationClearance: true,
+        exitSummary: "x",
+      },
+    });
+    expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
   });
 });

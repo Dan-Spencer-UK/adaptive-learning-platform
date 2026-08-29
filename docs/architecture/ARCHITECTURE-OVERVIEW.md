@@ -127,6 +127,20 @@ select lesson
 → update progress/state
 ```
 
+**V1 scope note (ADR-0006, 2026-08-29):** this diagram describes the domain engines' general capability, not the V1 ordinary-lesson learner route. A V1 ordinary lesson is one canonical premium route (no per-learner skip/branch/reorder); the "branch to diagnosis/remediation" step above is retained implemented platform capability / post-V1 option — not deleted, but not a V1 ordinary-lesson production requirement. See "Learning-package production architecture and V1 learner model" below.
+
+## Learning-package production architecture and V1 learner model (ADR-0005 / ADR-0006)
+
+Following Product Owner review of Unit 202 after full Android runtime qualification (2026-08-29), the platform adopted a ground-up learning-package production architecture and a simplified V1 learner-adaptation model. Both are accepted decisions and both narrow how the sections above are read for current work:
+
+- **Learning-package quality is upstream-governed, not repaired at runtime.** The full production sequence is source/syllabus → knowledge → canonical storyboard → visual plan → lesson checks → formative/mock assessment mapping → reference governance → production → publication gates → runtime → submitted-assessment Guided Revision. See [`SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md`](SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md).
+- **Instructional visuals are first-class governed content**, planned before authoring, not a downstream polish layer — see [`INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md`](INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md) and [`docs/design/ALP-PRODUCT-WIDE-VISUAL-DESIGN-SYSTEM.md`](../design/ALP-PRODUCT-WIDE-VISUAL-DESIGN-SYSTEM.md).
+- **Runtime compatibility is one publication gate among several, not the overall definition of learner readiness.** A lesson that runs correctly on-device (runtime PASS) is necessary but not sufficient for learner-ready/premium quality — see [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md).
+- **V1 ordinary lessons follow one canonical route.** The route does not change with learner mastery, prerequisite state, or ordinary lesson-check performance.
+- **V1 adaptation is revision prioritisation after a completed/submitted formative/mock assessment, not mastery-driven lesson assembly.** A deterministic Guided Revision plan ranks full canonical lessons by weakness after the assessment is submitted; incomplete/abandoned assessments and ordinary lesson-check activity never update it. See [`V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md`](V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md).
+
+Governing decisions: [`ADR-0005`](adr/ADR-0005-learning-package-production-and-visual-governance.md) and [`ADR-0006`](adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md). Full reconciliation checklist: [`ARCHITECTURE-RESET-INTEGRATION-MATRIX.md`](ARCHITECTURE-RESET-INTEGRATION-MATRIX.md). Existing richer adaptive/diagnostic/remediation machinery (CC-07/CC-08/CC-12) is retained implemented platform capability / post-V1 option — it is not deleted, and nothing above revokes it — but it is no longer a V1 ordinary-lesson production requirement.
+
 ## Authentication and isolation
 
 Authentication and authorisation are separate. Ordinary learner access uses authenticated application/server paths and RLS. Privileged credentials are server-only and narrowly used. Production authentication email requires a custom SMTP provider (Resend) in place of Supabase's built-in development email, kept replaceable via standard SMTP configuration.

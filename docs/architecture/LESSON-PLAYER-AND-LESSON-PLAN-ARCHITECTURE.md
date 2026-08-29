@@ -11,6 +11,8 @@ last_reviewed: 2026-08-28
 
 **Original design status (2026-08-17, when this document was approved):** documentation only — no lesson player, lesson screens, components, database schema or migrations existed yet. The document existed to specify the target shape *before* implementation began.
 
+**CC-13A ADR-0006 correction (2026-08-29):** §6/§7's adaptive lesson-assembly model (skip/branch/remediate per learner mastery) is real, implemented platform capability but is **not** V1 ordinary-lesson product behaviour — V1 uses one canonical route per lesson, with adaptation exposed only through a dedicated assessment-driven Guided Revision plan. See §20 for the full reconciliation before relying on §6/§7 as current product requirements.
+
 **CC-12E.1 current-status correction (2026-08-28):** that original framing is now stale and was found to still read as current guidance to a fresh contributor, which is false. Since 2026-08-17 the repository has implemented a governed Lesson Plan schema (`packages/content-schema/src/lesson-plan.ts`), deterministic learner-specific lesson assembly (CC-06B), a production-intent native Lesson Player (CC-06C, hardened CC-06D), evidence/mastery persistence and durable sync (CC-07), full adaptive cross-lesson behaviour (CC-08), and a real learner-facing vertical slice with diagnostic/remediation/recheck branching, qualified on a real Android emulator (CC-12, CC-12A-D). This document's architectural decisions were not violated by that work — see §5-§10, §13, §15-§16 below for exactly what is now implemented versus what remains open, corrected section by section rather than by rewriting the original rationale.
 **Applies to:** the learner-facing lesson experience across `apps/mobile` (primary, now the real implemented Lesson Player) and `apps/web` (secondary), and any CC package that extends it further.
 **Relationship to CC-05:** this document sits *above* CC-05A-D (pedagogical knowledge structure, deterministic engine, native proving slice, instructional-visual governance) as an orchestration layer. It references those governed primitives; it does not duplicate or redefine them.
@@ -122,6 +124,8 @@ At the time this architecture was approved, a future implementation package was 
 
 ## 6. Canonical plan vs. learner-specific lesson instance
 
+**ADR-0006 V1 correction (2026-08-29, CC-13A) — read before the rest of this section:** the model described immediately below (a Learner-Specific Lesson Instance that skips/branches/reorders the canonical plan's steps per learner) is **retained implemented platform capability / post-V1 option — not deleted, but not a V1 ordinary-lesson production requirement.** For V1, the Learner-Specific Lesson Instance *is* the Canonical Lesson Plan: every learner who opens an ordinary lesson gets the same one canonical premium route. Mastery, evidence and prerequisite state do not skip, insert, or reorder ordinary V1 teaching sections. This is a Product Owner/Project Architect decision, not implementation discretion — see §20 below and [`ADR-0006`](adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md).
+
 The architecture must explicitly distinguish two things that must never be conflated:
 
 - **Canonical Lesson Plan** — the pedagogically valid full learning intervention, as governed/authored content.
@@ -134,9 +138,13 @@ Learner A:       1  2  3     5     7  8     10     12        14
 Learner B:       1  2     4  5  6  7     9  10  11  12  13  14
 ```
 
+**V1 note:** the diagram above illustrates the retained platform capability (§20), not the V1 default. The V1 default is `Learner A = Learner B = 1 2 3 4 5 6 7 8 9 10 11 12 13 14` — the full canonical route, unconditionally.
+
 The point is **not** arbitrary AI generation of lesson content. The point is **deterministic/adaptive assembly** based on the learner's own evidence, mastery and diagnosed weaknesses — the same evidence model CC-05's own diagnostic/evidence architecture already governs. **No LLM/AI in the learner runtime** (product invariant 8 / Product Principle 12/19) — runtime adaptation must remain deterministic and governed, exactly as CC-05B's engine already is.
 
 ## 7. Adaptive behaviour the eventual player must support
+
+**ADR-0006 V1 correction (2026-08-29, CC-13A):** every scenario below is **implemented/proven platform capability, retained as a post-V1/future learner-experience option — not mandatory V1 ordinary-lesson behaviour.** V1 ordinary lessons do not skip, branch, remediate, or reorder based on mastery/evidence; see §20. This section is preserved because the implementation it describes is real (CC-06B, CC-08, CC-12) and remains valid platform capability that a future post-V1 package may re-enable as a learner-facing option — it must not be read as a current V1 product requirement.
 
 Representative scenarios the Lesson Plan model must be capable of expressing (not implementing here):
 
@@ -148,7 +156,7 @@ Representative scenarios the Lesson Plan model must be capable of expressing (no
 - mastery demonstrated → advance;
 - spaced retrieval may be scheduled later (outside the single-lesson session).
 
-Lesson plans must therefore represent branching and evidence targets, not just a linear step list. This document does not itself implement the adaptive engine — it never has, that is not this kind of document's job. **CC-12E.1 correction: at the time this section was written, no approved package implemented that engine either; that is now false.** The deterministic adaptive-assembly engine is real and implemented — `@alp/learning-engine`/`@alp/diagnostic-engine` plus `apps/mobile/src/lib/lesson-session/lesson-controller.ts` (CC-06B, CC-08, CC-12), all still zero-LLM/deterministic exactly as this section requires. Five of the six representative scenarios listed above are now proven, not merely representable: see CC-12's own diagnostic-chain proof (`PROJECT-STATUS.md` §CC-12) for the misconception-branch/remediate/retest/return sequence, and CC-08 for cross-lesson mastery-driven advancement/skip. The sixth — cross-session spaced retrieval — remains genuinely open; see §17.6.
+Lesson plans must therefore represent branching and evidence targets, not just a linear step list. This document does not itself implement the adaptive engine — it never has, that is not this kind of document's job. **CC-12E.1 correction: at the time this section was written, no approved package implemented that engine either; that is now false.** The deterministic adaptive-assembly engine is real and implemented — `@alp/learning-engine`/`@alp/diagnostic-engine` plus `apps/mobile/src/lib/lesson-session/lesson-controller.ts` (CC-06B, CC-08, CC-12), all still zero-LLM/deterministic exactly as this section requires. Five of the six representative scenarios listed above are now proven, not merely representable: see CC-12's own diagnostic-chain proof (`PROJECT-STATUS.md` §CC-12) for the misconception-branch/remediate/retest/return sequence, and CC-08 for cross-lesson mastery-driven advancement/skip. The sixth — cross-session spaced retrieval — remains genuinely open; see §17.6. **None of this proven capability is a V1 ordinary-lesson gate (§20); it is retained platform capability available for a post-V1 direction.**
 
 ## 8. Interaction-first philosophy
 
@@ -316,6 +324,18 @@ Purpose: prepare learners for the actual qualification/examination — governed 
 
 **Smallest future schema requirement, not implemented here:** there is currently no first-class way to distinguish *why* a `guided_interaction` step was a recheck-after-remediation, a diagnostic response, or a plain formative check — that context lives only in step-id naming convention (`recheck_*`, `diagnose_*`) and `stepRequirementSchema: "conditional_remediation_only"`, not in a governed enum a derivation could branch on directly. The smallest addition that would close this without a schema migration is two new `lessonStepTypeSchema` values — `diagnostic_check` and `recheck` — used in place of `guided_interaction` for those two classes (§17.3/§17.5), letting `StepOutcome.stepType` carry the distinction structurally. Delayed retrieval, summative and exam-practice evidence provenance (§17.6-17.8) has no schema representation at all yet, because none of those experiences exist yet; when they are built, `LearnerAttemptRecord`/`StepOutcome` will need an explicit source-context field (e.g. `interactionClass` or equivalent) so a unit-assessment attempt is never silently pooled with an in-lesson formative attempt of the same capability. This is recorded as a requirement for that future package, not designed in detail here.
 
+## 18.1 No redundant pre-completion summary (CC-13A)
+
+A lesson must not present a recap/summary screen that duplicates the terminal completion experience (§12). Where reinforcement of what was just taught is pedagogically useful, it belongs inside the canonical teaching sequence itself (e.g. a worked-example recap embedded before a formative check), not as a second "here's what you just did" screen immediately before the one true completion screen (§12). This was one of the concrete findings from the Product Owner's Unit 202 review that triggered ADR-0005/ADR-0006 (duplicated penultimate recap/completion content) — see `reports/architecture/2026-08-29-learning-package-architecture-reset.md`.
+
+## 18.2 Learner-facing renderer hides all internal step/engine metadata (CC-13A)
+
+No internal step id, engine/debug field, raw numerical tolerance metadata, branch-trigger name, or other authoring/engine-internal value may be visible in learner-facing UI. Debug/internal language visible to learners was a direct finding of the Product Owner's Unit 202 review (`reports/architecture/2026-08-29-learning-package-architecture-reset.md`) and is a publication-gate failure (learner-presentation gate, [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md) §8), not a cosmetic nice-to-have.
+
+## 18.3 Visual requirement/asset state is part of lesson-plan completeness (CC-13A)
+
+A Lesson Plan (§5) is not complete merely because its steps/assessment points are governed — its required visuals (per the lesson's visual-opportunity analysis) must also be resolved to an approved production asset before the lesson is learner-ready. See [`INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md`](INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md) and the visual gate in [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md) §5. A lesson may be runtime-PASS while a REQUIRED visual is still absent — that state is not learner-ready (ADR-0005).
+
 ## 19. Future assessment hierarchy (CC-12E, conceptual only)
 
 ```text
@@ -327,3 +347,23 @@ SPACED RETRIEVAL   → crosses lesson/topic/unit boundaries over time (§17.6)
 ```
 
 This is a conceptual placeholder, not a specification: no UI, scoring model, or schema for topic/unit/course-level assessment is designed here. It exists so a future package extending beyond single-lesson formative checks has a named place in the architecture to attach to, and so that no future package accidentally re-invents "assessment" as a single undifferentiated concept.
+
+**CC-13A note:** this placeholder is now a real specification for the V1 "UNIT/COURSE" row — see [`V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md`](V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md), which defines the dedicated formative/mock assessment contract, the `SUBMITTED` boundary, and the deterministic Guided Revision plan this section anticipated conceptually. The `SPACED RETRIEVAL` row remains genuinely open.
+
+## 20. ADR-0006 V1 correction — one canonical route, Guided Revision, not in-lesson adaptation (CC-13A)
+
+**This section is the authoritative reconciliation of §6/§7 against [`ADR-0006`](adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md).** It does not delete §6/§7 — the adaptive-assembly engine they describe is real, implemented, and remains retained platform capability — it corrects what this document asserts is *required V1 product behaviour*.
+
+**What changed and why.** Product Owner review of Unit 202 (2026-08-29) found that requiring rich adaptive lesson routing during initial content production multiplies authoring states, visual variants and QA paths before the premium core learning product is proven, and that some lessons had been over-fragmented into one-sentence-then-Continue screens in the name of avoiding scroll. ADR-0006 responded with a simplified V1 learner model.
+
+**V1 rule, stated plainly:**
+
+- A V1 ordinary lesson has exactly one canonical premium route. The route does not change because of learner mastery, prerequisite state, or ordinary lesson-check performance (§6's "Learner-Specific Lesson Instance" is, for V1, always identical to the Canonical Lesson Plan).
+- §7's skip/branch/remediate/retest/return scenarios are proven, implemented, zero-LLM platform capability (CC-06B/CC-08/CC-12) — retained, not deleted — but are a post-V1 option, not a V1 ordinary-lesson gate.
+- V1 adaptation happens only via a dedicated formative/mock assessment: a **completed and explicitly submitted** attempt is mapped to governed capabilities and canonical lessons, producing a deterministic **Guided Revision** plan ranking full canonical lessons by weakness, highest first. Embedded lesson checks (§17.2) reinforce learning and produce real evidence but do not themselves update this plan. Incomplete/abandoned/suspended assessments never update it either.
+- Guided Revision reuses canonical full lessons — never a bespoke remediation-lesson variant.
+- Opening/completing a Guided Revision lesson does not itself recalculate the plan; only a later completed/submitted assessment does.
+
+**Full specification:** [`V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md`](V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md). **Product-wide production sequencing this fits into:** [`SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md`](SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md) §5-§9.
+
+**Standing rule for every future edit to this document:** a new addition describing adaptive/branching/skip behaviour as something "the lesson player does" or "the learner experiences" must state explicitly whether it is (a) V1 ordinary-lesson behaviour (must be one canonical route, per this section) or (b) retained platform capability / post-V1 direction (§6/§7's model). Silence on this point is itself a defect per the Documentation Currency Register's standing review rule.

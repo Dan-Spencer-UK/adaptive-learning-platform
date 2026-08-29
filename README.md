@@ -38,6 +38,20 @@ teach or assess
 
 Learning does not have to begin with assessment. A learner may select qualification → unit → lesson and work systematically through the syllabus.
 
+**V1 note (2026-08-29):** the loop above describes the platform's general/retained capability. For V1, an *ordinary lesson* follows one canonical premium route (no per-learner skip/branch/reorder); adaptation is exposed only through a dedicated formative/mock assessment — complete it, submit it explicitly, and the system produces a deterministic **Guided Revision** plan ranking full canonical lessons by weakness. See "Learning-package production and V1 learner model" below.
+
+## Learning-package production and V1 learner model (ADR-0005 / ADR-0006)
+
+Following Product Owner review of Unit 202 after full Android runtime qualification, the platform adopted a ground-up learning-package production architecture and a simplified V1 learner-adaptation model:
+
+- **Production sequence:** source/syllabus → knowledge → canonical storyboard → visual plan → lesson checks → formative/mock assessment mapping → reference governance → production → publication gates → runtime → submitted-assessment Guided Revision. See [`docs/architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md`](docs/architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md).
+- **One canonical V1 lesson route.** Rich, scrollable teaching is preferred over fragmenting a lesson into one-sentence-then-Continue steps merely to avoid scrolling. See [`docs/architecture/LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md`](docs/architecture/LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md).
+- **Assessment-driven Guided Revision** is the V1 adaptation model — see [`docs/architecture/V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md`](docs/architecture/V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md).
+- **Visual/reference authority boundaries:** instructional visuals are first-class governed content, planned before authoring; Claude may extract candidate visual needs and orchestrate production but may not select/approve a final technical reference — that requires independent Project Architect (ChatGPT) review; Gemini is a renderer only. See [`docs/architecture/INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md`](docs/architecture/INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md) and [`docs/governance/VISUAL-REFERENCE-REVIEW-PROTOCOL.md`](docs/governance/VISUAL-REFERENCE-REVIEW-PROTOCOL.md).
+- **Retained but deferred capability:** the existing evidence/mastery/diagnostic/remediation machinery (CC-07/CC-08/CC-12) is implemented, real, and retained as platform capability / post-V1 option — it is not deleted, but it is not a V1 ordinary-lesson production requirement.
+
+Governing decisions: [`ADR-0005`](docs/architecture/adr/ADR-0005-learning-package-production-and-visual-governance.md), [`ADR-0006`](docs/architecture/adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md). Full checklist: [`docs/architecture/ARCHITECTURE-RESET-INTEGRATION-MATRIX.md`](docs/architecture/ARCHITECTURE-RESET-INTEGRATION-MATRIX.md).
+
 ## Initial proving slice
 
 The first implementation proves the architecture through a deliberately narrow Electrical/Foundational Maths/Foundational Physics proving slice rather than broad content coverage. See [`PROJECT-STATUS.md`](PROJECT-STATUS.md) for the current proving-slice content and diagnostic golden path.

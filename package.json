@@ -50,6 +50,8 @@
     "engine:perf": "node scripts/content/measure-cc05b-performance.ts",
     "lesson:validate": "node scripts/content/validate-lesson-plan.ts",
     "lesson:validate:check": "node scripts/content/validate-lesson-plan.ts --check",
+    "v1-package:report": "node scripts/content/validate-v1-learning-package.ts",
+    "v1-package:check": "node scripts/content/validate-v1-learning-package.ts --check",
     "coverage:matrix": "node scripts/content/report-coverage-matrix.ts",
     "coverage:matrix:check": "node scripts/content/report-coverage-matrix.ts --check",
     "lesson:review": "node scripts/content/generate-lesson-review.ts",

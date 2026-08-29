@@ -8,6 +8,8 @@
 
 ---
 
+**V1 status note (CC-13A, 2026-08-29, added without altering anything below):** this document's diagnostic/remediation engine design remains current and authoritative as an implemented platform capability (`@alp/diagnostic-engine`, proven CC-08/CC-12). [`ADR-0006`](../../architecture/adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md) narrows how it is *exposed to a V1 learner*: dynamic in-lesson diagnosis/remediation/retest branching (as this document describes and CC-12's real diagnostic-chain proved) is retained implemented platform capability / post-V1 option, not a V1 ordinary-lesson production requirement. V1 ordinary lessons follow one canonical route; V1's weakness-identification/adaptation boundary is a dedicated completed/submitted formative/mock assessment feeding a deterministic Guided Revision plan, not this engine branching within an ordinary lesson. See [`V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md`](../../architecture/V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md) and `LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md` §20.
+
 # 1. Purpose
 
 WP1.4 defines the engine that answers:

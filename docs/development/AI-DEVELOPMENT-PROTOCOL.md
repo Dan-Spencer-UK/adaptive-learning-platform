@@ -92,6 +92,15 @@ Initial learner runtime has no LLM dependency. Do not add model API calls to lea
 
 **Native mobile client:** these HTML/shadcn-specific rules do not apply. Follow `docs/product/MOBILE-UX-ENGINEERING-STANDARD.md` and `docs/architecture/MOBILE-ARCHITECTURE.md` instead.
 
+## Learning-package architecture reset boundaries (ADR-0005/ADR-0006, CC-13A)
+
+- Claude must not invent or approve a technical visual reference. Reference selection/annotation requires independent Project Architect (ChatGPT) review — see [`docs/governance/VISUAL-REFERENCE-REVIEW-PROTOCOL.md`](../governance/VISUAL-REFERENCE-REVIEW-PROTOCOL.md). Claude may extract candidate visual needs and discover/cache candidate reference material only.
+- Where an approved reference or an approved production brief is missing for a required visual, Claude must stop that asset and report the gap — it must not substitute an unapproved reference or proceed without one.
+- Claude may not bypass a learning-package gate (curriculum, pedagogy, visual, assessment-integrity, learner-presentation or runtime — [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md)) merely to complete a downstream task faster.
+- A cross-layer issue (e.g. a runtime symptom actually caused by an upstream curriculum/pedagogy/visual-planning gap) is fixed at its upstream root cause first, not patched at the layer where it happened to surface.
+- Claude must not opportunistically re-enable post-V1 adaptive lesson branching/skipping/reordering as part of ordinary V1 content work. Richer diagnostic/remediation/mastery-driven machinery (CC-07/CC-08/CC-12) is retained implemented platform capability / post-V1 option, not a V1 authoring tool to reach for by default — see [`ADR-0006`](../architecture/adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md).
+- The Guided Revision plan is deterministic logic, not runtime AI — implementing or extending it must not introduce a model-dependent decision into the learner-runtime critical path, consistent with the existing runtime-AI boundary above.
+
 ## Completion
 
 Return the 7-section completion report in `DEVELOPMENT-WORKFLOW.md`, then stop.

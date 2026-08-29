@@ -45,6 +45,21 @@ Security requirements are architectural constraints. The Implementation Engineer
 
 Silence is not approval.
 
+## Instructional visual authority split (ADR-0005, CC-13A)
+
+Following the learning-package architecture reset (2026-08-29), visual production authority is explicitly split across four roles — no single role holds end-to-end authority over a shipped instructional visual:
+
+- **Claude / Implementation Engineer** — candidate extraction and orchestration only: identifies visual needs from the governed corpus, discovers/caches *candidate* reference material, orchestrates production tooling, performs automated technical/pedagogical audits. Claude does **not** independently select or approve a final technical reference and does not invent technical relationships.
+- **ChatGPT / Project Architect** — catalogue/reference review and technical-reference selection/annotation: independently researches, verifies and approves references, writes the Reference Dossier, and independently reviews generated output. See [`docs/governance/VISUAL-REFERENCE-REVIEW-PROTOCOL.md`](VISUAL-REFERENCE-REVIEW-PROTOCOL.md).
+- **Product Owner** — final visual/design approval. No premium/hybrid artwork ships without Product Owner sign-off.
+- **Gemini** — renderer only. Never technical authority; never a reference-selection authority. See [`ADR-0004`](../architecture/adr/ADR-0004-deterministic-authority-over-generated-instructional-imagery.md).
+
+Full detail: [`ADR-0005`](../architecture/adr/ADR-0005-learning-package-production-and-visual-governance.md) and [`docs/architecture/INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md`](../architecture/INSTRUCTIONAL-VISUAL-PLANNING-REFERENCE-AND-PRODUCTION-ARCHITECTURE.md) §2.
+
+## V1 learner-model changes are Product Owner / Project Architect decisions (ADR-0006, CC-13A)
+
+Whether a lesson uses one canonical route or richer per-learner adaptive branching/skipping/reordering is a product-architecture decision recorded in [`ADR-0006`](../architecture/adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md), not a matter of Implementation Engineer discretion. Claude Code must not silently reintroduce mastery-driven ordinary-lesson routing, or silently narrow it further, without an equivalent Product Owner/Project Architect decision — see the Architecture conflict rule above.
+
 ## Current role mapping
 
 ```text

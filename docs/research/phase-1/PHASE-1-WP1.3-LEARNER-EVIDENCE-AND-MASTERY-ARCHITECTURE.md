@@ -8,6 +8,8 @@
 
 ---
 
+**V1 status note (CC-13A, 2026-08-29, added without altering anything below):** this document's evidence/mastery model remains current and authoritative — evidence/mastery history stays governed and auditable exactly as designed here. [`ADR-0006`](../../architecture/adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md) narrows *how* this evidence model is exposed to a V1 learner: mastery/evidence does not directly drive V1 ordinary-lesson routing (no per-learner skip/branch/reorder), and an ordinary embedded lesson check does not itself trigger remediation or update the V1 revision plan. The current V1-facing consumer of this evidence model is a deterministic Guided Revision plan, triggered only by a completed/submitted formative/mock assessment — see [`V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md`](../../architecture/V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md). The richer within-lesson/cross-lesson orchestration this document's model supports (and `LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md` §6/§7/§20 discusses at implementation level) remains retained implemented platform capability / post-V1 option — not deleted, but not a V1 requirement.
+
 # 1. Purpose
 
 WP1.3 defines the platform's learner-state model.

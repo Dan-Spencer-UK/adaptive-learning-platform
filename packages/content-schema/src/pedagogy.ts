@@ -191,6 +191,29 @@ export const assessmentStyleClassificationSchema = z.enum([
   "ASSESSMENT_STYLE_TRANSFER",
 ]);
 
+// ---------------------------------------------------------------------
+// ADR-0006 / CC-13A: V1 question governance -- which V1 pedagogical role a
+// question blueprint plays, and (for FORMATIVE_MOCK items specifically)
+// which canonical lessons a wrong answer should route a learner's Guided
+// Revision plan towards. Deliberately additive fields on the EXISTING
+// `questionBlueprintManifestSchema`/`evidenceTargetManifestSchema` below,
+// not a parallel "QuestionGovernanceContract" object duplicating
+// `evidence`/`assertionFamilyId`/`capabilityId` -- see
+// docs/architecture/LEARNING-PACKAGE-GOVERNANCE-CONTRACTS.md §8 for the
+// conceptual shape this maps onto real schema.
+// ---------------------------------------------------------------------
+
+export const v1QuestionRoleSchema = z.enum([
+  "LESSON_CHECK",
+  "FORMATIVE_MOCK",
+  "SUMMATIVE",
+  "EXAM_PRACTICE",
+]);
+export type V1QuestionRole = z.infer<typeof v1QuestionRoleSchema>;
+
+export const answerLeakRiskSchema = z.enum(["NONE", "LOW", "MEDIUM", "HIGH"]);
+export type AnswerLeakRisk = z.infer<typeof answerLeakRiskSchema>;
+
 export const assessmentStyleEvidenceManifestSchema = z
   .object({
     classification: assessmentStyleClassificationSchema,
@@ -528,7 +551,46 @@ export const questionBlueprintManifestSchema = z.object({
   presentation: questionPresentationManifestSchema.optional(),
   /** CC-09E: this blueprint's classified relationship to official public assessment evidence, where examined -- see assessmentStyleEvidenceManifestSchema. Optional and unset for the majority of blueprints this package did not examine under this lens; absence means "not yet classified", never "no assessment relevance" (the same non-exclusion discipline CC-09C/D established for curriculum scope). */
   assessmentStyleEvidence: assessmentStyleEvidenceManifestSchema.optional(),
-});
+
+  /**
+   * ADR-0006/CC-13A: knowledge this blueprint's item ASSUMES the learner
+   * already has (taught earlier or explicitly prior), as distinct from
+   * `evidence.assertionIdentifiers` (what the item actually TESTS). Used
+   * by the taught-before-tested validator (`scripts/content/validate-v1-
+   * learning-package.ts`) to prove a question never depends on material a
+   * lesson never taught -- the real Unit 202 finding this reconstructs:
+   * "component questions depending on material taught only in another
+   * lesson". Optional/defaulted for the same pre-existing-corpus reason as
+   * `LessonPlan.routePolicy` -- absence is a currency-audit finding, not a
+   * hard failure, until existing blueprints are re-authored under the new
+   * pipeline.
+   */
+  /**
+   * Kept `.optional()` rather than `.default([])` here and on
+   * `revisionLessonIds` below deliberately: with a Zod default the
+   * INFERRED (post-parse) TypeScript type makes the field required, which
+   * would force every one of this repo's ~114 existing governed question
+   * blueprint literals (scripts/content/data/cc05a-pedagogy-unit202.ts) to
+   * be touched just to satisfy the type checker -- pure metadata noise
+   * unrelated to this package's actual scope (CC-13A does not re-author
+   * Unit 202 content). Absence means "not yet classified"; consumers
+   * treat it as equivalent to an empty list.
+   */
+  requiredKnowledgeIds: z.array(stableId).optional(),
+  /** ADR-0006/CC-13A: this blueprint's V1 pedagogical role. Optional/unset means "not yet classified under the V1 model" -- never inferred from `difficultyBand` or step usage. */
+  v1PedagogicalRole: v1QuestionRoleSchema.optional(),
+  /** ADR-0006/CC-13A: required (non-empty) when `v1PedagogicalRole === "FORMATIVE_MOCK"` -- "every FORMATIVE_MOCK item has at least one useful canonical revisionLessonId" (LEARNING-PACKAGE-GOVERNANCE-CONTRACTS.md §8). Stable ids into `LessonPlan.id`, never a bespoke remediation-lesson copy (ADR-0006: "Guided Revision reuses canonical full lessons rather than bespoke remediation lessons"). Meaningless for LESSON_CHECK items, which "may create evidence but do not trigger/update V1 Guided Revision" -- left empty/absent there by convention. */
+  revisionLessonIds: z.array(stableId).optional(),
+})
+  .superRefine((blueprint, ctx) => {
+    if (blueprint.v1PedagogicalRole === "FORMATIVE_MOCK" && (blueprint.revisionLessonIds ?? []).length === 0) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["revisionLessonIds"],
+        message: `question blueprint ${blueprint.id} has v1PedagogicalRole 'FORMATIVE_MOCK' but no revisionLessonIds -- every formative/mock item must map to at least one canonical revision lesson so a submitted attempt can drive Guided Revision (ADR-0006)`,
+      });
+    }
+  });
 
 // ---------------------------------------------------------------------
 // 7. Generated question instance -- schema shape only (CC-05A does not

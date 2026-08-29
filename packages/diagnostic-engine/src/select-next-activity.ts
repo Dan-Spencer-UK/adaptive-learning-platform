@@ -9,6 +9,18 @@
  * This is deterministic POLICY over already-governed course/content/
  * evidence state -- not an AI recommender, not personalization, not an
  * optimization engine, not an analytics platform (task brief §9).
+ *
+ * ADR-0006 / CC-13A status: this course-level next-activity engine is
+ * RETAINED, implemented platform capability -- not deleted -- but
+ * automatic course-level next-lesson selection is not the V1 ordinary
+ * learner path. V1's learner-facing "what should I do next" question is
+ * answered by ONE canonical route through the currently open lesson,
+ * plus (after a completed/submitted formative/mock assessment) a
+ * deterministic Guided Revision plan (@alp/content-schema's
+ * guided-revision.ts) ranking full canonical lessons -- not by this
+ * engine choosing the next activity automatically. Do not wire this
+ * module into a V1 ordinary-lesson flow as though it were required V1
+ * behaviour.
  */
 
 import type { AssemblyContext, LessonPlan, MasteryState } from "@alp/learning-engine";

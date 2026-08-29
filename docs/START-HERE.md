@@ -25,6 +25,14 @@ It must support both **MAKE ME PASS** and **MAKE ME UNDERSTAND** through the sam
 
 A learner can choose qualification → unit → lesson and work systematically through the syllabus. Assessment is one entry route, not a gate.
 
+## Learning-package production and the V1 learner model (2026-08-29)
+
+Following Product Owner review of Unit 202 after full Android runtime qualification, two accepted decisions govern current and future learning-package work: [`ADR-0005`](architecture/adr/ADR-0005-learning-package-production-and-visual-governance.md) (ground-up learning-package production; instructional visuals are first-class governed content planned before authoring; Claude may extract candidate visual needs but may not select/approve a final technical reference — that requires independent Project Architect review; Gemini is a renderer only) and [`ADR-0006`](architecture/adr/ADR-0006-v1-canonical-lessons-and-assessment-driven-guided-revision.md) (V1 ordinary lessons use one canonical premium route — no per-learner skip/branch/reorder — with rich scrollable teaching preferred over viewport-fragmentation; V1 adaptation happens only via a dedicated formative/mock assessment that is completed and explicitly submitted, producing a deterministic Guided Revision plan ranking full canonical lessons by weakness).
+
+The existing richer evidence/mastery/diagnostic/remediation machinery (CC-07/CC-08/CC-12) is real, implemented, and **retained as platform capability / post-V1 option** — it is not deleted, but it is not a V1 ordinary-lesson production requirement. Do not assume mastery drives ordinary-lesson routing, or that an ordinary lesson check triggers remediation, in current V1 work.
+
+Full reconciliation checklist and production architecture: [`docs/architecture/ARCHITECTURE-RESET-INTEGRATION-MATRIX.md`](architecture/ARCHITECTURE-RESET-INTEGRATION-MATRIX.md), [`docs/architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md`](architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md), [`docs/architecture/V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md`](architecture/V1-LEARNING-ASSESSMENT-AND-GUIDED-REVISION-ARCHITECTURE.md).
+
 ## Initial runtime AI policy
 
 Initial learner runtime has **no AI dependency**. AI is used for development, content generation/verification and review. Learner teaching, marking, evidence, diagnosis and remediation are deterministic/governed. A future premium AI tutor may be added separately.

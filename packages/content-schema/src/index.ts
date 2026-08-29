@@ -28,6 +28,20 @@
  * mock-paper assembler. The learner-specific adaptive assembler and the
  * full learner-runtime content-publication pipeline remain later
  * packages.
+ *
+ * CC-13A (ADR-0005/ADR-0006 integration) added the V1 learning-package
+ * foundation: ./assessment-instance.ts (formative/mock assessment attempt
+ * lifecycle and the submitted-assessment result that is the sole V1
+ * Guided Revision trigger), ./guided-revision.ts (deterministic weakness
+ * aggregation and ranked Guided Revision plan), and ./learning-package-
+ * gate.ts (the shared governed result shape every publication gate
+ * reports through). It also extended -- never duplicated -- three
+ * existing modules: ./lesson-plan.ts (V1 route policy, semantic-section/
+ * answer-leak fields), ./pedagogy.ts (question V1 role and revision-lesson
+ * mapping), and ./visual-governance.ts (upstream visual-opportunity/
+ * requirement/reference-dossier/family-contract/production-eligibility
+ * planning layer, sitting before the existing semantic-QA layer that
+ * governs an already-produced visual).
  */
 
 import { z } from "zod";
@@ -50,3 +64,6 @@ export * from "./lesson-plan.ts";
 export * from "./content-release.ts";
 export * from "./runtime-projection.ts";
 export * from "./assessment-specification.ts";
+export * from "./assessment-instance.ts";
+export * from "./guided-revision.ts";
+export * from "./learning-package-gate.ts";
