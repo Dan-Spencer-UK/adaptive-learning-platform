@@ -1,0 +1,84 @@
+{
+  "realCorpusVisualCoverage": {
+    "release": "release.unit202.v8",
+    "totalLessons": 24,
+    "totalSteps": 270,
+    "lessonsWithZeroVisualRefs": 11,
+    "lessonsWithZeroVisualRefsPct": 45.8,
+    "stepsWithAnyVisualRef": 52,
+    "stepsWithAnyVisualRefPct": 19.3,
+    "distinctDiagramRefs": 16,
+    "distinctVisualAidRefs": 1,
+    "zeroVisualLessons": [
+      "lesson.electrical.charge-and-current",
+      "lesson.electrical.conductors-and-insulators",
+      "lesson.electrical.core-quantities",
+      "lesson.electrical.energy-and-efficiency",
+      "lesson.electrical.fault-conditions-protection",
+      "lesson.electrical.power",
+      "lesson.electrical.si-units",
+      "lesson.electrical.thermal-and-chemical-effects",
+      "lesson.foundation.maths.formula-rearrangement",
+      "lesson.foundation.physics.mass-and-weight",
+      "lesson.foundation.physics.mechanics-force-work-energy-power"
+    ],
+    "source": "scripts/audit/lesson-structure-audit.ts (reused buildMobileContentProjection, read-only)"
+  },
+  "productionCatalogueVsShipped": {
+    "cataloguedProducedAssets": 53,
+    "cataloguedProducedAssetsGenerated": 47,
+    "cataloguedProducedAssetsDeterministic": 42,
+    "cataloguedProducedAssetsPass": 55,
+    "shippedRuntimeResolvableAssets": 21,
+    "shippedSource": "apps/mobile/src/components/diagrams/DiagramRenderer.tsx CANONICAL_ASSET_LOCK (21 entries), cross-verified against apps/mobile/src/assets/instructional/unit202/{teaching,hybrid}",
+    "producedButNeverShipped": [
+      "unit202.components.physical.resistor",
+      "unit202.components.physical.capacitor",
+      "unit202.components.physical.diode",
+      "unit202.components.physical.led",
+      "unit202.components.physical.thermistor",
+      "unit202.components.physical.transistor",
+      "electrolysis (heating/chemical-effect states)",
+      "protective-devices states",
+      "instrument.clamp-meter",
+      "instrument.oscilloscope",
+      "magnet.poles.unlike comparisons",
+      "magnet.permanent-vs-electromagnet comparisons",
+      "resistivity comparisons",
+      "fleming-left-hand / fleming-right-hand states",
+      "diode.bias-direction (forward/reverse)"
+    ],
+    "note": "6 REQUIRED physical-component images are individually QA-PASS but apps/mobile/src/assets/instructional/unit202/physical-components/ is confirmed empty. 3 deterministic diagram renderers (electronics.rectification_waveform, electronics.capacitor_transient_curve, electronics.electron_flow_vs_conventional_current) are built/registered in DiagramRenderer.tsx but referenced by zero lesson steps."
+  },
+  "newSchemaAdoption": {
+    "visualOpportunityAnalysisRealInstances": 0,
+    "visualRequirementRealInstances": 0,
+    "referenceDossierRealInstances": 0,
+    "productionVisualAssetRealInstances": 0,
+    "designSystemVersionRealBindings": 0,
+    "currentDesignSystemVersion": "ALP-VDS-2026-08-29",
+    "note": "All new CC-13A visual-governance schema types (visual-governance.ts) exist and pass their own tests (54/54) but have zero real instances anywhere in the repository outside test fixtures."
+  },
+  "duplicateVisualAuthorityTrackers": [
+    {
+      "name": "unit202-artwork-manifest.json",
+      "path": "reports/instructional-visuals/premium-artwork/unit202-artwork-manifest.json",
+      "status": "documented as authoritative by README.md and paths.ts, but does not exist in the repository (not on disk, not in git log --all history)"
+    },
+    {
+      "name": "studio-state.json",
+      "path": "tools/visual-production-studio/data/studio-state.json",
+      "status": "real, workflow-status tracker (STUDIO_STATUSES), independent of the others"
+    },
+    {
+      "name": "unit202-canonical-visual-registry.json",
+      "path": "reports/instructional-visuals/unit202-canonical-visual-registry.json",
+      "status": "real, CC-11.11 shipment-candidate registry; its own generator script explicitly does not reconcile with unit202-artwork-manifest.json"
+    },
+    {
+      "name": "CANONICAL_ASSET_LOCK",
+      "path": "apps/mobile/src/components/diagrams/DiagramRenderer.tsx",
+      "status": "the one actually consulted at runtime (via its test-only SHA-256 tripwire); hand-maintained; structurally unconnected to any of the above or to ProductionVisualAsset.eligibility"
+    }
+  ]
+}

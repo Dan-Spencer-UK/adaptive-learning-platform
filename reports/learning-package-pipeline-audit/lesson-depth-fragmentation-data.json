@@ -1,0 +1,360 @@
+{
+  "release": "release.unit202.v8",
+  "totalLessonsInRelease": 24,
+  "totalSteps": 270,
+  "visualCoverage": {
+    "lessonsWithZeroVisualRefs": [
+      {
+        "lessonId": "lesson.electrical.charge-and-current",
+        "title": "Charge and Current",
+        "stepCount": 7
+      },
+      {
+        "lessonId": "lesson.electrical.conductors-and-insulators",
+        "title": "Electron Theory, Conductors and Insulators",
+        "stepCount": 8
+      },
+      {
+        "lessonId": "lesson.electrical.core-quantities",
+        "title": "Voltage, Current and Resistance",
+        "stepCount": 6
+      },
+      {
+        "lessonId": "lesson.electrical.energy-and-efficiency",
+        "title": "Electrical Energy and Efficiency",
+        "stepCount": 9
+      },
+      {
+        "lessonId": "lesson.electrical.fault-conditions-protection",
+        "title": "Fault Conditions and Protective Devices",
+        "stepCount": 9
+      },
+      {
+        "lessonId": "lesson.electrical.power",
+        "title": "Electrical Power",
+        "stepCount": 13
+      },
+      {
+        "lessonId": "lesson.electrical.si-units",
+        "title": "SI Units for Electrical Quantities",
+        "stepCount": 9
+      },
+      {
+        "lessonId": "lesson.electrical.thermal-and-chemical-effects",
+        "title": "Thermal and Chemical Effects of Current",
+        "stepCount": 6
+      },
+      {
+        "lessonId": "lesson.foundation.maths.formula-rearrangement",
+        "title": "Rearranging Formulas",
+        "stepCount": 11
+      },
+      {
+        "lessonId": "lesson.foundation.physics.mass-and-weight",
+        "title": "Mass and Weight",
+        "stepCount": 7
+      },
+      {
+        "lessonId": "lesson.foundation.physics.mechanics-force-work-energy-power",
+        "title": "Mechanics: Force, Work, Energy, Power and Efficiency",
+        "stepCount": 17
+      }
+    ],
+    "lessonsWithZeroVisualRefsCount": 11,
+    "stepsWithAnyVisualCount": 52,
+    "stepsWithAnyVisualPct": 19.3,
+    "totalDistinctDiagramRefs": 16,
+    "totalDistinctVisualAidRefs": 1
+  },
+  "fragmentation": {
+    "veryShortStepThresholdChars": 90,
+    "veryShortStepsCount": 0,
+    "veryShortStepsPctOfTotal": 0,
+    "lessonsWithAdjacentShortStepRuns": [],
+    "lessonsWithAdjacentShortStepRunsCount": 0
+  },
+  "recapCompletionDuplication": [
+    {
+      "lessonId": "lesson.electrical.charge-and-current",
+      "recapText": "Electric current equals the rate of flow of charge: I = Q divided by t.",
+      "completionText": "The learner has related current to the rate of flow of charge and calculated both current and charge using I = Q / t.",
+      "jaccardSimilarity": 0.42857142857142855
+    }
+  ],
+  "routePolicyAdoption": {
+    "lessonsDeclaringCanonicalFixedRoute": 0,
+    "totalLessons": 24
+  },
+  "contractAdoption": {
+    "semanticUnit": {
+      "stepsWithField": 0,
+      "totalSteps": 270
+    },
+    "deliberateShortSectionReason": {
+      "stepsWithField": 0,
+      "totalSteps": 270
+    },
+    "textOnlyJustification": {
+      "lessonsWithField": 0,
+      "totalLessons": 24
+    },
+    "mayRevealTargetAnswer": {
+      "stepsWithField": 0,
+      "totalSteps": 270
+    },
+    "visualOpportunityAnalysisId": {
+      "lessonsWithField": 0,
+      "totalLessons": 24
+    },
+    "assessmentMappingIds": {
+      "lessonsWithField": 0,
+      "totalLessons": 24
+    },
+    "syllabusNodeIds": {
+      "lessonsWithField": 0,
+      "totalLessons": 24
+    }
+  },
+  "perLessonSummary": [
+    {
+      "lessonId": "lesson.electrical.charge-and-current",
+      "title": "Charge and Current",
+      "stepCount": 7,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.conductors-and-insulators",
+      "title": "Electron Theory, Conductors and Insulators",
+      "stepCount": 8,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.core-quantities",
+      "title": "Voltage, Current and Resistance",
+      "stepCount": 6,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.electronic-components-passive",
+      "title": "Electronic Components: Capacitors, Rectification and Diodes",
+      "stepCount": 12,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.electronic-components-switching-control",
+      "title": "Electronic Components: Thermistors and Switching/Control Devices",
+      "stepCount": 12,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.energy-and-efficiency",
+      "title": "Electrical Energy and Efficiency",
+      "stepCount": 9,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.fault-conditions-protection",
+      "title": "Fault Conditions and Protective Devices",
+      "stepCount": 9,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.instrumentation",
+      "title": "Electrical Measuring Instruments",
+      "stepCount": 9,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.ohms-law",
+      "title": "Ohm's Law",
+      "stepCount": 15,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.power",
+      "title": "Electrical Power",
+      "stepCount": 13,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.resistivity",
+      "title": "Resistance and Resistivity",
+      "stepCount": 10,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.resistors-parallel",
+      "title": "Resistors in Parallel",
+      "stepCount": 14,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.resistors-series",
+      "title": "Resistors in Series",
+      "stepCount": 12,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.series-vs-parallel-comparison",
+      "title": "Series versus Parallel: Comparison and Mixed Circuits",
+      "stepCount": 10,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.si-units",
+      "title": "SI Units for Electrical Quantities",
+      "stepCount": 9,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.electrical.thermal-and-chemical-effects",
+      "title": "Thermal and Chemical Effects of Current",
+      "stepCount": 6,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.emf.ac-generation-principles",
+      "title": "A.C. Generation Principles",
+      "stepCount": 12,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.foundation.maths.formula-rearrangement",
+      "title": "Rearranging Formulas",
+      "stepCount": 11,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.foundation.physics.mass-and-weight",
+      "title": "Mass and Weight",
+      "stepCount": 7,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.foundation.physics.mechanics-force-work-energy-power",
+      "title": "Mechanics: Force, Work, Energy, Power and Efficiency",
+      "stepCount": 17,
+      "totalVisualRefs": 0,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": true,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.foundation.physics.simple-machines",
+      "title": "Simple Machines: Levers, Gears and Pulleys",
+      "stepCount": 14,
+      "totalVisualRefs": 3,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.magnetism.effects-of-current",
+      "title": "Magnetic Effects of Current",
+      "stepCount": 20,
+      "totalVisualRefs": 3,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.magnetism.fundamentals",
+      "title": "Magnetism Fundamentals",
+      "stepCount": 13,
+      "totalVisualRefs": 2,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    },
+    {
+      "lessonId": "lesson.waveforms.ac-dc-and-sine-wave-quantities",
+      "title": "A.C./D.C. and Sine-Wave Quantities",
+      "stepCount": 15,
+      "totalVisualRefs": 1,
+      "veryShortStepCount": 0,
+      "fragmentationRunCount": 0,
+      "hasZeroVisuals": false,
+      "routePolicy": null
+    }
+  ]
+}
