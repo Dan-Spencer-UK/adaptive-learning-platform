@@ -1,6 +1,8 @@
-# Remediation Plan (CC-13B)
+# Remediation Plan (CC-13B, corrected by CC-13B.1)
 
-**This is a plan only.** No remediation work has begun. Every package below requires Product Owner / Project Architect review and sequencing decisions before any implementation starts, per this audit's own constraints. Packages are grouped by root cause, in a recommended dependency order — later packages depend on earlier ones being at least decided, if not complete.
+**This is a plan only.** No remediation work has begun. Every package below requires Product Owner / Project Architect review and sequencing decisions before any implementation starts, per this audit's own constraints. Packages are grouped by root cause, ordered so that the six classes the V1 pilot cannot proceed without — canonical-route integrity, rich teaching-content representation, storyboard/visual-planning integration, formative/mock assessment, Guided Revision, and learner-ready publication gates — appear in a coherent dependency-respecting sequence (Packages 1, 2, 3, 7, 8, 9). Independent, low-risk cleanup packages (4, 5, 6 partially, 10, 11, 12) are interleaved near the pilot-blocking package they relate to, or placed after the blocking chain, but do not themselves gate the pilot and must not be read as displacing it.
+
+**CC-13B.1 correction note**: this plan was corrected after CC-13B's own initial version omitted a remediation package for one of its own confirmed P0 findings (no schema field for extended teaching prose) and used imprecise "triple-redundant" wording for the completion-screen finding (§ Package 10 below). See `PROJECT-STATUS.md` §CC-13B for the acceptance-status note. No remediation work was performed by this correction — only the plan document changed.
 
 ---
 
@@ -22,21 +24,23 @@
 
 ---
 
-## Package 2 — Fix the 23-lesson duplicate recap/completion defect
+## Package 2 — Extend the canonical teaching-content model for rich scrollable teaching
 
-**Objective**: generalise CC-12G's own fix (removing the redundant `exit_completion` step) from the one lesson it was applied to, to the other 23 real lessons that still exhibit the identical, already-root-caused defect.
+*(New in CC-13B.1 — this package was missing from the original CC-13B remediation plan despite addressing one of that same audit's own confirmed P0 findings. See `LESSON-DEPTH-AND-FRAGMENTATION-REGISTER.md` §3.)*
 
-**Root-cause findings addressed**: `LESSON-DEPTH-AND-FRAGMENTATION-REGISTER.md` §4, `REPRESENTATIVE-FAILURE-ROOT-CAUSE-TRACE.md` #5.
+**Objective**: provide a governed canonical authoring representation capable of expressing substantial teaching within a semantic lesson section — supporting multiple paragraphs / coherent explanatory chunks rather than forcing all teaching body copy to be reconstructed only from atomic assertion `statement` strings — so that mobile rendering can scroll naturally through genuinely rich content. The representation must remain structured and governable (not unrestricted HTML or arbitrary presentation markup), preserve accessibility and runtime determinism, integrate with the lesson storyboard/`semanticUnit` governance CC-13A already added, and be composable with visuals, formulas, worked examples, callouts and embedded checks rather than replacing any of them.
 
-**Expected files/layers**: 23 of the 24 real `scripts/content/data/lesson-*.ts` files (`steps` array + `completionCriteria.requiredStepIds`), regenerate `mobile-content-projection.ts` via `npm run content:mobile:generate`.
+**Root-cause findings addressed**: `LESSON-DEPTH-AND-FRAGMENTATION-REGISTER.md` §3 (the P0 finding itself: *"there is no field anywhere in `lessonStepSchema` for authored multi-sentence/multi-paragraph explanatory prose"*), `CC-13B-EXECUTIVE-SUMMARY.md` P0 item (1).
 
-**Dependencies**: none.
+**Expected files/layers** (illustrative, not a design decision — the exact shape is Project-Architect work, not specified by this plan): `packages/content-schema/src/lesson-plan.ts` (a new governed field or content-block structure on `lessonStepSchema`, alongside the existing `workedExampleBlueprintManifestSchema`/`visualAidBlueprintManifestSchema` structured-content pattern), `apps/mobile/src/lib/lesson-content/resolve-lesson-step.ts` (`resolveBodyStatements()` would need to additionally resolve this new field), `apps/mobile/src/components/lesson/LessonStepView.tsx` (rendering), `scripts/content/generate-mobile-projection.ts` (projection must carry the new field through unchanged, per this audit's own generated-projection-fidelity finding).
 
-**Project Architect review required**: No — the fix pattern is already established and approved (CC-12G); this is mechanical replication of a decision already made once, not a new one. A Product Owner spot-check of a couple of regenerated lessons on-device is still worthwhile before merging.
+**Dependencies**: none as a hard blocker, but benefits from being decided alongside Package 3 (storyboard/visual planning) since rich teaching content and visual placement compose within the same semantic section.
 
-**Acceptance criteria**: 0/24 lessons show a consecutive `recap → exit_completion` pair (re-run `scripts/audit/lesson-structure-audit-supplement.ts`'s `consecutiveRecapOrCompletionPairs` check); `content:mobile:check` passes; a manual on-device walk of 2-3 regenerated lessons confirms only one "Lesson complete" screen appears.
+**Project Architect review required**: **Yes — required.** This is an authored-content-contract design decision (what the governed shape of "rich teaching prose" is), not a mechanical patch, and directly affects every future lesson's authoring convention.
 
-**Timing**: **can wait until the Unit 202 systematic rebuild**, but is cheap enough (mechanical, already-approved pattern) that doing it now, independently of the rebuild, is low-risk and immediately improves the live product. Recommend doing it now.
+**Acceptance criteria** (for the eventual implementation to prove, not specified further at planning level here): one semantic teaching section can contain several coherent paragraphs; content can exceed one viewport and scroll correctly; arbitrary one-sentence fragmentation is not required by the new field; existing formulas/diagrams/worked examples can be composed with the teaching content; assessment-bearing states can still be separated from answer-bearing teaching; the generated mobile projection preserves the new representation without loss; current concise interaction/question steps remain possible (the new field must be optional, not a replacement for short focused-question steps); no unrestricted executable/unsafe markup is introduced; validators can distinguish deliberately concise content (a legitimate short focused question/interaction) from inadequately developed teaching.
+
+**Timing**: **PILOT-BLOCKING.** Should be resolved before the representative V1 pilot lesson is authored (the pilot sequence's own step 4, "author one canonical lesson storyboard," and step 11, "implement lesson + embedded checks," in `LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md` §7, cannot meaningfully exercise "rich scrollable teaching" without this), and must precede systematic Unit 202 re-authoring (Package 13).
 
 ---
 
@@ -156,7 +160,7 @@
 
 **Expected files/layers**: a new validator/report script analogous to `validate-v1-learning-package.ts` that produces real `LearningPackageGateResult` records per gate (`CURRICULUM`/`PEDAGOGY`/`ASSESSMENT_INTEGRITY`/`VISUAL`/`LEARNER_PRESENTATION`/`RUNTIME`/`FORMATIVE_ASSESSMENT`/`GUIDED_REVISION`/`PRODUCT_OWNER`) from the real signals this audit's other packages produce, and a `package.json` script + CI wiring that calls `isPublicationReady()` against them.
 
-**Dependencies**: meaningfully depends on Packages 3, 7, 8 existing first (otherwise most gates have nothing real to report against, repeating the "vacuous pass" risk flagged in `MISMATCH-REGISTER.md` MM-4).
+**Dependencies**: meaningfully depends on Packages 2, 3, 7, 8 existing first (otherwise most gates have nothing real to report against, repeating the "vacuous pass" risk flagged in `MISMATCH-REGISTER.md` MM-4).
 
 **Project Architect review required**: **Yes** — deciding which gates are mandatory-vs-waivable for the pilot vs. for full Unit 202 release is a governance decision.
 
@@ -166,7 +170,29 @@
 
 ---
 
-## Package 10 — Separate V1 canonical route from retained adaptive engines (documentation/labelling only)
+## Package 10 — Remove the redundant authored `exit_completion` step (duplicate of the terminal completion screen) from the remaining 23 lessons
+
+*(Renumbered from the original CC-13B Package 2; title and description corrected by CC-13B.1 — see `LESSON-DEPTH-AND-FRAGMENTATION-REGISTER.md` §4 for the precise finding. The redundancy is specifically between the authored `exit_completion` step and the terminal `LessonCompletionView`, both of which render `lesson.completionCriteria.exitSummary` verbatim identically. The preceding `recap` step is a distinct pedagogical step with different resolved text and is not itself part of this fix's scope.)*
+
+**Objective**: generalise CC-12G's own fix (removing the redundant `exit_completion` step) from the one lesson it was applied to, to the other 23 real lessons that still exhibit the identical, already-root-caused defect.
+
+**Root-cause findings addressed**: `LESSON-DEPTH-AND-FRAGMENTATION-REGISTER.md` §4, `REPRESENTATIVE-FAILURE-ROOT-CAUSE-TRACE.md` #5.
+
+**Expected files/layers**: 23 of the 24 real `scripts/content/data/lesson-*.ts` files (`steps` array + `completionCriteria.requiredStepIds`), regenerate `mobile-content-projection.ts` via `npm run content:mobile:generate`.
+
+**Dependencies**: none.
+
+**Project Architect review required**: No — the fix pattern is already established and approved (CC-12G); this is mechanical replication of a decision already made once, not a new one. A Product Owner spot-check of a couple of regenerated lessons on-device is still worthwhile before merging.
+
+**Acceptance criteria**: 0/24 lessons show a consecutive `recap → exit_completion` pair (re-run `scripts/audit/lesson-structure-audit-supplement.ts`'s `consecutiveRecapOrCompletionPairs` check); `content:mobile:check` passes; a manual on-device walk of 2-3 regenerated lessons confirms only one "Lesson complete" screen appears.
+
+**Timing**: **can wait until the Unit 202 systematic rebuild**, but is cheap enough (mechanical, already-approved pattern) that doing it now, independently of the rebuild, is low-risk and immediately improves the live product. Recommend doing it now. This package does not block the V1 pilot.
+
+---
+
+## Package 11 — Separate V1 canonical route from retained adaptive engines (documentation/labelling only)
+
+*(Renumbered from the original CC-13B Package 10.)*
 
 **Objective**: ensure the 4 known branching lessons (and any future retained-adaptive-engine content) remain clearly and mechanically distinguishable from V1 canonical-route content, closing the minor documentation-accuracy gap found in this audit (MM-1) and reinforcing Package 1's schema fix with clear authoring guidance.
 
@@ -184,7 +210,9 @@
 
 ---
 
-## Package 11 — Remove learner-facing debug leakage by class (defense-in-depth generalisation)
+## Package 12 — Remove learner-facing debug leakage by class (defense-in-depth generalisation)
+
+*(Renumbered from the original CC-13B Package 11.)*
 
 **Objective**: generalise the single confirmed-inert-but-real debug-overlay instance (`lesson-player.tsx`'s dev debug badge) into a repo-wide guarantee — e.g. a lint rule or a test sweep — that no `__DEV__`-gated learner-visible string can exist without an equivalent regression test proving it fails closed.
 
@@ -202,9 +230,11 @@
 
 ---
 
-## Package 12 — Rebuild Unit 202 through the corrected pipeline (the terminal package)
+## Package 13 — Rebuild Unit 202 through the corrected pipeline (the terminal package)
 
-**Objective**: once Packages 1-9 (at minimum) are complete and the end-to-end V1 pilot (per `LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md` §7) has passed Product Owner review, systematically re-author the full 24-lesson Unit 202 corpus through the now-corrected pipeline: real `LessonStoryboard` review, real `VisualOpportunityAnalysis`/VRR per lesson, real reference dossiers, real `routePolicy`/`semanticUnit`/`textOnlyJustification`/`mayRevealTargetAnswer` adoption, a real Unit 202 formative/mock assessment with real `assessmentMappingIds`/`revisionLessonIds`, and real `LearningPackageGateResult` records driving `LEARNER_READY` status.
+*(Renumbered from the original CC-13B Package 12.)*
+
+**Objective**: once Packages 1-9 (at minimum) are complete and the end-to-end V1 pilot (per `LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md` §7) has passed Product Owner review, systematically re-author the full 24-lesson Unit 202 corpus through the now-corrected pipeline: real `LessonStoryboard` review, real rich-teaching-content authoring (Package 2), real `VisualOpportunityAnalysis`/VRR per lesson, real reference dossiers, real `routePolicy`/`semanticUnit`/`textOnlyJustification`/`mayRevealTargetAnswer` adoption, a real Unit 202 formative/mock assessment with real `assessmentMappingIds`/`revisionLessonIds`, and real `LearningPackageGateResult` records driving `LEARNER_READY` status.
 
 **Root-cause findings addressed**: closes essentially every remaining 0%-adoption row in `CONTRACT-ADOPTION-MATRIX.md`, and directly resolves `REPRESENTATIVE-FAILURE-ROOT-CAUSE-TRACE.md` #2 (telephone-socket proportionality) and #8 (zero-visual-coverage lessons) through genuine content review rather than mechanical patching.
 
@@ -225,7 +255,7 @@
 | Order | Package | Blocks pilot? | Project Architect review? |
 |---|---|---|---|
 | 1 | Close `branchRoutes` gap | Yes | No |
-| 2 | Fix 23-lesson duplicate completion | No (independent, low-risk, do anytime) | No |
+| 2 | Extend teaching-content model for rich scrollable teaching | Yes | Yes |
 | 3 | Make visual planning mandatory | Yes (mechanism) | Yes |
 | 4 | Integrate already-produced visual assets | No (independent, low-risk) | Yes (lightweight) |
 | 5 | Formalise reference authority | No | No |
@@ -233,8 +263,9 @@
 | 7 | Implement formative assessment | Yes | Yes |
 | 8 | Wire Guided Revision | Yes (depends on 7) | Yes |
 | 9 | Wire publication gates | Yes (mechanism) | Yes |
-| 10 | V1/adaptive-engine labelling cleanup | No | No |
-| 11 | Debug-leakage defense-in-depth | No | No |
-| 12 | Rebuild Unit 202 | N/A — comes after the pilot | Yes, extensively |
+| 10 | Remove redundant `exit_completion` step (23 lessons) | No (independent, low-risk, do anytime) | No |
+| 11 | V1/adaptive-engine labelling cleanup | No | No |
+| 12 | Debug-leakage defense-in-depth | No | No |
+| 13 | Rebuild Unit 202 | N/A — comes after the pilot | Yes, extensively |
 
 **This audit's own recommendation, consistent with its constraints, stops here.** No package above should begin without Product Owner / Project Architect review of this plan first.
