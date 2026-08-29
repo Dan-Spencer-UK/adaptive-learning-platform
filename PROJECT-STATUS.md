@@ -1603,6 +1603,26 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **Commit:** see the CC-13B, CC-13B.1 and CC-13B.2 commits immediately following this entry. Local only, not pushed.
 
+## CC-13C.1 — Remediation Package 1: CANONICAL_FIXED_ROUTE branchRoutes integrity
+
+**Status:** COMPLETE — the single audited defect this package targets is fixed and tested. This is Remediation Package 1 of `REMEDIATION-PLAN.md`'s 13, executed only after that plan (and CC-13B/13B.1/13B.2's corrections to it) was pushed and available for Product Owner / Project Architect review.
+
+**Audited defect addressed:** `V1-ROUTE-DRIFT-REGISTER.md` §2 / `BYPASS-PATH-REGISTER.md` BP-1 (P0) — a lesson declaring `routePolicy: "CANONICAL_FIXED_ROUTE"` had its step *inclusion* correctly locked (every step must be `requirement: "required"`), but a `required` step could still carry a non-empty `branchRoutes`, which `@alp/learning-engine`'s `resolveWithinSessionBranch` would apply exactly as it applies branching for the 4 known retained-adaptive lessons — a real, mechanically-exploitable route-invariance bypass, previously inert only because 0 real lessons declare `routePolicy` at all.
+
+**Exact invariant now enforced:** `packages/content-schema/src/lesson-plan.ts`'s existing `CANONICAL_FIXED_ROUTE` `superRefine` gate is extended so that, in addition to the pre-existing `requirement`-must-be-`"required"` check, any step with a non-empty `branchRoutes` array fails validation with an issue naming the lesson/step and stating `CANONICAL_FIXED_ROUTE lessons cannot declare branchRoutes`. `CANONICAL_FIXED_ROUTE` now means, structurally: no conditional step inclusion **and** no within-lesson branch routes. Confirmed (per the schema's own `.default([])`) that omitted, explicit-empty-array, and post-parse-default `branchRoutes` are all treated identically as the harmless case — only a genuinely non-empty array is rejected.
+
+**Tests added:** `packages/content-schema/src/lesson-plan.test.ts`, 4 new tests in the existing "ADR-0006 routePolicy: CANONICAL_FIXED_ROUTE invariance gate" `describe` block — (a) rejects a `CANONICAL_FIXED_ROUTE` lesson with a required step carrying a non-empty `branchRoutes`; (b) accepts one with an explicit empty `branchRoutes`; (c) accepts one that omits `branchRoutes` entirely (schema default); (d) confirms the pre-existing `requirement`-check invariant is unchanged by this fix. A non-canonical lesson's continued freedom to use `branchRoutes` (requirement C of the brief) is already proven by a pre-existing, untouched test in the same file.
+
+**Targeted validation:** `lesson-plan.test.ts` 34/34 (was 30/30 before this package); full `packages/content-schema` Vitest suite 176/176 (was 172/172); `packages/content-schema` `tsc --noEmit` clean; `npm run v1-package:report` (read-only) — 140 lessons, 0 declaring `routePolicy`, all governance gates 0, **PASS**, confirming the real corpus (including the 4 retained branching lessons, none of which declares `routePolicy`) is unaffected.
+
+**No real lesson content changed.** No `routePolicy` was added to any lesson — 0/140 adoption is unchanged and intentionally so; this package closes a structural bypass, it does not perform content re-authoring (that is Package 13, strictly gated on the V1 pilot passing). Retained adaptive/branching capability (`packages/learning-engine`, `packages/diagnostic-engine`, the 4 known branching lessons) is untouched.
+
+**Remediation status recorded in the audit:** `V1-ROUTE-DRIFT-REGISTER.md` §2 and `BYPASS-PATH-REGISTER.md` BP-1 both now carry a "Remediation status (CC-13C.1): CLOSED" note above the original, unedited historical finding text, plus a Status column in each file's severity-summary table. The historical finding itself was not rewritten.
+
+**Package 2 has NOT started.** No other remediation package was begun. This package does not claim the overall pipeline is qualified — Packages 2 through 13 (rich teaching-content model, visual governance, formative assessment, Guided Revision, publication gates, and the rest) remain exactly as specified in `REMEDIATION-PLAN.md`, unstarted.
+
+**Commit:** see the CC-13C.1 commit immediately following this entry. Local only, not pushed.
+
 ## Cold-handover gate
 
 Before each CC package begins, a fresh contributor with no chat history must be able to determine from the repository:

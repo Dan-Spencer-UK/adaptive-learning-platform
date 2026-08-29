@@ -540,6 +540,24 @@ export const lessonPlanSchema = z.object({
             message: `lesson '${lesson.id}' declares routePolicy 'CANONICAL_FIXED_ROUTE' but step '${step.id}' has requirement '${step.requirement}' -- ADR-0006's V1 canonical route must not vary with learner mastery/evidence/prerequisite state; conditional steps belong only to a lesson that does not declare CANONICAL_FIXED_ROUTE (they remain valid retained platform capability there)`,
           });
         }
+        // CC-13C.1 (remediation of the CC-13B V1-ROUTE-DRIFT-REGISTER.md §2 /
+        // BYPASS-PATH-REGISTER.md BP-1 finding): the `requirement` check above
+        // only closes conditional step *inclusion*. A `required` step could
+        // still carry a non-empty `branchRoutes`, letting
+        // `resolveWithinSessionBranch` (@alp/learning-engine) divert a
+        // CANONICAL_FIXED_ROUTE lesson to a different within-session
+        // destination depending on the learner's answer -- the same
+        // learner-dependent-route violation the `requirement` check exists to
+        // prevent, just reached a different way. CANONICAL_FIXED_ROUTE
+        // therefore means no conditional step inclusion AND no within-lesson
+        // branch routes.
+        if (step.branchRoutes.length > 0) {
+          ctx.addIssue({
+            code: "custom",
+            path: ["steps", index, "branchRoutes"],
+            message: `lesson '${lesson.id}' declares routePolicy 'CANONICAL_FIXED_ROUTE' but step '${step.id}' declares ${step.branchRoutes.length} branchRoutes entry(ies) -- CANONICAL_FIXED_ROUTE lessons cannot declare branchRoutes; a fixed V1 route must not have learner-dependent within-session branch destinations (branching remains valid retained platform capability for a lesson that does not declare CANONICAL_FIXED_ROUTE)`,
+          });
+        }
       }
     }
 

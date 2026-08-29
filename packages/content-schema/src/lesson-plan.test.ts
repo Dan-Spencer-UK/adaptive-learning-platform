@@ -361,6 +361,69 @@ describe("ADR-0006 routePolicy: CANONICAL_FIXED_ROUTE invariance gate", () => {
     });
     expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
   });
+
+  // CC-13C.1 (remediation of CC-13B's V1-ROUTE-DRIFT-REGISTER.md §2 / BYPASS-PATH-REGISTER.md
+  // BP-1 finding): the `requirement` check above only closes conditional step *inclusion*.
+  // A `required` step could still carry a non-empty `branchRoutes`, letting
+  // resolveWithinSessionBranch (@alp/learning-engine) divert a CANONICAL_FIXED_ROUTE lesson to a
+  // different within-session destination depending on the learner's answer. These tests prove
+  // that gap is now closed.
+
+  it("rejects a CANONICAL_FIXED_ROUTE lesson containing a required step that also declares a non-empty branchRoutes", () => {
+    const lesson = minimalLesson({
+      routePolicy: "CANONICAL_FIXED_ROUTE",
+      steps: [
+        minimalStep(),
+        minimalStep({
+          id: "branching_step",
+          requirement: "required",
+          branchRoutes: [{ trigger: "incorrect_answer", destinationStepId: "step.orientation", description: "remediate" }],
+        }),
+      ],
+    });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(false);
+    const issues = JSON.stringify(result.error?.issues);
+    expect(issues).toMatch(/CANONICAL_FIXED_ROUTE/);
+    expect(issues).toMatch(/branchRoutes/);
+  });
+
+  it("accepts a CANONICAL_FIXED_ROUTE lesson whose steps declare branchRoutes as an empty array", () => {
+    const lesson = minimalLesson({
+      routePolicy: "CANONICAL_FIXED_ROUTE",
+      steps: [minimalStep({ branchRoutes: [] })],
+    });
+    expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
+  });
+
+  it("accepts a CANONICAL_FIXED_ROUTE lesson whose step omits branchRoutes entirely (schema default [] is equivalent to an explicit empty array)", () => {
+    const step = minimalStep();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- deliberately dropping the field to prove the schema's own `.default([])` behaves identically to an explicit `[]` for this gate.
+    const { branchRoutes: _omitted, ...stepWithoutBranchRoutes } = step;
+    const lesson = minimalLesson({
+      routePolicy: "CANONICAL_FIXED_ROUTE",
+      steps: [stepWithoutBranchRoutes as unknown as LessonStep],
+    });
+    expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
+  });
+
+  it("(existing invariant, unchanged by this fix) still rejects a CANONICAL_FIXED_ROUTE lesson containing a required step with empty branchRoutes but a non-required requirement elsewhere", () => {
+    const lesson = minimalLesson({
+      routePolicy: "CANONICAL_FIXED_ROUTE",
+      steps: [
+        minimalStep(),
+        minimalStep({ id: "skip_step", type: "guided_interaction", requirement: "conditional_skip_if_mastered", capabilityIds: ["cap.x"], masteryGateCapabilityId: "cap.x", branchRoutes: [] }),
+      ],
+    });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/requirement 'conditional_skip_if_mastered'/);
+  });
+
+  // Requirement C ("a non-canonical / retained-adaptive lesson may still use branchRoutes") is
+  // already proven by the pre-existing "accepts a valid misconception_detected branch route..."
+  // test above (no routePolicy declared, non-empty branchRoutes, expected success) -- unaffected
+  // by this change since that test's lesson never sets routePolicy: "CANONICAL_FIXED_ROUTE".
 });
 
 describe("ADR-0005 embedded-check answer-leak gate (mayRevealTargetAnswer)", () => {

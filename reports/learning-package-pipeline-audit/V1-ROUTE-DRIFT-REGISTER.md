@@ -4,6 +4,8 @@
 
 **Top-line verdict: HAS-A-GAP.** The schema gate is real, tested, and correctly enforces one half of the ADR-0006 invariant. It does not enforce the other half. The gap is currently inert only because zero real lessons declare `routePolicy` at all.
 
+**Remediation status (CC-13C.1): §2's `branchRoutes` gap is CLOSED.** `packages/content-schema/src/lesson-plan.ts`'s `CANONICAL_FIXED_ROUTE` `superRefine` now also rejects any step with a non-empty `branchRoutes` array, closing BP-1 below. This finding (the historical audit record) is preserved unedited below for the record; it describes the state of the repository as found, before this fix. See the CC-13C.1 commit immediately following the CC-13B/13B.1/13B.2 commits in `PROJECT-STATUS.md` for detail. §3's separate, lower-severity "no runtime defense-in-depth" finding (`assembler.ts`/`branching.ts` have no independent `routePolicy` awareness) is **not** addressed by this package and remains open, per CC-13C.1's deliberately narrow scope.
+
 ## 1. What the schema gate actually does (verified by direct read, not by the prior claim alone)
 
 `packages/content-schema/src/lesson-plan.ts` lines 534-544, inside `lessonPlanSchema`'s `superRefine`:
@@ -68,10 +70,10 @@ Confirmed independently by two methods — a direct grep of `scripts/content/dat
 
 ## 7. Severity summary
 
-| Finding | Severity | Root cause / Symptom | Fix type |
-|---|---|---|---|
-| `branchRoutes` not covered by the CANONICAL_FIXED_ROUTE superRefine gate (§2) | P0 | Root cause | MACHINE-FIXABLE |
-| No runtime (assembler/branching) defense-in-depth independent of build-time schema validation (§3) | P1 | Root cause | MACHINE-FIXABLE (add an explicit routePolicy-aware guard) but architecturally optional if §2 is closed and the build-time gate is trusted as the sole enforcement point — Project Architect judgement call |
-| PROJECT-STATUS.md overstates `select-next-activity.ts`'s header comment content (§4) | P2 | Symptom (documentation accuracy) | HUMAN-REVIEW-REQUIRED (doc correction) |
-| 0/140 real lessons (all releases) declare `routePolicy` at all (§5) | P2 (expected baseline, not itself a defect) | Root cause: re-authoring deferred to a later package | HUMAN-REVIEW-REQUIRED (content work) |
-| 4 known branching lessons correctly unlabeled as V1 canonical (§6) | — (confirmed correct, no finding) | — | — |
+| Finding | Severity | Root cause / Symptom | Fix type | Status |
+|---|---|---|---|---|
+| `branchRoutes` not covered by the CANONICAL_FIXED_ROUTE superRefine gate (§2) | P0 | Root cause | MACHINE-FIXABLE | **CLOSED (CC-13C.1)** |
+| No runtime (assembler/branching) defense-in-depth independent of build-time schema validation (§3) | P1 | Root cause | MACHINE-FIXABLE (add an explicit routePolicy-aware guard) but architecturally optional if §2 is closed and the build-time gate is trusted as the sole enforcement point — Project Architect judgement call | Open |
+| PROJECT-STATUS.md overstates `select-next-activity.ts`'s header comment content (§4) | P2 | Symptom (documentation accuracy) | HUMAN-REVIEW-REQUIRED (doc correction) | Open |
+| 0/140 real lessons (all releases) declare `routePolicy` at all (§5) | P2 (expected baseline, not itself a defect) | Root cause: re-authoring deferred to a later package | HUMAN-REVIEW-REQUIRED (content work) | Open (by design — deferred to Package 13) |
+| 4 known branching lessons correctly unlabeled as V1 canonical (§6) | — (confirmed correct, no finding) | — | — | — |

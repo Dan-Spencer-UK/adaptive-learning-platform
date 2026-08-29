@@ -8,6 +8,8 @@ A "bypass" here means: a real, currently-exploitable code path by which a govern
 
 The schema gate (`lesson-plan.ts` `superRefine`) checks only `step.requirement`, never `step.branchRoutes`. A step can be `requirement: "required"` (passes the gate) while carrying a non-empty `branchRoutes` array. `packages/learning-engine/src/branching.ts`'s `resolveWithinSessionBranch` and `apps/mobile/src/lib/lesson-session/lesson-controller.ts`'s `resolveBranchDestination` apply unconditionally, with zero `routePolicy` awareness anywhere in the call chain. **This is a real, mechanically-exploitable bypass of the ADR-0006 route-invariance invariant** — currently inert only because 0/140 real lessons declare `routePolicy` at all. Full detail: `V1-ROUTE-DRIFT-REGISTER.md` §2. Severity: **P0**. MACHINE-FIXABLE.
 
+**Remediation status (CC-13C.1): CLOSED.** The `superRefine` gate now also rejects any `CANONICAL_FIXED_ROUTE` step with a non-empty `branchRoutes`. This finding is preserved unedited above for the historical record. Note BP-2, immediately below, is a separate, still-open finding (no *runtime* defense-in-depth independent of the build-time schema gate) — not addressed by this package.
+
 ### BP-2: schema validation of `CANONICAL_FIXED_ROUTE`/answer-leak/FORMATIVE_MOCK rules is build-time only, with no runtime defense-in-depth
 
 `lessonPlanManifestSchema.parse()` runs once, inside `scripts/content/generate-mobile-projection.ts`, at content-generation time. `apps/mobile/src/lib/lesson-content/local-content-registry.ts` performs zero runtime re-validation (`.parse(`, `safeParse`, `Schema` — all 0 occurrences) and simply returns typed objects from the generated file. `lesson-player.tsx` calls `assembleLessonInstance` directly on that build-time-validated object. **This is not currently exploitable via the normal pipeline** (a schema violation fails `content:mobile:generate` and never reaches the bundle), but it is a real defense-in-depth gap: any future direct-write path to the generated projection file, a hand-edited fixture, or a generator bug would ship ungoverned content with no runtime check to catch it. Severity: **P1**. MACHINE-FIXABLE (add a lightweight runtime schema check at app startup or content-load time) but a Project-Architect judgement call on whether it's worth the perf cost given the build-time gate already exists.
@@ -33,9 +35,9 @@ Superseded/obsolete assets are excluded from runtime resolution by physical fold
 
 ## Severity summary
 
-| ID | Finding | Severity | Fix type |
-|---|---|---|---|
-| BP-1 | `branchRoutes` bypasses the CANONICAL_FIXED_ROUTE gate | P0 | MACHINE-FIXABLE |
-| BP-2 | No runtime defense-in-depth beyond build-time schema validation | P1 | MACHINE-FIXABLE |
-| BP-3 | `reference-corrections.ts` unvalidated against any schema | P2 | MACHINE-FIXABLE |
-| BP-4 | `CANONICAL_ASSET_LOCK` hand-sync, no automated cross-check | P2 | MACHINE-FIXABLE |
+| ID | Finding | Severity | Fix type | Status |
+|---|---|---|---|---|
+| BP-1 | `branchRoutes` bypasses the CANONICAL_FIXED_ROUTE gate | P0 | MACHINE-FIXABLE | **CLOSED (CC-13C.1)** |
+| BP-2 | No runtime defense-in-depth beyond build-time schema validation | P1 | MACHINE-FIXABLE | Open |
+| BP-3 | `reference-corrections.ts` unvalidated against any schema | P2 | MACHINE-FIXABLE | Open |
+| BP-4 | `CANONICAL_ASSET_LOCK` hand-sync, no automated cross-check | P2 | MACHINE-FIXABLE | Open |
