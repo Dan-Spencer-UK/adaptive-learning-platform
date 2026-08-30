@@ -2,7 +2,7 @@
 id: GOV-001
 status: approved
 owner: product-owner
-last_reviewed: 2026-08-15
+last_reviewed: 2026-08-30
 ---
 
 # Project Constitution
@@ -62,6 +62,10 @@ Backend sophistication is insufficient. The learner product must be class-leadin
 ## Learning-quality governance principle
 
 The ALP must be governed for best-in-class learning quality, not merely technical correctness. Implementation correctness and product/learning quality are two separate acceptance questions, and passing the first never implies passing the second: a package may satisfy every agreed schema, validator and test and still be an inferior piece of instructional design — that outcome is a rejection, not a pass, regardless of how green the automated evidence is. Claude Code, as Implementation Engineer, is not the final authority on implementation correctness, product architecture, instructional design, pedagogy, storyboard quality, assessment design, visual pedagogy or learner experience: Claude produces implementation evidence (tests, validators, production/runtime traces) and may report its own technical conclusion, but cannot self-approve that the evidence actually satisfies the approved architecture. The Project Architect independently reviews both whether that evidence is sufficient and whether the design itself is good enough, and the Product Owner retains final approval. Full authority split: [`docs/governance/ROLES-AND-AUTHORITY.md`](ROLES-AND-AUTHORITY.md). Full quality gates and the representative real-lesson qualification gate that must pass before systematic content rebuilding: [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](LEARNING-PACKAGE-QUALITY-GATES.md). Existing downstream artefacts — including existing Unit 202 content, prior implementation choices and the current governed knowledge corpus — do not gain architectural authority merely because they already exist; they may inform diagnosis but must not constrain the best available design merely to preserve prior work.
+
+## Multimodal teaching principle
+
+ALP teaching must be deliberately visually rich and multimodal: this is a product/learning architecture requirement, not optional polish. The target is not "learn by pictures" and not an arbitrary image quota — it is that each lesson uses the most effective governed representation for the knowledge being taught, including where appropriate explanatory prose, annotated diagrams, technical illustrations, physical/component imagery, symbols and schematics, comparison views, process/state sequences, direction/topology visuals, worked examples, equations/formulae, tables, progressive reveals, interaction/retrieval, or another governed representation that materially improves comprehension. The governing rule: use a representation when it materially improves learning; do not add decorative imagery merely to satisfy a quota; conversely, do not leave inherently spatial, physical, directional, symbolic, mechanistic, procedural or recognition-heavy knowledge as text-only when a visual representation would materially improve understanding. The intended learner experience is closer to a carefully produced, premium interactive textbook/tutorial than a sequence of text cards. Full standard, storyboard consequence and the Claude role boundary for this decision: [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](LEARNING-PACKAGE-QUALITY-GATES.md) §4-§5; [`docs/architecture/LEARNING-PACKAGE-GOVERNANCE-CONTRACTS.md`](../architecture/LEARNING-PACKAGE-GOVERNANCE-CONTRACTS.md) §2; [`docs/governance/ROLES-AND-AUTHORITY.md`](ROLES-AND-AUTHORITY.md).
 
 ## Client platform principle
 

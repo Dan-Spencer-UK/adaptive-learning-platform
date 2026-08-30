@@ -2,7 +2,7 @@
 id: GOV-002
 status: approved
 owner: product-owner
-last_reviewed: 2026-08-14
+last_reviewed: 2026-08-30
 ---
 
 # Roles and Authority
@@ -86,6 +86,10 @@ Authoritative curriculum/source material and deliberately approved product/archi
 **Blank-sheet quality test:** when evaluating a new content-production architecture, ask "if the existing Unit 202 lessons did not exist, would we still choose this architecture?" — if not, examine the preservation bias explicitly. Also ask "could a strong instructional designer create an excellent new lesson from the authoritative curriculum, governed knowledge base and approved production contracts without reverse-engineering the legacy lesson?" — if not, the upstream knowledge/design architecture may be insufficient (see the knowledge-adequacy review, [`docs/architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md`](../architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md) §4.1).
 
 **Package 3 consequence:** this principle constrains Package 3 and every later content-production package. Package 3 design must not reason "the existing lessons use structure X, therefore storyboard architecture should preserve X," nor "the existing schema already contains something similar, therefore that must be the correct storyboard architecture," nor "the current `VisualRequirement` enum/schema exists, therefore it should be preserved unless impossible." Existing implementation is evidence about the repository, not proof of the correct future design. Package-3 architecture must instead begin from approved product principles, authoritative curriculum/knowledge requirements, pedagogical requirements, clean source-of-truth design, proportionate authoring economics and required traceability — reusing existing structures only where independently judged fit for purpose. This principle does not itself approve any Package-3 design; Package-3 implementation remains not authorised.
+
+## Visually rich multimodal teaching is a Product Owner / Project Architect decision (2026-08-30)
+
+Whether and how ALP teaching is visually rich and multimodal — the governing product/learning-architecture principle recorded in [`docs/governance/PROJECT-CONSTITUTION.md`](PROJECT-CONSTITUTION.md) "Multimodal teaching principle" and [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](LEARNING-PACKAGE-QUALITY-GATES.md) §4-§5 — is a Product Owner/Project Architect architecture decision, not Implementation Engineer discretion. This is an application of the existing role boundary above (CC-13C.3/CC-13C.4), not a new authority model: Claude may inspect, trace, implement authorised decisions, validate and report evidence/conflicts. Claude must not convert repository convenience into an architecture recommendation, choose the smallest/easiest change as the design, preserve legacy structures merely because they exist, or otherwise decide which representation (prose, diagram, illustration, symbol, comparison view, worked example, table, progressive reveal, interaction, or any other governed representation) is pedagogically best for a given instructional beat, unless explicitly authorised.
 
 ## Current role mapping
 

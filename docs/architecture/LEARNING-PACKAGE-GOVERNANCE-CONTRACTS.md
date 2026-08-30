@@ -110,6 +110,10 @@ Given the same released lesson version, changing learner mastery/evidence/prereq
 
 Existing post-V1 adaptive assemblers may remain in the repository, but the V1 normal Learn path must not depend on them.
 
+### Multimodal teaching-plan expression (governance requirement, 2026-08-30)
+
+A real `StoryboardSection` must be authored to express the pedagogical/multimodal teaching plan required by [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md) §4 — learning objective/intended understanding, prior-knowledge connection, teaching/explanation approach, what the learner sees, what the learner reads/hears, worked example/model/comparison, misconception being prevented or corrected, interaction/retrieval/check, and rationale for the next instructional beat — for each meaningful instructional beat, not merely a list of `contentBlockIds`/`visualRequirementIds`/`questionBlueprintIds`. This does not mean duplicating final learner-facing prose in the storyboard. The exact field shape carrying this plan is a Package-3 design decision, not fixed by this conceptual sketch — see [`docs/governance/ROLES-AND-AUTHORITY.md`](../governance/ROLES-AND-AUTHORITY.md) "Existing content and prior implementation choices are not architectural authority" and the multimodal teaching principle in [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md).
+
 ## 3. Teaching-section density / coherence record
 
 ```ts
