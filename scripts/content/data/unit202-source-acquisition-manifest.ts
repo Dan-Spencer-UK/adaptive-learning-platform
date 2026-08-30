@@ -18,8 +18,8 @@
  * describes each such pair as one conceptual+calculation continuum, not
  * two independent topics.
  *
- * SOURCING STATUS: every cluster below is `UNSOURCED`. This was verified,
- * not assumed -- the live Unit 202 corpus
+ * SOURCING STATUS (as originally authored, CC-14): every cluster below was
+ * `UNSOURCED`. This was verified, not assumed -- the live Unit 202 corpus
  * (scripts/content/data/cc04-unit202-electrical-science.ts) was inspected
  * for any source already carrying `sourceRole: "FACTUAL_AUTHORITY"`
  * (@alp/content-schema's generic evidential-role registry, ADR-0003) and
@@ -35,6 +35,20 @@
  * later, separately-reviewed package must make and record that
  * determination deliberately, per requirement, not inherit it silently
  * from this manifest.
+ *
+ * CC-15 UPDATE: the next package (scripts/content/data/unit202-technical-
+ * source-verification.ts) has since retrieved and verified the Project-
+ * Architect-approved 67-source dossier against every cluster's required-
+ * knowledge items. 9 of the 20 clusters below now carry `status: "SOURCED"`
+ * with an `existingGovernedSourceEvidence` citation, because every one of
+ * their requirements is genuinely `VERIFIED` there (mechanically enforced
+ * by validate-unit202-technical-source-verification.ts's
+ * `clustersMarkedSourcedButNotFullyCovered` gate -- always 0). The
+ * remaining 11 clusters are still `UNSOURCED`: `PARTIAL` proposition
+ * coverage is never sufficient for `SOURCED`, per this task's own binary-
+ * status rule. A domain now having a verified technical source does NOT
+ * mean any existing ALP assertion in that domain is approved -- source-to-
+ * assertion reconciliation remains a later, separately-reviewed package.
  */
 
 import type { SourceAcquisitionManifest } from "@alp/content-schema";
@@ -123,6 +137,11 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
           "definitions are required rather than propagating the handout table uncritically.",
       ],
       requiredSourceCharacteristics: ["NATIONAL_OR_INTERNATIONAL_STANDARDS_BODY", "GOVERNMENT_OR_PUBLIC_AUTHORITY"],
+      // Reverted to UNSOURCED (false-green audit correction): CC-15's practical-unit-conversion
+      // proposition was found to be VERIFIED only for mm->m/mm²->m² (decimal SI prefixes); the
+      // minutes->seconds conversion is not established by any retrieved approved source, so this
+      // cluster is no longer 4/4 -- see unit202-technical-source-verification.ts's CONDITIONAL_SOURCE_GAP
+      // record for the full reason.
       status: "UNSOURCED",
     },
 
@@ -171,7 +190,11 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
           "represents.",
       ],
       requiredSourceCharacteristics: ["NATIONAL_OR_INTERNATIONAL_STANDARDS_BODY", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE", "UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 3/3 required propositions VERIFIED via the BIPM SI Brochure " +
+        "(derived-unit table), NIST SP811 Appendix B.9 (ohm-metre), and University Physics Volume 2 sections 9.3/9.4/9.5/10.2/ " +
+        "15.2/15.3/15.4/8.1 (resistivity, Ohm's law, power, reactance, impedance, capacitance, power factor).",
     },
 
     {
@@ -228,7 +251,10 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
         "verb -- no gravitation theory or orbital mechanics.",
       reviewOrCorrectionFlags: ["The command verb 'specify' understates the worksheet's calculation depth; both mass-from-weight and weight-from-mass are required."],
       requiredSourceCharacteristics: ["NATIONAL_OR_INTERNATIONAL_STANDARDS_BODY", "UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 5/5 required propositions VERIFIED via OpenStax University " +
+        "Physics Volume 1 section 5.4 (mass/weight, w=mg, Earth/Moon comparison) and NIST SP811 Appendix B.8 (standard gravity).",
     },
 
     {
@@ -323,7 +349,11 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
         "direction apparent contradiction -- no quantum mechanics, band theory or drift-velocity calculation.",
       reviewOrCorrectionFlags: ["Teaching must explicitly resolve the electron-flow/conventional-current apparent contradiction rather than presenting the two facts as disconnected."],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 5/5 required propositions VERIFIED via University Physics Volume 2 " +
+        "sections 5.1 (proton/electron/neutron, including explicit neutron neutrality), 5.2 (conductors/free electrons) and " +
+        "9.1 (current, conventional/electron-flow direction, closed-circuit requirement).",
     },
 
     {
@@ -370,7 +400,10 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
         "temperature-coefficient modelling or microscopic resistivity derivation unless separately evidenced.",
       reviewOrCorrectionFlags: ["C&G Handout/Worksheet 7 print erroneous resistivity-unit forms (e.g. ohm/metre³); the authoritative source must establish Ω·m and correct dimensional treatment."],
       requiredSourceCharacteristics: ["NATIONAL_OR_INTERNATIONAL_STANDARDS_BODY", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 5/5 required propositions VERIFIED via University Physics Volume 2 " +
+        "section 9.3 (R=ρL/A, ρ symbol, Ω·m unit -- correcting the C&G handout's erroneous unit form) and section 9.4 (V=IR).",
     },
 
     {
@@ -401,7 +434,10 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
         "equations or network theorems unless separately evidenced.",
       reviewOrCorrectionFlags: ["Some public sample-question labels blur AC4.3/AC4.4/AC4.5; the matrix follows actual task semantics rather than the printed AC tag."],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 8/8 required propositions VERIFIED via University Physics Volume 2 " +
+        "sections 9.4 (Ohm's law), 10.2 (series/parallel resistance, current, voltage) and 10.3 (Kirchhoff's rules).",
     },
 
     {
@@ -423,7 +459,10 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
       unit202RequiredUseAndDepth: "AC4.6 requires full calculation/rearrangement/integration competence over DC power relationships -- no AC real/reactive/apparent power or power-factor calculation.",
       reviewOrCorrectionFlags: [],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 4/4 required propositions VERIFIED via University Physics Volume 2 " +
+        "section 9.5 (P=VI, P=I²R, P=V²/R, Joule heating).",
     },
 
     {
@@ -445,7 +484,10 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
         "BS 7671 permitted voltage-drop limits or installation-design rules.",
       reviewOrCorrectionFlags: [],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 4/4 required propositions VERIFIED via University Physics Volume 2 " +
+        "sections 9.4 (Vdrop=IR) and 10.2 (series voltage division/supply-minus-drop reasoning).",
     },
 
     {
@@ -492,7 +534,11 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
         "The C&G handout renders the flux-density symbol anomalously; authoritative technical sources should use standard B notation.",
       ],
       requiredSourceCharacteristics: ["NATIONAL_OR_INTERNATIONAL_STANDARDS_BODY", "UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 6/6 required propositions VERIFIED via University Physics Volume 2 " +
+        "sections 11.2 (poles, field lines) and 13.1 (flux, Φ=BA, weber), plus the BIPM SI Brochure Table 4 (tesla=Wb/m²) -- " +
+        "using standard B notation as this review flag requires.",
     },
 
     {
@@ -553,7 +599,12 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
           "included/excluded carries zero authority over this requirement.",
       ],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE", "MANUFACTURER_TECHNICAL_DOCUMENTATION"],
-      status: "UNSOURCED",
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15 Unit 202 Technical Source Verification: 7/7 required propositions VERIFIED via eCampusOntario Electrotechnology " +
+        "(slip rings/brushes, f=pN/60 with p explicitly defined as pole PAIRS) independently cross-checked against ABB " +
+        "Technical Application Papers No.7 Annex A (n0=60f/p, p explicitly pole pairs) -- this review flag's pole-pair " +
+        "convention question is resolved by two independent manufacturer/educational sources in exact agreement.",
     },
 
     {
@@ -587,6 +638,11 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
         "phasors, phase angle, harmonics, complex impedance or AC power calculations.",
       reviewOrCorrectionFlags: ["'Average value' must be taught carefully as the average of one alternation in the C&G formula context, distinct from the signed full-cycle average, which is zero."],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
+      // Reverted to UNSOURCED (false-green audit correction): peak/peak-to-peak/RMS/average-of-one-
+      // alternation propositions are VERIFIED, but no retrieved approved source's own content
+      // establishes periodic time, frequency or T=1/f for a sine wave -- see
+      // unit202-technical-source-verification.ts's SOURCE_GAP/CONDITIONAL_SOURCE_GAP records for the
+      // full reason. This cluster is now 4/7, not 7/7.
       status: "UNSOURCED",
     },
 

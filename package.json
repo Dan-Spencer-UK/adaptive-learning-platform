@@ -58,6 +58,8 @@
     "depth-matrix:check": "node scripts/content/validate-unit202-depth-performance-matrix.ts --check",
     "source-manifest:report": "node scripts/content/validate-unit202-source-acquisition-manifest.ts",
     "source-manifest:check": "node scripts/content/validate-unit202-source-acquisition-manifest.ts --check",
+    "source-verification:report": "node scripts/content/validate-unit202-technical-source-verification.ts",
+    "source-verification:check": "node scripts/content/validate-unit202-technical-source-verification.ts --check",
     "lesson:review": "node scripts/content/generate-lesson-review.ts",
     "lesson:assembly:prove": "node scripts/content/prove-lesson-assembly.ts",
     "lesson:assembly:prove:check": "node scripts/content/prove-lesson-assembly.ts --check",

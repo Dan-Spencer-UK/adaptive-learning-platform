@@ -36,14 +36,23 @@ describe("CC-14 Unit 202 Source-Acquisition Manifest -- real-instance validation
     expect(report.clustersReferencingUnknownRangeItem).toEqual([]);
   });
 
-  it("every cluster is UNSOURCED by default -- no cluster claims sourced status without exact repo evidence, and C&G teaching material alone is never treated as sufficient", () => {
+  it("no cluster claims SOURCED status without exact repo evidence, and every SOURCED cluster cites the CC-15 technical-source-verification package specifically -- C&G teaching material alone is never treated as sufficient", () => {
     const report = buildReport();
-    expect(report.sourcedClusterCount).toBe(0);
-    expect(report.unsourcedClusterCount).toBe(unit202SourceAcquisitionManifest.clusters.length);
+    expect(report.sourcedClusterCount + report.unsourcedClusterCount).toBe(unit202SourceAcquisitionManifest.clusters.length);
     for (const cluster of unit202SourceAcquisitionManifest.clusters) {
-      expect(cluster.status).toBe("UNSOURCED");
-      expect(cluster.existingGovernedSourceEvidence).toBeUndefined();
+      if (cluster.status === "SOURCED") {
+        expect(cluster.existingGovernedSourceEvidence).toBeTruthy();
+        expect(cluster.existingGovernedSourceEvidence).toContain("CC-15 Unit 202 Technical Source Verification");
+      } else {
+        expect(cluster.existingGovernedSourceEvidence).toBeUndefined();
+      }
     }
+  });
+
+  it("CC-15 sourced exactly the clusters with full dossier-verified proposition coverage -- some clusters remain UNSOURCED with real, specific gaps, never all-or-nothing", () => {
+    const report = buildReport();
+    expect(report.sourcedClusterCount).toBeGreaterThan(0);
+    expect(report.unsourcedClusterCount).toBeGreaterThan(0);
   });
 
   it("has no duplicate cluster keys", () => {

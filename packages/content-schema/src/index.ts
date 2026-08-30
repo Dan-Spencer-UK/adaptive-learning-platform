@@ -51,6 +51,16 @@
  * reusable-domain-knowledge-clustered shopping list derived from an
  * approved matrix). Neither module carries domain content of its own, and
  * neither is a technical knowledge corpus -- both describe SHAPE only.
+ *
+ * CC-15 added ./technical-source-verification.ts: given a Project-
+ * Architect-approved candidate source dossier, the deterministic shape
+ * for recording source retrieval, exact-locator verification and
+ * per-proposition coverage against a Source-Acquisition Manifest's own
+ * required-knowledge arrays. Reuses CC-04's existing source/source-
+ * version/source-locator entities rather than a parallel registry;
+ * deliberately does not reference assertionIdentifier/assertionVersion --
+ * proposition coverage is not knowledge-corpus reconciliation, which
+ * remains a later, separately-reviewed package.
  */
 
 import { z } from "zod";
@@ -78,3 +88,4 @@ export * from "./guided-revision.ts";
 export * from "./learning-package-gate.ts";
 export * from "./depth-performance-matrix.ts";
 export * from "./source-acquisition-manifest.ts";
+export * from "./technical-source-verification.ts";
