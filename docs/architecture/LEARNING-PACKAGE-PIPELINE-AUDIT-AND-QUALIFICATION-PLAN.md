@@ -212,7 +212,8 @@ The pipeline is qualified only when:
 - plan links to full canonical lessons;
 - later submitted assessment updates the plan;
 - lesson/assessment/revision flow completes on-device;
-- the Product Owner considers the result representative of the desired premium V1 standard.
+- the Product Owner considers the result representative of the desired premium V1 standard;
+- the pilot demonstrates the new pipeline can produce an excellent lesson from authoritative/governed inputs, not merely that it can reproduce the pre-existing legacy lesson — legacy comparison is diagnostic only, never the acceptance target (see [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md) §16).
 
 ## 9. After qualification
 

@@ -22,7 +22,7 @@ Every new qualification/unit/topic/lesson must progress through these stages in 
 
 1. **Source and syllabus authority**
 2. **Curriculum decomposition and traceability**
-3. **Governed knowledge/capability model**
+3. **Governed knowledge/capability model** — gated by the knowledge-adequacy review (§4.1) before later stages proceed
 4. **Learning dependency map**
 5. **Canonical lesson architecture / storyboard**
 6. **Visual opportunity analysis and Visual Requirements Catalogue**
@@ -81,6 +81,37 @@ Each lesson must declare:
 Misconception/hypothesis metadata may remain where already governed and may support future/post-V1 adaptive use, but it is not a mandatory V1 lesson-authoring burden unless directly needed for question validity or learner feedback.
 
 Dependencies are machine-readable and must be checked before publication.
+
+### 4.1 Knowledge-adequacy review (structural validity ≠ pedagogical sufficiency)
+
+The governed capability/assertion corpus must not be assumed adequate merely because schemas validate, ids resolve, coverage matrices are green, every syllabus item maps somewhere, or existing lessons/assessments already reference the assertions — these establish structural properties only. Before systematic lesson reconstruction, the knowledge layer itself must be independently assessed for pedagogical adequacy: is it rich enough to support excellent teaching, visuals and assessment without downstream authors having to invent important domain knowledge?
+
+Representative source-to-knowledge review should ask, where relevant to the subject matter (not a mandatory checklist every assertion must satisfy):
+- does the governed knowledge faithfully cover the authoritative curriculum?
+- are important distinctions represented rather than collapsed into vague umbrella assertions?
+- is assertion/capability granularity useful for actual teaching and assessment?
+- are necessary relationships between concepts represented?
+- are practical/application aspects represented where the source requires them?
+- are physical-recognition requirements represented where relevant?
+- are symbol/diagram/spatial/directional concepts represented where relevant?
+- are operating principles/mechanisms represented where relevant?
+- are important conditions, limitations or boundary cases represented where required?
+- is there enough governed knowledge to create good worked examples where the subject requires them?
+- can assessments be traced to knowledge at an appropriate level of specificity?
+- would a lesson author need to invent material that should instead have been governed upstream?
+- does the knowledge base contain off-syllabus material lacking explicit enabling/prerequisite justification (§3.2)?
+
+**Over-atomisation is an equal and opposite failure.** A richer knowledge base does not mean converting every source sentence into an assertion, maximising assertion count, atomising knowledge until pedagogy becomes impossible to understand, duplicating the same knowledge under numerous ids, or adding fields only to increase apparent coverage. The target is pedagogically useful granularity: specific enough to support traceability, lesson design and assessment; coherent enough to remain meaningful concepts; rich enough that downstream lesson authors do not need to invent governed subject matter; never fragmented simply for metric optimisation.
+
+### 4.2 Knowledge-adequacy review outcomes
+
+Before systematic Unit 202 (or any unit's) lesson reconstruction, the representative knowledge-adequacy review concludes one of:
+
+- **PASS** — the current knowledge/capability/assertion layer is sufficiently complete and granular.
+- **TARGETED REMEDIATION** — the architecture is sound but specific curriculum areas require richer or corrected extraction.
+- **RE-EXTRACTION / RECONSTRUCTION** — the existing knowledge model is systematically too shallow, incorrectly decomposed, incomplete, or otherwise unsuitable as the foundation for the new learning product.
+
+All three are valid, evidence-driven outcomes; the architecture must not prohibit the third merely because extraction effort has already been spent (see [`docs/governance/ROLES-AND-AUTHORITY.md`](../governance/ROLES-AND-AUTHORITY.md) "Existing content and prior implementation choices are not architectural authority"). Re-extraction is a permitted outcome of this review, never a presumed or predetermined one — no decision has been made that re-extraction is currently required.
 
 ## 5. One canonical V1 lesson route
 

@@ -1665,6 +1665,27 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **Commit:** see the CC-13C.3 commit immediately following this entry. Local only, not pushed.
 
+## CC-13C.4 — Legacy Content Non-Authority & Knowledge-Adequacy Governance Codification
+
+**Status:** documentation/governance only — no implementation. Codifies a further Product Owner / Project Architect decision that arose during review of CC-13C.3: **existing downstream content and previous implementation choices are not architectural authorities and must not constrain the best design merely because they already exist**, and the existing governed knowledge/capability/assertion corpus must not be presumed pedagogically sufficient merely because it is structurally valid or currently used.
+
+**What was codified, and where:**
+- `docs/governance/PROJECT-CONSTITUTION.md` (GOV-001) — extended the existing "Learning-quality governance principle" with one sentence: existing downstream artefacts (including Unit 202 content, prior implementation choices, and the governed knowledge corpus) do not gain architectural authority merely because they already exist.
+- `docs/governance/ROLES-AND-AUTHORITY.md` (GOV-002) — new "Existing content and prior implementation choices are not architectural authority" section: source authority vs. legacy artefacts, no-sunk-cost-architecture, legacy-content-as-evidence-not-authority, the blank-sheet quality test, and an explicit Package-3 consequence (existing lesson/schema shape must not be treated as a design constraint).
+- `docs/architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md` — annotated §2's canonical production-sequence stage 3 ("Governed knowledge/capability model") as gated by a new knowledge-adequacy review; added §4.1 (knowledge-adequacy review: structural validity ≠ pedagogical sufficiency, the review questions, the over-atomisation caution) and §4.2 (PASS / TARGETED REMEDIATION / RE-EXTRACTION as the three valid evidence-driven outcomes — re-extraction permitted, not presumed).
+- `docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md` §16 — amended in place: the representative real-lesson pilot proves the new pipeline can produce an excellent lesson from first principles, not that it can reproduce the legacy lesson; legacy comparison is diagnostic only.
+- `docs/architecture/LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md` §8 — added one success-criterion bullet matching the §16 clarification above.
+
+**Deliberately not touched:** `docs/architecture/CC-05-PEDAGOGICAL-KNOWLEDGE-AND-QUESTION-ARCHITECTURE.md` (defines the assertion/capability schema shape, not the review/governance question of whether that shape's real content is adequate — no gap found requiring a change there); `reports/learning-package-pipeline-audit/REMEDIATION-PLAN.md` (not renumbered or expanded, per this task's explicit instruction); `reports/learning-package-pipeline-audit/PIPELINE-TRACE.md` (a historical CC-13B audit snapshot citing "the 18-stage canonical production sequence" — the new §4.1/§4.2 subsections do not add a new top-level numbered stage, so that citation remains accurate; preserved as historical record regardless).
+
+**No knowledge re-extraction was performed.** No decision has been made that re-extraction is necessary — PASS, TARGETED REMEDIATION and RE-EXTRACTION remain three equally valid, evidence-driven outcomes of a review that has not yet been performed.
+
+**Package 3 relationship:** unchanged from CC-13C.3 — Package 3 remains not authorised/not implemented. This package adds an explicit further constraint: Package 3 design must not use existing lesson structure or existing schema shape as its justification.
+
+**No production code, tests, Unit 202 content, knowledge/assertion corpus, or visual assets changed.**
+
+**Commit:** see the CC-13C.4 commit immediately following this entry. Local only, not pushed.
+
 ## Cold-handover gate
 
 Before each CC package begins, a fresh contributor with no chat history must be able to determine from the repository:

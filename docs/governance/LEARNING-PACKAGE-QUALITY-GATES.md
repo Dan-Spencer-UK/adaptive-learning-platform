@@ -251,6 +251,8 @@ If meaningful defects are found, the first question is always: **is this an isol
 
 Systematic Unit 202 rebuilding is blocked until the representative pilot demonstrates the pipeline is both technically qualified and pedagogically/product-quality qualified.
 
+**The pilot proves the new pipeline, not legacy reproduction.** The representative real lesson is not intended to prove that the legacy lesson can be migrated successfully — it is intended to prove that the new pipeline can create an excellent lesson from authoritative/governed upstream inputs. The preferred quality question is "can this pipeline produce the lesson we would design today from first principles?", never "can this pipeline reproduce the lesson we already have?" Legacy-lesson comparison may be diagnostically useful but is not the acceptance target. This gate is itself preceded by the knowledge-adequacy review — see [`docs/architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md`](../architecture/SYLLABUS-TO-LEARNING-PACKAGE-PRODUCTION-ARCHITECTURE.md) §4.1-§4.2 — the downstream lesson-production pipeline must not be qualified on top of an unexamined knowledge foundation.
+
 ## 17. Scale-only-after-qualification
 
 The required workflow order is: architecture mechanically works → one representative real lesson authored through the real pipeline → independent technical + pedagogical + learner-experience review → defect classes traced upstream → production rules refined where necessary → representative lesson revalidated → pipeline accepted → systematic Unit 202 rebuild/migration begins.
