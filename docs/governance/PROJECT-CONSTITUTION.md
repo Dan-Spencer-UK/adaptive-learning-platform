@@ -59,6 +59,10 @@ Initial learner runtime has **no AI dependency**. Core teaching, question genera
 
 Backend sophistication is insufficient. The learner product must be class-leading within the narrow supported scope. Native mobile UX, accessibility, clear navigation, preserved context and fast deterministic interaction are release concerns, not later polish.
 
+## Learning-quality governance principle
+
+The ALP must be governed for best-in-class learning quality, not merely technical correctness. Implementation correctness and product/learning quality are two separate acceptance questions, and passing the first never implies passing the second: a package may satisfy every agreed schema, validator and test and still be an inferior piece of instructional design — that outcome is a rejection, not a pass, regardless of how green the automated evidence is. Claude Code, as Implementation Engineer, is not the final authority on product architecture, instructional design, pedagogy, storyboard quality, assessment design, visual pedagogy or learner experience; the Project Architect independently reviews these, and the Product Owner retains final approval. Full authority split: [`docs/governance/ROLES-AND-AUTHORITY.md`](ROLES-AND-AUTHORITY.md). Full quality gates and the representative real-lesson qualification gate that must pass before systematic content rebuilding: [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](LEARNING-PACKAGE-QUALITY-GATES.md).
+
 ## Client platform principle
 
 Native iOS and Android are the primary learner platforms; web is secondary. The product must not be architected as a wrapped responsive website. Shared business/domain logic must remain platform-independent so any client consumes the same governed services. The specific native client technology is not fixed by this document and requires an accepted ADR before implementation.

@@ -1645,6 +1645,26 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **Commit:** see the CC-13C.2 documentation-closure commit immediately following this entry (built on the two commits referenced above it). Local only, not pushed.
 
+## CC-13C.3 — Best-in-Class Learning Quality Governance Codification
+
+**Status:** documentation/governance only — no implementation. Codifies a Product Owner / Project Architect decision: **the ALP must be governed for best-in-class learning quality, not merely technical correctness.** This is a durable authority/process decision, not a Package-3 (or any content-production package) implementation.
+
+**What was codified, and where:**
+- `docs/governance/PROJECT-CONSTITUTION.md` (GOV-001, highest-authority document) — new "Learning-quality governance principle": implementation correctness and product/learning quality are two separate acceptance questions; passing one never implies passing the other.
+- `docs/governance/ROLES-AND-AUTHORITY.md` (GOV-002) — new "Implementation correctness vs. product/learning quality authority" section: the two-question model, and an explicit list of what Claude Code is **not** final authority for (product architecture, instructional design, pedagogy, lesson/storyboard/assessment/visual-pedagogy quality, learner experience, production-workflow quality, technical visual-reference correctness).
+- `docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md` — extended §1 (two-question framing), §4 (storyboard standard), §5 (visual-pedagogy standard), §6 (assessment-quality standard, applies to §6/§7 together); added new §14 (false-green state model: schema-capable/validator-capable/synthetically-tested/runtime-wired/production-adopted/mechanically-enforced/pedagogically-reviewed/learner-experience-reviewed/learner-ready — none implies another), §15 (authoring-economics/governance-proportionality principle), §16 (representative real-lesson qualification gate — technical AND pedagogical, defect-class-tracing rule), §17 (scale-only-after-qualification workflow order).
+- `docs/architecture/LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md` §9 — strengthened with the explicit two-dimensional (technical + pedagogical) qualification requirement and the "isolated defect vs. architecture-permitted defect class" rule, and an explicit statement that this requirement governs Package 3 and every later content-production package.
+
+**Deliberately not touched:** `docs/architecture/LEARNING-PACKAGE-GOVERNANCE-CONTRACTS.md` and `docs/architecture/LESSON-PLAYER-AND-LESSON-PLAN-ARCHITECTURE.md` (implementation-contract documents, not authority/quality-gate documents — no gap found requiring a change there); `docs/product/PRODUCT-PRINCIPLES.md` (already carries Principle 35, "learner-ready means educational quality, visual quality and runtime quality together"; the new decision is about internal authority/process, not learner-facing product truth, so it belongs in the governance documents above, not the product-principles index).
+
+**V1 architecture preserved:** this package does not alter ADR-0006's one-canonical-route / no-within-lesson-branching / assessment-driven-Guided-Revision model in any way — explicitly stated in both new sections that touch pipeline sequencing.
+
+**Package 3 relationship:** these principles constrain Package 3 and all later content-production packages. Package 3 is **not** implemented or approved by this documentation change. The prior session's Package-3 architecture-discovery report remains evidence/proposal only, pending independent Project Architect review — explicitly stated in `LEARNING-PACKAGE-QUALITY-GATES.md` §17 and `LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md` §9.
+
+**No production code, tests, Unit 202 content, or visual assets changed.**
+
+**Commit:** see the CC-13C.3 commit immediately following this entry. Local only, not pushed.
+
 ## Cold-handover gate
 
 Before each CC package begins, a fresh contributor with no chat history must be able to determine from the repository:

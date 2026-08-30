@@ -14,6 +14,15 @@ The V1 quality target is intentionally focused:
 
 Do not impose post-V1 adaptive-branch complexity on V1 lesson production.
 
+**Two separate acceptance questions (governance addition):** every material package is judged against two non-substitutable questions, owned by different roles ([`docs/governance/ROLES-AND-AUTHORITY.md`](ROLES-AND-AUTHORITY.md)):
+
+1. **Implementation correctness** — does the implementation correctly satisfy the agreed architecture/contracts (tests, validators, schema conformance, runtime proof)? Claude Code may establish this directly.
+2. **Product/learning quality** — is the architecture, content model, instructional design and learner experience itself good enough for a best-in-class learning product? Decided by independent Project Architect review and Product Owner approval, never by Claude Code alone.
+
+Passing question 1 never implies passing question 2. A technically correct implementation of a weak design is a rejection, not a pass, regardless of how green the automated evidence is — this applies without exception to every gate below. Tests and validators are evidence only for what they actually assert; they are never a substitute for independent product, pedagogical or learner-experience review.
+
+Best-in-class here means excellent execution of the intentionally constrained V1 product described above — it is not licence for uncontrolled scope growth, post-V1 adaptive complexity, or bureaucracy for its own sake (§15).
+
 ## 2. Required statuses
 
 Recommended package lifecycle:
@@ -50,6 +59,8 @@ PASS requires:
 
 ## 4. Pedagogy gate
 
+**Storyboard standard:** a canonical lesson storyboard is not a list of screens, a UI wireframe, a collection of content blocks, a checklist of syllabus statements, or a visual-asset inventory. It must express the pedagogical job of the lesson and of each semantic section — what the learner should understand/do, prior knowledge being activated, the section's instructional purpose (explanation/model/example/practice/retrieval), sequencing rationale, relationship to governed capabilities/assertions, visual teaching opportunity, question/check purpose, and progression toward the lesson outcome. Enough structure to produce excellent, repeatable pedagogy; no field is added merely for bureaucracy (§15).
+
 PASS requires:
 - canonical lesson storyboard exists before final copy;
 - one V1 route is defined and does not depend on mastery/evidence;
@@ -68,6 +79,8 @@ Dynamic diagnostic/remediation/recheck branches are **not a V1 pedagogy-gate req
 
 ## 5. Visual gate
 
+**Visual pedagogy standard:** visual planning is pedagogically driven, never quota-driven — "every lesson needs N images" is not a rule this gate enforces or accepts. A visual is required when it materially improves learning: spatial understanding, recognition, comparison, physical appearance, process/mechanism, direction/topology, procedural understanding, conceptual relationships, memory/recall, or reduced text burden. An important concept must not remain text-only merely because a visual is technically optional when one would materially improve comprehension. An explicit, governed "no visual required" decision is valid; a silent default or an omitted planning decision is not equivalent to deliberate analysis and does not satisfy this gate. Technical correctness of a visual is governed separately (§9/§13) from whether it is pedagogically useful — the two are never conflated.
+
 PASS requires:
 - visual-opportunity analysis completed for every lesson;
 - REQUIRED visual needs have VRR entries;
@@ -82,6 +95,8 @@ PASS requires:
 A missing visual may not be waived merely because it takes time to create.
 
 ## 6. Embedded lesson-check integrity gate
+
+**Assessment quality standard (applies to this gate and §7):** assessment quality is evaluated pedagogically, not merely structurally. Every item must be traceable to governed learning, taught/prior/retrieval-provenance-aware, appropriate to its intended cognitive demand, free from answer leakage and accidental clueing, supported by plausible distractors where applicable, free from unnecessary double negatives/trick wording, and capable of producing meaningful evidence. Embedded lesson questions (this gate) and submitted formative/mock assessment (§7) serve different purposes and must not be conflated. Completion is not mastery (Product Principle 10). Schema/blueprint validity establishes that a question is well-formed, never that it is a good question.
 
 PASS requires:
 - check does not reveal its answer before response;
@@ -189,3 +204,57 @@ The publication pipeline must make it mechanically impossible for a new V1 lesso
 It must also make it difficult for old adaptive proving-slice assumptions to silently become V1 production requirements.
 
 If a gate exists only in prose and can be bypassed silently, it is not implemented.
+
+## 14. False-green state model
+
+The repository must keep these states distinct and must never collapse one into another when reporting status:
+
+- schema-capable
+- validator-capable
+- synthetically tested
+- runtime-wired
+- adopted by real production content
+- mechanically enforced
+- pedagogically reviewed
+- learner-experience reviewed
+- learner-ready
+
+None of these implies any of the others. In particular:
+
+- schema-capable ≠ production-adopted
+- runtime-wired ≠ pedagogically good
+- green tests ≠ learner-ready
+- curriculum coverage ≠ good instruction
+- visual present ≠ pedagogically useful
+- question valid ≠ good assessment
+
+A status report, PR description or completion claim that uses "PASS"/"complete"/"proved" language must state which of these states it actually demonstrates. Reporting a narrower state as if it were a broader one (e.g. "runtime-wired" reported as "learner-ready") is itself a governance defect, independent of whether the narrower claim is true.
+
+## 15. Authoring economics / governance proportionality
+
+Best-in-class does not mean maximal bureaucracy. Architecture review must weigh authoring cost and maintainability alongside rigour. If producing one lesson requires numerous manually synchronised artefacts carrying duplicate information, that is an architectural defect unless the duplication provides demonstrable governance value.
+
+Prefer: canonical sources of truth; generated projections; mechanically derived evidence; explicit human decisions only where human judgement genuinely adds value.
+
+Avoid: duplicated metadata; unnecessary manual registries; checklist theatre; governance fields that exist only to satisfy a validator and carry no learner or review value.
+
+## 16. Representative real-lesson qualification gate
+
+Before systematic rebuilding/migration of Unit 202 (or any future unit) through a new or materially changed production pipeline, at least one representative, pedagogically demanding real lesson must be taken through the full qualified production chain end-to-end — full sequence and success criteria: [`docs/architecture/LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md`](../architecture/LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md) §7-§9. Synthetic fixtures alone never satisfy this gate.
+
+The pilot lesson requires independent review of both dimensions together, neither substituting for the other:
+
+1. **Technical qualification** — the automated gates above (§3-§10) pass against real content.
+2. **Pedagogical / product-quality qualification** — instructional coherence, depth, sequencing, cognitive load, storyboard quality, visual pedagogy, teach-before-test integrity, question quality, feedback quality, mobile UX, learner-facing wording, absence of internal/debug leakage, and overall premium-product quality (§11, Human Product Owner gate).
+
+If meaningful defects are found, the first question is always: **is this an isolated content defect, or evidence that the production architecture/rules allowed the defect?** Where practical, defect classes are prevented upstream (schema, validator or process correction) before content production scales — repairing every future lesson individually is not an acceptable substitute for closing the upstream gap.
+
+Systematic Unit 202 rebuilding is blocked until the representative pilot demonstrates the pipeline is both technically qualified and pedagogically/product-quality qualified.
+
+## 17. Scale-only-after-qualification
+
+The required workflow order is: architecture mechanically works → one representative real lesson authored through the real pipeline → independent technical + pedagogical + learner-experience review → defect classes traced upstream → production rules refined where necessary → representative lesson revalidated → pipeline accepted → systematic Unit 202 rebuild/migration begins.
+
+Do not build all lessons first and attempt to repair the production architecture afterward. This principle governs Package 3 (storyboard/visual-opportunity planning) and every later content-production package equally — a package's own proposed "minimum correct contract" is not self-approving merely because Claude Code produced it; it remains evidence/proposal only until the Project Architect independently accepts it.
+
+This governance addition concerns quality authority and pipeline qualification only. It does not reopen, weaken or extend the ADR-0006 V1 canonical-route/Guided-Revision model — the one-canonical-route, no-within-lesson-branching, assessment-driven-Guided-Revision product decision stands unchanged (see [`docs/governance/ROLES-AND-AUTHORITY.md`](ROLES-AND-AUTHORITY.md) "V1 learner-model changes are Product Owner / Project Architect decisions").
