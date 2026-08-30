@@ -16,10 +16,10 @@ Do not impose post-V1 adaptive-branch complexity on V1 lesson production.
 
 **Two separate acceptance questions (governance addition):** every material package is judged against two non-substitutable questions, owned by different roles ([`docs/governance/ROLES-AND-AUTHORITY.md`](ROLES-AND-AUTHORITY.md)):
 
-1. **Implementation correctness** — does the implementation correctly satisfy the agreed architecture/contracts (tests, validators, schema conformance, runtime proof)? Claude Code may establish this directly.
+1. **Implementation correctness** — does the implementation correctly satisfy the agreed architecture/contracts (tests, validators, schema conformance, production/runtime traces, real-content adoption evidence)? Claude Code generates and reports this evidence and may state its own technical conclusion, but cannot self-approve it — the Project Architect independently judges whether the evidence is actually sufficient and whether Claude's claimed conclusion follows from it.
 2. **Product/learning quality** — is the architecture, content model, instructional design and learner experience itself good enough for a best-in-class learning product? Decided by independent Project Architect review and Product Owner approval, never by Claude Code alone.
 
-Passing question 1 never implies passing question 2. A technically correct implementation of a weak design is a rejection, not a pass, regardless of how green the automated evidence is — this applies without exception to every gate below. Tests and validators are evidence only for what they actually assert; they are never a substitute for independent product, pedagogical or learner-experience review.
+Passing question 1 never implies passing question 2. A technically correct implementation of a weak design is a rejection, not a pass, regardless of how green the automated evidence is — this applies without exception to every gate below. Tests and validators are evidence only for what they actually assert; they are never a substitute for independent product, pedagogical or learner-experience review. Neither question is self-approving: Claude Code's own technical completion report is evidence/proposal pending the Project Architect's independent judgement, exactly like every other claimed conclusion this document governs (§14).
 
 Best-in-class here means excellent execution of the intentionally constrained V1 product described above — it is not licence for uncontrolled scope growth, post-V1 adaptive complexity, or bureaucracy for its own sake (§15).
 

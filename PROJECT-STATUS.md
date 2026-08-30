@@ -1686,6 +1686,25 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **Commit:** see the CC-13C.4 commit immediately following this entry. Local only, not pushed.
 
+## CC-13C.5 — Authority Wording Correction: Claude Cannot Self-Approve Implementation Correctness
+
+**Status:** documentation/governance only — no implementation. Independent review of CC-13C.3/CC-13C.4 found one authority wording defect: the "Implementation correctness" question's original wording ("Claude Code may establish this directly") accidentally granted Claude Code self-approval authority over implementation correctness, contradicting the surrounding intent that Claude is not final authority over any material acceptance question. This correction does not rewrite that historical wording as if it never existed — see the CC-13C.3 entry above for what was originally recorded — it corrects it going forward.
+
+**Corrected authority model:** Claude Code generates and reports implementation evidence (tests, validators, schema conformance, production/runtime traces, real-content adoption evidence) and may state its own technical conclusion, but cannot self-approve that the evidence actually satisfies the approved architecture. The Project Architect independently judges both (1) whether Claude's evidence is sufficient and whether Claude's claimed conclusion follows from it — specifically watching for false-green conclusions, tests that prove less than claimed, test-only wiring, synthetic-only adoption, hidden information loss, inappropriate fallback/retry behaviour, bypass paths, duplicated sources of truth, production/runtime wiring gaps, architectural shortcuts, and accidental legacy behaviour — and (2) product/learning quality, as already established. The Product Owner retains final approval over both.
+
+**What was corrected, and where:**
+- `docs/governance/PROJECT-CONSTITUTION.md` — "Learning-quality governance principle": added "implementation correctness" to the list of things Claude is not final authority on, and made explicit that Claude produces evidence rather than self-approving it.
+- `docs/governance/ROLES-AND-AUTHORITY.md` — "Implementation correctness vs. product/learning quality authority" section: question (1)'s wording corrected; the review paragraph now explicitly covers independent review of BOTH questions (previously only question (2) was described as independently reviewed); the not-final-authority list now includes implementation correctness.
+- `docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md` §1: question (1)'s wording corrected; added an explicit "neither question is self-approving" sentence.
+
+**No other governance changed.** Storyboard quality, visual-pedagogy quality, assessment-quality, cognitive-load principles, authoring economics, the false-green state model, the representative real-lesson qualification gate, scale-only-after-qualification, legacy-content-as-evidence-not-authority, no-sunk-cost architecture, the blank-sheet design test, the knowledge-adequacy review, granularity/anti-over-atomisation, the PASS/TARGETED REMEDIATION/RE-EXTRACTION outcomes, Package-3 non-authorisation, and the ADR-0006 V1 canonical-route model are all unchanged in substance.
+
+**Package 3 relationship:** unchanged — remains not authorised/not implemented.
+
+**No production code, tests, content, or knowledge/assertion corpus changed.**
+
+**Commit:** see the CC-13C.5 commit immediately following this entry. Local only, not pushed.
+
 ## Cold-handover gate
 
 Before each CC package begins, a fresh contributor with no chat history must be able to determine from the repository:
