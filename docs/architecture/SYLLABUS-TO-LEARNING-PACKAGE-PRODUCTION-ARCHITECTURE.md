@@ -16,9 +16,29 @@ A learning package is not complete because it runs. It is complete only when its
 
 For V1, this architecture deliberately optimises for **one excellent canonical lesson route plus assessment-driven Guided Revision**, not rich adaptive branching inside every lesson.
 
+### 1.1 Knowledge is reusable; learning purpose, depth and required performance are decided before lesson design (2026-08-30)
+
+The governed knowledge base describes the relevant subject knowledge. Required learning depth is not an inherent property of an assertion or fact — different learning packages may use the same underlying knowledge at different depths and for different purposes. Every unit/package must therefore have an explicit learning-purpose/depth definition before lesson authoring begins, conceptually establishing, where relevant: purpose; target learner; assumed prior knowledge; intended learner end state; scope authority; required conceptual depth; required application/performance depth; recognition/visual depth; calculation/procedural depth; safety/consequence depth; assessment purpose; and the practical/competence boundary. This document does not fix the final schema or field names for that definition — see [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md) "Knowledge principle" for the constitutional statement.
+
+> **Knowledge is reusable; learning purpose, depth and pedagogy are contextual.**
+
+Production reasoning must conceptually answer, in order: (1) what is in scope; (2) what must this learner be able to do with it; (3) how deeply must they understand it to perform reliably; (4) what supporting knowledge/relationships/models are therefore required; (5) how should the lesson create that understanding efficiently. `syllabus → assertions → questions` is not by itself sufficient pedagogical architecture merely because those structures already exist. The governing conceptual chain is:
+
+```text
+authoritative scope
+→ learning purpose/depth
+→ required learner performance
+→ required understanding/knowledge
+→ canonical lesson
+→ assessment
+→ runtime/revision
+```
+
+This is an architectural principle, not an implementation design — the canonical production sequence in §2 below is not renumbered or redesigned by this section, and no concrete schema is chosen here.
+
 ## 2. Canonical production sequence
 
-Every new qualification/unit/topic/lesson must progress through these stages in order:
+Every new qualification/unit/topic/lesson must progress through these stages in order (an explicit learning-purpose/depth definition, per §1.1, is a precondition from stage 3 onward):
 
 1. **Source and syllabus authority**
 2. **Curriculum decomposition and traceability**
@@ -62,6 +82,34 @@ For every evidence-bearing question, the system must prove one of the following:
 A question must never depend on knowledge that only appears in another lesson unless that dependency is explicitly governed.
 
 No lesson-completion hard gate is implied. Access remains open. For V1, prerequisite relationships inform authoring, assessment interpretation and future extension; they do **not** dynamically redirect the learner during an ordinary lesson.
+
+### 3.4 Official teaching material calibrates depth; it is not the lesson template (2026-08-30)
+
+Where an authoritative syllabus/specification exists alongside official teaching material (handouts, learner worksheets, tutor-answer worksheets, sample/official assessment evidence, scheme-of-work material — as is unusually available for City & Guilds Unit 202), each source serves a distinct, non-substitutable purpose and must never be conflated with another:
+
+- the **public syllabus/specification** defines authoritative examinable scope;
+- **official handouts** help calibrate the amount and type of knowledge the awarding body considered appropriate behind terse syllabus wording;
+- **worksheets and tutor-answer worksheets** help establish what the learner was expected to be able to understand, calculate, identify, distinguish, draw, interpret, explain or apply after teaching;
+- **assessment evidence** helps calibrate examination performance;
+- **scheme-of-work material** may provide useful grouping/context, but its nominal timings are never an ALP lesson-duration requirement and must not dictate architecture.
+
+Official teaching material is calibration evidence, never the ALP lesson template and never the quality ceiling. ALP lessons should be substantially clearer, more efficient and more visually effective than the handouts — "better than the handout" means better learning efficiency and clarity, never simply more words.
+
+> **C&G defines/calibrates the expected knowledge envelope; ALP designs the best way to learn it.**
+
+For a future course where no official teaching material is available, Unit 202's calibration exercise is intended to help ALP derive reusable principles for inferring appropriate depth from syllabus wording, qualification level, command verb, range/breadth, assessment evidence and authoritative subject sources. Designing or implementing such an inference mechanism is not authorised by this document.
+
+### 3.5 Learning-support/exam-preparation and from-scratch training are configurations of one architecture (2026-08-30)
+
+ALP must support both learning-support/exam-preparation packages and from-scratch initial-training packages as configurations of the same production architecture described in this document, never as separate platform architectures.
+
+For City & Guilds Unit 202: ALP is primarily a learning-support and exam-preparation product; the learner is normally also receiving college tuition; the college remains responsible for full qualification delivery and practical competence. ALP should teach enough underlying understanding for the learner to handle the legitimate range of syllabus-valid examination questions robustly, without attempting to reproduce every hour of college tuition. Minimum depth is never "the shortest answer satisfying the Assessment Criterion" — target depth is the minimum conceptual depth that makes the examinable requirement reliably understandable, transferable and assessable.
+
+For a from-scratch package (for example, a future pharmacy OTC initial-training package), prior knowledge may legitimately be near zero, and the learning package must provide sufficient explanatory scaffolding and guided application to reach its defined end state without assuming an external tutor has already taught the subject.
+
+A refresher package may reuse the same governed knowledge while assuming greater prior knowledge and using more retrieval/application-focused pedagogy.
+
+See [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md) "Learning-support and from-scratch package principle" for the constitutional statement.
 
 ## 4. Knowledge, capabilities and dependencies
 
@@ -115,7 +163,7 @@ All three are valid, evidence-driven outcomes; the architecture must not prohibi
 
 ## 5. One canonical V1 lesson route
 
-A V1 lesson is designed as a pedagogical storyboard before final learner copy is written.
+**Canonical lesson and storyboard are one authored artefact (2026-08-30):** a V1 lesson is authored as one canonical artefact, never a separately authored storyboard synchronised with a separate lesson plan. Storyboarding is the instructional-design dimension of authoring the lesson. Its internal instructional-design intent — where useful: intended learner change/understanding, purpose, prior-knowledge connection, mental model, misconception handling, representation rationale, assessment relevance, sequencing/transition rationale — and its actual learner-facing multimodal composition are properties of the same authored lesson. The runtime receives a learner-facing projection of that artefact with internal design rationale removed. An instructional beat within the lesson is not necessarily a screen. See [`docs/architecture/LEARNING-PACKAGE-GOVERNANCE-CONTRACTS.md`](LEARNING-PACKAGE-GOVERNANCE-CONTRACTS.md) §2 for the conceptual/governance requirements this constrains; the concrete schema remains undecided.
 
 The released teaching sequence is canonical. It does not vary because of mastery, prerequisite state or ordinary lesson-check performance.
 
@@ -282,6 +330,8 @@ Questions must test the learner's capability, not accidentally test awkward word
 Complex misconception-diagnostic question design is only required where it adds real V1 learner value or is needed for valid scoring. Do not manufacture diagnostic complexity merely because the platform has a misconception model.
 
 ## 11. Visuals are first-class learning content
+
+*(Locked, unchanged by the 2026-08-30 learning-purpose/depth and canonical-lesson decisions above — see [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md) "Multimodal teaching principle".)*
 
 Instructional visuals are not decoration and are not an optional post-production enhancement.
 

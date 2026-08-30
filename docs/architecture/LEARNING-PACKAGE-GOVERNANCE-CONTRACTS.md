@@ -63,56 +63,21 @@ type V1LessonRoutePolicy = "CANONICAL_FIXED_ROUTE";
 
 The existing richer lesson-step/adaptive schema may retain post-V1 roles. V1 publication must not require or dynamically inject them into an ordinary lesson route.
 
-## 2. Canonical V1 lesson storyboard
+## 2. Canonical V1 lesson / storyboard
 
-```ts
-interface LessonStoryboard {
-  lessonId: string;
-  syllabusNodeIds: string[];
-  introducedAssertionIds: string[];
-  reinforcedAssertionIds: string[];
-  capabilityIds: string[];
-  prerequisiteCapabilityIds: string[];
-  routePolicy: V1LessonRoutePolicy;
-  sections: StoryboardSection[];
-  visualOpportunityAnalysisId: string;
-  assessmentMappingIds: string[];
-  status: "DRAFT" | "REVIEWED" | "APPROVED";
-}
+**Single authored artefact (2026-08-30):** there is not a separately authored storyboard and a separately authored lesson plan requiring synchronisation. The canonical authored lesson IS the storyboard — storyboarding is the instructional-design dimension of authoring the lesson, not a separate upstream artefact. A meaningful instructional beat may therefore carry, on the one authored artefact: (A) internal design intent where useful — intended learner change/understanding, purpose, prior-knowledge connection, mental model, misconception handling, representation rationale, assessment relevance, sequencing/transition rationale; and (B) the actual learner-facing multimodal composition — prose, illustration, annotated diagram, physical imagery, symbol/schematic, process/state sequence, comparison, formula, worked example, table, progressive reveal, interaction, retrieval/check, or another governed representation. The runtime receives a learner-facing projection of the artefact with internal design rationale (A) removed. An instructional beat is not necessarily a screen.
 
-interface StoryboardSection {
-  sectionId: string;
-  role: V1PedagogicalStepRole;
-  purpose: string;
-  capabilityIds: string[];
-  requiredKnowledgeIds: string[];
-  introducesKnowledgeIds: string[];
-  contentBlockIds: string[];
-  visualRequirementIds: string[];
-  questionBlueprintIds: string[];
-  mayRevealTargetAnswer: boolean;
-
-  /**
-   * A section may exceed one viewport. It is not a slide-size contract.
-   */
-  scrollingAllowed: true;
-
-  /**
-   * Used by QA to prevent arbitrary one-sentence fragmentation.
-   */
-  semanticUnit: string;
-}
-```
+The concrete schema for this artefact — field names, identifiers, and how it references or decomposes governed knowledge, capabilities, content, visuals and questions — is not fixed here. It remains a Package-3 design decision, to be made only when explicitly authorised, and must not be pre-empted by current implementation structures.
 
 ### V1 route validator
 
-Given the same released lesson version, changing learner mastery/evidence/prerequisite state must not change the ordered canonical `sections` list.
+Given the same released lesson version, changing learner mastery/evidence/prerequisite state must not change the lesson's ordered canonical sequence of instructional beats.
 
 Existing post-V1 adaptive assemblers may remain in the repository, but the V1 normal Learn path must not depend on them.
 
 ### Multimodal teaching-plan expression (governance requirement, 2026-08-30)
 
-A real `StoryboardSection` must be authored to express the pedagogical/multimodal teaching plan required by [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md) §4 — learning objective/intended understanding, prior-knowledge connection, teaching/explanation approach, what the learner sees, what the learner reads/hears, worked example/model/comparison, misconception being prevented or corrected, interaction/retrieval/check, and rationale for the next instructional beat — for each meaningful instructional beat, not merely a list of `contentBlockIds`/`visualRequirementIds`/`questionBlueprintIds`. This does not mean duplicating final learner-facing prose in the storyboard. The exact field shape carrying this plan is a Package-3 design decision, not fixed by this conceptual sketch — see [`docs/governance/ROLES-AND-AUTHORITY.md`](../governance/ROLES-AND-AUTHORITY.md) "Existing content and prior implementation choices are not architectural authority" and the multimodal teaching principle in [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md).
+The one authored artefact above must express the pedagogical/multimodal teaching plan required by [`docs/governance/LEARNING-PACKAGE-QUALITY-GATES.md`](../governance/LEARNING-PACKAGE-QUALITY-GATES.md) §4 for each meaningful instructional beat, not merely a list of content blocks, visual requirements or question references. This does not mean duplicating final learner-facing prose in the storyboard. The exact field shape is a Package-3 design decision, not fixed by this document — see [`docs/governance/ROLES-AND-AUTHORITY.md`](../governance/ROLES-AND-AUTHORITY.md) "Existing content and prior implementation choices are not architectural authority" and the multimodal teaching principle in [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md).
 
 ## 3. Teaching-section density / coherence record
 
