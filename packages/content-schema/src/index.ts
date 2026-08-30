@@ -42,6 +42,15 @@
  * requirement/reference-dossier/family-contract/production-eligibility
  * planning layer, sitting before the existing semantic-QA layer that
  * governs an already-produced visual).
+ *
+ * CC-14 added the course-depth/performance governance layer: ./depth-
+ * performance-matrix.ts (a course-specific Depth & Performance Matrix --
+ * per-Assessment-Criterion required learner performance/depth/supporting-
+ * knowledge, sitting between curriculum authority and technical knowledge
+ * sourcing) and ./source-acquisition-manifest.ts (the deterministic,
+ * reusable-domain-knowledge-clustered shopping list derived from an
+ * approved matrix). Neither module carries domain content of its own, and
+ * neither is a technical knowledge corpus -- both describe SHAPE only.
  */
 
 import { z } from "zod";
@@ -67,3 +76,5 @@ export * from "./assessment-specification.ts";
 export * from "./assessment-instance.ts";
 export * from "./guided-revision.ts";
 export * from "./learning-package-gate.ts";
+export * from "./depth-performance-matrix.ts";
+export * from "./source-acquisition-manifest.ts";
