@@ -99,6 +99,8 @@ Official teaching material is calibration evidence, never the ALP lesson templat
 
 For a future course where no official teaching material is available, Unit 202's calibration exercise is intended to help ALP derive reusable principles for inferring appropriate depth from syllabus wording, qualification level, command verb, range/breadth, assessment evidence and authoritative subject sources. Designing or implementing such an inference mechanism is not authorised by this document.
 
+**Source-role separation:** curriculum authority (what is in scope), depth/performance evidence (how much the learner must understand or be able to do), and technical/factual authority (what is actually true) are three distinct evidential roles and must never be conflated (see [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md) "Provenance and source integrity"). For City & Guilds packages: the C&G syllabus/specification is curriculum authority; C&G assessment material, worksheets and teaching material may provide depth/performance evidence; independent authoritative technical sources establish factual/technical truth. Official C&G handouts are evidence of intended depth/performance, never automatically technical truth merely because they are official teaching material — a technical claim drawn from a handout still requires suitable independent authoritative technical-source provenance before it becomes governed knowledge.
+
 ### 3.5 Learning-support/exam-preparation and from-scratch training are configurations of one architecture (2026-08-30)
 
 ALP must support both learning-support/exam-preparation packages and from-scratch initial-training packages as configurations of the same production architecture described in this document, never as separate platform architectures.
@@ -110,6 +112,29 @@ For a from-scratch package (for example, a future pharmacy OTC initial-training 
 A refresher package may reuse the same governed knowledge while assuming greater prior knowledge and using more retrieval/application-focused pedagogy.
 
 See [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md) "Learning-support and from-scratch package principle" for the constitutional statement.
+
+### 3.6 C&G depth-inference standard (2026-08-30)
+
+For City & Guilds learning-support/exam-preparation packages, ALP must derive **the minimum depth of understanding required for a learner to handle the full legitimate range of syllabus-valid assessment questions robustly, including unfamiliar variations.**
+
+This is explicitly NOT:
+- the shortest wording that technically satisfies an Assessment Criterion;
+- rote preparation for only the questions appearing in a sample exam;
+- reproduction of the full college course;
+- a fixed number of facts/assertions;
+- depth invented by an LLM.
+
+City & Guilds colleges/tutors remain responsible for full qualification delivery and practical competence where applicable; ALP's purpose for these packages is efficient, robust, exam-ready understanding (see [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md) "Learning-support and from-scratch package principle").
+
+**Depth is multidimensional.** Required depth must not be represented conceptually as only a single scalar. Depending on the curriculum requirement, depth may include: recall/recognition; conceptual understanding; causal/mechanistic understanding; relational understanding; visual/spatial/directional understanding; physical/component recognition; symbolic/schematic interpretation; procedural performance; calculation performance; application/discrimination; and integration of multiple pieces of knowledge. Only dimensions justified by the curriculum/evidence should be required for a given requirement. This document does not fix a final schema or enum of dimension names.
+
+**Command verbs are starting evidence, not the answer.** C&G command verbs (state, specify, identify, distinguish, describe, explain, apply, determine, calculate, and others) provide evidence about expected cognitive performance, but cannot be interpreted in isolation. Their meaning must be calibrated against, where available: qualification level; the full Assessment Criterion wording; Range items; dependencies on other criteria; public assessment/sample-question evidence; and official teaching/worksheet evidence where unusually available. For example, a requirement to "describe" may still involve diagrammatic, directional or simple calculation competence if the qualification evidence shows those are part of the expected performance. This document does not encode a mechanical verb-to-depth lookup.
+
+### 3.7 Future C&G courses without official teaching material (2026-08-30)
+
+For a future C&G course where SmartScreen-equivalent or other official teaching material is not available, the normal evidence set will be closer to: the public current syllabus/qualification handbook; qualification level; Assessment Criteria; Range; public sample/practice assessment evidence; any other public authoritative C&G guidance; and independent authoritative technical sources.
+
+Unit 202 must be used as a calibration case to derive reusable principles for inferring appropriate learning depth from those publicly available signals alone. A public sample/practice exam must never shrink syllabus scope merely because a topic happens not to occur in that sample (consistent with §4.1/§4.2's existing non-exclusion discipline for the knowledge-adequacy review). Where evidence does not establish depth confidently, the requirement must be capable of being marked DEPTH UNCERTAIN / requiring review rather than allowing an LLM to silently invent expected depth. Designing or implementing that future inference mechanism is not authorised by this document.
 
 ## 4. Knowledge, capabilities and dependencies
 
@@ -160,6 +185,27 @@ Before systematic Unit 202 (or any unit's) lesson reconstruction, the representa
 - **RE-EXTRACTION / RECONSTRUCTION** — the existing knowledge model is systematically too shallow, incorrectly decomposed, incomplete, or otherwise unsuitable as the foundation for the new learning product.
 
 All three are valid, evidence-driven outcomes; the architecture must not prohibit the third merely because extraction effort has already been spent (see [`docs/governance/ROLES-AND-AUTHORITY.md`](../governance/ROLES-AND-AUTHORITY.md) "Existing content and prior implementation choices are not architectural authority"). Re-extraction is a permitted outcome of this review, never a presumed or predetermined one — no decision has been made that re-extraction is currently required.
+
+### 4.3 Unit 202 Depth & Performance Matrix (2026-08-30)
+
+Unit 202 requires a governed Depth & Performance Matrix covering the public curriculum at appropriate granularity, including Assessment Criteria and Range obligations. Conceptually, each requirement in the matrix must establish: authoritative scope; required learner performance; required depth dimensions (§3.6); supporting understanding/knowledge required; evidence/justification for the inferred depth; assessment evidence where available; and uncertainty/review status where evidence is insufficient (§3.7).
+
+**Authority boundary:** the actual Unit 202 Depth & Performance Matrix is authored and approved by the Project Architect/ChatGPT and Product Owner. Claude Code does not decide or populate its substantive learning-depth judgments. Claude may later implement the approved representation, encode the approved matrix, mechanically validate it, trace mappings, report omissions/conflicts, and prepare source/evidence inventories — but must not independently replace, expand, narrow or reinterpret the approved depth judgments (see [`docs/governance/ROLES-AND-AUTHORITY.md`](../governance/ROLES-AND-AUTHORITY.md)). Existing Unit 202 assertions, capabilities, lesson content, schemas, mappings and previous implementation effort do not determine the required depth, required performance, or knowledge decomposition, and must not be cited as evidence that a depth requirement is already satisfied — they may be assessed for reuse only after the independent depth/performance and target-architecture decisions have been made (see [`docs/governance/ROLES-AND-AUTHORITY.md`](../governance/ROLES-AND-AUTHORITY.md) "Reuse-assessment sequencing").
+
+**Production sequence after matrix approval:**
+
+```text
+authoritative C&G curriculum
+→ approved Depth & Performance Matrix
+→ identify required knowledge
+→ locate suitable authoritative/public technical references
+→ establish governed reusable domain knowledge with provenance
+→ canonical rich lesson/storyboard
+→ assessment
+→ runtime / Guided Revision
+```
+
+The matrix determines what knowledge must be supported; the next sourcing stage then locates suitable authoritative/open references for that required knowledge. LLM knowledge is never substituted where authoritative evidence is missing (see [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md) "Provenance and source integrity"). Governed knowledge identified this way is normally reusable domain knowledge, not course-owned (see [`docs/governance/PROJECT-CONSTITUTION.md`](../governance/PROJECT-CONSTITUTION.md) "Knowledge principle").
 
 ## 5. One canonical V1 lesson route
 
