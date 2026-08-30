@@ -58,6 +58,20 @@ export interface V1LearningPackageReport {
   danglingRevisionLessonRefs: string[];
   /** CANONICAL_FIXED_ROUTE lessons containing a step classified POST_V1_ADAPTIVE (schema already blocks non-required steps there; this independently re-verifies the step-TYPE classification too, since a POST_V1_ADAPTIVE step marked `required` would slip past that gate alone). */
   postV1StepTypesInCanonicalRoute: string[];
+  /**
+   * CC-13C.2B: a step adopting `contentBlocks` (governed rich teaching
+   * content) declares neither `teaches` nor `reinforces` -- i.e. it is
+   * presented as governed teaching content while claiming no governed
+   * section-level teaching/reinforcement ownership at all. This is a
+   * MECHANICAL check only: it proves the step is BOUND to a governed
+   * target, never that the authored prose actually expresses that target
+   * without adding unsupported knowledge -- confirming THAT remains
+   * HUMAN/PROJECT-ARCHITECT REVIEW, not automatable (no NLP/semantic
+   * checking is introduced here). Excludes `orientation`/`recap` steps,
+   * whose existing pedagogical role legitimately permits orienting/
+   * recapping without teaching new governed knowledge.
+   */
+  richContentStepsWithoutGovernedOwnership: string[];
 }
 
 function computeReport(overrides?: { readonly lessons?: readonly LessonPlan[] }): V1LearningPackageReport {
@@ -95,7 +109,15 @@ function computeReport(overrides?: { readonly lessons?: readonly LessonPlan[] })
   const offSyllabusRequiredKnowledge: string[] = [];
   const requiredKnowledgeFromUndeclaredOtherLesson: string[] = [];
   const postV1StepTypesInCanonicalRoute: string[] = [];
+  const richContentStepsWithoutGovernedOwnership: string[] = [];
   let lessonsWithRoutePolicy = 0;
+
+  // CC-13C.2B: step types whose existing pedagogical role legitimately
+  // permits orienting/recapping without teaching or reinforcing any new
+  // governed knowledge -- the only exemption from the ownership check
+  // below. Not the same set as `POST_V1_ADAPTIVE_STEP_TYPES` (a different
+  // axis entirely: V1-route eligibility, not teaching-ownership).
+  const RICH_CONTENT_OWNERSHIP_EXEMPT_TYPES = new Set(["orientation", "recap"]);
 
   for (const lesson of manifest.lessons) {
     if (lesson.routePolicy) lessonsWithRoutePolicy++;
@@ -109,6 +131,21 @@ function computeReport(overrides?: { readonly lessons?: readonly LessonPlan[] })
     for (const step of lesson.steps) {
       if (lesson.routePolicy === "CANONICAL_FIXED_ROUTE" && classifyV1StepRole(step.type) === "POST_V1_ADAPTIVE") {
         postV1StepTypesInCanonicalRoute.push(`${lesson.id}.${step.id}: step type '${step.type}' is POST_V1_ADAPTIVE but lesson declares routePolicy CANONICAL_FIXED_ROUTE`);
+      }
+
+      // CC-13C.2B: recognise `contentBlocks` as substantive authored
+      // teaching content (never treated as "short/fragmented" merely
+      // because the LEGACY assertion-derived body-text path would have
+      // been short -- contentBlocks bypasses that path entirely, and this
+      // validator never inspects resolved body-text length at all, so
+      // there is nothing further to gate there). What IS gated: a
+      // contentBlocks step presented as governed teaching while declaring
+      // no governed section-level teaching/reinforcement ownership,
+      // unless its step type is a legitimate orientation/recap exemption.
+      if (step.contentBlocks !== undefined && !RICH_CONTENT_OWNERSHIP_EXEMPT_TYPES.has(step.type) && step.teaches.length === 0 && step.reinforces.length === 0) {
+        richContentStepsWithoutGovernedOwnership.push(
+          `${lesson.id}.${step.id}: step type '${step.type}' adopts contentBlocks but declares neither teaches nor reinforces -- rich teaching content must remain bound to a governed section-level teaching/reinforcement target (mechanically checked here; that the prose actually expresses that target without adding unsupported knowledge remains Project Architect review, not automatable)`,
+        );
       }
 
       if (step.questionBlueprintId) {
@@ -162,6 +199,7 @@ function computeReport(overrides?: { readonly lessons?: readonly LessonPlan[] })
     requiredKnowledgeFromUndeclaredOtherLesson,
     danglingRevisionLessonRefs,
     postV1StepTypesInCanonicalRoute,
+    richContentStepsWithoutGovernedOwnership,
   };
 }
 
@@ -170,7 +208,8 @@ export function isReportClean(report: V1LearningPackageReport): boolean {
     report.offSyllabusRequiredKnowledge.length === 0 &&
     report.requiredKnowledgeFromUndeclaredOtherLesson.length === 0 &&
     report.danglingRevisionLessonRefs.length === 0 &&
-    report.postV1StepTypesInCanonicalRoute.length === 0
+    report.postV1StepTypesInCanonicalRoute.length === 0 &&
+    report.richContentStepsWithoutGovernedOwnership.length === 0
   );
 }
 
@@ -185,6 +224,7 @@ function formatReport(report: V1LearningPackageReport): string {
     ["Required knowledge from an undeclared other lesson", report.requiredKnowledgeFromUndeclaredOtherLesson],
     ["Dangling FORMATIVE_MOCK revisionLessonIds", report.danglingRevisionLessonRefs],
     ["POST_V1_ADAPTIVE step types inside a CANONICAL_FIXED_ROUTE lesson", report.postV1StepTypesInCanonicalRoute],
+    ["contentBlocks steps with no governed teaching/reinforcement ownership", report.richContentStepsWithoutGovernedOwnership],
   ];
   for (const [label, items] of gateGroups) {
     lines.push(`${label} (target 0): ${items.length}`);

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
+import type { LessonStep } from "@alp/content-schema";
 import { computeLessonContentDependencies } from "./content-dependencies.ts";
-import { SYNTHETIC_MAIN_LESSON, SYNTH_CORE_CAPABILITY, SYNTH_MISCONCEPTION_ID, SYNTH_PREREQ_FAMILY } from "./test-fixtures.ts";
+import { buildLesson, buildStep, SYNTHETIC_MAIN_LESSON, SYNTH_CORE_CAPABILITY, SYNTH_MISCONCEPTION_ID, SYNTH_PREREQ_FAMILY } from "./test-fixtures.ts";
 
 describe("computeLessonContentDependencies", () => {
   const manifest = computeLessonContentDependencies(SYNTHETIC_MAIN_LESSON);
@@ -60,5 +61,67 @@ describe("computeLessonContentDependencies", () => {
   it("round-trips through JSON with no loss (plain serializable data)", () => {
     const roundTripped = JSON.parse(JSON.stringify(manifest));
     expect(roundTripped).toEqual(manifest);
+  });
+});
+
+describe("computeLessonContentDependencies -- CC-13C.2B contentBlocks references", () => {
+  const richStep: LessonStep = buildStep({
+    id: "rich",
+    type: "concept_explanation",
+    mayRevealTargetAnswer: false,
+    contentBlocks: [
+      { type: "paragraph", text: "Some governed teaching prose." },
+      { type: "formula", formulaFamilyId: "synth.formula_family" },
+      { type: "worked_example", workedExampleBlueprintId: "synth.worked_example" },
+      { type: "visual", source: { kind: "diagram", diagramBlueprintId: "synth.diagram" } },
+      { type: "visual", source: { kind: "visual_aid", visualAidBlueprintId: "synth.visual_aid" } },
+      { type: "callout", variant: "key_point", text: "A key point." },
+    ],
+  });
+  const lessonWithRichStep = buildLesson({
+    id: "lesson.synthetic.rich-blocks",
+    targetAssertionFamilyIds: ["synth.target_skill"],
+    targetCapabilityIds: [SYNTH_CORE_CAPABILITY],
+    steps: [richStep, buildStep({ id: "end", type: "exit_completion" })],
+    completionCriteria: {
+      requiredStepIds: ["rich", "end"],
+      requiredCapabilityEvidence: [SYNTH_CORE_CAPABILITY],
+      masteryGateCapabilityIds: [SYNTH_CORE_CAPABILITY],
+      requiresRemediationClearance: true,
+      exitSummary: "synthetic rich-blocks completion",
+    },
+  });
+
+  it("includes the formula family referenced by a formula content block", () => {
+    const manifest = computeLessonContentDependencies(lessonWithRichStep);
+    expect(manifest.formulaFamilyIds).toContain("synth.formula_family");
+  });
+
+  it("includes the worked-example blueprint referenced by a worked_example content block", () => {
+    const manifest = computeLessonContentDependencies(lessonWithRichStep);
+    expect(manifest.workedExampleBlueprintIds).toContain("synth.worked_example");
+  });
+
+  it("includes the diagram blueprint referenced by a visual content block's diagram source", () => {
+    const manifest = computeLessonContentDependencies(lessonWithRichStep);
+    expect(manifest.diagramBlueprintIds).toContain("synth.diagram");
+  });
+
+  it("includes the visual-aid blueprint referenced by a visual content block's visual_aid source", () => {
+    const manifest = computeLessonContentDependencies(lessonWithRichStep);
+    expect(manifest.visualAidBlueprintIds).toContain("synth.visual_aid");
+  });
+
+  it("each contentBlocks reference appears exactly once (deduplicated), even though the legacy SYNTHETIC_MAIN_LESSON fixture also exercises the same categories via representation", () => {
+    const manifest = computeLessonContentDependencies(lessonWithRichStep);
+    expect(manifest.formulaFamilyIds.filter((id) => id === "synth.formula_family")).toHaveLength(1);
+  });
+
+  it("does not change legacy representation dependency behaviour: the pre-existing SYNTHETIC_MAIN_LESSON fixture (no contentBlocks anywhere) resolves identically to before", () => {
+    const manifest = computeLessonContentDependencies(SYNTHETIC_MAIN_LESSON);
+    expect(manifest.formulaFamilyIds).toEqual([]);
+    expect(manifest.workedExampleBlueprintIds).toEqual([]);
+    expect(manifest.visualAidBlueprintIds).toEqual([]);
+    expect(manifest.diagramBlueprintIds).toEqual([]);
   });
 });

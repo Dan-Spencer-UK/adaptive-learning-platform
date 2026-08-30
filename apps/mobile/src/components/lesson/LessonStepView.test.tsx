@@ -1,5 +1,6 @@
 import { fireEvent, render } from "@testing-library/react-native";
 import { evaluateAnswer, type GeneratedQuestionInstance } from "@alp/calculation-engine";
+import type { LessonPlan, LessonStep } from "@alp/content-schema";
 
 import { generateLessonQuestion } from "@/lib/lesson-content/generate-lesson-question";
 import { bundledContentReleaseId, getLocalLesson } from "@/lib/lesson-content/local-content-registry";
@@ -441,5 +442,129 @@ describe("LessonStepView", () => {
         expect(evaluation.correct).toBe(true);
       }
     });
+  });
+});
+
+// CC-13C.2B: synthetic fixture only -- no real Unit 202 lesson gains
+// contentBlocks. Real governed ids are referenced from a synthetic step
+// object (LOOKUP already carries every blueprint the whole bundled release
+// references, per resolve-lesson-step.test.ts's own header comment).
+describe("LessonStepView -- CC-13C.2B rich teaching content blocks", () => {
+  const richStep: LessonStep = {
+    id: "step.rich",
+    type: "concept_explanation",
+    purpose: "Synthetic CC-13C.2B rich teaching step fixture.",
+    requirement: "required",
+    teaches: [],
+    reinforces: [],
+    tests: [],
+    capabilityIds: [],
+    misconceptionTargets: [],
+    representation: {},
+    learnerFacingHeading: "Voltage, current and resistance",
+    contentBlocks: [
+      { type: "paragraph", text: "Voltage, current and resistance are the three core electrical quantities." },
+      { type: "paragraph", text: "Voltage drives current around a circuit; resistance opposes that flow." },
+      { type: "visual", source: { kind: "diagram", diagramBlueprintId: "circuit.series_resistors" } },
+      { type: "list", style: "unordered", items: ["Identify voltage.", "Identify current.", "Identify resistance."] },
+      { type: "formula", formulaFamilyId: "formula.ohms_law" },
+      { type: "worked_example", workedExampleBlueprintId: "worked.ohms_law.solve_voltage" },
+      { type: "callout", variant: "caution", text: "Do not confuse resistance with resistivity." },
+    ],
+    presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false },
+    scaffoldingLevel: "guided",
+    cognitiveDemand: "introductory",
+    feedback: { mode: "immediate", explainWhy: true },
+    completionCondition: "view_acknowledged",
+    branchRoutes: [],
+    evidenceEmitted: [],
+    mayRevealTargetAnswer: false,
+  };
+  const syntheticLesson: LessonPlan = { ...LESSON_OHMS_LAW, steps: [richStep] };
+
+  it("renders the learnerFacingHeading with heading accessibility semantics", async () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const { getByRole } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    expect(getByRole("header", { name: "Voltage, current and resistance" })).toBeTruthy();
+  });
+
+  it("renders every paragraph block's text", async () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const { getByText } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    expect(getByText("Voltage, current and resistance are the three core electrical quantities.")).toBeTruthy();
+    expect(getByText("Voltage drives current around a circuit; resistance opposes that flow.")).toBeTruthy();
+  });
+
+  it("renders the list block's items with list accessibility semantics", async () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const { getByText, getByTestId } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    expect(getByTestId("content-block-list").props.accessibilityRole).toBe("list");
+    expect(getByText("Identify voltage.")).toBeTruthy();
+    expect(getByText("Identify current.")).toBeTruthy();
+    expect(getByText("Identify resistance.")).toBeTruthy();
+  });
+
+  it("renders the callout block with its variant communicated in the accessible label, not colour alone", async () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const { getByLabelText } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    expect(getByLabelText(/^Caution: Do not confuse resistance with resistivity\.$/)).toBeTruthy();
+  });
+
+  it("renders the formula block's forms via the real FormulaEquation component", async () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const { getAllByLabelText } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    // "V equals I times R" legitimately appears twice: once as the standalone
+    // formula block's own raw-form display, and again as the FIRST row of the
+    // separate worked_example block's substitution (its own governed formula
+    // display before substituting values) -- both are real, distinct governed
+    // content blocks, not a rendering bug.
+    expect(getAllByLabelText("V equals I times R").length).toBeGreaterThanOrEqual(1);
+    expect(getAllByLabelText("I equals V divided by R")).toHaveLength(1);
+    expect(getAllByLabelText("R equals V divided by I")).toHaveLength(1);
+  });
+
+  it("renders the worked_example block's substitution from the blueprint's own governed teaching values", async () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const { getByText } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    // Governed teachingValues { I: 4, R: 6 } -> V = 24 (same worked example blueprint as the legacy-representation test above).
+    expect(getByText(/24/)).toBeTruthy();
+  });
+
+  it("renders the diagram-source visual block via the real DiagramRenderer", async () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const { getByLabelText } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    expect(getByLabelText(/Series circuit diagram with/)).toBeTruthy();
+  });
+
+  it("does NOT render any legacy body-statement text for a step with contentBlocks (no double-rendering)", async () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const { queryByText } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    // A real assertion statement this fixture never references -- proves resolveBodyStatements() was never consulted.
+    expect(queryByText(LOOKUP.assertionStatements["EL-OHM-RELATIONSHIP-001"]!)).toBeNull();
+  });
+
+  it("legacy step (no learnerFacingHeading, no contentBlocks) renders exactly as before -- no heading, only sectionLabel and legacy body copy", async () => {
+    const resolved = resolveLessonStep(LESSON_OHMS_LAW, "introduce_relationship", LOOKUP);
+    const { queryByRole, getByText } = await render(
+      <LessonStepView resolved={resolved} questionInstance={null} evaluation={null} revealCorrectAnswer={false} onSubmit={jest.fn()} onContinue={jest.fn()} />,
+    );
+    expect(queryByRole("header", { name: /Voltage, current and resistance/ })).toBeNull();
+    expect(getByText(LOOKUP.assertionStatements["EL-OHM-RELATIONSHIP-001"]!)).toBeTruthy();
   });
 });

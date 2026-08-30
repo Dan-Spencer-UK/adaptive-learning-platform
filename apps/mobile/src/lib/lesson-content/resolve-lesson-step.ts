@@ -19,6 +19,28 @@
  */
 import type { DiagramBlueprint, FormulaFamily, LessonPlan, LessonStep, QuestionBlueprint, VisualAidBlueprint, WorkedExampleBlueprint } from "@alp/content-schema";
 
+/**
+ * CC-13C.2B: one resolved rich teaching content block -- everything a
+ * native component needs to render it, with every governed-content
+ * reference already resolved to the real object (never left as a bare id
+ * for a component to look up itself, matching this module's own "React
+ * components consume this, never search raw corpus structures ad hoc"
+ * discipline). A discriminated union on `type` mirrors the governed
+ * `LessonStepContentBlock` union exactly.
+ */
+export type ResolvedContentBlock =
+  | { readonly type: "paragraph"; readonly text: string }
+  | { readonly type: "list"; readonly style: "ordered" | "unordered"; readonly items: readonly string[] }
+  | {
+      readonly type: "visual";
+      readonly source:
+        | { readonly kind: "diagram"; readonly diagram: DiagramBlueprint; readonly diagramParameters?: Readonly<Record<string, string | number | boolean>> }
+        | { readonly kind: "visual_aid"; readonly visualAid: VisualAidBlueprint; readonly formulaFamily: FormulaFamily };
+    }
+  | { readonly type: "formula"; readonly formulaFamily: FormulaFamily }
+  | { readonly type: "worked_example"; readonly workedExample: WorkedExampleBlueprint; readonly formulaFamily: FormulaFamily }
+  | { readonly type: "callout"; readonly variant: "key_point" | "definition" | "caution"; readonly text: string };
+
 export interface ContentLookup {
   readonly questionBlueprints: readonly QuestionBlueprint[];
   readonly formulaFamilies: readonly FormulaFamily[];
@@ -35,8 +57,12 @@ export interface RenderableLessonStep {
   readonly step: LessonStep;
   /** Pure UI microcopy describing the step's structural role -- never a factual claim. */
   readonly sectionLabel: string;
-  /** Real governed learner-facing text: assertion statements this step teaches/reinforces/tests, or the lesson's own learnerFacingDescription/exitSummary for steps with no direct assertion references. */
+  /** CC-13C.2B: this step's authored learner-facing section heading (`step.learnerFacingHeading`), or null for a legacy step that has none -- DIFFERENT from `sectionLabel` above, which is always-present structural microcopy, never a factual/authored claim. */
+  readonly learnerFacingHeading: string | null;
+  /** Real governed learner-facing text: assertion statements this step teaches/reinforces/tests, or the lesson's own learnerFacingDescription/exitSummary for steps with no direct assertion references. Empty when `contentBlocks` is present -- the two paths never both render for the same step. */
   readonly bodyStatements: readonly string[];
+  /** CC-13C.2B: this step's resolved, ordered rich teaching content blocks, or null when `step.contentBlocks` is absent (the legacy `bodyStatements` + `representation` path is authoritative instead). Never both non-empty/non-null for the same step. */
+  readonly contentBlocks: readonly ResolvedContentBlock[] | null;
   readonly formulaFamily: FormulaFamily | null;
   readonly workedExample: WorkedExampleBlueprint | null;
   readonly visualAid: VisualAidBlueprint | null;
@@ -77,19 +103,102 @@ function resolveBodyStatements(lesson: LessonPlan, step: LessonStep, lookup: Con
   return [];
 }
 
+/**
+ * Looks up a governed content id and FAILS LOUDLY if it does not resolve --
+ * matching this codebase's established "the learner runtime fails loudly
+ * rather than falling back to app-side constants" discipline (CC-06D,
+ * Correction C) for content that is REQUIRED for a `contentBlocks` block
+ * to mean anything. By the time this runs on-device the id has already
+ * been proven to exist by `generate-mobile-projection.ts`'s own
+ * fail-loudly `pickAll()` at build time -- a failure here means the
+ * resolved `ContentLookup` passed in is itself incomplete/wrong, not that
+ * the governed corpus is missing the content.
+ */
+function mustFind<T extends { id: string }>(records: readonly T[], id: string, kind: string): T {
+  const record = records.find((r) => r.id === id);
+  if (!record) throw new Error(`content block references unknown ${kind} '${id}' -- not present in the resolved content lookup`);
+  return record;
+}
+
+/**
+ * CC-13C.2B: resolves `step.contentBlocks` (if present) into the ordered
+ * collection of `ResolvedContentBlock`s a native component renders --
+ * paragraph/list/callout text passes through verbatim; formula resolves
+ * through the existing `FormulaFamily` lookup; worked_example through the
+ * existing `WorkedExampleBlueprint` lookup (and its OWN declared
+ * `formulaFamilyId`, exactly as the legacy worked-example representation
+ * already requires both to render); diagram-source visual through the
+ * existing `DiagramBlueprint` lookup; visual_aid-source visual through the
+ * existing `VisualAidBlueprint` lookup (and its OWN declared
+ * `formulaFamilyId`, exactly as the legacy `VirTriangle` rendering already
+ * requires both). Block order is preserved EXACTLY -- never sorted/
+ * regrouped by type. Returns null when `step.contentBlocks` is absent
+ * (the legacy path is authoritative instead) -- deliberately checked with
+ * `!== undefined`, never `?.length`, so a schema-invalid empty array (which
+ * should never reach this function in practice, since the schema already
+ * rejects it) is never silently reinterpreted as "absent".
+ */
+function resolveContentBlocks(step: LessonStep, lookup: ContentLookup): readonly ResolvedContentBlock[] | null {
+  if (step.contentBlocks === undefined) return null;
+
+  return step.contentBlocks.map((block): ResolvedContentBlock => {
+    switch (block.type) {
+      case "paragraph":
+        return { type: "paragraph", text: block.text };
+      case "list":
+        return { type: "list", style: block.style, items: block.items };
+      case "callout":
+        return { type: "callout", variant: block.variant, text: block.text };
+      case "formula":
+        return { type: "formula", formulaFamily: mustFind(lookup.formulaFamilies, block.formulaFamilyId, "formula family") };
+      case "worked_example": {
+        const workedExample = mustFind(lookup.workedExampleBlueprints, block.workedExampleBlueprintId, "worked example blueprint");
+        const formulaFamily = mustFind(lookup.formulaFamilies, workedExample.formulaFamilyId, "formula family");
+        return { type: "worked_example", workedExample, formulaFamily };
+      }
+      case "visual":
+        if (block.source.kind === "diagram") {
+          return {
+            type: "visual",
+            source: {
+              kind: "diagram",
+              diagram: mustFind(lookup.diagramBlueprints, block.source.diagramBlueprintId, "diagram blueprint"),
+              diagramParameters: block.source.diagramParameters,
+            },
+          };
+        }
+        {
+          const visualAid = mustFind(lookup.visualAidBlueprints, block.source.visualAidBlueprintId, "visual aid blueprint");
+          const formulaFamily = mustFind(lookup.formulaFamilies, visualAid.formulaFamilyId, "formula family");
+          return { type: "visual", source: { kind: "visual_aid", visualAid, formulaFamily } };
+        }
+    }
+  });
+}
+
 /** Resolves one governed LessonStep against the given lesson and local content lookup into everything a native component needs to render it. */
 export function resolveLessonStep(lesson: LessonPlan, stepId: string, lookup: ContentLookup): RenderableLessonStep {
   const step = lesson.steps.find((s) => s.id === stepId);
   if (!step) throw new Error(`Lesson '${lesson.id}' has no step '${stepId}'`);
 
+  // CC-13C.2B migration rule: presence of contentBlocks is the sole
+  // authoritative rendering path for the step -- the legacy bodyStatements/
+  // representation resolution is never ALSO computed/rendered for the same
+  // step (the schema's own superRefine already makes this mutually
+  // exclusive by construction: a step with contentBlocks cannot also
+  // declare a conflicting legacy representation field).
+  const resolvedContentBlocks = resolveContentBlocks(step, lookup);
+
   return {
     step,
     sectionLabel: SECTION_LABELS[step.type],
-    bodyStatements: resolveBodyStatements(lesson, step, lookup),
-    formulaFamily: find(lookup.formulaFamilies, step.representation.formulaFamilyId),
-    workedExample: find(lookup.workedExampleBlueprints, step.representation.workedExampleBlueprintId),
-    visualAid: find(lookup.visualAidBlueprints, step.representation.visualAidBlueprintId),
-    diagram: find(lookup.diagramBlueprints, step.representation.diagramBlueprintId),
+    learnerFacingHeading: step.learnerFacingHeading ?? null,
+    bodyStatements: resolvedContentBlocks ? [] : resolveBodyStatements(lesson, step, lookup),
+    contentBlocks: resolvedContentBlocks,
+    formulaFamily: resolvedContentBlocks ? null : find(lookup.formulaFamilies, step.representation.formulaFamilyId),
+    workedExample: resolvedContentBlocks ? null : find(lookup.workedExampleBlueprints, step.representation.workedExampleBlueprintId),
+    visualAid: resolvedContentBlocks ? null : find(lookup.visualAidBlueprints, step.representation.visualAidBlueprintId),
+    diagram: resolvedContentBlocks ? null : find(lookup.diagramBlueprints, step.representation.diagramBlueprintId),
     questionBlueprint: find(lookup.questionBlueprints, step.questionBlueprintId),
     misconceptionDescriptions: lookup.misconceptionDescriptions,
   };

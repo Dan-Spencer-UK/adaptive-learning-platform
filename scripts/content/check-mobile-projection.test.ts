@@ -23,6 +23,8 @@ import {
   lessonPlanManifestSchema,
   mobileContentProjectionSchema,
   pedagogyManifestSchema,
+  type LessonPlan,
+  type LessonStep,
 } from "@alp/content-schema";
 
 import { cc04Unit202ElectricalScience } from "./data/cc04-unit202-electrical-science.ts";
@@ -297,6 +299,75 @@ describe("generated mobile content projection", () => {
     );
     // The whole projection still validates against its governed schema.
     expect(() => mobileContentProjectionSchema.parse(projection)).not.toThrow();
+  });
+
+  // CC-13C.2B: no real Unit 202/foundation lesson gains contentBlocks in
+  // this package -- this is a synthetic, isolated lesson/release proving
+  // the dependency-walker's own new contribution mechanically, entirely
+  // separate from the real bundled release's own membership.
+  it("CC-13C.2B: a synthetic lesson's contentBlocks references cause the referenced governed formula/worked-example/diagram/visual-aid dependencies to be included in the projection, exactly once each", () => {
+    const inputs = realInputs();
+    const richStep: LessonStep = {
+      id: "step.rich",
+      type: "concept_explanation",
+      purpose: "Synthetic CC-13C.2B projection-dependency proof step.",
+      requirement: "required",
+      teaches: [],
+      reinforces: [],
+      tests: [],
+      capabilityIds: [],
+      misconceptionTargets: [],
+      representation: {},
+      contentBlocks: [
+        { type: "paragraph", text: "Synthetic proof paragraph." },
+        { type: "formula", formulaFamilyId: "formula.ohms_law" },
+        { type: "worked_example", workedExampleBlueprintId: "worked.ohms_law.solve_voltage" },
+        { type: "visual", source: { kind: "diagram", diagramBlueprintId: "circuit.series_resistors" } },
+        { type: "visual", source: { kind: "visual_aid", visualAidBlueprintId: "mnemonic.vir_triangle" } },
+      ],
+      presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false },
+      scaffoldingLevel: "guided",
+      cognitiveDemand: "introductory",
+      feedback: { mode: "immediate", explainWhy: true },
+      completionCondition: "view_acknowledged",
+      branchRoutes: [],
+      evidenceEmitted: [],
+      mayRevealTargetAnswer: false,
+    };
+    const syntheticLesson: LessonPlan = {
+      schemaVersion: 1,
+      version: 1,
+      id: "lesson.synthetic.content-blocks-dependency-proof",
+      title: "Synthetic content-blocks dependency proof",
+      learnerFacingDescription: "Synthetic fixture for CC-13C.2B's projection/dependency test.",
+      curriculumUnit: "synthetic.fixtures",
+      prerequisiteKnowledge: [],
+      targetAssertionFamilyIds: ["electrical.ohms_law"],
+      targetAssertionIdentifiers: [],
+      targetCapabilityIds: ["cap.ohms_law.recognise_relationship"],
+      remediationEligibility: [],
+      estimatedDurationMinutes: 5,
+      instructionalStrategy: "synthetic",
+      steps: [richStep],
+      misconceptionTargets: [],
+      retrievalTags: [],
+      completionCriteria: {
+        requiredStepIds: ["step.rich"],
+        requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+        masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
+        requiresRemediationClearance: true,
+        exitSummary: "Synthetic completion summary.",
+      },
+      presentationModes: ["learn"],
+      contentRelease: inputs.release.id,
+    };
+    const release = { ...inputs.release, lessons: [{ lessonId: syntheticLesson.id, lessonVersion: syntheticLesson.version }] };
+    const projection = buildMobileContentProjection({ ...inputs, release, allLessons: [syntheticLesson] });
+
+    expect(projection.formulaFamilies.map((f) => f.id)).toEqual(["formula.ohms_law"]);
+    expect(projection.workedExampleBlueprints.map((w) => w.id)).toEqual(["worked.ohms_law.solve_voltage"]);
+    expect(projection.diagramBlueprints.map((d) => d.id)).toEqual(["circuit.series_resistors"]);
+    expect(projection.visualAidBlueprints.map((v) => v.id)).toEqual(["mnemonic.vir_triangle"]);
   });
 
   it("FAILS LOUDLY when a release member references governed content that does not exist", () => {

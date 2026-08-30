@@ -129,6 +129,15 @@ export function classifyV1StepRole(type: LessonStepType): "V1_ORDINARY" | "POST_
 // content. All optional: a given step only references what it needs.
 // ---------------------------------------------------------------------
 
+/**
+ * Shared shape for a pure TEACHING diagram instance's explicit parameter
+ * overrides -- used both by the legacy `representation.diagramParameters`
+ * field below and by a `contentBlocks` diagram-visual block's own
+ * `source.diagramParameters` (CC-13C.2B), so the two paths reuse exactly
+ * one parameter shape rather than defining it twice.
+ */
+const diagramParametersSchema = z.record(z.string().min(1), z.union([z.string(), z.number(), z.boolean()]));
+
 export const stepRepresentationRefsSchema = z.object({
   formulaFamilyId: stableId.optional(),
   diagramBlueprintId: stableId.optional(),
@@ -147,9 +156,123 @@ export const stepRepresentationRefsSchema = z.object({
    * engine-computed parameters instead, exactly as before -- this field
    * is never consulted in that case.
    */
-  diagramParameters: z.record(z.string().min(1), z.union([z.string(), z.number(), z.boolean()])).optional(),
+  diagramParameters: diagramParametersSchema.optional(),
 });
 export type StepRepresentationRefs = z.infer<typeof stepRepresentationRefsSchema>;
+
+// ---------------------------------------------------------------------
+// CC-13C.2B (Remediation Package 2 -- LESSON-DEPTH-AND-FRAGMENTATION-
+// REGISTER.md §3's confirmed P0 finding, implementing the Project
+// Architect's corrected design over the CC-13C.2A reconnaissance):
+// governed, ordered, structured rich teaching content blocks a
+// `LessonStep` may optionally carry, so a semantic teaching section is no
+// longer limited to the deduplicated one-sentence assertion `statement`
+// strings `resolveBodyStatements()` reconstructs at runtime. A `LessonStep`
+// remains one semantic learning section, not a viewport -- it may scroll
+// over multiple screen heights (ScrollableLessonStep.tsx already renders
+// this generically; this package does not touch it).
+//
+// The approved V1 block families are EXACTLY: paragraph, list, visual,
+// formula, worked_example, callout -- no other family, no `subheading`
+// block, no Markdown/HTML/rich-text blob, no inline rich-text span system.
+// A discriminated union (`type`) makes every block shape unambiguous by
+// construction; every governed-content-bearing block reuses an EXISTING
+// governed reference (formula family / worked-example blueprint / diagram
+// blueprint / visual-aid blueprint from ./pedagogy.ts) -- never a new
+// parallel content type.
+//
+// Produced artwork / `ProductionVisualAsset` runtime resolution is
+// DELIBERATELY NOT integrated here -- the visual block supports only the
+// two visual forms the CURRENT runtime already governs and renders
+// (deterministic diagrams and governed visual aids). The real
+// `VisualRequirement` -> `ReferenceDossier` -> `ProductionVisualAsset`
+// authority chain is Packages 3-5's job; this package reserves no fake
+// runtime path for it.
+// ---------------------------------------------------------------------
+
+export const paragraphContentBlockSchema = z.object({
+  type: z.literal("paragraph"),
+  /** Plain text only -- no Markdown/HTML/inline spans/embedded-resource syntax. Multiple paragraph blocks provide paragraph structure. */
+  text: z.string().min(1),
+});
+export type ParagraphContentBlock = z.infer<typeof paragraphContentBlockSchema>;
+
+export const listContentBlockSchema = z.object({
+  type: z.literal("list"),
+  style: z.enum(["ordered", "unordered"]),
+  /** At least one item, every item non-empty plain text. No nesting in V1. */
+  items: z.array(z.string().min(1)).min(1),
+});
+export type ListContentBlock = z.infer<typeof listContentBlockSchema>;
+
+/**
+ * A nested discriminated union for the visual block's SOURCE (rather than
+ * several optional ids plus an XOR `superRefine`) -- the choice between a
+ * deterministic diagram and a governed visual aid is unambiguous by
+ * construction. `diagramParameters` reuses the EXACT existing shape from
+ * `stepRepresentationRefsSchema` above (`diagramParametersSchema`), never
+ * a redefinition.
+ */
+export const visualContentBlockSourceSchema = z.discriminatedUnion("kind", [
+  z.object({
+    kind: z.literal("diagram"),
+    diagramBlueprintId: stableId,
+    diagramParameters: diagramParametersSchema.optional(),
+  }),
+  z.object({
+    kind: z.literal("visual_aid"),
+    visualAidBlueprintId: stableId,
+  }),
+]);
+export type VisualContentBlockSource = z.infer<typeof visualContentBlockSourceSchema>;
+
+export const visualContentBlockSchema = z.object({
+  type: z.literal("visual"),
+  source: visualContentBlockSourceSchema,
+});
+export type VisualContentBlock = z.infer<typeof visualContentBlockSchema>;
+
+/** Reuses `FormulaFamily`/`formulaFamilyId` semantics EXACTLY (./pedagogy.ts) -- the existing rendering behaviour (every declared form for the family is shown, per `LessonStepView.tsx`'s CC-12H fix) is preserved for this block too; no free-form `target` selector is introduced because no typed per-form selector mechanism exists on the family today. */
+export const formulaContentBlockSchema = z.object({
+  type: z.literal("formula"),
+  formulaFamilyId: stableId,
+});
+export type FormulaContentBlock = z.infer<typeof formulaContentBlockSchema>;
+
+/** Reuses the existing `WorkedExampleBlueprint` exactly -- never embeds copied worked-example steps inside the block. */
+export const workedExampleContentBlockSchema = z.object({
+  type: z.literal("worked_example"),
+  workedExampleBlueprintId: stableId,
+});
+export type WorkedExampleContentBlock = z.infer<typeof workedExampleContentBlockSchema>;
+
+/**
+ * Exactly key_point | definition | caution -- no generic `note` variant.
+ * key_point = important teaching relationship/fact; definition = concise
+ * governed meaning of a term/concept; caution = misconception/common
+ * error/limitation/genuine caution. Presentation must be semantic and
+ * accessible -- never colour-only for the variant (enforced by the
+ * renderer, not this schema).
+ */
+export const calloutVariantSchema = z.enum(["key_point", "definition", "caution"]);
+export type CalloutVariant = z.infer<typeof calloutVariantSchema>;
+
+export const calloutContentBlockSchema = z.object({
+  type: z.literal("callout"),
+  variant: calloutVariantSchema,
+  text: z.string().min(1),
+});
+export type CalloutContentBlock = z.infer<typeof calloutContentBlockSchema>;
+
+export const lessonStepContentBlockSchema = z.discriminatedUnion("type", [
+  paragraphContentBlockSchema,
+  listContentBlockSchema,
+  visualContentBlockSchema,
+  formulaContentBlockSchema,
+  workedExampleContentBlockSchema,
+  calloutContentBlockSchema,
+]);
+export type LessonStepContentBlock = z.infer<typeof lessonStepContentBlockSchema>;
 
 /**
  * The DO -> RESPOND -> FEEDBACK -> NEXT contract (ARCH-003 §7/§16):
@@ -242,6 +365,32 @@ export const lessonStepSchema = z.object({
   misconceptionTargets: z.array(misconceptionMappingManifestSchema).default([]),
   representation: stepRepresentationRefsSchema.default({}),
   questionBlueprintId: stableId.optional(),
+
+  /**
+   * CC-13C.2B: this step's own learner-facing section heading -- DIFFERENT
+   * from `semanticUnit` below, which is governance/authoring metadata and
+   * must never be rendered as learner copy. Optional: a legacy step
+   * without this renders exactly as before, using its existing
+   * pedagogical-role-derived `sectionLabel` (`resolve-lesson-step.ts`'s
+   * `SECTION_LABELS`) alone. Uses normal RN accessibility heading
+   * semantics at render time; no nested heading levels, no heading block
+   * system.
+   */
+  learnerFacingHeading: z.string().min(1).optional(),
+
+  /**
+   * CC-13C.2B: ordered, governed rich teaching content blocks (see the
+   * block schemas above `stepRepresentationRefsSchema`) -- optional for
+   * migration. PRESENCE SEMANTICS are load-bearing: ABSENT means the
+   * legacy rendering path (`resolveBodyStatements()` + `representation`);
+   * PRESENT means at least one block (enforced by `.min(1)` -- an explicit
+   * empty array is REJECTED, never silently treated as "absent") and this
+   * new path is the SOLE authoritative rendering path for the step. See
+   * this schema's own `superRefine` below for the legacy-representation
+   * mutual-exclusivity, teaching/evidence-state separation, and
+   * `mayRevealTargetAnswer`-requiredness rules this presence triggers.
+   */
+  contentBlocks: z.array(lessonStepContentBlockSchema).min(1).optional(),
 
   presentation: stepPresentationContractSchema,
   scaffoldingLevel: z.enum(["guided", "standard", "independent"]),
@@ -583,6 +732,64 @@ export const lessonPlanSchema = z.object({
             message: `lesson '${lesson.id}' step '${earlierStep.id}' is marked mayRevealTargetAnswer but precedes graded step '${laterStep.id}' (completionCondition 'correct_answer_required'), which tests the same target(s) (${overlap.join(", ")}) -- teaching content must not remain answer-bearing while an embedded check on the same target is still active`,
           });
         }
+      }
+    }
+
+    // CC-13C.2B: `contentBlocks` presence triggers three additive rules.
+    // None of these apply to a legacy step (no `contentBlocks`) -- every
+    // check below is gated on `step.contentBlocks !== undefined` first.
+    for (const [index, step] of lesson.steps.entries()) {
+      if (step.contentBlocks === undefined) continue;
+
+      // 1. Legacy/new mutual exclusivity: reject any legacy representation
+      // field that would INDEPENDENTLY cause a formula/diagram/visual-aid/
+      // worked-example to render, plus diagramParameters (only meaningful
+      // paired with a legacy diagramBlueprintId). `stepRepresentationRefsSchema`
+      // has no other, genuinely non-display field to preserve -- all five
+      // of its fields are display-rendering fields.
+      const conflictingLegacyFields: ReadonlyArray<readonly [string, unknown]> = [
+        ["formulaFamilyId", step.representation.formulaFamilyId],
+        ["diagramBlueprintId", step.representation.diagramBlueprintId],
+        ["workedExampleBlueprintId", step.representation.workedExampleBlueprintId],
+        ["visualAidBlueprintId", step.representation.visualAidBlueprintId],
+        ["diagramParameters", step.representation.diagramParameters],
+      ];
+      for (const [field, value] of conflictingLegacyFields) {
+        if (value !== undefined) {
+          ctx.addIssue({
+            code: "custom",
+            path: ["steps", index, "representation", field],
+            message: `lesson '${lesson.id}' step '${step.id}' declares contentBlocks AND representation.${field} -- once contentBlocks is present it is the sole authoritative rendering path for the step; a legacy representation field that would independently render content must not coexist with it`,
+          });
+        }
+      }
+
+      // 2. Teaching / evidence-state separation (V1 boundary): rich
+      // teaching content and an evidence-bearing graded question must not
+      // occupy the same step. A step is identified as a graded/
+      // evidence-bearing question step either by `completionCondition:
+      // "correct_answer_required"` or by carrying a `questionBlueprintId`
+      // at all (the resolver's own migration rule renders ONLY
+      // contentBlocks when present, so a step with both would silently
+      // drop real question rendering -- structurally unsafe, not just
+      // undesirable).
+      if (step.completionCondition === "correct_answer_required" || step.questionBlueprintId !== undefined) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["steps", index, "contentBlocks"],
+          message: `lesson '${lesson.id}' step '${step.id}' declares contentBlocks but is a graded/evidence-bearing question step (completionCondition '${step.completionCondition}'${step.questionBlueprintId ? `, questionBlueprintId '${step.questionBlueprintId}'` : ""}) -- rich teaching content and an evidence-bearing graded question must not occupy the same step; use a separate step`,
+        });
+      }
+
+      // 3. Answer-leak governance (additive to the existing gate above,
+      // never weakening it): a rich teaching step must explicitly declare
+      // mayRevealTargetAnswer true or false, never leave it undefined.
+      if (step.mayRevealTargetAnswer === undefined) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["steps", index, "mayRevealTargetAnswer"],
+          message: `lesson '${lesson.id}' step '${step.id}' declares contentBlocks but leaves mayRevealTargetAnswer undefined -- a rich teaching step must explicitly declare true or false, never rely on the implicit "absent means false" convention legacy steps use`,
+        });
       }
     }
   });

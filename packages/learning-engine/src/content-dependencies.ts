@@ -35,15 +35,52 @@ function sortedUnique(ids: Iterable<string>): readonly string[] {
   return [...new Set(ids)].sort((a, b) => a.localeCompare(b));
 }
 
+/**
+ * CC-13C.2B: the `contentBlocks` counterpart of the legacy
+ * `representation.*` single-reference fields above -- a step's rich
+ * teaching content may reference formula/worked-example/diagram/visual-aid
+ * governed content just like `representation` does, and those references
+ * must contribute to the SAME dependency categories (never a second,
+ * parallel dependency shape). Only the 4 governed-content-bearing block
+ * types (`formula`/`worked_example`/`visual`) contribute anything here --
+ * `paragraph`/`list`/`callout` carry no id references by design (CC-13C.2B
+ * task brief §9: section-level `teaches`/`reinforces`/`tests` remain the
+ * grounding authority, never a per-paragraph mapping).
+ */
+function contentBlockContributions(step: LessonStep) {
+  const formulaFamilyIds: string[] = [];
+  const workedExampleBlueprintIds: string[] = [];
+  const visualAidBlueprintIds: string[] = [];
+  const diagramBlueprintIds: string[] = [];
+  for (const block of step.contentBlocks ?? []) {
+    if (block.type === "formula") {
+      formulaFamilyIds.push(block.formulaFamilyId);
+    } else if (block.type === "worked_example") {
+      workedExampleBlueprintIds.push(block.workedExampleBlueprintId);
+    } else if (block.type === "visual") {
+      if (block.source.kind === "diagram") diagramBlueprintIds.push(block.source.diagramBlueprintId);
+      else visualAidBlueprintIds.push(block.source.visualAidBlueprintId);
+    }
+  }
+  return { formulaFamilyIds, workedExampleBlueprintIds, visualAidBlueprintIds, diagramBlueprintIds };
+}
+
 function stepContributions(step: LessonStep) {
   const assertionFamilyIds = step.assertionFamilyId ? [step.assertionFamilyId] : [];
   const assertionIdentifiers = [...step.teaches, ...step.reinforces, ...step.tests];
   const capabilityIds = [...step.capabilityIds, ...step.evidenceEmitted];
   const questionBlueprintIds = step.questionBlueprintId ? [step.questionBlueprintId] : [];
-  const formulaFamilyIds = step.representation.formulaFamilyId ? [step.representation.formulaFamilyId] : [];
-  const workedExampleBlueprintIds = step.representation.workedExampleBlueprintId ? [step.representation.workedExampleBlueprintId] : [];
-  const visualAidBlueprintIds = step.representation.visualAidBlueprintId ? [step.representation.visualAidBlueprintId] : [];
-  const diagramBlueprintIds = step.representation.diagramBlueprintId ? [step.representation.diagramBlueprintId] : [];
+  const blockDependencies = contentBlockContributions(step);
+  const formulaFamilyIds = [...(step.representation.formulaFamilyId ? [step.representation.formulaFamilyId] : []), ...blockDependencies.formulaFamilyIds];
+  const workedExampleBlueprintIds = [
+    ...(step.representation.workedExampleBlueprintId ? [step.representation.workedExampleBlueprintId] : []),
+    ...blockDependencies.workedExampleBlueprintIds,
+  ];
+  const visualAidBlueprintIds = [
+    ...(step.representation.visualAidBlueprintId ? [step.representation.visualAidBlueprintId] : []),
+    ...blockDependencies.visualAidBlueprintIds,
+  ];
+  const diagramBlueprintIds = [...(step.representation.diagramBlueprintId ? [step.representation.diagramBlueprintId] : []), ...blockDependencies.diagramBlueprintIds];
   const misconceptionIdentifiers = step.misconceptionTargets.map((m) => m.misconceptionIdentifier);
   return {
     assertionFamilyIds,

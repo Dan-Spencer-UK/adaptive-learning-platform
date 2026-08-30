@@ -480,3 +480,241 @@ describe("ADR-0005 embedded-check answer-leak gate (mayRevealTargetAnswer)", () 
     expect(lessonPlanSchema.safeParse(lesson).success).toBe(true);
   });
 });
+
+describe("CC-13C.2B: governed rich teaching content blocks (contentBlocks)", () => {
+  const REAL_FORMULA_FAMILY_ID = "formula.ohms_law";
+  const REAL_WORKED_EXAMPLE_ID = "worked.ohms_law.solve_voltage";
+  const REAL_DIAGRAM_BLUEPRINT_ID = "circuit.series_resistors";
+  const REAL_VISUAL_AID_ID = "mnemonic.vir_triangle";
+
+  function richStep(overrides: Partial<LessonStep> = {}): LessonStep {
+    return minimalStep({
+      id: "step.rich",
+      type: "concept_explanation",
+      learnerFacingHeading: "Voltage, current and resistance",
+      mayRevealTargetAnswer: false,
+      contentBlocks: [
+        { type: "paragraph", text: "Voltage, current and resistance are the three core electrical quantities." },
+        { type: "paragraph", text: "Voltage drives current around a circuit; resistance opposes that flow." },
+        { type: "visual", source: { kind: "diagram", diagramBlueprintId: REAL_DIAGRAM_BLUEPRINT_ID } },
+        { type: "paragraph", text: "The relationship between them is fixed and can be expressed as a formula." },
+        { type: "formula", formulaFamilyId: REAL_FORMULA_FAMILY_ID },
+        { type: "worked_example", workedExampleBlueprintId: REAL_WORKED_EXAMPLE_ID },
+        { type: "callout", variant: "key_point", text: "Doubling voltage doubles current for a fixed resistance." },
+      ],
+      ...overrides,
+    });
+  }
+
+  // A) valid rich step with all 6 block types
+  it("A: accepts a rich step with all 6 block types, in one exact authored sequence", () => {
+    const lesson = minimalLesson({ steps: [richStep()], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(true);
+  });
+
+  // B) contentBlocks preserves array order
+  it("B: preserves contentBlocks array order exactly, never sorting/regrouping by type", () => {
+    const lesson = minimalLesson({ steps: [richStep()], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } });
+    const result = lessonPlanSchema.parse(lesson);
+    expect(result.steps[0]!.contentBlocks!.map((b) => b.type)).toEqual([
+      "paragraph",
+      "paragraph",
+      "visual",
+      "paragraph",
+      "formula",
+      "worked_example",
+      "callout",
+    ]);
+  });
+
+  // C) explicit empty contentBlocks: [] fails
+  it("C: rejects an explicit empty contentBlocks array -- PRESENT-but-empty is invalid, never silently treated as absent", () => {
+    const lesson = minimalLesson({ steps: [minimalStep({ contentBlocks: [] as never })] });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(false);
+  });
+
+  // D) legacy step with contentBlocks absent remains valid
+  it("D: a legacy step with contentBlocks absent remains valid, unaffected by the new fields", () => {
+    const result = lessonPlanSchema.safeParse(minimalLesson());
+    expect(result.success).toBe(true);
+  });
+
+  // E-H) contentBlocks + each conflicting legacy representation field fails
+  it("E: rejects contentBlocks coexisting with a legacy representation.formulaFamilyId", () => {
+    const step = richStep({ representation: { formulaFamilyId: REAL_FORMULA_FAMILY_ID } });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } }));
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/formulaFamilyId/);
+  });
+
+  it("F: rejects contentBlocks coexisting with a legacy representation.diagramBlueprintId", () => {
+    const step = richStep({ representation: { diagramBlueprintId: REAL_DIAGRAM_BLUEPRINT_ID } });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } }));
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/diagramBlueprintId/);
+  });
+
+  it("G: rejects contentBlocks coexisting with a legacy representation.visualAidBlueprintId", () => {
+    const step = richStep({ representation: { visualAidBlueprintId: REAL_VISUAL_AID_ID } });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } }));
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/visualAidBlueprintId/);
+  });
+
+  it("H: rejects contentBlocks coexisting with a legacy representation.workedExampleBlueprintId", () => {
+    const step = richStep({ representation: { workedExampleBlueprintId: REAL_WORKED_EXAMPLE_ID } });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } }));
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/workedExampleBlueprintId/);
+  });
+
+  // I) contentBlocks on a graded/evidence-bearing step fails
+  it("I: rejects contentBlocks on a step with completionCondition 'correct_answer_required'", () => {
+    const step = richStep({ completionCondition: "correct_answer_required" });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } }));
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/graded\/evidence-bearing/);
+  });
+
+  it("I2: rejects contentBlocks on a step that carries a questionBlueprintId (even if not completionCondition 'correct_answer_required')", () => {
+    const step = richStep({ questionBlueprintId: "some.blueprint" });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } }));
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/graded\/evidence-bearing/);
+  });
+
+  // J) contentBlocks + mayRevealTargetAnswer omitted fails
+  it("J: rejects contentBlocks with mayRevealTargetAnswer omitted (undefined)", () => {
+    const step = { ...richStep(), mayRevealTargetAnswer: undefined };
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } }));
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/mayRevealTargetAnswer/);
+  });
+
+  // K) contentBlocks with explicit mayRevealTargetAnswer: false is valid
+  it("K: accepts contentBlocks with explicit mayRevealTargetAnswer: false (otherwise valid)", () => {
+    const step = richStep({ mayRevealTargetAnswer: false });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step], completionCriteria: { requiredStepIds: ["step.rich"], requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"], masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"], requiresRemediationClearance: true, exitSummary: "x" } }));
+    expect(result.success).toBe(true);
+  });
+
+  // L) existing answer-leak gate still rejects a rich teaching step marked
+  // mayRevealTargetAnswer: true before an overlapping later graded step --
+  // a NEW test using contentBlocks, proving the existing gate was not weakened.
+  it("L: still rejects a rich (contentBlocks) teaching step marked mayRevealTargetAnswer: true when it precedes an overlapping later graded check", () => {
+    const teachStep = richStep({
+      id: "teach_rich",
+      mayRevealTargetAnswer: true,
+      teaches: ["assertion.a"],
+      capabilityIds: ["cap.ohms_law.recognise_relationship"],
+    });
+    const checkStep = minimalStep({
+      id: "check",
+      type: "independent_question",
+      completionCondition: "correct_answer_required",
+      tests: ["assertion.a"],
+      capabilityIds: ["cap.ohms_law.recognise_relationship"],
+    });
+    const lesson = minimalLesson({
+      steps: [teachStep, checkStep],
+      completionCriteria: {
+        requiredStepIds: ["teach_rich", "check"],
+        requiredCapabilityEvidence: ["cap.ohms_law.recognise_relationship"],
+        masteryGateCapabilityIds: ["cap.ohms_law.recognise_relationship"],
+        requiresRemediationClearance: true,
+        exitSummary: "x",
+      },
+    });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(false);
+    expect(JSON.stringify(result.error?.issues)).toMatch(/answer-bearing/);
+  });
+
+  // M) diagram visual block valid
+  it("M: accepts a visual block with a diagram source (and optional diagramParameters)", () => {
+    const step = minimalStep({
+      contentBlocks: [{ type: "visual", source: { kind: "diagram", diagramBlueprintId: REAL_DIAGRAM_BLUEPRINT_ID, diagramParameters: { component_type: "capacitor" } } }],
+      mayRevealTargetAnswer: false,
+    });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(true);
+  });
+
+  // N) visual-aid visual block valid
+  it("N: accepts a visual block with a visual_aid source", () => {
+    const step = minimalStep({
+      contentBlocks: [{ type: "visual", source: { kind: "visual_aid", visualAidBlueprintId: REAL_VISUAL_AID_ID } }],
+      mayRevealTargetAnswer: false,
+    });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(true);
+  });
+
+  // O) malformed visual source fails
+  it("O: rejects a visual block whose source has an invalid/unknown kind", () => {
+    const step = minimalStep({
+      contentBlocks: [{ type: "visual", source: { kind: "produced_artwork", assetId: "x" } } as never],
+      mayRevealTargetAnswer: false,
+    });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(false);
+  });
+
+  it("O2: rejects a visual block whose diagram source is missing diagramBlueprintId", () => {
+    const step = minimalStep({
+      contentBlocks: [{ type: "visual", source: { kind: "diagram" } } as never],
+      mayRevealTargetAnswer: false,
+    });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(false);
+  });
+
+  // P) list requires >=1 non-empty item
+  it("P: rejects a list block with zero items", () => {
+    const step = minimalStep({ contentBlocks: [{ type: "list", style: "unordered", items: [] }], mayRevealTargetAnswer: false });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(false);
+  });
+
+  it("P2: rejects a list block with an empty-string item", () => {
+    const step = minimalStep({ contentBlocks: [{ type: "list", style: "unordered", items: [""] }], mayRevealTargetAnswer: false });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(false);
+  });
+
+  it("P3: accepts a list block with one or more non-empty items", () => {
+    const step = minimalStep({ contentBlocks: [{ type: "list", style: "ordered", items: ["First point.", "Second point."] }], mayRevealTargetAnswer: false });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(true);
+  });
+
+  // Q) callout accepts exactly key_point/definition/caution, rejects a 4th
+  it.each(["key_point", "definition", "caution"] as const)("Q: accepts callout variant '%s'", (variant) => {
+    const step = minimalStep({ contentBlocks: [{ type: "callout", variant, text: "Something worth flagging." }], mayRevealTargetAnswer: false });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(true);
+  });
+
+  it("Q2: rejects an invalid 4th callout variant", () => {
+    const step = minimalStep({ contentBlocks: [{ type: "callout", variant: "note", text: "x" } as never], mayRevealTargetAnswer: false });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(false);
+  });
+
+  // R) confirm no new rule breaks existing legacy lesson fixtures
+  it("R: a lesson with a legacy representation-only step (no contentBlocks) still validates -- the new rules are correctly gated on contentBlocks presence", () => {
+    const lesson = minimalLesson({
+      steps: [minimalStep({ representation: { formulaFamilyId: REAL_FORMULA_FAMILY_ID, workedExampleBlueprintId: REAL_WORKED_EXAMPLE_ID } })],
+    });
+    const result = lessonPlanSchema.safeParse(lesson);
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts a step with learnerFacingHeading but no contentBlocks (heading is independent of the block system)", () => {
+    const step = minimalStep({ learnerFacingHeading: "A legacy step with a nicer heading" });
+    const result = lessonPlanSchema.safeParse(minimalLesson({ steps: [step] }));
+    expect(result.success).toBe(true);
+  });
+});

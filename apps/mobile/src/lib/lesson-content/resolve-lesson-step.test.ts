@@ -1,3 +1,5 @@
+import type { LessonPlan, LessonStep } from "@alp/content-schema";
+
 import { bundledContentReleaseId, getLocalLesson } from "./local-content-registry";
 import { resolveLessonStep } from "./resolve-lesson-step";
 
@@ -96,5 +98,157 @@ describe("resolveLessonStep (against the real Ohm's Law lesson, resolved from th
 
   it("throws for an unknown step id rather than silently returning something empty", () => {
     expect(() => resolveLessonStep(LESSON_OHMS_LAW, "no-such-step", LOOKUP)).toThrow();
+  });
+});
+
+// CC-13C.2B: synthetic fixtures only -- no real Unit 202 lesson gains
+// contentBlocks. `LOOKUP` (bound to the whole bundled content-release
+// projection, not just lesson.electrical.ohms-law) already carries every
+// governed formula/worked-example/diagram/visual-aid blueprint referenced
+// anywhere in the release, so real governed ids can be referenced from a
+// synthetic step/lesson object without editing scripts/content/data.
+describe("resolveLessonStep -- CC-13C.2B contentBlocks resolution", () => {
+  const richStep: LessonStep = {
+    id: "step.rich",
+    type: "concept_explanation",
+    purpose: "Synthetic CC-13C.2B rich teaching step fixture.",
+    requirement: "required",
+    teaches: [],
+    reinforces: [],
+    tests: [],
+    capabilityIds: [],
+    misconceptionTargets: [],
+    representation: {},
+    learnerFacingHeading: "Voltage, current and resistance",
+    contentBlocks: [
+      { type: "paragraph", text: "Voltage, current and resistance are the three core electrical quantities." },
+      { type: "paragraph", text: "Voltage drives current around a circuit; resistance opposes that flow." },
+      { type: "visual", source: { kind: "diagram", diagramBlueprintId: "circuit.series_resistors" } },
+      { type: "paragraph", text: "The relationship between them is fixed and can be expressed as a formula." },
+      { type: "formula", formulaFamilyId: "formula.ohms_law" },
+      { type: "worked_example", workedExampleBlueprintId: "worked.ohms_law.solve_voltage" },
+      { type: "callout", variant: "key_point", text: "Doubling voltage doubles current for a fixed resistance." },
+    ],
+    presentation: { interactionRequired: false, answerReveal: "not_applicable", contentMayScroll: false, progressiveReveal: false },
+    scaffoldingLevel: "guided",
+    cognitiveDemand: "introductory",
+    feedback: { mode: "immediate", explainWhy: true },
+    completionCondition: "view_acknowledged",
+    branchRoutes: [],
+    evidenceEmitted: [],
+    mayRevealTargetAnswer: false,
+  };
+
+  const checkStep: LessonStep = {
+    ...richStep,
+    id: "step.check",
+    type: "independent_question",
+    learnerFacingHeading: undefined,
+    contentBlocks: undefined,
+    questionBlueprintId: "ohms_law.solve_for_current",
+    completionCondition: "correct_answer_required",
+    mayRevealTargetAnswer: false,
+  };
+
+  const listAndVisualAidStep: LessonStep = {
+    ...richStep,
+    id: "step.list-and-visual-aid",
+    contentBlocks: [
+      { type: "list", style: "ordered", items: ["Identify voltage.", "Identify current.", "Identify resistance."] },
+      { type: "visual", source: { kind: "visual_aid", visualAidBlueprintId: "mnemonic.vir_triangle" } },
+    ],
+  };
+
+  const syntheticLesson: LessonPlan = { ...LESSON_OHMS_LAW, steps: [richStep, checkStep, listAndVisualAidStep] };
+
+  it("resolves contentBlocks in EXACTLY the authored order, never sorted/regrouped by type", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    expect(resolved.contentBlocks?.map((b) => b.type)).toEqual(["paragraph", "paragraph", "visual", "paragraph", "formula", "worked_example", "callout"]);
+  });
+
+  it("does NOT resolve legacy bodyStatements when contentBlocks is present -- the two paths never both render for the same step", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    expect(resolved.bodyStatements).toEqual([]);
+  });
+
+  it("does NOT populate the legacy formula/workedExample/visualAid/diagram fields when contentBlocks is present", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    expect(resolved.formulaFamily).toBeNull();
+    expect(resolved.workedExample).toBeNull();
+    expect(resolved.visualAid).toBeNull();
+    expect(resolved.diagram).toBeNull();
+  });
+
+  it("resolves learnerFacingHeading verbatim", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    expect(resolved.learnerFacingHeading).toBe("Voltage, current and resistance");
+  });
+
+  it("a legacy step (no learnerFacingHeading) resolves it to null, unaffected by this package", () => {
+    const resolved = resolveLessonStep(LESSON_OHMS_LAW, "orientation", LOOKUP);
+    expect(resolved.learnerFacingHeading).toBeNull();
+  });
+
+  it("resolves a formula content block to the real governed FormulaFamily", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const formulaBlock = resolved.contentBlocks?.find((b) => b.type === "formula");
+    expect(formulaBlock?.type).toBe("formula");
+    if (formulaBlock?.type === "formula") expect(formulaBlock.formulaFamily.id).toBe("formula.ohms_law");
+  });
+
+  it("resolves a worked_example content block to the real governed WorkedExampleBlueprint AND its own formula family", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const workedBlock = resolved.contentBlocks?.find((b) => b.type === "worked_example");
+    expect(workedBlock?.type).toBe("worked_example");
+    if (workedBlock?.type === "worked_example") {
+      expect(workedBlock.workedExample.id).toBe("worked.ohms_law.solve_voltage");
+      expect(workedBlock.formulaFamily.id).toBe("formula.ohms_law");
+    }
+  });
+
+  it("resolves a diagram-source visual content block to the real governed DiagramBlueprint", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const visualBlock = resolved.contentBlocks?.find((b) => b.type === "visual");
+    expect(visualBlock?.type).toBe("visual");
+    if (visualBlock?.type === "visual" && visualBlock.source.kind === "diagram") {
+      expect(visualBlock.source.diagram.id).toBe("circuit.series_resistors");
+    } else {
+      throw new Error("expected a diagram-source visual block");
+    }
+  });
+
+  it("resolves a visual_aid-source visual content block to the real governed VisualAidBlueprint AND its own formula family", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.list-and-visual-aid", LOOKUP);
+    const visualBlock = resolved.contentBlocks?.find((b) => b.type === "visual");
+    expect(visualBlock?.type).toBe("visual");
+    if (visualBlock?.type === "visual" && visualBlock.source.kind === "visual_aid") {
+      expect(visualBlock.source.visualAid.id).toBe("mnemonic.vir_triangle");
+      expect(visualBlock.source.formulaFamily.id).toBe("formula.ohms_law");
+    } else {
+      throw new Error("expected a visual_aid-source visual block");
+    }
+  });
+
+  it("resolves a list content block verbatim, preserving style and item order", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.list-and-visual-aid", LOOKUP);
+    const listBlock = resolved.contentBlocks?.find((b) => b.type === "list");
+    expect(listBlock).toEqual({ type: "list", style: "ordered", items: ["Identify voltage.", "Identify current.", "Identify resistance."] });
+  });
+
+  it("resolves a callout content block verbatim, including its variant", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    const calloutBlock = resolved.contentBlocks?.find((b) => b.type === "callout");
+    expect(calloutBlock).toEqual({ type: "callout", variant: "key_point", text: "Doubling voltage doubles current for a fixed resistance." });
+  });
+
+  it("the separate graded/check step remains separate: it resolves questionBlueprint normally and carries no contentBlocks", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.check", LOOKUP);
+    expect(resolved.contentBlocks).toBeNull();
+    expect(resolved.questionBlueprint?.id).toBe("ohms_law.solve_for_current");
+  });
+
+  it("a synthetic rich step can carry substantially more resolved content than any single legacy step (proving the container, without touching scroll/player architecture)", () => {
+    const resolved = resolveLessonStep(syntheticLesson, "step.rich", LOOKUP);
+    expect(resolved.contentBlocks).toHaveLength(7);
   });
 });

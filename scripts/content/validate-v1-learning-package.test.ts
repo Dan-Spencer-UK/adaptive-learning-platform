@@ -21,6 +21,7 @@ function cleanReport(): V1LearningPackageReport {
     requiredKnowledgeFromUndeclaredOtherLesson: [],
     danglingRevisionLessonRefs: [],
     postV1StepTypesInCanonicalRoute: [],
+    richContentStepsWithoutGovernedOwnership: [],
   };
 }
 
@@ -45,6 +46,10 @@ describe("isReportClean", () => {
   it("is false for a POST_V1_ADAPTIVE step inside a CANONICAL_FIXED_ROUTE lesson", () => {
     expect(isReportClean({ ...cleanReport(), postV1StepTypesInCanonicalRoute: ["x"] })).toBe(false);
   });
+
+  it("is false for a contentBlocks step with no governed teaching/reinforcement ownership", () => {
+    expect(isReportClean({ ...cleanReport(), richContentStepsWithoutGovernedOwnership: ["x"] })).toBe(false);
+  });
 });
 
 describe("buildReport (against the real live Unit 202 corpus)", () => {
@@ -59,6 +64,64 @@ describe("buildReport (against the real live Unit 202 corpus)", () => {
     expect(report.questionBlueprintsWithV1Role).toBe(0);
     expect(report.totalLessons).toBeGreaterThan(0);
     expect(report.totalQuestionBlueprints).toBeGreaterThan(0);
+  });
+
+  // CC-13C.2B: no real lesson adopts contentBlocks in this package -- 0
+  // findings against the live corpus proves the new gate is inert until a
+  // real lesson opts in, exactly like every other CC-13A/CC-13C V1 field.
+  it("reports zero richContentStepsWithoutGovernedOwnership findings today -- no real lesson has adopted contentBlocks yet", () => {
+    expect(report.richContentStepsWithoutGovernedOwnership).toEqual([]);
+  });
+});
+
+// CC-13C.2B: this gate is a pure structural check over LessonPlan/LessonStep
+// fields (contentBlocks presence + teaches/reinforces + step type) -- unlike
+// the requiredKnowledge gates above, it needs no pedagogy/knowledge-graph
+// corpus, so it can be exercised directly and fully via buildReport's
+// `lessons` override hook with small synthetic fixtures.
+describe("CC-13C.2B: richContentStepsWithoutGovernedOwnership gate", () => {
+  function stepWithContentBlocks(overrides: Partial<LessonPlan["steps"][number]> = {}): LessonPlan["steps"][number] {
+    return {
+      ...minimalLesson().steps[0]!,
+      contentBlocks: [{ type: "paragraph", text: "Synthetic teaching prose." }],
+      mayRevealTargetAnswer: false,
+      ...overrides,
+    };
+  }
+
+  it("flags a concept_explanation contentBlocks step declaring neither teaches nor reinforces", () => {
+    const lesson = minimalLesson({ steps: [stepWithContentBlocks({ type: "concept_explanation" })] });
+    const report = buildReport({ lessons: [lesson] });
+    expect(report.richContentStepsWithoutGovernedOwnership).toHaveLength(1);
+  });
+
+  it("does not flag a contentBlocks step that declares teaches", () => {
+    const lesson = minimalLesson({ steps: [stepWithContentBlocks({ type: "concept_explanation", teaches: ["assertion.x"] })] });
+    const report = buildReport({ lessons: [lesson] });
+    expect(report.richContentStepsWithoutGovernedOwnership).toHaveLength(0);
+  });
+
+  it("does not flag a contentBlocks step that declares reinforces (even with no teaches)", () => {
+    const lesson = minimalLesson({ steps: [stepWithContentBlocks({ type: "concept_explanation", reinforces: ["assertion.x"] })] });
+    const report = buildReport({ lessons: [lesson] });
+    expect(report.richContentStepsWithoutGovernedOwnership).toHaveLength(0);
+  });
+
+  it("does NOT flag an orientation contentBlocks step with no teaches/reinforces -- legitimate exemption", () => {
+    const lesson = minimalLesson({ steps: [stepWithContentBlocks({ type: "orientation" })] });
+    const report = buildReport({ lessons: [lesson] });
+    expect(report.richContentStepsWithoutGovernedOwnership).toHaveLength(0);
+  });
+
+  it("does NOT flag a recap contentBlocks step with no teaches/reinforces -- legitimate exemption", () => {
+    const lesson = minimalLesson({ steps: [stepWithContentBlocks({ type: "recap" })] });
+    const report = buildReport({ lessons: [lesson] });
+    expect(report.richContentStepsWithoutGovernedOwnership).toHaveLength(0);
+  });
+
+  it("does not flag a legacy step with no contentBlocks at all, regardless of teaches/reinforces", () => {
+    const report = buildReport({ lessons: [minimalLesson()] });
+    expect(report.richContentStepsWithoutGovernedOwnership).toHaveLength(0);
   });
 });
 

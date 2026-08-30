@@ -28,6 +28,7 @@ import { buildTeachingDiagramInstance, DiagramRenderer, type DiagramRevealProps 
 import { FormulaEquation } from "@/components/formula/FormulaExpressionView";
 import { WorkedSubstitution } from "@/components/formula/WorkedSubstitution";
 import { VirTriangle } from "@/components/mnemonic/VirTriangle";
+import { ContentBlockView } from "@/components/lesson/ContentBlockView";
 import { FeedbackPanel } from "@/components/question/FeedbackPanel";
 import { LayeredFeedbackPanel } from "@/components/question/LayeredFeedbackPanel";
 import { QuestionPromptCard } from "@/components/question/QuestionPromptCard";
@@ -132,45 +133,64 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
         {resolved.sectionLabel}
       </Text>
 
-      {resolved.bodyStatements.map((statement) => (
-        <Text key={statement} style={styles.bodyText}>
-          {statement}
+      {/* CC-13C.2B: a step's own learner-facing heading, DISTINCT from
+          sectionLabel above (structural UI microcopy) -- absent for a
+          legacy step, which renders exactly as before this package. */}
+      {resolved.learnerFacingHeading ? (
+        <Text style={styles.learnerFacingHeading} accessibilityRole="header">
+          {resolved.learnerFacingHeading}
         </Text>
-      ))}
+      ) : null}
 
-      {resolved.formulaFamily && !resolved.workedExample ? (
-        <View style={styles.representation}>
-          {/* CC-12H: keyed by target+index, not target alone -- a formula
-              family can legitimately declare MORE THAN ONE form for the
-              same target variable (e.g. formula.electrical_power has three
-              valid forms for "P": P=V×I, P=I²×R, P=V²/R), which a
-              target-only key silently collided on (React "duplicate key"
-              warning, and a real reconciliation-correctness risk on
-              re-render) -- discovered live via CC-12H's runtime walk on
-              lesson.electrical.power. */}
-          {resolved.formulaFamily.forms.map((form, index) => (
-            <FormulaEquation key={`${form.target}-${index}`} target={form.target} expression={form.expression} resolve={symbolicResolver} />
+      {resolved.contentBlocks ? (
+        // CC-13C.2B: contentBlocks is the SOLE authoritative rendering path
+        // once present -- rendered in authored order (never the fixed
+        // legacy formula -> worked example -> visual aid -> diagram order
+        // below, which remains only for legacy `representation` steps).
+        resolved.contentBlocks.map((block, index) => <ContentBlockView key={index} block={block} />)
+      ) : (
+        <>
+          {resolved.bodyStatements.map((statement) => (
+            <Text key={statement} style={styles.bodyText}>
+              {statement}
+            </Text>
           ))}
-        </View>
-      ) : null}
 
-      {resolved.workedExample && resolved.formulaFamily ? (
-        <View style={styles.representation}>
-          <WorkedSubstitution formulaFamily={resolved.formulaFamily} instance={buildTeachingWorkedExample(resolved.formulaFamily, resolved.workedExample)} />
-        </View>
-      ) : null}
+          {resolved.formulaFamily && !resolved.workedExample ? (
+            <View style={styles.representation}>
+              {/* CC-12H: keyed by target+index, not target alone -- a formula
+                  family can legitimately declare MORE THAN ONE form for the
+                  same target variable (e.g. formula.electrical_power has three
+                  valid forms for "P": P=V×I, P=I²×R, P=V²/R), which a
+                  target-only key silently collided on (React "duplicate key"
+                  warning, and a real reconciliation-correctness risk on
+                  re-render) -- discovered live via CC-12H's runtime walk on
+                  lesson.electrical.power. */}
+              {resolved.formulaFamily.forms.map((form, index) => (
+                <FormulaEquation key={`${form.target}-${index}`} target={form.target} expression={form.expression} resolve={symbolicResolver} />
+              ))}
+            </View>
+          ) : null}
 
-      {resolved.visualAid && resolved.formulaFamily ? (
-        <View style={styles.representation}>
-          <VirTriangle visualAid={resolved.visualAid} formulaFamily={resolved.formulaFamily} />
-        </View>
-      ) : null}
+          {resolved.workedExample && resolved.formulaFamily ? (
+            <View style={styles.representation}>
+              <WorkedSubstitution formulaFamily={resolved.formulaFamily} instance={buildTeachingWorkedExample(resolved.formulaFamily, resolved.workedExample)} />
+            </View>
+          ) : null}
 
-      {resolved.diagram && diagramInstance ? (
-        <View style={styles.representation}>
-          <DiagramRenderer blueprint={resolved.diagram} diagram={diagramInstance} reveal={diagramReveal} context={diagramContext} />
-        </View>
-      ) : null}
+          {resolved.visualAid && resolved.formulaFamily ? (
+            <View style={styles.representation}>
+              <VirTriangle visualAid={resolved.visualAid} formulaFamily={resolved.formulaFamily} />
+            </View>
+          ) : null}
+
+          {resolved.diagram && diagramInstance ? (
+            <View style={styles.representation}>
+              <DiagramRenderer blueprint={resolved.diagram} diagram={diagramInstance} reveal={diagramReveal} context={diagramContext} />
+            </View>
+          ) : null}
+        </>
+      )}
 
       {resolved.questionBlueprint && questionInstance ? (
         <QuestionPromptCard title={resolved.questionBlueprint.title} parameterLines={resolvePromptLines(resolved.questionBlueprint, questionInstance)}>
@@ -235,6 +255,7 @@ export function LessonStepView({ resolved, questionInstance, evaluation, revealC
 const styles = StyleSheet.create({
   container: { gap: spacing.md },
   sectionLabel: { ...typography.caption, color: color.textSecondary, textTransform: "uppercase", letterSpacing: 0.5 },
+  learnerFacingHeading: { ...typography.title, color: color.text },
   bodyText: { ...typography.body, color: color.text },
   reviewNotice: { ...typography.caption, color: color.textSecondary, fontStyle: "italic" },
   representation: { alignItems: "center", paddingVertical: spacing.sm },
