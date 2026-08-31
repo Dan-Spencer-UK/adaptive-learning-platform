@@ -98,6 +98,36 @@ describe("CC-15 Unit 202 Technical Source Verification -- real-instance validati
     expect(electronicSystems?.status).toBe("PARTIAL");
   });
 
+  it("CC-15B: VERIFIED + SOURCE_GAP + CONDITIONAL_SOURCE_GAP reconciles exactly to the total proposition-record count -- no manually-maintained count may ever contradict the live data", () => {
+    const report = buildReport();
+    expect(report.verifiedPropositionCount + report.sourceGapCount + report.conditionalSourceGapCount).toBe(
+      report.totalPropositionCount,
+    );
+    expect(report.totalPropositionCount).toBe(unit202TechnicalSourceVerification.propositionCoverage.length);
+  });
+
+  it("CC-15B: the itemised residualPropositions list contains exactly every non-VERIFIED proposition once, and nothing else", () => {
+    const report = buildReport();
+    const expectedResidual = unit202TechnicalSourceVerification.propositionCoverage.filter((p) => p.coverageState !== "VERIFIED");
+    expect(report.residualPropositions.length).toBe(expectedResidual.length);
+    expect(report.residualPropositions.length).toBe(report.sourceGapCount + report.conditionalSourceGapCount);
+
+    const residualKeys = report.residualPropositions.map((r) => `${r.clusterKey}::${r.requirementText}`);
+    expect(new Set(residualKeys).size).toBe(residualKeys.length); // no duplicate entries
+
+    for (const record of expectedResidual) {
+      const match = report.residualPropositions.find(
+        (r) => r.clusterKey === record.clusterKey && r.requirementText === record.requirementText,
+      );
+      expect(match).toBeDefined();
+      expect(match!.coverageState).toBe(record.coverageState);
+    }
+    // And nothing VERIFIED leaks into the residual list.
+    for (const r of report.residualPropositions) {
+      expect(r.coverageState).not.toBe("VERIFIED");
+    }
+  });
+
   it("no unknown coverageState/requirementKind value can be introduced (schema enum enforcement)", () => {
     for (const record of unit202TechnicalSourceVerification.propositionCoverage) {
       expect(["VERIFIED", "SOURCE_GAP", "CONDITIONAL_SOURCE_GAP"]).toContain(record.coverageState);
@@ -177,7 +207,7 @@ describe("CC-15 Unit 202 Technical Source Verification -- tamper-and-assert regr
       approvedSources: unit202TechnicalSourceVerification.approvedSources.filter((s) => s.dossierSourceId !== "SRC-BIPM-SI-9E-V4.01"),
     };
     expect(() => technicalSourceVerificationManifestSchema.parse(tampered)).toThrow(
-      /has NO approvedSources record at all/,
+      /not bound \(via verifiedSourceLocatorKeys\) to ANY dossier candidate/,
     );
   });
 
@@ -202,7 +232,11 @@ describe("CC-15 Unit 202 Technical Source Verification -- tamper-and-assert regr
       ...unit202TechnicalSourceVerification,
       approvedSources: [
         ...unit202TechnicalSourceVerification.approvedSources,
-        { dossierSourceId: "SRC-NOT-IN-DOSSIER", sourceKey: unit202TechnicalSourceVerification.sources[0]!.key, approvedRole: "invented", status: "VERIFIED" as const },
+        // APPROVED_NOT_VERIFIED (not VERIFIED) so this tamper isolates the
+        // report-level unapproved-id detection under test, without also
+        // tripping the schema's own "VERIFIED candidate needs >=1
+        // verifiedSourceLocatorKeys" rule -- irrelevant to what this test checks.
+        { dossierSourceId: "SRC-NOT-IN-DOSSIER", sourceKey: unit202TechnicalSourceVerification.sources[0]!.key, approvedRole: "invented", status: "APPROVED_NOT_VERIFIED" as const, verifiedSourceLocatorKeys: [] },
       ],
     };
     const report = buildReport({ verification: tampered });
@@ -290,30 +324,50 @@ describe("CC-15 Unit 202 Technical Source Verification -- tamper-and-assert regr
   });
 });
 
-describe("CC-15A Unit 202 Technical Source Verification -- VERIFIED-proposition trust-chain hardening", () => {
-  // Build a minimal, otherwise-valid manifest skeleton once per test so each
+describe("CC-15B Unit 202 Technical Source Verification -- candidate-to-locator provenance binding", () => {
+  // Build a minimal, otherwise-valid manifest skeleton per test so each
   // adversarial case only has to vary the ONE thing it's testing -- this
   // exercises the real schema/validator boundary (technicalSourceVerification-
-  // ManifestSchema itself), not a reimplementation of its logic.
+  // ManifestSchema itself), not a reimplementation of its logic. Two
+  // candidates (A, B) share ONE sourceKey/sourceVersion throughout, matching
+  // the Project-Architect-specified shared-source scenario -- A is
+  // RETRIEVAL_FAILED and bound to loc-a-only, B is VERIFIED and bound to
+  // loc-b-only, so any test wiring a proposition to loc-a is proving A's
+  // failure/non-verification is never laundered by B's success.
   function baseManifest(): TechnicalSourceVerificationManifest {
     return {
       approvedDossierIdentity: "test dossier",
-      sources: [
-        { key: "src-a", title: "Source A", sourceRole: "FACTUAL_AUTHORITY" as const },
-      ],
+      sources: [{ key: "src-shared", title: "Shared Source", sourceRole: "FACTUAL_AUTHORITY" as const }],
       sourceVersions: [
         {
-          key: "sv-a",
-          sourceKey: "src-a",
+          key: "sv-shared",
+          sourceKey: "src-shared",
           status: "CURRENT" as const,
           rightsClassification: "OPEN" as const,
           verificationStatus: "VERIFIED" as const,
           verifiedBy: "test-verifier",
         },
       ],
-      sourceLocators: [{ key: "loc-a", sourceVersionKey: "sv-a", locatorSummary: "test locator" }],
+      sourceLocators: [
+        { key: "loc-a", sourceVersionKey: "sv-shared", locatorSummary: "locator for candidate A's section" },
+        { key: "loc-b", sourceVersionKey: "sv-shared", locatorSummary: "locator for candidate B's section" },
+      ],
       approvedSources: [
-        { dossierSourceId: "SRC-A", sourceKey: "src-a", approvedRole: "test role", status: "VERIFIED" as const },
+        {
+          dossierSourceId: "SRC-CANDIDATE-A",
+          sourceKey: "src-shared",
+          approvedRole: "test role A",
+          status: "RETRIEVAL_FAILED" as const,
+          retrievalNote: "candidate A's own retrieval failed, independent of candidate B on the same source",
+          verifiedSourceLocatorKeys: [],
+        },
+        {
+          dossierSourceId: "SRC-CANDIDATE-B",
+          sourceKey: "src-shared",
+          approvedRole: "test role B",
+          status: "VERIFIED" as const,
+          verifiedSourceLocatorKeys: ["loc-b"],
+        },
       ],
       propositionCoverage: [
         {
@@ -321,110 +375,158 @@ describe("CC-15A Unit 202 Technical Source Verification -- VERIFIED-proposition 
           requirementKind: "FACTUAL_PROPOSITION" as const,
           requirementText: "Test proposition.",
           coverageState: "VERIFIED" as const,
-          supportingSourceLocatorKeys: ["loc-a"],
+          supportingSourceLocatorKeys: ["loc-b"],
         },
       ],
     };
   }
 
-  it("passes for the legitimate reuse model: two approved dossier candidates resolving to the same governed source, one VERIFIED, backs a VERIFIED proposition", () => {
+  it("A: proposition cites a locator belonging to a RETRIEVAL_FAILED candidate (A) sharing a source with a VERIFIED candidate (B) -- REJECTED, never laundered via B", () => {
+    const manifest = baseManifest();
+    manifest.propositionCoverage[0]!.supportingSourceLocatorKeys = ["loc-a"];
+    // A, being RETRIEVAL_FAILED, is schema-enforced to have ZERO
+    // verifiedSourceLocatorKeys (rule H below) -- so loc-a can never be
+    // bound to A at all, and B's own binding is scoped to loc-b only. The
+    // mechanism by which "A's locator is never laundered via B" is
+    // therefore that loc-a ends up bound to NO candidate whatsoever, not
+    // that it's bound to a candidate whose status happens to be wrong.
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /not bound \(via verifiedSourceLocatorKeys\) to ANY dossier candidate/,
+    );
+  });
+
+  it("B: same shared-source setup, proposition cites the locator bound to VERIFIED candidate B -- PASSES", () => {
+    const manifest = baseManifest(); // already cites loc-b (candidate B) by default
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).not.toThrow();
+  });
+
+  it("C: VERIFIED proposition cites an existing locator bound to NO dossier candidate at all -- REJECTED", () => {
+    const manifest = baseManifest();
+    manifest.sourceLocators.push({ key: "loc-unbound", sourceVersionKey: "sv-shared", locatorSummary: "never bound to any candidate" });
+    manifest.propositionCoverage[0]!.supportingSourceLocatorKeys = ["loc-unbound"];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /not bound \(via verifiedSourceLocatorKeys\) to ANY dossier candidate/,
+    );
+  });
+
+  it("D: VERIFIED proposition cites a locator whose bound candidate is APPROVED_NOT_VERIFIED -- REJECTED", () => {
     const manifest = baseManifest();
     manifest.approvedSources = [
-      { dossierSourceId: "SRC-A", sourceKey: "src-a", approvedRole: "test role", status: "RETRIEVAL_FAILED" as const, retrievalNote: "unrelated failed dossier candidate for the same source" } as never,
-      { dossierSourceId: "SRC-A-ALT", sourceKey: "src-a", approvedRole: "test role", status: "VERIFIED" as const },
+      { dossierSourceId: "SRC-CANDIDATE-B", sourceKey: "src-shared", approvedRole: "test role B", status: "APPROVED_NOT_VERIFIED" as const, verifiedSourceLocatorKeys: [] },
+    ];
+    // APPROVED_NOT_VERIFIED must carry zero verifiedSourceLocatorKeys (schema-enforced), so no
+    // candidate binds loc-b at all here -- this simultaneously proves the
+    // "no VERIFIED candidate binds this locator" rejection for an
+    // APPROVED_NOT_VERIFIED candidate specifically.
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /not bound \(via verifiedSourceLocatorKeys\) to ANY dossier candidate/,
+    );
+  });
+
+  it("E: VERIFIED proposition cites a locator whose bound candidate is RETRIEVAL_FAILED -- REJECTED (same mechanism as A, single-candidate case)", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources = [
+      { dossierSourceId: "SRC-CANDIDATE-A", sourceKey: "src-shared", approvedRole: "test role A", status: "RETRIEVAL_FAILED" as const, retrievalNote: "failed", verifiedSourceLocatorKeys: [] },
+    ];
+    manifest.propositionCoverage[0]!.supportingSourceLocatorKeys = ["loc-a"];
+    // No VERIFIED candidate exists at all here -- caught as "not bound to
+    // ANY dossier candidate" (loc-a's only candidate, A, is RETRIEVAL_FAILED
+    // and schema-enforced to have zero verifiedSourceLocatorKeys).
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /not bound \(via verifiedSourceLocatorKeys\) to ANY dossier candidate/,
+    );
+  });
+
+  it("F: a VERIFIED dossier candidate claims a verifiedSourceLocatorKeys entry whose chain reaches a DIFFERENT sourceKey -- REJECTED", () => {
+    const manifest = baseManifest();
+    manifest.sources.push({ key: "src-other", title: "Other Source", sourceRole: "FACTUAL_AUTHORITY" as const });
+    manifest.sourceVersions.push({
+      key: "sv-other", sourceKey: "src-other", status: "CURRENT" as const, rightsClassification: "OPEN" as const,
+      verificationStatus: "VERIFIED" as const, verifiedBy: "test-verifier",
+    });
+    manifest.sourceLocators.push({ key: "loc-other", sourceVersionKey: "sv-other", locatorSummary: "belongs to a different source" });
+    // Candidate B declares sourceKey "src-shared" but claims a locator that
+    // actually resolves to "src-other" -- a candidate may only bind locators
+    // belonging to its own declared source.
+    manifest.approvedSources[1]!.verifiedSourceLocatorKeys = ["loc-other"];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /resolves through source version .* to a DIFFERENT source/,
+    );
+  });
+
+  it("G: a VERIFIED dossier candidate has no verifiedSourceLocatorKeys -- REJECTED", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources[1]!.verifiedSourceLocatorKeys = [];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /has status VERIFIED but names no verifiedSourceLocatorKeys/,
+    );
+  });
+
+  it("H: a RETRIEVAL_FAILED candidate claiming a verifiedSourceLocatorKey -- REJECTED", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources[0]!.verifiedSourceLocatorKeys = ["loc-a"];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /has status 'RETRIEVAL_FAILED' but claims 1 verifiedSourceLocatorKeys/,
+    );
+  });
+
+  it("H (APPROVED_NOT_VERIFIED variant): an APPROVED_NOT_VERIFIED candidate claiming a verifiedSourceLocatorKey -- REJECTED", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources[0]! = {
+      dossierSourceId: "SRC-CANDIDATE-A", sourceKey: "src-shared", approvedRole: "test role A",
+      status: "APPROVED_NOT_VERIFIED" as const, verifiedSourceLocatorKeys: ["loc-a"],
+    };
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /has status 'APPROVED_NOT_VERIFIED' but claims 1 verifiedSourceLocatorKeys/,
+    );
+  });
+
+  it("I: locator reaches a sourceVersion whose verificationStatus is not VERIFIED -- REJECTED", () => {
+    const manifest = baseManifest();
+    manifest.sourceVersions[0]!.verificationStatus = "UNVERIFIED" as const;
+    manifest.sourceVersions[0]!.verifiedBy = undefined;
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /verifiedSourceLocatorKeys includes 'loc-b', whose source version 'sv-shared' has verificationStatus 'UNVERIFIED', not VERIFIED/,
+    );
+  });
+
+  it("J: legitimate reuse -- two VERIFIED candidates intentionally map to the same governed source AND sourceVersion, each with its own explicit locator binding -- PASSES", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources[0]! = {
+      dossierSourceId: "SRC-CANDIDATE-A", sourceKey: "src-shared", approvedRole: "test role A",
+      status: "VERIFIED" as const, verifiedSourceLocatorKeys: ["loc-a"],
+    };
+    // Now both A and B are legitimately VERIFIED on the same source/sourceVersion,
+    // each binding only its own section's locator -- a proposition citing
+    // either locator should pass, and neither candidate's binding leaks to
+    // support a claim the OTHER candidate's locator would be needed for.
+    manifest.propositionCoverage = [
+      { clusterKey: "test-cluster", requirementKind: "FACTUAL_PROPOSITION" as const, requirementText: "Proposition via A.", coverageState: "VERIFIED" as const, supportingSourceLocatorKeys: ["loc-a"] },
+      { clusterKey: "test-cluster", requirementKind: "FACTUAL_PROPOSITION" as const, requirementText: "Proposition via B.", coverageState: "VERIFIED" as const, supportingSourceLocatorKeys: ["loc-b"] },
     ];
     expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).not.toThrow();
   });
 
-  it("REQUIRED (1): VERIFIED proposition citing a locator whose source has NO approvedSources entry at all is rejected", () => {
+  it("K: the duplicate clusterKey+requirementText masking gate remains enforced under the new candidate-binding architecture", () => {
     const manifest = baseManifest();
-    manifest.approvedSources = [];
-    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
-      /NO approvedSources record at all/,
-    );
-  });
-
-  it("REQUIRED (2): VERIFIED proposition citing a locator whose source's approvedSources record is RETRIEVAL_FAILED is rejected", () => {
-    const manifest = baseManifest();
-    manifest.approvedSources = [
-      {
-        dossierSourceId: "SRC-A",
-        sourceKey: "src-a",
-        approvedRole: "test role",
-        status: "RETRIEVAL_FAILED" as const,
-        retrievalNote: "simulated failure for adversarial test",
-      },
-    ];
-    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
-      /RETRIEVAL_FAILED or APPROVED_NOT_VERIFIED dossier source/,
-    );
-  });
-
-  it("REQUIRED (2b): VERIFIED proposition citing a locator whose source's approvedSources record is APPROVED_NOT_VERIFIED is rejected", () => {
-    const manifest = baseManifest();
-    manifest.approvedSources = [
-      { dossierSourceId: "SRC-A", sourceKey: "src-a", approvedRole: "test role", status: "APPROVED_NOT_VERIFIED" as const },
-    ];
-    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
-      /RETRIEVAL_FAILED or APPROVED_NOT_VERIFIED dossier source/,
-    );
-  });
-
-  it("REQUIRED (3): VERIFIED proposition citing a locator whose sourceVersion.verificationStatus is not VERIFIED is rejected", () => {
-    const manifest = baseManifest();
-    manifest.sourceVersions = [{ ...manifest.sourceVersions[0]!, verificationStatus: "UNVERIFIED" as const, verifiedBy: undefined as never }];
-    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
-      /not VERIFIED -- an unverified or verification-failed source snapshot/,
-    );
-  });
-
-  it("REQUIRED (3b): VERIFIED proposition citing a locator whose sourceVersion.verificationStatus is VERIFICATION_FAILED is rejected", () => {
-    const manifest = baseManifest();
-    manifest.sourceVersions = [{ ...manifest.sourceVersions[0]!, verificationStatus: "VERIFICATION_FAILED" as const, verifiedBy: "test-verifier" }];
-    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
-      /not VERIFIED -- an unverified or verification-failed source snapshot/,
-    );
-  });
-
-  it("REQUIRED (4): VERIFIED proposition citing an otherwise-structurally-valid but wholly unapproved source/sourceVersion/sourceLocator chain is rejected", () => {
-    const manifest = baseManifest();
-    // A second, internally-consistent source/sourceVersion/sourceLocator
-    // triple that was never approved by the dossier at all -- structurally
-    // indistinguishable from a legitimate one except for having no
-    // approvedSources entry.
-    manifest.sources.push({ key: "src-unapproved", title: "Unapproved Source", sourceRole: "FACTUAL_AUTHORITY" as const });
-    manifest.sourceVersions.push({
-      key: "sv-unapproved",
-      sourceKey: "src-unapproved",
-      status: "CURRENT" as const,
-      rightsClassification: "OPEN" as const,
-      verificationStatus: "VERIFIED" as const,
-      verifiedBy: "test-verifier",
+    manifest.propositionCoverage.push({
+      clusterKey: "test-cluster", requirementKind: "FACTUAL_PROPOSITION" as const, requirementText: "Test proposition.",
+      coverageState: "SOURCE_GAP" as const, supportingSourceLocatorKeys: [], gapReason: "a duplicate trying to mask the original VERIFIED record",
     });
-    manifest.sourceLocators.push({ key: "loc-unapproved", sourceVersionKey: "sv-unapproved", locatorSummary: "test locator" });
-    manifest.propositionCoverage[0]!.supportingSourceLocatorKeys = ["loc-unapproved"];
     expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
-      /NO approvedSources record at all/,
+      /duplicate proposition coverage record/,
     );
   });
 
-  it("a SOURCE_GAP or CONDITIONAL_SOURCE_GAP record is NOT subject to the trust-chain gate (it cites no locator, or an untrustworthy one is irrelevant to a claim that is not itself VERIFIED)", () => {
+  it("a SOURCE_GAP or CONDITIONAL_SOURCE_GAP record is NOT subject to the candidate-binding gate (it cites no locator, or an untrustworthy one is irrelevant to a claim that is not itself VERIFIED)", () => {
     const manifest = baseManifest();
-    // Leave src-a's approvedSources entry RETRIEVAL_FAILED -- would fail the
-    // trust-chain gate if any VERIFIED proposition cited it, but must not
-    // affect a SOURCE_GAP/CONDITIONAL_SOURCE_GAP record that cites no
-    // locator at all (schema requires >=1 approvedSources entry overall).
     manifest.approvedSources = [
-      { dossierSourceId: "SRC-A", sourceKey: "src-a", approvedRole: "test role", status: "RETRIEVAL_FAILED", retrievalNote: "simulated failure, irrelevant to this test" },
+      { dossierSourceId: "SRC-CANDIDATE-A", sourceKey: "src-shared", approvedRole: "test role A", status: "RETRIEVAL_FAILED" as const, retrievalNote: "irrelevant to this test", verifiedSourceLocatorKeys: [] },
     ];
     manifest.propositionCoverage = [
       {
-        clusterKey: "test-cluster",
-        requirementKind: "FACTUAL_PROPOSITION" as const,
-        requirementText: "Test proposition.",
-        coverageState: "SOURCE_GAP" as const,
-        supportingSourceLocatorKeys: [],
-        gapReason: "no approved source establishes this",
+        clusterKey: "test-cluster", requirementKind: "FACTUAL_PROPOSITION" as const, requirementText: "Test proposition.",
+        coverageState: "SOURCE_GAP" as const, supportingSourceLocatorKeys: [], gapReason: "no approved source establishes this",
       },
     ];
     expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).not.toThrow();

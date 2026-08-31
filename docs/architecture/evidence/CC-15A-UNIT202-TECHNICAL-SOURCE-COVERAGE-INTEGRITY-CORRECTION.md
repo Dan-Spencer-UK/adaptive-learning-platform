@@ -51,7 +51,9 @@ This reverses CC-15's §2 item 9.
 
 ### 3.2 Additional false negatives found during the mandated full re-audit
 
-Every remaining `SOURCE_GAP`/`CONDITIONAL_SOURCE_GAP` record (21 before this package; §4 lists the resulting 20) was independently re-checked against its already-approved candidate source(s), inspecting actual page/PDF content (via WebFetch, and `pdftotext` extraction where WebFetch could not parse a PDF), never titles/headings/URL slugs/neighbouring sections. Two further false negatives were found and corrected; every other gap was re-verified and found accurate (§5).
+**Correction (CC-15B review):** this subsection originally understated the starting count as "21 records." The actual, machine-recomputed count is **28** — CC-15's own final committed state (11 `SOURCE_GAP` + 17 `CONDITIONAL_SOURCE_GAP`, independently reconfirmed by counting `coverageState` occurrences in the `unit202-technical-source-verification.ts` blob at commit `5336e2e`). CC-15A's eight corrections (§3.1's three plus §3.2's D/E, each of which corrected either one or several individual proposition records — pulley mechanical advantage, pulley effort determination, sine periodic-time/frequency support, T=1/f, frequency/period conversion, minutes-to-seconds, fuse operation, wireless practical advantage) reduced that to the **20** residual §7 lists. `28 − 8 = 20`, machine-reconciled.
+
+Every remaining `SOURCE_GAP`/`CONDITIONAL_SOURCE_GAP` record (28 before this package; §4/§7 list the resulting 20) was independently re-checked against its already-approved candidate source(s), inspecting actual page/PDF content (via WebFetch, and `pdftotext` extraction where WebFetch could not parse a PDF), never titles/headings/URL slugs/neighbouring sections. Two further false negatives were found and corrected; every other gap was re-verified and found accurate (§5).
 
 **D. Fuse operation.** `SRC-OPENSTAX-UP2-ELECTRICAL-POWER` §9.5 Electrical Energy and Power — already approved, already cited for P=IV/Joule heating in the same cluster — independently re-fetched and confirmed to contain a dedicated fuse passage (main body text, beside Figure 9.25): *"A fuse... is a device that protects a circuit from currents that are too high... The wire is designed to heat up and break at the rated current."* New locator `loc-up2-electrical-power-fuse` registered. Corrected: "Fuse operation as a practical application of the thermal effect" → `SOURCE_GAP` → **`VERIFIED`** (and `thermal-and-chemical-effects-of-current` cluster reverted `UNSOURCED` → `SOURCED`).
 
@@ -60,6 +62,8 @@ Every remaining `SOURCE_GAP`/`CONDITIONAL_SOURCE_GAP` record (21 before this pac
 **Retrieval retries (no change, reported for completeness):** `SRC-YOKOGAWA-POWER-MEASUREMENT` and `SRC-ST-AN3168-DIAC-TRIAC-DIMMER` (both still RETRIEVAL_FAILED) and `SRC-ST-DIAC-DB3`'s own TRIAC-operation coverage were re-attempted this session; all still fail or remain genuinely unsupported (Yokogawa: empty/blocked response; AN3168: no Wayback snapshot, connection still blocked at origin; ST DIAC DB3 product page: consistent request timeout, existing recorded evidence already shows it is DB3-scoped, not TRIAC-operation content). The two Fleming-rule locators were also re-checked: the Nagoya OCW course-index page still links only to off-site YouTube videos with no downloadable transcript/notes/slides, confirmed via a direct fetch attempt on both video URLs (JS-rendered, no plain-text transcript available to a non-JS fetch). All three remain accurately `SOURCE_GAP`.
 
 ## 4. Trust-chain mechanical hardening
+
+**Superseded (CC-15B review):** the source-level rule this section describes ("at least one `approvedSources` record for that exact source is `VERIFIED`") was found insufficiently precise — several approved dossier candidates may share one governed source, and this rule let a VERIFIED candidate's success be inferred for a DIFFERENT, failed/unverified candidate on the same source. CC-15B replaced it with an explicit CANDIDATE-to-locator binding (`verifiedSourceLocatorKeys`) — see `CC-15B-...md`. §5's test table below and its "legitimate reuse" row describe the now-superseded source-level design; preserved here as CC-15A's own historical record, not current architecture.
 
 **Problem (Project-Architect-identified):** the CC-15 schema required a `VERIFIED` proposition-coverage record to cite at least one `supportingSourceLocatorKeys` entry, but never verified that the *chain behind* that locator was itself sound. A locator could structurally exist while its source had no approval record at all, or an approval record that was `RETRIEVAL_FAILED`/`APPROVED_NOT_VERIFIED`, or a `sourceVersion` that was never independently verified — and the schema would accept it regardless.
 
@@ -134,7 +138,9 @@ Recomputed by `validate-unit202-technical-source-verification.ts`'s `buildReport
 
 ## 7. Residual SOURCE_GAP / CONDITIONAL_SOURCE_GAP (20 total — independently re-verified, not carried forward unchecked)
 
-**SOURCE_GAP (9):**
+**Correction (CC-15B review):** this section originally mis-split the 20 residual records as "9 SOURCE_GAP / 11 CONDITIONAL_SOURCE_GAP" and omitted one existing `CONDITIONAL_SOURCE_GAP` record entirely (`electronic-systems-and-applications` — "Motor control: rectification and controlled switching/protection at block-function level.", itself one of this package's own §3.2 corrections' neighbours, never removed, just never listed here). Neither error changed the underlying data — only this document's manually-typed prose was wrong. The correct, machine-recomputed split, reconciled against `buildReport()`'s `sourceGapCount`/`conditionalSourceGapCount`/`residualPropositions` (see `CC-15B-...md` §2), is **7 `SOURCE_GAP` + 13 `CONDITIONAL_SOURCE_GAP` = 20**:
+
+**SOURCE_GAP (7):**
 1. `electrical-measurement-instruments` — wattmeter measurement principle (Yokogawa RETRIEVAL_FAILED, re-attempted, still fails).
 2. `electromagnetism-motor-effect-and-induced-emf` — Fleming's left-hand rule (video-only content, re-confirmed unretrievable).
 3. `electromagnetism-motor-effect-and-induced-emf` — Fleming's right-hand rule (same).
@@ -143,7 +149,7 @@ Recomputed by `validate-unit202-technical-source-verification.ts`'s `buildReport
 6. `electronic-systems-and-applications` — telephone master-socket component-role currency (dossier-mandated deliberate gap, GAP-UNIT202-TELEPHONE-MASTER-SOCKET — see §8 for the mandated provenance trace).
 7. `electronic-components-operating-principles` — TRIAC's own bidirectional operation (depends on the same failed AN3168; DB3 page re-confirmed DB3-scoped only).
 
-**CONDITIONAL_SOURCE_GAP (11):**
+**CONDITIONAL_SOURCE_GAP (13):**
 8. `foundational-mathematics-for-electrical-work` — four operations on fractions/decimals/percentages + proportional reasoning (re-verified: source scoped to percent conversion only).
 9. `foundational-mathematics-for-electrical-work` — fractional indices as roots (re-verified: source scoped to integer exponents only).
 10. `foundational-mathematics-for-electrical-work` — statistical range definition (re-verified: confirmed absent from the approved section; dossier-anticipated conditional gap).
@@ -153,11 +159,12 @@ Recomputed by `validate-unit202-technical-source-verification.ts`'s `buildReport
 14. `work-energy-power-efficiency` — generic force definition (weight-as-force is verified; a standalone "force is a push or pull" definition re-verified absent from the cited section).
 15. `conductors-and-insulators` — tungsten/porcelain examples (re-verified: confirmed absent; copper/glass/plastic remain verified).
 16. `electromagnetism-motor-effect-and-induced-emf` — "electromagnet"/relay/contactor terminology (re-verified: word "electromagnet" and relay/contactor content confirmed absent from the solenoid section).
-17. `electronic-components-operating-principles` — full-wave/bridge rectifier form (re-verified: source confirmed half-wave-only).
-18. `electronic-components-operating-principles` — schematic symbols for all 13 listed components (re-verified: only the transistor symbol is sourced).
-19. `electronic-components-operating-principles` — physical appearance of all listed components (re-verified: no approved source is a dedicated appearance guide).
+17. `electronic-systems-and-applications` — motor-control "protection" function (§3's own corrected record's neighbour — rectification/switching are VERIFIED, no approved source names a protection function; omitted from this section in the original draft, added back here).
+18. `electronic-components-operating-principles` — full-wave/bridge rectifier form (re-verified: source confirmed half-wave-only).
+19. `electronic-components-operating-principles` — schematic symbols for all 13 listed components (re-verified: only the transistor symbol is sourced).
+20. `electronic-components-operating-principles` — physical appearance of all listed components (re-verified: no approved source is a dedicated appearance guide).
 
-(Item 20 in the 20-total count is item 6 above counted once; the numbering here lists 9 SOURCE_GAP + 11 CONDITIONAL_SOURCE_GAP = 20, matching `buildReport()`'s independently recomputed totals exactly.)
+This list is mechanically reconciled against the live data (never a hand-typed figure trusted on its own) by two regression tests added in CC-15B: one asserting `verifiedPropositionCount + sourceGapCount + conditionalSourceGapCount === totalPropositionCount`, and one asserting `report.residualPropositions` contains exactly every non-`VERIFIED` proposition once, matching this 20-item list one-for-one.
 
 ## 8. Telephone master-socket provenance trace (reporting only — per the Project Architect's mid-package instruction; no scope decision made)
 

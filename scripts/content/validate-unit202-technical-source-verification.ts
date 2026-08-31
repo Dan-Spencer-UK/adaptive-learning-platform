@@ -136,10 +136,17 @@ interface ClusterCoverage {
   status: ClusterCoverageStatus;
 }
 
+interface ResidualProposition {
+  clusterKey: string;
+  requirementText: string;
+  coverageState: "SOURCE_GAP" | "CONDITIONAL_SOURCE_GAP";
+}
+
 interface Report {
   approvedSourceCount: number;
   verifiedSourceCount: number;
   retrievalFailedSourceCount: number;
+  approvedNotVerifiedSourceCount: number;
   missingDossierIds: string[];
   unapprovedDossierIds: string[];
   duplicateDossierIds: string[];
@@ -152,6 +159,13 @@ interface Report {
   clustersMarkedSourcedButNotFullyCovered: string[];
   clustersFullyCoveredButNotMarkedSourced: string[];
   expectedGapsNoLongerGaps: string[];
+  /** CC-15B: machine-derived global proposition-state counts and the exact
+   * residual (non-VERIFIED) list -- never a manually-maintained figure. */
+  totalPropositionCount: number;
+  verifiedPropositionCount: number;
+  sourceGapCount: number;
+  conditionalSourceGapCount: number;
+  residualPropositions: ResidualProposition[];
 }
 
 function requirementsForCluster(cluster: (typeof unit202SourceAcquisitionManifest.clusters)[number]) {
@@ -188,6 +202,17 @@ function buildReport(overrides?: {
 
   const verifiedSourceCount = verification.approvedSources.filter((s) => s.status === "VERIFIED").length;
   const retrievalFailedSourceCount = verification.approvedSources.filter((s) => s.status === "RETRIEVAL_FAILED").length;
+  const approvedNotVerifiedSourceCount = verification.approvedSources.filter((s) => s.status === "APPROVED_NOT_VERIFIED").length;
+
+  // CC-15B: derived directly from the live propositionCoverage array, never
+  // typed as an independent manual count -- this is the single source of
+  // truth every other total/list below must reconcile against.
+  const verifiedPropositionCount = verification.propositionCoverage.filter((p) => p.coverageState === "VERIFIED").length;
+  const sourceGapCount = verification.propositionCoverage.filter((p) => p.coverageState === "SOURCE_GAP").length;
+  const conditionalSourceGapCount = verification.propositionCoverage.filter((p) => p.coverageState === "CONDITIONAL_SOURCE_GAP").length;
+  const residualPropositions: ResidualProposition[] = verification.propositionCoverage
+    .filter((p): p is typeof p & { coverageState: "SOURCE_GAP" | "CONDITIONAL_SOURCE_GAP" } => p.coverageState !== "VERIFIED")
+    .map((p) => ({ clusterKey: p.clusterKey, requirementText: p.requirementText, coverageState: p.coverageState }));
 
   // Index proposition-coverage records by cluster+requirementText.
   const coverageByKey = new Map<string, (typeof verification.propositionCoverage)[number]>();
@@ -249,6 +274,7 @@ function buildReport(overrides?: {
     approvedSourceCount: verification.approvedSources.length,
     verifiedSourceCount,
     retrievalFailedSourceCount,
+    approvedNotVerifiedSourceCount,
     missingDossierIds,
     unapprovedDossierIds,
     duplicateDossierIds,
@@ -261,6 +287,11 @@ function buildReport(overrides?: {
     clustersMarkedSourcedButNotFullyCovered,
     clustersFullyCoveredButNotMarkedSourced,
     expectedGapsNoLongerGaps,
+    totalPropositionCount: verification.propositionCoverage.length,
+    verifiedPropositionCount,
+    sourceGapCount,
+    conditionalSourceGapCount,
+    residualPropositions,
   };
 }
 
@@ -271,6 +302,7 @@ function formatReport(report: Report): string {
   lines.push(`Approved dossier sources: ${report.approvedSourceCount} (expected ${EXPECTED_DOSSIER_SOURCE_IDS.length})`);
   lines.push(`  - VERIFIED: ${report.verifiedSourceCount}`);
   lines.push(`  - RETRIEVAL_FAILED: ${report.retrievalFailedSourceCount}`);
+  lines.push(`  - APPROVED_NOT_VERIFIED: ${report.approvedNotVerifiedSourceCount}`);
   lines.push(`Missing expected dossier ids (target 0): ${report.missingDossierIds.length}`);
   if (report.missingDossierIds.length) lines.push(`  ${report.missingDossierIds.join(", ")}`);
   lines.push(`Unapproved dossier ids present (target 0): ${report.unapprovedDossierIds.length}`);
@@ -295,6 +327,14 @@ function formatReport(report: Report): string {
   if (report.clustersFullyCoveredButNotMarkedSourced.length) lines.push(`  ${report.clustersFullyCoveredButNotMarkedSourced.join(", ")}`);
   lines.push(`Expected dossier gaps that turned green (target 0): ${report.expectedGapsNoLongerGaps.length}`);
   if (report.expectedGapsNoLongerGaps.length) lines.push(`  ${report.expectedGapsNoLongerGaps.join("\n  ")}`);
+  lines.push("");
+  lines.push(
+    `Proposition records: ${report.totalPropositionCount} total = ${report.verifiedPropositionCount} VERIFIED + ${report.sourceGapCount} SOURCE_GAP + ${report.conditionalSourceGapCount} CONDITIONAL_SOURCE_GAP`,
+  );
+  lines.push(`Residual (non-VERIFIED) propositions: ${report.residualPropositions.length}`);
+  for (const r of report.residualPropositions) {
+    lines.push(`  [${r.coverageState}] ${r.clusterKey}: ${r.requirementText}`);
+  }
   return lines.join("\n");
 }
 
@@ -311,7 +351,7 @@ export function isReportClean(report: Report): boolean {
 }
 
 export { buildReport, formatReport, EXPECTED_DOSSIER_SOURCE_IDS, EXPECTED_SOURCE_GAP_REQUIREMENTS };
-export type { Report, ClusterCoverage, ClusterCoverageStatus };
+export type { Report, ClusterCoverage, ClusterCoverageStatus, ResidualProposition };
 
 function isMainModule(): boolean {
   const entryPoint = process.argv[1];

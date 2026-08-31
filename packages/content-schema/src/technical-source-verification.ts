@@ -118,6 +118,15 @@ export type PropositionRequirementKind = z.infer<
  * module's header), the dossier's own stated approved role (free text,
  * e.g. "PRIMARY SI factual authority" -- carried forward, not
  * reinterpreted), and this package's own retrieval outcome.
+ *
+ * CC-15B: the approved DOSSIER is candidate-level governance, not
+ * source-level -- several approved dossier candidates may legitimately
+ * resolve to the same governed source object (e.g. several approved
+ * sections of one OpenStax volume). A candidate's own success must never
+ * be inferable merely because a DIFFERENT candidate sharing the same
+ * sourceKey happens to be VERIFIED. `verifiedSourceLocatorKeys` makes this
+ * explicit: the exact locator(s) THIS candidate was actually verified
+ * against, never inherited from a sibling candidate on the same source.
  */
 export const approvedTechnicalSourceSchema = z
   .object({
@@ -127,6 +136,17 @@ export const approvedTechnicalSourceSchema = z
     status: sourceApprovalStatusSchema,
     /** Required whenever status is RETRIEVAL_FAILED -- the precise, honest reason (404, paywall, JS-rendered/empty content, PDF parse failure, unexpected redirect), never papered over. */
     retrievalNote: z.string().min(1).optional(),
+    /**
+     * CC-15B: the exact sourceLocator key(s) this specific dossier
+     * candidate was actually verified against. Required (>=1) whenever
+     * status is VERIFIED -- a VERIFIED candidate that names no locator it
+     * was actually checked against is exactly the source-level-only
+     * ambiguity this field exists to close. Must be empty whenever status
+     * is RETRIEVAL_FAILED or APPROVED_NOT_VERIFIED -- a candidate that
+     * never succeeded can never claim a verified locator, regardless of
+     * what any other candidate on the same source claims.
+     */
+    verifiedSourceLocatorKeys: z.array(stableKey).default([]),
   })
   .superRefine((s, ctx) => {
     if (s.status === "RETRIEVAL_FAILED" && !s.retrievalNote) {
@@ -134,6 +154,20 @@ export const approvedTechnicalSourceSchema = z
         code: "custom",
         path: ["retrievalNote"],
         message: `approved source '${s.dossierSourceId}' has status RETRIEVAL_FAILED but no retrievalNote explaining why -- a failure must be recorded, never silently dropped`,
+      });
+    }
+    if (s.status === "VERIFIED" && s.verifiedSourceLocatorKeys.length === 0) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["verifiedSourceLocatorKeys"],
+        message: `approved source '${s.dossierSourceId}' has status VERIFIED but names no verifiedSourceLocatorKeys -- a VERIFIED dossier candidate must explicitly name the exact locator(s) it was actually verified against`,
+      });
+    }
+    if (s.status !== "VERIFIED" && s.verifiedSourceLocatorKeys.length > 0) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["verifiedSourceLocatorKeys"],
+        message: `approved source '${s.dossierSourceId}' has status '${s.status}' but claims ${s.verifiedSourceLocatorKeys.length} verifiedSourceLocatorKeys -- only a VERIFIED dossier candidate may claim a verified locator binding`,
       });
     }
   });
@@ -270,58 +304,84 @@ export const technicalSourceVerificationManifestSchema = z
     });
 
     // VERIFIED-proposition trust chain (Project-Architect-mandated
-    // hardening): a VERIFIED coverage record citing a locator must never be
-    // trustable unless the FULL chain behind that locator is itself sound --
-    // supportingSourceLocator -> existing sourceVersion -> sourceVersion.
-    // verificationStatus === "VERIFIED" -> existing source -> at least one
-    // approvedSources record for that exact source -> that approvedSources
-    // record's status === "VERIFIED". A RETRIEVAL_FAILED or
-    // APPROVED_NOT_VERIFIED dossier source, an UNVERIFIED/VERIFICATION_FAILED
-    // sourceVersion, or a source/sourceVersion/sourceLocator triple with no
-    // approvedSources record at all must never be capable of backing a
-    // VERIFIED proposition. Generic (no Unit-202-specific IDs) -- this is a
-    // property of the schema, not of any one dataset. Legitimate reuse is
-    // preserved: a source key with several approvedSources entries (several
-    // dossier candidates resolving to the same governed document) passes as
-    // long as AT LEAST ONE of those entries is itself VERIFIED.
+    // hardening, refined to CANDIDATE level in CC-15B): a VERIFIED coverage
+    // record citing a locator must never be trustable unless that EXACT
+    // locator is explicitly bound, by an explicit verifiedSourceLocatorKeys
+    // entry, to a dossier CANDIDATE whose own status is VERIFIED -- never
+    // merely because SOME approved candidate on the same underlying source
+    // happens to be VERIFIED (source-level trust, CC-15A's now-superseded
+    // rule, was insufficiently precise: several approved candidates may
+    // share one governed source, and a successful candidate for one section
+    // must never launder a different, failed/unverified candidate's
+    // locator). Generic (no Unit-202-specific IDs) -- a property of the
+    // schema, not of any one dataset.
     const sourceVersionByKey = new Map(manifest.sourceVersions.map((sv) => [sv.key, sv]));
-    const sourceByKey = new Map(manifest.sources.map((s) => [s.key, s]));
-    const approvedSourceKeysWithVerifiedApproval = new Set(
-      manifest.approvedSources.filter((s) => s.status === "VERIFIED").map((s) => s.sourceKey),
-    );
     const sourceLocatorByKey = new Map(manifest.sourceLocators.map((sl) => [sl.key, sl]));
 
-    manifest.propositionCoverage.forEach((p, i) => {
-      if (p.coverageState !== "VERIFIED") return;
-      p.supportingSourceLocatorKeys.forEach((locatorKey, j) => {
+    // Step 1: validate every VERIFIED candidate's own verifiedSourceLocatorKeys
+    // bindings, and collect only the locators that survive full validation
+    // into `candidateVerifiedLocatorKeys` -- the only locators a VERIFIED
+    // proposition may ever cite as evidence.
+    const candidateVerifiedLocatorKeys = new Set<string>();
+    manifest.approvedSources.forEach((candidate, i) => {
+      if (candidate.status !== "VERIFIED") return; // non-VERIFIED candidates are schema-enforced to have zero entries here
+      candidate.verifiedSourceLocatorKeys.forEach((locatorKey, j) => {
+        const path = ["approvedSources", i, "verifiedSourceLocatorKeys", j];
         const locator = sourceLocatorByKey.get(locatorKey);
-        if (!locator) return; // already reported as an unknown-locator issue above
-
-        const sourceVersion = sourceVersionByKey.get(locator.sourceVersionKey);
-        if (!sourceVersion) return; // already reported as an unknown-sourceVersion issue above
-
-        const path = ["propositionCoverage", i, "supportingSourceLocatorKeys", j];
-
-        if (sourceVersion.verificationStatus !== "VERIFIED") {
+        if (!locator) {
           issue(
-            `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', whose source version '${sourceVersion.key}' has verificationStatus '${sourceVersion.verificationStatus}', not VERIFIED -- an unverified or verification-failed source snapshot can never back a VERIFIED proposition`,
+            `approved source '${candidate.dossierSourceId}' verifiedSourceLocatorKeys references unknown source locator '${locatorKey}'`,
             path,
           );
           return;
         }
+        const sourceVersion = sourceVersionByKey.get(locator.sourceVersionKey);
+        if (!sourceVersion) return; // already reported as an unknown-sourceVersion issue above
 
-        const source = sourceByKey.get(sourceVersion.sourceKey);
-        if (!source) return; // already reported as an unknown-source issue above
-
-        if (!approvedSourceKeysWithVerifiedApproval.has(source.key)) {
-          const approvalForSource = manifest.approvedSources.find((s) => s.sourceKey === source.key);
+        if (sourceVersion.verificationStatus !== "VERIFIED") {
           issue(
-            approvalForSource
-              ? `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', whose source '${source.key}' is only approved via dossierSourceId '${approvalForSource.dossierSourceId}' with status '${approvalForSource.status}' (not VERIFIED) -- a RETRIEVAL_FAILED or APPROVED_NOT_VERIFIED dossier source can never back a VERIFIED proposition`
-              : `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', whose source '${source.key}' has NO approvedSources record at all -- an unapproved source/sourceVersion/sourceLocator chain can never back a VERIFIED proposition, even if structurally well-formed`,
+            `approved source '${candidate.dossierSourceId}' verifiedSourceLocatorKeys includes '${locatorKey}', whose source version '${sourceVersion.key}' has verificationStatus '${sourceVersion.verificationStatus}', not VERIFIED`,
             path,
           );
+          return;
         }
+        if (sourceVersion.sourceKey !== candidate.sourceKey) {
+          issue(
+            `approved source '${candidate.dossierSourceId}' declares sourceKey '${candidate.sourceKey}' but verifiedSourceLocatorKeys includes '${locatorKey}', which resolves through source version '${sourceVersion.key}' to a DIFFERENT source '${sourceVersion.sourceKey}' -- a candidate may only bind locators belonging to its own declared source`,
+            path,
+          );
+          return;
+        }
+        candidateVerifiedLocatorKeys.add(locatorKey);
+      });
+    });
+
+    // Step 2: every VERIFIED proposition's cited locator must be one of the
+    // locators that survived step 1 -- explicitly bound to a VERIFIED
+    // candidate, chain and all, never merely structurally present.
+    manifest.propositionCoverage.forEach((p, i) => {
+      if (p.coverageState !== "VERIFIED") return;
+      p.supportingSourceLocatorKeys.forEach((locatorKey, j) => {
+        if (candidateVerifiedLocatorKeys.has(locatorKey)) return;
+        const path = ["propositionCoverage", i, "supportingSourceLocatorKeys", j];
+        const locator = sourceLocatorByKey.get(locatorKey);
+        if (!locator) return; // already reported as an unknown-locator issue above
+
+        const boundCandidates = manifest.approvedSources.filter((s) => s.verifiedSourceLocatorKeys.includes(locatorKey));
+        if (boundCandidates.length === 0) {
+          issue(
+            `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', which is not bound (via verifiedSourceLocatorKeys) to ANY dossier candidate -- a structurally valid locator with no verified dossier-candidate binding can never back a VERIFIED proposition`,
+            path,
+          );
+          return;
+        }
+        const nonVerifiedBinders = boundCandidates.filter((s) => s.status !== "VERIFIED");
+        issue(
+          nonVerifiedBinders.length > 0
+            ? `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', which is bound only to dossier candidate(s) with non-VERIFIED status (${nonVerifiedBinders.map((s) => `${s.dossierSourceId}=${s.status}`).join(", ")}) -- a RETRIEVAL_FAILED or APPROVED_NOT_VERIFIED candidate can never back a VERIFIED proposition, even if a different candidate on the same source is VERIFIED`
+            : `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', whose binding to a VERIFIED candidate failed chain validation (see the approvedSources-level issue reported above for this locator)`,
+          path,
+        );
       });
     });
 
