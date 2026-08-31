@@ -1000,6 +1000,21 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       page: "138",
       locatorSummary: "Table 7 lists every SI prefix (e.g. kilo, milli, micro) with its factor and symbol, and states prefix-symbol notation rules.",
     },
+    // CC-15A false-negative correction (Project-Architect-confirmed, independently
+    // re-verified against the actual BIPM SI Brochure PDF via pdftotext extraction,
+    // not a search snippet or page title): the same BIPM SI Brochure this module
+    // already cites for base/derived units and prefixes also carries a Non-SI-units
+    // table with the minute-to-seconds conversion. The prior CC-15 pass never
+    // registered a locator for this table at all.
+    {
+      key: "loc-bipm-nonsi-units",
+      sourceVersionKey: "sv-bipm-si-9th-edition-4.01",
+      section: "4 Non-SI units",
+      tableReference: "Table 8 (Non-SI units)",
+      page: "140",
+      locatorSummary:
+        "Table 8, row for quantity \"time\": unit name \"minute\", symbol \"min\", value in SI units \"1 min = 60 s\" -- extracted directly from the PDF text (pdftotext), not a search snippet or page heading. The same table row/group also gives hour (1 h = 60 min = 3600 s) and day (1 d = 24 h = 86400 s).",
+    },
     {
       key: "loc-bipm-cc-by-licence",
       sourceVersionKey: "sv-bipm-si-9th-edition-4.01",
@@ -1114,6 +1129,18 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       section: "9.5 Electrical Energy and Power",
       locatorSummary: "Gives P=IV (9.12) and its P=I^2R/P=V^2/R derived forms (9.13); states current flow converts electrical energy to thermal energy.",
     },
+    // CC-15A false-negative correction (independently re-verified against the
+    // live OpenStax page): the same 9.5 section this module already cites for
+    // P=IV/Joule heating also contains a dedicated fuse passage (main body
+    // text, next to Figure 9.25) the original CC-15 pass missed.
+    {
+      key: "loc-up2-electrical-power-fuse",
+      sourceVersionKey: "sv-openstax-up2-current",
+      section: "9.5 Electrical Energy and Power, main body text beside Figure 9.25",
+      figureReference: "Figure 9.25",
+      locatorSummary:
+        "States verbatim: \"A fuse... is a device that protects a circuit from currents that are too high. A fuse is basically a short piece of wire between two contacts... the kinetic energy of the charge carriers is converted into thermal energy in the conductor. The piece of wire in the fuse is under tension and has a low melting point. The wire is designed to heat up and break at the rated current. The fuse is destroyed and must be replaced, but it protects the rest of the circuit.\" -- directly connects resistive/Joule heating (the same mechanism this section already establishes) to fuse operation as a practical application.",
+    },
     {
       key: "loc-up2-series-parallel",
       sourceVersionKey: "sv-openstax-up2-current",
@@ -1194,6 +1221,20 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       locatorSummary:
         "Derives generator EMF e=NBA*omega*sin(omega*t) from motional EMF for a rotating coil, and shows rings/brushes (Fig 13.29) and split-ring commutators (Fig 13.30).",
     },
+    // CC-15A false-negative correction (Project-Architect-confirmed, independently
+    // re-verified against the live OpenStax page): the same 13.6 section this
+    // module already cites for the generator-EMF derivation also states the
+    // period/frequency relationship immediately after that derivation -- the
+    // original CC-15 pass's locator summary above omitted it. Recorded as its
+    // own locator (same source/section, narrower content), matching this
+    // file's one-locator-per-distinct-passage pattern.
+    {
+      key: "loc-up2-generators-period-frequency",
+      sourceVersionKey: "sv-openstax-up2-current",
+      section: "13.6 Electric Generators and Back Emf, paragraph immediately following equation 13.17",
+      locatorSummary:
+        "States verbatim: \"Note that the frequency of the oscillation is f=omega/2*pi and the period is T=1/f=2*pi/omega\" -- directly following equation 13.17 (e=e0*sin(omega*t)) and its own statement that \"it now seems reasonable that ac voltage is sinusoidal.\" Establishes f=omega/2pi, T=1/f, and T=2pi/omega as source-printed text, not a derived rearrangement.",
+    },
     {
       key: "loc-up2-simple-ac",
       sourceVersionKey: "sv-openstax-up2-current",
@@ -1226,6 +1267,20 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       section: "9.3 Simple Machines",
       locatorSummary:
         "Gives mechanical-advantage/efficiency formulas and explicitly states \"a machine cannot increase the amount of energy you put into it\" -- Wi=Wo for an ideal machine.",
+    },
+    // CC-15A false-negative correction (Project-Architect-confirmed, independently
+    // re-verified against the live OpenStax page): the same 9.3 Simple Machines
+    // section this module already cites for generic mechanical-advantage/
+    // efficiency formulas also contains a dedicated pulley passage the original
+    // CC-15 pass missed. Recorded as its own locator (same source/section,
+    // narrower content) rather than folding into loc-physics-simple-machines,
+    // matching this file's existing one-locator-per-distinct-passage pattern.
+    {
+      key: "loc-physics-simple-machines-pulleys",
+      sourceVersionKey: "sv-openstax-physics-2024",
+      section: "9.3 Simple Machines, pulley-systems passage and end-of-section Practice Problems",
+      locatorSummary:
+        "States \"Of all simple machines, mechanical advantage is easiest to calculate for pulleys. Simply count the number of ropes supporting the load. That is the IMA\" -- i.e. IMA equals the number of supporting ropes/strands, stated in prose rather than as a symbolic N= formula. The end-of-section Practice Problems set includes Question 12: \"If a pulley system can lift a 200N load with an effort force of 52 N and has an efficiency of almost 100 percent, how many ropes are supporting the load?\", with the answer key crediting \"4 ropes are required because the actual mechanical advantage is 3.80\" (200/52=3.85, presented rounded as 3.80) among four multiple-choice options -- a multiple-choice practice question with an answer-key value, not a fully worked step-by-step example.",
     },
     {
       key: "loc-chem-electrolysis",
@@ -1420,11 +1475,16 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       locatorSummary:
         "Figure 1.1 and its caption label a variable speed drive's block chain: 1) rectifier, 2) DC-link, 3) inverter unit, 4) electric supply, driving an AC motor/load -- the inverter is the final stage converting DC-link power to controlled AC output.",
     },
+    // CC-15A false-negative correction (independently re-verified against the
+    // live TI page): the Overview paragraph this module already draws on for
+    // the transmit/receive arrangement also states a practical-advantage
+    // claim -- the original CC-15 pass's locator summary omitted it.
     {
       key: "loc-ti-wireless-env-sensor",
       sourceVersionKey: "sv-ti-wireless-env-sensor-current",
-      section: "Page body, \"Building automation > HVAC system\" category",
-      locatorSummary: "Describes wireless MCU-based monitoring/transmission of climate data and integration with HVAC/building-management systems.",
+      section: "Page body, \"Building automation > HVAC system\" category, Overview paragraph",
+      locatorSummary:
+        "Describes wireless MCU-based monitoring/transmission of climate data and integration with HVAC/building-management systems. The Overview paragraph states verbatim: \"...monitor various climate factors and wirelessly communicate with heating, ventilation and air conditioning (HVAC) systems and other intelligent building management systems, while significantly decreasing maintenance costs\" -- a stated practical advantage (decreased maintenance costs), though the page does not itself explain the causal mechanism (e.g. it does not separately claim 'no wiring' or 'flexible placement').",
     },
     {
       key: "loc-ti-tida-01067",
@@ -1668,19 +1728,21 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       coverageState: "VERIFIED",
       supportingSourceLocatorKeys: ["loc-bipm-base-units", "loc-bipm-derived-units"],
     },
-    // NOTE (false-green audit correction): both cited locators are SI-
-    // prefix (decimal-multiple) references -- they support mm->m and
-    // mm^2->m^2 (milli- is a decimal SI prefix) but not minutes->seconds,
-    // which is a non-decimal legacy time-unit conversion neither locator
-    // addresses.
+    // HISTORY: CC-15's own false-green audit correctly found that
+    // loc-nist-sp811-ch4/loc-bipm-si-prefixes (both SI decimal-prefix
+    // references) do not cover minutes->seconds, and downgraded to
+    // CONDITIONAL_SOURCE_GAP. CC-15A found that downgrade was itself a
+    // false negative: the approved BIPM SI Brochure (already the primary
+    // source for this cluster) carries a dedicated Non-SI-units table
+    // (Table 8) with exactly this conversion -- the original pass never
+    // registered a locator for it. See loc-bipm-nonsi-units, independently
+    // extracted from the actual PDF text during this correction. Re-VERIFIED.
     {
       clusterKey: "si-units-and-physical-quantities",
       requirementKind: "PROCEDURE_OR_CALCULATION_RULE",
       requirementText: "Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds).",
-      coverageState: "CONDITIONAL_SOURCE_GAP",
-      supportingSourceLocatorKeys: ["loc-nist-sp811-ch4", "loc-bipm-si-prefixes"],
-      gapReason:
-        "mm->m and mm²->m² conversions are VERIFIED via the SI decimal-prefix tables in both cited locators. minutes->seconds is a non-decimal (base-60) legacy time conversion outside SI-prefix scope and is not established by any retrieved approved source.",
+      coverageState: "VERIFIED",
+      supportingSourceLocatorKeys: ["loc-nist-sp811-ch4", "loc-bipm-si-prefixes", "loc-bipm-nonsi-units"],
     },
 
     // ---- 3. electrical-quantities-and-si-units ----
@@ -1832,14 +1894,18 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       coverageState: "VERIFIED",
       supportingSourceLocatorKeys: ["loc-libretexts-gear-systems"],
     },
+    // CC-15A false-negative correction: CC-15 originally reported this as a
+    // SOURCE_GAP, claiming no approved source addresses pulleys. That was
+    // wrong -- SRC-OPENSTAX-PHYSICS-SIMPLE-MACHINES's own 9.3 Simple Machines
+    // section states pulley IMA equals the ropes-supporting-the-load count
+    // (see loc-physics-simple-machines-pulleys, independently re-fetched and
+    // quote-verified during this correction, not merely re-asserted).
     {
       clusterKey: "simple-machines-levers-gears-pulleys",
       requirementKind: "FACTUAL_PROPOSITION",
       requirementText: "A pulley system's mechanical advantage relates to the number of supporting strands.",
-      coverageState: "SOURCE_GAP",
-      supportingSourceLocatorKeys: [],
-      gapReason:
-        "No approved source in this cluster (OPENSTAX-PHYSICS-SIMPLE-MACHINES, LIBRETEXTS-LEVER-CLASSES, LIBRETEXTS-GEAR-SYSTEMS, LIBRETEXTS-GEAR-POWER-TORQUE) specifically addresses pulleys or supporting-strand counting -- all four cover levers/gears only. Genuine gap the dossier did not itself flag; reported here for Project Architect review.",
+      coverageState: "VERIFIED",
+      supportingSourceLocatorKeys: ["loc-physics-simple-machines-pulleys"],
     },
     {
       clusterKey: "simple-machines-levers-gears-pulleys",
@@ -1869,13 +1935,20 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       coverageState: "VERIFIED",
       supportingSourceLocatorKeys: ["loc-libretexts-gear-systems"],
     },
+    // CC-15A false-negative correction: same source, same passage as above.
+    // The end-of-section Practice Problem Q12 (200N load, 52N effort -> how
+    // many ropes) exercises exactly this effort/mechanical-advantage
+    // calculation (actual MA=load/effort, IMA=N ropes for near-100%
+    // efficiency), even though it is presented as a multiple-choice
+    // practice question with an answer-key value rather than a fully
+    // worked step-by-step example -- see loc-physics-simple-machines-
+    // pulleys for the exact, disclosed nature of that evidence.
     {
       clusterKey: "simple-machines-levers-gears-pulleys",
       requirementKind: "PROCEDURE_OR_CALCULATION_RULE",
       requirementText: "Determining pulley effort from mechanical advantage.",
-      coverageState: "SOURCE_GAP",
-      supportingSourceLocatorKeys: [],
-      gapReason: "Same pulley gap as above -- no approved source covers pulley-specific mechanical advantage.",
+      coverageState: "VERIFIED",
+      supportingSourceLocatorKeys: ["loc-physics-simple-machines-pulleys"],
     },
 
     // ---- 7. work-energy-power-efficiency ----
@@ -2182,13 +2255,19 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       coverageState: "VERIFIED",
       supportingSourceLocatorKeys: ["loc-chem-electrolysis"],
     },
+    // HISTORY: CC-15 originally reported this as a SOURCE_GAP, claiming
+    // neither approved source in this cluster discusses fuse operation.
+    // CC-15A found that was a false negative: SRC-OPENSTAX-UP2-ELECTRICAL-
+    // POWER's own 9.5 section (already cited elsewhere in this cluster for
+    // P=IV/Joule heating) contains a dedicated fuse passage -- see
+    // loc-up2-electrical-power-fuse, independently re-fetched and quote-
+    // verified during this correction.
     {
       clusterKey: "thermal-and-chemical-effects-of-current",
       requirementKind: "PHYSICAL_OR_COMPONENT_RECOGNITION",
       requirementText: "Fuse operation as a practical application of the thermal effect.",
-      coverageState: "SOURCE_GAP",
-      supportingSourceLocatorKeys: [],
-      gapReason: "Neither approved source for this cluster (OPENSTAX-UP2-ELECTRICAL-POWER, OPENSTAX-CHEM-ELECTROLYSIS) discusses fuse operation.",
+      coverageState: "VERIFIED",
+      supportingSourceLocatorKeys: ["loc-up2-electrical-power-fuse"],
     },
 
     // ---- 15. magnetism-flux-and-flux-density ----
@@ -2401,22 +2480,28 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
     },
 
     // ---- 18. sine-wave-characteristics ----
-    // NOTE (false-green audit correction, independent fresh-review pass):
-    // none of the three cited locators' own summaries establish periodic
-    // time or frequency as sine-wave characteristics -- loc-up2-simple-ac
-    // gives v(t), Irms/Vrms and the full-cycle average; the two IAstate
-    // locators give peak/peak-to-peak and RMS/form-factor. Amplitude/peak,
-    // peak-to-peak, RMS and average value ARE covered; periodic time and
-    // frequency are not, by any retrieved approved source. Downgraded from
-    // an incorrect fully-VERIFIED to CONDITIONAL_SOURCE_GAP.
+    // HISTORY: CC-15's original pass marked this VERIFIED against only
+    // amplitude/peak/peak-to-peak/RMS/average evidence -- a false green,
+    // since periodic time and frequency were never actually covered. CC-15's
+    // own false-green audit correctly caught that and downgraded to
+    // CONDITIONAL_SOURCE_GAP. CC-15A subsequently found that downgrade was
+    // itself a false negative: SRC-OPENSTAX-UP2-GENERATORS's 13.6 section
+    // (already an approved dossier source, already cited elsewhere in this
+    // cluster) states periodic time and frequency for a sinusoidal source
+    // immediately after its generator-EMF derivation -- see
+    // loc-up2-generators-period-frequency, independently re-fetched and
+    // quote-verified during this correction. Re-VERIFIED.
     {
       clusterKey: "sine-wave-characteristics",
       requirementKind: "FACTUAL_PROPOSITION",
       requirementText: "Definitions of amplitude/peak, peak-to-peak, periodic time, frequency, RMS value and average value for a sine wave.",
-      coverageState: "CONDITIONAL_SOURCE_GAP",
-      supportingSourceLocatorKeys: ["loc-up2-simple-ac", "loc-iastate-waveform-magnitude", "loc-iastate-rms"],
-      gapReason:
-        "Amplitude/peak, peak-to-peak, RMS value and average value are VERIFIED via the cited locators. Periodic time and frequency as sine-wave characteristics are not established by any retrieved approved source's own content (as distinct from f=N×P in the alternator cluster, which covers frequency only in the alternator-speed context).",
+      coverageState: "VERIFIED",
+      supportingSourceLocatorKeys: [
+        "loc-up2-simple-ac",
+        "loc-iastate-waveform-magnitude",
+        "loc-iastate-rms",
+        "loc-up2-generators-period-frequency",
+      ],
     },
     {
       clusterKey: "sine-wave-characteristics",
@@ -2433,19 +2518,20 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       coverageState: "VERIFIED",
       supportingSourceLocatorKeys: ["loc-iastate-waveform-magnitude"],
     },
-    // NOTE (false-green audit correction): loc-up2-simple-ac's own summary
-    // (v(t)=V0*sin(omega*t), Irms, Vrms, full-cycle average, reactance)
-    // never states T=1/f or defines period; no other retrieved approved
-    // source does either. Downgraded from an incorrect VERIFIED -- not
-    // resolved from model knowledge, per this task's own governance.
+    // HISTORY: loc-up2-simple-ac's own summary (v(t)=V0*sin(omega*t), Irms,
+    // Vrms, full-cycle average, reactance) never states T=1/f -- CC-15's own
+    // false-green audit correctly caught the original miscited VERIFIED and
+    // downgraded to SOURCE_GAP. CC-15A found this was a false negative:
+    // SRC-OPENSTAX-UP2-GENERATORS 13.6 states "the period is T=1/f=2*pi/
+    // omega" verbatim, immediately after its generator-EMF derivation (see
+    // loc-up2-generators-period-frequency). Re-VERIFIED -- not resolved from
+    // model knowledge; independently re-fetched and quote-verified.
     {
       clusterKey: "sine-wave-characteristics",
       requirementKind: "RELATIONSHIP_OR_MECHANISM",
       requirementText: "T = 1/f.",
-      coverageState: "SOURCE_GAP",
-      supportingSourceLocatorKeys: [],
-      gapReason:
-        "No retrieved approved source's own content states the period-frequency relationship T=1/f or defines periodic time for a sine wave. loc-up2-simple-ac (the only locator previously cited) covers v(t), RMS and full-cycle average, not period.",
+      coverageState: "VERIFIED",
+      supportingSourceLocatorKeys: ["loc-up2-generators-period-frequency"],
     },
     {
       clusterKey: "sine-wave-characteristics",
@@ -2461,18 +2547,15 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       coverageState: "VERIFIED",
       supportingSourceLocatorKeys: ["loc-iastate-rms"],
     },
-    // NOTE (false-green audit correction): the frequency<->period half of
-    // this procedure depends on the same missing T=1/f evidence above; the
-    // peak/RMS/average-of-one-alternation half is genuinely VERIFIED via
-    // the cited locators.
+    // HISTORY: the frequency<->period half of this procedure depended on the
+    // same T=1/f evidence CC-15's own audit found missing (correctly, at the
+    // time); CC-15A's correction to that record (above) now supplies it.
     {
       clusterKey: "sine-wave-characteristics",
       requirementKind: "PROCEDURE_OR_CALCULATION_RULE",
       requirementText: "Converting between frequency and period, and between peak, RMS and average-of-one-alternation values.",
-      coverageState: "CONDITIONAL_SOURCE_GAP",
-      supportingSourceLocatorKeys: ["loc-up2-simple-ac", "loc-iastate-rms"],
-      gapReason:
-        "Converting between peak, RMS and average-of-one-alternation values is VERIFIED via the cited locators. Frequency<->period conversion is not, for the same reason as the T=1/f relationship above (SOURCE_GAP).",
+      coverageState: "VERIFIED",
+      supportingSourceLocatorKeys: ["loc-up2-simple-ac", "loc-iastate-rms", "loc-up2-generators-period-frequency"],
     },
 
     // ---- 19. electronic-systems-and-applications ----
@@ -2513,17 +2596,19 @@ export const unit202TechnicalSourceVerification: TechnicalSourceVerificationMani
       gapReason:
         "Rectification and controlled switching (rectifier/DC-link/inverter block chain) are VERIFIED via SRC-ABB-DRIVE-SYSTEM Figure 1.1. No retrieved approved source names a protection function for this chain.",
     },
-    // NOTE (false-green audit correction): neither TI locator's own
-    // summary states a practical advantage of wireless control (only the
-    // transmitter/receiver arrangement itself). Downgraded from VERIFIED.
+    // HISTORY: CC-15's own false-green audit correctly found the original
+    // VERIFIED overclaimed -- at that time neither TI locator's recorded
+    // summary stated a practical advantage. CC-15A found that was itself a
+    // false negative: loc-ti-wireless-env-sensor's own Overview paragraph
+    // does state a practical advantage (decreased maintenance costs),
+    // independently re-fetched and quote-verified during this correction.
+    // Re-VERIFIED.
     {
       clusterKey: "electronic-systems-and-applications",
       requirementKind: "FACTUAL_PROPOSITION",
       requirementText: "Wireless control: transmitter/receiver arrangement and its practical advantages.",
-      coverageState: "CONDITIONAL_SOURCE_GAP",
+      coverageState: "VERIFIED",
       supportingSourceLocatorKeys: ["loc-ti-wireless-env-sensor", "loc-ti-tida-01067"],
-      gapReason:
-        "The transmitter/receiver arrangement (wireless sensing transmitting to a gateway/thermostat) is VERIFIED via both TI locators. Neither locator's own content states a practical advantage of the wireless approach.",
     },
     {
       clusterKey: "electronic-systems-and-applications",

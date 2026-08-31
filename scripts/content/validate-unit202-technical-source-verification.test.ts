@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import type { TechnicalSourceVerificationManifest } from "@alp/content-schema";
 import { technicalSourceVerificationManifestSchema } from "@alp/content-schema";
 
 import { unit202SourceAcquisitionManifest } from "./data/unit202-source-acquisition-manifest.ts";
@@ -170,13 +171,29 @@ describe("CC-15 Unit 202 Technical Source Verification -- tamper-and-assert regr
     expect(() => technicalSourceVerificationManifestSchema.parse(tampered)).toThrow();
   });
 
-  it("removing an approved dossier source is caught as a missing id, never silently accepted", () => {
+  it("removing an approved dossier source that backs VERIFIED propositions is caught at the schema layer by the trust-chain gate (CC-15A hardening) -- stronger than the pre-hardening report-level-only detection", () => {
     const tampered = {
       ...unit202TechnicalSourceVerification,
       approvedSources: unit202TechnicalSourceVerification.approvedSources.filter((s) => s.dossierSourceId !== "SRC-BIPM-SI-9E-V4.01"),
     };
+    expect(() => technicalSourceVerificationManifestSchema.parse(tampered)).toThrow(
+      /has NO approvedSources record at all/,
+    );
+  });
+
+  it("removing an approved dossier source is ALSO caught at the report layer as a missing id (defence in depth) when the tamper does not itself break the trust chain", () => {
+    // Use a source with no VERIFIED propositionCoverage evidence depending on
+    // it (SRC-OFCOM-FUTURE-LANDLINE is RETRIEVAL_FAILED, so removing its
+    // approvedSources entry cannot trip the trust-chain gate) to isolate the
+    // report-level missing-id detection from the schema-level trust-chain gate.
+    const tampered = {
+      ...unit202TechnicalSourceVerification,
+      approvedSources: unit202TechnicalSourceVerification.approvedSources.filter(
+        (s) => s.dossierSourceId !== "SRC-OFCOM-FUTURE-LANDLINE",
+      ),
+    };
     const report = buildReport({ verification: tampered });
-    expect(report.missingDossierIds).toContain("SRC-BIPM-SI-9E-V4.01");
+    expect(report.missingDossierIds).toContain("SRC-OFCOM-FUTURE-LANDLINE");
     expect(isReportClean(report)).toBe(false);
   });
 
@@ -245,5 +262,171 @@ describe("CC-15 Unit 202 Technical Source Verification -- tamper-and-assert regr
     const report = buildReport({ manifest: tamperedManifest });
     expect(report.clustersMarkedSourcedButNotFullyCovered).toContain("conductors-and-insulators");
     expect(isReportClean(report)).toBe(false);
+  });
+
+  it("a duplicate proposition-coverage record is rejected at the schema layer, even when it would mask a less favourable original record", () => {
+    const original = unit202TechnicalSourceVerification.propositionCoverage.find(
+      (p) => p.coverageState === "SOURCE_GAP",
+    )!;
+    const tampered = {
+      ...unit202TechnicalSourceVerification,
+      propositionCoverage: [
+        ...unit202TechnicalSourceVerification.propositionCoverage,
+        // A second, more favourable record for the SAME requirement --
+        // exactly the "smuggle a nicer coverageState in as a second record"
+        // attack the duplicate gate exists to catch.
+        {
+          clusterKey: original.clusterKey,
+          requirementKind: original.requirementKind,
+          requirementText: original.requirementText,
+          coverageState: "VERIFIED" as const,
+          supportingSourceLocatorKeys: [unit202TechnicalSourceVerification.sourceLocators[0]!.key],
+        },
+      ],
+    };
+    expect(() => technicalSourceVerificationManifestSchema.parse(tampered)).toThrow(
+      /duplicate proposition coverage record/,
+    );
+  });
+});
+
+describe("CC-15A Unit 202 Technical Source Verification -- VERIFIED-proposition trust-chain hardening", () => {
+  // Build a minimal, otherwise-valid manifest skeleton once per test so each
+  // adversarial case only has to vary the ONE thing it's testing -- this
+  // exercises the real schema/validator boundary (technicalSourceVerification-
+  // ManifestSchema itself), not a reimplementation of its logic.
+  function baseManifest(): TechnicalSourceVerificationManifest {
+    return {
+      approvedDossierIdentity: "test dossier",
+      sources: [
+        { key: "src-a", title: "Source A", sourceRole: "FACTUAL_AUTHORITY" as const },
+      ],
+      sourceVersions: [
+        {
+          key: "sv-a",
+          sourceKey: "src-a",
+          status: "CURRENT" as const,
+          rightsClassification: "OPEN" as const,
+          verificationStatus: "VERIFIED" as const,
+          verifiedBy: "test-verifier",
+        },
+      ],
+      sourceLocators: [{ key: "loc-a", sourceVersionKey: "sv-a", locatorSummary: "test locator" }],
+      approvedSources: [
+        { dossierSourceId: "SRC-A", sourceKey: "src-a", approvedRole: "test role", status: "VERIFIED" as const },
+      ],
+      propositionCoverage: [
+        {
+          clusterKey: "test-cluster",
+          requirementKind: "FACTUAL_PROPOSITION" as const,
+          requirementText: "Test proposition.",
+          coverageState: "VERIFIED" as const,
+          supportingSourceLocatorKeys: ["loc-a"],
+        },
+      ],
+    };
+  }
+
+  it("passes for the legitimate reuse model: two approved dossier candidates resolving to the same governed source, one VERIFIED, backs a VERIFIED proposition", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources = [
+      { dossierSourceId: "SRC-A", sourceKey: "src-a", approvedRole: "test role", status: "RETRIEVAL_FAILED" as const, retrievalNote: "unrelated failed dossier candidate for the same source" } as never,
+      { dossierSourceId: "SRC-A-ALT", sourceKey: "src-a", approvedRole: "test role", status: "VERIFIED" as const },
+    ];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).not.toThrow();
+  });
+
+  it("REQUIRED (1): VERIFIED proposition citing a locator whose source has NO approvedSources entry at all is rejected", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources = [];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /NO approvedSources record at all/,
+    );
+  });
+
+  it("REQUIRED (2): VERIFIED proposition citing a locator whose source's approvedSources record is RETRIEVAL_FAILED is rejected", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources = [
+      {
+        dossierSourceId: "SRC-A",
+        sourceKey: "src-a",
+        approvedRole: "test role",
+        status: "RETRIEVAL_FAILED" as const,
+        retrievalNote: "simulated failure for adversarial test",
+      },
+    ];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /RETRIEVAL_FAILED or APPROVED_NOT_VERIFIED dossier source/,
+    );
+  });
+
+  it("REQUIRED (2b): VERIFIED proposition citing a locator whose source's approvedSources record is APPROVED_NOT_VERIFIED is rejected", () => {
+    const manifest = baseManifest();
+    manifest.approvedSources = [
+      { dossierSourceId: "SRC-A", sourceKey: "src-a", approvedRole: "test role", status: "APPROVED_NOT_VERIFIED" as const },
+    ];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /RETRIEVAL_FAILED or APPROVED_NOT_VERIFIED dossier source/,
+    );
+  });
+
+  it("REQUIRED (3): VERIFIED proposition citing a locator whose sourceVersion.verificationStatus is not VERIFIED is rejected", () => {
+    const manifest = baseManifest();
+    manifest.sourceVersions = [{ ...manifest.sourceVersions[0]!, verificationStatus: "UNVERIFIED" as const, verifiedBy: undefined as never }];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /not VERIFIED -- an unverified or verification-failed source snapshot/,
+    );
+  });
+
+  it("REQUIRED (3b): VERIFIED proposition citing a locator whose sourceVersion.verificationStatus is VERIFICATION_FAILED is rejected", () => {
+    const manifest = baseManifest();
+    manifest.sourceVersions = [{ ...manifest.sourceVersions[0]!, verificationStatus: "VERIFICATION_FAILED" as const, verifiedBy: "test-verifier" }];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /not VERIFIED -- an unverified or verification-failed source snapshot/,
+    );
+  });
+
+  it("REQUIRED (4): VERIFIED proposition citing an otherwise-structurally-valid but wholly unapproved source/sourceVersion/sourceLocator chain is rejected", () => {
+    const manifest = baseManifest();
+    // A second, internally-consistent source/sourceVersion/sourceLocator
+    // triple that was never approved by the dossier at all -- structurally
+    // indistinguishable from a legitimate one except for having no
+    // approvedSources entry.
+    manifest.sources.push({ key: "src-unapproved", title: "Unapproved Source", sourceRole: "FACTUAL_AUTHORITY" as const });
+    manifest.sourceVersions.push({
+      key: "sv-unapproved",
+      sourceKey: "src-unapproved",
+      status: "CURRENT" as const,
+      rightsClassification: "OPEN" as const,
+      verificationStatus: "VERIFIED" as const,
+      verifiedBy: "test-verifier",
+    });
+    manifest.sourceLocators.push({ key: "loc-unapproved", sourceVersionKey: "sv-unapproved", locatorSummary: "test locator" });
+    manifest.propositionCoverage[0]!.supportingSourceLocatorKeys = ["loc-unapproved"];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).toThrow(
+      /NO approvedSources record at all/,
+    );
+  });
+
+  it("a SOURCE_GAP or CONDITIONAL_SOURCE_GAP record is NOT subject to the trust-chain gate (it cites no locator, or an untrustworthy one is irrelevant to a claim that is not itself VERIFIED)", () => {
+    const manifest = baseManifest();
+    // Leave src-a's approvedSources entry RETRIEVAL_FAILED -- would fail the
+    // trust-chain gate if any VERIFIED proposition cited it, but must not
+    // affect a SOURCE_GAP/CONDITIONAL_SOURCE_GAP record that cites no
+    // locator at all (schema requires >=1 approvedSources entry overall).
+    manifest.approvedSources = [
+      { dossierSourceId: "SRC-A", sourceKey: "src-a", approvedRole: "test role", status: "RETRIEVAL_FAILED", retrievalNote: "simulated failure, irrelevant to this test" },
+    ];
+    manifest.propositionCoverage = [
+      {
+        clusterKey: "test-cluster",
+        requirementKind: "FACTUAL_PROPOSITION" as const,
+        requirementText: "Test proposition.",
+        coverageState: "SOURCE_GAP" as const,
+        supportingSourceLocatorKeys: [],
+        gapReason: "no approved source establishes this",
+      },
+    ];
+    expect(() => technicalSourceVerificationManifestSchema.parse(manifest)).not.toThrow();
   });
 });

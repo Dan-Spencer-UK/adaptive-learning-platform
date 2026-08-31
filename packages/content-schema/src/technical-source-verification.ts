@@ -269,6 +269,62 @@ export const technicalSourceVerificationManifestSchema = z
       });
     });
 
+    // VERIFIED-proposition trust chain (Project-Architect-mandated
+    // hardening): a VERIFIED coverage record citing a locator must never be
+    // trustable unless the FULL chain behind that locator is itself sound --
+    // supportingSourceLocator -> existing sourceVersion -> sourceVersion.
+    // verificationStatus === "VERIFIED" -> existing source -> at least one
+    // approvedSources record for that exact source -> that approvedSources
+    // record's status === "VERIFIED". A RETRIEVAL_FAILED or
+    // APPROVED_NOT_VERIFIED dossier source, an UNVERIFIED/VERIFICATION_FAILED
+    // sourceVersion, or a source/sourceVersion/sourceLocator triple with no
+    // approvedSources record at all must never be capable of backing a
+    // VERIFIED proposition. Generic (no Unit-202-specific IDs) -- this is a
+    // property of the schema, not of any one dataset. Legitimate reuse is
+    // preserved: a source key with several approvedSources entries (several
+    // dossier candidates resolving to the same governed document) passes as
+    // long as AT LEAST ONE of those entries is itself VERIFIED.
+    const sourceVersionByKey = new Map(manifest.sourceVersions.map((sv) => [sv.key, sv]));
+    const sourceByKey = new Map(manifest.sources.map((s) => [s.key, s]));
+    const approvedSourceKeysWithVerifiedApproval = new Set(
+      manifest.approvedSources.filter((s) => s.status === "VERIFIED").map((s) => s.sourceKey),
+    );
+    const sourceLocatorByKey = new Map(manifest.sourceLocators.map((sl) => [sl.key, sl]));
+
+    manifest.propositionCoverage.forEach((p, i) => {
+      if (p.coverageState !== "VERIFIED") return;
+      p.supportingSourceLocatorKeys.forEach((locatorKey, j) => {
+        const locator = sourceLocatorByKey.get(locatorKey);
+        if (!locator) return; // already reported as an unknown-locator issue above
+
+        const sourceVersion = sourceVersionByKey.get(locator.sourceVersionKey);
+        if (!sourceVersion) return; // already reported as an unknown-sourceVersion issue above
+
+        const path = ["propositionCoverage", i, "supportingSourceLocatorKeys", j];
+
+        if (sourceVersion.verificationStatus !== "VERIFIED") {
+          issue(
+            `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', whose source version '${sourceVersion.key}' has verificationStatus '${sourceVersion.verificationStatus}', not VERIFIED -- an unverified or verification-failed source snapshot can never back a VERIFIED proposition`,
+            path,
+          );
+          return;
+        }
+
+        const source = sourceByKey.get(sourceVersion.sourceKey);
+        if (!source) return; // already reported as an unknown-source issue above
+
+        if (!approvedSourceKeysWithVerifiedApproval.has(source.key)) {
+          const approvalForSource = manifest.approvedSources.find((s) => s.sourceKey === source.key);
+          issue(
+            approvalForSource
+              ? `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', whose source '${source.key}' is only approved via dossierSourceId '${approvalForSource.dossierSourceId}' with status '${approvalForSource.status}' (not VERIFIED) -- a RETRIEVAL_FAILED or APPROVED_NOT_VERIFIED dossier source can never back a VERIFIED proposition`
+              : `VERIFIED proposition (${p.clusterKey}: "${p.requirementText}") cites locator '${locatorKey}', whose source '${source.key}' has NO approvedSources record at all -- an unapproved source/sourceVersion/sourceLocator chain can never back a VERIFIED proposition, even if structurally well-formed`,
+            path,
+          );
+        }
+      });
+    });
+
     // A second record for the same clusterKey+requirementText would
     // silently overwrite the first in any Map-keyed consumer (e.g. the
     // validator's own coverageByKey index) -- catch it here rather than

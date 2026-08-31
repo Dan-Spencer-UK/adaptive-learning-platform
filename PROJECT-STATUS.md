@@ -1743,7 +1743,27 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **Explicitly not done:** no lesson/storyboard authored or changed; no knowledge re-extraction/reconciliation; no replacement or additional source selected; no gap resolved from model knowledge; Package 3 remains not authorised/not implemented.
 
-**Commit:** see the CC-15 commit immediately following this entry. Local only, not pushed.
+**Commit:** see the CC-15 commit immediately following this entry. Pushed to origin/main.
+
+## CC-15A — Unit 202 Technical-Source Coverage Integrity Correction
+
+**Status:** implementation-complete, review-ready. A narrow correction to CC-15 — not a new source-selection package, not knowledge reconstruction, not a curriculum-scope decision. Prompted by an independent Project Architect review finding the complementary failure to CC-15's own false-green audit: at least three current CC-15 gaps were themselves false negatives, where the already-approved source genuinely contained the claimed-missing evidence but CC-15's locator summary never captured it.
+
+**Three Project-Architect-confirmed corrections**, each independently re-fetched and quote-verified against the already-approved source (never a new source): (A) pulley mechanical advantage — OpenStax Physics §9.3 states pulley IMA equals the ropes-supporting-the-load count, with a matching Practice Problem; both pulley records `SOURCE_GAP` → `VERIFIED`. (B) period/frequency — University Physics Volume 2 §13.6 (already cited for the generator-EMF derivation) states `f=ω/2π` and `T=1/f=2π/ω` verbatim; three sine-wave-characteristics records corrected, reverting CC-15's own downgrade. (C) minutes→seconds — the approved BIPM SI Brochure's Table 8 (Non-SI units, page 140) gives `1 min = 60 s`; the `si-units-and-physical-quantities` conversion record corrected.
+
+**Full re-audit of every remaining gap** (21 records) against already-approved sources found two further false negatives — fuse operation (OpenStax UP2 §9.5, already cited for Joule heating) and a stated wireless-control practical advantage (TI's own Overview paragraph) — plus confirmed the other 18 gaps accurate on independent re-verification, including re-attempting all previously-failed retrievals (Yokogawa, ST AN3168, the Nagoya Fleming's-rule videos), all still genuinely unretrievable/unsupported.
+
+**Trust-chain schema hardening:** `packages/content-schema/src/technical-source-verification.ts` now mechanically enforces, for every `VERIFIED` proposition-coverage record, that the full chain (locator → sourceVersion, `verificationStatus === "VERIFIED"` → source → an `approvedSources` record for that source, `status === "VERIFIED"`) is sound — a `RETRIEVAL_FAILED`/`APPROVED_NOT_VERIFIED` dossier source or an unverified source-version can never back a `VERIFIED` claim, while the existing legitimate reuse model (several approved dossier candidates resolving to one governed source) still passes. 12 new/widened adversarial tests exercise the real schema boundary directly.
+
+**Coverage (post-correction):** 13/20 clusters `FULLY_SOURCED` (up from 9), 7/20 `PARTIAL`, 0 `UNSOURCED`; source-acquisition manifest updated to 13 `SOURCED`/7 `UNSOURCED` accordingly. 67/67 approved sources still represented, 63 `VERIFIED`/4 `RETRIEVAL_FAILED` unchanged. 20 gaps remain (9 `SOURCE_GAP`, 11 `CONDITIONAL_SOURCE_GAP`), each independently re-verified this session, not carried forward unchecked. Full detail, including the exact residual-gap list and the mandated telephone master-socket provenance trace (§8): `docs/architecture/evidence/CC-15A-UNIT202-TECHNICAL-SOURCE-COVERAGE-INTEGRITY-CORRECTION.md`.
+
+**Telephone provenance trace (reporting only, no scope decision made):** traced each of the governed corpus's four detailed UK master-socket clauses (capacitor/ringing, resistor/remote-testing, surge-protector, master-vs-extension distinction) against the governed C&G curriculum evidence (Range, Handout 18, Worksheet 18, tutor answers, sample assessment). Only the capacitor/ringing clause has direct Worksheet-18 evidence; the other three clauses' entire scope justification rests on a single `OFFICIAL_TEACHING_INTERPRETATION`-basis governed obligation whose sole satisfying assertion cites Wikipedia — a source class the CC-15 dossier explicitly prohibits from factual authority and which has never been through dossier approval. Flagged for Project Architect decision; no clause added, narrowed, retained or removed by this package.
+
+**Validated:** `npx tsc --noEmit -p scripts/content/tsconfig.json` clean; full-monorepo `npm run typecheck` clean; technical-source-verification suite 33/33 passing (23 original + 10 new/widened), all three focused suites together 70/70; both `--check` CLIs pass clean; root `npm run lint` — same 4 pre-existing errors as CC-15 left, unchanged; root `npm run test:unit` — 1183/1185 (exactly CC-15's 1173/1175 plus this package's 10 new tests), the same 2 pre-existing `tools/project-dashboard/roadmap-data.test.ts` failures, unrelated and unchanged.
+
+**Explicitly not done:** no lesson/storyboard/assertion authored, reconstructed or changed; no source selected/substituted; no gap resolved from model knowledge; no curriculum-scope/depth/proposition-necessity decision made; Package 3 remains not authorised/not implemented.
+
+**Commit:** see the CC-15A commit immediately following this entry. Local only, not pushed (per explicit instruction — awaiting Product Owner authorisation to push).
 
 ## Cold-handover gate
 

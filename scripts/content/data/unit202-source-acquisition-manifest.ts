@@ -137,12 +137,16 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
           "definitions are required rather than propagating the handout table uncritically.",
       ],
       requiredSourceCharacteristics: ["NATIONAL_OR_INTERNATIONAL_STANDARDS_BODY", "GOVERNMENT_OR_PUBLIC_AUTHORITY"],
-      // Reverted to UNSOURCED (false-green audit correction): CC-15's practical-unit-conversion
-      // proposition was found to be VERIFIED only for mm->m/mm²->m² (decimal SI prefixes); the
-      // minutes->seconds conversion is not established by any retrieved approved source, so this
-      // cluster is no longer 4/4 -- see unit202-technical-source-verification.ts's CONDITIONAL_SOURCE_GAP
-      // record for the full reason.
-      status: "UNSOURCED",
+      // CC-15A false-negative correction: re-SOURCED. CC-15's own false-green audit correctly
+      // found the minutes->seconds conversion unsupported by the two locators then cited and
+      // reverted this cluster to UNSOURCED; CC-15A found that was itself a false negative -- the
+      // already-approved BIPM SI Brochure carries a Non-SI-units table (Table 8, page 140) with
+      // exactly this conversion, which the original pass never registered a locator for.
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15A Unit 202 Technical Source Coverage Integrity Correction (scripts/content/data/unit202-technical-source-verification.ts): " +
+        "4/4 required propositions VERIFIED via the BIPM SI Brochure (base/derived unit tables, kelvin/Celsius definitions, and Table 8 " +
+        "Non-SI units for minutes->seconds) and NIST SP811 Chapter 4 (SI prefix conventions for mm->m/mm²->m²).",
     },
 
     {
@@ -289,7 +293,17 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
           "technical truth; the authoritative source must establish the correct torque/speed/power relationship instead.",
       ],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      status: "UNSOURCED",
+      // CC-15A false-negative correction: SOURCED. CC-15's own false-green audit correctly found
+      // no cited locator addressed pulleys and left this UNSOURCED with a self-reported gap;
+      // CC-15A found that was itself a false negative -- SRC-OPENSTAX-PHYSICS-SIMPLE-MACHINES's own
+      // 9.3 section (already the approved source for this cluster's other propositions) contains a
+      // dedicated pulley-IMA passage and practice problem the original pass missed.
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15A Unit 202 Technical Source Coverage Integrity Correction: 8/8 required propositions VERIFIED via OpenStax " +
+        "Physics 9.3 Simple Machines (mechanical advantage/efficiency, ideal-machine energy conservation, and the pulley " +
+        "IMA=ropes-supporting-load passage plus its Practice Problem 12), Physics LibreTexts Lever (Class I/II/III, " +
+        "moment balance) and Engineering LibreTexts gear-systems/gear-power-torque sections (gear ratio, direction, torque-speed trade-off).",
     },
 
     {
@@ -507,7 +521,16 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
       unit202RequiredUseAndDepth: "AC4.8 requires recognition/discrimination of thermal vs. chemical effects at Level-2 recognition/application depth -- no electrochemistry equations or electrode-potential chemistry.",
       reviewOrCorrectionFlags: ["The magnetic effect is taught alongside these effects in the same handout/worksheet but is governed substantively by LO5, not AC4.8 -- must not be conflated."],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      status: "UNSOURCED",
+      // CC-15A false-negative correction: SOURCED. CC-15's own false-green audit correctly found
+      // no cited locator addressed fuse operation and left this UNSOURCED with a self-reported gap;
+      // CC-15A found that was itself a false negative -- SRC-OPENSTAX-UP2-ELECTRICAL-POWER's own 9.5
+      // section (already the approved source for this cluster's Joule-heating proposition) contains a
+      // dedicated fuse passage the original pass missed.
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15A Unit 202 Technical Source Coverage Integrity Correction: 3/3 required propositions VERIFIED via University " +
+        "Physics Volume 2 section 9.5 (P=VI/Joule heating, and the dedicated fuse passage beside Figure 9.25) and Chemistry " +
+        "section 17.7 (electrolysis, electroplating).",
     },
 
     {
@@ -638,12 +661,18 @@ export const unit202SourceAcquisitionManifest: SourceAcquisitionManifest = {
         "phasors, phase angle, harmonics, complex impedance or AC power calculations.",
       reviewOrCorrectionFlags: ["'Average value' must be taught carefully as the average of one alternation in the C&G formula context, distinct from the signed full-cycle average, which is zero."],
       requiredSourceCharacteristics: ["UNIVERSITY_OR_OPEN_EDUCATIONAL_RESOURCE", "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"],
-      // Reverted to UNSOURCED (false-green audit correction): peak/peak-to-peak/RMS/average-of-one-
-      // alternation propositions are VERIFIED, but no retrieved approved source's own content
-      // establishes periodic time, frequency or T=1/f for a sine wave -- see
-      // unit202-technical-source-verification.ts's SOURCE_GAP/CONDITIONAL_SOURCE_GAP records for the
-      // full reason. This cluster is now 4/7, not 7/7.
-      status: "UNSOURCED",
+      // CC-15A false-negative correction: re-SOURCED. CC-15's own false-green audit correctly found
+      // periodic time/frequency/T=1/f unsupported by the locators then cited and reverted this
+      // cluster to UNSOURCED; CC-15A found that was itself a false negative -- the already-approved
+      // SRC-OPENSTAX-UP2-GENERATORS (already cited elsewhere in the AC-generation cluster) states
+      // f=omega/2pi and T=1/f=2pi/omega verbatim immediately after its generator-EMF derivation,
+      // which the original pass never registered a locator for.
+      status: "SOURCED",
+      existingGovernedSourceEvidence:
+        "CC-15A Unit 202 Technical Source Coverage Integrity Correction: 7/7 required propositions VERIFIED via University " +
+        "Physics Volume 2 section 15.2 (RMS relationships, zero full-cycle average) and section 13.6 (f=omega/2pi, " +
+        "T=1/f=2pi/omega, stated immediately after the sinusoidal generator-EMF derivation) and Iowa State Applied " +
+        "Industrial Electricity's Alternating Current chapter (peak/peak-to-peak, RMS=0.707×peak, rectified average).",
     },
 
     {
