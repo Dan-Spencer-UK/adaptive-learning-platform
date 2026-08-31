@@ -61,6 +61,14 @@
  * deliberately does not reference assertionIdentifier/assertionVersion --
  * proposition coverage is not knowledge-corpus reconciliation, which
  * remains a later, separately-reviewed package.
+ *
+ * CC-16 added ./qualification-scope-audit.ts: a read-only ledger shape
+ * for auditing whether a Depth & Performance Matrix's own required-
+ * knowledge propositions are anchored by explicit AC/Range wording and
+ * matrix-recorded handout/worksheet/tutor-answer/sample-assessment
+ * claims, or rest only on legacy-assertion/technical-source/encyclopedia
+ * evidence. Structurally forbidden from carrying a final scope
+ * classification -- see the module's own header for why.
  */
 
 import { z } from "zod";
@@ -89,3 +97,4 @@ export * from "./learning-package-gate.ts";
 export * from "./depth-performance-matrix.ts";
 export * from "./source-acquisition-manifest.ts";
 export * from "./technical-source-verification.ts";
+export * from "./qualification-scope-audit.ts";

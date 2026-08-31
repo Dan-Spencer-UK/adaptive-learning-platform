@@ -1783,6 +1783,26 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **Commit:** see the CC-15B commit immediately following this entry. Local only, not pushed. `0ef4d9c` was not amended.
 
+## CC-16 — Unit 202 Qualification-Scope Provenance / Contamination Audit
+
+**Status:** audit complete, read-only, awaiting Project Architect review and scope decisions. Not a source-selection, knowledge-reconstruction, lesson, or Package-3 package — Claude made no final scope classification of any kind (mechanically enforced: no schema field can carry one, and a regression test scans every ledger row's notes for forbidden verdict language, 0 matches).
+
+**Trigger:** the Project Architect's own AC6.1 "Telephones" observation — a genuine Range item whose detailed component-role claims (capacitor/resistor/surge-protector/master-vs-extension) have unclear qualification justification. This audit searched for every analogous case across the entire 23-AC/58-Range-item matrix, not just the two named examples.
+
+**Methodology:** traced every non-trivial matrix proposition against explicit AC/Range wording (A/B) and the matrix's own handout/worksheet/tutor-answer/sample-assessment claims (C–F), with governed knowledge-obligation/assertion cross-reference (G/H/I) used strictly diagnostically, never as curriculum-scope evidence. **Largest single finding: no actual C&G handout, worksheet, tutor-answer, or sample-assessment artefact is checked into this repository** — every C–F claim in the ledger records what the governed matrix *asserts* about such a document, never independently verified content, since none exists to verify against.
+
+**Ledger:** `scripts/content/data/unit202-qualification-scope-audit.ts`, 56 rows, validated by `scripts/content/validate-unit202-qualification-scope-audit.ts`. 23/23 ACs and 58/58 official Range-item treatments mechanically confirmed covered. **32 of 56 rows (57%) carry at least one scope-risk flag** (11 rest on `OFFICIAL_TEACHING_INTERPRETATION`-basis governed obligations rather than explicit AC/Range wording; 8 are handout/worksheet mention-only, not learner-performance evidence; 6 trace to an encyclopedia source; 5 are currency/jurisdiction-dependent).
+
+**Telephone and security-alarm exemplar traces** (mandated): both performed to the required per-clause standard (never bundling a compound proposition into one claim). Telephone: only the capacitor/ringing clause has direct worksheet evidence; the resistor, surge-protector, and master-vs-extension clauses have progressively weaker to no evidence, and the master-socket assertion's sole factual source is Wikipedia. Security alarm: "Security alarms" is a genuine Range item, but the exact transistor+thyristor topology is not itself named in any matrix-recorded worksheet/sample-assessment claim, rests on an `OFFICIAL_TEACHING_INTERPRETATION`-basis obligation, and its own factual sourcing is a general electronics tutorial site, not a C&G artefact or first-party manufacturer document. Both have propagated into legacy lesson files (downstream contamination footprint recorded, never used as scope evidence).
+
+**Other high-risk findings beyond the two named examples:** AC3.2's gears/pulleys content has no official Range item at all (only the three lever classes do, despite the AC's own title naming all three); AC5.3 (magnetic effects of current) is the densest cluster of teaching-interpretation-basis content in the matrix, including one proposition (electromagnet/relay/contactor) with no located anchor of any kind, in the AC text, an official Range box, or the governed obligations file; a second, independent pre-existing Wikipedia citation exists in the corpus (Fleming's left-hand rule) beyond the already-known telephone one; the governed matrix and the governed assertion for AC4.2's conductor/insulator material examples name different, non-matching material sets. Full detail: `docs/architecture/evidence/CC-16-UNIT202-QUALIFICATION-SCOPE-AUDIT.md`.
+
+**Validated:** `npx tsc --noEmit -p scripts/content/tsconfig.json` clean; full-monorepo `npm run typecheck` clean; CC-16 suite 25/25 passing, all four focused suites together 102/102; `--check` CLI passes clean; root `npm run lint` — same 4 pre-existing errors as prior packages left, unchanged; root `npm run test:unit` — 1215/1217 (exactly the prior package's 1190/1192 plus this audit's 25 new tests), the same 2 pre-existing `tools/project-dashboard/roadmap-data.test.ts` failures, unrelated and unchanged.
+
+**Explicitly not done:** no matrix/obligation/assertion/lesson/storyboard/source-acquisition/technical-source-dossier content changed; no scope classification of any kind made; no supplemental source selected or browsed for; Package 3 remains not authorised/not implemented.
+
+**Commit:** see the CC-16 commit immediately following this entry. Local only, not pushed.
+
 ## Cold-handover gate
 
 Before each CC package begins, a fresh contributor with no chat history must be able to determine from the repository:
