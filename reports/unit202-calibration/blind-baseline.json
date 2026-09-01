@@ -1,0 +1,1327 @@
+{
+  "baselineTitle": "CC-17 Unit 202 Blind Calibration Baseline",
+  "derivedFromMatrix": "unit202DepthPerformanceMatrix (scripts/content/data/unit202-depth-performance-matrix.ts) -- for candidate-proposition identification and AC/Range structure only, never for blind-field content",
+  "methodologyNote": "Each row reconstructs, from official specification/AC wording, official Range item labels, public sample-assessment evidence, Level-2/command-verb/prerequisite reasoning, and the approved technical-source dossier only, what the transferable ALP course-construction methodology would conclude a learner needs -- built blind to any proprietary C&G handout/worksheet/tutor-answer content. matrixComparison then records the purely factual relationship between this blind reconstruction and the existing governed matrix (which had access to Project-Architect-summarised proprietary material), never a verdict about which is correct.",
+  "rows": [
+    {
+      "calibrationKey": "ac1-1-fractions-percentages",
+      "acNumber": "1.1",
+      "loNumber": 1,
+      "rangeItems": [
+        "Fractions and percentages"
+      ],
+      "publicSpecificationAnchor": "AC1.1: 'Identify and apply appropriate mathematical principles which are relevant to electrical work tasks.'",
+      "publicRangeAnchor": "Official Range: 'Fractions and percentages'.",
+      "publicAssessmentAnchor": "Matrix records: 'Sample B: percentage and mean' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Convert between fractions, decimals and percentages; perform the four arithmetic operations on fractions/decimals; calculate a percentage of a quantity and a percentage change, in an electrical-work numeric context.",
+      "blindBaselineDepth": "Level-2 applied arithmetic: straightforward conversion and calculation with realistic electrical quantities as the numeric content. Does not include compound/repeated percentage problems or formal ratio/proportion theory beyond what 'apply' at Level 2 implies.",
+      "blindBaselineRationale": "AC1.1's own verb 'apply' plus the Range's own label directly requires calculation-level performance, not mere recognition; Level 2 numeracy conventionally includes the four operations on fractions/decimals/percentages as prerequisite arithmetic for any applied calculation elsewhere in the unit.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix's own requiredSupportingKnowledge names the same content ('Fractions/decimals/percentages and proportional reasoning'); CC-16's own trace found direct Range anchor and specific sample-assessment evidence.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout/worksheet require converting AWKWARD fractions (e.g. non-terminating decimals) or only simple ones?",
+        "Is proportional reasoning (ratios, direct/inverse proportion) taught as a distinct sub-topic, or folded entirely into percentage work?",
+        "Does the worksheet's percentage work go beyond percentage-of-a-quantity into percentage error/tolerance calculations?"
+      ]
+    },
+    {
+      "calibrationKey": "ac1-1-algebra-transposition",
+      "acNumber": "1.1",
+      "loNumber": 1,
+      "rangeItems": [
+        "Algebra",
+        "Transposition"
+      ],
+      "publicSpecificationAnchor": "AC1.1: 'Identify and apply appropriate mathematical principles...'",
+      "publicRangeAnchor": "Official Range: 'Algebra'; 'Transposition'.",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A: formula transposition' (public sample-assessment evidence).",
+      "transferablePrerequisiteJustification": "Necessary prerequisite for AC3.4/4.5/4.6/4.7's own calculation performances, which require rearranging W=Fd, P=VI, R=rhoL/A etc.",
+      "learnerPerformanceType": "APPLY",
+      "blindBaselineRequirement": "Substitute known values into a given electrical/mechanical formula; algebraically rearrange (transpose) a formula to isolate a different unknown, including squared and square-root forms.",
+      "blindBaselineDepth": "Rearrangement of formulae already used elsewhere in the unit (single-step and simple multi-step transposition). Does not include simultaneous equations, quadratic formula derivation, or abstract algebraic proof.",
+      "blindBaselineRationale": "Direct Range anchor for both 'Algebra' and 'Transposition'; sample-assessment evidence confirms transposition is tested. The specific formulae used are drawn from elsewhere in the unit (Ohm's law, power, etc.) as the natural numeric content for an 'apply' verb at Level 2, per general prerequisite reasoning -- a learner cannot perform later calculation ACs (4.5, 4.6, 3.4) without this.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's own AC1.1 content and its cross-AC formula list (P=IV, P=V^2/R etc.) -- those specific formula choices are matrix-recorded as coming from a proprietary worksheet, so the blind baseline reconstructs the SAME transposition skill independently from prerequisite reasoning rather than the specific worksheet formula list.",
+      "projectArchitectCalibrationQuestions": [
+        "Which specific formulae does the worksheet use for transposition practice -- only electrical ones, or also mechanical (W=Fd, W=mg)?",
+        "Does the worksheet require transposing formulae with a squared term (e.g. solving for a length inside R=rhoL/A) as multi-step transposition, or only single-step rearrangement?"
+      ]
+    },
+    {
+      "calibrationKey": "ac1-1-indices-and-notation",
+      "acNumber": "1.1",
+      "loNumber": 1,
+      "rangeItems": [
+        "Indices"
+      ],
+      "publicSpecificationAnchor": "AC1.1: 'Identify and apply appropriate mathematical principles...'",
+      "publicRangeAnchor": "Official Range: 'Indices'.",
+      "transferablePrerequisiteJustification": "Necessary prerequisite for AC2.1's SI-prefix conversions and any calculation elsewhere in the unit involving milli-/kilo-/mega- prefixed values.",
+      "learnerPerformanceType": "APPLY",
+      "blindBaselineRequirement": "Apply the laws of indices for multiplying/dividing powers of the same base; convert between standard/scientific notation and ordinary decimal form.",
+      "blindBaselineDepth": "Integer-exponent laws and scientific notation sufficient to handle SI-prefixed electrical quantities (e.g. milliamps, kilowatts) in calculations. Whether fractional/negative indices (roots expressed as powers) are required cannot be confidently derived from the Range label 'Indices' alone -- the bare word does not specify integer-only vs. all-index-forms scope.",
+      "blindBaselineRationale": "Direct Range anchor. Scientific/engineering notation is a necessary prerequisite for working with SI-prefixed electrical quantities used throughout the unit (Range item 'Length' etc. in AC2.1 explicitly requires 'common metric prefixes/conversions').",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "The bare Range label 'Indices' does not itself specify whether fractional/negative-index (root) forms are in scope, or only whole-number multiplication/division-of-powers and scientific notation -- no public sample-assessment evidence for this item was located to resolve it.",
+      "matrixComparison": "MATRIX_BROADER",
+      "matrixComparisonNotes": "Matrix's requiredSupportingKnowledge includes 'powers, roots' explicitly (implying fractional indices are in scope) -- this specific resolution is not independently derivable from the bare Range label alone under the blind method.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the worksheet test fractional/negative indices (e.g. x^(1/2) as a root), or only whole-number powers and scientific notation?",
+        "Is there a sample-assessment item testing indices specifically that would resolve this depth question?"
+      ]
+    },
+    {
+      "calibrationKey": "ac1-1-pythagoras-trig",
+      "acNumber": "1.1",
+      "loNumber": 1,
+      "rangeItems": [
+        "Triangles and trigonometry"
+      ],
+      "publicSpecificationAnchor": "AC1.1: 'Identify and apply appropriate mathematical principles...'",
+      "publicRangeAnchor": "Official Range: 'Triangles and trigonometry'.",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A: ...cosine' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "State and apply Pythagoras' theorem, and the sine/cosine/tangent ratios, to find an unknown side or angle of a right-angled triangle.",
+      "blindBaselineDepth": "Right-triangle-only trigonometry at Level 2 (SOHCAHTOA and Pythagoras). No non-right-triangle trigonometry (sine/cosine rule), no radian measure, no trigonometric identities.",
+      "blindBaselineRationale": "Direct Range anchor; sample-assessment evidence confirms at least cosine is tested. Level-2 qualifications conventionally cap trigonometry at right-triangle ratios.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the worksheet test all three ratios (sin/cos/tan) and Pythagoras, or emphasise one over the others?",
+        "Are the triangle problems embedded in an electrical-installation context (e.g. conduit bend geometry) or presented as pure maths?"
+      ]
+    },
+    {
+      "calibrationKey": "ac1-1-statistics-mean-median-mode",
+      "acNumber": "1.1",
+      "loNumber": 1,
+      "rangeItems": [
+        "Statistics"
+      ],
+      "publicSpecificationAnchor": "AC1.1: 'Identify and apply appropriate mathematical principles...'",
+      "publicRangeAnchor": "Official Range: 'Statistics' (no sub-items named in the Range box itself).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Calculate the mean, median and mode of a small numeric dataset.",
+      "blindBaselineDepth": "The three most conventional Level-2 'descriptive statistics' measures (mean/median/mode). Whether 'range' (the spread measure) is also required cannot be confidently derived from the bare word 'Statistics' alone.",
+      "blindBaselineRationale": "Direct Range anchor, though the Range label is terse (a single word with no enumerated sub-items). Mean/median/mode are the conventional minimum content any 'Statistics' topic at Level 2 numeracy would include; 'range' as a fourth measure is a common but not universal pairing.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "The official Range names only the single word 'Statistics' with no sub-item breakdown, and no public sample-assessment evidence for this item was located -- whether the specific four-measure set (adding 'range' to mean/median/mode) or a different/broader set (e.g. including quartiles) is intended cannot be resolved from tiers 1-4 alone.",
+      "matrixComparison": "MATRIX_BROADER",
+      "matrixComparisonNotes": "Matrix's requiredSupportingKnowledge explicitly includes 'range' alongside mean/median/mode -- CC-16's audit found this specific four-item resolution in the current matrix rests on an OFFICIAL_TEACHING_INTERPRETATION-basis knowledge obligation citing a proprietary handout passage, which the blind method cannot use.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout explicitly name 'range' as a required statistical measure alongside mean/median/mode?",
+        "Is 'range' tested in a worksheet or sample assessment, or only mentioned as context?",
+        "Are quartiles or any other descriptive-statistics measure mentioned anywhere in the material?"
+      ]
+    },
+    {
+      "calibrationKey": "ac2-1-base-quantity-units",
+      "acNumber": "2.1",
+      "loNumber": 2,
+      "rangeItems": [
+        "Length",
+        "Area",
+        "Volume",
+        "Mass",
+        "Density",
+        "Time",
+        "Velocity"
+      ],
+      "publicSpecificationAnchor": "AC2.1: 'Identify and use internationally recognised base and derived (SI) units of measurement.'",
+      "publicRangeAnchor": "Official Range: 'Length'; 'Area'; 'Volume'; 'Mass'; 'Density'; 'Time'; 'Velocity'.",
+      "learnerPerformanceType": "IDENTIFY",
+      "blindBaselineRequirement": "Identify the correct SI unit and symbol for each of length (m), area (m2), volume (m3), mass (kg), density (kg/m3), time (s) and velocity (m/s), and convert between common metric-prefixed values of each (e.g. mm to m).",
+      "blindBaselineDepth": "Recognition/identification-level, including ordinary prefix conversion -- not derivation of the units from first principles, and no dimensional-analysis proofs.",
+      "blindBaselineRationale": "Direct Range anchor for all seven items; AC's own verb is 'identify and use', which the technical-source dossier's approved BIPM SI Brochure factually supports as the correct unit set for each named quantity.",
+      "factualSourceRequirementKeys": [
+        "si-units-and-physical-quantities cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly; each item independently Range-anchored.",
+      "projectArchitectCalibrationQuestions": [
+        "Is prefix conversion (mm->m, mm^2->m^2) tested as a standalone skill, or only embedded within later calculation ACs?",
+        "Are litre/m^3 volume conversions required, or only pure m^3?"
+      ]
+    },
+    {
+      "calibrationKey": "ac2-1-temperature-kelvin-celsius",
+      "acNumber": "2.1",
+      "loNumber": 2,
+      "rangeItems": [
+        "Temperature"
+      ],
+      "publicSpecificationAnchor": "AC2.1: 'Identify and use internationally recognised base and derived (SI) units of measurement.'",
+      "publicRangeAnchor": "Official Range: 'Temperature'.",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests kelvin' (public sample-assessment evidence).",
+      "learnerPerformanceType": "IDENTIFY",
+      "blindBaselineRequirement": "Identify kelvin (K) as the SI base unit of thermodynamic temperature, and recognise degree Celsius as a legitimate, commonly-used practical temperature scale related to it (not a replacement SI base unit).",
+      "blindBaselineDepth": "Recognition of the correct SI base unit only -- no requirement to perform Kelvin<->Celsius numeric conversion unless a later AC's calculation context needs it (none currently does).",
+      "blindBaselineRationale": "Direct Range anchor and direct public sample-assessment evidence (kelvin tested). The approved technical-source dossier's BIPM SI Brochure is unambiguous that kelvin, not Celsius, is the SI base unit -- this is a factual-truth ceiling independent of any teaching material's own table.",
+      "factualSourceRequirementKeys": [
+        "SRC-BIPM-SI-9E-V4.01 (approved dossier FACTUAL_AUTHORITY)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix reaches the identical conclusion (kelvin as SI base, Celsius as practical scale) via its own reviewFlag reasoning about a proprietary handout's error -- the blind method reaches the same conclusion independently from the approved technical-source dossier alone, without needing to know the handout was ever wrong.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout's own SI-unit table list Celsius or Kelvin as the 'temperature' entry?",
+        "If Celsius, is this corrected anywhere else in the teaching material (worksheet, tutor answer), or does the discrepancy with public sample-assessment evidence (which tests kelvin) go unaddressed?"
+      ]
+    },
+    {
+      "calibrationKey": "ac2-2-quantity-symbol-unit-recognition",
+      "acNumber": "2.2",
+      "loNumber": 2,
+      "rangeItems": [
+        "Resistance",
+        "Resistivity",
+        "Power",
+        "Frequency",
+        "Current",
+        "Voltage",
+        "Energy",
+        "Impedance",
+        "Inductance and inductive reactance",
+        "Capacitance and capacitive reactance",
+        "Power factor"
+      ],
+      "publicSpecificationAnchor": "AC2.2: 'Identify and determine values of base and derived SI units which apply specifically to electrical quantities.'",
+      "publicRangeAnchor": "Official Range: all 11 items listed (Resistance through Power factor).",
+      "publicAssessmentAnchor": "Matrix records specific sample-assessment items for several quantities (e.g. 'Sample A tests impedance unit, XL symbol, energy unit; Sample B tests resistivity unit, voltage unit, capacitance unit').",
+      "learnerPerformanceType": "IDENTIFY",
+      "blindBaselineRequirement": "For each of the 11 named electrical quantities, identify its conventional symbol and correct SI unit, and distinguish quantities that share a unit (e.g. resistance and impedance both in ohms) or a name root (resistance vs resistivity; inductance vs inductive reactance; capacitance vs capacitive reactance).",
+      "blindBaselineDepth": "Recognition/identification and conceptual distinction ONLY. Does not include calculation using any of the deeper AC-circuit relationships (Z=sqrt(R^2+X^2), XL=2*pi*f*L, XC=1/(2*pi*f*C), power-factor numeric calculation) -- see the dedicated calculation-depth row below for why.",
+      "blindBaselineRationale": "AC2.2's own verb is 'identify and determine values of ... units' -- this is a unit-identification verb, not a circuit-analysis-calculation verb. Direct Range anchor for every item.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content and its own explicit anti-overdepth scope guard for this AC.",
+      "projectArchitectCalibrationQuestions": [
+        "Is every one of the 11 quantities given equal teaching weight, or are some (e.g. impedance/reactance/power factor) treated more briefly than the DC quantities (resistance/power/current/voltage)?",
+        "Is the resistance-vs-resistivity / inductance-vs-inductive-reactance / capacitance-vs-capacitive-reactance distinction explicitly taught as a paired comparison, or introduced separately without cross-reference?"
+      ]
+    },
+    {
+      "calibrationKey": "ac2-2-ac-quantity-calculation-depth-ceiling",
+      "acNumber": "2.2",
+      "loNumber": 2,
+      "rangeItems": [
+        "Impedance",
+        "Inductance and inductive reactance",
+        "Capacitance and capacitive reactance",
+        "Power factor"
+      ],
+      "publicSpecificationAnchor": "AC2.2: 'Identify and determine values of base and derived SI units...'",
+      "publicRangeAnchor": "Official Range: 'Impedance'; 'Inductance and inductive reactance'; 'Capacitance and capacitive reactance'; 'Power factor'.",
+      "learnerPerformanceType": "DISTINGUISH",
+      "blindBaselineRequirement": "Recognise that impedance/reactance/power factor are distinct AC-circuit quantities with their own units and general meaning (e.g. 'power factor is dimensionless, near 1 for a purely resistive load'), WITHOUT being required to calculate a numeric impedance, reactance or power-factor value from component values and frequency.",
+      "blindBaselineDepth": "Explicitly a ceiling, not an addition: recognition/conceptual-distinction depth only. Full AC-circuit calculation (Z=sqrt(R^2+X^2), XL/XC formulae, numeric power-factor calculation) is Level-3-adjacent content that AC2.2's own unit-identification verb does not require, and which no other AC in this LO2 cluster explicitly requires either.",
+      "blindBaselineRationale": "Command-verb analysis: 'identify and determine values of ... units' is about naming/recognising the unit for a quantity, not deriving that quantity's numeric value through circuit analysis. No AC in LO2 uses a calculation verb ('calculate') for these four Range items, unlike AC4.5/4.6 which explicitly use 'calculate' for DC quantities. Absent an explicit calculation verb or Range treatment, the transferable methodology defaults to the narrower (recognition-only) reading for genuinely Level-3-adjacent content.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "This is an inference from the ABSENCE of a calculation verb, not a positive citation -- a reasonable but not certain reading. Public sample-assessment evidence for AC2.2 (per the matrix's own record) tests unit/symbol identification, not numeric AC-circuit calculation, which supports this reading but does not conclusively rule out some minimal calculation expectation.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix reaches the identical scope-guard conclusion, citing a proprietary handout's formula appendix as the thing to guard AGAINST importing -- the blind method reaches the same ceiling independently from command-verb analysis alone, without needing to know what the handout's appendix contained.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout's formula appendix (if any) present impedance/reactance/power-factor formulae as worked calculation examples, or purely as reference/context material?",
+        "Does any worksheet question require a numeric impedance, reactance, or power-factor calculation, or only symbol/unit/definition recall?",
+        "Does the tutor-answer material show a full impedance calculation as an expected response, or only a definitional answer?"
+      ]
+    },
+    {
+      "calibrationKey": "ac2-3-instrument-selection-connection",
+      "acNumber": "2.3",
+      "loNumber": 2,
+      "rangeItems": [
+        "Resistance",
+        "Current",
+        "Voltage"
+      ],
+      "publicSpecificationAnchor": "AC2.3: 'Identify appropriate electrical instruments for the measurement of different electrical quantities.'",
+      "publicRangeAnchor": "Official Range: 'Resistance'; 'Current'; 'Voltage'.",
+      "learnerPerformanceType": "IDENTIFY",
+      "blindBaselineRequirement": "Identify the ohmmeter/ammeter/voltmeter as the correct instrument for resistance/current/voltage respectively; state the basic connection topology (ohmmeter across a de-energised item, ammeter in series with very low internal resistance, voltmeter in parallel with high internal resistance).",
+      "blindBaselineDepth": "Instrument identification plus basic connection-topology recognition. The specific 'very low'/'high' internal-resistance qualifiers are a standard, textbook-level factual property of these instrument types (confirmed by the approved technical-source dossier), not an assumption from teaching material.",
+      "blindBaselineRationale": "Direct Range anchor; AC's own verb is 'identify'. Connection topology is a necessary minimal elaboration of 'identify... instruments for measurement' -- an instrument identified without knowing how to connect it safely cannot be meaningfully used, which is implicit in the AC's practical framing (this is a vocational, not purely theoretical, qualification).",
+      "factualSourceRequirementKeys": [
+        "electrical-measurement-instruments cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Is connection topology tested via labelled circuit diagrams (as the matrix's own worksheet claim suggests), or only through prose/multiple-choice questions?"
+      ]
+    },
+    {
+      "calibrationKey": "ac2-3-wattmeter-energy-meter",
+      "acNumber": "2.3",
+      "loNumber": 2,
+      "rangeItems": [
+        "Power",
+        "Energy"
+      ],
+      "publicSpecificationAnchor": "AC2.3: 'Identify appropriate electrical instruments for the measurement of different electrical quantities.'",
+      "publicRangeAnchor": "Official Range: 'Power'; 'Energy'.",
+      "learnerPerformanceType": "IDENTIFY",
+      "blindBaselineRequirement": "Identify the wattmeter as the power-measuring instrument (sensing both current and voltage to compute power) and the energy meter as the instrument that integrates power over time to measure energy (kWh).",
+      "blindBaselineDepth": "Recognition-level: instrument identity and basic principle only, no internal-design detail.",
+      "blindBaselineRationale": "Direct Range anchor. 'Integrates power over time' is a definitionally necessary elaboration of what an energy meter IS (distinguishing it from an instantaneous-power wattmeter) -- this is basic dimensional reasoning (energy = power x time) rather than teaching-material-derived detail.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Is the wattmeter's own internal current-and-voltage-sensing mechanism taught in any detail, or only its role/reading?"
+      ]
+    },
+    {
+      "calibrationKey": "ac3-1-mass-weight-definitions-relationship",
+      "acNumber": "3.1",
+      "loNumber": 3,
+      "publicSpecificationAnchor": "AC3.1: 'Specify what is meant by mass and weight.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample B includes mass-from-force calculation under LO3' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Define mass (amount of matter, kg, invariant with location) and weight (force due to gravity, N, depends on gravitational field strength); state and apply W=mg (and its rearrangement m=W/g) using g~=9.81 m/s^2 on Earth.",
+      "blindBaselineDepth": "Definitional distinction plus a single calculation relationship in both directions. No gravitation theory, orbital mechanics, or field-strength derivation.",
+      "blindBaselineRationale": "AC's own verb 'specify' is definitional, but sample-assessment evidence confirms calculation is genuinely tested -- so the blind baseline includes W=mg calculation despite the milder verb, on the strength of tier-2 (public assessment) evidence alone. g's numeric value is drawn from the approved technical-source dossier (NIST SP811 Appendix B.8), a factual-truth tier.",
+      "factualSourceRequirementKeys": [
+        "mass-and-weight cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix conclusion; matrix additionally notes 'the command verb specify understates the worksheet depth' (a proprietary-material observation the blind method cannot make, but reaches the same calculation-inclusive conclusion independently via public sample-assessment evidence instead).",
+      "projectArchitectCalibrationQuestions": [
+        "Does the worksheet require calculation in BOTH directions (weight from mass, and mass from weight), or only one?",
+        "Is an Earth/Moon (differing g) comparison used, and if so is it tested as a calculation or only discussed conceptually?"
+      ]
+    },
+    {
+      "calibrationKey": "ac3-2-lever-classes-and-balance",
+      "acNumber": "3.2",
+      "loNumber": 3,
+      "rangeItems": [
+        "Class I",
+        "Class II",
+        "Class III"
+      ],
+      "publicSpecificationAnchor": "AC3.2: 'Explain the principles of basic mechanics as they apply to levers, gears and pulleys.'",
+      "publicRangeAnchor": "Official Range: 'Class I'; 'Class II'; 'Class III' (the ONLY structured Range items this AC has -- see the dedicated structural-gap row below).",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests lever class, lever effort...; Sample B tests lever class...' (public sample-assessment evidence).",
+      "transferablePrerequisiteJustification": "The moment-balance relationship is standard introductory mechanics (torque balance about a pivot); AC3.2's own verb 'explain the principles' plausibly extends to the relationship that DEFINES lever mechanical advantage, not merely naming the three classes.",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Classify a lever arrangement by its Class (I/II/III, by fulcrum/effort/load position) and recognise common examples of each; state and apply the moment-balance relationship (effort x effort-distance = load x load-distance) to find an unknown effort or load.",
+      "blindBaselineDepth": "Classification plus single-relationship calculation. No detailed machine design or friction modelling.",
+      "blindBaselineRationale": "Direct Range anchor for the three classes; sample-assessment evidence confirms both classification AND effort-calculation are tested. The moment-balance formula itself is a necessary-prerequisite physical relationship (basic static-equilibrium torque balance), independently derivable from general Level-2 mechanics.",
+      "factualSourceRequirementKeys": [
+        "simple-machines-levers-gears-pulleys cluster (CC-15A technical-source-verification, OpenStax torque/lever chapter)"
+      ],
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "AC3.2's own verb is 'explain', not 'calculate' -- the calculation requirement is inferred from sample-assessment evidence ('Sample A tests... lever effort') plus prerequisite reasoning about what 'explain the principles' plausibly requires, not from an explicit calculation-verb citation.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's calculation-inclusive conclusion; matrix additionally cites a proprietary worksheet as its basis (OFFICIAL_TEACHING_INTERPRETATION per CC-16's audit) where the blind method instead relies on public sample-assessment evidence for the same conclusion.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the worksheet require multi-step lever calculations, or single-step effort/load-from-known-values only?",
+        "Are real-world lever examples (wheelbarrow, scissors, tweezers etc.) used to teach the three classes, and if so which specific examples?"
+      ]
+    },
+    {
+      "calibrationKey": "ac3-2-structural-gap-gears-pulleys-no-range-item",
+      "acNumber": "3.2",
+      "loNumber": 3,
+      "publicSpecificationAnchor": "AC3.2: 'Explain the principles of basic mechanics as they apply to levers, gears AND PULLEYS.'",
+      "publicRangeAnchor": "NONE -- the official Range box for AC3.2 in the governed matrix's own encoding contains only 'Class I'/'Class II'/'Class III' (lever classes); no gear or pulley Range item exists at all.",
+      "learnerPerformanceType": "OTHER",
+      "blindBaselineRequirement": "STRUCTURAL FINDING, not a proposition: AC3.2's own title names three mechanisms (levers, gears, pulleys) but the governed matrix's structured official-Range encoding only enumerates lever classes. Under the blind method, gears and pulleys are anchored ONLY by the AC's own title wording (tier-1 evidence), never by a distinct Range entry (no tier-1 Range anchor exists for them at all).",
+      "blindBaselineDepth": "Not applicable to this row (structural-gap record, not a content proposition) -- see the two following rows for the blind baseline's own gear/pulley content reconstruction.",
+      "blindBaselineRationale": "This is a factual observation about the governed matrix's own data structure (independently confirmed by CC-16's audit and its own regression test asserting AC3.2's officialRangeCoverage contains exactly the three lever-class rows and nothing else), reported here so the Project Architect can see it in the calibration pack alongside the gear/pulley content it explains the weaker anchoring of.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Identical finding to CC-16's own ac3-2-gears-and-pulleys-no-range-item row -- reported here again because it materially affects how the next two rows' evidence should be read (AC-title-only, not Range-anchored).",
+      "projectArchitectCalibrationQuestions": [
+        "Does the private course material itself carry any structured Range-like breakdown for gears/pulleys, or does it also treat 'levers, gears and pulleys' as one undifferentiated AC3.2 topic?"
+      ]
+    },
+    {
+      "calibrationKey": "ac3-2-gears",
+      "acNumber": "3.2",
+      "loNumber": 3,
+      "publicSpecificationAnchor": "AC3.2: 'Explain the principles of basic mechanics as they apply to levers, gears and pulleys.'",
+      "publicRangeAnchor": "None (see structural-gap row above) -- anchored by the AC's own title wording only.",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests... gear speed...; Sample B tests... gear ratio' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Explain that a gear transmits rotary motion between a driver and driven gear; state that gear ratio relates tooth-count to speed ratio and to direction of rotation (meshed gears reverse direction; an idler gear between them restores the original direction without changing the ratio); calculate driven-gear speed from tooth-count ratio.",
+      "blindBaselineDepth": "Basic gear-train kinematics (ratio, direction, idler effect) and a single calculation relationship. No gear-geometry design or force/torque-through-gear-train calculation beyond the basic trade-off that a slower gear delivers more torque, less speed (ideal energy conservation, not power creation).",
+      "blindBaselineRationale": "Anchored by the AC's own title word 'gears'; sample-assessment evidence confirms gear-speed/ratio calculation is tested. The idler-direction-reversal fact and the force/speed trade-off (never creating power) are basic mechanical facts confirmed by the approved technical-source dossier.",
+      "factualSourceRequirementKeys": [
+        "simple-machines-levers-gears-pulleys cluster (CC-15A technical-source-verification, LibreTexts gear-systems)"
+      ],
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "No official Range item names 'gears' at all -- this row's anchor is the AC title alone plus sample-assessment evidence, a weaker anchor than a row with a direct Range item.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content; both reach the same conclusion, the blind method via AC-title-plus-sample-assessment rather than a proprietary worksheet.",
+      "projectArchitectCalibrationQuestions": [
+        "Is the idler-gear direction-reversal effect explicitly taught, or only simple two-gear (driver/driven) direction reversal?",
+        "Does the worksheet ever require torque calculation through a gear train, or only speed/ratio?"
+      ]
+    },
+    {
+      "calibrationKey": "ac3-2-pulleys",
+      "acNumber": "3.2",
+      "loNumber": 3,
+      "publicSpecificationAnchor": "AC3.2: 'Explain the principles of basic mechanics as they apply to levers, gears and pulleys.'",
+      "publicRangeAnchor": "None (see structural-gap row above) -- anchored by the AC's own title wording only.",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests... pulley effort; Sample B tests... pulley MA' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Explain that a pulley system's ideal mechanical advantage equals the number of rope strands supporting the load; calculate the effort needed to lift a given load from the mechanical advantage (or vice versa).",
+      "blindBaselineDepth": "Single relationship and its calculation. No block-and-tackle design detail or friction/efficiency-loss modelling beyond the general 'ideal machines trade force for distance, never create power' principle shared with levers/gears.",
+      "blindBaselineRationale": "Anchored by the AC's own title word 'pulleys'; sample-assessment evidence confirms pulley-effort/MA calculation is tested (matching the exact approved technical-source dossier finding, CC-15A, that OpenStax Physics 9.3's own worked practice problem tests precisely this calculation).",
+      "factualSourceRequirementKeys": [
+        "simple-machines-levers-gears-pulleys cluster (CC-15A technical-source-verification, OpenStax Physics 9.3 pulley passage)"
+      ],
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "No official Range item names 'pulleys' at all -- anchored by AC title plus sample-assessment evidence only.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the worksheet distinguish fixed vs. movable pulleys explicitly, or only test the strand-counting MA relationship generically?"
+      ]
+    },
+    {
+      "calibrationKey": "ac3-3-mechanics-concepts",
+      "acNumber": "3.3",
+      "loNumber": 3,
+      "publicSpecificationAnchor": "AC3.3: 'Describe the main principles of force, work, energy (kinetic and potential), power and efficiency, and their interrelationships.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests work formula; Sample B tests force as mass x gravity' (public sample-assessment evidence).",
+      "learnerPerformanceType": "DESCRIBE",
+      "blindBaselineRequirement": "Describe force (a push/pull affecting motion, deformation or equilibrium, including gravity as a specific force); work (done when a force causes displacement, W=Fd); energy (capacity to do work; kinetic vs potential as distinct conceptual forms); power (rate of doing work); efficiency (useful output over total input, with the remainder as losses); and explain qualitatively how they interrelate.",
+      "blindBaselineDepth": "Conceptual/definitional depth for all five terms plus their interrelationship, at the level the AC's own verb 'describe' implies -- explicitly NOT including the quantitative kinetic-energy formula (1/2 m v^2) or potential-energy formula (mgh) UNLESS assessment evidence specifically requires them (see below).",
+      "blindBaselineRationale": "AC's own title directly names all five terms and 'their interrelationships'. The verb is 'describe', a conceptual verb distinct from AC3.4's 'calculate' -- so quantitative depth for kinetic/potential energy specifically is not derivable from AC3.3's own wording alone.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "Whether the quantitative KE/PE formulae belong under AC3.3 (conceptual) or AC3.4 (calculation) cannot be resolved purely from command-verb analysis, since AC3.4 is a separate AC that could plausibly absorb this calculation depth instead -- see the AC3.4 row.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix reaches an equivalent conclusion, explicitly excluding the 1/2mv^2 formula 'unless later assessment/source evidence specifically requires it' -- the blind method reaches this same conditional exclusion independently from command-verb reasoning.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout teach KE=1/2mv^2 and GPE=mgh as named formulae under this AC specifically, or defer them to the calculation AC (3.4)?",
+        "Is the force-as-push-or-pull definition taught with named example types (contact, gravitational, etc.), or generically?"
+      ]
+    },
+    {
+      "calibrationKey": "ac3-4-mechanics-calculation",
+      "acNumber": "3.4",
+      "loNumber": 3,
+      "publicSpecificationAnchor": "AC3.4: 'Calculate values of mechanical energy, power and efficiency.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A/B test mass/force, power, efficiency and simple machines' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Calculate work/energy (W=Fd), power (P=work/time), and efficiency (useful-output/input x 100%) for multi-step Level-2 problems, including combining mass/weight (F=mg), time, and simple-machine (lever/gear/pulley) relationships from earlier ACs where a problem requires it.",
+      "blindBaselineDepth": "Multi-step calculation integrating this AC's own relationships with earlier ACs' (3.1, 3.2) -- explicit 'calculate' verb licenses full numeric problem-solving, unlike AC3.3's 'describe'. Kinetic-energy (1/2mv^2) and potential-energy (mgh) calculation are plausible candidates for this AC given its explicit calculation verb, though not independently confirmable from the AC's bare title alone (see uncertainty).",
+      "blindBaselineRationale": "AC's own verb 'calculate' directly licenses numeric problem-solving for 'mechanical energy, power and efficiency' -- multi-step integration with earlier ACs is standard Level-2 assessment-design practice (assessment criteria within one LO are conventionally tested together in applied problems, not in isolation).",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "Whether KE/PE numeric calculation specifically belongs here (vs. remaining excluded per AC3.3's own scope note) cannot be resolved from the AC's bare title 'mechanical energy, power and efficiency' alone without assessment evidence naming KE/PE calculation specifically.",
+      "matrixComparison": "MATRIX_BROADER",
+      "matrixComparisonNotes": "CC-16's audit found the current matrix's own knowledge-obligations file implements KE-calculation as a REQUIRED, EXPLICIT-basis obligation under this AC, which appears in tension with AC3.3's own matrix-recorded scope-ceiling excluding that formula 'unless... specifically required' -- the blind method cannot resolve this tension from tiers 1-4 alone and flags it rather than picking a side.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the worksheet for this AC include a KE=1/2mv^2 or GPE=mgh calculation, resolving the AC3.3-vs-AC3.4 placement question?",
+        "How many distinct multi-step 'chained' problems (e.g. motor/pump efficiency chains) does the worksheet include?"
+      ]
+    },
+    {
+      "calibrationKey": "ac4-1-atomic-structure-and-current",
+      "acNumber": "4.1",
+      "loNumber": 4,
+      "publicSpecificationAnchor": "AC4.1: 'Describe the basic principles of electron theory.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests charges; Sample B tests current as electron movement in closed circuit' (public sample-assessment evidence).",
+      "learnerPerformanceType": "DESCRIBE",
+      "blindBaselineRequirement": "Describe basic atomic charge structure (protons positive, electrons negative, neutrons neutral; nucleus and outer/free electrons); describe current as the flow of free electrons driven by a potential difference around a closed circuit; distinguish conventional-current direction (+ to -) from electron-flow direction (- to +).",
+      "blindBaselineDepth": "Basic descriptive atomic model and current mechanism sufficient to explain metallic conduction -- no quantum mechanics, band theory, or drift-velocity calculation.",
+      "blindBaselineRationale": "AC's own title directly names 'electron theory'; sample-assessment evidence confirms both charge structure and current-as-electron-flow are tested. Depth ceiling (no quantum/band theory) is a factual-truth-tier judgement (this content is genuinely beyond Level 2, confirmed by the approved technical-source dossier's own depth-clipped OpenStax citation).",
+      "factualSourceRequirementKeys": [
+        "electron-theory-and-conduction cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Is the electron-flow-vs-conventional-current 'apparent contradiction' explicitly resolved/explained in the teaching material, or presented as two disconnected facts?"
+      ]
+    },
+    {
+      "calibrationKey": "ac4-2-conductor-insulator-distinction",
+      "acNumber": "4.2",
+      "loNumber": 4,
+      "publicSpecificationAnchor": "AC4.2: 'Identify and distinguish between materials which are good conductors and insulators.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample B tests porcelain, electron binding in insulators, tungsten as conductor' (public sample-assessment evidence).",
+      "learnerPerformanceType": "DISTINGUISH",
+      "blindBaselineRequirement": "Distinguish good conductors (readily available/free charge carriers) from insulators (tightly bound outer electrons, high resistance); identify at least one common material example of each.",
+      "blindBaselineDepth": "Conceptual distinction plus basic material recognition. No semiconductor band theory or quantitative conductivity/resistivity analysis under this AC.",
+      "blindBaselineRationale": "Direct AC title anchor for the distinction itself. Material examples are necessarily required by the AC's own verb 'identify' (which requires naming actual materials, not just describing the abstract distinction) -- sample-assessment evidence confirms tungsten and porcelain specifically are tested, so the blind baseline can anchor to those two named examples with confidence, though a complete list cannot be derived from tiers 1-4 alone.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "AC4.2 carries no official Range box at all, so the COMPLETE required material-example list cannot be derived from tier-1 evidence; only the two examples public sample-assessment evidence (tier 2) happens to test (tungsten, porcelain) can be confidently included.",
+      "matrixComparison": "DIFFERENT_EMPHASIS",
+      "matrixComparisonNotes": "CC-16's audit found the current matrix's requiredSupportingKnowledge names the same two sample-assessment-tested examples (copper/tungsten, porcelain/glass/plastics) but the corresponding governed ASSERTION in the corpus names a DIFFERENT material set entirely (copper/aluminium, PVC/rubber, chosen for installation-cable relevance) -- a genuine divergence CC-16 already flagged, restated here because it bears directly on this row's own material-example uncertainty.",
+      "projectArchitectCalibrationQuestions": [
+        "Which specific conductor/insulator material examples does the handout use -- does it match the sample-assessment set (copper/tungsten, porcelain/glass/plastics), the governed-assertion set (copper/aluminium, PVC/rubber), or a third set entirely?",
+        "Are the examples chosen for general-physics relevance or specifically for electrical-installation-work relevance (cable materials)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac4-3-resistance-resistivity-relationship",
+      "acNumber": "4.3",
+      "loNumber": 4,
+      "publicSpecificationAnchor": "AC4.3: 'Describe what is meant by resistance and resistivity in relation to electrical circuits.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample B tests CSA from R/rho/L, copper-aluminium comparison and conductor length' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Distinguish resistance (R, ohm, a property of a specific conductor) from resistivity (rho, ohm-metre, an intrinsic material property); state and apply R=rhoL/A and its rearrangements, including how length and cross-sectional area affect resistance.",
+      "blindBaselineDepth": "Full R=rhoL/A calculation and rearrangement, including material comparison and unit conversion (mm^2 to m^2) -- sample-assessment evidence confirms this depth despite the AC's milder 'describe' verb.",
+      "blindBaselineRationale": "AC's own title directly names both terms; sample-assessment evidence confirms calculation-level depth (CSA/length/material problems) is genuinely tested, overriding the milder reading the bare verb 'describe' alone would suggest.",
+      "factualSourceRequirementKeys": [
+        "resistance-and-resistivity cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the worksheet integrate R=rhoL/A with voltage-drop calculation (AC4.7) in the same problem, as the matrix's own cross-AC claim suggests?"
+      ]
+    },
+    {
+      "calibrationKey": "ac4-4-series-parallel-concepts",
+      "acNumber": "4.4",
+      "loNumber": 4,
+      "publicSpecificationAnchor": "AC4.4: 'Explain the relationship between current, voltage and resistance in parallel and series D.C. circuits.'",
+      "transferablePrerequisiteJustification": "Ohm's law and basic series/parallel behaviour are necessary prerequisites for every later DC-circuit calculation AC (4.5, 4.6, 4.7).",
+      "learnerPerformanceType": "EXPLAIN",
+      "blindBaselineRequirement": "State Ohm's law (V=IR); explain qualitatively how current, voltage and equivalent resistance behave in series circuits (same current, voltage divides, resistances add) versus parallel circuits (same branch voltage, current divides, equivalent resistance below the smallest branch).",
+      "blindBaselineDepth": "Conceptual/qualitative explanation, illustrated by simple calculation where useful -- full numeric problem-solving is the explicit remit of the companion AC4.5 ('calculate'), so this AC's own 'explain' verb caps it at qualitative reasoning plus illustrative examples.",
+      "blindBaselineRationale": "AC's own verb 'explain' plus its direct pairing with AC4.5's 'calculate' verb for the identical subject matter -- a standard C&G pattern (explain-then-calculate pairs recur at 3.3/3.4, 4.4/4.5) that licenses reading AC4.4 as conceptual and AC4.5 as the numeric-depth AC for the same content.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly; matrix's own reviewFlag about sample-question labels blurring 4.3/4.4/4.5 is a proprietary-material-adjacent observation the blind method does not need, since command-verb pairing alone resolves the AC4.4-vs-4.5 depth split.",
+      "projectArchitectCalibrationQuestions": [
+        "Is qualitative reasoning ('if resistance increases, what happens to current') tested separately from numeric calculation, or always combined in one question?"
+      ]
+    },
+    {
+      "calibrationKey": "ac4-5-series-parallel-calculation",
+      "acNumber": "4.5",
+      "loNumber": 4,
+      "publicSpecificationAnchor": "AC4.5: 'Calculate the values of current, voltage and resistance in parallel and series D.C. circuits.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests series/parallel R and current; Sample B tests parallel R and missing series voltage' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Calculate total/branch resistance, current and voltage in pure series and pure parallel DC circuits (Rt=SumR series; 1/Rt=Sum(1/R) parallel, including the two-resistor product-over-sum shortcut); solve for an unknown component value; verify simple Kirchhoff voltage/current conservation.",
+      "blindBaselineDepth": "Full numeric calculation for pure series and pure parallel circuits, multi-step where a problem requires finding several unknowns in sequence. No complex mixed series-parallel network reduction, bridge circuits, or simultaneous-equation network theorems.",
+      "blindBaselineRationale": "AC's own verb 'calculate' directly licenses full numeric problem-solving; sample-assessment evidence confirms this exact depth (total R, branch current, missing-voltage problems). The product-over-sum shortcut and KVL/KCL are standard, factually-necessary consequences of the parallel-resistance relationship (confirmed by the approved technical-source dossier as governed-algebra rearrangements, not additional content).",
+      "factualSourceRequirementKeys": [
+        "dc-circuit-theory-series-parallel cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "How many distinct unknowns does a typical worksheet problem require solving for in sequence (e.g. total R, then total I, then each branch I)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac4-6-power-calculation",
+      "acNumber": "4.6",
+      "loNumber": 4,
+      "publicSpecificationAnchor": "AC4.6: 'Calculate values of power in parallel and series D.C. circuits.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests total circuit/heater power' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Calculate power using P=VI, P=I^2R, P=V^2/R (and rearrangements) for an individual component or a whole series/parallel circuit; sum individual component powers to find total circuit power.",
+      "blindBaselineDepth": "Full numeric calculation, component-level and circuit-level, integrating AC4.5's own resistance/current/voltage results. No AC power (real/reactive/apparent) or power-factor calculation under this DC-only AC.",
+      "blindBaselineRationale": "AC's own verb 'calculate' directly licenses this; sample-assessment evidence confirms it; the DC-only scope ceiling is a direct consequence of the AC's own title ('D.C. circuits'), not an inferred restriction.",
+      "factualSourceRequirementKeys": [
+        "dc-circuit-power cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Is cable/joint resistive power LOSS specifically calculated as a named sub-topic, or only total/component power generically?"
+      ]
+    },
+    {
+      "calibrationKey": "ac4-7-voltage-drop",
+      "acNumber": "4.7",
+      "loNumber": 4,
+      "publicSpecificationAnchor": "AC4.7: 'State what is meant by the term voltage drop in relation to electrical circuits.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A directly calculates cable voltage drop; Sample B tests consequence of high cable resistance' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Define voltage drop (Vdrop=IR, the voltage developed across a resistance carrying current); calculate it for a given current and cable/conductor resistance; explain that load-terminal voltage equals supply voltage minus upstream drops, and that excessive resistance causes inadequate load voltage.",
+      "blindBaselineDepth": "Definition plus calculation and its practical consequence -- sample-assessment evidence confirms calculation depth despite the milder 'state' verb. No BS 7671 permitted voltage-drop limits or installation-design rules (a regulatory/design-standard topic outside this science-principles unit's own remit).",
+      "blindBaselineRationale": "AC's own title names the term; sample-assessment evidence confirms both direct calculation and the practical-consequence reasoning are tested, overriding the milder 'state' verb's literal reading. The BS 7671 exclusion is a scope-boundary judgement about what belongs to THIS unit (electrical science principles) versus a different unit (installation design/regulations) within the same qualification.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly, including the same BS 7671 exclusion reasoning.",
+      "projectArchitectCalibrationQuestions": [
+        "Is voltage drop calculation integrated with resistivity calculation (AC4.3, R=rhoL/A for a cable) in the same worksheet problem?"
+      ]
+    },
+    {
+      "calibrationKey": "ac4-8-thermal-chemical-effects",
+      "acNumber": "4.8",
+      "loNumber": 4,
+      "publicSpecificationAnchor": "AC4.8: 'Describe the chemical and thermal effects of electric currents.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests electroplating as chemical; Sample B tests fuse operation as thermal' (public sample-assessment evidence).",
+      "learnerPerformanceType": "DESCRIBE",
+      "blindBaselineRequirement": "Describe resistive/Joule heating (current through a resistance converts electrical energy to heat, greater at greater power/current) and its practical application in heating devices and fuse operation; describe electrolysis (current through a suitable liquid produces chemical change) and electroplating as a practical application.",
+      "blindBaselineDepth": "Conceptual/descriptive depth with named practical applications (fuse, electroplating) -- both applications confirmed by public sample-assessment evidence specifically. No electrochemistry equations or electrode-potential chemistry.",
+      "blindBaselineRationale": "AC's own title directly names both effects; sample-assessment evidence directly confirms both named applications (fuse for thermal, electroplating for chemical) are tested, giving high confidence in exactly those two applications despite the AC's own title not naming them.",
+      "factualSourceRequirementKeys": [
+        "thermal-and-chemical-effects-of-current cluster (CC-15A technical-source-verification, includes the dedicated fuse-operation passage)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content; CC-16's audit had flagged the matrix's own fuse-operation record as only handout-adjacent evidence, but this row shows the blind method reaches the identical conclusion independently via public sample-assessment evidence instead, which CC-16 did not need to invoke for this specific clause.",
+      "projectArchitectCalibrationQuestions": [
+        "Is fuse operation taught as its own dedicated sub-topic with a diagram, or mentioned briefly alongside general resistive heating?",
+        "Is a magnetic effect (e.g. a solenoid/relay) taught alongside these in the same unit of material, and if so is it clearly attributed to LO5 rather than this AC?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-1-attraction-repulsion-field-lines",
+      "acNumber": "5.1",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.1: 'Describe the effects of magnetism in terms of attraction and repulsion.'",
+      "learnerPerformanceType": "EXPLAIN",
+      "blindBaselineRequirement": "State that like magnetic poles repel and unlike poles attract; describe a magnetic field as the region in which this effect can be observed, using standard field-line conventions (closed loops, external field lines running from north to south, lines never crossing).",
+      "blindBaselineDepth": "Basic descriptive/predictive depth, including standard field-line convention -- no magnetic-domain theory, hysteresis or magnetisation curves.",
+      "blindBaselineRationale": "AC's own title directly names attraction/repulsion. Field-line conventions are a necessary minimal elaboration of 'describe the effects of magnetism' at any introductory physics level, confirmed factually by the approved technical-source dossier's own OpenStax citation.",
+      "factualSourceRequirementKeys": [
+        "magnetism-flux-and-flux-density cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "No public sample-assessment evidence for this specific AC was located in the governed matrix's own record -- confidence rests on AC-title anchoring plus general-physics prerequisite reasoning alone.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content; matrix's own record likewise notes no direct sample-assessment item was captured for this AC, matching this row's own uncertainty independently.",
+      "projectArchitectCalibrationQuestions": [
+        "Is field-pattern completion/prediction (drawing field lines around a magnet or pole arrangement) an expected worksheet performance, or only verbal description?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-2-flux-flux-density-relationship",
+      "acNumber": "5.2",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.2: 'State the difference between magnetic flux and flux density.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests Tesla and B=Phi/A formula; Sample B tests definition and calculates flux from BxA' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "State the distinction between magnetic flux (Phi, weber) and flux density (B, tesla = Wb/m^2, flux concentrated per unit area); state and apply B=Phi/A (and rearrangements Phi=BA, A=Phi/B), with area-unit conversion where required.",
+      "blindBaselineDepth": "Full calculation depth despite the AC's milder 'state' verb -- justified directly by sample-assessment evidence, which tests exactly this formula both directions. No field-strength H, permeability, or magnetic-circuit calculations.",
+      "blindBaselineRationale": "AC's own title directly names the distinction; sample-assessment evidence directly confirms calculation-level depth (both B=Phi/A and Phi=BxA tested). The technical-source dossier confirms Phi=BA is the directly-sourced relationship, with B=Phi/A as its governed-algebra rearrangement -- factually sound either way.",
+      "factualSourceRequirementKeys": [
+        "magnetism-flux-and-flux-density cluster (CC-15/CC-15A/CC-15B technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Is area-unit conversion (e.g. cm^2 to m^2) a routine part of these calculations, or are areas always given in m^2 directly?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-field-around-conductor",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3: '...production of a magnetic field...'",
+      "learnerPerformanceType": "DESCRIBE",
+      "blindBaselineRequirement": "Describe that a current-carrying conductor produces a magnetic field around it.",
+      "blindBaselineDepth": "Basic descriptive fact only, at this row's scope.",
+      "blindBaselineRationale": "Directly and explicitly named by AC5.3's own title ('production of a magnetic field').",
+      "factualSourceRequirementKeys": [
+        "electromagnetism-motor-effect-and-induced-emf cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Is this fact taught as a standalone statement, or always immediately paired with the directional rule (next row)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-field-direction-rule",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3: '...production of a magnetic field...' (direction is not itself named by the AC title).",
+      "transferablePrerequisiteJustification": "Necessary prerequisite for the dot/cross field-direction diagrams implied by a vocational electrical qualification's practical framing, and for the solenoid-polarity reasoning later in this same AC.",
+      "learnerPerformanceType": "DIRECTION_RULE",
+      "blindBaselineRequirement": "Determine the direction of the magnetic field around a straight current-carrying conductor using the right-hand grip (Maxwell's screw) rule.",
+      "blindBaselineDepth": "Directional-rule application only.",
+      "blindBaselineRationale": "Not itself named by AC5.3's title, which stops at 'production of a magnetic field' without specifying direction -- included as a necessary-prerequisite elaboration (a field with no stated direction convention cannot be meaningfully drawn or reasoned about in the dot/cross diagrams the qualification's own visual/practical framing implies), but this is an inference, not a direct citation.",
+      "factualSourceRequirementKeys": [
+        "electromagnetism-motor-effect-and-induced-emf cluster (CC-15/CC-15A technical-source-verification, straight-wire section)"
+      ],
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "AC5.3's own title names only 'production of a magnetic field', not its direction -- the requirement to include a specific directional-rule convention is inferred from prerequisite/practical reasoning, not a direct spec/Range citation.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix reaches the same conclusion, citing a proprietary handout as its basis (OFFICIAL_TEACHING_INTERPRETATION per CC-16's audit) -- the blind method reaches the same conclusion independently via prerequisite reasoning, at correspondingly lower (MEDIUM, not HIGH) confidence.",
+      "projectArchitectCalibrationQuestions": [
+        "Is the right-hand grip rule the specific name/convention used, or a different equivalent (e.g. corkscrew rule)?",
+        "Is direction taught for a straight conductor only, or also for a coil/solenoid in the same lesson?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-force-on-conductor",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3: '...force on a current-carrying conductor in a magnetic field...'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests... force direction' (public sample-assessment evidence, for the direction half of this cluster).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "State that a current-carrying conductor in a magnetic field experiences a force (the motor effect); calculate this force using F=BIl for the perpendicular case, and state that reversing B or I reverses the force direction.",
+      "blindBaselineDepth": "Calculation-level depth for the perpendicular special case only -- no vector cross-product treatment or general-angle force calculation.",
+      "blindBaselineRationale": "Directly and explicitly named by AC5.3's own title. F=BIl is the standard, factually-necessary perpendicular-case formula for this named effect (confirmed by the approved technical-source dossier), not an addition beyond what 'force on a current-carrying conductor' already implies for a calculation-capable Level-2 learner.",
+      "factualSourceRequirementKeys": [
+        "electromagnetism-motor-effect-and-induced-emf cluster (CC-15/CC-15A technical-source-verification, current-conductor-force section)"
+      ],
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "AC5.3's own title states the effect exists ('force on a current-carrying conductor') but does not itself use a calculation verb -- the F=BIl calculation depth is inferred from what naming this specific, quantifiable physical effect plausibly requires at Level 2, not a direct calculation-verb citation.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's calculation-inclusive conclusion.",
+      "projectArchitectCalibrationQuestions": [
+        "Is F=BIl tested as a direct-substitution calculation, or also with unit conversion (e.g. length in mm, current in mA)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-flemings-left-hand-rule",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3: '...force on a current-carrying conductor...' (the specific named mnemonic is not itself in the AC title).",
+      "transferablePrerequisiteJustification": "Necessary prerequisite for fully describing the motor effect named in the previous row, and for AC5.4's generator-direction reasoning (Fleming's right-hand rule, the companion convention).",
+      "learnerPerformanceType": "DIRECTION_RULE",
+      "blindBaselineRequirement": "Determine the direction of the force on a current-carrying conductor in a magnetic field using a systematic three-axis directional rule (conventionally, in UK vocational electrical training, Fleming's left-hand rule).",
+      "blindBaselineDepth": "Directional-rule application. The specific NAME 'Fleming's left-hand rule' is a UK/vocational-trade convention, not itself stated in the AC wording -- the blind method can confidently predict that SOME systematic directional convention is required (force, field and current are mutually perpendicular and a rule is needed to relate their directions), but cannot independently confirm the specific mnemonic name without external evidence.",
+      "blindBaselineRationale": "Necessary-prerequisite elaboration of the force-on-conductor effect (the previous row) -- a force whose magnitude is calculable but whose direction has no stated method is an incomplete physical description for a Level-2 vocational learner expected to reason about motor-effect direction.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "The specific mnemonic NAME 'Fleming's left-hand rule' is a UK vocational-trade convention this audit's own CC-16 predecessor found is sourced, in the current governed corpus, from an encyclopedia article (Wikipedia) rather than a first-party technical or C&G source -- the blind method can confirm a directional rule is needed but not independently verify this exact name/convention from tiers 1-4 alone.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix names the identical convention; CC-16's audit separately found this convention's own factual sourcing in the governed corpus is an encyclopedia article, a finding this row inherits diagnostically (tier 6) without it affecting this row's own blind-baseline conclusion (that SOME directional rule is required).",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout use the specific name 'Fleming's left-hand rule', or a different name/mnemonic for the same physical convention?",
+        "Is the rule taught with the First-finger/seCond-finger/thuMb (Field/Current/Motion) mnemonic specifically, or a different memory aid?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-induced-emf",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3: '...electromotive force...'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample B tests induction condition' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "State that a conductor moving through a magnetic field has an EMF induced in it (electromagnetic induction by cutting flux); calculate this EMF using e=Blv for the perpendicular case.",
+      "blindBaselineDepth": "Calculation-level depth for the perpendicular special case only -- same scope pattern as the force-on-conductor row above (its motional-EMF counterpart).",
+      "blindBaselineRationale": "Directly and explicitly named by AC5.3's own title ('electromotive force'); sample-assessment evidence confirms induction is tested. e=Blv is the standard perpendicular-case formula for this named effect (confirmed by the approved technical-source dossier), following the same 'named quantifiable effect implies calculation at Level 2' reasoning as the force-on-conductor row.",
+      "factualSourceRequirementKeys": [
+        "electromagnetism-motor-effect-and-induced-emf cluster (CC-15/CC-15A technical-source-verification, motional-EMF section)"
+      ],
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "As with force-on-conductor: AC5.3's title names 'electromotive force' generally, not induction-by-motion or the e=Blv calculation specifically -- inferred from what naming this quantifiable effect plausibly requires, not a direct calculation-verb citation.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's calculation-inclusive conclusion.",
+      "projectArchitectCalibrationQuestions": [
+        "Is e=Blv tested as a direct-substitution calculation, and does it require unit conversion (velocity in different units)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-flemings-right-hand-rule",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3: '...electromotive force...' (the specific named mnemonic is not itself in the AC title).",
+      "transferablePrerequisiteJustification": "Companion convention to Fleming's left-hand rule; necessary prerequisite for AC5.4's single-loop-generator direction reasoning.",
+      "learnerPerformanceType": "DIRECTION_RULE",
+      "blindBaselineRequirement": "Determine the direction of the current induced in a conductor moving through a magnetic field using a systematic three-axis directional rule (conventionally, in UK vocational electrical training, Fleming's right-hand rule).",
+      "blindBaselineDepth": "Directional-rule application, same pattern as the left-hand-rule row.",
+      "blindBaselineRationale": "Necessary-prerequisite elaboration of induced EMF's own direction, mirroring the force-on-conductor/left-hand-rule pairing above.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "Same reasoning and same specific-name caveat as Fleming's left-hand rule above.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix names the identical convention; this corpus's own governed assertion for this specific rule cites OpenStax's motional-EMF/Lenz's-law direction content as its factual source (not an encyclopedia, unlike the left-hand-rule case) -- the 'Fleming' NAME itself is still this corpus's own vocabulary layered onto that source, which does not itself use that name (diagnostic, tier 6).",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout use the specific name 'Fleming's right-hand rule'?",
+        "Is this rule explicitly connected to Lenz's law (the induced current opposes the change producing it), or taught purely as a hand-mnemonic without that underlying principle?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-coil-solenoid-field",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3 title does not itself name 'coil' or 'solenoid'.",
+      "transferablePrerequisiteJustification": "Plausible prerequisite bridge between 'field around a straight conductor' and the electromagnet/relay/contactor application rows below, if those are in scope at all (see their own, weaker rows).",
+      "learnerPerformanceType": "DESCRIBE",
+      "blindBaselineRequirement": "Describe that a coil/solenoid concentrates and shapes the magnetic field produced by a current-carrying conductor, with a polarity determined by the current direction (via the same right-hand convention).",
+      "blindBaselineDepth": "Basic descriptive/directional fact only.",
+      "blindBaselineRationale": "Not named in AC5.3's own title at all -- included only as a plausible necessary elaboration of 'production of a magnetic field', since a coil/solenoid is a standard, general-physics way of concentrating a conductor's field and is a natural bridge to the electromagnet concept a vocational electrical course would plausibly need. This is a weaker inference than the field-around-a-straight-conductor row.",
+      "factualSourceRequirementKeys": [
+        "electromagnetism-motor-effect-and-induced-emf cluster (CC-15/CC-15A technical-source-verification, solenoid section)"
+      ],
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1 (AC/Range) anchor at all -- 'coil' and 'solenoid' are absent from AC5.3's own title, and this AC carries no Range box. This row exists only because it is a plausible, generic-physics elaboration of the AC's named 'production of a magnetic field' topic, not because tiers 1-4 positively require it.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix includes solenoid field/polarity content; CC-16's audit found this specific matrix record itself conditionally gapped (the word 'electromagnet' not confirmed in the approved technical source), broadly consistent with this row's own LOW-confidence, weak-anchor finding.",
+      "projectArchitectCalibrationQuestions": [
+        "Is coil/solenoid field content taught as a distinct lesson topic, or only briefly as a lead-in to the electromagnet/relay/contactor application (next rows)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-electromagnet",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3 title does not itself name 'electromagnet'.",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE from tiers 1-4 alone as a distinct required proposition beyond the general coil/solenoid-field content above.",
+      "blindBaselineDepth": "No independent depth statement -- see rationale.",
+      "blindBaselineRationale": "The word 'electromagnet' does not appear anywhere in AC5.3's own title, and this AC carries no Range box to check either. An electromagnet is simply a named APPLICATION of the coil/solenoid field already covered above; whether it is explicitly required as its own named topic (vs. an unlabelled example within the general field content) cannot be resolved from specification/Range/level/verb reasoning alone.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1 anchor of any kind (not in the AC title, no Range box for this AC). This row is included only because it is a plausible, common application of the coil/solenoid content above, explicitly named as a candidate in the task's own required-case list -- not because the transferable methodology positively derives it.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "The current governed matrix includes 'electromagnet/relay/contactor basic principle' as required content under AC5.3; CC-16's audit already found NO anchor at all for this content in the matrix's own text (not the AC title, no Range box, no worksheet/sample-assessment claim, and no corresponding entry in the governed knowledge-obligations file) -- the blind method independently reaches the identical no-anchor finding.",
+      "projectArchitectCalibrationQuestions": [
+        "Is 'electromagnet' taught as its own named topic/example under this AC, and if so with what level of technical detail (e.g. core material, turns-count effect)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-relay",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3 title does not itself name 'relay'.",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE from tiers 1-4 alone as a required proposition under this AC.",
+      "blindBaselineDepth": "No independent depth statement -- see rationale.",
+      "blindBaselineRationale": "A relay is a specific, named ELECTROMECHANICAL COMPONENT (an application of the electromagnet principle to switch a separate circuit) -- a further, more specific step beyond the already-weakly-anchored 'electromagnet' row above. Nothing in AC5.3's title, or in any other AC's title/Range in the matrix, names 'relay' as required content.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1 anchor anywhere in the matrix for this specific named component under AC5.3.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "Same as 'electromagnet' above -- the current matrix bundles 'relay' into the same unanchored requiredSupportingKnowledge phrase, which CC-16's audit already found has no located evidence of any kind (not even a corresponding knowledge-obligations entry).",
+      "projectArchitectCalibrationQuestions": [
+        "Is a relay specifically named and diagrammed under this AC, or only mentioned as one example among several electromagnet applications?",
+        "Is relay content perhaps taught under AC6.1 instead (heating/boiler control switching/relay chain) rather than AC5.3?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-3-contactor",
+      "acNumber": "5.3",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.3 title does not itself name 'contactor'.",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE from tiers 1-4 alone as a required proposition under this AC.",
+      "blindBaselineDepth": "No independent depth statement -- see rationale.",
+      "blindBaselineRationale": "A contactor is a specific, named heavier-duty industrial relay variant -- an even more specific application than 'relay' itself. Nothing in AC5.3's title, or any Range item anywhere in the matrix, names 'contactor'.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1 anchor anywhere for this specific named component.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "Weakest-anchored of the four coil/solenoid/electromagnet/relay/contactor cluster -- 'contactor' is the most specific, most industrial-vocational-trade-specific term of the four, and the transferable methodology has the least confidence any of these four beyond basic coil/solenoid field content is genuinely required by C&G's own specification wording.",
+      "projectArchitectCalibrationQuestions": [
+        "Is 'contactor' used anywhere in the teaching material at all, or is 'relay' the only such component named?",
+        "If both relay and contactor appear, is the distinction between them (switching capacity/duty) explicitly taught, or are the terms used interchangeably?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-4-alternator-principle-and-parts",
+      "acNumber": "5.4",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.4: 'Describe the basic principles of generating an A.C. supply in terms of a single-loop generator, sine-wave, frequency, EMF and magnetic flux.'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests frequency/time and e=Blv; Sample B tests slip rings, e=vBl formula and length calculation' (public sample-assessment evidence).",
+      "learnerPerformanceType": "EXPLAIN",
+      "blindBaselineRequirement": "Explain a single loop rotating between magnetic poles, connected via slip rings and brushes, as a causal system producing alternating EMF by cutting flux (zero EMF for motion parallel to the field, maximum for perpendicular cutting, alternating polarity through rotation); identify slip rings/brushes/poles/coil as the core parts.",
+      "blindBaselineDepth": "Full causal-mechanism explanation with named parts, at the depth the AC's own detailed title (naming five distinct sub-concepts) implies -- sample-assessment evidence confirms slip-ring identification specifically is tested.",
+      "blindBaselineRationale": "AC's own title is unusually detailed for this matrix (naming single-loop generator, sine-wave, frequency, EMF and magnetic flux all explicitly), directly licensing this depth; sample-assessment evidence corroborates the specific slip-ring/brush detail.",
+      "factualSourceRequirementKeys": [
+        "ac-generation-single-loop-alternator cluster (CC-15/CC-15A technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly.",
+      "projectArchitectCalibrationQuestions": [
+        "Is the rotating-loop mechanism taught with a progressive/animated diagram sequence, or a single static diagram?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-4-frequency-pole-pair-relationship",
+      "acNumber": "5.4",
+      "loNumber": 5,
+      "publicSpecificationAnchor": "AC5.4: '...in terms of...frequency...'",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests frequency/time' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "State that one cycle of output corresponds to one revolution per pole pair, and calculate frequency from rotational speed and pole-pair count (f=N x P, with N in rev/s and P the number of pole PAIRS, not total poles).",
+      "blindBaselineDepth": "Full calculation depth -- directly named ('frequency') in the AC's own title and confirmed by sample-assessment evidence.",
+      "blindBaselineRationale": "AC's own title directly names 'frequency' as a required sub-concept. The pole-PAIRS (not total-poles) convention is confirmed as the correct technical reading by the approved technical-source dossier's own independent cross-check against two independent manufacturer/educational sources (CC-15A) -- a factual-truth-tier resolution the blind method reaches through that independent technical verification alone.",
+      "factualSourceRequirementKeys": [
+        "ac-generation-single-loop-alternator cluster (CC-15A technical-source-verification, pole-pair convention cross-check)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's own conclusion; matrix's reviewFlag explicitly notes the pole-pair convention needed independent technical verification because of a proprietary handout's own wording -- the blind method arrives at the identical, technically-verified convention without needing to consult that handout at all, since the technical-source dossier resolves it independently.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout's own f=N x P notation define P as total poles or pole pairs, and does this match the technically-verified convention?"
+      ]
+    },
+    {
+      "calibrationKey": "ac5-5-waveform-characteristics-and-relationships",
+      "acNumber": "5.5",
+      "loNumber": 5,
+      "rangeItems": [
+        "Root Mean Square (RMS) value",
+        "Average value",
+        "Peak to peak value",
+        "Periodic time",
+        "Frequency",
+        "Amplitude"
+      ],
+      "publicSpecificationAnchor": "AC5.5: 'Identify the characteristics of sine-waves.'",
+      "publicRangeAnchor": "Official Range: all six items listed.",
+      "publicAssessmentAnchor": "Matrix records: 'Sample B asks identification of waveform period' (public sample-assessment evidence).",
+      "learnerPerformanceType": "CALCULATE",
+      "blindBaselineRequirement": "Identify amplitude/peak, peak-to-peak (Vpp=2Vpeak), periodic time (T=1/f), frequency (f=1/T), RMS (Vrms~=0.707Vpeak) and average-of-one-alternation (Vavg~=0.636Vpeak) values on a sine wave, and convert between them; state that the signed average over a full cycle is zero, distinct from the average-of-one-alternation value used in AC calculations.",
+      "blindBaselineDepth": "Full identification-and-conversion depth for all six named Range items, including the two forms of 'average' distinction, which is a factually necessary clarification: the technical-source dossier confirms both the zero full-cycle average and the ~0.637xpeak rectified-average are simultaneously true, non-contradictory facts about the same waveform.",
+      "blindBaselineRationale": "Direct Range anchor for all six items; the two-forms-of-average distinction is a factual-truth-tier necessity (both values are simultaneously true and a Level-2 learner working with 'average value' calculations needs to know which one is meant), not proprietary-material-derived. Sample-assessment evidence confirms period identification specifically is tested.",
+      "factualSourceRequirementKeys": [
+        "sine-wave-characteristics cluster (CC-15/CC-15A/CC-15B technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly, including the two-forms-of-average distinction the matrix's own reviewFlag also emphasises.",
+      "projectArchitectCalibrationQuestions": [
+        "Is T=1/f explicitly taught as its own named formula, or only implicitly through worked frequency<->period conversions?",
+        "Is the zero-full-cycle-average vs. rectified-average distinction explicitly taught as two named concepts, or does the material only ever use one of the two?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-security-alarms-category",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Security alarms"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components that are used in electrical systems.'",
+      "publicRangeAnchor": "Official Range: 'Security alarms'.",
+      "learnerPerformanceType": "APPLY",
+      "blindBaselineRequirement": "Recognise 'security alarm' as a named application category and explain, at simple functional level, that electronic components within it perform sensing, switching and latching/sounding roles.",
+      "blindBaselineDepth": "Category-level recognition plus the generic functional roles (sensing/switching/latching) a security alarm must logically perform -- see the following three rows for how far component-specific detail can be independently derived.",
+      "blindBaselineRationale": "Direct Range anchor. The generic sensing/switching/latching functional decomposition is a necessary-prerequisite consequence of what ANY security alarm must logically do (detect a change, switch a response, keep the alarm sounding), independent of which specific components a particular course chooses to illustrate it with.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix likewise treats 'Security alarms' as a directly Range-anchored category.",
+      "projectArchitectCalibrationQuestions": [
+        "Is 'security alarm' taught purely as a category label with one worked example, or are multiple alarm-sensing technologies compared (beam-break, loop-break, motion)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-security-alarm-transistor-switching-generic",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Security alarms"
+      ],
+      "publicSpecificationAnchor": "AC6.1 (application) + AC6.2 (generic component principle, 'Transistors' Range item).",
+      "publicRangeAnchor": "Official Range: 'Security alarms' (AC6.1); 'Transistors' (AC6.2).",
+      "transferablePrerequisiteJustification": "Depends on AC6.2's own transistor-switching content (see ac6-2-transistors row) as its factual/conceptual prerequisite.",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "Recognise that a transistor's generic switching capability (established under AC6.2) can plausibly be applied to sense a change of state (e.g. a loop opening or closing) as one component within a security-alarm system.",
+      "blindBaselineDepth": "Generic component-capability recognition applied to this named category -- NOT a specific worked circuit topology (see the next row for why the exact topology is not independently derivable).",
+      "blindBaselineRationale": "This is a necessary-prerequisite/cross-AC inference: AC6.2 independently and confidently establishes that transistors can switch (see the AC6.2 rows below); applying that generic capability to the AC6.1 'security alarms' category is a plausible, low-risk combination any reasonable course-designer would make, without needing to know the exact circuit a specific course teaches.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "While transistor-switching-in-general is HIGH confidence (AC6.2), its specific APPLICATION to security alarms specifically (rather than, say, dimmer switches or motor control, which also involve switching) is an inference from category-combination reasoning, not a direct citation naming 'transistor' under the 'Security alarms' Range item.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix's own requiredSupportingKnowledge does name 'transistor switching' under security alarms specifically -- the blind method reaches a compatible, if less specific, conclusion via cross-AC component-capability reasoning.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout use a transistor specifically for the sensing/switching role, or a different component (e.g. a comparator IC, a relay directly)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-security-alarm-thyristor-latching-generic",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Security alarms"
+      ],
+      "publicSpecificationAnchor": "AC6.1 (application) + AC6.2 (generic component principle, 'Thyristors' Range item).",
+      "publicRangeAnchor": "Official Range: 'Security alarms' (AC6.1); 'Thyristors' (AC6.2).",
+      "transferablePrerequisiteJustification": "Depends on AC6.2's own thyristor-latching content (see ac6-2-thyristors row) as its factual/conceptual prerequisite.",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "Recognise that a thyristor's generic latching capability (established under AC6.2: gate-triggered, stays conducting until current falls below holding current) can plausibly be applied to keep a sounder active after a security-alarm trigger, until deliberately reset.",
+      "blindBaselineDepth": "Generic component-capability recognition applied to this named category -- same pattern and same caveat as the transistor row above.",
+      "blindBaselineRationale": "Same cross-AC inference pattern as the transistor row: AC6.2 independently establishes thyristor latching; applying it to 'keep an alarm sounding' is the single most obvious use of a latching device in a security context, a low-risk plausible combination.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "Same reasoning as the transistor-switching row: generic latching capability is HIGH confidence, but its specific pairing with 'security alarm sounder' rather than another latching application (e.g. a self-holding motor-start circuit) is inferred, not directly cited.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix's own requiredSupportingKnowledge does name 'thyristor latching/sounder role' under security alarms specifically -- compatible conclusion, less specific derivation.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout use a thyristor (SCR) specifically for the latching role, or a different bistable/latching component (e.g. an SR latch IC, a relay with a holding contact)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-security-alarm-exact-topology",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Security alarms"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE from tiers 1-4 alone: the EXACT combined circuit topology (e.g. specifically 'a transistor senses a break in a normally-closed loop and triggers a thyristor gate, which then latches to hold a sounder active until manually reset') cannot be independently reconstructed -- only that SOME topology combining a sensing/switching component with a latching component is plausible (the two preceding rows).",
+      "blindBaselineDepth": "No independent depth statement for the SPECIFIC topology -- see rationale. The generic component-role combination (prior two rows) is as far as the blind method can confidently go.",
+      "blindBaselineRationale": "Many electrically-plausible security-alarm topologies exist (normally-closed-loop vs. normally-open, transistor-plus-thyristor vs. transistor-plus-relay vs. a dedicated alarm IC, etc.) -- the specification/Range/level/verb evidence available cannot distinguish which ONE a given course teaches as its representative example, since AC6.1's own verb ('describe the function and application') requires only that A plausible, functionally-correct example be taught, not a UNIQUELY specified one.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1/tier-2 evidence can distinguish one specific representative topology from another electrically-equivalent one; this is inherently a course-design/exemplar CHOICE, not a fact derivable from the specification.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "The current governed matrix DOES specify one exact topology (transistor senses NC-loop break, triggers thyristor gate, latches sounder) -- CC-16's audit already found this specific choice traces to a proprietary-handout-interpretation basis in the governed knowledge obligations, with its own factual circuit-topology sourcing coming from a general electronics tutorial site, not a C&G artefact or first-party manufacturer document. The blind method independently confirms it cannot derive this SPECIFIC choice from transferable evidence alone, corroborating CC-16's finding from the opposite direction.",
+      "projectArchitectCalibrationQuestions": [
+        "What EXACT topology does the private handout show for the security-alarm example -- does it match 'transistor senses NC-loop break -> triggers thyristor gate -> latches sounder' precisely, or a different arrangement?",
+        "Is a circuit diagram shown at all, or only a functional block description?",
+        "Is the loop normally-closed (broken = alarm) or normally-open (made = alarm)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-telephone-category",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Telephones"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "publicRangeAnchor": "Official Range: 'Telephones'.",
+      "learnerPerformanceType": "APPLY",
+      "blindBaselineRequirement": "Recognise 'telephone' as a named application category involving electronic components.",
+      "blindBaselineDepth": "Category-level recognition only -- see the following four rows for how far specific component-role detail can be independently derived (spoiler: not far, at HIGH confidence).",
+      "blindBaselineRationale": "Direct Range anchor for the category itself.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's own direct Range anchor for the category.",
+      "projectArchitectCalibrationQuestions": [
+        "Is 'telephone' still a live example in current teaching material, or flagged/being phased out given the UK PSTN-to-digital transition?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-telephone-capacitor-role",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Telephones"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE from tiers 1-4 alone as a specific required component role.",
+      "blindBaselineDepth": "No independent depth statement -- see rationale.",
+      "blindBaselineRationale": "'Capacitor' is not named anywhere in AC6.1's own title, and the bare Range label 'Telephones' does not itself specify which internal component(s) play which role. A telephone is a complex real-world device with many possible components worth discussing (microphone/speaker transducers, ringer circuit, line-interface components, dialling circuitry, and in the traditional UK context specifically a master-socket capacitor) -- specification/Range/level/verb evidence alone cannot select which one(s) a given course emphasises.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1/tier-2 evidence identifies which specific component(s) within 'telephone' equipment are the required teaching focus.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "The current governed matrix specifies the master-socket capacitor's ringing-signal role specifically; CC-16's audit already found this traces to a proprietary-handout-interpretation basis, with the underlying assertion's own factual sourcing being an encyclopedia article (Wikipedia). The blind method independently confirms no component-specific choice is derivable from transferable evidence alone.",
+      "projectArchitectCalibrationQuestions": [
+        "Which specific telephone component(s) does the handout focus on -- master-socket capacitor, ringer circuit, line-interface diode bridge, microphone/speaker, dialling circuit, or a combination?",
+        "Is the capacitor's ringing-signal-coupling role explicitly taught, and is it tested by a worksheet question specifically?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-telephone-resistor-role",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Telephones"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE from tiers 1-4 alone.",
+      "blindBaselineDepth": "No independent depth statement -- see rationale.",
+      "blindBaselineRationale": "Same reasoning as the capacitor row -- 'resistor' (in any telephone-specific role such as remote line-testing) is not named by the AC title or a Range sub-item, and multiple equally-plausible components could be chosen.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1/tier-2 evidence identifies this specific component role as required.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "Same finding as the capacitor row -- current matrix specifies this role, tracing to the same proprietary-interpretation-basis obligation and encyclopedia-sourced assertion CC-16's audit already found.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout name a resistor's specific role (e.g. remote line-testing / 'out-of-service' resistor) at all?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-telephone-surge-protector-role",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Telephones"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE from tiers 1-4 alone.",
+      "blindBaselineDepth": "No independent depth statement -- see rationale.",
+      "blindBaselineRationale": "Same reasoning as the capacitor/resistor rows, with an additional currency concern: even the existing governed corpus's own cited source scopes this component to OLDER master sockets specifically, not current ones -- a further reason the blind method (which has no currency-verification mechanism of its own beyond the approved technical-source dossier) cannot confidently include it.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1/tier-2 evidence identifies this component role as required, and it may additionally be a legacy/superseded design detail even if it once was.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "Weakest-evidenced of the three telephone component-role clauses per CC-16's own prior audit (no worksheet/sample-assessment claim of any kind located, not even a generic handout reference) -- the blind method's independent LOW-confidence finding is consistent with, and reinforces, that prior finding from a different evidentiary direction.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout mention a surge protector at all, and if so does it note this is specific to OLDER master sockets rather than universal?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-telephone-master-vs-extension-distinction",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Telephones"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "learnerPerformanceType": "DISTINGUISH",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE from tiers 1-4 alone.",
+      "blindBaselineDepth": "No independent depth statement -- see rationale.",
+      "blindBaselineRationale": "Master-vs-extension-socket wiring distinction is installation-practice detail (which components a wired socket physically contains, depending on its position in the network) rather than an electronic-COMPONENT operating principle, which is what AC6.1's own title asks for ('function and application of electronic components'). Even setting aside the component-choice uncertainty of the other telephone rows, this specific installation-topology distinction is a further step removed from what the AC title itself asks about.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1/tier-2 evidence of any kind, and arguably not even the right KIND of content for this AC's own 'electronic components' framing.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "CC-16's audit already found this to be the single weakest-evidenced telephone clause of all -- not even present in the governed knowledge-obligation's own description text, only one level further removed in the underlying assertion's own statement. The blind method's independent finding (weakest of five telephone rows, and arguably off-topic for the AC's own framing) corroborates this from a different angle.",
+      "projectArchitectCalibrationQuestions": [
+        "Is the master-vs-extension distinction taught at all, and if so, is it framed as electronic-component content or as wiring/installation-practice content (which might belong to a different unit entirely)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-telephone-other-component-detail-check",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Telephones"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "STRUCTURAL CHECK, not a positive proposition: beyond the four specific component/wiring clauses already addressed above (capacitor, resistor, surge-protector, master-vs-extension), no FURTHER telephone-internal component role (e.g. a hook-switch, ringer coil/transducer, hybrid transformer, dialling circuit) is confidently derivable from tiers 1-4 as separately required.",
+      "blindBaselineDepth": "No independent depth statement -- this row exists to make explicit that the four rows above are not being silently treated as an exhaustive list of 'whatever the private material happens to cover'; it is a deliberate closure check.",
+      "blindBaselineRationale": "Recorded to satisfy this package's own granularity requirement that the telephone cluster's 'other' residual category be examined explicitly rather than left implicit -- consistent with the same weak-anchor reasoning (no AC-title or Range-sub-item naming) already established for the capacitor/resistor/surge-protector rows above.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "By construction this is a check for the ABSENCE of further tier-1/tier-2 evidence, which cannot itself be HIGH confidence -- private material could legitimately cover additional telephone components this audit has no way to anticipate.",
+      "matrixComparison": "MATRIX_ONLY_PROPOSITION",
+      "matrixComparisonNotes": "CC-16's own audit carried a matching catch-all row (ac6-1-telephone-other-detail-check) recording that it found no further matrix-claimed telephone component detail beyond the same four clauses -- this row's independent, tiers-1-4-only check reaches the same 'nothing further located' conclusion.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the private material cover any telephone-internal component beyond capacitor/resistor/surge-protector/master-vs-extension wiring (e.g. hook-switch, ringer transducer, hybrid transformer, dialling circuit)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-dimmer-switch-category",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Dimmer switches"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "publicRangeAnchor": "Official Range: 'Dimmer switches'.",
+      "transferablePrerequisiteJustification": "Depends on AC6.2's own TRIAC/DIAC operating-principle content.",
+      "learnerPerformanceType": "APPLY",
+      "blindBaselineRequirement": "Recognise 'dimmer switch' as a named application category; recognise that phase-control (switching on partway through each AC half-cycle to reduce average power delivered) is the general operating principle such a device plausibly uses, drawing on AC6.2's own generic TRIAC/DIAC operating-principle content.",
+      "blindBaselineDepth": "Category recognition plus the generic phase-control PRINCIPLE (a necessary-prerequisite combination of AC6.2's own TRIAC/DIAC content with this category) -- not the specific capacitor-timing-network component values or circuit topology.",
+      "blindBaselineRationale": "Direct Range anchor for the category; phase control is the only physically-sensible way a solid-state (non-transformer, non-rheostat) dimmer can work given AC6.2's own established TRIAC/DIAC switching behaviour, so this is a low-risk cross-AC inference.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "The GENERAL phase-control principle is a confident cross-AC inference, but the SPECIFIC capacitor-timing/DIAC-trigger-threshold circuit topology (as opposed to, say, a microcontroller-based dimmer) is not independently derivable.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matrix's own requiredSupportingKnowledge does specify the capacitor-timing/DIAC-trigger/TRIAC-phase-control topology -- compatible in principle (phase control), less specific in the blind method (no capacitor-timing-network detail).",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout show the capacitor-charges-through-a-resistor DIAC-trigger topology specifically, or a different phase-control circuit (e.g. a microcontroller-driven dimmer)?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-heating-boiler-control-category",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Heating/boiler controls"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "publicRangeAnchor": "Official Range: 'Heating/boiler controls'.",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A asks which device detects temperature change' (public sample-assessment evidence).",
+      "transferablePrerequisiteJustification": "Depends on AC6.2's own thermistor operating-principle content.",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "Recognise 'heating/boiler control' as a named application category; recognise that a thermistor (established under AC6.2 as a temperature-sensitive resistor) is the natural sensing component for a temperature-feedback control chain switching a heating load on/off.",
+      "blindBaselineDepth": "Category recognition plus thermistor-as-sensor role, confirmed directly by sample-assessment evidence naming temperature-change detection specifically. The remainder of the control chain (relay/switching detail) is a plausible but not independently confirmable elaboration.",
+      "blindBaselineRationale": "Direct Range anchor; sample-assessment evidence directly confirms temperature-sensing-device identification is tested, which strongly implies the thermistor (the only temperature-sensitive component named anywhere in AC6.2's own Range) is the intended answer.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's thermistor-sensing conclusion directly; matrix's additional 'switching/relay chain' detail is a plausible elaboration the blind method holds at somewhat lower confidence for the chain's specific mechanism, though the core thermistor-sensor identification is equally HIGH confidence in both.",
+      "projectArchitectCalibrationQuestions": [
+        "Is the switching output specifically a relay, or a different switching device (triac, SSR)?",
+        "Is a specific real system (e.g. a named boiler/thermostat product) used as the illustrative example, or a generic block diagram?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-motor-control-category",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Motor control"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "publicRangeAnchor": "Official Range: 'Motor control'.",
+      "transferablePrerequisiteJustification": "Depends on AC6.2's own rectifier and thyristor/TRIAC operating-principle content.",
+      "learnerPerformanceType": "COMPONENT_ROLE",
+      "blindBaselineRequirement": "Recognise 'motor control' as a named application category; recognise that rectification (AC6.2's own rectifier content) and controlled switching (AC6.2's own thyristor/TRIAC content) are the natural block-function building blocks of an electronic motor-control/drive system.",
+      "blindBaselineDepth": "Category recognition plus generic block-function role (rectify, then controllably switch) -- not a specific manufacturer drive's own internal architecture or a 'protection' function specifically, which is not independently derivable.",
+      "blindBaselineRationale": "Direct Range anchor; rectification-plus-controlled-switching is the standard, physically-necessary building-block pattern for ANY electronic motor drive (a motor ultimately needs controllable DC or controlled AC, and both require a rectifier and a switching device given AC6.2's own component set) -- a low-risk cross-AC inference from general principles alone.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "The general rectify-then-switch block pattern is a confident inference, but a 'protection' function specifically (as opposed to, say, speed control or torque control) is not independently derivable from tiers 1-4 -- CC-15A's own technical-source audit separately found the approved dossier source for this application explicitly does NOT establish a protection function, corroborating this row's own uncertainty from the factual-sourcing side.",
+      "matrixComparison": "MATRIX_BROADER",
+      "matrixComparisonNotes": "Matrix's requiredSupportingKnowledge names 'controlled switching/protection' -- the 'protection' half is not independently derivable by the blind method, and CC-15A's own technical-source-verification package separately found no approved source establishes it as a factual matter either.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the handout name a specific protection function (overcurrent, thermal) for the motor-control block diagram, or only rectification and switching?",
+        "Is a specific real drive product/diagram used, or a generic block diagram?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-1-wireless-control-category",
+      "acNumber": "6.1",
+      "loNumber": 6,
+      "rangeItems": [
+        "Wireless control systems"
+      ],
+      "publicSpecificationAnchor": "AC6.1: 'Describe the function and application of electronic components...'",
+      "publicRangeAnchor": "Official Range: 'Wireless control systems'.",
+      "learnerPerformanceType": "APPLY",
+      "blindBaselineRequirement": "Recognise 'wireless control system' as a named application category involving a transmitter and receiver arrangement that switches or controls a remote device without a physical wired connection.",
+      "blindBaselineDepth": "Category-level and general transmitter/receiver-arrangement recognition only -- no specific IC/protocol/frequency-band detail, and the 'practical advantages' half of the matrix's own requirement (why use wireless at all) is a plausible but not independently confirmable elaboration.",
+      "blindBaselineRationale": "Direct Range anchor. A transmitter/receiver arrangement is the definitionally necessary minimum content for anything called a 'wireless control system' (a system that controls something without wires must, by definition, transmit and receive a signal) -- this reasoning is purely analytic/definitional.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "The transmitter/receiver arrangement itself is near-definitional (HIGH), but WHICH 'practical advantages' are the expected required content (no wiring cost, retrofit ease, flexible placement, etc.) is not independently derivable from tiers 1-4 -- no sample-assessment evidence for this item was located either.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's transmitter/receiver-arrangement conclusion; the 'practical advantages' half is present in both, though CC-16's audit found the current matrix's own supporting evidence for that specific half is a single, fairly generic maintenance-cost claim from one manufacturer source, not dissimilar in strength to this row's own MEDIUM confidence.",
+      "projectArchitectCalibrationQuestions": [
+        "What specific practical advantage(s) of wireless control does the handout name (installation cost, retrofit ease, flexibility, reliability)?",
+        "Is a specific real product/system used as the illustrative example?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-2-generic-operating-principles",
+      "acNumber": "6.2",
+      "loNumber": 6,
+      "rangeItems": [
+        "Capacitors",
+        "Resistors",
+        "Rectifiers",
+        "Diodes",
+        "Zener",
+        "LED",
+        "Photo",
+        "Thermistors",
+        "DIACs",
+        "TRIACs",
+        "Transistors",
+        "Thyristors",
+        "Inverters"
+      ],
+      "publicSpecificationAnchor": "AC6.2: 'State the basic operating principles of electronic components and devices.'",
+      "publicRangeAnchor": "Official Range: all 13 items listed.",
+      "publicAssessmentAnchor": "Matrix records specific sample-assessment items for several components (e.g. 'Sample A tests capacitor, symbol and diode terminals; Sample B tests symbols, LDR application and rectifier function').",
+      "learnerPerformanceType": "DESCRIBE",
+      "blindBaselineRequirement": "For each of the 13 named components, state its basic operating principle: capacitor (stores charge/energy in an electric field); resistor (opposes current flow); rectifier (converts AC to unidirectional/pulsating DC); diode (one-way conduction); Zener (controlled reverse-conduction regulation); LED (emits light when forward-biased); photo-sensitive device (behaviour depends on incident light); thermistor (resistance varies with temperature); DIAC (bidirectional breakover trigger device); TRIAC (bidirectional gated AC switch); transistor (can switch or amplify); thyristor/SCR (gate-triggered, latching, unidirectional controlled switch); inverter (converts DC to AC).",
+      "blindBaselineDepth": "Basic operating-principle statement only, matching the AC's own verb 'state' -- no semiconductor band theory, bias-design calculation, detailed I-V curves, or component-selection engineering for any of the 13.",
+      "blindBaselineRationale": "AC's own verb directly licenses this depth ('state the basic operating principles'); direct Range anchor for all 13 items; each principle stated is the factually-necessary minimum content that DEFINES what the component IS (confirmed by the approved technical-source dossier for every one of the 13), independent of any teaching material's own phrasing.",
+      "factualSourceRequirementKeys": [
+        "electronic-components-operating-principles cluster (CC-15/CC-15A/CC-15B technical-source-verification)"
+      ],
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix content directly for the generic-principle layer (the matrix's own requirementText for this AC bundles the same 13 basic principles together).",
+      "projectArchitectCalibrationQuestions": [
+        "Is each of the 13 given roughly equal teaching weight, or are some treated more briefly than others?",
+        "Half-wave vs. full-wave rectification: is the rectifier's 'basic operating principle' taught as single-diode half-wave only, or does it also distinguish the four-diode full-wave/bridge form?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-2-schematic-symbol-recognition",
+      "acNumber": "6.2",
+      "loNumber": 6,
+      "rangeItems": [
+        "Capacitors",
+        "Resistors",
+        "Rectifiers",
+        "Diodes",
+        "Zener",
+        "LED",
+        "Photo",
+        "Thermistors",
+        "DIACs",
+        "TRIACs",
+        "Transistors",
+        "Thyristors",
+        "Inverters"
+      ],
+      "publicSpecificationAnchor": "AC6.2: 'State the basic operating principles...' (symbol recognition is not itself named by this verb).",
+      "publicAssessmentAnchor": "Matrix records: 'Sample A tests capacitor, symbol and diode terminals; Sample B tests symbols, LDR application...' (public sample-assessment evidence CONFIRMS symbol recognition is tested, despite the AC's own verb not naming it).",
+      "learnerPerformanceType": "PHYSICAL_RECOGNITION",
+      "blindBaselineRequirement": "Recognise the standard schematic circuit symbol for each of the 13 components, including specifically distinguishing the NPN and PNP transistor symbols.",
+      "blindBaselineDepth": "Visual symbol recognition, separate from and additional to the verbal operating-principle statement above -- justified by sample-assessment evidence despite not being named by the AC's own verb.",
+      "blindBaselineRationale": "The AC's own verb 'state the basic operating principles' is a verbal/conceptual verb, not obviously a visual-recognition one -- BUT direct public sample-assessment evidence confirms symbol recognition is genuinely tested ('Sample A tests... symbol...; Sample B tests symbols...'), so the blind method includes this on tier-2 evidence despite the AC's own tier-1 wording alone not requiring it.",
+      "blindConfidence": "MEDIUM",
+      "blindUncertaintyReason": "Confirmed for AT LEAST some components by sample-assessment evidence, but whether ALL 13 components' symbols are required, or only a subset the assessment happens to sample, cannot be resolved from tiers 1-4 alone.",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Matches matrix's own symbol-recognition requirement (the matrix's own visualRepresentationRequirement field names a 'schematic-symbol family' and NPN/PNP distinction specifically).",
+      "projectArchitectCalibrationQuestions": [
+        "Are all 13 components' symbols taught and tested, or only a subset?",
+        "Is the NPN/PNP symbol distinction (arrow direction) explicitly taught as a named comparison?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-2-physical-appearance-recognition",
+      "acNumber": "6.2",
+      "loNumber": 6,
+      "rangeItems": [
+        "Capacitors",
+        "Resistors",
+        "Rectifiers",
+        "Diodes",
+        "Zener",
+        "LED",
+        "Photo",
+        "Thermistors",
+        "DIACs",
+        "TRIACs",
+        "Transistors",
+        "Thyristors",
+        "Inverters"
+      ],
+      "publicSpecificationAnchor": "AC6.2's own verb ('state the basic operating principles') does not name physical appearance.",
+      "learnerPerformanceType": "PHYSICAL_RECOGNITION",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE as a REQUIRED assessment performance from tiers 1-4 alone, though plausible as generically useful pedagogical support.",
+      "blindBaselineDepth": "No independent depth statement as a required item -- see rationale.",
+      "blindBaselineRationale": "Neither the AC's own verb nor any Range item names physical appearance, and no public sample-assessment evidence for physical-appearance recognition (as distinct from schematic-symbol recognition) was located. Physical-component-appearance images are common, generically useful TEACHING SUPPORT for any electronics topic (helping a learner connect a symbol to a real part), but that pedagogical usefulness does not, on its own, establish it as a required assessed performance under this AC's own wording.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1 or tier-2 evidence distinguishes 'physical appearance is required assessed knowledge' from 'physical appearance images are merely helpful teaching illustration, not itself assessed'.",
+      "matrixComparison": "MATRIX_BROADER",
+      "matrixComparisonNotes": "The current matrix's own visualRepresentationRequirement field does list 'physical appearance as supporting recognition where useful' -- notably hedged with 'where useful', suggesting even the matrix itself treats this as supportive/pedagogical rather than a hard requirement, broadly consistent with this row's own LOW-confidence, non-required finding. CC-16's audit independently reached the same conclusion (CONDITIONAL_SOURCE_GAP, no dedicated appearance-recognition source located).",
+      "projectArchitectCalibrationQuestions": [
+        "Does any worksheet or assessment question show a PHOTOGRAPH (not a schematic symbol) and ask the learner to identify the component?"
+      ]
+    },
+    {
+      "calibrationKey": "ac6-2-resistor-colour-code",
+      "acNumber": "6.2",
+      "loNumber": 6,
+      "rangeItems": [
+        "Resistors"
+      ],
+      "publicSpecificationAnchor": "AC6.2's own verb ('state the basic operating principles') does not itself name colour-code decoding.",
+      "transferablePrerequisiteJustification": "Practically relevant for a vocational electrical-installation qualification, where a learner may need to identify real component values -- but this is a vocational-context inference, not a specification-textual one.",
+      "learnerPerformanceType": "IDENTIFY",
+      "blindBaselineRequirement": "NOT CONFIDENTLY DERIVABLE as required from tiers 1-4 alone, though a highly plausible vocational-relevance addition.",
+      "blindBaselineDepth": "No independent depth statement as a required item -- see rationale.",
+      "blindBaselineRationale": "4-band resistor colour-code decoding is a specific, standardised (IEC 60062) skill that goes beyond 'stating the basic operating principle' of a resistor (which is simply 'opposes current flow') -- it is a practical, vocationally-relevant IDENTIFICATION skill a real electrician plausibly needs, but this practical-relevance argument is a plausibility inference, not a direct citation from the Range item 'Resistors' alone.",
+      "blindConfidence": "LOW",
+      "blindUncertaintyReason": "No tier-1/tier-2 evidence; included only as a plausible vocational-relevance addition consistent with this being a hands-on electrical-installation qualification, not because the bare Range label 'Resistors' itself specifies colour-code depth.",
+      "matrixComparison": "MATRIX_BROADER",
+      "matrixComparisonNotes": "Matrix's own requiredSupportingKnowledge explicitly attributes this specific depth to 'worksheet evidence' in its own wording -- CC-16's audit already flagged this as a DEPTH_ONLY_FROM_HANDOUT pattern, which the blind method independently confirms it cannot derive from transferable evidence alone, corroborating CC-16's finding.",
+      "projectArchitectCalibrationQuestions": [
+        "Does the worksheet require full 4-band colour-code decoding (value + tolerance), or only recognition that colour bands encode a value?"
+      ]
+    },
+    {
+      "calibrationKey": "cross-cutting-matrix-vs-baseline-scope-of-analysis",
+      "acNumber": "1.1",
+      "loNumber": 1,
+      "publicSpecificationAnchor": "N/A -- methodology-scope record, not a content proposition.",
+      "learnerPerformanceType": "OTHER",
+      "blindBaselineRequirement": "METHODOLOGY RECORD: this baseline's 45 content rows (excluding this record and the AC3.2 structural-gap record) map to 42 of CC-16's 56 audit propositions by shared (acNumber, rangeItems); the remaining 14 CC-16 propositions were either merged into a broader blind-baseline row (e.g. CC-16's separate quantity-symbol-unit and anti-overdepth-guard AC2.2 rows both feed this baseline's two AC2.2 rows), or are CC-16's own cross-cutting/diagnostic-only findings (e.g. 'cross-cutting-fleming-rule-mnemonic-vocabulary') that this baseline treats as tier-6 diagnostic input to individual rows (e.g. the Fleming's-rule rows above) rather than a separate calibration row of their own, since they are not independently AC/Range-anchored propositions in their own right.",
+      "blindBaselineDepth": "N/A.",
+      "blindBaselineRationale": "Recorded to satisfy this package's own validation requirement that every CC-16 proposition is either mapped to a calibrationKey or explicitly recorded as diagnostic/non-baseline -- see the validator's own explicit CC16_MAPPING table for the precise per-key correspondence, cross-checked mechanically against CC-16's real ledger.",
+      "blindConfidence": "HIGH",
+      "matrixComparison": "SAME",
+      "matrixComparisonNotes": "Not a content comparison -- see rationale.",
+      "projectArchitectCalibrationQuestions": [
+        "N/A -- this row is a methodology record, not a calibration question."
+      ]
+    }
+  ]
+}

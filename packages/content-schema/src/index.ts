@@ -69,6 +69,15 @@
  * claims, or rest only on legacy-assertion/technical-source/encyclopedia
  * evidence. Structurally forbidden from carrying a final scope
  * classification -- see the module's own header for why.
+ *
+ * CC-17 added ./blind-calibration-baseline.ts: a Project-Architect review
+ * export ledger shape recording what a transferable, methodology-only
+ * reconstruction (specification/Range/public-sample-assessment/level-
+ * and-verb/prerequisite reasoning/approved technical sources) concludes
+ * a learner needs, built BLIND to proprietary course-provider teaching
+ * material so the resulting baseline can later be compared against it.
+ * Proprietary-material evidence is kept in a separately-labelled,
+ * structurally-distinct field, never permitted to justify a blind field.
  */
 
 import { z } from "zod";
@@ -98,3 +107,4 @@ export * from "./depth-performance-matrix.ts";
 export * from "./source-acquisition-manifest.ts";
 export * from "./technical-source-verification.ts";
 export * from "./qualification-scope-audit.ts";
+export * from "./blind-calibration-baseline.ts";
