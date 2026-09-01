@@ -2,15 +2,18 @@
 
 **Status:** governed architecture, implementation-complete for the generic pipeline stage this document covers (candidate generation + gap/conflict analysis). Package: `@alp/qualification-pipeline` (`packages/qualification-pipeline/src/`). This document is the design authority; the package is its operational encoding, proved by the synthetic regression suite in `packages/qualification-pipeline/src/rules.test.ts`.
 
-**Scope of this package:** raw qualification evidence → normalized evidence roles → learner-performance/knowledge **candidates** → **gap/conflict analysis**. It stops there. It never writes a governed course matrix, knowledge obligation, assertion, or lesson — see §16 (Downstream Gate).
+**Scope of this package:** raw qualification evidence → normalized/validated evidence → learner-performance/knowledge **candidates** → **gap/conflict analysis**. It stops there. It never writes a governed course matrix, knowledge obligation, assertion, or lesson — see §17 (Downstream Gate).
 
 **Independence:** this package has zero dependency on any other workspace package and contains no qualification-specific content or branching. Every example in this document is illustrative; none of the terms used here (or in the package's own test fixtures) may appear as a literal in the package's production source (`types.ts`, `rules.ts`, `index.ts`) — mechanically enforced by a dedicated test.
 
-**Revision note (CC-18A):** an adversarial Project-Architect review of the original CC-18 implementation found several places where a synthetic fixture *pre-declared* a relationship (a bare mapped-unit string, a free-form category/family label, a self-selected necessity enum, a pre-labelled conflicting statement) that production code then treated as proven. This revision closes those holes before the real Unit 202 blind back-test. Every section below reflects the corrected design; superseded CC-18 mechanisms are noted where useful for migration context, but nothing in this document describes them as current behaviour.
+**Revision history:**
+- **CC-18** established the generic pipeline: source-role hierarchy, assessment as a proposition-generation source, AC-vs-Range scope, exemplar/mastery separation, technical-truth/curriculum-scope separation, structured gaps.
+- **CC-18A** closed a first round of adversarial-review findings: assessment mapping validated against a registry, category/family relationships required governance, qualification-level separated from prerequisites, prerequisites required a structural (if self-declared) necessity kind, factual claims made independent records, category breadth status made explicit, gap resolver roles made plural, source provenance made mandatory.
+- **CC-18B** (this revision) closes a second round: the pipeline is locked to one qualification per run; the official-unit registry is keyed compositely and conflict-checked; curriculum evidence is itself validated against that registry (not just assessment); the ambiguous boolean pair driving curriculum-candidate creation is replaced by a locked, explicit normalization kind that lets Range members create their own candidates; candidate generation groups by the full `(subject, performanceType)` key so multiple performance types per subject all survive; assessment evidence is validated into a single trusted stream that every downstream consumer must use exclusively; `normalizationBasis` is checked for type-compatibility per evidence type; capability dependencies become an independent, provenance-bearing relation instead of a self-declared curriculum field; technical-truth coverage becomes claim-key-exact instead of subject-matched; factual-claim comparison requires compatible comparison kinds; exemplars carry mandatory provenance and no longer auto-gain technical-truth confidence from their own role; category/family relationships are validated against the qualification and the set of subjects actually present in normalized evidence.
 
 ## 1. Why this exists
 
-CC-17's Unit 202 blind-calibration experiment proved the underlying idea — a course can be constructed from transferable evidence, without proprietary course-provider material — but also exposed real methodological gaps. CC-18 hardened the *generic* pipeline against the first round of those gaps. CC-18A hardens it against a second-order failure mode: a pipeline can be "generic" in its logic while still being too trusting of whatever relationships a single fixture or adapter happens to assert. Before the real Unit 202 blind back-test, every relationship the pipeline treats as HIGH-confidence must be independently verifiable against a governed registry or record, never taken on the word of the evidence item that benefits from it.
+CC-17's Unit 202 blind-calibration experiment proved the underlying idea — a course can be constructed from transferable evidence, without proprietary course-provider material. CC-18/18A hardened the *generic* pipeline's rules. CC-18B hardens the boundary one layer earlier: the raw-source → normalized-evidence step itself. A pipeline can apply every rule correctly and still be too trusting if a single fixture, or a future qualification-specific adapter, can hand-author a relationship (a bare mapped-unit string, an arbitrary category label, a self-declared necessity, a pre-labelled conflict) that the pipeline then treats as proven. Every mechanism in this document exists to make that impossible before the real Unit 202 blind back-test.
 
 ## 2. Source-role hierarchy (locked)
 
@@ -20,216 +23,177 @@ Seven evidence roles, each with exactly one role in the pipeline. This hierarchy
 |---|---|---|
 | `OFFICIAL_CURRICULUM` | `CurriculumEvidence`, `OfficialCurriculumUnit` (registry), `CurriculumSubjectRelation`, `CurriculumFamily` | Curriculum **scope** authority |
 | `PUBLIC_ASSESSMENT` | `AssessmentEvidence` | Learner-performance discovery + depth/performance calibration |
-| `QUALIFICATION_LEVEL` | `QualificationLevelEvidence` | Depth constraint only — **never** scope-creating (CC-18A) |
+| `QUALIFICATION_LEVEL` | `QualificationLevelEvidence` | Depth constraint only — **never** scope-creating |
 | `TECHNICAL_TRUTH` | `SourceFactualClaim` (`sourceRole: TECHNICAL_TRUTH`) | Factual truth only — **never** curriculum-scope authority on its own |
 | `OPTIONAL_CALIBRATION` | `OptionalCalibrationEvidence`, `SourceFactualClaim` (`sourceRole: OPTIONAL_CALIBRATION`, diagnostic use only) | Optional external calibration benchmark — **never** required by the standard pipeline |
 | `LEGACY_DIAGNOSTIC` | `LegacyDiagnosticEvidence` | Diagnostic/comparison only — never scope, depth, or factual authority |
 | `MODEL_KNOWLEDGE` | *(no evidence type — never a valid input)* | No evidential authority |
 
-`STANDARD_MODE_CANDIDATE_ROLES` (`OFFICIAL_CURRICULUM`, `PUBLIC_ASSESSMENT`, `QUALIFICATION_LEVEL`, `TECHNICAL_TRUTH`) are the only roles `buildStandardPipeline` will accept for role-tagged evidence. `DIAGNOSTIC_ONLY_ROLES` (`OPTIONAL_CALIBRATION`, `LEGACY_DIAGNOSTIC`, `MODEL_KNOWLEDGE`) can never reach a required candidate in standard mode — see §11. `PrerequisiteEvidence` (structural capability dependency, §7) is deliberately **not** tagged with one of the 7 roles at all — see §7's own note on why.
+`STANDARD_MODE_CANDIDATE_ROLES` are the only roles `buildStandardPipeline` will accept for role-tagged evidence. `DIAGNOSTIC_ONLY_ROLES` can never reach a required candidate in standard mode (§13). `PrerequisiteEvidence` (`kind: "STRUCTURAL_PREREQUISITE_DEPENDENCY"`) and `CandidateCapabilityRequirement` are deliberately **not** tagged with one of the 7 roles — they are derived structural relations, not primary evidence sources.
 
-## 3. Candidate identity and the performance-type rule
+## 3. The active qualification boundary
 
-A candidate is keyed by **`(subject, performanceType)`**, via `candidateKey(subject, performanceType) = "${subject}::${performanceType}"` — never by subject alone. `performanceType` is one of `DEFINE / STATE / DESCRIBE / EXPLAIN / IDENTIFY / RECOGNISE / DISTINGUISH / CALCULATE / APPLY / INTERPRET / DIRECTION_RULE / COMPONENT_ROLE / SCHEMATIC_RECOGNITION / PHYSICAL_RECOGNITION / PROCEDURE / OTHER`.
+Every `StandardPipelineInput` carries exactly one `qualificationId`. A run only ever concludes scope for that qualification. Every qualification-specific evidence type carries its own `qualificationId` (`CurriculumEvidence`, `AssessmentEvidence`, `CurriculumSubjectRelation`, `CurriculumFamily`, `QualificationLevelEvidence`, and `OfficialCurriculumUnit` in the registry) and is validated or filtered against the active run's `qualificationId` — never merely relied upon as a pre-filtered caller convention. `CurriculumEvidence`/`AssessmentEvidence` failing this check are excluded and reported (`CURRICULUM_MAPPING_REVIEW` / `ASSESSMENT_MAPPING_REVIEW`); `CurriculumSubjectRelation`/`CurriculumFamily`/`QualificationLevelEvidence` from another qualification are silently filtered (they are structural registries, not scope-generating evidence, so a mismatch is not itself reportable scope loss).
 
-This is what keeps an AC's own "state the operating principle" requirement (`subject::STATE`) structurally separate from a public-assessment item that additionally tests "identify this component from its schematic symbol" (`subject::SCHEMATIC_RECOGNITION`) — two candidates, two provenances, never one collapsed "knows topic X" proposition, and the AC's own verb is never treated as having silently created the second requirement.
+## 4. Official curriculum-unit registry — composite identity
 
-## 4. Candidate disposition model
+`OfficialCurriculumUnit { curriculumUnitId, qualificationId, sourceRef, sourceLocator, officialWording, learningOutcomeId?, parentCurriculumUnitId? }` is never itself a candidate list — it is the real, authoritative set of AC/LO/curriculum units available for mapping.
 
-Every candidate carries exactly one `CandidateDisposition`, assigned deterministically by the rules below — never a discretionary Claude/Product-Architect scope call:
+`buildOfficialCurriculumUnitIndex` keys it by the **composite** `unitRegistryKey(qualificationId, curriculumUnitId)`, never `curriculumUnitId` alone — two different qualifications may legitimately share the same bare unit id (e.g. both naming an "AC1.1"), and each must resolve independently. Registry insertion order never affects the result: entries are grouped by composite key regardless of array order, so the outcome for a given qualification+unit pair is identical no matter how the registry array was assembled.
 
-- **`REQUIRED_EXPLICIT_CURRICULUM`** — directly required by AC/LO/Range wording (`generateCurriculumCandidates`).
-- **`REQUIRED_ASSESSMENT_EVIDENCED`** — learner performance directly evidenced by legitimate assessment material, **validated against the official curriculum-unit registry** (`generateAssessmentCandidates`, §6).
-- **`FOUNDATIONAL_PREREQUISITE`** — a prerequisite whose `capabilityKey` structurally matches an existing required candidate's own declared `requiredCapabilityKeys` (`generatePrerequisiteCandidates`, §7).
-- **`REPRESENTATIVE_EXEMPLAR`** — a technically valid example used to teach an already-required broad category, not itself a mastery requirement (`generateExemplarCandidates`).
-- **`CONTEXTUAL_TEACHING_SUPPORT`** — useful context that does not belong in required mastery (a prerequisite whose target isn't itself required — §7).
-- **`OPEN_SCOPE_GAP`** — a curriculum category explicitly declared `OPEN_OR_UNDERSPECIFIED` (§9).
-- **`REVIEW_REQUIRED`** — evidence exists but deterministic rules cannot safely resolve the relationship without Project-Architect judgement: an `ASSESSMENT_PATTERN_CANDIDATE` (§10), an unproven prerequisite claim with a real target but no structural match (§7), or a category whose breadth status is `UNKNOWN` (§9).
+A genuine registry conflict — the same composite key appearing more than once with **incompatible** `officialWording` or `sourceRef` — excludes **both** duplicates from the resolvable index and is reported as an `EVIDENCE_NORMALIZATION_REVIEW` gap, never resolved last-write-wins. Two entries sharing a composite key that genuinely agree are not a conflict.
 
-`REQUIRED_DISPOSITIONS = [REQUIRED_EXPLICIT_CURRICULUM, REQUIRED_ASSESSMENT_EVIDENCED]` is the only set counted as mastery scope by downstream gap logic (§13) and by everything that checks "is there a real required candidate to attach to" (prerequisites §7, exemplars §5.4).
+## 5. Curriculum evidence validation
 
-## 5. Curriculum route — AC-vs-Range rule (`generateCurriculumCandidates`)
+CC-18A validated only assessment mappings against the registry. CC-18B validates `CurriculumEvidence` itself, via `validateCurriculumEvidence`, before any candidate is generated from it. A record is accepted only when **all** of:
 
-A subject becomes a top-level `REQUIRED_EXPLICIT_CURRICULUM` candidate if **either**:
+- **A.** its `qualificationId` matches the active pipeline `qualificationId`;
+- **B.** its `curriculumUnitId` resolves to a real `OfficialCurriculumUnit` under the composite key;
+- **C.** its source provenance is valid (§14);
+- **D.** its `normalizationBasis` is type-compatible for curriculum evidence (`EXPLICIT_CURRICULUM_WORDING` or `EXPLICIT_RANGE_STRUCTURE`) — an incompatible basis produces `EVIDENCE_NORMALIZATION_REVIEW` rather than being silently accepted or silently dropped;
+- **E.** its `role` is `OFFICIAL_CURRICULUM` (structurally guaranteed by the type; re-checked at runtime as defense in depth).
 
-1. it is named directly in an AC/LO's own primary wording (`namedInPrimaryWording: true`), **or**
-2. it is a standalone Range item with no `refinesSubject` (a bare category).
+A fabricated `curriculumUnitId`, or a record belonging to another qualification, never generates required scope — it is preserved as a `CURRICULUM_MAPPING_REVIEW` gap naming the attempted mapping and the exact reason it was not trusted.
 
-These two sources are independent. An AC that names three subjects in its own title, where the Range structure only enumerates sub-classes of ONE of them, still produces all three subjects as scope — the absent Range enumeration of the other two never demotes them.
+## 6. Curriculum normalization kind — replacing the ambiguous boolean pair
 
-A Range item **with** `refinesSubject` never creates its own top-level candidate — it attaches as a depth refinement to the subject it refines (raising that subject's `depthConfidence` from `NONE` to `MEDIUM`).
+CC-18/18A's `namedInPrimaryWording`/`isRangeItem` boolean pair let any provenance-valid record with neither flag set (a genuine bug) still generate required scope. It is replaced by an explicit, **locked** `CurriculumNormalizationKind`, declared by the normalization record itself — never inferred from the subject's own English word in production logic:
 
-A standalone Range category establishes the **category only** — never any internal implementation detail beyond what other evidence independently supports (§9's category-vs-detail rule).
+- **`PRIMARY_REQUIREMENT`** — text explicitly appears as required AC/LO/criterion wording. Creates `REQUIRED_EXPLICIT_CURRICULUM`.
+- **`RANGE_REQUIRED_MEMBER`** — an explicit Range member a learner may be required to distinguish/identify/apply. Creates its **own** `REQUIRED_EXPLICIT_CURRICULUM` candidate (`requiresSubject` is required for this kind and is preserved on the resulting candidate as `parentSubject`) — CC-18/18A's `refinesSubject` mechanism silently treated every Range member as depth-only, which this corrects.
+- **`RANGE_CATEGORY`** — a named broad Range category. Creates the category requirement; may carry `breadthStatus` (§9).
+- **`DEPTH_QUALIFIER`** — official wording that constrains/deepens an existing required subject but does not independently represent learner content. Creates **no** independent candidate; only raises the named parent subject's `depthConfidence`.
 
-### 5.1 Structural capability declaration
+### 6.1 Range members must not disappear
 
-`CurriculumEvidence.requiredCapabilityKeys` lets curriculum evidence declare which operational sub-skills a required performance structurally needs (e.g. an explicit calculation that cannot be performed without a rearrangement step). This is the ONLY thing a `PrerequisiteEvidence` record can match against to earn `FOUNDATIONAL_PREREQUISITE` — see §7.
+The canonical regression: a primary subject with three official Range members (e.g. three named classes) produces **four** required candidates — the parent plus each member, each independently `REQUIRED_EXPLICIT_CURRICULUM`, with the parent/child relationship preserved via `parentSubject`, never silently collapsed into "the parent alone, with the members as bare depth colour." A genuine depth qualifier (constrains without representing independent content) is still expressible via `DEPTH_QUALIFIER` and remains non-candidate — the explicit kind controls which behaviour applies, never a guess.
 
-### 5.2 Range category ≠ arbitrary internal detail
+## 7. Multi-performance-type preservation
 
-A standalone Range category authorises **no** further internal detail automatically — not from a technical-truth source describing the category's internals, not from private calibration material, not from legacy content. Internal detail enters the candidate set only through independent curriculum/assessment evidence naming that specific narrower subject directly, or the exemplar route (§5.4) as a clearly-labelled `REPRESENTATIVE_EXEMPLAR`.
+Candidate identity remains `(subject, performanceType)`. CC-18/18A's curriculum-candidate generation grouped records by subject FIRST and then picked a single command-verb performance type, silently discarding the others if the same subject appeared under multiple official requirements with different verbs. `generateCurriculumCandidates` now groups by the full `(subject, performanceType)` key from the start: three official requirements sharing a subject under `IDENTIFY`/`DESCRIBE`/`CALCULATE` survive as three independent candidates. Source order never changes which performance types survive.
 
-### 5.3 Positive-target rule for assessment evidence
+## 8. Validated assessment stream
 
-See §6 — assessment evidence is a first-class proposition-generation source, not merely depth confirmation.
+`validateAssessmentEvidence` produces the single trusted `validated` stream — provenance-valid, type-compatible `normalizationBasis`, resolved against the registry under the active qualification. **Every** downstream function that treats assessment as evidence — `generateAssessmentCandidates`, `detectAssessmentPatternCandidates`, `computeCategoryBreadthOutcomes`, and `EXPLICIT_ASSESSMENT_OPERATION` capability-dependency substantiation (§11) — consumes **only** this validated stream, never the raw input array. `generateAssessmentCandidates` itself now contains no validation logic at all; it trusts its input completely because validation is a separate, prior step.
 
-### 5.4 Exemplar vs mastery (`generateExemplarCandidates`)
+### 8.1 Rejection propagates
 
-`ExemplarEvidence.exemplarOfCategory` must match an already-required subject before an exemplar candidate is created at all. When it does, the specific worked example becomes its own `REPRESENTATIVE_EXEMPLAR` candidate — never merged into the category's own candidate, never inflating it to `REQUIRED_*`. `implementationDetailSubjects` is recorded for transparency only; none of those finer sub-details is independently promoted. `ExemplarEvidence.role` accepts only `TECHNICAL_TRUTH | PUBLIC_ASSESSMENT` (CC-18A tightening — CC-18's own type additionally allowed `OPTIONAL_CALIBRATION`, which was inconsistent with §11's hard exclusion rule and has been removed).
+Two assessment items sharing a governed `familyKey`, one validly mapped and one mapped to a fabricated unit: the invalid one produces `ASSESSMENT_MAPPING_REVIEW` and is entirely absent from the validated stream, so it cannot count toward the two-distinct-member threshold a family pattern requires (§10) and cannot appear in a `SCOPE_BREADTH_GAP`'s evidenced sub-items (§9.1) — an invalid item influences nothing downstream, by construction, not by a second round of filtering at each call site.
 
-## 6. Assessment mapping validation (CC-18A — the core correction)
+## 9. Category breadth status — independent of assessment presence
 
-CC-18 treated any non-empty `mappedCurriculumUnitId` string as a valid mapping. Adversarial review found this let a synthetic (and, by extension, a real future adapter's) fixture manufacture `REQUIRED_ASSESSMENT_EVIDENCED` scope from an arbitrary string with **zero curriculum evidence at all**. This is now closed by an explicit registry.
+`CurriculumEvidence.breadthStatus` (meaningful only on `RANGE_CATEGORY` records) is declared explicitly by curriculum normalization — never guessed from the category's own English word. Undeclared defaults to `UNKNOWN`, never silently complete.
 
-### 6.1 `OfficialCurriculumUnit` registry
+- **`ENUMERATED_COMPLETE`** — no scope-breadth gap is ever produced, regardless of assessment coverage.
+- **`OPEN_OR_UNDERSPECIFIED`** — a `SCOPE_BREADTH_GAP` (and a companion `OPEN_SCOPE_GAP` candidate, `candidateKey: "{subject}::unresolved-breadth"`) is produced **unconditionally**, with or without any assessment evidence at all — required for the degraded-evidence back-test this package exists to support.
+- **`UNKNOWN`** — a `REVIEW_REQUIRED` candidate (kept structurally distinct from `OPEN_SCOPE_GAP` so a reviewer can tell "known-broad" from "breadth status itself never declared") plus a `SCOPE_BREADTH_GAP` naming that the breadth status itself is unresolved.
 
-A non-candidate authority structure representing the real set of AC/LO/curriculum units available for mapping:
+### 9.1 Governed sub-item evidence
 
-```
-OfficialCurriculumUnit { curriculumUnitId, qualificationId, sourceRef, sourceLocator,
-                          officialWording, learningOutcomeId?, parentCurriculumUnitId? }
-```
+An `AssessmentEvidence.underCategory` label only counts toward a breadth gap's evidenced sub-items when a matching, governed `CurriculumSubjectRelation { qualificationId, subject, underCategory, ...provenance }` also exists (§12), drawn from the validated assessment stream only (§8.1).
 
-`StandardPipelineInput.officialCurriculumUnits` carries this registry. It is never itself a candidate list.
+## 10. Assessment family-pattern generalisation
 
-### 6.2 Validation rule
+`AssessmentEvidence.familyKey` only counts when it resolves to a governed `CurriculumFamily { qualificationId, familyKey, memberSubjects, ...provenance }` that lists the item's own `subject` as a member (§12). A pattern candidate (`disposition: REVIEW_REQUIRED`) is emitted only when the same performance type is evidenced, from the validated stream, across at least two distinct, governed member subjects. A single tested member never generalises, an ungoverned family label never generalises no matter how many distinct subjects share it, and an invalid assessment item can never count toward the threshold (§8.1).
 
-An `AssessmentEvidence` item generates `REQUIRED_ASSESSMENT_EVIDENCED` scope only when **all** of:
+## 11. Structural capability dependency — independent of curriculum scope records
 
-1. `mappedCurriculumUnitId` is non-empty;
-2. it resolves to a real `OfficialCurriculumUnit.curriculumUnitId` in the supplied registry;
-3. that unit's `qualificationId` equals the assessment item's own `qualificationId` (rejects a real unit id borrowed from a different qualification).
+CC-18A let `CurriculumEvidence.requiredCapabilityKeys` self-declare what a required performance needs, and a `PrerequisiteEvidence.necessityKind` self-declare its own necessity. Both self-authorisation points are removed.
 
-An item failing any of these never becomes required scope. It is preserved — never silently dropped — as an `ASSESSMENT_MAPPING_REVIEW` gap record naming the assessment source, item id, the attempted mapping, the target subject/performance, and the exact reason the mapping was not trusted.
+`CandidateCapabilityRequirement { qualificationId, targetSubject, targetCandidateKey, capabilityKey, derivationKind, sourceEvidenceRefs, ...provenance }` is an **independent**, provenance-bearing relation declaring that a required candidate structurally needs a capability. `derivationKind` is locked:
 
-### 6.3 Assessment may still introduce a new subject
+- **`EXPLICIT_CURRICULUM_OPERATION`**, **`EXPLICIT_ASSESSMENT_OPERATION`**, **`DETERMINISTIC_OPERATIONAL_DEPENDENCY`** — may auto-promote a matching prerequisite.
+- **`REVIEW_PROPOSED`** — never auto-promotes. A raw claim that "this subject probably requires skill X" is `REVIEW_PROPOSED`, not an automatic prerequisite.
 
-This does **not** undo the CC-18 proposition-generation rule: a validly-mapped item may introduce a subject/performance that has no existing curriculum candidate at all — the requirement is that the *mapping* resolves to a real unit, never that the exact narrow subject already exists as a curriculum candidate. A broad curriculum unit (e.g. covering "magnetic effects" generally) can be validly mapped by an assessment item that tests a much narrower performance (e.g. a specific polarity-identification task) — the pipeline creates that narrower candidate.
+A `PrerequisiteEvidence` proposal (`capabilityKey`, `necessaryForCandidateKey`, `minimalDepthJustification`) becomes `FOUNDATIONAL_PREREQUISITE` only when a validly-provenanced `CandidateCapabilityRequirement` exists for the same `(targetCandidateKey, capabilityKey)` pair with an auto-promoting `derivationKind`. Two weaker, deterministic outcomes:
 
-### 6.4 Positive-target rule (unchanged from CC-18)
+- a real required target exists but no matching capability requirement auto-promotes (`REVIEW_PROPOSED`, or none found at all) → `REVIEW_REQUIRED`;
+- no real required target exists → `CONTEXTUAL_TEACHING_SUPPORT`.
 
-Every `AssessmentEvidence` record preserves the full provenance chain (`assessmentSource`, `itemId`, `mappedCurriculumUnitId`, `questionStemRef`, `correctAnswerTarget`, `subject`, `performanceType`). `distractorSubjects` exists purely for provenance/adversarial testing — no candidate-generating function reads it. A question whose correct answer targets subject X, with wrong-answer options Y and Z, generates a candidate for X only.
+### 11.1 Assessment-derived dependencies must use validated items
 
-## 7. Structural prerequisite dependency (CC-18A — the second core correction)
+A `CandidateCapabilityRequirement` with `derivationKind: EXPLICIT_ASSESSMENT_OPERATION` auto-promotes only when at least one of its `sourceEvidenceRefs` names an assessment item present in the validated stream (§8). A dependency derived from a rejected or unmapped assessment item can never auto-promote a prerequisite.
 
-CC-18 let a `PrerequisiteEvidence` record self-declare `necessityKind: OPERATIONALLY_NECESSARY_FOR_STATED_PROCEDURE` and be promoted to `FOUNDATIONAL_PREREQUISITE` on that free-form label alone. This is too trusting — a plausible-sounding claim is not the same as a structural dependency. `necessityKind` is removed entirely.
+## 12. Governed category/family relationship validation
 
-`PrerequisiteEvidence` is deliberately **not** tagged with one of the 7 evidence roles — prerequisite necessity is a *derived structural claim* about a candidate-to-candidate dependency, not a primary evidence source. Its `kind` field is the fixed literal `"STRUCTURAL_PREREQUISITE_DEPENDENCY"`, which makes it structurally impossible to mistake for one of the 7 roles or to route it past the standard-mode role gate.
+`CurriculumSubjectRelation` and `CurriculumFamily` are validated (`validateCurriculumSubjectRelations`, `validateCurriculumFamilies`) against three things before being trusted at all:
 
-A prerequisite becomes `FOUNDATIONAL_PREREQUISITE` only when:
+1. they belong to the active qualification;
+2. their `normalizationBasis` is type-compatible (`EXPLICIT_CURRICULUM_WORDING` or `EXPLICIT_RANGE_STRUCTURE`);
+3. every subject they reference (a relation's `subject` and `underCategory`; a family's every `memberSubjects` entry) is present in the set of subjects **known** to the run — subjects appearing in validated curriculum evidence *or* the validated assessment stream (§8), so a relation can legitimately connect a category to a subject that assessment evidence itself validly reveals, while a subject with no supporting evidence anywhere is rejected.
 
-- **A.** an existing `REQUIRED_*` candidate (found via `necessaryForCandidateKey`) exists; **and**
-- **B.** that candidate's own `requiredCapabilityKeys` (declared by the *curriculum* evidence that created it, §5.1) includes the prerequisite's own `capabilityKey` — the same key, structurally matched, not merely a plausible-sounding label; **and**
-- **C.** the prerequisite evidence itself carries valid source provenance (§14); **and**
-- **D.** depth is capped to the minimum (`minimalDepthJustification` is preserved verbatim, never expanded).
+An arbitrary relation or family object with non-empty strings is never governed merely because it was supplied — a relation referencing an unknown subject, or a family listing even one unknown member, is rejected wholesale and reported as `EVIDENCE_NORMALIZATION_REVIEW`.
 
-Two weaker outcomes, both deterministic, never chosen by Claude:
+## 13. Standard-mode exclusion of optional-calibration and legacy content
 
-- **A real target exists, but the capability key doesn't match** → `REVIEW_REQUIRED`. A plausible prerequisite claim is neither promoted to mastery nor silently discarded — it needs Project-Architect confirmation of the structural dependency.
-- **No real required target exists at all** → `CONTEXTUAL_TEACHING_SUPPORT`.
+`buildStandardPipeline`'s own input type does not accept `OptionalCalibrationEvidence` or `LegacyDiagnosticEvidence`, and rejects at runtime any role-tagged evidence whose own `role`/`sourceRole` is not one of the standard-mode roles — including a `SourceFactualClaim` with `sourceRole: OPTIONAL_CALIBRATION` passed via `factualClaims`, which only `OFFICIAL_CURRICULUM`/`TECHNICAL_TRUTH` claims may populate.
 
-This mechanically prevents the exact failure case the rule exists to catch: an unrelated but interesting topic (e.g. deep semiconductor theory) can never become a required prerequisite for a nearby required topic (e.g. basic diode operation) merely by *claiming* necessity — only a structural capability match declared by the required candidate's own curriculum evidence can do that.
+The only legitimate uses of calibration/legacy evidence are read-only, called only *after* the standard pipeline has produced its candidates, and never merged back into `StandardPipelineResult`: `compareAgainstDiagnosticEvidence` (subject-level comparison) and `compareCalibrationFactualClaims` (claim-key factual comparison against approved technical truth, §16).
 
-## 8. Qualification-level evidence — depth constraint, never scope (CC-18A)
+## 14. Source-normalization provenance
 
-CC-18 represented `QUALIFICATION_LEVEL` through `PrerequisiteEvidence`, conflating two different concerns (a necessity claim vs. a depth ceiling). They are now separate types.
+Every evidence record capable of influencing required scope, learner performance, depth, prerequisite status, category/family relationship, or factual truth (`CurriculumEvidence`, `AssessmentEvidence`, `QualificationLevelEvidence`, `PrerequisiteEvidence`, `CandidateCapabilityRequirement`, `CurriculumSubjectRelation`, `CurriculumFamily`, `SourceFactualClaim`, `CandidateFactRequirement`) carries mandatory, non-optional `sourceRef`, `sourceLocator`, and a `normalizationBasis` drawn from a governed enum. `hasValidProvenance(evidence, allowedBases?)` is the runtime gate every validating/generating function applies — non-empty `sourceRef`/`sourceLocator` after trimming, a real `normalizationBasis` enum member, and (when an `allowedBases` list is supplied) type-compatibility with the specific evidence type carrying it. A record failing either check is excluded from candidate generation, and a record that is basically valid but semantically type-incompatible is additionally reported as `EVIDENCE_NORMALIZATION_REVIEW` rather than silently ignored.
 
-`QualificationLevelEvidence { role: "QUALIFICATION_LEVEL", evidenceId, levelId, depthConstraintDescriptor, appliesToCandidateKey, sourceRef, sourceLocator, normalizationBasis }` is attached, by `attachQualificationLevelConstraints`, **only** to a candidate that already exists under the exact `candidateKey` it names (`appliesToCandidateKey`). It updates `qualificationLevelRefs` and `depthConstraintNote` on that candidate. It never creates a new candidate, never changes a candidate's `disposition`, and a record whose `appliesToCandidateKey` matches nothing is recorded in `unmatchedQualificationLevel` — visible, never silently discarded, and never promoted to scope on its own.
+Allowed bases per evidence type: `CurriculumEvidence` → `EXPLICIT_CURRICULUM_WORDING`/`EXPLICIT_RANGE_STRUCTURE`; `AssessmentEvidence` → `POSITIVE_ASSESSMENT_TARGET`/`ASSESSMENT_CURRICULUM_MAPPING`; `QualificationLevelEvidence` → `QUALIFICATION_LEVEL_DESCRIPTOR`; `PrerequisiteEvidence` → `STRUCTURAL_PREREQUISITE_DEPENDENCY`; `CandidateCapabilityRequirement` → `CAPABILITY_DEPENDENCY_DERIVATION`; `CurriculumSubjectRelation`/`CurriculumFamily` → `EXPLICIT_CURRICULUM_WORDING`/`EXPLICIT_RANGE_STRUCTURE`; `SourceFactualClaim` with `sourceRole: TECHNICAL_TRUTH` → `AUTHORITATIVE_TECHNICAL_FACT`; with any other `sourceRole` → `SOURCE_FACTUAL_CLAIM`.
 
-Command-verb-driven performance type (from `CurriculumEvidence.commandVerbPerformanceType`, §3) and qualification-level depth constraint remain two separate concepts: the verb says *what kind* of performance is required; the level constrains *how complex* that performance may be. Neither is reduced to the other, and depth is never collapsed into one opaque confidence score (§12).
+## 15. Confidence model
 
-## 9. Category breadth status — independent of assessment presence (CC-18A)
+Three independent dimensions on every candidate, each `HIGH / MEDIUM / LOW / NONE`: `scopeConfidence`, `depthConfidence`, `technicalTruthConfidence` (governed now by claim-key coverage, §16, not subject matching). A fourth, richer field, `technicalCoverageStatus` (`NOT_REQUIRED / PARTIAL / COMPLETE`), makes fact-level completeness explicit where the bare confidence level is not expressive enough on its own.
 
-CC-18 emitted a breadth gap for an under-specified category only when at least one assessment item happened to reference it via `underCategory`. That made the gap depend on assessment presence, which is backwards: a category can be genuinely open even with zero public assessment coverage, and the degraded-evidence back-test this package exists to support depends on breadth gaps firing without needing assessment evidence to exist first.
+## 16. Independent factual claims, claim-key-exact coverage, and real conflict detection
 
-`CurriculumEvidence.breadthStatus` (`CategoryBreadthStatus`) is declared explicitly by curriculum normalization — never guessed from the category's own English word in production logic. Undeclared defaults to `UNKNOWN`, never silently treated as complete.
+CC-18A already made curriculum/provider and technical-truth claims independent `SourceFactualClaim` records correlated by `claimKey`, never one record naming the other's content as a pre-labelled conflict field. CC-18B tightens attachment and comparison further.
 
-- **`ENUMERATED_COMPLETE`** — no scope-breadth gap is ever produced, regardless of whether every member is separately assessed.
-- **`OPEN_OR_UNDERSPECIFIED`** — a `SCOPE_BREADTH_GAP` (and a companion `OPEN_SCOPE_GAP` candidate, `candidateKey: "{subject}::unresolved-breadth"`) is produced **unconditionally**, with or without any assessment evidence. Where governed sub-item evidence does exist (§9.1), it is listed in the gap's `evidenceAvailable`; where none exists, the gap still fires with an empty evidence list.
-- **`UNKNOWN`** — a `REVIEW_REQUIRED` candidate (not `OPEN_SCOPE_GAP` — the two dispositions are kept distinct so a reviewer can tell "known-broad" from "breadth status itself never declared") plus a `SCOPE_BREADTH_GAP` naming that the breadth status itself, not merely the breadth, remains unresolved.
+### 16.1 Candidate fact requirements
 
-### 9.1 Governed sub-item evidence (`CurriculumSubjectRelation`)
+`CandidateFactRequirement { targetCandidateKey, claimKey, ...provenance }` declares that a specific candidate structurally requires coverage for a specific `claimKey`. A candidate's `requiredFactKeys` come exclusively from these declarations — **zero** declared requirements means the candidate never claims `technicalTruthConfidence: HIGH` merely because some `TECHNICAL_TRUTH` source happens to discuss the same subject.
 
-An `AssessmentEvidence.underCategory` label only counts toward a breadth gap's evidenced sub-items when a matching `CurriculumSubjectRelation { subject, underCategory, sourceRef, sourceLocator, normalizationBasis }` also exists. An assessment record cannot unilaterally assert this relationship — the governed relation is the only thing that makes it count. An ungoverned `underCategory` label does not prevent the item's own independent `REQUIRED_ASSESSMENT_EVIDENCED` candidacy (§6), it only fails to register as breadth-gap evidence.
+### 16.2 Attachment is claim-key exact, and multi-fact coverage is tracked explicitly
 
-## 10. Assessment family-pattern generalisation (CC-18A adds governed families)
+`attachFactualClaims` attaches a `TECHNICAL_TRUTH` claim to a candidate only when the claim's own `claimKey` is one of that candidate's `requiredFactKeys` (and its `subject` matches). A technical claim sharing the candidate's *subject* but declaring an *unrelated* `claimKey` is never treated as satisfying a different required key. Results are collected per claim key in `factualStatementsByClaimKey` — the CC-18A/CC-18 singular `factualStatement = matches[0]` model, which silently discarded every fact beyond the first and was order-dependent, is removed entirely. Coverage is computed deterministically from the *set* of required vs. attached keys, so source ordering never changes the result: `NOT_REQUIRED` (zero required keys), `COMPLETE` (`technicalTruthConfidence: HIGH`, every required key attached), or `PARTIAL` (`technicalTruthConfidence: MEDIUM` with at least one attached, `NONE` with none yet) otherwise.
 
-`AssessmentEvidence.familyKey` only counts when it resolves to a governed `CurriculumFamily { familyKey, memberSubjects, sourceRef, sourceLocator, normalizationBasis }` that lists the item's own `subject` as a member. An assessment record cannot unilaterally assert family membership any more than it can assert category membership (§9.1).
+### 16.3 Comparison kinds gate conflict detection
 
-A pattern candidate (`disposition: REVIEW_REQUIRED`, `assessmentPattern: { familyKey, evidencedMembers }`) is emitted only when the **same performance type** is evidenced across **at least two distinct, governed member subjects** sharing a `familyKey`. A single tested family member never generalises, and neither does an ungoverned family label no matter how many distinct subjects share it. The individually tested members remain their own, separate `REQUIRED_ASSESSMENT_EVIDENCED` candidates regardless; untested family members are never mentioned anywhere in the output. The pattern candidate is paired with an `ASSESSMENT_GENERALISATION_REVIEW` gap record.
+`SourceFactualClaim.comparisonKind` (`BOOLEAN / ENUM / NUMBER_WITH_UNIT / CANONICAL_TEXT`) declares how `normalizedClaimValue` — a canonical comparison value, never arbitrary prose — may be compared. `detectFactualConflicts` groups claims by `claimKey` and, for each `TECHNICAL_TRUTH`/comparison-role pair sharing a key: if their `comparisonKind`s differ, it emits `FACTUAL_COMPARISON_REVIEW` (neither an automatic conflict nor a false agreement — incompatible kinds are never semantically reconciled by this package); only when the kinds match does it compare `normalizedClaimValue` for equality and emit `CURRICULUM_TECHNICAL_CONFLICT` on disagreement. Two claims that agree never produce a conflict record at all. This package performs no semantic/LLM comparison — canonicalisation is entirely the evidence author's responsibility, declared via `comparisonKind`.
 
-## 11. Standard-mode exclusion of optional-calibration and legacy content
+The pipeline still, on a real conflict: retains curriculum's own authority over whether the topic is in scope (untouched); retains technical truth's own authority over what is taught (`factualStatementsByClaimKey` always comes from the `TECHNICAL_TRUTH` claim); preserves both source records; never teaches the incorrect source claim.
 
-`buildStandardPipeline`'s own input type does not accept `OptionalCalibrationEvidence` or `LegacyDiagnosticEvidence` at the type level, and rejects at runtime (`assertStandardModeRole`) any role-tagged evidence record whose own `role` is not one of `STANDARD_MODE_CANDIDATE_ROLES` — including a `SourceFactualClaim` whose `sourceRole` is `OPTIONAL_CALIBRATION` passed via `factualClaims` (§12.2), which only `OFFICIAL_CURRICULUM`/`TECHNICAL_TRUTH` claims may populate.
+### 16.4 Diagnostic-only calibration comparison
 
-The only legitimate uses of calibration/legacy evidence anywhere in this package are read-only, called only *after* the standard pipeline has already produced its candidates, and never merged back into `StandardPipelineResult`:
+`compareCalibrationFactualClaims(calibrationClaims, technicalClaims)` reuses the same claim-key/comparison-kind machinery to diagnostically compare `OPTIONAL_CALIBRATION` factual claims against approved `TECHNICAL_TRUTH` — supporting the real-world case where a provider handout contains an erroneous technical statement — without ever letting that comparison feed back into required-candidate generation (§13).
 
-- `compareAgainstDiagnosticEvidence(candidates, calibration, legacy)` — compares subjects against existing candidates.
-- `compareCalibrationFactualClaims(calibrationClaims, technicalClaims)` — diagnostically detects a factual disagreement between optional-calibration material and approved technical truth (§12.3), supporting exactly the real-world case where a provider handout contains an erroneous technical statement, without ever letting that comparison feed backward into required-candidate generation.
+## 17. Exemplar provenance and the coverage boundary
 
-## 12. Independent factual claims and real conflict detection (CC-18A)
+`ExemplarEvidence` now carries mandatory `sourceRef`/`sourceLocator`/`normalizationBasis`, like every other scope-adjacent evidence type. A `TECHNICAL_TRUTH`-role exemplar does **not** itself set `technicalTruthConfidence: HIGH` merely because its role label says `TECHNICAL_TRUTH` — technical-truth coverage for *any* candidate, exemplar or otherwise, comes only from exact claim-key coverage under §16. Role and factual-truth confidence are kept structurally separate.
 
-CC-18 let `TechnicalTruthEvidence` itself carry a `conflictingCurriculumStatement` field — meaning the fixture told the pipeline a conflict existed. That is not conflict *detection*. It is removed.
+## 18. Gap model
 
-### 12.1 `SourceFactualClaim`
-
-```
-SourceFactualClaim { claimKey, subject, sourceRole, evidenceId,
-                      normalizedClaimValue, originalWordingRef?,
-                      sourceRef, sourceLocator, normalizationBasis }
-```
-
-Curriculum/provider claims and technical-truth claims about the "same fact" are **independent records**, correlated only by sharing a canonical `claimKey` — never by one record naming the other's content.
-
-### 12.2 Attachment (`attachFactualClaims`)
-
-Only `TECHNICAL_TRUTH`-sourced claims update a matching candidate's `factualStatement` and raise `technicalTruthConfidence` to `HIGH`. A claim whose subject matches no candidate is returned in `unmatchedTechnicalTruth`, never promoted to scope — the mechanism that stops a technical source discussing several related components from turning all of them into requirements when only one is in scope.
-
-### 12.3 Conflict detection (`detectFactualConflicts`)
-
-Groups all supplied claims by `claimKey`. Wherever a `TECHNICAL_TRUTH` claim and a claim from a comparison role (`OFFICIAL_CURRICULUM` in standard mode; `OPTIONAL_CALIBRATION` only via the diagnostic-only `compareCalibrationFactualClaims`, §11) share a `claimKey` but disagree on `normalizedClaimValue`, a `CURRICULUM_TECHNICAL_CONFLICT` is emitted. The pipeline then:
-
-- retains curriculum's own authority over **whether** the topic is in scope (untouched);
-- retains technical truth's own authority over **what** is taught (`factualStatement` always comes from the `TECHNICAL_TRUTH` claim);
-- preserves both source records (in the gap's `evidenceAvailable`);
-- never teaches the incorrect source claim.
-
-Two claims sharing a `claimKey` that **agree** never produce a conflict record at all.
-
-## 13. Confidence model
-
-Three independent dimensions on every candidate (`ConfidenceProfile`), each `HIGH / MEDIUM / LOW / NONE` — never collapsed into one opaque score: `scopeConfidence`, `depthConfidence`, `technicalTruthConfidence`. See §5 (scope), §9 (breadth-driven depth uncertainty), §12.2 (technical-truth confidence).
-
-## 14. Source-normalization provenance (mandatory before back-testing)
-
-Every evidence record capable of influencing required scope, learner performance, depth, prerequisite status, category/family relationship, or factual truth (`CurriculumEvidence`, `AssessmentEvidence`, `QualificationLevelEvidence`, `PrerequisiteEvidence`, `CurriculumSubjectRelation`, `CurriculumFamily`, `SourceFactualClaim`) carries mandatory, non-optional `sourceRef`, `sourceLocator`, and a `normalizationBasis` drawn from a governed enum:
-
-`EXPLICIT_CURRICULUM_WORDING`, `EXPLICIT_RANGE_STRUCTURE`, `POSITIVE_ASSESSMENT_TARGET`, `ASSESSMENT_CURRICULUM_MAPPING`, `QUALIFICATION_LEVEL_DESCRIPTOR`, `STRUCTURAL_PREREQUISITE_DEPENDENCY`, `AUTHORITATIVE_TECHNICAL_FACT`, `SOURCE_FACTUAL_CLAIM`.
-
-`hasValidProvenance(evidence)` is the runtime gate every candidate-generating and claim-processing function applies (`sourceRef`/`sourceLocator` non-empty after trimming, `normalizationBasis` a real enum member) — an evidence record failing it is excluded from candidate generation entirely, never silently accepted as the basis for a HIGH-confidence required candidate. TypeScript's own non-optional fields already prevent *omitting* these fields at compile time; this runtime check is the defense against a record supplying empty or malformed values that would still type-check.
-
-## 15. Gap model and plural resolver roles
-
-Six gap types (`SCOPE_BREADTH_GAP`, `PERFORMANCE_DEPTH_GAP`, `TECHNICAL_TRUTH_GAP`, `CURRICULUM_TECHNICAL_CONFLICT`, `ASSESSMENT_GENERALISATION_REVIEW`, `ASSESSMENT_MAPPING_REVIEW`), each preserving the affected candidate key, evidence already available, exactly what is unresolved, and `legitimateResolverRoles` — a **plural** array (CC-18A; CC-18 had a single role, which was too narrow for a gap like scope-breadth that more than one evidence role could legitimately close):
+Nine gap types, each preserving the affected candidate key, evidence already available, exactly what is unresolved, and a **plural** `legitimateResolverRoles`:
 
 | Gap type | Produced by | Legitimate resolver role(s) |
 |---|---|---|
 | `SCOPE_BREADTH_GAP` | `computeCategoryBreadthOutcomes` | `OFFICIAL_CURRICULUM`, `PUBLIC_ASSESSMENT` |
 | `PERFORMANCE_DEPTH_GAP` | `computePerformanceDepthGaps` | `PUBLIC_ASSESSMENT` |
-| `TECHNICAL_TRUTH_GAP` | `computeTechnicalTruthGaps` | `TECHNICAL_TRUTH` |
-| `CURRICULUM_TECHNICAL_CONFLICT` | `detectFactualConflicts` | `TECHNICAL_TRUTH` (factual side only — see §12.3) |
+| `TECHNICAL_TRUTH_GAP` | `computeTechnicalTruthGaps` (only fires when `requiredFactKeys.length > 0` and coverage isn't `COMPLETE`) | `TECHNICAL_TRUTH` |
+| `CURRICULUM_TECHNICAL_CONFLICT` | `detectFactualConflicts` | `TECHNICAL_TRUTH` |
 | `ASSESSMENT_GENERALISATION_REVIEW` | `detectAssessmentPatternCandidates` | `OFFICIAL_CURRICULUM` |
-| `ASSESSMENT_MAPPING_REVIEW` | `generateAssessmentCandidates` | `OFFICIAL_CURRICULUM` |
+| `ASSESSMENT_MAPPING_REVIEW` | `validateAssessmentEvidence` | `OFFICIAL_CURRICULUM` |
+| `CURRICULUM_MAPPING_REVIEW` | `validateCurriculumEvidence` | `OFFICIAL_CURRICULUM` |
+| `EVIDENCE_NORMALIZATION_REVIEW` | registry-conflict detection, type-incompatible basis checks, relation/family governance checks | `OFFICIAL_CURRICULUM` (context-dependent) |
+| `FACTUAL_COMPARISON_REVIEW` | `detectFactualConflicts` (incompatible `comparisonKind`) | `OFFICIAL_CURRICULUM`, `TECHNICAL_TRUTH` |
 
-`TECHNICAL_TRUTH` is never a legitimate resolver of a scope-breadth question — a technical source can establish facts about a category's internals but can never establish that those internals are within curriculum scope (§9, §12).
+`TECHNICAL_TRUTH` is never a legitimate resolver of a scope-breadth or curriculum-mapping question.
 
-## 16. Downstream governance gate
+## 19. Downstream governance gate
 
 ```
 raw qualification evidence
-  -> normalized evidence roles                    (this package's evidence types + registries)
-  -> learner-performance / knowledge candidates    (generate*/detect* functions)
-  -> evidence/confidence/gap analysis              (attach*/compute*/detect* functions, buildStandardPipeline)
+  -> normalized evidence roles + registries        (this package's evidence types, OfficialCurriculumUnit registry)
+  -> VALIDATED evidence streams                     (validateCurriculumEvidence, validateAssessmentEvidence,
+                                                       validateCurriculumSubjectRelations, validateCurriculumFamilies,
+                                                       validateFactualClaims)
+  -> learner-performance / knowledge candidates      (generate*/detect* functions, operating ONLY on validated streams)
+  -> evidence/confidence/gap analysis                (attach*/compute*/detect* functions, buildStandardPipeline)
   -> [STOP -- Project-Architect curriculum decision -- outside this package]
   -> governed course matrix / knowledge boundary
   -> reusable domain knowledge assertions
@@ -237,12 +201,18 @@ raw qualification evidence
   -> canonical lesson/storyboard design
 ```
 
-This package produces `StandardPipelineResult` (`candidates`, `gaps`, `unmatchedTechnicalTruth`, `unmatchedQualificationLevel`) and stops. It never writes a governed matrix, a knowledge obligation, an assertion, or a lesson, and it never decides which candidate a Project Architect should ultimately accept.
+This package produces `StandardPipelineResult` (`candidates`, `gaps`, `unmatchedTechnicalTruth`, `unmatchedQualificationLevel`) and stops.
 
-### 16.1 Anti-cheating requirement for the future blind back-test
+### 19.1 Three-layer anti-cheating contract for the future blind back-test
 
-The upcoming Unit 202 back-test must test the pipeline's ability to derive normalized evidence from available sources — not merely replay a hand-authored expected answer disguised as evidence. Section 14's mandatory provenance is the structural hook that makes this possible: a later, separately authorised qualification-specific adapter must produce an evidence-normalization ledger recording an exact source locator for every normalized item **before** calling `buildStandardPipeline`, so a reviewer can always distinguish source-derived input from a hand-authored expected answer. This package's schemas make that ledger possible; building the actual Unit 202 adapter and running the back-test remain out of scope for this package and are explicitly deferred to a later, Project-Architect-specified package. Any future adapter that uses an LLM to *propose* normalized evidence must still preserve a real source locator for every proposal, validate structural mappings (§6, §9.1, §10) against the governed registries rather than trusting the model's own claim, keep uncertainty explicit (never force a HIGH confidence the evidence doesn't support), and leave final curriculum authority with the Project Architect — "the model says this is the correct mapping" is never sufficient evidence on its own.
+The future Unit 202 normalization adapter is itself an audited product, not a trusted black box. It must preserve three layers **separately** and export all three:
 
-## 17. Testing this architecture
+- **A. Raw source locator** — the exact specification/assessment/technical-source locator a normalized item was derived from (`sourceRef`/`sourceLocator` on every evidence record already carries this).
+- **B. Normalization proposal** — the adapter's own typed claim about what the source says: subject, performance, curriculum normalization kind, parent/family relationship, capability relationship, fact requirement, factual claim (the evidence record types in this package ARE this layer).
+- **C. Pipeline acceptance** — accepted / rejected / review-required, and why (the `KnowledgeCandidate`/`GapRecord` output of `buildStandardPipeline` IS this layer).
 
-`packages/qualification-pipeline/src/rules.test.ts` proves synthetic regression cases A–O (CC-18) and P–AC (CC-18A) — registry-validated assessment mapping (including fabricated-unit and cross-qualification rejection), governed-vs-ungoverned category/family relationships, qualification-level depth attachment without scope creation, structural-vs-claimed prerequisite dependency, independent factual claims with real conflict detection, breadth status independent of assessment presence across all three `CategoryBreadthStatus` values, and provenance-rejection — using topic names chosen for readability only, never Unit 202's own governed content. It also mechanically proves the package's own architectural boundaries: production source contains no qualification/topic-specific literal, and the package declares zero dependency on any other workspace package.
+No direct hand-authored "expected candidate" may bypass layer B — every candidate this package ever produces is traceable back through a typed, provenance-bearing normalization proposal to a raw source locator, and every rejection is equally traceable to exactly which validation gate declined it and why. An adapter that uses an LLM to *propose* normalized evidence (layer B) must still: preserve a real source locator for every proposal (layer A); have its structural mappings (registry resolution, category/family governance, capability derivation) validated against the governed registries by this package's own deterministic rules, never trusted from the model's own claim; keep uncertainty explicit (never force a `HIGH` confidence the evidence doesn't structurally support); and leave final curriculum authority with the Project Architect. "The model says this is the correct mapping" is never sufficient evidence on its own — only registry/relation resolution (this package's own deterministic logic) is.
+
+## 20. Testing this architecture
+
+`packages/qualification-pipeline/src/rules.test.ts` proves synthetic regression cases A–O (CC-18), P–AC (CC-18A), and AD–AZ (CC-18B) — composite registry resolution and conflict detection, curriculum-evidence registry validation, the locked normalization-kind semantics (including Range members surviving as their own candidates and depth qualifiers not), multi-performance-type preservation, the validated-assessment-stream boundary (including rejection propagation into pattern/breadth computations), type-compatible provenance per evidence type, independent capability-dependency derivation kinds, claim-key-exact multi-fact technical coverage, comparison-kind-gated conflict detection, exemplar provenance, and category/family governance against the known-subject set — using topic names chosen for readability only, never Unit 202's own governed content. It also mechanically proves the package's own architectural boundaries: production source contains no qualification/topic-specific literal, and the package declares zero dependency on any other workspace package.

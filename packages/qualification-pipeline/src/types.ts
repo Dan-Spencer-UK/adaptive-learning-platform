@@ -1,6 +1,6 @@
 /**
- * CC-18/CC-18A: generic qualification knowledge-construction pipeline --
- * types.
+ * CC-18/CC-18A/CC-18B: generic qualification knowledge-construction
+ * pipeline -- types.
  *
  * This package is deliberately independent of any specific qualification.
  * Nothing here may name a real subject, AC number, Range item, or
@@ -15,32 +15,56 @@
  * construction-pipeline.md is the governing design document this package
  * implements. Read it first.
  *
- * CC-18A hardening (Project-Architect adversarial review of CC-18) closed
- * several places where a synthetic fixture could pre-declare a
- * relationship that production code then trusted as proven:
- *   - assessment-to-curriculum mapping is now validated against a real
- *     OfficialCurriculumUnit registry, never trusted from a bare string;
- *   - category/family relationships (`underCategory`/`familyKey`) must
- *     resolve against governed CurriculumSubjectRelation/CurriculumFamily
- *     records, not an arbitrary string supplied only by the assessment
- *     item itself;
- *   - QUALIFICATION_LEVEL is its own evidence type (depth constraint
- *     only, never scope-creating), separated from prerequisite necessity;
- *   - a prerequisite can become FOUNDATIONAL_PREREQUISITE only via a
- *     structural capabilityKey match against a required candidate's own
- *     declared `requiredCapabilityKeys` -- a free-form necessity label is
- *     no longer sufficient on its own;
- *   - curriculum/provider and technical-truth factual claims are
- *     independent `SourceFactualClaim` records compared by `claimKey`;
- *     nothing pre-labels a conflict;
- *   - category breadth status (`CategoryBreadthStatus`) is declared by
- *     curriculum normalization independently of whether any assessment
- *     evidence exists, so a breadth gap can fire with zero assessment
- *     coverage;
- *   - every evidence record capable of influencing required scope,
- *     performance, depth, prerequisite status, category/family
- *     relationship, or factual truth carries mandatory `sourceRef` /
- *     `sourceLocator` / `normalizationBasis` provenance.
+ * CC-18B hardening (a second round of Project-Architect adversarial
+ * review) closes the raw-source -> normalized-evidence boundary further:
+ *   - the pipeline is locked to exactly one `qualificationId` per run;
+ *     every qualification-specific evidence type carries its own
+ *     `qualificationId` and is filtered/validated against it;
+ *   - `OfficialCurriculumUnit` is keyed by the COMPOSITE
+ *     `(qualificationId, curriculumUnitId)`, never `curriculumUnitId`
+ *     alone, and a duplicate composite key with incompatible official
+ *     wording/source identity is a registry conflict, never
+ *     last-write-wins;
+ *   - `CurriculumEvidence` itself is now validated against that registry
+ *     (CC-18A validated only assessment mappings);
+ *   - the ambiguous `namedInPrimaryWording`/`isRangeItem` boolean pair is
+ *     replaced by an explicit, locked `CurriculumNormalizationKind` --
+ *     `RANGE_REQUIRED_MEMBER` now creates its OWN required candidate
+ *     (CC-18/18A's `refinesSubject` silently treated every Range member
+ *     as depth-only, which was wrong);
+ *   - curriculum-candidate generation groups by the full
+ *     `(subject, performanceType)` key from the start, so three
+ *     official requirements sharing a subject under three different
+ *     performance types survive as three candidates, never one;
+ *   - assessment evidence is validated into an explicit, trusted
+ *     `validated` stream that is the ONLY thing every downstream
+ *     assessment-consuming function may read -- pattern detection and
+ *     breadth-gap evidence can no longer see a rejected/unmapped item;
+ *   - `normalizationBasis` is now checked for type-compatibility against
+ *     the specific evidence type carrying it, not merely "is this any
+ *     valid enum member";
+ *   - `CurriculumEvidence.requiredCapabilityKeys` (CC-18A) is removed --
+ *     capability dependencies are now an independent, provenance-bearing
+ *     `CandidateCapabilityRequirement` relation with a locked
+ *     `derivationKind`, and only certain kinds may auto-promote a
+ *     prerequisite;
+ *   - the single `factualStatement` field (subject-only technical-truth
+ *     matching) is removed -- technical-truth coverage is now
+ *     `claimKey`-specific via `CandidateFactRequirement` and
+ *     `factualStatementsByClaimKey`, with an explicit partial/complete
+ *     coverage status;
+ *   - `SourceFactualClaim` carries a `comparisonKind` so two claims are
+ *     only ever compared when their comparison kinds are compatible --
+ *     otherwise a `FACTUAL_COMPARISON_REVIEW` is produced instead of a
+ *     guessed conflict or false agreement;
+ *   - `ExemplarEvidence` now carries mandatory source provenance, and a
+ *     `TECHNICAL_TRUTH`-role exemplar no longer auto-grants
+ *     `technicalTruthConfidence: HIGH`;
+ *   - `CurriculumSubjectRelation`/`CurriculumFamily` are validated
+ *     against the qualification, type-compatible provenance, and the set
+ *     of subjects actually present in normalized curriculum evidence --
+ *     an arbitrary relation object is never governed merely because it
+ *     was supplied.
  */
 
 import { z } from "zod";
@@ -51,15 +75,6 @@ import { z } from "zod";
 // revises it.
 // ---------------------------------------------------------------------
 
-/**
- * - OFFICIAL_CURRICULUM: curriculum SCOPE authority.
- * - PUBLIC_ASSESSMENT: learner-performance discovery + depth/performance calibration.
- * - QUALIFICATION_LEVEL: depth constraint only -- never scope-creating (CC-18A).
- * - TECHNICAL_TRUTH: factual truth only -- never curriculum scope authority on its own.
- * - OPTIONAL_CALIBRATION: optional external calibration benchmark only -- never required by the standard pipeline.
- * - LEGACY_DIAGNOSTIC: diagnostic/comparison only -- never scope, depth, or factual authority.
- * - MODEL_KNOWLEDGE: no evidential authority.
- */
 export const evidenceRoleSchema = z.enum([
   "OFFICIAL_CURRICULUM",
   "PUBLIC_ASSESSMENT",
@@ -137,8 +152,12 @@ export interface ConfidenceProfile {
   readonly technicalTruthConfidence: ConfidenceLevel;
 }
 
+/** Fact-key-specific technical coverage status (CC-18B section 15) -- richer than a bare confidence level. */
+export const technicalCoverageStatusSchema = z.enum(["NOT_REQUIRED", "PARTIAL", "COMPLETE"]);
+export type TechnicalCoverageStatus = z.infer<typeof technicalCoverageStatusSchema>;
+
 // ---------------------------------------------------------------------
-// 5. Gap model (task section 17, CC-18; extended CC-18A section 5/20).
+// 5. Gap model (task section 17 CC-18; extended CC-18A/CC-18B).
 // ---------------------------------------------------------------------
 
 export const gapTypeSchema = z.enum([
@@ -148,15 +167,17 @@ export const gapTypeSchema = z.enum([
   "CURRICULUM_TECHNICAL_CONFLICT",
   "ASSESSMENT_GENERALISATION_REVIEW",
   "ASSESSMENT_MAPPING_REVIEW",
+  "CURRICULUM_MAPPING_REVIEW",
+  "EVIDENCE_NORMALIZATION_REVIEW",
+  "FACTUAL_COMPARISON_REVIEW",
 ]);
 export type GapType = z.infer<typeof gapTypeSchema>;
 
 /**
- * One structured gap. `legitimateResolverRoles` is plural (CC-18A section
- * 20) -- a gap may legitimately be resolved by more than one evidence
- * role (e.g. a scope-breadth gap by further official curriculum wording
- * OR by additional public-assessment evidence). TECHNICAL_TRUTH must
- * never appear as a resolver for a curriculum-breadth question.
+ * One structured gap. `legitimateResolverRoles` is plural (CC-18A) -- a
+ * gap may legitimately be resolved by more than one evidence role.
+ * TECHNICAL_TRUTH must never appear as a resolver for a curriculum-scope
+ * or breadth question.
  */
 export interface GapRecord {
   readonly gapType: GapType;
@@ -168,10 +189,13 @@ export interface GapRecord {
 }
 
 // ---------------------------------------------------------------------
-// 6. Source-normalization provenance (CC-18A section 21) -- mandatory on
-// every evidence record capable of influencing required scope, learner
-// performance, depth, prerequisite status, category/family relationship,
-// or factual truth.
+// 6. Source-normalization provenance (CC-18A section 21, CC-18B section
+// 10) -- mandatory on every evidence record capable of influencing
+// required scope, learner performance, depth, prerequisite status,
+// category/family relationship, or factual truth. `normalizationBasis`
+// must additionally be TYPE-COMPATIBLE with the specific evidence type
+// carrying it (CC-18B) -- checked by each validate*/generate* function
+// against its own allow-list, not accepted as "any valid enum member".
 // ---------------------------------------------------------------------
 
 export const normalizationBasisSchema = z.enum([
@@ -181,6 +205,7 @@ export const normalizationBasisSchema = z.enum([
   "ASSESSMENT_CURRICULUM_MAPPING",
   "QUALIFICATION_LEVEL_DESCRIPTOR",
   "STRUCTURAL_PREREQUISITE_DEPENDENCY",
+  "CAPABILITY_DEPENDENCY_DERIVATION",
   "AUTHORITATIVE_TECHNICAL_FACT",
   "SOURCE_FACTUAL_CLAIM",
 ]);
@@ -202,13 +227,13 @@ export function candidateKey(subject: string, performanceType: LearnerPerformanc
 }
 
 /**
- * `role` covers the 7 governed evidence roles; `"STRUCTURAL_PREREQUISITE_
- * DEPENDENCY"` additionally tags a reference back to a `PrerequisiteEvidence`
- * record, which (CC-18A section 7) is a DERIVED structural claim about
- * capability dependency, never itself one of the 7 primary evidence roles.
+ * `role` covers the 7 governed evidence roles; the two additional string
+ * literals tag references back to DERIVED structural-relation records
+ * (`PrerequisiteEvidence`, `CandidateCapabilityRequirement`), which are
+ * never themselves one of the 7 primary evidence roles.
  */
 export interface EvidenceRef {
-  readonly role: EvidenceRole | "STRUCTURAL_PREREQUISITE_DEPENDENCY";
+  readonly role: EvidenceRole | "STRUCTURAL_PREREQUISITE_DEPENDENCY" | "CANDIDATE_CAPABILITY_REQUIREMENT";
   readonly evidenceId: string;
 }
 
@@ -221,28 +246,32 @@ export interface KnowledgeCandidate {
   readonly confidence: ConfidenceProfile;
   readonly rationale: string;
   readonly evidenceRefs: readonly EvidenceRef[];
-  readonly factualStatement?: string;
   readonly exemplarOfCategory?: string;
   readonly assessmentPattern?: {
     readonly familyKey: string;
     readonly evidencedMembers: readonly string[];
   };
   /**
-   * Capability dependencies this required performance structurally needs
-   * (CC-18A section 10), declared by the curriculum evidence that created
-   * this candidate -- the only thing a `PrerequisiteEvidence` record can
-   * structurally match against to earn `FOUNDATIONAL_PREREQUISITE`.
+   * For a candidate created from a `RANGE_REQUIRED_MEMBER` curriculum
+   * record -- the broader subject it is an explicit member of (CC-18B
+   * section 6). Purely informational; does not gate this candidate's
+   * own required disposition, which stands on its own evidence.
    */
-  readonly requiredCapabilityKeys?: readonly string[];
-  /** References to QualificationLevelEvidence attached to this candidate (CC-18A section 7) -- depth constraint only, never scope. */
+  readonly parentSubject?: string;
+  /** References to QualificationLevelEvidence attached to this candidate -- depth constraint only, never scope. */
   readonly qualificationLevelRefs?: readonly EvidenceRef[];
   readonly depthConstraintNote?: string;
+  /** claimKeys this candidate structurally requires technical-truth coverage for (CC-18B section 14-17), derived from CandidateFactRequirement. */
+  readonly requiredFactKeys?: readonly string[];
+  /** Attached TECHNICAL_TRUTH factual statements, keyed by claimKey -- never a single subject-matched statement. */
+  readonly factualStatementsByClaimKey?: Readonly<Record<string, string>>;
+  readonly technicalCoverageStatus?: TechnicalCoverageStatus;
 }
 
 // ---------------------------------------------------------------------
-// 8. Official curriculum-unit registry (CC-18A section 3). NOT a
-// candidate list -- the real, authoritative set of AC/LO/curriculum
-// units available for assessment mapping.
+// 8. Official curriculum-unit registry (CC-18A section 3; CC-18B
+// composite-key hardening). NOT a candidate list -- the real,
+// authoritative set of AC/LO/curriculum units available for mapping.
 // ---------------------------------------------------------------------
 
 export interface OfficialCurriculumUnit {
@@ -255,6 +284,11 @@ export interface OfficialCurriculumUnit {
   readonly parentCurriculumUnitId?: string;
 }
 
+/** `(qualificationId, curriculumUnitId)` composite key -- CC-18B section 3. Never key a registry by `curriculumUnitId` alone. */
+export function unitRegistryKey(qualificationId: string, curriculumUnitId: string): string {
+  return `${qualificationId}::${curriculumUnitId}`;
+}
+
 // ---------------------------------------------------------------------
 // 9. Category breadth status (CC-18A section 19) -- declared explicitly
 // by curriculum normalization, never guessed from the category's own
@@ -265,40 +299,43 @@ export const categoryBreadthStatusSchema = z.enum(["ENUMERATED_COMPLETE", "OPEN_
 export type CategoryBreadthStatus = z.infer<typeof categoryBreadthStatusSchema>;
 
 // ---------------------------------------------------------------------
-// 10. Curriculum evidence (task section 5/6, CC-18; extended CC-18A).
+// 10. Curriculum normalization kind (CC-18B section 5) -- replaces the
+// ambiguous `namedInPrimaryWording`/`isRangeItem` boolean pair. LOCKED
+// semantics, declared explicitly by the normalization record, never
+// inferred from the subject's own English word.
+// ---------------------------------------------------------------------
+
+export const curriculumNormalizationKindSchema = z.enum(["PRIMARY_REQUIREMENT", "RANGE_REQUIRED_MEMBER", "RANGE_CATEGORY", "DEPTH_QUALIFIER"]);
+export type CurriculumNormalizationKind = z.infer<typeof curriculumNormalizationKindSchema>;
+
+// ---------------------------------------------------------------------
+// 11. Curriculum evidence (CC-18B rewrite).
 // ---------------------------------------------------------------------
 
 export interface CurriculumEvidence extends SourceProvenance {
   readonly role: "OFFICIAL_CURRICULUM";
   readonly evidenceId: string;
+  readonly qualificationId: string;
   readonly curriculumUnitId: string;
   readonly subject: string;
-  /** True when named directly in the AC/LO's own primary wording (not merely in a Range item). */
-  readonly namedInPrimaryWording: boolean;
-  /** True when this record is itself a Range item (as opposed to AC/LO primary wording). */
-  readonly isRangeItem: boolean;
-  /** For a Range item refining a broader subject -- the subject it refines. Omit for AC primary wording or a standalone Range category. */
+  /**
+   * LOCKED semantics (CC-18B section 5):
+   *   PRIMARY_REQUIREMENT   -- explicit AC/LO/criterion wording; creates REQUIRED_EXPLICIT_CURRICULUM.
+   *   RANGE_REQUIRED_MEMBER -- an explicit Range member; creates its OWN REQUIRED_EXPLICIT_CURRICULUM candidate AND preserves the parent relationship (`refinesSubject`, required for this kind).
+   *   RANGE_CATEGORY        -- a named broad Range category; creates the category requirement; may carry `breadthStatus`.
+   *   DEPTH_QUALIFIER       -- constrains/deepens an existing required subject (`refinesSubject`, required) but creates NO independent candidate.
+   */
+  readonly normalizationKind: CurriculumNormalizationKind;
+  /** Required for RANGE_REQUIRED_MEMBER and DEPTH_QUALIFIER -- the parent subject this record relates to. Meaningless for PRIMARY_REQUIREMENT/RANGE_CATEGORY. */
   readonly refinesSubject?: string;
-  /** The AC/LO's own command verb, where this evidence is primary wording -- drives the required candidate's performanceType. Defaults to OTHER when absent. */
   readonly commandVerbPerformanceType?: LearnerPerformanceType;
-  /**
-   * Declared breadth status for a standalone category subject (CC-18A
-   * section 19). Undefined is treated as UNKNOWN -- never silently
-   * treated as ENUMERATED_COMPLETE or OPEN_OR_UNDERSPECIFIED.
-   */
+  /** Meaningful only for RANGE_CATEGORY records. Undeclared is treated as UNKNOWN -- never silently ENUMERATED_COMPLETE or OPEN_OR_UNDERSPECIFIED. */
   readonly breadthStatus?: CategoryBreadthStatus;
-  /**
-   * Capability dependencies this required performance structurally needs
-   * (e.g. an operational sub-skill without which the performance cannot
-   * be carried out) -- the only thing a prerequisite can match against
-   * (CC-18A section 10).
-   */
-  readonly requiredCapabilityKeys?: readonly string[];
 }
 
 // ---------------------------------------------------------------------
-// 11. Assessment evidence (task section 3/4, CC-18; mapping validation
-// added CC-18A sections 2-6).
+// 12. Assessment evidence (CC-18B: validated stream separated from
+// candidate generation -- see rules.ts `validateAssessmentEvidence`).
 // ---------------------------------------------------------------------
 
 export interface AssessmentEvidence extends SourceProvenance {
@@ -306,92 +343,112 @@ export interface AssessmentEvidence extends SourceProvenance {
   readonly evidenceId: string;
   readonly assessmentSource: string;
   readonly itemId: string;
-  /** The qualification this assessment paper itself belongs to -- used to reject a mapping to a real unit from a DIFFERENT qualification (CC-18A section 5). */
   readonly qualificationId: string;
-  /** Attempted mapping to an OfficialCurriculumUnit.curriculumUnitId. May be empty. Never trusted merely for being non-empty (CC-18A section 2) -- validated against the registry. */
+  /** Attempted mapping to an OfficialCurriculumUnit.curriculumUnitId, resolved under (qualificationId, curriculumUnitId). Never trusted merely for being non-empty. */
   readonly mappedCurriculumUnitId: string;
   readonly questionStemRef: string;
   readonly correctAnswerTarget: string;
   readonly subject: string;
   readonly performanceType: LearnerPerformanceType;
-  /**
-   * The broader, standalone curriculum-category subject this item is a
-   * narrower sub-case of, if any. Only trusted for scope-breadth
-   * purposes when a matching governed `CurriculumSubjectRelation` also
-   * exists (CC-18A section 6) -- an assessment record cannot unilaterally
-   * assert this relationship.
-   */
+  /** Only trusted for breadth-gap purposes when a matching, governed `CurriculumSubjectRelation` also exists. */
   readonly underCategory?: string;
-  /**
-   * Family-grouping key for pattern-generalisation detection. Only
-   * trusted when a matching governed `CurriculumFamily` also exists and
-   * lists this item's `subject` as a member (CC-18A section 6).
-   */
+  /** Only trusted for pattern purposes when a matching, governed `CurriculumFamily` also lists this item's own subject. */
   readonly familyKey?: string;
   /** Distractor-only content from the same item. NEVER read by candidate generation. */
   readonly distractorSubjects?: readonly string[];
 }
 
 // ---------------------------------------------------------------------
-// 12. Governed category/family relationships (CC-18A section 6) -- the
-// ONLY thing that can make an assessment item's own `underCategory` /
-// `familyKey` label actually count for breadth/pattern purposes.
+// 13. Governed category/family relationships (CC-18A section 6; CC-18B
+// qualification + known-subject validation).
 // ---------------------------------------------------------------------
 
 export interface CurriculumSubjectRelation extends SourceProvenance {
+  readonly qualificationId: string;
   readonly subject: string;
   readonly underCategory: string;
 }
 
 export interface CurriculumFamily extends SourceProvenance {
+  readonly qualificationId: string;
   readonly familyKey: string;
   readonly memberSubjects: readonly string[];
 }
 
 // ---------------------------------------------------------------------
-// 13. Qualification-level evidence (CC-18A section 7/8) -- depth
-// constraint ONLY. Never generates scope; only attaches to an existing
-// candidate it names by key.
+// 14. Qualification-level evidence -- depth constraint ONLY. Never
+// generates scope; only attaches to an existing candidate it names.
 // ---------------------------------------------------------------------
 
 export interface QualificationLevelEvidence extends SourceProvenance {
   readonly role: "QUALIFICATION_LEVEL";
   readonly evidenceId: string;
+  readonly qualificationId: string;
   readonly levelId: string;
   readonly depthConstraintDescriptor: string;
-  /** The exact (subject, performanceType) candidate this depth ceiling constrains -- never creates a new candidate. */
   readonly appliesToCandidateKey: string;
 }
 
 // ---------------------------------------------------------------------
-// 14. Prerequisite (structural capability-dependency) evidence (CC-18A
-// section 9-11). Deliberately NOT tagged with one of the 7 evidence
-// roles -- prerequisite necessity is a derived structural claim, not a
-// primary evidence source. The free-form `necessityKind` self-declaration
-// CC-18 used is REMOVED: the only gate is a `capabilityKey` match against
-// an existing required candidate's own declared `requiredCapabilityKeys`.
+// 15. Prerequisite (structural capability-dependency) evidence, and the
+// independent capability-requirement relation it must match against
+// (CC-18B sections 11-13; replaces CC-18A's self-authorising
+// `necessityKind` and `CurriculumEvidence.requiredCapabilityKeys`).
 // ---------------------------------------------------------------------
 
+/**
+ * A prerequisite CANDIDATE proposal: "subject/performanceType could
+ * supply capabilityKey for necessaryForCandidateKey". Deliberately NOT
+ * tagged with one of the 7 evidence roles -- prerequisite necessity is a
+ * derived structural claim, not a primary evidence source.
+ */
 export interface PrerequisiteEvidence extends SourceProvenance {
   readonly kind: "STRUCTURAL_PREREQUISITE_DEPENDENCY";
   readonly evidenceId: string;
   readonly subject: string;
   readonly performanceType: LearnerPerformanceType;
-  /** Must match an entry in the target candidate's own `requiredCapabilityKeys` to earn FOUNDATIONAL_PREREQUISITE. */
   readonly capabilityKey: string;
   readonly necessaryForCandidateKey: string;
   readonly minimalDepthJustification: string;
 }
 
+/**
+ * LOCKED derivation kinds (CC-18B section 11-12). Only
+ * EXPLICIT_CURRICULUM_OPERATION, EXPLICIT_ASSESSMENT_OPERATION, and
+ * DETERMINISTIC_OPERATIONAL_DEPENDENCY may auto-promote a matching
+ * prerequisite to FOUNDATIONAL_PREREQUISITE. REVIEW_PROPOSED never does.
+ */
+export const capabilityDerivationKindSchema = z.enum([
+  "EXPLICIT_CURRICULUM_OPERATION",
+  "EXPLICIT_ASSESSMENT_OPERATION",
+  "DETERMINISTIC_OPERATIONAL_DEPENDENCY",
+  "REVIEW_PROPOSED",
+]);
+export type CapabilityDerivationKind = z.infer<typeof capabilityDerivationKindSchema>;
+
+/**
+ * An independent, provenance-bearing declaration that a REQUIRED
+ * candidate structurally needs a capability -- the only thing a
+ * `PrerequisiteEvidence` record can match against (CC-18B section 11).
+ * This replaces `CurriculumEvidence.requiredCapabilityKeys`, which let
+ * curriculum normalization self-authorise its own prerequisite gate.
+ */
+export interface CandidateCapabilityRequirement extends SourceProvenance {
+  readonly qualificationId: string;
+  readonly targetSubject: string;
+  readonly targetCandidateKey: string;
+  readonly capabilityKey: string;
+  readonly derivationKind: CapabilityDerivationKind;
+  /** The curriculum/assessment evidence that substantiates this derivation -- required when derivationKind references a specific operation. */
+  readonly sourceEvidenceRefs: readonly EvidenceRef[];
+}
+
 // ---------------------------------------------------------------------
-// 15. Exemplar evidence (task section 12, CC-18). CC-18A restricts the
-// allowed source roles to TECHNICAL_TRUTH/PUBLIC_ASSESSMENT only --
-// CC-18's own type additionally allowed OPTIONAL_CALIBRATION, which was
-// inconsistent with the hard "never in standard mode" rule for that role
-// and is removed here.
+// 16. Exemplar evidence (CC-18B: now provenance-bearing; TECHNICAL_TRUTH
+// role no longer auto-grants technical-truth confidence).
 // ---------------------------------------------------------------------
 
-export interface ExemplarEvidence {
+export interface ExemplarEvidence extends SourceProvenance {
   readonly role: "TECHNICAL_TRUTH" | "PUBLIC_ASSESSMENT";
   readonly evidenceId: string;
   readonly exemplarOfCategory: string;
@@ -400,11 +457,13 @@ export interface ExemplarEvidence {
 }
 
 // ---------------------------------------------------------------------
-// 16. Independent factual-claim model (CC-18A section 12-15). Curriculum/
-// provider claims and technical-truth claims are independent records
-// correlated only by a shared canonical `claimKey` -- nothing pre-labels
-// a conflict on the technical-truth record itself.
+// 17. Independent factual-claim model (CC-18A sections 12-15; CC-18B
+// adds `comparisonKind` and claim-key-specific candidate requirements).
 // ---------------------------------------------------------------------
+
+/** Prevents comparing incommensurate values (CC-18B section 18) -- two claims are only ever compared when their comparisonKind matches. */
+export const factualComparisonKindSchema = z.enum(["BOOLEAN", "ENUM", "NUMBER_WITH_UNIT", "CANONICAL_TEXT"]);
+export type FactualComparisonKind = z.infer<typeof factualComparisonKindSchema>;
 
 export interface SourceFactualClaim extends SourceProvenance {
   /** Canonical factual-dimension identity -- two claims about the "same fact" share this key regardless of source. */
@@ -413,16 +472,28 @@ export interface SourceFactualClaim extends SourceProvenance {
   /** Typically OFFICIAL_CURRICULUM, TECHNICAL_TRUTH, or (diagnostic-only comparison, never standard mode) OPTIONAL_CALIBRATION. */
   readonly sourceRole: EvidenceRole;
   readonly evidenceId: string;
+  /** A CANONICAL comparison value, not arbitrary prose -- comparability is declared by `comparisonKind`, never inferred. */
   readonly normalizedClaimValue: string;
+  readonly comparisonKind: FactualComparisonKind;
   readonly originalWordingRef?: string;
 }
 
+/**
+ * Declares that a candidate structurally requires technical-truth
+ * coverage for a specific `claimKey` (CC-18B section 14). A candidate
+ * with zero such requirements never claims HIGH technical-truth
+ * confidence merely because some source discusses the same subject.
+ */
+export interface CandidateFactRequirement extends SourceProvenance {
+  readonly qualificationId?: string;
+  readonly targetCandidateKey: string;
+  readonly claimKey: string;
+}
+
 // ---------------------------------------------------------------------
-// 17. Optional-calibration / legacy-diagnostic evidence (task section
-// 18/19, CC-18). Never capable of influencing required scope -- no
-// mandatory provenance burden imposed here since neither type is ever a
-// scope/performance/depth/prerequisite/relationship/factual-truth input
-// to the standard pipeline.
+// 18. Optional-calibration / legacy-diagnostic evidence. Never capable
+// of influencing required scope -- no mandatory provenance burden
+// imposed here since neither type is ever a standard-pipeline input.
 // ---------------------------------------------------------------------
 
 export interface OptionalCalibrationEvidence {
@@ -448,9 +519,9 @@ export type AnyEvidence =
   | LegacyDiagnosticEvidence;
 
 // ---------------------------------------------------------------------
-// 18. Diagnostic comparison (task section 18, CC-18) -- the ONLY thing
-// optional-calibration/legacy-diagnostic evidence may ever produce: a
-// read-only report, never a mutation and never a new required candidate.
+// 19. Diagnostic comparison -- the ONLY thing optional-calibration/
+// legacy-diagnostic evidence may ever produce: a read-only report, never
+// a mutation and never a new required candidate.
 // ---------------------------------------------------------------------
 
 export interface DiagnosticComparisonEntry {
@@ -462,13 +533,13 @@ export interface DiagnosticComparisonEntry {
 }
 
 // ---------------------------------------------------------------------
-// 19. Standard-pipeline result.
+// 20. Standard-pipeline result.
 // ---------------------------------------------------------------------
 
 export interface StandardPipelineResult {
   readonly candidates: readonly KnowledgeCandidate[];
   readonly gaps: readonly GapRecord[];
-  /** TECHNICAL_TRUTH-sourced factual claims that matched no existing candidate -- recorded for transparency, never converted into scope. */
+  /** TECHNICAL_TRUTH-sourced factual claims that matched no candidate's requiredFactKeys -- recorded for transparency, never converted into scope. */
   readonly unmatchedTechnicalTruth: readonly SourceFactualClaim[];
   /** QualificationLevelEvidence that named no existing candidate -- recorded for transparency, never converted into scope. */
   readonly unmatchedQualificationLevel: readonly QualificationLevelEvidence[];
