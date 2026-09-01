@@ -54,9 +54,9 @@ import { unit202BlindCalibrationBaseline } from "./data/unit202-blind-calibratio
 // permitted place for this vocabulary, e.g. existingPrivateCalibrationClaim,
 // matrixComparisonNotes, projectArchitectCalibrationQuestions).
 const PRIVATE_MATERIAL_VOCABULARY: RegExp[] = [
-  /\bhandout\b/i,
-  /\bworksheet\b/i,
-  /\btutor[- ]answer\b/i,
+  /\bhandouts?\b/i,
+  /\bworksheets?\b/i,
+  /\btutor[- ]answers?\b/i,
   /\bsmartscreen\b/i,
   /\bscheme of work\b/i,
   /\bcgTeachingWorksheetCalibration\b/i,
@@ -159,10 +159,10 @@ interface RowReport {
 
 /** Vocabulary used to classify an existingPrivateCalibrationClaim's private-material type for the summary breakdown (task section 8). A single claim may match more than one type. */
 const CLAIM_TYPE_PATTERNS: Record<string, RegExp> = {
-  HANDOUT: /\bhandout\b/i,
-  WORKSHEET: /\bworksheet\b/i,
-  TUTOR_ANSWER: /\btutor[- ]answer\b/i,
-  SCHEME_OF_WORK: /\bscheme of work\b/i,
+  HANDOUT: /\bhandouts?\b/i,
+  WORKSHEET: /\bworksheets?\b/i,
+  TUTOR_ANSWER: /\btutor[- ]answers?\b/i,
+  SCHEME_OF_WORK: /\bschemes? of work\b/i,
 };
 
 interface PrivateCalibrationClaimSummary {

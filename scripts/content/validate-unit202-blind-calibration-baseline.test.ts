@@ -8,7 +8,7 @@ import path from "node:path";
 import { unit202DepthPerformanceMatrix } from "./data/unit202-depth-performance-matrix.ts";
 import { unit202QualificationScopeAudit } from "./data/unit202-qualification-scope-audit.ts";
 import { unit202BlindCalibrationBaseline } from "./data/unit202-blind-calibration-baseline.ts";
-import { unit202BlindCalibrationBaselinePreCc17aBlindFieldsSnapshot } from "./data/unit202-blind-calibration-baseline-blind-fields-snapshot.ts";
+import { unit202BlindCalibrationBaseline5d45953Snapshot } from "./data/unit202-blind-calibration-baseline-5d45953-snapshot.ts";
 import {
   buildReport,
   CC16_MAPPING,
@@ -320,26 +320,6 @@ describe("CC-17 Unit 202 Blind Calibration Baseline -- matrix/CC-16 cross-refere
 // ledger. See task letters A-H in the CC-17A instruction for the exact
 // checks this block proves.
 describe("CC-17A -- private-calibration claim export completeness", () => {
-  it("[A] every row's blind-baseline-defining fields are byte-identical to the frozen pre-CC-17A snapshot, except where a genuine defect was explicitly escalated (none was, this package)", () => {
-    const snapshotKeys = Object.keys(unit202BlindCalibrationBaselinePreCc17aBlindFieldsSnapshot);
-    const liveKeys = unit202BlindCalibrationBaseline.rows.map((r) => r.calibrationKey);
-    expect(liveKeys.sort()).toEqual(snapshotKeys.sort());
-
-    for (const row of unit202BlindCalibrationBaseline.rows) {
-      const frozen = unit202BlindCalibrationBaselinePreCc17aBlindFieldsSnapshot[row.calibrationKey]!;
-      expect(row.publicSpecificationAnchor, `${row.calibrationKey}.publicSpecificationAnchor changed`).toBe(frozen.publicSpecificationAnchor);
-      expect(row.publicRangeAnchor, `${row.calibrationKey}.publicRangeAnchor changed`).toBe(frozen.publicRangeAnchor);
-      expect(row.publicAssessmentAnchor, `${row.calibrationKey}.publicAssessmentAnchor changed`).toBe(frozen.publicAssessmentAnchor);
-      expect(row.transferablePrerequisiteJustification, `${row.calibrationKey}.transferablePrerequisiteJustification changed`).toBe(
-        frozen.transferablePrerequisiteJustification,
-      );
-      expect(row.blindBaselineRequirement, `${row.calibrationKey}.blindBaselineRequirement changed`).toBe(frozen.blindBaselineRequirement);
-      expect(row.blindBaselineDepth, `${row.calibrationKey}.blindBaselineDepth changed`).toBe(frozen.blindBaselineDepth);
-      expect(row.blindBaselineRationale, `${row.calibrationKey}.blindBaselineRationale changed`).toBe(frozen.blindBaselineRationale);
-      expect(row.blindConfidence, `${row.calibrationKey}.blindConfidence changed`).toBe(frozen.blindConfidence);
-    }
-  });
-
   it("[B] every populated existingPrivateCalibrationClaim begins with the literal prefix 'UNVERIFIED CALIBRATION CLAIM:'", () => {
     const populated = unit202BlindCalibrationBaseline.rows.filter((r) => r.existingPrivateCalibrationClaim);
     expect(populated.length).toBeGreaterThan(0);
@@ -441,5 +421,227 @@ describe("CC-17A -- private-calibration claim export completeness", () => {
     expect(jsonKeys).toEqual(liveKeys);
     expect(csvKeys).toEqual(liveKeys);
     expect(jsonKeys.length).toBe(60);
+  });
+});
+
+// CC-17B: final integrity correction -- plural-aware private-material
+// classification (both the blindness-gate scanner and the claim-type
+// summary), a properly-provenanced historical (commit 5d45953) blind-field
+// comparison baseline, and one explicitly Project-Architect-authorised
+// methodology-record correction. See task letters A-J in the CC-17B
+// instruction for the exact checks this block proves.
+describe("CC-17B -- calibration export integrity correction", () => {
+  /** The ONLY blind-field difference CC-17B authorises relative to commit 5d45953. */
+  const AUTHORISED_EXCEPTION = { calibrationKey: "cross-cutting-matrix-vs-baseline-scope-of-analysis", field: "blindBaselineRequirement" };
+
+  const BLIND_FIELDS = [
+    "publicSpecificationAnchor",
+    "publicRangeAnchor",
+    "publicAssessmentAnchor",
+    "transferablePrerequisiteJustification",
+    "blindBaselineRequirement",
+    "blindBaselineDepth",
+    "blindBaselineRationale",
+    "blindConfidence",
+  ] as const;
+
+  function diffAgainstHistoricalSnapshot(): { calibrationKey: string; field: string; historical: unknown; live: unknown }[] {
+    const diffs: { calibrationKey: string; field: string; historical: unknown; live: unknown }[] = [];
+    for (const row of unit202BlindCalibrationBaseline.rows) {
+      const historical = unit202BlindCalibrationBaseline5d45953Snapshot[row.calibrationKey];
+      if (!historical) {
+        diffs.push({ calibrationKey: row.calibrationKey, field: "(row missing from historical snapshot)", historical: undefined, live: row });
+        continue;
+      }
+      for (const field of BLIND_FIELDS) {
+        const liveVal = (row as unknown as Record<string, unknown>)[field];
+        const historicalVal = historical[field];
+        if (liveVal !== historicalVal) {
+          diffs.push({ calibrationKey: row.calibrationKey, field, historical: historicalVal, live: liveVal });
+        }
+      }
+    }
+    return diffs;
+  }
+
+  it("[A] the historical comparison snapshot is genuinely sourced from commit 5d45953, not the current worktree", () => {
+    const snapshotSource = readFileSync(
+      path.resolve(import.meta.dirname, "data", "unit202-blind-calibration-baseline-5d45953-snapshot.ts"),
+      "utf-8",
+    );
+    // Full commit hash, short hash, source path and generation method are
+    // all recorded in the fixture's own header -- provenance the CC-17A
+    // snapshot (generated from the live worktree) never carried.
+    expect(snapshotSource).toMatch(/SOURCE COMMIT:\s*5d4595314f17dbadcf8bf971ad0fa522ceb1715c/);
+    expect(snapshotSource).toMatch(/SOURCE PATH:\s*scripts\/content\/data\/unit202-blind-calibration-baseline\.ts/);
+    expect(snapshotSource).toMatch(/GENERATION METHOD/);
+    expect(snapshotSource).toMatch(/git show 5d45953/);
+    // Every row present, matching CC-17's own real historical row count.
+    expect(Object.keys(unit202BlindCalibrationBaseline5d45953Snapshot).length).toBe(60);
+  });
+
+  it("[B, C] every row's blind-baseline-defining field is byte-identical to commit 5d45953, except exactly the one explicitly authorised methodology-record correction", () => {
+    const diffs = diffAgainstHistoricalSnapshot();
+    const unauthorised = diffs.filter((d) => !(d.calibrationKey === AUTHORISED_EXCEPTION.calibrationKey && d.field === AUTHORISED_EXCEPTION.field));
+    expect(unauthorised, `unauthorised historical diffs: ${JSON.stringify(unauthorised, null, 2)}`).toEqual([]);
+
+    // The authorised exception must actually exist (proving the fix was
+    // applied), and must actually differ from history (proving this test
+    // isn't vacuously passing because nothing changed).
+    const authorisedDiff = diffs.find((d) => d.calibrationKey === AUTHORISED_EXCEPTION.calibrationKey && d.field === AUTHORISED_EXCEPTION.field);
+    expect(authorisedDiff, "the §4 methodology-record correction was expected but not found").toBeDefined();
+    expect(authorisedDiff!.live).not.toBe(authorisedDiff!.historical);
+
+    // The corrected content must state the durable, machine-provable facts
+    // (§4 option B) and must NOT still contain the stale, arithmetically-
+    // inconsistent hand-count ("45 content rows" / "42 of CC-16").
+    const liveText = String(authorisedDiff!.live);
+    expect(liveText).toMatch(/60 calibration rows/);
+    expect(liveText).toMatch(/CC16_MAPPING/);
+    expect(liveText).not.toMatch(/45 content rows/);
+    expect(liveText).not.toMatch(/42 of CC-16/);
+  });
+
+  it("[B, tamper] a genuinely unauthorised blind-field change would be caught, not silently accepted", () => {
+    const tampered = unit202BlindCalibrationBaseline.rows.map((r) =>
+      r.calibrationKey === "ac1-1-fractions-percentages" ? { ...r, blindBaselineDepth: "TAMPERED VALUE FOR TEST PURPOSES ONLY" } : r,
+    );
+    const diffs: string[] = [];
+    for (const row of tampered) {
+      const historical = unit202BlindCalibrationBaseline5d45953Snapshot[row.calibrationKey];
+      if (historical && row.blindBaselineDepth !== historical.blindBaselineDepth) diffs.push(row.calibrationKey);
+    }
+    expect(diffs).toContain("ac1-1-fractions-percentages");
+  });
+
+  it("[D] singular AND plural private-material vocabulary are both rejected when injected into a blind field", () => {
+    const forms = [
+      "handout", "handouts",
+      "worksheet", "worksheets",
+      "tutor answer", "tutor answers", "tutor-answer", "tutor-answers",
+      "SmartScreen",
+      "scheme of work",
+      "cgTeachingWorksheetCalibration",
+    ];
+    for (const form of forms) {
+      const tampered = {
+        ...unit202BlindCalibrationBaseline,
+        rows: unit202BlindCalibrationBaseline.rows.map((r, i) =>
+          i === 0 ? { ...r, blindBaselineRationale: `This blind conclusion is confirmed directly by the ${form} content.` } : r,
+        ),
+      };
+      const report = buildReport({ baseline: tampered });
+      expect(report.rowsWithPrivateMaterialVocabularyInBlindFields.length, `form "${form}" was not detected`).toBeGreaterThan(0);
+      expect(isReportClean(report)).toBe(false);
+    }
+  });
+
+  it("[D] the real, current ledger produces zero blindness violations under the corrected (plural-aware) patterns", () => {
+    const report = buildReport();
+    expect(report.rowsWithPrivateMaterialVocabularyInBlindFields).toEqual([]);
+    for (const row of unit202BlindCalibrationBaseline.rows) {
+      const blindText = [row.blindBaselineRequirement, row.blindBaselineDepth, row.blindBaselineRationale].join(" ");
+      for (const pattern of PRIVATE_MATERIAL_VOCABULARY) {
+        expect(pattern.test(blindText), `row ${row.calibrationKey} blind* field matched ${pattern}`).toBe(false);
+      }
+    }
+  });
+
+  it("[E, F] the claim-type summary independently reconstructed from the real existingPrivateCalibrationClaim strings agrees with buildReport(), and TUTOR_ANSWER is non-zero because of the real 'tutor answers' claim", () => {
+    const report = buildReport();
+    const expectedByType: Record<string, number> = { HANDOUT: 0, WORKSHEET: 0, TUTOR_ANSWER: 0, SCHEME_OF_WORK: 0 };
+    const expectedKeysWithClaim: string[] = [];
+    for (const row of unit202BlindCalibrationBaseline.rows) {
+      const claim = row.existingPrivateCalibrationClaim;
+      if (!claim) continue;
+      expectedKeysWithClaim.push(row.calibrationKey);
+      if (/\bhandouts?\b/i.test(claim)) expectedByType.HANDOUT!++;
+      if (/\bworksheets?\b/i.test(claim)) expectedByType.WORKSHEET!++;
+      if (/\btutor[- ]answers?\b/i.test(claim)) expectedByType.TUTOR_ANSWER!++;
+      if (/\bschemes? of work\b/i.test(claim)) expectedByType.SCHEME_OF_WORK!++;
+    }
+    expect(report.privateCalibrationClaimSummary.byType).toEqual(expectedByType);
+    expect(report.privateCalibrationClaimSummary.calibrationKeysWithClaim).toEqual(expectedKeysWithClaim.sort());
+    expect(report.privateCalibrationClaimSummary.rowsWithClaim).toBe(expectedKeysWithClaim.length);
+
+    // [F] specifically: the real algebra/transposition claim contains "tutor
+    // answers" (plural, no hyphen) and must be the thing driving TUTOR_ANSWER > 0.
+    const algebraRow = unit202BlindCalibrationBaseline.rows.find((r) => r.calibrationKey === "ac1-1-algebra-transposition")!;
+    expect(algebraRow.existingPrivateCalibrationClaim).toMatch(/tutor answers/i);
+    expect(report.privateCalibrationClaimSummary.byType.TUTOR_ANSWER).toBeGreaterThan(0);
+  });
+
+  it("[E, tamper] the claim-type classifier is genuinely plural-aware, not merely coincidentally correct on the current data", () => {
+    const tampered = {
+      ...unit202BlindCalibrationBaseline,
+      rows: unit202BlindCalibrationBaseline.rows.map((r, i) =>
+        i === 0 ? { ...r, existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The repository records Handouts and Worksheets and tutor-answers for this row." } : r,
+      ),
+    };
+    const report = buildReport({ baseline: tampered });
+    expect(report.privateCalibrationClaimSummary.byType.HANDOUT).toBeGreaterThan(0);
+    expect(report.privateCalibrationClaimSummary.byType.WORKSHEET).toBeGreaterThan(0);
+    expect(report.privateCalibrationClaimSummary.byType.TUTOR_ANSWER).toBeGreaterThan(0);
+  });
+
+  it("[G] the human-readable report's claim-type counts and calibrationKey list match the live, machine-derived summary exactly", () => {
+    const report = buildReport();
+    const mdSource = readFileSync(CC17_MD_PATH, "utf-8");
+    for (const [type, count] of Object.entries(report.privateCalibrationClaimSummary.byType)) {
+      const pattern = new RegExp(`\\*\\*${type}:\\*\\*\\s*${count}\\b`);
+      expect(mdSource, `report does not state "${type}: ${count}" matching live data`).toMatch(pattern);
+    }
+    expect(mdSource).toMatch(new RegExp(`${report.privateCalibrationClaimSummary.rowsWithClaim} of 60 rows carry`));
+    for (const key of report.privateCalibrationClaimSummary.calibrationKeysWithClaim) {
+      expect(mdSource, `report's calibration-key list is missing ${key}`).toMatch(new RegExp("`" + key + "`"));
+    }
+  });
+
+  it("[H] the prior CC-17A telephone claim-isolation tests remain green under the corrected classifier (re-proven directly, not only via the shared [E] test above)", () => {
+    const capacitorRow = unit202BlindCalibrationBaseline.rows.find((r) => r.calibrationKey === "ac6-1-telephone-capacitor-role")!;
+    expect(capacitorRow.existingPrivateCalibrationClaim).toBeTruthy();
+    for (const key of [
+      "ac6-1-telephone-resistor-role",
+      "ac6-1-telephone-surge-protector-role",
+      "ac6-1-telephone-master-vs-extension-distinction",
+      "ac6-1-telephone-other-component-detail-check",
+    ]) {
+      const row = unit202BlindCalibrationBaseline.rows.find((r) => r.calibrationKey === key)!;
+      expect(row.existingPrivateCalibrationClaim, `${key} should still carry no private-calibration claim`).toBeUndefined();
+    }
+  });
+
+  it("[I] matrixComparison report reconciliation remains green after the CC-17B corrections", () => {
+    const report = buildReport();
+    const markdown = readFileSync(CC17_MD_PATH, "utf-8");
+    const reconciliation = reconcileReportAgainstMarkdown(report, markdown);
+    expect(isReportReconciliationClean(reconciliation)).toBe(true);
+    expect(report.matrixComparisonCounts).toEqual({
+      SAME: 44,
+      MATRIX_BROADER: 6,
+      MATRIX_ONLY_PROPOSITION: 9,
+      DIFFERENT_EMPHASIS: 1,
+    });
+  });
+
+  it("[J] the JSON and CSV exports retain the identical 60-key calibrationKey set after the CC-17B corrections", () => {
+    const jsonPath = path.resolve(import.meta.dirname, "..", "..", "reports", "unit202-calibration", "blind-baseline.json");
+    const csvPath = path.resolve(import.meta.dirname, "..", "..", "reports", "unit202-calibration", "blind-baseline.csv");
+    const json = JSON.parse(readFileSync(jsonPath, "utf-8")) as { rows: { calibrationKey: string; blindBaselineRequirement: string }[] };
+    const jsonKeys = json.rows.map((r) => r.calibrationKey).sort();
+    const csvKeys = readFileSync(csvPath, "utf-8")
+      .trim()
+      .split("\n")
+      .slice(1)
+      .map((line) => line.split(",")[0]!)
+      .sort();
+    const liveKeys = unit202BlindCalibrationBaseline.rows.map((r) => r.calibrationKey).sort();
+    expect(jsonKeys).toEqual(liveKeys);
+    expect(csvKeys).toEqual(liveKeys);
+    expect(jsonKeys.length).toBe(60);
+    // The export must also carry the corrected methodology-row text, not a stale cached copy from before §4's fix.
+    const methodologyRow = json.rows.find((r) => r.calibrationKey === "cross-cutting-matrix-vs-baseline-scope-of-analysis")!;
+    expect(methodologyRow.blindBaselineRequirement).toMatch(/60 calibration rows/);
+    expect(methodologyRow.blindBaselineRequirement).not.toMatch(/45 content rows/);
   });
 });
