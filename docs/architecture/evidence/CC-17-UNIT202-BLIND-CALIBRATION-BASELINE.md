@@ -36,7 +36,7 @@ The schema (`packages/content-schema/src/blind-calibration-baseline.ts`) encodes
 
 Every `blindBaselineRequirement`/`blindBaselineDepth`/`blindBaselineRationale` field in the ledger was constructed using **only tiers 1–4**. None of the following were consulted to construct those three fields, for any row: `cgTeachingWorksheetCalibration`, any handout/worksheet/tutor-answer/scheme-of-work summary, any knowledge obligation whose sole basis is `OFFICIAL_TEACHING_INTERPRETATION`, or legacy lesson/assertion content. This is enforced two ways:
 
-- **Structurally**: tier-5 evidence has its own, separately labelled field — `existingPrivateCalibrationClaim` — which the schema forces to begin with the literal string `"UNVERIFIED CALIBRATION CLAIM:"` so it can never be mistaken for verified evidence when the ledger is read in isolation. No row in the real ledger currently populates this field (see §7 — no private-material claim was consulted to produce any row, so none was recorded).
+- **Structurally**: tier-5 evidence has its own, separately labelled field — `existingPrivateCalibrationClaim` — which the schema forces to begin with the literal string `"UNVERIFIED CALIBRATION CLAIM:"` so it can never be mistaken for verified evidence when the ledger is read in isolation. As of CC-17A, 35 of 60 rows populate this field with what the existing governed repository (the matrix's own `cgTeachingWorksheetCalibration` text, and a small number of narrowly attributable knowledge-obligation code-comment citations) records about proprietary handout/worksheet material — see §7.2 for the full breakdown. This field is comparison data only: populating it never altered any `blindBaselineRequirement`/`blindBaselineDepth`/`blindBaselineRationale`/`blindConfidence`/`publicSpecificationAnchor`/`publicRangeAnchor`/`publicAssessmentAnchor`/`transferablePrerequisiteJustification` value, mechanically proven by a dedicated regression test (`scripts/content/validate-unit202-blind-calibration-baseline.test.ts`) that diffs every blind field against a frozen pre-CC-17A snapshot.
 - **Mechanically**: the validator scans every row's `blindBaselineRequirement`/`blindBaselineDepth`/`blindBaselineRationale` text for the vocabulary "handout", "worksheet", "tutor-answer", "SmartScreen", "scheme of work", and the literal field name `cgTeachingWorksheetCalibration`, case-insensitively. This gate is currently clean (0 matches across 60 rows) — see §5.
 
 The governed matrix (`unit202DepthPerformanceMatrix`) and the CC-16 audit ledger were used only to **identify candidate propositions worth reconstructing** (so nothing already known to matter is missed) and to **compare against** afterward (`matrixComparison`) — never as a source for what a blind field itself asserts. Neither was deleted or modified.
@@ -126,21 +126,44 @@ Every row below carries a `blindUncertaintyReason` in the ledger (schema-enforce
 | `ac6-2-physical-appearance-recognition` | 6.2 | LOW | No tier-1/tier-2 evidence distinguishes "required" from "helpful teaching illustration" |
 | `ac6-2-resistor-colour-code` | 6.2 | LOW | Vocational-relevance plausibility only, no tier-1/tier-2 citation |
 
-## 7.1 All matrix-vs-baseline discrepancies (`MATRIX_ONLY_PROPOSITION`, 9 rows)
+## 7.1 All matrix-vs-baseline discrepancies
 
-These are the rows of closest interest to the Project Architect — exactly where the existing matrix's access to proprietary material is most visible, since the blind method independently could not derive the same conclusion from transferable evidence alone:
+This list is generated directly from the live ledger's own `matrixComparison` field (never hand-typed) and is mechanically reconciled against it by `scripts/content/validate-unit202-blind-calibration-baseline.ts`'s `reconcileReportAgainstMarkdown()` — re-run `node scripts/content/validate-unit202-blind-calibration-baseline.ts` to reproduce this exact list live and confirm it still matches. Each state below is listed exactly once, with its live count, so a count mismatch or a wrongly-classified key is mechanically caught rather than silently drifting (task section 5/CC-17A's own correction).
 
-`ac5-3-electromagnet`, `ac5-3-relay`, `ac5-3-contactor`, `ac6-1-security-alarm-exact-topology`, `ac6-1-telephone-capacitor-role`, `ac6-1-telephone-resistor-role`, `ac6-1-telephone-surge-protector-role`, `ac6-1-telephone-master-vs-extension-distinction`, `ac6-1-telephone-other-component-detail-check`.
+**SAME (44 rows):** not listed individually — the majority case; see the CSV/JSON export for the full set.
 
-No `BASELINE_ONLY_PROPOSITION` rows exist in the current ledger — the blind method did not independently predict any required content the existing matrix does not already capture. 6 rows are `MATRIX_BROADER` (the matrix specifies more than tiers 1–4 alone support: `ac1-1-statistics-mean-median-mode`, `ac1-1-indices-and-notation`, `ac2-2-ac-quantity-calculation-depth-ceiling`†, `ac3-4-mechanics-calculation`, `ac6-1-motor-control-category`, `ac6-2-resistor-colour-code`). 1 row is `DIFFERENT_EMPHASIS` (`ac4-2-conductor-insulator-distinction` — matrix and a separate governed assertion name two different material-example sets, neither Range-mandated). 44 rows are `SAME`.
+**MATRIX_BROADER (6 rows):** `ac1-1-indices-and-notation`, `ac1-1-statistics-mean-median-mode`, `ac3-4-mechanics-calculation`, `ac6-1-motor-control-category`, `ac6-2-physical-appearance-recognition`, `ac6-2-resistor-colour-code`.
 
-*(†: `ac2-2-ac-quantity-calculation-depth-ceiling` is recorded `SAME` in the ledger, not `MATRIX_BROADER` — the blind method and matrix reach the identical scope-guard ceiling; listed once for clarity, see the ledger's own `matrixComparison` value as authoritative.)*
+**MATRIX_NARROWER (0 rows):** (none) — the blind method never independently derived a NARROWER conclusion than the matrix in the current ledger.
+
+**DIFFERENT_EMPHASIS (1 row):** `ac4-2-conductor-insulator-distinction` — matrix and a separate governed assertion name two different material-example sets, neither Range-mandated.
+
+**MATRIX_ONLY_PROPOSITION (9 rows):** `ac5-3-contactor`, `ac5-3-electromagnet`, `ac5-3-relay`, `ac6-1-security-alarm-exact-topology`, `ac6-1-telephone-capacitor-role`, `ac6-1-telephone-master-vs-extension-distinction`, `ac6-1-telephone-other-component-detail-check`, `ac6-1-telephone-resistor-role`, `ac6-1-telephone-surge-protector-role` — these are the rows of closest interest to the Project Architect, exactly where the existing matrix's access to proprietary material is most visible, since the blind method independently could not derive the same conclusion from transferable evidence alone.
+
+**BASELINE_ONLY_PROPOSITION (0 rows):** (none) — the blind method did not independently predict any required content the existing matrix does not already capture.
+
+## 7.2 Private-calibration claim summary (task section 8)
+
+35 of 60 rows carry an `existingPrivateCalibrationClaim` — a repository-recorded, **unverified** claim about what proprietary handout/worksheet/tutor-answer/scheme-of-work material is reported to contain, drawn from the governed matrix's own `cgTeachingWorksheetCalibration` text and a small number of narrowly attributable knowledge-obligation code-comment citations (never independently verified against the actual private artefact, which this package cannot inspect). 25 of 60 rows carry no such claim, either because the repository records no specific private-material claim for that proposition, or because the claim it does record is too generic (a bare "Handout N" mention with no attributable content) to be useful comparison data.
+
+Breakdown by claim type (a single claim may mention more than one type, so these do not sum to 35):
+
+- **HANDOUT:** 21
+- **WORKSHEET:** 27
+- **TUTOR_ANSWER:** 0
+- **SCHEME_OF_WORK:** 0
+
+Calibration keys carrying one or more such claims: `ac1-1-algebra-transposition`, `ac2-1-temperature-kelvin-celsius`, `ac2-2-ac-quantity-calculation-depth-ceiling`, `ac2-2-quantity-symbol-unit-recognition`, `ac2-3-instrument-selection-connection`, `ac2-3-wattmeter-energy-meter`, `ac3-1-mass-weight-definitions-relationship`, `ac3-2-gears`, `ac3-2-lever-classes-and-balance`, `ac3-2-pulleys`, `ac3-4-mechanics-calculation`, `ac4-1-atomic-structure-and-current`, `ac4-3-resistance-resistivity-relationship`, `ac4-5-series-parallel-calculation`, `ac4-6-power-calculation`, `ac4-7-voltage-drop`, `ac4-8-thermal-chemical-effects`, `ac5-1-attraction-repulsion-field-lines`, `ac5-2-flux-flux-density-relationship`, `ac5-3-field-direction-rule`, `ac5-3-flemings-left-hand-rule`, `ac5-3-flemings-right-hand-rule`, `ac5-3-force-on-conductor`, `ac5-3-induced-emf`, `ac5-4-alternator-principle-and-parts`, `ac5-4-frequency-pole-pair-relationship`, `ac5-5-waveform-characteristics-and-relationships`, `ac6-1-dimmer-switch-category`, `ac6-1-heating-boiler-control-category`, `ac6-1-motor-control-category`, `ac6-1-security-alarm-thyristor-latching-generic`, `ac6-1-telephone-capacitor-role`, `ac6-2-generic-operating-principles`, `ac6-2-resistor-colour-code`, `ac6-2-schematic-symbol-recognition`.
+
+Notably, `ac6-1-telephone-resistor-role`, `ac6-1-telephone-surge-protector-role`, `ac6-1-telephone-master-vs-extension-distinction` and `ac6-1-telephone-other-component-detail-check` carry **no** private-calibration claim — the governed matrix's `cgTeachingWorksheetCalibration` for AC6.1 names only the telephone **capacitor** specifically ("Worksheet 18 asks roles of thyristor, telephone capacitor, bridge rectifier, thermistor and DIAC"); the repository records no independent worksheet/handout claim for the other three telephone component clauses, so this package does not manufacture one by inheriting the capacitor's claim onto its siblings (task section 4's granularity rule).
+
+This summary is intended to help the Project Architect decide which private documents need close inspection first: the 35 rows above are where the existing repository's own claims can be directly checked against the actual private material; the 25 rows without a claim are either genuinely un-evidenced in the repository today, or already fully derivable from public/transferable evidence alone.
 
 ## 8. Explicit confirmation of the no-decisions boundary
 
 - No row asserts the Product Owner's private material is correct or incorrect.
 - No row recommends the private material be trusted, corrected, retained, or removed.
-- `existingPrivateCalibrationClaim` is schema-forced to begin `"UNVERIFIED CALIBRATION CLAIM:"` wherever populated (currently: no row populates it, §3).
+- `existingPrivateCalibrationClaim` is schema-forced to begin `"UNVERIFIED CALIBRATION CLAIM:"` wherever populated — 35/60 rows populate it as of CC-17A, every one verified by regression test to carry the required prefix (§7.2).
 - `matrixComparison` is a closed, purely descriptive enum (`SAME`/`MATRIX_BROADER`/`MATRIX_NARROWER`/`DIFFERENT_EMPHASIS`/`MATRIX_ONLY_PROPOSITION`/`BASELINE_ONLY_PROPOSITION`) — never a verdict value.
 - The validator mechanically scans all free text for forbidden verdict phrasing (0 matches, §5) and no field name on the schema is capable of carrying a final correctness verdict (proven by a dedicated structural test).
 - The governed matrix, knowledge obligations, assertions, lessons, storyboards, source-acquisition manifest, technical-source-verification states, technical-source dossier, and visual assets were **not modified** by this package.

@@ -12,7 +12,7 @@
  *   - every one of the matrix's real 58 (acNumber, rangeItem) pairs has
  *     at least one baseline row explicitly naming it (no Range item
  *     silently unaudited);
- *   - every one of CC-16's 55 audited propositions is either mapped to
+ *   - every one of CC-16's 56 audited propositions is either mapped to
  *     at least one calibrationKey (via the explicit CC16_MAPPING table
  *     below, cross-checked against the real CC-16 ledger's own
  *     propositionKeys so the mapping cannot silently drift) or
@@ -36,6 +36,8 @@
  *   node scripts/content/validate-unit202-blind-calibration-baseline.ts --check     (exit 1 if any gate fails)
  */
 
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { blindCalibrationBaselineSchema } from "@alp/content-schema";
@@ -72,7 +74,7 @@ const FORBIDDEN_VERDICT_PATTERNS: RegExp[] = [
 ];
 
 /**
- * Explicit correspondence from every one of CC-16's 55 audited
+ * Explicit correspondence from every one of CC-16's 56 audited
  * propositions to this ledger's own calibrationKey(s), or an explicit
  * diagnostic-only record with a reason. Cross-checked at report-build
  * time against the REAL CC-16 ledger's own propositionKeys (not
@@ -155,6 +157,21 @@ interface RowReport {
   matrixComparison: string;
 }
 
+/** Vocabulary used to classify an existingPrivateCalibrationClaim's private-material type for the summary breakdown (task section 8). A single claim may match more than one type. */
+const CLAIM_TYPE_PATTERNS: Record<string, RegExp> = {
+  HANDOUT: /\bhandout\b/i,
+  WORKSHEET: /\bworksheet\b/i,
+  TUTOR_ANSWER: /\btutor[- ]answer\b/i,
+  SCHEME_OF_WORK: /\bscheme of work\b/i,
+};
+
+interface PrivateCalibrationClaimSummary {
+  rowsWithClaim: number;
+  rowsWithoutClaim: number;
+  byType: Record<string, number>;
+  calibrationKeysWithClaim: string[];
+}
+
 interface Report {
   totalRows: number;
   acsInMatrix: number;
@@ -172,8 +189,11 @@ interface Report {
   rowsWithForbiddenVerdictLanguage: string[];
   confidenceCounts: Record<string, number>;
   matrixComparisonCounts: Record<string, number>;
+  /** Every calibrationKey for each matrixComparison state, sorted -- the single source of truth the human report's §7.1 lists must reconcile against. */
+  matrixComparisonKeysByState: Record<string, string[]>;
   mediumOrLowRows: RowReport[];
   matrixOnlyPropositionRows: RowReport[];
+  privateCalibrationClaimSummary: PrivateCalibrationClaimSummary;
 }
 
 function buildReport(overrides?: {
@@ -196,9 +216,12 @@ function buildReport(overrides?: {
   const rowsWithForbiddenVerdictLanguage: string[] = [];
   const confidenceCounts: Record<string, number> = {};
   const matrixComparisonCounts: Record<string, number> = {};
+  const matrixComparisonKeysByState: Record<string, string[]> = {};
   const mediumOrLowRows: RowReport[] = [];
   const matrixOnlyPropositionRows: RowReport[] = [];
   const allCc17Keys = new Set<string>();
+  const calibrationKeysWithClaim: string[] = [];
+  const claimByTypeCounts: Record<string, number> = { HANDOUT: 0, WORKSHEET: 0, TUTOR_ANSWER: 0, SCHEME_OF_WORK: 0 };
 
   for (const row of baseline.rows) {
     allCc17Keys.add(row.calibrationKey);
@@ -237,6 +260,14 @@ function buildReport(overrides?: {
 
     confidenceCounts[row.blindConfidence] = (confidenceCounts[row.blindConfidence] ?? 0) + 1;
     matrixComparisonCounts[row.matrixComparison] = (matrixComparisonCounts[row.matrixComparison] ?? 0) + 1;
+    (matrixComparisonKeysByState[row.matrixComparison] ??= []).push(row.calibrationKey);
+
+    if (row.existingPrivateCalibrationClaim) {
+      calibrationKeysWithClaim.push(row.calibrationKey);
+      for (const [type, pattern] of Object.entries(CLAIM_TYPE_PATTERNS)) {
+        if (pattern.test(row.existingPrivateCalibrationClaim)) claimByTypeCounts[type] = (claimByTypeCounts[type] ?? 0) + 1;
+      }
+    }
 
     if (row.blindConfidence !== "HIGH") {
       mediumOrLowRows.push({
@@ -284,6 +315,10 @@ function buildReport(overrides?: {
     }
   }
 
+  for (const state of Object.keys(matrixComparisonKeysByState)) {
+    matrixComparisonKeysByState[state]!.sort();
+  }
+
   return {
     totalRows: baseline.rows.length,
     acsInMatrix: realAcNumbers.size,
@@ -301,8 +336,15 @@ function buildReport(overrides?: {
     rowsWithForbiddenVerdictLanguage,
     confidenceCounts,
     matrixComparisonCounts,
+    matrixComparisonKeysByState,
     mediumOrLowRows,
     matrixOnlyPropositionRows,
+    privateCalibrationClaimSummary: {
+      rowsWithClaim: calibrationKeysWithClaim.length,
+      rowsWithoutClaim: baseline.rows.length - calibrationKeysWithClaim.length,
+      byType: claimByTypeCounts,
+      calibrationKeysWithClaim: calibrationKeysWithClaim.sort(),
+    },
   };
 }
 
@@ -336,6 +378,12 @@ function formatReport(report: Report): string {
   lines.push("");
   lines.push(`MEDIUM/LOW confidence rows: ${report.mediumOrLowRows.length}`);
   lines.push(`MATRIX_ONLY_PROPOSITION rows: ${report.matrixOnlyPropositionRows.length}`);
+  lines.push("");
+  lines.push(
+    `Private-calibration claims: ${report.privateCalibrationClaimSummary.rowsWithClaim} rows with a claim, ` +
+      `${report.privateCalibrationClaimSummary.rowsWithoutClaim} without.`,
+  );
+  for (const [k, v] of Object.entries(report.privateCalibrationClaimSummary.byType).sort()) lines.push(`  ${k}: ${v}`);
   return lines.join("\n");
 }
 
@@ -352,8 +400,106 @@ export function isReportClean(report: Report): boolean {
   );
 }
 
-export { buildReport, formatReport, PRIVATE_MATERIAL_VOCABULARY, FORBIDDEN_VERDICT_PATTERNS, CC16_MAPPING };
-export type { Report, RowReport };
+/**
+ * CC-17A (task section 5): parses the deterministic
+ * `**STATE (N rows):** key1, key2, ...` lines from §7.1 of the human-
+ * readable evidence report and returns, per matrixComparison state, the
+ * declared count and the exact set of calibrationKeys listed. A state
+ * whose line reads `(not listed individually...)` instead of a key list
+ * returns an empty `keys` array with `keysListed: false`, so the
+ * reconciliation check below only requires COUNT parity for that state
+ * (by design, for the large SAME majority-case bucket), never a full key
+ * list.
+ */
+function parseMatrixComparisonListsFromMarkdown(
+  markdown: string,
+): Record<string, { count: number; keys: string[]; keysListed: boolean }> {
+  const result: Record<string, { count: number; keys: string[]; keysListed: boolean }> = {};
+  const lineRegex = /\*\*([A-Z_]+) \((\d+) rows?\):\*\*\s*(.*)/g;
+  for (const match of markdown.matchAll(lineRegex)) {
+    const [, state, countStr, rest] = match;
+    const keys = [...(rest ?? "").matchAll(/`([a-z0-9-]+)`/g)].map((m) => m[1]!);
+    result[state!] = { count: Number(countStr), keys, keysListed: keys.length > 0 || /^\(none\)/.test((rest ?? "").trim()) };
+  }
+  return result;
+}
+
+interface ReportReconciliationResult {
+  missingStatesInMarkdown: string[];
+  countMismatches: string[];
+  keysWithWrongState: string[];
+  keysMissingFromMarkdownList: string[];
+  duplicateKeysWithinAState: string[];
+}
+
+/**
+ * CC-17A (task section 5): mechanically proves the human-readable
+ * report's §7.1 matrixComparison lists reconcile exactly against the
+ * live ledger -- never trusts the Markdown prose on its own. Checks,
+ * for every matrixComparison state present in the live data: (a) the
+ * report declares that state with the correct count; (b) every
+ * calibrationKey the report LISTS for that state (where it lists keys
+ * at all) actually carries that matrixComparison value in the live
+ * ledger; (c) for a state whose Markdown line DOES enumerate keys
+ * (`keysListed`), every live key for that state is actually present in
+ * the list -- catches a key silently dropped from the list even when
+ * the declared count is left stale/unchanged; (d) no calibrationKey is
+ * listed twice under the same state.
+ */
+function reconcileReportAgainstMarkdown(report: Report, markdown: string): ReportReconciliationResult {
+  const parsed = parseMatrixComparisonListsFromMarkdown(markdown);
+  const missingStatesInMarkdown: string[] = [];
+  const countMismatches: string[] = [];
+  const keysWithWrongState: string[] = [];
+  const keysMissingFromMarkdownList: string[] = [];
+  const duplicateKeysWithinAState: string[] = [];
+
+  for (const [state, keys] of Object.entries(report.matrixComparisonKeysByState)) {
+    const declared = parsed[state];
+    if (!declared) {
+      missingStatesInMarkdown.push(state);
+      continue;
+    }
+    if (declared.count !== keys.length) {
+      countMismatches.push(`${state}: report says ${declared.count}, ledger has ${keys.length}`);
+    }
+    const seen = new Set<string>();
+    for (const key of declared.keys) {
+      if (seen.has(key)) duplicateKeysWithinAState.push(`${state}: ${key}`);
+      seen.add(key);
+      if (!keys.includes(key)) keysWithWrongState.push(`${state}: ${key} (live matrixComparison is not ${state})`);
+    }
+    if (declared.keys.length > 0) {
+      for (const key of keys) {
+        if (!declared.keys.includes(key)) keysMissingFromMarkdownList.push(`${state}: ${key}`);
+      }
+    }
+  }
+
+  return { missingStatesInMarkdown, countMismatches, keysWithWrongState, keysMissingFromMarkdownList, duplicateKeysWithinAState };
+}
+
+function isReportReconciliationClean(result: ReportReconciliationResult): boolean {
+  return (
+    result.missingStatesInMarkdown.length === 0 &&
+    result.countMismatches.length === 0 &&
+    result.keysWithWrongState.length === 0 &&
+    result.keysMissingFromMarkdownList.length === 0 &&
+    result.duplicateKeysWithinAState.length === 0
+  );
+}
+
+export {
+  buildReport,
+  formatReport,
+  PRIVATE_MATERIAL_VOCABULARY,
+  FORBIDDEN_VERDICT_PATTERNS,
+  CC16_MAPPING,
+  parseMatrixComparisonListsFromMarkdown,
+  reconcileReportAgainstMarkdown,
+  isReportReconciliationClean,
+};
+export type { Report, RowReport, ReportReconciliationResult };
 
 function isMainModule(): boolean {
   const entryPoint = process.argv[1];
@@ -365,9 +511,24 @@ if (isMainModule()) {
   const report = buildReport();
   console.log(formatReport(report));
   const clean = isReportClean(report);
+
+  let reconciliationClean = true;
+  try {
+    const mdPath = path.resolve(import.meta.dirname, "..", "..", "docs", "architecture", "evidence", "CC-17-UNIT202-BLIND-CALIBRATION-BASELINE.md");
+    const markdown = readFileSync(mdPath, "utf-8");
+    const reconciliation = reconcileReportAgainstMarkdown(report, markdown);
+    reconciliationClean = isReportReconciliationClean(reconciliation);
+    console.log("");
+    console.log(`Markdown report reconciliation (target: all empty): ${JSON.stringify(reconciliation)}`);
+  } catch (err) {
+    reconciliationClean = false;
+    console.log("");
+    console.log(`Markdown report reconciliation could not run: ${String(err)}`);
+  }
+
   console.log("");
-  console.log(clean ? "PASS: all blind-calibration-baseline validation gates are clean." : "FAIL: one or more validation gates failed.");
-  if (process.argv.includes("--check") && !clean) {
+  console.log(clean && reconciliationClean ? "PASS: all blind-calibration-baseline validation gates are clean." : "FAIL: one or more validation gates failed.");
+  if (process.argv.includes("--check") && !(clean && reconciliationClean)) {
     process.exit(1);
   }
 }

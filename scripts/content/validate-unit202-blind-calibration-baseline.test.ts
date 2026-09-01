@@ -2,15 +2,23 @@ import { describe, expect, it } from "vitest";
 
 import { blindCalibrationBaselineSchema, blindConfidenceSchema, matrixComparisonSchema } from "@alp/content-schema";
 
+import { readFileSync } from "node:fs";
+import path from "node:path";
+
 import { unit202DepthPerformanceMatrix } from "./data/unit202-depth-performance-matrix.ts";
 import { unit202QualificationScopeAudit } from "./data/unit202-qualification-scope-audit.ts";
 import { unit202BlindCalibrationBaseline } from "./data/unit202-blind-calibration-baseline.ts";
+import { unit202BlindCalibrationBaselinePreCc17aBlindFieldsSnapshot } from "./data/unit202-blind-calibration-baseline-blind-fields-snapshot.ts";
 import {
   buildReport,
   CC16_MAPPING,
   PRIVATE_MATERIAL_VOCABULARY,
   isReportClean,
+  isReportReconciliationClean,
+  reconcileReportAgainstMarkdown,
 } from "./validate-unit202-blind-calibration-baseline.ts";
+
+const CC17_MD_PATH = path.resolve(import.meta.dirname, "..", "..", "docs", "architecture", "evidence", "CC-17-UNIT202-BLIND-CALIBRATION-BASELINE.md");
 
 // CC-17: proves the REAL Unit 202 Blind Calibration Baseline ledger is
 // loadable, valid, and mechanically consistent with the real, governed
@@ -303,5 +311,135 @@ describe("CC-17 Unit 202 Blind Calibration Baseline -- matrix/CC-16 cross-refere
         for (const key of mapping.cc17Keys) expect(realCc17Keys.has(key)).toBe(true);
       }
     }
+  });
+});
+
+// CC-17A: narrow correction -- populate existingPrivateCalibrationClaim
+// (comparison data only, never an input to a blind* field) and reconcile
+// the human-readable report's matrixComparison lists against the live
+// ledger. See task letters A-H in the CC-17A instruction for the exact
+// checks this block proves.
+describe("CC-17A -- private-calibration claim export completeness", () => {
+  it("[A] every row's blind-baseline-defining fields are byte-identical to the frozen pre-CC-17A snapshot, except where a genuine defect was explicitly escalated (none was, this package)", () => {
+    const snapshotKeys = Object.keys(unit202BlindCalibrationBaselinePreCc17aBlindFieldsSnapshot);
+    const liveKeys = unit202BlindCalibrationBaseline.rows.map((r) => r.calibrationKey);
+    expect(liveKeys.sort()).toEqual(snapshotKeys.sort());
+
+    for (const row of unit202BlindCalibrationBaseline.rows) {
+      const frozen = unit202BlindCalibrationBaselinePreCc17aBlindFieldsSnapshot[row.calibrationKey]!;
+      expect(row.publicSpecificationAnchor, `${row.calibrationKey}.publicSpecificationAnchor changed`).toBe(frozen.publicSpecificationAnchor);
+      expect(row.publicRangeAnchor, `${row.calibrationKey}.publicRangeAnchor changed`).toBe(frozen.publicRangeAnchor);
+      expect(row.publicAssessmentAnchor, `${row.calibrationKey}.publicAssessmentAnchor changed`).toBe(frozen.publicAssessmentAnchor);
+      expect(row.transferablePrerequisiteJustification, `${row.calibrationKey}.transferablePrerequisiteJustification changed`).toBe(
+        frozen.transferablePrerequisiteJustification,
+      );
+      expect(row.blindBaselineRequirement, `${row.calibrationKey}.blindBaselineRequirement changed`).toBe(frozen.blindBaselineRequirement);
+      expect(row.blindBaselineDepth, `${row.calibrationKey}.blindBaselineDepth changed`).toBe(frozen.blindBaselineDepth);
+      expect(row.blindBaselineRationale, `${row.calibrationKey}.blindBaselineRationale changed`).toBe(frozen.blindBaselineRationale);
+      expect(row.blindConfidence, `${row.calibrationKey}.blindConfidence changed`).toBe(frozen.blindConfidence);
+    }
+  });
+
+  it("[B] every populated existingPrivateCalibrationClaim begins with the literal prefix 'UNVERIFIED CALIBRATION CLAIM:'", () => {
+    const populated = unit202BlindCalibrationBaseline.rows.filter((r) => r.existingPrivateCalibrationClaim);
+    expect(populated.length).toBeGreaterThan(0);
+    for (const row of populated) {
+      expect(row.existingPrivateCalibrationClaim!.startsWith("UNVERIFIED CALIBRATION CLAIM:")).toBe(true);
+    }
+  });
+
+  it("[C] at least one real row now contains an existingPrivateCalibrationClaim", () => {
+    const report = buildReport();
+    expect(report.privateCalibrationClaimSummary.rowsWithClaim).toBeGreaterThan(0);
+  });
+
+  it("[D] telephone capacitor carries its repository-recorded private calibration claim, matching the governed matrix's Worksheet-18 text", () => {
+    const row = unit202BlindCalibrationBaseline.rows.find((r) => r.calibrationKey === "ac6-1-telephone-capacitor-role")!;
+    expect(row.existingPrivateCalibrationClaim).toBeTruthy();
+    expect(row.existingPrivateCalibrationClaim).toMatch(/worksheet 18/i);
+    expect(row.existingPrivateCalibrationClaim).toMatch(/capacitor/i);
+    // Cross-check directly against the real governed matrix's own text, not just this ledger's own claim.
+    const ac61 = unit202DepthPerformanceMatrix.assessmentCriteria.find((ac) => ac.acNumber === "6.1")!;
+    expect(ac61.cgTeachingWorksheetCalibration).toMatch(/worksheet 18 asks roles of thyristor, telephone capacitor/i);
+  });
+
+  it("[E] telephone resistor/surge-protector/master-vs-extension do NOT inherit the capacitor's Worksheet-18 claim without independent repository evidence", () => {
+    const noInheritKeys = [
+      "ac6-1-telephone-resistor-role",
+      "ac6-1-telephone-surge-protector-role",
+      "ac6-1-telephone-master-vs-extension-distinction",
+      "ac6-1-telephone-other-component-detail-check",
+    ];
+    for (const key of noInheritKeys) {
+      const row = unit202BlindCalibrationBaseline.rows.find((r) => r.calibrationKey === key)!;
+      expect(row.existingPrivateCalibrationClaim, `${key} should carry no private-calibration claim`).toBeUndefined();
+    }
+    // Cross-check against the real governed matrix's own text: it names only
+    // the capacitor, never resistor/surge-protector/master-vs-extension.
+    const ac61 = unit202DepthPerformanceMatrix.assessmentCriteria.find((ac) => ac.acNumber === "6.1")!;
+    expect(ac61.cgTeachingWorksheetCalibration).not.toMatch(/resistor/i);
+    expect(ac61.cgTeachingWorksheetCalibration).not.toMatch(/surge/i);
+    expect(ac61.cgTeachingWorksheetCalibration).not.toMatch(/extension/i);
+  });
+
+  it("[F] the human report's §7.1 matrixComparison counts and lists reconcile exactly to the live ledger", () => {
+    const report = buildReport();
+    const markdown = readFileSync(CC17_MD_PATH, "utf-8");
+    const reconciliation = reconcileReportAgainstMarkdown(report, markdown);
+    expect(reconciliation.missingStatesInMarkdown).toEqual([]);
+    expect(reconciliation.countMismatches).toEqual([]);
+    expect(reconciliation.keysWithWrongState).toEqual([]);
+    expect(reconciliation.duplicateKeysWithinAState).toEqual([]);
+    expect(isReportReconciliationClean(reconciliation)).toBe(true);
+  });
+
+  it("[F, tamper] a MATRIX_BROADER key silently omitted from the human report's list is mechanically caught, even when the declared count is left stale", () => {
+    const report = buildReport();
+    const markdown = readFileSync(CC17_MD_PATH, "utf-8").replace("`ac1-1-indices-and-notation`, ", "");
+    const reconciliation = reconcileReportAgainstMarkdown(report, markdown);
+    expect(reconciliation.keysMissingFromMarkdownList.some((m) => m.startsWith("MATRIX_BROADER") && m.includes("ac1-1-indices-and-notation"))).toBe(
+      true,
+    );
+    expect(isReportReconciliationClean(reconciliation)).toBe(false);
+  });
+
+  it("[F, tamper] a key listed under the wrong matrixComparison state in the human report is mechanically caught", () => {
+    const report = buildReport();
+    // Move ac2-2-ac-quantity-calculation-depth-ceiling (really SAME) into the MATRIX_BROADER line, exactly CC-17's own original defect.
+    const markdown = readFileSync(CC17_MD_PATH, "utf-8").replace(
+      "**MATRIX_BROADER (6 rows):** `ac1-1-indices-and-notation`,",
+      "**MATRIX_BROADER (7 rows):** `ac2-2-ac-quantity-calculation-depth-ceiling`, `ac1-1-indices-and-notation`,",
+    );
+    const reconciliation = reconcileReportAgainstMarkdown(report, markdown);
+    expect(reconciliation.keysWithWrongState.some((m) => m.includes("ac2-2-ac-quantity-calculation-depth-ceiling"))).toBe(true);
+    expect(isReportReconciliationClean(reconciliation)).toBe(false);
+  });
+
+  it("[G] the CC-16 live proposition count is reported as 56 in CC-17/CC-17A source prose, never 55", () => {
+    const validatorSource = readFileSync(path.resolve(import.meta.dirname, "validate-unit202-blind-calibration-baseline.ts"), "utf-8");
+    expect(validatorSource).not.toMatch(/CC-16's? (own )?55\b/i);
+    expect(validatorSource).toMatch(/CC-16's 56 audited/);
+    const mdSource = readFileSync(CC17_MD_PATH, "utf-8");
+    expect(mdSource).not.toMatch(/\b55\b/);
+    // Re-prove directly: the real CC-16 ledger really does have 56 rows.
+    expect(unit202QualificationScopeAudit.rows.length).toBe(56);
+  });
+
+  it("[H] the JSON and CSV exports still contain the identical 60-key calibrationKey set", () => {
+    const jsonPath = path.resolve(import.meta.dirname, "..", "..", "reports", "unit202-calibration", "blind-baseline.json");
+    const csvPath = path.resolve(import.meta.dirname, "..", "..", "reports", "unit202-calibration", "blind-baseline.csv");
+    const json = JSON.parse(readFileSync(jsonPath, "utf-8")) as { rows: { calibrationKey: string }[] };
+    const jsonKeys = json.rows.map((r) => r.calibrationKey).sort();
+    const csvLines = readFileSync(csvPath, "utf-8").trim().split("\n");
+    const header = csvLines[0]!.split(",");
+    const keyIdx = header.indexOf("calibrationKey");
+    const csvKeys = csvLines
+      .slice(1)
+      .map((line) => line.split(",")[keyIdx]!)
+      .sort();
+    const liveKeys = unit202BlindCalibrationBaseline.rows.map((r) => r.calibrationKey).sort();
+    expect(jsonKeys).toEqual(liveKeys);
+    expect(csvKeys).toEqual(liveKeys);
+    expect(jsonKeys.length).toBe(60);
   });
 });

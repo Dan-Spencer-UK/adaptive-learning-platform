@@ -85,6 +85,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix's own AC1.1 content and its cross-AC formula list (P=IV, P=V^2/R etc.) -- those specific formula choices are matrix-recorded as coming from a proprietary worksheet, so the blind baseline reconstructs the SAME transposition skill independently from prerequisite reasoning rather than the specific worksheet formula list.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 2, and Worksheet 2/tutor answers, as requiring transposition of the formulae P=IV, P=V^2/R, pf=R/Z and Z=sqrt(R^2+XL^2).",
       projectArchitectCalibrationQuestions: [
         "Which specific formulae does the worksheet use for transposition practice -- only electrical ones, or also mechanical (W=Fd, W=mg)?",
         "Does the worksheet require transposing formulae with a squared term (e.g. solving for a length inside R=rhoL/A) as multi-step transposition, or only single-step rearrangement?",
@@ -187,6 +188,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matrix reaches the identical conclusion (kelvin as SI base, Celsius as practical scale) via its own reviewFlag reasoning about a proprietary handout's error -- the blind method reaches the same conclusion independently from the approved technical-source dossier alone, without needing to know the handout was ever wrong.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix's own reviewFlag records that C&G Handout 1 lists degrees Celsius as the 'temperature' entry in its SI-unit table, while public sample-assessment paper A tests kelvin.",
       projectArchitectCalibrationQuestions: [
         "Does the handout's own SI-unit table list Celsius or Kelvin as the 'temperature' entry?",
         "If Celsius, is this corrected anywhere else in the teaching material (worksheet, tutor answer), or does the discrepancy with public sample-assessment evidence (which tests kelvin) go unaddressed?",
@@ -215,6 +217,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content and its own explicit anti-overdepth scope guard for this AC.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 1 as containing a quantity/symbol/unit table covering all 11 AC2.2 Range items, with Handout 2's formula appendix recorded as supporting maths context only.",
       projectArchitectCalibrationQuestions: [
         "Is every one of the 11 quantities given equal teaching weight, or are some (e.g. impedance/reactance/power factor) treated more briefly than the DC quantities (resistance/power/current/voltage)?",
         "Is the resistance-vs-resistivity / inductance-vs-inductive-reactance / capacitance-vs-capacitive-reactance distinction explicitly taught as a paired comparison, or introduced separately without cross-reference?",
@@ -234,6 +237,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "This is an inference from the ABSENCE of a calculation verb, not a positive citation -- a reasonable but not certain reading. Public sample-assessment evidence for AC2.2 (per the matrix's own record) tests unit/symbol identification, not numeric AC-circuit calculation, which supports this reading but does not conclusively rule out some minimal calculation expectation.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matrix reaches the identical scope-guard conclusion, citing a proprietary handout's formula appendix as the thing to guard AGAINST importing -- the blind method reaches the same ceiling independently from command-verb analysis alone, without needing to know what the handout's appendix contained.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix's own reviewFlag records that Handout 2's formula appendix contains impedance/reactance calculation material beyond what the direct AC2.2 assessment evidence establishes -- recorded by the matrix as an anti-overdepth guard, not as a positive teaching requirement.",
       projectArchitectCalibrationQuestions: [
         "Does the handout's formula appendix (if any) present impedance/reactance/power-factor formulae as worked calculation examples, or purely as reference/context material?",
         "Does any worksheet question require a numeric impedance, reactance, or power-factor calculation, or only symbol/unit/definition recall?",
@@ -258,6 +262,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 8, and Worksheet 8, as requiring ammeter/voltmeter/wattmeter connection diagrams and a combined metering arrangement.",
       projectArchitectCalibrationQuestions: [
         "Is connection topology tested via labelled circuit diagrams (as the matrix's own worksheet claim suggests), or only through prose/multiple-choice questions?",
       ],
@@ -275,6 +280,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Worksheet 8 as requiring a wattmeter connection diagram (as part of a combined ammeter/voltmeter/wattmeter diagram) -- no worksheet claim specific to the energy meter is recorded.",
       projectArchitectCalibrationQuestions: [
         "Is the wattmeter's own internal current-and-voltage-sensing mechanism taught in any detail, or only its role/reading?",
       ],
@@ -296,6 +302,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix conclusion; matrix additionally notes 'the command verb specify understates the worksheet depth' (a proprietary-material observation the blind method cannot make, but reaches the same calculation-inclusive conclusion independently via public sample-assessment evidence instead).",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 14, and Worksheet 14, as calculating weight from mass and mass from weight under Earth/Moon gravity.",
       projectArchitectCalibrationQuestions: [
         "Does the worksheet require calculation in BOTH directions (weight from mass, and mass from weight), or only one?",
         "Is an Earth/Moon (differing g) comparison used, and if so is it tested as a calculation or only discussed conceptually?",
@@ -323,6 +330,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "AC3.2's own verb is 'explain', not 'calculate' -- the calculation requirement is inferred from sample-assessment evidence ('Sample A tests... lever effort') plus prerequisite reasoning about what 'explain the principles' plausibly requires, not from an explicit calculation-verb citation.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix's calculation-inclusive conclusion; matrix additionally cites a proprietary worksheet as its basis (OFFICIAL_TEACHING_INTERPRETATION per CC-16's audit) where the blind method instead relies on public sample-assessment evidence for the same conclusion.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 16 (levers/gears/pulleys), and Worksheet 16, as containing lever calculations.",
       projectArchitectCalibrationQuestions: [
         "Does the worksheet require multi-step lever calculations, or single-step effort/load-from-known-values only?",
         "Are real-world lever examples (wheelbarrow, scissors, tweezers etc.) used to teach the three classes, and if so which specific examples?",
@@ -359,6 +367,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "No official Range item names 'gears' at all -- this row's anchor is the AC title alone plus sample-assessment evidence, a weaker anchor than a row with a direct Range item.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content; both reach the same conclusion, the blind method via AC-title-plus-sample-assessment rather than a proprietary worksheet.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 16 as covering levers/gears/pulleys generically; no worksheet-specific performance claim distinguishing gears from pulleys is recorded (Worksheet 16 is tied only to lever calculations, see the lever-classes claim).",
       projectArchitectCalibrationQuestions: [
         "Is the idler-gear direction-reversal effect explicitly taught, or only simple two-gear (driver/driven) direction reversal?",
         "Does the worksheet ever require torque calculation through a gear train, or only speed/ratio?",
@@ -379,6 +388,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "No official Range item names 'pulleys' at all -- anchored by AC title plus sample-assessment evidence only.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 16 as covering levers/gears/pulleys generically; no worksheet-specific performance claim distinguishing gears from pulleys is recorded (Worksheet 16 is tied only to lever calculations, see the lever-classes claim).",
       projectArchitectCalibrationQuestions: [
         "Does the worksheet distinguish fixed vs. movable pulleys explicitly, or only test the strand-counting MA relationship generically?",
       ],
@@ -418,6 +428,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "Whether KE/PE numeric calculation specifically belongs here (vs. remaining excluded per AC3.3's own scope note) cannot be resolved from the AC's bare title 'mechanical energy, power and efficiency' alone without assessment evidence naming KE/PE calculation specifically.",
       matrixComparison: "MATRIX_BROADER",
       matrixComparisonNotes: "CC-16's audit found the current matrix's own knowledge-obligations file implements KE-calculation as a REQUIRED, EXPLICIT-basis obligation under this AC, which appears in tension with AC3.3's own matrix-recorded scope-ceiling excluding that formula 'unless... specifically required' -- the blind method cannot resolve this tension from tiers 1-4 alone and flags it rather than picking a side.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Worksheet 15 as containing 17 multi-step work/power/efficiency problems including pump/motor chains, with Worksheets 14/16 recorded as supporting linked-mechanics problems.",
       projectArchitectCalibrationQuestions: [
         "Does the worksheet for this AC include a KE=1/2mv^2 or GPE=mgh calculation, resolving the AC3.3-vs-AC3.4 placement question?",
         "How many distinct multi-step 'chained' problems (e.g. motor/pump efficiency chains) does the worksheet include?",
@@ -440,6 +451,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 1 (electron theory), and Worksheet 1, as asking atom parts/charge, electron-flow direction and conventional current.",
       projectArchitectCalibrationQuestions: [
         "Is the electron-flow-vs-conventional-current 'apparent contradiction' explicitly resolved/explained in the teaching material, or presented as two disconnected facts?",
       ],
@@ -483,6 +495,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 7 (Resistivity), and Worksheet 7, as containing extensive R=rhoL/A, material/length/CSA and cable-voltage-drop calculations.",
       projectArchitectCalibrationQuestions: [
         "Does the worksheet integrate R=rhoL/A with voltage-drop calculation (AC4.7) in the same problem, as the matrix's own cross-AC claim suggests?",
       ],
@@ -520,6 +533,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handouts 4/5, and Worksheets 4/5, as including total resistance, branch current, voltage drop, unknown-value and KVL/KCL problems.",
       projectArchitectCalibrationQuestions: [
         "How many distinct unknowns does a typical worksheet problem require solving for in sequence (e.g. total R, then total I, then each branch I)?",
       ],
@@ -541,6 +555,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 6, and Worksheet 6, as using P=VI, P=I^2R and P=V^2/R in component and cable contexts.",
       projectArchitectCalibrationQuestions: [
         "Is cable/joint resistive power LOSS specifically calculated as a named sub-topic, or only total/component power generically?",
       ],
@@ -561,6 +576,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly, including the same BS 7671 exclusion reasoning.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handouts 3/4/7, and Worksheets 3 and 7, as including voltage-drop calculations and load-terminal voltage.",
       projectArchitectCalibrationQuestions: [
         "Is voltage drop calculation integrated with resistivity calculation (AC4.3, R=rhoL/A for a cable) in the same worksheet problem?",
       ],
@@ -582,6 +598,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content; CC-16's audit had flagged the matrix's own fuse-operation record as only handout-adjacent evidence, but this row shows the blind method reaches the identical conclusion independently via public sample-assessment evidence instead, which CC-16 did not need to invoke for this specific clause.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 1 (thermal/chemical effects), and Worksheet 1, as asking learners to identify the effects; no worksheet claim specific to fuse operation is recorded.",
       projectArchitectCalibrationQuestions: [
         "Is fuse operation taught as its own dedicated sub-topic with a diagram, or mentioned briefly alongside general resistive heating?",
         "Is a magnetic effect (e.g. a solenoid/relay) taught alongside these in the same unit of material, and if so is it clearly attributed to LO5 rather than this AC?",
@@ -604,6 +621,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "No public sample-assessment evidence for this specific AC was located in the governed matrix's own record -- confidence rests on AC-title anchoring plus general-physics prerequisite reasoning alone.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content; matrix's own record likewise notes no direct sample-assessment item was captured for this AC, matching this row's own uncertainty independently.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 9 (pole attraction/repulsion and flux-line conventions), and Worksheet 9, as requiring completion of field patterns.",
       projectArchitectCalibrationQuestions: [
         "Is field-pattern completion/prediction (drawing field lines around a magnet or pole arrangement) an expected worksheet performance, or only verbal description?",
       ],
@@ -625,6 +643,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 9 (definitions and B=Phi/A), and Worksheet 9, as supporting field visualisation.",
       projectArchitectCalibrationQuestions: [
         "Is area-unit conversion (e.g. cm^2 to m^2) a routine part of these calculations, or are areas always given in m^2 directly?",
       ],
@@ -662,6 +681,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "AC5.3's own title names only 'production of a magnetic field', not its direction -- the requirement to include a specific directional-rule convention is inferred from prerequisite/practical reasoning, not a direct spec/Range citation.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matrix reaches the same conclusion, citing a proprietary handout as its basis (OFFICIAL_TEACHING_INTERPRETATION per CC-16's audit) -- the blind method reaches the same conclusion independently via prerequisite reasoning, at correspondingly lower (MEDIUM, not HIGH) confidence.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed knowledge-obligation for this specific direction rule cites 'Handout 9' by name as the source of the right-hand-grip/Maxwell's-screw direction-rule requirement (the general 'a field exists' fact is anchored independently of this claim, see the field-around-conductor row).",
       projectArchitectCalibrationQuestions: [
         "Is the right-hand grip rule the specific name/convention used, or a different equivalent (e.g. corkscrew rule)?",
         "Is direction taught for a straight conductor only, or also for a coil/solenoid in the same lesson?",
@@ -681,6 +701,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "AC5.3's own title states the effect exists ('force on a current-carrying conductor') but does not itself use a calculation verb -- the F=BIl calculation depth is inferred from what naming this specific, quantifiable physical effect plausibly requires at Level 2, not a direct calculation-verb citation.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix's calculation-inclusive conclusion.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Worksheets 10/11 as requiring the F=BIl calculation (paired, in the same worksheet claim, with e=Blv and the Fleming left/right-hand rules).",
       projectArchitectCalibrationQuestions: [
         "Is F=BIl tested as a direct-substitution calculation, or also with unit conversion (e.g. length in mm, current in mA)?",
       ],
@@ -698,6 +719,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "The specific mnemonic NAME 'Fleming's left-hand rule' is a UK vocational-trade convention this audit's own CC-16 predecessor found is sourced, in the current governed corpus, from an encyclopedia article (Wikipedia) rather than a first-party technical or C&G source -- the blind method can confirm a directional rule is needed but not independently verify this exact name/convention from tiers 1-4 alone.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matrix names the identical convention; CC-16's audit separately found this convention's own factual sourcing in the governed corpus is an encyclopedia article, a finding this row inherits diagnostically (tier 6) without it affecting this row's own blind-baseline conclusion (that SOME directional rule is required).",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Worksheets 10/11 as requiring the Fleming left-hand rule specifically (paired with the right-hand rule in the same worksheet claim).",
       projectArchitectCalibrationQuestions: [
         "Does the handout use the specific name 'Fleming's left-hand rule', or a different name/mnemonic for the same physical convention?",
         "Is the rule taught with the First-finger/seCond-finger/thuMb (Field/Current/Motion) mnemonic specifically, or a different memory aid?",
@@ -717,6 +739,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "As with force-on-conductor: AC5.3's title names 'electromotive force' generally, not induction-by-motion or the e=Blv calculation specifically -- inferred from what naming this quantifiable effect plausibly requires, not a direct calculation-verb citation.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix's calculation-inclusive conclusion.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed knowledge-obligation for this row cites 'Handout 10' by name as the source of the induction-by-cutting-flux/e=Blv requirement; the governed matrix separately records Worksheets 10/11 as requiring the e=Blv calculation.",
       projectArchitectCalibrationQuestions: [
         "Is e=Blv tested as a direct-substitution calculation, and does it require unit conversion (velocity in different units)?",
       ],
@@ -734,6 +757,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "Same reasoning and same specific-name caveat as Fleming's left-hand rule above.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matrix names the identical convention; this corpus's own governed assertion for this specific rule cites OpenStax's motional-EMF/Lenz's-law direction content as its factual source (not an encyclopedia, unlike the left-hand-rule case) -- the 'Fleming' NAME itself is still this corpus's own vocabulary layered onto that source, which does not itself use that name (diagnostic, tier 6).",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Worksheets 10/11 as requiring the Fleming right-hand rule specifically (paired with the left-hand rule in the same worksheet claim).",
       projectArchitectCalibrationQuestions: [
         "Does the handout use the specific name 'Fleming's right-hand rule'?",
         "Is this rule explicitly connected to Lenz's law (the induced current opposes the change producing it), or taught purely as a hand-mnemonic without that underlying principle?",
@@ -824,6 +848,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 12 (single-loop alternator, position/EMF, slip rings, f=NxP), and Worksheet 12, as producing a sine wave; Handout 10 is recorded as supporting e=Blv.",
       projectArchitectCalibrationQuestions: [
         "Is the rotating-loop mechanism taught with a progressive/animated diagram sequence, or a single static diagram?",
       ],
@@ -841,6 +866,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix's own conclusion; matrix's reviewFlag explicitly notes the pole-pair convention needed independent technical verification because of a proprietary handout's own wording -- the blind method arrives at the identical, technically-verified convention without needing to consult that handout at all, since the technical-source dossier resolves it independently.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix's own reviewFlag records that C&G Handout 12 defines P as pole pairs (not total poles) in its f=NxP notation.",
       projectArchitectCalibrationQuestions: [
         "Does the handout's own f=N x P notation define P as total poles or pole pairs, and does this match the technically-verified convention?",
       ],
@@ -864,6 +890,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly, including the two-forms-of-average distinction the matrix's own reviewFlag also emphasises.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 13, and Worksheet 13, as performing peak-to-RMS and peak-to-average calculations.",
       projectArchitectCalibrationQuestions: [
         "Is T=1/f explicitly taught as its own named formula, or only implicitly through worked frequency<->period conversions?",
         "Is the zero-full-cycle-average vs. rectified-average distinction explicitly taught as two named concepts, or does the material only ever use one of the two?",
@@ -925,6 +952,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "Same reasoning as the transistor-switching row: generic latching capability is HIGH confidence, but its specific pairing with 'security alarm sounder' rather than another latching application (e.g. a self-holding motor-start circuit) is inferred, not directly cited.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matrix's own requiredSupportingKnowledge does name 'thyristor latching/sounder role' under security alarms specifically -- compatible conclusion, less specific derivation.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix's cgTeachingWorksheetCalibration for AC6.1 records Worksheet 18 as asking the role of the thyristor generically, alongside telephone capacitor/bridge rectifier/thermistor/DIAC -- the matrix's own text does not tie this thyristor claim specifically to the security-alarm application.",
       projectArchitectCalibrationQuestions: [
         "Does the handout use a thyristor (SCR) specifically for the latching role, or a different bistable/latching component (e.g. an SR latch IC, a relay with a holding contact)?",
       ],
@@ -978,6 +1006,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "No tier-1/tier-2 evidence identifies which specific component(s) within 'telephone' equipment are the required teaching focus.",
       matrixComparison: "MATRIX_ONLY_PROPOSITION",
       matrixComparisonNotes: "The current governed matrix specifies the master-socket capacitor's ringing-signal role specifically; CC-16's audit already found this traces to a proprietary-handout-interpretation basis, with the underlying assertion's own factual sourcing being an encyclopedia article (Wikipedia). The blind method independently confirms no component-specific choice is derivable from transferable evidence alone.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Worksheet 18 as asking the role of the telephone capacitor -- this is the only telephone-specific component-role claim named in the matrix's own cgTeachingWorksheetCalibration text among the five telephone sub-clauses in this cluster.",
       projectArchitectCalibrationQuestions: [
         "Which specific telephone component(s) does the handout focus on -- master-socket capacitor, ringer circuit, line-interface diode bridge, microphone/speaker, dialling circuit, or a combination?",
         "Is the capacitor's ringing-signal-coupling role explicitly taught, and is it tested by a worksheet question specifically?",
@@ -1074,6 +1103,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "The GENERAL phase-control principle is a confident cross-AC inference, but the SPECIFIC capacitor-timing/DIAC-trigger-threshold circuit topology (as opposed to, say, a microcontroller-based dimmer) is not independently derivable.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matrix's own requiredSupportingKnowledge does specify the capacitor-timing/DIAC-trigger/TRIAC-phase-control topology -- compatible in principle (phase control), less specific in the blind method (no capacitor-timing-network detail).",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix's cgTeachingWorksheetCalibration for AC6.1 records Worksheet 18 as asking the role of DIAC generically, alongside thyristor/telephone capacitor/bridge rectifier/thermistor -- the matrix's own text does not tie this DIAC claim specifically to the dimmer-switch application.",
       projectArchitectCalibrationQuestions: [
         "Does the handout show the capacitor-charges-through-a-resistor DIAC-trigger topology specifically, or a different phase-control circuit (e.g. a microcontroller-driven dimmer)?",
       ],
@@ -1093,6 +1123,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix's thermistor-sensing conclusion directly; matrix's additional 'switching/relay chain' detail is a plausible elaboration the blind method holds at somewhat lower confidence for the chain's specific mechanism, though the core thermistor-sensor identification is equally HIGH confidence in both.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix's cgTeachingWorksheetCalibration for AC6.1 records Worksheet 18 as asking the role of the thermistor generically, alongside thyristor/telephone capacitor/bridge rectifier/DIAC -- the matrix's own text does not tie this thermistor claim specifically to the heating/boiler-control application.",
       projectArchitectCalibrationQuestions: [
         "Is the switching output specifically a relay, or a different switching device (triac, SSR)?",
         "Is a specific real system (e.g. a named boiler/thermostat product) used as the illustrative example, or a generic block diagram?",
@@ -1113,6 +1144,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "The general rectify-then-switch block pattern is a confident inference, but a 'protection' function specifically (as opposed to, say, speed control or torque control) is not independently derivable from tiers 1-4 -- CC-15A's own technical-source audit separately found the approved dossier source for this application explicitly does NOT establish a protection function, corroborating this row's own uncertainty from the factual-sourcing side.",
       matrixComparison: "MATRIX_BROADER",
       matrixComparisonNotes: "Matrix's requiredSupportingKnowledge names 'controlled switching/protection' -- the 'protection' half is not independently derivable by the blind method, and CC-15A's own technical-source-verification package separately found no approved source establishes it as a factual matter either.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix's cgTeachingWorksheetCalibration for AC6.1 records Worksheet 18 as asking the role of the bridge rectifier generically, alongside thyristor/telephone capacitor/thermistor/DIAC -- the matrix's own text does not tie this bridge-rectifier claim specifically to the motor-control application.",
       projectArchitectCalibrationQuestions: [
         "Does the handout name a specific protection function (overcurrent, thermal) for the motor-control block diagram, or only rectification and switching?",
         "Is a specific real drive product/diagram used, or a generic block diagram?",
@@ -1159,6 +1191,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindConfidence: "HIGH",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix content directly for the generic-principle layer (the matrix's own requirementText for this AC bundles the same 13 basic principles together).",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Handout 17, and Worksheet 17, as covering the thermistor, capacitor unit, diode and half-wave rectifier waveform (see the resistor-colour-code and schematic-symbol-recognition rows for the remaining, more specific Worksheet 17 claims).",
       projectArchitectCalibrationQuestions: [
         "Is each of the 13 given roughly equal teaching weight, or are some treated more briefly than others?",
         "Half-wave vs. full-wave rectification: is the rectifier's 'basic operating principle' taught as single-diode half-wave only, or does it also distinguish the four-diode full-wave/bridge form?",
@@ -1178,6 +1211,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "Confirmed for AT LEAST some components by sample-assessment evidence, but whether ALL 13 components' symbols are required, or only a subset the assessment happens to sample, cannot be resolved from tiers 1-4 alone.",
       matrixComparison: "SAME",
       matrixComparisonNotes: "Matches matrix's own symbol-recognition requirement (the matrix's own visualRepresentationRequirement field names a 'schematic-symbol family' and NPN/PNP distinction specifically).",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Worksheet 17 as covering DIAC/TRIAC/NPN/PNP schematic symbols.",
       projectArchitectCalibrationQuestions: [
         "Are all 13 components' symbols taught and tested, or only a subset?",
         "Is the NPN/PNP symbol distinction (arrow direction) explicitly taught as a named comparison?",
@@ -1214,6 +1248,7 @@ export const unit202BlindCalibrationBaseline: BlindCalibrationBaseline = {
       blindUncertaintyReason: "No tier-1/tier-2 evidence; included only as a plausible vocational-relevance addition consistent with this being a hands-on electrical-installation qualification, not because the bare Range label 'Resistors' itself specifies colour-code depth.",
       matrixComparison: "MATRIX_BROADER",
       matrixComparisonNotes: "Matrix's own requiredSupportingKnowledge explicitly attributes this specific depth to 'worksheet evidence' in its own wording -- CC-16's audit already flagged this as a DEPTH_ONLY_FROM_HANDOUT pattern, which the blind method independently confirms it cannot derive from transferable evidence alone, corroborating CC-16's finding.",
+      existingPrivateCalibrationClaim: "UNVERIFIED CALIBRATION CLAIM: The governed matrix records Worksheet 17 as covering 4-band resistor colour-code decoding.",
       projectArchitectCalibrationQuestions: [
         "Does the worksheet require full 4-band colour-code decoding (value + tolerance), or only recognition that colour bands encode a value?",
       ],
