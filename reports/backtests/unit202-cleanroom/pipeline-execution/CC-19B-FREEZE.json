@@ -1,0 +1,62 @@
+{
+  "generatedBy": "CC-19B execute-frozen-pipeline.ts",
+  "packageId": "CC-19B",
+  "purpose": "Freezes the first mechanical execution of the real production buildStandardPipeline against the accepted CC-19R2 frozen Unit-202 clean-room input.",
+  "lineage": [
+    "3c9b1dd",
+    "20d65c6",
+    "ea7e8be",
+    "54a9ebb"
+  ],
+  "acceptedCc19r2FreezeHash": "4e10f5692805b0ef2a6f0c781e87d5639276c87683e284c57634489c648c4437",
+  "productionQualificationPipelineTreeHash": "95d5cdb063c31795276e45c77b319433d8419341",
+  "node": "v24.12.0",
+  "executionHarnessSha256": "522c9733f8eadfa10f12bb1e911d5fd9c3954870712f9ca9cb020f0d93c41338",
+  "FULL_PUBLIC": {
+    "inputSha256": "c4f6e865b8d77ec05f7816474dc893902a4b69982f302a0979c17d173928d448",
+    "outputSha256": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+    "secondRunOutputSha256": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+    "inputBeforeHash": "956ea2c7b40739b2846f99301209e13a98eb50cb21c0ecd65bf7fff10f1b6ea1",
+    "inputAfterHash": "956ea2c7b40739b2846f99301209e13a98eb50cb21c0ecd65bf7fff10f1b6ea1"
+  },
+  "DEGRADED_NO_ASSESSMENT": {
+    "inputSha256": "c4f6e865b8d77ec05f7816474dc893902a4b69982f302a0979c17d173928d448",
+    "outputSha256": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+    "secondRunOutputSha256": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+    "inputBeforeHash": "956ea2c7b40739b2846f99301209e13a98eb50cb21c0ecd65bf7fff10f1b6ea1",
+    "inputAfterHash": "956ea2c7b40739b2846f99301209e13a98eb50cb21c0ecd65bf7fff10f1b6ea1"
+  },
+  "profileInputEqualityResult": true,
+  "profileOutputEqualityResult": true,
+  "determinismResult": true,
+  "semanticInputInvariants": {
+    "curriculumEvidenceCandidates": 139,
+    "assessmentEvidence": 0,
+    "expected": {
+      "curriculumEvidenceCandidates": 139,
+      "decompositionAttempts": {
+        "total": 139,
+        "EXPLICITLY_ATOMIC": 44,
+        "REVIEW_DECOMPOSED": 81,
+        "UNRESOLVED_DECOMPOSITION": 14
+      },
+      "candidateFactRequirement": {
+        "EXPLICIT_CURRICULUM_FACT": 44,
+        "REVIEW_PROPOSED": 70
+      },
+      "assessmentEvidence": 0
+    }
+  },
+  "readOnlyProvenancePreflightResult": {
+    "publicAssessmentAttemptTrace": "PASS",
+    "sourceIdentityAccessTrace": "PASS"
+  },
+  "outputArtefactHashes": {
+    "reports/backtests/unit202-cleanroom/pipeline-execution/CC-19B-FULL-PUBLIC-INPUT.json": "c4f6e865b8d77ec05f7816474dc893902a4b69982f302a0979c17d173928d448",
+    "reports/backtests/unit202-cleanroom/pipeline-execution/CC-19B-FULL-PUBLIC-OUTPUT.json": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+    "reports/backtests/unit202-cleanroom/pipeline-execution/CC-19B-DEGRADED-NO-ASSESSMENT-INPUT.json": "c4f6e865b8d77ec05f7816474dc893902a4b69982f302a0979c17d173928d448",
+    "reports/backtests/unit202-cleanroom/pipeline-execution/CC-19B-DEGRADED-NO-ASSESSMENT-OUTPUT.json": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+    "reports/backtests/unit202-cleanroom/pipeline-execution/CC-19B-EXECUTION-MANIFEST.json": "24f2edcc3b852e84f42a02678a3187f7bb0f70c4e6d9892e4f20c6afc2657098",
+    "reports/backtests/unit202-cleanroom/pipeline-execution/CC-19B-PIPELINE-RESULT.md": "f089a66b2d9c3e139395b6dcbdb32df56027d21555224ad2909465283c6316ef"
+  }
+}

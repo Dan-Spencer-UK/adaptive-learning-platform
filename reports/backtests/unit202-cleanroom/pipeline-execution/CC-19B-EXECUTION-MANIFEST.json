@@ -1,0 +1,113 @@
+{
+  "generatedBy": "CC-19B execute-frozen-pipeline.ts",
+  "packageId": "CC-19B",
+  "purpose": "Mechanical execution of the REAL production buildStandardPipeline against the frozen (54a9ebb) Unit-202 clean-room input. Execution and freezing only -- no semantic judgement.",
+  "lineage": [
+    "3c9b1dd",
+    "20d65c6",
+    "ea7e8be",
+    "54a9ebb"
+  ],
+  "acceptedCombinedInputHash": "4e10f5692805b0ef2a6f0c781e87d5639276c87683e284c57634489c648c4437",
+  "node": "v24.12.0",
+  "harnessSha256": "522c9733f8eadfa10f12bb1e911d5fd9c3954870712f9ca9cb020f0d93c41338",
+  "productionPipelineTreeHash": "95d5cdb063c31795276e45c77b319433d8419341",
+  "semanticInvariants": {
+    "curriculumEvidenceCandidates": 139,
+    "assessmentEvidence": 0,
+    "expected": {
+      "curriculumEvidenceCandidates": 139,
+      "decompositionAttempts": {
+        "total": 139,
+        "EXPLICITLY_ATOMIC": 44,
+        "REVIEW_DECOMPOSED": 81,
+        "UNRESOLVED_DECOMPOSITION": 14
+      },
+      "candidateFactRequirement": {
+        "EXPLICIT_CURRICULUM_FACT": 44,
+        "REVIEW_PROPOSED": 70
+      },
+      "assessmentEvidence": 0
+    },
+    "matchedForVerifiedFields": true
+  },
+  "provenancePreflights": {
+    "publicAssessmentAttemptTrace": {
+      "sampleQuestionsAttemptFound": true,
+      "sampleQuestionsPermitted": true,
+      "markSchemeAttemptFound": true,
+      "markSchemePermitted": true,
+      "assessmentEvidenceCount": 0,
+      "pass": true
+    },
+    "sourceIdentityAccessTrace": {
+      "unmatchedSourceIdentities": 0,
+      "violations": [],
+      "pass": true
+    }
+  },
+  "profiles": {
+    "FULL_PUBLIC": {
+      "inputHashBefore": "956ea2c7b40739b2846f99301209e13a98eb50cb21c0ecd65bf7fff10f1b6ea1",
+      "inputHashAfter": "956ea2c7b40739b2846f99301209e13a98eb50cb21c0ecd65bf7fff10f1b6ea1",
+      "inputMutated": false,
+      "writtenInputFileHash": "c4f6e865b8d77ec05f7816474dc893902a4b69982f302a0979c17d173928d448",
+      "firstRunOutputHash": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+      "secondRunOutputHash": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+      "writtenOutputFileHash": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+      "deterministic": true,
+      "mechanicalCounts": {
+        "totalCandidates": 139,
+        "byDisposition": {
+          "REQUIRED_EXPLICIT_CURRICULUM": 139
+        },
+        "totalGaps": 209,
+        "byGapType": {
+          "EVIDENCE_NORMALIZATION_REVIEW": 70,
+          "PERFORMANCE_DEPTH_GAP": 139
+        },
+        "byTechnicalCoverageStatus": {
+          "NOT_REQUIRED": 101,
+          "COMPLETE": 38
+        },
+        "unmatchedTechnicalTruthCount": 60,
+        "unmatchedQualificationLevelCount": 0
+      }
+    },
+    "DEGRADED_NO_ASSESSMENT": {
+      "inputHashBefore": "956ea2c7b40739b2846f99301209e13a98eb50cb21c0ecd65bf7fff10f1b6ea1",
+      "inputHashAfter": "956ea2c7b40739b2846f99301209e13a98eb50cb21c0ecd65bf7fff10f1b6ea1",
+      "inputMutated": false,
+      "writtenInputFileHash": "c4f6e865b8d77ec05f7816474dc893902a4b69982f302a0979c17d173928d448",
+      "firstRunOutputHash": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+      "secondRunOutputHash": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+      "writtenOutputFileHash": "0c3597fdb8d3a16d775705bb900f577a8dbafe4b38bea2afd0e5319d8ab89c9f",
+      "deterministic": true,
+      "mechanicalCounts": {
+        "totalCandidates": 139,
+        "byDisposition": {
+          "REQUIRED_EXPLICIT_CURRICULUM": 139
+        },
+        "totalGaps": 209,
+        "byGapType": {
+          "EVIDENCE_NORMALIZATION_REVIEW": 70,
+          "PERFORMANCE_DEPTH_GAP": 139
+        },
+        "byTechnicalCoverageStatus": {
+          "NOT_REQUIRED": 101,
+          "COMPLETE": 38
+        },
+        "unmatchedTechnicalTruthCount": 60,
+        "unmatchedQualificationLevelCount": 0
+      }
+    }
+  },
+  "profileInputsIdentical": true,
+  "profileOutputsIdentical": true,
+  "resultTopLevelShape": [
+    "candidates",
+    "gaps",
+    "unmatchedQualificationLevel",
+    "unmatchedTechnicalTruth"
+  ]
+}
