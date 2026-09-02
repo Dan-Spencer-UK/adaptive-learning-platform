@@ -18,7 +18,7 @@
  * transistor entry) was a "curated, non-exhaustive subset" left
  * deliberately incomplete -- CC-19R1 section 7 identified that as a
  * defect ("contradicts the back-test requirement") and requires a
- * DecompositionAttempt for every one of the 139 curriculum candidates.
+ * DecompositionAttempt for every one of the 140 curriculum candidates.
  * The CC-19R1 additions further down in this file (plus
  * ATOMIC_BY_DESIGN_SUBJECTS and GENUINELY_UNRESOLVED_SUBJECTS) complete
  * that attempt. The original 31 CC-19R proposals are preserved unchanged

@@ -12,7 +12,7 @@
  *     profileEligibility, derivedCandidateKey, originKind,
  *     structuralParentageReviewNote) lives in the wrapper, never inside
  *     normalizedRecord.
- *   DEFECT B -- every one of the 140 CurriculumEvidence candidates now
+ *   DEFECT B -- every one of the 139 CurriculumEvidence candidates now
  *     has an explicit DecompositionAttempt (EXPLICITLY_ATOMIC /
  *     REVIEW_DECOMPOSED / UNRESOLVED_DECOMPOSITION), including
  *     structural parents/categories correctly linked to the child
@@ -453,7 +453,7 @@ if (missingTechnicalClaims.length > 0) {
 }
 
 // ---------------------------------------------------------------------
-// DecompositionAttempt (CC-19R1 section 7-10): every one of the 140
+// DecompositionAttempt (CC-19R1 section 7-10): every one of the 139
 // CurriculumEvidence candidates gets exactly one attempt record.
 // ---------------------------------------------------------------------
 type DecompositionStatus = "EXPLICITLY_ATOMIC" | "REVIEW_DECOMPOSED" | "UNRESOLVED_DECOMPOSITION";
@@ -520,7 +520,7 @@ const decompositionAttempts: DecompositionAttempt[] = candidateOrigins.map((orig
     status = "UNRESOLVED_DECOMPOSITION";
     attemptRationale = "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.";
   } else {
-    // Should not happen once all 140 are accounted for; fail loudly rather than silently mis-classify.
+    // Should not happen once all candidates (139, after the AC3.2 "levers" duplicate fix) are accounted for; fail loudly rather than silently mis-classify.
     throw new Error(`CC-19R1: candidate ${origin.candidateKey} (${origin.curriculumUnitId}) has no explicit fact, review fact, child coverage, atomic-by-design entry, or unresolved-reason entry -- decomposition attempt incomplete.`);
   }
 

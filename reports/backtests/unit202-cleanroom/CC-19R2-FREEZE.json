@@ -1,0 +1,116 @@
+{
+  "generatedBy": "CC-19R2 clean-room build-freeze-cc19r2.ts",
+  "packageId": "CC-19R2",
+  "purpose": "Final narrow provenance/freeze correction -- no new research, no semantic changes. Provenance-only.",
+  "lineage": {
+    "originalCleanRoomBase": "3c9b1dd",
+    "cc19rParentCommit": "20d65c6",
+    "cc19r1SemanticFreezeCommit": "ea7e8be",
+    "note": "CC-19R2 freeze was generated from parent semantic commit ea7e8be, BEFORE the CC-19R2 provenance commit itself was created -- it does not and cannot self-hash its own final commit."
+  },
+  "executionConditions": {
+    "cleanRoomBranch": "cc19-cleanroom",
+    "cleanRoomWorktreeHeadAtFreezeTime": "ea7e8beb29467afbd7e2b7927e766ed20ba74709",
+    "noSubagentToolsUsed": true,
+    "noNewResearchPerformed": true,
+    "forbiddenEvidenceNotAccessed": true,
+    "semanticDataFilesUnchangedSinceEa7e8be": true
+  },
+  "priorFreezeProvenance": {
+    "cc19rFreeze": {
+      "filePath": "reports/backtests/unit202-cleanroom/CC-19R-FREEZE.json",
+      "hashAtCommit20d65c6": "7b07aaad8dd94baeae3656ede8701ad38bff4bbebf1239f90f3ac54508c14855",
+      "hashOnDiskNow": "7b07aaad8dd94baeae3656ede8701ad38bff4bbebf1239f90f3ac54508c14855",
+      "unchanged": true
+    },
+    "cc19r1Freeze": {
+      "filePath": "reports/backtests/unit202-cleanroom/CC-19R1-FREEZE.json",
+      "hashAtCommitEa7e8be": "9ce3489b43b4c5394cfeef9ee0be6e9acf51cbc0c1a9cfd0417cc5146794af68",
+      "hashOnDiskNow": "9ce3489b43b4c5394cfeef9ee0be6e9acf51cbc0c1a9cfd0417cc5146794af68",
+      "unchanged": true
+    }
+  },
+  "sourceAccessCompleteness": {
+    "cc19r1AddendumEntryCount": 11,
+    "violationCount": 0,
+    "violations": [],
+    "result": "COMPLETE"
+  },
+  "historicalReviewProposalPreservation": {
+    "historicalCount": 31,
+    "exactPreservedCount": 31,
+    "mechanicallyEquivalentCount": 0,
+    "missingCount": 0,
+    "unexpectedSemanticChangeCount": 0,
+    "result": "FULLY_PRESERVED"
+  },
+  "semanticInvariants": {
+    "current": {
+      "curriculumEvidenceCandidates": 139,
+      "decompositionAttempts": {
+        "total": 139,
+        "EXPLICITLY_ATOMIC": 44,
+        "REVIEW_DECOMPOSED": 81,
+        "UNRESOLVED_DECOMPOSITION": 14
+      },
+      "candidateFactRequirement": {
+        "EXPLICIT_CURRICULUM_FACT": 44,
+        "REVIEW_PROPOSED": 70
+      },
+      "assessmentEvidence": 0
+    },
+    "expected": {
+      "curriculumEvidenceCandidates": 139,
+      "decompositionAttempts": {
+        "total": 139,
+        "EXPLICITLY_ATOMIC": 44,
+        "REVIEW_DECOMPOSED": 81,
+        "UNRESOLVED_DECOMPOSITION": 14
+      },
+      "candidateFactRequirement": {
+        "EXPLICIT_CURRICULUM_FACT": 44,
+        "REVIEW_PROPOSED": 70
+      },
+      "assessmentEvidence": 0
+    },
+    "match": true
+  },
+  "assembledStandardInputHash": {
+    "recomputed": "4e10f5692805b0ef2a6f0c781e87d5639276c87683e284c57634489c648c4437",
+    "recordedAtEa7e8be": "4e10f5692805b0ef2a6f0c781e87d5639276c87683e284c57634489c648c4437",
+    "unchanged": true
+  },
+  "implementationCodeHashes": {
+    "scripts/backtests/unit202-cleanroom/assemble-standard-input.ts": "20d2c676e5c4d52d0311ed931482511dc446ad84813a10b478ca17ae15e3d7d0",
+    "scripts/backtests/unit202-cleanroom/build-ledger.ts": "019ef9c6da9070baf935357eb565cad4d28eeee5a94492a4ace371c571998389",
+    "scripts/backtests/unit202-cleanroom/review-facts-data.ts": "f5a0b936a1d9ef81e486cd9d44240768e8fcd4a46de0884a87f8b6ce59b7af77",
+    "scripts/backtests/unit202-cleanroom/explicit-facts-data.ts": "8a91730db635bc633cdee126a0a6a7d835276c40050816d13c511512fd978b68",
+    "scripts/backtests/unit202-cleanroom/technical-truth-data.ts": "1d712a5ab96bf6aec1bbc406fb9eb2c47f0d50003414384364cd652541c749df",
+    "scripts/backtests/unit202-cleanroom/curriculum-data.ts": "dd79a7a809ced0420ced97ae43d75b57bd1d9533b17400843e4dc2218288bb99",
+    "scripts/backtests/unit202-cleanroom/qualification-level-data.ts": "0cf2f69edbc346c55cf3769720d12fd7273530adcffccb50276e0c53596c91c1",
+    "scripts/backtests/unit202-cleanroom/official-curriculum-units.ts": "d604904881b0b5a5915e18a06adf61babfd5a78aca55bb6a7fde5446c0a05463",
+    "scripts/backtests/unit202-cleanroom/verbatim-validator.ts": "749d2de0165b7b6684e61d9074202b43c577e153d0cff9d5d024192cdc0b4360",
+    "scripts/backtests/unit202-cleanroom/compile-type-gate-fixture.ts": "c7009ac84362158367d0f6f23aed2ff64f5bfdb17dcda22ce6df64e0ea8761ae",
+    "scripts/backtests/unit202-cleanroom/build-ledger.test.ts": "7035db4ba98c8f60b6700350718ca6766e815bd2b4946754d364a254777f886c",
+    "scripts/backtests/unit202-cleanroom/source-access-reconciliation.ts": "0edfc7bb77a9dcd39d50de0a4c77319b5c1ab8efebe40895692791d60eefcee9",
+    "scripts/backtests/unit202-cleanroom/build-source-access-addendum.ts": "7a7cebf584a5d803aac6f9ec1080835e366be51d80bcfab2f65bf7744f63a4fc",
+    "scripts/backtests/unit202-cleanroom/historical-review-proposal-comparison.ts": "10610b2194c1b565adc868956cd2e9a97707d763b15e538b4ea141d67cd8a9c0"
+  },
+  "historicalSnapshotHash": {
+    "scripts/backtests/unit202-cleanroom/historical-snapshots/review-facts-data.20d65c6.ts": "fe841e9b4ebc696f3d6a250a6d52dfd27802f6122df0becb7d4ca428e0801763"
+  },
+  "outputFileHashes": {
+    "reports/backtests/unit202-cleanroom/CC-19R-SOURCE-ACCESS-LOG.json": "7762f91cbd0664bba41d4e737f311e5972cf31b98a9aad1e41476b31e7625f65",
+    "reports/backtests/unit202-cleanroom/CC-19R1-SOURCE-ACCESS-ADDENDUM.json": "7cda46243b049ecead52f82c5ad1e225948ec85ae8267f0ef26d73889a5ea2fd",
+    "reports/backtests/unit202-cleanroom/cc19r-source-inventory.json": "200b4e25a38883f5c46a8aa10aa6c124afab134e43d70d910dcaa0f8ad20af22",
+    "reports/backtests/unit202-cleanroom/cc19r-normalization-ledger.json": "498080b7da8f9b6f524f753e77d686beb8e9337fb04a2973133153c7474028fa",
+    "reports/backtests/unit202-cleanroom/cc19r-decomposition-coverage.json": "26788bf3ef5f4cbd87fbb629bc846e987a8e1718a6156f1cbc7244a1b52c5711",
+    "reports/backtests/unit202-cleanroom/raw-sources/2365-02_L2_handbook_v1-12.pdf": "f6bc7a6c76e37a60a9d9830f873ab1079d230015d1ad95f458d69caa82dc9515",
+    "reports/backtests/unit202-cleanroom/raw-sources/5357-2365_sample_papers_markschemes_v1-0.pdf": "0fba6fc4d2ad0f7662cc7068b184e815ddca4b17b3fa91f9772c058d62c770d7",
+    "reports/backtests/unit202-cleanroom/raw-sources/5357-2365_sample_papers_v1-2.pdf": "71a39b800f4048d2775529ec4783218bf808e7478561214d40f7a61538f39669",
+    "reports/backtests/unit202-cleanroom/raw-sources/BIPM-SI-Brochure-9-concise-EN.pdf": "5a46755dacd99540ef210ff8e6329f5df1fa426bbd5a7c9cd356cb81098c29eb",
+    "reports/backtests/unit202-cleanroom/raw-sources/bipm-si.txt": "8281fc69a50bb6fb3907fba0d4b0fbbe4702320c5b4298db86b80ee9ed049557",
+    "reports/backtests/unit202-cleanroom/raw-sources/handbook.txt": "5bdc791a6b2ba5ad1b39bc8aee1e94ca74197e36066d67f43cf5ced372351a0b",
+    "reports/backtests/unit202-cleanroom/raw-sources/markscheme.txt": "a11caa89de67f2a26a6a2fb8283704383445f3d6df7b0f6419fd54e3e0b48e8c"
+  }
+}

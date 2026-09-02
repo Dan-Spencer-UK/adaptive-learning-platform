@@ -1,0 +1,139 @@
+{
+  "packageId": "CC-19R2",
+  "purpose": "CC-19R1 new-source access addendum -- every distinct technical-truth source URL used by CC-19R1 that was not already present in CC-19R's original CC-19R-SOURCE-ACCESS-LOG.json, computed by mechanical diff (no new research performed for this package).",
+  "cc19r1NewSourceLogConstruction": "RECONSTRUCTED_AFTER_RESEARCH_FROM_SAME_SESSION_HISTORY",
+  "cc19r1NewSourceChainOfCustodyLimitation": "New technical-source accesses made during CC-19R1 were reconstructed from the same uninterrupted Claude session transcript rather than appended to the access log contemporaneously. No access timestamp is asserted beyond 'occurred during the CC-19R1 package, after the original CC-19R log was written.'",
+  "entryCount": 11,
+  "entries": [
+    {
+      "sourceRef": "Engineering LibreTexts, Semiconductor Devices -- Theory and Application (Fiore), §3.2 \"Rectification\"",
+      "sourceLocator": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/Semiconductor_Devices_-_Theory_and_Application_(Fiore)/03:_Diode_Applications/3.2:_Rectification",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.rectifier-definition"
+      ]
+    },
+    {
+      "sourceRef": "Engineering LibreTexts, Mechanics Map (Moore et al.), §11.2 \"Belt- and Gear-Driven Systems\"",
+      "sourceLocator": "https://eng.libretexts.org/Bookshelves/Mechanical_Engineering/Mechanics_Map_(Moore_et_al.)/11:_Rigid_Body_Kinematics/11.2:_Belt-_and_Gear-Driven_Systems",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.gear-mechanism"
+      ]
+    },
+    {
+      "sourceRef": "OpenStax, College Physics 2e, §20.5 \"Alternating Current versus Direct Current\"",
+      "sourceLocator": "https://openstax.org/books/college-physics-2e/pages/20-5-alternating-current-versus-direct-current",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.ac-sine-equation"
+      ]
+    },
+    {
+      "sourceRef": "OpenStax, College Physics 2e, §22.9 \"Magnetic Fields Produced by Currents: Ampere's Law\"",
+      "sourceLocator": "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.magnetic-field-production"
+      ]
+    },
+    {
+      "sourceRef": "OpenStax, College Physics 2e, §9.5 \"Simple Machines\"",
+      "sourceLocator": "https://openstax.org/books/college-physics-2e/pages/9-5-simple-machines",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.mechanical-advantage",
+        "unit202.review-fact.pulley-mechanism"
+      ]
+    },
+    {
+      "sourceRef": "OpenStax, University Physics Volume 2, §10.4 \"Electrical Measuring Instruments\"",
+      "sourceLocator": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.ammeter-definition",
+        "unit202.review-fact.ohmmeter-definition",
+        "unit202.review-fact.voltmeter-definition"
+      ]
+    },
+    {
+      "sourceRef": "OpenStax, University Physics Volume 2, §8.1 \"Capacitors and Capacitance\"",
+      "sourceLocator": "https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.capacitor-definition"
+      ]
+    },
+    {
+      "sourceRef": "Physics LibreTexts, Body Physics (Davis), §6.2 \"Body Levers\"",
+      "sourceLocator": "https://phys.libretexts.org/Bookshelves/Conceptual_Physics/Body_Physics_-_Motion_to_Metabolism_(Davis)/06:_Forces_within_the_Body/6.02:_Body_Levers",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.lever-class-1",
+        "unit202.review-fact.lever-class-2",
+        "unit202.review-fact.lever-class-3"
+      ]
+    },
+    {
+      "sourceRef": "Workforce LibreTexts, Electric Circuits III -- Semiconductors (Kuphaldt), §7.4 \"The DIAC\"",
+      "sourceLocator": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_III_-_Semiconductors_(Kuphaldt)/07:_Thyristors/7.04:_The_DIAC",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.diac-definition"
+      ]
+    },
+    {
+      "sourceRef": "Workforce LibreTexts, Electric Circuits III -- Semiconductors (Kuphaldt), §7.5 \"The Silicon-Controlled Rectifier (SCR)\"",
+      "sourceLocator": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_III_-_Semiconductors_(Kuphaldt)/07:_Thyristors/7.05:_The_Silicon-Controlled_Rectifier_(SCR)",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.thyristor-definition"
+      ]
+    },
+    {
+      "sourceRef": "Workforce LibreTexts, Electric Circuits III -- Semiconductors (Kuphaldt), §7.6 \"The TRIAC\"",
+      "sourceLocator": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_III_-_Semiconductors_(Kuphaldt)/07:_Thyristors/7.06:_The_TRIAC",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true,
+      "provenancePhase": "CC-19R1",
+      "loggingStatus": "RETROSPECTIVELY_RECONSTRUCTED_FROM_SAME_SESSION_HISTORY",
+      "claimKeysSupported": [
+        "unit202.review-fact.triac-definition"
+      ]
+    }
+  ],
+  "completenessCheckAtGenerationTime": {
+    "violationCount": 0,
+    "violations": []
+  }
+}

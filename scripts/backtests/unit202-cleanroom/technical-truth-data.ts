@@ -532,7 +532,7 @@ export const TECHNICAL_CLAIMS: readonly TechnicalClaim[] = [
   // ================================================================
   // CC-19R1 additions (task section 7/9/11): technical truth researched
   // to complete the decomposition-attempt requirement for every one of
-  // the 140 curriculum candidates. Same methodology and source hierarchy
+  // the 139 curriculum candidates. Same methodology and source hierarchy
   // as CC-19R section 22-23 -- researched only AFTER the corresponding
   // REVIEW_PROPOSED fact requirement was proposed (see review-facts-data.ts).
   // ================================================================
