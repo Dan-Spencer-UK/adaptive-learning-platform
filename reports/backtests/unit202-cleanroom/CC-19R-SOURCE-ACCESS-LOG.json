@@ -1,0 +1,306 @@
+{
+  "executionConditions": {
+    "freshClaudeSession": true,
+    "worktreeBase": "3c9b1dd",
+    "noSubagentsUsed": true,
+    "note": "This log is written directly by the operating Claude Code session performing CC-19R; no Agent/subagent/delegated-research tool was invoked anywhere in this package."
+  },
+  "evidentialAccessLog": [
+    {
+      "accessSequence": 1,
+      "sourceType": "WEB_PAGE",
+      "reference": "City & Guilds \"Electrotechnical Craft qualifications and training courses\" landing page",
+      "locator": "https://www.cityandguilds.com/qualifications-and-apprenticeships/building-services-industry/electrical-installation/2365-electrotechnical-craft",
+      "reason": "Locate the current official Level 2 document links (handbook, sample papers, mark scheme) from the first-party landing page, per CC-19R section 4.",
+      "evidenceRole": "OFFICIAL_CURRICULUM / PUBLIC_ASSESSMENT (discovery only)",
+      "permitted": true
+    },
+    {
+      "accessSequence": 2,
+      "sourceType": "DOWNLOADED_PUBLIC_FILE",
+      "reference": "City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02) Qualification Handbook v1-12",
+      "locator": "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/centre_documents/2365-02_l2_electrical_installation_qualification_handbook_v1-12-pdf.pdf (local copy: raw-sources/2365-02_L2_handbook_v1-12.pdf, SHA-256 f6bc7a6c76e37a60a9d9830f873ab1079d230015d1ad95f458d69caa82dc9515)",
+      "reason": "Read Unit 202 Principles of Electrical Science curriculum content (pages 23-29): LO1-LO6, all Assessment Criteria, all Range entries, verbatim.",
+      "evidenceRole": "OFFICIAL_CURRICULUM",
+      "permitted": true
+    },
+    {
+      "accessSequence": 3,
+      "sourceType": "DOWNLOADED_PUBLIC_FILE",
+      "reference": "5357 and 2365 Sample Papers v1-2 (current public sample-paper QUESTIONS document, followed from the Level 2 landing page; independently re-confirmed identical via the Level 3 landing page's own copy of the same filename)",
+      "locator": "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers-v1-2-pdf.pdf (local copy: raw-sources/5357-2365_sample_papers_v1-2.pdf, SHA-256 71a39b800f4048d2775529ec4783218bf808e7478561214d40f7a61538f39669)",
+      "reason": "Attempted to read Unit 602 (2365-602 Principles of Electrical Science) sample assessment questions, per CC-19R section 16.",
+      "evidenceRole": "PUBLIC_ASSESSMENT (ATTEMPTED -- NOT USED)",
+      "permitted": true,
+      "outcome": "RAW_SOURCE_UNAVAILABLE: the downloaded PDF is password-protected (poppler pdftotext/pdfinfo and the Read tool's PDF renderer both reject it with 'Incorrect password', including with an explicit empty user password). CC-19R section B explicitly disallows password-protected/private material. No content from this file was read or used as evidence."
+    },
+    {
+      "accessSequence": 4,
+      "sourceType": "DOWNLOADED_PUBLIC_FILE",
+      "reference": "5357 and 2365 Sample Papers - Mark schemes v1-0",
+      "locator": "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers---mark-schemes-v1-0-pdf.pdf (local copy: raw-sources/5357-2365_sample_papers_markschemes_v1-0.pdf, SHA-256 0fba6fc4d2ad0f7662cc7068b184e815ddca4b17b3fa91f9772c058d62c770d7)",
+      "reason": "Locate the official correct-answer key for the 2365-602 Principles of Electrical Science sample e-volve MC test, per CC-19R section 16.",
+      "evidenceRole": "PUBLIC_ASSESSMENT (ACCESSED, INSUFFICIENT)",
+      "permitted": true,
+      "outcome": "Not encrypted; content read in full. Contains only question-number-to-answer-letter keys (40 items for unit 2365-602), with no question stems, no answer-option text, and no distractor content. CC-19R section 16 requires an exact/short question-stem excerpt and the correct-answer CONTENT for every item -- unavailable from this file alone, so no AssessmentEvidence records were created."
+    },
+    {
+      "accessSequence": 5,
+      "sourceType": "WEB_PAGE",
+      "reference": "Ofqual Handbook: General Conditions of Recognition -- Section E: Design and development of qualifications (Condition E9, level descriptors)",
+      "locator": "https://www.gov.uk/guidance/ofqual-handbook/section-e-design-and-development-of-qualifications (page states 'Page last updated: 4 December 2025')",
+      "reason": "Obtain the current official Level 2 knowledge/understanding and skills descriptors, per CC-19R section C/17.",
+      "evidenceRole": "QUALIFICATION_LEVEL",
+      "permitted": true
+    },
+    {
+      "accessSequence": 6,
+      "sourceType": "DOWNLOADED_PUBLIC_FILE",
+      "reference": "BIPM, \"SI: A concise summary of the International System of Units, SI\" (9th edition concise brochure)",
+      "locator": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3 (local copy: raw-sources/BIPM-SI-Brochure-9-concise-EN.pdf)",
+      "reason": "Independently research authoritative SI base/derived unit identities for AC2.1/AC2.2 EXPLICIT_CURRICULUM_FACT requirements (Table 1 and Table 2), and the generic 'unit one' convention text used (only in support) for the power-factor fact, per CC-19R section D/18/19.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 7,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, University Physics Volume 2, Section 15.4 \"Power in an AC Circuit\"",
+      "locator": "https://openstax.org/books/university-physics-volume-2/pages/15-4-power-in-an-ac-circuit",
+      "reason": "LOCKED CC-19R section 19: find a separate authoritative source establishing power factor's defining relationship, before BIPM's generic unit-one statement may be used in support.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 8,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, College Physics 2e, Section 23.11 \"Reactance, Inductive and Capacitive\"",
+      "locator": "https://openstax.org/books/college-physics-2e/pages/23-11-reactance-inductive-and-capacitive",
+      "reason": "Research SI unit of inductive/capacitive reactance (ohm) for the AC2.2 explicit fact requirement.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 9,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, College Physics 2e, Section 23.12 \"RLC Series AC Circuits\"",
+      "locator": "https://openstax.org/books/college-physics-2e/pages/23-12-rlc-series-ac-circuits",
+      "reason": "Research SI unit of impedance (ohm) for the AC2.2 explicit fact requirement.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 10,
+      "sourceType": "WEB_PAGE",
+      "reference": "NIST, \"Guide to the SI\", Chapter 4: The Two Classes of SI Units and the SI Prefixes",
+      "locator": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-4-two-classes-si-units-and-si-prefixes",
+      "reason": "Research coherent (non-specially-named) SI derived units for area, volume, velocity, and density, for the AC2.1 explicit fact requirements.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 11,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, University Physics Volume 2, Section 9.3 \"Resistivity and Resistance\"",
+      "locator": "https://openstax.org/books/university-physics-volume-2/pages/9-3-resistivity-and-resistance",
+      "reason": "Research SI unit of resistivity (ohm-metre) for AC2.2, and Ohm's law / R=rhoL/A relationships for the AC4.3/AC4.4/AC4.5 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 12,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, Physics, Section 4.3 \"Newton's Second Law of Motion\"",
+      "locator": "https://openstax.org/books/physics/pages/4-3-newtons-second-law-of-motion",
+      "reason": "Research the definitions of mass and weight (W=mg) for the AC3.1 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 13,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, College Physics 2e, Section 21.1 \"Resistors in Series and Parallel\"",
+      "locator": "https://openstax.org/books/college-physics-2e/pages/21-1-resistors-in-series-and-parallel",
+      "reason": "Research series/parallel total-resistance formulas for the AC4.4 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 14,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, University Physics Volume 2, Section 11.1 \"Magnetism and Its Historical Discoveries\"",
+      "locator": "https://openstax.org/books/university-physics-volume-2/pages/11-1-magnetism-and-its-historical-discoveries",
+      "reason": "Research like/unlike magnetic pole attraction/repulsion for the AC5.1 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 15,
+      "sourceType": "WEB_PAGE",
+      "reference": "Engineering LibreTexts, Electromagnetics I (Ellingson), Section 2.5 \"Magnetic Flux Density\"",
+      "locator": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electro-Optics/Book:_Electromagnetics_I_(Ellingson)/02:_Electric_and_Magnetic_Fields/2.05:_Magnetic_Flux_Density",
+      "reason": "Research the flux (Wb) vs flux-density (T) distinction for the AC5.2 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 16,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, University Physics Volume 2, Section 11.4 \"Magnetic Force on a Current-Carrying Conductor\"",
+      "locator": "https://openstax.org/books/university-physics-volume-2/pages/11-4-magnetic-force-on-a-current-carrying-conductor",
+      "reason": "Research the F = IL x B relationship for the AC5.3.b REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 17,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, University Physics Volume 2, Section 13.1 \"Faraday's Law\"",
+      "locator": "https://openstax.org/books/university-physics-volume-2/pages/13-1-faradays-law",
+      "reason": "Research Faraday's law (induced EMF vs rate of change of magnetic flux) for the AC5.3.d/AC5.4.d REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 18,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, University Physics Volume 2, Section 9.1 \"Electrical Current\"",
+      "locator": "https://openstax.org/books/university-physics-volume-2/pages/9-1-electrical-current",
+      "reason": "Research current as rate of charge flow, and conventional-vs-electron-flow direction, for the AC4.1 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 19,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, College Physics 2e, Section 18.2 \"Conductors and Insulators\"",
+      "locator": "https://openstax.org/books/college-physics-2e/pages/18-2-conductors-and-insulators",
+      "reason": "Research conductor (free electrons) / insulator (bound electrons) definitions for the AC4.2 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 20,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, University Physics Volume 2, Section 9.5 \"Electrical Energy and Power\"",
+      "locator": "https://openstax.org/books/university-physics-volume-2/pages/9-5-electrical-energy-and-power",
+      "reason": "Research resistive/thermal power dissipation P=I^2R for the AC4.8 REVIEW_PROPOSED fact decomposition (thermal effect of current).",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 21,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, Chemistry 2e, Section 17.7 \"Electrolysis\"",
+      "locator": "https://openstax.org/books/chemistry-2e/pages/17-7-electrolysis",
+      "reason": "Research electrolysis as the chemical effect of electric current, for the AC4.8 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 22,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, University Physics Volume 3, Section 9.7 \"Semiconductor Devices\"",
+      "locator": "https://openstax.org/books/university-physics-volume-3/pages/9-7-semiconductor-devices",
+      "reason": "Research diode (one-way current) and transistor (amplify/switch) definitions for the AC6.2 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 23,
+      "sourceType": "WEB_PAGE",
+      "reference": "Engineering LibreTexts, Introduction to Physical Electronics (Wilson), Section 1.10 \"Reverse Biased/Breakdown\"",
+      "locator": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/Introduction_to_Physical_Electronics_(Wilson)/01:_Conductors_Semiconductors_and_Diodes/1.10:_Reverse_Biased_Breakdown",
+      "reason": "Research Zener diode reverse-breakdown voltage-reference behaviour for the AC6.2 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 24,
+      "sourceType": "WEB_PAGE",
+      "reference": "Engineering LibreTexts, Semiconductors, \"Light Emitting Diodes\"",
+      "locator": "https://eng.libretexts.org/Bookshelves/Materials_Science/Supplemental_Modules_(Materials_Science)/Semiconductors/Light_Emitting_Diodes",
+      "reason": "Research LED (p-n junction, forward bias, light emission) definition for the AC6.2 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 25,
+      "sourceType": "WEB_PAGE",
+      "reference": "Physics LibreTexts, Electricity and Magnetism (Tatum), Section 4.3 \"Resistance and Temperature\"",
+      "locator": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electricity_and_Magnetism_(Tatum)/04:_Batteries_Resistors_and_Ohm's_Law/4.03:_Resistance_and_Temperature",
+      "reason": "Research thermistor (temperature-sensitive resistance) definition for the AC6.2 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 26,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, Physics, Section 9.3 \"Simple Machines\"",
+      "locator": "https://openstax.org/books/physics/pages/9-3-simple-machines",
+      "reason": "Research the work formula (W=fd) and mechanical-efficiency formula (%eff=Wo/Wi x100) for the AC3.3/AC3.4 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 27,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, College Physics 2e, Section 7.7 \"Power\"",
+      "locator": "https://openstax.org/books/college-physics-2e/pages/7-7-power",
+      "reason": "Research the mechanical power formula P=W/t for the AC3.3/AC3.4 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 28,
+      "sourceType": "WEB_PAGE",
+      "reference": "OpenStax, Physics, Section 9.2 \"Mechanical Energy and Conservation of Energy\"",
+      "locator": "https://openstax.org/books/physics/pages/9-2-mechanical-energy-and-conservation-of-energy",
+      "reason": "Research the kinetic/potential energy formulas (KE=1/2mv^2, PE=mgh) for the AC3.3/AC3.4 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH",
+      "permitted": true
+    },
+    {
+      "accessSequence": 29,
+      "sourceType": "WEB_PAGE",
+      "reference": "All About Circuits, Semiconductors chapter 7, \"The Silicon-Controlled Rectifier (SCR)\" (thyristor)",
+      "locator": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-7/silicon-controlled-rectifier-scr/",
+      "reason": "Attempted to research thyristor latching/switching behaviour for an AC6.2 REVIEW_PROPOSED fact decomposition.",
+      "evidenceRole": "TECHNICAL_TRUTH (ATTEMPTED -- NOT USED)",
+      "permitted": true,
+      "outcome": "HTTP 403 Forbidden. No content retrieved or used. Thyristor decomposition left UNRESOLVED_DECOMPOSITION (see cc19r-decomposition-coverage.json / KNOWN_UNRESOLVED_DECOMPOSITIONS)."
+    }
+  ],
+  "discoverySearchQueries": [
+    "City & Guilds 2365 Electrotechnical qualification official page",
+    "site:cityandguilds.com 2365 electrical installation qualification",
+    "Ofqual General Conditions of Recognition Section E Condition E9 level descriptors Level 2",
+    "BIPM SI brochure table derived units ohm watt hertz ampere volt joule henry farad symbol",
+    "NIST power factor definition dimensionless ratio real power apparent power authoritative",
+    "site:nist.gov OR site:openstax.org \"power factor\" AC circuit definition ratio",
+    "NIST SP811 examples of SI coherent derived units area volume speed velocity mass density table",
+    "OpenStax University Physics impedance reactance ohms unit definition AC circuit resistivity ohm-metre",
+    "OpenStax University Physics resistivity definition ohm-meter unit rho",
+    "OpenStax University Physics mass weight definition difference gravity newton",
+    "OpenStax College Physics resistors in series and parallel formula total resistance",
+    "OpenStax University Physics magnetic flux density definition tesla weber formula B = Phi/A",
+    "LibreTexts engineering Zener diode voltage regulation reverse breakdown definition",
+    "Engineering LibreTexts thermistor definition resistance varies with temperature",
+    "Engineering LibreTexts light emitting diode LED definition emits light forward bias",
+    "Engineering LibreTexts thyristor SCR definition switching device latch",
+    "OpenStax work energy power definition formula work = force x distance power = work/time efficiency",
+    "OpenStax mechanical efficiency definition useful energy output divided by energy input percentage",
+    "OpenStax kinetic energy potential energy formula KE=1/2mv^2 gravitational PE=mgh",
+    "OpenStax semiconductor diode definition allows current one direction physics",
+    "OpenStax electric current definition flow of electrons conventional current direction",
+    "OpenStax power dissipated resistor I^2 R Joule heating formula",
+    "OpenStax electrolysis definition electric current chemical reaction decomposition",
+    "OpenStax conductors insulators free electrons definition physics",
+    "OpenStax Faraday's law induced emf rate of change of magnetic flux equation"
+  ],
+  "genericMechanismFilesInspected": [
+    "packages/qualification-pipeline/src/types.ts",
+    "packages/qualification-pipeline/src/index.ts"
+  ],
+  "note": "packages/qualification-pipeline/src/rules.ts was NOT opened this session -- the ledger builder does not call buildStandardPipeline, so the deterministic rule implementation was not needed; types.ts's interfaces/enums were sufficient to shape Layer-B normalizedRecord fields."
+}

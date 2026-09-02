@@ -1,0 +1,2076 @@
+City & Guilds Level 2
+Diploma in Electrical
+Installations (Buildings
+and Structures) (2365-02)
+
+April 2026 Version 1.12
+   Qualification at a glance
+
+   Subject area             Electrotechnical
+   City & Guilds number
+   Age group approved       2365-02
+   Entry requirements
+   Assessment               16+
+   Fast track
+   Support materials        None
+
+   Registration and         By online test/practical assignment
+   certification            Available
+
+                            Qualification handbook
+                            Assessment Task Manual
+                            Textbook available June 2013
+                            Smartscreen available February 2013
+                            Consult the Walled Garden/Online
+                            Catalogue for last dates
+
+   Title and level          City &   GLH  GLH                 Accreditation
+                            Guilds                            number
+   Level 2 Diploma in       number
+   Electrical Installation           454  490                 600/5498/0
+   (Buildings and           2365-02
+   Structures)
+
+   Version and date         Change detail                     Section
+   1.1 Aug 2012             Correction of Assessment          Assessment
+   1.2 Sept 2012            information                       Assessment
+   1.3 Sept 2012            Amended information on where      Unit
+   1.4 Feb 2013             to obtain assessments
+                            Amended typing error in unit aim  Units and
+   1.5 Feb 2013             for unit 201.                     Assessment
+   1.6 July 2017            Added Appendix 3 ­ Normative      Unit and
+   1.7 Oct 2017             references for use in open book   Assessment
+                            examinations
+   1.8 Oct 2019                                               Structure
+                            Review and update to the
+                            following units: 201 and 202
+
+                            Test duration for unit 210
+                            amended to 40 minutes.
+                            Permitted material added to all
+                            test specifications.
+                            Range added to LO 4 in unit 201
+
+                            Amended the Unit
+                            accreditation number for 210
+
+2  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     1.9 March 2022   TQT clarification and highlighted  Pages 2 and
+     1.10 Oct 2024    CG added to front cover and        6
+                      amended address on rear            Front cover
+                                                         and rear
+
+                      Addition of IQA information and    Page 9
+                      standard CASS statement.
+
+     1.11 Dec 2024    Unit 201 Learning Outcome 4, 5 Availability
+                      assessment criteria 1 amended of Units
+
+     1.12 April 2026  Updates from BS 7671               Throughout
+                      Amendment 4
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          3
+12
+
+       Contents
+
+       1           Introduction                                   4
+       2
+                   Structure                                      5
+       3
+                   Centre requirements                            6
+       4
+       4.1         Approval                                       6
+       5
+       Unit 201    Resource requirements                          6
+
+                   Guidance note                                  8
+
+                   Candidate entry requirements                   8
+
+                   Accreditation of prior learning (APL)          8
+
+                   Delivering the qualification                   9
+
+                   Initial assessment and induction               9
+
+                   Support materials                              9
+
+                   Assessment                                     10
+
+                   Assessment of the qualification                10
+
+                   Test Specifications                            12
+
+                   Availability of units                          15
+
+                   Health and safety in building services engineering 16
+
+       Unit 202    Principles of Electrical Science               23
+       Unit 203
+       Unit 204    Electrical installations technology            29
+       Unit 210
+                   Installation of wiring systems and enclosures  35
+       Appendix 1
+       Appendix 2  Understand how to communicate with others wiht in
+       Appendix 3
+                   building services engineering                  38
+       Appendix 4
+                   Relationships to other qualifications          42
+
+                   Disclaimer                                     43
+
+                   Normative references for use in open book
+
+                   examinations                                   44
+
+                   Sources of general information                 44
+
+    4  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     1 Introduction
+
+     This document tells you what you need to do to deliver the qualification:
+
+     Area                  Description
+
+     Who is the            For candidates who want to work as electricians in
+                           qualification for? the building services engineering sector.
+                           This qualification does not make candidates fully
+                           qualified electricians (see Appendix 2).
+
+     What does the         It allows candidates to learn, develop and practise
+     qualification cover?  the skills required for employment and/or career
+                           progression in the electrotechnology sector. See
+                           Appendix 2 for further information.
+
+     What opportunities    It allows candidates to progress into employment,
+     for progression are   although not as a fully qualified electrician, or to the
+     there?                following City & Guilds qualifications:
+                           · Level 3 Diploma in Electrical Installation
+
+                               (Buildings and Structures)
+
+                           · Level 3 Diploma in Electrotechnology
+                           · Level 3 Award in the Initial Verification and
+
+                               Certification of Electrical Installations
+
+                           · Level 3 Award in the Periodic Inspection, Testing and
+                               Certification of Electrical Installations.
+
+                                                                                                .
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          5
+   Structure
+
+   To achieve the Level 2 Diploma in Electrical Installations (Buildings
+   and Structures), learners must achieve 49 credits from the mandatory
+   units available.
+
+   Unit           City &                                    Unit title                 Credit Level  GLH
+   accreditation  Guilds                                                              value
+   number         unit                                                                               26
+                  number                                    Health and safety in building 3      2   89
+   T/503/9669                                                                                        115
+                  201                                                                                196
+                                                                                                     28
+                                                            services engineering
+
+   R/503/9937     202                                       Principles of electrical science 10  2
+
+   Y/503/9938     203                                       Electrical installations  12         2
+                                                            technology
+
+   R/503/9940     204                                       Installation of wiring systems 21    2
+
+                                                            and enclosures
+
+   J/602/2482     210                                       Understand how to         3          2
+
+                                                            communicate with others
+                                                            within building services
+                                                            engineering
+
+Total Qualification Time
+
+Total Qualification Time (TQT) is the total amount of time, in hours, expected to be spent by a Learner to achieve a
+qualification. It includes both guided learning hours (which are listed separately) and hours spent in preparation, study and
+assessment.
+
+Title and level                                             GLH                TQT
+                                                            454                490
+Level 2 Diploma in Electrical Installations (Buildings and
+Structures),
+
+6  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     2 Centre requirements
+
+     Approval
+
+     Centres already offering City & Guilds qualifications
+     If your Centre is approved to offer the 2330 Certificate in
+     Electrotechnical Technology you can apply for the new Level 2
+     Diploma in Electrical Installations (Buildings and Structures) (2365-
+     02) approval using the fast track approval form, available from the City &
+     Guilds website.
+
+      Centres should use the fast track form if:
+      · there have been no changes to the way the qualifications are
+
+           delivered, and
+      · they meet all of the approval criteria in the fast track form guidance
+
+          notes.
+
+     Fast track approval is available for 12 months from the launch of the
+     qualification. After 12 months, the Centre will have to go through the
+     standard Qualification Approval Process. The centre is responsible for
+     checking that fast track approval is still current at the time of application.
+
+     Centres NOT already offering City & Guilds qualifications To offer
+     this qualification, new centres will need to gain both centre and
+     qualification approval. Please refer to the Centre Manual - Supporting
+     Customer Excellence for further information.
+
+     Centre staff should familiarise themselves with the structure, content and
+     assessment requirements of the qualification[s] before designing a course
+     programme.
+
+     Resource requirements
+
+      Physical resources and site agreements
+
+     Centres can use specially designated areas within a centre to develop
+     practical skills and to assess the simulated practical assignments. The
+     equipment, systems and machinery must meet industrial standards and
+     be capable of being used under normal working conditions.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          7
+   Human Resources
+
+   Staff delivering this qualification must be able to demonstrate that they meet
+   the following occupational expertise requirements. They should:
+
+        · be technically competent in the area(s) for which they are delivering
+              training and/or have experience of providing training
+
+        · hold appropriate qualifications detailed in this handbook
+        · have recent relevant experience in the specific area they are
+
+              assessing
+        · be able to demonstrate occupational competence in the areas of the
+
+              Building Services Engineering (BSE) for which they are delivering
+              training and/or assessment. This competence must be at a level
+              equal to, or above, the level of training being delivered and must
+              include current knowledge and skills of each industry (for which the
+              assessment is taking place), its techniques, settings, legislative and
+              regulatory requirements, codes of practice and guidance
+        · have credible experience of providing training and/or assessment.
+
+   Centre staff may undertake more than one role, eg tutor and assessor or internal
+   quality assurer, but must never verify their own assessments.
+
+   Assessors must;
+
+        · hold, or be working towards TAQA (A1/A2 ­ D32/33 updated)
+             standards and continue to practice to these standards and
+             possess CPD evidence of personally maintaining these standards,
+             or
+
+        · have other suitable equivalent assessor qualifications endorsed by
+             the Sector Skills Council and/or the Awarding Organisation.
+
+    Assessor Occupational Competence
+
+   For the purposes of this qualification, occupational competence will be
+   deemed to have been demonstrated by the verifiable evidence of one,
+   preferably more, of the following:
+
+        · a relevant sector qualification equal to or at a level above the
+             training and/or assessment being delivered. Where earlier
+             forerunner qualifications are held eg City and Guilds Craft or
+             Advanced Craft Certificated, the assessor must demonstrate
+             through CPD evidence a thorough knowledge of the qualification
+             standards that they meet the required criteria
+
+        · an up-to-date CPD record including relevant CPD
+             qualifications. Assessors must either be able to demonstrate that
+             they are registered and up-to-date with their registration with an
+             appropriate approved industry registration body or have one or
+             more relevant occupational qualifications to demonstrate that they
+             can be regarded as occupationally competent in terms of
+             assessing or verifying the qualification and the unit contained
+
+        · a verifiable CV of industry experience and current knowledge of
+             industry practice and techniques relevant to the occupational area
+             in which they assess. This verifiable evidence must be at or above
+             the level being assessed
+
+        · a thorough knowledge and understanding of the qualification
+             standards and requirements
+
+8  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Assessor continuing professional development (CPD)
+
+      The occupational competence of assessors must be updated on a regular
+      basis and be periodically reconfirmed via CPD evidence and quality
+      assured by City and Guilds.
+      It is the responsibility of the assessor to make use of opportunities for CPD
+      such as industry conferences and events, access to trade publications and
+      journals, SSC and professional/Trade Association events, at least on an
+      annual basis to enhance and upgrade their professional development and
+      technical knowledge.
+      It is imperative that evidence records of these CPD
+      opportunities/occasions are maintained and retained in a verifiable CPD
+      record.
+
+     Internal Quality Assurers
+
+     Internal quality assurers must have a minimum of occupational experience
+      evidenced by having a building services engineering related qualification
+      or proven sector competence/experience plus access to relevant
+      `occupational expertise' to enable them to conduct their role as an internal
+      quality assurer. This evidence and access to `occupational expertise' is
+      quality assured by the Awarding Organisation. They must be working
+      towards or have achieved a relevant recognised internal quality
+      assurance qualification such as the Level 4 Award in the Internal Quality
+      Assurance of Assessment Processes and Practice and continue to
+      practice to that standard. Assessors who hold earlier qualifications (D34
+      or V1) should have CPD evidence to the most current standards. They
+      must be able to demonstrate evidence of being up to date with building
+      services engineering industry. This can be evidenced for example by
+      either accessing trade publications, undertaking courses of learning,
+      attending networking events relevant to this qualification and/or attending
+      industry events.
+
+     Guidance note
+
+     Where questions arise about the occupational competence/qualification of
+      an individual/trainer/assessor, these should be referred to the centre's
+      Qualifications Adviser for a decision. The Qualification Advisor may decide
+      to refer the decision to the Portfolio/Group Portfolio Consultant for further
+      consideration.
+
+     Quality Assurance
+
+     Approved centres must have effective quality assurance systems to
+      ensure optimum deliveryand assessment of qualifications. Quality
+      assurance includes initial centre approval, qualification approval and the
+      centre's own internal procedures for monitoring quality. Centresare
+      responsible for internal quality assurance and City & Guilds is responsible
+      for externalquality assurance. All external quality assurance processes
+      reflect the minimum requirementsfor verified and moderated
+      assessments, as detailed in the Centre Assessment Standards Scrutiny
+     (CASS), section H2 of Ofqual's General Conditions. For more information
+      on bothCASS and City and Guilds Quality Assurance processes visit: the
+      What is CASS? and Quality Assurance Standards documents on the
+      City & Guilds website.
+
+     Candidate entry requirements
+
+      City & Guilds does not set entry requirements for this qualification.
+      However, centres must ensure that candidates have the potential and
+      opportunity to gain the qualification successfully.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          9
+    Age restrictions
+
+    This qualification is approved for learners 16+.
+
+    Accreditation of prior learning (APL)
+
+    Guidance on APL between this qualification and the 2357 qualification will be
+    available on the website by the start of November 2012.
+
+10  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     3 Delivering the qualification
+
+     Initial assessment and induction
+
+     An initial assessment of each candidate should be made before the start of
+     their programme to identify:
+     · if the candidate has any specific training needs
+     · support and guidance they may need when working
+
+          towards their qualification
+     · any units they have already completed, or credit they have
+
+          accumulated which is relevant to the qualification
+     · the appropriate type and level of qualification.
+
+     We recommend that centres provide an induction programme so the
+     candidate fully understands the requirements of the qualification, their
+     responsibilities as a candidate, and the responsibilities of the centre. This
+     information can be recorded on a learning contract.
+
+     Induction should also be used to ensure that candidates are aware that
+     this qualification does not make them qualified electricians. All
+     candidates must complete a declaration confirming their
+     understanding. This declaration can be found in Appendix 2.
+
+     Support materials
+
+     The following resources are available for this qualification:
+
+     Description              How to access
+                                  City and Guilds website
+     Level 2 Assessment Task
+     Manual
+
+     Text Book                Available from May 2013
+     Smartscreen              Available from January 2013
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          11
+         4 Assessment
+
+         Assessment of the qualification
+
+    Unit    Unit Title            Assessment method                  Where to
+    Number                                                           obtain
+                                                                     assessment
+                                                                     materials
+
+    201     Health and safety Practical Assignment (211)             Go to
+
+            in building services  City and Guilds on-line  multiple  www.cityandg
+            engineering           choice test (601)                  uilds.com and
+                                                                     navigate to the
+                                  The assessment covers the 2365 webpage.
+                                  knowledge and practical Password
+                                  requirements of the unit and available on the
+                                  assesses all learning Walled Garden.
+
+                                  outcomes to verify coverage
+
+                                  of the unit. Externally set        Test available
+                                  assignment, locally marked         for booking on
+                                  and externally verified.           the Walled
+
+                                                                     Garden
+
+    202     Principles of Electrical City and Guilds on-line multiple Test available
+
+            Science               choice test (602)                  for booking on
+
+                                  The assessment covers the the Walled
+
+                                  knowledge requirements of the Garden
+
+                                  unit and assesses all learning
+
+                                  outcomes to verify coverage of
+
+                                  the unit.
+
+    203     Electrical Installations City and Guilds on-line multiple Test available
+
+            Technology            choice test (203)                  for booking on
+
+                                                                              the Walled
+                                  The assessment covers the Garden
+                                  knowledge requirements of the
+
+                                  unit and assesses all learning
+
+                                  outcomes to verify coverage of
+
+                                  the unit.
+
+    204     Installation of wiring Practical Assignment              Go to
+
+            systems and           The assessment covers the          www.cityandg
+            enclosures            knowledge and practical            uilds.com and
+                                  requirements of the unit and       navigate to the
+                                  assesses all learning              2365 webpage.
+                                  outcomes to verify coverage        Password
+                                  of the unit.                       available on the
+                                                                     Walled Garden
+
+                                  Externally set assignment,
+                                  locally marked and externally
+                                  verified.
+
+12  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+210  Understand     City and Guilds on-line    Test
+
+     how to         multiple choice test       available
+
+     communicate                               for
+
+     with           The assessment covers the  booking
+
+     others within                           Garden on the
+
+     building       knowledge requirements     Walled
+
+     services       of the unit and assesses   Garden
+
+     engineering    all learning outcomes to
+
+                    verify coverage of the
+
+                    unit.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          13
+    4.1 Test Specifications
+
+    Test: Unit 601 Health and safety in building services engineering
+    Duration: 40 minutes
+     Grade boundaries: Pass is approximately 60%
+    Permitted Materials: Closed book
+
+                                    Non-programmable calculator
+
+    Unit  Outcome                                  Number of %
+     601                                           questions
+
+          01 Understand how relevant legislation   4                                                16
+
+          applies in the work place
+
+          02 Understand the procedures for         6                                                24
+
+          dealing with Environmental and Health
+
+          and Safety situations in the work
+
+          environment
+
+          03 Understand the procedures for         7                                                28
+
+          establishing a safe working environment
+
+          04 Understand the requirements for       8                                                32
+
+          identifying and dealing with hazards in
+
+          the work environment
+
+                                            Total  25                                               100
+
+14  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Test: Unit 602 Principles of electrical science
+     Duration: 90 minutes
+     Grade boundaries: pass is approximately 50%
+     Permitted Materials: Closed book
+
+                                     Non-programmable calculator
+
+     Unit  Outcome                                                Number of %
+                                                                    questions
+
+     602   01 Understand mathematical principles                     2                           5
+
+           which are appropriate to electrical
+
+           installation, maintenance and design work
+
+           02 Understand standard units of                        5                          13
+
+           measurement used in electrical installation,
+
+           maintenance and design work
+
+           03 Understand basic mechanics and the                  7                          18
+
+           relationship between force, work, energy and
+
+           power
+
+           04 Understand the relationship between                 15                         37
+                resistance, resistivity, voltage current and
+                power
+
+           05 Understand the fundamental principles               7                          17
+                which underpin the relationship between
+                magnetism and electricity
+
+           06 Understand the types, applications and 4            10
+
+           limitations of electronic components in
+
+           electrotechnical systems and equipment
+
+                                                    Total         40                         100
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                                 15
+    Test: Unit 203 Electrical installations technology
+    Duration: 75 minutes
+    Grade boundaries: pass is approximately 60%
+     Permitted Materials: IET On-site Guide
+
+                                   Non-programmable calculator
+
+    Unit  Outcome                                                 Number of %
+    203                                                           questions
+
+          01 Know implications of electrical industry                 3                             8
+          regulations
+
+          02 Know how to obtain technical information                 5                             12
+
+          03 Know wiring systems of electrical                        15                            38
+          installations
+                                                                      9                             22
+          04 Know requirements earthing systems
+
+          05 Know how electricity is supplied                         5                             12
+
+          06 Know requirements for different types of                 3                             8
+
+          micro-renewable energies
+
+                                               Total                  40                            100
+
+    Test: Unit 210 Understand how to communicate with others within building
+    services engineering
+    Duration: 40 minutes
+     Grade boundaries: pass is approximately 60%
+    Permitted Materials: Closed book
+
+                                   Non-programmable calculator
+
+    Unit  Outcome                                                 Number of %
+    210                                                             questions
+            01 Know the members of the
+            construction team and their role within               5       25
+            the building services industry
+            02 Know how to apply information                      9       45
+            sources in the building services industry
+            03 Know how to communicate with                       6       30
+            others in the building services industry
+                                                                  20      100
+                                                           Total
+
+16  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     5 Availability of units
+
+     The following units can also be obtained from The Register of Regulated Qualifications:
+     http://register.ofqual.gov.uk/Unit
+
+     Structure of units
+
+      These units each have the following:
+     · City & Guilds reference number
+     · unit accreditation number (UAN)
+     · title
+     · level
+     · credit value
+     · guided learning hours
+     · unit aim
+     · health and safety requirements
+     · learning outcomes which are comprised of a number of assessment criteria
+     · notes for guidance, where applicable.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          17
+    Unit 201       Health and safety in building
+                   services engineering
+
+    UAN:           T/503/9669
+    Level:
+    Credit value:  Level 2
+    GLH:
+    Aim:           3
+
+                   26
+
+                   This combination unit provides learners
+                   with the essential health & safety
+                   knowledge and skills to demonstrate best
+                   practice in a business services engineering
+                   environment or sector. The unit provides
+                   learners with an awareness of relevant
+                   legislation and should underpin all business
+                   services engineering activities learners take
+                   part in.
+
+    Health and safety: Health and safety behaviour learned in this
+                                       mandatory unit should be displayed in all
+                                       arenas.
+
+    Learning outcome
+
+    The learner will:
+    1. Understand how relevant legislation applies in the workplace
+
+    Assessment criteria
+
+    The learner can:
+    1. identify roles and responsibilities with regard to current relevant
+
+         Health and Safety legislation
+    2. identify roles and responsibilities with regard to current relevant
+
+         environmental legislation
+
+18  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Range
+
+     Roles:
+
+     ·       Employers
+
+     ·       Employees ·  Organisations · Clients.
+
+     Relevant Health and Safety legislation:
+
+     ·       The Health and Safety at Work Act
+
+     ·       The Electricity at Work Regulations
+
+     ·       The Management of Health and Safety at Work Regulations
+
+     ·       Workplace (Health and Safety and Welfare) Regulations
+
+     ·       Control of Substances Hazardous to Health (COSHH)
+
+     Regulations
+
+     ·       Working at Height Regulations
+
+     ·       Personal Protective Equipment at Work Regulations
+
+     ·       Manual Handling Operations Regulations
+
+     ·       Provision and Use of Work Equipment Regulations · Control of
+
+     Asbestos at Work Regulations.
+
+     Relevant Environmental legislation:
+
+     ·       Control of Asbestos at Work Regulations
+
+     ·       Environmental Protection Act
+
+     ·       The Hazardous Waste Regulations
+
+     ·       Pollution Prevention and Control Act
+
+     ·       Control of Pollution Act
+
+     ·       The Control of Noise at Work Regulations
+
+     ·       The Waste Electrical and Electronic Equipment Regulations.
+
+     Learning outcome
+
+     The learner will:
+     2. Understand the procedures for dealing with Environmental and
+
+         Health and Safety situations in the work environment
+
+     Assessment criteria
+
+     The learner can:
+     1. state the procedures that should be followed in the case of
+
+          accidents which involve injury, including requirements for the
+          treatment of electric shock/electrical burns
+     2. specify appropriate procedures which should be followed when
+          emergency situations occur in the workplace
+     3. state the actions to be taken in situations which exceed their level
+          of responsibility for Health and Safety in the workplace
+     4. specify appropriate responsible persons to whom Health and
+          Safety and welfare related matters should be reported.
+     5. describe the ways in which the environment may be affected
+          by work activities
+     6. specify the current requirements and good working practices
+          for processing waste on site
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          19
+    7. explain why it is important to report any hazards to the environment
+         that arise from work procedures
+
+    Range
+
+    Appropriate procedures:
+         · Procedures for summoning emergency
+               services
+         · Information that emergency services
+               require
+         · Alarm and evacuation procedures
+         · Designated escape routes
+         · Fire fighting procedures
+         · Application of first aid
+         · RIDDOR reporting procedure.
+
+    Appropriate responsible persons:
+         · Employer
+         · Employees
+         · Customer/client
+         · Safety officers
+         · Health & Safety executive/inspectors
+         · Trades union representative.
+         · Environmental health officers
+
+    Effect of work activities:
+         · Land contamination
+         · Air pollution
+         · Pollution of water courses.
+
+    Requirements and good working practices:
+         · Recycling
+         · Hazardous waste
+         · Landfill.
+
+    Learning outcome
+
+    The learner will:
+    3. Be able to demonstrate and understand the procedures for
+
+        establishing a safe working environment
+
+    Assessment criteria
+
+    The learner can:
+    1. state the procedure for producing risk assessments and method
+
+         statements in accordance with their level of responsibility
+    2. describe the procedures that should be taken to remove or
+
+         minimise risks before deciding PPE is needed
+    3. state the purpose of PPE
+    4. specify the appropriate protective clothing and equipment that
+
+         is required for identified work tasks
+    5. state the first aid facilities that must be available in the work area
+
+         in accordance with Health and Safety regulations
+
+20  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     6. explain why it is important not to misuse first aid
+          equipment/supplies and to replace first aid supplies once used
+
+     7. describe and demonstrate safe practices and procedures for
+          the use of equipment and materials in the working
+          environment
+
+     8. specify and demonstrate the procedures for ensuring electrical
+          systems are safe to work on
+
+     9. state the implications of:
+               a. carrying out safe isolation procedures
+               b. not carrying out safe isolation procedures.
+
+     Range
+
+     Procedures:
+     · Responsible persons
+     · Competent persons
+     · Safe isolation procedures
+     · Permits to work
+     · Selection and checking correct power tools, hand tools or
+
+           portable electrical equipment.
+
+     Equipment and materials:
+     · Access equipment (PASMA requirements)
+     · Portable power tools (eg cartridge gun, drills, grinders)
+     · Tools and materials storage facilities
+     · Dangerous substances (eg cutting compounds and adhesives)
+     · Ladders
+     · Use of mobile scaffold towers · Use of signs and guarding.
+
+     Implications:
+     · Self
+     · Others
+     · Building systems.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          21
+    Learning outcome
+
+    The learner will:
+    4. Understand the requirements for identifying and dealing with
+
+        hazards in the work environment
+
+    Assessment criteria
+
+    The learner can:
+    1. identify warning pictograms for hazardous substances, as
+
+         defined by the GB (Great Britain) CLP (Classification, Labelling
+         and Packaging) Regulation
+    2. define what is meant by the term hazard in relation to Health
+         and Safety legislation in the workplace
+    3. identify specific hazards associated with the installation and
+         maintenance of electrical systems and equipment
+    4. describe situations which can constitute a hazard in the
+         workplace
+    5. explain practices and procedures for addressing hazards in the
+         work place (inferred through practical)
+    6. identify the correct type of fire extinguisher for a particular type
+         of fire
+    7. explain situations where asbestos may be encountered
+    8. specify the procedures for dealing with the suspected presence
+         of asbestos in the workplace
+
+    Range
+
+    Specific hazards:
+
+    ·      Electric shock (direct and indirect contact)
+
+    ·      Burns
+
+    ·      Fires
+
+    ·      Explosions.
+
+    Situations:
+
+    ·      Temporary electrical supplies
+
+    ·      Trailing leads/cables
+
+    ·      Slippery or uneven surfaces
+
+    ·      Presence of dust and fumes
+
+    ·      Handling and transporting equipment or materials
+
+    ·      Contaminants and irritants
+
+    ·      Fire
+
+    ·      Working at height
+
+    ·      Hazardous malfunctions of equipment
+
+    ·      Improper use, maintenance and storage of tools and equipment.
+
+    Hazards in the workplace:
+
+    ·      Temporary electrical supplies
+
+    ·      Trailing leads/cables
+
+    ·      Slippery or uneven surfaces
+
+    ·      Presence of dust and fumes
+
+    ·      Handling and transporting equipment or materials
+
+    ·      Contaminants and irritants
+
+    ·      Fire
+
+    ·      Working at height
+
+22  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     · Hazardous malfunctions of equipment
+
+     · Improper use and storage of tools and equipment · Bacteria:
+          Weil's disease.
+
+     Where asbestos may be encountered:
+
+     · In decorative finishes (aertex, plaster, floor tiles)
+     · In accessories (flash guards and matting in fuse carriers and
+
+          on distribution board covers)
+     · In insulation storage compartments, vessels and pipework.
+     · Use of signs to warn of hazards
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          23
+    Unit 201  Health and safety in building
+
+              services engineering
+
+    Supporting information
+
+    Notes for guidance
+
+    In the delivery of this unit emphasis shall be made to the learner on the
+    necessity to keep up to date with the latest standards, technologies and
+    practices which relate to and affect the topics covered in this unit. This is
+    then in keeping with good engineering practice.
+
+    This unit is assessed by two mandatory components (211) Assignment and
+    (601) online evolve test.
+
+24  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Unit 202 Principles of Electrical Science
+
+     UAN:                R/503/9937
+     Level:
+     Credit value:       Level 2
+     GLH:
+     Aim                 10
+
+                         89
+
+                         The aim of this unit is to enable the
+                         candidate to know the basic principles of
+                         electrical science. This knowledge
+                         provides the foundation for electrical
+                         installations which can be applied when
+                         designing wiring systems for clients and when
+                         inspection and testing electrical
+                         installations.
+
+     Health and safety:  Health and safety behaviour learned in
+                         mandatory unit 201/501 should be
+                         displayed in all arenas.
+
+     Learning outcome
+
+     The learner will:
+     1. Understand mathematical principles which are appropriate to
+
+         electrical installation, maintenance and design work
+
+     Assessment criteria
+
+     The learner can:
+     1. identify and apply appropriate mathematical principles which
+
+          are relevant to electrical work tasks
+
+     Range
+
+     Mathematical principles:
+     · Fractions and percentages
+     · Algebra
+     · Indices
+     · Transposition
+     · Triangles and trigonometry
+     · Statistics.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          25
+    Learning outcome
+
+    The learner will:
+    2. Understand standard units of measurement used in electrical
+
+        installation, maintenance and design work
+
+    Assessment criteria
+
+    The learner can:
+    1. identify and use internationally recognised base and derived (SI)
+
+         units of measurement
+    2. identify and determine values of base and derived SI units which
+
+         apply specifically to electrical quantities
+    3. identify appropriate electrical instruments for the measurement of
+
+         different electrical quantities
+
+    Range
+
+    (SI) Units of measurement for:
+
+    ·      Length
+
+    ·      Area
+
+    ·      Volume
+
+    ·      Mass
+
+    ·      Density
+
+    ·      Time
+
+    ·      Temperature
+
+    ·      Velocity.
+
+    Electrical quantities (SI units):
+
+    ·      Resistance
+
+    ·      Resistivity
+
+    ·      Power
+
+    ·      Frequency
+
+    ·      Current
+
+    ·      Voltage
+
+    ·      Energy
+
+    ·      Impedance
+
+    ·      Inductance and inductive reactance
+
+    ·      Capacitance and capacitive reactance
+
+    ·      Power factor.
+
+    Electrical quantities (measurement):
+
+    ·      Resistance
+
+    ·      Power
+
+    ·      Current
+
+    ·      Voltage
+
+    ·      Energy.
+
+    Learning outcome
+
+26  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     The learner will:
+     3. Understand basic mechanics and the relationship between force,
+
+         work, energy and power
+
+     Assessment criteria
+
+     The learner can:
+     1. specify what is meant by mass and weight
+     2. explain the principles of basic mechanics as they apply to
+
+          levers, gears and pulleys
+     3. describe the main principles of the following and their inter-
+
+          relationships:
+               a. force
+               b. work
+               c. energy (kinetic and potential)
+               d. power
+               e. efficiency.
+
+     4. calculate values of mechanical energy, power and efficiency
+
+     Range
+
+     Levers:
+     · class I
+     · class II
+     · class III
+
+     Learning outcome
+
+     The learner will:
+     4. Understand the relationship between resistance, resistivity,
+
+         voltage, current and power
+
+     Assessment criteria
+
+     The learner can:
+     1. describe the basic principles of electron theory
+     2. identify and distinguish between materials which are good
+
+          conductors and insulators
+     3. describe what is meant by resistance and resistivity in relation
+
+          to electrical circuits
+     4. explain the relationship between current, voltage and
+
+          resistance in parallel and series D.C. circuits
+     5. calculate the values of current, voltage and resistance in
+
+          parallel and series D.C. circuits
+     6. calculate values of power in parallel and series D.C. circuits
+     7. state what is meant by the term voltage drop in relation to
+
+          electrical circuits
+     8. describe the chemical and thermal effects of electric currents
+
+     Learning outcome
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          27
+    The learner will:
+    5. Understand the fundamental principles which underpin the
+
+        relationship between magnetism and electricity
+
+    Assessment criteria
+
+    The learner can:
+    1. describe the effects of magnetism in terms of attraction and
+
+         repulsion
+    2. state the difference between magnetic flux and flux density
+    3. describe the magnetic effects of electrical currents in terms of:
+
+              a. production of a magnetic field
+              b. force on a current-carrying conductor in a magnetic field
+              c. electromagnetism
+              d. electromotive force.
+    4. describe the basic principles of generating an A.C. supply in terms
+         of:
+              a. a single-loop generator
+              b. sine-wave
+              c. frequency
+              d. EMF
+              e. magnetic flux.
+    5. identify the characteristics of sine-waves
+
+    Range
+
+    Characteristics of a sine-wave:
+
+    ·      Root Mean Square (RMS) value
+
+    ·      Average value
+
+    ·      Peak to peak value
+
+    ·      Periodic time
+
+    ·      Frequency
+
+    ·      Amplitude.
+
+28  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Learning outcome
+
+     The learner will:
+     6. Understand the types, applications and limitations of electronic
+
+         components in electrical systems and equipment
+
+     Assessment criteria
+
+     The learner can:
+     1. describe the function and application of electronic components
+
+          that are used in electrical systems
+     2. state the basic operating principles of electronic components
+
+          and devices
+
+     Range
+
+     Electrical systems:
+
+     ·      Security alarms
+
+     ·      Telephones
+
+     ·      Dimmer switches
+
+     ·      Heating/boiler controls
+
+     ·      Motor control
+
+     ·      Wireless control systems.
+
+     Electronic components and devices:
+
+     ·      Capacitors
+
+     ·      Resistors
+
+     ·      Rectifiers
+
+     ·      Diodes
+
+     ·      Zener
+
+     ·      LED
+
+     ·      photo
+
+     ·      Thermistors
+
+     ·      Diacs
+
+     ·      Triacs
+
+     ·      Transistors
+
+     ·      Thyristors
+
+     ·      Invertors.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          29
+    Unit 202 Principles of Electrical Science
+
+        Supporting information
+
+         Notes for guidance
+         In the delivery of this unit emphasis shall be made to the learner on the
+         necessity to keep up to date with the latest standards, technologies and
+         practices which relate to and affect the topics covered in this unit. This is
+         then in keeping with good engineering practice.
+         This unit is assessed by one mandatory component (602) evolve test.
+
+30  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Unit 203       Electrical installations
+                    technology
+
+     UAN:           Y/503/9938
+     Level:
+     Credit value:  Level 2
+     GLH:
+     Aim:           12
+
+                    115
+
+                    The purpose of this knowledge unit is for
+                    the candidate to gain knowledge of the
+                    underpinning principles and industry
+                    standards and requirements of electrical
+                    installation technology. They will know
+                    about sources of information and the types
+                    of information they provide about wiring
+                    systems. They will also know about earthing
+                    systems and the installation of wiring
+                    systems.
+
+     Health and safety: Health and safety behaviour learned in
+                                mandatory unit 201/501 should be displayed
+                                in all arenas.
+
+     Learning outcome
+
+     The learner will:
+     1. Know implications of electrical industry regulations
+
+     Assessment criteria
+
+     The learner can:
+     1.1 Identify statutory regulations
+     1.2 Identify non statutory regulations/guidance
+     1.3 State implications of statutory regulations
+     1.4 State implications of non-statutory regulations.
+
+     Range
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          31
+    Statutory regulations
+    HASAWA, EAWR, ESQCR, PUWER, COSHH, CDM, Manual
+    Handling, PPE, Noise at Work, Environmental Act, DDA, Equal
+    Opportunities.
+
+    Non statutory regulations/guidance
+    BS7671, On-Site Guide, Unite Union Book, Guidance Notes, Codes
+    of Practice.
+
+    Implications
+
+    Prosecution, fine, imprisonment, prohibition notices, improvement
+    notices, dismissal, injury, death, loss of earnings, lost clients, loss of
+    reputation.
+
+32  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Learning outcome
+
+     The learner will:
+     2. Know how to obtain technical information
+
+     Assessment criteria
+
+     The learner can:
+     2.1 State purpose of different sources of technical information
+     2.2 Recognise different drawing types
+     2.3 Recognise symbols used in drawings
+     2.4 Convert scale from drawings to actual dimensions.
+
+     Range
+
+     Sources
+     Specifications (to select correct materials), drawings (provide
+     technical information on wiring systems), BS7671 On-Site Guide,
+     Unite Union Book, manufacturers data, Guidance Notes (install in
+     accordance with regulations), client's needs.
+     Drawing types
+     As fitted drawings, circuit diagrams, block diagrams, schematics,
+     wiring diagrams, bar charts.
+     Symbols
+     Switching (one way, two way, intermediate, pull, switched socket
+     outlets, unswitched socket outlets, fused connection units, switched
+     fused connection units) lighting points (fluorescent, incandescent,
+     LED, wall), cooker control unit, consumer control unit, integrated
+     meter, fuse, circuit breaker.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          33
+    Learning outcome
+
+    The learner will:
+    3. Know wiring systems of electrical installations
+
+    Assessment criteria
+
+    The learner can:
+    3.1 Describe principles of operation of different circuit types
+    3.2 Identify wiring systems for different environments
+    3.3 Determine minimum current carrying capacity of live conductors
+
+           for given installation conditions
+    3.4 State applications of different types of protective devices
+    3.5 Identify purpose of specialised equipment for installing wiring
+
+           systems
+    3.6 Calculate spacing factor of wiring enclosures.
+
+    Range
+
+    Circuit types
+    Lighting, power and heating, alarm and emergency systems, data
+    communications, control circuits, ring final, radial.
+    Wiring systems
+    Cable tray, cable trunking, cable conduit, ladder racking, thermoplastic
+    multi-core, flat profile, SWA, MICC, Fire resistant, thermoplastic single-
+    core, support methods and requirements, component parts.
+    Environments
+    Domestic, commercial, hazardous, industrial installation, agricultural.
+    Installation conditions
+    Ib In Iz It Ca Cc Cf, Cg Ci voltage drop Methods of Installation
+    Applications
+    Domestic, commercial, hazardous, industrial installation, agricultural,
+    load characteristic.
+    Protective devices
+    Fuses (BS88 (gM, gG), BS3036,), circuit breaker BSEN60898 Types B,
+    C and D, RCD BSEN 61008, RCBO BSEN 61009 Types B, C and D.
+    Specialised
+    Conduit and tray benders, stocks, dies, formers.
+    Wiring enclosures
+    Conduit, trunking.
+
+34  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+      Learning outcome
+
+      The learner will:
+      4. Know requirements earthing systems
+
+      Assessment criteria
+
+      The learner can:
+      4.1 Identify different types of earthing systems
+      4.2 Identify component parts of Automatic Disconnection of Supply
+
+             (ADS)
+      4.3 Identify exposed conductive parts
+      4.4 Identify extraneous conductive parts
+      4.5 Identify component parts of an earth loop impedance path.
+
+     Range
+
+     Earthing systems
+     TT, TN-S, TN-C-S (PME),TN-C-S (PNB).
+     Component parts
+     CPC, main protective bonding conductor, supplementary equipotential
+     bonding conductor, earthing conductor, protective devices, earth
+     electrode.
+     Exposed conductive parts
+     Steel conduit, steel trunking, steel tray, steel enclosures of wiring
+     systems, metal accessories, metallic equipment.
+     Extraneous conductive parts
+     Metallic service pipes (gas, oil, water), steel duct work, structural steel.
+     Component parts
+     Zs, Ze, R1, R2, main earthing terminal (MET), supplier's earth return path.
+
+      Learning outcome
+
+      The learner will:
+      5. Know how electricity is supplied
+
+      Assessment criteria
+
+      The learner can:
+      5.1 Identify methods of generating electricity for distribution
+      5.2 Identify transmission voltages
+      5.3 Identify distribution voltages
+      5.4 State the component parts of the electrical distribution
+
+            network.
+
+      Range
+
+      Methods
+      Coal, oil, biomass, wind, wave, hydro, nuclear, photo-voltaic,
+      gas, micro-generation.
+      Transmission voltages
+      400 kV, 275 kV, 132 kV.
+      Distribution voltages
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          35
+    33 kV, 11 kV, 400/230 V.
+    Component parts
+    Sub-stations, pylons, power stations, cables, insulators, transformers.
+
+    Learning outcome
+    The learner will:
+     6. Know requirements for different types of micro-renewable
+
+          energies
+    Assessment criteria
+    The learner can:
+    6.1 Describe types of micro-renewable energies
+    6.2 Identify requirements for installation of micro-renewable
+
+          energies
+    6.3 Identify advantages and disadvantages of micro-renewable
+
+          energies.
+
+    Range
+    Micro-renewable energies
+    Solar thermal (hot water), ground source heat pump, air source heat
+    pump, biomass, solar photovoltaic, micro-wind, micro-hydro, micro-
+    combined heat and power (heat led), rainwater harvesting, greywater
+    re-use.
+    Requirements
+    Legal, regulatory, location.
+
+36  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Unit 204 Installation of wiring systems and
+                         enclosures
+
+     UAN:           R/503/9940
+     Level:
+     Credit value:  Level 2
+     GLH:
+     Aim:           21
+
+                    196
+
+                    This practical unit will develop in learners
+                    the skills required to install wiring systems
+                    to recognised standards. Learners will
+                    learn to use tools and materials effectively
+                    in completing well defined tasks for
+                    electrical installations. In addition to
+                    learning to install systems, learners will
+                    also develop skills to inspect and test
+                    wiring systems.
+
+     Health and safety: Health and safety behaviour learned in
+                                        mandatory unit 201/501 should be
+                                        displayed in all arenas.
+
+     Learning outcome
+
+     The learner will:
+     1. Know tools used to install wiring systems
+
+     Assessment criteria
+
+     The learner can:
+     1.1 Identify hand tools for different tasks
+     1.2 Identify power tools for different tasks
+     1.3 Describe safety checks used for tools.
+
+     Range
+
+     Hand tools
+     Rules, levels, gauges, plumb lines, cable cutters, screwdrivers,
+     wire strippers, knife, files, reamers, wrenches, hammer, saws.
+     Power tools
+     Drill, hammer drill, pillar drill, electric screwdriver.
+     Safety checks
+     Check safe to use, correct speed setting, correct attachments,
+     attached correctly, guards in place, correct PPE, best
+     performance (sharp).
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          37
+    Learning outcome
+    The learner will:
+    2. Know how to prepare for installing wiring systems
+
+    Assessment criteria
+    The learner can:
+    2.1 Identify possible hazards in the workspace
+    2.2 Identify PPE for different tasks
+    2.3 Select access equipment.
+
+    Range
+    Hazards
+    Circuit isolation, safe working practices, risk
+    assessment/method statement.
+    PPE
+    Hard hat, safety glasses, safety shoes, gloves, ear defenders,
+    protective work wear.
+    Access Equipment
+    Ladders, platforms, hop up.
+
+    Learning outcome
+    The learner will:
+    3. Be able to install wiring systems
+    Assessment criteria
+    The learner can:
+    3.1 Select materials from drawings
+    3.2 Mark out dimensions on work areas from drawings
+    3.3 Fix accessories to dimensions from drawings
+    3.4 Install wiring systems and supports
+    3.5 Terminate wiring systems
+    3.6 Maintain safe working practices
+    3.7 Use JIB safe isolation procedures.
+
+    Range
+    Wiring Systems
+    Single and multicore thermoplastic cable, Fire resistant cable, data
+    cable, multicore armoured cable, cable tray, cable conduit (steel and
+    PVC), cable trunking.
+
+38  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+      Learning outcome
+      The learner will:
+      4. Be able to bond mains services to main earthing terminal
+      Assessment criteria
+      The learner can:
+      4.1 Identify cable sizes
+      4.2 Terminate cables
+      4.3 Connect bonding clamps
+      4.4 Test continuity.
+
+      Learning outcome
+      The learner will:
+      5. Be able to inspect a `dead electrical installation.
+      Assessment criteria
+      The learner can:
+      5.1 Verify that wiring systems conform to IET standards.
+
+      Learning outcome
+      The learner will:
+      6. Be able to test a dead electrical installation
+      Assessment criteria
+      The learner can:
+      6.1 Test continuity of protective conductor
+      6.2 Test ring final circuit
+      6.3 Test insulation resistance
+      6.4 Test polarity
+      6.5 Test functionality
+      6.6 Record test results.
+
+     Range
+     Functionality
+     Of switches and devices by movement, by continuity test Live under
+     supervision.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          39
+    Unit 210         Understand how to
+                     Communicate with others
+      UAN:           within building services
+      Level:         engineering
+      Credit value:
+      GLH:                              J/602/2482
+      Aim;                              Level 2
+                                        3
+                                        28
+                                        This knowledge unit provides learning in
+                                        the development and continued
+                                        maintenance of effective working
+                                        relationships in the building services
+                                        industry associated with work in
+                                        dwellings, industrial and commercial
+                                        premises and for private and contract
+                                        type clients.
+
+40  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Learning outcome
+
+     The learner will:
+     1. Know the members of the construction team and their role within
+
+         the building services industry
+
+     Assessment criteria
+
+     The learner can:
+     1.1 Identify the key roles of the site management team:
+
+              · architect
+              · project manager/clerk of works
+              · structural engineer
+              · surveyor
+              · building services engineer
+              · quantity surveyor
+              · buyer
+              · estimator
+              · contracts manager
+              · construction manager.
+     1.2 Identify the key roles of the individuals that report to the site
+            management team:
+              · sub contractors
+              · site supervisor · trade supervisor
+              · trades:
+
+                 o bricklayer
+                 o joiner
+                 o plasterer
+                 o tiler
+                 o electrician
+                 o H&V fitter
+                 o gas fitter
+                 o decorator
+                 o ground workers
+
+     1.3 Identify the key roles of site visitors:
+              · building control inspector
+              · water inspector
+              · HSE inspector
+              · electrical services inspector.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          41
+    Learning outcome
+
+    The learner will:
+    2. Know how to apply information sources in the building services
+
+        industry
+
+    Assessment criteria
+
+    The learner can:
+    2.1 Identify the types of statutory legislation and guidance information
+
+           that applies to working in the industry:
+             · legislation
+
+                o data protection
+                o equal opportunities
+                o health & safety
+                o employment
+
+             · regulations
+             · british standards
+             · codes of practice
+             · manufacturer guidance:
+
+                o installation instructions
+                o service & maintenance instructions
+                o user instructions
+
+    2.2 Identify the purpose of information that is used in the workplace:
+             · job specifications
+             · plans/drawings
+
+                o work programmes
+
+             · delivery notes
+             · time sheets
+             · policy documentation ­ health & safety, environmental,
+
+                 customer service
+    2.3 Identify the purpose of information given to customers:
+
+             · quotations
+             · estimates
+             · invoices/statements
+             · statutory cancelation rights
+             · handover information
+    2.4 State the importance of company policies and procedures that
+           affect working relationships:
+             · company working policies/procedures:
+
+                o behaviour
+                o timekeeping
+                o dress code
+                o contract of employment
+
+             · limits to personal authority:
+
+                o apprentices
+                o level 2 qualified staff
+                o level 3 qualified staff
+
+             · supervisor and management responsibilities.
+
+42  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+     Learning outcome
+
+     The learner will:
+     3. Know how to communicate with others in the building services
+
+         industry
+
+     Assessment criteria
+
+     The learner can:
+     3.1 Identify suitable communication methods for use in work situations:
+
+              · oral communication
+              · written communication:
+
+                 o e-mail o
+
+                  fax
+
+                 o letter
+
+     3.2 Define methods of effective communication for people with:
+              · physical disabilities
+              · learning difficulties
+              · language differences:
+
+                 o dialects
+                 o accents
+                 o foreign and second language issues
+
+     3.3 State the actions to take to deal with conflicts between:
+              · customers and operatives
+              · co-workers
+              · supervisors and operatives
+
+     3.4 State the effects that poor communication may have on an
+            organisation:
+              · between operatives
+              · between operatives and management
+              · · company to customer.
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+
+02)                                                                                          43
+ Appendix 1 Relationships to other
+                      qualifications
+
+Links to other qualifications
+
+  This qualification has connections to the:
+   · Level 3 Diploma in Electrical Installations (Buildings and Structures) (2365)
+   · Level 2 NVQ in Plumbing and Heating (6189)
+   · Level 3 NVQ in Plumbing and Heating (6189)
+   · Level 3 NVQ in Electrotechnical Services (2357)
+   · Level 2 NVQ in Heating and Ventilating (6188)
+   · Level 3 NVQ in Heating and Ventilating (6188)
+   · Level 2 NVQ in Refrigeration and Air Conditioning (6087)
+   · Level 3 NVQ in Refrigeration and Air Conditioning (6087)
+   · Level 2 Diploma in Plumbing Studies (6035)
+   · Level 3 Diploma in Plumbing Studies (6035)
+   · Level 2 Diploma in Heating and Ventilating (7188)
+   · Level 3 Diploma in Heating and Ventilating (7188)
+   · Level 2 Diploma in Refrigeration, Air Conditioning and Heat Pump Systems (7189)
+   · Level 3 Diploma in Refrigeration, Air Conditioning and Heat Pump Systems (7189)
+
+  Literacy, language, numeracy and ICT skills development
+
+   This qualification can develop skills that can be used in the following qualifications:
+   · Functional Skills (England) ­ see www.cityandguilds.com/functionalskills
+   · Essential Skills (Northern Ireland) ­ see www.cityandguilds.com/essentialskillsni
+   · Essential Skills Wales ­ see www.cityandguilds.com/esw
+Appendix 2 Disclaimer
+
+This document must be completed by the candidate and the tutor as part of the
+qualification induction.
+
+You have been enrolled on the Level 2 Diploma in Electrical Installations (Buildings
+and Structures) (2365-02). This is a qualification that tests both practical and
+knowledge based skills in a realistic working environment. When you have successfully
+completed this qualification you will be at an Improver/Electrician's Mate level.
+
+In order to fully qualify as an Electrician you will need to fully meet the performance criteria
+as laid down in the National Occupational Standards put together by Summit Skills, the
+Sector Skills Council. This is covered in the City and Guilds 2357 Level 3 NVQ Diploma
+in Electrotechnical Technology.
+
+Your tutor/assessor will be able to explain how you may progress onto the City and Guilds
+2357 Level 3 NVQ Diploma in Electrotechnical Technology. However, you should be
+aware that the relevant performance units will need to be carried out in industry.
+Completion of the 2357 will enable you to apply to join an industry graded or competent
+person's scheme.
+
+I can confirm that as part of my induction the above statement has been explained
+and I understand that completing the City and Guilds Level 2 Diploma in Electrical
+Installations (Buildings and Structures) (2365-02) qualification will not make me a
+fully qualified Electrician.
+
+Candidate  Date
+
+Tutor      Date
+
+                                                                                                                                         43
+
+City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-
+02)
+    Appendix 3 Normative references for use in open
+                         book examinations
+
+    203 Electrical Installations Technology
+         · IET On-Site Guide
+
+    Appendix 4 Sources of general
+                        information
+
+    The following documents contain essential information for centres delivering City & Guilds
+    qualifications. They should be referred to in conjunction with this handbook. To download the
+    documents and to find other useful documents, go to the Centres and Training Providers
+    homepage on www.cityandguilds.com.
+
+    Centre Manual - Supporting Customer Excellence contains detailed information about the
+    processes which must be followed and requirements which must be met for a centre to
+    achieve `approved centre' status, or to offer a particular qualification, as well as updates
+    and good practice exemplars for City & Guilds assessment and policy issues. Specifically,
+    the document includes sections on:
+    · The centre and qualification approval process
+    · Assessment, internal quality assurance and examination roles at the centre
+    · Registration and certification of candidates
+    · Non-compliance
+    · Complaints and appeals
+    · Equal opportunities
+    · Data protection
+    · Management systems
+    · Maintaining records
+    · Assessment
+    · Internal quality assurance
+    · External quality assurance.
+
+    Our Quality Assurance Requirements encompasses all of the relevant requirements of key
+    regulatory documents such as:
+    · Regulatory Arrangements for the Qualifications and Credit Framework (2008)
+    · SQA Awarding Body Criteria (2007)
+    · NVQ Code of Practice (2006)
+    and sets out the criteria that centres should adhere to pre and post centre and qualification
+    approval.
+
+44  City & Guilds Level 2 Diploma in Electrical Installations (Buildings and Structures) (2365-02)
+Access to Assessment & Qualifications provides full details of the arrangements that
+may be made to facilitate access to assessments and qualifications for candidates
+who are eligible for adjustments in assessment.
+
+The centre homepage section of the City & Guilds website also contains useful information
+such on such things as:
+· Walled Garden: how to register and certificate candidates on line
+· Events: dates and information on the latest Centre events
+· Online assessment: how to register for GOLA/e-volve assessments.
+City & Guilds
+Believe you can
+
+www.cityandguilds.com
+Useful contacts
+
+UK learners                          T: +44 (0)844 543 0033
+General qualification                E: learnersupport@cityandguilds.com
+information
+
+International learners               T: +44 (0)844 543 0033
+General qualification information    F: +44 (0)20 7294 2413
+                                     E: intcg@cityandguilds.com
+
+Centres                              T: +44 (0)844 543 0000
+                                     F: +44 (0)20 7294 2413
+Exam entries, Certificates,          E: centresupport@cityandguilds.com
+Registrations/enrolment,
+Invoices, Missing or late exam       T: +44 (0)844 543 0000
+materials, Nominal roll reports,     F: +44 (0)20 7294 2413
+Results                              F: +44 (0)20 7294 2404 (BB forms)
+Single subject qualifications        E: singlesubjects@cityandguilds.com
+
+Exam entries, Results,
+Certification, Missing or late exam
+materials, Incorrect exam papers,
+Forms request (BB, results entry),
+Exam date and time change
+
+International awards                 T: +44 (0)844 543 0000
+Results, Entries, Enrolments,        F: +44 (0)20 7294 2413
+Invoices, Missing or late exam       E: intops@cityandguilds.com
+materials, Nominal roll reports
+                                     T: +44 (0)844 543 0000
+Walled Garden                        F: +44 (0)20 7294 2413
+Re-issue of password or              E: walledgarden@cityandguilds.com
+username, Technical problems,
+Entries, Results, e-assessment,      T: +44 (0)121 503 8993
+Navigation, User/menu option,        E: business@cityandguilds.com
+Problems
+
+Employer
+Employer solutions, Mapping,
+Accreditation, Development
+Skills, Consultancy
+
+Publications                         T: +44 (0)844 543 0000
+Logbooks, Centre documents,          F: +44 (0)20 7294 2413
+Forms, Free literature
+
+Every effort has been made to ensure that the information contained in this
+publication is true and correct at the time of going to press. However, City &
+Guilds' products and services are subject to continuous development and
+improvement and the right is reserved to change products and services from
+time to time. City & Guilds cannot accept liability for loss or damage arising
+from the use of information in this publication.
+If you have a complaint, or any suggestions for improvement about any of the
+services that we provide, email:
+feedbackandcomplaints@cityandguilds.com
+ About City & Guilds
+ As the UK's leading vocational education organisation, City & Guilds is
+ leading the talent revolution by inspiring people to unlock their potential
+ and develop their skills. We offer over 500 qualifications across 28
+ industries through 8500 centres worldwide and award around two million
+ certificates every year. City & Guilds is recognised and respected by
+ employers across the world as a sign of quality and exceptional training.
+
+ City & Guilds Group
+ The City & Guilds Group operates from three major hubs: London
+ (servicing Europe, the Caribbean and Americas), Johannesburg (servicing
+ Africa), and Singapore (servicing
+ Asia, Australia and New Zealand). The Group also includes the Institute of
+ Leadership & Management (management and leadership qualifications),
+ City & Guilds Land Based Services (land-based qualifications), the Centre
+ for Skills Development (CSD works to improve the policy and practice of
+ vocational education and training worldwide) and Learning Assistant (an
+ online e-portfolio).
+
+ Copyright
+ The content of this document is, unless otherwise indicated, © The City
+ and Guilds Limited and may not be copied, reproduced or distributed
+ without prior written consent. However, approved City & Guilds centres
+ and candidates studying for City & Guilds qualifications may photocopy
+ this document free of charge and/or include a PDF version of it on centre
+ intranets on the following conditions:
+ · centre staff may copy the material only for the purpose of teaching
+
+      candidates working towards a City & Guilds qualification, or for internal
+      administration purposes
+ · candidates may copy the material only for their own use when working
+      towards a City & Guilds qualification
+ The Standard Copying Conditions (see the City & Guilds website) also apply.
+
+ Please note: National Occupational Standards are not © The City and
+ Guilds Limited. Please check the conditions upon which they may be
+ copied with the relevant Sector Skills Council.
+
+ Published by City & Guilds Limited, a company registered in England and
+ Wales (company number 16513878).
+
+City & Guilds
+5-6 Giltspur Street
+London EC1A 9DE
+T +44 (0)844 543 0000
+F+44 (0)207 2942413
+www.cityandguilds.com
+HB-01-2365
+

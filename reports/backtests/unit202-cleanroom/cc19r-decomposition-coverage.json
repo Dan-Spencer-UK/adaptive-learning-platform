@@ -1,0 +1,1379 @@
+{
+  "generatedBy": "CC-19R clean-room build-ledger.ts",
+  "totalCandidates": 140,
+  "statusCounts": {
+    "EXPLICITLY_ATOMIC": 30,
+    "REVIEW_DECOMPOSED": 25,
+    "UNRESOLVED_DECOMPOSITION": 85
+  },
+  "byAc": [
+    {
+      "acId": "AC1.1",
+      "acWording": "identify and apply appropriate mathematical principles which are relevant to electrical work tasks",
+      "candidateCount": 14,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 0,
+      "unresolved": 14,
+      "candidates": [
+        {
+          "candidateKey": "mathematical principles::IDENTIFY",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "mathematical principles::APPLY",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "fractions and percentages::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "fractions and percentages::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "algebra::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "algebra::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "indices::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "indices::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "transposition::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "transposition::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "triangles and trigonometry::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "triangles and trigonometry::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "statistics::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "statistics::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC2.1",
+      "acWording": "identify and use internationally recognised base and derived (SI) units of measurement",
+      "candidateCount": 18,
+      "explicitlyAtomic": 8,
+      "reviewDecomposed": 0,
+      "unresolved": 10,
+      "candidates": [
+        {
+          "candidateKey": "SI units of measurement for general physical quantities::IDENTIFY",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "SI units of measurement for general physical quantities::APPLY",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "length (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "length (SI unit)::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "area (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "area (SI unit)::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "volume (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "volume (SI unit)::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "mass (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "mass (SI unit)::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "density (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "density (SI unit)::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "time (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "time (SI unit)::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "temperature (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "temperature (SI unit)::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "velocity (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "velocity (SI unit)::APPLY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC2.2",
+      "acWording": "identify and determine values of base and derived SI units which apply specifically to electrical quantities",
+      "candidateCount": 24,
+      "explicitlyAtomic": 22,
+      "reviewDecomposed": 0,
+      "unresolved": 2,
+      "candidates": [
+        {
+          "candidateKey": "electrical quantities (SI units)::IDENTIFY",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electrical quantities (SI units)::OTHER",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "resistance (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "resistance (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "resistivity (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "resistivity (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "power (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "power (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "frequency (SI electrical quantity)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "frequency (SI electrical quantity)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "current (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "current (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "voltage (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "voltage (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "energy (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "energy (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "impedance (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "impedance (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 1,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "inductance and inductive reactance (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 2,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "inductance and inductive reactance (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 2,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "capacitance and capacitive reactance (SI unit)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 2,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "capacitance and capacitive reactance (SI unit)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 2,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "power factor (SI unit / dimensional status)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 2,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "power factor (SI unit / dimensional status)::OTHER",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "EXPLICITLY_ATOMIC",
+          "explicitFactCount": 2,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC2.3",
+      "acWording": "identify appropriate electrical instruments for the measurement of different electrical quantities",
+      "candidateCount": 7,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 0,
+      "unresolved": 7,
+      "candidates": [
+        {
+          "candidateKey": "electrical instruments for the measurement of electrical quantities::IDENTIFY",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electrical quantities requiring instrument identification (measurement)::IDENTIFY",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "instrument for measuring resistance::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "instrument for measuring power::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "instrument for measuring current::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "instrument for measuring voltage::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "instrument for measuring energy::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC3.1",
+      "acWording": "specify what is meant by mass and weight",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
+      "candidates": [
+        {
+          "candidateKey": "mass and weight::DEFINE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 2
+        }
+      ]
+    },
+    {
+      "acId": "AC3.2",
+      "acWording": "explain the principles of basic mechanics as they apply to levers, gears and pulleys",
+      "candidateCount": 8,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 0,
+      "unresolved": 8,
+      "candidates": [
+        {
+          "candidateKey": "principles of basic mechanics as applied to levers, gears and pulleys::EXPLAIN",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "levers::EXPLAIN",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "gears::EXPLAIN",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "pulleys::EXPLAIN",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "levers::EXPLAIN",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "lever class I::EXPLAIN",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "lever class II::EXPLAIN",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "lever class III::EXPLAIN",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC3.3",
+      "acWording": "describe the main principles of the following and their inter-relationships: a. force b. work c. energy (kinetic and potential) d. power e. efficiency.",
+      "candidateCount": 7,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 4,
+      "unresolved": 3,
+      "candidates": [
+        {
+          "candidateKey": "principles of force, work, energy, power and efficiency::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "force::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "work::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "energy (kinetic and potential)::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "power (mechanical)::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "efficiency::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "inter-relationships between force, work, energy, power and efficiency::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC3.4",
+      "acWording": "calculate values of mechanical energy, power and efficiency",
+      "candidateCount": 4,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 3,
+      "unresolved": 1,
+      "candidates": [
+        {
+          "candidateKey": "values of mechanical energy, power and efficiency::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "mechanical energy (calculation)::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "power (calculation, mechanical)::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "efficiency (calculation)::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        }
+      ]
+    },
+    {
+      "acId": "AC4.1",
+      "acWording": "describe the basic principles of electron theory",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
+      "candidates": [
+        {
+          "candidateKey": "basic principles of electron theory::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 2
+        }
+      ]
+    },
+    {
+      "acId": "AC4.2",
+      "acWording": "identify and distinguish between materials which are good conductors and insulators",
+      "candidateCount": 4,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 2,
+      "unresolved": 2,
+      "candidates": [
+        {
+          "candidateKey": "conductors (good electrical conductor materials)::IDENTIFY",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "conductors (good electrical conductor materials)::DISTINGUISH",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "insulators (electrical insulator materials)::IDENTIFY",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "insulators (electrical insulator materials)::DISTINGUISH",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        }
+      ]
+    },
+    {
+      "acId": "AC4.3",
+      "acWording": "describe what is meant by resistance and resistivity in relation to electrical circuits",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
+      "candidates": [
+        {
+          "candidateKey": "resistance and resistivity in relation to electrical circuits::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 2
+        }
+      ]
+    },
+    {
+      "acId": "AC4.4",
+      "acWording": "explain the relationship between current, voltage and resistance in parallel and series D.C. circuits",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
+      "candidates": [
+        {
+          "candidateKey": "relationship between current, voltage and resistance in parallel and series D.C. circuits::EXPLAIN",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 3
+        }
+      ]
+    },
+    {
+      "acId": "AC4.5",
+      "acWording": "calculate the values of current, voltage and resistance in parallel and series D.C. circuits",
+      "candidateCount": 4,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 3,
+      "candidates": [
+        {
+          "candidateKey": "values of current, voltage and resistance in parallel and series D.C. circuits::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "current (calculation, D.C. circuits)::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "voltage (calculation, D.C. circuits)::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "resistance (calculation, D.C. circuits)::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC4.6",
+      "acWording": "calculate values of power in parallel and series D.C. circuits",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 0,
+      "unresolved": 1,
+      "candidates": [
+        {
+          "candidateKey": "values of power in parallel and series D.C. circuits::CALCULATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC4.7",
+      "acWording": "state what is meant by the term voltage drop in relation to electrical circuits",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 0,
+      "unresolved": 1,
+      "candidates": [
+        {
+          "candidateKey": "voltage drop::STATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC4.8",
+      "acWording": "describe the chemical and thermal effects of electric currents",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
+      "candidates": [
+        {
+          "candidateKey": "chemical and thermal effects of electric currents::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 2
+        }
+      ]
+    },
+    {
+      "acId": "AC5.1",
+      "acWording": "describe the effects of magnetism in terms of attraction and repulsion",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
+      "candidates": [
+        {
+          "candidateKey": "attraction and repulsion effects of magnetism::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        }
+      ]
+    },
+    {
+      "acId": "AC5.2",
+      "acWording": "state the difference between magnetic flux and flux density",
+      "candidateCount": 1,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
+      "candidates": [
+        {
+          "candidateKey": "difference between magnetic flux and flux density::STATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        }
+      ]
+    },
+    {
+      "acId": "AC5.3",
+      "acWording": "describe the magnetic effects of electrical currents in terms of: a. production of a magnetic field b. force on a current-carrying conductor in a magnetic field c. electromagnetism d. electromotive force.",
+      "candidateCount": 5,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 2,
+      "unresolved": 3,
+      "candidates": [
+        {
+          "candidateKey": "magnetic effects of electrical currents::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "production of a magnetic field::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "force on a current-carrying conductor in a magnetic field::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "electromagnetism::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electromotive force::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        }
+      ]
+    },
+    {
+      "acId": "AC5.4",
+      "acWording": "describe the basic principles of generating an A.C. supply in terms of: a. a single-loop generator b. sine-wave c. frequency d. EMF e. magnetic flux.",
+      "candidateCount": 6,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 1,
+      "unresolved": 5,
+      "candidates": [
+        {
+          "candidateKey": "basic principles of generating an A.C. supply::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "single-loop generator::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "sine-wave (AC generation principle)::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "frequency (AC generation principle)::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "EMF (AC generation principle)::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "magnetic flux (AC generation principle)::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC5.5",
+      "acWording": "identify the characteristics of sine-waves",
+      "candidateCount": 7,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 0,
+      "unresolved": 7,
+      "candidates": [
+        {
+          "candidateKey": "characteristics of sine-waves::IDENTIFY",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "RMS value (sine-wave characteristic)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "average value (sine-wave characteristic)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "peak to peak value (sine-wave characteristic)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "periodic time (sine-wave characteristic)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "frequency (sine-wave characteristic)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "amplitude (sine-wave characteristic)::IDENTIFY",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC6.1",
+      "acWording": "describe the function and application of electronic components that are used in electrical systems",
+      "candidateCount": 8,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 0,
+      "unresolved": 8,
+      "candidates": [
+        {
+          "candidateKey": "function and application of electronic components used in electrical systems::DESCRIBE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electrical systems (context for electronic component function/application)::DESCRIBE",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electronic components function/application: security alarms::DESCRIBE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electronic components function/application: telephones::DESCRIBE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electronic components function/application: dimmer switches::DESCRIBE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electronic components function/application: heating/boiler controls::DESCRIBE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electronic components function/application: motor control::DESCRIBE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electronic components function/application: wireless control systems::DESCRIBE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    },
+    {
+      "acId": "AC6.2",
+      "acWording": "state the basic operating principles of electronic components and devices",
+      "candidateCount": 15,
+      "explicitlyAtomic": 0,
+      "reviewDecomposed": 5,
+      "unresolved": 10,
+      "candidates": [
+        {
+          "candidateKey": "basic operating principles of electronic components and devices::STATE",
+          "normalizationKind": "PRIMARY_REQUIREMENT",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "electronic components and devices::STATE",
+          "normalizationKind": "RANGE_CATEGORY",
+          "normalizationConfidence": "EXPLICIT",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "capacitors::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "resistors::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "rectifiers::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "diodes::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "Zener::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "LED::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "photo::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "thermistors::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "diacs::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "triacs::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "transistors::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "REVIEW_DECOMPOSED",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 1
+        },
+        {
+          "candidateKey": "thyristors::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        },
+        {
+          "candidateKey": "invertors::STATE",
+          "normalizationKind": "RANGE_REQUIRED_MEMBER",
+          "normalizationConfidence": "STRONG_INFERENCE",
+          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactCount": 0,
+          "reviewProposedFactCount": 0
+        }
+      ]
+    }
+  ],
+  "knownUnresolvedDecompositions": [
+    {
+      "subject": "thyristors",
+      "reason": "AC6.2: an authoritative open/academic source explicitly defining thyristor latching behaviour was sought but not successfully retrieved this session (allaboutcircuits.com returned HTTP 403; no LibreTexts/OpenStax equivalent found). Left UNRESOLVED rather than sourced from a lower-tier site."
+    },
+    {
+      "subject": "single-loop generator",
+      "reason": "AC5.4.a: not researched this session -- decomposition would need the generator EMF equation (e = NBA*omega*sin(omega t)) from an authoritative source."
+    },
+    {
+      "subject": "electromagnetism",
+      "reason": "AC5.3.c: not researched this session -- decomposition would need a clearer minimal-fact boundary between 'production of a magnetic field' (AC5.3.a) and the general term 'electromagnetism'."
+    }
+  ],
+  "technicalSourceCoverage": {
+    "totalTechnicalClaims": 47,
+    "distinctClaimKeys": 47
+  }
+}

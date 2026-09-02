@@ -1,0 +1,66 @@
+{
+  "generatedBy": "CC-19R clean-room build-freeze.ts",
+  "executionConditions": {
+    "freshClaudeSession": true,
+    "cleanRoomBaseCommit": "3c9b1dd",
+    "cleanRoomBranch": "cc19-cleanroom",
+    "cleanRoomWorktreeHeadAtFreezeTime": "3c9b1dddee23269604d671ed558624180ac8171c",
+    "noSubagentToolsUsed": true
+  },
+  "sourceCounts": {
+    "officialCurriculumDocuments": 1,
+    "publicAssessmentDocumentsAttempted": 2,
+    "publicAssessmentDocumentsUsedAsEvidence": 0,
+    "qualificationLevelDocuments": 1,
+    "distinctTechnicalTruthSources": 23,
+    "distinctTechnicalTruthClaimKeys": 47
+  },
+  "curriculumCounts": {
+    "learningOutcomes": 6,
+    "requiredCandidateRecords": 140,
+    "byNormalizationKind": {
+      "PRIMARY_REQUIREMENT": 46,
+      "RANGE_CATEGORY": 11,
+      "RANGE_REQUIRED_MEMBER": 83
+    },
+    "byNormalizationConfidence": {
+      "EXPLICIT": 54,
+      "STRONG_INFERENCE": 86
+    }
+  },
+  "assessmentCounts": {
+    "assessmentEvidenceRecords": 0,
+    "note": "Zero: the only PUBLIC_ASSESSMENT questions document was password-protected (RAW_SOURCE_UNAVAILABLE) and disallowed under CC-19R section B; the mark scheme alone lacked question-stem content required by section 16."
+  },
+  "qualificationLevelEvidenceCount": 2,
+  "requiredCandidateCount": 140,
+  "explicitFactRequirementCount": 36,
+  "reviewFactRequirementCount": 31,
+  "technicalFactualClaimCount": 47,
+  "unresolvedDecompositionCount": 85,
+  "decompositionStatusCounts": {
+    "EXPLICITLY_ATOMIC": 30,
+    "REVIEW_DECOMPOSED": 25,
+    "UNRESOLVED_DECOMPOSITION": 85
+  },
+  "profileEligibility": {
+    "fullPublicEligibleCount": 256,
+    "degradedNoAssessmentEligibleCount": 256,
+    "identicalProfiles": true,
+    "reasonIdentical": "No PUBLIC_ASSESSMENT evidence was successfully normalized this run (source password-protected); filtering it out removes nothing."
+  },
+  "totalLedgerRecordCount": 256,
+  "fileHashes": {
+    "reports/backtests/unit202-cleanroom/CC-19R-SOURCE-ACCESS-LOG.json": "120c543b4d66cd1300ab3a5c9c98dedb0ff846c6b01412a8913381bdd657e909",
+    "reports/backtests/unit202-cleanroom/cc19r-source-inventory.json": "79f4ca86be8053b11b075425f14e9a538bc14f33ce4715aaa22864846431b45a",
+    "reports/backtests/unit202-cleanroom/cc19r-normalization-ledger.json": "827235b4779065974dac719a0fd731e79b8d8bc3b4abfa0a295571314b873e1f",
+    "reports/backtests/unit202-cleanroom/cc19r-decomposition-coverage.json": "a09dfcfbf201384d0711e1c2a7cd61680a21b3caf7a9827252f30783e142d49b",
+    "reports/backtests/unit202-cleanroom/raw-sources/2365-02_L2_handbook_v1-12.pdf": "f6bc7a6c76e37a60a9d9830f873ab1079d230015d1ad95f458d69caa82dc9515",
+    "reports/backtests/unit202-cleanroom/raw-sources/5357-2365_sample_papers_markschemes_v1-0.pdf": "0fba6fc4d2ad0f7662cc7068b184e815ddca4b17b3fa91f9772c058d62c770d7",
+    "reports/backtests/unit202-cleanroom/raw-sources/5357-2365_sample_papers_v1-2.pdf": "71a39b800f4048d2775529ec4783218bf808e7478561214d40f7a61538f39669",
+    "reports/backtests/unit202-cleanroom/raw-sources/BIPM-SI-Brochure-9-concise-EN.pdf": "5a46755dacd99540ef210ff8e6329f5df1fa426bbd5a7c9cd356cb81098c29eb",
+    "reports/backtests/unit202-cleanroom/raw-sources/bipm-si.txt": "8281fc69a50bb6fb3907fba0d4b0fbbe4702320c5b4298db86b80ee9ed049557",
+    "reports/backtests/unit202-cleanroom/raw-sources/handbook.txt": "5bdc791a6b2ba5ad1b39bc8aee1e94ca74197e36066d67f43cf5ced372351a0b",
+    "reports/backtests/unit202-cleanroom/raw-sources/markscheme.txt": "a11caa89de67f2a26a6a2fb8283704383445f3d6df7b0f6419fd54e3e0b48e8c"
+  }
+}
