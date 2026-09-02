@@ -1,6 +1,6 @@
 /**
- * CC-18/CC-18A/CC-18B: generic qualification knowledge-construction
- * pipeline -- rules.
+ * CC-18/CC-18A/CC-18B/CC-18C: generic qualification knowledge-
+ * construction pipeline -- rules.
  *
  * Pure, deterministic functions only. No network, no clock, no RNG, no
  * model calls. Production logic in this file may never inspect a
@@ -9,9 +9,9 @@
  * scan.
  *
  * See docs/architecture/qualification-knowledge-construction-pipeline.md
- * for the design this file implements, and types.ts's own CC-18B header
+ * for the design this file implements, and types.ts's own CC-18C header
  * for the specific integrity gaps this revision closes relative to
- * CC-18A.
+ * CC-18B.
  */
 
 import {
@@ -29,10 +29,12 @@ import {
   type CurriculumFamily,
   type CurriculumSubjectRelation,
   type DiagnosticComparisonEntry,
+  type EvidenceRef,
   type EvidenceRole,
   type ExemplarEvidence,
   type GapRecord,
   type KnowledgeCandidate,
+  type LearnerPerformanceType,
   type LegacyDiagnosticEvidence,
   type NormalizationBasis,
   type OfficialCurriculumUnit,
@@ -47,18 +49,43 @@ import {
 
 // ---------------------------------------------------------------------
 // Provenance gate (CC-18A section 21; CC-18B section 10 adds
-// type-compatibility). An evidence record lacking valid, non-empty
-// source provenance -- or carrying a normalizationBasis that is not
-// semantically compatible with its own evidence type -- is rejected,
-// never silently accepted as a basis for a HIGH-confidence required
-// candidate.
+// type-compatibility; CC-18C section 2 requires every rejection to be
+// REPORTED, never silently dropped). An evidence record lacking valid,
+// non-empty source provenance -- or carrying a normalizationBasis that
+// is not semantically compatible with its own evidence type -- is
+// rejected and always reported via `EVIDENCE_NORMALIZATION_REVIEW`.
 // ---------------------------------------------------------------------
 
 export function hasValidProvenance(evidence: SourceProvenance, allowedBases?: readonly NormalizationBasis[]): boolean {
-  const basicallyValid = evidence.sourceRef.trim().length > 0 && evidence.sourceLocator.trim().length > 0 && normalizationBasisSchema.safeParse(evidence.normalizationBasis).success;
-  if (!basicallyValid) return false;
-  if (allowedBases && !allowedBases.includes(evidence.normalizationBasis)) return false;
-  return true;
+  return provenanceFailureReason(evidence, allowedBases) === undefined;
+}
+
+/** Returns the exact, human-readable reason provenance validation failed, or undefined when it passes. Never silently swallowed -- every caller reports this via `provenanceReviewGap`. */
+function provenanceFailureReason(evidence: SourceProvenance, allowedBases?: readonly NormalizationBasis[]): string | undefined {
+  if (evidence.sourceRef.trim().length === 0) return "sourceRef is empty";
+  if (evidence.sourceLocator.trim().length === 0) return "sourceLocator is empty";
+  if (!normalizationBasisSchema.safeParse(evidence.normalizationBasis).success) return `normalizationBasis "${evidence.normalizationBasis}" is not a recognised governed value`;
+  if (allowedBases && !allowedBases.includes(evidence.normalizationBasis)) {
+    return `normalizationBasis "${evidence.normalizationBasis}" is not type-compatible for this evidence type (allowed: ${allowedBases.join(", ")})`;
+  }
+  return undefined;
+}
+
+/** CC-18C section 2: the uniform "rejected normalization proposal, reported not dropped" gap shape -- preserves evidence id/type and the proposal's own supplied provenance verbatim. */
+function provenanceReviewGap(evidenceType: string, evidenceId: string, e: SourceProvenance, failure: string, candidateKeyValue: string, resolverRoles: readonly EvidenceRole[]): GapRecord {
+  return {
+    gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+    candidateKey: candidateKeyValue,
+    evidenceAvailable: [
+      `evidenceId=${evidenceId}`,
+      `evidenceType=${evidenceType}`,
+      `sourceRef=${JSON.stringify(e.sourceRef)}`,
+      `sourceLocator=${JSON.stringify(e.sourceLocator)}`,
+      `normalizationBasis=${JSON.stringify(e.normalizationBasis)}`,
+    ],
+    unresolved: `Provenance validation failed for ${evidenceType} "${evidenceId}": ${failure}.`,
+    legitimateResolverRoles: resolverRoles,
+  };
 }
 
 const CURRICULUM_ALLOWED_BASES: readonly NormalizationBasis[] = ["EXPLICIT_CURRICULUM_WORDING", "EXPLICIT_RANGE_STRUCTURE"];
@@ -69,6 +96,8 @@ const CAPABILITY_ALLOWED_BASES: readonly NormalizationBasis[] = ["CAPABILITY_DEP
 const PREREQUISITE_ALLOWED_BASES: readonly NormalizationBasis[] = ["STRUCTURAL_PREREQUISITE_DEPENDENCY"];
 const TECHNICAL_CLAIM_ALLOWED_BASES: readonly NormalizationBasis[] = ["AUTHORITATIVE_TECHNICAL_FACT"];
 const CURRICULUM_CLAIM_ALLOWED_BASES: readonly NormalizationBasis[] = ["SOURCE_FACTUAL_CLAIM"];
+/** CC-18C section 7: the ONLY basis a CandidateFactRequirement may declare -- never AUTHORITATIVE_TECHNICAL_FACT, which answers a fact rather than declaring the course requires one. */
+const FACT_REQUIREMENT_ALLOWED_BASES: readonly NormalizationBasis[] = ["FACT_REQUIREMENT_DERIVATION"];
 
 // ---------------------------------------------------------------------
 // Confidence / disposition ordering helpers.
@@ -122,12 +151,14 @@ export function mergeCandidates(candidates: readonly KnowledgeCandidate[]): Know
 }
 
 // ---------------------------------------------------------------------
-// Official curriculum-unit registry (CC-18B section 3). Keyed by the
-// COMPOSITE (qualificationId, curriculumUnitId), never curriculumUnitId
-// alone. Insertion order never affects the result: a genuine conflict
-// (same composite key, incompatible official wording/source identity)
+// Official curriculum-unit registry. Keyed by the COMPOSITE
+// (qualificationId, curriculumUnitId), never curriculumUnitId alone.
+// Insertion order never affects the result. A genuine conflict (same
+// composite key, incompatible official wording/source identity)
 // excludes BOTH duplicates from the resolvable index and is reported,
-// rather than resolved last-write-wins.
+// rather than resolved last-write-wins. CC-18C section 2: an entry with
+// blank sourceRef/sourceLocator is ALSO rejected and reported -- it can
+// never become mapping authority.
 // ---------------------------------------------------------------------
 
 export function buildOfficialCurriculumUnitIndex(units: readonly OfficialCurriculumUnit[]): { index: Map<string, OfficialCurriculumUnit>; gaps: GapRecord[] } {
@@ -137,6 +168,20 @@ export function buildOfficialCurriculumUnitIndex(units: readonly OfficialCurricu
 
   for (const u of units) {
     const key = unitRegistryKey(u.qualificationId, u.curriculumUnitId);
+    // OfficialCurriculumUnit does not extend SourceProvenance (it carries no
+    // normalizationBasis -- it IS the mapping authority, not a normalization
+    // proposal against one) -- so its own bespoke, always-reported blank-field check.
+    if (u.sourceRef.trim().length === 0 || u.sourceLocator.trim().length === 0) {
+      gaps.push({
+        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+        candidateKey: key,
+        evidenceAvailable: [`curriculumUnitId=${u.curriculumUnitId}`, `qualificationId=${u.qualificationId}`, `sourceRef=${JSON.stringify(u.sourceRef)}`, `sourceLocator=${JSON.stringify(u.sourceLocator)}`],
+        unresolved: `OfficialCurriculumUnit "${key}" has ${u.sourceRef.trim().length === 0 ? "an empty sourceRef" : "an empty sourceLocator"} -- it cannot become mapping authority without provenance.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
+      });
+      continue;
+    }
+
     const existing = firstSeen.get(key);
     if (!existing) {
       firstSeen.set(key, u);
@@ -165,9 +210,10 @@ export function buildOfficialCurriculumUnitIndex(units: readonly OfficialCurricu
 }
 
 // ---------------------------------------------------------------------
-// Curriculum evidence validation (CC-18B section 4) -- resolves each
-// record against the official registry and the active qualification
-// BEFORE any candidate is generated from it.
+// Curriculum evidence validation -- resolves each record against the
+// official registry and the active qualification BEFORE any candidate
+// is generated from it. CC-18C: a provenance failure is ALWAYS reported
+// via EVIDENCE_NORMALIZATION_REVIEW, never silently excluded.
 // ---------------------------------------------------------------------
 
 export function validateCurriculumEvidence(
@@ -180,18 +226,11 @@ export function validateCurriculumEvidence(
 
   for (const e of evidence) {
     if (e.role !== "OFFICIAL_CURRICULUM") continue; // structurally guaranteed by type; defense in depth
-    if (!hasValidProvenance(e)) continue; // no provenance at all -- silently excluded
-
     const key = candidateKey(e.subject, e.commandVerbPerformanceType ?? "OTHER");
 
-    if (!hasValidProvenance(e, CURRICULUM_ALLOWED_BASES)) {
-      gaps.push({
-        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
-        candidateKey: key,
-        evidenceAvailable: [`normalizationBasis=${e.normalizationBasis}`],
-        unresolved: `CurriculumEvidence normalizationBasis "${e.normalizationBasis}" is not type-compatible for curriculum evidence.`,
-        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
-      });
+    const failure = provenanceFailureReason(e, CURRICULUM_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("CurriculumEvidence", e.evidenceId, e, failure, key, ["OFFICIAL_CURRICULUM"]));
       continue;
     }
 
@@ -202,7 +241,7 @@ export function validateCurriculumEvidence(
       gaps.push({
         gapType: "CURRICULUM_MAPPING_REVIEW",
         candidateKey: key,
-        evidenceAvailable: [`declaredQualification=${e.qualificationId}`, `curriculumUnitId=${e.curriculumUnitId}`, `subject=${e.subject}`],
+        evidenceAvailable: [`evidenceId=${e.evidenceId}`, `declaredQualification=${e.qualificationId}`, `curriculumUnitId=${e.curriculumUnitId}`, `subject=${e.subject}`],
         unresolved: !qualMatches
           ? `CurriculumEvidence declares qualification "${e.qualificationId}", not the active pipeline qualification "${qualificationId}".`
           : `curriculumUnitId "${e.curriculumUnitId}" does not resolve to a real OfficialCurriculumUnit for qualification "${qualificationId}".`,
@@ -218,24 +257,29 @@ export function validateCurriculumEvidence(
 }
 
 // ---------------------------------------------------------------------
-// Curriculum candidate generation (CC-18B section 5-7). Operates ONLY on
-// an already-validated stream. Groups by the FULL (subject,
-// performanceType) key from the start, so multiple performance types
-// for one subject all survive, and honours the explicit
-// CurriculumNormalizationKind rather than an ambiguous boolean pair.
+// Curriculum candidate generation. Operates ONLY on an already-validated
+// stream. Groups by the FULL (subject, performanceType) key from the
+// start, so multiple performance types for one subject all survive, and
+// honours the explicit CurriculumNormalizationKind. CC-18C section 11:
+// a DEPTH_QUALIFIER must resolve to EXACTLY ONE (subject,
+// performanceType) candidate -- via an explicit `refinesPerformanceType`
+// or because the parent subject has only one performance-type candidate
+// of its own -- or it is never applied and is reported for review
+// instead of silently applying to every candidate sharing the subject.
 // ---------------------------------------------------------------------
 
-export function generateCurriculumCandidates(validatedEvidence: readonly CurriculumEvidence[]): KnowledgeCandidate[] {
+export function generateCurriculumCandidates(validatedEvidence: readonly CurriculumEvidence[]): { candidates: KnowledgeCandidate[]; gaps: GapRecord[] } {
   const ownCandidateRecordsByKey = new Map<string, CurriculumEvidence[]>();
-  const depthQualifiersByParent = new Map<string, CurriculumEvidence[]>();
+  const depthQualifiersByParentSubject = new Map<string, CurriculumEvidence[]>();
   const parentBySubject = new Map<string, string>();
+  const performanceTypesBySubject = new Map<string, Set<LearnerPerformanceType>>();
 
   for (const e of validatedEvidence) {
     if (e.normalizationKind === "DEPTH_QUALIFIER") {
       if (!e.refinesSubject) continue; // malformed -- a depth qualifier with no parent constrains nothing
-      const list = depthQualifiersByParent.get(e.refinesSubject) ?? [];
+      const list = depthQualifiersByParentSubject.get(e.refinesSubject) ?? [];
       list.push(e);
-      depthQualifiersByParent.set(e.refinesSubject, list);
+      depthQualifiersByParentSubject.set(e.refinesSubject, list);
       continue;
     }
 
@@ -246,8 +290,51 @@ export function generateCurriculumCandidates(validatedEvidence: readonly Curricu
     list.push(e);
     ownCandidateRecordsByKey.set(key, list);
 
+    const perfSet = performanceTypesBySubject.get(e.subject) ?? new Set<LearnerPerformanceType>();
+    perfSet.add(performanceType);
+    performanceTypesBySubject.set(e.subject, perfSet);
+
     if (e.normalizationKind === "RANGE_REQUIRED_MEMBER" && e.refinesSubject) {
       parentBySubject.set(e.subject, e.refinesSubject);
+    }
+  }
+
+  const gaps: GapRecord[] = [];
+  const depthQualifierHitsByKey = new Map<string, CurriculumEvidence[]>();
+
+  for (const [subject, qualifiers] of depthQualifiersByParentSubject) {
+    const perfSet = performanceTypesBySubject.get(subject) ?? new Set<LearnerPerformanceType>();
+    for (const q of qualifiers) {
+      let targetKey: string | undefined;
+      if (q.refinesPerformanceType) {
+        const candidate = candidateKey(subject, q.refinesPerformanceType);
+        if (ownCandidateRecordsByKey.has(candidate)) targetKey = candidate;
+      } else if (perfSet.size === 1) {
+        targetKey = candidateKey(subject, [...perfSet][0]!);
+      }
+
+      if (!targetKey) {
+        gaps.push({
+          gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+          candidateKey: candidateKey(subject, q.refinesPerformanceType ?? "OTHER"),
+          evidenceAvailable: [
+            `evidenceId=${q.evidenceId}`,
+            `refinesSubject=${subject}`,
+            `refinesPerformanceType=${q.refinesPerformanceType ?? "(unspecified)"}`,
+            `availablePerformanceTypesForSubject=${[...perfSet].join(", ") || "none"}`,
+          ],
+          unresolved: `DEPTH_QUALIFIER for subject "${subject}" cannot resolve to exactly one intended (subject, performanceType) candidate -- ${
+            q.refinesPerformanceType
+              ? `no candidate exists for the explicitly targeted performance type "${q.refinesPerformanceType}"`
+              : `${perfSet.size} performance types exist for this subject and no explicit refinesPerformanceType was supplied`
+          }. It is never applied broadly to every candidate sharing the subject.`,
+          legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
+        });
+        continue;
+      }
+      const list = depthQualifierHitsByKey.get(targetKey) ?? [];
+      list.push(q);
+      depthQualifierHitsByKey.set(targetKey, list);
     }
   }
 
@@ -256,7 +343,7 @@ export function generateCurriculumCandidates(validatedEvidence: readonly Curricu
     const first = records[0]!;
     const subject = first.subject;
     const performanceType = first.commandVerbPerformanceType ?? "OTHER";
-    const depthQualifiers = depthQualifiersByParent.get(subject) ?? [];
+    const depthQualifiers = depthQualifierHitsByKey.get(key) ?? [];
     const kinds = new Set(records.map((r) => r.normalizationKind));
 
     const rationaleParts: string[] = [];
@@ -280,13 +367,13 @@ export function generateCurriculumCandidates(validatedEvidence: readonly Curricu
       parentSubject: parentBySubject.get(subject),
     });
   }
-  return candidates;
+  return { candidates, gaps };
 }
 
 // ---------------------------------------------------------------------
-// Assessment evidence validation (CC-18B section 8-9) -- produces the
-// SINGLE validated/accepted stream every downstream assessment-consuming
-// function must use exclusively.
+// Assessment evidence validation -- produces the SINGLE validated/
+// accepted stream every downstream assessment-consuming function must
+// use exclusively. CC-18C: a provenance failure is ALWAYS reported.
 // ---------------------------------------------------------------------
 
 export function validateAssessmentEvidence(
@@ -298,16 +385,10 @@ export function validateAssessmentEvidence(
   const gaps: GapRecord[] = [];
 
   for (const e of evidence) {
-    if (!hasValidProvenance(e)) continue;
-
-    if (!hasValidProvenance(e, ASSESSMENT_ALLOWED_BASES)) {
-      gaps.push({
-        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
-        candidateKey: candidateKey(e.subject, e.performanceType),
-        evidenceAvailable: [`normalizationBasis=${e.normalizationBasis}`],
-        unresolved: `AssessmentEvidence normalizationBasis "${e.normalizationBasis}" is not type-compatible for assessment evidence.`,
-        legitimateResolverRoles: ["PUBLIC_ASSESSMENT"],
-      });
+    const key = candidateKey(e.subject, e.performanceType);
+    const failure = provenanceFailureReason(e, ASSESSMENT_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("AssessmentEvidence", e.evidenceId, e, failure, key, ["PUBLIC_ASSESSMENT"]));
       continue;
     }
 
@@ -323,7 +404,7 @@ export function validateAssessmentEvidence(
           : `Mapped curriculum-unit id "${mappedId}" does not resolve to any official curriculum unit for qualification "${e.qualificationId}".`;
       gaps.push({
         gapType: "ASSESSMENT_MAPPING_REVIEW",
-        candidateKey: candidateKey(e.subject, e.performanceType),
+        candidateKey: key,
         evidenceAvailable: [`assessmentSource=${e.assessmentSource}`, `itemId=${e.itemId}`, `attemptedMapping=${mappedId || "(none)"}`, `targetSubject=${e.subject}`, `targetPerformanceType=${e.performanceType}`],
         unresolved: reason,
         legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
@@ -337,7 +418,7 @@ export function validateAssessmentEvidence(
   return { validated, gaps };
 }
 
-/** CC-18B section 8: pure candidate generation from an ALREADY validated/trusted assessment stream -- no validation logic here. */
+/** Pure candidate generation from an ALREADY validated/trusted assessment stream -- no validation logic here. */
 export function generateAssessmentCandidates(validated: readonly AssessmentEvidence[]): KnowledgeCandidate[] {
   const byKey = new Map<string, AssessmentEvidence[]>();
   for (const e of validated) {
@@ -363,75 +444,29 @@ export function generateAssessmentCandidates(validated: readonly AssessmentEvide
 }
 
 // ---------------------------------------------------------------------
-// Structural capability dependency + prerequisite rule (CC-18B sections
-// 11-13). `CandidateCapabilityRequirement` is the ONLY thing a
-// `PrerequisiteEvidence` can match against. Auto-promotion is gated by
-// `derivationKind`, and an EXPLICIT_ASSESSMENT_OPERATION derivation must
-// itself be substantiated by a VALIDATED assessment item.
+// Qualification-level evidence validation. CC-18C: provenance failure
+// always reported.
 // ---------------------------------------------------------------------
 
-export function generatePrerequisiteCandidates(
-  prerequisites: readonly PrerequisiteEvidence[],
-  capabilityRequirements: readonly CandidateCapabilityRequirement[],
-  existingCandidates: readonly KnowledgeCandidate[],
-  validatedAssessmentEvidenceIds: ReadonlySet<string>,
-): KnowledgeCandidate[] {
-  const requiredKeys = new Set(existingCandidates.filter((c) => REQUIRED_DISPOSITIONS.includes(c.disposition)).map((c) => c.candidateKey));
-  const validCapabilityRequirements = capabilityRequirements.filter((r) => hasValidProvenance(r, CAPABILITY_ALLOWED_BASES) && requiredKeys.has(r.targetCandidateKey));
-
-  return prerequisites
-    .filter((e) => hasValidProvenance(e, PREREQUISITE_ALLOWED_BASES))
-    .map((e) => {
-      const matching = validCapabilityRequirements.filter((r) => r.targetCandidateKey === e.necessaryForCandidateKey && r.capabilityKey === e.capabilityKey);
-
-      const autoPromotable = matching.some((r) => {
-        if (r.derivationKind === "REVIEW_PROPOSED") return false;
-        if (r.derivationKind === "EXPLICIT_ASSESSMENT_OPERATION") {
-          return r.sourceEvidenceRefs.some((ref) => validatedAssessmentEvidenceIds.has(ref.evidenceId));
-        }
-        return true; // EXPLICIT_CURRICULUM_OPERATION | DETERMINISTIC_OPERATIONAL_DEPENDENCY
-      });
-
-      const targetExists = requiredKeys.has(e.necessaryForCandidateKey);
-      const disposition: CandidateDisposition = autoPromotable ? "FOUNDATIONAL_PREREQUISITE" : targetExists ? "REVIEW_REQUIRED" : "CONTEXTUAL_TEACHING_SUPPORT";
-
-      const rationale = autoPromotable
-        ? `Capability "${e.capabilityKey}" is structurally required by "${e.necessaryForCandidateKey}" via a validly derived CandidateCapabilityRequirement -- minimal prerequisite: ${e.minimalDepthJustification}`
-        : matching.length > 0
-          ? `A CandidateCapabilityRequirement for "${e.capabilityKey}"/"${e.necessaryForCandidateKey}" exists but its derivationKind does not auto-promote (REVIEW_PROPOSED, or an EXPLICIT_ASSESSMENT_OPERATION whose source item was not in the validated assessment stream) -- held at REVIEW_REQUIRED pending Project-Architect confirmation.`
-          : targetExists
-            ? `No CandidateCapabilityRequirement declares "${e.capabilityKey}" as necessary for "${e.necessaryForCandidateKey}" -- a claimed necessity label alone is never sufficient; held at REVIEW_REQUIRED.`
-            : `Does not reference an existing required candidate ("${e.necessaryForCandidateKey}") -- capped at contextual teaching support.`;
-
-      return {
-        candidateKey: candidateKey(e.subject, e.performanceType),
-        subject: e.subject,
-        performanceType: e.performanceType,
-        disposition,
-        confidence: {
-          scopeConfidence: disposition === "FOUNDATIONAL_PREREQUISITE" ? "MEDIUM" : "LOW",
-          depthConfidence: "LOW",
-          technicalTruthConfidence: "NONE",
-        },
-        rationale,
-        evidenceRefs: [{ role: "STRUCTURAL_PREREQUISITE_DEPENDENCY", evidenceId: e.evidenceId }, ...matching.map((r) => ({ role: "CANDIDATE_CAPABILITY_REQUIREMENT" as const, evidenceId: `${r.targetCandidateKey}::${r.capabilityKey}` }))],
-      };
-    });
+export function validateQualificationLevelEvidence(evidence: readonly QualificationLevelEvidence[], qualificationId: string): { validated: QualificationLevelEvidence[]; gaps: GapRecord[] } {
+  const validated: QualificationLevelEvidence[] = [];
+  const gaps: GapRecord[] = [];
+  for (const e of evidence) {
+    const failure = provenanceFailureReason(e, QUALIFICATION_LEVEL_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("QualificationLevelEvidence", e.evidenceId, e, failure, e.appliesToCandidateKey, ["QUALIFICATION_LEVEL"]));
+      continue;
+    }
+    if (e.qualificationId !== qualificationId) continue; // not this run's concern -- depth constraint only, never scope
+    validated.push(e);
+  }
+  return { validated, gaps };
 }
 
-// ---------------------------------------------------------------------
-// Qualification-level depth-constraint attachment. NEVER creates a new
-// candidate -- only attaches to a candidate that already exists under
-// the exact key it names.
-// ---------------------------------------------------------------------
-
-export function attachQualificationLevelConstraints(
-  candidates: readonly KnowledgeCandidate[],
-  evidence: readonly QualificationLevelEvidence[],
-): { candidates: KnowledgeCandidate[]; unmatched: QualificationLevelEvidence[] } {
-  const valid = evidence.filter((e) => hasValidProvenance(e, QUALIFICATION_LEVEL_ALLOWED_BASES));
+/** Qualification-level depth-constraint attachment. NEVER creates a new candidate -- only attaches to a candidate that already exists under the exact key it names. Operates on an ALREADY validated stream. */
+export function attachQualificationLevelConstraints(candidates: readonly KnowledgeCandidate[], validatedEvidence: readonly QualificationLevelEvidence[]): { candidates: KnowledgeCandidate[]; unmatched: QualificationLevelEvidence[] } {
   const byCandidateKey = new Map<string, QualificationLevelEvidence[]>();
-  for (const e of valid) {
+  for (const e of validatedEvidence) {
     const list = byCandidateKey.get(e.appliesToCandidateKey) ?? [];
     list.push(e);
     byCandidateKey.set(e.appliesToCandidateKey, list);
@@ -449,19 +484,153 @@ export function attachQualificationLevelConstraints(
     };
   });
 
-  const unmatched = valid.filter((e) => !matchedKeys.has(e.appliesToCandidateKey));
+  const unmatched = validatedEvidence.filter((e) => !matchedKeys.has(e.appliesToCandidateKey));
   return { candidates: updated, unmatched };
 }
 
 // ---------------------------------------------------------------------
-// Exemplar vs mastery. CC-18B: role no longer auto-grants technical-
-// truth confidence -- that comes only from exact claim-key coverage.
+// Structural capability dependency validation + prerequisite rule.
+// `CandidateCapabilityRequirement` is the ONLY thing a
+// `PrerequisiteEvidence` can match against. CC-18C:
+//   - a capability requirement is now bound to the active qualificationId
+//     (section 3);
+//   - EXPLICIT_CURRICULUM_OPERATION must cite a role=OFFICIAL_CURRICULUM
+//     ref resolving into the VALIDATED curriculum stream (section 4);
+//   - EXPLICIT_ASSESSMENT_OPERATION must cite a role=PUBLIC_ASSESSMENT
+//     ref resolving into the VALIDATED assessment stream -- a colliding
+//     evidenceId under the wrong role never satisfies the gate (section 5);
+//   - DETERMINISTIC_OPERATIONAL_DEPENDENCY is a deliberate HOLD and never
+//     auto-promotes until a governed deterministic-rule registry is
+//     separately authorised (section 6) -- REVIEW_REQUIRED only.
 // ---------------------------------------------------------------------
 
-export function generateExemplarCandidates(evidence: readonly ExemplarEvidence[], existingCandidates: readonly KnowledgeCandidate[]): KnowledgeCandidate[] {
+export function validateCandidateCapabilityRequirements(requirements: readonly CandidateCapabilityRequirement[], qualificationId: string): { validated: CandidateCapabilityRequirement[]; gaps: GapRecord[] } {
+  const validated: CandidateCapabilityRequirement[] = [];
+  const gaps: GapRecord[] = [];
+  for (const r of requirements) {
+    const identifier = `${r.targetCandidateKey}::${r.capabilityKey}`;
+    const failure = provenanceFailureReason(r, CAPABILITY_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("CandidateCapabilityRequirement", identifier, r, failure, r.targetCandidateKey, ["OFFICIAL_CURRICULUM"]));
+      continue;
+    }
+    if (r.qualificationId !== qualificationId) {
+      gaps.push({
+        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+        candidateKey: r.targetCandidateKey,
+        evidenceAvailable: [`identifier=${identifier}`, `declaredQualification=${r.qualificationId}`],
+        unresolved: `CandidateCapabilityRequirement declares qualification "${r.qualificationId}", not the active pipeline qualification "${qualificationId}" -- it cannot influence this run or promote a prerequisite.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
+      });
+      continue;
+    }
+    validated.push(r);
+  }
+  return { validated, gaps };
+}
+
+export function validatePrerequisiteEvidence(evidence: readonly PrerequisiteEvidence[]): { validated: PrerequisiteEvidence[]; gaps: GapRecord[] } {
+  const validated: PrerequisiteEvidence[] = [];
+  const gaps: GapRecord[] = [];
+  for (const e of evidence) {
+    const failure = provenanceFailureReason(e, PREREQUISITE_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("PrerequisiteEvidence", e.evidenceId, e, failure, candidateKey(e.subject, e.performanceType), ["OFFICIAL_CURRICULUM"]));
+      continue;
+    }
+    validated.push(e);
+  }
+  return { validated, gaps };
+}
+
+/**
+ * A capability requirement's derivationKind auto-promotes a matching
+ * prerequisite only when it cites a role-and-id-matched entry in the
+ * corresponding VALIDATED evidence stream. An EvidenceRef that merely
+ * reuses the same evidenceId under the WRONG role never satisfies this.
+ */
+function isAutoPromotable(r: CandidateCapabilityRequirement, validatedCurriculumIds: ReadonlySet<string>, validatedAssessmentIds: ReadonlySet<string>): boolean {
+  switch (r.derivationKind) {
+    case "EXPLICIT_CURRICULUM_OPERATION":
+      return r.sourceEvidenceRefs.some((ref) => ref.role === "OFFICIAL_CURRICULUM" && validatedCurriculumIds.has(ref.evidenceId));
+    case "EXPLICIT_ASSESSMENT_OPERATION":
+      return r.sourceEvidenceRefs.some((ref) => ref.role === "PUBLIC_ASSESSMENT" && validatedAssessmentIds.has(ref.evidenceId));
+    case "DETERMINISTIC_OPERATIONAL_DEPENDENCY":
+      // CC-18C section 6: deliberate HOLD -- no governed deterministic-rule
+      // registry exists yet, so this can never auto-promote on its own say-so.
+      return false;
+    case "REVIEW_PROPOSED":
+      return false;
+  }
+}
+
+export function generatePrerequisiteCandidates(
+  validatedPrerequisites: readonly PrerequisiteEvidence[],
+  validatedCapabilityRequirements: readonly CandidateCapabilityRequirement[],
+  existingCandidates: readonly KnowledgeCandidate[],
+  validatedCurriculumEvidenceIds: ReadonlySet<string>,
+  validatedAssessmentEvidenceIds: ReadonlySet<string>,
+): KnowledgeCandidate[] {
+  const requiredKeys = new Set(existingCandidates.filter((c) => REQUIRED_DISPOSITIONS.includes(c.disposition)).map((c) => c.candidateKey));
+  const requirementsWithRealTarget = validatedCapabilityRequirements.filter((r) => requiredKeys.has(r.targetCandidateKey));
+
+  return validatedPrerequisites.map((e) => {
+    const matching = requirementsWithRealTarget.filter((r) => r.targetCandidateKey === e.necessaryForCandidateKey && r.capabilityKey === e.capabilityKey);
+    const autoPromotable = matching.some((r) => isAutoPromotable(r, validatedCurriculumEvidenceIds, validatedAssessmentEvidenceIds));
+    const targetExists = requiredKeys.has(e.necessaryForCandidateKey);
+    const disposition: CandidateDisposition = autoPromotable ? "FOUNDATIONAL_PREREQUISITE" : targetExists ? "REVIEW_REQUIRED" : "CONTEXTUAL_TEACHING_SUPPORT";
+
+    const rationale = autoPromotable
+      ? `Capability "${e.capabilityKey}" is structurally required by "${e.necessaryForCandidateKey}" via a validly derived CandidateCapabilityRequirement that cites role-and-id-matched validated primary-source evidence -- minimal prerequisite: ${e.minimalDepthJustification}`
+      : matching.length > 0
+        ? `A CandidateCapabilityRequirement for "${e.capabilityKey}"/"${e.necessaryForCandidateKey}" exists but does not auto-promote: its derivationKind is REVIEW_PROPOSED, is DETERMINISTIC_OPERATIONAL_DEPENDENCY (a deliberate architectural HOLD until a governed deterministic-rule registry is authorised), or its cited EvidenceRef does not resolve into the correspondingly validated evidence stream under the matching role -- held at REVIEW_REQUIRED pending Project-Architect confirmation.`
+        : targetExists
+          ? `No CandidateCapabilityRequirement declares "${e.capabilityKey}" as necessary for "${e.necessaryForCandidateKey}" -- a claimed necessity label alone is never sufficient; held at REVIEW_REQUIRED.`
+          : `Does not reference an existing required candidate ("${e.necessaryForCandidateKey}") -- capped at contextual teaching support.`;
+
+    return {
+      candidateKey: candidateKey(e.subject, e.performanceType),
+      subject: e.subject,
+      performanceType: e.performanceType,
+      disposition,
+      confidence: {
+        scopeConfidence: disposition === "FOUNDATIONAL_PREREQUISITE" ? "MEDIUM" : "LOW",
+        depthConfidence: "LOW",
+        technicalTruthConfidence: "NONE",
+      },
+      rationale,
+      evidenceRefs: [
+        { role: "STRUCTURAL_PREREQUISITE_DEPENDENCY", evidenceId: e.evidenceId },
+        ...matching.map((r) => ({ role: "CANDIDATE_CAPABILITY_REQUIREMENT" as const, evidenceId: `${r.targetCandidateKey}::${r.capabilityKey}` })),
+      ],
+    };
+  });
+}
+
+// ---------------------------------------------------------------------
+// Exemplar vs mastery. Role no longer auto-grants technical-truth
+// confidence -- that comes only from exact claim-key coverage. CC-18C:
+// provenance failure always reported.
+// ---------------------------------------------------------------------
+
+export function validateExemplarEvidence(evidence: readonly ExemplarEvidence[]): { validated: ExemplarEvidence[]; gaps: GapRecord[] } {
+  const validated: ExemplarEvidence[] = [];
+  const gaps: GapRecord[] = [];
+  for (const e of evidence) {
+    const failure = provenanceFailureReason(e);
+    if (failure) {
+      gaps.push(provenanceReviewGap("ExemplarEvidence", e.evidenceId, e, failure, candidateKey(e.exemplarSubject, "OTHER"), ["OFFICIAL_CURRICULUM"]));
+      continue;
+    }
+    validated.push(e);
+  }
+  return { validated, gaps };
+}
+
+export function generateExemplarCandidates(validatedEvidence: readonly ExemplarEvidence[], existingCandidates: readonly KnowledgeCandidate[]): KnowledgeCandidate[] {
   const requiredSubjects = new Set(existingCandidates.filter((c) => REQUIRED_DISPOSITIONS.includes(c.disposition)).map((c) => c.subject));
   const candidates: KnowledgeCandidate[] = [];
-  for (const e of evidence.filter((ev) => hasValidProvenance(ev))) {
+  for (const e of validatedEvidence) {
     if (!requiredSubjects.has(e.exemplarOfCategory)) continue;
     const detail = (e.implementationDetailSubjects ?? []).join(", ") || "none recorded";
     candidates.push({
@@ -479,11 +648,90 @@ export function generateExemplarCandidates(evidence: readonly ExemplarEvidence[]
 }
 
 // ---------------------------------------------------------------------
-// Claim-key-specific technical-truth coverage (CC-18B sections 14-17).
-// A candidate's technical coverage is determined exclusively by its own
-// declared `requiredFactKeys` (from `CandidateFactRequirement`) matched
-// against TECHNICAL_TRUTH claims by EXACT claimKey -- never by subject
-// equality alone.
+// Candidate fact-requirement validation (CC-18C sections 7-8).
+// qualificationId is mandatory; a requirement must resolve to a real
+// current required candidate; its own normalizationBasis must be
+// FACT_REQUIREMENT_DERIVATION specifically; and its derivationStatus
+// gates whether it may contribute a requiredFactKey at all --
+// EXPLICIT_CURRICULUM_FACT/EXPLICIT_ASSESSMENT_FACT must cite
+// role-and-id-matched validated primary-source evidence;
+// REVIEW_PROPOSED is exported for review but never contributes.
+// ---------------------------------------------------------------------
+
+export function validateCandidateFactRequirements(
+  requirements: readonly CandidateFactRequirement[],
+  qualificationId: string,
+  requiredCandidateKeys: ReadonlySet<string>,
+  validatedCurriculumEvidenceIds: ReadonlySet<string>,
+  validatedAssessmentEvidenceIds: ReadonlySet<string>,
+): { validated: CandidateFactRequirement[]; gaps: GapRecord[] } {
+  const validated: CandidateFactRequirement[] = [];
+  const gaps: GapRecord[] = [];
+
+  for (const r of requirements) {
+    const identifier = `${r.targetCandidateKey}::${r.claimKey}`;
+    const failure = provenanceFailureReason(r, FACT_REQUIREMENT_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("CandidateFactRequirement", identifier, r, failure, r.targetCandidateKey, ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT"]));
+      continue;
+    }
+    if (r.qualificationId !== qualificationId) {
+      gaps.push({
+        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+        candidateKey: r.targetCandidateKey,
+        evidenceAvailable: [`identifier=${identifier}`, `declaredQualification=${r.qualificationId}`],
+        unresolved: `CandidateFactRequirement declares qualification "${r.qualificationId}", not the active pipeline qualification "${qualificationId}" -- it cannot create a requiredFactKey for this run.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
+      });
+      continue;
+    }
+    if (!requiredCandidateKeys.has(r.targetCandidateKey)) {
+      gaps.push({
+        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+        candidateKey: r.targetCandidateKey,
+        evidenceAvailable: [`identifier=${identifier}`],
+        unresolved: `CandidateFactRequirement targets "${r.targetCandidateKey}", which is not a current required candidate.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
+      });
+      continue;
+    }
+
+    const eligible =
+      r.derivationStatus === "EXPLICIT_CURRICULUM_FACT"
+        ? r.sourceEvidenceRefs.some((ref) => ref.role === "OFFICIAL_CURRICULUM" && validatedCurriculumEvidenceIds.has(ref.evidenceId))
+        : r.derivationStatus === "EXPLICIT_ASSESSMENT_FACT"
+          ? r.sourceEvidenceRefs.some((ref) => ref.role === "PUBLIC_ASSESSMENT" && validatedAssessmentEvidenceIds.has(ref.evidenceId))
+          : false; // REVIEW_PROPOSED
+
+    if (!eligible) {
+      gaps.push({
+        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+        candidateKey: r.targetCandidateKey,
+        evidenceAvailable: [`identifier=${identifier}`, `derivationStatus=${r.derivationStatus}`],
+        unresolved: `CandidateFactRequirement for claimKey "${r.claimKey}" (derivationStatus=${r.derivationStatus}) does not cite role-and-id-matched validated primary-source evidence -- exported for Project-Architect review but does not contribute to requiredFactKeys or technical coverage automatically.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT"],
+        notes: "REVIEW_PROPOSED requirements, and EXPLICIT_*_FACT requirements whose citation does not check out, are never silently promoted to a governing fact requirement.",
+      });
+      continue;
+    }
+
+    validated.push(r);
+  }
+  return { validated, gaps };
+}
+
+// ---------------------------------------------------------------------
+// Claim-key-specific technical-truth coverage. A candidate's technical
+// coverage is determined exclusively by its own declared
+// `requiredFactKeys` matched against TECHNICAL_TRUTH claims by EXACT
+// claimKey -- never by subject equality alone. CC-18C section 9-10:
+// MULTIPLE TECHNICAL_TRUTH claims for the same (subject, claimKey) are
+// resolved deterministically, never by array/source order -- agreeing
+// claims attach with every supporting ref preserved; incompatible
+// comparisonKinds produce FACTUAL_COMPARISON_REVIEW; disagreeing
+// canonical values produce TECHNICAL_TRUTH_CONFLICT_REVIEW. Neither
+// case is ever arbitrarily resolved to one value, and neither counts as
+// covered -- a disputed fact can never make a candidate COMPLETE.
 // ---------------------------------------------------------------------
 
 function computeCoverage(requiredKeys: readonly string[], attached: ReadonlyMap<string, string>): { status: TechnicalCoverageStatus; confidence: ConfidenceLevel } {
@@ -496,26 +744,18 @@ function computeCoverage(requiredKeys: readonly string[], attached: ReadonlyMap<
 
 /**
  * CC-18B section 10: type-compatibility gate for `SourceFactualClaim` --
- * a TECHNICAL_TRUTH claim must use AUTHORITATIVE_TECHNICAL_FACT; an
- * OFFICIAL_CURRICULUM (or diagnostic-only OPTIONAL_CALIBRATION) claim
- * must use SOURCE_FACTUAL_CLAIM. A record with valid basic provenance
- * but an incompatible basis is excluded and explicitly reviewed, never
- * silently ignored.
+ * a TECHNICAL_TRUTH claim must use AUTHORITATIVE_TECHNICAL_FACT; any
+ * other sourceRole must use SOURCE_FACTUAL_CLAIM. CC-18C: a provenance
+ * failure is always reported, never silently dropped.
  */
 export function validateFactualClaims(claims: readonly SourceFactualClaim[]): { validated: SourceFactualClaim[]; gaps: GapRecord[] } {
   const validated: SourceFactualClaim[] = [];
   const gaps: GapRecord[] = [];
   for (const c of claims) {
-    if (!hasValidProvenance(c)) continue;
     const allowedBases = c.sourceRole === "TECHNICAL_TRUTH" ? TECHNICAL_CLAIM_ALLOWED_BASES : CURRICULUM_CLAIM_ALLOWED_BASES;
-    if (!hasValidProvenance(c, allowedBases)) {
-      gaps.push({
-        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
-        candidateKey: `${c.subject}::FACTUAL_CLAIM`,
-        evidenceAvailable: [`normalizationBasis=${c.normalizationBasis}`, `sourceRole=${c.sourceRole}`],
-        unresolved: `SourceFactualClaim normalizationBasis "${c.normalizationBasis}" is not type-compatible for sourceRole "${c.sourceRole}".`,
-        legitimateResolverRoles: [c.sourceRole],
-      });
+    const failure = provenanceFailureReason(c, allowedBases);
+    if (failure) {
+      gaps.push(provenanceReviewGap("SourceFactualClaim", c.evidenceId, c, failure, `${c.subject}::FACTUAL_CLAIM`, [c.sourceRole]));
       continue;
     }
     validated.push(c);
@@ -525,33 +765,68 @@ export function validateFactualClaims(claims: readonly SourceFactualClaim[]): { 
 
 export function attachFactualClaims(
   candidates: readonly KnowledgeCandidate[],
-  factRequirements: readonly CandidateFactRequirement[],
-  claims: readonly SourceFactualClaim[],
-): { candidates: KnowledgeCandidate[]; unmatched: SourceFactualClaim[] } {
-  const validRequirements = factRequirements.filter((r) => hasValidProvenance(r));
+  validatedFactRequirements: readonly CandidateFactRequirement[],
+  validatedClaims: readonly SourceFactualClaim[],
+): { candidates: KnowledgeCandidate[]; unmatched: SourceFactualClaim[]; gaps: GapRecord[] } {
   const requiredKeysByCandidate = new Map<string, Set<string>>();
-  for (const r of validRequirements) {
+  for (const r of validatedFactRequirements) {
     const set = requiredKeysByCandidate.get(r.targetCandidateKey) ?? new Set<string>();
     set.add(r.claimKey);
     requiredKeysByCandidate.set(r.targetCandidateKey, set);
   }
 
-  const technicalClaims = claims.filter((c) => c.sourceRole === "TECHNICAL_TRUTH" && hasValidProvenance(c, TECHNICAL_CLAIM_ALLOWED_BASES));
-  const usedClaimKeys = new Set<string>();
+  const technicalClaims = validatedClaims.filter((c) => c.sourceRole === "TECHNICAL_TRUTH");
+  const usedClaimSubjectKeys = new Set<string>();
+  const gaps: GapRecord[] = [];
 
   const updated = candidates.map((c) => {
     const requiredKeys = [...(requiredKeysByCandidate.get(c.candidateKey) ?? new Set<string>())].sort();
     if (requiredKeys.length === 0) return { ...c, requiredFactKeys: undefined, technicalCoverageStatus: "NOT_REQUIRED" as const };
 
     const attached = new Map<string, string>();
-    const attachedRefs: { role: "TECHNICAL_TRUTH"; evidenceId: string }[] = [];
+    const attachedRefs: EvidenceRef[] = [];
+
     for (const key of requiredKeys) {
-      const claim = technicalClaims.find((cl) => cl.claimKey === key && cl.subject === c.subject);
-      if (claim) {
-        attached.set(key, claim.normalizedClaimValue);
-        attachedRefs.push({ role: "TECHNICAL_TRUTH", evidenceId: claim.evidenceId });
-        usedClaimKeys.add(`${claim.claimKey}::${claim.subject}`);
+      const matchingClaims = technicalClaims.filter((cl) => cl.claimKey === key && cl.subject === c.subject);
+      if (matchingClaims.length === 0) continue; // genuinely unresolved -- no claim at all
+
+      usedClaimSubjectKeys.add(`${key}::${c.subject}`);
+
+      if (matchingClaims.length === 1) {
+        attached.set(key, matchingClaims[0]!.normalizedClaimValue);
+        attachedRefs.push({ role: "TECHNICAL_TRUTH", evidenceId: matchingClaims[0]!.evidenceId });
+        continue;
       }
+
+      // Multiple TECHNICAL_TRUTH claims for the same (subject, claimKey) --
+      // resolve deterministically, never by which happened to come first.
+      const kinds = new Set(matchingClaims.map((cl) => cl.comparisonKind));
+      if (kinds.size > 1) {
+        gaps.push({
+          gapType: "FACTUAL_COMPARISON_REVIEW",
+          candidateKey: c.candidateKey,
+          evidenceAvailable: matchingClaims.map((cl) => `${cl.sourceRef} (kind=${cl.comparisonKind}): ${cl.normalizedClaimValue}`),
+          unresolved: `Multiple TECHNICAL_TRUTH claims for claimKey "${key}" on subject "${c.subject}" use incompatible comparison kinds -- cannot be automatically resolved to a single taught value.`,
+          legitimateResolverRoles: ["TECHNICAL_TRUTH"],
+        });
+        continue; // not attached, not counted as covered
+      }
+
+      const values = new Set(matchingClaims.map((cl) => cl.normalizedClaimValue));
+      if (values.size > 1) {
+        gaps.push({
+          gapType: "TECHNICAL_TRUTH_CONFLICT_REVIEW",
+          candidateKey: c.candidateKey,
+          evidenceAvailable: matchingClaims.map((cl) => `${cl.sourceRef}: ${cl.normalizedClaimValue}`),
+          unresolved: `Multiple TECHNICAL_TRUTH claims for claimKey "${key}" on subject "${c.subject}" disagree on the canonical value -- never arbitrarily resolved to one; the fact is not counted as covered while disputed.`,
+          legitimateResolverRoles: ["TECHNICAL_TRUTH"],
+        });
+        continue; // not attached, not counted as covered
+      }
+
+      // All agree -- attach the shared value, preserve EVERY supporting evidence ref.
+      attached.set(key, matchingClaims[0]!.normalizedClaimValue);
+      for (const cl of matchingClaims) attachedRefs.push({ role: "TECHNICAL_TRUTH", evidenceId: cl.evidenceId });
     }
 
     const { status, confidence } = computeCoverage(requiredKeys, attached);
@@ -565,21 +840,20 @@ export function attachFactualClaims(
     };
   });
 
-  const unmatched = technicalClaims.filter((c) => !usedClaimKeys.has(`${c.claimKey}::${c.subject}`));
-  return { candidates: updated, unmatched };
+  const unmatched = technicalClaims.filter((c) => !usedClaimSubjectKeys.has(`${c.claimKey}::${c.subject}`));
+  return { candidates: updated, unmatched, gaps };
 }
 
 // ---------------------------------------------------------------------
-// Independent factual-claim conflict detection (CC-18A section 12-15;
-// CC-18B adds comparisonKind compatibility -- an incompatible pairing
-// produces FACTUAL_COMPARISON_REVIEW rather than a guessed conflict or
-// false agreement).
+// Independent factual-claim conflict detection (curriculum/provider vs
+// technical truth). comparisonKind compatibility gates comparison -- an
+// incompatible pairing produces FACTUAL_COMPARISON_REVIEW rather than a
+// guessed conflict or false agreement.
 // ---------------------------------------------------------------------
 
 export function detectFactualConflicts(claims: readonly SourceFactualClaim[], comparisonRoles: readonly EvidenceRole[] = ["OFFICIAL_CURRICULUM"]): GapRecord[] {
-  const valid = claims.filter((c) => hasValidProvenance(c, c.sourceRole === "TECHNICAL_TRUTH" ? TECHNICAL_CLAIM_ALLOWED_BASES : CURRICULUM_CLAIM_ALLOWED_BASES));
   const byClaimKey = new Map<string, SourceFactualClaim[]>();
-  for (const c of valid) {
+  for (const c of claims) {
     const list = byClaimKey.get(c.claimKey) ?? [];
     list.push(c);
     byClaimKey.set(c.claimKey, list);
@@ -617,7 +891,7 @@ export function detectFactualConflicts(claims: readonly SourceFactualClaim[], co
   return gaps;
 }
 
-/** CC-18A section 15: diagnostic-only comparison of OPTIONAL_CALIBRATION factual claims against approved TECHNICAL_TRUTH. Never merged into StandardPipelineResult.gaps. */
+/** Diagnostic-only comparison of OPTIONAL_CALIBRATION factual claims against approved TECHNICAL_TRUTH. Never merged into StandardPipelineResult.gaps. */
 export function compareCalibrationFactualClaims(calibrationClaims: readonly SourceFactualClaim[], technicalClaims: readonly SourceFactualClaim[]): GapRecord[] {
   return detectFactualConflicts([...calibrationClaims, ...technicalClaims], ["OPTIONAL_CALIBRATION"]);
 }
@@ -628,10 +902,7 @@ export function compareCalibrationFactualClaims(calibrationClaims: readonly Sour
 // to a governed CurriculumFamily listing the item's own subject.
 // ---------------------------------------------------------------------
 
-export function detectAssessmentPatternCandidates(
-  validatedAssessment: readonly AssessmentEvidence[],
-  curriculumFamilies: readonly CurriculumFamily[],
-): { candidates: KnowledgeCandidate[]; gaps: GapRecord[] } {
+export function detectAssessmentPatternCandidates(validatedAssessment: readonly AssessmentEvidence[], curriculumFamilies: readonly CurriculumFamily[]): { candidates: KnowledgeCandidate[]; gaps: GapRecord[] } {
   const familyByKey = new Map(curriculumFamilies.map((f) => [f.familyKey, f] as const));
 
   const byFamilyAndType = new Map<string, AssessmentEvidence[]>();
@@ -677,39 +948,31 @@ export function detectAssessmentPatternCandidates(
 }
 
 // ---------------------------------------------------------------------
-// Governed category/family relationship validation (CC-18B section 20).
-// An arbitrary relation object with non-empty strings must not become
-// governed merely because it was supplied -- it must belong to the
-// active qualification, carry type-compatible provenance, and reference
-// subjects that actually exist in normalized curriculum evidence.
+// Governed category/family relationship validation. An arbitrary
+// relation object with non-empty strings must not become governed
+// merely because it was supplied -- it must belong to the active
+// qualification, carry type-compatible provenance, and reference
+// subjects that actually exist in normalized evidence. CC-18C:
+// provenance failure always reported.
 // ---------------------------------------------------------------------
 
-export function validateCurriculumSubjectRelations(
-  relations: readonly CurriculumSubjectRelation[],
-  qualificationId: string,
-  knownSubjects: ReadonlySet<string>,
-): { validated: CurriculumSubjectRelation[]; gaps: GapRecord[] } {
+export function validateCurriculumSubjectRelations(relations: readonly CurriculumSubjectRelation[], qualificationId: string, knownSubjects: ReadonlySet<string>): { validated: CurriculumSubjectRelation[]; gaps: GapRecord[] } {
   const validated: CurriculumSubjectRelation[] = [];
   const gaps: GapRecord[] = [];
   for (const r of relations) {
-    if (!hasValidProvenance(r)) continue;
-    if (!hasValidProvenance(r, RELATION_ALLOWED_BASES)) {
-      gaps.push({
-        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
-        candidateKey: `${r.subject}::${r.underCategory}`,
-        evidenceAvailable: [`normalizationBasis=${r.normalizationBasis}`],
-        unresolved: `CurriculumSubjectRelation normalizationBasis "${r.normalizationBasis}" is not type-compatible.`,
-        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
-      });
+    const key = `${r.subject}::${r.underCategory}`;
+    const failure = provenanceFailureReason(r, RELATION_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("CurriculumSubjectRelation", r.evidenceId, r, failure, key, ["OFFICIAL_CURRICULUM"]));
       continue;
     }
     if (r.qualificationId !== qualificationId) continue; // not this run's concern
     if (!knownSubjects.has(r.subject) || !knownSubjects.has(r.underCategory)) {
       gaps.push({
         gapType: "EVIDENCE_NORMALIZATION_REVIEW",
-        candidateKey: `${r.subject}::${r.underCategory}`,
-        evidenceAvailable: [`subject=${r.subject}`, `underCategory=${r.underCategory}`],
-        unresolved: `Relation references a subject not present in normalized curriculum evidence -- an arbitrary relation label is never governed merely because it was supplied.`,
+        candidateKey: key,
+        evidenceAvailable: [`evidenceId=${r.evidenceId}`, `subject=${r.subject}`, `underCategory=${r.underCategory}`],
+        unresolved: `Relation references a subject not present in normalized curriculum/assessment evidence -- an arbitrary relation label is never governed merely because it was supplied.`,
         legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
       });
       continue;
@@ -719,23 +982,13 @@ export function validateCurriculumSubjectRelations(
   return { validated, gaps };
 }
 
-export function validateCurriculumFamilies(
-  families: readonly CurriculumFamily[],
-  qualificationId: string,
-  knownSubjects: ReadonlySet<string>,
-): { validated: CurriculumFamily[]; gaps: GapRecord[] } {
+export function validateCurriculumFamilies(families: readonly CurriculumFamily[], qualificationId: string, knownSubjects: ReadonlySet<string>): { validated: CurriculumFamily[]; gaps: GapRecord[] } {
   const validated: CurriculumFamily[] = [];
   const gaps: GapRecord[] = [];
   for (const f of families) {
-    if (!hasValidProvenance(f)) continue;
-    if (!hasValidProvenance(f, RELATION_ALLOWED_BASES)) {
-      gaps.push({
-        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
-        candidateKey: f.familyKey,
-        evidenceAvailable: [`normalizationBasis=${f.normalizationBasis}`],
-        unresolved: `CurriculumFamily normalizationBasis "${f.normalizationBasis}" is not type-compatible.`,
-        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
-      });
+    const failure = provenanceFailureReason(f, RELATION_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("CurriculumFamily", f.evidenceId, f, failure, f.familyKey, ["OFFICIAL_CURRICULUM"]));
       continue;
     }
     if (f.qualificationId !== qualificationId) continue;
@@ -744,8 +997,8 @@ export function validateCurriculumFamilies(
       gaps.push({
         gapType: "EVIDENCE_NORMALIZATION_REVIEW",
         candidateKey: f.familyKey,
-        evidenceAvailable: [`unknownMembers=${unknownMembers.join(", ")}`],
-        unresolved: `CurriculumFamily "${f.familyKey}" references member subject(s) not present in normalized curriculum evidence: ${unknownMembers.join(", ")}.`,
+        evidenceAvailable: [`evidenceId=${f.evidenceId}`, `unknownMembers=${unknownMembers.join(", ")}`],
+        unresolved: `CurriculumFamily "${f.familyKey}" references member subject(s) not present in normalized curriculum/assessment evidence: ${unknownMembers.join(", ")}.`,
         legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
       });
       continue;
@@ -842,7 +1095,7 @@ export function computePerformanceDepthGaps(candidates: readonly KnowledgeCandid
     }));
 }
 
-/** CC-18B: only fires for a candidate that structurally requires fact-key coverage (`requiredFactKeys.length > 0`) and isn't yet COMPLETE -- a candidate needing no facts is never "gapped" for lacking one. */
+/** Only fires for a candidate that structurally requires fact-key coverage (`requiredFactKeys.length > 0`) and isn't yet COMPLETE -- a candidate needing no facts is never "gapped" for lacking one, and a candidate with a disputed fact (PARTIAL, never COMPLETE) still gaps. */
 export function computeTechnicalTruthGaps(candidates: readonly KnowledgeCandidate[]): GapRecord[] {
   return candidates
     .filter((c) => REQUIRED_DISPOSITIONS.includes(c.disposition) && (c.requiredFactKeys?.length ?? 0) > 0 && c.technicalCoverageStatus !== "COMPLETE")
@@ -850,15 +1103,14 @@ export function computeTechnicalTruthGaps(candidates: readonly KnowledgeCandidat
       gapType: "TECHNICAL_TRUTH_GAP" as const,
       candidateKey: c.candidateKey,
       evidenceAvailable: [`requiredFactKeys=${(c.requiredFactKeys ?? []).join(", ")}`, `attached=${Object.keys(c.factualStatementsByClaimKey ?? {}).join(", ") || "none"}`],
-      unresolved: `Technical-truth coverage for "${c.subject}" is ${c.technicalCoverageStatus ?? "PARTIAL"} -- not every required fact key has an approved matching TECHNICAL_TRUTH claim.`,
+      unresolved: `Technical-truth coverage for "${c.subject}" is ${c.technicalCoverageStatus ?? "PARTIAL"} -- not every required fact key has an approved, undisputed matching TECHNICAL_TRUTH claim.`,
       legitimateResolverRoles: ["TECHNICAL_TRUTH"] as EvidenceRole[],
     }));
 }
 
 // ---------------------------------------------------------------------
 // Standard-mode orchestration. Locked to exactly one qualificationId per
-// run (CC-18B section 2); only STANDARD_MODE_CANDIDATE_ROLES may be
-// passed in.
+// run; only STANDARD_MODE_CANDIDATE_ROLES may be passed in.
 // ---------------------------------------------------------------------
 
 export interface StandardPipelineInput {
@@ -904,36 +1156,47 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
 
   const { validated: validCurriculum, gaps: curriculumGaps } = validateCurriculumEvidence(input.curriculum, input.qualificationId, unitIndex);
   const { validated: validAssessment, gaps: assessmentGaps } = validateAssessmentEvidence(input.assessment, input.qualificationId, unitIndex);
+  const validatedCurriculumIds = new Set(validCurriculum.map((e) => e.evidenceId));
+  const validatedAssessmentIds = new Set(validAssessment.map((e) => e.evidenceId));
 
   // "Known" for relation/family governance purposes means present in EITHER
   // validated curriculum evidence OR the validated assessment stream -- a
   // relation must be able to legitimately connect a category to a subject
-  // assessment evidence itself validly reveals (section 6/task section 3's
-  // "assessment may still introduce a new subject" rule), while an entirely
+  // assessment evidence itself validly reveals, while an entirely
   // fabricated subject with no supporting evidence anywhere is still rejected.
   const knownSubjects = new Set([...validCurriculum.map((e) => e.subject), ...validAssessment.map((e) => e.subject)]);
   const { validated: validRelations, gaps: relationGaps } = validateCurriculumSubjectRelations(input.subjectRelations ?? [], input.qualificationId, knownSubjects);
   const { validated: validFamilies, gaps: familyGaps } = validateCurriculumFamilies(input.families ?? [], input.qualificationId, knownSubjects);
 
-  const curriculumCandidates = generateCurriculumCandidates(validCurriculum);
+  const { candidates: curriculumCandidates, gaps: curriculumCandidateGaps } = generateCurriculumCandidates(validCurriculum);
   const assessmentCandidates = generateAssessmentCandidates(validAssessment);
   const { candidates: patternCandidates, gaps: patternGaps } = detectAssessmentPatternCandidates(validAssessment, validFamilies);
 
   let candidates = mergeCandidates([...curriculumCandidates, ...assessmentCandidates, ...patternCandidates]);
+  const requiredCandidateKeys = new Set(candidates.filter((c) => REQUIRED_DISPOSITIONS.includes(c.disposition)).map((c) => c.candidateKey));
 
-  const validatedAssessmentIds = new Set(validAssessment.map((e) => e.evidenceId));
-  const prerequisiteCandidates = generatePrerequisiteCandidates(input.prerequisites ?? [], input.capabilityRequirements ?? [], candidates, validatedAssessmentIds);
-  const exemplarCandidates = generateExemplarCandidates(input.exemplars ?? [], candidates);
+  const { validated: validPrerequisites, gaps: prerequisiteGaps } = validatePrerequisiteEvidence(input.prerequisites ?? []);
+  const { validated: validCapabilityRequirements, gaps: capabilityGaps } = validateCandidateCapabilityRequirements(input.capabilityRequirements ?? [], input.qualificationId);
+  const prerequisiteCandidates = generatePrerequisiteCandidates(validPrerequisites, validCapabilityRequirements, candidates, validatedCurriculumIds, validatedAssessmentIds);
+
+  const { validated: validExemplars, gaps: exemplarGaps } = validateExemplarEvidence(input.exemplars ?? []);
+  const exemplarCandidates = generateExemplarCandidates(validExemplars, candidates);
+
   candidates = mergeCandidates([...candidates, ...prerequisiteCandidates, ...exemplarCandidates]);
 
-  const { candidates: withLevelConstraints, unmatched: unmatchedQualificationLevel } = attachQualificationLevelConstraints(
-    candidates,
-    (input.qualificationLevel ?? []).filter((e) => e.qualificationId === input.qualificationId),
-  );
+  const { validated: validQualificationLevel, gaps: qualificationLevelGaps } = validateQualificationLevelEvidence(input.qualificationLevel ?? [], input.qualificationId);
+  const { candidates: withLevelConstraints, unmatched: unmatchedQualificationLevel } = attachQualificationLevelConstraints(candidates, validQualificationLevel);
   candidates = withLevelConstraints;
 
   const { validated: validFactualClaims, gaps: factualClaimBasisGaps } = validateFactualClaims(input.factualClaims ?? []);
-  const { candidates: withFactualClaims, unmatched: unmatchedTechnicalTruth } = attachFactualClaims(candidates, input.factRequirements ?? [], validFactualClaims);
+  const { validated: validFactRequirements, gaps: factRequirementGaps } = validateCandidateFactRequirements(
+    input.factRequirements ?? [],
+    input.qualificationId,
+    requiredCandidateKeys,
+    validatedCurriculumIds,
+    validatedAssessmentIds,
+  );
+  const { candidates: withFactualClaims, unmatched: unmatchedTechnicalTruth, gaps: attachmentGaps } = attachFactualClaims(candidates, validFactRequirements, validFactualClaims);
   candidates = withFactualClaims;
   const conflictGaps = detectFactualConflicts(validFactualClaims, ["OFFICIAL_CURRICULUM"]);
 
@@ -945,7 +1208,26 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
 
   return {
     candidates,
-    gaps: [...registryGaps, ...curriculumGaps, ...assessmentGaps, ...relationGaps, ...familyGaps, ...factualClaimBasisGaps, ...conflictGaps, ...breadthGaps, ...patternGaps, ...depthGaps, ...truthGaps],
+    gaps: [
+      ...registryGaps,
+      ...curriculumGaps,
+      ...curriculumCandidateGaps,
+      ...assessmentGaps,
+      ...relationGaps,
+      ...familyGaps,
+      ...prerequisiteGaps,
+      ...capabilityGaps,
+      ...exemplarGaps,
+      ...qualificationLevelGaps,
+      ...factualClaimBasisGaps,
+      ...factRequirementGaps,
+      ...attachmentGaps,
+      ...conflictGaps,
+      ...breadthGaps,
+      ...patternGaps,
+      ...depthGaps,
+      ...truthGaps,
+    ],
     unmatchedTechnicalTruth,
     unmatchedQualificationLevel,
   };

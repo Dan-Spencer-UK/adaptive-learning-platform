@@ -1,6 +1,6 @@
 /**
- * CC-18/CC-18A/CC-18B: generic qualification knowledge-construction
- * pipeline -- types.
+ * CC-18/CC-18A/CC-18B/CC-18C: generic qualification knowledge-
+ * construction pipeline -- types.
  *
  * This package is deliberately independent of any specific qualification.
  * Nothing here may name a real subject, AC number, Range item, or
@@ -65,6 +65,46 @@
  *     of subjects actually present in normalized curriculum evidence --
  *     an arbitrary relation object is never governed merely because it
  *     was supplied.
+ *
+ * CC-18C hardening (a third round of adversarial review) closes five
+ * remaining implementation-integrity defects at the same boundary:
+ *   - a normalization proposal that fails provenance validation is NEVER
+ *     silently dropped -- every validating function reports it as an
+ *     `EVIDENCE_NORMALIZATION_REVIEW` gap naming the exact failure,
+ *     including the `OfficialCurriculumUnit` registry itself;
+ *   - `CandidateCapabilityRequirement` is now bound to the active
+ *     `qualificationId`, and `EXPLICIT_CURRICULUM_OPERATION`/
+ *     `EXPLICIT_ASSESSMENT_OPERATION` derivations must cite a
+ *     role-and-id-matched entry in the correspondingly VALIDATED
+ *     curriculum/assessment stream -- an unrelated `EvidenceRef` that
+ *     merely reuses the same `evidenceId` under the wrong role never
+ *     satisfies the gate;
+ *   - `DETERMINISTIC_OPERATIONAL_DEPENDENCY` is a deliberate, documented
+ *     HOLD: it never auto-promotes a prerequisite until a governed
+ *     deterministic-rule registry is separately designed and authorised
+ *     (not part of this package) -- automatic promotion is currently
+ *     limited to properly source-cited `EXPLICIT_CURRICULUM_OPERATION`/
+ *     `EXPLICIT_ASSESSMENT_OPERATION`;
+ *   - `CandidateFactRequirement.qualificationId` is now mandatory, gains
+ *     a locked `derivationStatus` (`EXPLICIT_CURRICULUM_FACT` /
+ *     `EXPLICIT_ASSESSMENT_FACT` / `REVIEW_PROPOSED`) mirroring the
+ *     capability-requirement pattern, and its own dedicated
+ *     `normalizationBasis` (`FACT_REQUIREMENT_DERIVATION`) -- a
+ *     technical source establishes the ANSWER to a fact, never whether
+ *     the course requires it, so `AUTHORITATIVE_TECHNICAL_FACT` is never
+ *     valid here;
+ *   - multiple `TECHNICAL_TRUTH` claims for the same `(subject,
+ *     claimKey)` are resolved deterministically, never by array order:
+ *     agreeing claims attach with every supporting evidence ref
+ *     preserved; incompatible `comparisonKind`s produce
+ *     `FACTUAL_COMPARISON_REVIEW`; disagreeing canonical values produce
+ *     `TECHNICAL_TRUTH_CONFLICT_REVIEW` -- never an arbitrary pick, and
+ *     never counted as covered;
+ *   - `DEPTH_QUALIFIER` now targets an exact `(subject,
+ *     performanceType)` candidate via `refinesPerformanceType` where the
+ *     parent subject carries more than one performance type -- an
+ *     unresolvable qualifier is never applied broadly to every candidate
+ *     sharing the subject.
  */
 
 import { z } from "zod";
@@ -170,6 +210,8 @@ export const gapTypeSchema = z.enum([
   "CURRICULUM_MAPPING_REVIEW",
   "EVIDENCE_NORMALIZATION_REVIEW",
   "FACTUAL_COMPARISON_REVIEW",
+  /** CC-18C section 9: multiple TECHNICAL_TRUTH claims for the same (subject, claimKey) disagree among THEMSELVES -- distinct from FACTUAL_COMPARISON_REVIEW's incompatible-comparison-kind case. */
+  "TECHNICAL_TRUTH_CONFLICT_REVIEW",
 ]);
 export type GapType = z.infer<typeof gapTypeSchema>;
 
@@ -208,6 +250,8 @@ export const normalizationBasisSchema = z.enum([
   "CAPABILITY_DEPENDENCY_DERIVATION",
   "AUTHORITATIVE_TECHNICAL_FACT",
   "SOURCE_FACTUAL_CLAIM",
+  /** CC-18C section 7: the ONLY basis a CandidateFactRequirement may declare -- a technical source establishes the answer to a fact, never whether the course requires it, so AUTHORITATIVE_TECHNICAL_FACT is never valid here. */
+  "FACT_REQUIREMENT_DERIVATION",
 ]);
 export type NormalizationBasis = z.infer<typeof normalizationBasisSchema>;
 
@@ -328,6 +372,17 @@ export interface CurriculumEvidence extends SourceProvenance {
   readonly normalizationKind: CurriculumNormalizationKind;
   /** Required for RANGE_REQUIRED_MEMBER and DEPTH_QUALIFIER -- the parent subject this record relates to. Meaningless for PRIMARY_REQUIREMENT/RANGE_CATEGORY. */
   readonly refinesSubject?: string;
+  /**
+   * CC-18C section 11: for a DEPTH_QUALIFIER, the EXACT performance type
+   * (candidate identity is `(subject, performanceType)`, never subject
+   * alone) it constrains. When omitted, the qualifier resolves only if
+   * `refinesSubject` has exactly one performance-type candidate of its
+   * own; if the parent subject carries more than one performance type
+   * and this is omitted, the qualifier cannot resolve to a single
+   * intended candidate and is never applied broadly -- it is reported
+   * for review instead (see rules.ts `generateCurriculumCandidates`).
+   */
+  readonly refinesPerformanceType?: LearnerPerformanceType;
   readonly commandVerbPerformanceType?: LearnerPerformanceType;
   /** Meaningful only for RANGE_CATEGORY records. Undeclared is treated as UNKNOWN -- never silently ENUMERATED_COMPLETE or OPEN_OR_UNDERSPECIFIED. */
   readonly breadthStatus?: CategoryBreadthStatus;
@@ -364,12 +419,14 @@ export interface AssessmentEvidence extends SourceProvenance {
 // ---------------------------------------------------------------------
 
 export interface CurriculumSubjectRelation extends SourceProvenance {
+  readonly evidenceId: string;
   readonly qualificationId: string;
   readonly subject: string;
   readonly underCategory: string;
 }
 
 export interface CurriculumFamily extends SourceProvenance {
+  readonly evidenceId: string;
   readonly qualificationId: string;
   readonly familyKey: string;
   readonly memberSubjects: readonly string[];
@@ -479,15 +536,43 @@ export interface SourceFactualClaim extends SourceProvenance {
 }
 
 /**
+ * LOCKED derivation statuses (CC-18C section 8) -- what actually
+ * authorises a `CandidateFactRequirement` to contribute a
+ * `requiredFactKey`. This prevents a future normalization adapter from
+ * hand-authoring the expected factual syllabus and making technical
+ * coverage look complete: only a requirement citing REAL, validated
+ * primary-source evidence (curriculum wording or an assessment item)
+ * ever counts.
+ *
+ *   EXPLICIT_CURRICULUM_FACT -- must cite validated OFFICIAL_CURRICULUM evidence.
+ *   EXPLICIT_ASSESSMENT_FACT -- must cite validated PUBLIC_ASSESSMENT evidence.
+ *   REVIEW_PROPOSED          -- exported for Project-Architect review; MUST NOT
+ *                                contribute to requiredFactKeys or coverage automatically.
+ */
+export const factRequirementDerivationStatusSchema = z.enum(["EXPLICIT_CURRICULUM_FACT", "EXPLICIT_ASSESSMENT_FACT", "REVIEW_PROPOSED"]);
+export type FactRequirementDerivationStatus = z.infer<typeof factRequirementDerivationStatusSchema>;
+
+/**
  * Declares that a candidate structurally requires technical-truth
  * coverage for a specific `claimKey` (CC-18B section 14). A candidate
  * with zero such requirements never claims HIGH technical-truth
  * confidence merely because some source discusses the same subject.
+ *
+ * CC-18C section 7: `qualificationId` is now MANDATORY (a fact
+ * requirement controls which facts count toward technical coverage, so
+ * it cannot be treated as a trusted, qualification-unbound free-form
+ * list), and `normalizationBasis` must be `FACT_REQUIREMENT_DERIVATION`
+ * specifically -- never `AUTHORITATIVE_TECHNICAL_FACT`, since a
+ * technical source establishes the ANSWER to a fact, never WHETHER the
+ * course requires it.
  */
 export interface CandidateFactRequirement extends SourceProvenance {
-  readonly qualificationId?: string;
+  readonly qualificationId: string;
   readonly targetCandidateKey: string;
   readonly claimKey: string;
+  readonly derivationStatus: FactRequirementDerivationStatus;
+  /** The curriculum/assessment evidence substantiating derivationStatus -- required for EXPLICIT_CURRICULUM_FACT/EXPLICIT_ASSESSMENT_FACT to count. */
+  readonly sourceEvidenceRefs: readonly EvidenceRef[];
 }
 
 // ---------------------------------------------------------------------

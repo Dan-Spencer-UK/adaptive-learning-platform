@@ -92,11 +92,11 @@ function officialUnit(overrides: Partial<OfficialCurriculumUnit> & Pick<Official
 }
 
 function subjectRelation(overrides: Partial<CurriculumSubjectRelation> & Pick<CurriculumSubjectRelation, "subject" | "underCategory">): CurriculumSubjectRelation {
-  return { qualificationId: QUAL, sourceRef: "SRC-SPEC", sourceLocator: "spec-loc", normalizationBasis: "EXPLICIT_RANGE_STRUCTURE", ...overrides };
+  return { evidenceId: nextId("relation"), qualificationId: QUAL, sourceRef: "SRC-SPEC", sourceLocator: "spec-loc", normalizationBasis: "EXPLICIT_RANGE_STRUCTURE", ...overrides };
 }
 
 function family(overrides: Partial<CurriculumFamily> & Pick<CurriculumFamily, "familyKey" | "memberSubjects">): CurriculumFamily {
-  return { qualificationId: QUAL, sourceRef: "SRC-SPEC", sourceLocator: "spec-loc", normalizationBasis: "EXPLICIT_RANGE_STRUCTURE", ...overrides };
+  return { evidenceId: nextId("family"), qualificationId: QUAL, sourceRef: "SRC-SPEC", sourceLocator: "spec-loc", normalizationBasis: "EXPLICIT_RANGE_STRUCTURE", ...overrides };
 }
 
 function factualClaim(overrides: Partial<SourceFactualClaim> & Pick<SourceFactualClaim, "claimKey" | "subject" | "sourceRole" | "normalizedClaimValue">): SourceFactualClaim {
@@ -123,8 +123,23 @@ function capabilityRequirement(
   };
 }
 
+/**
+ * Defaults to EXPLICIT_CURRICULUM_FACT -- callers that need the
+ * requirement to actually contribute a requiredFactKey MUST supply
+ * `sourceEvidenceRefs` citing a real, validated OFFICIAL_CURRICULUM (or,
+ * for EXPLICIT_ASSESSMENT_FACT, PUBLIC_ASSESSMENT) evidenceId; the bare
+ * default of an empty array is deliberately ineligible (CC-18C section 8).
+ */
 function factRequirement(overrides: Partial<CandidateFactRequirement> & Pick<CandidateFactRequirement, "targetCandidateKey" | "claimKey">): CandidateFactRequirement {
-  return { sourceRef: "SRC-SPEC", sourceLocator: "spec-loc", normalizationBasis: "EXPLICIT_CURRICULUM_WORDING", ...overrides };
+  return {
+    qualificationId: QUAL,
+    derivationStatus: "EXPLICIT_CURRICULUM_FACT",
+    sourceEvidenceRefs: [],
+    sourceRef: "SRC-SPEC",
+    sourceLocator: "spec-loc",
+    normalizationBasis: "FACT_REQUIREMENT_DERIVATION",
+    ...overrides,
+  };
 }
 
 function pipeline(overrides: Partial<StandardPipelineInput> = {}): StandardPipelineInput {
@@ -381,13 +396,15 @@ describe("CC-18J/K -- private worksheet and legacy assertion claims are ignored 
 
 describe("CC-18B cases L/X -- curriculum/provider vs technical factual claims are independent records; conflict is DETECTED, never pre-labelled", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-MECH-1" })];
-  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "gears", curriculumUnitId: "AC-MECH-1", commandVerbPerformanceType: "EXPLAIN" })];
-  const gearsKey = generateCurriculumCandidates(curriculumEvidence)[0]!.candidateKey;
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "gears", curriculumUnitId: "AC-MECH-1", commandVerbPerformanceType: "EXPLAIN", evidenceId: "curr-gears-lx" })];
+  const gearsKey = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
   const claims: SourceFactualClaim[] = [
     factualClaim({ claimKey: "gearing-power-conservation", subject: "gears", sourceRole: "OFFICIAL_CURRICULUM", normalizedClaimValue: "gearing creates additional power", comparisonKind: "CANONICAL_TEXT" }),
     factualClaim({ claimKey: "gearing-power-conservation", subject: "gears", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "ideal gearing does not create power; speed and torque trade", comparisonKind: "CANONICAL_TEXT" }),
   ];
-  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: gearsKey, claimKey: "gearing-power-conservation" })];
+  const factReqs: CandidateFactRequirement[] = [
+    factRequirement({ targetCandidateKey: gearsKey, claimKey: "gearing-power-conservation", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-gears-lx" }] }),
+  ];
   const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
 
   it("retains gears as required scope", () => {
@@ -418,13 +435,15 @@ describe("CC-18B cases L/X -- curriculum/provider vs technical factual claims ar
 
 describe("CC-18A case M -- malformed curriculum unit corrected by independent technical claim", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-ELEC-4.3" })];
-  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "resistivity", curriculumUnitId: "AC-ELEC-4.3", commandVerbPerformanceType: "DESCRIBE" })];
-  const resistivityKey = generateCurriculumCandidates(curriculumEvidence)[0]!.candidateKey;
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "resistivity", curriculumUnitId: "AC-ELEC-4.3", commandVerbPerformanceType: "DESCRIBE", evidenceId: "curr-resistivity-m" })];
+  const resistivityKey = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
   const claims: SourceFactualClaim[] = [
     factualClaim({ claimKey: "resistivity-unit", subject: "resistivity", sourceRole: "OFFICIAL_CURRICULUM", normalizedClaimValue: "ohms per metre" }),
     factualClaim({ claimKey: "resistivity-unit", subject: "resistivity", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "ohm-metres (Ω·m)" }),
   ];
-  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: resistivityKey, claimKey: "resistivity-unit" })];
+  const factReqs: CandidateFactRequirement[] = [
+    factRequirement({ targetCandidateKey: resistivityKey, claimKey: "resistivity-unit", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-resistivity-m" }] }),
+  ];
   const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
 
   it("retains the correct unit as the taught fact and emits a conflict", () => {
@@ -501,7 +520,7 @@ describe("CC-18A case T -- an ungoverned familyKey never produces assessment-fam
 describe("CC-18A case U -- qualification-level evidence constrains depth but never creates scope", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
   const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "explicit-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE" })];
-  const targetKey = generateCurriculumCandidates(curriculumEvidence)[0]!.candidateKey;
+  const targetKey = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
   const levelEvidence: QualificationLevelEvidence[] = [
     { role: "QUALIFICATION_LEVEL", evidenceId: "level-1", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "framework-loc", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "Single-step calculation only.", appliesToCandidateKey: targetKey },
     { role: "QUALIFICATION_LEVEL", evidenceId: "level-2", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "framework-loc-2", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "Constrains an unmatched key.", appliesToCandidateKey: "no-such-candidate::OTHER" },
@@ -529,10 +548,10 @@ describe("CC-18A case U -- qualification-level evidence constrains depth but nev
 describe("CC-18B cases V/W/AO/AP/AQ -- capability dependency is an independent relation; only certain derivationKinds auto-promote", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
   const curriculumEvidence: CurriculumEvidence[] = [
-    curriculum({ subject: "explicit-calculation", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE" }),
+    curriculum({ subject: "explicit-calculation", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", evidenceId: "curr-explicit-calculation" }),
     curriculum({ subject: "diode-operation", curriculumUnitId: "AC-X", commandVerbPerformanceType: "STATE" }),
   ];
-  const baseCandidates = generateCurriculumCandidates(curriculumEvidence);
+  const baseCandidates = generateCurriculumCandidates(curriculumEvidence).candidates;
   const calculationKey = baseCandidates.find((c) => c.subject === "explicit-calculation")!.candidateKey;
   const diodeKey = baseCandidates.find((c) => c.subject === "diode-operation")!.candidateKey;
 
@@ -540,8 +559,15 @@ describe("CC-18B cases V/W/AO/AP/AQ -- capability dependency is an independent r
   const invalidAssessmentItem = assessment({ subject: "assessment-derived-op-2", performanceType: "PROCEDURE", mappedCurriculumUnitId: "AC-FAKE", evidenceId: "assess-invalid-op" });
 
   const capabilityRequirements: CandidateCapabilityRequirement[] = [
-    // W/AQ: EXPLICIT_CURRICULUM_OPERATION -- structurally derived, auto-promotable.
-    capabilityRequirement({ targetSubject: "explicit-calculation", targetCandidateKey: calculationKey, capabilityKey: "formula-transposition", derivationKind: "EXPLICIT_CURRICULUM_OPERATION" }),
+    // W/AQ: EXPLICIT_CURRICULUM_OPERATION -- structurally derived, auto-promotable, and
+    // (CC-18C) cites a role-and-id-matched entry in the validated curriculum stream.
+    capabilityRequirement({
+      targetSubject: "explicit-calculation",
+      targetCandidateKey: calculationKey,
+      capabilityKey: "formula-transposition",
+      derivationKind: "EXPLICIT_CURRICULUM_OPERATION",
+      sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-explicit-calculation" }],
+    }),
     // V/AO: REVIEW_PROPOSED -- never auto-promotes, even with a real target.
     capabilityRequirement({ targetSubject: "diode-operation", targetCandidateKey: diodeKey, capabilityKey: "semiconductor-band-theory", derivationKind: "REVIEW_PROPOSED" }),
   ];
@@ -850,9 +876,10 @@ describe("CC-18B case AM -- CurriculumEvidence using a technical-truth normaliza
 describe("CC-18B case AN -- a TECHNICAL_TRUTH factual claim using a curriculum-wording normalization basis is rejected, never attached", () => {
   const badClaim: SourceFactualClaim = factualClaim({ claimKey: "x", subject: "y", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "v", normalizationBasis: "EXPLICIT_CURRICULUM_WORDING" });
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
-  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "y", curriculumUnitId: "AC-X" })];
-  const key = generateCurriculumCandidates(curriculumEvidence)[0]!.candidateKey;
-  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: [factRequirement({ targetCandidateKey: key, claimKey: "x" })], factualClaims: [badClaim] }));
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "y", curriculumUnitId: "AC-X", evidenceId: "curr-y-an" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "x", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-y-an" }] })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: [badClaim] }));
 
   it("never attaches, and is reported via EVIDENCE_NORMALIZATION_REVIEW", () => {
     expect(findCandidate(result, "y")!.technicalCoverageStatus).not.toBe("COMPLETE");
@@ -862,9 +889,13 @@ describe("CC-18B case AN -- a TECHNICAL_TRUTH factual claim using a curriculum-w
 
 describe("CC-18B cases AR/AS/AT/AU -- claim-key-exact technical coverage", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
-  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "multi-fact-topic", curriculumUnitId: "AC-X" })];
-  const key = generateCurriculumCandidates(curriculumEvidence)[0]!.candidateKey;
-  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "fact-a" }), factRequirement({ targetCandidateKey: key, claimKey: "fact-b" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "multi-fact-topic", curriculumUnitId: "AC-X", evidenceId: "curr-multi-fact-topic" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factCitation = [{ role: "OFFICIAL_CURRICULUM" as const, evidenceId: "curr-multi-fact-topic" }];
+  const factReqs: CandidateFactRequirement[] = [
+    factRequirement({ targetCandidateKey: key, claimKey: "fact-a", sourceEvidenceRefs: factCitation }),
+    factRequirement({ targetCandidateKey: key, claimKey: "fact-b", sourceEvidenceRefs: factCitation }),
+  ];
 
   it("[AR] only fact-a supplied -> technical coverage is PARTIAL, never COMPLETE", () => {
     const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "fact-a", subject: "multi-fact-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value-a" })];
@@ -1096,5 +1127,372 @@ describe("CC-18/CC-18A/CC-18B -- generic disposition/confidence/gap plumbing san
     const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence }));
     const breadthGap = result.gaps.find((g) => g.gapType === "SCOPE_BREADTH_GAP")!;
     expect(breadthGap.legitimateResolverRoles).not.toContain("TECHNICAL_TRUTH");
+  });
+});
+
+// =====================================================================
+// CC-18C new cases BA-BS -- final pre-back-test integrity correction.
+// =====================================================================
+
+describe("CC-18C case BA -- CurriculumEvidence blank sourceLocator is rejected and reported, never silently dropped", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const bad = curriculum({ subject: "blank-locator-topic", curriculumUnitId: "AC-X", sourceLocator: "", evidenceId: "curr-ba" });
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: [bad] }));
+
+  it("creates no candidate", () => {
+    expect(result.candidates).toEqual([]);
+  });
+
+  it("emits EVIDENCE_NORMALIZATION_REVIEW preserving the attempted proposal's own supplied evidence", () => {
+    const gap = result.gaps.find((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.evidenceAvailable.some((e) => e.includes("curr-ba")));
+    expect(gap).toBeDefined();
+    expect(gap!.evidenceAvailable.some((e) => e.includes("evidenceId=curr-ba"))).toBe(true);
+    expect(gap!.evidenceAvailable.some((e) => e.includes("sourceRef="))).toBe(true);
+    expect(gap!.evidenceAvailable.some((e) => e.includes("normalizationBasis="))).toBe(true);
+    expect(gap!.unresolved).toMatch(/sourceLocator is empty/);
+  });
+});
+
+describe("CC-18C case BB -- AssessmentEvidence blank sourceRef is rejected and reported, never silently dropped", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const bad = assessment({ subject: "blank-ref-item", performanceType: "IDENTIFY", mappedCurriculumUnitId: "AC-X", sourceRef: "", evidenceId: "assess-bb" });
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, assessment: [bad] }));
+
+  it("creates no candidate", () => {
+    expect(result.candidates).toEqual([]);
+  });
+
+  it("emits EVIDENCE_NORMALIZATION_REVIEW naming the exact failure", () => {
+    const gap = result.gaps.find((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.evidenceAvailable.some((e) => e.includes("assess-bb")));
+    expect(gap).toBeDefined();
+    expect(gap!.unresolved).toMatch(/sourceRef is empty/);
+  });
+});
+
+describe("CC-18C case BC -- OfficialCurriculumUnit blank provenance cannot become mapping authority, and is reported", () => {
+  it("buildOfficialCurriculumUnitIndex excludes it and reports EVIDENCE_NORMALIZATION_REVIEW", () => {
+    const badUnit = officialUnit({ curriculumUnitId: "AC-BLANK", sourceRef: "" });
+    const { index, gaps } = buildOfficialCurriculumUnitIndex([badUnit]);
+    expect(index.has("QUAL-SYNTH-1::AC-BLANK")).toBe(false);
+    expect(gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW")).toBe(true);
+  });
+
+  it("end-to-end: curriculum evidence mapping to it cannot validate; the review is visible", () => {
+    const badUnit = officialUnit({ curriculumUnitId: "AC-BLANK", sourceRef: "" });
+    const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "topic-over-blank-unit", curriculumUnitId: "AC-BLANK" })];
+    const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: [badUnit], curriculum: curriculumEvidence }));
+    expect(result.candidates).toEqual([]);
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW")).toBe(true);
+    expect(result.gaps.some((g) => g.gapType === "CURRICULUM_MAPPING_REVIEW")).toBe(true);
+  });
+});
+
+describe("CC-18C case BD -- a foreign-qualification CandidateCapabilityRequirement cannot auto-promote a prerequisite", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bd-target", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", evidenceId: "curr-bd" })];
+  const targetKey = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const capReq: CandidateCapabilityRequirement[] = [
+    capabilityRequirement({
+      qualificationId: OTHER_QUAL,
+      targetSubject: "bd-target",
+      targetCandidateKey: targetKey,
+      capabilityKey: "bd-capability",
+      derivationKind: "EXPLICIT_CURRICULUM_OPERATION",
+      sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bd" }],
+    }),
+  ];
+  const prereq: PrerequisiteEvidence[] = [
+    { kind: "STRUCTURAL_PREREQUISITE_DEPENDENCY", evidenceId: "prereq-bd", subject: "bd-capability-subject", performanceType: "PROCEDURE", capabilityKey: "bd-capability", necessaryForCandidateKey: targetKey, minimalDepthJustification: "n/a", sourceRef: "SRC-DEP", sourceLocator: "l-bd", normalizationBasis: "STRUCTURAL_PREREQUISITE_DEPENDENCY" },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, prerequisites: prereq, capabilityRequirements: capReq }));
+
+  it("the requirement is rejected for the wrong qualification, and the prerequisite cannot auto-promote", () => {
+    expect(findCandidate(result, "bd-capability-subject")!.disposition).not.toBe("FOUNDATIONAL_PREREQUISITE");
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.unresolved.includes(OTHER_QUAL))).toBe(true);
+  });
+});
+
+describe("CC-18C case BE -- EXPLICIT_CURRICULUM_OPERATION citing no validated curriculum evidence cannot auto-promote", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "be-target", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", evidenceId: "curr-be" })];
+  const targetKey = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const capReq: CandidateCapabilityRequirement[] = [
+    capabilityRequirement({ targetSubject: "be-target", targetCandidateKey: targetKey, capabilityKey: "be-capability", derivationKind: "EXPLICIT_CURRICULUM_OPERATION", sourceEvidenceRefs: [] }),
+  ];
+  const prereq: PrerequisiteEvidence[] = [
+    { kind: "STRUCTURAL_PREREQUISITE_DEPENDENCY", evidenceId: "prereq-be", subject: "be-capability-subject", performanceType: "PROCEDURE", capabilityKey: "be-capability", necessaryForCandidateKey: targetKey, minimalDepthJustification: "n/a", sourceRef: "SRC-DEP", sourceLocator: "l-be", normalizationBasis: "STRUCTURAL_PREREQUISITE_DEPENDENCY" },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, prerequisites: prereq, capabilityRequirements: capReq }));
+
+  it("the prerequisite is held at REVIEW_REQUIRED", () => {
+    expect(findCandidate(result, "be-capability-subject")!.disposition).toBe("REVIEW_REQUIRED");
+  });
+});
+
+describe("CC-18C case BF -- EXPLICIT_CURRICULUM_OPERATION citing validated OFFICIAL_CURRICULUM evidence MAY auto-promote", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bf-target", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", evidenceId: "curr-bf" })];
+  const targetKey = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const capReq: CandidateCapabilityRequirement[] = [
+    capabilityRequirement({ targetSubject: "bf-target", targetCandidateKey: targetKey, capabilityKey: "bf-capability", derivationKind: "EXPLICIT_CURRICULUM_OPERATION", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bf" }] }),
+  ];
+  const prereq: PrerequisiteEvidence[] = [
+    { kind: "STRUCTURAL_PREREQUISITE_DEPENDENCY", evidenceId: "prereq-bf", subject: "bf-capability-subject", performanceType: "PROCEDURE", capabilityKey: "bf-capability", necessaryForCandidateKey: targetKey, minimalDepthJustification: "n/a", sourceRef: "SRC-DEP", sourceLocator: "l-bf", normalizationBasis: "STRUCTURAL_PREREQUISITE_DEPENDENCY" },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, prerequisites: prereq, capabilityRequirements: capReq }));
+
+  it("the prerequisite is promoted to FOUNDATIONAL_PREREQUISITE", () => {
+    expect(findCandidate(result, "bf-capability-subject")!.disposition).toBe("FOUNDATIONAL_PREREQUISITE");
+  });
+});
+
+describe("CC-18C case BG -- EXPLICIT_ASSESSMENT_OPERATION with a colliding evidenceId under the WRONG role cannot auto-promote", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bg-target", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE" })];
+  const targetKey = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const validAssessmentItem = assessment({ subject: "bg-assessment-op", performanceType: "PROCEDURE", mappedCurriculumUnitId: "AC-X", evidenceId: "assess-bg-valid" });
+  const capReq: CandidateCapabilityRequirement[] = [
+    // Colliding evidenceId ("assess-bg-valid" is real and validated) but declared under the WRONG role.
+    capabilityRequirement({ targetSubject: "bg-target", targetCandidateKey: targetKey, capabilityKey: "bg-capability", derivationKind: "EXPLICIT_ASSESSMENT_OPERATION", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "assess-bg-valid" }] }),
+  ];
+  const prereq: PrerequisiteEvidence[] = [
+    { kind: "STRUCTURAL_PREREQUISITE_DEPENDENCY", evidenceId: "prereq-bg", subject: "bg-capability-subject", performanceType: "PROCEDURE", capabilityKey: "bg-capability", necessaryForCandidateKey: targetKey, minimalDepthJustification: "n/a", sourceRef: "SRC-DEP", sourceLocator: "l-bg", normalizationBasis: "STRUCTURAL_PREREQUISITE_DEPENDENCY" },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, assessment: [validAssessmentItem], prerequisites: prereq, capabilityRequirements: capReq }));
+
+  it("the prerequisite is held at REVIEW_REQUIRED -- a colliding evidenceId never satisfies the role-and-id-matched gate", () => {
+    expect(findCandidate(result, "bg-capability-subject")!.disposition).toBe("REVIEW_REQUIRED");
+  });
+});
+
+describe("CC-18C case BH -- DETERMINISTIC_OPERATIONAL_DEPENDENCY is a deliberate HOLD and never auto-promotes", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bh-target", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", evidenceId: "curr-bh" })];
+  const targetKey = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const capReq: CandidateCapabilityRequirement[] = [
+    capabilityRequirement({ targetSubject: "bh-target", targetCandidateKey: targetKey, capabilityKey: "bh-capability", derivationKind: "DETERMINISTIC_OPERATIONAL_DEPENDENCY", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bh" }] }),
+  ];
+  const prereq: PrerequisiteEvidence[] = [
+    { kind: "STRUCTURAL_PREREQUISITE_DEPENDENCY", evidenceId: "prereq-bh", subject: "bh-capability-subject", performanceType: "PROCEDURE", capabilityKey: "bh-capability", necessaryForCandidateKey: targetKey, minimalDepthJustification: "n/a", sourceRef: "SRC-DEP", sourceLocator: "l-bh", normalizationBasis: "STRUCTURAL_PREREQUISITE_DEPENDENCY" },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, prerequisites: prereq, capabilityRequirements: capReq }));
+
+  it("held at REVIEW_REQUIRED even though it structurally cites real, validated evidence -- no self-authorising registry exists yet", () => {
+    expect(findCandidate(result, "bh-capability-subject")!.disposition).toBe("REVIEW_REQUIRED");
+  });
+});
+
+describe("CC-18C case BI -- a foreign-qualification CandidateFactRequirement creates no requiredFactKey", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bi-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bi" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [
+    factRequirement({ targetCandidateKey: key, claimKey: "bi-fact", qualificationId: OTHER_QUAL, sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bi" }] }),
+  ];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "bi-fact", subject: "bi-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "some value" })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+
+  it("the candidate has no requiredFactKeys and coverage is NOT_REQUIRED", () => {
+    const c = findCandidate(result, "bi-topic")!;
+    expect(c.requiredFactKeys ?? []).toEqual([]);
+    expect(c.technicalCoverageStatus).toBe("NOT_REQUIRED");
+  });
+
+  it("emits EVIDENCE_NORMALIZATION_REVIEW naming the foreign qualification", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.unresolved.includes(OTHER_QUAL))).toBe(true);
+  });
+});
+
+describe("CC-18C case BJ -- a REVIEW_PROPOSED fact requirement is visible for review but never enters requiredFactKeys", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bj-topic", curriculumUnitId: "AC-X" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bj-fact", derivationStatus: "REVIEW_PROPOSED" })];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "bj-fact", subject: "bj-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "some value" })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+
+  it("does not contribute a requiredFactKey", () => {
+    const c = findCandidate(result, "bj-topic")!;
+    expect(c.requiredFactKeys ?? []).toEqual([]);
+    expect(c.technicalCoverageStatus).toBe("NOT_REQUIRED");
+  });
+
+  it("is nonetheless visible via an EVIDENCE_NORMALIZATION_REVIEW gap", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.unresolved.includes("REVIEW_PROPOSED"))).toBe(true);
+  });
+});
+
+describe("CC-18C case BK -- EXPLICIT_CURRICULUM_FACT with no validated curriculum source is rejected and reviewed", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bk-topic", curriculumUnitId: "AC-X" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bk-fact", derivationStatus: "EXPLICIT_CURRICULUM_FACT", sourceEvidenceRefs: [] })];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "bk-fact", subject: "bk-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "some value" })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+
+  it("the fact is never counted as required or covered", () => {
+    const c = findCandidate(result, "bk-topic")!;
+    expect(c.requiredFactKeys ?? []).toEqual([]);
+    expect(c.technicalCoverageStatus).toBe("NOT_REQUIRED");
+  });
+
+  it("is reported via EVIDENCE_NORMALIZATION_REVIEW", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.unresolved.includes("EXPLICIT_CURRICULUM_FACT"))).toBe(true);
+  });
+});
+
+describe("CC-18C case BL -- EXPLICIT_ASSESSMENT_FACT citing a REJECTED assessment source is rejected and reviewed", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bl-topic", curriculumUnitId: "AC-X" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const rejectedItem = assessment({ subject: "bl-topic", performanceType: "OTHER", mappedCurriculumUnitId: "AC-FAKE", evidenceId: "assess-bl-rejected" });
+  const factReqs: CandidateFactRequirement[] = [
+    factRequirement({ targetCandidateKey: key, claimKey: "bl-fact", derivationStatus: "EXPLICIT_ASSESSMENT_FACT", sourceEvidenceRefs: [{ role: "PUBLIC_ASSESSMENT", evidenceId: "assess-bl-rejected" }] }),
+  ];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "bl-fact", subject: "bl-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "some value" })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, assessment: [rejectedItem], factRequirements: factReqs, factualClaims: claims }));
+
+  it("the fact is never counted as required or covered", () => {
+    const c = findCandidate(result, "bl-topic")!;
+    expect(c.requiredFactKeys ?? []).toEqual([]);
+    expect(c.technicalCoverageStatus).toBe("NOT_REQUIRED");
+  });
+
+  it("is reported via EVIDENCE_NORMALIZATION_REVIEW", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.unresolved.includes("EXPLICIT_ASSESSMENT_FACT"))).toBe(true);
+  });
+});
+
+describe("CC-18C case BM -- two AGREEING TECHNICAL_TRUTH claims for the same (subject, claimKey) attach with both evidence refs preserved", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bm-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bm" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bm-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bm" }] })];
+  const claims: SourceFactualClaim[] = [
+    factualClaim({ claimKey: "bm-fact", subject: "bm-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "agreed-value", evidenceId: "truth-bm-1" }),
+    factualClaim({ claimKey: "bm-fact", subject: "bm-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "agreed-value", evidenceId: "truth-bm-2" }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+
+  it("attaches the agreed value and reaches COMPLETE coverage", () => {
+    const c = findCandidate(result, "bm-topic")!;
+    expect(c.factualStatementsByClaimKey?.["bm-fact"]).toBe("agreed-value");
+    expect(c.technicalCoverageStatus).toBe("COMPLETE");
+  });
+
+  it("preserves BOTH supporting evidence refs", () => {
+    const c = findCandidate(result, "bm-topic")!;
+    expect(c.evidenceRefs.some((r) => r.evidenceId === "truth-bm-1")).toBe(true);
+    expect(c.evidenceRefs.some((r) => r.evidenceId === "truth-bm-2")).toBe(true);
+  });
+
+  it("emits no TECHNICAL_TRUTH_CONFLICT_REVIEW or FACTUAL_COMPARISON_REVIEW", () => {
+    expect(result.gaps.some((g) => g.gapType === "TECHNICAL_TRUTH_CONFLICT_REVIEW" || g.gapType === "FACTUAL_COMPARISON_REVIEW")).toBe(false);
+  });
+});
+
+describe("CC-18C cases BN/BO -- disagreeing same-kind TECHNICAL_TRUTH claims never arbitrarily resolve, regardless of source order", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bn-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bn" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bn-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bn" }] })];
+  const forward: SourceFactualClaim[] = [
+    factualClaim({ claimKey: "bn-fact", subject: "bn-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value-1", evidenceId: "truth-bn-1" }),
+    factualClaim({ claimKey: "bn-fact", subject: "bn-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value-2", evidenceId: "truth-bn-2" }),
+  ];
+  const reversed = [...forward].reverse();
+
+  it("[BN] forward order: emits TECHNICAL_TRUTH_CONFLICT_REVIEW, does not attach, does not cover", () => {
+    const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: forward }));
+    const c = findCandidate(result, "bn-topic")!;
+    expect(c.factualStatementsByClaimKey?.["bn-fact"]).toBeUndefined();
+    expect(c.technicalCoverageStatus).toBe("PARTIAL");
+    expect(result.gaps.some((g) => g.gapType === "TECHNICAL_TRUTH_CONFLICT_REVIEW")).toBe(true);
+  });
+
+  it("[BO] reversed order produces an IDENTICAL result -- no arbitrary pick, never source-order-dependent", () => {
+    const r1 = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: forward }));
+    const r2 = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: reversed }));
+    expect(findCandidate(r1, "bn-topic")!.factualStatementsByClaimKey).toEqual(findCandidate(r2, "bn-topic")!.factualStatementsByClaimKey);
+    expect(findCandidate(r1, "bn-topic")!.technicalCoverageStatus).toBe(findCandidate(r2, "bn-topic")!.technicalCoverageStatus);
+    expect(r2.gaps.some((g) => g.gapType === "TECHNICAL_TRUTH_CONFLICT_REVIEW")).toBe(true);
+  });
+});
+
+describe("CC-18C case BP -- multiple TECHNICAL_TRUTH claims with incompatible comparison kinds are never compared; fact stays unresolved", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bp-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bp" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bp-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bp" }] })];
+  const claims: SourceFactualClaim[] = [
+    factualClaim({ claimKey: "bp-fact", subject: "bp-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "some canonical prose", comparisonKind: "CANONICAL_TEXT", evidenceId: "truth-bp-1" }),
+    factualClaim({ claimKey: "bp-fact", subject: "bp-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "42", comparisonKind: "NUMBER_WITH_UNIT", evidenceId: "truth-bp-2" }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+
+  it("emits FACTUAL_COMPARISON_REVIEW and leaves the fact unresolved/uncovered", () => {
+    const c = findCandidate(result, "bp-topic")!;
+    expect(c.factualStatementsByClaimKey?.["bp-fact"]).toBeUndefined();
+    expect(c.technicalCoverageStatus).toBe("PARTIAL");
+    expect(result.gaps.some((g) => g.gapType === "FACTUAL_COMPARISON_REVIEW")).toBe(true);
+  });
+});
+
+describe("CC-18C case BQ -- one resolved fact plus one disputed required fact caps coverage at PARTIAL, never COMPLETE", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bq-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bq" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const citation = [{ role: "OFFICIAL_CURRICULUM" as const, evidenceId: "curr-bq" }];
+  const factReqs: CandidateFactRequirement[] = [
+    factRequirement({ targetCandidateKey: key, claimKey: "bq-fact-a", sourceEvidenceRefs: citation }),
+    factRequirement({ targetCandidateKey: key, claimKey: "bq-fact-b", sourceEvidenceRefs: citation }),
+  ];
+  const claims: SourceFactualClaim[] = [
+    factualClaim({ claimKey: "bq-fact-a", subject: "bq-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "undisputed-value" }),
+    factualClaim({ claimKey: "bq-fact-b", subject: "bq-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "disputed-value-1" }),
+    factualClaim({ claimKey: "bq-fact-b", subject: "bq-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "disputed-value-2" }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+
+  it("fact-a attaches, fact-b stays unresolved, coverage is PARTIAL and technicalTruthConfidence is never HIGH", () => {
+    const c = findCandidate(result, "bq-topic")!;
+    expect(c.factualStatementsByClaimKey?.["bq-fact-a"]).toBe("undisputed-value");
+    expect(c.factualStatementsByClaimKey?.["bq-fact-b"]).toBeUndefined();
+    expect(c.technicalCoverageStatus).toBe("PARTIAL");
+    expect(c.confidence.technicalTruthConfidence).not.toBe("HIGH");
+  });
+});
+
+describe("CC-18C case BR -- a DEPTH_QUALIFIER explicitly targeting one performance type affects ONLY that candidate", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [
+    curriculum({ subject: "br-topic", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "IDENTIFY" }),
+    curriculum({ subject: "br-topic", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "CALCULATE" }),
+    curriculum({ subject: "br-topic", curriculumUnitId: "AC-X", normalizationKind: "DEPTH_QUALIFIER", refinesSubject: "br-topic", refinesPerformanceType: "CALCULATE" }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence }));
+
+  it("CALCULATE gains depth confidence; IDENTIFY does not", () => {
+    expect(findCandidate(result, "br-topic", "CALCULATE")!.confidence.depthConfidence).toBe("MEDIUM");
+    expect(findCandidate(result, "br-topic", "IDENTIFY")!.confidence.depthConfidence).toBe("NONE");
+  });
+});
+
+describe("CC-18C case BS -- an ambiguous DEPTH_QUALIFIER (multiple performance types, no explicit target) never applies broadly, and is reviewed", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [
+    curriculum({ subject: "bs-topic", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "IDENTIFY" }),
+    curriculum({ subject: "bs-topic", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "CALCULATE" }),
+    curriculum({ subject: "bs-topic", curriculumUnitId: "AC-X", normalizationKind: "DEPTH_QUALIFIER", refinesSubject: "bs-topic" }), // no refinesPerformanceType -- ambiguous
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence }));
+
+  it("neither candidate gains depth confidence from the ambiguous qualifier", () => {
+    expect(findCandidate(result, "bs-topic", "IDENTIFY")!.confidence.depthConfidence).toBe("NONE");
+    expect(findCandidate(result, "bs-topic", "CALCULATE")!.confidence.depthConfidence).toBe("NONE");
+  });
+
+  it("emits an EVIDENCE_NORMALIZATION_REVIEW gap instead of silently applying broadly", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.unresolved.includes("DEPTH_QUALIFIER"))).toBe(true);
   });
 });
