@@ -41,4 +41,13 @@ One attempted source (All About Circuits, for thyristor latching behaviour) retu
 - `packages/qualification-pipeline/src/types.ts`
 - `packages/qualification-pipeline/src/index.ts`
 
-`rules.ts` was not opened -- `buildStandardPipeline` is never called by this package (Layer C is `NOT_RUN_CC19R` throughout).
+`rules.ts` was not opened by CC-19R -- `buildStandardPipeline` is never called by this package (Layer C is `NOT_RUN_CC19R`/`NOT_RUN_CC19R1` throughout).
+
+## CC-19R1 addendum
+
+CC-19R1 (a narrow correction/completion package, same clean-room lineage) additionally:
+
+- inspected `rules.ts` (`buildOfficialCurriculumUnitIndex`, `validateCurriculumEvidence`, `validateCandidateFactRequirements`, `validateFactualClaims`, `StandardPipelineInput`) to determine the exact production field names/normalizationBasis values Layer-B records must use -- permitted generic-mechanism inspection, not Unit-202 evidence (still never calls `buildStandardPipeline`);
+- researched 18 further technical-truth sources (gears/pulleys/mechanical advantage, lever classes I-III, ammeter/voltmeter/ohmmeter, capacitor, rectifier, diac, triac, thyristor -- resolving the CC-19R thyristor gap via a working LibreTexts source after allaboutcircuits.com's earlier 403 -- magnetic-field production, and the AC sine-wave equation) to complete the decomposition attempt for every remaining curriculum candidate. Full list with reasons: `CC-19R-SOURCE-ACCESS-LOG.json` (`cc19r1AdditionalAccess`) and `technical-truth-data.ts`'s CC-19R1-additions section.
+- Distinct technical-truth sources: 34 (up from 23). Distinct claim keys: 64 (up from 47).
+- No PUBLIC_ASSESSMENT, forbidden-evidence, or expected-answer material was accessed. No subagent tool was used.

@@ -1,131 +1,203 @@
 {
-  "generatedBy": "CC-19R clean-room build-ledger.ts",
-  "totalCandidates": 140,
+  "generatedBy": "CC-19R1 clean-room build-ledger.ts (supersedes CC-19R)",
+  "totalCandidates": 139,
+  "attemptedCount": 139,
   "statusCounts": {
-    "EXPLICITLY_ATOMIC": 30,
-    "REVIEW_DECOMPOSED": 25,
-    "UNRESOLVED_DECOMPOSITION": 85
+    "EXPLICITLY_ATOMIC": 44,
+    "REVIEW_DECOMPOSED": 81,
+    "UNRESOLVED_DECOMPOSITION": 14
   },
+  "structurallyCoveredByChildrenCount": 20,
+  "explicitFactRequirementCount": 44,
+  "reviewFactRequirementCount": 70,
+  "technicallySourcedFactCount": 82,
+  "technicalTruthGapCount": 8,
   "byAc": [
     {
       "acId": "AC1.1",
       "acWording": "identify and apply appropriate mathematical principles which are relevant to electrical work tasks",
       "candidateCount": 14,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 0,
-      "unresolved": 14,
+      "reviewDecomposed": 2,
+      "unresolved": 12,
       "candidates": [
         {
           "candidateKey": "mathematical principles::IDENTIFY",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "fractions and percentages::IDENTIFY",
+            "fractions and percentages::APPLY",
+            "algebra::IDENTIFY",
+            "algebra::APPLY",
+            "indices::IDENTIFY",
+            "indices::APPLY",
+            "transposition::IDENTIFY",
+            "transposition::APPLY",
+            "triangles and trigonometry::IDENTIFY",
+            "triangles and trigonometry::APPLY",
+            "statistics::IDENTIFY",
+            "statistics::APPLY"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "mathematical principles::APPLY",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "fractions and percentages::IDENTIFY",
+            "fractions and percentages::APPLY",
+            "algebra::IDENTIFY",
+            "algebra::APPLY",
+            "indices::IDENTIFY",
+            "indices::APPLY",
+            "transposition::IDENTIFY",
+            "transposition::APPLY",
+            "triangles and trigonometry::IDENTIFY",
+            "triangles and trigonometry::APPLY",
+            "statistics::IDENTIFY",
+            "statistics::APPLY"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "fractions and percentages::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Fractions and percentages' as a required mathematical principle without specifying which internal operations/techniques within 'Fractions and percentages' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "fractions and percentages::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Fractions and percentages' as a required mathematical principle without specifying which internal operations/techniques within 'Fractions and percentages' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "algebra::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Algebra' as a required mathematical principle without specifying which internal operations/techniques within 'Algebra' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "algebra::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Algebra' as a required mathematical principle without specifying which internal operations/techniques within 'Algebra' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "indices::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Indices' as a required mathematical principle without specifying which internal operations/techniques within 'Indices' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "indices::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Indices' as a required mathematical principle without specifying which internal operations/techniques within 'Indices' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "transposition::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Transposition' as a required mathematical principle without specifying which internal operations/techniques within 'Transposition' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "transposition::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Transposition' as a required mathematical principle without specifying which internal operations/techniques within 'Transposition' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "triangles and trigonometry::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Triangles and trigonometry' as a required mathematical principle without specifying which internal operations/techniques within 'Triangles and trigonometry' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "triangles and trigonometry::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Triangles and trigonometry' as a required mathematical principle without specifying which internal operations/techniques within 'Triangles and trigonometry' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "statistics::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Statistics' as a required mathematical principle without specifying which internal operations/techniques within 'Statistics' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         },
         {
           "candidateKey": "statistics::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC1.1",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC1.1 Range names 'Statistics' as a required mathematical principle without specifying which internal operations/techniques within 'Statistics' are in scope at this qualification level (e.g. which specific procedures, to what depth). No accessible public assessment evidence resolves which specific technique is tested (the only public sample-assessment questions document is password-protected -- see CC-19R source inventory). The term is too broad in the qualification source to safely propose a single minimal checkable proposition without inventing scope boundaries the source does not state."
         }
       ]
     },
@@ -133,153 +205,255 @@
       "acId": "AC2.1",
       "acWording": "identify and use internationally recognised base and derived (SI) units of measurement",
       "candidateCount": 18,
-      "explicitlyAtomic": 8,
-      "reviewDecomposed": 0,
-      "unresolved": 10,
+      "explicitlyAtomic": 16,
+      "reviewDecomposed": 2,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "SI units of measurement for general physical quantities::IDENTIFY",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "length (SI unit)::IDENTIFY",
+            "length (SI unit)::APPLY",
+            "area (SI unit)::IDENTIFY",
+            "area (SI unit)::APPLY",
+            "volume (SI unit)::IDENTIFY",
+            "volume (SI unit)::APPLY",
+            "mass (SI unit)::IDENTIFY",
+            "mass (SI unit)::APPLY",
+            "density (SI unit)::IDENTIFY",
+            "density (SI unit)::APPLY",
+            "time (SI unit)::IDENTIFY",
+            "time (SI unit)::APPLY",
+            "temperature (SI unit)::IDENTIFY",
+            "temperature (SI unit)::APPLY",
+            "velocity (SI unit)::IDENTIFY",
+            "velocity (SI unit)::APPLY"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "SI units of measurement for general physical quantities::APPLY",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "length (SI unit)::IDENTIFY",
+            "length (SI unit)::APPLY",
+            "area (SI unit)::IDENTIFY",
+            "area (SI unit)::APPLY",
+            "volume (SI unit)::IDENTIFY",
+            "volume (SI unit)::APPLY",
+            "mass (SI unit)::IDENTIFY",
+            "mass (SI unit)::APPLY",
+            "density (SI unit)::IDENTIFY",
+            "density (SI unit)::APPLY",
+            "time (SI unit)::IDENTIFY",
+            "time (SI unit)::APPLY",
+            "temperature (SI unit)::IDENTIFY",
+            "temperature (SI unit)::APPLY",
+            "velocity (SI unit)::IDENTIFY",
+            "velocity (SI unit)::APPLY"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "length (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.length"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "length (SI unit)::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.length"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "area (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.area"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "area (SI unit)::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.area"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "volume (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.volume"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "volume (SI unit)::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.volume"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "mass (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.mass"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "mass (SI unit)::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.mass"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "density (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.density"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "density (SI unit)::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.density"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "time (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.time"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "time (SI unit)::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.time"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "temperature (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.temperature"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "temperature (SI unit)::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.temperature"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "velocity (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.velocity"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "velocity (SI unit)::APPLY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.velocity"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.1) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         }
       ]
     },
@@ -288,200 +462,344 @@
       "acWording": "identify and determine values of base and derived SI units which apply specifically to electrical quantities",
       "candidateCount": 24,
       "explicitlyAtomic": 22,
-      "reviewDecomposed": 0,
-      "unresolved": 2,
+      "reviewDecomposed": 2,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "electrical quantities (SI units)::IDENTIFY",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "resistance (SI unit)::IDENTIFY",
+            "resistance (SI unit)::OTHER",
+            "resistivity (SI unit)::IDENTIFY",
+            "resistivity (SI unit)::OTHER",
+            "power (SI unit)::IDENTIFY",
+            "power (SI unit)::OTHER",
+            "frequency (SI electrical quantity)::IDENTIFY",
+            "frequency (SI electrical quantity)::OTHER",
+            "current (SI unit)::IDENTIFY",
+            "current (SI unit)::OTHER",
+            "voltage (SI unit)::IDENTIFY",
+            "voltage (SI unit)::OTHER",
+            "energy (SI unit)::IDENTIFY",
+            "energy (SI unit)::OTHER",
+            "impedance (SI unit)::IDENTIFY",
+            "impedance (SI unit)::OTHER",
+            "inductance and inductive reactance (SI unit)::IDENTIFY",
+            "inductance and inductive reactance (SI unit)::OTHER",
+            "capacitance and capacitive reactance (SI unit)::IDENTIFY",
+            "capacitance and capacitive reactance (SI unit)::OTHER",
+            "power factor (SI unit / dimensional status)::IDENTIFY",
+            "power factor (SI unit / dimensional status)::OTHER"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "electrical quantities (SI units)::OTHER",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "resistance (SI unit)::IDENTIFY",
+            "resistance (SI unit)::OTHER",
+            "resistivity (SI unit)::IDENTIFY",
+            "resistivity (SI unit)::OTHER",
+            "power (SI unit)::IDENTIFY",
+            "power (SI unit)::OTHER",
+            "frequency (SI electrical quantity)::IDENTIFY",
+            "frequency (SI electrical quantity)::OTHER",
+            "current (SI unit)::IDENTIFY",
+            "current (SI unit)::OTHER",
+            "voltage (SI unit)::IDENTIFY",
+            "voltage (SI unit)::OTHER",
+            "energy (SI unit)::IDENTIFY",
+            "energy (SI unit)::OTHER",
+            "impedance (SI unit)::IDENTIFY",
+            "impedance (SI unit)::OTHER",
+            "inductance and inductive reactance (SI unit)::IDENTIFY",
+            "inductance and inductive reactance (SI unit)::OTHER",
+            "capacitance and capacitive reactance (SI unit)::IDENTIFY",
+            "capacitance and capacitive reactance (SI unit)::OTHER",
+            "power factor (SI unit / dimensional status)::IDENTIFY",
+            "power factor (SI unit / dimensional status)::OTHER"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "resistance (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.resistance"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "resistance (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.resistance"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "resistivity (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.resistivity"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "resistivity (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.resistivity"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "power (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.power"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "power (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.power"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "frequency (SI electrical quantity)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.frequency"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "frequency (SI electrical quantity)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.frequency"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "current (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.current"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "current (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.current"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "voltage (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.voltage"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "voltage (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.voltage"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "energy (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.energy"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "energy (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.energy"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "impedance (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.impedance"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "impedance (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 1,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.impedance"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "inductance and inductive reactance (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 2,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.inductance",
+            "unit202.si-unit.inductive-reactance"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "inductance and inductive reactance (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 2,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.inductance",
+            "unit202.si-unit.inductive-reactance"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "capacitance and capacitive reactance (SI unit)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 2,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.capacitance",
+            "unit202.si-unit.capacitive-reactance"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "capacitance and capacitive reactance (SI unit)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 2,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.capacitance",
+            "unit202.si-unit.capacitive-reactance"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "power factor (SI unit / dimensional status)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 2,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.power-factor.defining-relationship",
+            "unit202.si-unit.power-factor.dimensionless-convention"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         },
         {
           "candidateKey": "power factor (SI unit / dimensional status)::OTHER",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "EXPLICITLY_ATOMIC",
-          "explicitFactCount": 2,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.2",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [
+            "unit202.si-unit.power-factor.defining-relationship",
+            "unit202.si-unit.power-factor.dimensionless-convention"
+          ],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Explicit curriculum wording (AC2.2) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A)."
         }
       ]
     },
@@ -490,64 +808,100 @@
       "acWording": "identify appropriate electrical instruments for the measurement of different electrical quantities",
       "candidateCount": 7,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 0,
-      "unresolved": 7,
+      "reviewDecomposed": 7,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "electrical instruments for the measurement of electrical quantities::IDENTIFY",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "instrument for measuring resistance::IDENTIFY",
+            "instrument for measuring power::IDENTIFY",
+            "instrument for measuring current::IDENTIFY",
+            "instrument for measuring voltage::IDENTIFY",
+            "instrument for measuring energy::IDENTIFY"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "electrical quantities requiring instrument identification (measurement)::IDENTIFY",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "instrument for measuring resistance::IDENTIFY",
+            "instrument for measuring power::IDENTIFY",
+            "instrument for measuring current::IDENTIFY",
+            "instrument for measuring voltage::IDENTIFY",
+            "instrument for measuring energy::IDENTIFY"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "instrument for measuring resistance::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohmmeter-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "instrument for measuring power::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.wattmeter"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "instrument for measuring current::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ammeter-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "instrument for measuring voltage::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.voltmeter-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "instrument for measuring energy::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC2.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.energy-meter"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -561,85 +915,115 @@
       "candidates": [
         {
           "candidateKey": "mass and weight::DEFINE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 2
+          "curriculumUnitId": "AC3.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.mass-definition",
+            "unit202.review-fact.weight-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
     {
       "acId": "AC3.2",
       "acWording": "explain the principles of basic mechanics as they apply to levers, gears and pulleys",
-      "candidateCount": 8,
+      "candidateCount": 7,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 0,
-      "unresolved": 8,
+      "reviewDecomposed": 7,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "principles of basic mechanics as applied to levers, gears and pulleys::EXPLAIN",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
-        },
-        {
-          "candidateKey": "levers::EXPLAIN",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "gears::EXPLAIN",
+            "pulleys::EXPLAIN"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "gears::EXPLAIN",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.gear-mechanism",
+            "unit202.review-fact.mechanical-advantage"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "pulleys::EXPLAIN",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.pulley-mechanism",
+            "unit202.review-fact.mechanical-advantage"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "levers::EXPLAIN",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "lever class I::EXPLAIN",
+            "lever class II::EXPLAIN",
+            "lever class III::EXPLAIN"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "lever class I::EXPLAIN",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.lever-class-1"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "lever class II::EXPLAIN",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.lever-class-2"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "lever class III::EXPLAIN",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.lever-class-3"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -648,64 +1032,97 @@
       "acWording": "describe the main principles of the following and their inter-relationships: a. force b. work c. energy (kinetic and potential) d. power e. efficiency.",
       "candidateCount": 7,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 4,
-      "unresolved": 3,
+      "reviewDecomposed": 7,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "principles of force, work, energy, power and efficiency::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "force::DESCRIBE",
+            "work::DESCRIBE",
+            "energy (kinetic and potential)::DESCRIBE",
+            "power (mechanical)::DESCRIBE",
+            "efficiency::DESCRIBE",
+            "inter-relationships between force, work, energy, power and efficiency::DESCRIBE"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "force::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.force-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "work::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC3.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.work-formula"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "energy (kinetic and potential)::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC3.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.kinetic-potential-energy-formula"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "power (mechanical)::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC3.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.power-mechanical-formula"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "efficiency::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC3.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.efficiency-formula"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "inter-relationships between force, work, energy, power and efficiency::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.power-mechanical-formula"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -714,40 +1131,58 @@
       "acWording": "calculate values of mechanical energy, power and efficiency",
       "candidateCount": 4,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 3,
-      "unresolved": 1,
+      "reviewDecomposed": 4,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "values of mechanical energy, power and efficiency::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC3.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "mechanical energy (calculation)::CALCULATE",
+            "power (calculation, mechanical)::CALCULATE",
+            "efficiency (calculation)::CALCULATE"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "mechanical energy (calculation)::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC3.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.kinetic-potential-energy-formula"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "power (calculation, mechanical)::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC3.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.power-mechanical-formula"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "efficiency (calculation)::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC3.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.efficiency-formula"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -761,11 +1196,16 @@
       "candidates": [
         {
           "candidateKey": "basic principles of electron theory::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 2
+          "curriculumUnitId": "AC4.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.current-charge-flow",
+            "unit202.review-fact.conventional-vs-electron-flow"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -774,40 +1214,56 @@
       "acWording": "identify and distinguish between materials which are good conductors and insulators",
       "candidateCount": 4,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 2,
-      "unresolved": 2,
+      "reviewDecomposed": 4,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "conductors (good electrical conductor materials)::IDENTIFY",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC4.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.conductor-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "conductors (good electrical conductor materials)::DISTINGUISH",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC4.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.conductor-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "insulators (electrical insulator materials)::IDENTIFY",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC4.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.insulator-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "insulators (electrical insulator materials)::DISTINGUISH",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC4.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.insulator-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -821,11 +1277,16 @@
       "candidates": [
         {
           "candidateKey": "resistance and resistivity in relation to electrical circuits::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 2
+          "curriculumUnitId": "AC4.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohms-law",
+            "unit202.review-fact.resistance-resistivity-relation"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -839,11 +1300,17 @@
       "candidates": [
         {
           "candidateKey": "relationship between current, voltage and resistance in parallel and series D.C. circuits::EXPLAIN",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 3
+          "curriculumUnitId": "AC4.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohms-law",
+            "unit202.review-fact.series-resistance",
+            "unit202.review-fact.parallel-resistance"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -852,40 +1319,60 @@
       "acWording": "calculate the values of current, voltage and resistance in parallel and series D.C. circuits",
       "candidateCount": 4,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 1,
-      "unresolved": 3,
+      "reviewDecomposed": 4,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "values of current, voltage and resistance in parallel and series D.C. circuits::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC4.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohms-law"
+          ],
+          "coveredByChildCandidateKeys": [
+            "current (calculation, D.C. circuits)::CALCULATE",
+            "voltage (calculation, D.C. circuits)::CALCULATE",
+            "resistance (calculation, D.C. circuits)::CALCULATE"
+          ],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys. Also structurally decomposed via child candidates."
         },
         {
           "candidateKey": "current (calculation, D.C. circuits)::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC4.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohms-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "voltage (calculation, D.C. circuits)::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC4.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohms-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "resistance (calculation, D.C. circuits)::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC4.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohms-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -894,16 +1381,20 @@
       "acWording": "calculate values of power in parallel and series D.C. circuits",
       "candidateCount": 1,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 0,
-      "unresolved": 1,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "values of power in parallel and series D.C. circuits::CALCULATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC4.6",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.thermal-effect"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -912,16 +1403,20 @@
       "acWording": "state what is meant by the term voltage drop in relation to electrical circuits",
       "candidateCount": 1,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 0,
-      "unresolved": 1,
+      "reviewDecomposed": 1,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "voltage drop::STATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC4.7",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohms-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -935,11 +1430,16 @@
       "candidates": [
         {
           "candidateKey": "chemical and thermal effects of electric currents::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 2
+          "curriculumUnitId": "AC4.8",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.thermal-effect",
+            "unit202.review-fact.chemical-effect"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -953,11 +1453,15 @@
       "candidates": [
         {
           "candidateKey": "attraction and repulsion effects of magnetism::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC5.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.magnetic-attraction-repulsion"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -971,11 +1475,15 @@
       "candidates": [
         {
           "candidateKey": "difference between magnetic flux and flux density::STATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC5.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.flux-vs-flux-density"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -984,48 +1492,70 @@
       "acWording": "describe the magnetic effects of electrical currents in terms of: a. production of a magnetic field b. force on a current-carrying conductor in a magnetic field c. electromagnetism d. electromotive force.",
       "candidateCount": 5,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 2,
-      "unresolved": 3,
+      "reviewDecomposed": 4,
+      "unresolved": 1,
       "candidates": [
         {
           "candidateKey": "magnetic effects of electrical currents::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "production of a magnetic field::DESCRIBE",
+            "force on a current-carrying conductor in a magnetic field::DESCRIBE",
+            "electromagnetism::DESCRIBE",
+            "electromotive force::DESCRIBE"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "production of a magnetic field::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.magnetic-field-production"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "force on a current-carrying conductor in a magnetic field::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC5.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.force-on-conductor"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "electromagnetism::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.3",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC5.3.c names 'electromagnetism' as a lettered item alongside three more specific sibling items in the same list (a. production of a magnetic field, b. force on a current-carrying conductor, d. electromotive force). The source does not specify what content 'electromagnetism' requires beyond what those three already cover, and several technically valid distinct readings exist (the general electricity-magnetism interaction; electromagnets/solenoids specifically; Ampere's law generally) with no curriculum or accessible assessment evidence selecting one. Proposing a specific minimal fact would risk inventing scope the source does not itself distinguish from its siblings."
         },
         {
           "candidateKey": "electromotive force::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC5.3",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.faradays-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -1034,56 +1564,84 @@
       "acWording": "describe the basic principles of generating an A.C. supply in terms of: a. a single-loop generator b. sine-wave c. frequency d. EMF e. magnetic flux.",
       "candidateCount": 6,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 1,
-      "unresolved": 5,
+      "reviewDecomposed": 6,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "basic principles of generating an A.C. supply::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "single-loop generator::DESCRIBE",
+            "sine-wave (AC generation principle)::DESCRIBE",
+            "frequency (AC generation principle)::DESCRIBE",
+            "EMF (AC generation principle)::DESCRIBE",
+            "magnetic flux (AC generation principle)::DESCRIBE"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "single-loop generator::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.faradays-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "sine-wave (AC generation principle)::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ac-sine-equation"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "frequency (AC generation principle)::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ac-sine-equation"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "EMF (AC generation principle)::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC5.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.faradays-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "magnetic flux (AC generation principle)::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.4",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.faradays-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -1092,64 +1650,97 @@
       "acWording": "identify the characteristics of sine-waves",
       "candidateCount": 7,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 0,
-      "unresolved": 7,
+      "reviewDecomposed": 7,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "characteristics of sine-waves::IDENTIFY",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "RMS value (sine-wave characteristic)::IDENTIFY",
+            "average value (sine-wave characteristic)::IDENTIFY",
+            "peak to peak value (sine-wave characteristic)::IDENTIFY",
+            "periodic time (sine-wave characteristic)::IDENTIFY",
+            "frequency (sine-wave characteristic)::IDENTIFY",
+            "amplitude (sine-wave characteristic)::IDENTIFY"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "RMS value (sine-wave characteristic)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.rms-value"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "average value (sine-wave characteristic)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.average-value"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "peak to peak value (sine-wave characteristic)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.peak-to-peak-value"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "periodic time (sine-wave characteristic)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.periodic-time"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "frequency (sine-wave characteristic)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ac-sine-equation"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "amplitude (sine-wave characteristic)::IDENTIFY",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC5.5",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.amplitude-value"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     },
@@ -1157,73 +1748,103 @@
       "acId": "AC6.1",
       "acWording": "describe the function and application of electronic components that are used in electrical systems",
       "candidateCount": 8,
-      "explicitlyAtomic": 0,
-      "reviewDecomposed": 0,
-      "unresolved": 8,
+      "explicitlyAtomic": 6,
+      "reviewDecomposed": 2,
+      "unresolved": 0,
       "candidates": [
         {
           "candidateKey": "function and application of electronic components used in electrical systems::DESCRIBE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "electronic components function/application: security alarms::DESCRIBE",
+            "electronic components function/application: telephones::DESCRIBE",
+            "electronic components function/application: dimmer switches::DESCRIBE",
+            "electronic components function/application: heating/boiler controls::DESCRIBE",
+            "electronic components function/application: motor control::DESCRIBE",
+            "electronic components function/application: wireless control systems::DESCRIBE"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "electrical systems (context for electronic component function/application)::DESCRIBE",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.1",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "electronic components function/application: security alarms::DESCRIBE",
+            "electronic components function/application: telephones::DESCRIBE",
+            "electronic components function/application: dimmer switches::DESCRIBE",
+            "electronic components function/application: heating/boiler controls::DESCRIBE",
+            "electronic components function/application: motor control::DESCRIBE",
+            "electronic components function/application: wireless control systems::DESCRIBE"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "electronic components function/application: security alarms::DESCRIBE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "AC6.1 Range member naming a specific application context. The named system IS the complete required scope for this Range member; decomposing further into which specific AC6.2 component serves which specific role within it would require inventing an application-mapping the source does not state (forbidden: 'interesting context' / 'advanced knowledge' per section 9)."
         },
         {
           "candidateKey": "electronic components function/application: telephones::DESCRIBE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "AC6.1 Range member naming a specific application context. The named system IS the complete required scope for this Range member; decomposing further into which specific AC6.2 component serves which specific role within it would require inventing an application-mapping the source does not state (forbidden: 'interesting context' / 'advanced knowledge' per section 9)."
         },
         {
           "candidateKey": "electronic components function/application: dimmer switches::DESCRIBE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "AC6.1 Range member naming a specific application context. The named system IS the complete required scope for this Range member; decomposing further into which specific AC6.2 component serves which specific role within it would require inventing an application-mapping the source does not state (forbidden: 'interesting context' / 'advanced knowledge' per section 9)."
         },
         {
           "candidateKey": "electronic components function/application: heating/boiler controls::DESCRIBE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "AC6.1 Range member naming a specific application context. The named system IS the complete required scope for this Range member; decomposing further into which specific AC6.2 component serves which specific role within it would require inventing an application-mapping the source does not state (forbidden: 'interesting context' / 'advanced knowledge' per section 9)."
         },
         {
           "candidateKey": "electronic components function/application: motor control::DESCRIBE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "AC6.1 Range member naming a specific application context. The named system IS the complete required scope for this Range member; decomposing further into which specific AC6.2 component serves which specific role within it would require inventing an application-mapping the source does not state (forbidden: 'interesting context' / 'advanced knowledge' per section 9)."
         },
         {
           "candidateKey": "electronic components function/application: wireless control systems::DESCRIBE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.1",
+          "decompositionAttempted": true,
+          "status": "EXPLICITLY_ATOMIC",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "AC6.1 Range member naming a specific application context. The named system IS the complete required scope for this Range member; decomposing further into which specific AC6.2 component serves which specific role within it would require inventing an application-mapping the source does not state (forbidden: 'interesting context' / 'advanced knowledge' per section 9)."
         }
       ]
     },
@@ -1232,148 +1853,213 @@
       "acWording": "state the basic operating principles of electronic components and devices",
       "candidateCount": 15,
       "explicitlyAtomic": 0,
-      "reviewDecomposed": 5,
-      "unresolved": 10,
+      "reviewDecomposed": 14,
+      "unresolved": 1,
       "candidates": [
         {
           "candidateKey": "basic operating principles of electronic components and devices::STATE",
-          "normalizationKind": "PRIMARY_REQUIREMENT",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "capacitors::STATE",
+            "resistors::STATE",
+            "rectifiers::STATE",
+            "diodes::STATE",
+            "Zener::STATE",
+            "LED::STATE",
+            "photo::STATE",
+            "thermistors::STATE",
+            "diacs::STATE",
+            "triacs::STATE",
+            "transistors::STATE",
+            "thyristors::STATE",
+            "invertors::STATE"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "electronic components and devices::STATE",
-          "normalizationKind": "RANGE_CATEGORY",
-          "normalizationConfidence": "EXPLICIT",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [
+            "capacitors::STATE",
+            "resistors::STATE",
+            "rectifiers::STATE",
+            "diodes::STATE",
+            "Zener::STATE",
+            "LED::STATE",
+            "photo::STATE",
+            "thermistors::STATE",
+            "diacs::STATE",
+            "triacs::STATE",
+            "transistors::STATE",
+            "thyristors::STATE",
+            "invertors::STATE"
+          ],
+          "attemptRationale": "Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8)."
         },
         {
           "candidateKey": "capacitors::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.capacitor-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "resistors::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.ohms-law"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "rectifiers::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.rectifier-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "diodes::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.diode-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "Zener::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.zener-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "LED::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.led-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "photo::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "UNRESOLVED_DECOMPOSITION",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.",
+          "unresolvedReason": "AC6.2 Range member 'photo' (page 29) is printed as a bare, unexpanded term in a genuinely flat bulleted list (CC-19R section 15 -- confirmed by direct visual inspection of the handbook page image, no nesting under 'Diodes' or 'LED'). The source does not state whether this refers to a photodiode, phototransistor, or another photo-sensitive device, and proposing a minimal operating-principle fact requires knowing which device is meant; no accessible public assessment evidence disambiguates the term. Expanding it would require inventing a specific device identity the source does not itself state (the same structural ambiguity already logged for 'Zener' at the membership level; here it blocks fact-level decomposition too)."
         },
         {
           "candidateKey": "thermistors::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.thermistor-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "diacs::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.diac-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "triacs::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.triac-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "transistors::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "REVIEW_DECOMPOSED",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 1
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.transistor-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "thyristors::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.thyristor-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         },
         {
           "candidateKey": "invertors::STATE",
-          "normalizationKind": "RANGE_REQUIRED_MEMBER",
-          "normalizationConfidence": "STRONG_INFERENCE",
-          "decompositionStatus": "UNRESOLVED_DECOMPOSITION",
-          "explicitFactCount": 0,
-          "reviewProposedFactCount": 0
+          "curriculumUnitId": "AC6.2",
+          "decompositionAttempted": true,
+          "status": "REVIEW_DECOMPOSED",
+          "explicitFactRequirementKeys": [],
+          "reviewFactRequirementKeys": [
+            "unit202.review-fact.invertor-definition"
+          ],
+          "coveredByChildCandidateKeys": [],
+          "attemptRationale": "Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys."
         }
       ]
     }
-  ],
-  "knownUnresolvedDecompositions": [
-    {
-      "subject": "thyristors",
-      "reason": "AC6.2: an authoritative open/academic source explicitly defining thyristor latching behaviour was sought but not successfully retrieved this session (allaboutcircuits.com returned HTTP 403; no LibreTexts/OpenStax equivalent found). Left UNRESOLVED rather than sourced from a lower-tier site."
-    },
-    {
-      "subject": "single-loop generator",
-      "reason": "AC5.4.a: not researched this session -- decomposition would need the generator EMF equation (e = NBA*omega*sin(omega t)) from an authoritative source."
-    },
-    {
-      "subject": "electromagnetism",
-      "reason": "AC5.3.c: not researched this session -- decomposition would need a clearer minimal-fact boundary between 'production of a magnetic field' (AC5.3.a) and the general term 'electromagnetism'."
-    }
-  ],
-  "technicalSourceCoverage": {
-    "totalTechnicalClaims": 47,
-    "distinctClaimKeys": 47
-  }
+  ]
 }

@@ -3,7 +3,13 @@
     "freshClaudeSession": true,
     "worktreeBase": "3c9b1dd",
     "noSubagentsUsed": true,
-    "note": "This log is written directly by the operating Claude Code session performing CC-19R; no Agent/subagent/delegated-research tool was invoked anywhere in this package."
+    "note": "This log is written directly by the operating Claude Code session performing CC-19R; no Agent/subagent/delegated-research tool was invoked anywhere in this package.",
+    "initialCC19RLogConstruction": "RECONSTRUCTED_AT_END_FROM_SAME_SESSION_HISTORY",
+    "chainOfCustodyLimitation": "The original CC-19R access log below (accessSequence 1-29) was reconstructed after the accesses occurred, compiled from the same session's tool-call history at the end of the CC-19R package, rather than appended contemporaneously as each access happened. This does not invalidate the clean-room run -- the full Claude session transcript remains corroborating audit evidence for exactly what was and was not opened. CC-19R1 additions (accessSequence 30+, if any) follow the same reconstruction pattern within their own session; see cc19r1AdditionalAccess below for CC-19R1's own logging note."
+  },
+  "cc19r1AdditionalAccess": {
+    "note": "CC-19R1 performed further technical-truth research (gears/pulleys/lever-classes/instruments/electronics-components/magnetic-field-production/AC-sine-equation -- see technical-truth-data.ts CC-19R1-additions section and TECHNICAL_CLAIMS sourceRef/sourceLocator fields for the full list) to complete the decomposition attempt for every remaining curriculum candidate (task section 7). No forbidden Unit-202 derived/private evidence, expected-answer material, or subagent tool was used. As with CC-19R, this note was compiled from the same CC-19R1 session's history rather than appended per-access in real time; the session transcript is corroborating evidence.",
+    "sourceCount": "See technical-truth-data.ts for the additional ~18 technical-truth source citations added in the CC-19R1 section; each carries its own sourceRef/sourceLocator identical in form to the CC-19R evidentialAccessLog entries above."
   },
   "evidentialAccessLog": [
     {

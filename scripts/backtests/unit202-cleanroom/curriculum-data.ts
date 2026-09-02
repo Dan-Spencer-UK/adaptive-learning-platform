@@ -256,8 +256,14 @@ export const ASSESSMENT_CRITERIA: readonly RawAC[] = [
     pageRef: 26,
     performances: [explicit("explain", "EXPLAIN")],
     parentSubject: "principles of basic mechanics as applied to levers, gears and pulleys",
+    // CC-19R1 fix: "levers" is deliberately NOT listed as an explicit child
+    // here (only "gears"/"pulleys" are) -- it is already created exactly
+    // once below via the coincident RANGE_CATEGORY entry (categorySubject
+    // "levers"). Listing it in both places produced a duplicate
+    // candidateKey ("levers"::EXPLAIN twice), a genuine candidate-key
+    // resolution bug caught by CC-19R1's decomposition-attempt uniqueness
+    // check (task section 2 item C).
     explicitChildren: [
-      { subject: "levers", rawWording: "levers" },
       { subject: "gears", rawWording: "gears" },
       { subject: "pulleys", rawWording: "pulleys" },
     ],

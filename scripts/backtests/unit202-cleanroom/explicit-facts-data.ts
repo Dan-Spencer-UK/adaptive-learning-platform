@@ -7,9 +7,11 @@
  * evidence -- never REVIEW_PROPOSED.
  */
 
+import type { LearnerPerformanceType } from "@alp/qualification-pipeline";
+
 export interface ExplicitFactRequirement {
   readonly targetSubject: string;
-  readonly targetPerformanceType: string;
+  readonly targetPerformanceType: LearnerPerformanceType;
   readonly claimKey: string;
   readonly parentAcId: string;
 }
@@ -21,16 +23,30 @@ const identifyFact = (targetSubject: string, claimKey: string, parentAcId: strin
   parentAcId,
 });
 
+/**
+ * AC2.1's compound performance is "identify AND use [-> APPLY]" (CC-19R
+ * section 11.A) -- both performances govern every Range member, so both
+ * candidateKeys ((subject, IDENTIFY) and (subject, APPLY)) need the same
+ * atomic SI-unit fact. CC-19R1 fix: CC-19R only wired the IDENTIFY half,
+ * leaving all 8 AC2.1 APPLY-performance candidates with no fact, no
+ * children, and no atomic/unresolved classification (a genuine
+ * candidate-key resolution bug, CC-19R1 section 2 item C).
+ */
+const identifyAndApplyFacts = (targetSubject: string, claimKey: string, parentAcId: string): readonly ExplicitFactRequirement[] => [
+  identifyFact(targetSubject, claimKey, parentAcId),
+  { targetSubject, targetPerformanceType: "APPLY", claimKey, parentAcId },
+];
+
 export const EXPLICIT_FACT_REQUIREMENTS: readonly ExplicitFactRequirement[] = [
-  // AC2.1 -- general physical quantities
-  identifyFact("length (SI unit)", "unit202.si-unit.length", "AC2.1"),
-  identifyFact("area (SI unit)", "unit202.si-unit.area", "AC2.1"),
-  identifyFact("volume (SI unit)", "unit202.si-unit.volume", "AC2.1"),
-  identifyFact("mass (SI unit)", "unit202.si-unit.mass", "AC2.1"),
-  identifyFact("density (SI unit)", "unit202.si-unit.density", "AC2.1"),
-  identifyFact("time (SI unit)", "unit202.si-unit.time", "AC2.1"),
-  identifyFact("temperature (SI unit)", "unit202.si-unit.temperature", "AC2.1"),
-  identifyFact("velocity (SI unit)", "unit202.si-unit.velocity", "AC2.1"),
+  // AC2.1 -- general physical quantities (IDENTIFY and APPLY both apply)
+  ...identifyAndApplyFacts("length (SI unit)", "unit202.si-unit.length", "AC2.1"),
+  ...identifyAndApplyFacts("area (SI unit)", "unit202.si-unit.area", "AC2.1"),
+  ...identifyAndApplyFacts("volume (SI unit)", "unit202.si-unit.volume", "AC2.1"),
+  ...identifyAndApplyFacts("mass (SI unit)", "unit202.si-unit.mass", "AC2.1"),
+  ...identifyAndApplyFacts("density (SI unit)", "unit202.si-unit.density", "AC2.1"),
+  ...identifyAndApplyFacts("time (SI unit)", "unit202.si-unit.time", "AC2.1"),
+  ...identifyAndApplyFacts("temperature (SI unit)", "unit202.si-unit.temperature", "AC2.1"),
+  ...identifyAndApplyFacts("velocity (SI unit)", "unit202.si-unit.velocity", "AC2.1"),
   // AC2.2 -- electrical quantities (both IDENTIFY and OTHER/"determine values of" performances)
   identifyFact("resistance (SI unit)", "unit202.si-unit.resistance", "AC2.2"),
   { targetSubject: "resistance (SI unit)", targetPerformanceType: "OTHER", claimKey: "unit202.si-unit.resistance", parentAcId: "AC2.2" },

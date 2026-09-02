@@ -1,22 +1,40 @@
 /**
- * CC-19R clean-room ledger builder.
+ * CC-19R1 clean-room ledger builder (supersedes CC-19R's build-ledger.ts).
  *
- * Expands the raw curriculum data (curriculum-data.ts) into the
- * three-layer normalization ledger described in the CC-19R task
- * (section 8), attaches qualification-level evidence, explicit and
- * review-proposed fact requirements, and technical-truth claims, then
- * writes every required output file under
- * reports/backtests/unit202-cleanroom/.
+ * Fixes three defects identified by the CC-19R1 completion/correction
+ * package:
+ *   DEFECT A -- every Layer-B `normalizedRecord` now statically satisfies
+ *     the ACTUAL exported generic-pipeline production type named by
+ *     `genericPipelineRecordType` (imported type-only from
+ *     "@alp/qualification-pipeline"), never a hand-invented
+ *     Record<string, unknown> lookalike. Back-test-only audit metadata
+ *     (proposalId, normalizationConfidence, normalizationRationale,
+ *     profileEligibility, derivedCandidateKey, originKind,
+ *     structuralParentageReviewNote) lives in the wrapper, never inside
+ *     normalizedRecord.
+ *   DEFECT B -- every one of the 140 CurriculumEvidence candidates now
+ *     has an explicit DecompositionAttempt (EXPLICITLY_ATOMIC /
+ *     REVIEW_DECOMPOSED / UNRESOLVED_DECOMPOSITION), including
+ *     structural parents/categories correctly linked to the child
+ *     candidates that decompose them.
+ *   DEFECT C -- Layer-A `sourceFragments` contain ONLY text that is
+ *     itself verbatim source wording (checked by a real validator in
+ *     verbatim-validator.ts) -- no synthetic "[child: ...]" / "| Range:"
+ *     concatenation.
  *
  * This script does NOT import or call packages/qualification-pipeline's
  * buildStandardPipeline -- every Layer-C `pipelineAcceptance` value is
- * the literal string "NOT_RUN_CC19R" (CC-19R section 8, 32).
+ * the literal string "NOT_RUN_CC19R1".
  */
 import { writeFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-import { ASSESSMENT_CRITERIA, LEARNING_OUTCOMES, UNIT_202_HEADER, HANDBOOK_SOURCE_REF, HANDBOOK_SOURCE_URL, type RawAC } from "./curriculum-data.ts";
+import { candidateKey } from "@alp/qualification-pipeline";
+import type { CandidateFactRequirement, CurriculumEvidence, CurriculumNormalizationKind, LearnerPerformanceType, OfficialCurriculumUnit, QualificationLevelEvidence, SourceFactualClaim } from "@alp/qualification-pipeline";
+
+import { ASSESSMENT_CRITERIA, LEARNING_OUTCOMES, UNIT_202_HEADER, HANDBOOK_SOURCE_REF, type RawAC } from "./curriculum-data.ts";
+import { OFFICIAL_CURRICULUM_UNITS } from "./official-curriculum-units.ts";
 import {
   OFQUAL_SOURCE_REF,
   OFQUAL_SOURCE_URL,
@@ -26,97 +44,129 @@ import {
 } from "./qualification-level-data.ts";
 import { TECHNICAL_CLAIMS } from "./technical-truth-data.ts";
 import { EXPLICIT_FACT_REQUIREMENTS } from "./explicit-facts-data.ts";
-import { REVIEW_FACT_PROPOSALS, KNOWN_UNRESOLVED_DECOMPOSITIONS } from "./review-facts-data.ts";
+import { REVIEW_FACT_PROPOSALS, ATOMIC_BY_DESIGN_SUBJECTS, GENUINELY_UNRESOLVED_SUBJECTS } from "./review-facts-data.ts";
 
 const QUALIFICATION_ID = "2365-02";
-
-export function candidateKey(subject: string, performanceType: string): string {
-  return `${subject}::${performanceType}`;
-}
 
 type NormalizationConfidence = "EXPLICIT" | "STRONG_INFERENCE" | "REVIEW_PROPOSED";
 type ProfileEligibility = "FULL_PUBLIC" | "DEGRADED_NO_ASSESSMENT";
 
-interface LedgerEntry {
+export interface SourceFragment {
+  readonly sourceRef: string;
+  readonly sourceLocator: string;
+  /** MUST be verbatim source wording -- see verbatim-validator.ts. Never synthetic prose/annotations. */
+  readonly sourceExcerpt: string;
+  /** What this fragment supplies (e.g. "command verb", "subject/Range member", "Range category label"). Audit-only, not part of any production record. */
+  readonly fragmentRole: string;
+}
+
+export interface LedgerEntry {
   readonly proposalId: string;
+  readonly derivedCandidateKey?: string;
   readonly layerA: {
-    readonly sourceId: string;
-    readonly sourceRole: string;
-    readonly sourceRef: string;
-    readonly sourceLocator: string;
-    readonly sourceExcerpt: string;
-    readonly rawIdentifier: string;
-    readonly rawCommandWording?: string;
+    readonly sourceFragments: readonly SourceFragment[];
   };
   readonly layerB: {
-    readonly genericPipelineRecordType: string;
-    readonly normalizedRecord: Record<string, unknown>;
+    readonly genericPipelineRecordType: "CurriculumEvidence" | "OfficialCurriculumUnit" | "QualificationLevelEvidence" | "SourceFactualClaim" | "CandidateFactRequirement";
+    readonly normalizedRecord: CurriculumEvidence | OfficialCurriculumUnit | QualificationLevelEvidence | SourceFactualClaim | CandidateFactRequirement;
     readonly normalizationConfidence: NormalizationConfidence;
     readonly normalizationRationale: string;
     readonly profileEligibility: readonly ProfileEligibility[];
+    readonly structuralParentageReviewNote?: string;
   };
   readonly layerC: {
-    readonly pipelineAcceptance: "NOT_RUN_CC19R";
+    readonly pipelineAcceptance: "NOT_RUN_CC19R1";
   };
 }
 
 const ledger: LedgerEntry[] = [];
-const candidateSubjectPerformanceSet = new Set<string>(); // "<subject>" existence check for refinesSubject resolution
-const candidateSubjects = new Set<string>();
 let seq = 0;
 const nextId = (prefix: string) => `${prefix}-${String(++seq).padStart(4, "0")}`;
+const nextEvidenceId = (prefix: string) => `EV-${prefix}-${String(seq + 1).padStart(4, "0")}`;
 
 function acLocator(ac: RawAC): string {
   return `Page ${ac.pageRef}, ${ac.id}`;
 }
 
+// ---------------------------------------------------------------------
+// Curriculum candidate origin tracking (for DecompositionAttempt
+// child-coverage computation -- CC-19R1 section 8).
+// ---------------------------------------------------------------------
+type OriginKind = "AC_PARENT" | "EXPLICIT_CHILD" | "RANGE_CATEGORY" | "RANGE_MEMBER";
+
+interface CandidateOrigin {
+  readonly candidateKey: string;
+  readonly subject: string;
+  readonly performanceType: LearnerPerformanceType;
+  readonly curriculumUnitId: string;
+  readonly normalizationKind: CurriculumNormalizationKind;
+  readonly originKind: OriginKind;
+  readonly originRangeGroupId?: string;
+  readonly refinesSubject?: string;
+  readonly evidenceId: string;
+}
+const candidateOrigins: CandidateOrigin[] = [];
+const candidateSubjects = new Set<string>();
+
 function addCurriculumCandidate(opts: {
   ac: RawAC;
   subject: string;
-  performanceType: string;
+  performanceType: LearnerPerformanceType;
   confidence: NormalizationConfidence;
   rawVerb: string;
-  normalizationKind: "PRIMARY_REQUIREMENT" | "RANGE_REQUIRED_MEMBER" | "RANGE_CATEGORY";
-  sourceExcerpt: string;
+  normalizationKind: CurriculumNormalizationKind;
+  originKind: OriginKind;
+  originRangeGroupId?: string;
+  fragments: SourceFragment[];
   rationale: string;
   refinesSubject?: string;
   breadthStatus?: "ENUMERATED_COMPLETE" | "OPEN_OR_UNDERSPECIFIED" | "UNKNOWN";
   structuralReviewNote?: string;
 }) {
-  const { ac, subject, performanceType, confidence, rawVerb, normalizationKind, sourceExcerpt, rationale, refinesSubject, breadthStatus, structuralReviewNote } = opts;
+  const { ac, subject, performanceType, confidence, normalizationKind, originKind, originRangeGroupId, fragments, rationale, refinesSubject, breadthStatus, structuralReviewNote } = opts;
   candidateSubjects.add(subject);
-  candidateSubjectPerformanceSet.add(candidateKey(subject, performanceType));
+
+  const evidenceId = nextEvidenceId("CUR");
+  const record: CurriculumEvidence = {
+    role: "OFFICIAL_CURRICULUM",
+    evidenceId,
+    qualificationId: QUALIFICATION_ID,
+    curriculumUnitId: ac.id,
+    subject,
+    normalizationKind,
+    commandVerbPerformanceType: performanceType,
+    sourceRef: HANDBOOK_SOURCE_REF,
+    sourceLocator: acLocator(ac),
+    normalizationBasis: normalizationKind === "RANGE_REQUIRED_MEMBER" ? "EXPLICIT_RANGE_STRUCTURE" : normalizationKind === "RANGE_CATEGORY" ? "EXPLICIT_RANGE_STRUCTURE" : "EXPLICIT_CURRICULUM_WORDING",
+    ...(refinesSubject ? { refinesSubject } : {}),
+    ...(normalizationKind === "RANGE_CATEGORY" ? { breadthStatus: breadthStatus ?? "UNKNOWN" } : {}),
+  };
+
+  candidateOrigins.push({
+    candidateKey: candidateKey(subject, performanceType),
+    subject,
+    performanceType,
+    curriculumUnitId: ac.id,
+    normalizationKind,
+    originKind,
+    originRangeGroupId,
+    refinesSubject,
+    evidenceId,
+  });
 
   ledger.push({
     proposalId: nextId("CUR"),
-    layerA: {
-      sourceId: "SRC-HANDBOOK-2365-02-V1-12",
-      sourceRole: "OFFICIAL_CURRICULUM",
-      sourceRef: HANDBOOK_SOURCE_REF,
-      sourceLocator: acLocator(ac),
-      sourceExcerpt: sourceExcerpt,
-      rawIdentifier: subject,
-      rawCommandWording: rawVerb,
-    },
+    derivedCandidateKey: candidateKey(subject, performanceType),
+    layerA: { sourceFragments: fragments },
     layerB: {
       genericPipelineRecordType: "CurriculumEvidence",
-      normalizedRecord: {
-        role: "OFFICIAL_CURRICULUM",
-        qualificationId: QUALIFICATION_ID,
-        curriculumUnitId: ac.id,
-        subject,
-        normalizationKind,
-        performanceType,
-        refinesSubject: refinesSubject,
-        breadthStatus: normalizationKind === "RANGE_CATEGORY" ? (breadthStatus ?? "UNKNOWN") : undefined,
-        candidateKey: candidateKey(subject, performanceType),
-        structuralParentageReview: structuralReviewNote,
-      },
+      normalizedRecord: record,
       normalizationConfidence: confidence,
       normalizationRationale: rationale,
       profileEligibility: ["FULL_PUBLIC", "DEGRADED_NO_ASSESSMENT"],
+      structuralParentageReviewNote: structuralReviewNote,
     },
-    layerC: { pipelineAcceptance: "NOT_RUN_CC19R" },
+    layerC: { pipelineAcceptance: "NOT_RUN_CC19R1" },
   });
 }
 
@@ -124,6 +174,8 @@ function addCurriculumCandidate(opts: {
 // Expand curriculum candidates from ASSESSMENT_CRITERIA
 // ---------------------------------------------------------------------
 for (const ac of ASSESSMENT_CRITERIA) {
+  const acWordingFragment = (fragmentRole: string): SourceFragment => ({ sourceRef: HANDBOOK_SOURCE_REF, sourceLocator: acLocator(ac), sourceExcerpt: ac.wording, fragmentRole });
+
   // 1. Standalone parent subject (only when NOT coincident with a range group)
   if (ac.parentSubject) {
     for (const perf of ac.performances) {
@@ -134,7 +186,8 @@ for (const ac of ASSESSMENT_CRITERIA) {
         confidence: perf.confidence,
         rawVerb: perf.rawVerb,
         normalizationKind: "PRIMARY_REQUIREMENT",
-        sourceExcerpt: ac.wording,
+        originKind: "AC_PARENT",
+        fragments: [acWordingFragment("command verb + primary subject wording")],
         rationale: perf.rationale,
       });
     }
@@ -151,7 +204,8 @@ for (const ac of ASSESSMENT_CRITERIA) {
         confidence: perf.confidence,
         rawVerb: perf.rawVerb,
         normalizationKind: "PRIMARY_REQUIREMENT",
-        sourceExcerpt: `${ac.wording} [child: ${child.rawWording}]`,
+        originKind: "EXPLICIT_CHILD",
+        fragments: [acWordingFragment("command verb"), { sourceRef: HANDBOOK_SOURCE_REF, sourceLocator: acLocator(ac), sourceExcerpt: child.rawWording, fragmentRole: "explicit named sub-content (verbatim substring of the AC wording above)" }],
         rationale: `${perf.rationale} Explicit named sub-content within the same AC clause (CC-19R section 13).${child.structuralReviewNote ? " " + child.structuralReviewNote : ""}`,
         structuralReviewNote: child.structuralReviewNote,
       });
@@ -159,7 +213,9 @@ for (const ac of ASSESSMENT_CRITERIA) {
   }
 
   // 3. Range groups: RANGE_CATEGORY + RANGE_REQUIRED_MEMBER children
-  for (const group of ac.rangeGroups ?? []) {
+  (ac.rangeGroups ?? []).forEach((group, groupIndex) => {
+    const rangeGroupId = `${ac.id}::group${groupIndex}`;
+    const categoryFragment: SourceFragment = { sourceRef: HANDBOOK_SOURCE_REF, sourceLocator: `Page ${group.pageRef}, Range under ${ac.id}`, sourceExcerpt: group.categoryLabel, fragmentRole: "Range category heading (verbatim)" };
     const categoryPerformances = group.memberPerformances ?? ac.performances;
     for (const perf of categoryPerformances) {
       addCurriculumCandidate({
@@ -169,7 +225,9 @@ for (const ac of ASSESSMENT_CRITERIA) {
         confidence: perf.confidence,
         rawVerb: perf.rawVerb,
         normalizationKind: "RANGE_CATEGORY",
-        sourceExcerpt: `${ac.wording} | Range: ${group.categoryLabel}`,
+        originKind: "RANGE_CATEGORY",
+        originRangeGroupId: rangeGroupId,
+        fragments: [acWordingFragment("command verb"), categoryFragment],
         rationale: `${perf.rationale} Range category header (page ${group.pageRef}) ${group.coincidesWithParentSubject ? "coincides with the AC's own explicit subject wording" : "enumerates the sub-scope this AC's performance applies across"}.`,
         breadthStatus: group.breadthStatus,
       });
@@ -177,6 +235,7 @@ for (const ac of ASSESSMENT_CRITERIA) {
 
     for (const member of group.members) {
       const memberPerformances = group.memberPerformances ?? ac.performances;
+      const memberFragment: SourceFragment = { sourceRef: HANDBOOK_SOURCE_REF, sourceLocator: `Page ${group.pageRef}, Range "${group.categoryLabel}" under ${ac.id}`, sourceExcerpt: member.raw, fragmentRole: "Range member (verbatim, as printed)" };
       for (const perf of memberPerformances) {
         addCurriculumCandidate({
           ac,
@@ -185,287 +244,337 @@ for (const ac of ASSESSMENT_CRITERIA) {
           confidence: "STRONG_INFERENCE",
           rawVerb: perf.rawVerb,
           normalizationKind: "RANGE_REQUIRED_MEMBER",
-          sourceExcerpt: `Range (page ${group.pageRef}), "${group.categoryLabel}": "${member.raw}"`,
+          originKind: "RANGE_MEMBER",
+          originRangeGroupId: rangeGroupId,
+          fragments: [acWordingFragment("command verb (inherited)"), memberFragment],
           rationale: `CC-19R section 12: Range member "${member.raw}" has no independent command verb -- membership is literal (EXPLICIT_RANGE_STRUCTURE) but the inherited performance mapping ${perf.mapped} is STRONG_INFERENCE, not EXPLICIT.${member.structuralReviewNote ? " " + member.structuralReviewNote : ""}`,
           refinesSubject: group.refinesSubject,
           structuralReviewNote: member.structuralReviewNote,
         });
       }
     }
-  }
+  });
 }
 
 // ---------------------------------------------------------------------
-// Parent-integrity validation (CC-19R section 14): every
-// RANGE_REQUIRED_MEMBER.refinesSubject must resolve to a real candidate
-// subject generated above.
+// Parent-integrity validation (CC-19R section 14)
 // ---------------------------------------------------------------------
 const unresolvedParents: string[] = [];
-for (const entry of ledger) {
-  const rec = entry.layerB.normalizedRecord as { normalizationKind?: string; refinesSubject?: string };
-  if (rec.normalizationKind === "RANGE_REQUIRED_MEMBER" && rec.refinesSubject) {
-    if (!candidateSubjects.has(rec.refinesSubject)) {
-      unresolvedParents.push(`${entry.proposalId}: refinesSubject "${rec.refinesSubject}" does not resolve to any generated candidate subject`);
+for (const o of candidateOrigins) {
+  if (o.normalizationKind === "RANGE_REQUIRED_MEMBER" && o.refinesSubject) {
+    if (!candidateSubjects.has(o.refinesSubject)) {
+      unresolvedParents.push(`${o.candidateKey}: refinesSubject "${o.refinesSubject}" does not resolve to any generated candidate subject`);
     }
   }
 }
 if (unresolvedParents.length > 0) {
-  throw new Error(`CC-19R parent-integrity violation (section 14):\n${unresolvedParents.join("\n")}`);
+  throw new Error(`CC-19R1 parent-integrity violation (section 14):\n${unresolvedParents.join("\n")}`);
 }
 
 // ---------------------------------------------------------------------
-// Qualification-level evidence (depth constraint only, CC-19R section 17)
+// OfficialCurriculumUnit registry (CC-19R1 DEFECT A) -- required
+// StandardPipelineInput field CC-19R omitted entirely.
 // ---------------------------------------------------------------------
-ledger.push({
-  proposalId: nextId("QLV"),
-  layerA: {
-    sourceId: "SRC-OFQUAL-HANDBOOK-SECTION-E",
-    sourceRole: "QUALIFICATION_LEVEL",
-    sourceRef: OFQUAL_SOURCE_REF,
-    sourceLocator: `Level descriptors table, Level 2 row, knowledge/understanding column (page last updated ${OFQUAL_PAGE_LAST_UPDATED})`,
-    sourceExcerpt: OFQUAL_LEVEL_2_KNOWLEDGE_DESCRIPTOR,
-    rawIdentifier: "Level 2 knowledge and understanding descriptor",
-  },
-  layerB: {
-    genericPipelineRecordType: "QualificationLevelEvidence",
-    normalizedRecord: {
-      role: "QUALIFICATION_LEVEL",
-      qualificationId: QUALIFICATION_ID,
-      levelId: "Level 2",
-      depthConstraintDescriptor: OFQUAL_LEVEL_2_KNOWLEDGE_DESCRIPTOR,
-      appliesToCandidateKey: "ALL_UNIT_202_REQUIRED_CANDIDATES",
-    },
-    normalizationConfidence: "EXPLICIT",
-    normalizationRationale:
-      "Current Ofqual Handbook Section E / Condition E9 Level 2 knowledge/understanding descriptor, applied as a general depth ceiling across all Unit 202 required candidates (CC-19R section 17) -- constrains depth only, never scope.",
-    profileEligibility: ["FULL_PUBLIC", "DEGRADED_NO_ASSESSMENT"],
-  },
-  layerC: { pipelineAcceptance: "NOT_RUN_CC19R" },
-});
-ledger.push({
-  proposalId: nextId("QLV"),
-  layerA: {
-    sourceId: "SRC-OFQUAL-HANDBOOK-SECTION-E",
-    sourceRole: "QUALIFICATION_LEVEL",
-    sourceRef: OFQUAL_SOURCE_REF,
-    sourceLocator: `Level descriptors table, Level 2 row, skills column (page last updated ${OFQUAL_PAGE_LAST_UPDATED})`,
-    sourceExcerpt: OFQUAL_LEVEL_2_SKILLS_DESCRIPTOR,
-    rawIdentifier: "Level 2 skills descriptor",
-  },
-  layerB: {
-    genericPipelineRecordType: "QualificationLevelEvidence",
-    normalizedRecord: {
-      role: "QUALIFICATION_LEVEL",
-      qualificationId: QUALIFICATION_ID,
-      levelId: "Level 2",
-      depthConstraintDescriptor: OFQUAL_LEVEL_2_SKILLS_DESCRIPTOR,
-      appliesToCandidateKey: "ALL_UNIT_202_REQUIRED_CANDIDATES",
-    },
-    normalizationConfidence: "EXPLICIT",
-    normalizationRationale:
-      "Current Ofqual Handbook Section E / Condition E9 Level 2 skills descriptor, applied as a general depth ceiling across all Unit 202 required candidates that involve APPLY/CALCULATE/PROCEDURE performances (CC-19R section 17) -- constrains depth only, never scope.",
-    profileEligibility: ["FULL_PUBLIC", "DEGRADED_NO_ASSESSMENT"],
-  },
-  layerC: { pipelineAcceptance: "NOT_RUN_CC19R" },
-});
-
-// ---------------------------------------------------------------------
-// Technical-truth claims (SourceFactualClaim)
-// ---------------------------------------------------------------------
-const technicalClaimById = new Map<string, string>(); // claimKey -> proposalId (first occurrence; multiple claims can share a claimKey e.g. power factor)
-for (const claim of TECHNICAL_CLAIMS) {
-  const id = nextId("TEC");
-  if (!technicalClaimById.has(claim.claimKey)) technicalClaimById.set(claim.claimKey, id);
+for (const unit of OFFICIAL_CURRICULUM_UNITS) {
+  const isLo = !unit.parentCurriculumUnitId;
   ledger.push({
-    proposalId: id,
+    proposalId: nextId("OCU"),
     layerA: {
-      sourceId: `SRC-TECH-${claim.claimKey}`,
-      sourceRole: "TECHNICAL_TRUTH",
-      sourceRef: claim.sourceRef,
-      sourceLocator: claim.sourceLocator,
-      sourceExcerpt: claim.sourceExcerpt,
-      rawIdentifier: claim.subject,
+      sourceFragments: [{ sourceRef: unit.sourceRef, sourceLocator: unit.sourceLocator, sourceExcerpt: unit.officialWording, fragmentRole: isLo ? "Learning Outcome wording (verbatim)" : "Assessment Criterion wording (verbatim)" }],
     },
     layerB: {
-      genericPipelineRecordType: "SourceFactualClaim",
-      normalizedRecord: {
-        claimKey: claim.claimKey,
-        subject: claim.subject,
-        sourceRole: "TECHNICAL_TRUTH",
-        normalizedClaimValue: claim.normalizedClaimValue,
-        comparisonKind: claim.comparisonKind,
-      },
+      genericPipelineRecordType: "OfficialCurriculumUnit",
+      normalizedRecord: unit,
       normalizationConfidence: "EXPLICIT",
-      normalizationRationale: `Independently researched technical-truth source (CC-19R section 4/22/23). Source quality: ${claim.sourceQuality}`,
+      normalizationRationale: "Mechanical registry entry -- verbatim official curriculum-unit identity (CC-19R1 DEFECT-A fix; StandardPipelineInput.officialCurriculumUnits was omitted entirely by CC-19R).",
       profileEligibility: ["FULL_PUBLIC", "DEGRADED_NO_ASSESSMENT"],
     },
-    layerC: { pipelineAcceptance: "NOT_RUN_CC19R" },
+    layerC: { pipelineAcceptance: "NOT_RUN_CC19R1" },
   });
 }
 
 // ---------------------------------------------------------------------
-// Fact requirements: EXPLICIT_CURRICULUM_FACT + REVIEW_PROPOSED
+// Qualification-level evidence (CC-19R1 DEFECT A fix): the real
+// `attachQualificationLevelConstraints` NEVER broadcasts -- it only
+// attaches to a candidate that already exists under the EXACT key it
+// names (see rules.ts). CC-19R's single "applies to all" sentinel was
+// not valid production input. Same semantic content (Level 2 constrains
+// depth for every required Unit 202 candidate, per CC-19R section 17) is
+// now represented as one QualificationLevelEvidence record per (level
+// descriptor, required candidate) pair -- a mechanical fan-out, not a
+// new semantic claim.
+// ---------------------------------------------------------------------
+const LEVEL_DESCRIPTORS: readonly { readonly id: string; readonly text: string; readonly column: string }[] = [
+  { id: "knowledge", text: OFQUAL_LEVEL_2_KNOWLEDGE_DESCRIPTOR, column: "knowledge/understanding column" },
+  { id: "skills", text: OFQUAL_LEVEL_2_SKILLS_DESCRIPTOR, column: "skills column" },
+];
+for (const descriptor of LEVEL_DESCRIPTORS) {
+  for (const origin of candidateOrigins) {
+    const evidenceId = nextEvidenceId("QLV");
+    const record: QualificationLevelEvidence = {
+      role: "QUALIFICATION_LEVEL",
+      evidenceId,
+      qualificationId: QUALIFICATION_ID,
+      levelId: "Level 2",
+      sourceRef: OFQUAL_SOURCE_REF,
+      sourceLocator: `Level descriptors table, Level 2 row, ${descriptor.column} (page last updated ${OFQUAL_PAGE_LAST_UPDATED})`,
+      normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR",
+      depthConstraintDescriptor: descriptor.text,
+      appliesToCandidateKey: origin.candidateKey,
+    };
+    ledger.push({
+      proposalId: nextId("QLV"),
+      derivedCandidateKey: origin.candidateKey,
+      layerA: { sourceFragments: [{ sourceRef: OFQUAL_SOURCE_REF, sourceLocator: record.sourceLocator, sourceExcerpt: descriptor.text, fragmentRole: `Level 2 ${descriptor.id} descriptor (verbatim)` }] },
+      layerB: {
+        genericPipelineRecordType: "QualificationLevelEvidence",
+        normalizedRecord: record,
+        normalizationConfidence: "EXPLICIT",
+        normalizationRationale: `CC-19R1 fan-out: the Level 2 ${descriptor.id} descriptor applies as a depth constraint to every required Unit 202 candidate (unchanged semantic content from CC-19R section 17) -- represented per-candidate because attachQualificationLevelConstraints only ever matches one exact appliesToCandidateKey and never broadcasts.`,
+        profileEligibility: ["FULL_PUBLIC", "DEGRADED_NO_ASSESSMENT"],
+      },
+      layerC: { pipelineAcceptance: "NOT_RUN_CC19R1" },
+    });
+  }
+}
+
+// ---------------------------------------------------------------------
+// Fact requirements: EXPLICIT_CURRICULUM_FACT + REVIEW_PROPOSED.
+// sourceEvidenceRefs now populated from the real CurriculumEvidence
+// evidenceId(s) of the target candidate (CC-19R1 DEFECT A fix -- the
+// field is mandatory on CandidateFactRequirement and CC-19R never set it).
 // ---------------------------------------------------------------------
 const acById = new Map(ASSESSMENT_CRITERIA.map((ac) => [ac.id, ac] as const));
 const missingFactTargets: string[] = [];
-const missingTechnicalClaims: string[] = [];
+type FactSourceKind = { readonly targetSubject: string; readonly targetPerformanceType: LearnerPerformanceType; readonly claimKey: string; readonly parentAcId: string; readonly necessityRationale?: string; readonly technicalClaimKey?: string };
 
-for (const fact of EXPLICIT_FACT_REQUIREMENTS) {
-  const key = candidateKey(fact.targetSubject, fact.targetPerformanceType);
-  if (!candidateSubjectPerformanceSet.has(key)) missingFactTargets.push(`EXPLICIT fact ${fact.claimKey} -> missing candidate ${key}`);
-  const ac = acById.get(fact.parentAcId);
-  if (!ac) throw new Error(`Unknown parentAcId ${fact.parentAcId}`);
-  const techClaim = TECHNICAL_CLAIMS.find((c) => c.claimKey === fact.claimKey);
-  ledger.push({
-    proposalId: nextId("FCT"),
-    layerA: {
-      sourceId: "SRC-HANDBOOK-2365-02-V1-12",
-      sourceRole: "OFFICIAL_CURRICULUM",
-      sourceRef: HANDBOOK_SOURCE_REF,
-      sourceLocator: acLocator(ac),
-      sourceExcerpt: ac.wording,
-      rawIdentifier: fact.targetSubject,
-    },
-    layerB: {
-      genericPipelineRecordType: "CandidateFactRequirement",
-      normalizedRecord: {
-        qualificationId: QUALIFICATION_ID,
-        targetCandidateKey: key,
-        claimKey: fact.claimKey,
-        derivationStatus: "EXPLICIT_CURRICULUM_FACT",
-        normalizationBasis: "FACT_REQUIREMENT_DERIVATION",
-        technicalCoverageStatus: techClaim ? "COMPLETE" : "PARTIAL",
-      },
-      normalizationConfidence: "EXPLICIT",
-      normalizationRationale: `CC-19R section 18: ${fact.parentAcId} explicitly requires identifying/using/determining the applicable SI unit -- atomic fact requirement derived directly from validated OFFICIAL_CURRICULUM evidence, never REVIEW_PROPOSED.`,
-      profileEligibility: ["FULL_PUBLIC", "DEGRADED_NO_ASSESSMENT"],
-    },
-    layerC: { pipelineAcceptance: "NOT_RUN_CC19R" },
-  });
+function evidenceIdsFor(subject: string, performanceType: LearnerPerformanceType): string[] {
+  return candidateOrigins.filter((o) => o.subject === subject && o.performanceType === performanceType).map((o) => o.evidenceId);
 }
 
-for (const fact of REVIEW_FACT_PROPOSALS) {
+function pushFactRequirement(fact: FactSourceKind, derivationStatus: "EXPLICIT_CURRICULUM_FACT" | "REVIEW_PROPOSED") {
   const key = candidateKey(fact.targetSubject, fact.targetPerformanceType);
-  if (!candidateSubjectPerformanceSet.has(key)) missingFactTargets.push(`REVIEW_PROPOSED fact ${fact.claimKey} -> missing candidate ${key}`);
+  const evidenceIds = evidenceIdsFor(fact.targetSubject, fact.targetPerformanceType);
+  if (evidenceIds.length === 0) missingFactTargets.push(`${derivationStatus} fact ${fact.claimKey} -> missing candidate ${key}`);
   const ac = acById.get(fact.parentAcId);
   if (!ac) throw new Error(`Unknown parentAcId ${fact.parentAcId}`);
-  const techClaim = fact.technicalClaimKey ? TECHNICAL_CLAIMS.find((c) => c.claimKey === fact.technicalClaimKey) : undefined;
-  if (fact.technicalClaimKey && !techClaim) missingTechnicalClaims.push(`${fact.claimKey} references missing technical claim ${fact.technicalClaimKey}`);
+  const techClaim = TECHNICAL_CLAIMS.find((c) => c.claimKey === fact.technicalClaimKey);
+
+  const record: CandidateFactRequirement = {
+    qualificationId: QUALIFICATION_ID,
+    targetCandidateKey: key,
+    claimKey: fact.claimKey,
+    derivationStatus,
+    sourceRef: HANDBOOK_SOURCE_REF,
+    sourceLocator: acLocator(ac),
+    normalizationBasis: "FACT_REQUIREMENT_DERIVATION",
+    sourceEvidenceRefs: evidenceIds.map((evidenceId) => ({ role: "OFFICIAL_CURRICULUM" as const, evidenceId })),
+  };
+
   ledger.push({
     proposalId: nextId("FCT"),
-    layerA: {
-      sourceId: "SRC-HANDBOOK-2365-02-V1-12",
-      sourceRole: "OFFICIAL_CURRICULUM",
-      sourceRef: HANDBOOK_SOURCE_REF,
-      sourceLocator: acLocator(ac),
-      sourceExcerpt: ac.wording,
-      rawIdentifier: fact.targetSubject,
-    },
+    derivedCandidateKey: key,
+    layerA: { sourceFragments: [{ sourceRef: HANDBOOK_SOURCE_REF, sourceLocator: acLocator(ac), sourceExcerpt: ac.wording, fragmentRole: "AC wording creating the parent performance" }] },
     layerB: {
       genericPipelineRecordType: "CandidateFactRequirement",
-      normalizedRecord: {
-        qualificationId: QUALIFICATION_ID,
-        targetCandidateKey: key,
-        claimKey: fact.claimKey,
-        derivationStatus: "REVIEW_PROPOSED",
-        normalizationBasis: "FACT_REQUIREMENT_DERIVATION",
-        technicalCoverageStatus: techClaim ? "COMPLETE" : "NOT_REQUIRED",
-      },
-      normalizationConfidence: "REVIEW_PROPOSED",
-      normalizationRationale: fact.necessityRationale + " CC-19R section 21: exported for Project-Architect review; MUST NOT auto-govern or contribute to requiredFactKeys automatically.",
+      normalizedRecord: record,
+      normalizationConfidence: derivationStatus === "EXPLICIT_CURRICULUM_FACT" ? "EXPLICIT" : "REVIEW_PROPOSED",
+      normalizationRationale:
+        derivationStatus === "EXPLICIT_CURRICULUM_FACT"
+          ? `CC-19R section 18: ${fact.parentAcId} explicitly requires identifying/using/determining the applicable SI unit -- atomic fact requirement derived directly from validated OFFICIAL_CURRICULUM evidence.`
+          : `${fact.necessityRationale ?? ""} CC-19R section 21: exported for Project-Architect review; MUST NOT auto-govern or contribute to requiredFactKeys automatically.`,
       profileEligibility: ["FULL_PUBLIC", "DEGRADED_NO_ASSESSMENT"],
     },
-    layerC: { pipelineAcceptance: "NOT_RUN_CC19R" },
+    layerC: { pipelineAcceptance: "NOT_RUN_CC19R1" },
   });
+
+  return { targetSubject: fact.targetSubject, techClaimKey: fact.technicalClaimKey, hasClaim: Boolean(techClaim) };
+}
+
+// dynamic SourceFactualClaim emission -- one record per DISTINCT (technicalClaimKey, targetSubject) pair
+const claimSubjectPairs = new Map<string, { claimKey: string; subject: string }>();
+
+for (const fact of EXPLICIT_FACT_REQUIREMENTS) {
+  pushFactRequirement(fact as FactSourceKind, "EXPLICIT_CURRICULUM_FACT");
+  claimSubjectPairs.set(`${fact.claimKey}::${fact.targetSubject}`, { claimKey: fact.claimKey, subject: fact.targetSubject });
+}
+for (const fact of REVIEW_FACT_PROPOSALS) {
+  pushFactRequirement(fact as FactSourceKind, "REVIEW_PROPOSED");
+  if (fact.technicalClaimKey) claimSubjectPairs.set(`${fact.technicalClaimKey}::${fact.targetSubject}`, { claimKey: fact.technicalClaimKey, subject: fact.targetSubject });
 }
 
 if (missingFactTargets.length > 0) {
-  throw new Error(`CC-19R fact-requirement target resolution failure:\n${missingFactTargets.join("\n")}`);
-}
-if (missingTechnicalClaims.length > 0) {
-  throw new Error(`CC-19R technical-claim reference failure:\n${missingTechnicalClaims.join("\n")}`);
+  throw new Error(`CC-19R1 fact-requirement target resolution failure:\n${missingFactTargets.join("\n")}`);
 }
 
 // ---------------------------------------------------------------------
-// Decomposition coverage report (CC-19R section 24)
+// SourceFactualClaim (technical truth) -- CC-19R1 DEFECT A fix: emitted
+// per (claimKey, targetSubject) pair because attachFactualClaims matches
+// on BOTH claimKey AND exact subject equality, and normalizationBasis is
+// now "AUTHORITATIVE_TECHNICAL_FACT" (CC-19R incorrectly used
+// "SOURCE_FACTUAL_CLAIM", which is reserved for non-TECHNICAL_TRUTH
+// sourceRole claims -- see rules.ts validateFactualClaims).
+// ---------------------------------------------------------------------
+const missingTechnicalClaims: string[] = [];
+for (const { claimKey: techClaimKey, subject } of claimSubjectPairs.values()) {
+  const claim = TECHNICAL_CLAIMS.find((c) => c.claimKey === techClaimKey);
+  if (!claim) {
+    missingTechnicalClaims.push(`${techClaimKey} referenced for subject "${subject}" has no TECHNICAL_CLAIMS entry`);
+    continue;
+  }
+  const evidenceId = nextEvidenceId("TEC");
+  const record: SourceFactualClaim = {
+    claimKey: claim.claimKey,
+    subject,
+    sourceRole: "TECHNICAL_TRUTH",
+    evidenceId,
+    sourceRef: claim.sourceRef,
+    sourceLocator: claim.sourceLocator,
+    normalizationBasis: "AUTHORITATIVE_TECHNICAL_FACT",
+    normalizedClaimValue: claim.normalizedClaimValue,
+    comparisonKind: claim.comparisonKind,
+  };
+  ledger.push({
+    proposalId: nextId("TEC"),
+    derivedCandidateKey: undefined,
+    layerA: { sourceFragments: [{ sourceRef: claim.sourceRef, sourceLocator: claim.sourceLocator, sourceExcerpt: claim.sourceExcerpt, fragmentRole: "technical-truth source excerpt (verbatim)" }] },
+    layerB: {
+      genericPipelineRecordType: "SourceFactualClaim",
+      normalizedRecord: record,
+      normalizationConfidence: "EXPLICIT",
+      normalizationRationale: `Independently researched technical-truth source (CC-19R section 4/22/23), attached to subject "${subject}" for exact-match with attachFactualClaims. Source quality: ${claim.sourceQuality}`,
+      profileEligibility: ["FULL_PUBLIC", "DEGRADED_NO_ASSESSMENT"],
+    },
+    layerC: { pipelineAcceptance: "NOT_RUN_CC19R1" },
+  });
+}
+if (missingTechnicalClaims.length > 0) {
+  throw new Error(`CC-19R1 technical-claim reference failure:\n${missingTechnicalClaims.join("\n")}`);
+}
+
+// ---------------------------------------------------------------------
+// DecompositionAttempt (CC-19R1 section 7-10): every one of the 140
+// CurriculumEvidence candidates gets exactly one attempt record.
 // ---------------------------------------------------------------------
 type DecompositionStatus = "EXPLICITLY_ATOMIC" | "REVIEW_DECOMPOSED" | "UNRESOLVED_DECOMPOSITION";
 
-interface CandidateSummary {
+interface DecompositionAttempt {
   readonly candidateKey: string;
-  readonly subject: string;
-  readonly performanceType: string;
-  readonly parentAcId: string;
-  readonly normalizationKind: string;
-  readonly normalizationConfidence: NormalizationConfidence;
+  readonly curriculumUnitId: string;
+  readonly decompositionAttempted: true;
+  readonly status: DecompositionStatus;
+  readonly explicitFactRequirementKeys: readonly string[];
+  readonly reviewFactRequirementKeys: readonly string[];
+  readonly coveredByChildCandidateKeys: readonly string[];
+  readonly attemptRationale: string;
+  readonly unresolvedReason?: string;
 }
 
-const candidateSummaries: CandidateSummary[] = ledger
-  .filter((e) => e.layerB.genericPipelineRecordType === "CurriculumEvidence")
-  .map((e) => {
-    const rec = e.layerB.normalizedRecord as { candidateKey: string; subject: string; performanceType: string; curriculumUnitId: string; normalizationKind: string };
-    return {
-      candidateKey: rec.candidateKey,
-      subject: rec.subject,
-      performanceType: rec.performanceType,
-      parentAcId: rec.curriculumUnitId,
-      normalizationKind: rec.normalizationKind,
-      normalizationConfidence: e.layerB.normalizationConfidence,
-    };
-  });
+const explicitFactsByCandidate = new Map<string, string[]>();
+for (const f of EXPLICIT_FACT_REQUIREMENTS) {
+  const key = candidateKey(f.targetSubject, f.targetPerformanceType);
+  explicitFactsByCandidate.set(key, [...(explicitFactsByCandidate.get(key) ?? []), f.claimKey]);
+}
+const reviewFactsByCandidate = new Map<string, string[]>();
+for (const f of REVIEW_FACT_PROPOSALS) {
+  const key = candidateKey(f.targetSubject, f.targetPerformanceType);
+  reviewFactsByCandidate.set(key, [...(reviewFactsByCandidate.get(key) ?? []), f.claimKey]);
+}
+const atomicByDesign = new Map(ATOMIC_BY_DESIGN_SUBJECTS.map((a) => [candidateKey(a.subject, a.performanceType), a.rationale] as const));
+const genuinelyUnresolved = new Map(GENUINELY_UNRESOLVED_SUBJECTS.map((u) => [candidateKey(u.subject, u.performanceType), u.unresolvedReason] as const));
 
-interface CoverageRow extends CandidateSummary {
-  readonly decompositionStatus: DecompositionStatus;
-  readonly explicitFactCount: number;
-  readonly reviewProposedFactCount: number;
+function computeCoveredByChildren(origin: CandidateOrigin): string[] {
+  const direct = candidateOrigins.filter((o) => o.refinesSubject === origin.subject).map((o) => o.candidateKey);
+  const explicitChildSiblings =
+    origin.originKind === "AC_PARENT" ? candidateOrigins.filter((o) => o.curriculumUnitId === origin.curriculumUnitId && o.originKind === "EXPLICIT_CHILD").map((o) => o.candidateKey) : [];
+  const rangeGroupSiblings =
+    origin.originKind === "RANGE_CATEGORY" && origin.originRangeGroupId
+      ? candidateOrigins.filter((o) => o.originRangeGroupId === origin.originRangeGroupId && o.originKind === "RANGE_MEMBER").map((o) => o.candidateKey)
+      : [];
+  return [...new Set([...direct, ...explicitChildSiblings, ...rangeGroupSiblings])];
 }
 
-const coverageRows: CoverageRow[] = candidateSummaries.map((c) => {
-  const explicitCount = EXPLICIT_FACT_REQUIREMENTS.filter((f) => candidateKey(f.targetSubject, f.targetPerformanceType) === c.candidateKey).length;
-  const reviewCount = REVIEW_FACT_PROPOSALS.filter((f) => candidateKey(f.targetSubject, f.targetPerformanceType) === c.candidateKey).length;
+const decompositionAttempts: DecompositionAttempt[] = candidateOrigins.map((origin) => {
+  const explicitKeys = explicitFactsByCandidate.get(origin.candidateKey) ?? [];
+  const reviewKeys = reviewFactsByCandidate.get(origin.candidateKey) ?? [];
+  const children = computeCoveredByChildren(origin);
+  const atomicRationale = atomicByDesign.get(origin.candidateKey);
+  const unresolvedReason = genuinelyUnresolved.get(origin.candidateKey);
+
   let status: DecompositionStatus;
-  if (explicitCount > 0) status = "EXPLICITLY_ATOMIC";
-  else if (reviewCount > 0) status = "REVIEW_DECOMPOSED";
-  else status = "UNRESOLVED_DECOMPOSITION";
-  return { ...c, decompositionStatus: status, explicitFactCount: explicitCount, reviewProposedFactCount: reviewCount };
+  let attemptRationale: string;
+
+  if (explicitKeys.length > 0) {
+    status = "EXPLICITLY_ATOMIC";
+    attemptRationale = `Explicit curriculum wording (${origin.curriculumUnitId}) directly requires this atomic fact -- source wording is already atomic enough (CC-19R1 section 9.A).`;
+  } else if (atomicRationale) {
+    status = "EXPLICITLY_ATOMIC";
+    attemptRationale = atomicRationale;
+  } else if (reviewKeys.length > 0) {
+    status = "REVIEW_DECOMPOSED";
+    attemptRationale = `Minimal knowledge propositions defensibly proposed (CC-19R1 section 9.B) -- see reviewFactRequirementKeys.${children.length > 0 ? " Also structurally decomposed via child candidates." : ""}`;
+  } else if (children.length > 0) {
+    status = "REVIEW_DECOMPOSED";
+    attemptRationale = `Structural parent/category: scope is decomposed into explicit required child candidates (see coveredByChildCandidateKeys) rather than independent atomic facts on this candidate itself (CC-19R1 section 8).`;
+  } else if (unresolvedReason) {
+    status = "UNRESOLVED_DECOMPOSITION";
+    attemptRationale = "Considered and evaluated against sections 9.A/9.B; neither an atomic reading nor a defensible minimal proposition could be safely established from currently accessible evidence -- see unresolvedReason.";
+  } else {
+    // Should not happen once all 140 are accounted for; fail loudly rather than silently mis-classify.
+    throw new Error(`CC-19R1: candidate ${origin.candidateKey} (${origin.curriculumUnitId}) has no explicit fact, review fact, child coverage, atomic-by-design entry, or unresolved-reason entry -- decomposition attempt incomplete.`);
+  }
+
+  return {
+    candidateKey: origin.candidateKey,
+    curriculumUnitId: origin.curriculumUnitId,
+    decompositionAttempted: true,
+    status,
+    explicitFactRequirementKeys: explicitKeys,
+    reviewFactRequirementKeys: reviewKeys,
+    coveredByChildCandidateKeys: children,
+    attemptRationale,
+    ...(unresolvedReason && status === "UNRESOLVED_DECOMPOSITION" ? { unresolvedReason } : {}),
+  };
 });
 
-const coverageByAc = new Map<string, CoverageRow[]>();
-for (const row of coverageRows) {
-  const list = coverageByAc.get(row.parentAcId) ?? [];
-  list.push(row);
-  coverageByAc.set(row.parentAcId, list);
+// Forbidden execution/time-based unresolvedReason phrases (CC-19R1 section 10/20)
+const FORBIDDEN_REASON_PHRASES = ["not researched this session", "not enough time", "curated subset", "not attempted", "ran out of time"];
+for (const attempt of decompositionAttempts) {
+  if (attempt.status !== "UNRESOLVED_DECOMPOSITION") continue;
+  const reason = (attempt.unresolvedReason ?? "").toLowerCase();
+  for (const phrase of FORBIDDEN_REASON_PHRASES) {
+    if (reason.includes(phrase)) {
+      throw new Error(`CC-19R1 section 10 violation: unresolvedReason for ${attempt.candidateKey} contains forbidden execution/time-based phrase "${phrase}".`);
+    }
+  }
 }
 
 const decompositionCoverage = {
-  generatedBy: "CC-19R clean-room build-ledger.ts",
-  totalCandidates: coverageRows.length,
+  generatedBy: "CC-19R1 clean-room build-ledger.ts (supersedes CC-19R)",
+  totalCandidates: decompositionAttempts.length,
+  attemptedCount: decompositionAttempts.filter((a) => a.decompositionAttempted).length,
   statusCounts: {
-    EXPLICITLY_ATOMIC: coverageRows.filter((r) => r.decompositionStatus === "EXPLICITLY_ATOMIC").length,
-    REVIEW_DECOMPOSED: coverageRows.filter((r) => r.decompositionStatus === "REVIEW_DECOMPOSED").length,
-    UNRESOLVED_DECOMPOSITION: coverageRows.filter((r) => r.decompositionStatus === "UNRESOLVED_DECOMPOSITION").length,
+    EXPLICITLY_ATOMIC: decompositionAttempts.filter((a) => a.status === "EXPLICITLY_ATOMIC").length,
+    REVIEW_DECOMPOSED: decompositionAttempts.filter((a) => a.status === "REVIEW_DECOMPOSED").length,
+    UNRESOLVED_DECOMPOSITION: decompositionAttempts.filter((a) => a.status === "UNRESOLVED_DECOMPOSITION").length,
   },
-  byAc: Array.from(coverageByAc.entries()).map(([acId, rows]) => ({
-    acId,
-    acWording: acById.get(acId)?.wording,
-    candidateCount: rows.length,
-    explicitlyAtomic: rows.filter((r) => r.decompositionStatus === "EXPLICITLY_ATOMIC").length,
-    reviewDecomposed: rows.filter((r) => r.decompositionStatus === "REVIEW_DECOMPOSED").length,
-    unresolved: rows.filter((r) => r.decompositionStatus === "UNRESOLVED_DECOMPOSITION").length,
-    candidates: rows.map((r) => ({
-      candidateKey: r.candidateKey,
-      normalizationKind: r.normalizationKind,
-      normalizationConfidence: r.normalizationConfidence,
-      decompositionStatus: r.decompositionStatus,
-      explicitFactCount: r.explicitFactCount,
-      reviewProposedFactCount: r.reviewProposedFactCount,
-    })),
-  })),
-  knownUnresolvedDecompositions: KNOWN_UNRESOLVED_DECOMPOSITIONS,
-  technicalSourceCoverage: {
-    totalTechnicalClaims: TECHNICAL_CLAIMS.length,
-    distinctClaimKeys: new Set(TECHNICAL_CLAIMS.map((c) => c.claimKey)).size,
-  },
+  structurallyCoveredByChildrenCount: decompositionAttempts.filter((a) => a.coveredByChildCandidateKeys.length > 0).length,
+  explicitFactRequirementCount: EXPLICIT_FACT_REQUIREMENTS.length,
+  reviewFactRequirementCount: REVIEW_FACT_PROPOSALS.length,
+  technicallySourcedFactCount: [...claimSubjectPairs.values()].length,
+  technicalTruthGapCount: [...new Set(REVIEW_FACT_PROPOSALS.filter((f) => !f.technicalClaimKey).map((f) => `${f.claimKey}::${f.targetSubject}`))].length,
+  byAc: ASSESSMENT_CRITERIA.map((ac) => {
+    const rows = decompositionAttempts.filter((a) => a.curriculumUnitId === ac.id);
+    return {
+      acId: ac.id,
+      acWording: ac.wording,
+      candidateCount: rows.length,
+      explicitlyAtomic: rows.filter((r) => r.status === "EXPLICITLY_ATOMIC").length,
+      reviewDecomposed: rows.filter((r) => r.status === "REVIEW_DECOMPOSED").length,
+      unresolved: rows.filter((r) => r.status === "UNRESOLVED_DECOMPOSITION").length,
+      candidates: rows,
+    };
+  }),
 };
 
 // ---------------------------------------------------------------------
@@ -485,7 +594,7 @@ writeJson("cc19r-normalization-ledger.json", {
   qualificationId: QUALIFICATION_ID,
   unitId: UNIT_202_HEADER.unitId,
   unitTitle: UNIT_202_HEADER.unitTitle,
-  generatedBy: "CC-19R clean-room build-ledger.ts",
+  generatedBy: "CC-19R1 clean-room build-ledger.ts (supersedes CC-19R)",
   recordCount: ledger.length,
   records: ledger,
 });
@@ -494,7 +603,7 @@ writeJson("cc19r-decomposition-coverage.json", decompositionCoverage);
 
 const sourceInventory = {
   qualificationId: QUALIFICATION_ID,
-  officialCurriculum: [{ sourceRef: HANDBOOK_SOURCE_REF, url: HANDBOOK_SOURCE_URL, version: "v1-12" }],
+  officialCurriculum: [{ sourceRef: HANDBOOK_SOURCE_REF, url: "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/centre_documents/2365-02_l2_electrical_installation_qualification_handbook_v1-12-pdf.pdf", version: "v1-12" }],
   publicAssessment: {
     landingPageUrl: "https://www.cityandguilds.com/qualifications-and-apprenticeships/building-services-industry/electrical-installation/2365-electrotechnical-craft",
     sampleQuestionsDocument: {
@@ -502,20 +611,22 @@ const sourceInventory = {
       url: "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers-v1-2-pdf.pdf",
       status: "RAW_SOURCE_UNAVAILABLE",
       reason:
-        "Downloaded directly from the current official Level 2 landing page (and independently re-confirmed via the Level 3 landing page's identically-named link -- both resolve to the same SHA-256). The file is password-protected (poppler pdftotext/pdfinfo and the Read tool's PDF renderer both fail with 'Incorrect password' even with an explicit empty user password). CC-19R section B explicitly disallows password-protected/private material, so this document was NOT used as evidence. This is a genuine access restriction, not a parser failure or a guessed/obsolete URL (CC-19R section 27).",
+        "Unchanged from CC-19R (task section 17: public-assessment status must not change): downloaded from the current official landing page (and independently re-confirmed byte-identical via the Level 3 landing page's own copy). The file is password-protected. No bypass, leaked copy, or private material was sought this session (CC-19R1 section 17 explicitly forbids this) -- no content from this file was read or used as evidence.",
     },
     markScheme: {
       title: "5357 and 2365 Sample Papers - Mark schemes v1-0",
       url: "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers---mark-schemes-v1-0-pdf.pdf",
       status: "ACCESSED_BUT_INSUFFICIENT",
-      reason:
-        "Not encrypted; successfully extracted. Contains ONLY question-number-to-answer-letter keys for 2365-602 Principles of Electrical Science (40 items, e.g. '1 C, 2 B, ...'), with no question stems, no answer-option text, and no distractor content. CC-19R section 16 requires an exact/short question-stem excerpt and the correct-answer CONTENT for every recorded item -- an answer letter alone cannot establish what content the correct answer represents, so no AssessmentEvidence records were created from this file.",
+      reason: "Unchanged from CC-19R: contains only question-number-to-answer-letter keys, no question stems/content -- cannot support AssessmentEvidence records.",
     },
   },
   qualificationLevel: [{ sourceRef: OFQUAL_SOURCE_REF, url: OFQUAL_SOURCE_URL, pageLastUpdated: OFQUAL_PAGE_LAST_UPDATED }],
   technicalTruth: TECHNICAL_CLAIMS.map((c) => ({ claimKey: c.claimKey, sourceRef: c.sourceRef, sourceLocator: c.sourceLocator })),
   profileImpact: {
-    note: "FULL_PUBLIC and DEGRADED_NO_ASSESSMENT are IDENTICAL in this run: the only PUBLIC_ASSESSMENT document available (sample papers v1-2) was password-protected and therefore never used as evidence (see publicAssessment.sampleQuestionsDocument above). No candidate, fact requirement, or relationship in this ledger depends solely on assessment evidence, so mechanically filtering out PUBLIC_ASSESSMENT evidence removes nothing. This is reported transparently per CC-19R section 16/26, not fabricated as a false distinction.",
+    note: "FULL_PUBLIC and DEGRADED_NO_ASSESSMENT remain IDENTICAL in CC-19R1 (unchanged from CC-19R): AssessmentEvidence count is 0, so mechanically filtering out PUBLIC_ASSESSMENT evidence removes nothing. Per CC-19R1 section 17, no aggressive search for an alternative was performed merely to make the two profiles differ -- this is an honest, preserved limitation.",
+  },
+  cc19r1Corrections: {
+    note: "Interface/schema corrections applied to CC-19R's source representation (task section 3-15) -- no new evidential sources beyond the 25 technical-truth sources already logged, plus additional technical-truth research completing the decomposition attempt (see CC-19R-SOURCE-ACCESS-LOG.json entries logged under this session).",
   },
 };
 writeJson("cc19r-source-inventory.json", sourceInventory);
@@ -528,84 +639,110 @@ function mdEscape(s: string): string {
 }
 
 const ledgerMdLines: string[] = [];
-ledgerMdLines.push(`# CC-19R Normalization Ledger -- Unit 202 Principles of Electrical Science`, "");
-ledgerMdLines.push(`Clean-room proposal ledger. Every record: RAW SOURCE -> NORMALIZED REQUIRED CONTENT / REVIEW-PROPOSED KNOWLEDGE / TECHNICAL TRUTH -> pipelineAcceptance = NOT_RUN_CC19R.`, "");
+ledgerMdLines.push(`# CC-19R1 Normalization Ledger -- Unit 202 Principles of Electrical Science`, "");
+ledgerMdLines.push(
+  `Clean-room proposal ledger (supersedes CC-19R's serialization/provenance representation; same clean-room experimental lineage, branch cc19-cleanroom, parent commit 20d65c6). Every record: RAW SOURCE -> NORMALIZED REQUIRED CONTENT / REVIEW-PROPOSED KNOWLEDGE / TECHNICAL TRUTH -> pipelineAcceptance = NOT_RUN_CC19R1.`,
+  "",
+  `Layer-B normalizedRecord values are now typed against the real @alp/qualification-pipeline production interfaces (CurriculumEvidence, OfficialCurriculumUnit, QualificationLevelEvidence, CandidateFactRequirement, SourceFactualClaim) -- see build-ledger.test.ts for the compile-time compatibility proof.`,
+  "",
+  `Qualification-level evidence (${LEARNING_OUTCOMES.length > 0 ? "2 descriptors" : ""}) is mechanically fanned out to one record per required candidate (see section "Qualification-level evidence" below) -- summarised, not listed record-by-record, to keep this report readable.`,
+  "",
+);
 
 for (const lo of LEARNING_OUTCOMES) {
   ledgerMdLines.push(`## ${lo.id}: ${lo.wording}`, "");
   const acsForLo = ASSESSMENT_CRITERIA.filter((ac) => ac.loId === lo.id);
   for (const ac of acsForLo) {
     ledgerMdLines.push(`### ${ac.id}`, "", `**RAW SOURCE (AC wording, page ${ac.pageRef}):** "${mdEscape(ac.wording)}"`, "");
-    const relatedCurriculum = ledger.filter(
-      (e) => e.layerB.genericPipelineRecordType === "CurriculumEvidence" && (e.layerB.normalizedRecord as { curriculumUnitId: string }).curriculumUnitId === ac.id,
-    );
+    const relatedCurriculum = ledger.filter((e) => e.layerB.genericPipelineRecordType === "CurriculumEvidence" && (e.layerB.normalizedRecord as CurriculumEvidence).curriculumUnitId === ac.id);
     ledgerMdLines.push(`**NORMALIZED REQUIRED CONTENT:**`, "");
     ledgerMdLines.push(`| Candidate | Kind | Performance | Confidence | Refines |`, `|---|---|---|---|---|`);
     for (const e of relatedCurriculum) {
-      const rec = e.layerB.normalizedRecord as { subject: string; normalizationKind: string; performanceType: string; refinesSubject?: string };
-      ledgerMdLines.push(`| ${mdEscape(rec.subject)} | ${rec.normalizationKind} | ${rec.performanceType} | ${e.layerB.normalizationConfidence} | ${rec.refinesSubject ? mdEscape(rec.refinesSubject) : "-"} |`);
+      const rec = e.layerB.normalizedRecord as CurriculumEvidence;
+      ledgerMdLines.push(`| ${mdEscape(rec.subject)} | ${rec.normalizationKind} | ${rec.commandVerbPerformanceType} | ${e.layerB.normalizationConfidence} | ${rec.refinesSubject ? mdEscape(rec.refinesSubject) : "-"} |`);
     }
     ledgerMdLines.push("");
 
-    const relatedExplicitFacts = ledger.filter(
-      (e) =>
-        e.layerB.genericPipelineRecordType === "CandidateFactRequirement" &&
-        (e.layerB.normalizedRecord as { derivationStatus: string }).derivationStatus === "EXPLICIT_CURRICULUM_FACT" &&
-        relatedCurriculum.some((c) => (c.layerB.normalizedRecord as { candidateKey: string }).candidateKey === (e.layerB.normalizedRecord as { targetCandidateKey: string }).targetCandidateKey),
-    );
+    const relatedKeys = new Set(relatedCurriculum.map((c) => (c.layerB.normalizedRecord as CurriculumEvidence).evidenceId));
+    const relatedExplicitFacts = ledger.filter((e) => {
+      if (e.layerB.genericPipelineRecordType !== "CandidateFactRequirement") return false;
+      const rec = e.layerB.normalizedRecord as CandidateFactRequirement;
+      return rec.derivationStatus === "EXPLICIT_CURRICULUM_FACT" && rec.sourceEvidenceRefs.some((r) => relatedKeys.has(r.evidenceId));
+    });
     if (relatedExplicitFacts.length > 0) {
       ledgerMdLines.push(`**EXPLICIT FACT REQUIREMENTS:**`, "");
       for (const e of relatedExplicitFacts) {
-        const rec = e.layerB.normalizedRecord as { targetCandidateKey: string; claimKey: string };
-        const claim = TECHNICAL_CLAIMS.find((c) => c.claimKey === rec.claimKey);
+        const rec = e.layerB.normalizedRecord as CandidateFactRequirement;
+        const claimEntry = ledger.find((c) => c.layerB.genericPipelineRecordType === "SourceFactualClaim" && (c.layerB.normalizedRecord as SourceFactualClaim).claimKey === rec.claimKey);
+        const claim = claimEntry ? (claimEntry.layerB.normalizedRecord as SourceFactualClaim) : undefined;
         ledgerMdLines.push(`- \`${rec.claimKey}\` on ${mdEscape(rec.targetCandidateKey)}${claim ? ` -- **TECHNICAL TRUTH:** ${mdEscape(claim.normalizedClaimValue)} (${mdEscape(claim.sourceRef)})` : " -- **UNRESOLVED** (no technical claim)"}`);
       }
       ledgerMdLines.push("");
     }
 
-    const relatedReviewFacts = ledger.filter(
-      (e) =>
-        e.layerB.genericPipelineRecordType === "CandidateFactRequirement" &&
-        (e.layerB.normalizedRecord as { derivationStatus: string }).derivationStatus === "REVIEW_PROPOSED" &&
-        relatedCurriculum.some((c) => (c.layerB.normalizedRecord as { candidateKey: string }).candidateKey === (e.layerB.normalizedRecord as { targetCandidateKey: string }).targetCandidateKey),
-    );
+    const relatedReviewFacts = ledger.filter((e) => {
+      if (e.layerB.genericPipelineRecordType !== "CandidateFactRequirement") return false;
+      const rec = e.layerB.normalizedRecord as CandidateFactRequirement;
+      if (rec.derivationStatus !== "REVIEW_PROPOSED") return false;
+      return relatedCurriculum.some((c) => (c.layerB.normalizedRecord as CurriculumEvidence).subject === candidateSubjectOf(rec.targetCandidateKey));
+    });
     if (relatedReviewFacts.length > 0) {
       ledgerMdLines.push(`**REVIEW-PROPOSED KNOWLEDGE (does not auto-govern):**`, "");
       for (const e of relatedReviewFacts) {
-        const rec = e.layerB.normalizedRecord as { targetCandidateKey: string; claimKey: string };
-        const claim = TECHNICAL_CLAIMS.find((c) => c.claimKey === rec.claimKey);
+        const rec = e.layerB.normalizedRecord as CandidateFactRequirement;
+        const claimEntry = ledger.find((c) => c.layerB.genericPipelineRecordType === "SourceFactualClaim" && (c.layerB.normalizedRecord as SourceFactualClaim).claimKey === rec.claimKey);
+        const claim = claimEntry ? (claimEntry.layerB.normalizedRecord as SourceFactualClaim) : undefined;
         ledgerMdLines.push(`- \`${rec.claimKey}\` on ${mdEscape(rec.targetCandidateKey)}: ${mdEscape(e.layerB.normalizationRationale)}`);
         if (claim) ledgerMdLines.push(`  - **TECHNICAL TRUTH:** ${mdEscape(claim.normalizedClaimValue)} (${mdEscape(claim.sourceRef)})`);
-        else ledgerMdLines.push(`  - **UNRESOLVED:** no technical claim researched/found this session`);
+        else ledgerMdLines.push(`  - **TECHNICAL_TRUTH_GAP:** fact proposed, no technical source meeting the CC-19R section 23 quality hierarchy found`);
       }
       ledgerMdLines.push("");
     }
   }
 }
+
+function candidateSubjectOf(key: string): string {
+  const idx = key.lastIndexOf("::");
+  return idx === -1 ? key : key.slice(0, idx);
+}
+
+ledgerMdLines.push(`## Qualification-level evidence`, "");
+ledgerMdLines.push(
+  `${LEVEL_DESCRIPTORS.length} descriptor(s) x ${candidateOrigins.length} required candidates = ${LEVEL_DESCRIPTORS.length * candidateOrigins.length} QualificationLevelEvidence records (see cc19r-normalization-ledger.json for the full per-candidate list). Depth constraint only, never scope (CC-19R section 17).`,
+  "",
+);
+for (const d of LEVEL_DESCRIPTORS) {
+  ledgerMdLines.push(`- **${d.id}:** "${mdEscape(d.text)}"`);
+}
+ledgerMdLines.push("");
+
+ledgerMdLines.push(`## Official curriculum-unit registry`, "");
+ledgerMdLines.push(`${OFFICIAL_CURRICULUM_UNITS.length} entries (${LEARNING_OUTCOMES.length} Learning Outcomes + ${ASSESSMENT_CRITERIA.length} Assessment Criteria), verbatim official wording -- CC-19R1 DEFECT-A fix.`, "");
+
 writeFileSync(path.join(outDir, "CC-19R-NORMALIZATION-LEDGER.md"), ledgerMdLines.join("\n").trimEnd() + "\n", "utf-8");
 
 const coverageMdLines: string[] = [];
-coverageMdLines.push(`# CC-19R Decomposition Coverage Report`, "");
+coverageMdLines.push(`# CC-19R1 Decomposition Coverage Report`, "");
 coverageMdLines.push(
-  `Total candidates: ${decompositionCoverage.totalCandidates}. EXPLICITLY_ATOMIC: ${decompositionCoverage.statusCounts.EXPLICITLY_ATOMIC}. REVIEW_DECOMPOSED: ${decompositionCoverage.statusCounts.REVIEW_DECOMPOSED}. UNRESOLVED_DECOMPOSITION: ${decompositionCoverage.statusCounts.UNRESOLVED_DECOMPOSITION}.`,
+  `Total candidates: ${decompositionCoverage.totalCandidates}. Attempted: ${decompositionCoverage.attemptedCount} (invariant: attempted === total). EXPLICITLY_ATOMIC: ${decompositionCoverage.statusCounts.EXPLICITLY_ATOMIC}. REVIEW_DECOMPOSED: ${decompositionCoverage.statusCounts.REVIEW_DECOMPOSED}. UNRESOLVED_DECOMPOSITION: ${decompositionCoverage.statusCounts.UNRESOLVED_DECOMPOSITION}.`,
+  "",
+  `Structurally covered by children: ${decompositionCoverage.structurallyCoveredByChildrenCount}. Explicit fact requirements: ${decompositionCoverage.explicitFactRequirementCount}. Review-proposed fact requirements: ${decompositionCoverage.reviewFactRequirementCount}. Technically sourced facts: ${decompositionCoverage.technicallySourcedFactCount}. Technical-truth gaps: ${decompositionCoverage.technicalTruthGapCount}.`,
   "",
 );
 for (const row of decompositionCoverage.byAc) {
-  coverageMdLines.push(`## ${row.acId} (${row.candidateCount} candidates)`, "", `"${mdEscape(row.acWording ?? "")}"`, "");
+  coverageMdLines.push(`## ${row.acId} (${row.candidateCount} candidates)`, "", `"${mdEscape(row.acWording)}"`, "");
   coverageMdLines.push(`Explicitly atomic: ${row.explicitlyAtomic} | Review-decomposed: ${row.reviewDecomposed} | Unresolved: ${row.unresolved}`, "");
-  coverageMdLines.push(`| Candidate key | Kind | Status | Explicit facts | Review facts |`, `|---|---|---|---|---|`);
+  coverageMdLines.push(`| Candidate key | Status | Explicit facts | Review facts | Covered by children | Rationale |`, `|---|---|---|---|---|---|`);
   for (const c of row.candidates) {
-    coverageMdLines.push(`| ${mdEscape(c.candidateKey)} | ${c.normalizationKind} | ${c.decompositionStatus} | ${c.explicitFactCount} | ${c.reviewProposedFactCount} |`);
+    coverageMdLines.push(
+      `| ${mdEscape(c.candidateKey)} | ${c.status} | ${c.explicitFactRequirementKeys.length} | ${c.reviewFactRequirementKeys.length} | ${c.coveredByChildCandidateKeys.length} | ${mdEscape(c.attemptRationale)}${c.unresolvedReason ? " " + mdEscape(c.unresolvedReason) : ""} |`,
+    );
   }
   coverageMdLines.push("");
 }
-coverageMdLines.push(`## Known unresolved decompositions (technical source actively sought, not found)`, "");
-for (const u of KNOWN_UNRESOLVED_DECOMPOSITIONS) {
-  coverageMdLines.push(`- **${mdEscape(u.subject)}**: ${mdEscape(u.reason)}`);
-}
 writeFileSync(path.join(outDir, "CC-19R-DECOMPOSITION-COVERAGE.md"), coverageMdLines.join("\n").trimEnd() + "\n", "utf-8");
 
-console.log(`CC-19R ledger built: ${ledger.length} records, ${coverageRows.length} curriculum candidates.`);
+console.log(`CC-19R1 ledger built: ${ledger.length} records, ${candidateOrigins.length} curriculum candidates.`);
 console.log(`Decomposition: EXPLICITLY_ATOMIC=${decompositionCoverage.statusCounts.EXPLICITLY_ATOMIC} REVIEW_DECOMPOSED=${decompositionCoverage.statusCounts.REVIEW_DECOMPOSED} UNRESOLVED=${decompositionCoverage.statusCounts.UNRESOLVED_DECOMPOSITION}`);
 
-export { ledger, decompositionCoverage, coverageRows, outDir };
+export { ledger, decompositionCoverage, decompositionAttempts, candidateOrigins, outDir, QUALIFICATION_ID };

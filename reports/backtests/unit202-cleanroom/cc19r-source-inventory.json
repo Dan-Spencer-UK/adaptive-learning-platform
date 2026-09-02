@@ -13,13 +13,13 @@
       "title": "5357 and 2365 Sample Papers v1-2",
       "url": "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers-v1-2-pdf.pdf",
       "status": "RAW_SOURCE_UNAVAILABLE",
-      "reason": "Downloaded directly from the current official Level 2 landing page (and independently re-confirmed via the Level 3 landing page's identically-named link -- both resolve to the same SHA-256). The file is password-protected (poppler pdftotext/pdfinfo and the Read tool's PDF renderer both fail with 'Incorrect password' even with an explicit empty user password). CC-19R section B explicitly disallows password-protected/private material, so this document was NOT used as evidence. This is a genuine access restriction, not a parser failure or a guessed/obsolete URL (CC-19R section 27)."
+      "reason": "Unchanged from CC-19R (task section 17: public-assessment status must not change): downloaded from the current official landing page (and independently re-confirmed byte-identical via the Level 3 landing page's own copy). The file is password-protected. No bypass, leaked copy, or private material was sought this session (CC-19R1 section 17 explicitly forbids this) -- no content from this file was read or used as evidence."
     },
     "markScheme": {
       "title": "5357 and 2365 Sample Papers - Mark schemes v1-0",
       "url": "https://www.cityandguilds.com/-/media/productdocuments/building_services_engineering/electrical_installation/2365/2365_level_2/assessment_materials/sample_assessment/5357-and-2365-sample-papers---mark-schemes-v1-0-pdf.pdf",
       "status": "ACCESSED_BUT_INSUFFICIENT",
-      "reason": "Not encrypted; successfully extracted. Contains ONLY question-number-to-answer-letter keys for 2365-602 Principles of Electrical Science (40 items, e.g. '1 C, 2 B, ...'), with no question stems, no answer-option text, and no distractor content. CC-19R section 16 requires an exact/short question-stem excerpt and the correct-answer CONTENT for every recorded item -- an answer letter alone cannot establish what content the correct answer represents, so no AssessmentEvidence records were created from this file."
+      "reason": "Unchanged from CC-19R: contains only question-number-to-answer-letter keys, no question stems/content -- cannot support AssessmentEvidence records."
     }
   },
   "qualificationLevel": [
@@ -264,9 +264,97 @@
       "claimKey": "unit202.review-fact.thermistor-definition",
       "sourceRef": "Physics LibreTexts, Electricity and Magnetism (Tatum), §4.3 \"Resistance and Temperature\"",
       "sourceLocator": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electricity_and_Magnetism_(Tatum)/04:_Batteries_Resistors_and_Ohm's_Law/4.03:_Resistance_and_Temperature"
+    },
+    {
+      "claimKey": "unit202.review-fact.force-definition",
+      "sourceRef": "OpenStax, Physics, §4.3 \"Newton's Second Law of Motion\"",
+      "sourceLocator": "https://openstax.org/books/physics/pages/4-3-newtons-second-law-of-motion"
+    },
+    {
+      "claimKey": "unit202.review-fact.mechanical-advantage",
+      "sourceRef": "OpenStax, College Physics 2e, §9.5 \"Simple Machines\"",
+      "sourceLocator": "https://openstax.org/books/college-physics-2e/pages/9-5-simple-machines"
+    },
+    {
+      "claimKey": "unit202.review-fact.pulley-mechanism",
+      "sourceRef": "OpenStax, College Physics 2e, §9.5 \"Simple Machines\"",
+      "sourceLocator": "https://openstax.org/books/college-physics-2e/pages/9-5-simple-machines"
+    },
+    {
+      "claimKey": "unit202.review-fact.gear-mechanism",
+      "sourceRef": "Engineering LibreTexts, Mechanics Map (Moore et al.), §11.2 \"Belt- and Gear-Driven Systems\"",
+      "sourceLocator": "https://eng.libretexts.org/Bookshelves/Mechanical_Engineering/Mechanics_Map_(Moore_et_al.)/11:_Rigid_Body_Kinematics/11.2:_Belt-_and_Gear-Driven_Systems"
+    },
+    {
+      "claimKey": "unit202.review-fact.lever-class-1",
+      "sourceRef": "Physics LibreTexts, Body Physics (Davis), §6.2 \"Body Levers\"",
+      "sourceLocator": "https://phys.libretexts.org/Bookshelves/Conceptual_Physics/Body_Physics_-_Motion_to_Metabolism_(Davis)/06:_Forces_within_the_Body/6.02:_Body_Levers"
+    },
+    {
+      "claimKey": "unit202.review-fact.lever-class-2",
+      "sourceRef": "Physics LibreTexts, Body Physics (Davis), §6.2 \"Body Levers\"",
+      "sourceLocator": "https://phys.libretexts.org/Bookshelves/Conceptual_Physics/Body_Physics_-_Motion_to_Metabolism_(Davis)/06:_Forces_within_the_Body/6.02:_Body_Levers"
+    },
+    {
+      "claimKey": "unit202.review-fact.lever-class-3",
+      "sourceRef": "Physics LibreTexts, Body Physics (Davis), §6.2 \"Body Levers\"",
+      "sourceLocator": "https://phys.libretexts.org/Bookshelves/Conceptual_Physics/Body_Physics_-_Motion_to_Metabolism_(Davis)/06:_Forces_within_the_Body/6.02:_Body_Levers"
+    },
+    {
+      "claimKey": "unit202.review-fact.ammeter-definition",
+      "sourceRef": "OpenStax, University Physics Volume 2, §10.4 \"Electrical Measuring Instruments\"",
+      "sourceLocator": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments"
+    },
+    {
+      "claimKey": "unit202.review-fact.voltmeter-definition",
+      "sourceRef": "OpenStax, University Physics Volume 2, §10.4 \"Electrical Measuring Instruments\"",
+      "sourceLocator": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments"
+    },
+    {
+      "claimKey": "unit202.review-fact.ohmmeter-definition",
+      "sourceRef": "OpenStax, University Physics Volume 2, §10.4 \"Electrical Measuring Instruments\"",
+      "sourceLocator": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments"
+    },
+    {
+      "claimKey": "unit202.review-fact.capacitor-definition",
+      "sourceRef": "OpenStax, University Physics Volume 2, §8.1 \"Capacitors and Capacitance\"",
+      "sourceLocator": "https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance"
+    },
+    {
+      "claimKey": "unit202.review-fact.rectifier-definition",
+      "sourceRef": "Engineering LibreTexts, Semiconductor Devices -- Theory and Application (Fiore), §3.2 \"Rectification\"",
+      "sourceLocator": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/Semiconductor_Devices_-_Theory_and_Application_(Fiore)/03:_Diode_Applications/3.2:_Rectification"
+    },
+    {
+      "claimKey": "unit202.review-fact.diac-definition",
+      "sourceRef": "Workforce LibreTexts, Electric Circuits III -- Semiconductors (Kuphaldt), §7.4 \"The DIAC\"",
+      "sourceLocator": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_III_-_Semiconductors_(Kuphaldt)/07:_Thyristors/7.04:_The_DIAC"
+    },
+    {
+      "claimKey": "unit202.review-fact.triac-definition",
+      "sourceRef": "Workforce LibreTexts, Electric Circuits III -- Semiconductors (Kuphaldt), §7.6 \"The TRIAC\"",
+      "sourceLocator": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_III_-_Semiconductors_(Kuphaldt)/07:_Thyristors/7.06:_The_TRIAC"
+    },
+    {
+      "claimKey": "unit202.review-fact.thyristor-definition",
+      "sourceRef": "Workforce LibreTexts, Electric Circuits III -- Semiconductors (Kuphaldt), §7.5 \"The Silicon-Controlled Rectifier (SCR)\"",
+      "sourceLocator": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_III_-_Semiconductors_(Kuphaldt)/07:_Thyristors/7.05:_The_Silicon-Controlled_Rectifier_(SCR)"
+    },
+    {
+      "claimKey": "unit202.review-fact.magnetic-field-production",
+      "sourceRef": "OpenStax, College Physics 2e, §22.9 \"Magnetic Fields Produced by Currents: Ampere's Law\"",
+      "sourceLocator": "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law"
+    },
+    {
+      "claimKey": "unit202.review-fact.ac-sine-equation",
+      "sourceRef": "OpenStax, College Physics 2e, §20.5 \"Alternating Current versus Direct Current\"",
+      "sourceLocator": "https://openstax.org/books/college-physics-2e/pages/20-5-alternating-current-versus-direct-current, equation 20.38"
     }
   ],
   "profileImpact": {
-    "note": "FULL_PUBLIC and DEGRADED_NO_ASSESSMENT are IDENTICAL in this run: the only PUBLIC_ASSESSMENT document available (sample papers v1-2) was password-protected and therefore never used as evidence (see publicAssessment.sampleQuestionsDocument above). No candidate, fact requirement, or relationship in this ledger depends solely on assessment evidence, so mechanically filtering out PUBLIC_ASSESSMENT evidence removes nothing. This is reported transparently per CC-19R section 16/26, not fabricated as a false distinction."
+    "note": "FULL_PUBLIC and DEGRADED_NO_ASSESSMENT remain IDENTICAL in CC-19R1 (unchanged from CC-19R): AssessmentEvidence count is 0, so mechanically filtering out PUBLIC_ASSESSMENT evidence removes nothing. Per CC-19R1 section 17, no aggressive search for an alternative was performed merely to make the two profiles differ -- this is an honest, preserved limitation."
+  },
+  "cc19r1Corrections": {
+    "note": "Interface/schema corrections applied to CC-19R's source representation (task section 3-15) -- no new evidential sources beyond the 25 technical-truth sources already logged, plus additional technical-truth research completing the decomposition attempt (see CC-19R-SOURCE-ACCESS-LOG.json entries logged under this session)."
   }
 }

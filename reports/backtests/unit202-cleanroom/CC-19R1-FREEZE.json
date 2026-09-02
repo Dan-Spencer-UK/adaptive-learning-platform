@@ -1,0 +1,104 @@
+{
+  "generatedBy": "CC-19R1 clean-room build-freeze.ts",
+  "packageId": "CC-19R1",
+  "supersedes": "CC-19R (this branch, commit 20d65c6) -- narrow correction/completion, same clean-room experimental lineage, NOT a new blind run",
+  "executionConditions": {
+    "freshSessionForCC19R": true,
+    "cc19r1ContinuationSession": "CC-19R1 explicitly continues in the existing clean-room worktree/session rather than requiring a new fresh session (task section 0)",
+    "cleanRoomOriginalBaseCommit": "3c9b1dd",
+    "cleanRoomParentCommit": "20d65c6",
+    "cleanRoomBranch": "cc19-cleanroom",
+    "cleanRoomWorktreeHeadAtFreezeTime": "20d65c600f765f8a7c249260707a541ec52072a3",
+    "noSubagentToolsUsedInCC19R1": true,
+    "forbiddenEvidenceNotAccessedInCC19R1": true
+  },
+  "historicalCC19RFreezeProvenance": {
+    "note": "CC-19R-FREEZE.json is left untouched on disk (unchanged from commit 20d65c6) -- its hash and original counts are retained here per task section 22, not overwritten.",
+    "filePath": "reports/backtests/unit202-cleanroom/CC-19R-FREEZE.json",
+    "sha256AtCommit20d65c6": "7b07aaad8dd94baeae3656ede8701ad38bff4bbebf1239f90f3ac54508c14855",
+    "sha256OnDiskNow": "7b07aaad8dd94baeae3656ede8701ad38bff4bbebf1239f90f3ac54508c14855",
+    "onDiskMatchesCommit20d65c6": true,
+    "originalCounts": {
+      "totalLedgerRecordCount": 256,
+      "requiredCandidateCount": 140,
+      "explicitFactRequirementCount": 36,
+      "reviewFactRequirementCount": 31,
+      "decompositionStatusCounts": {
+        "EXPLICITLY_ATOMIC": 30,
+        "REVIEW_DECOMPOSED": 25,
+        "UNRESOLVED_DECOMPOSITION": 85
+      }
+    }
+  },
+  "cc19r1Corrections": {
+    "defectA_typedProductionRecords": "Every Layer-B normalizedRecord now statically satisfies its real @alp/qualification-pipeline interface (CurriculumEvidence.commandVerbPerformanceType/evidenceId/normalizationBasis; QualificationLevelEvidence fanned out per-candidate since attachQualificationLevelConstraints never broadcasts; CandidateFactRequirement.sourceEvidenceRefs populated; SourceFactualClaim.normalizationBasis corrected to AUTHORITATIVE_TECHNICAL_FACT and emitted per (claimKey, exact target subject) pair; OfficialCurriculumUnit registry added -- CC-19R omitted it entirely).",
+    "defectB_decompositionCompleted": "Every one of the 139 CurriculumEvidence candidates now has an explicit DecompositionAttempt (was a 'curated, non-exhaustive subset' in CC-19R). Structural parents/categories correctly linked to child candidates via coveredByChildCandidateKeys.",
+    "defectC_verbatimLayerA": "sourceExcerpt fields now contain ONLY verbatim source wording as separate sourceFragments (fragmentRole documents what each supplies) -- no synthetic '[child: ...]' / '| Range:' concatenation. See verbatim-validator.ts and its test results.",
+    "accessLogTimingLimitation": "CC-19R's access log was reconstructed after the accesses occurred, not appended contemporaneously (see CC-19R-SOURCE-ACCESS-LOG.json executionConditions.initialCC19RLogConstruction). This does not invalidate the clean-room run; the full session transcript is corroborating audit evidence."
+  },
+  "sourceCounts": {
+    "officialCurriculumDocuments": 1,
+    "officialCurriculumUnitRegistryEntries": 29,
+    "publicAssessmentDocumentsAttempted": 2,
+    "publicAssessmentDocumentsUsedAsEvidence": 0,
+    "qualificationLevelDocuments": 1,
+    "distinctTechnicalTruthSources": 34,
+    "distinctTechnicalTruthClaimKeys": 64
+  },
+  "curriculumCounts": {
+    "learningOutcomes": 6,
+    "requiredCandidateRecords": 139,
+    "byNormalizationKind": {
+      "PRIMARY_REQUIREMENT": 45,
+      "RANGE_CATEGORY": 11,
+      "RANGE_REQUIRED_MEMBER": 83
+    },
+    "byNormalizationConfidence": {
+      "EXPLICIT": 53,
+      "STRONG_INFERENCE": 86
+    }
+  },
+  "assessmentCounts": {
+    "assessmentEvidenceRecords": 0,
+    "note": "Unchanged from CC-19R: the only PUBLIC_ASSESSMENT questions document is password-protected and disallowed; no bypass/leaked/private material was sought (CC-19R1 section 17)."
+  },
+  "qualificationLevelEvidenceCount": 278,
+  "qualificationLevelEvidenceNote": "278 = 2 descriptors x 139 required candidates (mechanical fan-out, CC-19R1 DEFECT-A fix -- same 2 semantic descriptor proposals as CC-19R).",
+  "requiredCandidateCount": 139,
+  "explicitFactRequirementCount": 44,
+  "reviewFactRequirementCount": 70,
+  "technicalFactualClaimCount": 82,
+  "decompositionCounts": {
+    "totalCandidates": 139,
+    "attemptedCount": 139,
+    "statusCounts": {
+      "EXPLICITLY_ATOMIC": 44,
+      "REVIEW_DECOMPOSED": 81,
+      "UNRESOLVED_DECOMPOSITION": 14
+    },
+    "structurallyCoveredByChildrenCount": 20,
+    "technicallySourcedFactCount": 82,
+    "technicalTruthGapCount": 8
+  },
+  "profileEligibility": {
+    "fullPublicEligibleCount": 642,
+    "degradedNoAssessmentEligibleCount": 642,
+    "identicalProfiles": true,
+    "reasonIdentical": "No PUBLIC_ASSESSMENT evidence was successfully normalized (source password-protected); filtering it out removes nothing. Confirmed mechanically -- see assembledStandardInputHash below (both profiles produce structurally-mirrored input differing only in fact-requirement filtering, which has nothing to filter here)."
+  },
+  "totalLedgerRecordCount": 642,
+  "assembledStandardInputHash": "4e10f5692805b0ef2a6f0c781e87d5639276c87683e284c57634489c648c4437",
+  "fileHashes": {
+    "reports/backtests/unit202-cleanroom/CC-19R-SOURCE-ACCESS-LOG.json": "2dc84841251328d20be1dc21946aee6e4e64cc55a4f72ea97440ca536c0847f9",
+    "reports/backtests/unit202-cleanroom/cc19r-source-inventory.json": "200b4e25a38883f5c46a8aa10aa6c124afab134e43d70d910dcaa0f8ad20af22",
+    "reports/backtests/unit202-cleanroom/cc19r-normalization-ledger.json": "498080b7da8f9b6f524f753e77d686beb8e9337fb04a2973133153c7474028fa",
+    "reports/backtests/unit202-cleanroom/cc19r-decomposition-coverage.json": "26788bf3ef5f4cbd87fbb629bc846e987a8e1718a6156f1cbc7244a1b52c5711",
+    "reports/backtests/unit202-cleanroom/raw-sources/2365-02_L2_handbook_v1-12.pdf": "f6bc7a6c76e37a60a9d9830f873ab1079d230015d1ad95f458d69caa82dc9515",
+    "reports/backtests/unit202-cleanroom/raw-sources/5357-2365_sample_papers_markschemes_v1-0.pdf": "0fba6fc4d2ad0f7662cc7068b184e815ddca4b17b3fa91f9772c058d62c770d7",
+    "reports/backtests/unit202-cleanroom/raw-sources/5357-2365_sample_papers_v1-2.pdf": "71a39b800f4048d2775529ec4783218bf808e7478561214d40f7a61538f39669",
+    "reports/backtests/unit202-cleanroom/raw-sources/BIPM-SI-Brochure-9-concise-EN.pdf": "5a46755dacd99540ef210ff8e6329f5df1fa426bbd5a7c9cd356cb81098c29eb",
+    "reports/backtests/unit202-cleanroom/raw-sources/bipm-si.txt": "8281fc69a50bb6fb3907fba0d4b0fbbe4702320c5b4298db86b80ee9ed049557",
+    "reports/backtests/unit202-cleanroom/raw-sources/handbook.txt": "5bdc791a6b2ba5ad1b39bc8aee1e94ca74197e36066d67f43cf5ced372351a0b",
+    "reports/backtests/unit202-cleanroom/raw-sources/markscheme.txt": "a11caa89de67f2a26a6a2fb8283704383445f3d6df7b0f6419fd54e3e0b48e8c"
+  }
+}
