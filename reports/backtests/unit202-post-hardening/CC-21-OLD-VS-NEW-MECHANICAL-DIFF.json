@@ -1,0 +1,190 @@
+{
+  "generatedBy": "CC-21 execute-projected-pipeline.ts",
+  "purpose": "Mechanical diff only -- no quality/preference judgement of either side.",
+  "old": {
+    "source": "reports/backtests/unit202-cleanroom/pipeline-execution/CC-19B-FULL-PUBLIC-OUTPUT.json",
+    "sha256": "b7b897a6db1a5f060a3dc59af6d372f07e533d84e4d2b311d1dc52e9b1bd74cc",
+    "counts": {
+      "candidates": {
+        "total": 139,
+        "byDisposition": {
+          "REQUIRED_EXPLICIT_CURRICULUM": 139
+        }
+      },
+      "performanceProvenance": {
+        "(undeclared)": 139
+      },
+      "depthBasis": {
+        "(undeclared)": 139
+      },
+      "depthConfidence": {
+        "NONE": 139
+      },
+      "knowledgeBoundaryStatus": {
+        "(undeclared)": 139
+      },
+      "technicalCoverageStatus": {
+        "NOT_REQUIRED": 101,
+        "COMPLETE": 38
+      },
+      "gapsByType": {
+        "EVIDENCE_NORMALIZATION_REVIEW": 70,
+        "PERFORMANCE_DEPTH_GAP": 139
+      },
+      "totalGaps": 209,
+      "semanticAdjudication": {
+        "outcomesRecorded": 0,
+        "activeGoverning": 0,
+        "representativeExemplars": 0
+      }
+    },
+    "resultTopLevelKeys": [
+      "candidates",
+      "gaps",
+      "unmatchedQualificationLevel",
+      "unmatchedTechnicalTruth"
+    ]
+  },
+  "new": {
+    "source": "reports/backtests/unit202-post-hardening/CC-21-FULL-PUBLIC-OUTPUT.json",
+    "sha256": "2d545e09150990e835338d7c26d27701c6313502c3bc331b51d9ee5405bb81f9",
+    "counts": {
+      "candidates": {
+        "total": 139,
+        "byDisposition": {
+          "REQUIRED_EXPLICIT_CURRICULUM": 139
+        }
+      },
+      "performanceProvenance": {
+        "EXPLICIT": 53,
+        "GOVERNED_INHERITED": 83,
+        "UNRESOLVED": 3
+      },
+      "depthBasis": {
+        "QUALIFICATION_LEVEL_BOUNDED": 136,
+        "UNRESOLVED": 3
+      },
+      "depthConfidence": {
+        "MEDIUM": 136,
+        "NONE": 3
+      },
+      "knowledgeBoundaryStatus": {
+        "STRUCTURALLY_DECOMPOSED": 8,
+        "UNRESOLVED": 31,
+        "GOVERNED": 38,
+        "ADJUDICATION_REQUIRED": 62
+      },
+      "technicalCoverageStatus": {
+        "NOT_APPLICABLE": 8,
+        "UNRESOLVED_REQUIREMENTS": 93,
+        "COMPLETE": 38
+      },
+      "gapsByType": {
+        "EVIDENCE_NORMALIZATION_REVIEW": 70,
+        "KNOWLEDGE_DECOMPOSITION_GAP": 31,
+        "PERFORMANCE_DEPTH_GAP": 3
+      },
+      "totalGaps": 104,
+      "semanticAdjudication": {
+        "outcomesRecorded": 0,
+        "activeGoverning": 0,
+        "representativeExemplars": 0
+      }
+    },
+    "resultTopLevelKeys": [
+      "candidates",
+      "gaps",
+      "representativeExemplars",
+      "semanticAdjudicationOutcomes",
+      "unmatchedQualificationLevel",
+      "unmatchedTechnicalTruth"
+    ]
+  },
+  "resultTopLevelFieldsAdded": [
+    "representativeExemplars",
+    "semanticAdjudicationOutcomes"
+  ],
+  "resultTopLevelFieldsRemoved": [],
+  "candidateFieldsAdded": [
+    "depthBasis",
+    "isExplicitlyStructuralNode",
+    "knowledgeBoundaryStatus",
+    "performanceProvenance"
+  ],
+  "candidateFieldsRemoved": [],
+  "candidateCountDifference": 0,
+  "dispositionCounts": {
+    "old": {
+      "REQUIRED_EXPLICIT_CURRICULUM": 139
+    },
+    "new": {
+      "REQUIRED_EXPLICIT_CURRICULUM": 139
+    }
+  },
+  "depthConfidenceCounts": {
+    "old": {
+      "NONE": 139
+    },
+    "new": {
+      "MEDIUM": 136,
+      "NONE": 3
+    }
+  },
+  "gapTypeCounts": {
+    "old": {
+      "EVIDENCE_NORMALIZATION_REVIEW": 70,
+      "PERFORMANCE_DEPTH_GAP": 139
+    },
+    "new": {
+      "EVIDENCE_NORMALIZATION_REVIEW": 70,
+      "KNOWLEDGE_DECOMPOSITION_GAP": 31,
+      "PERFORMANCE_DEPTH_GAP": 3
+    }
+  },
+  "gapTypesAddedInNewSchema": [
+    "KNOWLEDGE_DECOMPOSITION_GAP"
+  ],
+  "gapTypesAbsentInNewOutput": [],
+  "technicalCoverageStatusVocabulary": {
+    "old": [
+      "COMPLETE",
+      "NOT_REQUIRED"
+    ],
+    "new": [
+      "COMPLETE",
+      "NOT_APPLICABLE",
+      "UNRESOLVED_REQUIREMENTS"
+    ]
+  },
+  "technicalCoverageStatusValuesAddedInNewSchema": [
+    "NOT_APPLICABLE",
+    "UNRESOLVED_REQUIREMENTS"
+  ],
+  "technicalCoverageStatusValuesAbsentInNewOutput": [
+    "NOT_REQUIRED"
+  ],
+  "knowledgeBoundaryStatusCounts": {
+    "old": "(field did not exist in the old schema)",
+    "new": {
+      "STRUCTURALLY_DECOMPOSED": 8,
+      "UNRESOLVED": 31,
+      "GOVERNED": 38,
+      "ADJUDICATION_REQUIRED": 62
+    }
+  },
+  "performanceProvenanceCounts": {
+    "old": "(field did not exist in the old schema)",
+    "new": {
+      "EXPLICIT": 53,
+      "GOVERNED_INHERITED": 83,
+      "UNRESOLVED": 3
+    }
+  },
+  "depthBasisCounts": {
+    "old": "(field did not exist in the old schema)",
+    "new": {
+      "QUALIFICATION_LEVEL_BOUNDED": 136,
+      "UNRESOLVED": 3
+    }
+  }
+}

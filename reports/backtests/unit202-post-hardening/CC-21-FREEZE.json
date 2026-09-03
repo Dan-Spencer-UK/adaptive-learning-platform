@@ -1,0 +1,60 @@
+{
+  "generatedBy": "CC-21 execute-projected-pipeline.ts",
+  "packageId": "CC-21",
+  "purpose": "Mechanically project the frozen Unit-202 evidence to the current pipeline schema and rerun the hardened generic pipeline. Execution and freezing only -- no semantic adjudication.",
+  "mainHeadBeforeThisCommit": "ddde35f",
+  "baseFrozenInputHash": "4e10f5692805b0ef2a6f0c781e87d5639276c87683e284c57634489c648c4437",
+  "historicalCc19bOutputHash": "b7b897a6db1a5f060a3dc59af6d372f07e533d84e4d2b311d1dc52e9b1bd74cc",
+  "productionQualificationPipelineTreeHash": "85a36bf4e71fb9553ae93a1bac6447433939cabb",
+  "node": "v24.12.0",
+  "executionHarnessSha256": "8336d0a784257855bbb30ec40bb488f9bde143c38fb5d5667e899a6e3f283df7",
+  "projectionModuleSha256": "84d75724060ddd05c2a1ecdba3341165eb271f3681f502ede3da2217195a9a98",
+  "projectionAlgorithmVersion": "CC-21-performance-basis-projection-v1",
+  "projectionLedgerSha256": "8bc344c94ba46810b1d903de0fcd27485c962612a041929941b2cab264deb899",
+  "projectionCounts": {
+    "curriculumEvidenceTotal": 139,
+    "withPopulatedCommandVerbPerformanceType": 139,
+    "projectedSourceExplicit": 53,
+    "projectedStrongInference": 86,
+    "performanceFieldAbsent": 0,
+    "leftUntouchedOther": 0
+  },
+  "projectionVerification": {
+    "FULL_PUBLIC": {
+      "ok": true,
+      "violations": []
+    },
+    "DEGRADED_NO_ASSESSMENT": {
+      "ok": true,
+      "violations": []
+    }
+  },
+  "FULL_PUBLIC": {
+    "inputSha256": "50504724cabcb841e5e1c2770180a008bd18e0eb1ff5e28bc76ca8838da544b4",
+    "outputSha256": "2d545e09150990e835338d7c26d27701c6313502c3bc331b51d9ee5405bb81f9",
+    "secondRunOutputSha256": "2d545e09150990e835338d7c26d27701c6313502c3bc331b51d9ee5405bb81f9",
+    "inputBeforeHash": "84fd26ef3654ea1d7ac421011da9e6802d3265af59cb56442794e7434daae3d2",
+    "inputAfterHash": "84fd26ef3654ea1d7ac421011da9e6802d3265af59cb56442794e7434daae3d2"
+  },
+  "DEGRADED_NO_ASSESSMENT": {
+    "inputSha256": "50504724cabcb841e5e1c2770180a008bd18e0eb1ff5e28bc76ca8838da544b4",
+    "outputSha256": "2d545e09150990e835338d7c26d27701c6313502c3bc331b51d9ee5405bb81f9",
+    "secondRunOutputSha256": "2d545e09150990e835338d7c26d27701c6313502c3bc331b51d9ee5405bb81f9",
+    "inputBeforeHash": "84fd26ef3654ea1d7ac421011da9e6802d3265af59cb56442794e7434daae3d2",
+    "inputAfterHash": "84fd26ef3654ea1d7ac421011da9e6802d3265af59cb56442794e7434daae3d2"
+  },
+  "profileInputEqualityResult": true,
+  "profileOutputEqualityResult": true,
+  "determinismResult": true,
+  "inputMutationResult": false,
+  "outputArtefactHashes": {
+    "reports/backtests/unit202-post-hardening/CC-21-PERFORMANCE-BASIS-PROJECTION.json": "8bc344c94ba46810b1d903de0fcd27485c962612a041929941b2cab264deb899",
+    "reports/backtests/unit202-post-hardening/CC-21-PERFORMANCE-BASIS-PROJECTION.md": "99ae2c6b6ae6b5acf3028608d24819b65231343ec332b1c10060b2ca927f1e49",
+    "reports/backtests/unit202-post-hardening/CC-21-FULL-PUBLIC-INPUT.json": "50504724cabcb841e5e1c2770180a008bd18e0eb1ff5e28bc76ca8838da544b4",
+    "reports/backtests/unit202-post-hardening/CC-21-FULL-PUBLIC-OUTPUT.json": "2d545e09150990e835338d7c26d27701c6313502c3bc331b51d9ee5405bb81f9",
+    "reports/backtests/unit202-post-hardening/CC-21-DEGRADED-NO-ASSESSMENT-INPUT.json": "50504724cabcb841e5e1c2770180a008bd18e0eb1ff5e28bc76ca8838da544b4",
+    "reports/backtests/unit202-post-hardening/CC-21-DEGRADED-NO-ASSESSMENT-OUTPUT.json": "2d545e09150990e835338d7c26d27701c6313502c3bc331b51d9ee5405bb81f9",
+    "reports/backtests/unit202-post-hardening/CC-21-OLD-VS-NEW-MECHANICAL-DIFF.json": "62a83a768d7bb8945fae47d63ff25ae11c831cdf040921cfe38286f915c4e0c9",
+    "reports/backtests/unit202-post-hardening/CC-21-RESULT.md": "11d4e77a49dcaa31ac34b5298ff505d08fd499e9a402e4f89bca492ac0553afb"
+  }
+}
