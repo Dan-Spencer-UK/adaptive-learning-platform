@@ -7,6 +7,7 @@ import {
   buildStandardPipeline,
   compareAgainstDiagnosticEvidence,
   compareCalibrationFactualClaims,
+  computeKnowledgeBoundaryFingerprint,
   detectAssessmentPatternCandidates,
   generateAssessmentCandidates,
   generateCurriculumCandidates,
@@ -23,6 +24,8 @@ import type {
   CurriculumEvidence,
   CurriculumFamily,
   CurriculumSubjectRelation,
+  EvidenceRef,
+  KnowledgeBoundaryCertification,
   LegacyDiagnosticEvidence,
   OfficialCurriculumUnit,
   OptionalCalibrationEvidence,
@@ -159,8 +162,62 @@ function semanticAdjudication(overrides: Partial<SemanticAdjudication> & Pick<Se
   };
 }
 
+/** Defaults to a COMPLETE decision under QUAL -- callers must always override `boundaryFingerprint` to the target candidate's real current fingerprint (see `computeFingerprintFromResult`). */
+function knowledgeBoundaryCertification(
+  overrides: Partial<KnowledgeBoundaryCertification> & Pick<KnowledgeBoundaryCertification, "targetCandidateKey" | "decision" | "boundaryFingerprint">,
+): KnowledgeBoundaryCertification {
+  return {
+    qualificationId: QUAL,
+    adjudicatorKind: "HUMAN_PROJECT_ARCHITECT",
+    certificationRef: nextId("certification"),
+    rationale: "synthetic CC-21A certification rationale",
+    supportingEvidenceRefs: [],
+    sourceRef: "SRC-CERTIFICATION",
+    sourceLocator: "certification-loc",
+    normalizationBasis: "KNOWLEDGE_BOUNDARY_CERTIFICATION_DECISION",
+    ...overrides,
+  };
+}
+
 function pipeline(overrides: Partial<StandardPipelineInput> = {}): StandardPipelineInput {
   return { qualificationId: QUAL, officialCurriculumUnits: [], curriculum: [], assessment: [], ...overrides };
+}
+
+/**
+ * CC-21A test helper: derives the EXACT current boundary fingerprint for
+ * `targetCandidateKey` from a pipeline result that was run WITHOUT any
+ * certification, using only public result fields (`result.candidates`,
+ * `result.semanticAdjudicationOutcomes`) plus the same `factRequirements`
+ * array the test passed in -- mirroring `computeCandidateBoundaryFingerprints`
+ * exactly, without needing internal pipeline state. A pending REVIEW_PROPOSED
+ * claimKey is one that never made it into the candidate's final
+ * `requiredFactKeys`.
+ */
+function computeFingerprintFromResult(
+  result: ReturnType<typeof buildStandardPipeline>,
+  qualificationId: string,
+  targetCandidateKey: string,
+  allFactRequirements: readonly CandidateFactRequirement[],
+): string {
+  const candidate = result.candidates.find((c) => c.candidateKey === targetCandidateKey)!;
+  const governingKeys = new Set(candidate.requiredFactKeys ?? []);
+  const pendingReviewProposedClaimKeys = allFactRequirements
+    .filter((f) => f.targetCandidateKey === targetCandidateKey && f.derivationStatus === "REVIEW_PROPOSED" && !governingKeys.has(f.claimKey))
+    .map((f) => f.claimKey);
+  const adjudicationOutcomes = result.semanticAdjudicationOutcomes
+    .filter((a) => a.targetCandidateKey === targetCandidateKey)
+    .map((a) => ({ claimKey: a.claimKey, decision: a.decision }));
+  const governedChildCandidateKeys = result.candidates.filter((c) => c.parentSubject === candidate.subject).map((c) => c.candidateKey);
+  return computeKnowledgeBoundaryFingerprint({
+    qualificationId,
+    targetCandidateKey,
+    performanceType: candidate.performanceType,
+    performanceProvenance: candidate.performanceProvenance,
+    requiredFactKeys: candidate.requiredFactKeys ?? [],
+    pendingReviewProposedClaimKeys,
+    adjudicationOutcomes,
+    governedChildCandidateKeys,
+  });
 }
 
 function findCandidate(result: ReturnType<typeof buildStandardPipeline>, subject: string, performanceType?: string) {
@@ -1597,7 +1654,15 @@ describe("CC-20 case D -- the same proposal plus a valid REQUIRED_CORE adjudicat
   const adjudications: SemanticAdjudication[] = [
     semanticAdjudication({ targetCandidateKey: key, claimKey: "c20d-fact", decision: "REQUIRED_CORE", supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-c20d" }] }),
   ];
-  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims, semanticAdjudications: adjudications }));
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims, semanticAdjudications: adjudications }));
+  // CC-21A: mechanically resolved fact coverage is never, by itself, GOVERNED -- a valid COMPLETE certification bound to the exact current fingerprint is required.
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-c20d" }] }),
+  ];
+  const result = buildStandardPipeline(
+    pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims, semanticAdjudications: adjudications, knowledgeBoundaryCertifications: certifications }),
+  );
 
   it("promotes the fact into requiredFactKeys with COMPLETE technical coverage and GOVERNED boundary", () => {
     const c = findCandidate(result, "c20d-topic")!;
@@ -1608,6 +1673,14 @@ describe("CC-20 case D -- the same proposal plus a valid REQUIRED_CORE adjudicat
 
   it("does not widen scope confidence beyond what curriculum evidence already established", () => {
     expect(findCandidate(result, "c20d-topic")!.confidence.scopeConfidence).toBe("HIGH");
+  });
+
+  it("[CC-21A] without the certification, the identical fact/adjudication state is only ADJUDICATION_REQUIRED, never GOVERNED", () => {
+    expect(findCandidate(preResult, "c20d-topic")!.knowledgeBoundaryStatus).toBe("ADJUDICATION_REQUIRED");
+  });
+
+  it("[CC-21A] the COMPLETE certification is recorded in knowledgeBoundaryCertificationOutcomes", () => {
+    expect(result.knowledgeBoundaryCertificationOutcomes.some((c) => c.targetCandidateKey === key && c.decision === "COMPLETE")).toBe(true);
   });
 
   it("the adjudication is recorded in semanticAdjudicationOutcomes", () => {
@@ -2579,5 +2652,366 @@ describe("CC-20B case BC2 -- all rejected non-governing adjudications remain vis
   it("none of them appear in semanticAdjudicationOutcomes and none influence the candidate", () => {
     expect(result.semanticAdjudicationOutcomes).toEqual([]);
     expect(findCandidate(result, "bc2-topic")!.requiredFactKeys ?? []).toEqual([]);
+  });
+});
+
+// =====================================================================
+// CC-21A cases BD2-BS2: closes the false-green where mechanically
+// resolved fact coverage (with or without complete technical truth) was
+// being treated as equivalent to a semantically certified knowledge
+// boundary. GOVERNED is now reachable ONLY through a valid, non-stale,
+// evidence-bound, COMPLETE KnowledgeBoundaryCertification.
+// =====================================================================
+
+describe("CC-21A case BD2 -- a governing fact with complete technical truth and NO boundary certification is NOT GOVERNED", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bd2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bd2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bd2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bd2" }] })];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "bd2-fact", subject: "bd2-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value" })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+
+  it("is NOT GOVERNED -- ADJUDICATION_REQUIRED instead, with a visible certification gap", () => {
+    const c = findCandidate(result, "bd2-topic")!;
+    expect(c.technicalCoverageStatus).toBe("COMPLETE");
+    expect(c.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+    expect(c.knowledgeBoundaryStatus).toBe("ADJUDICATION_REQUIRED");
+    expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP" && g.candidateKey === key)).toBe(true);
+  });
+});
+
+describe("CC-21A case BE2 -- the same state plus a valid COMPLETE certification bound to the exact current fingerprint IS GOVERNED", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "be2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-be2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "be2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-be2" }] })];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "be2-fact", subject: "be2-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value" })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-be2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims, knowledgeBoundaryCertifications: certifications }));
+
+  it("is GOVERNED, and the certification is recorded in knowledgeBoundaryCertificationOutcomes", () => {
+    const c = findCandidate(result, "be2-topic")!;
+    expect(c.knowledgeBoundaryStatus).toBe("GOVERNED");
+    expect(result.knowledgeBoundaryCertificationOutcomes.some((cert) => cert.targetCandidateKey === key && cert.decision === "COMPLETE")).toBe(true);
+  });
+});
+
+describe("CC-21A case BF2 -- a COMPLETE certification becomes stale when a REVIEW_PROPOSED fact is subsequently added", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bf2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bf2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const originalFactReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bf2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bf2" }] })];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "bf2-fact", subject: "bf2-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value" })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: originalFactReqs, factualClaims: claims }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, originalFactReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bf2" }] }),
+  ];
+  // A new REVIEW_PROPOSED fact is added AFTER the certification was minted -- the underlying boundary has changed.
+  const updatedFactReqs: CandidateFactRequirement[] = [...originalFactReqs, factRequirement({ targetCandidateKey: key, claimKey: "bf2-fact-new", derivationStatus: "REVIEW_PROPOSED" })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: updatedFactReqs, factualClaims: claims, knowledgeBoundaryCertifications: certifications }));
+
+  it("the stale certification no longer validates -- NOT GOVERNED, and it is absent from knowledgeBoundaryCertificationOutcomes", () => {
+    const c = findCandidate(result, "bf2-topic")!;
+    expect(c.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+    expect(result.knowledgeBoundaryCertificationOutcomes.some((cert) => cert.targetCandidateKey === key)).toBe(false);
+    expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP" && g.unresolved.includes("STALE"))).toBe(true);
+  });
+});
+
+describe("CC-21A case BG2 -- a COMPLETE certification becomes stale when a fact's SemanticAdjudication changes", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bg2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bg2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bg2-fact", derivationStatus: "REVIEW_PROPOSED" })];
+  const originalAdjudications: SemanticAdjudication[] = [
+    semanticAdjudication({ targetCandidateKey: key, claimKey: "bg2-fact", decision: "REQUIRED_CORE", supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bg2" }] }),
+  ];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, semanticAdjudications: originalAdjudications }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bg2" }] }),
+  ];
+  // The adjudication decision itself changes (a new decisionRef replaces the certified one) -- the boundary's semantic basis has changed.
+  const changedAdjudications: SemanticAdjudication[] = [
+    semanticAdjudication({ targetCandidateKey: key, claimKey: "bg2-fact", decision: "CONTEXT_ONLY", decisionRef: "bg2-changed-decision", supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bg2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, semanticAdjudications: changedAdjudications, knowledgeBoundaryCertifications: certifications }));
+
+  it("the stale certification no longer validates -- NOT GOVERNED", () => {
+    expect(findCandidate(result, "bg2-topic")!.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+  });
+});
+
+describe("CC-21A case BH2 -- a COMPLETE certification citing fabricated curriculum evidence is invalid", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bh2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bh2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bh2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bh2" }] })];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "bh2-fact", subject: "bh2-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value" })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bh2-FAKE" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims, knowledgeBoundaryCertifications: certifications }));
+
+  it("is invalid -- visible gap, NOT GOVERNED", () => {
+    const c = findCandidate(result, "bh2-topic")!;
+    expect(c.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+    expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP" && g.candidateKey === key)).toBe(true);
+  });
+});
+
+describe("CC-21A case BI2 -- a COMPLETE certification supported only by TECHNICAL_TRUTH is invalid", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bi2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bi2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bi2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bi2" }] })];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "bi2-fact", subject: "bi2-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value", evidenceId: "truth-bi2" })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "TECHNICAL_TRUTH", evidenceId: "truth-bi2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims, knowledgeBoundaryCertifications: certifications }));
+
+  it("is invalid -- NOT GOVERNED even though the technical truth citation is real", () => {
+    expect(findCandidate(result, "bi2-topic")!.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+  });
+});
+
+describe("CC-21A case BJ2 -- a PARTIAL certification yields knowledgeBoundaryStatus PARTIAL", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bj2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bj2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bj2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bj2" }] })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "PARTIAL", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bj2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, knowledgeBoundaryCertifications: certifications }));
+
+  it("is PARTIAL, with a visible certification gap", () => {
+    const c = findCandidate(result, "bj2-topic")!;
+    expect(c.knowledgeBoundaryStatus).toBe("PARTIAL");
+    expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP" && g.candidateKey === key)).toBe(true);
+  });
+});
+
+describe("CC-21A case BK2 -- an UNRESOLVED certification yields knowledgeBoundaryStatus UNRESOLVED", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bk2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bk2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bk2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bk2" }] })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "UNRESOLVED", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bk2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, knowledgeBoundaryCertifications: certifications }));
+
+  it("is UNRESOLVED, with a visible certification gap", () => {
+    const c = findCandidate(result, "bk2-topic")!;
+    expect(c.knowledgeBoundaryStatus).toBe("UNRESOLVED");
+    expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP" && g.candidateKey === key)).toBe(true);
+  });
+});
+
+describe("CC-21A case BL2 -- a COMPLETE certification is invalid while an unresolved REVIEW_PROPOSED fact remains for the candidate", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bl2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bl2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [
+    factRequirement({ targetCandidateKey: key, claimKey: "bl2-fact-governed", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bl2" }] }),
+    factRequirement({ targetCandidateKey: key, claimKey: "bl2-fact-pending", derivationStatus: "REVIEW_PROPOSED" }),
+  ];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs }));
+  // Deliberately certifies COMPLETE at the exact, honest current fingerprint (which itself encodes the pending claimKey) -- still must be rejected.
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bl2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, knowledgeBoundaryCertifications: certifications }));
+
+  it("is invalid -- NOT GOVERNED", () => {
+    const c = findCandidate(result, "bl2-topic")!;
+    expect(c.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+    expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP" && g.candidateKey === key && g.unresolved.includes("unresolved REVIEW_PROPOSED"))).toBe(true);
+  });
+});
+
+describe("CC-21A case BM2 -- a COMPLETE boundary certification may coexist with incomplete technical coverage, which remains independently visible", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bm2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bm2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  // No TECHNICAL_TRUTH claim is ever supplied for this fact.
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bm2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bm2" }] })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const certifications: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bm2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, knowledgeBoundaryCertifications: certifications }));
+
+  it("is GOVERNED even though technicalCoverageStatus is not COMPLETE, and TECHNICAL_TRUTH_GAP remains visible", () => {
+    const c = findCandidate(result, "bm2-topic")!;
+    expect(c.knowledgeBoundaryStatus).toBe("GOVERNED");
+    expect(c.technicalCoverageStatus).not.toBe("COMPLETE");
+    expect(result.gaps.some((g) => g.gapType === "TECHNICAL_TRUTH_GAP" && g.candidateKey === key)).toBe(true);
+  });
+});
+
+describe("CC-21A case BN2 -- two conflicting certifications at the same fingerprint never resolve by array order", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bn2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-bn2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bn2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bn2" }] })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+  const supportingEvidenceRefs: EvidenceRef[] = [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bn2" }];
+  const forwardOrder: KnowledgeBoundaryCertification[] = [
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, certificationRef: "bn2-cert-complete", supportingEvidenceRefs }),
+    knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "UNRESOLVED", boundaryFingerprint: fingerprint, certificationRef: "bn2-cert-unresolved", supportingEvidenceRefs }),
+  ];
+  const reversedOrder = [...forwardOrder].reverse();
+
+  it("neither array order reaches GOVERNED, and both emit a KNOWLEDGE_BOUNDARY_CERTIFICATION_CONFLICT gap", () => {
+    for (const knowledgeBoundaryCertifications of [forwardOrder, reversedOrder]) {
+      const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, knowledgeBoundaryCertifications }));
+      expect(findCandidate(result, "bn2-topic")!.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+      expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_CONFLICT")).toBe(true);
+      expect(result.knowledgeBoundaryCertificationOutcomes.some((c) => c.targetCandidateKey === key)).toBe(false);
+    }
+  });
+});
+
+describe("CC-21A case BO2 -- an explicit structural RANGE_CATEGORY parent with governed children remains STRUCTURALLY_DECOMPOSED without requiring its own certification", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [
+    curriculum({ subject: "bo2-parent", curriculumUnitId: "AC-X", normalizationKind: "RANGE_CATEGORY" }),
+    curriculum({ subject: "bo2-child", curriculumUnitId: "AC-X", normalizationKind: "RANGE_REQUIRED_MEMBER", refinesSubject: "bo2-parent" }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence }));
+
+  it("remains STRUCTURALLY_DECOMPOSED with no KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP for the parent", () => {
+    const parent = findCandidate(result, "bo2-parent")!;
+    expect(parent.knowledgeBoundaryStatus).toBe("STRUCTURALLY_DECOMPOSED");
+    expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP" && g.candidateKey === parent.candidateKey)).toBe(false);
+  });
+});
+
+describe("CC-21A case BP2 -- a PRIMARY_REQUIREMENT with children but no certification does not become structurally complete merely because children exist", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [
+    curriculum({ subject: "bp2-parent", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT" }),
+    curriculum({ subject: "bp2-child", curriculumUnitId: "AC-X", normalizationKind: "RANGE_REQUIRED_MEMBER", refinesSubject: "bp2-parent" }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence }));
+
+  it("the parent is neither STRUCTURALLY_DECOMPOSED nor GOVERNED", () => {
+    const parent = findCandidate(result, "bp2-parent")!;
+    expect(parent.knowledgeBoundaryStatus).not.toBe("STRUCTURALLY_DECOMPOSED");
+    expect(parent.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+  });
+});
+
+describe("CC-21A case BQ2 -- a certification can never create a candidate, fact, claimKey, or scope of its own", () => {
+  const certifications: KnowledgeBoundaryCertification[] = [knowledgeBoundaryCertification({ targetCandidateKey: "bq2-nonexistent::OTHER", decision: "COMPLETE", boundaryFingerprint: "irrelevant-fingerprint" })];
+  const result = buildStandardPipeline(pipeline({ knowledgeBoundaryCertifications: certifications }));
+
+  it("creates no candidates and no scope", () => {
+    expect(result.candidates).toEqual([]);
+  });
+
+  it("the certification is rejected (not a current required candidate) and reported, never silently dropped", () => {
+    expect(result.knowledgeBoundaryCertificationOutcomes).toEqual([]);
+    expect(result.gaps.some((g) => g.gapType === "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP")).toBe(true);
+  });
+});
+
+describe("CC-21A case BR2 -- HUMAN_PROJECT_ARCHITECT and LLM_EVIDENCE_BOUND certifications pass through the identical mechanical validation gate", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "br2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-br2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "br2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-br2" }] })];
+  const preResult = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs }));
+  const fingerprint = computeFingerprintFromResult(preResult, QUAL, key, factReqs);
+
+  it("HUMAN_PROJECT_ARCHITECT with fabricated evidence is rejected", () => {
+    const certifications: KnowledgeBoundaryCertification[] = [
+      knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, adjudicatorKind: "HUMAN_PROJECT_ARCHITECT", supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-br2-FAKE" }] }),
+    ];
+    const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, knowledgeBoundaryCertifications: certifications }));
+    expect(findCandidate(result, "br2-topic")!.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+  });
+
+  it("LLM_EVIDENCE_BOUND with the identical fabricated evidence is rejected exactly the same way", () => {
+    const certifications: KnowledgeBoundaryCertification[] = [
+      knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, adjudicatorKind: "LLM_EVIDENCE_BOUND", supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-br2-FAKE" }] }),
+    ];
+    const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, knowledgeBoundaryCertifications: certifications }));
+    expect(findCandidate(result, "br2-topic")!.knowledgeBoundaryStatus).not.toBe("GOVERNED");
+  });
+
+  it("LLM_EVIDENCE_BOUND with genuinely valid evidence is not rejected merely because of its adjudicatorKind", () => {
+    const certifications: KnowledgeBoundaryCertification[] = [
+      knowledgeBoundaryCertification({ targetCandidateKey: key, decision: "COMPLETE", boundaryFingerprint: fingerprint, adjudicatorKind: "LLM_EVIDENCE_BOUND", supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-br2" }] }),
+    ];
+    const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, knowledgeBoundaryCertifications: certifications }));
+    expect(findCandidate(result, "br2-topic")!.knowledgeBoundaryStatus).toBe("GOVERNED");
+  });
+});
+
+describe("CC-21A case BS2 -- the boundary fingerprint is deterministic and array-order independent, and changes only when the logical state changes", () => {
+  it("identical logical inputs supplied in different array order produce the identical fingerprint", () => {
+    const fp1 = computeKnowledgeBoundaryFingerprint({
+      qualificationId: QUAL,
+      targetCandidateKey: "bs2-topic::OTHER",
+      performanceType: "OTHER",
+      performanceProvenance: "EXPLICIT",
+      requiredFactKeys: ["fact-a", "fact-b"],
+      pendingReviewProposedClaimKeys: ["pending-a", "pending-b"],
+      adjudicationOutcomes: [
+        { claimKey: "fact-a", decision: "REQUIRED_CORE" },
+        { claimKey: "fact-b", decision: "REQUIRED_OPERATIONAL" },
+      ],
+      governedChildCandidateKeys: ["child-a::OTHER", "child-b::OTHER"],
+    });
+    const fp2 = computeKnowledgeBoundaryFingerprint({
+      qualificationId: QUAL,
+      targetCandidateKey: "bs2-topic::OTHER",
+      performanceType: "OTHER",
+      performanceProvenance: "EXPLICIT",
+      requiredFactKeys: ["fact-b", "fact-a"],
+      pendingReviewProposedClaimKeys: ["pending-b", "pending-a"],
+      adjudicationOutcomes: [
+        { claimKey: "fact-b", decision: "REQUIRED_OPERATIONAL" },
+        { claimKey: "fact-a", decision: "REQUIRED_CORE" },
+      ],
+      governedChildCandidateKeys: ["child-b::OTHER", "child-a::OTHER"],
+    });
+    expect(fp1).toBe(fp2);
+  });
+
+  it("a genuinely different logical state produces a different fingerprint", () => {
+    const base = {
+      qualificationId: QUAL,
+      targetCandidateKey: "bs2-topic::OTHER",
+      performanceType: "OTHER",
+      performanceProvenance: "EXPLICIT",
+      requiredFactKeys: ["fact-a"],
+      pendingReviewProposedClaimKeys: [],
+      adjudicationOutcomes: [],
+      governedChildCandidateKeys: [],
+    };
+    const fp1 = computeKnowledgeBoundaryFingerprint(base);
+    const fp2 = computeKnowledgeBoundaryFingerprint({ ...base, requiredFactKeys: ["fact-a", "fact-c"] });
+    expect(fp1).not.toBe(fp2);
   });
 });

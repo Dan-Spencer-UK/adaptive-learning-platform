@@ -35,6 +35,7 @@ import {
   type EvidenceRole,
   type ExemplarEvidence,
   type GapRecord,
+  type KnowledgeBoundaryCertification,
   type KnowledgeCandidate,
   type LearnerPerformanceType,
   type LegacyDiagnosticEvidence,
@@ -52,6 +53,7 @@ import {
   type StandardPipelineResult,
   type TechnicalCoverageStatus,
 } from "./types.ts";
+import { createHash } from "node:crypto";
 
 // ---------------------------------------------------------------------
 // Provenance gate (CC-18A section 21; CC-18B section 10 adds
@@ -106,6 +108,8 @@ const CURRICULUM_CLAIM_ALLOWED_BASES: readonly NormalizationBasis[] = ["SOURCE_F
 const FACT_REQUIREMENT_ALLOWED_BASES: readonly NormalizationBasis[] = ["FACT_REQUIREMENT_DERIVATION"];
 /** CC-20 section 3: the ONLY basis a SemanticAdjudication may declare -- it is a governed decision over existing evidence, never a new source authority. */
 const SEMANTIC_ADJUDICATION_ALLOWED_BASES: readonly NormalizationBasis[] = ["SEMANTIC_ADJUDICATION_DECISION"];
+/** CC-21A section 3: the ONLY basis a KnowledgeBoundaryCertification may declare -- a semantic certification over an already-existing candidate's knowledge state, never a new source authority. */
+const KNOWLEDGE_BOUNDARY_CERTIFICATION_ALLOWED_BASES: readonly NormalizationBasis[] = ["KNOWLEDGE_BOUNDARY_CERTIFICATION_DECISION"];
 
 // ---------------------------------------------------------------------
 // CC-20 section 16: depth-basis priority, used both to pick the winning
@@ -1232,15 +1236,264 @@ export function buildRepresentativeExemplars(activeAdjudications: readonly Seman
 }
 
 // ---------------------------------------------------------------------
-// Knowledge-boundary finalization (CC-20 sections 12-15). Runs LAST, once
-// requiredFactKeys/technicalCoverageStatus and active adjudications are
-// both known. Detects a genuine structural parent from the governed
-// candidate-relationship graph (`parentSubject`), never a topic string,
-// and closes the false-green gap the blind back-test exposed: a
-// required, mastery-bearing leaf with zero governing facts, no
-// decomposition, and no adjudication history is UNRESOLVED and gets
-// KNOWLEDGE_DECOMPOSITION_GAP -- it is never rendered as though technical
-// knowledge simply isn't required.
+// Knowledge-boundary certification (CC-21A). A governed SEMANTIC
+// CERTIFICATION over an EXISTING candidate's already-constructed
+// knowledge/decomposition state -- never a new evidence source, never
+// capable of creating a candidate, fact, claimKey, or scope of its own.
+// Fact-level inclusion/exclusion remains governed entirely by
+// CandidateFactRequirement + SemanticAdjudication; this stage only
+// reviews whether the resulting SET is sufficient (see types.ts's own
+// header for the full rationale).
+// ---------------------------------------------------------------------
+
+/** Shared by fingerprint computation, certification validation, and knowledge-boundary finalization -- ONE source of truth for "which REVIEW_PROPOSED claimKeys targeting this candidate are still pending (not yet promoted)". */
+function computePendingReviewProposedClaimKeysByCandidate(
+  proposedFactRequirements: readonly CandidateFactRequirement[],
+  validatedFactRequirements: readonly CandidateFactRequirement[],
+): Map<string, string[]> {
+  const validatedIdentities = new Set(validatedFactRequirements.map((f) => `${f.targetCandidateKey}::${f.claimKey}`));
+  const pending = new Map<string, string[]>();
+  for (const f of proposedFactRequirements) {
+    if (f.derivationStatus !== "REVIEW_PROPOSED") continue;
+    const identity = `${f.targetCandidateKey}::${f.claimKey}`;
+    if (validatedIdentities.has(identity)) continue; // promoted -- no longer pending
+    const list = pending.get(f.targetCandidateKey) ?? [];
+    list.push(f.claimKey);
+    pending.set(f.targetCandidateKey, list);
+  }
+  return pending;
+}
+
+/** Shared by fingerprint computation and knowledge-boundary finalization -- subject -> the candidateKeys of its governed required children (parentSubject relationship), never a topic string. */
+function computeGovernedChildCandidateKeysBySubject(candidates: readonly KnowledgeCandidate[]): Map<string, string[]> {
+  const bySubject = new Map<string, string[]>();
+  for (const c of candidates) {
+    if (!REQUIRED_DISPOSITIONS.includes(c.disposition) || c.parentSubject === undefined) continue;
+    const list = bySubject.get(c.parentSubject) ?? [];
+    list.push(c.candidateKey);
+    bySubject.set(c.parentSubject, list);
+  }
+  return bySubject;
+}
+
+/**
+ * CC-21A section 5: canonical, deterministic, array-order-independent
+ * identity of the EXACT semantic state a certification reviews. Every
+ * input is explicitly sorted before hashing -- incidental array/object
+ * insertion order never changes the result.
+ */
+export function computeKnowledgeBoundaryFingerprint(opts: {
+  readonly qualificationId: string;
+  readonly targetCandidateKey: string;
+  readonly performanceType: string;
+  readonly performanceProvenance: string | undefined;
+  readonly requiredFactKeys: readonly string[];
+  readonly pendingReviewProposedClaimKeys: readonly string[];
+  readonly adjudicationOutcomes: readonly { claimKey: string; decision: string }[];
+  readonly governedChildCandidateKeys: readonly string[];
+}): string {
+  const canonical = {
+    qualificationId: opts.qualificationId,
+    targetCandidateKey: opts.targetCandidateKey,
+    performanceType: opts.performanceType,
+    performanceProvenance: opts.performanceProvenance ?? "UNRESOLVED",
+    requiredFactKeys: [...opts.requiredFactKeys].sort(),
+    pendingReviewProposedClaimKeys: [...opts.pendingReviewProposedClaimKeys].sort(),
+    adjudicationOutcomes: [...opts.adjudicationOutcomes].map((a) => `${a.claimKey}::${a.decision}`).sort(),
+    governedChildCandidateKeys: [...opts.governedChildCandidateKeys].sort(),
+  };
+  return createHash("sha256").update(JSON.stringify(canonical)).digest("hex");
+}
+
+/** Computes the current boundary fingerprint for every candidate, from the SAME pending-facts/adjudication/child-decomposition state finalizeKnowledgeBoundary itself uses -- the two can never drift apart. */
+export function computeCandidateBoundaryFingerprints(
+  candidates: readonly KnowledgeCandidate[],
+  qualificationId: string,
+  proposedFactRequirements: readonly CandidateFactRequirement[],
+  validatedFactRequirements: readonly CandidateFactRequirement[],
+  activeAdjudications: readonly SemanticAdjudication[],
+): ReadonlyMap<string, string> {
+  const pendingByCandidate = computePendingReviewProposedClaimKeysByCandidate(proposedFactRequirements, validatedFactRequirements);
+  const childrenBySubject = computeGovernedChildCandidateKeysBySubject(candidates);
+
+  const adjudicationsByCandidate = new Map<string, { claimKey: string; decision: string }[]>();
+  for (const a of activeAdjudications) {
+    const list = adjudicationsByCandidate.get(a.targetCandidateKey) ?? [];
+    list.push({ claimKey: a.claimKey, decision: a.decision });
+    adjudicationsByCandidate.set(a.targetCandidateKey, list);
+  }
+
+  const fingerprints = new Map<string, string>();
+  for (const c of candidates) {
+    fingerprints.set(
+      c.candidateKey,
+      computeKnowledgeBoundaryFingerprint({
+        qualificationId,
+        targetCandidateKey: c.candidateKey,
+        performanceType: c.performanceType,
+        performanceProvenance: c.performanceProvenance,
+        requiredFactKeys: c.requiredFactKeys ?? [],
+        pendingReviewProposedClaimKeys: pendingByCandidate.get(c.candidateKey) ?? [],
+        adjudicationOutcomes: adjudicationsByCandidate.get(c.candidateKey) ?? [],
+        governedChildCandidateKeys: childrenBySubject.get(c.subject) ?? [],
+      }),
+    );
+  }
+  return fingerprints;
+}
+
+/**
+ * CC-21A sections 4-9: validates every `KnowledgeBoundaryCertification`
+ * against (a) provenance, (b) qualification match, (c) resolving to a
+ * real current required candidate, (d) an EXACT match against the
+ * pipeline's own currently-calculated boundary fingerprint for that
+ * candidate (a stale certification -- one whose fingerprint doesn't
+ * match, because a fact was added/removed, an adjudication changed, or
+ * child decomposition changed -- never survives automatically), (e) real
+ * supporting evidence resolving to OFFICIAL_CURRICULUM or PUBLIC_ASSESSMENT
+ * for the exact candidate (TECHNICAL_TRUTH alone can never establish
+ * completeness), and (f) for COMPLETE specifically, no unresolved
+ * REVIEW_PROPOSED fact requirement remaining for the candidate -- COMPLETE
+ * is never a shortcut around fact-level adjudication. Every rejection is
+ * reported via KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP, never silently
+ * dropped, identically regardless of adjudicatorKind.
+ */
+export function validateKnowledgeBoundaryCertifications(
+  certifications: readonly KnowledgeBoundaryCertification[],
+  qualificationId: string,
+  requiredCandidateKeys: ReadonlySet<string>,
+  fingerprintByCandidateKey: ReadonlyMap<string, string>,
+  pendingReviewProposedClaimKeysByCandidate: ReadonlyMap<string, string[]>,
+  supportContext: SemanticAdjudicationSupportContext,
+): { validated: KnowledgeBoundaryCertification[]; gaps: GapRecord[] } {
+  const validated: KnowledgeBoundaryCertification[] = [];
+  const gaps: GapRecord[] = [];
+
+  for (const cert of certifications) {
+    const identifier = cert.targetCandidateKey;
+    const failure = provenanceFailureReason(cert, KNOWLEDGE_BOUNDARY_CERTIFICATION_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("KnowledgeBoundaryCertification", cert.certificationRef, cert, failure, identifier, ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT"]));
+      continue;
+    }
+    if (cert.qualificationId !== qualificationId) {
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+        candidateKey: identifier,
+        evidenceAvailable: [`certificationRef=${cert.certificationRef}`, `declaredQualification=${cert.qualificationId}`],
+        unresolved: `KnowledgeBoundaryCertification declares qualification "${cert.qualificationId}", not the active pipeline qualification "${qualificationId}" -- it cannot influence this run.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
+      });
+      continue;
+    }
+    if (!requiredCandidateKeys.has(cert.targetCandidateKey)) {
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+        candidateKey: identifier,
+        evidenceAvailable: [`certificationRef=${cert.certificationRef}`],
+        unresolved: `KnowledgeBoundaryCertification targets "${cert.targetCandidateKey}", which is not a current required candidate.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
+      });
+      continue;
+    }
+
+    const currentFingerprint = fingerprintByCandidateKey.get(cert.targetCandidateKey);
+    if (currentFingerprint === undefined || cert.boundaryFingerprint !== currentFingerprint) {
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+        candidateKey: identifier,
+        evidenceAvailable: [`certificationRef=${cert.certificationRef}`, `certifiedFingerprint=${cert.boundaryFingerprint}`, `currentFingerprint=${currentFingerprint ?? "(none)"}`],
+        unresolved: `KnowledgeBoundaryCertification for "${cert.targetCandidateKey}" is STALE -- its boundaryFingerprint does not equal the pipeline's current calculated fingerprint for this candidate's knowledge state (a fact proposal, adjudication, performance provenance, or governed child decomposition changed since certification). A historic certification never survives a changed knowledge boundary automatically.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+      continue;
+    }
+
+    const matches = cert.supportingEvidenceRefs.map((ref) => classifySupportingRef(ref, cert.targetCandidateKey, supportContext));
+    const hasPrimaryQualificationAuthority = matches.includes("CURRICULUM_MATCH") || matches.includes("ASSESSMENT_MATCH");
+    if (!hasPrimaryQualificationAuthority) {
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+        candidateKey: identifier,
+        evidenceAvailable: [
+          `certificationRef=${cert.certificationRef}`,
+          `decision=${cert.decision}`,
+          `adjudicatorKind=${cert.adjudicatorKind}`,
+          `supportingEvidenceRefs=${cert.supportingEvidenceRefs.map((r) => `${r.role}:${r.evidenceId}`).join(", ") || "(none)"}`,
+        ],
+        unresolved: `KnowledgeBoundaryCertification for "${cert.targetCandidateKey}" cites no supportingEvidenceRefs entry that mechanically resolves, by role and evidenceId, to real validated OFFICIAL_CURRICULUM or PUBLIC_ASSESSMENT evidence for this exact candidate -- TECHNICAL_TRUTH may support factual correctness but can never establish qualification completeness on its own, and no adjudicatorKind bypasses this gate.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT"],
+      });
+      continue;
+    }
+
+    if (cert.decision === "COMPLETE" && (pendingReviewProposedClaimKeysByCandidate.get(cert.targetCandidateKey)?.length ?? 0) > 0) {
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+        candidateKey: identifier,
+        evidenceAvailable: [`certificationRef=${cert.certificationRef}`, `pendingReviewProposedClaimKeys=${(pendingReviewProposedClaimKeysByCandidate.get(cert.targetCandidateKey) ?? []).join(", ")}`],
+        unresolved: `A COMPLETE KnowledgeBoundaryCertification for "${cert.targetCandidateKey}" is invalid while an unresolved REVIEW_PROPOSED CandidateFactRequirement remains for this candidate -- fact-level questions must be resolved first; COMPLETE is never a shortcut around fact-level adjudication.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+      continue;
+    }
+
+    validated.push(cert);
+  }
+  return { validated, gaps };
+}
+
+/**
+ * CC-21A section 15: two or more validated certifications giving
+ * incompatible decisions for the same (qualificationId, targetCandidateKey,
+ * boundaryFingerprint) are never resolved by array order -- ALL of them
+ * are excluded from `active` (no GOVERNED status for that candidate) and
+ * a single KNOWLEDGE_BOUNDARY_CERTIFICATION_CONFLICT gap is emitted.
+ */
+export function detectKnowledgeBoundaryCertificationConflicts(validated: readonly KnowledgeBoundaryCertification[]): { active: KnowledgeBoundaryCertification[]; gaps: GapRecord[] } {
+  const byIdentity = new Map<string, KnowledgeBoundaryCertification[]>();
+  for (const cert of validated) {
+    const key = `${cert.qualificationId}::${cert.targetCandidateKey}::${cert.boundaryFingerprint}`;
+    const list = byIdentity.get(key) ?? [];
+    list.push(cert);
+    byIdentity.set(key, list);
+  }
+
+  const gaps: GapRecord[] = [];
+  const conflictedIdentities = new Set<string>();
+  for (const [identity, group] of byIdentity) {
+    const decisions = new Set(group.map((c) => c.decision));
+    if (decisions.size > 1) {
+      conflictedIdentities.add(identity);
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_CONFLICT",
+        candidateKey: group[0]!.targetCandidateKey,
+        evidenceAvailable: group.map((c) => `decision=${c.decision} adjudicatorKind=${c.adjudicatorKind} certificationRef=${c.certificationRef}`),
+        unresolved: `Multiple KnowledgeBoundaryCertification records for candidate "${group[0]!.targetCandidateKey}" at the same boundary fingerprint disagree: ${[...decisions].join(", ")} -- never resolved by array order; no GOVERNED status while conflicted.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+    }
+  }
+  const active = validated.filter((c) => !conflictedIdentities.has(`${c.qualificationId}::${c.targetCandidateKey}::${c.boundaryFingerprint}`));
+  return { active, gaps };
+}
+
+// ---------------------------------------------------------------------
+// Knowledge-boundary finalization (CC-20 sections 12-15; CC-21A closes the
+// certification false-green). Runs LAST, once requiredFactKeys/
+// technicalCoverageStatus, active adjudications, AND active knowledge-
+// boundary certifications are all known. Detects a genuine structural
+// parent from the governed candidate-relationship graph (`parentSubject`),
+// never a topic string, and closes the false-green gaps the blind
+// back-test (CC-20) and its hardened rerun (CC-21) exposed: a required,
+// mastery-bearing leaf with zero governing facts, no decomposition, and
+// no adjudication history is UNRESOLVED and gets KNOWLEDGE_DECOMPOSITION_GAP;
+// a candidate whose governing facts are merely mechanically resolved, with
+// no valid COMPLETE KnowledgeBoundaryCertification at the current
+// fingerprint, is never GOVERNED -- it gets ADJUDICATION_REQUIRED and
+// KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP instead. GOVERNED now means
+// semantically certified knowledge-boundary completeness, never merely
+// "every currently-known requiredFactKey happens to have technical truth".
 // ---------------------------------------------------------------------
 
 export function finalizeKnowledgeBoundary(
@@ -1248,19 +1501,14 @@ export function finalizeKnowledgeBoundary(
   proposedFactRequirements: readonly CandidateFactRequirement[],
   validatedFactRequirements: readonly CandidateFactRequirement[],
   activeAdjudications: readonly SemanticAdjudication[],
+  /** CC-21A: ACTIVE (validated, non-conflicted, current-fingerprint) certifications, keyed by targetCandidateKey. GOVERNED is reachable ONLY through a COMPLETE entry here. */
+  activeCertificationsByCandidateKey: ReadonlyMap<string, KnowledgeBoundaryCertification> = new Map(),
 ): { candidates: KnowledgeCandidate[]; gaps: GapRecord[] } {
   const structuralParentSubjects = new Set(
     candidates.filter((c) => REQUIRED_DISPOSITIONS.includes(c.disposition) && c.parentSubject !== undefined).map((c) => c.parentSubject!),
   );
 
-  const validatedIdentities = new Set(validatedFactRequirements.map((f) => `${f.targetCandidateKey}::${f.claimKey}`));
-  const pendingReviewProposedByCandidate = new Map<string, number>();
-  for (const f of proposedFactRequirements) {
-    if (f.derivationStatus !== "REVIEW_PROPOSED") continue;
-    const identity = `${f.targetCandidateKey}::${f.claimKey}`;
-    if (validatedIdentities.has(identity)) continue; // promoted -- no longer pending
-    pendingReviewProposedByCandidate.set(f.targetCandidateKey, (pendingReviewProposedByCandidate.get(f.targetCandidateKey) ?? 0) + 1);
-  }
+  const pendingReviewProposedByCandidate = computePendingReviewProposedClaimKeysByCandidate(proposedFactRequirements, validatedFactRequirements);
 
   const anyAdjudicationByCandidate = new Map<string, SemanticAdjudication[]>();
   for (const a of activeAdjudications) {
@@ -1271,6 +1519,53 @@ export function finalizeKnowledgeBoundary(
 
   const gaps: GapRecord[] = [];
 
+  /**
+   * CC-21A sections 8-13: applies the certification exactly once the
+   * candidate's fact-level state is otherwise settled (no pending
+   * REVIEW_PROPOSED fact). `technicalCoverageStatus` is reported as
+   * computed -- COMPLETE knowledge-boundary certification is a distinct,
+   * independent axis from technical-source completeness (section 8), so a
+   * GOVERNED candidate may still carry an incomplete technicalCoverageStatus
+   * and a visible TECHNICAL_TRUTH_GAP.
+   */
+  function applyCertification(c: KnowledgeCandidate, coverage: TechnicalCoverageStatus): KnowledgeCandidate {
+    const certification = activeCertificationsByCandidateKey.get(c.candidateKey);
+    if (certification?.decision === "COMPLETE") {
+      return { ...c, knowledgeBoundaryStatus: "GOVERNED" as const, technicalCoverageStatus: coverage };
+    }
+    if (certification?.decision === "PARTIAL") {
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+        candidateKey: c.candidateKey,
+        evidenceAvailable: [`certificationRef=${certification.certificationRef}`, `technicalCoverageStatus=${coverage}`],
+        unresolved: `KnowledgeBoundaryCertification for "${c.candidateKey}" certified PARTIAL: ${certification.rationale}`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+      return { ...c, knowledgeBoundaryStatus: "PARTIAL" as const, technicalCoverageStatus: coverage };
+    }
+    if (certification?.decision === "UNRESOLVED") {
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+        candidateKey: c.candidateKey,
+        evidenceAvailable: [`certificationRef=${certification.certificationRef}`],
+        unresolved: `KnowledgeBoundaryCertification for "${c.candidateKey}" certified UNRESOLVED: ${certification.rationale}`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+      return { ...c, knowledgeBoundaryStatus: "UNRESOLVED" as const, technicalCoverageStatus: coverage };
+    }
+    // CC-21A section 1/12: no valid certification at the current fingerprint --
+    // mechanically resolved fact coverage (or its deliberate absence) is
+    // NEVER, by itself, sufficient to certify the knowledge boundary complete.
+    gaps.push({
+      gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+      candidateKey: c.candidateKey,
+      evidenceAvailable: [c.rationale, `technicalCoverageStatus=${coverage}`, `requiredFactKeys=${(c.requiredFactKeys ?? []).join(", ") || "(none)"}`],
+      unresolved: `"${c.subject}" has no valid KnowledgeBoundaryCertification at the current boundary fingerprint -- mechanically resolved (or deliberately absent) fact coverage alone never certifies the knowledge boundary complete; an independent semantic decision is required before this candidate can be GOVERNED.`,
+      legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+    });
+    return { ...c, knowledgeBoundaryStatus: "ADJUDICATION_REQUIRED" as const, technicalCoverageStatus: coverage };
+  }
+
   const updated = candidates.map((c) => {
     // CC-20A section 8-9: a governed child relationship (some required
     // candidate's parentSubject naming this subject) is NECESSARY but NOT
@@ -1279,6 +1574,7 @@ export function finalizeKnowledgeBoundary(
     // record) before its own, possibly-independent learner performance is
     // assumed fully represented by its children. A PRIMARY_REQUIREMENT is
     // never STRUCTURALLY_DECOMPOSED merely because a child points to it.
+    // No separate certification is required for a genuine structural node.
     if (c.isExplicitlyStructuralNode === true && structuralParentSubjects.has(c.subject) && REQUIRED_DISPOSITIONS.includes(c.disposition)) {
       return { ...c, knowledgeBoundaryStatus: "STRUCTURALLY_DECOMPOSED" as const, technicalCoverageStatus: "NOT_APPLICABLE" as const };
     }
@@ -1287,19 +1583,20 @@ export function finalizeKnowledgeBoundary(
       return { ...c, technicalCoverageStatus: c.technicalCoverageStatus ?? ("NOT_APPLICABLE" as const) };
     }
 
-    const pendingCount = pendingReviewProposedByCandidate.get(c.candidateKey) ?? 0;
+    const pendingKeys = pendingReviewProposedByCandidate.get(c.candidateKey) ?? [];
     const requiredCount = c.requiredFactKeys?.length ?? 0;
 
     if (requiredCount === 0) {
-      if (pendingCount > 0) {
+      if (pendingKeys.length > 0) {
         return { ...c, knowledgeBoundaryStatus: "ADJUDICATION_REQUIRED" as const, technicalCoverageStatus: "UNRESOLVED_REQUIREMENTS" as const };
       }
       const everExamined = (anyAdjudicationByCandidate.get(c.candidateKey)?.length ?? 0) > 0;
       if (everExamined) {
         // Deliberately, auditably closed at zero requirements (e.g. every
         // proposal was CONTEXT_ONLY/REJECT_*) -- distinct from never
-        // having been examined at all.
-        return { ...c, knowledgeBoundaryStatus: "GOVERNED" as const, technicalCoverageStatus: "NOT_APPLICABLE" as const };
+        // having been examined at all. Still requires a valid COMPLETE
+        // certification to reach GOVERNED (CC-21A section 12).
+        return applyCertification(c, "NOT_APPLICABLE");
       }
       gaps.push({
         gapType: "KNOWLEDGE_DECOMPOSITION_GAP",
@@ -1312,15 +1609,18 @@ export function finalizeKnowledgeBoundary(
     }
 
     // requiredCount > 0 -- some governing facts already exist.
-    if (pendingCount > 0) {
+    if (pendingKeys.length > 0) {
       // Never falsely COMPLETE while a sibling review-proposed fact for
       // this same candidate is still pending adjudication.
       const coverage = c.technicalCoverageStatus === "COMPLETE" ? ("PARTIAL" as const) : (c.technicalCoverageStatus ?? ("PARTIAL" as const));
       return { ...c, knowledgeBoundaryStatus: "ADJUDICATION_REQUIRED" as const, technicalCoverageStatus: coverage };
     }
 
+    // CC-21A section 1/12-13: fact coverage mechanically resolved (or not)
+    // is reported as-is, but GOVERNED is reachable ONLY through a valid
+    // COMPLETE certification -- never merely because coverage === COMPLETE.
     const coverage = c.technicalCoverageStatus ?? ("UNRESOLVED_REQUIREMENTS" as const);
-    return { ...c, knowledgeBoundaryStatus: coverage === "COMPLETE" ? ("GOVERNED" as const) : ("PARTIAL" as const), technicalCoverageStatus: coverage };
+    return applyCertification(c, coverage);
   });
 
   return { candidates: updated, gaps };
@@ -1624,6 +1924,8 @@ export interface StandardPipelineInput {
   readonly factualClaims?: readonly SourceFactualClaim[];
   /** CC-20: governed decisions over already-existing `factRequirements` proposals -- see SemanticAdjudication's own header. Never a new factual source. */
   readonly semanticAdjudications?: readonly SemanticAdjudication[];
+  /** CC-21A: semantic certifications over an existing candidate's already-constructed knowledge state -- see KnowledgeBoundaryCertification's own header. Never a new evidence source, never able to manufacture knowledge. */
+  readonly knowledgeBoundaryCertifications?: readonly KnowledgeBoundaryCertification[];
 }
 
 function assertStandardModeRole(role: EvidenceRole, evidenceId: string): void {
@@ -1747,10 +2049,36 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
   const { candidates: breadthCandidates, gaps: breadthGaps } = computeCategoryBreadthOutcomes(validCurriculum, validAssessment, validRelations);
   candidates = mergeCandidates([...candidates, ...breadthCandidates]);
 
-  // CC-20 sections 12-15: knowledge-boundary finalization runs LAST, once
-  // requiredFactKeys/technicalCoverageStatus and active adjudications are
-  // both known.
-  const { candidates: withKnowledgeBoundary, gaps: knowledgeBoundaryGaps } = finalizeKnowledgeBoundary(candidates, input.factRequirements ?? [], validFactRequirements, activeAdjudications);
+  // CC-21A: knowledge-boundary CERTIFICATIONS are validated once
+  // requiredFactKeys/technicalCoverageStatus are settled -- each is bound
+  // to a deterministic fingerprint of the candidate's exact current
+  // knowledge state, so a certification computed against an earlier state
+  // (a fact added/removed, an adjudication changed, decomposition
+  // changed) is mechanically STALE and never silently trusted.
+  const candidateBoundaryFingerprints = computeCandidateBoundaryFingerprints(candidates, input.qualificationId, input.factRequirements ?? [], validFactRequirements, activeAdjudications);
+  const pendingReviewProposedClaimKeysByCandidate = computePendingReviewProposedClaimKeysByCandidate(input.factRequirements ?? [], validFactRequirements);
+  const { validated: validCertifications, gaps: certificationValidationGaps } = validateKnowledgeBoundaryCertifications(
+    input.knowledgeBoundaryCertifications ?? [],
+    input.qualificationId,
+    requiredCandidateKeys,
+    candidateBoundaryFingerprints,
+    pendingReviewProposedClaimKeysByCandidate,
+    semanticAdjudicationSupportContext,
+  );
+  const { active: activeCertifications, gaps: certificationConflictGaps } = detectKnowledgeBoundaryCertificationConflicts(validCertifications);
+  const activeCertificationsByCandidateKey = new Map(activeCertifications.map((c) => [c.targetCandidateKey, c] as const));
+
+  // CC-20 sections 12-15 (CC-21A closes the certification false-green):
+  // knowledge-boundary finalization runs LAST, once requiredFactKeys/
+  // technicalCoverageStatus, active adjudications, AND active
+  // certifications are all known.
+  const { candidates: withKnowledgeBoundary, gaps: knowledgeBoundaryGaps } = finalizeKnowledgeBoundary(
+    candidates,
+    input.factRequirements ?? [],
+    validFactRequirements,
+    activeAdjudications,
+    activeCertificationsByCandidateKey,
+  );
   candidates = withKnowledgeBoundary;
 
   const depthGaps = computePerformanceDepthGaps(candidates);
@@ -1778,6 +2106,8 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
       ...conflictGaps,
       ...breadthGaps,
       ...patternGaps,
+      ...certificationValidationGaps,
+      ...certificationConflictGaps,
       ...knowledgeBoundaryGaps,
       ...depthGaps,
       ...truthGaps,
@@ -1786,6 +2116,7 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
     unmatchedQualificationLevel,
     semanticAdjudicationOutcomes: activeAdjudications,
     representativeExemplars,
+    knowledgeBoundaryCertificationOutcomes: activeCertifications,
   };
 }
 

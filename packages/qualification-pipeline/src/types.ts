@@ -352,6 +352,10 @@ export const gapTypeSchema = z.enum([
   "SEMANTIC_ADJUDICATION_GAP",
   /** CC-20 section 11: two or more validated SemanticAdjudications disagree on the decision for the same (qualificationId, targetCandidateKey, claimKey) -- never resolved by array order; no governing promotion occurs until resolved. */
   "SEMANTIC_ADJUDICATION_CONFLICT",
+  /** CC-21A section 12/16: a candidate cannot reach GOVERNED -- no valid COMPLETE KnowledgeBoundaryCertification exists at the current boundary fingerprint (absent, stale, invalid, or a non-COMPLETE certified decision). */
+  "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+  /** CC-21A section 15: two or more validated KnowledgeBoundaryCertifications for the same (qualificationId, targetCandidateKey, boundaryFingerprint) disagree on decision -- never resolved by array order; no GOVERNED status while conflicted. */
+  "KNOWLEDGE_BOUNDARY_CERTIFICATION_CONFLICT",
 ]);
 export type GapType = z.infer<typeof gapTypeSchema>;
 
@@ -394,6 +398,8 @@ export const normalizationBasisSchema = z.enum([
   "FACT_REQUIREMENT_DERIVATION",
   /** CC-20 section 3: the ONLY basis a SemanticAdjudication may declare -- an adjudication is a governed decision over an already-existing source-derived proposal, never a new factual source in its own right. */
   "SEMANTIC_ADJUDICATION_DECISION",
+  /** CC-21A section 3: the ONLY basis a KnowledgeBoundaryCertification may declare -- a certification is a governed SEMANTIC CERTIFICATION over an already-existing candidate's knowledge state, never a new evidence source. */
+  "KNOWLEDGE_BOUNDARY_CERTIFICATION_DECISION",
 ]);
 export type NormalizationBasis = z.infer<typeof normalizationBasisSchema>;
 
@@ -871,6 +877,81 @@ export interface RepresentativeExemplarRecord {
 }
 
 // ---------------------------------------------------------------------
+// 17B. Knowledge-boundary certification (CC-21A). The blind back-test's
+// generic rerun (CC-21) exposed a false-green: "all currently-known
+// governing facts happen to be mechanically resolved" was being read as
+// `knowledgeBoundaryStatus: GOVERNED`, even though no independent
+// judgement had ever established that the CURRENT SET of facts/
+// procedures actually exhausts what the candidate's learner performance
+// needs. A deterministic pipeline cannot infer an omitted, never-proposed
+// requirement merely from the absence of a proposal for it -- so "every
+// known fact resolved" can never, by itself, mean "the boundary is
+// complete".
+//
+// `KnowledgeBoundaryCertification` closes this: a governed SEMANTIC
+// CERTIFICATION over an EXISTING candidate's already-constructed
+// knowledge/decomposition state. It is explicitly NOT curriculum
+// evidence, factual evidence, a fact proposal, or a scope source, and it
+// can never manufacture missing knowledge -- fact-level inclusion/
+// exclusion remains governed entirely by `CandidateFactRequirement` +
+// `SemanticAdjudication` (§17A); this stage only reviews whether the
+// resulting SET is sufficient. After CC-21A, `GOVERNED` means
+// semantically certified knowledge-boundary completeness -- never merely
+// "every currently-known requiredFactKey happens to have technical
+// truth" (that remains `technicalCoverageStatus`'s own, separate axis).
+// ---------------------------------------------------------------------
+
+/**
+ * LOCKED certification decisions (CC-21A section 8-11).
+ *
+ *   COMPLETE   -- given the current explicit curriculum requirement,
+ *                 learner performance, qualification-level/depth
+ *                 evidence, current governing fact/procedure set,
+ *                 resolved fact-level adjudications, and governed
+ *                 structural decomposition, the knowledge boundary is
+ *                 sufficiently represented for course construction at
+ *                 this qualification depth. Does NOT mean every
+ *                 technical source has been acquired -- COMPLETE may
+ *                 coexist with a TECHNICAL_TRUTH_GAP for a required
+ *                 fact; technical sourcing and knowledge-boundary
+ *                 completeness are independent axes. Invalid while the
+ *                 candidate still has an unresolved REVIEW_PROPOSED
+ *                 fact requirement -- COMPLETE is never a shortcut
+ *                 around fact-level adjudication.
+ *   PARTIAL    -- the current governing knowledge set is valid as far as
+ *                 it goes, but further knowledge/decomposition remains
+ *                 required or unresolved.
+ *   UNRESOLVED -- available evidence/adjudication cannot yet safely
+ *                 establish a sufficient knowledge boundary.
+ */
+export const knowledgeBoundaryCertificationDecisionSchema = z.enum(["COMPLETE", "PARTIAL", "UNRESOLVED"]);
+export type KnowledgeBoundaryCertificationDecision = z.infer<typeof knowledgeBoundaryCertificationDecisionSchema>;
+
+/**
+ * A governed decision over an EXISTING candidate's current knowledge
+ * state. `boundaryFingerprint` binds the certification to the EXACT
+ * semantic state it reviewed (§5) -- a certification whose fingerprint
+ * does not match the pipeline's current calculated fingerprint for that
+ * candidate is STALE and invalid, regardless of how recently valid it
+ * once was (§6). Never able to create a candidate, subject, performance,
+ * `CandidateFactRequirement`, `claimKey`, technical truth, or curriculum
+ * scope of its own.
+ */
+export interface KnowledgeBoundaryCertification extends SourceProvenance {
+  readonly qualificationId: string;
+  readonly targetCandidateKey: string;
+  readonly decision: KnowledgeBoundaryCertificationDecision;
+  readonly adjudicatorKind: AdjudicatorKind;
+  /** Opaque pointer to the decision record/session this certification came from -- audit trail, never interpreted by production logic. */
+  readonly certificationRef: string;
+  /** Deterministic, array-order-independent identity of the exact candidate knowledge state this certification reviewed -- see `computeKnowledgeBoundaryFingerprint` in rules.ts. */
+  readonly boundaryFingerprint: string;
+  readonly rationale: string;
+  /** Real evidence this certification is bound to -- at minimum a validated OFFICIAL_CURRICULUM or PUBLIC_ASSESSMENT ref for the exact target candidate; TECHNICAL_TRUTH may support factual correctness but can never establish completeness on its own. */
+  readonly supportingEvidenceRefs: readonly EvidenceRef[];
+}
+
+// ---------------------------------------------------------------------
 // 18. Optional-calibration / legacy-diagnostic evidence. Never capable
 // of influencing required scope -- no mandatory provenance burden
 // imposed here since neither type is ever a standard-pipeline input.
@@ -934,4 +1015,13 @@ export interface StandardPipelineResult {
   readonly semanticAdjudicationOutcomes: readonly SemanticAdjudication[];
   /** CC-20 section 9: REPRESENTATIVE_EXEMPLAR adjudications only, in the shape downstream course construction needs -- never present in any candidate's requiredFactKeys, never increases scope/depth confidence. */
   readonly representativeExemplars: readonly RepresentativeExemplarRecord[];
+  /**
+   * CC-21A: complete, non-lossy audit trail of every ACTIVE (validated,
+   * non-conflicted, current-fingerprint) `KnowledgeBoundaryCertification`
+   * that influenced this run, regardless of decision -- `COMPLETE`
+   * alongside `PARTIAL`/`UNRESOLVED`. A certification rejected as stale,
+   * invalid, or conflicting is never in this list -- see `gaps`
+   * (`KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP`/`_CONFLICT`) instead.
+   */
+  readonly knowledgeBoundaryCertificationOutcomes: readonly KnowledgeBoundaryCertification[];
 }
