@@ -319,10 +319,13 @@ export function generateCurriculumCandidates(validatedEvidence: readonly Curricu
   const depthQualifiersByParentSubject = new Map<string, CurriculumEvidence[]>();
   const parentBySubject = new Map<string, string>();
   const performanceTypesBySubject = new Map<string, Set<LearnerPerformanceType>>();
-  // CC-20A section 12: tracks which SUBJECTS have at least one record that
-  // explicitly declared commandVerbPerformanceType -- the mechanical basis
-  // for PerformanceProvenance.EXPLICIT/GOVERNED_INHERITED, never inferred
-  // from the (possibly pipeline-defaulted) performanceType alone.
+  // CC-20A section 12 (tightened CC-20B section 6-9): tracks which SUBJECTS
+  // have at least one record whose commandVerbPerformanceType is BOTH
+  // populated AND declared commandVerbPerformanceBasis: "SOURCE_EXPLICIT" --
+  // the mechanical basis for PerformanceProvenance.EXPLICIT/
+  // GOVERNED_INHERITED. A populated enum with no declared basis, or an
+  // explicit "STRONG_INFERENCE" basis, is normalization OUTPUT, never
+  // treated as source-explicit evidence on its own.
   const subjectsWithExplicitPerformance = new Set<string>();
 
   for (const e of validatedEvidence) {
@@ -345,7 +348,7 @@ export function generateCurriculumCandidates(validatedEvidence: readonly Curricu
     perfSet.add(performanceType);
     performanceTypesBySubject.set(e.subject, perfSet);
 
-    if (e.commandVerbPerformanceType !== undefined) subjectsWithExplicitPerformance.add(e.subject);
+    if (e.commandVerbPerformanceType !== undefined && e.commandVerbPerformanceBasis === "SOURCE_EXPLICIT") subjectsWithExplicitPerformance.add(e.subject);
 
     if (e.normalizationKind === "RANGE_REQUIRED_MEMBER" && e.refinesSubject) {
       parentBySubject.set(e.subject, e.refinesSubject);
@@ -405,13 +408,17 @@ export function generateCurriculumCandidates(validatedEvidence: readonly Curricu
     if (kinds.has("RANGE_CATEGORY")) rationaleParts.push("a named standalone official Range category");
     const rationale = `Required curriculum scope -- ${rationaleParts.join("; ")}. Internal implementation detail beyond what other evidence independently supports is not automatically authorised.`;
 
-    // CC-20A section 12: EXPLICIT when this exact candidate's own record(s)
-    // declared commandVerbPerformanceType; GOVERNED_INHERITED only for a
-    // RANGE_REQUIRED_MEMBER whose governed parent subject did (a
-    // mechanically resolvable relationship, never a topic-string guess);
-    // UNRESOLVED otherwise -- the pipeline's own "?? OTHER" fallback is
-    // never treated as an evidence author's explicit claim.
-    const ownExplicitPerformance = records.some((r) => r.commandVerbPerformanceType !== undefined);
+    // CC-20A section 12 (tightened CC-20B section 6-9): EXPLICIT when this
+    // exact candidate's own record(s) declared commandVerbPerformanceType
+    // WITH commandVerbPerformanceBasis: "SOURCE_EXPLICIT" -- a populated
+    // enum with no declared basis, or an explicit "STRONG_INFERENCE" basis,
+    // is normalization output, never treated as source evidence.
+    // GOVERNED_INHERITED only for a RANGE_REQUIRED_MEMBER whose governed
+    // parent subject is ITSELF source-explicit (a mechanically resolvable
+    // relationship, never a topic-string guess, and never an upgrade for an
+    // inferred parent); UNRESOLVED otherwise -- the pipeline's own
+    // "?? OTHER" fallback is never treated as an evidence author's claim.
+    const ownExplicitPerformance = records.some((r) => r.commandVerbPerformanceType !== undefined && r.commandVerbPerformanceBasis === "SOURCE_EXPLICIT");
     const parentSubjectForKey = parentBySubject.get(subject);
     const inheritedExplicitPerformance = !ownExplicitPerformance && kinds.has("RANGE_REQUIRED_MEMBER") && parentSubjectForKey !== undefined && subjectsWithExplicitPerformance.has(parentSubjectForKey);
     const performanceProvenance: PerformanceProvenance = ownExplicitPerformance ? "EXPLICIT" : inheritedExplicitPerformance ? "GOVERNED_INHERITED" : "UNRESOLVED";
@@ -514,8 +521,12 @@ export function generateAssessmentCandidates(validated: readonly AssessmentEvide
       evidenceRefs: items.map((i) => ({ role: i.role, evidenceId: i.evidenceId })),
       depthBasis: "ASSESSMENT_CALIBRATED",
       assessmentCalibrationAvailable: true,
-      // AssessmentEvidence.performanceType is mandatory -- the performance is always an explicit claim.
-      performanceProvenance: "EXPLICIT",
+      // CC-20B section 9: performanceType is mandatory, but that alone is
+      // normalization output -- only a declared performanceBasis:
+      // "SOURCE_EXPLICIT" means the assessment item itself directly
+      // supports the performance, never a semantic guess from vague
+      // assessment evidence recorded as a populated enum.
+      performanceProvenance: items.some((i) => i.performanceBasis === "SOURCE_EXPLICIT") ? "EXPLICIT" : "UNRESOLVED",
     });
   }
   return candidates;
@@ -1011,6 +1022,8 @@ export interface SemanticAdjudicationSupportContext {
   readonly qualificationLevelCandidateKeyByEvidenceId: ReadonlyMap<string, string>;
   /** evidenceIds of validated TECHNICAL_TRUTH SourceFactualClaims. */
   readonly technicalTruthClaimIds: ReadonlySet<string>;
+  /** CC-20B section 3 route C: candidateKey -> that candidate's own already-resolved DepthBasis, needed only for OVERDEPTH_FORMALISM's "already governed by an explicit curriculum depth qualifier" route. */
+  readonly candidateDepthBasisByKey: ReadonlyMap<string, DepthBasis>;
 }
 
 function classifySupportingRef(ref: EvidenceRef, targetCandidateKey: string, ctx: SemanticAdjudicationSupportContext): SemanticAdjudicationRefMatch {
@@ -1028,8 +1041,16 @@ function classifySupportingRef(ref: EvidenceRef, targetCandidateKey: string, ctx
   }
 }
 
-/** CC-20A section 5: per-basis compatibility against the RESOLVED support -- the basis enum must never become another self-authorising label. */
-function isBasisCompatibleWithSupport(basis: SemanticAdjudicationBasis, matches: readonly SemanticAdjudicationRefMatch[]): boolean {
+/**
+ * CC-20A section 5 (tightened CC-20B section 3-5): per-basis compatibility
+ * against the RESOLVED support -- the basis enum must never become another
+ * self-authorising label. `targetCandidateDepthBasis` is the ADJUDICATED
+ * candidate's own already-resolved `DepthBasis` (from earlier pipeline
+ * stages), needed only by `OVERDEPTH_FORMALISM`'s route C below.
+ * `isGoverningDecision` distinguishes the one basis (`INSUFFICIENT_EVIDENCE`)
+ * whose compatibility depends on which kind of decision it is attached to.
+ */
+function isBasisCompatibleWithSupport(basis: SemanticAdjudicationBasis, matches: readonly SemanticAdjudicationRefMatch[], targetCandidateDepthBasis: DepthBasis | undefined, isGoverningDecision: boolean): boolean {
   const has = (m: SemanticAdjudicationRefMatch) => matches.includes(m);
   switch (basis) {
     case "PUBLIC_ASSESSMENT_CALIBRATION":
@@ -1042,11 +1063,25 @@ function isBasisCompatibleWithSupport(basis: SemanticAdjudicationBasis, matches:
       return has("CURRICULUM_MATCH") || has("ASSESSMENT_MATCH");
     case "MULTIPLE_VALID_IMPLEMENTATIONS":
     case "REPRESENTATIVE_EXEMPLAR_SELECTION":
-    case "OVERDEPTH_FORMALISM":
       // Non-mastery bases: supporting refs must still be real (not fabricated), but any recognised evidence stream suffices.
       return matches.some((m) => m !== "UNRESOLVED");
+    case "OVERDEPTH_FORMALISM":
+      // CC-20B section 3: makes a QUALIFICATION-DEPTH judgement ("this is
+      // beyond the required learner depth") -- TECHNICAL_TRUTH alone can
+      // prove a fact is true, never that the qualification excludes it.
+      // Valid routes: (A) exact curriculum authority for this candidate
+      // PLUS applicable qualification-level evidence; (B) assessment
+      // evidence mapped to this exact candidate (assessment IS the
+      // pipeline's own depth-calibration mechanism); (C) the candidate's
+      // OWN depth is already governed by an explicit curriculum depth
+      // qualifier (already represented by the governed curriculum/depth
+      // model, without needing to re-cite it here).
+      return (has("CURRICULUM_MATCH") && has("QUALIFICATION_LEVEL_MATCH")) || has("ASSESSMENT_MATCH") || targetCandidateDepthBasis === "EXPLICIT_CURRICULUM_DEPTH";
     case "INSUFFICIENT_EVIDENCE":
-      return false; // can never support a governing decision, by definition
+      // Can never support a governing decision, by definition -- but is
+      // exactly the honest, non-governing admission behind UNRESOLVED/
+      // REJECT_*, which needs no evidence of its own to be compatible.
+      return !isGoverningDecision;
   }
 }
 
@@ -1092,35 +1127,48 @@ export function validateSemanticAdjudications(
       continue;
     }
 
-    // CC-20A sections 3-6: a GOVERNING decision requires real, exact-candidate
-    // primary qualification support, and every declared basis must itself be
-    // compatible with what actually resolved -- applies identically regardless
-    // of adjudicatorKind (HUMAN_PROJECT_ARCHITECT/LLM_EVIDENCE_BOUND/RULE_ENGINE
-    // all pass through the same mechanical gate; the label never bypasses it).
-    if (GOVERNING_ADJUDICATION_DECISIONS.includes(a.decision)) {
-      const matches = a.supportingEvidenceRefs.map((ref) => classifySupportingRef(ref, a.targetCandidateKey, supportContext));
-      const hasPrimaryQualificationAuthority = matches.includes("CURRICULUM_MATCH") || matches.includes("ASSESSMENT_MATCH");
-      const allBasesCompatible = a.adjudicationBasis.length > 0 && a.adjudicationBasis.every((b) => isBasisCompatibleWithSupport(b, matches));
-      if (!hasPrimaryQualificationAuthority || !allBasesCompatible) {
-        gaps.push({
-          gapType: "EVIDENCE_NORMALIZATION_REVIEW",
-          candidateKey: a.targetCandidateKey,
-          evidenceAvailable: [
-            `identifier=${identifier}`,
-            `decision=${a.decision}`,
-            `adjudicatorKind=${a.adjudicatorKind}`,
-            `adjudicationBasis=${a.adjudicationBasis.join(", ") || "(none)"}`,
-            `supportingEvidenceRefs=${a.supportingEvidenceRefs.map((r) => `${r.role}:${r.evidenceId}`).join(", ") || "(none)"}`,
-            `resolvedMatches=${matches.join(", ") || "(none)"}`,
-          ],
-          unresolved: !hasPrimaryQualificationAuthority
-            ? `A governing SemanticAdjudication (${a.decision}) for claimKey "${a.claimKey}" on candidate "${a.targetCandidateKey}" cites no supportingEvidenceRefs entry that mechanically resolves, by role and evidenceId, to real validated OFFICIAL_CURRICULUM or PUBLIC_ASSESSMENT evidence for this exact candidate -- TECHNICAL_TRUTH and QUALIFICATION_LEVEL evidence may corroborate or bound depth but can never substitute for curriculum/performance authority, and no adjudicatorKind bypasses this gate.`
-            : `A governing SemanticAdjudication (${a.decision}) for claimKey "${a.claimKey}" on candidate "${a.targetCandidateKey}" declares adjudicationBasis (${a.adjudicationBasis.join(", ")}) not fully compatible with its resolved supporting evidence -- the basis enum is never self-authorising.`,
-          legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
-          notes: "A fabricated evidenceId, wrong role, wrong qualification, or wrong candidate mapping never validates merely because sourceRef/sourceLocator are non-empty or the adjudicator's own rationale asserts the evidence exists.",
-        });
-        continue;
-      }
+    // CC-20A sections 3-6 (CC-20B section 11 closes the non-governing gap):
+    // every basis a decision declares must be compatible with what
+    // mechanically resolved -- applies to EVERY adjudication, governing or
+    // not, identically regardless of adjudicatorKind (HUMAN_PROJECT_ARCHITECT/
+    // LLM_EVIDENCE_BOUND/RULE_ENGINE all pass through the same mechanical
+    // gate; the label never bypasses it). A GOVERNING decision additionally
+    // requires real, exact-candidate primary qualification support -- a
+    // non-governing decision (CONTEXT_ONLY/REJECT_*/REPRESENTATIVE_EXEMPLAR/
+    // UNRESOLVED) never needed that authority in the first place, but its
+    // declared basis (e.g. OVERDEPTH_FORMALISM on a REJECT_OVERDEPTH) is
+    // never exempt from being itself well-grounded -- an invalid basis is
+    // rejected and reported for EVERY decision kind, never silently
+    // discarded, so a malformed non-governing adjudication can never
+    // silently prune a valid governing requirement or alter the knowledge
+    // boundary.
+    const isGoverningDecision = GOVERNING_ADJUDICATION_DECISIONS.includes(a.decision);
+    const matches = a.supportingEvidenceRefs.map((ref) => classifySupportingRef(ref, a.targetCandidateKey, supportContext));
+    const targetCandidateDepthBasis = supportContext.candidateDepthBasisByKey.get(a.targetCandidateKey);
+    const hasPrimaryQualificationAuthority = matches.includes("CURRICULUM_MATCH") || matches.includes("ASSESSMENT_MATCH");
+    const allBasesCompatible = a.adjudicationBasis.length > 0 && a.adjudicationBasis.every((b) => isBasisCompatibleWithSupport(b, matches, targetCandidateDepthBasis, isGoverningDecision));
+    const governingSupportOk = !isGoverningDecision || hasPrimaryQualificationAuthority;
+
+    if (!governingSupportOk || !allBasesCompatible) {
+      gaps.push({
+        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+        candidateKey: a.targetCandidateKey,
+        evidenceAvailable: [
+          `identifier=${identifier}`,
+          `decision=${a.decision}`,
+          `adjudicatorKind=${a.adjudicatorKind}`,
+          `adjudicationBasis=${a.adjudicationBasis.join(", ") || "(none)"}`,
+          `supportingEvidenceRefs=${a.supportingEvidenceRefs.map((r) => `${r.role}:${r.evidenceId}`).join(", ") || "(none)"}`,
+          `resolvedMatches=${matches.join(", ") || "(none)"}`,
+        ],
+        unresolved: !governingSupportOk
+          ? `A governing SemanticAdjudication (${a.decision}) for claimKey "${a.claimKey}" on candidate "${a.targetCandidateKey}" cites no supportingEvidenceRefs entry that mechanically resolves, by role and evidenceId, to real validated OFFICIAL_CURRICULUM or PUBLIC_ASSESSMENT evidence for this exact candidate -- TECHNICAL_TRUTH and QUALIFICATION_LEVEL evidence may corroborate or bound depth but can never substitute for curriculum/performance authority, and no adjudicatorKind bypasses this gate.`
+          : `A SemanticAdjudication (${a.decision}) for claimKey "${a.claimKey}" on candidate "${a.targetCandidateKey}" declares adjudicationBasis (${a.adjudicationBasis.join(", ")}) not fully compatible with its resolved supporting evidence -- the basis enum is never self-authorising, for governing or non-governing decisions alike (e.g. OVERDEPTH_FORMALISM can never be satisfied by TECHNICAL_TRUTH alone).`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+        notes:
+          "A fabricated evidenceId, wrong role, wrong qualification, or wrong candidate mapping never validates merely because sourceRef/sourceLocator are non-empty or the adjudicator's own rationale asserts the evidence exists. This adjudication is entirely excluded from `active` -- it has zero semantic effect on requiredFactKeys, knowledgeBoundaryStatus, or any other adjudication's outcome.",
+      });
+      continue;
     }
 
     validated.push(a);
@@ -1655,11 +1703,17 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
   const assessmentCandidateKeyByEvidenceId = new Map(validAssessment.map((e) => [e.evidenceId, candidateKey(e.subject, e.performanceType)] as const));
   const qualificationLevelCandidateKeyByEvidenceId = new Map(validQualificationLevel.map((e) => [e.evidenceId, e.appliesToCandidateKey] as const));
   const technicalTruthClaimIds = new Set(validFactualClaims.filter((c) => c.sourceRole === "TECHNICAL_TRUTH").map((c) => c.evidenceId));
+  // CC-20B section 3 route C: candidates already carry their own resolved
+  // depthBasis at this point (attachQualificationLevelConstraints already
+  // ran) -- OVERDEPTH_FORMALISM may rely on a candidate's OWN
+  // EXPLICIT_CURRICULUM_DEPTH without needing to re-cite the depth qualifier.
+  const candidateDepthBasisByKey = new Map(candidates.filter((c) => c.depthBasis !== undefined).map((c) => [c.candidateKey, c.depthBasis!] as const));
   const semanticAdjudicationSupportContext: SemanticAdjudicationSupportContext = {
     curriculumCandidateKeyByEvidenceId,
     assessmentCandidateKeyByEvidenceId,
     qualificationLevelCandidateKeyByEvidenceId,
     technicalTruthClaimIds,
+    candidateDepthBasisByKey,
   };
 
   // CC-20: semantic adjudication runs BEFORE fact-requirement validation --

@@ -1661,10 +1661,19 @@ describe("CC-20 case F -- a REQUIRED_OPERATIONAL adjudication with a valid propo
 
 describe("CC-20 case G -- a REPRESENTATIVE_EXEMPLAR adjudication is exposed separately, never enters requiredFactKeys", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
-  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "c20g-topic", curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "c20g-topic", curriculumUnitId: "AC-X", evidenceId: "curr-c20g" })];
   const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
   const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "c20g-fact", derivationStatus: "REVIEW_PROPOSED" })];
-  const adjudications: SemanticAdjudication[] = [semanticAdjudication({ targetCandidateKey: key, claimKey: "c20g-fact", decision: "REPRESENTATIVE_EXEMPLAR", adjudicationBasis: ["REPRESENTATIVE_EXEMPLAR_SELECTION"] })];
+  // CC-20B: non-governing adjudications are gated too -- supporting refs must still be real.
+  const adjudications: SemanticAdjudication[] = [
+    semanticAdjudication({
+      targetCandidateKey: key,
+      claimKey: "c20g-fact",
+      decision: "REPRESENTATIVE_EXEMPLAR",
+      adjudicationBasis: ["REPRESENTATIVE_EXEMPLAR_SELECTION"],
+      supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-c20g" }],
+    }),
+  ];
   const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, semanticAdjudications: adjudications }));
 
   it("never enters requiredFactKeys and never raises scope/depth confidence", () => {
@@ -1685,10 +1694,14 @@ describe("CC-20 case G -- a REPRESENTATIVE_EXEMPLAR adjudication is exposed sepa
 describe("CC-20 cases H/I/J -- CONTEXT_ONLY/REJECT_OVERDEPTH/REJECT_NOT_NECESSARY remain non-governing but are preserved in audit output", () => {
   function nonGoverningCase(decision: "CONTEXT_ONLY" | "REJECT_OVERDEPTH" | "REJECT_NOT_NECESSARY", topic: string, claimKey: string) {
     const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
-    const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: topic, curriculumUnitId: "AC-X" })];
+    const curriculumEvidenceId = `curr-${topic}`;
+    const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: topic, curriculumUnitId: "AC-X", evidenceId: curriculumEvidenceId })];
     const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
     const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey, derivationStatus: "REVIEW_PROPOSED" })];
-    const adjudications: SemanticAdjudication[] = [semanticAdjudication({ targetCandidateKey: key, claimKey, decision })];
+    // CC-20B: non-governing adjudications are gated too -- SEMANTIC_NECESSITY (the helper's default basis) still needs real curriculum/assessment support.
+    const adjudications: SemanticAdjudication[] = [
+      semanticAdjudication({ targetCandidateKey: key, claimKey, decision, supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: curriculumEvidenceId }] }),
+    ];
     return buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, semanticAdjudications: adjudications }));
   }
 
@@ -1779,7 +1792,13 @@ describe("CC-20 case N -- two conflicting adjudications for the same fact never 
       decisionRef: "decision-forward-1",
       supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-c20n" }],
     }),
-    semanticAdjudication({ targetCandidateKey: key, claimKey: "c20n-fact", decision: "REJECT_NOT_NECESSARY", decisionRef: "decision-forward-2" }),
+    semanticAdjudication({
+      targetCandidateKey: key,
+      claimKey: "c20n-fact",
+      decision: "REJECT_NOT_NECESSARY",
+      decisionRef: "decision-forward-2",
+      supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-c20n" }],
+    }),
   ];
   const reversed = [...forward].reverse();
 
@@ -1797,7 +1816,7 @@ describe("CC-20 case N -- two conflicting adjudications for the same fact never 
 
 describe("CC-20 cases O/P -- qualification-level evidence bounds depth to MEDIUM; absence of assessment alone no longer causes PERFORMANCE_DEPTH_GAP", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
-  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "c20op-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "c20op-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", commandVerbPerformanceBasis: "SOURCE_EXPLICIT" })];
   const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
   const levelEvidence: QualificationLevelEvidence[] = [
     {
@@ -2159,7 +2178,7 @@ describe("CC-20A case AH2 -- a validated RANGE_CATEGORY whose child relation doe
 
 describe("CC-20A case AI2 -- explicit curriculum performance + applicable qualification level + no assessment -> QUALIFICATION_LEVEL_BOUNDED / MEDIUM", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
-  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "ai2-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "ai2-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", commandVerbPerformanceBasis: "SOURCE_EXPLICIT" })];
   const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
   const levelEvidence: QualificationLevelEvidence[] = [
     { role: "QUALIFICATION_LEVEL", evidenceId: "level-ai2", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "loc", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "ceiling", appliesToCandidateKey: key },
@@ -2200,8 +2219,8 @@ describe("CC-20A case AJ2 -- uncertain/unresolved performance mapping + qualific
 describe("CC-20A case AK2 -- a governed inherited explicit performance plus applicable qualification level may be QUALIFICATION_LEVEL_BOUNDED / MEDIUM", () => {
   const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
   const curriculumEvidence: CurriculumEvidence[] = [
-    curriculum({ subject: "ak2-parent", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "EXPLAIN" }),
-    // The child declares no commandVerbPerformanceType of its own -- inherits EXPLICIT via the governed parent relationship.
+    curriculum({ subject: "ak2-parent", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "EXPLAIN", commandVerbPerformanceBasis: "SOURCE_EXPLICIT" }),
+    // The child declares no commandVerbPerformanceType of its own -- inherits EXPLICIT via the governed, source-explicit parent relationship.
     curriculum({ subject: "ak2-child", curriculumUnitId: "AC-X", normalizationKind: "RANGE_REQUIRED_MEMBER", refinesSubject: "ak2-parent" }),
   ];
   const { candidates: standaloneCandidates } = generateCurriculumCandidates(curriculumEvidence);
@@ -2222,7 +2241,7 @@ describe("CC-20A case AK2 -- a governed inherited explicit performance plus appl
 describe("CC-20A case AL2 -- absence of assessment remains visible without itself creating a depth gap, for both direct and inherited established performances", () => {
   it("direct explicit performance (AI2-style): assessmentCalibrationAvailable falsy, no PERFORMANCE_DEPTH_GAP", () => {
     const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
-    const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "al2a-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE" })];
+    const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "al2a-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", commandVerbPerformanceBasis: "SOURCE_EXPLICIT" })];
     const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
     const levelEvidence: QualificationLevelEvidence[] = [
       { role: "QUALIFICATION_LEVEL", evidenceId: "level-al2a", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "loc", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "ceiling", appliesToCandidateKey: key },
@@ -2236,7 +2255,7 @@ describe("CC-20A case AL2 -- absence of assessment remains visible without itsel
   it("governed inherited performance (AK2-style): assessmentCalibrationAvailable falsy, no PERFORMANCE_DEPTH_GAP", () => {
     const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
     const curriculumEvidence: CurriculumEvidence[] = [
-      curriculum({ subject: "al2b-parent", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "EXPLAIN" }),
+      curriculum({ subject: "al2b-parent", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "EXPLAIN", commandVerbPerformanceBasis: "SOURCE_EXPLICIT" }),
       curriculum({ subject: "al2b-child", curriculumUnitId: "AC-X", normalizationKind: "RANGE_REQUIRED_MEMBER", refinesSubject: "al2b-parent" }),
     ];
     const { candidates: standaloneCandidates } = generateCurriculumCandidates(curriculumEvidence);
@@ -2258,5 +2277,307 @@ describe("CC-20A case AM2 -- technical truth alone can never establish semantic 
   it("creates no candidate and no scope from technical truth alone", () => {
     expect(result.candidates).toEqual([]);
     expect(result.unmatchedTechnicalTruth).toHaveLength(1);
+  });
+});
+
+// =====================================================================
+// CC-20B cases AN2-BC2 -- final pre-rerun hardening: OVERDEPTH_FORMALISM
+// requires real qualification/depth authority (never technical truth
+// alone); invalid non-governing adjudications are auditable and inert,
+// exactly like invalid governing ones; a populated performance enum is
+// never itself EXPLICIT provenance. Fixtures are synthetic.
+// =====================================================================
+
+describe("CC-20B case AN2 -- REJECT_OVERDEPTH + OVERDEPTH_FORMALISM supported only by TECHNICAL_TRUTH is rejected and cannot alter the knowledge boundary", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "an2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-an2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  // Already-governing via ordinary citation, entirely independent of adjudication.
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "an2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-an2" }] })];
+  const claims: SourceFactualClaim[] = [factualClaim({ claimKey: "an2-fact", subject: "an2-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value", evidenceId: "truth-an2" })];
+  const adjudications: SemanticAdjudication[] = [
+    semanticAdjudication({ targetCandidateKey: key, claimKey: "an2-fact", decision: "REJECT_OVERDEPTH", adjudicationBasis: ["OVERDEPTH_FORMALISM"], supportingEvidenceRefs: [{ role: "TECHNICAL_TRUTH", evidenceId: "truth-an2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims, semanticAdjudications: adjudications }));
+
+  it("the adjudication is rejected -- never appears in semanticAdjudicationOutcomes", () => {
+    expect(result.semanticAdjudicationOutcomes.some((a) => a.claimKey === "an2-fact")).toBe(false);
+  });
+
+  it("cannot suppress the already-governing requirement", () => {
+    expect(findCandidate(result, "an2-topic")!.requiredFactKeys).toEqual(["an2-fact"]);
+  });
+
+  it("emits a visible EVIDENCE_NORMALIZATION_REVIEW gap", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.candidateKey === key && g.unresolved.includes("an2-fact"))).toBe(true);
+  });
+});
+
+describe("CC-20B case AO2 -- an authoritative TECHNICAL_TRUTH source still cannot support OVERDEPTH_FORMALISM -- technical authority is not qualification-depth authority", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "ao2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-ao2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "ao2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-ao2" }] })];
+  const claims: SourceFactualClaim[] = [
+    factualClaim({ claimKey: "ao2-fact", subject: "ao2-topic", sourceRole: "TECHNICAL_TRUTH", normalizedClaimValue: "value", evidenceId: "truth-ao2", sourceRef: "SRC-HIGHLY-AUTHORITATIVE-STANDARDS-BODY" }),
+  ];
+  const adjudications: SemanticAdjudication[] = [
+    semanticAdjudication({ targetCandidateKey: key, claimKey: "ao2-fact", decision: "REJECT_OVERDEPTH", adjudicationBasis: ["OVERDEPTH_FORMALISM"], supportingEvidenceRefs: [{ role: "TECHNICAL_TRUTH", evidenceId: "truth-ao2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, factualClaims: claims, semanticAdjudications: adjudications }));
+
+  it("still rejected regardless of the technical source's own authority", () => {
+    expect(result.semanticAdjudicationOutcomes.some((a) => a.claimKey === "ao2-fact")).toBe(false);
+    expect(findCandidate(result, "ao2-topic")!.requiredFactKeys).toEqual(["ao2-fact"]);
+  });
+});
+
+describe("CC-20B case AP2 -- REJECT_OVERDEPTH + OVERDEPTH_FORMALISM with exact OFFICIAL_CURRICULUM plus applicable QUALIFICATION_LEVEL evidence may validate, subject to other gates", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "ap2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-ap2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const levelEvidence: QualificationLevelEvidence[] = [
+    { role: "QUALIFICATION_LEVEL", evidenceId: "level-ap2", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "loc", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "ceiling", appliesToCandidateKey: key },
+  ];
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "ap2-fact", derivationStatus: "REVIEW_PROPOSED" })];
+  const adjudications: SemanticAdjudication[] = [
+    semanticAdjudication({
+      targetCandidateKey: key,
+      claimKey: "ap2-fact",
+      decision: "REJECT_OVERDEPTH",
+      adjudicationBasis: ["OVERDEPTH_FORMALISM"],
+      supportingEvidenceRefs: [
+        { role: "OFFICIAL_CURRICULUM", evidenceId: "curr-ap2" },
+        { role: "QUALIFICATION_LEVEL", evidenceId: "level-ap2" },
+      ],
+    }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, qualificationLevel: levelEvidence, factRequirements: factReqs, semanticAdjudications: adjudications }));
+
+  it("validates and is preserved in the audit output", () => {
+    expect(result.semanticAdjudicationOutcomes.some((a) => a.claimKey === "ap2-fact" && a.decision === "REJECT_OVERDEPTH")).toBe(true);
+  });
+
+  it("remains non-governing regardless -- never enters requiredFactKeys", () => {
+    expect(findCandidate(result, "ap2-topic")!.requiredFactKeys ?? []).toEqual([]);
+  });
+});
+
+describe("CC-20B case AQ2 -- REJECT_OVERDEPTH supported by valid mapped PUBLIC_ASSESSMENT depth evidence may validate", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "aq2-topic", curriculumUnitId: "AC-X" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const item = assessment({ subject: "aq2-topic", performanceType: "OTHER", mappedCurriculumUnitId: "AC-X", evidenceId: "assess-aq2" });
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "aq2-fact", derivationStatus: "REVIEW_PROPOSED" })];
+  const adjudications: SemanticAdjudication[] = [
+    semanticAdjudication({ targetCandidateKey: key, claimKey: "aq2-fact", decision: "REJECT_OVERDEPTH", adjudicationBasis: ["OVERDEPTH_FORMALISM"], supportingEvidenceRefs: [{ role: "PUBLIC_ASSESSMENT", evidenceId: "assess-aq2" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, assessment: [item], factRequirements: factReqs, semanticAdjudications: adjudications }));
+
+  it("validates", () => {
+    expect(result.semanticAdjudicationOutcomes.some((a) => a.claimKey === "aq2-fact" && a.decision === "REJECT_OVERDEPTH")).toBe(true);
+  });
+});
+
+describe("CC-20B case AR2 -- an invalid REJECT_OVERDEPTH evidenceId produces a visible gap and has no semantic effect", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "ar2-topic", curriculumUnitId: "AC-X", evidenceId: "curr-ar2" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "ar2-fact", sourceEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-ar2" }] })];
+  const adjudications: SemanticAdjudication[] = [
+    semanticAdjudication({ targetCandidateKey: key, claimKey: "ar2-fact", decision: "REJECT_OVERDEPTH", adjudicationBasis: ["OVERDEPTH_FORMALISM"], supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-ar2-FAKE" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, semanticAdjudications: adjudications }));
+
+  it("emits a visible gap", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.candidateKey === key && g.unresolved.includes("ar2-fact"))).toBe(true);
+  });
+
+  it("has no semantic effect -- the governing fact is unaffected", () => {
+    expect(findCandidate(result, "ar2-topic")!.requiredFactKeys).toEqual(["ar2-fact"]);
+  });
+});
+
+describe("CC-20B case AS2 -- invalid REPRESENTATIVE_EXEMPLAR supporting evidence produces a visible gap and has no semantic effect", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "as2-topic", curriculumUnitId: "AC-X" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "as2-fact", derivationStatus: "REVIEW_PROPOSED" })];
+  const adjudications: SemanticAdjudication[] = [
+    semanticAdjudication({ targetCandidateKey: key, claimKey: "as2-fact", decision: "REPRESENTATIVE_EXEMPLAR", adjudicationBasis: ["REPRESENTATIVE_EXEMPLAR_SELECTION"], supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-as2-FAKE" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, semanticAdjudications: adjudications }));
+
+  it("emits a visible gap", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.candidateKey === key && g.unresolved.includes("as2-fact"))).toBe(true);
+  });
+
+  it("has no semantic effect -- never enters representativeExemplars, semanticAdjudicationOutcomes, or requiredFactKeys", () => {
+    expect(result.representativeExemplars).toEqual([]);
+    expect(result.semanticAdjudicationOutcomes).toEqual([]);
+    expect(findCandidate(result, "as2-topic")!.requiredFactKeys ?? []).toEqual([]);
+  });
+});
+
+describe("CC-20B case AT2 -- invalid CONTEXT_ONLY supporting evidence produces a visible gap and has no semantic effect", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "at2-topic", curriculumUnitId: "AC-X" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "at2-fact", derivationStatus: "REVIEW_PROPOSED" })];
+  const adjudications: SemanticAdjudication[] = [
+    semanticAdjudication({ targetCandidateKey: key, claimKey: "at2-fact", decision: "CONTEXT_ONLY", supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-at2-FAKE" }] }),
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, semanticAdjudications: adjudications }));
+
+  it("emits a visible gap and never enters semanticAdjudicationOutcomes", () => {
+    expect(result.gaps.some((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.candidateKey === key && g.unresolved.includes("at2-fact"))).toBe(true);
+    expect(result.semanticAdjudicationOutcomes).toEqual([]);
+  });
+});
+
+describe("CC-20B case AU2 -- a populated commandVerbPerformanceType with STRONG_INFERENCE basis is NOT EXPLICIT provenance", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "au2-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", commandVerbPerformanceBasis: "STRONG_INFERENCE" })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence }));
+
+  it("performanceProvenance is UNRESOLVED, never EXPLICIT", () => {
+    expect(findCandidate(result, "au2-topic")!.performanceProvenance).toBe("UNRESOLVED");
+  });
+});
+
+describe("CC-20B case AV2 -- a performance directly established by accepted source-explicit curriculum wording is EXPLICIT", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "av2-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", commandVerbPerformanceBasis: "SOURCE_EXPLICIT" })];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence }));
+
+  it("performanceProvenance is EXPLICIT", () => {
+    expect(findCandidate(result, "av2-topic")!.performanceProvenance).toBe("EXPLICIT");
+  });
+});
+
+describe("CC-20B case AW2 -- STRONG_INFERENCE performance + applicable qualification-level evidence is NOT QUALIFICATION_LEVEL_BOUNDED merely because the enum is populated", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "aw2-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", commandVerbPerformanceBasis: "STRONG_INFERENCE" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const levelEvidence: QualificationLevelEvidence[] = [
+    { role: "QUALIFICATION_LEVEL", evidenceId: "level-aw2", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "loc", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "ceiling", appliesToCandidateKey: key },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, qualificationLevel: levelEvidence }));
+
+  it("depthBasis is not QUALIFICATION_LEVEL_BOUNDED, depthConfidence is not MEDIUM", () => {
+    const c = findCandidate(result, "aw2-topic")!;
+    expect(c.performanceProvenance).toBe("UNRESOLVED");
+    expect(c.depthBasis).not.toBe("QUALIFICATION_LEVEL_BOUNDED");
+    expect(c.confidence.depthConfidence).not.toBe("MEDIUM");
+  });
+});
+
+describe("CC-20B case AX2 -- source-explicit performance + applicable qualification-level evidence -> QUALIFICATION_LEVEL_BOUNDED / MEDIUM", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "ax2-topic", curriculumUnitId: "AC-X", commandVerbPerformanceType: "CALCULATE", commandVerbPerformanceBasis: "SOURCE_EXPLICIT" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const levelEvidence: QualificationLevelEvidence[] = [
+    { role: "QUALIFICATION_LEVEL", evidenceId: "level-ax2", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "loc", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "ceiling", appliesToCandidateKey: key },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, qualificationLevel: levelEvidence }));
+
+  it("depthBasis QUALIFICATION_LEVEL_BOUNDED, depthConfidence MEDIUM", () => {
+    const c = findCandidate(result, "ax2-topic")!;
+    expect(c.depthBasis).toBe("QUALIFICATION_LEVEL_BOUNDED");
+    expect(c.confidence.depthConfidence).toBe("MEDIUM");
+  });
+});
+
+describe("CC-20B case AY2 -- a child inheriting from a source-explicit governed parent may qualify for level-bounded depth", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [
+    curriculum({ subject: "ay2-parent", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "EXPLAIN", commandVerbPerformanceBasis: "SOURCE_EXPLICIT" }),
+    curriculum({ subject: "ay2-child", curriculumUnitId: "AC-X", normalizationKind: "RANGE_REQUIRED_MEMBER", refinesSubject: "ay2-parent" }),
+  ];
+  const { candidates: standaloneCandidates } = generateCurriculumCandidates(curriculumEvidence);
+  const childKey = standaloneCandidates.find((c) => c.subject === "ay2-child")!.candidateKey;
+  const levelEvidence: QualificationLevelEvidence[] = [
+    { role: "QUALIFICATION_LEVEL", evidenceId: "level-ay2", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "loc", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "ceiling", appliesToCandidateKey: childKey },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, qualificationLevel: levelEvidence }));
+
+  it("the child is GOVERNED_INHERITED and QUALIFICATION_LEVEL_BOUNDED / MEDIUM", () => {
+    const c = findCandidate(result, "ay2-child")!;
+    expect(c.performanceProvenance).toBe("GOVERNED_INHERITED");
+    expect(c.depthBasis).toBe("QUALIFICATION_LEVEL_BOUNDED");
+    expect(c.confidence.depthConfidence).toBe("MEDIUM");
+  });
+});
+
+describe("CC-20B case AZ2 -- a child inheriting from a STRONG_INFERENCE parent must not be upgraded to source-explicit/governed depth", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [
+    curriculum({ subject: "az2-parent", curriculumUnitId: "AC-X", normalizationKind: "PRIMARY_REQUIREMENT", commandVerbPerformanceType: "EXPLAIN", commandVerbPerformanceBasis: "STRONG_INFERENCE" }),
+    curriculum({ subject: "az2-child", curriculumUnitId: "AC-X", normalizationKind: "RANGE_REQUIRED_MEMBER", refinesSubject: "az2-parent" }),
+  ];
+  const { candidates: standaloneCandidates } = generateCurriculumCandidates(curriculumEvidence);
+  const childKey = standaloneCandidates.find((c) => c.subject === "az2-child")!.candidateKey;
+  const levelEvidence: QualificationLevelEvidence[] = [
+    { role: "QUALIFICATION_LEVEL", evidenceId: "level-az2", qualificationId: QUAL, levelId: "LEVEL-2", sourceRef: "SRC-FRAMEWORK", sourceLocator: "loc", normalizationBasis: "QUALIFICATION_LEVEL_DESCRIPTOR", depthConstraintDescriptor: "ceiling", appliesToCandidateKey: childKey },
+  ];
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, qualificationLevel: levelEvidence }));
+
+  it("the child's performance stays UNRESOLVED and depth remains unbounded", () => {
+    const c = findCandidate(result, "az2-child")!;
+    expect(c.performanceProvenance).toBe("UNRESOLVED");
+    expect(c.depthBasis).not.toBe("QUALIFICATION_LEVEL_BOUNDED");
+    expect(c.confidence.depthConfidence).not.toBe("MEDIUM");
+  });
+});
+
+describe("CC-20B case BA2 -- validated PUBLIC_ASSESSMENT directly establishing performance may be treated as established", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const item = assessment({ subject: "ba2-topic", performanceType: "CALCULATE", mappedCurriculumUnitId: "AC-X", performanceBasis: "SOURCE_EXPLICIT" });
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, assessment: [item] }));
+
+  it("performanceProvenance is EXPLICIT", () => {
+    expect(findCandidate(result, "ba2-topic", "CALCULATE")!.performanceProvenance).toBe("EXPLICIT");
+  });
+});
+
+describe("CC-20B case BB2 -- an unresolved/inferred assessment performance does not become established merely because the enum is populated", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const item = assessment({ subject: "bb2-topic", performanceType: "CALCULATE", mappedCurriculumUnitId: "AC-X" }); // no performanceBasis declared
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, assessment: [item] }));
+
+  it("performanceProvenance is UNRESOLVED, not EXPLICIT", () => {
+    expect(findCandidate(result, "bb2-topic", "CALCULATE")!.performanceProvenance).toBe("UNRESOLVED");
+  });
+});
+
+describe("CC-20B case BC2 -- all rejected non-governing adjudications remain visible in the structured audit output and have zero semantic effect", () => {
+  const units: OfficialCurriculumUnit[] = [officialUnit({ curriculumUnitId: "AC-X" })];
+  const curriculumEvidence: CurriculumEvidence[] = [curriculum({ subject: "bc2-topic", curriculumUnitId: "AC-X" })];
+  const key = generateCurriculumCandidates(curriculumEvidence).candidates[0]!.candidateKey;
+  const factReqs: CandidateFactRequirement[] = [factRequirement({ targetCandidateKey: key, claimKey: "bc2-fact", derivationStatus: "REVIEW_PROPOSED" })];
+  const decisions: readonly SemanticAdjudication["decision"][] = ["CONTEXT_ONLY", "REJECT_OVERDEPTH", "REJECT_NOT_NECESSARY", "REPRESENTATIVE_EXEMPLAR", "UNRESOLVED"];
+  const adjudications: SemanticAdjudication[] = decisions.map((decision, i) =>
+    semanticAdjudication({
+      targetCandidateKey: key,
+      claimKey: "bc2-fact",
+      decision,
+      adjudicationBasis: decision === "REPRESENTATIVE_EXEMPLAR" ? ["REPRESENTATIVE_EXEMPLAR_SELECTION"] : decision === "REJECT_OVERDEPTH" ? ["OVERDEPTH_FORMALISM"] : ["SEMANTIC_NECESSITY"],
+      decisionRef: `bc2-decision-${i}`,
+      supportingEvidenceRefs: [{ role: "OFFICIAL_CURRICULUM", evidenceId: "curr-bc2-FAKE" }],
+    }),
+  );
+  const result = buildStandardPipeline(pipeline({ officialCurriculumUnits: units, curriculum: curriculumEvidence, factRequirements: factReqs, semanticAdjudications: adjudications }));
+
+  it("every adjudication is rejected, each producing its own visible gap", () => {
+    // Filtered to gaps ABOUT a rejected SemanticAdjudication specifically -- the REVIEW_PROPOSED
+    // fact requirement itself also (separately, correctly) produces its own EVIDENCE_NORMALIZATION_REVIEW,
+    // whose own text happens to mention "SemanticAdjudication" too (as the thing it's still awaiting).
+    const rejectionGaps = result.gaps.filter((g) => g.gapType === "EVIDENCE_NORMALIZATION_REVIEW" && g.candidateKey === key && /^A (governing )?SemanticAdjudication/.test(g.unresolved) && g.unresolved.includes("bc2-fact"));
+    expect(rejectionGaps.length).toBe(decisions.length);
+  });
+
+  it("none of them appear in semanticAdjudicationOutcomes and none influence the candidate", () => {
+    expect(result.semanticAdjudicationOutcomes).toEqual([]);
+    expect(findCandidate(result, "bc2-topic")!.requiredFactKeys ?? []).toEqual([]);
   });
 });

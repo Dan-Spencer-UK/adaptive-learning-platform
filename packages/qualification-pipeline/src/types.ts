@@ -238,27 +238,64 @@ export const depthBasisSchema = z.enum(["EXPLICIT_CURRICULUM_DEPTH", "ASSESSMENT
 export type DepthBasis = z.infer<typeof depthBasisSchema>;
 
 /**
- * CC-20A section 11-12: whether the learner PERFORMANCE a candidate
- * represents is itself mechanically established, independent of whether
- * any depth-bounding evidence (qualification-level or otherwise) has been
- * attached. `QUALIFICATION_LEVEL_BOUNDED` depth is only ever valid for a
- * candidate whose performance is `EXPLICIT` or `GOVERNED_INHERITED` --
- * attaching qualification-level evidence to a candidate whose performance
- * mapping is itself `UNRESOLVED` (e.g. a curriculum normalization that
- * could not confidently determine a command verb, silently defaulted to
- * `OTHER`) must never read as though depth were bounded.
+ * CC-20B section 6-9: governs whether a populated performance-type field
+ * (`CurriculumEvidence.commandVerbPerformanceType` /
+ * `AssessmentEvidence.performanceBasis`'s own `performanceType`) may be
+ * trusted as `PerformanceProvenance.EXPLICIT` (§ below). A populated enum
+ * is normalization OUTPUT, not itself source evidence -- CC-20A's original
+ * criterion ("commandVerbPerformanceType is defined") let a normalizer's
+ * own semantic/strong inference masquerade as an explicit source claim
+ * merely because it filled the field in. This field makes the STRENGTH of
+ * that population explicit and mandatory to declare source-explicitness:
+ *
+ *   SOURCE_EXPLICIT  -- the performance/command is directly supported by
+ *                        the source wording itself, or by a mechanically
+ *                        governed explicit curriculum mapping -- never a
+ *                        semantic guess recorded as a performance enum.
+ *   STRONG_INFERENCE -- the normalizer's own confident-but-inferred
+ *                        reading; a real, useful signal, but never
+ *                        sufficient on its own to bound depth.
+ *
+ * Omitted is treated identically to `STRONG_INFERENCE` for depth-bounding
+ * purposes -- conservative by default, never assumed explicit.
+ */
+export const performanceEvidenceBasisSchema = z.enum(["SOURCE_EXPLICIT", "STRONG_INFERENCE"]);
+export type PerformanceEvidenceBasis = z.infer<typeof performanceEvidenceBasisSchema>;
+
+/**
+ * CC-20A section 11-12 (tightened CC-20B section 7-10): whether the
+ * learner PERFORMANCE a candidate represents is itself mechanically
+ * established, independent of whether any depth-bounding evidence
+ * (qualification-level or otherwise) has been attached.
+ * `QUALIFICATION_LEVEL_BOUNDED` depth is only ever valid for a candidate
+ * whose performance is `EXPLICIT` or `GOVERNED_INHERITED` -- attaching
+ * qualification-level evidence to a candidate whose performance mapping is
+ * itself `UNRESOLVED` (a normalizer's own strong inference, or a curriculum
+ * normalization that could not confidently determine a command verb at
+ * all, silently defaulted to `OTHER`) must never read as though depth were
+ * bounded.
  *
  *   EXPLICIT           -- the candidate's own contributing CurriculumEvidence
+ *                          declared `commandVerbPerformanceType` WITH
+ *                          `commandVerbPerformanceBasis: "SOURCE_EXPLICIT"`
  *                          (or, for an assessment-evidenced candidate, the
- *                          mandatory AssessmentEvidence.performanceType)
- *                          explicitly declared `commandVerbPerformanceType`.
+ *                          AssessmentEvidence declared `performanceBasis:
+ *                          "SOURCE_EXPLICIT"`) -- never merely a populated
+ *                          enum. CC-20B closes the gap where a
+ *                          `STRONG_INFERENCE` normalization could reach
+ *                          EXPLICIT merely by filling in the enum.
  *   GOVERNED_INHERITED  -- a `RANGE_REQUIRED_MEMBER` candidate whose own
  *                          record did not declare a command verb, but whose
- *                          governed parent (`refinesSubject`) did, via a
+ *                          governed parent (`refinesSubject`) is itself
+ *                          `SOURCE_EXPLICIT` under the rule above, via a
  *                          mechanically resolvable parent/child relationship.
+ *                          Inheriting from a `STRONG_INFERENCE` parent never
+ *                          upgrades to `GOVERNED_INHERITED`.
  *   UNRESOLVED          -- neither of the above; the performance mapping
  *                          rests on the pipeline's own `?? "OTHER"` fallback,
- *                          never on an evidence author's explicit claim.
+ *                          a `STRONG_INFERENCE` normalization, or an
+ *                          inherited-but-inferred parent -- never on an
+ *                          evidence author's source-explicit claim.
  */
 export const performanceProvenanceSchema = z.enum(["EXPLICIT", "GOVERNED_INHERITED", "UNRESOLVED"]);
 export type PerformanceProvenance = z.infer<typeof performanceProvenanceSchema>;
@@ -508,6 +545,16 @@ export interface CurriculumEvidence extends SourceProvenance {
    */
   readonly refinesPerformanceType?: LearnerPerformanceType;
   readonly commandVerbPerformanceType?: LearnerPerformanceType;
+  /**
+   * CC-20B section 6-9: declares whether `commandVerbPerformanceType`
+   * (when populated) is directly supported by source wording / a governed
+   * explicit mapping (`SOURCE_EXPLICIT`) or the normalizer's own confident
+   * reading (`STRONG_INFERENCE`). Omitted is treated as `STRONG_INFERENCE`
+   * for `PerformanceProvenance` purposes (see types.ts's own header) --
+   * conservative by default. Meaningless when `commandVerbPerformanceType`
+   * itself is omitted.
+   */
+  readonly commandVerbPerformanceBasis?: PerformanceEvidenceBasis;
   /** Meaningful only for RANGE_CATEGORY records. Undeclared is treated as UNKNOWN -- never silently ENUMERATED_COMPLETE or OPEN_OR_UNDERSPECIFIED. */
   readonly breadthStatus?: CategoryBreadthStatus;
 }
@@ -529,6 +576,15 @@ export interface AssessmentEvidence extends SourceProvenance {
   readonly correctAnswerTarget: string;
   readonly subject: string;
   readonly performanceType: LearnerPerformanceType;
+  /**
+   * CC-20B section 9: declares whether `performanceType` is directly
+   * supported by the assessment item itself (`SOURCE_EXPLICIT`) or the
+   * normalizer's own confident-but-inferred reading of vague assessment
+   * evidence (`STRONG_INFERENCE`). Omitted is treated as `STRONG_INFERENCE`
+   * for `PerformanceProvenance` purposes -- a normalized enum is never
+   * automatically explicit merely because it exists.
+   */
+  readonly performanceBasis?: PerformanceEvidenceBasis;
   /** Only trusted for breadth-gap purposes when a matching, governed `CurriculumSubjectRelation` also exists. */
   readonly underCategory?: string;
   /** Only trusted for pattern purposes when a matching, governed `CurriculumFamily` also lists this item's own subject. */
