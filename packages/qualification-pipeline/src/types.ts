@@ -192,9 +192,80 @@ export interface ConfidenceProfile {
   readonly technicalTruthConfidence: ConfidenceLevel;
 }
 
-/** Fact-key-specific technical coverage status (CC-18B section 15) -- richer than a bare confidence level. */
-export const technicalCoverageStatusSchema = z.enum(["NOT_REQUIRED", "PARTIAL", "COMPLETE"]);
+/**
+ * Fact-key-specific technical coverage status (CC-18B section 15;
+ * corrected CC-20 section 15). The prior two-way split of "PARTIAL" vs
+ * "NOT_REQUIRED" let a genuine mastery-bearing leaf with zero governing
+ * requiredFactKeys render identically to a candidate that structurally
+ * has no factual dimension at all -- the blind back-test showed
+ * this reads as a false-green "technical knowledge is simply not
+ * required" even when the true state is "nobody has established what, if
+ * anything, is required yet".
+ *
+ *   NOT_APPLICABLE          -- limited to genuinely structural/non-factual
+ *                              candidates (see KnowledgeBoundaryStatus
+ *                              STRUCTURALLY_DECOMPOSED) or non-mastery-
+ *                              bearing dispositions -- never a mastery-
+ *                              bearing required candidate.
+ *   COMPLETE                -- every current governing requiredFactKey has
+ *                              exact, undisputed technical-truth coverage.
+ *   PARTIAL                 -- the governing requirement set is settled and
+ *                              some, but not all, of it is covered.
+ *   UNRESOLVED_REQUIREMENTS -- the learner-knowledge requirements
+ *                              themselves are not sufficiently established
+ *                              (zero governing facts on a mastery-bearing
+ *                              leaf, or governing facts remain pending
+ *                              semantic adjudication) -- never rendered as
+ *                              though nothing is required.
+ *   CONFLICTED               -- at least one governing requiredFactKey hit
+ *                              an unresolved TECHNICAL_TRUTH conflict/
+ *                              incompatible comparison -- never silently
+ *                              folded into PARTIAL.
+ */
+export const technicalCoverageStatusSchema = z.enum(["NOT_APPLICABLE", "COMPLETE", "PARTIAL", "UNRESOLVED_REQUIREMENTS", "CONFLICTED"]);
 export type TechnicalCoverageStatus = z.infer<typeof technicalCoverageStatusSchema>;
+
+/**
+ * Candidate-level depth basis (CC-20 section 16) -- what actually bounds
+ * this candidate's depthConfidence. QUALIFICATION_LEVEL_BOUNDED is a
+ * deliberately weaker, distinguishable basis from
+ * ASSESSMENT_CALIBRATED/EXPLICIT_CURRICULUM_DEPTH: qualification-level
+ * evidence supplies a defensible ceiling, never the exact content, formula,
+ * topology or exemplar required -- it must never be treated as though it
+ * were assessment-calibrated depth.
+ */
+export const depthBasisSchema = z.enum(["EXPLICIT_CURRICULUM_DEPTH", "ASSESSMENT_CALIBRATED", "QUALIFICATION_LEVEL_BOUNDED", "UNRESOLVED"]);
+export type DepthBasis = z.infer<typeof depthBasisSchema>;
+
+/**
+ * Candidate-level knowledge-boundary status (CC-20 section 12) -- makes
+ * the boundary between "governed" and "never actually examined" explicit,
+ * rather than collapsing both into an empty requiredFactKeys list.
+ *
+ *   STRUCTURALLY_DECOMPOSED -- a genuine parent/category candidate whose
+ *                              required content is represented by governed
+ *                              child candidates (detected from the
+ *                              candidate-relationship graph, never a topic
+ *                              string).
+ *   GOVERNED                -- the current learner-knowledge boundary is
+ *                              sufficiently represented by governing fact/
+ *                              procedure requirements, OR was explicitly,
+ *                              auditably closed at zero requirements by a
+ *                              resolved SemanticAdjudication.
+ *   PARTIAL                 -- some governing requirements exist but
+ *                              technical-truth coverage is incomplete.
+ *   ADJUDICATION_REQUIRED   -- source-derived knowledge proposals exist
+ *                              (REVIEW_PROPOSED CandidateFactRequirements)
+ *                              but require semantic adjudication before
+ *                              they can become governing.
+ *   UNRESOLVED               -- a mastery-bearing leaf candidate with no
+ *                              adequate governing knowledge or
+ *                              decomposition, and never examined by any
+ *                              adjudication -- the false-green case CC-20
+ *                              exists to close.
+ */
+export const knowledgeBoundaryStatusSchema = z.enum(["STRUCTURALLY_DECOMPOSED", "GOVERNED", "PARTIAL", "ADJUDICATION_REQUIRED", "UNRESOLVED"]);
+export type KnowledgeBoundaryStatus = z.infer<typeof knowledgeBoundaryStatusSchema>;
 
 // ---------------------------------------------------------------------
 // 5. Gap model (task section 17 CC-18; extended CC-18A/CC-18B).
@@ -212,6 +283,12 @@ export const gapTypeSchema = z.enum([
   "FACTUAL_COMPARISON_REVIEW",
   /** CC-18C section 9: multiple TECHNICAL_TRUTH claims for the same (subject, claimKey) disagree among THEMSELVES -- distinct from FACTUAL_COMPARISON_REVIEW's incompatible-comparison-kind case. */
   "TECHNICAL_TRUTH_CONFLICT_REVIEW",
+  /** CC-20 section 13: a required, mastery-bearing candidate has no governed child decomposition and no governing requiredFactKeys, and was never examined by any SemanticAdjudication -- the false-green case the blind back-test exposed. */
+  "KNOWLEDGE_DECOMPOSITION_GAP",
+  /** CC-20 section 10: an active SemanticAdjudication resolved a proposal as UNRESOLVED -- available transferable evidence cannot safely determine the disposition. */
+  "SEMANTIC_ADJUDICATION_GAP",
+  /** CC-20 section 11: two or more validated SemanticAdjudications disagree on the decision for the same (qualificationId, targetCandidateKey, claimKey) -- never resolved by array order; no governing promotion occurs until resolved. */
+  "SEMANTIC_ADJUDICATION_CONFLICT",
 ]);
 export type GapType = z.infer<typeof gapTypeSchema>;
 
@@ -252,6 +329,8 @@ export const normalizationBasisSchema = z.enum([
   "SOURCE_FACTUAL_CLAIM",
   /** CC-18C section 7: the ONLY basis a CandidateFactRequirement may declare -- a technical source establishes the answer to a fact, never whether the course requires it, so AUTHORITATIVE_TECHNICAL_FACT is never valid here. */
   "FACT_REQUIREMENT_DERIVATION",
+  /** CC-20 section 3: the ONLY basis a SemanticAdjudication may declare -- an adjudication is a governed decision over an already-existing source-derived proposal, never a new factual source in its own right. */
+  "SEMANTIC_ADJUDICATION_DECISION",
 ]);
 export type NormalizationBasis = z.infer<typeof normalizationBasisSchema>;
 
@@ -271,13 +350,15 @@ export function candidateKey(subject: string, performanceType: LearnerPerformanc
 }
 
 /**
- * `role` covers the 7 governed evidence roles; the two additional string
- * literals tag references back to DERIVED structural-relation records
- * (`PrerequisiteEvidence`, `CandidateCapabilityRequirement`), which are
- * never themselves one of the 7 primary evidence roles.
+ * `role` covers the 7 governed evidence roles; the three additional
+ * string literals tag references back to DERIVED structural-relation/
+ * decision records (`PrerequisiteEvidence`, `CandidateCapabilityRequirement`,
+ * `SemanticAdjudication`), which are never themselves one of the 7 primary
+ * evidence roles -- a SemanticAdjudication is a governed decision over
+ * existing evidence, not a new source authority (CC-20 section 2).
  */
 export interface EvidenceRef {
-  readonly role: EvidenceRole | "STRUCTURAL_PREREQUISITE_DEPENDENCY" | "CANDIDATE_CAPABILITY_REQUIREMENT";
+  readonly role: EvidenceRole | "STRUCTURAL_PREREQUISITE_DEPENDENCY" | "CANDIDATE_CAPABILITY_REQUIREMENT" | "SEMANTIC_ADJUDICATION";
   readonly evidenceId: string;
 }
 
@@ -310,6 +391,12 @@ export interface KnowledgeCandidate {
   /** Attached TECHNICAL_TRUTH factual statements, keyed by claimKey -- never a single subject-matched statement. */
   readonly factualStatementsByClaimKey?: Readonly<Record<string, string>>;
   readonly technicalCoverageStatus?: TechnicalCoverageStatus;
+  /** CC-20 section 12: computed only for REQUIRED_* (mastery-bearing) dispositions -- undefined for prerequisite/exemplar/breadth-gap/review candidates, which are never the target of this analysis. */
+  readonly knowledgeBoundaryStatus?: KnowledgeBoundaryStatus;
+  /** CC-20 section 16: what actually bounds depthConfidence -- never implies qualification-level evidence reveals exact content, only a ceiling. */
+  readonly depthBasis?: DepthBasis;
+  /** CC-20 section 18: whether ANY validated PUBLIC_ASSESSMENT evidence resolved to this exact candidate, independent of which basis ultimately determined depthConfidence -- keeps "no assessment" visible without collapsing to total depth ignorance. */
+  readonly assessmentCalibrationAvailable?: boolean;
 }
 
 // ---------------------------------------------------------------------
@@ -576,6 +663,121 @@ export interface CandidateFactRequirement extends SourceProvenance {
 }
 
 // ---------------------------------------------------------------------
+// 17A. Semantic adjudication (CC-20). The blind back-test
+// established that source normalization alone cannot safely decide
+// whether a technically valid, non-literal knowledge proposal belongs in
+// required mastery -- automatically accepting every such proposal
+// overteaches; automatically rejecting every one is too conservative and
+// leaves legitimate learner knowledge unresolved. Semantic adjudication is
+// therefore an explicit, auditable, governed DECISION stage over an
+// ALREADY-EXISTING CandidateFactRequirement proposal -- it is never a new
+// factual source, and it can never introduce a new curriculum candidate,
+// claimKey, subject, or performance (see rules.ts's own validation gate).
+// ---------------------------------------------------------------------
+
+/**
+ * LOCKED semantic-adjudication decisions (CC-20 section 4).
+ *
+ *   REQUIRED_CORE          -- necessary learner knowledge to satisfy the
+ *                             qualification performance.
+ *   REQUIRED_OPERATIONAL   -- operational/procedural knowledge inseparable
+ *                             from correctly performing the stated
+ *                             requirement.
+ *   REPRESENTATIVE_EXEMPLAR -- a technically valid exemplar is required to
+ *                             teach/instantiate a broad application, but
+ *                             that exact exemplar is NOT itself uniquely
+ *                             mandated qualification mastery -- never
+ *                             enters requiredFactKeys (section 9).
+ *   CONTEXT_ONLY            -- pedagogically useful but not learner mastery.
+ *   REJECT_OVERDEPTH        -- technically true but deeper/more formal than
+ *                             the qualification evidence justifies.
+ *   REJECT_NOT_NECESSARY    -- technically true or related, but not
+ *                             necessary to satisfy the qualification
+ *                             performance.
+ *   UNRESOLVED              -- available transferable evidence cannot
+ *                             safely determine the disposition; emits
+ *                             SEMANTIC_ADJUDICATION_GAP.
+ *
+ * Only REQUIRED_CORE and REQUIRED_OPERATIONAL may promote a REVIEW_PROPOSED
+ * CandidateFactRequirement into a governing requiredFactKey (section 8).
+ * Every other decision remains non-governing but is preserved verbatim in
+ * `StandardPipelineResult.semanticAdjudicationOutcomes` so a technically
+ * valid fact considered and deliberately excluded is never silently lost
+ * (section 10).
+ */
+export const semanticAdjudicationDecisionSchema = z.enum([
+  "REQUIRED_CORE",
+  "REQUIRED_OPERATIONAL",
+  "REPRESENTATIVE_EXEMPLAR",
+  "CONTEXT_ONLY",
+  "REJECT_OVERDEPTH",
+  "REJECT_NOT_NECESSARY",
+  "UNRESOLVED",
+]);
+export type SemanticAdjudicationDecision = z.infer<typeof semanticAdjudicationDecisionSchema>;
+
+/** The only two decisions capable of promoting a REVIEW_PROPOSED fact requirement into a governing requiredFactKey (CC-20 section 8). */
+export const GOVERNING_ADJUDICATION_DECISIONS: readonly SemanticAdjudicationDecision[] = ["REQUIRED_CORE", "REQUIRED_OPERATIONAL"];
+
+/** Governed decision REASONS (CC-20 section 5) -- never evidence authorities in their own right. Multiple bases may apply to one adjudication. */
+export const semanticAdjudicationBasisSchema = z.enum([
+  "SEMANTIC_NECESSITY",
+  "OPERATIONAL_NECESSITY",
+  "COMMAND_VERB_AND_LEVEL",
+  "PUBLIC_ASSESSMENT_CALIBRATION",
+  "MULTIPLE_VALID_IMPLEMENTATIONS",
+  "REPRESENTATIVE_EXEMPLAR_SELECTION",
+  "OVERDEPTH_FORMALISM",
+  "INSUFFICIENT_EVIDENCE",
+]);
+export type SemanticAdjudicationBasis = z.infer<typeof semanticAdjudicationBasisSchema>;
+
+/**
+ * Who/what performed the adjudication (CC-20 section 6). All three kinds
+ * pass through the SAME mechanical validation -- an adjudicatorKind of
+ * LLM_EVIDENCE_BOUND is never automatically trusted merely because of its
+ * label; the required rationale/evidence fields exist so the decision can
+ * be audited regardless of who made it.
+ */
+export const adjudicatorKindSchema = z.enum(["HUMAN_PROJECT_ARCHITECT", "LLM_EVIDENCE_BOUND", "RULE_ENGINE"]);
+export type AdjudicatorKind = z.infer<typeof adjudicatorKindSchema>;
+
+/**
+ * A governed decision over an EXISTING CandidateFactRequirement proposal
+ * (`targetCandidateKey` + `claimKey` must resolve to a real, already-
+ * proposed fact requirement -- see rules.ts `validateSemanticAdjudications`).
+ * May never introduce a new curriculum candidate, claimKey, subject, or
+ * performance of its own.
+ */
+export interface SemanticAdjudication extends SourceProvenance {
+  readonly qualificationId: string;
+  readonly targetCandidateKey: string;
+  readonly claimKey: string;
+  readonly decision: SemanticAdjudicationDecision;
+  readonly adjudicationBasis: readonly SemanticAdjudicationBasis[];
+  readonly adjudicatorKind: AdjudicatorKind;
+  /** Opaque pointer to the decision record/session this adjudication came from (e.g. a review ticket id or model-call id) -- audit trail, never interpreted by production logic. */
+  readonly decisionRef: string;
+  readonly rationale: string;
+  /** Evidence this decision was actually bound to -- required so an adjudication can be audited, never accepted on rationale prose alone. */
+  readonly supportingEvidenceRefs: readonly EvidenceRef[];
+}
+
+/**
+ * CC-20 section 9: a REPRESENTATIVE_EXEMPLAR adjudication outcome, exposed
+ * separately from requiredFactKeys/mastery so downstream course
+ * construction can make a broad application teachable without ever
+ * treating the chosen exemplar as uniquely mandated qualification mastery.
+ */
+export interface RepresentativeExemplarRecord {
+  readonly candidateKey: string;
+  readonly claimKey: string;
+  readonly decisionRef: string;
+  readonly adjudicatorKind: AdjudicatorKind;
+  readonly rationale: string;
+}
+
+// ---------------------------------------------------------------------
 // 18. Optional-calibration / legacy-diagnostic evidence. Never capable
 // of influencing required scope -- no mandatory provenance burden
 // imposed here since neither type is ever a standard-pipeline input.
@@ -628,4 +830,15 @@ export interface StandardPipelineResult {
   readonly unmatchedTechnicalTruth: readonly SourceFactualClaim[];
   /** QualificationLevelEvidence that named no existing candidate -- recorded for transparency, never converted into scope. */
   readonly unmatchedQualificationLevel: readonly QualificationLevelEvidence[];
+  /**
+   * CC-20 section 10: complete, non-lossy audit trail of every ACTIVE
+   * (validated, non-conflicted) SemanticAdjudication that influenced this
+   * run, regardless of decision -- REQUIRED_CORE/REQUIRED_OPERATIONAL
+   * alongside REPRESENTATIVE_EXEMPLAR/CONTEXT_ONLY/REJECT_OVERDEPTH/
+   * REJECT_NOT_NECESSARY/UNRESOLVED. A technically valid fact considered
+   * and deliberately excluded is recorded here, never silently lost.
+   */
+  readonly semanticAdjudicationOutcomes: readonly SemanticAdjudication[];
+  /** CC-20 section 9: REPRESENTATIVE_EXEMPLAR adjudications only, in the shape downstream course construction needs -- never present in any candidate's requiredFactKeys, never increases scope/depth confidence. */
+  readonly representativeExemplars: readonly RepresentativeExemplarRecord[];
 }

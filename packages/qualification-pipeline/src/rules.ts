@@ -15,6 +15,7 @@
  */
 
 import {
+  GOVERNING_ADJUDICATION_DECISIONS,
   REQUIRED_DISPOSITIONS,
   STANDARD_MODE_CANDIDATE_ROLES,
   candidateKey,
@@ -28,6 +29,7 @@ import {
   type CurriculumEvidence,
   type CurriculumFamily,
   type CurriculumSubjectRelation,
+  type DepthBasis,
   type DiagnosticComparisonEntry,
   type EvidenceRef,
   type EvidenceRole,
@@ -41,6 +43,8 @@ import {
   type OptionalCalibrationEvidence,
   type PrerequisiteEvidence,
   type QualificationLevelEvidence,
+  type RepresentativeExemplarRecord,
+  type SemanticAdjudication,
   type SourceFactualClaim,
   type SourceProvenance,
   type StandardPipelineResult,
@@ -98,6 +102,29 @@ const TECHNICAL_CLAIM_ALLOWED_BASES: readonly NormalizationBasis[] = ["AUTHORITA
 const CURRICULUM_CLAIM_ALLOWED_BASES: readonly NormalizationBasis[] = ["SOURCE_FACTUAL_CLAIM"];
 /** CC-18C section 7: the ONLY basis a CandidateFactRequirement may declare -- never AUTHORITATIVE_TECHNICAL_FACT, which answers a fact rather than declaring the course requires one. */
 const FACT_REQUIREMENT_ALLOWED_BASES: readonly NormalizationBasis[] = ["FACT_REQUIREMENT_DERIVATION"];
+/** CC-20 section 3: the ONLY basis a SemanticAdjudication may declare -- it is a governed decision over existing evidence, never a new source authority. */
+const SEMANTIC_ADJUDICATION_ALLOWED_BASES: readonly NormalizationBasis[] = ["SEMANTIC_ADJUDICATION_DECISION"];
+
+// ---------------------------------------------------------------------
+// CC-20 section 16: depth-basis priority, used both to pick the winning
+// basis when mergeCandidates combines two candidates and to decide
+// whether qualification-level evidence may still upgrade an UNRESOLVED
+// depth basis. Mirrors CONFIDENCE_ORDER's ranking (ASSESSMENT_CALIBRATED/
+// EXPLICIT_CURRICULUM_DEPTH -> HIGH; QUALIFICATION_LEVEL_BOUNDED -> MEDIUM;
+// UNRESOLVED -> NONE/LOW) so the two never disagree about which basis won.
+// ---------------------------------------------------------------------
+const DEPTH_BASIS_PRIORITY: Record<DepthBasis, number> = {
+  ASSESSMENT_CALIBRATED: 3,
+  EXPLICIT_CURRICULUM_DEPTH: 2,
+  QUALIFICATION_LEVEL_BOUNDED: 1,
+  UNRESOLVED: 0,
+};
+
+function preferredDepthBasis(a: DepthBasis | undefined, b: DepthBasis | undefined): DepthBasis | undefined {
+  if (!a) return b;
+  if (!b) return a;
+  return DEPTH_BASIS_PRIORITY[a] >= DEPTH_BASIS_PRIORITY[b] ? a : b;
+}
 
 // ---------------------------------------------------------------------
 // Confidence / disposition ordering helpers.
@@ -145,6 +172,8 @@ export function mergeCandidates(candidates: readonly KnowledgeCandidate[]): Know
       requiredFactKeys: [...new Set([...(existing.requiredFactKeys ?? []), ...(c.requiredFactKeys ?? [])])].sort() || undefined,
       factualStatementsByClaimKey: Object.keys(mergedFactualStatements).length > 0 ? mergedFactualStatements : undefined,
       technicalCoverageStatus: preferred.technicalCoverageStatus ?? other.technicalCoverageStatus,
+      depthBasis: preferredDepthBasis(existing.depthBasis, c.depthBasis),
+      assessmentCalibrationAvailable: (existing.assessmentCalibrationAvailable ?? false) || (c.assessmentCalibrationAvailable ?? false),
     });
   }
   return [...byKey.values()];
@@ -359,12 +388,17 @@ export function generateCurriculumCandidates(validatedEvidence: readonly Curricu
       disposition: "REQUIRED_EXPLICIT_CURRICULUM",
       confidence: {
         scopeConfidence: "HIGH",
-        depthConfidence: depthQualifiers.length > 0 ? "MEDIUM" : "NONE",
+        // CC-20 section 16/17: an explicit curriculum depth qualifier
+        // directly constrains depth -- HIGH, not the prior MEDIUM. A
+        // qualification-level ceiling (weaker, MEDIUM) is applied later,
+        // in buildStandardPipeline, only when no depth qualifier resolved.
+        depthConfidence: depthQualifiers.length > 0 ? "HIGH" : "NONE",
         technicalTruthConfidence: "NONE",
       },
       rationale,
       evidenceRefs: [...records, ...depthQualifiers].map((r) => ({ role: r.role, evidenceId: r.evidenceId })),
       parentSubject: parentBySubject.get(subject),
+      depthBasis: depthQualifiers.length > 0 ? "EXPLICIT_CURRICULUM_DEPTH" : "UNRESOLVED",
     });
   }
   return { candidates, gaps };
@@ -438,6 +472,8 @@ export function generateAssessmentCandidates(validated: readonly AssessmentEvide
       confidence: { scopeConfidence: "HIGH", depthConfidence: "HIGH", technicalTruthConfidence: "NONE" },
       rationale: `Directly evidenced by ${items.length} validated assessment item(s) (${items.map((i) => i.itemId).join(", ")}), resolved against the official curriculum-unit registry (${first.mappedCurriculumUnitId}); the positive target only -- correct-answer requirement, never distractor content from the same item.`,
       evidenceRefs: items.map((i) => ({ role: i.role, evidenceId: i.evidenceId })),
+      depthBasis: "ASSESSMENT_CALIBRATED",
+      assessmentCalibrationAvailable: true,
     });
   }
   return candidates;
@@ -463,7 +499,22 @@ export function validateQualificationLevelEvidence(evidence: readonly Qualificat
   return { validated, gaps };
 }
 
-/** Qualification-level depth-constraint attachment. NEVER creates a new candidate -- only attaches to a candidate that already exists under the exact key it names. Operates on an ALREADY validated stream. */
+/**
+ * Qualification-level depth-constraint attachment. NEVER creates a new
+ * candidate -- only attaches to a candidate that already exists under the
+ * exact key it names. Operates on an ALREADY validated stream.
+ *
+ * CC-20 section 16: valid qualification-level evidence attached to a
+ * required, explicit curriculum performance now supplies a defensible
+ * conservative depth CEILING (QUALIFICATION_LEVEL_BOUNDED, MEDIUM
+ * confidence) when nothing stronger already resolved depth -- the blind
+ * back-test showed attaching qualification-level evidence and STILL
+ * leaving depthConfidence=NONE for every candidate was too conservative.
+ * This is a ceiling only: it never expands scope, never claims to know
+ * exact content/formula/topology, and never overrides an
+ * ASSESSMENT_CALIBRATED or EXPLICIT_CURRICULUM_DEPTH basis that already
+ * resolved depth more strongly.
+ */
 export function attachQualificationLevelConstraints(candidates: readonly KnowledgeCandidate[], validatedEvidence: readonly QualificationLevelEvidence[]): { candidates: KnowledgeCandidate[]; unmatched: QualificationLevelEvidence[] } {
   const byCandidateKey = new Map<string, QualificationLevelEvidence[]>();
   for (const e of validatedEvidence) {
@@ -477,10 +528,14 @@ export function attachQualificationLevelConstraints(candidates: readonly Knowled
     const matches = byCandidateKey.get(c.candidateKey);
     if (!matches || matches.length === 0) return c;
     matchedKeys.add(c.candidateKey);
+    const currentBasis: DepthBasis = c.depthBasis ?? "UNRESOLVED";
+    const boundedByQualificationLevel = REQUIRED_DISPOSITIONS.includes(c.disposition) && currentBasis === "UNRESOLVED";
     return {
       ...c,
       qualificationLevelRefs: [...(c.qualificationLevelRefs ?? []), ...matches.map((m) => ({ role: "QUALIFICATION_LEVEL" as const, evidenceId: m.evidenceId }))],
       depthConstraintNote: matches.map((m) => `${m.levelId}: ${m.depthConstraintDescriptor}`).join("; "),
+      depthBasis: boundedByQualificationLevel ? "QUALIFICATION_LEVEL_BOUNDED" : currentBasis,
+      confidence: boundedByQualificationLevel ? { ...c.confidence, depthConfidence: "MEDIUM" as const } : c.confidence,
     };
   });
 
@@ -664,6 +719,8 @@ export function validateCandidateFactRequirements(
   requiredCandidateKeys: ReadonlySet<string>,
   validatedCurriculumEvidenceIds: ReadonlySet<string>,
   validatedAssessmentEvidenceIds: ReadonlySet<string>,
+  /** CC-20 section 8: ACTIVE (validated, non-conflicted) SemanticAdjudications whose decision is REQUIRED_CORE/REQUIRED_OPERATIONAL, keyed by `targetCandidateKey::claimKey`. The ONLY thing that may promote a REVIEW_PROPOSED requirement into a governing requiredFactKey. */
+  activeGoverningAdjudicationsByIdentity: ReadonlyMap<string, SemanticAdjudication> = new Map(),
 ): { validated: CandidateFactRequirement[]; gaps: GapRecord[] } {
   const validated: CandidateFactRequirement[] = [];
   const gaps: GapRecord[] = [];
@@ -696,19 +753,28 @@ export function validateCandidateFactRequirements(
       continue;
     }
 
+    // CC-20 section 8: a REVIEW_PROPOSED requirement is eligible ONLY when
+    // an ACTIVE (validated, non-conflicted) REQUIRED_CORE/REQUIRED_OPERATIONAL
+    // SemanticAdjudication references this exact targetCandidateKey+claimKey.
+    // Technical truth alone, qualification-level evidence alone, or a
+    // plausible rationale alone can never promote it (section 7).
+    const governingAdjudication = r.derivationStatus === "REVIEW_PROPOSED" ? activeGoverningAdjudicationsByIdentity.get(identifier) : undefined;
     const eligible =
       r.derivationStatus === "EXPLICIT_CURRICULUM_FACT"
         ? r.sourceEvidenceRefs.some((ref) => ref.role === "OFFICIAL_CURRICULUM" && validatedCurriculumEvidenceIds.has(ref.evidenceId))
         : r.derivationStatus === "EXPLICIT_ASSESSMENT_FACT"
           ? r.sourceEvidenceRefs.some((ref) => ref.role === "PUBLIC_ASSESSMENT" && validatedAssessmentEvidenceIds.has(ref.evidenceId))
-          : false; // REVIEW_PROPOSED
+          : governingAdjudication !== undefined; // REVIEW_PROPOSED
 
     if (!eligible) {
       gaps.push({
         gapType: "EVIDENCE_NORMALIZATION_REVIEW",
         candidateKey: r.targetCandidateKey,
         evidenceAvailable: [`identifier=${identifier}`, `derivationStatus=${r.derivationStatus}`],
-        unresolved: `CandidateFactRequirement for claimKey "${r.claimKey}" (derivationStatus=${r.derivationStatus}) does not cite role-and-id-matched validated primary-source evidence -- exported for Project-Architect review but does not contribute to requiredFactKeys or technical coverage automatically.`,
+        unresolved:
+          r.derivationStatus === "REVIEW_PROPOSED"
+            ? `CandidateFactRequirement for claimKey "${r.claimKey}" (derivationStatus=REVIEW_PROPOSED) has no active REQUIRED_CORE/REQUIRED_OPERATIONAL SemanticAdjudication -- exported for Project-Architect (or evidence-bound LLM) semantic adjudication but does not contribute to requiredFactKeys or technical coverage automatically.`
+            : `CandidateFactRequirement for claimKey "${r.claimKey}" (derivationStatus=${r.derivationStatus}) does not cite role-and-id-matched validated primary-source evidence -- exported for Project-Architect review but does not contribute to requiredFactKeys or technical coverage automatically.`,
         legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT"],
         notes: "REVIEW_PROPOSED requirements, and EXPLICIT_*_FACT requirements whose citation does not check out, are never silently promoted to a governing fact requirement.",
       });
@@ -734,11 +800,19 @@ export function validateCandidateFactRequirements(
 // covered -- a disputed fact can never make a candidate COMPLETE.
 // ---------------------------------------------------------------------
 
-function computeCoverage(requiredKeys: readonly string[], attached: ReadonlyMap<string, string>): { status: TechnicalCoverageStatus; confidence: ConfidenceLevel } {
-  if (requiredKeys.length === 0) return { status: "NOT_REQUIRED", confidence: "NONE" };
-  const attachedCount = requiredKeys.filter((k) => attached.has(k)).length;
+/**
+ * CC-20 section 15: assumes `requiredKeys.length > 0` -- the caller
+ * (`attachFactualClaims`) leaves `technicalCoverageStatus` undefined for a
+ * zero-requirement candidate and defers that classification (NOT_APPLICABLE
+ * vs UNRESOLVED_REQUIREMENTS) to `finalizeKnowledgeBoundary`, which alone
+ * has the structural/adjudication context to tell the two apart -- a
+ * disputed claim (hasConflict) is CONFLICTED regardless of how many other
+ * keys attached, and is never silently folded into PARTIAL.
+ */
+function computeCoverage(requiredKeys: readonly string[], attachedCount: number, hasConflict: boolean): { status: TechnicalCoverageStatus; confidence: ConfidenceLevel } {
+  if (hasConflict) return { status: "CONFLICTED", confidence: "NONE" };
   if (attachedCount === requiredKeys.length) return { status: "COMPLETE", confidence: "HIGH" };
-  if (attachedCount === 0) return { status: "PARTIAL", confidence: "NONE" };
+  if (attachedCount === 0) return { status: "UNRESOLVED_REQUIREMENTS", confidence: "NONE" };
   return { status: "PARTIAL", confidence: "MEDIUM" };
 }
 
@@ -781,10 +855,16 @@ export function attachFactualClaims(
 
   const updated = candidates.map((c) => {
     const requiredKeys = [...(requiredKeysByCandidate.get(c.candidateKey) ?? new Set<string>())].sort();
-    if (requiredKeys.length === 0) return { ...c, requiredFactKeys: undefined, technicalCoverageStatus: "NOT_REQUIRED" as const };
+    // CC-20 section 15: technicalCoverageStatus is left undefined here for a
+    // zero-requirement candidate -- finalizeKnowledgeBoundary alone has the
+    // structural/adjudication context to classify it NOT_APPLICABLE (a
+    // genuine structural/non-mastery case) vs UNRESOLVED_REQUIREMENTS (a
+    // mastery-bearing leaf never actually examined).
+    if (requiredKeys.length === 0) return { ...c, requiredFactKeys: undefined, technicalCoverageStatus: undefined };
 
     const attached = new Map<string, string>();
     const attachedRefs: EvidenceRef[] = [];
+    let hasConflict = false;
 
     for (const key of requiredKeys) {
       const matchingClaims = technicalClaims.filter((cl) => cl.claimKey === key && cl.subject === c.subject);
@@ -802,6 +882,7 @@ export function attachFactualClaims(
       // resolve deterministically, never by which happened to come first.
       const kinds = new Set(matchingClaims.map((cl) => cl.comparisonKind));
       if (kinds.size > 1) {
+        hasConflict = true;
         gaps.push({
           gapType: "FACTUAL_COMPARISON_REVIEW",
           candidateKey: c.candidateKey,
@@ -814,6 +895,7 @@ export function attachFactualClaims(
 
       const values = new Set(matchingClaims.map((cl) => cl.normalizedClaimValue));
       if (values.size > 1) {
+        hasConflict = true;
         gaps.push({
           gapType: "TECHNICAL_TRUTH_CONFLICT_REVIEW",
           candidateKey: c.candidateKey,
@@ -829,7 +911,7 @@ export function attachFactualClaims(
       for (const cl of matchingClaims) attachedRefs.push({ role: "TECHNICAL_TRUTH", evidenceId: cl.evidenceId });
     }
 
-    const { status, confidence } = computeCoverage(requiredKeys, attached);
+    const { status, confidence } = computeCoverage(requiredKeys, attached.size, hasConflict);
     return {
       ...c,
       requiredFactKeys: requiredKeys,
@@ -842,6 +924,202 @@ export function attachFactualClaims(
 
   const unmatched = technicalClaims.filter((c) => !usedClaimSubjectKeys.has(`${c.claimKey}::${c.subject}`));
   return { candidates: updated, unmatched, gaps };
+}
+
+// ---------------------------------------------------------------------
+// Semantic adjudication (CC-20). A governed DECISION stage over ALREADY-
+// EXISTING CandidateFactRequirement proposals -- never a new factual
+// source, and never capable of introducing a new candidate, claimKey,
+// subject or performance of its own (see types.ts's own header for the
+// full rationale).
+// ---------------------------------------------------------------------
+
+export function validateSemanticAdjudications(
+  adjudications: readonly SemanticAdjudication[],
+  qualificationId: string,
+  /** ALL proposed CandidateFactRequirements (every derivationStatus) -- an adjudication must reference a REAL, already-existing proposal; it can never manufacture one. */
+  proposedFactRequirements: readonly CandidateFactRequirement[],
+): { validated: SemanticAdjudication[]; gaps: GapRecord[] } {
+  const proposedByIdentity = new Map<string, CandidateFactRequirement>();
+  for (const f of proposedFactRequirements) proposedByIdentity.set(`${f.targetCandidateKey}::${f.claimKey}`, f);
+
+  const validated: SemanticAdjudication[] = [];
+  const gaps: GapRecord[] = [];
+
+  for (const a of adjudications) {
+    const identifier = `${a.targetCandidateKey}::${a.claimKey}`;
+    const failure = provenanceFailureReason(a, SEMANTIC_ADJUDICATION_ALLOWED_BASES);
+    if (failure) {
+      gaps.push(provenanceReviewGap("SemanticAdjudication", identifier, a, failure, a.targetCandidateKey, ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"]));
+      continue;
+    }
+    if (a.qualificationId !== qualificationId) {
+      gaps.push({
+        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+        candidateKey: a.targetCandidateKey,
+        evidenceAvailable: [`identifier=${identifier}`, `declaredQualification=${a.qualificationId}`],
+        unresolved: `SemanticAdjudication declares qualification "${a.qualificationId}", not the active pipeline qualification "${qualificationId}" -- it cannot influence this run.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM"],
+      });
+      continue;
+    }
+    const referenced = proposedByIdentity.get(identifier);
+    if (!referenced || referenced.qualificationId !== qualificationId) {
+      gaps.push({
+        gapType: "EVIDENCE_NORMALIZATION_REVIEW",
+        candidateKey: a.targetCandidateKey,
+        evidenceAvailable: [`identifier=${identifier}`],
+        unresolved: `SemanticAdjudication references claimKey "${a.claimKey}" for candidate "${a.targetCandidateKey}", which does not correspond to any existing CandidateFactRequirement proposal for this qualification -- an adjudication may only resolve an already-proposed knowledge question, never manufacture a new one.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+      continue;
+    }
+    validated.push(a);
+  }
+  return { validated, gaps };
+}
+
+/**
+ * CC-20 section 11: two or more validated adjudications giving
+ * incompatible decisions for the same (qualificationId, targetCandidateKey,
+ * claimKey) must never resolve by array order -- ALL of them are excluded
+ * from `active` (no governing promotion for that identity) and a single
+ * SEMANTIC_ADJUDICATION_CONFLICT gap is emitted.
+ */
+export function detectSemanticAdjudicationConflicts(validated: readonly SemanticAdjudication[]): { active: SemanticAdjudication[]; gaps: GapRecord[] } {
+  const byIdentity = new Map<string, SemanticAdjudication[]>();
+  for (const a of validated) {
+    const key = `${a.qualificationId}::${a.targetCandidateKey}::${a.claimKey}`;
+    const list = byIdentity.get(key) ?? [];
+    list.push(a);
+    byIdentity.set(key, list);
+  }
+
+  const gaps: GapRecord[] = [];
+  const conflictedIdentities = new Set<string>();
+  for (const [identity, group] of byIdentity) {
+    const decisions = new Set(group.map((a) => a.decision));
+    if (decisions.size > 1) {
+      conflictedIdentities.add(identity);
+      gaps.push({
+        gapType: "SEMANTIC_ADJUDICATION_CONFLICT",
+        candidateKey: group[0]!.targetCandidateKey,
+        evidenceAvailable: group.map((a) => `decision=${a.decision} adjudicatorKind=${a.adjudicatorKind} decisionRef=${a.decisionRef}`),
+        unresolved: `Multiple SemanticAdjudication records for claimKey "${group[0]!.claimKey}" on candidate "${group[0]!.targetCandidateKey}" disagree: ${[...decisions].join(", ")} -- never resolved by array order; no governing promotion occurs until the conflict is resolved.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+    }
+  }
+  const active = validated.filter((a) => !conflictedIdentities.has(`${a.qualificationId}::${a.targetCandidateKey}::${a.claimKey}`));
+  return { active, gaps };
+}
+
+/** CC-20 section 10: UNRESOLVED is the only decision that emits its own dedicated gap -- every other non-governing decision is preserved via StandardPipelineResult.semanticAdjudicationOutcomes instead, never silently lost. */
+export function computeSemanticAdjudicationGaps(activeAdjudications: readonly SemanticAdjudication[]): GapRecord[] {
+  return activeAdjudications
+    .filter((a) => a.decision === "UNRESOLVED")
+    .map((a) => ({
+      gapType: "SEMANTIC_ADJUDICATION_GAP" as const,
+      candidateKey: a.targetCandidateKey,
+      evidenceAvailable: [`claimKey=${a.claimKey}`, `adjudicatorKind=${a.adjudicatorKind}`, `decisionRef=${a.decisionRef}`, ...a.adjudicationBasis.map((b) => `basis=${b}`)],
+      unresolved: `Semantic adjudication for claimKey "${a.claimKey}" on candidate "${a.targetCandidateKey}" is UNRESOLVED: ${a.rationale}`,
+      legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"] as EvidenceRole[],
+    }));
+}
+
+/** CC-20 section 9: REPRESENTATIVE_EXEMPLAR decisions only, in the dedicated shape -- never present in any candidate's requiredFactKeys. */
+export function buildRepresentativeExemplars(activeAdjudications: readonly SemanticAdjudication[]): RepresentativeExemplarRecord[] {
+  return activeAdjudications
+    .filter((a) => a.decision === "REPRESENTATIVE_EXEMPLAR")
+    .map((a) => ({ candidateKey: a.targetCandidateKey, claimKey: a.claimKey, decisionRef: a.decisionRef, adjudicatorKind: a.adjudicatorKind, rationale: a.rationale }));
+}
+
+// ---------------------------------------------------------------------
+// Knowledge-boundary finalization (CC-20 sections 12-15). Runs LAST, once
+// requiredFactKeys/technicalCoverageStatus and active adjudications are
+// both known. Detects a genuine structural parent from the governed
+// candidate-relationship graph (`parentSubject`), never a topic string,
+// and closes the false-green gap the blind back-test exposed: a
+// required, mastery-bearing leaf with zero governing facts, no
+// decomposition, and no adjudication history is UNRESOLVED and gets
+// KNOWLEDGE_DECOMPOSITION_GAP -- it is never rendered as though technical
+// knowledge simply isn't required.
+// ---------------------------------------------------------------------
+
+export function finalizeKnowledgeBoundary(
+  candidates: readonly KnowledgeCandidate[],
+  proposedFactRequirements: readonly CandidateFactRequirement[],
+  validatedFactRequirements: readonly CandidateFactRequirement[],
+  activeAdjudications: readonly SemanticAdjudication[],
+): { candidates: KnowledgeCandidate[]; gaps: GapRecord[] } {
+  const structuralParentSubjects = new Set(
+    candidates.filter((c) => REQUIRED_DISPOSITIONS.includes(c.disposition) && c.parentSubject !== undefined).map((c) => c.parentSubject!),
+  );
+
+  const validatedIdentities = new Set(validatedFactRequirements.map((f) => `${f.targetCandidateKey}::${f.claimKey}`));
+  const pendingReviewProposedByCandidate = new Map<string, number>();
+  for (const f of proposedFactRequirements) {
+    if (f.derivationStatus !== "REVIEW_PROPOSED") continue;
+    const identity = `${f.targetCandidateKey}::${f.claimKey}`;
+    if (validatedIdentities.has(identity)) continue; // promoted -- no longer pending
+    pendingReviewProposedByCandidate.set(f.targetCandidateKey, (pendingReviewProposedByCandidate.get(f.targetCandidateKey) ?? 0) + 1);
+  }
+
+  const anyAdjudicationByCandidate = new Map<string, SemanticAdjudication[]>();
+  for (const a of activeAdjudications) {
+    const list = anyAdjudicationByCandidate.get(a.targetCandidateKey) ?? [];
+    list.push(a);
+    anyAdjudicationByCandidate.set(a.targetCandidateKey, list);
+  }
+
+  const gaps: GapRecord[] = [];
+
+  const updated = candidates.map((c) => {
+    if (structuralParentSubjects.has(c.subject) && REQUIRED_DISPOSITIONS.includes(c.disposition)) {
+      return { ...c, knowledgeBoundaryStatus: "STRUCTURALLY_DECOMPOSED" as const, technicalCoverageStatus: "NOT_APPLICABLE" as const };
+    }
+
+    if (!REQUIRED_DISPOSITIONS.includes(c.disposition)) {
+      return { ...c, technicalCoverageStatus: c.technicalCoverageStatus ?? ("NOT_APPLICABLE" as const) };
+    }
+
+    const pendingCount = pendingReviewProposedByCandidate.get(c.candidateKey) ?? 0;
+    const requiredCount = c.requiredFactKeys?.length ?? 0;
+
+    if (requiredCount === 0) {
+      if (pendingCount > 0) {
+        return { ...c, knowledgeBoundaryStatus: "ADJUDICATION_REQUIRED" as const, technicalCoverageStatus: "UNRESOLVED_REQUIREMENTS" as const };
+      }
+      const everExamined = (anyAdjudicationByCandidate.get(c.candidateKey)?.length ?? 0) > 0;
+      if (everExamined) {
+        // Deliberately, auditably closed at zero requirements (e.g. every
+        // proposal was CONTEXT_ONLY/REJECT_*) -- distinct from never
+        // having been examined at all.
+        return { ...c, knowledgeBoundaryStatus: "GOVERNED" as const, technicalCoverageStatus: "NOT_APPLICABLE" as const };
+      }
+      gaps.push({
+        gapType: "KNOWLEDGE_DECOMPOSITION_GAP",
+        candidateKey: c.candidateKey,
+        evidenceAvailable: [c.rationale],
+        unresolved: `"${c.subject}" is a required, mastery-bearing candidate with no governed child decomposition and no governing requiredFactKeys, and was never examined by any semantic adjudication -- it is never reported as though technical knowledge is simply not required.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+      return { ...c, knowledgeBoundaryStatus: "UNRESOLVED" as const, technicalCoverageStatus: "UNRESOLVED_REQUIREMENTS" as const };
+    }
+
+    // requiredCount > 0 -- some governing facts already exist.
+    if (pendingCount > 0) {
+      // Never falsely COMPLETE while a sibling review-proposed fact for
+      // this same candidate is still pending adjudication.
+      const coverage = c.technicalCoverageStatus === "COMPLETE" ? ("PARTIAL" as const) : (c.technicalCoverageStatus ?? ("PARTIAL" as const));
+      return { ...c, knowledgeBoundaryStatus: "ADJUDICATION_REQUIRED" as const, technicalCoverageStatus: coverage };
+    }
+
+    const coverage = c.technicalCoverageStatus ?? ("UNRESOLVED_REQUIREMENTS" as const);
+    return { ...c, knowledgeBoundaryStatus: coverage === "COMPLETE" ? ("GOVERNED" as const) : ("PARTIAL" as const), technicalCoverageStatus: coverage };
+  });
+
+  return { candidates: updated, gaps };
 }
 
 // ---------------------------------------------------------------------
@@ -1083,15 +1361,28 @@ export function computeCategoryBreadthOutcomes(
 // Generic gap production for depth / technical-truth coverage.
 // ---------------------------------------------------------------------
 
+/**
+ * CC-20 sections 16-18: absence of PUBLIC_ASSESSMENT evidence alone no
+ * longer means depthConfidence=NONE/PERFORMANCE_DEPTH_GAP for every
+ * candidate -- explicit curriculum depth qualifiers and, more weakly,
+ * valid qualification-level evidence (QUALIFICATION_LEVEL_BOUNDED, MEDIUM)
+ * now supply a defensible depth basis. A gap remains only where depth is
+ * genuinely UNRESOLVED (depthConfidence NONE/LOW) after considering ALL of
+ * official curriculum, explicit performance, explicit depth qualifiers,
+ * qualification-level evidence, accepted semantic adjudications, and
+ * available assessment evidence -- `assessmentCalibrationAvailable` is
+ * always recorded on the gap so absence of assessment stays visible
+ * without implying total depth ignorance.
+ */
 export function computePerformanceDepthGaps(candidates: readonly KnowledgeCandidate[]): GapRecord[] {
   return candidates
-    .filter((c) => c.disposition === "REQUIRED_EXPLICIT_CURRICULUM" && c.confidence.depthConfidence !== "HIGH")
+    .filter((c) => REQUIRED_DISPOSITIONS.includes(c.disposition) && (c.confidence.depthConfidence === "NONE" || c.confidence.depthConfidence === "LOW"))
     .map((c) => ({
       gapType: "PERFORMANCE_DEPTH_GAP" as const,
       candidateKey: c.candidateKey,
-      evidenceAvailable: [c.rationale],
-      unresolved: `Exact learner-performance depth for "${c.subject}" is not yet confirmed by assessment evidence (current depth confidence: ${c.confidence.depthConfidence}).`,
-      legitimateResolverRoles: ["PUBLIC_ASSESSMENT"] as EvidenceRole[],
+      evidenceAvailable: [c.rationale, `depthBasis=${c.depthBasis ?? "UNRESOLVED"}`, `assessmentCalibrationAvailable=${c.assessmentCalibrationAvailable ?? false}`],
+      unresolved: `Exact learner-performance depth for "${c.subject}" remains unresolved (depth confidence: ${c.confidence.depthConfidence}, basis: ${c.depthBasis ?? "UNRESOLVED"}) even after considering explicit curriculum depth qualifiers, qualification-level evidence, and available assessment evidence.`,
+      legitimateResolverRoles: ["PUBLIC_ASSESSMENT", "OFFICIAL_CURRICULUM", "QUALIFICATION_LEVEL"] as EvidenceRole[],
     }));
 }
 
@@ -1127,6 +1418,8 @@ export interface StandardPipelineInput {
   readonly factRequirements?: readonly CandidateFactRequirement[];
   /** OFFICIAL_CURRICULUM and TECHNICAL_TRUTH sourceRole claims only -- OPTIONAL_CALIBRATION factual claims never belong here (use compareCalibrationFactualClaims separately). */
   readonly factualClaims?: readonly SourceFactualClaim[];
+  /** CC-20: governed decisions over already-existing `factRequirements` proposals -- see SemanticAdjudication's own header. Never a new factual source. */
+  readonly semanticAdjudications?: readonly SemanticAdjudication[];
 }
 
 function assertStandardModeRole(role: EvidenceRole, evidenceId: string): void {
@@ -1188,6 +1481,17 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
   const { candidates: withLevelConstraints, unmatched: unmatchedQualificationLevel } = attachQualificationLevelConstraints(candidates, validQualificationLevel);
   candidates = withLevelConstraints;
 
+  // CC-20: semantic adjudication runs BEFORE fact-requirement validation --
+  // only an ACTIVE (validated, non-conflicted) REQUIRED_CORE/
+  // REQUIRED_OPERATIONAL adjudication may promote a REVIEW_PROPOSED fact.
+  const { validated: validAdjudications, gaps: adjudicationValidationGaps } = validateSemanticAdjudications(input.semanticAdjudications ?? [], input.qualificationId, input.factRequirements ?? []);
+  const { active: activeAdjudications, gaps: adjudicationConflictGaps } = detectSemanticAdjudicationConflicts(validAdjudications);
+  const activeGoverningAdjudicationsByIdentity = new Map(
+    activeAdjudications.filter((a) => GOVERNING_ADJUDICATION_DECISIONS.includes(a.decision)).map((a) => [`${a.targetCandidateKey}::${a.claimKey}`, a] as const),
+  );
+  const adjudicationUnresolvedGaps = computeSemanticAdjudicationGaps(activeAdjudications);
+  const representativeExemplars = buildRepresentativeExemplars(activeAdjudications);
+
   const { validated: validFactualClaims, gaps: factualClaimBasisGaps } = validateFactualClaims(input.factualClaims ?? []);
   const { validated: validFactRequirements, gaps: factRequirementGaps } = validateCandidateFactRequirements(
     input.factRequirements ?? [],
@@ -1195,6 +1499,7 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
     requiredCandidateKeys,
     validatedCurriculumIds,
     validatedAssessmentIds,
+    activeGoverningAdjudicationsByIdentity,
   );
   const { candidates: withFactualClaims, unmatched: unmatchedTechnicalTruth, gaps: attachmentGaps } = attachFactualClaims(candidates, validFactRequirements, validFactualClaims);
   candidates = withFactualClaims;
@@ -1202,6 +1507,12 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
 
   const { candidates: breadthCandidates, gaps: breadthGaps } = computeCategoryBreadthOutcomes(validCurriculum, validAssessment, validRelations);
   candidates = mergeCandidates([...candidates, ...breadthCandidates]);
+
+  // CC-20 sections 12-15: knowledge-boundary finalization runs LAST, once
+  // requiredFactKeys/technicalCoverageStatus and active adjudications are
+  // both known.
+  const { candidates: withKnowledgeBoundary, gaps: knowledgeBoundaryGaps } = finalizeKnowledgeBoundary(candidates, input.factRequirements ?? [], validFactRequirements, activeAdjudications);
+  candidates = withKnowledgeBoundary;
 
   const depthGaps = computePerformanceDepthGaps(candidates);
   const truthGaps = computeTechnicalTruthGaps(candidates);
@@ -1219,17 +1530,23 @@ export function buildStandardPipeline(input: StandardPipelineInput): StandardPip
       ...capabilityGaps,
       ...exemplarGaps,
       ...qualificationLevelGaps,
+      ...adjudicationValidationGaps,
+      ...adjudicationConflictGaps,
+      ...adjudicationUnresolvedGaps,
       ...factualClaimBasisGaps,
       ...factRequirementGaps,
       ...attachmentGaps,
       ...conflictGaps,
       ...breadthGaps,
       ...patternGaps,
+      ...knowledgeBoundaryGaps,
       ...depthGaps,
       ...truthGaps,
     ],
     unmatchedTechnicalTruth,
     unmatchedQualificationLevel,
+    semanticAdjudicationOutcomes: activeAdjudications,
+    representativeExemplars,
   };
 }
 
