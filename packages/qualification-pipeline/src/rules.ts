@@ -1480,20 +1480,28 @@ export function detectKnowledgeBoundaryCertificationConflicts(validated: readonl
 
 // ---------------------------------------------------------------------
 // Knowledge-boundary finalization (CC-20 sections 12-15; CC-21A closes the
-// certification false-green). Runs LAST, once requiredFactKeys/
-// technicalCoverageStatus, active adjudications, AND active knowledge-
-// boundary certifications are all known. Detects a genuine structural
-// parent from the governed candidate-relationship graph (`parentSubject`),
-// never a topic string, and closes the false-green gaps the blind
-// back-test (CC-20) and its hardened rerun (CC-21) exposed: a required,
-// mastery-bearing leaf with zero governing facts, no decomposition, and
-// no adjudication history is UNRESOLVED and gets KNOWLEDGE_DECOMPOSITION_GAP;
-// a candidate whose governing facts are merely mechanically resolved, with
-// no valid COMPLETE KnowledgeBoundaryCertification at the current
-// fingerprint, is never GOVERNED -- it gets ADJUDICATION_REQUIRED and
+// certification false-green; CC-21B closes the empty-boundary certification
+// hole). Runs LAST, once requiredFactKeys/technicalCoverageStatus, active
+// adjudications, AND active knowledge-boundary certifications are all
+// known. Detects a genuine structural parent from the governed
+// candidate-relationship graph (`parentSubject`), never a topic string, and
+// closes the false-green gaps the blind back-test (CC-20) and its hardened
+// reruns (CC-21, CC-21A) exposed: a required, mastery-bearing leaf with
+// zero governing facts, no decomposition, and no adjudication history is
+// UNRESOLVED and gets KNOWLEDGE_DECOMPOSITION_GAP; a candidate whose
+// governing facts are merely mechanically resolved, with no valid COMPLETE
+// KnowledgeBoundaryCertification at the current fingerprint, is never
+// GOVERNED -- it gets ADJUDICATION_REQUIRED and
 // KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP instead. GOVERNED now means
 // semantically certified knowledge-boundary completeness, never merely
 // "every currently-known requiredFactKey happens to have technical truth".
+// CC-21B: nor does GOVERNED mean "a certifier said COMPLETE" on its own --
+// for a non-structural candidate, a COMPLETE certification is compatible
+// only when the candidate has SOMETHING constructed to certify (a governing
+// requiredFactKey; genuine structural exhaustion by children is handled
+// entirely by the earlier STRUCTURALLY_DECOMPOSED branch and never reaches
+// this point). Curriculum evidence proves a performance is required; it
+// never proves that an empty learner-knowledge boundary is complete.
 // ---------------------------------------------------------------------
 
 export function finalizeKnowledgeBoundary(
@@ -1520,16 +1528,44 @@ export function finalizeKnowledgeBoundary(
   const gaps: GapRecord[] = [];
 
   /**
-   * CC-21A sections 8-13: applies the certification exactly once the
+   * CC-21A sections 8-13; CC-21B guards the COMPLETE branch further (see
+   * `hasAdequateBoundary`). Applies the certification exactly once the
    * candidate's fact-level state is otherwise settled (no pending
    * REVIEW_PROPOSED fact). `technicalCoverageStatus` is reported as
    * computed -- COMPLETE knowledge-boundary certification is a distinct,
    * independent axis from technical-source completeness (section 8), so a
    * GOVERNED candidate may still carry an incomplete technicalCoverageStatus
    * and a visible TECHNICAL_TRUTH_GAP.
+   *
+   * `hasAdequateBoundary` (CC-21B): true only when the candidate has at
+   * least one governing requiredFactKey. A candidate reaching this function
+   * with zero requiredFactKeys never has adequate governed-child
+   * decomposition either -- a genuine structural exhaustion (an explicitly
+   * structural node, e.g. a validated RANGE_CATEGORY, with governed
+   * children) is detected and returned by the EARLIER STRUCTURALLY_DECOMPOSED
+   * branch and never reaches `applyCertification` at all; a non-structural
+   * parent (e.g. PRIMARY_REQUIREMENT) is never treated as exhausted merely
+   * because children point to it (CC-20A). So for every candidate actually
+   * reaching this function, "zero requiredFactKeys" means "nothing
+   * constructed to certify" -- a COMPLETE certification is incompatible
+   * regardless of how current/well-evidenced/adjudicator-trusted it
+   * otherwise is, and is rejected rather than silently honoured.
    */
-  function applyCertification(c: KnowledgeCandidate, coverage: TechnicalCoverageStatus): KnowledgeCandidate {
-    const certification = activeCertificationsByCandidateKey.get(c.candidateKey);
+  function applyCertification(c: KnowledgeCandidate, coverage: TechnicalCoverageStatus, hasAdequateBoundary: boolean): KnowledgeCandidate {
+    const rawCertification = activeCertificationsByCandidateKey.get(c.candidateKey);
+    if (rawCertification?.decision === "COMPLETE" && !hasAdequateBoundary) {
+      gaps.push({
+        gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+        candidateKey: c.candidateKey,
+        evidenceAvailable: [`certificationRef=${rawCertification.certificationRef}`, "requiredFactKeys=(none)", "governedChildCandidateKeys=(none)"],
+        unresolved: `A COMPLETE KnowledgeBoundaryCertification for "${c.candidateKey}" is invalid -- the candidate has no governing fact/procedure requirements and no governed child decomposition for it to certify. Curriculum evidence proves the performance is required; it never proves that an empty learner-knowledge boundary is complete.`,
+        legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+      });
+    }
+    // CC-21B: an incompatible COMPLETE certification is treated as though
+    // absent for the rest of this function -- it never suppresses whatever
+    // (correctly conservative) outcome the candidate would otherwise reach.
+    const certification = rawCertification?.decision === "COMPLETE" && !hasAdequateBoundary ? undefined : rawCertification;
     if (certification?.decision === "COMPLETE") {
       return { ...c, knowledgeBoundaryStatus: "GOVERNED" as const, technicalCoverageStatus: coverage };
     }
@@ -1595,8 +1631,29 @@ export function finalizeKnowledgeBoundary(
         // Deliberately, auditably closed at zero requirements (e.g. every
         // proposal was CONTEXT_ONLY/REJECT_*) -- distinct from never
         // having been examined at all. Still requires a valid COMPLETE
-        // certification to reach GOVERNED (CC-21A section 12).
-        return applyCertification(c, "NOT_APPLICABLE");
+        // certification to reach GOVERNED (CC-21A section 12) -- and
+        // CC-21B: zero requiredFactKeys means there is nothing constructed
+        // to certify, so COMPLETE is never compatible here regardless
+        // (`hasAdequateBoundary: false`); PARTIAL/UNRESOLVED certifications
+        // are unaffected.
+        return applyCertification(c, "NOT_APPLICABLE", false);
+      }
+      // CC-21B: a COMPLETE certification submitted for a candidate that was
+      // never even examined is equally incompatible -- reported explicitly
+      // rather than silently ignored, alongside the pre-existing
+      // KNOWLEDGE_DECOMPOSITION_GAP this candidate always gets. The
+      // resulting status/coverage are unchanged from CC-20's original
+      // finding-F correction: a certification attempt here can never
+      // upgrade an unexamined candidate past UNRESOLVED.
+      const rejectedCertification = activeCertificationsByCandidateKey.get(c.candidateKey);
+      if (rejectedCertification?.decision === "COMPLETE") {
+        gaps.push({
+          gapType: "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP",
+          candidateKey: c.candidateKey,
+          evidenceAvailable: [`certificationRef=${rejectedCertification.certificationRef}`, "requiredFactKeys=(none)", "governedChildCandidateKeys=(none)"],
+          unresolved: `A COMPLETE KnowledgeBoundaryCertification for "${c.candidateKey}" is invalid -- the candidate has no governing fact/procedure requirements, no governed child decomposition, and was never examined by any semantic adjudication. Curriculum evidence proves the performance is required; it never proves that an empty learner-knowledge boundary is complete.`,
+          legitimateResolverRoles: ["OFFICIAL_CURRICULUM", "PUBLIC_ASSESSMENT", "TECHNICAL_TRUTH"],
+        });
       }
       gaps.push({
         gapType: "KNOWLEDGE_DECOMPOSITION_GAP",
@@ -1619,8 +1676,10 @@ export function finalizeKnowledgeBoundary(
     // CC-21A section 1/12-13: fact coverage mechanically resolved (or not)
     // is reported as-is, but GOVERNED is reachable ONLY through a valid
     // COMPLETE certification -- never merely because coverage === COMPLETE.
+    // requiredCount > 0 here, so the candidate has an adequate boundary
+    // (CC-21B) to certify.
     const coverage = c.technicalCoverageStatus ?? ("UNRESOLVED_REQUIREMENTS" as const);
-    return applyCertification(c, coverage);
+    return applyCertification(c, coverage, true);
   });
 
   return { candidates: updated, gaps };
