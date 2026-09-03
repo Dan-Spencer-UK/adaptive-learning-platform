@@ -238,6 +238,32 @@ export const depthBasisSchema = z.enum(["EXPLICIT_CURRICULUM_DEPTH", "ASSESSMENT
 export type DepthBasis = z.infer<typeof depthBasisSchema>;
 
 /**
+ * CC-20A section 11-12: whether the learner PERFORMANCE a candidate
+ * represents is itself mechanically established, independent of whether
+ * any depth-bounding evidence (qualification-level or otherwise) has been
+ * attached. `QUALIFICATION_LEVEL_BOUNDED` depth is only ever valid for a
+ * candidate whose performance is `EXPLICIT` or `GOVERNED_INHERITED` --
+ * attaching qualification-level evidence to a candidate whose performance
+ * mapping is itself `UNRESOLVED` (e.g. a curriculum normalization that
+ * could not confidently determine a command verb, silently defaulted to
+ * `OTHER`) must never read as though depth were bounded.
+ *
+ *   EXPLICIT           -- the candidate's own contributing CurriculumEvidence
+ *                          (or, for an assessment-evidenced candidate, the
+ *                          mandatory AssessmentEvidence.performanceType)
+ *                          explicitly declared `commandVerbPerformanceType`.
+ *   GOVERNED_INHERITED  -- a `RANGE_REQUIRED_MEMBER` candidate whose own
+ *                          record did not declare a command verb, but whose
+ *                          governed parent (`refinesSubject`) did, via a
+ *                          mechanically resolvable parent/child relationship.
+ *   UNRESOLVED          -- neither of the above; the performance mapping
+ *                          rests on the pipeline's own `?? "OTHER"` fallback,
+ *                          never on an evidence author's explicit claim.
+ */
+export const performanceProvenanceSchema = z.enum(["EXPLICIT", "GOVERNED_INHERITED", "UNRESOLVED"]);
+export type PerformanceProvenance = z.infer<typeof performanceProvenanceSchema>;
+
+/**
  * Candidate-level knowledge-boundary status (CC-20 section 12) -- makes
  * the boundary between "governed" and "never actually examined" explicit,
  * rather than collapsing both into an empty requiredFactKeys list.
@@ -397,6 +423,17 @@ export interface KnowledgeCandidate {
   readonly depthBasis?: DepthBasis;
   /** CC-20 section 18: whether ANY validated PUBLIC_ASSESSMENT evidence resolved to this exact candidate, independent of which basis ultimately determined depthConfidence -- keeps "no assessment" visible without collapsing to total depth ignorance. */
   readonly assessmentCalibrationAvailable?: boolean;
+  /** CC-20A section 12: whether this candidate's learner PERFORMANCE is itself mechanically established -- gates whether QUALIFICATION_LEVEL_BOUNDED depth may ever apply (§16, attachQualificationLevelConstraints). */
+  readonly performanceProvenance?: PerformanceProvenance;
+  /**
+   * CC-20A section 9: true only for a candidate generated from a validated
+   * `normalizationKind: "RANGE_CATEGORY"` record -- the minimum governed
+   * signal currently eligible to be treated as an explicitly structural
+   * curriculum node. A `PRIMARY_REQUIREMENT` candidate is never eligible
+   * for `STRUCTURALLY_DECOMPOSED` merely because a child's `parentSubject`
+   * names it -- child existence is necessary but not sufficient.
+   */
+  readonly isExplicitlyStructuralNode?: boolean;
 }
 
 // ---------------------------------------------------------------------
