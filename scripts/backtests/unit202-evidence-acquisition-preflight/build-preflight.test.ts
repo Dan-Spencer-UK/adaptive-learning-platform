@@ -204,12 +204,15 @@ describe("CC-23A section 25 -- individual Unit-202 gap resolutions", () => {
     expect([...req131!.sourceKnowledgeTargetIds].sort()).toEqual(["unit202::ACQ-131", "unit202::ACQ-132"]);
   });
 
-  it("right-hand grip rule: READY OPERATIONAL_USE_RULE with structured directional metadata, resolved without a special-case in production planner logic", () => {
+  it("right-hand grip rule: READY OPERATIONAL_USE_RULE, OPEN_TECHNICAL_QUESTION, with generic coverage obligations and NO answer mapping (CC-23B §13)", () => {
     const target = input.knowledgeTargets.find((t) => t.knowledgeTargetId === "unit202::ACQ-108")!;
     expect(target.kind).toBe("OPERATIONAL_USE_RULE");
-    expect(target.directionalMapping!.length).toBeGreaterThan(0);
+    expect(target.specificationMode).toBe("OPEN_TECHNICAL_QUESTION");
+    expect(target.directionalMapping).toBeUndefined(); // CC-23B: no answer mapping supplied pre-acquisition
     const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-108"))!;
     expect(req.decompositionStatus).toBe("READY");
+    expect(req.specificationMode).toBe("OPEN_TECHNICAL_QUESTION");
+    expect(req.requiredCoverageDimensions).toEqual(["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"]);
   });
 
   it("Fleming's left-hand rule: READY OPERATIONAL_USE_RULE, motor-effect learner knowledge", () => {
@@ -226,13 +229,64 @@ describe("CC-23A section 25 -- individual Unit-202 gap resolutions", () => {
     expect(req.decompositionStatus).toBe("READY");
   });
 
-  it("none of the 3 directional-rule targets carry an electrical-specific field name in their generic representation -- directionalMapping is role/meaning pairs only", () => {
+  it("CC-23B §13/§16: none of the 3 directional-rule blind requirements leak an answer mapping -- no directionalMapping field, no finger/thumb/curl content anywhere", () => {
+    const forbidden = ["thumb", "finger", "curl", "right hand", "left hand", "conventional current", "reversal"];
     for (const id of ["unit202::ACQ-108", "unit202::ACQ-114", "unit202::ACQ-117"]) {
       const target = input.knowledgeTargets.find((t) => t.knowledgeTargetId === id)!;
-      for (const entry of target.directionalMapping!) {
-        expect(Object.keys(entry).sort()).toEqual(["meaning", "role"]);
+      expect(target.directionalMapping, `${id} must carry no directionalMapping answer content`).toBeUndefined();
+      const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes(id))!;
+      const serialized = JSON.stringify(req).toLowerCase();
+      for (const word of forbidden) {
+        expect(serialized.includes(word), `${id}'s evidence requirement must not leak "${word}"`).toBe(false);
       }
     }
+  });
+
+  it("CC-23B §16: the blind plan's raw JSON output contains no directional-answer leakage anywhere, for any requirement", () => {
+    const planJson = JSON.stringify(readJson("reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json")).toLowerCase();
+    for (const word of ["curled fingers", "thumb aligned", "first finger", "second finger"]) {
+      expect(planJson.includes(word), `blind plan must not leak "${word}"`).toBe(false);
+    }
+  });
+});
+
+describe("CC-23B §14/§25 -- formula targets remain KNOWN_CLAIM_TO_VERIFY (qualification-supplied formulas are never converted to open questions)", () => {
+  it("R=rhoL/A, V=IR, B=Phi/A, and the merged f=NxP requirement are all KNOWN_CLAIM_TO_VERIFY", () => {
+    for (const id of ["unit202::ACQ-083", "unit202::ACQ-085", "unit202::ACQ-106", "unit202::ACQ-132"]) {
+      const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes(id))!;
+      expect(req.specificationMode, `${id} must remain KNOWN_CLAIM_TO_VERIFY`).toBe("KNOWN_CLAIM_TO_VERIFY");
+      expect(req.evidenceQuestion).toBeNull();
+    }
+  });
+
+  it("the duplicate frequency learner target (ACQ-131, no formula of its own) still merges into the KNOWN_CLAIM_TO_VERIFY requirement supplied by ACQ-132", () => {
+    const req131 = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-131"));
+    const req132 = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-132"));
+    expect(req131).toBe(req132);
+    expect(req131!.specificationMode).toBe("KNOWN_CLAIM_TO_VERIFY");
+  });
+
+  it("F = mg (both AC3.1 and AC3.3 mappings) remains KNOWN_CLAIM_TO_VERIFY after merging", () => {
+    const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-047"))!;
+    expect(req.specificationMode).toBe("KNOWN_CLAIM_TO_VERIFY");
+    expect([...req.sourceKnowledgeTargetIds].sort()).toEqual(["unit202::ACQ-047", "unit202::ACQ-068"]);
+  });
+});
+
+describe("CC-23B §21/§26 -- zero semantic-decomposition gaps remain, and no new gap was invented shut", () => {
+  it("SEMANTIC_DECOMPOSITION_REQUIRED count is exactly zero for the current frozen target set", () => {
+    const gaps = planResult.requirements.filter((r) => r.decompositionStatus === "SEMANTIC_DECOMPOSITION_REQUIRED");
+    expect(gaps).toHaveLength(0);
+  });
+});
+
+describe("CC-23B §9/§26 -- Unit-202 known/open requirement counts", () => {
+  it("reports a genuine KNOWN/OPEN split, majority OPEN (the qualification names concepts far more often than it states their technical content)", () => {
+    const known = planResult.requirements.filter((r) => r.specificationMode === "KNOWN_CLAIM_TO_VERIFY").length;
+    const open = planResult.requirements.filter((r) => r.specificationMode === "OPEN_TECHNICAL_QUESTION").length;
+    expect(known + open).toBe(planResult.requirements.length);
+    expect(known).toBeGreaterThan(0);
+    expect(open).toBeGreaterThan(known);
   });
 });
 

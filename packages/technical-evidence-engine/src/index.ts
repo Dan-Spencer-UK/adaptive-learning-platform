@@ -30,3 +30,4 @@ export type PackageId = typeof packageId;
 export * from "./types.ts";
 export * from "./planner.ts";
 export * from "./access-guard.ts";
+export * from "./semantic-handoff.ts";

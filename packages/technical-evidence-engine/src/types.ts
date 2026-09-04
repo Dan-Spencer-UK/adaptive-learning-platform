@@ -102,30 +102,99 @@ export const coverageDimensionSchema = z.enum([
   "CALCULATION_METHOD",
   "RECOGNITION",
   "CONCEPTUAL_RELATIONSHIP",
+  /** CC-23B §5.B/§13: a directional/spatial mapping is required (e.g. a hand rule), without stating what the mapping IS -- that is exactly what acquisition discovers. */
+  "DIRECTIONAL_MAPPING",
+  /** CC-23B §5.B/§13: which named role (a finger, a terminal, a pole) corresponds to which physical quantity, without stating the correspondence itself. */
+  "ROLE_MAPPING",
+  /** CC-23B §5.B/§13: the conditions under which a rule/procedure/device is correctly applied, without stating those conditions. */
+  "CORRECT_USE_CONDITIONS",
 ]);
 export type CoverageDimension = z.infer<typeof coverageDimensionSchema>;
 
 // ---------------------------------------------------------------------
-// 3A. Technical semantic identity (CC-23A §2-§6). Identical human-readable
-// wording does NOT guarantee identical technical meaning ("range" in
-// statistics vs. "range" in measurement; "power" in mechanics vs. an
-// electrical quantity) -- canonical reuse must never be decided from
-// display text alone. `semanticNamespace` names the domain/subject area a
-// technical truth belongs to (qualification-independent, portable across
-// awarding organisations and course structures -- never a curriculum
-// location such as an AC/unit number); `semanticKey` names the specific
-// truth within that namespace. Both are supplied by the party that
-// approves learner knowledge (the upstream semantic-construction step, or
-// a qualification-specific adapter standing in for it during regression
-// testing) -- this package never derives them from free text itself
-// (task §6: "Do NOT make the generic planner discover semantic identity
-// using fuzzy NLP or word matching").
+// 3A. Technical semantic identity (CC-23A §2-§6; CC-23B §6/§10 governance
+// hardening). Identical human-readable wording does NOT guarantee
+// identical technical meaning ("range" in statistics vs. "range" in
+// measurement; "power" in mechanics vs. an electrical quantity) --
+// canonical reuse must never be decided from display text alone.
+// `semanticNamespace` names the domain/subject area a technical truth
+// belongs to (qualification-independent, portable across awarding
+// organisations and course structures -- never a curriculum location such
+// as an AC/unit number); `semanticKey` names the specific truth within
+// that namespace. Both are supplied by the party that approves learner
+// knowledge (the upstream semantic-construction step, or a qualification-
+// specific adapter standing in for it during regression testing) -- this
+// package never derives them from free text itself (task §6: "Do NOT make
+// the generic planner discover semantic identity using fuzzy NLP or word
+// matching").
+//
+// CC-23B §6: semantic identity identifies WHAT technical concept/
+// obligation is being discussed -- it never asserts the technical answer
+// itself. "electromagnetic-rules :: fleming-left-hand-rule" is a semantic
+// identity; the finger/current/field/force mapping is technical CONTENT
+// and belongs to source acquisition (or to qualification evidence, if and
+// only if qualification evidence explicitly supplied it).
+//
+// CC-23B §10: `governanceState` makes explicit how much TRUST this
+// identity carries for CROSS-QUALIFICATION reuse -- the planner must never
+// be forced to guess a reusable identity merely to proceed:
+//   CANONICAL              -- safe for cross-qualification/domain evidence
+//                              reuse (task §CT).
+//   PROVISIONAL_NON_REUSABLE -- sufficiently structured to plan acquisition
+//                              for THIS learner target, but never merged
+//                              with another qualification's identity (task
+//                              §CS) -- the planner scopes its canonical key
+//                              by `qualificationContextId` while in this
+//                              state, so a local opaque identity can never
+//                              collide with, or be mistaken for, another
+//                              qualification's domain truth. Reuse WITHIN
+//                              the same qualification (the same
+//                              `qualificationContextId`) still occurs
+//                              normally -- the restriction is cross-
+//                              qualification only.
+//   UNRESOLVED              -- not sufficiently structured even to plan
+//                              acquisition safely; the planner abstains
+//                              with `SEMANTIC_DECOMPOSITION_REQUIRED`
+//                              regardless of any other field (task §CU).
 // ---------------------------------------------------------------------
+
+export const semanticIdentityGovernanceStateSchema = z.enum(["CANONICAL", "PROVISIONAL_NON_REUSABLE", "UNRESOLVED"]);
+export type SemanticIdentityGovernanceState = z.infer<typeof semanticIdentityGovernanceStateSchema>;
 
 export interface TechnicalSemanticIdentity {
   readonly semanticNamespace: string;
   readonly semanticKey: string;
+  readonly governanceState: SemanticIdentityGovernanceState;
 }
+
+// ---------------------------------------------------------------------
+// 3B. Requirement specification mode (CC-23B §1-§3) -- the central
+// distinction this package closes: evidence PLANNING must know WHAT
+// technical evidence to discover, never the technical ANSWER that
+// evidence is supposed to establish.
+//
+//   KNOWN_CLAIM_TO_VERIFY  -- the approved qualification/knowledge
+//                             evidence already supplies the actual
+//                             technical proposition (e.g. "R = ρL/A" is
+//                             literally stated) -- the requirement asks
+//                             acquisition to find authoritative evidence
+//                             VERIFYING an already-known claim.
+//   OPEN_TECHNICAL_QUESTION -- the approved evidence establishes that a
+//                             concept/rule/device/function is required,
+//                             but does NOT supply the technical content
+//                             needed to teach it (e.g. "Fleming's left-
+//                             hand rule" names the rule, not the finger/
+//                             field/current/force mapping) -- the
+//                             requirement asks acquisition to DISCOVER and
+//                             normalize the actual technical claim. An
+//                             open question is never less authoritative:
+//                             it still requires exact source/locator
+//                             verification before a discovered claim can
+//                             govern (task §3).
+// ---------------------------------------------------------------------
+
+export const requirementSpecificationModeSchema = z.enum(["KNOWN_CLAIM_TO_VERIFY", "OPEN_TECHNICAL_QUESTION"]);
+export type RequirementSpecificationMode = z.infer<typeof requirementSpecificationModeSchema>;
 
 /** Directional/spatial/operational mapping entry (task §17-§19 CH) -- generic enough for any domain's directional rule (a compass bearing, a rotation sense, a hand-rule), never named after a specific domain's own vocabulary. */
 export interface DirectionalMappingEntry {
@@ -156,6 +225,27 @@ export interface KnowledgeTarget {
    * homonym) are never merged.
    */
   readonly semanticIdentity: TechnicalSemanticIdentity;
+  /**
+   * CC-23B §1-§3: mandatory -- does the qualification/knowledge evidence
+   * behind this target already supply the technical answer
+   * (`KNOWN_CLAIM_TO_VERIFY`), or only the obligation to teach a concept
+   * whose technical content remains to be discovered
+   * (`OPEN_TECHNICAL_QUESTION`)? Never inferred by this package from
+   * `targetText` content -- an adapter (or the semantic-handoff layer,
+   * see ./semantic-handoff.ts) must declare it explicitly, exactly like
+   * `semanticIdentity`.
+   */
+  readonly specificationMode: RequirementSpecificationMode;
+  /**
+   * CC-23B §3: an OPTIONAL, adapter-supplied override of the generic,
+   * mode-templated evidence QUESTION the planner would otherwise compose
+   * for an `OPEN_TECHNICAL_QUESTION` target. Meaningless for
+   * `KNOWN_CLAIM_TO_VERIFY`. This field exists ONLY to improve question
+   * PHRASING -- task §9/§CQ: it must never be trusted, compared against,
+   * or read as an established technical fact; the planner never uses it
+   * to satisfy `acceptanceCriteria` or to change `specificationMode`.
+   */
+  readonly evidenceQuestionOverride?: string;
   /**
    * Compound-decomposition hint (task §8.B) -- only meaningful for
    * `CONCEPT_DEFINITION` targets. When populated with more than one
@@ -285,9 +375,20 @@ export const sourceAuthorityClassSchema = z.string().min(1);
  * `sourceAuthorityPolicy` when computing `classification`,
  * `acquisitionPriority`, or `decompositionStatus` (see planner.test.ts's
  * dedicated regression, task §CJ).
+ *
+ * CC-23B §12: extensibility does not mean an undeclared string is silently
+ * trusted. Any authority class used in `allowedAuthorityClassesByMode`
+ * that is NOT one of `STANDARD_AUTHORITY_CLASSES` MUST also appear in
+ * `registeredCustomAuthorityClasses`, or `validateSourceAuthorityPolicy`
+ * (planner.ts) reports it as a configuration gap -- a typo (e.g.
+ * "MARITIME_CLASSIFICATON_SOCIETY") is caught, never silently promoted to
+ * a new trusted class. This is still not a closed global enum: a domain
+ * registers whatever custom classes it needs, in its OWN policy, with no
+ * change to this package's production code.
  */
 export interface SourceAuthorityPolicy {
   readonly allowedAuthorityClassesByMode: Readonly<Partial<Record<RequirementMode, readonly SourceAuthorityClass[]>>>;
+  readonly registeredCustomAuthorityClasses?: readonly SourceAuthorityClass[];
 }
 
 // ---------------------------------------------------------------------
@@ -314,7 +415,19 @@ export interface EvidenceRequirement {
   readonly canonicalRequirementKey: string;
   readonly sourceKnowledgeTargetIds: readonly string[];
   readonly requirementMode: RequirementMode;
+  /** CC-23B §3: which of the two shapes this requirement takes -- see `RequirementSpecificationMode`. */
+  readonly specificationMode: RequirementSpecificationMode;
   readonly requirementText: string;
+  /**
+   * CC-23B §3: populated ONLY for `OPEN_TECHNICAL_QUESTION` (`null` for
+   * `KNOWN_CLAIM_TO_VERIFY`, where `requirementText` already fully
+   * specifies what to verify) -- a generic, mode-templated question that
+   * names WHAT must be discovered, never the answer. Composed by the
+   * planner from `requirementMode` + the target's own (answer-free)
+   * `targetText`, optionally re-phrased via `evidenceQuestionOverride`
+   * (phrasing only, never a source of truth).
+   */
+  readonly evidenceQuestion: string | null;
   readonly requiredCoverageDimensions: readonly CoverageDimension[];
   readonly sourceAuthorityClasses: readonly SourceAuthorityClass[];
   readonly acquisitionPriority: AcquisitionPriority;
@@ -383,6 +496,16 @@ export interface AcquisitionPolicy {
   readonly maxCandidateSourcesPerRequirement: number;
 }
 
+/**
+ * CC-23B §20: consumes EITHER specification mode -- `evidenceRequirements`
+ * is simply `EvidenceRequirement[]`, each already carrying its own
+ * `specificationMode`. A `KNOWN_CLAIM_TO_VERIFY` requirement asks the
+ * (future) acquirer to verify an existing claim; an
+ * `OPEN_TECHNICAL_QUESTION` requirement asks it to discover and normalize
+ * one. Nothing in this request shape changes between the two -- the
+ * acquirer branches on `EvidenceRequirement.specificationMode`, never this
+ * package.
+ */
 export interface TechnicalEvidenceAcquisitionRequest {
   readonly evidenceRequirements: readonly EvidenceRequirement[];
   readonly sourceAuthorityPolicy: SourceAuthorityPolicy;
@@ -415,11 +538,22 @@ export interface AcquisitionGapRecord {
   readonly reason: string;
 }
 
+/**
+ * CC-23B §20: for an `OPEN_TECHNICAL_QUESTION` requirement, this is where
+ * the DISCOVERED technical claim(s) first appear -- never in
+ * `EvidenceRequirement`/`KnowledgeTarget` themselves. `coverageDimensionsSatisfied`
+ * and `unresolvedDimensions` partition `EvidenceRequirement.requiredCoverageDimensions`
+ * so a partially-discovered open question (e.g. the directional mapping
+ * found, the correct-use conditions not yet found) stays honestly visible
+ * rather than collapsing to one boolean.
+ */
 export interface TechnicalEvidenceAcquisitionResult {
   readonly evidenceRequirementId: string;
   readonly candidateSources: readonly CandidateSourceRecord[];
   readonly normalizedClaims: readonly NormalizedTechnicalClaim[];
   readonly verificationStatus: VerificationStatus;
+  readonly coverageDimensionsSatisfied: readonly CoverageDimension[];
+  readonly unresolvedDimensions: readonly CoverageDimension[];
   readonly conflicts: readonly AcquisitionConflictRecord[];
   readonly gaps: readonly AcquisitionGapRecord[];
 }
@@ -456,4 +590,75 @@ export interface AccessAuditRecord {
   readonly matchedRule: string | null;
   readonly outcome: AccessOutcome;
   readonly recordedAt: string;
+}
+
+// ---------------------------------------------------------------------
+// 13. Generic technical-semantic handoff contract (CC-23B §7-§11). Closes
+// the SECOND missing generic handoff: CC-23A made `KnowledgeTarget.
+// semanticIdentity` mandatory, but the Unit-202 adapter supplies it by
+// hand. A future qualification must not need a hand-written, module-
+// specific adapter merely to enter evidence planning.
+//
+// This is a DOWNSTREAM handoff owned entirely by this package (never by
+// `@alp/qualification-pipeline`, preserving the locked dependency
+// direction -- qualification-pipeline never imports this package, and
+// this package never imports qualification-pipeline). The CALLER (an
+// integration layer that already legitimately depends on both packages)
+// is responsible for translating a real `KnowledgeCandidate` into the
+// minimal `ApprovedKnowledgeTargetRef` shape below.
+//
+// `KnowledgeTechnicalSemanticsProposal` is NOT evidence, NOT curriculum
+// authority, and cannot create a learner target or change its REQUIRED/
+// CONTEXTUAL/OUT_OF_SCOPE classification (task §8) -- it only structures
+// an EXISTING approved learner target for evidence planning. An LLM (or
+// any other process) may PROPOSE structure (namespace/key, kind,
+// dimensions, compound/constituent shape); it must never manufacture
+// technical ANSWER content (task §9) -- the proposal shape below has
+// structurally no field capable of asserting one; `technicalQuestionShape`
+// exists ONLY to phrase a question, never to assert a fact (validated in
+// semantic-handoff.test.ts's §CQ regression).
+// ---------------------------------------------------------------------
+
+/** The minimal, qualification-agnostic reference to an already-approved learner-knowledge target this handoff may annotate -- deliberately NOT `@alp/qualification-pipeline`'s own `KnowledgeCandidate` type (this package imports no workspace package); the caller maps `KnowledgeCandidate.candidateKey`/`disposition` into this shape. */
+export interface ApprovedKnowledgeTargetRef {
+  readonly targetCandidateKey: string;
+  readonly qualificationContextId: string;
+  readonly classification: KnowledgeTargetClassification;
+}
+
+export const proposalBasisSchema = z.enum(["EXPLICIT_QUALIFICATION_WORDING", "LLM_STRUCTURAL_INFERENCE", "ADAPTER_ASSIGNED"]);
+export type ProposalBasis = z.infer<typeof proposalBasisSchema>;
+
+/** An UNVALIDATED, UNGOVERNED proposal -- structure only, never a factual claim. Must be validated (`validateKnowledgeTechnicalSemanticsProposal`, semantic-handoff.ts) against a real `ApprovedKnowledgeTargetRef` before it can influence planning. */
+export interface KnowledgeTechnicalSemanticsProposal {
+  readonly targetCandidateKey: string;
+  readonly semanticIdentityProposal: TechnicalSemanticIdentity | null;
+  readonly evidencePlanningKind: KnowledgeTargetKind;
+  readonly specificationMode: RequirementSpecificationMode;
+  readonly coverageDimensionProposals: readonly CoverageDimension[];
+  readonly constituentTargetRefs: readonly string[];
+  readonly foundationalProcedureRefs: readonly string[];
+  /** Phrasing aid ONLY for an `OPEN_TECHNICAL_QUESTION` -- never read as, compared against, or capable of establishing a technical fact (task §9/§CQ). */
+  readonly technicalQuestionShape: string | null;
+  readonly proposalBasis: ProposalBasis;
+}
+
+export const semanticHandoffValidationStatusSchema = z.enum(["VALID", "REJECTED"]);
+export type SemanticHandoffValidationStatus = z.infer<typeof semanticHandoffValidationStatusSchema>;
+
+/** The GOVERNED, validated result of a proposal -- safe to convert into a `KnowledgeTarget` (see `buildKnowledgeTargetFromSemantics`, semantic-handoff.ts) only when `provenance.validationStatus === "VALID"`. */
+export interface KnowledgeTechnicalSemantics {
+  readonly targetCandidateKey: string;
+  readonly semanticIdentity: TechnicalSemanticIdentity | null;
+  readonly evidencePlanningKind: KnowledgeTargetKind;
+  readonly specificationMode: RequirementSpecificationMode;
+  readonly coverageDimensions: readonly CoverageDimension[];
+  readonly constituentTargetRefs: readonly string[];
+  readonly foundationalProcedureRefs: readonly string[];
+  readonly technicalQuestionOverride: string | null;
+  readonly provenance: {
+    readonly proposalBasis: ProposalBasis;
+    readonly validationStatus: SemanticHandoffValidationStatus;
+    readonly rejectionReason: string | null;
+  };
 }

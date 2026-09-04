@@ -4,8 +4,8 @@
   "policyStatement": "Task §20: scores the DERIVED generic EvidenceRequirements, not learner-target rows. Never exposed to any future blind acquisition engine -- comparison only, after a run completes.",
   "entries": [
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::appropriate-voltage-drop-calculation::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::appropriate-voltage-drop-calculation::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::appropriate-voltage-drop-calculation::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::appropriate-voltage-drop-calculation::PROCEDURE_COVERAGE",
       "requirementText": "Appropriate voltage-drop calculation.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::basic-electron-theory::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::basic-electron-theory::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::basic-electron-theory::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::basic-electron-theory::EXACT_FACT",
       "requirementText": "Basic electron theory.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -78,8 +78,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::chemical-effect-electrolysis::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::chemical-effect-electrolysis::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::chemical-effect-electrolysis::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::chemical-effect-electrolysis::EXACT_FACT",
       "requirementText": "Chemical effect / electrolysis.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -103,8 +103,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::conductors::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::conductors::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::conductors::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::conductors::EXACT_FACT",
       "requirementText": "Conductors.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::conventional-current-versus-electron-flow-distinction::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::conventional-current-versus-electron-flow-distinction::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::conventional-current-versus-electron-flow-distinction::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::conventional-current-versus-electron-flow-distinction::EXACT_FACT",
       "requirementText": "Conventional-current versus electron-flow distinction.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::current-as-charge-electron-flow-concept-at-calibrated-depth::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::current-as-charge-electron-flow-concept-at-calibrated-depth::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::current-as-charge-electron-flow-concept-at-calibrated-depth::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::current-as-charge-electron-flow-concept-at-calibrated-depth::RELATIONSHIP",
       "requirementText": "Current as charge/electron-flow concept at calibrated depth.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -178,8 +178,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::fuse-operation-as-an-example-of-the-thermal-effect::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::fuse-operation-as-an-example-of-the-thermal-effect::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::fuse-operation-as-an-example-of-the-thermal-effect::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::fuse-operation-as-an-example-of-the-thermal-effect::EXACT_FACT",
       "requirementText": "Fuse operation as an example of the thermal effect.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -196,8 +196,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::insulators::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::insulators::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::insulators::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::insulators::EXACT_FACT",
       "requirementText": "Insulators.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::ohm-metre-resistivity-unit::SYMBOL_OR_CONVENTION",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::ohm-metre-resistivity-unit::SYMBOL_OR_CONVENTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::ohm-metre-resistivity-unit::SYMBOL_OR_CONVENTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::ohm-metre-resistivity-unit::SYMBOL_OR_CONVENTION",
       "requirementText": "Ohm-metre (resistivity unit).",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -246,8 +246,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::ohm-s-law::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::ohm-s-law::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::ohm-s-law::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::ohm-s-law::RELATIONSHIP",
       "requirementText": "Ohm's law.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -271,8 +271,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::p-i-2-r::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::p-i-2-r::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::p-i-2-r::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::p-i-2-r::RELATIONSHIP",
       "requirementText": "P = I^2 R.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -296,8 +296,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::p-v-2-r-where-appropriate::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::p-v-2-r-where-appropriate::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::p-v-2-r-where-appropriate::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::p-v-2-r-where-appropriate::RELATIONSHIP",
       "requirementText": "P = V^2/R where appropriate.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -321,8 +321,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::p-vi::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::p-vi::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::p-vi::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::p-vi::RELATIONSHIP",
       "requirementText": "P = VI.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -346,8 +346,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::parallel-circuit-current-divides-sums::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::parallel-circuit-current-divides-sums::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-current-divides-sums::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-current-divides-sums::RELATIONSHIP",
       "requirementText": "Parallel circuit: current divides/sums.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -371,8 +371,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::parallel-circuit-equivalent-resistance-relationship::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::parallel-circuit-equivalent-resistance-relationship::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-equivalent-resistance-relationship::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-equivalent-resistance-relationship::RELATIONSHIP",
       "requirementText": "Parallel circuit: equivalent-resistance relationship.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -402,8 +402,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::parallel-circuit-voltage-common-across-branches::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::parallel-circuit-voltage-common-across-branches::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-voltage-common-across-branches::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-voltage-common-across-branches::RELATIONSHIP",
       "requirementText": "Parallel circuit: voltage common across branches.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -427,8 +427,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::r-rho-l-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::r-rho-l-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::r-rho-l-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::r-rho-l-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
       "requirementText": "R = ρL/A, including the meanings of R (resistance), ρ (resistivity), L (length) and A (cross-sectional area).",
       "requirementMode": "FORMULA_OR_RULE",
       "decompositionStatus": "READY",
@@ -458,8 +458,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::resistance::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::resistance::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::resistance::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::resistance::EXACT_FACT",
       "requirementText": "Resistance.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -483,8 +483,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::resistivity::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::resistivity::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::resistivity::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::resistivity::EXACT_FACT",
       "requirementText": "Resistivity.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -514,8 +514,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::rho-resistivity-symbol::SYMBOL_OR_CONVENTION",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::rho-resistivity-symbol::SYMBOL_OR_CONVENTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::rho-resistivity-symbol::SYMBOL_OR_CONVENTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::rho-resistivity-symbol::SYMBOL_OR_CONVENTION",
       "requirementText": "Rho (resistivity symbol).",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -539,8 +539,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::series-circuit-current-common-throughout::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::series-circuit-current-common-throughout::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::series-circuit-current-common-throughout::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::series-circuit-current-common-throughout::RELATIONSHIP",
       "requirementText": "Series circuit: current common throughout.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -564,8 +564,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::series-circuit-resistance-sums::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::series-circuit-resistance-sums::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::series-circuit-resistance-sums::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::series-circuit-resistance-sums::RELATIONSHIP",
       "requirementText": "Series circuit: resistance sums.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -595,8 +595,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::series-circuit-voltage-shares-sums::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::series-circuit-voltage-shares-sums::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::series-circuit-voltage-shares-sums::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::series-circuit-voltage-shares-sums::RELATIONSHIP",
       "requirementText": "Series circuit: voltage shares/sums.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -620,8 +620,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::suitable-dc-circuit-power-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::suitable-dc-circuit-power-calculations::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::suitable-dc-circuit-power-calculations::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::suitable-dc-circuit-power-calculations::PROCEDURE_COVERAGE",
       "requirementText": "Suitable DC-circuit-power calculations.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -651,8 +651,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::thermal-effect-of-current::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::thermal-effect-of-current::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::thermal-effect-of-current::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::thermal-effect-of-current::EXACT_FACT",
       "requirementText": "Thermal effect of current.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -676,8 +676,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
       "requirementText": "V = IR (Ohm's law), including the meanings of V (voltage), I (current) and R (resistance).",
       "requirementMode": "FORMULA_OR_RULE",
       "decompositionStatus": "READY",
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::vdrop-ir::RELATIONSHIP",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::vdrop-ir::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::vdrop-ir::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::vdrop-ir::RELATIONSHIP",
       "requirementText": "Vdrop = IR.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -726,8 +726,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-fundamentals-and-safety::voltage-drop-voltage-loss-across-resistance-carrying-current::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-fundamentals-and-safety::voltage-drop-voltage-loss-across-resistance-carrying-current::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::voltage-drop-voltage-loss-across-resistance-carrying-current::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-fundamentals-and-safety::voltage-drop-voltage-loss-across-resistance-carrying-current::EXACT_FACT",
       "requirementText": "Voltage drop: voltage loss across resistance carrying current.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -757,8 +757,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::ammeter-measures-current-series-connection::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::ammeter-measures-current-series-connection::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ammeter-measures-current-series-connection::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::ammeter-measures-current-series-connection::EXACT_FACT",
       "requirementText": "Ammeter: measures current + series connection.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -782,8 +782,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::area-correct-si-unit-and-unit-symbol::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::area-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::area-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::area-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementText": "Area: correct SI unit and unit symbol.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -807,8 +807,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -825,8 +825,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
       "requirementText": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [DISTINCTION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -843,8 +843,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -861,8 +861,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -879,8 +879,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Current: meaning, quantity symbol, unit name/symbol. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -897,8 +897,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Current: meaning, quantity symbol, unit name/symbol. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -915,8 +915,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Current: meaning, quantity symbol, unit name/symbol. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -933,8 +933,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::density-correct-si-unit-and-unit-symbol::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::density-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::density-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::density-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementText": "Density: correct SI unit and unit symbol.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -958,8 +958,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -976,8 +976,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
       "requirementText": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power. [DISTINCTION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -994,8 +994,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1012,8 +1012,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1030,8 +1030,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT",
       "requirementText": "Energy meter: measures/integrates electrical energy.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1055,8 +1055,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Frequency: meaning, quantity symbol, unit name/symbol. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1073,8 +1073,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Frequency: meaning, quantity symbol, unit name/symbol. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1091,8 +1091,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Frequency: meaning, quantity symbol, unit name/symbol. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1109,8 +1109,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1127,8 +1127,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
       "requirementText": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance. [DISTINCTION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1145,8 +1145,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1163,8 +1163,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1181,8 +1181,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1199,8 +1199,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
       "requirementText": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [DISTINCTION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1217,8 +1217,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1235,8 +1235,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1253,8 +1253,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::length-correct-si-unit-and-unit-symbol::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::length-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::length-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::length-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementText": "Length: correct SI unit and unit symbol.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1278,8 +1278,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::low-high-meter-internal-resistance::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::low-high-meter-internal-resistance::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::low-high-meter-internal-resistance::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::low-high-meter-internal-resistance::EXACT_FACT",
       "requirementText": "Low/high meter internal resistance.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1296,8 +1296,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::mass-correct-si-unit-and-unit-symbol::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::mass-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::mass-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::mass-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementText": "Mass: correct SI unit and unit symbol.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1321,8 +1321,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE",
       "requirementText": "Ohmmeter: circuit de-energised/safe-use principle.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -1346,8 +1346,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::ohmmeter-measures-resistance::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::ohmmeter-measures-resistance::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-measures-resistance::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-measures-resistance::EXACT_FACT",
       "requirementText": "Ohmmeter: measures resistance.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1364,8 +1364,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1382,8 +1382,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
       "requirementText": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power. [DISTINCTION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1400,8 +1400,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1418,8 +1418,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1436,8 +1436,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1454,8 +1454,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION",
       "requirementText": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor. [DISTINCTION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1472,8 +1472,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1490,8 +1490,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1508,8 +1508,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE",
       "requirementText": "Practical unit conversion needed elsewhere in Unit 202.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -1533,8 +1533,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1551,8 +1551,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DISTINCTION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DISTINCTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DISTINCTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DISTINCTION",
       "requirementText": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity. [DISTINCTION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1569,8 +1569,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1587,8 +1587,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1605,8 +1605,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1623,8 +1623,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DISTINCTION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DISTINCTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DISTINCTION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DISTINCTION",
       "requirementText": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance. [DISTINCTION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1641,8 +1641,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1659,8 +1659,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1677,8 +1677,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementText": "Temperature: correct SI unit and unit symbol.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1708,8 +1708,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::time-correct-si-unit-and-unit-symbol::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::time-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::time-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::time-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementText": "Time: correct SI unit and unit symbol.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1733,8 +1733,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::velocity-correct-si-unit-and-unit-symbol::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::velocity-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::velocity-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::velocity-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementText": "Velocity: correct SI unit and unit symbol.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1758,8 +1758,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
       "requirementText": "Voltage: meaning, quantity symbol, unit name/symbol. [DEFINITION]",
       "requirementMode": "CONCEPT_DEFINITION",
       "decompositionStatus": "READY",
@@ -1776,8 +1776,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
       "requirementText": "Voltage: meaning, quantity symbol, unit name/symbol. [QUANTITY_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1794,8 +1794,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
       "requirementText": "Voltage: meaning, quantity symbol, unit name/symbol. [UNIT_SYMBOL]",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -1812,8 +1812,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT",
       "requirementText": "Voltmeter: measures potential difference + parallel connection.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1837,8 +1837,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::volume-correct-si-unit-and-unit-symbol::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::volume-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::volume-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::volume-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementText": "Volume: correct SI unit and unit symbol.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1862,8 +1862,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
-      "canonicalRequirementKey": "electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
       "requirementText": "Wattmeter: measures electrical power + appropriate current/voltage sensing arrangement at qualification depth.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1887,8 +1887,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::alternating-sinusoidal-output-concept::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::alternating-sinusoidal-output-concept::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::alternating-sinusoidal-output-concept::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::alternating-sinusoidal-output-concept::EXACT_FACT",
       "requirementText": "Alternating/sinusoidal output concept.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1912,8 +1912,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::amplitude-peak::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::amplitude-peak::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::amplitude-peak::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::amplitude-peak::EXACT_FACT",
       "requirementText": "Amplitude / peak.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -1937,8 +1937,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::analogous-current-relationship-where-applicable::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::analogous-current-relationship-where-applicable::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::analogous-current-relationship-where-applicable::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::analogous-current-relationship-where-applicable::RELATIONSHIP",
       "requirementText": "Analogous current relationship where applicable.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -1962,8 +1962,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
       "requirementText": "Appropriate simple AC-generation calculations.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -1987,8 +1987,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
       "requirementText": "Appropriate sine-wave conversions/calculations.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -2012,8 +2012,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
       "requirementText": "Average over one alternation ~= 0.6366 x Vpeak.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2037,8 +2037,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
-      "canonicalRequirementKey": "electromagnetism-and-induction::b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
       "requirementText": "B = Φ/A, including the meanings of B (magnetic flux density), Φ (magnetic flux) and A (area).",
       "requirementMode": "FORMULA_OR_RULE",
       "decompositionStatus": "READY",
@@ -2062,8 +2062,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::basic-electromagnet-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::basic-electromagnet-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::basic-electromagnet-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::basic-electromagnet-principle::EXACT_FACT",
       "requirementText": "Basic electromagnet principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2087,8 +2087,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
-      "canonicalRequirementKey": "electromagnetism-and-induction::brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "requirementText": "Brushes.",
       "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "decompositionStatus": "READY",
@@ -2112,8 +2112,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
-      "canonicalRequirementKey": "electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "requirementText": "Coil.",
       "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "decompositionStatus": "READY",
@@ -2137,8 +2137,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::contactor::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::contactor::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::contactor::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::contactor::EXACT_FACT",
       "requirementText": "Contactor.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2155,8 +2155,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION",
-      "canonicalRequirementKey": "electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION",
       "requirementText": "Dot/cross page convention.",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -2173,8 +2173,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::e-blv::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::e-blv::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::e-blv::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::e-blv::RELATIONSHIP",
       "requirementText": "e = Blv.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2198,8 +2198,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP",
       "requirementText": "Equivalent rpm relationship f = n_rpm x P / 60.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2216,9 +2216,9 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
-      "canonicalRequirementKey": "electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
-      "requirementText": "Fleming's left-hand rule (motor effect): with the left hand, the First finger points in the direction of the magnetic field, the Second finger points in the direction of conventional current, and the Thumb points in the direction of the resulting force/motion.",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "requirementText": "Fleming left-hand rule.",
       "requirementMode": "OPERATIONAL_USE_RULE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
@@ -2241,9 +2241,9 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
-      "canonicalRequirementKey": "electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
-      "requirementText": "Fleming's right-hand rule (generator effect): with the right hand, the First finger points in the direction of the magnetic field, the Thumb points in the direction of conductor motion, and the Second finger points in the direction of the induced conventional current.",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "requirementText": "Fleming right-hand/generator rule.",
       "requirementMode": "OPERATIONAL_USE_RULE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
@@ -2266,8 +2266,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::frequency::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::frequency::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::frequency::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::frequency::EXACT_FACT",
       "requirementText": "Frequency.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2291,8 +2291,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::magnetic-attraction-repulsion::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::magnetic-attraction-repulsion::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-attraction-repulsion::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::magnetic-attraction-repulsion::EXACT_FACT",
       "requirementText": "Magnetic attraction/repulsion.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2316,8 +2316,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::magnetic-field-around-a-current-carrying-conductor::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::magnetic-field-around-a-current-carrying-conductor::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-around-a-current-carrying-conductor::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::magnetic-field-around-a-current-carrying-conductor::EXACT_FACT",
       "requirementText": "Magnetic field around a current-carrying conductor.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2341,8 +2341,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
-      "canonicalRequirementKey": "electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "requirementText": "Magnetic field patterns.",
       "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "decompositionStatus": "READY",
@@ -2366,8 +2366,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::magnetic-flux-density-meaning-symbol-unit::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::magnetic-flux-density-meaning-symbol-unit::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-flux-density-meaning-symbol-unit::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::magnetic-flux-density-meaning-symbol-unit::EXACT_FACT",
       "requirementText": "Magnetic flux density: meaning, symbol, unit.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2391,8 +2391,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::magnetic-flux-meaning-symbol-unit::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::magnetic-flux-meaning-symbol-unit::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-flux-meaning-symbol-unit::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::magnetic-flux-meaning-symbol-unit::EXACT_FACT",
       "requirementText": "Magnetic flux: meaning, symbol, unit.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2416,8 +2416,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
-      "canonicalRequirementKey": "electromagnetism-and-induction::magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "requirementText": "Magnetic poles.",
       "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "decompositionStatus": "READY",
@@ -2441,8 +2441,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
       "requirementText": "Maximum induced EMF when cutting is maximum.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2466,8 +2466,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP",
       "requirementText": "Motional/induced EMF causal concept.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2491,8 +2491,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::motor-effect::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::motor-effect::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT",
       "requirementText": "Motor effect.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2516,8 +2516,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT",
       "requirementText": "No/minimum induced EMF when motion does not cut flux appropriately.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2541,8 +2541,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::peak-to-peak::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::peak-to-peak::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::peak-to-peak::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::peak-to-peak::EXACT_FACT",
       "requirementText": "Peak-to-peak.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2572,8 +2572,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::periodic-time::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::periodic-time::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::periodic-time::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::periodic-time::EXACT_FACT",
       "requirementText": "Periodic time.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2603,8 +2603,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::relay::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::relay::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::relay::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::relay::EXACT_FACT",
       "requirementText": "Relay.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2621,9 +2621,9 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
-      "canonicalRequirementKey": "electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
-      "requirementText": "Right-hand grip rule: with the right hand's thumb aligned with the direction of conventional current, the curled fingers show the direction of magnetic-field circulation around the conductor; reversing the current reverses the field circulation.",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "requirementText": "Right-hand grip rule.",
       "requirementMode": "OPERATIONAL_USE_RULE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
@@ -2646,8 +2646,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::rms::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::rms::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rms::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::rms::EXACT_FACT",
       "requirementText": "RMS.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2677,8 +2677,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP",
       "requirementText": "Rotation/field-cutting causality.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2708,8 +2708,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
-      "canonicalRequirementKey": "electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
       "requirementText": "f = N × P, where f is frequency, N is rotational speed in revolutions per second, and P is the number of pole pairs.",
       "requirementMode": "FORMULA_OR_RULE",
       "decompositionStatus": "READY",
@@ -2754,8 +2754,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP",
       "requirementText": "Scalar F = BIl.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2779,8 +2779,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
       "requirementText": "Signed average of a complete symmetrical sine-wave cycle = 0.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2804,8 +2804,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
-      "canonicalRequirementKey": "electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "requirementText": "Single-loop alternator/generator parts.",
       "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "decompositionStatus": "READY",
@@ -2829,8 +2829,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
-      "canonicalRequirementKey": "electromagnetism-and-induction::slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "requirementText": "Slip rings.",
       "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "decompositionStatus": "READY",
@@ -2854,8 +2854,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::solenoid-magnetic-field::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::solenoid-magnetic-field::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::solenoid-magnetic-field::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::solenoid-magnetic-field::EXACT_FACT",
       "requirementText": "Solenoid magnetic field.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2879,8 +2879,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::solenoid-polarity::EXACT_FACT",
-      "canonicalRequirementKey": "electromagnetism-and-induction::solenoid-polarity::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::solenoid-polarity::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::solenoid-polarity::EXACT_FACT",
       "requirementText": "Solenoid polarity.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -2904,8 +2904,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "electromagnetism-and-induction::suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE",
       "requirementText": "Suitable simple electromagnetism calculations/rearrangements.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -2929,8 +2929,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::t-1-f::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::t-1-f::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::t-1-f::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::t-1-f::RELATIONSHIP",
       "requirementText": "T = 1/f.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2954,8 +2954,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::vpeak-1-414-x-vrms::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::vpeak-1-414-x-vrms::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vpeak-1-414-x-vrms::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::vpeak-1-414-x-vrms::RELATIONSHIP",
       "requirementText": "Vpeak ~= 1.414 x Vrms.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -2979,8 +2979,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
-      "canonicalRequirementKey": "electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
       "requirementText": "Vrms ~= 0.707 x Vpeak.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -3004,8 +3004,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::4-band-resistor-colour-code::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "electronic-devices-and-applications::4-band-resistor-colour-code::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::4-band-resistor-colour-code::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::4-band-resistor-colour-code::PROCEDURE_COVERAGE",
       "requirementText": "4-band resistor colour code.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -3029,8 +3029,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
       "requirementText": "Capacitor: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3054,8 +3054,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
       "requirementText": "DIAC: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3079,8 +3079,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
-      "canonicalRequirementKey": "electronic-devices-and-applications::dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
       "requirementText": "Dimmer: basic timing/control -> delivered-power relationship.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -3104,8 +3104,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::dimmer-diac-triggering::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::dimmer-diac-triggering::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-diac-triggering::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-diac-triggering::EXACT_FACT",
       "requirementText": "Dimmer: DIAC triggering.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3129,8 +3129,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
       "requirementText": "Dimmer: exact RC timing implementation/component values.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3147,8 +3147,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
       "requirementText": "Dimmer switches: application category/function.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3165,8 +3165,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::dimmer-triac-ac-switching-control::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::dimmer-triac-ac-switching-control::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-triac-ac-switching-control::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-triac-ac-switching-control::EXACT_FACT",
       "requirementText": "Dimmer: TRIAC AC switching/control.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3190,8 +3190,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
       "requirementText": "Diode: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3215,8 +3215,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
       "requirementText": "Heating/boiler controls: application category/function.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3233,8 +3233,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
       "requirementText": "Heating: exact transistor/relay topology.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3251,8 +3251,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::heating-thermistor-sensing-role::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::heating-thermistor-sensing-role::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-thermistor-sensing-role::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::heating-thermistor-sensing-role::EXACT_FACT",
       "requirementText": "Heating: thermistor sensing role.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3276,8 +3276,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
       "requirementText": "Inverter: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3301,8 +3301,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
       "requirementText": "LDR (light-dependent resistor): basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3326,8 +3326,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
       "requirementText": "LED: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3351,8 +3351,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
       "requirementText": "Motor: bridge rectifier converts AC to DC.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3369,8 +3369,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
       "requirementText": "Motor control: application category/function.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3387,8 +3387,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT",
       "requirementText": "Motor: controlled electronic switching at general Level-2 depth.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3412,8 +3412,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
       "requirementText": "Photodiode: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3437,8 +3437,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
-      "canonicalRequirementKey": "electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "requirementText": "Physical/photo appearance recognition of each component.",
       "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
       "decompositionStatus": "READY",
@@ -3455,8 +3455,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
       "requirementText": "Rectifier: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3480,8 +3480,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
       "requirementText": "Resistor: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3505,8 +3505,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
-      "canonicalRequirementKey": "electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
       "requirementText": "Schematic-symbol recognition for each named AC6.2 component/device family at qualification depth.",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -3530,8 +3530,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
       "requirementText": "Security alarm: exact NC/contact/bias topology.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3548,8 +3548,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
       "requirementText": "Security alarm: SCR/thyristor latching + sounder role.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3573,8 +3573,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT",
       "requirementText": "Security alarm: transistor switching.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3591,8 +3591,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
       "requirementText": "Security alarms: application category/function.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3609,8 +3609,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
       "requirementText": "Telephone: capacitor -> ringer.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3627,8 +3627,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::telephone-legacy-pstn-framing::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::telephone-legacy-pstn-framing::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-legacy-pstn-framing::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephone-legacy-pstn-framing::EXACT_FACT",
       "requirementText": "Telephone: legacy PSTN framing.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3645,8 +3645,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::telephone-master-secondary-socket-details::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::telephone-master-secondary-socket-details::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-master-secondary-socket-details::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephone-master-secondary-socket-details::EXACT_FACT",
       "requirementText": "Telephone: master/secondary socket details.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3663,8 +3663,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT",
       "requirementText": "Telephone: resistor -> line testing.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3681,8 +3681,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::telephone-surge-protector::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::telephone-surge-protector::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-surge-protector::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephone-surge-protector::EXACT_FACT",
       "requirementText": "Telephone: surge protector.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3699,8 +3699,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
       "requirementText": "Telephones: application category/function.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3717,8 +3717,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
       "requirementText": "Thermistor: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3742,8 +3742,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
       "requirementText": "Thyristor (SCR): basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3767,8 +3767,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
       "requirementText": "Transistor: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3792,8 +3792,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
       "requirementText": "TRIAC: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3817,8 +3817,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
       "requirementText": "Wireless control systems: application category/function.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3842,8 +3842,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::wireless-practical-advantages-applications::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::wireless-practical-advantages-applications::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-practical-advantages-applications::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::wireless-practical-advantages-applications::EXACT_FACT",
       "requirementText": "Wireless: practical advantages/applications.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3860,8 +3860,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
       "requirementText": "Zener diode: basic operating principle.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -3885,8 +3885,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE",
-      "canonicalRequirementKey": "foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE",
       "requirementText": "Algebra.",
       "requirementMode": "TOPIC_BREADTH_COVERAGE",
       "decompositionStatus": "READY",
@@ -3903,8 +3903,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::engineering-notation::SYMBOL_OR_CONVENTION",
-      "canonicalRequirementKey": "foundational-mathematics::engineering-notation::SYMBOL_OR_CONVENTION",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::engineering-notation::SYMBOL_OR_CONVENTION",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::engineering-notation::SYMBOL_OR_CONVENTION",
       "requirementText": "Engineering notation.",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -3921,8 +3921,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
       "requirementText": "Formula transposition.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -3952,8 +3952,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
-      "canonicalRequirementKey": "foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
       "requirementText": "Fractions.",
       "requirementMode": "TOPIC_BREADTH_COVERAGE",
       "decompositionStatus": "READY",
@@ -3977,8 +3977,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::mean::EXACT_FACT",
-      "canonicalRequirementKey": "foundational-mathematics::mean::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::mean::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::mean::EXACT_FACT",
       "requirementText": "Mean.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4008,8 +4008,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::median::EXACT_FACT",
-      "canonicalRequirementKey": "foundational-mathematics::median::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::median::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::median::EXACT_FACT",
       "requirementText": "Median.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4039,8 +4039,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::mode::EXACT_FACT",
-      "canonicalRequirementKey": "foundational-mathematics::mode::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::mode::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::mode::EXACT_FACT",
       "requirementText": "Mode.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4070,8 +4070,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::negative-indices::EXACT_FACT",
-      "canonicalRequirementKey": "foundational-mathematics::negative-indices::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::negative-indices::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::negative-indices::EXACT_FACT",
       "requirementText": "Negative indices.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4095,8 +4095,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::ordinary-decimal-arithmetic::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "foundational-mathematics::ordinary-decimal-arithmetic::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::ordinary-decimal-arithmetic::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::ordinary-decimal-arithmetic::PROCEDURE_COVERAGE",
       "requirementText": "Ordinary decimal arithmetic.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -4120,8 +4120,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::percentages::TOPIC_BREADTH_COVERAGE",
-      "canonicalRequirementKey": "foundational-mathematics::percentages::TOPIC_BREADTH_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::percentages::TOPIC_BREADTH_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::percentages::TOPIC_BREADTH_COVERAGE",
       "requirementText": "Percentages.",
       "requirementMode": "TOPIC_BREADTH_COVERAGE",
       "decompositionStatus": "READY",
@@ -4145,8 +4145,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::positive-indices::EXACT_FACT",
-      "canonicalRequirementKey": "foundational-mathematics::positive-indices::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::positive-indices::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::positive-indices::EXACT_FACT",
       "requirementText": "Positive indices.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4170,8 +4170,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE",
       "requirementText": "Proportional reasoning required to execute the above calculations.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -4195,8 +4195,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::pythagoras::EXACT_FACT",
-      "canonicalRequirementKey": "foundational-mathematics::pythagoras::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::pythagoras::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::pythagoras::EXACT_FACT",
       "requirementText": "Pythagoras.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4220,8 +4220,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::sine-cosine-tangent-use-in-right-triangles::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "foundational-mathematics::sine-cosine-tangent-use-in-right-triangles::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::sine-cosine-tangent-use-in-right-triangles::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::sine-cosine-tangent-use-in-right-triangles::PROCEDURE_COVERAGE",
       "requirementText": "Sine/cosine/tangent use in right triangles.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -4251,8 +4251,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION",
-      "canonicalRequirementKey": "foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION",
       "requirementText": "Standard/scientific notation.",
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "decompositionStatus": "READY",
@@ -4269,8 +4269,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::foundational-mathematics::statistical-range::EXACT_FACT",
-      "canonicalRequirementKey": "foundational-mathematics::statistical-range::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::statistical-range::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::foundational-mathematics::statistical-range::EXACT_FACT",
       "requirementText": "Statistical range.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4300,8 +4300,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::appropriate-mass-weight-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "mechanics-and-machines::appropriate-mass-weight-calculations::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::appropriate-mass-weight-calculations::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::appropriate-mass-weight-calculations::PROCEDURE_COVERAGE",
       "requirementText": "Appropriate mass/weight calculations.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -4325,8 +4325,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP",
       "requirementText": "Basic lever effort/load/arm relationship at appropriate depth.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4356,8 +4356,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::efficiency-relationship::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::efficiency-relationship::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::efficiency-relationship::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::efficiency-relationship::RELATIONSHIP",
       "requirementText": "Efficiency relationship.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4381,8 +4381,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::efficiency::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::efficiency::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::efficiency::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::efficiency::EXACT_FACT",
       "requirementText": "Efficiency.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4406,8 +4406,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::energy::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::energy::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::energy::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::energy::EXACT_FACT",
       "requirementText": "Energy.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4431,8 +4431,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::force-concept-at-qualification-depth::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::force-concept-at-qualification-depth::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-concept-at-qualification-depth::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::force-concept-at-qualification-depth::EXACT_FACT",
       "requirementText": "Force concept at qualification depth.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4456,8 +4456,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::force-distance-trade::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::force-distance-trade::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-distance-trade::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::force-distance-trade::RELATIONSHIP",
       "requirementText": "Force-distance trade.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4481,8 +4481,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP",
       "requirementText": "Gear ratio / legitimate speed relationship.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4512,8 +4512,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::gears::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::gears::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::gears::EXACT_FACT",
       "requirementText": "Gears.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4537,8 +4537,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::gravitational-lifting-work-against-gravity::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::gravitational-lifting-work-against-gravity::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gravitational-lifting-work-against-gravity::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::gravitational-lifting-work-against-gravity::RELATIONSHIP",
       "requirementText": "Gravitational lifting / work against gravity.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4555,8 +4555,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP",
       "requirementText": "Ideal machine conserves power.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4580,8 +4580,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::kinetic-versus-potential-energy-concept::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::kinetic-versus-potential-energy-concept::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::kinetic-versus-potential-energy-concept::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::kinetic-versus-potential-energy-concept::EXACT_FACT",
       "requirementText": "Kinetic versus potential energy concept.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4605,8 +4605,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE",
       "requirementText": "Legitimate multistep mechanical calculations.",
       "requirementMode": "PROCEDURE_COVERAGE",
       "decompositionStatus": "READY",
@@ -4630,8 +4630,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::lever-classes::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::lever-classes::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::lever-classes::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::lever-classes::EXACT_FACT",
       "requirementText": "Lever classes.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4655,8 +4655,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::levers::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::levers::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::levers::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::levers::EXACT_FACT",
       "requirementText": "Levers.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4673,8 +4673,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::mass-meaning::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::mass-meaning::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mass-meaning::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::mass-meaning::EXACT_FACT",
       "requirementText": "Mass meaning.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4698,8 +4698,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::mass-weight-distinction::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::mass-weight-distinction::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mass-weight-distinction::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::mass-weight-distinction::EXACT_FACT",
       "requirementText": "Mass/weight distinction.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4729,8 +4729,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::mechanical-advantage::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::mechanical-advantage::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mechanical-advantage::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::mechanical-advantage::RELATIONSHIP",
       "requirementText": "Mechanical advantage.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4766,8 +4766,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::p-w-t::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::p-w-t::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::p-w-t::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::p-w-t::RELATIONSHIP",
       "requirementText": "P = W/t.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4791,8 +4791,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::pe-mgh-work-against-gravity-equivalence::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::pe-mgh-work-against-gravity-equivalence::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::pe-mgh-work-against-gravity-equivalence::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::pe-mgh-work-against-gravity-equivalence::RELATIONSHIP",
       "requirementText": "PE = mgh / work-against-gravity equivalence.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4809,8 +4809,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::power::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::power::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::power::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::power::EXACT_FACT",
       "requirementText": "Power.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4834,8 +4834,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::pulleys::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::pulleys::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::pulleys::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::pulleys::EXACT_FACT",
       "requirementText": "Pulleys.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4859,8 +4859,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::real-losses-reduce-useful-output::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::real-losses-reduce-useful-output::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::real-losses-reduce-useful-output::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::real-losses-reduce-useful-output::RELATIONSHIP",
       "requirementText": "Real losses reduce useful output.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4877,8 +4877,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::torque-speed-relationship-where-applicable::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::torque-speed-relationship-where-applicable::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::torque-speed-relationship-where-applicable::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::torque-speed-relationship-where-applicable::RELATIONSHIP",
       "requirementText": "Torque-speed relationship where applicable.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4895,8 +4895,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::w-fd::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::w-fd::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::w-fd::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::w-fd::RELATIONSHIP",
       "requirementText": "W = Fd.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4920,8 +4920,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
-      "canonicalRequirementKey": "mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
       "requirementText": "F = mg.",
       "requirementMode": "RELATIONSHIP",
       "decompositionStatus": "READY",
@@ -4960,8 +4960,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::weight-meaning::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::weight-meaning::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-meaning::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::weight-meaning::EXACT_FACT",
       "requirementText": "Weight meaning.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",
@@ -4985,8 +4985,8 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::mechanics-and-machines::work::EXACT_FACT",
-      "canonicalRequirementKey": "mechanics-and-machines::work::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::work::EXACT_FACT",
+      "canonicalRequirementKey": "provisional::unit202::mechanics-and-machines::work::EXACT_FACT",
       "requirementText": "Work.",
       "requirementMode": "EXACT_FACT",
       "decompositionStatus": "READY",

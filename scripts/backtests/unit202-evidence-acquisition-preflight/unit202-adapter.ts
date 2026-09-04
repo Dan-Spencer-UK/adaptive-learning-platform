@@ -21,10 +21,10 @@ import {
   LocalAccessGuard,
   hashContent,
   type CoverageDimension,
-  type DirectionalMappingEntry,
   type KnowledgeEvidencePlanningInput,
   type KnowledgeTarget,
   type KnowledgeTargetKind,
+  type RequirementSpecificationMode,
   type TechnicalSemanticIdentity,
 } from "@alp/technical-evidence-engine";
 
@@ -210,11 +210,68 @@ const SEMANTIC_KEY_OVERRIDE: Record<string, string> = {
   "f = N x P (N = rev/s, P = pole pairs).": "rotational-frequency-pole-pairs-relationship",
 };
 
+/**
+ * CC-23B §10: every Unit-202 target is PROVISIONAL_NON_REUSABLE. Unit 202
+ * is a single regression fixture -- no other real qualification's data
+ * flows through this pipeline yet, so nothing here has been genuinely
+ * validated as safe for cross-qualification reuse. This is the
+ * conservative default the architecture is designed to make safe: the
+ * planner scopes every provisional key by `qualificationContextId`
+ * ("unit202"), so within-qualification reuse (e.g. the frequency/pole-
+ * pairs duplicate below) still works exactly as before, while cross-
+ * qualification merging simply cannot happen by construction.
+ */
 function semanticIdentityFor(ac: string, proposition: string): TechnicalSemanticIdentity {
   return {
     semanticNamespace: AC_SEMANTIC_NAMESPACE[ac] ?? "unclassified",
     semanticKey: SEMANTIC_KEY_OVERRIDE[proposition] ?? defaultSemanticKeyFor(proposition),
+    governanceState: "PROVISIONAL_NON_REUSABLE",
   };
+}
+
+// ---------------------------------------------------------------------
+// CC-23B §1-§3/§13-§15: requirement specification mode. Mechanically
+// determined from whether the RAW proposition text literally states an
+// equation ("=" or "~=") -- never a guessed/interpreted judgement. This is
+// deliberately broad: the overwhelming majority of Unit-202's propositions
+// name a required concept/rule/device/procedure WITHOUT stating its
+// technical content (e.g. "Current: meaning, quantity symbol, unit name/
+// symbol." states that these three things are required, not what they
+// ARE), so they are OPEN_TECHNICAL_QUESTION. Only a proposition that
+// literally supplies the formula/exact relationship is KNOWN_CLAIM_TO_VERIFY
+// (task §14: "the formula is already part of the Project-Architect-
+// approved target"). Hand-verified against the real proposition text --
+// all 21 members below were read individually to confirm each is a
+// genuine stated equation, never a false positive from an incidental "="
+// elsewhere in prose (none occur in this manifest).
+// ---------------------------------------------------------------------
+
+const KNOWN_CLAIM_PROPOSITIONS = new Set([
+  "F = mg.",
+  "F = mg where relevant.",
+  "W = Fd.",
+  "PE = mgh / work-against-gravity equivalence.",
+  "P = W/t.",
+  "R = rho L/A and appropriate rearrangement/use.",
+  "V = IR and rearrangements.",
+  "P = VI.",
+  "P = I^2 R.",
+  "P = V^2/R where appropriate.",
+  "Vdrop = IR.",
+  "B = Phi/A and appropriate rearrangement/use.",
+  "Scalar F = BIl.",
+  "e = Blv.",
+  "f = N x P (N = rev/s, P = pole pairs).",
+  "Equivalent rpm relationship f = n_rpm x P / 60.",
+  "T = 1/f.",
+  "Vrms ~= 0.707 x Vpeak.",
+  "Vpeak ~= 1.414 x Vrms.",
+  "Average over one alternation ~= 0.6366 x Vpeak.",
+  "Signed average of a complete symmetrical sine-wave cycle = 0.",
+]);
+
+function specificationModeFor(proposition: string): RequirementSpecificationMode {
+  return KNOWN_CLAIM_PROPOSITIONS.has(proposition) ? "KNOWN_CLAIM_TO_VERIFY" : "OPEN_TECHNICAL_QUESTION";
 }
 
 // ---------------------------------------------------------------------
@@ -243,52 +300,29 @@ const FORMULA_REARRANGEMENT_TARGETS: Record<string, FormulaRearrangementOverride
 };
 
 // ---------------------------------------------------------------------
-// CC-23A §17-§19: the generic directional/operational-rule pattern,
-// applied to Unit 202's three hand-rule targets -- reclassified from
-// RELATIONSHIP (which previously required, and never received, integration
-// constituents or a foundational-procedure reuse) to OPERATIONAL_USE_RULE,
-// a kind the planner already treats as atomic/class-A/READY.
-// `directionalMapping` is generic structured metadata (role/meaning pairs)
-// -- never an electrical-specific production field (task §CH).
+// CC-23A §17-§19 / CC-23B §13: the generic directional/operational-rule
+// pattern, applied to Unit 202's three hand-rule targets -- reclassified
+// from RELATIONSHIP (which previously required, and never received,
+// integration constituents or a foundational-procedure reuse) to
+// OPERATIONAL_USE_RULE, a kind the planner already treats as atomic/
+// class-A/READY.
+//
+// CC-23B §13 correction: CC-23A's own adapter (wrongly) supplied the
+// finger/current/field/force ANSWER mapping here as `directionalMapping`
+// content -- acceptable only as a calibrated regression fixture, but not
+// what the scalable pipeline needs: a new module's public qualification
+// text names a rule ("explain/use <named rule>") WITHOUT supplying its
+// technical mapping, and acquisition must be able to discover it. These
+// three targets are therefore now OPEN_TECHNICAL_QUESTION with ONLY the
+// raw manifest proposition text (the rule's NAME, nothing more) and
+// generic coverage-dimension obligations (`DIRECTIONAL_MAPPING`,
+// `ROLE_MAPPING`, `CORRECT_USE_CONDITIONS`) -- never the mapping itself.
+// The technical answer belongs solely in the sealed historical benchmark
+// and, later, an acquired normalized claim (task §13/§16).
 // ---------------------------------------------------------------------
 
-interface DirectionalRuleOverride {
-  readonly requirementText: string;
-  readonly directionalMapping: readonly DirectionalMappingEntry[];
-}
-
-const DIRECTIONAL_RULE_TARGETS: Record<string, DirectionalRuleOverride> = {
-  "ACQ-108": {
-    requirementText:
-      "Right-hand grip rule: with the right hand's thumb aligned with the direction of conventional current, the curled fingers show the direction of magnetic-field circulation around the conductor; reversing the current reverses the field circulation.",
-    directionalMapping: [
-      { role: "hand", meaning: "right hand" },
-      { role: "thumb", meaning: "aligned with the direction of conventional current" },
-      { role: "curled-fingers", meaning: "show the direction of magnetic-field circulation" },
-      { role: "reversal-rule", meaning: "reversing the current reverses the field circulation" },
-    ],
-  },
-  "ACQ-114": {
-    requirementText:
-      "Fleming's left-hand rule (motor effect): with the left hand, the First finger points in the direction of the magnetic field, the Second finger points in the direction of conventional current, and the Thumb points in the direction of the resulting force/motion.",
-    directionalMapping: [
-      { role: "hand", meaning: "left hand" },
-      { role: "first-finger", meaning: "direction of magnetic field" },
-      { role: "second-finger", meaning: "direction of conventional current" },
-      { role: "thumb", meaning: "direction of force/motion" },
-    ],
-  },
-  "ACQ-117": {
-    requirementText:
-      "Fleming's right-hand rule (generator effect): with the right hand, the First finger points in the direction of the magnetic field, the Thumb points in the direction of conductor motion, and the Second finger points in the direction of the induced conventional current.",
-    directionalMapping: [
-      { role: "hand", meaning: "right hand" },
-      { role: "first-finger", meaning: "direction of magnetic field" },
-      { role: "thumb", meaning: "direction of conductor motion" },
-      { role: "second-finger", meaning: "direction of induced conventional current" },
-    ],
-  },
-};
+const DIRECTIONAL_RULE_TARGET_IDS = new Set(["ACQ-108", "ACQ-114", "ACQ-117"]);
+const DIRECTIONAL_RULE_DIMENSIONS: readonly CoverageDimension[] = ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"];
 
 export interface AdapterAuditEntry {
   readonly knowledgeTargetId: string;
@@ -320,8 +354,9 @@ export function buildUnit202PlanningInput(): AdapterResult {
     let expectedCoverageDimensions: readonly CoverageDimension[] | undefined;
     let requirementText = t.proposition;
     let reusesFoundationalProcedureIds: readonly string[] | undefined;
-    let directionalMapping: readonly DirectionalMappingEntry[] | undefined;
     let requiresMultipleIndependentClaims = t.requiresMultipleIndependentClaims;
+    const specificationMode = specificationModeFor(t.proposition);
+    notes.push(`specificationMode=${specificationMode} (mechanical: raw proposition text ${specificationMode === "KNOWN_CLAIM_TO_VERIFY" ? "literally states an equation" : "does not literally state an equation"}, task §14/§15)`);
 
     if (AC2_2_QUANTITIES.has(t.proposition)) {
       kind = "CONCEPT_DEFINITION";
@@ -338,15 +373,14 @@ export function buildUnit202PlanningInput(): AdapterResult {
       requirementText = override.requirementText;
       reusesFoundationalProcedureIds = [FORMULA_TRANSPOSITION_TARGET_ID];
       notes.push(`CC-23A formula+rearrangement rule -- kind overridden to FORMULA_OR_RULE, reusesFoundationalProcedureIds=[${FORMULA_TRANSPOSITION_TARGET_ID}]`);
-    } else if (DIRECTIONAL_RULE_TARGETS[t.acquisitionTargetId]) {
-      // CC-23A §17-§19: directional/operational rule -- atomic, class A, READY.
-      const override = DIRECTIONAL_RULE_TARGETS[t.acquisitionTargetId]!;
+    } else if (DIRECTIONAL_RULE_TARGET_IDS.has(t.acquisitionTargetId)) {
+      // CC-23B §13 correction: directional/operational rule -- atomic, class A, READY,
+      // but OPEN_TECHNICAL_QUESTION with ONLY the rule's NAME (raw manifest text) and
+      // generic coverage obligations -- never the finger/current/field/force answer.
       kind = "OPERATIONAL_USE_RULE";
-      requirementText = override.requirementText;
-      directionalMapping = override.directionalMapping;
-      expectedCoverageDimensions = ["CAUSAL_MECHANISM"];
+      expectedCoverageDimensions = DIRECTIONAL_RULE_DIMENSIONS;
       requiresMultipleIndependentClaims = false; // resolved atomically -- never an unresolved multi-claim target
-      notes.push("CC-23A directional-rule pattern -- kind overridden to OPERATIONAL_USE_RULE, structured directionalMapping attached");
+      notes.push("CC-23B directional-rule pattern -- kind overridden to OPERATIONAL_USE_RULE, generic DIRECTIONAL_MAPPING/ROLE_MAPPING/CORRECT_USE_CONDITIONS dimensions requested, NO answer mapping supplied (task §13)");
     }
 
     const constituentIds = INTEGRATION_CONSTITUENTS[t.proposition]?.map(knowledgeTargetIdFor);
@@ -358,11 +392,11 @@ export function buildUnit202PlanningInput(): AdapterResult {
       kind,
       classification: t.knowledgeClassification,
       semanticIdentity,
+      specificationMode,
       ...(expectedCoverageDimensions ? { expectedCoverageDimensions } : {}),
       ...(requiresMultipleIndependentClaims ? { requiresMultipleIndependentClaims: true } : {}),
       ...(constituentIds ? { constituentKnowledgeTargetIds: constituentIds } : {}),
       ...(reusesFoundationalProcedureIds ? { reusesFoundationalProcedureIds } : {}),
-      ...(directionalMapping ? { directionalMapping } : {}),
       isRepresentativeExemplar: t.isRepresentativeExemplar,
     };
 

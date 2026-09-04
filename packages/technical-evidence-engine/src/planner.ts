@@ -1,27 +1,36 @@
 /**
- * CC-23/CC-23A: the generic EvidenceRequirementPlanner (task §6-§10; CC-23A
- * §2-§6 semantic-identity hardening, §11-§15 formula+rearrangement rule).
- * Consumes an already-APPROVED, qualification-agnostic
- * `KnowledgeEvidencePlanningInput` and produces `EvidenceRequirement`s -- it
- * never researches, browses, or retrieves anything (task §13; mechanically
- * proven in planner.test.ts).
+ * CC-23/CC-23A/CC-23B: the generic EvidenceRequirementPlanner (task §6-§10;
+ * CC-23A §2-§6 semantic-identity hardening, §11-§15 formula+rearrangement
+ * rule; CC-23B §1-§3 known-claim/open-question separation, §10 identity
+ * governance, §12 authority-class registration). Consumes an already-
+ * APPROVED, qualification-agnostic `KnowledgeEvidencePlanningInput` and
+ * produces `EvidenceRequirement`s -- it never researches, browses, or
+ * retrieves anything (task §13; mechanically proven in planner.test.ts),
+ * and it never requires the TECHNICAL ANSWER a requirement is meant to
+ * establish (CC-23B §1) -- only the structural WHAT.
  *
  * Every decomposition decision below is driven entirely by STRUCTURAL
  * fields on `KnowledgeTarget` (`kind`, `classification`, `semanticIdentity`,
- * `expectedCoverageDimensions`, `requiresMultipleIndependentClaims`,
- * `constituentKnowledgeTargetIds`, `reusesFoundationalProcedureIds`,
- * `childKnowledgeTargetIds`) -- never by inspecting `targetText` content or
- * discovering identity via fuzzy/NLP text matching (CC-23A §6). A
- * qualification-specific adapter supplies those structural hints; this
- * package only ever reacts to them.
+ * `specificationMode`, `expectedCoverageDimensions`,
+ * `requiresMultipleIndependentClaims`, `constituentKnowledgeTargetIds`,
+ * `reusesFoundationalProcedureIds`, `childKnowledgeTargetIds`) -- never by
+ * inspecting `targetText` content or discovering identity/specification via
+ * fuzzy/NLP text matching (CC-23A §6; CC-23B §1). A qualification-specific
+ * adapter (or the generic semantic-handoff layer, see ./semantic-handoff.ts)
+ * supplies those structural hints; this package only ever reacts to them.
  *
- * CC-23A §2-§4: canonical requirement identity is now SEMANTIC, never
- * display-text-based. `KnowledgeTarget.semanticIdentity` (namespace + key)
- * is the sole basis for `canonicalRequirementKey`, combined with
- * `requirementMode` (and a coverage dimension, for compound
- * sub-requirements) -- identical wording with different semantic identity
- * (a homonym) never collapses, and different wording with equal semantic
- * identity always reuses.
+ * CC-23A §2-§4: canonical requirement identity is SEMANTIC, never display-
+ * text-based. `KnowledgeTarget.semanticIdentity` (namespace + key) is the
+ * basis for `canonicalRequirementKey`, combined with `requirementMode` (and
+ * a coverage dimension, for compound sub-requirements) -- identical wording
+ * with different semantic identity (a homonym) never collapses, and
+ * different wording with equal semantic identity always reuses.
+ *
+ * CC-23B §10: a `PROVISIONAL_NON_REUSABLE` identity additionally scopes the
+ * canonical key by `qualificationContextId`, so it can never accidentally
+ * collide with -- or be merged into -- another qualification's identity; an
+ * `UNRESOLVED` identity forces `SEMANTIC_DECOMPOSITION_REQUIRED`
+ * unconditionally, before any other structural field is even considered.
  */
 
 import type {
@@ -34,11 +43,13 @@ import type {
   KnowledgeTarget,
   KnowledgeTargetKind,
   RequirementMode,
+  RequirementSpecificationMode,
   SourceAuthorityClass,
   SourceAuthorityPolicy,
   StructuralSatisfactionRecord,
   TechnicalSemanticIdentity,
 } from "./types.ts";
+import { STANDARD_AUTHORITY_CLASSES } from "./types.ts";
 
 // ---------------------------------------------------------------------
 // Kind -> default requirement mode (task §6/§8, classes A/C/D).
@@ -123,6 +134,9 @@ function requirementModeForDimension(dim: CoverageDimension): RequirementMode {
       return "OPERATING_PRINCIPLE";
     case "SAFE_USE":
     case "CONNECTION_TOPOLOGY":
+    case "DIRECTIONAL_MAPPING":
+    case "ROLE_MAPPING":
+    case "CORRECT_USE_CONDITIONS":
       return "OPERATIONAL_USE_RULE";
     case "DEFINITION":
     case "DISTINCTION":
@@ -133,7 +147,11 @@ function requirementModeForDimension(dim: CoverageDimension): RequirementMode {
 // ---------------------------------------------------------------------
 // Task §12: generic acceptance policy, keyed on requirementMode only --
 // never a universal "find one source that says it verbatim" rule, and
-// never satisfied by a source title alone.
+// never satisfied by a source title alone. Identical wording works for
+// both specification modes: for KNOWN_CLAIM_TO_VERIFY it governs
+// verifying the stated claim; for OPEN_TECHNICAL_QUESTION it governs
+// accepting whatever claim acquisition discovers -- an open question is
+// never less authoritative (task §3).
 // ---------------------------------------------------------------------
 
 const TITLE_ALONE_CLAUSE = "A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.";
@@ -150,6 +168,26 @@ const ACCEPTANCE_CRITERIA_BY_MODE: Readonly<Record<RequirementMode, string>> = {
   SCHEMATIC_OR_DIAGRAM_RECOGNITION: `At least one authoritative source providing exact visual/symbol coverage sufficient for recognition. ${TITLE_ALONE_CLAUSE}`,
   APPLICATION_FUNCTION: `At least one authoritative source whose exact locator/passage explicitly states this application/function relationship. ${TITLE_ALONE_CLAUSE}`,
   TOPIC_BREADTH_COVERAGE: `Substantive authoritative coverage of the required topic breadth/procedure, not a single illustrative sentence. ${TITLE_ALONE_CLAUSE}`,
+};
+
+/**
+ * CC-23B §3: generic, mode-templated OPEN QUESTION phrasing -- never the
+ * answer. `{topic}` is filled with the target's own `targetText`, which
+ * for an `OPEN_TECHNICAL_QUESTION` target is, by construction, answer-free
+ * (it names a concept/rule/device, never its technical content).
+ */
+const EVIDENCE_QUESTION_TEMPLATE_BY_MODE: Readonly<Record<RequirementMode, (topic: string) => string>> = {
+  EXACT_FACT: (topic) => `What authoritative fact establishes: ${topic}?`,
+  FORMULA_OR_RULE: (topic) => `What is the exact formula or rule (and the meaning of its variables) for: ${topic}?`,
+  CONCEPT_DEFINITION: (topic) => `What is the definition/meaning (and any associated symbol/unit/distinction) of: ${topic}?`,
+  RELATIONSHIP: (topic) => `What is the exact relationship between the quantities/concepts named in: ${topic}?`,
+  PROCEDURE_COVERAGE: (topic) => `What is the authoritative step-by-step procedure for: ${topic}?`,
+  OPERATING_PRINCIPLE: (topic) => `What is the operating principle (mechanism of action) of: ${topic}?`,
+  OPERATIONAL_USE_RULE: (topic) => `What is the correct directional/role mapping and correct-use conditions for: ${topic}?`,
+  SYMBOL_OR_CONVENTION: (topic) => `What is the standard symbol/convention for: ${topic}?`,
+  SCHEMATIC_OR_DIAGRAM_RECOGNITION: (topic) => `What is the standard schematic symbol/visual recognition pattern for: ${topic}?`,
+  APPLICATION_FUNCTION: (topic) => `What is the application/function relationship for: ${topic}?`,
+  TOPIC_BREADTH_COVERAGE: (topic) => `What is the substantive authoritative coverage (definitions, rules, procedures) required for the topic: ${topic}?`,
 };
 
 /** Task §11 (CC-23A §7: extensible authority classes). A generic, reusable default authority policy. Any caller may pass its own `SourceAuthorityPolicy`, including classes this default never anticipated; unset modes fall back to this. Every entry is a generic authority CLASS, never a named institution (task §11: those are later-discovered instances). */
@@ -173,14 +211,40 @@ function authorityClassesFor(mode: RequirementMode, policy: SourceAuthorityPolic
   return policy.allowedAuthorityClassesByMode[mode] ?? DEFAULT_SOURCE_AUTHORITY_POLICY.allowedAuthorityClassesByMode[mode] ?? [];
 }
 
+/**
+ * CC-23B §12: extensibility does not mean an undeclared string is silently
+ * trusted. Every authority class referenced anywhere in `policy` (its own
+ * `allowedAuthorityClassesByMode`) must be either a `STANDARD_AUTHORITY_CLASSES`
+ * member or explicitly listed in `policy.registeredCustomAuthorityClasses`
+ * -- otherwise this throws a structured configuration-gap error naming the
+ * exact undeclared class(es). This is a policy-level (not per-item) check:
+ * a misconfigured policy fails loudly at plan time, before any requirement
+ * is built, rather than silently trusting a typo.
+ */
+export function validateSourceAuthorityPolicy(policy: SourceAuthorityPolicy): void {
+  const standard = new Set<string>(STANDARD_AUTHORITY_CLASSES);
+  const registered = new Set(policy.registeredCustomAuthorityClasses ?? []);
+  const referenced = new Set(Object.values(policy.allowedAuthorityClassesByMode).flat());
+  const undeclared = [...referenced].filter((c) => !standard.has(c) && !registered.has(c));
+  if (undeclared.length > 0) {
+    throw new Error(
+      `SourceAuthorityPolicy validation failure: undeclared custom authority class(es) referenced but not registered: ${undeclared.join(", ")}. A custom authority class must appear in registeredCustomAuthorityClasses -- an undeclared string (e.g. a typo) is never silently trusted (task §12).`,
+    );
+  }
+}
+
 // ---------------------------------------------------------------------
-// CC-23A §2-§4: domain-oriented canonical identity -- SEMANTIC identity
-// (namespace + key, task §3) + requirement mode (+ coverage dimension, for
-// compound sub-requirements). Neither qualification location nor display
-// text is ever part of this identity (task §4). A light slug
-// normalization is applied only to keep keys stable/printable -- it is
-// never itself the identity basis (contrast CC-23's `normalizeRequirementText`
-// applied to display text, now removed).
+// CC-23A §2-§4 / CC-23B §10: domain-oriented canonical identity -- SEMANTIC
+// identity (namespace + key) + requirement mode (+ coverage dimension, for
+// compound sub-requirements). A `PROVISIONAL_NON_REUSABLE` identity
+// additionally scopes the key by `qualificationContextId`, so it can never
+// collide with, or be merged into, another qualification's identity while
+// still merging normally with other targets sharing the SAME
+// `qualificationContextId` (task §10 -- "the restriction is cross-
+// qualification only"). An `UNRESOLVED` identity never reaches this
+// function at all (see the top-of-loop guard in `planEvidenceRequirements`).
+// Neither qualification location nor display text is ever part of a
+// CANONICAL identity's key (task §4).
 // ---------------------------------------------------------------------
 
 function slug(value: string): string {
@@ -191,8 +255,12 @@ function slug(value: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-export function canonicalRequirementKey(identity: TechnicalSemanticIdentity, mode: RequirementMode, dimension?: CoverageDimension): string {
-  const base = `${slug(identity.semanticNamespace)}::${slug(identity.semanticKey)}::${mode}`;
+export function canonicalRequirementKey(identity: TechnicalSemanticIdentity, mode: RequirementMode, qualificationContextId: string, dimension?: CoverageDimension): string {
+  const identityPart =
+    identity.governanceState === "CANONICAL"
+      ? `${slug(identity.semanticNamespace)}::${slug(identity.semanticKey)}`
+      : `provisional::${slug(qualificationContextId)}::${slug(identity.semanticNamespace)}::${slug(identity.semanticKey)}`;
+  const base = `${identityPart}::${mode}`;
   return dimension ? `${base}::${dimension}` : base;
 }
 
@@ -202,6 +270,7 @@ export function canonicalRequirementKey(identity: TechnicalSemanticIdentity, mod
 
 interface BuildRequirementParams {
   readonly target: KnowledgeTarget;
+  readonly qualificationContextId: string;
   readonly mode: RequirementMode;
   readonly requirementText: string;
   readonly dimensions: readonly CoverageDimension[];
@@ -216,14 +285,22 @@ function priorityFor(target: KnowledgeTarget): AcquisitionPriority {
   return target.classification === "CONTEXTUAL_TEACHING_SUPPORT" ? "OPTIONAL_CONTEXT" : "REQUIRED";
 }
 
+/** CC-23B §3: composes the generic open-question text -- never an answer. `evidenceQuestionOverride` re-phrases but is never trusted as fact (task §9/§CQ: it flows through as text only, never compared, never used to satisfy acceptance). */
+function evidenceQuestionFor(target: KnowledgeTarget, mode: RequirementMode, requirementText: string): string {
+  return target.evidenceQuestionOverride?.trim() || EVIDENCE_QUESTION_TEMPLATE_BY_MODE[mode](requirementText);
+}
+
 function buildRequirement(p: BuildRequirementParams): EvidenceRequirement {
-  const key = canonicalRequirementKey(p.target.semanticIdentity, p.mode, p.dimensionSuffix);
+  const key = canonicalRequirementKey(p.target.semanticIdentity, p.mode, p.qualificationContextId, p.dimensionSuffix);
+  const specificationMode: RequirementSpecificationMode = p.target.specificationMode;
   return {
     evidenceRequirementId: `ER::${key}`,
     canonicalRequirementKey: key,
     sourceKnowledgeTargetIds: [p.target.knowledgeTargetId],
     requirementMode: p.mode,
+    specificationMode,
     requirementText: p.requirementText,
+    evidenceQuestion: specificationMode === "OPEN_TECHNICAL_QUESTION" && p.decompositionStatus === "READY" ? evidenceQuestionFor(p.target, p.mode, p.requirementText) : null,
     requiredCoverageDimensions: p.dimensions,
     sourceAuthorityClasses: authorityClassesFor(p.mode, p.policy),
     acquisitionPriority: priorityFor(p.target),
@@ -241,11 +318,18 @@ function buildRequirement(p: BuildRequirementParams): EvidenceRequirement {
 // two requirements sharing a `canonicalRequirementKey` -- whether from
 // the same planning call or two separate calls passed in via
 // `existingRequirements` -- collapse into one, union-merging their
-// `sourceKnowledgeTargetIds`. Because the key is now semantic-identity-
-// based (CC-23A §2-§4), two requirements only ever share a key when their
-// source targets' `semanticIdentity` and `requirementMode` (and coverage
-// dimension) genuinely agree -- equal display text with differing
-// semantic identity never reaches this merge as a collision (task §5 CB).
+// `sourceKnowledgeTargetIds`. Because the key is semantic-identity-based
+// (CC-23A §2-§4) and governance-scoped (CC-23B §10), two requirements only
+// ever share a key when their source targets' `semanticIdentity`,
+// `requirementMode` (and coverage dimension), and -- for a provisional
+// identity -- `qualificationContextId` genuinely agree.
+//
+// CC-23B §14: if EITHER contributing target's specification is
+// KNOWN_CLAIM_TO_VERIFY, the merged requirement is KNOWN_CLAIM_TO_VERIFY
+// (once any contributing qualification evidence explicitly supplies the
+// answer, the merged requirement is already substantiated and no longer
+// needs to be phrased as an open question) -- `evidenceQuestion` is
+// re-nulled in that case.
 // ---------------------------------------------------------------------
 
 function mergeRequirements(existing: readonly EvidenceRequirement[], fresh: readonly EvidenceRequirement[]): EvidenceRequirement[] {
@@ -259,9 +343,12 @@ function mergeRequirements(existing: readonly EvidenceRequirement[], fresh: read
     }
     const mergedTargetIds = Array.from(new Set([...prior.sourceKnowledgeTargetIds, ...r.sourceKnowledgeTargetIds]));
     const stillUnderSpecified = prior.decompositionStatus === "SEMANTIC_DECOMPOSITION_REQUIRED";
+    const mergedSpecificationMode: RequirementSpecificationMode = prior.specificationMode === "KNOWN_CLAIM_TO_VERIFY" || r.specificationMode === "KNOWN_CLAIM_TO_VERIFY" ? "KNOWN_CLAIM_TO_VERIFY" : "OPEN_TECHNICAL_QUESTION";
     byKey.set(r.canonicalRequirementKey, {
       ...prior,
       sourceKnowledgeTargetIds: mergedTargetIds,
+      specificationMode: mergedSpecificationMode,
+      evidenceQuestion: mergedSpecificationMode === "KNOWN_CLAIM_TO_VERIFY" ? null : (prior.evidenceQuestion ?? r.evidenceQuestion),
       requiredCoverageDimensions: Array.from(new Set([...prior.requiredCoverageDimensions, ...r.requiredCoverageDimensions])),
       sourceAuthorityClasses: Array.from(new Set([...prior.sourceAuthorityClasses, ...r.sourceAuthorityClasses])),
       acquisitionPriority: prior.acquisitionPriority === "REQUIRED" || r.acquisitionPriority === "REQUIRED" ? "REQUIRED" : "OPTIONAL_CONTEXT",
@@ -276,13 +363,15 @@ function mergeRequirements(existing: readonly EvidenceRequirement[], fresh: read
 }
 
 // ---------------------------------------------------------------------
-// The planner itself (task §7/§8; CC-23A §11-§15). Deterministic,
-// order-independent output: `requirements` is always sorted by
-// `canonicalRequirementKey`.
+// The planner itself (task §7/§8; CC-23A §11-§15; CC-23B §1-§3/§10).
+// Deterministic, order-independent output: `requirements` is always
+// sorted by `canonicalRequirementKey`.
 // ---------------------------------------------------------------------
 
 export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, existingRequirements: readonly EvidenceRequirement[] = []): KnowledgeEvidencePlanResult {
-  const { knowledgeTargets, sourceAuthorityPolicy } = input;
+  validateSourceAuthorityPolicy(input.sourceAuthorityPolicy);
+  const { knowledgeTargets, sourceAuthorityPolicy, qualificationContext } = input;
+  const qualificationContextId = qualificationContext.qualificationContextId;
   const freshRequirements: EvidenceRequirement[] = [];
   const structuralSatisfactions: StructuralSatisfactionRecord[] = [];
 
@@ -295,6 +384,27 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
         satisfiedByKnowledgeTargetIds: [],
         explanation: "OUT_OF_SCOPE knowledge targets are never sourced -- the acquisition system only searches for evidence needed by an already-authorised knowledge boundary (task §4).",
       });
+      continue;
+    }
+
+    // CC-23B §10/§CU: an UNRESOLVED semantic identity is not sufficiently
+    // structured even to plan acquisition safely -- abstain unconditionally,
+    // before any other structural field (constituents, dimensions, mode) is
+    // even considered.
+    if (target.semanticIdentity.governanceState === "UNRESOLVED") {
+      freshRequirements.push(
+        buildRequirement({
+          target,
+          qualificationContextId,
+          mode: defaultRequirementModeForKind(target.kind),
+          requirementText: target.targetText,
+          dimensions: [],
+          policy: sourceAuthorityPolicy,
+          decompositionStatus: "SEMANTIC_DECOMPOSITION_REQUIRED",
+          decompositionReason: "Semantic identity governanceState is UNRESOLVED -- not sufficiently structured to plan acquisition safely (task §10); return to Project Architect for proper semantic structuring before evidence planning can proceed.",
+          deduplicationBasis: "unresolved semantic identity -- not yet deduplicated",
+        }),
+      );
       continue;
     }
 
@@ -334,6 +444,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
         freshRequirements.push(
           buildRequirement({
             target,
+            qualificationContextId,
             mode,
             requirementText: target.targetText,
             dimensions: ["FORMULA", "FORMULA_INTERPRETATION"],
@@ -356,6 +467,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
       freshRequirements.push(
         buildRequirement({
           target,
+          qualificationContextId,
           mode: target.kind === "FORMULA_OR_RULE" ? "FORMULA_OR_RULE" : "RELATIONSHIP",
           requirementText: target.targetText,
           dimensions: [],
@@ -377,6 +489,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
           freshRequirements.push(
             buildRequirement({
               target,
+              qualificationContextId,
               mode: requirementModeForDimension(dim),
               requirementText: `${target.targetText} [${dim}]`,
               dimensions: [dim],
@@ -393,6 +506,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
       freshRequirements.push(
         buildRequirement({
           target,
+          qualificationContextId,
           mode: "CONCEPT_DEFINITION",
           requirementText: target.targetText,
           dimensions: [],
@@ -411,6 +525,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
     freshRequirements.push(
       buildRequirement({
         target,
+        qualificationContextId,
         mode,
         requirementText: target.targetText,
         dimensions: dims,

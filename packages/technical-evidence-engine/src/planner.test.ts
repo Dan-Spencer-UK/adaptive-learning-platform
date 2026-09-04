@@ -12,7 +12,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { DEFAULT_SOURCE_AUTHORITY_POLICY, canonicalRequirementKey, planEvidenceRequirements } from "./planner.ts";
+import { DEFAULT_SOURCE_AUTHORITY_POLICY, canonicalRequirementKey, planEvidenceRequirements, validateSourceAuthorityPolicy } from "./planner.ts";
 import type { KnowledgeEvidencePlanningInput, KnowledgeTarget, TechnicalSemanticIdentity } from "./types.ts";
 
 function defaultIdentityFor(knowledgeTargetId: string, targetText: string): TechnicalSemanticIdentity {
@@ -22,11 +22,12 @@ function defaultIdentityFor(knowledgeTargetId: string, targetText: string): Tech
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
-  return { semanticNamespace: namespace, semanticKey: key };
+  return { semanticNamespace: namespace, semanticKey: key, governanceState: "CANONICAL" };
 }
 
+/** Test default: specificationMode KNOWN_CLAIM_TO_VERIFY unless a fixture explicitly overrides it (most §16.A-H fixtures predate CC-23B and are not testing this dimension). */
 function target(overrides: Partial<KnowledgeTarget> & Pick<KnowledgeTarget, "knowledgeTargetId" | "targetText" | "kind" | "classification">): KnowledgeTarget {
-  return { semanticIdentity: defaultIdentityFor(overrides.knowledgeTargetId, overrides.targetText), ...overrides };
+  return { semanticIdentity: defaultIdentityFor(overrides.knowledgeTargetId, overrides.targetText), specificationMode: "KNOWN_CLAIM_TO_VERIFY", ...overrides };
 }
 
 function input(qualificationContextId: string, knowledgeTargets: readonly KnowledgeTarget[]): KnowledgeEvidencePlanningInput {
@@ -119,7 +120,7 @@ describe("CC-23 §16.E -- integration target", () => {
 
 describe("CC-23 §16.F / CC-23A §CD/§CE -- cross-qualification and within-qualification canonical reuse via semantic identity", () => {
   it("the same semantic identity required by two different synthetic qualifications collapses into one reused evidence requirement, even with different wording", () => {
-    const sharedIdentity: TechnicalSemanticIdentity = { semanticNamespace: "classical-mechanics", semanticKey: "newtons-second-law" };
+    const sharedIdentity: TechnicalSemanticIdentity = { semanticNamespace: "classical-mechanics", semanticKey: "newtons-second-law", governanceState: "CANONICAL" };
     const q1Target = target({ knowledgeTargetId: "synthetic-f1::T1", targetText: "Newton's second law: force equals mass times acceleration.", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: sharedIdentity });
     const q2Target = target({ knowledgeTargetId: "synthetic-f2::T1", targetText: "F = ma (Newton's second law of motion).", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: sharedIdentity });
 
@@ -130,12 +131,12 @@ describe("CC-23 §16.F / CC-23A §CD/§CE -- cross-qualification and within-qual
     expect(secondResult.requirements).toHaveLength(1); // reused, not duplicated, despite different wording
     const reused = secondResult.requirements[0]!;
     expect([...reused.sourceKnowledgeTargetIds].sort()).toEqual(["synthetic-f1::T1", "synthetic-f2::T1"]);
-    expect(reused.canonicalRequirementKey).toBe(canonicalRequirementKey(sharedIdentity, "FORMULA_OR_RULE"));
+    expect(reused.canonicalRequirementKey).toBe(canonicalRequirementKey(sharedIdentity, "FORMULA_OR_RULE", "synthetic-f2"));
     expect(reused.deduplicationBasis).toMatch(/reused across 2 knowledge targets/);
   });
 
   it("§CE: two learner targets within the SAME qualification sharing a semantic identity also reuse", () => {
-    const sharedIdentity: TechnicalSemanticIdentity = { semanticNamespace: "classical-mechanics", semanticKey: "gravitational-weight-relation" };
+    const sharedIdentity: TechnicalSemanticIdentity = { semanticNamespace: "classical-mechanics", semanticKey: "gravitational-weight-relation", governanceState: "CANONICAL" };
     const t1 = target({ knowledgeTargetId: "synthetic-ce::T1", targetText: "Weight equals mass times gravitational field strength.", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: sharedIdentity });
     const t2 = target({ knowledgeTargetId: "synthetic-ce::T2", targetText: "W = mg.", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: sharedIdentity });
     const result = planEvidenceRequirements(input("synthetic-ce", [t1, t2]));
@@ -146,7 +147,7 @@ describe("CC-23 §16.F / CC-23A §CD/§CE -- cross-qualification and within-qual
 
 describe("CC-23A §5 -- CA-CD: semantic-identity-driven canonical reuse (homonym safety)", () => {
   it("§CA: two qualifications require the same semantic law with different wording -> one reusable requirement when semantic identity is equal", () => {
-    const identity: TechnicalSemanticIdentity = { semanticNamespace: "thermodynamics", semanticKey: "ideal-gas-law" };
+    const identity: TechnicalSemanticIdentity = { semanticNamespace: "thermodynamics", semanticKey: "ideal-gas-law", governanceState: "CANONICAL" };
     const a = target({ knowledgeTargetId: "synthetic-ca-q1::T1", targetText: "The ideal gas law relates pressure, volume, amount and temperature.", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
     const b = target({ knowledgeTargetId: "synthetic-ca-q2::T1", targetText: "PV = nRT.", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
     const first = planEvidenceRequirements(input("synthetic-ca-q1", [a]));
@@ -160,14 +161,14 @@ describe("CC-23A §5 -- CA-CD: semantic-identity-driven canonical reuse (homonym
       targetText: "Range.",
       kind: "FACTUAL_PROPOSITION",
       classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
-      semanticIdentity: { semanticNamespace: "statistics", semanticKey: "range" },
+      semanticIdentity: { semanticNamespace: "statistics", semanticKey: "range", governanceState: "CANONICAL" },
     });
     const instrumentRange = target({
       knowledgeTargetId: "synthetic-cb::measurement",
       targetText: "Range.",
       kind: "FACTUAL_PROPOSITION",
       classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
-      semanticIdentity: { semanticNamespace: "measurement", semanticKey: "instrument-range" },
+      semanticIdentity: { semanticNamespace: "measurement", semanticKey: "instrument-range", governanceState: "CANONICAL" },
     });
     const result = planEvidenceRequirements(input("synthetic-cb", [statsRange, instrumentRange]));
     expect(result.requirements).toHaveLength(2);
@@ -175,7 +176,7 @@ describe("CC-23A §5 -- CA-CD: semantic-identity-driven canonical reuse (homonym
   });
 
   it("§CC: same semantic identity but incompatible requirement modes -> never silently collapsed", () => {
-    const identity: TechnicalSemanticIdentity = { semanticNamespace: "materials-science", semanticKey: "yield-point" };
+    const identity: TechnicalSemanticIdentity = { semanticNamespace: "materials-science", semanticKey: "yield-point", governanceState: "CANONICAL" };
     const definition = target({ knowledgeTargetId: "synthetic-cc::def", targetText: "Yield point: the stress at which a material begins to deform plastically.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
     const procedure = target({ knowledgeTargetId: "synthetic-cc::proc", targetText: "Determining the yield point from a stress-strain curve.", kind: "PROCEDURE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
     const result = planEvidenceRequirements(input("synthetic-cc", [definition, procedure]));
@@ -184,7 +185,7 @@ describe("CC-23A §5 -- CA-CD: semantic-identity-driven canonical reuse (homonym
   });
 
   it("§CD: qualification ID differs but semantic identity matches -> reuse still occurs", () => {
-    const identity: TechnicalSemanticIdentity = { semanticNamespace: "electromagnetism", semanticKey: "magnetic-flux-density-relation" };
+    const identity: TechnicalSemanticIdentity = { semanticNamespace: "electromagnetism", semanticKey: "magnetic-flux-density-relation", governanceState: "CANONICAL" };
     const a = target({ knowledgeTargetId: "synthetic-cd-alpha::T1", targetText: "Magnetic flux density equals flux divided by area.", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
     const b = target({ knowledgeTargetId: "synthetic-cd-beta::T1", targetText: "B = Phi / A.", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
     const first = planEvidenceRequirements(input("synthetic-cd-alpha", [a]));
@@ -271,7 +272,7 @@ describe("CC-23A §17-§19/§24 -- CH: directional mapping is domain-agnostic st
 describe("CC-23A §7/§24 -- CI/CJ: extensible source-authority policy", () => {
   it("§CI: a custom domain authority class can be supplied via policy without any planner code change", () => {
     const t = target({ knowledgeTargetId: "synthetic-ci::T1", targetText: "A fact needing a domain-specific authority class.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE" });
-    const customPolicy = { allowedAuthorityClassesByMode: { EXACT_FACT: ["MARITIME_CLASSIFICATION_SOCIETY"] } };
+    const customPolicy = { allowedAuthorityClassesByMode: { EXACT_FACT: ["MARITIME_CLASSIFICATION_SOCIETY"] }, registeredCustomAuthorityClasses: ["MARITIME_CLASSIFICATION_SOCIETY"] };
     const result = planEvidenceRequirements({ qualificationContext: { qualificationContextId: "synthetic-ci", description: "x" }, knowledgeTargets: [t], sourceAuthorityPolicy: customPolicy });
     expect(result.requirements[0]!.sourceAuthorityClasses).toEqual(["MARITIME_CLASSIFICATION_SOCIETY"]);
   });
@@ -279,7 +280,7 @@ describe("CC-23A §7/§24 -- CI/CJ: extensible source-authority policy", () => {
   it("§CJ: authority-class policy cannot modify knowledge classification, priority, or decomposition status", () => {
     const t = target({ knowledgeTargetId: "synthetic-cj::T1", targetText: "A required fact.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE" });
     const policyA = DEFAULT_SOURCE_AUTHORITY_POLICY;
-    const policyB = { allowedAuthorityClassesByMode: { EXACT_FACT: ["SOME_OTHER_AUTHORITY_CLASS"] } };
+    const policyB = { allowedAuthorityClassesByMode: { EXACT_FACT: ["SOME_OTHER_AUTHORITY_CLASS"] }, registeredCustomAuthorityClasses: ["SOME_OTHER_AUTHORITY_CLASS"] };
     const resultA = planEvidenceRequirements({ qualificationContext: { qualificationContextId: "synthetic-cj", description: "x" }, knowledgeTargets: [t], sourceAuthorityPolicy: policyA });
     const resultB = planEvidenceRequirements({ qualificationContext: { qualificationContextId: "synthetic-cj", description: "x" }, knowledgeTargets: [t], sourceAuthorityPolicy: policyB });
     expect(resultA.requirements[0]!.acquisitionPriority).toBe(resultB.requirements[0]!.acquisitionPriority);
@@ -295,6 +296,147 @@ describe("CC-23A §7/§24 -- CI/CJ: extensible source-authority policy", () => {
       expect(allClasses.has(oldName)).toBe(false);
     }
     expect(allClasses.has("PRIMARY_NORMATIVE_OR_STANDARDS_BODY")).toBe(true);
+  });
+});
+
+describe("CC-23B §1-§3/§17 -- CL-CO: evidence planning does not require the technical answer", () => {
+  it("§CL: a named operating-principle target with an unknown technical answer becomes READY OPEN_TECHNICAL_QUESTION, never requiring the answer up front", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-cl::T1",
+      targetText: "Operating principle of a thermocouple.",
+      kind: "OPERATING_PRINCIPLE",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      specificationMode: "OPEN_TECHNICAL_QUESTION",
+    });
+    const result = planEvidenceRequirements(input("synthetic-cl", [t]));
+    const r = result.requirements[0]!;
+    expect(r.specificationMode).toBe("OPEN_TECHNICAL_QUESTION");
+    expect(r.decompositionStatus).toBe("READY");
+    expect(r.evidenceQuestion).not.toBeNull();
+    expect(r.evidenceQuestion!.toLowerCase()).toContain("operating principle");
+    // No technical answer invented anywhere in the emitted requirement.
+    expect(r.requirementText.toLowerCase()).not.toContain("seebeck");
+    expect(r.evidenceQuestion!.toLowerCase()).not.toContain("seebeck");
+  });
+
+  it("§CM: a named directional rule with an unknown mapping becomes READY OPEN_TECHNICAL_QUESTION with a generic coverage obligation, never the mapping itself", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-cm::T1",
+      targetText: "Right-hand grip rule.",
+      kind: "OPERATIONAL_USE_RULE",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      specificationMode: "OPEN_TECHNICAL_QUESTION",
+      expectedCoverageDimensions: ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"],
+    });
+    const result = planEvidenceRequirements(input("synthetic-cm", [t]));
+    const r = result.requirements[0]!;
+    expect(r.specificationMode).toBe("OPEN_TECHNICAL_QUESTION");
+    expect(r.decompositionStatus).toBe("READY");
+    expect(r.requiredCoverageDimensions).toEqual(["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"]);
+    expect(r.evidenceQuestion).not.toBeNull();
+    for (const forbidden of ["thumb", "finger", "curl"]) {
+      expect(r.evidenceQuestion!.toLowerCase(), `evidenceQuestion must not leak "${forbidden}"`).not.toContain(forbidden);
+      expect(r.requirementText.toLowerCase(), `requirementText must not leak "${forbidden}"`).not.toContain(forbidden);
+    }
+  });
+
+  it("§CN: a formula explicitly supplied by the approved target is KNOWN_CLAIM_TO_VERIFY, with no evidence question composed", () => {
+    const t = target({ knowledgeTargetId: "synthetic-cn::T1", targetText: "P = VI.", kind: "FORMULA_OR_RULE", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", specificationMode: "KNOWN_CLAIM_TO_VERIFY" });
+    const result = planEvidenceRequirements(input("synthetic-cn", [t]));
+    const r = result.requirements[0]!;
+    expect(r.specificationMode).toBe("KNOWN_CLAIM_TO_VERIFY");
+    expect(r.evidenceQuestion).toBeNull();
+    expect(r.requirementText).toBe("P = VI.");
+  });
+
+  it("§CO: a relationship required but its formula absent becomes OPEN_TECHNICAL_QUESTION, never inventing the missing formula", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-co::T1",
+      targetText: "Relationship between rotational speed, pole count and generated frequency.",
+      kind: "RELATIONSHIP",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      specificationMode: "OPEN_TECHNICAL_QUESTION",
+    });
+    const result = planEvidenceRequirements(input("synthetic-co", [t]));
+    const r = result.requirements[0]!;
+    expect(r.specificationMode).toBe("OPEN_TECHNICAL_QUESTION");
+    expect(r.evidenceQuestion).not.toBeNull();
+    expect(r.requirementText).not.toMatch(/[A-Za-z]\s*=\s*[A-Za-z0-9]/); // no formula embedded
+  });
+});
+
+describe("CC-23B §4/§17 -- CP: open technical research cannot create scope", () => {
+  const typesSource = readFileSync(path.join(path.resolve(import.meta.dirname), "types.ts"), "utf-8");
+
+  it("§CP: TechnicalEvidenceAcquisitionResult has no field capable of creating a second learner target or scope -- only claims/sources tied back to the exact evidenceRequirementId", () => {
+    const match = typesSource.match(/export interface TechnicalEvidenceAcquisitionResult \{([\s\S]*?)\n\}/);
+    expect(match, "TechnicalEvidenceAcquisitionResult interface not found").not.toBeNull();
+    const memberNames = [...match![1]!.matchAll(/readonly\s+(\w+)\s*:/g)].map((m) => m[1]);
+    expect(memberNames).toEqual(["evidenceRequirementId", "candidateSources", "normalizedClaims", "verificationStatus", "coverageDimensionsSatisfied", "unresolvedDimensions", "conflicts", "gaps"]);
+    for (const scopeCreatingField of ["classification", "newKnowledgeTarget", "candidateKey", "requiredFactKeys"]) {
+      expect(memberNames).not.toContain(scopeCreatingField);
+    }
+  });
+});
+
+describe("CC-23B §10/§17 -- CS-CU: identity governance controls reuse safety", () => {
+  it("§CS: a PROVISIONAL_NON_REUSABLE identity never deduplicates across qualifications, even with identical namespace/key/text", () => {
+    const identity: TechnicalSemanticIdentity = { semanticNamespace: "electromagnetism", semanticKey: "some-local-rule", governanceState: "PROVISIONAL_NON_REUSABLE" };
+    const a = target({ knowledgeTargetId: "synthetic-cs-q1::T1", targetText: "Some local rule.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
+    const b = target({ knowledgeTargetId: "synthetic-cs-q2::T1", targetText: "Some local rule.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
+    const first = planEvidenceRequirements(input("synthetic-cs-q1", [a]));
+    const second = planEvidenceRequirements(input("synthetic-cs-q2", [b]), first.requirements);
+    expect(second.requirements).toHaveLength(2); // never merged across qualifications
+    expect(second.requirements[0]!.canonicalRequirementKey).not.toBe(second.requirements[1]!.canonicalRequirementKey);
+  });
+
+  it("§CS (continued): a PROVISIONAL_NON_REUSABLE identity still reuses normally WITHIN the same qualification", () => {
+    const identity: TechnicalSemanticIdentity = { semanticNamespace: "electromagnetism", semanticKey: "some-local-rule", governanceState: "PROVISIONAL_NON_REUSABLE" };
+    const a = target({ knowledgeTargetId: "synthetic-cs-same::T1", targetText: "Some local rule.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
+    const b = target({ knowledgeTargetId: "synthetic-cs-same::T2", targetText: "Some local rule, restated.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
+    const result = planEvidenceRequirements(input("synthetic-cs-same", [a, b]));
+    expect(result.requirements).toHaveLength(1); // same qualificationContextId -> normal reuse
+    expect([...result.requirements[0]!.sourceKnowledgeTargetIds].sort()).toEqual(["synthetic-cs-same::T1", "synthetic-cs-same::T2"]);
+  });
+
+  it("§CT: a CANONICAL identity may deduplicate across qualifications", () => {
+    const identity: TechnicalSemanticIdentity = { semanticNamespace: "electromagnetism", semanticKey: "a-universal-law", governanceState: "CANONICAL" };
+    const a = target({ knowledgeTargetId: "synthetic-ct-q1::T1", targetText: "A universal law, phrasing one.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
+    const b = target({ knowledgeTargetId: "synthetic-ct-q2::T1", targetText: "A universal law, phrasing two.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE", semanticIdentity: identity });
+    const first = planEvidenceRequirements(input("synthetic-ct-q1", [a]));
+    const second = planEvidenceRequirements(input("synthetic-ct-q2", [b]), first.requirements);
+    expect(second.requirements).toHaveLength(1);
+    expect([...second.requirements[0]!.sourceKnowledgeTargetIds].sort()).toEqual(["synthetic-ct-q1::T1", "synthetic-ct-q2::T1"]);
+  });
+
+  it("§CU: an UNRESOLVED semantic identity produces an explicit planning gap, unconditionally, before any other structural field is considered", () => {
+    const identity: TechnicalSemanticIdentity = { semanticNamespace: "unclassified", semanticKey: "unclassified", governanceState: "UNRESOLVED" };
+    const t = target({
+      knowledgeTargetId: "synthetic-cu::T1",
+      targetText: "Some target with structurally under-specified semantics.",
+      kind: "FACTUAL_PROPOSITION",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      semanticIdentity: identity,
+    });
+    const result = planEvidenceRequirements(input("synthetic-cu", [t]));
+    expect(result.requirements).toHaveLength(1);
+    expect(result.requirements[0]!.decompositionStatus).toBe("SEMANTIC_DECOMPOSITION_REQUIRED");
+    expect(result.requirements[0]!.decompositionReason).toMatch(/UNRESOLVED/);
+  });
+});
+
+describe("CC-23B §12/§17 -- CV/CW: custom authority-class registration", () => {
+  it("§CV: an undeclared custom authority class throws a structured configuration-gap error, never silently trusted", () => {
+    const policy = { allowedAuthorityClassesByMode: { EXACT_FACT: ["MARITIME_CLASSIFICATON_SOCIETY"] } }; // deliberate typo, never registered
+    expect(() => validateSourceAuthorityPolicy(policy)).toThrow(/undeclared custom authority class/i);
+  });
+
+  it("§CW: a declared custom authority class passes validation, and flows through planning, with zero production-code change", () => {
+    const policy = { allowedAuthorityClassesByMode: { EXACT_FACT: ["MARITIME_CLASSIFICATION_SOCIETY"] }, registeredCustomAuthorityClasses: ["MARITIME_CLASSIFICATION_SOCIETY"] };
+    expect(() => validateSourceAuthorityPolicy(policy)).not.toThrow();
+    const t = target({ knowledgeTargetId: "synthetic-cw::T1", targetText: "A fact needing a maritime authority.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE" });
+    const result = planEvidenceRequirements({ qualificationContext: { qualificationContextId: "synthetic-cw", description: "x" }, knowledgeTargets: [t], sourceAuthorityPolicy: policy });
+    expect(result.requirements[0]!.sourceAuthorityClasses).toEqual(["MARITIME_CLASSIFICATION_SOCIETY"]);
   });
 });
 
