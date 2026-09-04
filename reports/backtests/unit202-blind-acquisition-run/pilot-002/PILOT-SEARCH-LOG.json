@@ -1,0 +1,640 @@
+{
+  "pilotId": "pilot-002",
+  "entries": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "fraction equivalence comparison converting fractions decimals percentages GCSE maths four operations"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "mathcentre.ac.uk fractions equivalent fractions convert decimals percentages"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://thirdspacelearning.com/gcse-maths/number/fractions-decimals-and-percentages/",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Commercial tutoring/SEO site (Third Space Learning); not within permitted authority classes (ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_EDUCATIONAL_REFERENCE, PROFESSIONAL_BODY). Rejected by domain/title without retrieval."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://www.ncetm.org.uk/classroom-resources/primm-310-linking-fractions-decimals-and-percentages/",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Considered as a possible AUTHORITATIVE_EDUCATIONAL_REFERENCE/PROFESSIONAL_BODY source, but a clearer, unambiguous single-institution academic source (Anglia Ruskin University) was found in the same search and used instead; not retrieved."
+        },
+        {
+          "candidateId": "C3",
+          "order": 3,
+          "sourceRef": "https://anglia.libguides.com/maths-stats/fractionsAndDecimals",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Anglia Ruskin University's own Maths and Stats LibGuide -- unambiguous ACADEMIC_OR_RESEARCH_INSTITUTION source; retrieved and found to substantively cover all required sub-topics."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "mathcentre transposition of formulae rearranging equations squares square roots"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-transposition-2009-1.pdf",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "mathcentre (UK HE partnership resource, mc-TY series) -- unambiguous ACADEMIC_OR_RESEARCH_INSTITUTION source directly on-topic; retrieved and found to cover single-step and squared/root transposition in full."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "NIST SI base unit temperature kelvin symbol K definition"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://www.bipm.org/en/si-base-units/kelvin",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "BIPM (Bureau International des Poids et Mesures) -- the primary international standards body for the SI; retrieved and states the fact directly."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "Ohm's law V=IR voltage current resistance NIST OR IET OR university definition"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "OpenStax University Physics Ohm's law V=IR voltage current resistance definition"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://www.britannica.com/science/Ohms-law",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "General encyclopedia; not within permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_EDUCATIONAL_REFERENCE, PROFESSIONAL_BODY). Rejected by domain without retrieval."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://www.sciencedirect.com/topics/engineering/ohms-law",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Borderline authority classification (aggregator site); a clearer single-institution academic source (OpenStax University Physics) was found and used instead. Not retrieved."
+        },
+        {
+          "candidateId": "C3",
+          "order": 3,
+          "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/09:_Current_and_Resistance/9.05:_Ohm's_Law",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "OpenStax University Physics (Rice University) via LibreTexts -- unambiguous ACADEMIC_OR_RESEARCH_INSTITUTION source; retrieved and states the formula and variable meanings directly."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "weight force mass gravity F=mg definition physics university"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/Book:_University_Physics_I_-_Mechanics_Sound_Oscillations_and_Waves_(OpenStax)/05:_Newton's_Laws_of_Motion/5.05:_Mass_and_Weight",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "OpenStax University Physics (Rice University) via LibreTexts -- unambiguous ACADEMIC_OR_RESEARCH_INSTITUTION source; retrieved and states the relationship, variables, units, and conditions directly."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "right-hand grip rule magnetic field current-carrying conductor direction university physics"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://www.pasco.com/resources/articles/right-hand-rule",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "PASCO (educational science-equipment manufacturer) -- ORIGINAL_MANUFACTURER_OR_VENDOR; retrieved and states the rule's mapping and conditions directly."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "Fleming's left hand rule motor force current field direction thumb first finger second finger"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "pasco.com \"Fleming's left hand rule\" OR \"left-hand rule\" motor force field current"
+        },
+        {
+          "queryId": "Q3",
+          "order": 3,
+          "queryText": "site:ac.uk \"Fleming's left-hand rule\""
+        },
+        {
+          "queryId": "Q4",
+          "order": 4,
+          "queryText": "Fleming's left-hand rule motor effect electric motor force (restricted to ac.uk, gov.uk, iet.org, nist.gov, .edu)"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://www.automate.org/motion-control/blogs/fleming-s-left-hand-rule-electric-motor-theory-explained",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Association for Advancing Automation (A3) -- a US industry trade association (PROFESSIONAL_BODY); retrieval attempted, but the server refused access."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://www.met.reading.ac.uk/pplato2/h-flap/phys4_3.html",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "University of Reading (PPLATO/FLAP physics learning resource) -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved, but the unit teaches the vector/corkscrew method instead and explicitly avoids Fleming's rule."
+        },
+        {
+          "candidateId": "C3",
+          "order": 3,
+          "sourceRef": "https://personalpages.manchester.ac.uk/staff/matthias.heil/Lectures/MT1612/BothHands.pdf.gz",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "University of Manchester lecture notes -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval attempted, but the resource was not found (HTTP 404)."
+        },
+        {
+          "candidateId": "C4",
+          "order": 4,
+          "sourceRef": "https://www.le.ac.uk/se/centres/sci/selfstudy/mam12.htm",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "University of Leicester School of Education self-study page -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval attempted, but the server refused access."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "Fleming's right-hand rule generator induced current field motion (restricted to ac.uk, gov.uk, .edu, nist.gov)"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "\"Fleming's right hand rule\" generator induced current thumb finger motion field (restricted to ac.uk, gov.uk, .edu, iet.org)"
+        },
+        {
+          "queryId": "Q3",
+          "order": 3,
+          "queryText": "Fleming's right hand rule generator rule electricity generation induced emf finger thumb (restricted to iet.org, nist.gov, energy.gov, gov.uk)"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6169343",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "US Patent 6,169,343 (\"Motor and generator wherein magnetism aids motion\"), via USPTO -- GOVERNMENT_OR_REGULATOR; retrieval attempted, but the document is a scanned-image PDF with no extractable text passage."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://www.met.reading.ac.uk/pplato2/h-flap/phys4_4.html",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "University of Reading (PPLATO/FLAP) -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved, but the unit explicitly states it avoids Fleming's right-hand rule due to left/right confusion."
+        },
+        {
+          "candidateId": "C3",
+          "order": 3,
+          "sourceRef": "http://www.brunel.ac.uk/~eestjpc/vrmlcourse/trans11.htm",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Brunel University London -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved, but the page body contains only image placeholders and navigation, no substantive text."
+        },
+        {
+          "candidateId": "C4",
+          "order": 4,
+          "sourceRef": "https://arxiv.org/pdf/physics/0501093",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "arXiv preprint on student difficulties with induced EMF -- ACADEMIC_OR_RESEARCH_INSTITUTION (university-affiliated physics-education research); retrieval attempted, but the fetch tool could not verify the domain."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "alternator frequency formula rotational speed pole pairs f = N x P generator (restricted to ac.uk, gov.uk, .edu, nist.gov)"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "synchronous generator frequency equation f equals speed times pole pairs revolutions per second university"
+        },
+        {
+          "queryId": "Q3",
+          "order": 3,
+          "queryText": "synchronous machine frequency pole pairs rotational speed lecture notes pdf (restricted to .edu, ac.uk)"
+        },
+        {
+          "queryId": "Q4",
+          "order": 4,
+          "queryText": "MIT OpenCourseWare synchronous generator frequency pole pairs speed electric machines"
+        },
+        {
+          "queryId": "Q5",
+          "order": 5,
+          "queryText": "hyperphysics generator frequency poles rpm alternator"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://www.quora.com",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Crowd-sourced Q&A site; not within permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_EDUCATIONAL_REFERENCE, PROFESSIONAL_BODY). Rejected by domain without retrieval."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://circuitglobe.com/synchronous-speed.html",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Commercial electrical-engineering SEO/reference site; not within permitted authority classes. Rejected by domain without retrieval."
+        },
+        {
+          "candidateId": "C3",
+          "order": 3,
+          "sourceRef": "https://www.tutorialspoint.com/electrical_machines/speed_frequency_relationship_alternator.htm",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Commercial tutorial site; not within permitted authority classes. Rejected by domain without retrieval."
+        },
+        {
+          "candidateId": "C4",
+          "order": 4,
+          "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03:_AC_Generation/3.05:_Frequency_and_Alternators",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Workforce LibreTexts (electrical-trades curriculum, Flinn) -- AUTHORITATIVE_EDUCATIONAL_REFERENCE; retrieved and states a mathematically equivalent formula and variable meanings."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "RMS value sine wave 0.707 peak voltage relationship university physics electrical"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "hyperphysics rms value ac voltage sine wave peak"
+        },
+        {
+          "queryId": "Q3",
+          "order": 3,
+          "queryText": "libretexts RMS value sine wave 0.707 peak voltage AC"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://learnabout-electronics.org/ac_theory/ac_waves02.php",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Commercial hobbyist electronics site; not within permitted authority classes (ACADEMIC_OR_RESEARCH_INSTITUTION, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Rejected by domain without retrieval."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://www.electronics-tutorials.ws/accircuits/rms-voltage.html",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Commercial tutorial site; not within permitted authority classes. Rejected by domain without retrieval."
+        },
+        {
+          "candidateId": "C3",
+          "order": 3,
+          "sourceRef": "https://electricalacademia.com/basic-electrical/rms-value-sine-wave/",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Commercial reference site; not within permitted authority classes. Rejected by domain without retrieval."
+        },
+        {
+          "candidateId": "C4",
+          "order": 4,
+          "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis:_A_Practical_Approach_(Fiore)/01:_Fundamentals/1.2:_Sinusoidal_Waveforms",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Engineering LibreTexts, 'AC Electrical Circuit Analysis: A Practical Approach' by James Fiore -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved and states both directions of the relationship and its sine-wave specificity."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "capacitor basic operating principle charge discharge stores energy electric field manufacturer datasheet"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://demos.smu.ca/demos/e-n-m/196-how-a-capacitor-works",
+          "chosen": false,
+          "retrievalAttempted": false,
+          "reason": "Saint Mary's University (Canada) physics demonstrations page -- a valid ACADEMIC_OR_RESEARCH_INSTITUTION candidate, but the Georgia Tech Physics Book (found in the same search) was used instead to avoid redundant retrieval once a suitable source was identified."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://physicsbook.gatech.edu/Charging_and_Discharging_a_Capacitor",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Georgia Institute of Technology's open Physics Book -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved and states the basic principle and charge/discharge consequence directly."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "TRIAC basic operating principle switching control bidirectional manufacturer application note"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "STMicroelectronics OR Littelfuse OR \"ON Semiconductor\" TRIAC application note basic operation bidirectional thyristor"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://www.littelfuse.com/products/power-semiconductors-control-ics/thyristors-scr-triac/triac",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Littelfuse product page -- ORIGINAL_MANUFACTURER_OR_VENDOR; retrieval attempted, but the server refused access."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://www.littelfuse.com/assetdocs/thyristor-fundamental-characteristics-of-thyristors-application-note?assetguid=143cd979-ea0a-47e3-8766-b7d593f3ba72",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Littelfuse application note (direct asset link) -- ORIGINAL_MANUFACTURER_OR_VENDOR; retrieval attempted, but the server refused access."
+        },
+        {
+          "candidateId": "C3",
+          "order": 3,
+          "sourceRef": "https://www.st.com/resource/en/application_note/an442-triacs-and-microcontrollers--the-easy-connection-stmicroelectronics.pdf",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "STMicroelectronics application note AN442 -- ORIGINAL_MANUFACTURER_OR_VENDOR; retrieval attempted, but the request timed out."
+        },
+        {
+          "candidateId": "C4",
+          "order": 4,
+          "sourceRef": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Littelfuse/Teccor 'Fundamental Characteristics of Thyristors' (AN1001), mirrored on an Iowa State University course page -- ORIGINAL_MANUFACTURER_OR_VENDOR (the document's own publisher); retrieved successfully via direct document extraction and states the basic operating principle directly."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "wireless remote control system function application category no wired connection manufacturer"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "wireless control system definition remote transmitter receiver operate device without wires technical reference"
+        },
+        {
+          "queryId": "Q3",
+          "order": 3,
+          "queryText": "wireless control systems garage door remote control basic principle engineering technology textbook (restricted to ac.uk, .edu, libretexts.org)"
+        },
+        {
+          "queryId": "Q4",
+          "order": 4,
+          "queryText": "Somfy OR Chamberlain how wireless remote control works radio signal receiver operate device"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://phoenixcontact.com/en-us/industrial-remote-communication/remote-control-technology",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Phoenix Contact (industrial automation manufacturer) -- ORIGINAL_MANUFACTURER_OR_VENDOR; retrieval attempted, but the server refused access."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://www.somfysystems.com/en-us/discover-somfy/power-technology/radio-technology-somfy",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Somfy (motorized window-covering/access control manufacturer) -- ORIGINAL_MANUFACTURER_OR_VENDOR; retrieved and states the category-level function directly."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "wattmeter measures electrical power current coil voltage coil connection NIST OR IEEE definition"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "wattmeter current coil series voltage coil parallel connection laboratory manual university (restricted to ac.uk, .edu, nist.gov, libretexts.org)"
+        },
+        {
+          "queryId": "Q3",
+          "order": 3,
+          "queryText": "electrodynamometer wattmeter current coil voltage coil measures power site:nist.gov OR site:copyright.gov OR \"national institute of standards\""
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/Book:_University_Physics_(OpenStax)/Map:_University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/10:_Direct-Current_Circuits/10.05:_Electrical_Measuring_Instruments",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "OpenStax University Physics via LibreTexts -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved, but the page covers only ammeters/voltmeters/galvanometers/ohmmeters, not a wattmeter."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://coursecontent.indusuni.ac.in/wp-content/uploads/sites/8/2021/10/Dynamometer-type-wattmeter.pdf",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Indus University (India) course content -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved via direct document extraction and states the fact and both sensing arrangements directly."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "telephone ringer capacitor blocks DC AC ringing signal bell circuit function"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "telephone ringer capacitor DC blocking AC ringing signal ITU-T OR FCC OR \"Bell System Technical Reference\""
+        },
+        {
+          "queryId": "Q3",
+          "order": 3,
+          "queryText": "FCC Part 68 ringer equivalence capacitor telephone bell AC ringing signal DC blocking (restricted to fcc.gov, gov.uk, ofcom.org.uk, itu.int, ac.uk, .edu)"
+        },
+        {
+          "queryId": "Q4",
+          "order": 4,
+          "queryText": "libretexts telephone set ringer capacitor circuit blocking direct current"
+        },
+        {
+          "queryId": "Q5",
+          "order": 5,
+          "queryText": "\"anti-tinkle capacitor\" telephone ringer circuit function"
+        },
+        {
+          "queryId": "Q6",
+          "order": 6,
+          "queryText": "libretexts OR openstax telephone ringer capacitor series bell coil AC ring current DC blocking basic telephone circuit"
+        },
+        {
+          "queryId": "Q7",
+          "order": 7,
+          "queryText": "telephone instrument ringer coil capacitor connected series prevents direct current allows alternating ringing current subscriber set diagram nptel"
+        },
+        {
+          "queryId": "Q8",
+          "order": 8,
+          "queryText": "nptel.ac.in telephone instrument ringer capacitor subscriber set"
+        },
+        {
+          "queryId": "Q9",
+          "order": 9,
+          "queryText": "\"local loop\" OR \"subscriber line\" telephone set circuit diagram ringer capacitor lecture notes pdf (restricted to .edu, ac.uk, ac.in)"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C1",
+          "order": 1,
+          "sourceRef": "https://www.fcc.gov/document/rules-part-68-connection-equipment-telephone-network",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "FCC (US telecommunications regulator) -- GOVERNMENT_OR_REGULATOR; retrieval attempted, but the server refused access."
+        },
+        {
+          "candidateId": "C2",
+          "order": 2,
+          "sourceRef": "https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SEC1321.pdf",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Sathyabama Institute of Science and Technology (India) course material -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval attempted, but no readable ringer/capacitor passage could be extracted from the document."
+        },
+        {
+          "candidateId": "C3",
+          "order": 3,
+          "sourceRef": "https://www.bharathuniv.ac.in/downloads/ece/DR.ARULSELVI-TCS/CircuitandPacketSwitch-DR.ARULSELVI.pdf",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Bharath University (India) course material -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved, but the document covers circuit/packet switching networks generally and contains no content on telephone-set ringer/capacitor circuits."
+        },
+        {
+          "candidateId": "C4",
+          "order": 4,
+          "sourceRef": "https://www.telephonecollectors.info/index.php/browse/bsps-bell-system/most-popular/502-sets-cb/13211-502-200-100-i3-mar64-subscriber-sets-identification-and-assembly/file",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "AT&T Bell System Practices, Section 502-200-100 (the telephone operating company's own official standard practice for subscriber-set identification and assembly), archived by a telephone-collectors reference site -- AUTHORITATIVE_TECHNICAL_REFERENCE; retrieved via direct document extraction and documents the capacitor-ringer component pairing."
+        }
+      ]
+    }
+  ]
+}

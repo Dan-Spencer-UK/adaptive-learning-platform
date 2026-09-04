@@ -21,7 +21,9 @@
  */
 import { LocalAccessGuard, hashContent, type AllowedLocalInput, type LocalAccessGuardConfig } from "@alp/technical-evidence-engine";
 
-export const PILOT_OUTPUT_DIR_RELATIVE = "reports/backtests/unit202-blind-acquisition-run/pilot-001";
+/** Run-selection: which pilot run's own output directory this guard allows read-back of. Defaults to "pilot-001" so any existing caller that does not set PILOT_ID is unaffected; a pilot-002 run sets PILOT_ID=pilot-002 to target its own directory without ever widening the allowlist to pilot-001's. */
+const PILOT_ID = process.env.PILOT_ID ?? "pilot-001";
+export const PILOT_OUTPUT_DIR_RELATIVE = `reports/backtests/unit202-blind-acquisition-run/${PILOT_ID}`;
 export const BLIND_TARGETS_RELATIVE_PATH = "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json";
 export const FROZEN_BLIND_TARGETS_HASH = "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4";
 
@@ -74,7 +76,7 @@ export function buildPilotGuardConfig(extras: PilotGuardExtras = {}): LocalAcces
     });
   }
 
-  return { experimentId: "unit202-blind-acquisition-pilot-001", allowedInputs };
+  return { experimentId: `unit202-blind-acquisition-${PILOT_ID}`, allowedInputs };
 }
 
 export function createPilotGuard(repoRoot: string, extras: PilotGuardExtras = {}): LocalAccessGuard {

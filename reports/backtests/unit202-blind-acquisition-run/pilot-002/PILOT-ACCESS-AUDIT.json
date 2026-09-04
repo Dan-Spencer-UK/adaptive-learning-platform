@@ -1,0 +1,35 @@
+{
+  "pilotId": "pilot-002",
+  "generatedAt": "2026-09-04T20:34:18.044Z",
+  "note": "Every local read this pilot run performed through the guard. A separate runtime self-test (not recorded here) additionally proved the guard denies historical material, path traversal, and an absolute path before any filesystem access; see record-access-audit.ts's own console output for that proof. This file's `records` contains only genuine reads, all ALLOWED, so that the validator's unconditional any-DENIED-invalidates-the-run check reflects a real unauthorized read if it ever fires.",
+  "allReadsAllowed": true,
+  "records": [
+    {
+      "canonicalPath": "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
+      "contentHash": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+      "reason": "translate frozen Unit-202 blind acquisition targets into the generic KnowledgeEvidencePlanningInput contract",
+      "matchedRule": "FROZEN_BLIND_TARGET_MANIFEST",
+      "outcome": "ALLOWED",
+      "recordedAt": "2026-09-04T20:34:18.027Z",
+      "source": "unit202-adapter.ts (adapterRepoRoot=D:\\Development\\adaptive-learning-platform)"
+    },
+    {
+      "canonicalPath": "reports/backtests/unit202-blind-acquisition-run/pilot-002/PILOT-CLEAN-PLAN.json",
+      "contentHash": "0bdb5133f799e19b14985ea0c45e66a5ddecc6b550870ed7756d2cc98d60cb6c",
+      "reason": "pilot read-back of its own already-generated PILOT-CLEAN-PLAN.json, to compute the access-audit and freeze artifacts",
+      "matchedRule": "PILOT_OUTPUT_DIRECTORY",
+      "outcome": "ALLOWED",
+      "recordedAt": "2026-09-04T20:34:18.042Z",
+      "source": "record-access-audit.ts (legitimate read-back)"
+    },
+    {
+      "canonicalPath": "reports/backtests/unit202-blind-acquisition-run/pilot-002/PILOT-SELECTION.json",
+      "contentHash": "6ff9785a89051f97ad11cbf8d9ba329d08edbb688b815f462271946e777e4c2d",
+      "reason": "pilot read-back of its own already-generated PILOT-SELECTION.json, to compute the access-audit and freeze artifacts",
+      "matchedRule": "PILOT_OUTPUT_DIRECTORY",
+      "outcome": "ALLOWED",
+      "recordedAt": "2026-09-04T20:34:18.043Z",
+      "source": "record-access-audit.ts (legitimate read-back)"
+    }
+  ]
+}

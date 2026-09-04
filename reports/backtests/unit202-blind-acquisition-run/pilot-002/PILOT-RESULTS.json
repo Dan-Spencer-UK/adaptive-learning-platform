@@ -1,0 +1,572 @@
+{
+  "pilotId": "pilot-002",
+  "results": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+        "candidateSources": [
+          {
+            "sourceId": "C3",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://anglia.libguides.com/maths-stats/fractionsAndDecimals",
+            "sourceLocator": "Anglia Ruskin University, Maths and Stats LibGuide, 'Fractions and Decimals' page, sections on equivalence, conversion, and the four operations",
+            "retrievedPassage": "\"One half (1/2) is the same as two quarters (2/4) which is also equal to 50 out of 100 (50/100)\"; conversion by \"numerator divided by denominator\"; \"Percentage ÷ 100 = Decimal\"; addition/subtraction distinguishing \"Like fractions\" from \"Unlike Fractions\"; multiplication by \"multiply the top numbers ... and multiply the bottom numbers\"; division by \"turn the second fraction upside down ... then carry out multiplication\", each with worked examples."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The Anglia Ruskin University Maths and Stats LibGuide's 'Fractions and Decimals' page provides substantive coverage of fraction equivalence (e.g. 1/2 = 2/4 = 50/100), comparison via common denominators, conversion between fraction/decimal/percentage forms (numerator/denominator division; percentage-decimal conversion by dividing/multiplying by 100), and all four basic arithmetic operations on fractions (addition/subtraction of like and unlike fractions, multiplication, and division via the reciprocal method), each illustrated with worked examples.",
+            "sourceId": "C3"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "PROCEDURE"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C3",
+            "claimText": "The Anglia Ruskin University Maths and Stats LibGuide's 'Fractions and Decimals' page provides substantive coverage of fraction equivalence (e.g. 1/2 = 2/4 = 50/100), comparison via common denominators, conversion between fraction/decimal/percentage forms (numerator/denominator division; percentage-decimal conversion by dividing/multiplying by 100), and all four basic arithmetic operations on fractions (addition/subtraction of like and unlike fractions, multiplication, and division via the reciprocal method), each illustrated with worked examples.",
+            "dimensions": [
+              "PROCEDURE"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+        "candidateSources": [
+          {
+            "sourceId": "C1",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-transposition-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Transposition of formulae' (mc-TY-transposition-2009-1), §2 'Solving a simple linear equation' and §3 'Transposition of simple formulae', pp.2-3",
+            "retrievedPassage": "\"Consider the formula v² = u² + 2as ... Finally, taking the square root of both sides: u = √(v² − 2as)\"; \"Consider the formula v = u + at ... t = (v − u)/a\"; and (p.5) the pendulum formula \"T = 2π√(l/g)\" rearranged for g \"by squaring both sides ... to remove the square root\", multiplying and dividing to give \"g = (2π)²l/T²\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "mathcentre's 'Transposition of formulae' unit (mc-TY-transposition-2009-1) teaches transposing a formula by performing the same operation to both sides to isolate a variable, covering single-step examples (e.g. v = u + at rearranged for t) and multi-step/squared-and-rooted forms (e.g. v² = u² + 2as rearranged for u via subtraction then square root; the pendulum formula T = 2π√(l/g) rearranged for g via squaring, multiplying, and dividing), demonstrated through worked examples and practice exercises.",
+            "sourceId": "C1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "PROCEDURE",
+          "CALCULATION_METHOD"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C1",
+            "claimText": "mathcentre's 'Transposition of formulae' unit (mc-TY-transposition-2009-1) teaches transposing a formula by performing the same operation to both sides to isolate a variable, covering single-step examples (e.g. v = u + at rearranged for t) and multi-step/squared-and-rooted forms (e.g. v² = u² + 2as rearranged for u via subtraction then square root; the pendulum formula T = 2π√(l/g) rearranged for g via squaring, multiplying, and dividing), demonstrated through worked examples and practice exercises.",
+            "dimensions": [
+              "PROCEDURE",
+              "CALCULATION_METHOD"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "candidateSources": [
+          {
+            "sourceId": "C1",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/en/si-base-units/kelvin",
+            "sourceLocator": "BIPM, 'SI base unit: kelvin (K)', https://www.bipm.org/en/si-base-units/kelvin, definition statement",
+            "retrievedPassage": "\"The kelvin, symbol K, is the SI unit of thermodynamic temperature.\" Distinguished from a practical scale: the Celsius scale has an arbitrary zero point, whereas the kelvin represents absolute thermodynamic temperature defined via the Boltzmann constant."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The kelvin, symbol K, is the SI unit of thermodynamic temperature -- distinct from a practical temperature scale such as Celsius, which has an arbitrary zero point.",
+            "sourceId": "C1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C1",
+            "claimText": "The kelvin, symbol K, is the SI unit of thermodynamic temperature -- distinct from a practical temperature scale such as Celsius, which has an arbitrary zero point.",
+            "dimensions": [
+              "DEFINITION"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+        "candidateSources": [
+          {
+            "sourceId": "C3",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/09:_Current_and_Resistance/9.05:_Ohm's_Law",
+            "sourceLocator": "OpenStax University Physics Vol.2 (via Physics LibreTexts), §9.5 'Ohm's Law'",
+            "retrievedPassage": "\"V = IR\" where \"V (Voltage): the voltage measured in volts across the object in question\"; \"I (Current): the current measured through the object in amps\"; \"R (Resistance): the resistance in units of ohms.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "V = IR (Ohm's law), where V is the voltage measured in volts across the object, I is the current measured in amps through the object, and R is the object's resistance in units of ohms.",
+            "sourceId": "C3"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "FORMULA",
+          "FORMULA_INTERPRETATION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C3",
+            "claimText": "V = IR (Ohm's law), where V is the voltage measured in volts across the object, I is the current measured in amps through the object, and R is the object's resistance in units of ohms.",
+            "dimensions": [
+              "FORMULA",
+              "FORMULA_INTERPRETATION"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+        "candidateSources": [
+          {
+            "sourceId": "C1",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/Book:_University_Physics_I_-_Mechanics_Sound_Oscillations_and_Waves_(OpenStax)/05:_Newton's_Laws_of_Motion/5.05:_Mass_and_Weight",
+            "sourceLocator": "OpenStax University Physics Vol.1 (via Physics LibreTexts), §5.5 'Mass and Weight', Eq. 5.9",
+            "retrievedPassage": "\"w = mg\" (Eq. 5.9), where w is weight (the gravitational force acting on an object), m is mass, and g is acceleration due to gravity; applies \"when the net external force on an object is its weight\"; on Earth g = 9.80 m/s², so \"the weight of a 1.00-kg object on Earth is 9.80 N\"; weight varies with location because g does, while mass does not."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Weight w equals mass m times gravitational acceleration g (w = mg); this applies when the net external force on an object is its weight; on Earth g = 9.80 m/s², so a 1.00 kg mass weighs 9.80 N, and weight (unlike mass) varies with location because g does.",
+            "sourceId": "C1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C1",
+            "claimText": "Weight w equals mass m times gravitational acceleration g (w = mg); this applies when the net external force on an object is its weight; on Earth g = 9.80 m/s², so a 1.00 kg mass weighs 9.80 N, and weight (unlike mass) varies with location because g does.",
+            "dimensions": [
+              "CONCEPTUAL_RELATIONSHIP"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+        "candidateSources": [
+          {
+            "sourceId": "C1",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.pasco.com/resources/articles/right-hand-rule",
+            "sourceLocator": "PASCO, 'Right Hand Rule', https://www.pasco.com/resources/articles/right-hand-rule",
+            "retrievedPassage": "\"To apply the right hand grip rule, point your right thumb in the direction of the current's flow and curl your fingers\"; \"align your thumb with the direction of the conventional current (positive to negative) and your fingers will indicate the direction of the magnetic lines of flux\"; \"A conventional current is composed of moving charges that are positive in nature.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "For a straight current-carrying conductor, point the right thumb in the direction of the conventional current (defined as the direction of flow of positive charge, from positive to negative) and the fingers curl in the direction of the magnetic field/flux lines around the conductor; this construction specifically requires the right hand.",
+            "sourceId": "C1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DIRECTIONAL_MAPPING",
+          "ROLE_MAPPING",
+          "CORRECT_USE_CONDITIONS"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C1",
+            "claimText": "For a straight current-carrying conductor, point the right thumb in the direction of the conventional current (defined as the direction of flow of positive charge, from positive to negative) and the fingers curl in the direction of the magnetic field/flux lines around the conductor; this construction specifically requires the right hand.",
+            "dimensions": [
+              "DIRECTIONAL_MAPPING",
+              "ROLE_MAPPING",
+              "CORRECT_USE_CONDITIONS"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+        "candidateSources": [],
+        "normalizedClaims": [],
+        "verificationStatus": "SOURCE_GAP",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": [
+          "DIRECTIONAL_MAPPING",
+          "ROLE_MAPPING",
+          "CORRECT_USE_CONDITIONS"
+        ],
+        "conflicts": [],
+        "gaps": [
+          {
+            "description": "No accessible, permitted-authority source stating Fleming's left-hand (motor) rule's finger/thumb-to-quantity mapping and correct-use conditions was found within the 4-candidate cap.",
+            "reason": "Two candidates (automate.org, University of Leicester self-study page) returned HTTP 403 Forbidden; one candidate (University of Manchester lecture PDF) returned HTTP 404 Not Found; one candidate (University of Reading PPLATO/FLAP unit) was accessible but explicitly teaches the vector cross-product/corkscrew-rule method instead and does not state Fleming's rule's mapping. The candidate cap (4) was reached without a permitted-authority source stating the rule."
+          }
+        ]
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+        "candidateSources": [],
+        "normalizedClaims": [],
+        "verificationStatus": "SOURCE_GAP",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": [
+          "DIRECTIONAL_MAPPING",
+          "ROLE_MAPPING",
+          "CORRECT_USE_CONDITIONS"
+        ],
+        "conflicts": [],
+        "gaps": [
+          {
+            "description": "No accessible, permitted-authority source stating Fleming's right-hand (generator) rule's finger/thumb-to-quantity mapping and correct-use conditions was found within the 4-candidate cap.",
+            "reason": "One candidate (US Patent 6,169,343) was retrieved but is a scanned-image document with no extractable text; one candidate (University of Reading PPLATO/FLAP unit) was accessible but explicitly states it avoids Fleming's right-hand rule to prevent confusion with the left-hand rule; one candidate (Brunel University page) loaded but had no substantive body text; one candidate (arXiv preprint) could not be fetched due to a domain-verification restriction. The candidate cap (4) was reached without a permitted-authority source stating the rule."
+          }
+        ]
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+        "candidateSources": [
+          {
+            "sourceId": "C4",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03:_AC_Generation/3.05:_Frequency_and_Alternators",
+            "sourceLocator": "Workforce LibreTexts, 'Trigonometry and Single Phase AC Generation for Electricians' (Flinn), §3.5 'Frequency and Alternators'",
+            "retrievedPassage": "\"f = (P/2) × (N/60)\" and equivalently \"f = PN/120\", where \"f = frequency in hertz\", \"P = number of poles\", \"N = rotational speed in RPM\"; \"We divide the number of poles by two because there will always be a set of two poles\" and \"We divide the RPM by 60 because we are concerned with rotations per second, not rotations per minute.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An alternator's output frequency f (Hz) equals half the number of poles P times the rotational speed N (in RPM) divided by 60 -- f = (P/2)×(N/60), equivalently f = PN/120 -- because a full electrical cycle occurs for every pair of poles passed and RPM must be converted to revolutions per second; this is a mathematically equivalent form of f = (pole pairs) × (rotational speed in rev/s).",
+            "sourceId": "C4"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "FORMULA",
+          "FORMULA_INTERPRETATION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C4",
+            "claimText": "An alternator's output frequency f (Hz) equals half the number of poles P times the rotational speed N (in RPM) divided by 60 -- f = (P/2)×(N/60), equivalently f = PN/120 -- because a full electrical cycle occurs for every pair of poles passed and RPM must be converted to revolutions per second; this is a mathematically equivalent form of f = (pole pairs) × (rotational speed in rev/s).",
+            "dimensions": [
+              "FORMULA",
+              "FORMULA_INTERPRETATION"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+        "candidateSources": [
+          {
+            "sourceId": "C4",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis:_A_Practical_Approach_(Fiore)/01:_Fundamentals/1.2:_Sinusoidal_Waveforms",
+            "sourceLocator": "Engineering LibreTexts, Fiore, 'AC Electrical Circuit Analysis: A Practical Approach', §1.2 'Sinusoidal Waveforms'",
+            "retrievedPassage": "\"In summation, for sine waves, RMS is always the peak value times 0.707.\" \"We could also say the RMS value of any sine wave is its peak divided by approximately 1.414.\" \"Again, these ratios would not necessarily be true of non-sine waves.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "For a sine wave, the RMS value equals its peak value times 0.707 (equivalently, the peak value equals the RMS value divided by approximately 1.414); this specific ratio applies only to sine waves and not necessarily to other waveform shapes.",
+            "sourceId": "C4"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C4",
+            "claimText": "For a sine wave, the RMS value equals its peak value times 0.707 (equivalently, the peak value equals the RMS value divided by approximately 1.414); this specific ratio applies only to sine waves and not necessarily to other waveform shapes.",
+            "dimensions": [
+              "CONCEPTUAL_RELATIONSHIP"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+        "candidateSources": [
+          {
+            "sourceId": "C2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://physicsbook.gatech.edu/Charging_and_Discharging_a_Capacitor",
+            "sourceLocator": "Georgia Tech Physics Book, 'Charging and Discharging a Capacitor', https://physicsbook.gatech.edu/Charging_and_Discharging_a_Capacitor",
+            "retrievedPassage": "\"A capacitor is a two-conductor device that stores energy in the electric field between its plates.\" \"When you connect an uncharged capacitor to a battery through a resistor, charge piles up on the plates over time — that's charging. Disconnect the battery and let the capacitor drive current through a resistor, and the stored charge bleeds back off — that's discharging.\" \"A capacitor is not a battery. A battery maintains a roughly constant emf from chemistry; a capacitor's voltage rises or falls as charge moves on or off its plates.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A capacitor is a two-conductor device that stores energy in the electric field between its plates; connecting an uncharged capacitor to a battery through a resistor causes charge to pile up on the plates over time (charging), while disconnecting the battery and driving current through a resistor lets the stored charge bleed back off (discharging) -- unlike a battery, whose voltage stays roughly constant from chemistry, a capacitor's voltage rises or falls as charge moves onto or off its plates.",
+            "sourceId": "C2"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "OPERATING_PRINCIPLE"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C2",
+            "claimText": "A capacitor is a two-conductor device that stores energy in the electric field between its plates; connecting an uncharged capacitor to a battery through a resistor causes charge to pile up on the plates over time (charging), while disconnecting the battery and driving current through a resistor lets the stored charge bleed back off (discharging) -- unlike a battery, whose voltage stays roughly constant from chemistry, a capacitor's voltage rises or falls as charge moves onto or off its plates.",
+            "dimensions": [
+              "OPERATING_PRINCIPLE"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+        "candidateSources": [
+          {
+            "sourceId": "C4",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
+            "sourceLocator": "Littelfuse (Teccor brand Thyristors), Application Note AN1001 'Fundamental Characteristics of Thyristors', p.2, §'Triac → Basic Operation'",
+            "retrievedPassage": "\"Its primary function is to control power bilaterally in an AC circuit.\" \"Operation of a Triac can be related to two SCRs connected in parallel in opposite directions.\" \"Although the gates are shown separately for each SCR, a Triac has a single gate and can be triggered by either polarity.\" \"Since a Triac operates in both directions, it behaves essentially the same in either direction as an SCR would behave in the forward direction (blocking or operating).\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A TRIAC's primary function is to control power bilaterally (in both directions) in an AC circuit; its operation is equivalent to two silicon-controlled rectifiers (SCRs) connected in parallel in opposite directions, but unlike two separate SCRs a TRIAC has a single gate terminal that can be triggered by either polarity, and because it operates in both directions it behaves, in either direction, essentially the same as an SCR would behave in its forward (blocking or conducting) direction.",
+            "sourceId": "C4"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "OPERATING_PRINCIPLE"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C4",
+            "claimText": "A TRIAC's primary function is to control power bilaterally (in both directions) in an AC circuit; its operation is equivalent to two silicon-controlled rectifiers (SCRs) connected in parallel in opposite directions, but unlike two separate SCRs a TRIAC has a single gate terminal that can be triggered by either polarity, and because it operates in both directions it behaves, in either direction, essentially the same as an SCR would behave in its forward (blocking or conducting) direction.",
+            "dimensions": [
+              "OPERATING_PRINCIPLE"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+        "candidateSources": [
+          {
+            "sourceId": "C2",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.somfysystems.com/en-us/discover-somfy/power-technology/radio-technology-somfy",
+            "sourceLocator": "Somfy Systems, 'Radio Technology Somfy (RTS)', https://www.somfysystems.com/en-us/discover-somfy/power-technology/radio-technology-somfy",
+            "retrievedPassage": "\"A simple press of a button on a remote control or wireless wall switch sends out a radio wave signal to move any motorized interior or exterior window coverings with ease.\" \"The radio waves travel through walls, making control of motorized products easier than ever\", within a range of up to 65 feet, without requiring hardwired electrical control paths to the motors."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A wireless (radio) control system lets a user operate a motorized device -- for example, a motorized window covering -- by pressing a button on a handheld remote control or wireless wall switch, which sends a radio-wave signal to the device's receiver; the signal travels through walls and need not be aimed at the receiver, eliminating the need for a direct wired electrical control path between the control point and the device.",
+            "sourceId": "C2"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "APPLICATION_FUNCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C2",
+            "claimText": "A wireless (radio) control system lets a user operate a motorized device -- for example, a motorized window covering -- by pressing a button on a handheld remote control or wireless wall switch, which sends a radio-wave signal to the device's receiver; the signal travels through walls and need not be aimed at the receiver, eliminating the need for a direct wired electrical control path between the control point and the device.",
+            "dimensions": [
+              "APPLICATION_FUNCTION"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+        "candidateSources": [
+          {
+            "sourceId": "C2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://coursecontent.indusuni.ac.in/wp-content/uploads/sites/8/2021/10/Dynamometer-type-wattmeter.pdf",
+            "sourceLocator": "Indus University course content, 'Dynamometer type wattmeter', §1 'Introduction' and §2 'Wattmeter', p.1",
+            "retrievedPassage": "\"A wattmeter is a device used for the measurement of electrical power in a circuit. It is an inherent combination of an ammeter and a voltmeter. I[t] has mainly two coils, namely the current coil (CC) and the potential coil (PC)\". \"The current coil (CC) is connected in series with the load whose power is required to be measured, so that it carries the load current. The potential coil (PC) is connected in parallel with the load, so that it carries a current proportional to the load voltage.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A wattmeter is a device used for the measurement of electrical power in a circuit; it has mainly two coils -- the current coil (CC), connected in series with the load so that it carries the load current, and the potential coil (PC), connected in parallel with the load so that it carries a current proportional to the load voltage.",
+            "sourceId": "C2"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C2",
+            "claimText": "A wattmeter is a device used for the measurement of electrical power in a circuit; it has mainly two coils -- the current coil (CC), connected in series with the load so that it carries the load current, and the potential coil (PC), connected in parallel with the load so that it carries a current proportional to the load voltage.",
+            "dimensions": [
+              "DEFINITION"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+        "candidateSources": [
+          {
+            "sourceId": "C4",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.telephonecollectors.info/index.php/browse/bsps-bell-system/most-popular/502-sets-cb/13211-502-200-100-i3-mar64-subscriber-sets-identification-and-assembly/file",
+            "sourceLocator": "AT&T Bell System Practices, Plant Series, Section 502-200-100, Issue 3 (March 1964), §2.01(a) and §2.09/Fig. 8",
+            "retrievedPassage": "\"531A: For use as a high impedance extension ringer. Consists of a B-type ringer and an 0.5-uf capacitor.\" Fig. 8 ('687A Subscriber Set, Internal View') labels a '198C CAPACITOR' wired directly alongside the 'C4A RINGER' inside the subscriber set assembly."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In AT&T Bell System subscriber telephone sets, the ringer is standardly provided as an integral paired combination with a dedicated capacitor -- for example, the 531A high-impedance extension-ringer set 'consists of a B-type ringer and an 0.5-uf capacitor', and the internal assembly of the 685-, 686-, 687-, and 690-type subscriber sets wires a 198C capacitor directly to the C4A ringer -- documenting the capacitor as a standard component of the ringer circuit in the telephone operating company's own official engineering practice for these sets. (This source documents the component pairing; it does not itself state the underlying DC-blocking/AC-passing circuit mechanism, which was not established from a permitted, accessible source within the candidate cap.)",
+            "sourceId": "C4"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "claimDimensionBindings": [
+          {
+            "sourceId": "C4",
+            "claimText": "In AT&T Bell System subscriber telephone sets, the ringer is standardly provided as an integral paired combination with a dedicated capacitor -- for example, the 531A high-impedance extension-ringer set 'consists of a B-type ringer and an 0.5-uf capacitor', and the internal assembly of the 685-, 686-, 687-, and 690-type subscriber sets wires a 198C capacitor directly to the C4A ringer -- documenting the capacitor as a standard component of the ringer circuit in the telephone operating company's own official engineering practice for these sets. (This source documents the component pairing; it does not itself state the underlying DC-blocking/AC-passing circuit mechanism, which was not established from a permitted, accessible source within the candidate cap.)",
+            "dimensions": [
+              "DEFINITION"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

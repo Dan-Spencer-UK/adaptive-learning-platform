@@ -1,0 +1,35 @@
+{
+  "pilotId": "pilot-002",
+  "gitBranch": "main",
+  "gitCommit": "e8b2a9d8a7fd11b88261666ae1df3915529f00b4",
+  "acquisitionStartedAt": "2026-09-04T18:00:00.000Z",
+  "acquisitionEndedAt": "2026-09-04T23:00:00.000Z",
+  "sourcePlanHash": "0bdb5133f799e19b14985ea0c45e66a5ddecc6b550870ed7756d2cc98d60cb6c",
+  "selectionHash": "6ff9785a89051f97ad11cbf8d9ba329d08edbb688b815f462271946e777e4c2d",
+  "acquisitionPolicy": {
+    "allowLiveWebResearch": true,
+    "requireExactLocator": true,
+    "maxCandidateSourcesPerRequirement": 4
+  },
+  "runtimeVersions": {
+    "node": "v24.12.0"
+  },
+  "governanceInputs": {
+    "depthReviewInput": {
+      "path": "reports/backtests/unit202-blind-acquisition-run/CC-24-PILOT-002-DEPTH-REVIEW-INPUT.json",
+      "sha256": "d982e0e311d1b908464f39316b34177189e250b88b1fa27412328c6a84bc9618"
+    },
+    "paDepthDecision": {
+      "path": "reports/backtests/unit202-blind-acquisition-run/CC-24-PILOT-002-PA-DEPTH-DECISION.json",
+      "sha256": "ad59d1d43c017166c1311e93ac6a26e8dc1cf3450c715c514c1413fb96d8059e",
+      "decisionId": "CC-24-PA-DEPTH-001"
+    }
+  },
+  "blindnessBoundary": {
+    "deviationDisclosure": {
+      "occurred": false
+    },
+    "note": "This session never read pilot-001 artifacts, CC-24-PILOT-001-PA-REVIEW.md, historical benchmarks, or any other blindness-boundary-excluded material. All local reads were routed through the pilot guard (see PILOT-ACCESS-AUDIT.json); a separate runtime self-test additionally proved the guard denies unauthorized paths (see record-access-audit.ts console output), without persisting synthetic denials into the access-audit file."
+  },
+  "producerParameterisation": "pilot-guard.ts, freeze-selection.ts, and record-access-audit.ts were parameterised via a PILOT_ID environment variable (default \"pilot-001\", unchanged for any existing caller) to target this run's own output directory and experiment id without reading or modifying pilot-001. record-access-audit.ts was additionally corrected to stop persisting its denial self-test's DENIED records into PILOT-ACCESS-AUDIT.json, so that the validator's unconditional any-DENIED-invalidates-the-run check reflects a genuine unauthorized read if it ever fires, rather than always failing on pilot-001's own synthetic proof-of-denial entries."
+}

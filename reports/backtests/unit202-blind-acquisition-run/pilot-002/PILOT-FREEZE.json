@@ -1,0 +1,25 @@
+{
+  "pilotId": "pilot-002",
+  "frozenAt": "2026-09-04T23:05:00.000Z",
+  "sourcePlanHash": "0bdb5133f799e19b14985ea0c45e66a5ddecc6b550870ed7756d2cc98d60cb6c",
+  "selectionHash": "6ff9785a89051f97ad11cbf8d9ba329d08edbb688b815f462271946e777e4c2d",
+  "frozenBlindTargetManifest": {
+    "path": "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
+    "hashBeforeThisRun": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+    "hashAtFreeze": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+    "unchanged": true
+  },
+  "artifactHashes": {
+    "PILOT-CLEAN-PLAN.json": "0bdb5133f799e19b14985ea0c45e66a5ddecc6b550870ed7756d2cc98d60cb6c",
+    "PILOT-SELECTION.json": "6ff9785a89051f97ad11cbf8d9ba329d08edbb688b815f462271946e777e4c2d",
+    "PILOT-RUN-MANIFEST.json": "1dd05c4c35a490b07a6237484bc2a296a1976c25f957be6bbe472eecfa088427",
+    "PILOT-SEARCH-LOG.json": "6b68bfe01c7ac23f33bd8388e8f3dcb5b94fcdd165f9404e7a55fa89f92fe665",
+    "PILOT-RETRIEVAL-LOG.json": "08f790e9af1c4d5135daae903c7518c18f1e009cce4d1792c70a98da0166ca65",
+    "PILOT-RESULTS.json": "203d83f7cce2be4921669d5ae5a6db590d07d6ae40b39c051d87d4299191208d",
+    "PILOT-ACCESS-AUDIT.json": "e552addb750ab7f059956889d6ca53c1ff778768cb917df8c2475f40d1b263a2",
+    "PILOT-REPORT.md": "957ae4087426c01fff454a1293615a83e1b23159bf24079f580a224d9b88fee5"
+  },
+  "declarations": {
+    "deviationDisclosureAcknowledged": false
+  }
+}

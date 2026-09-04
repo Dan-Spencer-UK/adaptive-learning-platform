@@ -1,15 +1,26 @@
 /**
  * CC-24 §6: generates PILOT-ACCESS-AUDIT.json -- the real, mechanically
  * recorded `AccessAuditRecord` trail for every local read this pilot run
- * performed, PLUS a deliberate demonstration that unauthorized paths
- * (historical/reconciliation material, path traversal, an absolute path)
- * are denied BEFORE any filesystem access, never merely documented as
- * denied.
+ * performed, PLUS a deliberate runtime demonstration that unauthorized
+ * paths (historical/reconciliation material, path traversal, an absolute
+ * path) are denied BEFORE any filesystem access.
+ *
+ * [Corrected for pilot-002] The three denial demonstrations are proven at
+ * RUNTIME (this script throws if any of them unexpectedly succeeds, so a
+ * broken guard fails this script loudly) but their DENIED records are no
+ * longer persisted into PILOT-ACCESS-AUDIT.json's `records`. The
+ * validator's own corrected rule (`checkAccessAuditDenials`) treats ANY
+ * DENIED entry in that file as invalidating the run unconditionally --
+ * exactly right for a genuine unauthorized-access attempt during real
+ * acquisition, but it would also always fail a fully valid run if the
+ * file additionally contained pilot-001's synthetic proof-of-denial
+ * entries. Persisting a real denial and a deliberate self-test denial in
+ * the same unconditional field is not a distinction the validator (or a
+ * downstream reader of this file) could make safely, so the self-test
+ * stays a script-level assertion + console log only.
  *
  * Imports only the clean pilot-preparation path and the generic guard --
- * no historical material. The three denial demonstrations below never
- * succeed in reading anything; each is expected to throw
- * `UnauthorizedLocalReadError` and the audit log alone is the evidence.
+ * no historical material.
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -19,6 +30,8 @@ import { LocalAccessGuard, UnauthorizedLocalReadError, type AccessAuditRecord } 
 
 import { buildUnit202PlanningInput, repoRoot as adapterRepoRoot } from "../unit202-evidence-acquisition-preflight/unit202-adapter.ts";
 import { PILOT_OUTPUT_DIR_RELATIVE, createPilotGuard } from "./pilot-guard.ts";
+
+const PILOT_ID = process.env.PILOT_ID ?? "pilot-001";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -56,11 +69,16 @@ for (const file of ["PILOT-CLEAN-PLAN.json", "PILOT-SELECTION.json"]) {
   records.push({ ...audit, source: "record-access-audit.ts (legitimate read-back)" });
 }
 
-// 3. Deliberate denial demonstrations -- every one of these MUST throw.
-// A script bug that let any of these silently "succeed" would itself be
-// the guard failing; each block re-throws if the expected error class is
-// not what was caught, so this script fails loudly rather than producing
-// a falsely-reassuring audit file.
+// 3. Deliberate denial self-test -- every one of these MUST throw. A
+// script bug that let any of these silently "succeed" would itself be the
+// guard failing; each block re-throws if the expected error class is not
+// what was caught, so this script fails loudly rather than producing a
+// falsely-reassuring audit file. Their DENIED records are logged to the
+// console (proof they were exercised) but deliberately NOT pushed into
+// `records` -- see the file-level comment on why they must not share
+// PILOT-ACCESS-AUDIT.json's unconditional "any DENIED entry invalidates
+// the run" field with a genuine denied access attempt.
+const denialSelfTestLog: (AccessAuditRecord & { readonly source: string })[] = [];
 function expectDenied(label: string, attempt: () => void): void {
   const before = pilotGuard.getAuditLog().length;
   try {
@@ -70,8 +88,8 @@ function expectDenied(label: string, attempt: () => void): void {
     if (!(err instanceof UnauthorizedLocalReadError)) throw err;
   }
   const after = pilotGuard.getAuditLog();
-  const newEntries = after.slice(before).map((r) => ({ ...r, source: `record-access-audit.ts (denial demonstration: ${label})` }));
-  records.push(...newEntries);
+  const newEntries = after.slice(before).map((r) => ({ ...r, source: `record-access-audit.ts (denial self-test: ${label})` }));
+  denialSelfTestLog.push(...newEntries);
 }
 
 expectDenied("historical reconciliation material, out of the pilot allowlist entirely", () => {
@@ -90,10 +108,10 @@ writeFileSync(
   path.join(outDir, "PILOT-ACCESS-AUDIT.json"),
   JSON.stringify(
     {
-      pilotId: "pilot-001",
+      pilotId: PILOT_ID,
       generatedAt: new Date().toISOString(),
-      note: "Every local read this pilot run performed, plus three deliberate denial demonstrations (historical material, path traversal, absolute path) proving the guard denies before any filesystem access -- not merely documented as denied.",
-      allReadsAllowedExcludingDeliberateDenialDemonstrations: true,
+      note: "Every local read this pilot run performed through the guard. A separate runtime self-test (not recorded here) additionally proved the guard denies historical material, path traversal, and an absolute path before any filesystem access; see record-access-audit.ts's own console output for that proof. This file's `records` contains only genuine reads, all ALLOWED, so that the validator's unconditional any-DENIED-invalidates-the-run check reflects a real unauthorized read if it ever fires.",
+      allReadsAllowed: records.every((r) => r.outcome === "ALLOWED"),
       records,
     },
     null,
@@ -102,4 +120,6 @@ writeFileSync(
   "utf-8",
 );
 
-console.log("PILOT-ACCESS-AUDIT.json written:", records.length, "records (", records.filter((r) => r.outcome === "DENIED").length, "deliberate denials ).");
+console.log("PILOT-ACCESS-AUDIT.json written:", records.length, "records (all ALLOWED:", records.every((r) => r.outcome === "ALLOWED"), ").");
+console.log("Denial self-test (not persisted to PILOT-ACCESS-AUDIT.json):", denialSelfTestLog.length, "denied attempts, all correctly denied.");
+for (const d of denialSelfTestLog) console.log("  -", d.source, "|", d.canonicalPath, "|", d.outcome);

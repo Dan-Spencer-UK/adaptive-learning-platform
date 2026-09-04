@@ -16,6 +16,8 @@ import { buildCleanPlan } from "./clean-plan.ts";
 import { PILOT_OUTPUT_DIR_RELATIVE } from "./pilot-guard.ts";
 import { selectPilotSample } from "./pilot-selection.ts";
 
+const PILOT_ID = process.env.PILOT_ID ?? "pilot-001";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..", "..", "..");
@@ -42,7 +44,7 @@ if (!outcome.ok) {
 }
 
 const selectionPayload = {
-  pilotId: "pilot-001",
+  pilotId: PILOT_ID,
   qualificationContextId: "unit202",
   sourcePlanHash: planHash,
   selectedCount: outcome.requirements.length,
