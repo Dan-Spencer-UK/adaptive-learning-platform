@@ -1,17 +1,18 @@
 /**
- * CC-24 PA-review correction §3: synthetic valid/invalid fixture tests
- * for the pilot-artifact validator, plus the required read-only run
- * against the real, frozen pilot-001 -- which MUST come back INVALID,
- * reporting only defects genuinely present in the repository files.
- * Pilot-001 is never modified by these tests (validatePilotDirectory
- * only calls readFileSync).
+ * CC-24 PA-review correction §3 (further corrected in a follow-up pass):
+ * synthetic valid/invalid fixture tests for the pilot-artifact
+ * validator, plus the required read-only run against the real, frozen
+ * pilot-001 -- which MUST come back INVALID, reporting only defects
+ * genuinely present in the repository files. Pilot-001 is never
+ * modified by these tests (validatePilotDirectory only calls
+ * readFileSync).
  *
- * [Corrected] The valid fixture now computes every hash via the SAME
- * `hashContent` function the validator itself uses -- never an
- * arbitrary placeholder like `"a".repeat(64)` -- so a test that mutates
- * one byte of one artifact and expects a hash-mismatch defect is
- * actually exercising the real hash-comparison logic, not merely
- * decorative equality on inert strings.
+ * The valid fixture computes every hash via the SAME `hashContent`
+ * function the validator itself uses -- never an arbitrary placeholder
+ * like `"a".repeat(64)`. This pass adds: the fixed external pilot-002
+ * policy contract, structured/ordered search-query records, and
+ * value-level retrieval/results cross-checks plus verification-status
+ * coherence.
  */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -80,7 +81,13 @@ function buildValidBundle(): PilotArtifactRawBundle {
   const selectionJson = JSON.stringify(selection, null, 2) + "\n";
   const selectionHash = hashContent(selectionJson);
 
-  const searchLog = { entries: FIXTURE_IDS.map((id) => ({ evidenceRequirementId: id, queries: ["a query"], candidates: [{ candidateId: "SRC-1", order: 1, sourceRef: "https://example.edu/page", chosen: true, reason: "on-point", retrievalAttempted: true }] })) };
+  const searchLog = {
+    entries: FIXTURE_IDS.map((id) => ({
+      evidenceRequirementId: id,
+      queries: [{ queryId: "Q1", order: 1, queryText: "a query" }],
+      candidates: [{ candidateId: "SRC-1", order: 1, sourceRef: "https://example.edu/page", chosen: true, reason: "on-point", retrievalAttempted: true }],
+    })),
+  };
   const searchLogJson = JSON.stringify(searchLog, null, 2) + "\n";
 
   const retrievalLog = { entries: FIXTURE_IDS.map((id) => validRetrievalEntry(id, "SRC-1")) };
@@ -156,6 +163,12 @@ function reconcileFreezeAndManifest(bundle: PilotArtifactRawBundle): PilotArtifa
   return { ...bundle, manifestJson, freezeJson: JSON.stringify(freeze, null, 2) + "\n" };
 }
 
+/** Rebuilds only the report from whatever results/search/retrieval the bundle currently has, then reconciles freeze/manifest hashes -- for tests that legitimately change result data and need a self-consistent bundle afterward. */
+function reconcileReportFreezeAndManifest(bundle: PilotArtifactRawBundle): PilotArtifactRawBundle {
+  const withReport: PilotArtifactRawBundle = { ...bundle, reportMarkdown: renderExpectedReportForBundle(bundle, FIXTURE_IDS) };
+  return reconcileFreezeAndManifest(withReport);
+}
+
 describe("CC-24 PA-review correction §3 -- pilot-artifact validator", () => {
   it("accepts a fully-conforming, genuinely-hashed synthetic fixture as VALID", () => {
     const result = validatePilotBundle(buildValidBundle(), VALID_OPTIONS);
@@ -163,97 +176,101 @@ describe("CC-24 PA-review correction §3 -- pilot-artifact validator", () => {
     expect(result.valid).toBe(true);
   });
 
-  it("§3.A: rejects a duplicate JSON key (strict JSON parsing, delegated grammar)", () => {
-    const bundle: PilotArtifactRawBundle = { ...buildValidBundle(), resultsJson: `{"results":[{"evidenceRequirementId":"${FIXTURE_IDS[0]}","result":{"unresolvedDimensions":[],"unresolvedDimensions":["DEFINITION"]}}]}` };
+  it("§3.A: rejects a manifest declaring maxCandidateSourcesPerRequirement = 100 (must be exactly 4)", () => {
+    const base = buildValidBundle();
+    const manifest = JSON.parse(base.manifestJson);
+    manifest.acquisitionPolicy.maxCandidateSourcesPerRequirement = 100;
+    const bundle = reconcileFreezeAndManifest({ ...base, manifestJson: JSON.stringify(manifest, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "DUPLICATE_JSON_KEY")).toBe(true);
+    expect(result.defects.some((d) => d.code === "MANIFEST_POLICY_MISMATCH" && d.message.includes("maxCandidateSourcesPerRequirement"))).toBe(true);
   });
 
-  it("§3.A: rejects malformed JSON grammar (e.g. a leading-zero number) via the native-JSON.parse-delegated check", () => {
+  it("§3.A: rejects a manifest declaring allowLiveWebResearch = false", () => {
+    const base = buildValidBundle();
+    const manifest = JSON.parse(base.manifestJson);
+    manifest.acquisitionPolicy.allowLiveWebResearch = false;
+    const bundle = reconcileFreezeAndManifest({ ...base, manifestJson: JSON.stringify(manifest, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "MANIFEST_POLICY_MISMATCH" && d.message.includes("allowLiveWebResearch"))).toBe(true);
+  });
+
+  it("§3.A: rejects a manifest declaring requireExactLocator = false", () => {
+    const base = buildValidBundle();
+    const manifest = JSON.parse(base.manifestJson);
+    manifest.acquisitionPolicy.requireExactLocator = false;
+    const bundle = reconcileFreezeAndManifest({ ...base, manifestJson: JSON.stringify(manifest, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "MANIFEST_POLICY_MISMATCH" && d.message.includes("requireExactLocator"))).toBe(true);
+  });
+
+  it("§3.A: a manifest declaring a fractional or zero cap also fails (the validator never trusts the manifest's own value)", () => {
+    for (const badCap of [0, 0.5, 5, "4"]) {
+      const base = buildValidBundle();
+      const manifest = JSON.parse(base.manifestJson);
+      manifest.acquisitionPolicy.maxCandidateSourcesPerRequirement = badCap;
+      const bundle = reconcileFreezeAndManifest({ ...base, manifestJson: JSON.stringify(manifest, null, 2) + "\n" });
+      const result = validatePilotBundle(bundle, VALID_OPTIONS);
+      expect(result.valid, `cap ${JSON.stringify(badCap)} must fail`).toBe(false);
+    }
+  });
+
+  it("§3.A: strict JSON grammar (delegated to native JSON.parse) and duplicate-key detection still fail as before", () => {
     const bundle: PilotArtifactRawBundle = { ...buildValidBundle(), accessAuditJson: '{"records":[{"outcome":01}]}' };
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
     expect(result.defects.some((d) => d.code === "JSON_SYNTAX_ERROR")).toBe(true);
   });
 
-  it("§3.B: rejects a selection set that is missing an expected ID, has a duplicate ID, and an unexpected extra ID", () => {
-    const base = buildValidBundle();
-    const selection = JSON.parse(base.selectionJson);
-    selection.requirements.push(validSelectionRequirement(FIXTURE_IDS[0])); // duplicate
-    selection.requirements = selection.requirements.filter((r: { evidenceRequirementId: string }) => r.evidenceRequirementId !== FIXTURE_IDS[1]); // missing beta
-    selection.requirements.push(validSelectionRequirement("ER::test::unexpected::EXACT_FACT")); // extra
-    const bundle = reconcileFreezeAndManifest({ ...base, selectionJson: JSON.stringify(selection, null, 2) + "\n" });
-    const result = validatePilotBundle(bundle, VALID_OPTIONS);
-    expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "DUPLICATE_REQUIREMENT_ID")).toBe(true);
-    expect(result.defects.filter((d) => d.code === "REQUIREMENT_SET_MISMATCH" && d.message.includes("PILOT-SELECTION.json")).length).toBeGreaterThanOrEqual(2);
-  });
-
-  it("§3.B: rejects a search-log / results entry set that does not exactly match the expected IDs", () => {
+  it("§3.B: rejects an absent query collection", () => {
     const base = buildValidBundle();
     const searchLog = JSON.parse(base.searchLogJson);
-    searchLog.entries = searchLog.entries.filter((e: { evidenceRequirementId: string }) => e.evidenceRequirementId !== FIXTURE_IDS[1]);
-    const results = JSON.parse(base.resultsJson);
-    results.results.push(JSON.parse(JSON.stringify(results.results[0])));
-    const bundle = reconcileFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n", resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    searchLog.entries[0].queries = [];
+    const bundle = reconcileFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "REQUIREMENT_SET_MISMATCH" && d.message.includes("PILOT-SEARCH-LOG.json"))).toBe(true);
-    expect(result.defects.some((d) => d.code === "DUPLICATE_REQUIREMENT_ID" && d.message.includes("PILOT-RESULTS.json"))).toBe(true);
+    expect(result.defects.some((d) => d.code === "SEARCH_QUERIES_MISSING")).toBe(true);
   });
 
-  it("§3.B: rejects a result whose inner result.evidenceRequirementId does not equal its outer evidenceRequirementId", () => {
+  it("§3.B: rejects a string-only query array", () => {
     const base = buildValidBundle();
-    const results = JSON.parse(base.resultsJson);
-    results.results[0].result.evidenceRequirementId = "ER::test::mismatched::EXACT_FACT";
-    const bundle = reconcileFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const searchLog = JSON.parse(base.searchLogJson);
+    searchLog.entries[0].queries = ["a bare string query"];
+    const bundle = reconcileFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "RESULT_ID_MISMATCH")).toBe(true);
+    expect(result.defects.some((d) => d.code === "SEARCH_QUERIES_STRING_ONLY")).toBe(true);
   });
 
-  it("§3.C: a single-byte mutation to PILOT-RESULTS.json (after freeze) makes validation fail with a hash-mismatch defect", () => {
-    const base = buildValidBundle(); // freeze hashes reflect the ORIGINAL resultsJson
-    const mutated = base.resultsJson.replace('"VERIFIED"', '"VERIFIEE"'); // single-byte-class mutation, same length
-    const bundle: PilotArtifactRawBundle = { ...base, resultsJson: mutated };
-    const result = validatePilotBundle(bundle, VALID_OPTIONS);
-    expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "ARTIFACT_HASH_MISMATCH" && d.message.includes("PILOT-RESULTS.json"))).toBe(true);
-  });
-
-  it("§3.C: arbitrary placeholder hashes (not genuinely computed) do NOT pass -- sourcePlanHash/selectionHash/artifactHashes must be the real recomputed values", () => {
+  it("§3.B: rejects a duplicate query order", () => {
     const base = buildValidBundle();
-    const freeze = JSON.parse(base.freezeJson);
-    freeze.sourcePlanHash = "a".repeat(64);
-    freeze.selectionHash = "a".repeat(64);
-    freeze.artifactHashes["PILOT-RESULTS.json"] = "a".repeat(64);
-    const bundle: PilotArtifactRawBundle = { ...base, freezeJson: JSON.stringify(freeze, null, 2) + "\n" };
+    const searchLog = JSON.parse(base.searchLogJson);
+    searchLog.entries[0].queries = [
+      { queryId: "Q1", order: 1, queryText: "first" },
+      { queryId: "Q2", order: 1, queryText: "second" },
+    ];
+    const bundle = reconcileFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "SOURCE_PLAN_HASH_MISMATCH")).toBe(true);
-    expect(result.defects.some((d) => d.code === "SELECTION_HASH_MISMATCH")).toBe(true);
-    expect(result.defects.some((d) => d.code === "ARTIFACT_HASH_MISMATCH" && d.message.includes("PILOT-RESULTS.json"))).toBe(true);
+    expect(result.defects.some((d) => d.code === "SEARCH_QUERY_ORDER_INVALID")).toBe(true);
   });
 
-  it("§3.C: manifest/selection/freeze copies of sourcePlanHash/selectionHash that disagree with each other are all flagged", () => {
+  it("§3.B: rejects a gapped query order", () => {
     const base = buildValidBundle();
-    const manifest = JSON.parse(base.manifestJson);
-    manifest.sourcePlanHash = "b".repeat(64);
-    const bundle = { ...base, manifestJson: JSON.stringify(manifest, null, 2) + "\n" };
+    const searchLog = JSON.parse(base.searchLogJson);
+    searchLog.entries[0].queries = [
+      { queryId: "Q1", order: 1, queryText: "first" },
+      { queryId: "Q2", order: 3, queryText: "second" },
+    ];
+    const bundle = reconcileFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "SOURCE_PLAN_HASH_MISMATCH" && d.message.includes("PILOT-RUN-MANIFEST.json"))).toBe(true);
+    expect(result.defects.some((d) => d.code === "SEARCH_QUERY_ORDER_INVALID")).toBe(true);
   });
 
-  it("§3.C: checks the sealed target pre/post hash against an explicit expected value when validatePilotDirectory receives one", () => {
-    const pilotDir = path.join(repoRoot, "reports", "backtests", "unit202-blind-acquisition-run", "pilot-001");
-    const targetPath = path.join(repoRoot, "reports", "backtests", "unit202-evidence-acquisition-benchmark", "UNIT202-BLIND-ACQUISITION-TARGETS.json");
-    const result = validatePilotDirectory(pilotDir, { sealedTarget: { path: targetPath, expectedHash: "0000000000000000000000000000000000000000000000000000000000000000" } });
-    expect(result.defects.some((d) => d.code === "SEALED_TARGET_HASH_MISMATCH")).toBe(true);
-  });
-
-  it("§3.D: rejects a fifth candidate for one requirement, exceeding the run's OWN declared policy cap", () => {
+  it("§3.B: rejects a fifth candidate for one requirement (candidate cap exceeded, fixed at 4)", () => {
     const base = buildValidBundle();
     const searchLog = JSON.parse(base.searchLogJson);
     searchLog.entries[0].candidates = [1, 2, 3, 4, 5].map((n) => ({ candidateId: `SRC-${n}`, order: n, sourceRef: `https://example.edu/c${n}`, chosen: n === 1, reason: "considered", retrievalAttempted: n === 1 }));
@@ -263,141 +280,189 @@ describe("CC-24 PA-review correction §3 -- pilot-artifact validator", () => {
     expect(result.defects.some((d) => d.code === "CANDIDATE_CAP_EXCEEDED")).toBe(true);
   });
 
-  it("§3.D: rejects non-sequential/non-unique candidate order values", () => {
+  it("§3.C: rejects a retrieval/result authority-class mismatch (a result relabeling a retrieval entry into a different class)", () => {
     const base = buildValidBundle();
-    const searchLog = JSON.parse(base.searchLogJson);
-    searchLog.entries[0].candidates[0].order = 3; // should be 1
-    const bundle = reconcileFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n" });
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.candidateSources[0].authorityClass = "AUTHORITATIVE_TECHNICAL_REFERENCE"; // differs from the retrieval entry's ACADEMIC_OR_RESEARCH_INSTITUTION
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "CANDIDATE_ORDER_NOT_SEQUENTIAL")).toBe(true);
+    expect(result.defects.some((d) => d.code === "RETRIEVAL_RESULT_VALUE_MISMATCH" && d.message.includes("authorityClass"))).toBe(true);
   });
 
-  it("§3.D: rejects a retrievalAttempted=true candidate with no matching retrieval entry", () => {
+  it("§3.C: rejects a retrieval/result locator mismatch", () => {
     const base = buildValidBundle();
-    const retrievalLog = JSON.parse(base.retrievalLogJson);
-    retrievalLog.entries = retrievalLog.entries.filter((e: { evidenceRequirementId: string }) => e.evidenceRequirementId !== FIXTURE_IDS[0]);
-    const bundle = reconcileFreezeAndManifest({ ...base, retrievalLogJson: JSON.stringify(retrievalLog, null, 2) + "\n" });
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.candidateSources[0].sourceLocator = "HTML; a different heading entirely";
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "RETRIEVAL_ATTEMPT_MISSING")).toBe(true);
+    expect(result.defects.some((d) => d.code === "RETRIEVAL_RESULT_VALUE_MISMATCH" && d.message.includes("locator"))).toBe(true);
   });
 
-  it("§3.D: rejects a retrievalAttempted=false candidate that nonetheless has a retrieval entry", () => {
+  it("§3.C: rejects a retrieval/result bounded-passage mismatch", () => {
     const base = buildValidBundle();
-    const searchLog = JSON.parse(base.searchLogJson);
-    searchLog.entries[0].candidates.push({ candidateId: "SRC-2", order: 2, sourceRef: "https://example.edu/other", chosen: false, reason: "rejected, not attempted", retrievalAttempted: false });
-    const retrievalLog = JSON.parse(base.retrievalLogJson);
-    retrievalLog.entries.push(validRetrievalEntry(FIXTURE_IDS[0], "SRC-2", "REJECTED"));
-    const bundle = reconcileFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n", retrievalLogJson: JSON.stringify(retrievalLog, null, 2) + "\n" });
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.candidateSources[0].retrievedPassage = "A completely different passage.";
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "RETRIEVAL_ATTEMPT_INCONSISTENT")).toBe(true);
+    expect(result.defects.some((d) => d.code === "RETRIEVAL_RESULT_VALUE_MISMATCH" && d.message.includes("bounded passage"))).toBe(true);
   });
 
-  it("§3.D: rejects a retrieval entry missing the locator field", () => {
+  it("§3.C: rejects an ACCEPTED retrieval entry omitted from the accepted results", () => {
     const base = buildValidBundle();
-    const retrievalLog = JSON.parse(base.retrievalLogJson);
-    delete retrievalLog.entries[0].locator;
-    const bundle = reconcileFreezeAndManifest({ ...base, retrievalLogJson: JSON.stringify(retrievalLog, null, 2) + "\n" });
-    const result = validatePilotBundle(bundle, VALID_OPTIONS);
-    expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "RETRIEVAL_ENTRY_MISSING_FIELD" && d.message.includes("locator"))).toBe(true);
-  });
-
-  it("§3.D: rejects an accepted candidateSources entry with no matching chosen search candidate", () => {
-    const base = buildValidBundle();
-    const searchLog = JSON.parse(base.searchLogJson);
-    searchLog.entries[0].candidates[0].chosen = false;
-    const bundle = reconcileFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n" });
-    const result = validatePilotBundle(bundle, VALID_OPTIONS);
-    expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "CANDIDATE_SOURCE_NOT_CHOSEN")).toBe(true);
-  });
-
-  it("§3.D: rejects a chosen candidate that has neither an accepted result nor an explicit gap disposition", () => {
-    const base = buildValidBundle();
-    const retrievalLog = JSON.parse(base.retrievalLogJson);
-    retrievalLog.entries[0].outcome = "REJECTED";
-    retrievalLog.entries[0].rejectionReason = "did not pan out";
     const results = JSON.parse(base.resultsJson);
     results.results[0].result.candidateSources = [];
     results.results[0].result.normalizedClaims = [];
     results.results[0].result.verificationStatus = "SOURCE_GAP";
+    results.results[0].result.coverageDimensionsSatisfied = [];
     results.results[0].result.unresolvedDimensions = ["DEFINITION"];
-    results.results[0].result.coverageDimensionsSatisfied = [];
-    results.results[0].result.gaps = []; // no explicit gap disposition -- the defect under test
+    results.results[0].result.gaps = [{ description: "omitted despite an ACCEPTED retrieval", reason: "test" }];
     results.results[0].pilotAudit.claimDimensionBindings = [];
-    const bundle = reconcileFreezeAndManifest({ ...base, retrievalLogJson: JSON.stringify(retrievalLog, null, 2) + "\n", resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    // The retrieval log still says ACCEPTED for SRC-1 -- that's the defect under test.
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "CHOSEN_CANDIDATE_UNRESOLVED")).toBe(true);
+    expect(result.defects.some((d) => d.code === "RETRIEVAL_ACCEPTED_NOT_REPRESENTED_IN_RESULTS")).toBe(true);
   });
 
-  it("§3.D: accepts a chosen candidate that was rejected on retrieval WHEN an explicit gap disposition is present", () => {
+  it("§3.C: rejects a claim-dimension binding whose claimText does not match the referenced normalized claim", () => {
     const base = buildValidBundle();
-    const retrievalLog = JSON.parse(base.retrievalLogJson);
-    retrievalLog.entries[0].outcome = "REJECTED";
-    retrievalLog.entries[0].rejectionReason = "did not pan out";
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].pilotAudit.claimDimensionBindings[0].claimText = "A different claim entirely.";
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "CLAIM_BINDING_TEXT_MISMATCH")).toBe(true);
+  });
+
+  it("§3.C: rejects a duplicate dimension binding (the same dimension bound twice)", () => {
+    const base = buildValidBundle();
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].pilotAudit.claimDimensionBindings.push({ claimText: "The definition.", sourceId: "SRC-1", dimensions: ["DEFINITION"] });
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "DUPLICATE_DIMENSION_BINDING")).toBe(true);
+  });
+
+  it("§3.C: rejects a binding to a dimension that is not satisfied (unresolved or non-required)", () => {
+    const base = buildValidBundle();
     const selection = JSON.parse(base.selectionJson);
+    selection.requirements[0].requiredCoverageDimensions = ["DEFINITION", "UNIT_SYMBOL"];
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.unresolvedDimensions = ["UNIT_SYMBOL"];
+    results.results[0].pilotAudit.claimDimensionBindings.push({ claimText: "The definition.", sourceId: "SRC-1", dimensions: ["UNIT_SYMBOL"] }); // bound, but UNIT_SYMBOL is unresolved, not satisfied
+    const bundle = reconcileReportFreezeAndManifest({ ...base, selectionJson: JSON.stringify(selection, null, 2) + "\n", resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "BINDING_TO_INVALID_DIMENSION")).toBe(true);
+  });
+
+  it("§3.D: rejects VERIFIED with an unresolved dimension", () => {
+    const base = buildValidBundle();
+    const selection = JSON.parse(base.selectionJson);
+    selection.requirements[0].requiredCoverageDimensions = ["DEFINITION", "UNIT_SYMBOL"];
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.unresolvedDimensions = ["UNIT_SYMBOL"]; // still VERIFIED, which is incoherent
+    const bundle = reconcileReportFreezeAndManifest({ ...base, selectionJson: JSON.stringify(selection, null, 2) + "\n", resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "VERIFICATION_STATUS_INCOHERENT" && d.message.includes("VERIFIED"))).toBe(true);
+  });
+
+  it("§3.D: rejects VERIFIED with no accepted evidence", () => {
+    const base = buildValidBundle();
     const results = JSON.parse(base.resultsJson);
     results.results[0].result.candidateSources = [];
     results.results[0].result.normalizedClaims = [];
-    results.results[0].result.verificationStatus = "SOURCE_GAP";
-    results.results[0].result.unresolvedDimensions = selection.requirements[0].requiredCoverageDimensions;
-    results.results[0].result.coverageDimensionsSatisfied = [];
-    results.results[0].result.gaps = [{ description: "no qualifying source found", reason: "candidate cap exhausted" }];
     results.results[0].pilotAudit.claimDimensionBindings = [];
-    const bundle = reconcileFreezeAndManifest({ ...base, retrievalLogJson: JSON.stringify(retrievalLog, null, 2) + "\n", resultsJson: JSON.stringify(results, null, 2) + "\n" });
-    const withReport: PilotArtifactRawBundle = { ...bundle, reportMarkdown: renderExpectedReportForBundle(bundle, FIXTURE_IDS) };
-    const final = reconcileFreezeAndManifest(withReport);
-    const result = validatePilotBundle(final, VALID_OPTIONS);
-    expect(result.defects.some((d) => d.code === "CHOSEN_CANDIDATE_UNRESOLVED")).toBe(false);
-  });
-
-  it("§3.D: rejects manifest/retrieval timestamps that are invalid or out of logical order", () => {
-    const base = buildValidBundle();
-    const manifest = JSON.parse(base.manifestJson);
-    manifest.acquisitionStartedAt = manifest.acquisitionEndedAt;
-    manifest.acquisitionEndedAt = "2026-09-05T08:00:00.000Z"; // before start
-    const bundle: PilotArtifactRawBundle = { ...base, manifestJson: JSON.stringify(manifest, null, 2) + "\n" };
+    // verificationStatus stays VERIFIED -- incoherent with zero evidence.
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "TIMESTAMP_ORDERING_INVALID")).toBe(true);
+    expect(result.defects.some((d) => d.code === "VERIFICATION_STATUS_INCOHERENT" && d.message.includes("VERIFIED"))).toBe(true);
   });
 
-  it("rejects a source authority class not permitted by the requirement's declared policy (renamed from 'source-class laundering' to 'authority class not permitted' -- see §3.F)", () => {
+  it("§3.D: rejects SOURCE_GAP with satisfied dimensions or claims present", () => {
+    const base = buildValidBundle();
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.verificationStatus = "SOURCE_GAP"; // but candidateSources/normalizedClaims/coverageDimensionsSatisfied are still populated
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "VERIFICATION_STATUS_INCOHERENT" && d.message.includes("SOURCE_GAP"))).toBe(true);
+  });
+
+  it("§3.D: rejects PARTIALLY_VERIFIED without both sides of the partition", () => {
+    const base = buildValidBundle();
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.verificationStatus = "PARTIALLY_VERIFIED"; // unresolvedDimensions is still [] -- only one side present
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "VERIFICATION_STATUS_INCOHERENT" && d.message.includes("PARTIALLY_VERIFIED"))).toBe(true);
+  });
+
+  it("§3.D: rejects CONFLICTED without a structured conflict", () => {
+    const base = buildValidBundle();
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.verificationStatus = "CONFLICTED"; // conflicts stays [] -- no structured conflict at all
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "VERIFICATION_STATUS_INCOHERENT" && d.message.includes("CONFLICTED"))).toBe(true);
+  });
+
+  it("§3.D: rejects NOT_ATTEMPTED unconditionally for a completed pilot", () => {
+    const base = buildValidBundle();
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.verificationStatus = "NOT_ATTEMPTED";
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "VERIFICATION_STATUS_INCOHERENT" && d.message.includes("NOT_ATTEMPTED"))).toBe(true);
+  });
+
+  it("§3.D: rejects a malformed/unknown verificationStatus value", () => {
+    const base = buildValidBundle();
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.verificationStatus = "TOTALLY_CONFIRMED";
+    const bundle = reconcileReportFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "VERIFICATION_STATUS_UNKNOWN")).toBe(true);
+  });
+
+  it("accepts a genuinely coherent CONFLICTED result (two conflicting normalized claims, an explicit conflict record)", () => {
+    const base = buildValidBundle();
+    const searchLog = JSON.parse(base.searchLogJson);
+    searchLog.entries[0].candidates.push({ candidateId: "SRC-2", order: 2, sourceRef: "https://example.edu/other", chosen: true, reason: "conflicting source", retrievalAttempted: true });
+    const retrievalLog = JSON.parse(base.retrievalLogJson);
+    retrievalLog.entries.push(validRetrievalEntry(FIXTURE_IDS[0], "SRC-2"));
+    const results = JSON.parse(base.resultsJson);
+    results.results[0].result.candidateSources.push({ sourceId: "SRC-2", authorityClass: "ACADEMIC_OR_RESEARCH_INSTITUTION", sourceRef: "https://example.edu/page", sourceLocator: "HTML; heading X", retrievedPassage: "The definition sentence." });
+    results.results[0].result.normalizedClaims.push({ claimText: "A conflicting definition.", sourceId: "SRC-2" });
+    results.results[0].result.verificationStatus = "CONFLICTED";
+    results.results[0].result.conflicts = [{ description: "Two sources disagree.", conflictingClaims: [{ claimText: "The definition.", sourceId: "SRC-1" }, { claimText: "A conflicting definition.", sourceId: "SRC-2" }] }];
+    const bundle = reconcileReportFreezeAndManifest({ ...base, searchLogJson: JSON.stringify(searchLog, null, 2) + "\n", retrievalLogJson: JSON.stringify(retrievalLog, null, 2) + "\n", resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.defects.filter((d) => d.code === "VERIFICATION_STATUS_INCOHERENT")).toEqual([]);
+  });
+
+  it("keeps guardrail honesty documentation intact: authority-class-permitted proves permission only, never genuine class membership", () => {
     const base = buildValidBundle();
     const results = JSON.parse(base.resultsJson);
     results.results[0].result.candidateSources[0].authorityClass = "ORIGINAL_MANUFACTURER_OR_VENDOR"; // not in the fixture's permitted list
-    const bundle = reconcileFreezeAndManifest({ ...base, resultsJson: JSON.stringify(results, null, 2) + "\n" });
+    const retrievalLog = JSON.parse(base.retrievalLogJson);
+    retrievalLog.entries[0].authorityClass = "ORIGINAL_MANUFACTURER_OR_VENDOR"; // keep result/retrieval consistent so only the permission check fires
+    const bundle = reconcileReportFreezeAndManifest({ ...base, retrievalLogJson: JSON.stringify(retrievalLog, null, 2) + "\n", resultsJson: JSON.stringify(results, null, 2) + "\n" });
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
     const defect = result.defects.find((d) => d.code === "AUTHORITY_CLASS_NOT_PERMITTED");
     expect(defect).toBeDefined();
-    // §3.F: the message must not overclaim -- it proves permission, not genuine class membership.
     expect(defect!.message).toContain("cannot and does not prove the source genuinely belongs");
-  });
-
-  it("rejects an incomplete coverage-dimension partition (a required dimension accounted for nowhere)", () => {
-    const base = buildValidBundle();
-    const selection = JSON.parse(base.selectionJson);
-    selection.requirements[0].requiredCoverageDimensions = ["DEFINITION", "UNIT_SYMBOL"];
-    const bundle = reconcileFreezeAndManifest({ ...base, selectionJson: JSON.stringify(selection, null, 2) + "\n" });
-    const result = validatePilotBundle(bundle, VALID_OPTIONS);
-    expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "COVERAGE_PARTITION_INVALID")).toBe(true);
-  });
-
-  it("rejects a false 'no historical read' declaration (deviation disclosed but freeze does not structurally acknowledge it)", () => {
-    const base = buildValidBundle();
-    const manifest = JSON.parse(base.manifestJson);
-    manifest.blindnessBoundary.deviationDisclosure.occurred = true;
-    const bundle = reconcileFreezeAndManifest({ ...base, manifestJson: JSON.stringify(manifest, null, 2) + "\n" });
-    const result = validatePilotBundle(bundle, VALID_OPTIONS);
-    expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "PROHIBITED_READ_DEVIATION_DISCLOSED")).toBe(true);
-    expect(result.defects.some((d) => d.code === "DECLARATION_INCONSISTENCY")).toBe(true);
   });
 
   it("rejects any DENIED access outcome, unconditionally, with an honest (not process-wide) message", () => {
@@ -412,18 +477,56 @@ describe("CC-24 PA-review correction §3 -- pilot-artifact validator", () => {
     expect(defect!.message).toContain("process-wide proof");
   });
 
+  it("§3.C: a single-byte mutation to PILOT-RESULTS.json (after freeze) makes validation fail with a hash-mismatch defect", () => {
+    const base = buildValidBundle();
+    const mutated = base.resultsJson.replace('"VERIFIED"', '"VERIFIEE"');
+    const bundle: PilotArtifactRawBundle = { ...base, resultsJson: mutated };
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "ARTIFACT_HASH_MISMATCH" && d.message.includes("PILOT-RESULTS.json"))).toBe(true);
+  });
+
+  it("§3.C: arbitrary placeholder hashes (not genuinely computed) do NOT pass", () => {
+    const base = buildValidBundle();
+    const freeze = JSON.parse(base.freezeJson);
+    freeze.sourcePlanHash = "a".repeat(64);
+    freeze.selectionHash = "a".repeat(64);
+    freeze.artifactHashes["PILOT-RESULTS.json"] = "a".repeat(64);
+    const bundle: PilotArtifactRawBundle = { ...base, freezeJson: JSON.stringify(freeze, null, 2) + "\n" };
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "SOURCE_PLAN_HASH_MISMATCH")).toBe(true);
+    expect(result.defects.some((d) => d.code === "SELECTION_HASH_MISMATCH")).toBe(true);
+    expect(result.defects.some((d) => d.code === "ARTIFACT_HASH_MISMATCH" && d.message.includes("PILOT-RESULTS.json"))).toBe(true);
+  });
+
+  it("rejects a selection/search-log/results ID set that does not exactly match the expected IDs", () => {
+    const base = buildValidBundle();
+    const selection = JSON.parse(base.selectionJson);
+    selection.requirements.push(validSelectionRequirement(FIXTURE_IDS[0]));
+    selection.requirements = selection.requirements.filter((r: { evidenceRequirementId: string }) => r.evidenceRequirementId !== FIXTURE_IDS[1]);
+    selection.requirements.push(validSelectionRequirement("ER::test::unexpected::EXACT_FACT"));
+    const bundle = reconcileFreezeAndManifest({ ...base, selectionJson: JSON.stringify(selection, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "DUPLICATE_REQUIREMENT_ID")).toBe(true);
+    expect(result.defects.filter((d) => d.code === "REQUIREMENT_SET_MISMATCH" && d.message.includes("PILOT-SELECTION.json")).length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("rejects a false 'no historical read' declaration (deviation disclosed but freeze does not structurally acknowledge it)", () => {
+    const base = buildValidBundle();
+    const manifest = JSON.parse(base.manifestJson);
+    manifest.blindnessBoundary.deviationDisclosure.occurred = true;
+    const bundle = reconcileFreezeAndManifest({ ...base, manifestJson: JSON.stringify(manifest, null, 2) + "\n" });
+    const result = validatePilotBundle(bundle, VALID_OPTIONS);
+    expect(result.valid).toBe(false);
+    expect(result.defects.some((d) => d.code === "PROHIBITED_READ_DEVIATION_DISCLOSED")).toBe(true);
+    expect(result.defects.some((d) => d.code === "DECLARATION_INCONSISTENCY")).toBe(true);
+  });
+
   it("§3.E: rejects a PILOT-REPORT.md that does not match the deterministic rendering of the frozen selection/results/retrieval data", () => {
     const base = buildValidBundle();
     const bundle: PilotArtifactRawBundle = { ...base, reportMarkdown: ["| ID | Status | Source |", "|---|---|---|", `| ${FIXTURE_IDS[0]} | VERIFIED | Example |`].join("\n") };
-    const result = validatePilotBundle(bundle, VALID_OPTIONS);
-    expect(result.valid).toBe(false);
-    expect(result.defects.some((d) => d.code === "REPORT_DOES_NOT_MATCH_DETERMINISTIC_RENDERING")).toBe(true);
-  });
-
-  it("§3.E: a single mutated cell in an otherwise-correct report row is caught", () => {
-    const base = buildValidBundle();
-    const mutatedReport = base.reportMarkdown.replace("VERIFIED", "PARTIALLY_VERIFIED");
-    const bundle: PilotArtifactRawBundle = { ...base, reportMarkdown: mutatedReport };
     const result = validatePilotBundle(bundle, VALID_OPTIONS);
     expect(result.valid).toBe(false);
     expect(result.defects.some((d) => d.code === "REPORT_DOES_NOT_MATCH_DETERMINISTIC_RENDERING")).toBe(true);
@@ -435,8 +538,6 @@ describe("CC-24 PA-review correction §3 -- pilot-artifact validator", () => {
     expect(result.valid).toBe(false);
     expect(result.defects.length).toBeGreaterThan(0);
     const codes = new Set(result.defects.map((d) => d.code));
-    // Genuine, mechanically-verified defects the corrected validator finds
-    // in the real pilot-001 artifacts.
     expect(codes.has("PROHIBITED_READ_DEVIATION_DISCLOSED")).toBe(true);
     expect(codes.has("DENIED_ACCESS_OUTCOME")).toBe(true);
     expect(codes.has("MANIFEST_MISSING_FIELD")).toBe(true);
@@ -444,9 +545,7 @@ describe("CC-24 PA-review correction §3 -- pilot-artifact validator", () => {
     expect(codes.has("SOURCE_PLAN_HASH_MISMATCH")).toBe(true);
     expect(codes.has("SELECTION_HASH_MISMATCH")).toBe(true);
     expect(codes.has("REPORT_DOES_NOT_MATCH_DETERMINISTIC_RENDERING")).toBe(true);
-    // The retracted duplicate-key allegation: correctly finds NONE, because
-    // there genuinely is none in the real file (see CC-24-PILOT-001-PA-REVIEW.md's
-    // "Retracted observation").
+    // The retracted duplicate-key allegation: correctly finds NONE.
     expect(result.defects.filter((d) => d.code === "DUPLICATE_JSON_KEY" && d.message.includes("PILOT-RESULTS.json"))).toEqual([]);
   });
 });

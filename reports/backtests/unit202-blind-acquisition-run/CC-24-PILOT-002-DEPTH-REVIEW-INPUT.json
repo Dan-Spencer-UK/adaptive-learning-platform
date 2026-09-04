@@ -1,7 +1,10 @@
 {
-  "generatedAt": "2026-09-04T18:59:06.119Z",
+  "schemaVersion": "1.0.0",
   "purpose": "Answer-free, deterministic review input for the Project Architect's qualification-depth decision on all 15 CC-24 pilot-selected requirements, ahead of the next acquisition attempt. Generated only from the sealed blind target, the Unit-202 adapter/audit metadata, the corrected clean plan, and the fixed 15-ID selection definition -- never from the prior invalidated acquisition run's own artifacts, historical benchmarks, source dossiers, old claims, learner assertions, lessons/storyboards, or private calibration material.",
   "status": "PENDING_PROJECT_ARCHITECT_DEPTH_REVIEW",
+  "blindTargetContentHash": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+  "sourcePlanHash": "0bdb5133f799e19b14985ea0c45e66a5ddecc6b550870ed7756d2cc98d60cb6c",
+  "selectionDefinitionHash": "5988fcfc1cd021f41b287c7e6bcaa461a52966957cabe0fb6980055aed935967",
   "expectedItemCount": 15,
   "items": [
     {
@@ -14,7 +17,7 @@
           "knowledgeTargetId": "unit202::ACQ-001",
           "acquisitionTargetId": "ACQ-001",
           "ac": "AC1.1",
-          "rawQualificationWording": "Fractions."
+          "acquisitionTargetWording": "Fractions."
         }
       ],
       "requirementMode": "TOPIC_BREADTH_COVERAGE",
@@ -55,7 +58,7 @@
           "knowledgeTargetId": "unit202::ACQ-004",
           "acquisitionTargetId": "ACQ-004",
           "ac": "AC1.1",
-          "rawQualificationWording": "Formula transposition."
+          "acquisitionTargetWording": "Formula transposition."
         }
       ],
       "requirementMode": "PROCEDURE_COVERAGE",
@@ -98,7 +101,7 @@
           "knowledgeTargetId": "unit202::ACQ-024",
           "acquisitionTargetId": "ACQ-024",
           "ac": "AC2.1",
-          "rawQualificationWording": "Temperature: correct SI unit and unit symbol."
+          "acquisitionTargetWording": "Temperature: correct SI unit and unit symbol."
         }
       ],
       "requirementMode": "EXACT_FACT",
@@ -140,7 +143,7 @@
           "knowledgeTargetId": "unit202::ACQ-085",
           "acquisitionTargetId": "ACQ-085",
           "ac": "AC4.4",
-          "rawQualificationWording": "V = IR and rearrangements."
+          "acquisitionTargetWording": "V = IR and rearrangements."
         }
       ],
       "requirementMode": "FORMULA_OR_RULE",
@@ -186,13 +189,13 @@
           "knowledgeTargetId": "unit202::ACQ-047",
           "acquisitionTargetId": "ACQ-047",
           "ac": "AC3.1",
-          "rawQualificationWording": "F = mg."
+          "acquisitionTargetWording": "F = mg."
         },
         {
           "knowledgeTargetId": "unit202::ACQ-068",
           "acquisitionTargetId": "ACQ-068",
           "ac": "AC3.3",
-          "rawQualificationWording": "F = mg where relevant."
+          "acquisitionTargetWording": "F = mg where relevant."
         }
       ],
       "requirementMode": "RELATIONSHIP",
@@ -233,7 +236,7 @@
           "knowledgeTargetId": "unit202::ACQ-108",
           "acquisitionTargetId": "ACQ-108",
           "ac": "AC5.3",
-          "rawQualificationWording": "Right-hand grip rule."
+          "acquisitionTargetWording": "Right-hand grip rule."
         }
       ],
       "requirementMode": "OPERATIONAL_USE_RULE",
@@ -279,7 +282,7 @@
           "knowledgeTargetId": "unit202::ACQ-114",
           "acquisitionTargetId": "ACQ-114",
           "ac": "AC5.3",
-          "rawQualificationWording": "Fleming left-hand rule."
+          "acquisitionTargetWording": "Fleming left-hand rule."
         }
       ],
       "requirementMode": "OPERATIONAL_USE_RULE",
@@ -325,7 +328,7 @@
           "knowledgeTargetId": "unit202::ACQ-117",
           "acquisitionTargetId": "ACQ-117",
           "ac": "AC5.3",
-          "rawQualificationWording": "Fleming right-hand/generator rule."
+          "acquisitionTargetWording": "Fleming right-hand/generator rule."
         }
       ],
       "requirementMode": "OPERATIONAL_USE_RULE",
@@ -372,13 +375,13 @@
           "knowledgeTargetId": "unit202::ACQ-131",
           "acquisitionTargetId": "ACQ-131",
           "ac": "AC5.4",
-          "rawQualificationWording": "Frequency relationship to rotational speed and pole pairs."
+          "acquisitionTargetWording": "Frequency relationship to rotational speed and pole pairs."
         },
         {
           "knowledgeTargetId": "unit202::ACQ-132",
           "acquisitionTargetId": "ACQ-132",
           "ac": "AC5.4",
-          "rawQualificationWording": "f = N x P (N = rev/s, P = pole pairs)."
+          "acquisitionTargetWording": "f = N x P (N = rev/s, P = pole pairs)."
         }
       ],
       "requirementMode": "FORMULA_OR_RULE",
@@ -424,7 +427,7 @@
           "knowledgeTargetId": "unit202::ACQ-141",
           "acquisitionTargetId": "ACQ-141",
           "ac": "AC5.5",
-          "rawQualificationWording": "Vrms ~= 0.707 x Vpeak."
+          "acquisitionTargetWording": "Vrms ~= 0.707 x Vpeak."
         }
       ],
       "requirementMode": "RELATIONSHIP",
@@ -465,7 +468,7 @@
           "knowledgeTargetId": "unit202::ACQ-170",
           "acquisitionTargetId": "ACQ-170",
           "ac": "AC6.2",
-          "rawQualificationWording": "Capacitor: basic operating principle."
+          "acquisitionTargetWording": "Capacitor: basic operating principle."
         }
       ],
       "requirementMode": "OPERATING_PRINCIPLE",
@@ -506,7 +509,7 @@
           "knowledgeTargetId": "unit202::ACQ-182",
           "acquisitionTargetId": "ACQ-182",
           "ac": "AC6.2",
-          "rawQualificationWording": "TRIAC: basic operating principle."
+          "acquisitionTargetWording": "TRIAC: basic operating principle."
         }
       ],
       "requirementMode": "OPERATING_PRINCIPLE",
@@ -547,7 +550,7 @@
           "knowledgeTargetId": "unit202::ACQ-152",
           "acquisitionTargetId": "ACQ-152",
           "ac": "AC6.1",
-          "rawQualificationWording": "Wireless control systems: application category/function."
+          "acquisitionTargetWording": "Wireless control systems: application category/function."
         }
       ],
       "requirementMode": "APPLICATION_FUNCTION",
@@ -588,7 +591,7 @@
           "knowledgeTargetId": "unit202::ACQ-041",
           "acquisitionTargetId": "ACQ-041",
           "ac": "AC2.3",
-          "rawQualificationWording": "Wattmeter: measures electrical power + appropriate current/voltage sensing arrangement at qualification depth."
+          "acquisitionTargetWording": "Wattmeter: measures electrical power + appropriate current/voltage sensing arrangement at qualification depth."
         }
       ],
       "requirementMode": "EXACT_FACT",
@@ -630,7 +633,7 @@
           "knowledgeTargetId": "unit202::ACQ-156",
           "acquisitionTargetId": "ACQ-156",
           "ac": "AC6.1",
-          "rawQualificationWording": "Telephone: capacitor -> ringer."
+          "acquisitionTargetWording": "Telephone: capacitor -> ringer."
         }
       ],
       "requirementMode": "EXACT_FACT",

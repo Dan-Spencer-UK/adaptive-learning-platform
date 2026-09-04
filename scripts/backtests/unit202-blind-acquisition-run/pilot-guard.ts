@@ -25,6 +25,18 @@ export const PILOT_OUTPUT_DIR_RELATIVE = "reports/backtests/unit202-blind-acquis
 export const BLIND_TARGETS_RELATIVE_PATH = "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json";
 export const FROZEN_BLIND_TARGETS_HASH = "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4";
 
+/**
+ * PA-review correction §1: the Project Architect's own qualification-
+ * depth decision (CC-24-PA-DEPTH-001) is legitimate acquisition input --
+ * a floor/ceiling on depth for the 15 pilot-selected requirements, not
+ * learner content or scope. Allowlisted by EXACT hash of this one
+ * stable, committed file -- never a broad directory glob -- so a future
+ * edit to this file (a new decision revision) must also update this
+ * hash deliberately, rather than silently continuing to be trusted.
+ */
+export const PA_DEPTH_DECISION_RELATIVE_PATH = "reports/backtests/unit202-blind-acquisition-run/CC-24-PILOT-002-PA-DEPTH-DECISION.json";
+export const PA_DEPTH_DECISION_HASH = "ad59d1d43c017166c1311e93ac6a26e8dc1cf3450c715c514c1413fb96d8059e";
+
 export interface PilotGuardExtras {
   /** The clean plan file's content, once written, so its rule can be hash-pinned to the EXACT bytes this run generated -- never a broad unpinned glob. */
   readonly cleanPlanContent?: string;
@@ -40,6 +52,7 @@ export function buildPilotGuardConfig(extras: PilotGuardExtras = {}): LocalAcces
     { rule: "UNIT202_ANSWER_FREE_ADAPTER", matchKind: "GLOB", pathOrGlob: "scripts/backtests/unit202-evidence-acquisition-preflight/unit202-adapter.ts", note: "The answer-free Unit-202 adapter -- the only Unit-202-specific code this pilot may read." },
     { rule: "PILOT_HARNESS_CODE", matchKind: "GLOB", pathOrGlob: "scripts/backtests/unit202-blind-acquisition-run/**", note: "The pilot harness's own source code." },
     { rule: "PILOT_OUTPUT_DIRECTORY", matchKind: "GLOB", pathOrGlob: `${PILOT_OUTPUT_DIR_RELATIVE}/**`, note: "The pilot's own output directory -- read-back of its own already-written artefacts only." },
+    { rule: "PA_DEPTH_DECISION", matchKind: "EXACT_PATH", pathOrGlob: PA_DEPTH_DECISION_RELATIVE_PATH, requiredHash: PA_DEPTH_DECISION_HASH, note: "The Project Architect's own qualification-depth decision (CC-24-PA-DEPTH-001) -- a floor/ceiling on acquisition depth, allowlisted by exact hash of this one stable file, never a broad directory glob." },
   ];
 
   if (extras.cleanPlanContent !== undefined) {

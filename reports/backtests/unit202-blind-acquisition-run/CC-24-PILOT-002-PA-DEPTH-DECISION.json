@@ -1,0 +1,241 @@
+{
+  "decisionId": "CC-24-PA-DEPTH-001",
+  "decisionAuthority": "PROJECT_ARCHITECT",
+  "status": "APPROVED_FOR_PILOT_002_WITH_BOUNDS",
+  "decisionDate": "2026-09-05",
+  "reviewedInputArtifact": {
+    "path": "reports/backtests/unit202-blind-acquisition-run/CC-24-PILOT-002-DEPTH-REVIEW-INPUT.json",
+    "schemaVersion": "1.0.0",
+    "sha256": "d982e0e311d1b908464f39316b34177189e250b88b1fa27412328c6a84bc9618"
+  },
+  "scopeStatement": "This decision is a floor/ceiling on acquisition depth for the CC-24 pilot's 15 selected requirements only. It is NOT authority to create learner content, author lessons/storyboards/assertions, or expand qualification scope. It does not authorise pilot-002 execution by itself -- pilot-002 additionally requires a fresh session with no visibility into pilot-001's discovered sources or normalized answers, and completion of any remaining implementation-engineer corrections.",
+  "evidenceRequirementIds": [
+    "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+    "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+    "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+    "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+    "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+    "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+    "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+    "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+    "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+    "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+    "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+    "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+    "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+    "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+    "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT"
+  ],
+  "decisions": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "perform and apply, not merely define",
+        "minimumSufficientDepth": "Fraction equivalence, comparison, conversion between fraction/decimal/percentage forms, four basic operations, and straightforward Level-2 vocational numeric application.",
+        "maximumJustifiedDepth": "No compound/repeated-percentage theory, advanced ratio/proportion theory, or formal proof.",
+        "excludedEnrichment": ["compound/repeated-percentage theory", "advanced ratio/proportion theory", "formal proof"],
+        "assessmentPerformanceExpected": "Perform and apply, not merely define.",
+        "depthEvidenceBasis": "AC1.1 identify and apply; Range \"Fractions and percentages\".",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": "This row need not absorb every independently scoped percentage obligation.",
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "perform the procedure correctly",
+        "minimumSufficientDepth": "Substitute values and isolate an unknown through straightforward single-step and simple multi-step rearrangement, including squared/root forms used by Unit-202 formulae.",
+        "maximumJustifiedDepth": "No simultaneous equations, quadratic methods, abstract algebra, or proof.",
+        "excludedEnrichment": ["simultaneous equations", "quadratic methods", "abstract algebra", "proof"],
+        "assessmentPerformanceExpected": "Perform the procedure correctly.",
+        "depthEvidenceBasis": "AC1.1 identify and apply; Range \"Algebra\" and \"Transposition\"; public assessment confirms transposition.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "identification and correct use",
+        "minimumSufficientDepth": "Identify and use the correct SI unit name and symbol and distinguish it from a legitimate practical temperature scale.",
+        "maximumJustifiedDepth": "No temperature-scale conversion calculation, thermodynamic derivation, or metrology theory.",
+        "excludedEnrichment": ["temperature-scale conversion calculation", "thermodynamic derivation", "metrology theory"],
+        "assessmentPerformanceExpected": "Identification and correct use.",
+        "depthEvidenceBasis": "AC2.1 identify and use; Range \"Temperature\".",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "explain and apply through simple calculations",
+        "minimumSufficientDepth": "Authoritative formula and variable interpretation, combined with ACQ-004 (the already-approved foundational transposition procedure) for substitution, direct use, and rearrangement.",
+        "maximumJustifiedDepth": "No first-principles derivation or expansion into the complete series/parallel circuit topic.",
+        "excludedEnrichment": ["first-principles derivation", "expansion into the complete series/parallel circuit topic"],
+        "assessmentPerformanceExpected": "Explain and apply through simple calculations.",
+        "depthEvidenceBasis": "AC4.4 explain the relationship; calculation performance is supported through the already-approved foundational transposition procedure.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": "Preserve and expose the existing reusesFoundationalProcedureIds relationship (-> the formula-transposition requirement); do not duplicate generic algebra as technical-domain evidence.",
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "distinguish, state, and apply",
+        "minimumSufficientDepth": "Relationship, variable meanings, units, applicability conditions, and straightforward direct/rearranged calculation using the foundational calculation procedure.",
+        "maximumJustifiedDepth": "No gravitation derivation, orbital mechanics, field theory, or separate F=ma mastery.",
+        "excludedEnrichment": ["gravitation derivation", "orbital mechanics", "field theory", "separate F=ma mastery"],
+        "assessmentPerformanceExpected": "Distinguish, state, and apply.",
+        "depthEvidenceBasis": "AC3.1 specify the meaning of mass and weight; AC3.3 describes force relationships; public assessment supports calculation.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "determine/apply direction, not merely name the rule",
+        "minimumSufficientDepth": "Apply the named rule to determine field/current direction for a straight current-carrying conductor, including role mapping and correct-use conditions.",
+        "maximumJustifiedDepth": "Do not add coil, solenoid, electromagnet, relay, or contactor content to this requirement; no vector formalism.",
+        "excludedEnrichment": ["coil content", "solenoid content", "electromagnet content", "relay content", "contactor content", "vector formalism"],
+        "assessmentPerformanceExpected": "Determine/apply direction, not merely name the rule.",
+        "depthEvidenceBasis": "AC5.3 field production plus the necessary directional prerequisite.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "determine/apply",
+        "minimumSufficientDepth": "Directional mapping, role mapping, and conditions sufficient to determine an unknown direction from the other stated quantities.",
+        "maximumJustifiedDepth": "No vector cross-product treatment, general-angle derivation, or machine-design enrichment.",
+        "excludedEnrichment": ["vector cross-product treatment", "general-angle derivation", "machine-design enrichment"],
+        "assessmentPerformanceExpected": "Determine/apply.",
+        "depthEvidenceBasis": "AC5.3 force on a current-carrying conductor plus necessary directional reasoning.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "determine/apply",
+        "minimumSufficientDepth": "Directional mapping, role mapping, and correct-use conditions sufficient for Level-2 generator/induction questions.",
+        "maximumJustifiedDepth": "No differential Faraday-law or vector treatment.",
+        "excludedEnrichment": ["differential Faraday-law treatment", "vector treatment"],
+        "assessmentPerformanceExpected": "Determine/apply.",
+        "depthEvidenceBasis": "AC5.3 electromotive-force/induction content plus necessary generator-direction reasoning.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "state, interpret, and calculate",
+        "minimumSufficientDepth": "Formula, variable meanings, pole-pair interpretation, rotational-unit conditions, direct/rearranged calculation, and equivalent use where speed is supplied in rpm.",
+        "maximumJustifiedDepth": "No machine slip, winding design, harmonics, or multi-phase machine theory.",
+        "excludedEnrichment": ["machine slip", "winding design", "harmonics", "multi-phase machine theory"],
+        "assessmentPerformanceExpected": "State, interpret, and calculate.",
+        "depthEvidenceBasis": "AC5.4 describes AC generation in terms including frequency; public assessment supports frequency calculation.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": "Preserve the foundational transposition reuse rather than duplicating algebra evidence.",
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "identify and convert/calculate",
+        "minimumSufficientDepth": "Applicability to a sine wave, forward and inverse use of the relationship, and straightforward calculation.",
+        "maximumJustifiedDepth": "No general-waveform RMS integration, calculus, Fourier analysis, or time-domain sine-equation mastery.",
+        "excludedEnrichment": ["general-waveform RMS integration", "calculus", "Fourier analysis", "time-domain sine-equation mastery"],
+        "assessmentPerformanceExpected": "Identify and convert/calculate.",
+        "depthEvidenceBasis": "AC5.5 identify sine-wave characteristics; Range includes RMS and peak characteristics.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "state the basic principle",
+        "minimumSufficientDepth": "A correct basic statement of the defining operating behaviour and its immediate charge/discharge consequence.",
+        "maximumJustifiedDepth": "No semiconductor-level theory, detailed transient mathematics, reactance calculation, component sizing, or circuit design unless separately required.",
+        "excludedEnrichment": ["semiconductor-level theory", "detailed transient mathematics", "reactance calculation", "component sizing", "circuit design (unless separately required)"],
+        "assessmentPerformanceExpected": "State the basic principle.",
+        "depthEvidenceBasis": "AC6.2 state the basic operating principles of named components.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "state the basic principle and recognise its general role",
+        "minimumSufficientDepth": "Defining switching behaviour, control role, and basic operating conditions at component/block level.",
+        "maximumJustifiedDepth": "No semiconductor-layer physics, detailed I-V curves, gate-drive design, snubber design, or exact dimmer topology.",
+        "excludedEnrichment": ["semiconductor-layer physics", "detailed I-V curves", "gate-drive design", "snubber design", "exact dimmer topology"],
+        "assessmentPerformanceExpected": "State the basic principle and recognise its general role.",
+        "depthEvidenceBasis": "AC6.2 state basic operating principles.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "describe function/application",
+        "minimumSufficientDepth": "Category-level purpose and the minimal functional arrangement needed to explain remote control without a direct wired control path.",
+        "maximumJustifiedDepth": "No protocol stack, Wi-Fi engineering, RF design, frequency-band detail, IoT architecture, or generalisation from one manufacturer's product.",
+        "excludedEnrichment": ["protocol stack", "Wi-Fi engineering", "RF design", "frequency-band detail", "IoT architecture", "generalisation from one manufacturer's product"],
+        "assessmentPerformanceExpected": "Describe function/application.",
+        "depthEvidenceBasis": "AC6.1 describe function and application; Range \"Wireless control systems\".",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "identify function and correct basic connection/use",
+        "minimumSufficientDepth": "Identify the measured quantity and cover both required current-sensing and voltage-sensing connection roles at basic qualification depth.",
+        "maximumJustifiedDepth": "No internal construction, calibration, electrodynamic derivation, three-phase measurement methods, or instrument-design detail.",
+        "excludedEnrichment": ["internal construction", "calibration", "electrodynamic derivation", "three-phase measurement methods", "instrument-design detail"],
+        "assessmentPerformanceExpected": "Identify function and correct basic connection/use.",
+        "depthEvidenceBasis": "AC2.3 identify appropriate instruments; Range \"Power\"; operational topology is inseparable from meaningful use.",
+        "depthVerdict": "APPROVED_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "paDepthReview": {
+        "qualificationPerformanceVerb": "describe the representative application/function",
+        "minimumSufficientDepth": "Explain the specified component-to-ringer role at basic functional level, with evidence supporting every stated causal clause.",
+        "maximumJustifiedDepth": "Do not generalise it to every telephone implementation or add line-testing resistors, surge protection, master/secondary socket wiring, or legacy PSTN detail.",
+        "excludedEnrichment": ["generalisation to every telephone implementation", "line-testing resistors", "surge protection", "master/secondary socket wiring", "legacy PSTN detail"],
+        "assessmentPerformanceExpected": "Describe the representative application/function.",
+        "depthEvidenceBasis": "AC6.1 describe function/application; Range \"Telephones\"; this is a calibrated representative exemplar.",
+        "depthVerdict": "APPROVED_REPRESENTATIVE_EXEMPLAR_WITH_BOUNDS",
+        "architectNotes": null,
+        "approvedAt": "2026-09-05"
+      }
+    }
+  ]
+}

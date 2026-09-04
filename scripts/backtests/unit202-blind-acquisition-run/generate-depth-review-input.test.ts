@@ -1,10 +1,13 @@
 /**
- * CC-24 PA-review correction §4: proves the depth-review input is
- * exactly 15 items, deterministic, answer-free, and status-honest --
- * i.e. that pilot-002 cannot be described as authorised while the
- * depth review is pending. Imports only the clean pilot-preparation
- * path -- no historical material, and (mechanically, by construction --
- * this generator never imports it) no pilot-001 artifact either.
+ * CC-24 PA-review correction §4 (further corrected in a follow-up pass):
+ * proves the depth-review input is exactly 15 items, GENUINELY
+ * byte-identical across two runs (no field for a test to have to
+ * ignore), correctly labelled (acquisition-target wording, never
+ * "official qualification wording"), answer-free, and status-honest --
+ * i.e. that pilot-002 cannot be described as authorised while the depth
+ * review is pending. Imports only the clean pilot-preparation path -- no
+ * historical material, and (mechanically, by construction -- this
+ * generator never imports it) no pilot-001 artifact either.
  */
 import { describe, expect, it } from "vitest";
 
@@ -18,12 +21,6 @@ const DIRECTIONAL_REQUIREMENT_IDS = new Set([
   "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
 ]);
 
-/** Strips the one intentionally-variable field (`generatedAt`) so two calls can be compared for determinism. */
-function withoutTimestamp<T extends { generatedAt: unknown }>(value: T): Omit<T, "generatedAt"> {
-  const { generatedAt: _generatedAt, ...rest } = value;
-  return rest;
-}
-
 describe("CC-24 PA-review correction §4 -- pilot-002 depth-review input", () => {
   it("contains exactly the 15 expected evidenceRequirementIds, each exactly once, in the frozen selection order", () => {
     const input = buildDepthReviewInput();
@@ -32,10 +29,28 @@ describe("CC-24 PA-review correction §4 -- pilot-002 depth-review input", () =>
     expect(input.items.map((i) => i.evidenceRequirementId)).toEqual(SELECTED_EVIDENCE_REQUIREMENT_IDS);
   });
 
-  it("is deterministic -- two independent calls produce byte-identical items (ignoring the one intentionally-variable generatedAt field)", () => {
+  it("is GENUINELY byte-identical across two independent calls -- no wall-clock or other volatile field exists to ignore", () => {
     const a = buildDepthReviewInput();
     const b = buildDepthReviewInput();
-    expect(withoutTimestamp(a)).toEqual(withoutTimestamp(b));
+    expect(JSON.stringify(a)).toBe(JSON.stringify(b));
+    expect(JSON.stringify(a, null, 2)).toBe(JSON.stringify(b, null, 2));
+    // No key anywhere in the output is a wall-clock/random field.
+    expect(Object.keys(a)).not.toContain("generatedAt");
+    expect(Object.keys(a)).not.toContain("timestamp");
+  });
+
+  it("carries deterministic source-state metadata (schemaVersion + three content hashes) instead of a timestamp", () => {
+    const input = buildDepthReviewInput();
+    expect(input.schemaVersion).toBe("1.0.0");
+    expect(input.blindTargetContentHash).toMatch(/^[0-9a-f]{64,}$/);
+    expect(input.sourcePlanHash).toMatch(/^[0-9a-f]{64,}$/);
+    expect(input.selectionDefinitionHash).toMatch(/^[0-9a-f]{64,}$/);
+    // These hashes are themselves pure functions of repository content --
+    // reproducing them a second time must agree exactly.
+    const again = buildDepthReviewInput();
+    expect(again.blindTargetContentHash).toBe(input.blindTargetContentHash);
+    expect(again.sourcePlanHash).toBe(input.sourcePlanHash);
+    expect(again.selectionDefinitionHash).toBe(input.selectionDefinitionHash);
   });
 
   it("contains no source URLs, candidate identities, retrieved passages, or any pilot-001 normalized-claim vocabulary", () => {
@@ -85,15 +100,21 @@ describe("CC-24 PA-review correction §4 -- pilot-002 depth-review input", () =>
     expect(input.items.every((i) => i.paDepthReview.depthVerdict === null && i.paDepthReview.approvedAt === null)).toBe(true);
   });
 
-  it("carries qualification provenance (acquisitionTargetId/AC/raw wording) for every item, sourced only from the adapter's own audit metadata", () => {
+  it("carries qualification provenance (acquisitionTargetId/AC/acquisitionTargetWording) for every item, sourced only from the adapter's own audit metadata, and never labels it 'official qualification wording'", () => {
     const input = buildDepthReviewInput();
     for (const item of input.items) {
       expect(item.qualificationProvenance.length).toBeGreaterThan(0);
       for (const p of item.qualificationProvenance) {
         expect(p.acquisitionTargetId).toMatch(/^ACQ-\d+$/);
         expect(p.ac).toMatch(/^AC\d/);
-        expect(p.rawQualificationWording.length).toBeGreaterThan(0);
+        expect(p.acquisitionTargetWording.length).toBeGreaterThan(0);
+        // The renamed field itself, not the retired "rawQualificationWording" name.
+        expect(Object.keys(p)).toContain("acquisitionTargetWording");
+        expect(Object.keys(p)).not.toContain("rawQualificationWording");
       }
     }
+    const json = JSON.stringify(input).toLowerCase();
+    expect(json.includes("official qualification wording")).toBe(false);
+    expect(json.includes("rawqualificationwording")).toBe(false);
   });
 });

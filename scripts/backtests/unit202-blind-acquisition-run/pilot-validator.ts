@@ -1,38 +1,57 @@
 /**
- * CC-24 PA-review correction §3: a narrow PILOT EXECUTION GATE -- not a
- * redesign of the generic `@alp/technical-evidence-engine` contract, and
- * not itself an acquisition tool.
+ * CC-24 PA-review correction §3 (further corrected in a follow-up pass):
+ * a narrow PILOT EXECUTION GATE -- not a redesign of the generic
+ * `@alp/technical-evidence-engine` contract, and not itself an
+ * acquisition tool.
  *
- * [Corrected] The prior version of this validator proved artifact SHAPE
- * (required fields present, counts within a cap read from an option
- * default, header words present in a report) without proving VALUES --
- * it never recomputed a single hash, never cross-checked a chosen
- * candidate against an actual retrieval outcome, and accepted a report
- * whose content merely LOOKED complete. This version proves values:
- * every frozen artifact's SHA-256 is recomputed from its actual raw
- * bytes (via the SAME `hashContent` function the pilot's own producer
- * scripts use -- `pilot-guard.ts`/`freeze-selection.ts` -- so producer
- * and validator can never silently disagree on what "the hash" means);
- * `sourcePlanHash`/`selectionHash` are recomputed from the actual
- * clean-plan/selection bytes and cross-checked across manifest, freeze,
- * and the selection payload's own embedded copy; the candidate cap is
- * read from the run's OWN declared acquisition policy, not a validator
- * default; every accepted source is traced through a specific, declared
- * search candidate to a specific, ACCEPTED retrieval entry; and
- * `PILOT-REPORT.md` is checked against a report DETERMINISTICALLY
- * RENDERED from the frozen selection/results/retrieval data, not merely
- * scanned for header words and a row count.
+ * [Corrected, this pass] Three remaining false-green paths are closed:
+ *   A. The external pilot contract (live-research/exact-locator/
+ *      candidate-cap policy) is now a FIXED constant this validator
+ *      enforces for pilot-002 -- the manifest RECORDS its policy, it no
+ *      longer SETS the validator's required policy. A manifest declaring
+ *      5 candidates, `false` for live research, or any other deviation
+ *      now fails, where the prior version would have silently trusted it.
+ *   B. Search-query execution is now verified structurally: every
+ *      requirement must carry at least one ordered `{queryId, order,
+ *      queryText}` record; a string-only `queries` array, an empty
+ *      collection, or non-sequential/duplicate/gapped `order` values all
+ *      fail, where the prior version accepted a bare `string[]` and
+ *      never checked it was non-empty or ordered.
+ *   C. Retrieval and results are cross-checked BY VALUE, not merely by
+ *      matching IDs and an `ACCEPTED` outcome: an accepted
+ *      `CandidateSourceRecord`'s authority class, URL, locator, and
+ *      passage must all equal the values on its own retrieval entry (a
+ *      result may not silently relabel a retrieval entry into a
+ *      different class or a different locator); every `ACCEPTED`
+ *      retrieval entry must be represented in the accepted results (or
+ *      not be `ACCEPTED`); every normalized claim must reference an
+ *      actually-accepted source; every claim-dimension binding must
+ *      match an actual claim by source ID AND exact claim text; and each
+ *      satisfied dimension must be bound exactly once (a duplicate
+ *      binding, or a binding to an unresolved/non-required dimension,
+ *      now fails).
+ *   D. `verificationStatus` is now checked for internal coherence against
+ *      the requirement's own coverage/evidence/gap/conflict data --
+ *      `VERIFIED` with an unresolved dimension, `SOURCE_GAP` with an
+ *      accepted source, `PARTIALLY_VERIFIED` missing either side of the
+ *      partition, `CONFLICTED` without a structured conflict record, an
+ *      unconditionally-invalid `NOT_ATTEMPTED`, or any unrecognised
+ *      status string, all now fail.
  *
- * Two honesty notes this validator does NOT overclaim past (task §3.F):
+ * Two honesty notes this validator does NOT overclaim past (task §3.F,
+ * carried forward from the prior correction pass):
  *   - Mechanical validation can prove a DECLARED authority class is
- *     PERMITTED by a requirement's policy. It cannot prove the real
- *     publisher/source genuinely belongs to that class, that a claim is
- *     actually supported by its cited passage, that scope is contained
- *     to what the requirement asks, or that the depth is learner-
- *     appropriate. Publisher identity, source classification, claim
- *     support, scope containment, and learner depth remain MANDATORY
- *     Project-Architect semantic-review gates this validator cannot and
- *     does not substitute for.
+ *     PERMITTED by a requirement's policy, and that a result's declared
+ *     value for a field EQUALS its retrieval entry's value for that same
+ *     field. It cannot prove the real publisher/source genuinely belongs
+ *     to that class, that a claim is actually supported by its cited
+ *     passage, that scope is contained to what the requirement asks, or
+ *     that the depth is learner-appropriate. Publisher identity, source
+ *     classification, claim support, scope containment, and learner
+ *     depth remain MANDATORY Project-Architect semantic-review gates
+ *     this validator cannot and does not substitute for -- this is a
+ *     guardrail against obviously-inconsistent or contradictory records,
+ *     never a complete semantic proof.
  *   - `LocalAccessGuard` (and this validator's own DENIED-outcome check)
  *     can only prove that reads ROUTED THROUGH the guard were correctly
  *     authorized or denied. Neither the guard nor this validator is
@@ -90,14 +109,24 @@ export interface SealedTargetCheck {
 
 export interface PilotValidationOptions {
   readonly expectedRequirementIds?: readonly string[];
-  /** Fallback candidate cap ONLY when the manifest's own acquisitionPolicy.maxCandidateSourcesPerRequirement cannot be read -- the real check always prefers the run's OWN declared policy (task §3.D: "no more than the declared policy cap"). */
-  readonly fallbackMaxCandidatesPerRequirement?: number;
   readonly requiredFreezeArtifactNames?: readonly string[];
   readonly sealedTarget?: SealedTargetCheck;
 }
 
-const DEFAULT_FALLBACK_MAX_CANDIDATES = 4;
 const DEFAULT_REQUIRED_FREEZE_ARTIFACTS = ["PILOT-CLEAN-PLAN.json", "PILOT-SELECTION.json", "PILOT-RUN-MANIFEST.json", "PILOT-SEARCH-LOG.json", "PILOT-RETRIEVAL-LOG.json", "PILOT-RESULTS.json", "PILOT-ACCESS-AUDIT.json", "PILOT-REPORT.md"];
+
+/**
+ * §3.A: the pilot-002 external contract, FIXED here -- never read from
+ * the manifest under validation. The manifest RECORDS what policy the
+ * run believed it was operating under; it does not get to SET what this
+ * validator requires. A manifest declaring 5, 100, `false`, `0`, a
+ * fraction, or any other value for these three fields fails.
+ */
+export const REQUIRED_ACQUISITION_POLICY = {
+  allowLiveWebResearch: true,
+  requireExactLocator: true,
+  maxCandidateSourcesPerRequirement: 4,
+} as const;
 
 function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null && !Array.isArray(v);
@@ -148,8 +177,8 @@ function strictParseOrDefect(defects: ValidationDefect[], fileLabel: string, raw
 }
 
 // ---------------------------------------------------------------------
-// §3.B: exact ID-set checks, generalized across the three collections
-// that must each carry exactly one entry per expected requirement ID.
+// §3.B (ID sets): exact ID-set checks, generalized across the three
+// collections that must each carry exactly one entry per expected ID.
 // ---------------------------------------------------------------------
 
 function checkExactIdSet(defects: ValidationDefect[], label: string, ids: readonly string[], expectedIds: readonly string[]): void {
@@ -172,9 +201,28 @@ function extractIds(collection: unknown, arrayField: string, idField = "evidence
 }
 
 // ---------------------------------------------------------------------
-// §3.C: real integrity verification -- every hash recomputed from actual
-// bytes via the SAME `hashContent` function the pilot's own producer
-// scripts use, never trusted from a self-reported field alone.
+// §3.A: lock the external pilot contract to fixed constants.
+// ---------------------------------------------------------------------
+
+function checkExternalPilotContract(defects: ValidationDefect[], manifest: unknown): void {
+  const policy = getPath(manifest, "acquisitionPolicy");
+  if (!isRecord(policy)) return; // already flagged by checkManifestRequiredFields
+  for (const [field, requiredValue] of Object.entries(REQUIRED_ACQUISITION_POLICY)) {
+    const actual = policy[field];
+    if (actual !== requiredValue) {
+      defects.push({
+        code: "MANIFEST_POLICY_MISMATCH",
+        severity: "ERROR",
+        message: `PILOT-RUN-MANIFEST.json.acquisitionPolicy.${field} = ${JSON.stringify(actual)}, but pilot-002 requires exactly ${JSON.stringify(requiredValue)}. The manifest records policy; it does not set the validator's required policy.`,
+      });
+    }
+  }
+}
+
+// ---------------------------------------------------------------------
+// §3.C (hashes): real integrity verification -- every hash recomputed
+// from actual bytes via the SAME `hashContent` function the pilot's own
+// producer scripts use, never trusted from a self-reported field alone.
 // ---------------------------------------------------------------------
 
 function checkHashIntegrity(defects: ValidationDefect[], bundle: PilotArtifactRawBundle, manifest: unknown, freeze: unknown, selection: unknown): void {
@@ -309,7 +357,7 @@ function checkAccessAuditDenials(defects: ValidationDefect[], accessAudit: unkno
 }
 
 // ---------------------------------------------------------------------
-// §3.D: candidate + retrieval trace verification.
+// §3.B (queries + candidates): candidate + retrieval trace verification.
 // ---------------------------------------------------------------------
 
 interface SelectionRequirementInfo {
@@ -328,6 +376,40 @@ function indexSelectionRequirements(selection: unknown): Map<string, SelectionRe
     });
   }
   return index;
+}
+
+function checkSearchQueries(defects: ValidationDefect[], searchLog: unknown): void {
+  const entries = isRecord(searchLog) ? searchLog.entries : undefined;
+  if (!isArray(entries)) return; // already flagged by indexSearchCandidates
+  for (const entry of entries) {
+    if (!isRecord(entry) || !isString(entry.evidenceRequirementId)) continue;
+    const id = entry.evidenceRequirementId;
+    const queries = entry.queries;
+    if (!isArray(queries) || queries.length === 0) {
+      defects.push({ code: "SEARCH_QUERIES_MISSING", severity: "ERROR", message: `PILOT-SEARCH-LOG.json: "${id}" has no query records -- at least one ordered {queryId, order, queryText} record is required.` });
+      continue;
+    }
+    if (queries.some((q) => isString(q))) {
+      defects.push({ code: "SEARCH_QUERIES_STRING_ONLY", severity: "ERROR", message: `PILOT-SEARCH-LOG.json: "${id}" declares one or more queries as bare strings -- every query must be an ordered record with queryId/order/queryText, never a plain string.` });
+      continue;
+    }
+    const orders: number[] = [];
+    let anyMalformed = false;
+    for (const q of queries) {
+      if (!isRecord(q) || !isNonEmptyString(q.queryId) || !isNumber(q.order) || !isNonEmptyString(q.queryText)) {
+        defects.push({ code: "SEARCH_QUERY_MALFORMED", severity: "ERROR", message: `PILOT-SEARCH-LOG.json: "${id}" has a query record missing a non-empty queryId, a numeric order, or a non-empty queryText.` });
+        anyMalformed = true;
+        continue;
+      }
+      orders.push(q.order);
+    }
+    if (anyMalformed) continue;
+    const sorted = [...orders].sort((a, b) => a - b);
+    const expected = orders.map((_, i) => i + 1);
+    if (JSON.stringify(sorted) !== JSON.stringify(expected)) {
+      defects.push({ code: "SEARCH_QUERY_ORDER_INVALID", severity: "ERROR", message: `PILOT-SEARCH-LOG.json: "${id}" query order values are [${sorted.join(", ")}], expected a unique sequence starting at 1 with no gaps ([${expected.join(", ")}]) -- missing, duplicate, and gapped order are all rejected.` });
+    }
+  }
 }
 
 interface SearchCandidate {
@@ -361,10 +443,11 @@ function indexSearchCandidates(defects: ValidationDefect[], searchLog: unknown):
   return byRequirement;
 }
 
-function checkCandidateOrderAndCap(defects: ValidationDefect[], byRequirement: Map<string, SearchCandidate[]>, declaredCap: number): void {
+function checkCandidateOrderAndCap(defects: ValidationDefect[], byRequirement: Map<string, SearchCandidate[]>): void {
+  const declaredCap = REQUIRED_ACQUISITION_POLICY.maxCandidateSourcesPerRequirement;
   for (const [id, candidates] of byRequirement) {
     if (candidates.length > declaredCap) {
-      defects.push({ code: "CANDIDATE_CAP_EXCEEDED", severity: "ERROR", message: `PILOT-SEARCH-LOG.json: "${id}" considered ${candidates.length} candidates, exceeding the run's own declared policy cap of ${declaredCap} (acquisitionPolicy.maxCandidateSourcesPerRequirement).` });
+      defects.push({ code: "CANDIDATE_CAP_EXCEEDED", severity: "ERROR", message: `PILOT-SEARCH-LOG.json: "${id}" considered ${candidates.length} candidates, exceeding pilot-002's fixed policy cap of ${declaredCap}.` });
     }
     const orders = candidates.map((c) => c.order).sort((a, b) => a - b);
     const expected = candidates.map((_, i) => i + 1);
@@ -380,7 +463,10 @@ function checkCandidateOrderAndCap(defects: ValidationDefect[], byRequirement: M
 }
 
 interface RetrievalEntryInfo {
+  readonly evidenceRequirementId: string;
+  readonly candidateId: string;
   readonly outcome: unknown;
+  readonly raw: Record<string, unknown>;
 }
 
 const RETRIEVAL_REQUIRED_TYPED_FIELDS = ["evidenceRequirementId", "candidateId", "attemptedUrl", "status", "publisher", "authorityClass", "authorityRationale", "locator", "boundedPassageOrDiagramDescription", "outcome"];
@@ -400,9 +486,7 @@ function indexRetrievalLog(defects: ValidationDefect[], retrievalLog: unknown, s
     const label = isString(entry.evidenceRequirementId) && isString(entry.candidateId) ? `${entry.evidenceRequirementId} / ${entry.candidateId}` : "(unidentified entry)";
 
     for (const field of RETRIEVAL_REQUIRED_TYPED_FIELDS) {
-      if (!isNonEmptyString(entry[field]) && !(field === "outcome" && isNonEmptyString(entry[field]))) {
-        if (!isNonEmptyString(entry[field])) defects.push({ code: "RETRIEVAL_ENTRY_MISSING_FIELD", severity: "ERROR", message: `PILOT-RETRIEVAL-LOG.json: entry ${label} is missing a non-empty typed value for required field "${field}".` });
-      }
+      if (!isNonEmptyString(entry[field])) defects.push({ code: "RETRIEVAL_ENTRY_MISSING_FIELD", severity: "ERROR", message: `PILOT-RETRIEVAL-LOG.json: entry ${label} is missing a non-empty typed value for required field "${field}".` });
     }
     if ("finalUrl" in entry) {
       if (entry.finalUrl === null) {
@@ -442,7 +526,7 @@ function indexRetrievalLog(defects: ValidationDefect[], retrievalLog: unknown, s
       if (!declared) defects.push({ code: "RETRIEVAL_ENTRY_UNDECLARED_CANDIDATE", severity: "ERROR", message: `PILOT-RETRIEVAL-LOG.json: entry ${label} does not correspond to any candidate declared in PILOT-SEARCH-LOG.json for that requirement.` });
       const key = `${entry.evidenceRequirementId}::${entry.candidateId}`;
       if (index.has(key)) defects.push({ code: "RETRIEVAL_ENTRY_DUPLICATE", severity: "ERROR", message: `PILOT-RETRIEVAL-LOG.json: more than one entry for ${label}.` });
-      index.set(key, { outcome: entry.outcome });
+      index.set(key, { evidenceRequirementId: entry.evidenceRequirementId, candidateId: entry.candidateId, outcome: entry.outcome, raw: entry });
     }
   }
   return index;
@@ -463,16 +547,38 @@ function checkRetrievalAttemptedConsistency(defects: ValidationDefect[], searchC
   }
 }
 
+/** §3.C: the retrieval entry's OWN declared authority class must itself be permitted by the selected requirement's policy -- independent of whether that entry ever made it into an accepted result. */
+function checkRetrievalAuthorityPermitted(defects: ValidationDefect[], retrievalIndex: Map<string, RetrievalEntryInfo>, selectionIndex: Map<string, SelectionRequirementInfo>): void {
+  for (const info of retrievalIndex.values()) {
+    const selectionInfo = selectionIndex.get(info.evidenceRequirementId);
+    const authorityClass = info.raw.authorityClass;
+    if (selectionInfo && isString(authorityClass) && !selectionInfo.sourceAuthorityClasses.includes(authorityClass)) {
+      defects.push({ code: "AUTHORITY_CLASS_NOT_PERMITTED", severity: "ERROR", message: `PILOT-RETRIEVAL-LOG.json: entry for "${info.evidenceRequirementId} / ${info.candidateId}" declares authorityClass "${authorityClass}", which is not in the requirement's permitted sourceAuthorityClasses (${selectionInfo.sourceAuthorityClasses.join(", ")}). (This check proves the DECLARED class is permitted -- it cannot and does not prove the source genuinely belongs to that class; that is a Project-Architect semantic-review judgement.)` });
+    }
+  }
+}
+
+/** §3.C reverse relation: an ACCEPTED retrieval entry that is not represented among that requirement's accepted candidateSources is itself a defect -- an entry must not claim ACCEPTED and then be silently absent from the results that outcome is supposed to justify. */
+function checkAcceptedRetrievalRepresentedInResults(defects: ValidationDefect[], retrievalIndex: Map<string, RetrievalEntryInfo>, acceptedSourceIdsByRequirement: Map<string, Set<string>>): void {
+  for (const info of retrievalIndex.values()) {
+    if (info.outcome !== "ACCEPTED") continue;
+    const accepted = acceptedSourceIdsByRequirement.get(info.evidenceRequirementId);
+    if (!accepted?.has(info.candidateId)) {
+      defects.push({ code: "RETRIEVAL_ACCEPTED_NOT_REPRESENTED_IN_RESULTS", severity: "ERROR", message: `PILOT-RETRIEVAL-LOG.json: entry for "${info.evidenceRequirementId} / ${info.candidateId}" has outcome ACCEPTED but is not represented in PILOT-RESULTS.json's candidateSources for "${info.evidenceRequirementId}" -- an ACCEPTED entry must either be reflected in the accepted results, or carry a REJECTED/superseded disposition instead of ACCEPTED.` });
+    }
+  }
+}
+
 // ---------------------------------------------------------------------
-// Results checks: authority-class permission (declared-class-permitted
-// ONLY -- see the module doc comment's honesty note), coverage-dimension
-// partition, claim binding, and chosen-candidate resolution.
+// §3.C/§3.D: results checks -- authority-class permission, value-level
+// cross-checks against retrieval, coverage-dimension partition, claim
+// binding (source ID + exact claim text, no duplicates, no bindings to
+// invalid dimensions), and verification-status coherence.
 // ---------------------------------------------------------------------
 
 interface ResultInfo {
   readonly verificationStatus: unknown;
   readonly candidateSourceIds: readonly string[];
-  readonly hasGaps: boolean;
   readonly authorityByCandidate: ReadonlyMap<string, string>;
   readonly locatorByCandidate: ReadonlyMap<string, string>;
   readonly claimByCandidate: ReadonlyMap<string, string>;
@@ -481,12 +587,19 @@ interface ResultInfo {
   readonly conflictsAndGapsSummary: string;
 }
 
-function checkResults(defects: ValidationDefect[], results: unknown, selectionIndex: Map<string, SelectionRequirementInfo>, searchCandidates: Map<string, SearchCandidate[]>, retrievalIndex: Map<string, RetrievalEntryInfo>): Map<string, ResultInfo> {
+const CROSS_CHECK_FIELD_PAIRS: readonly [resultField: string, retrievalField: string, label: string][] = [
+  ["authorityClass", "authorityClass", "authorityClass"],
+  ["sourceLocator", "locator", "locator"],
+  ["retrievedPassage", "boundedPassageOrDiagramDescription", "bounded passage/diagram description"],
+];
+
+function checkResults(defects: ValidationDefect[], results: unknown, selectionIndex: Map<string, SelectionRequirementInfo>, searchCandidates: Map<string, SearchCandidate[]>, retrievalIndex: Map<string, RetrievalEntryInfo>): { resultInfoById: Map<string, ResultInfo>; acceptedSourceIdsByRequirement: Map<string, Set<string>> } {
   const resultInfoById = new Map<string, ResultInfo>();
+  const acceptedSourceIdsByRequirement = new Map<string, Set<string>>();
   const list = isRecord(results) ? results.results : undefined;
   if (!isArray(list)) {
     defects.push({ code: "RESULTS_MALFORMED", severity: "ERROR", message: "PILOT-RESULTS.json: missing or non-array `results`." });
-    return resultInfoById;
+    return { resultInfoById, acceptedSourceIdsByRequirement };
   }
   for (const entry of list) {
     if (!isRecord(entry) || !isString(entry.evidenceRequirementId) || !isRecord(entry.result)) {
@@ -507,18 +620,49 @@ function checkResults(defects: ValidationDefect[], results: unknown, selectionIn
     const candidateSources = isArray(result.candidateSources) ? result.candidateSources : [];
     const authorityByCandidate = new Map<string, string>();
     const locatorByCandidate = new Map<string, string>();
+    const acceptedIds = new Set<string>();
     for (const cs of candidateSources) {
       if (!isRecord(cs) || !isString(cs.sourceId) || !isString(cs.authorityClass)) continue;
       authorityByCandidate.set(cs.sourceId, cs.authorityClass);
       if (isString(cs.sourceLocator)) locatorByCandidate.set(cs.sourceId, cs.sourceLocator);
+      acceptedIds.add(cs.sourceId);
       if (!selectionInfo.sourceAuthorityClasses.includes(cs.authorityClass)) {
         defects.push({ code: "AUTHORITY_CLASS_NOT_PERMITTED", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" source "${cs.sourceId}" declares authorityClass "${cs.authorityClass}", which is not in the requirement's permitted sourceAuthorityClasses (${selectionInfo.sourceAuthorityClasses.join(", ")}). (This check proves the DECLARED class is permitted -- it cannot and does not prove the source genuinely belongs to that class; that is a Project-Architect semantic-review judgement.)` });
       }
       const declaredChosen = searchCandidates.get(id)?.some((c) => c.candidateId === cs.sourceId && c.chosen);
       if (!declaredChosen) defects.push({ code: "CANDIDATE_SOURCE_NOT_CHOSEN", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" candidateSources entry "${cs.sourceId}" does not correspond to a candidate declared chosen=true in PILOT-SEARCH-LOG.json.` });
-      const retrievalOutcome = retrievalIndex.get(`${id}::${cs.sourceId}`)?.outcome;
-      if (retrievalOutcome !== "ACCEPTED") defects.push({ code: "RETRIEVAL_ATTEMPT_MISSING_FOR_CANDIDATE", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" candidateSources entry "${cs.sourceId}" has no matching ACCEPTED entry in PILOT-RETRIEVAL-LOG.json (found: ${JSON.stringify(retrievalOutcome)}).` });
+
+      const retrievalEntry = retrievalIndex.get(`${id}::${cs.sourceId}`);
+      if (retrievalEntry?.outcome !== "ACCEPTED") {
+        defects.push({ code: "RETRIEVAL_ATTEMPT_MISSING_FOR_CANDIDATE", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" candidateSources entry "${cs.sourceId}" has no matching ACCEPTED entry in PILOT-RETRIEVAL-LOG.json (found: ${JSON.stringify(retrievalEntry?.outcome)}).` });
+      } else {
+        // §3.C: value-level cross-check -- a result must not silently
+        // relabel a retrieval entry's authority class, locator, or
+        // passage into something different from what was actually
+        // retrieved.
+        for (const [resultField, retrievalField, label] of CROSS_CHECK_FIELD_PAIRS) {
+          const resultValue = (cs as Record<string, unknown>)[resultField];
+          const retrievalValue = retrievalEntry.raw[retrievalField];
+          if (resultValue !== retrievalValue) {
+            defects.push({ code: "RETRIEVAL_RESULT_VALUE_MISMATCH", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" source "${cs.sourceId}" ${label} ${JSON.stringify(resultValue)} does not equal PILOT-RETRIEVAL-LOG.json's ${label} ${JSON.stringify(retrievalValue)} for the same candidate -- a result must not relabel a retrieval entry.` });
+          }
+        }
+        const retrievalUrl = retrievalEntry.raw.finalUrl ?? retrievalEntry.raw.attemptedUrl;
+        if (isString(cs.sourceRef) && cs.sourceRef !== retrievalUrl) {
+          defects.push({ code: "RETRIEVAL_RESULT_VALUE_MISMATCH", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" source "${cs.sourceId}" sourceRef ${JSON.stringify(cs.sourceRef)} does not equal PILOT-RETRIEVAL-LOG.json's source/final URL ${JSON.stringify(retrievalUrl)} for the same candidate.` });
+        }
+        // publisher/title "where represented" -- these are not canonical
+        // CandidateSourceRecord fields; only checked if a producer chose
+        // to add them anyway.
+        for (const extraField of ["publisher", "title"]) {
+          const resultValue = (cs as Record<string, unknown>)[extraField];
+          if (resultValue !== undefined && resultValue !== retrievalEntry.raw[extraField]) {
+            defects.push({ code: "RETRIEVAL_RESULT_VALUE_MISMATCH", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" source "${cs.sourceId}" ${extraField} ${JSON.stringify(resultValue)} does not equal PILOT-RETRIEVAL-LOG.json's ${extraField} ${JSON.stringify(retrievalEntry.raw[extraField])}.` });
+          }
+        }
+      }
     }
+    acceptedSourceIdsByRequirement.set(id, acceptedIds);
 
     const chosenCandidates = searchCandidates.get(id)?.filter((c) => c.chosen) ?? [];
     const gaps = isArray(result.gaps) ? result.gaps : [];
@@ -546,9 +690,35 @@ function checkResults(defects: ValidationDefect[], results: unknown, selectionIn
 
     const normalizedClaims = isArray(result.normalizedClaims) ? result.normalizedClaims : [];
     const claimBySourceId = new Map<string, string>();
-    for (const c of normalizedClaims) if (isRecord(c) && isString(c.sourceId) && isString(c.claimText)) claimBySourceId.set(c.sourceId, c.claimText);
+    const claimSourceTextPairs = new Set<string>();
+    for (const c of normalizedClaims) {
+      if (!isRecord(c) || !isString(c.sourceId) || !isString(c.claimText)) continue;
+      claimBySourceId.set(c.sourceId, c.claimText);
+      claimSourceTextPairs.add(`${c.sourceId} ${c.claimText}`);
+      if (!acceptedIds.has(c.sourceId)) {
+        defects.push({ code: "NORMALIZED_CLAIM_UNRESOLVED_SOURCE", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" normalized claim references sourceId "${c.sourceId}", which is not an accepted candidateSources entry for this requirement.` });
+      }
+    }
+
     const pilotAudit = isRecord(entry.pilotAudit) ? entry.pilotAudit : {};
     const bindings = isArray(pilotAudit.claimDimensionBindings) ? pilotAudit.claimDimensionBindings : [];
+    const dimensionBindingCounts = new Map<string, number>();
+    for (const b of bindings) {
+      if (!isRecord(b) || !isArray(b.dimensions)) continue;
+      for (const d of b.dimensions) {
+        if (!isString(d)) continue;
+        dimensionBindingCounts.set(d, (dimensionBindingCounts.get(d) ?? 0) + 1);
+        if (!satisfiedSet.has(d)) {
+          defects.push({ code: "BINDING_TO_INVALID_DIMENSION", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" has a claimDimensionBindings entry binding dimension "${d}", which is not in coverageDimensionsSatisfied (it is either unresolved or not a required dimension at all).` });
+        }
+      }
+      if (isString(b.sourceId) && isString(b.claimText) && !claimSourceTextPairs.has(`${b.sourceId} ${b.claimText}`)) {
+        defects.push({ code: "CLAIM_BINDING_TEXT_MISMATCH", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" claimDimensionBindings entry (sourceId "${b.sourceId}") does not match any normalizedClaims entry with BOTH that sourceId AND that exact claimText.` });
+      }
+    }
+    for (const [d, count] of dimensionBindingCounts) {
+      if (count > 1) defects.push({ code: "DUPLICATE_DIMENSION_BINDING", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" dimension "${d}" is bound ${count} times across claimDimensionBindings -- each satisfied dimension must be bound exactly once.` });
+    }
     for (const dim of satisfied) {
       const binding = bindings.find((b) => isRecord(b) && isArray(b.dimensions) && b.dimensions.includes(dim));
       if (!binding || !isRecord(binding) || !isString(binding.sourceId)) {
@@ -564,10 +734,11 @@ function checkResults(defects: ValidationDefect[], results: unknown, selectionIn
     const conflicts = isArray(result.conflicts) ? result.conflicts : [];
     for (const c of conflicts) if (isRecord(c) && isString(c.description)) conflictsAndGapsParts.push(`CONFLICT: ${c.description}`);
 
+    checkVerificationStatusCoherence(defects, id, result.verificationStatus, satisfiedSet, unresolvedSet, requiredSet, acceptedIds.size, normalizedClaims.length, gaps.length, conflicts);
+
     resultInfoById.set(id, {
       verificationStatus: result.verificationStatus,
       candidateSourceIds: [...authorityByCandidate.keys()],
-      hasGaps: gaps.length > 0,
       authorityByCandidate,
       locatorByCandidate,
       claimByCandidate: claimBySourceId,
@@ -576,12 +747,69 @@ function checkResults(defects: ValidationDefect[], results: unknown, selectionIn
       conflictsAndGapsSummary: conflictsAndGapsParts.length > 0 ? conflictsAndGapsParts.join("; ") : "--",
     });
   }
-  return resultInfoById;
+  return { resultInfoById, acceptedSourceIdsByRequirement };
+}
+
+const KNOWN_VERIFICATION_STATUSES = new Set(["VERIFIED", "PARTIALLY_VERIFIED", "SOURCE_GAP", "CONFLICTED", "NOT_ATTEMPTED"]);
+
+/**
+ * §3.D: `verificationStatus` must cohere with the requirement's own
+ * coverage/evidence/gap/conflict data -- proven mechanically, never
+ * merely declared. `NOT_ATTEMPTED` is unconditionally invalid in a
+ * completed CC-24 pilot bundle (every selected requirement must have
+ * been genuinely attempted).
+ */
+function checkVerificationStatusCoherence(
+  defects: ValidationDefect[],
+  id: string,
+  status: unknown,
+  satisfiedSet: ReadonlySet<string>,
+  unresolvedSet: ReadonlySet<string>,
+  requiredSet: ReadonlySet<string>,
+  acceptedSourceCount: number,
+  normalizedClaimCount: number,
+  gapCount: number,
+  conflicts: readonly unknown[],
+): void {
+  if (!isString(status) || !KNOWN_VERIFICATION_STATUSES.has(status)) {
+    defects.push({ code: "VERIFICATION_STATUS_UNKNOWN", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" has an unrecognised verificationStatus ${JSON.stringify(status)}.` });
+    return;
+  }
+  const satisfiedEqualsRequired = satisfiedSet.size === requiredSet.size && [...requiredSet].every((d) => satisfiedSet.has(d));
+  const unresolvedEqualsRequired = unresolvedSet.size === requiredSet.size && [...requiredSet].every((d) => unresolvedSet.has(d));
+  const hasStructuredConflict = conflicts.some((c) => isRecord(c) && isArray(c.conflictingClaims) && c.conflictingClaims.length >= 2);
+
+  switch (status) {
+    case "VERIFIED":
+      if (!satisfiedEqualsRequired || unresolvedSet.size > 0) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is VERIFIED but coverageDimensionsSatisfied does not equal the full required set with zero unresolved dimensions.` });
+      if (acceptedSourceCount < 1 || normalizedClaimCount < 1) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is VERIFIED but has no accepted source and/or no normalized claim.` });
+      if (gapCount > 0) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is VERIFIED but has ${gapCount} gap(s) recorded.` });
+      if (conflicts.length > 0) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is VERIFIED but has ${conflicts.length} conflict(s) recorded.` });
+      break;
+    case "PARTIALLY_VERIFIED":
+      if (satisfiedSet.size < 1 || unresolvedSet.size < 1) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is PARTIALLY_VERIFIED but does not have at least one satisfied AND at least one unresolved dimension.` });
+      if (acceptedSourceCount < 1 || normalizedClaimCount < 1) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is PARTIALLY_VERIFIED but has no accepted source and/or no normalized claim.` });
+      if (gapCount < 1) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is PARTIALLY_VERIFIED but has no explicit gap explaining the unresolved portion.` });
+      break;
+    case "SOURCE_GAP":
+      if (satisfiedSet.size !== 0) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is SOURCE_GAP but has ${satisfiedSet.size} satisfied dimension(s).` });
+      if (!unresolvedEqualsRequired) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is SOURCE_GAP but unresolvedDimensions does not equal the full required set.` });
+      if (acceptedSourceCount !== 0 || normalizedClaimCount !== 0) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is SOURCE_GAP but has an accepted candidate source and/or a normalized claim.` });
+      if (gapCount < 1) defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is SOURCE_GAP but has no explicit gap.` });
+      break;
+    case "CONFLICTED":
+      if (conflicts.length < 1 || !(normalizedClaimCount >= 2 || hasStructuredConflict)) {
+        defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" is CONFLICTED but does not have at least one explicit conflict AND (at least two normalized claims OR an equally explicit structured conflictingClaims representation with >=2 entries).` });
+      }
+      break;
+    case "NOT_ATTEMPTED":
+      defects.push({ code: "VERIFICATION_STATUS_INCOHERENT", severity: "ERROR", message: `PILOT-RESULTS.json: "${id}" has verificationStatus NOT_ATTEMPTED, which is invalid in a completed CC-24 pilot bundle -- every selected requirement must have been genuinely attempted.` });
+      break;
+  }
 }
 
 // ---------------------------------------------------------------------
-// §3.E: deterministic report rendering + comparison, replacing the
-// prior header-words-and-row-count-only check.
+// §3.E: deterministic report rendering + comparison.
 // ---------------------------------------------------------------------
 
 function renderExpectedReport(expectedIds: readonly string[], resultInfoById: Map<string, ResultInfo>): string {
@@ -650,6 +878,7 @@ export function validatePilotBundle(bundle: PilotArtifactRawBundle, options: Pil
   if (manifest !== undefined) {
     checkManifestRequiredFields(defects, manifest);
     checkDeviationInvalidation(defects, manifest);
+    checkExternalPilotContract(defects, manifest);
   }
   if (freeze !== undefined) {
     checkFreezeRequiredFields(defects, freeze, requiredArtifacts);
@@ -660,8 +889,8 @@ export function validatePilotBundle(bundle: PilotArtifactRawBundle, options: Pil
   if (accessAudit !== undefined) checkAccessAuditDenials(defects, accessAudit);
 
   const searchCandidates = searchLog !== undefined ? indexSearchCandidates(defects, searchLog) : new Map<string, SearchCandidate[]>();
-  const declaredCap = isNumber(getPath(manifest, "acquisitionPolicy.maxCandidateSourcesPerRequirement")) ? (getPath(manifest, "acquisitionPolicy.maxCandidateSourcesPerRequirement") as number) : (options.fallbackMaxCandidatesPerRequirement ?? DEFAULT_FALLBACK_MAX_CANDIDATES);
-  checkCandidateOrderAndCap(defects, searchCandidates, declaredCap);
+  if (searchLog !== undefined) checkSearchQueries(defects, searchLog);
+  checkCandidateOrderAndCap(defects, searchCandidates);
 
   const acquisitionWindow = {
     start: isValidIsoTimestamp(getPath(manifest, "acquisitionStartedAt")) ? Date.parse(getPath(manifest, "acquisitionStartedAt") as string) : null,
@@ -671,7 +900,9 @@ export function validatePilotBundle(bundle: PilotArtifactRawBundle, options: Pil
   checkRetrievalAttemptedConsistency(defects, searchCandidates, retrievalIndex);
 
   const selectionIndex = indexSelectionRequirements(selection);
-  const resultInfoById = results !== undefined ? checkResults(defects, results, selectionIndex, searchCandidates, retrievalIndex) : new Map<string, ResultInfo>();
+  checkRetrievalAuthorityPermitted(defects, retrievalIndex, selectionIndex);
+  const { resultInfoById, acceptedSourceIdsByRequirement } = results !== undefined ? checkResults(defects, results, selectionIndex, searchCandidates, retrievalIndex) : { resultInfoById: new Map<string, ResultInfo>(), acceptedSourceIdsByRequirement: new Map<string, Set<string>>() };
+  checkAcceptedRetrievalRepresentedInResults(defects, retrievalIndex, acceptedSourceIdsByRequirement);
 
   checkReportMatchesDeterministicRendering(defects, bundle.reportMarkdown, expectedIds, resultInfoById);
 
@@ -711,7 +942,7 @@ export function renderExpectedReportForBundle(bundle: PilotArtifactRawBundle, ex
   const searchCandidates = searchLog !== undefined ? indexSearchCandidates(throwaway, searchLog) : new Map<string, SearchCandidate[]>();
   const retrievalIndex = retrievalLog !== undefined ? indexRetrievalLog(throwaway, retrievalLog, searchCandidates, { start: null, end: null }) : new Map<string, RetrievalEntryInfo>();
   const selectionIndex = indexSelectionRequirements(selection);
-  const resultInfoById = results !== undefined ? checkResults(throwaway, results, selectionIndex, searchCandidates, retrievalIndex) : new Map<string, ResultInfo>();
+  const { resultInfoById } = results !== undefined ? checkResults(throwaway, results, selectionIndex, searchCandidates, retrievalIndex) : { resultInfoById: new Map<string, ResultInfo>() };
   return renderExpectedReport(expectedIds, resultInfoById);
 }
 
