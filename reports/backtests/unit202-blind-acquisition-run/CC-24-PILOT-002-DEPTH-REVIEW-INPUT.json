@@ -1,0 +1,666 @@
+{
+  "generatedAt": "2026-09-04T18:59:06.119Z",
+  "purpose": "Answer-free, deterministic review input for the Project Architect's qualification-depth decision on all 15 CC-24 pilot-selected requirements, ahead of the next acquisition attempt. Generated only from the sealed blind target, the Unit-202 adapter/audit metadata, the corrected clean plan, and the fixed 15-ID selection definition -- never from the prior invalidated acquisition run's own artifacts, historical benchmarks, source dossiers, old claims, learner assertions, lessons/storyboards, or private calibration material.",
+  "status": "PENDING_PROJECT_ARCHITECT_DEPTH_REVIEW",
+  "expectedItemCount": 15,
+  "items": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-001"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-001",
+          "acquisitionTargetId": "ACQ-001",
+          "ac": "AC1.1",
+          "rawQualificationWording": "Fractions."
+        }
+      ],
+      "requirementMode": "TOPIC_BREADTH_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Fractions.",
+      "evidenceQuestion": "What is the substantive authoritative coverage (definitions, rules, procedures) required for the topic: Fractions.?",
+      "requiredCoverageDimensions": [
+        "PROCEDURE"
+      ],
+      "permittedAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "acceptanceCriteria": "Substantive authoritative coverage of the required topic breadth/procedure, not a single illustrative sentence. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-004"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-004",
+          "acquisitionTargetId": "ACQ-004",
+          "ac": "AC1.1",
+          "rawQualificationWording": "Formula transposition."
+        }
+      ],
+      "requirementMode": "PROCEDURE_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Formula transposition.",
+      "evidenceQuestion": "What is the authoritative step-by-step procedure for: Formula transposition.?",
+      "requiredCoverageDimensions": [
+        "PROCEDURE",
+        "CALCULATION_METHOD"
+      ],
+      "permittedAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source that actually teaches or describes the real procedure -- a sentence merely containing the topic name never satisfies this. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-024"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-024",
+          "acquisitionTargetId": "ACQ-024",
+          "ac": "AC2.1",
+          "rawQualificationWording": "Temperature: correct SI unit and unit symbol."
+        }
+      ],
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Temperature: correct SI unit and unit symbol.",
+      "evidenceQuestion": "What authoritative fact establishes: Temperature: correct SI unit and unit symbol.?",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "permittedAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-085"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-085",
+          "acquisitionTargetId": "ACQ-085",
+          "ac": "AC4.4",
+          "rawQualificationWording": "V = IR and rearrangements."
+        }
+      ],
+      "requirementMode": "FORMULA_OR_RULE",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requirementText": "V = IR (Ohm's law), including the meanings of V (voltage), I (current) and R (resistance).",
+      "evidenceQuestion": null,
+      "requiredCoverageDimensions": [
+        "FORMULA",
+        "FORMULA_INTERPRETATION"
+      ],
+      "permittedAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage states an exact, or mathematically/logically equivalent, form of this formula or rule. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": [
+        "unit202::ACQ-004"
+      ],
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-047",
+        "unit202::ACQ-068"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-047",
+          "acquisitionTargetId": "ACQ-047",
+          "ac": "AC3.1",
+          "rawQualificationWording": "F = mg."
+        },
+        {
+          "knowledgeTargetId": "unit202::ACQ-068",
+          "acquisitionTargetId": "ACQ-068",
+          "ac": "AC3.3",
+          "rawQualificationWording": "F = mg where relevant."
+        }
+      ],
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requirementText": "F = mg.",
+      "evidenceQuestion": null,
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "permittedAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-108"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-108",
+          "acquisitionTargetId": "ACQ-108",
+          "ac": "AC5.3",
+          "rawQualificationWording": "Right-hand grip rule."
+        }
+      ],
+      "requirementMode": "OPERATIONAL_USE_RULE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Right-hand grip rule.",
+      "evidenceQuestion": "What is the correct directional/role mapping and correct-use conditions for: Right-hand grip rule.?",
+      "requiredCoverageDimensions": [
+        "DIRECTIONAL_MAPPING",
+        "ROLE_MAPPING",
+        "CORRECT_USE_CONDITIONS"
+      ],
+      "permittedAuthorityClasses": [
+        "GOVERNMENT_OR_REGULATOR",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage states this explicit operational/safety/use rule. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-114"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-114",
+          "acquisitionTargetId": "ACQ-114",
+          "ac": "AC5.3",
+          "rawQualificationWording": "Fleming left-hand rule."
+        }
+      ],
+      "requirementMode": "OPERATIONAL_USE_RULE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Fleming left-hand rule.",
+      "evidenceQuestion": "What is the correct directional/role mapping and correct-use conditions for: Fleming left-hand rule.?",
+      "requiredCoverageDimensions": [
+        "DIRECTIONAL_MAPPING",
+        "ROLE_MAPPING",
+        "CORRECT_USE_CONDITIONS"
+      ],
+      "permittedAuthorityClasses": [
+        "GOVERNMENT_OR_REGULATOR",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage states this explicit operational/safety/use rule. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-117"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-117",
+          "acquisitionTargetId": "ACQ-117",
+          "ac": "AC5.3",
+          "rawQualificationWording": "Fleming right-hand/generator rule."
+        }
+      ],
+      "requirementMode": "OPERATIONAL_USE_RULE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Fleming right-hand/generator rule.",
+      "evidenceQuestion": "What is the correct directional/role mapping and correct-use conditions for: Fleming right-hand/generator rule.?",
+      "requiredCoverageDimensions": [
+        "DIRECTIONAL_MAPPING",
+        "ROLE_MAPPING",
+        "CORRECT_USE_CONDITIONS"
+      ],
+      "permittedAuthorityClasses": [
+        "GOVERNMENT_OR_REGULATOR",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage states this explicit operational/safety/use rule. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-131",
+        "unit202::ACQ-132"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-131",
+          "acquisitionTargetId": "ACQ-131",
+          "ac": "AC5.4",
+          "rawQualificationWording": "Frequency relationship to rotational speed and pole pairs."
+        },
+        {
+          "knowledgeTargetId": "unit202::ACQ-132",
+          "acquisitionTargetId": "ACQ-132",
+          "ac": "AC5.4",
+          "rawQualificationWording": "f = N x P (N = rev/s, P = pole pairs)."
+        }
+      ],
+      "requirementMode": "FORMULA_OR_RULE",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requirementText": "f = N × P, where f is frequency, N is rotational speed in revolutions per second, and P is the number of pole pairs.",
+      "evidenceQuestion": null,
+      "requiredCoverageDimensions": [
+        "FORMULA",
+        "FORMULA_INTERPRETATION"
+      ],
+      "permittedAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage states an exact, or mathematically/logically equivalent, form of this formula or rule. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": [
+        "unit202::ACQ-004",
+        "unit202::ACQ-004"
+      ],
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-141"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-141",
+          "acquisitionTargetId": "ACQ-141",
+          "ac": "AC5.5",
+          "rawQualificationWording": "Vrms ~= 0.707 x Vpeak."
+        }
+      ],
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requirementText": "Vrms ~= 0.707 x Vpeak.",
+      "evidenceQuestion": null,
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "permittedAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-170"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-170",
+          "acquisitionTargetId": "ACQ-170",
+          "ac": "AC6.2",
+          "rawQualificationWording": "Capacitor: basic operating principle."
+        }
+      ],
+      "requirementMode": "OPERATING_PRINCIPLE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Capacitor: basic operating principle.",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Capacitor: basic operating principle.?",
+      "requiredCoverageDimensions": [
+        "OPERATING_PRINCIPLE"
+      ],
+      "permittedAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-182"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-182",
+          "acquisitionTargetId": "ACQ-182",
+          "ac": "AC6.2",
+          "rawQualificationWording": "TRIAC: basic operating principle."
+        }
+      ],
+      "requirementMode": "OPERATING_PRINCIPLE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "TRIAC: basic operating principle.",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: TRIAC: basic operating principle.?",
+      "requiredCoverageDimensions": [
+        "OPERATING_PRINCIPLE"
+      ],
+      "permittedAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-152"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-152",
+          "acquisitionTargetId": "ACQ-152",
+          "ac": "AC6.1",
+          "rawQualificationWording": "Wireless control systems: application category/function."
+        }
+      ],
+      "requirementMode": "APPLICATION_FUNCTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Wireless control systems: application category/function.",
+      "evidenceQuestion": "What is the application/function relationship for: Wireless control systems: application category/function.?",
+      "requiredCoverageDimensions": [
+        "APPLICATION_FUNCTION"
+      ],
+      "permittedAuthorityClasses": [
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this application/function relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-041"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-041",
+          "acquisitionTargetId": "ACQ-041",
+          "ac": "AC2.3",
+          "rawQualificationWording": "Wattmeter: measures electrical power + appropriate current/voltage sensing arrangement at qualification depth."
+        }
+      ],
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Wattmeter: measures electrical power + appropriate current/voltage sensing arrangement at qualification depth.",
+      "evidenceQuestion": "What authoritative fact establishes: Wattmeter: measures electrical power + appropriate current/voltage sensing arrangement at qualification depth.?",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "permittedAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": false,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-156"
+      ],
+      "qualificationProvenance": [
+        {
+          "knowledgeTargetId": "unit202::ACQ-156",
+          "acquisitionTargetId": "ACQ-156",
+          "ac": "AC6.1",
+          "rawQualificationWording": "Telephone: capacitor -> ringer."
+        }
+      ],
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requirementText": "Telephone: capacitor -> ringer.",
+      "evidenceQuestion": "What authoritative fact establishes: Telephone: capacitor -> ringer.?",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "permittedAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred.",
+      "calibratedSupportingPerformance": null,
+      "representativeExemplar": true,
+      "reusesFoundationalProcedureIds": null,
+      "paDepthReview": {
+        "qualificationPerformanceVerb": null,
+        "minimumSufficientDepth": null,
+        "maximumJustifiedDepth": null,
+        "excludedEnrichment": null,
+        "assessmentPerformanceExpected": null,
+        "depthEvidenceBasis": null,
+        "depthVerdict": null,
+        "architectNotes": null,
+        "approvedAt": null
+      }
+    }
+  ]
+}
