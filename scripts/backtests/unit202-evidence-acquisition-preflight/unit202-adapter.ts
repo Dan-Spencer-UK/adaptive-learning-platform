@@ -20,10 +20,12 @@ import {
   LocalAccessGuard,
   hashContent,
   type CoverageDimension,
+  type KnowledgeEvidencePlanResult,
   type KnowledgeEvidencePlanningInput,
   type KnowledgeTarget,
   type KnowledgeTargetKind,
   type RequirementSpecificationMode,
+  type SourceAuthorityClass,
   type TechnicalSemanticIdentity,
 } from "@alp/technical-evidence-engine";
 
@@ -329,6 +331,75 @@ const FORMULA_REARRANGEMENT_TARGETS: Record<string, FormulaRearrangementOverride
 
 const DIRECTIONAL_RULE_TARGET_IDS = new Set(["ACQ-108", "ACQ-114", "ACQ-117"]);
 const DIRECTIONAL_RULE_DIMENSIONS: readonly CoverageDimension[] = ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"];
+
+// ---------------------------------------------------------------------
+// PA review of CC-24 pilot-001, requirement 6 ("right-hand grip rule"):
+// the live pilot's only genuinely available candidate for a non-safety
+// directional physics rule (a physics-department instructional handout)
+// is ACADEMIC evidence, not an AUTHORITATIVE_TECHNICAL_REFERENCE -- the
+// generic OPERATIONAL_USE_RULE default (GOVERNMENT_OR_REGULATOR /
+// PROFESSIONAL_BODY / AUTHORITATIVE_TECHNICAL_REFERENCE / ORIGINAL_
+// MANUFACTURER_OR_VENDOR) was calibrated for genuine safety/regulated
+// operational procedures and wrongly excludes it. Unit 202's three
+// OPERATIONAL_USE_RULE targets (the right-hand grip rule and the two
+// Fleming rules) are all non-safety directional physics rules, not
+// SAFE_USE procedures -- academic/authoritative-educational material is
+// legitimate evidence for their directional/role mapping.
+//
+// This is a narrow, Unit-202-scoped, POST-PLANNING correction -- never a
+// change to the generic DEFAULT_SOURCE_AUTHORITY_POLICY (which stays
+// exactly as strict as before for every other qualification, and for any
+// future genuinely safety-critical Unit-202 OPERATIONAL_USE_RULE target).
+// The generic `SourceAuthorityPolicy` mechanism keys allowed classes by
+// `requirementMode` alone (task/CC-23A design), with no per-target or
+// per-dimension granularity -- insufficient to express "only THESE three
+// targets, identified by their exact dimension set, not just their
+// mode." `applyUnit202DirectionalRuleAuthorityPolicyOverride` therefore
+// operates on the planner's OUTPUT, widening `sourceAuthorityClasses`
+// only on a requirement whose mode is OPERATIONAL_USE_RULE AND whose
+// `requiredCoverageDimensions` are EXACTLY the three non-safety
+// directional-rule dimensions -- never merely "any Unit-202
+// OPERATIONAL_USE_RULE requirement" and never any other mode. A future
+// Unit-202 OPERATIONAL_USE_RULE target with a different dimension set
+// (e.g. a genuine SAFE_USE procedure) is left on the generic, strict
+// default, unaffected by this override.
+// ---------------------------------------------------------------------
+
+const DIRECTIONAL_RULE_AUTHORITY_OVERRIDE_DIMENSIONS = new Set<CoverageDimension>(DIRECTIONAL_RULE_DIMENSIONS);
+
+/** The four generic OPERATIONAL_USE_RULE classes, plus the two academic/educational classes this override adds. Both additions are STANDARD_AUTHORITY_CLASSES members already -- no custom-class registration is needed. */
+export const UNIT202_DIRECTIONAL_RULE_AUTHORITY_CLASSES: readonly SourceAuthorityClass[] = [
+  "GOVERNMENT_OR_REGULATOR",
+  "PROFESSIONAL_BODY",
+  "AUTHORITATIVE_TECHNICAL_REFERENCE",
+  "ORIGINAL_MANUFACTURER_OR_VENDOR",
+  "ACADEMIC_OR_RESEARCH_INSTITUTION",
+  "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+];
+
+function dimensionSetMatches(dimensions: readonly CoverageDimension[], expected: ReadonlySet<CoverageDimension>): boolean {
+  if (dimensions.length !== expected.size) return false;
+  return dimensions.every((d) => expected.has(d));
+}
+
+/**
+ * Applies the narrow Unit-202 directional-rule authority-policy override
+ * to an already-planned `KnowledgeEvidencePlanResult`. Never touches
+ * `requirementText`, `evidenceQuestion`, `specificationMode`,
+ * `classification`, `acquisitionPriority`, or any other field -- only
+ * `sourceAuthorityClasses`, and only on requirements matching the exact
+ * mode + dimension-set test above.
+ */
+export function applyUnit202DirectionalRuleAuthorityPolicyOverride(plan: KnowledgeEvidencePlanResult): KnowledgeEvidencePlanResult {
+  return {
+    ...plan,
+    requirements: plan.requirements.map((r) => {
+      if (r.requirementMode !== "OPERATIONAL_USE_RULE") return r;
+      if (!dimensionSetMatches(r.requiredCoverageDimensions, DIRECTIONAL_RULE_AUTHORITY_OVERRIDE_DIMENSIONS)) return r;
+      return { ...r, sourceAuthorityClasses: UNIT202_DIRECTIONAL_RULE_AUTHORITY_CLASSES };
+    }),
+  };
+}
 
 // ---------------------------------------------------------------------
 // CC-24 §1 (Narrow Correction A): adapter-adoption of existing generic

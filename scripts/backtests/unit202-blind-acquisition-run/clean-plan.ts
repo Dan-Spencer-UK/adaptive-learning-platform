@@ -20,10 +20,18 @@
  */
 import { planEvidenceRequirements, type KnowledgeEvidencePlanResult } from "@alp/technical-evidence-engine";
 
-import { buildUnit202PlanningInput } from "../unit202-evidence-acquisition-preflight/unit202-adapter.ts";
+import { applyUnit202DirectionalRuleAuthorityPolicyOverride, buildUnit202PlanningInput } from "../unit202-evidence-acquisition-preflight/unit202-adapter.ts";
 
-/** Builds the full 213-row generic evidence-requirement plan from the frozen Unit-202 target, with zero historical/benchmark data anywhere on the import path. */
+/**
+ * Builds the full 213-row generic evidence-requirement plan from the
+ * frozen Unit-202 target, with zero historical/benchmark data anywhere
+ * on the import path. Applies the narrow Unit-202 directional-rule
+ * authority-policy override (PA review of pilot-001, requirement 6) to
+ * the planner's output -- the generic plan/policy themselves are
+ * unchanged; only the three matching requirements' `sourceAuthorityClasses`
+ * are widened.
+ */
 export function buildCleanPlan(): KnowledgeEvidencePlanResult {
   const { input } = buildUnit202PlanningInput();
-  return planEvidenceRequirements(input);
+  return applyUnit202DirectionalRuleAuthorityPolicyOverride(planEvidenceRequirements(input));
 }
