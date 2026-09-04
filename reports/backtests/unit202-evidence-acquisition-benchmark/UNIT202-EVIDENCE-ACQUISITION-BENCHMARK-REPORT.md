@@ -26,9 +26,9 @@ This package hardens the CC-22B benchmark: the historical answer key is now deri
 
 **Final (CC-22C explicit bindings, 143 bindings):**
 
-- Historically VERIFIED: 118
-- Historically CONDITIONAL: 17
-- Historically SOURCE_GAP: 8
+- Historically VERIFIED: 122
+- Historically CONDITIONAL: 14
+- Historically SOURCE_GAP: 7
 - No historical benchmark at all: 28
 
 ## Targets by AC
@@ -59,11 +59,11 @@ This package hardens the CC-22B benchmark: the historical answer key is now deri
 ## Files frozen
 
 - `UNIT202-BLIND-ACQUISITION-TARGETS.json` (sha256 3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4, UNCHANGED from CC-22B)
-- `UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.json` (sealed, sha256 5581b126ae48cefce6745ad404034d8a1b50cdab06c885a642a9ac2987e11a28)
-- `UNIT202-BLIND-ACQUISITION-ALLOWLIST.json` (authoritative, sha256 9672c5f47168b3e1eaed63b96ff5bb4c30cb92e9feb16aa76aa37d8d77e0d822)
+- `UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.json` (sealed, sha256 e685209a21826fb22b438ddcd4e72d9b2bf70f603603c0187c0c3dbcf167158a)
+- `UNIT202-BLIND-ACQUISITION-ALLOWLIST.json` (authoritative, sha256 ac1f48da81facd72ab308d678ec6db09d52a4de45db6844d0163e6dbf84168be)
 - `UNIT202-BLIND-ACQUISITION-DENYLIST.json` (defence in depth only, sha256 750c70d99c73eea9c1524ee23709c1981a84bd57b8cc4b9365a6d9a722b6ffc0)
-- `UNIT202-PA-PROPOSITION-LEDGER.json` (sha256 30ace35f9fd9f30c32d6c57e38d821d005a5c037b51ba1a8658bc510b0bc9479)
-- `historical-benchmark-bindings.ts` (sha256 a4e513c98ba43164e6cf272657c03f22697cb55453ca509fd465c324d5c6946e)
+- `UNIT202-PA-PROPOSITION-LEDGER.json` (sha256 6305a09c84eb5e0e8d48fa28c1b3cc655b781cbf2575cec6cf247ab2f98f6f8f)
+- `historical-benchmark-bindings.ts` (sha256 027943c9124f83247fb25e4454faafa9ea618dc3c5cf4ba4362b94a8b1909c49)
 
 Project-Architect decisions remaining: **0** (expected 0).
 

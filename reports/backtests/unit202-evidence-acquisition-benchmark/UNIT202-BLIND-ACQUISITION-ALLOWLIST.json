@@ -1,29 +1,30 @@
 {
   "qualificationId": "2365-02",
-  "policyStatement": "AUTHORITATIVE local-input contract for the future blind Unit-202 acquisition run. Default principle: DENY ALL LOCAL UNIT-202 MATERIAL EXCEPT EXPLICITLY ALLOWED INPUTS (task section 10). A path is readable only if it matches an entry below -- the denylist (UNIT202-BLIND-ACQUISITION-DENYLIST.json) is defence in depth only and never itself grants access.",
-  "allowedInputs": [
-    {
-      "rule": "FROZEN_BLIND_TARGET_MANIFEST",
-      "path": "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
-      "requiredHash": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
-      "note": "The exact frozen file, identified by hash -- a file at this path with a different hash is NOT authorised by this rule."
-    },
-    {
-      "rule": "GENERIC_ACQUISITION_CODE",
-      "pathPattern": "scripts/content/technical-evidence-acquisition/** (or wherever the next package locates it)",
-      "note": "Generic technical-evidence-acquisition code/configuration, once identified in the next package -- never Unit-202-specific data."
-    },
-    {
-      "rule": "GENERIC_SOURCE_AUTHORITY_POLICY",
-      "pathPattern": "non-Unit-202 generic source-authority policy/schema files needed to execute the research process",
-      "note": "E.g. packages/content-schema source-authority/verification schema definitions -- structural/policy code, never Unit-202 content."
-    },
-    {
-      "rule": "EXPERIMENT_RUNTIME_OUTPUT",
-      "pathPattern": "runtime/output directories created specifically for the blind acquisition experiment",
-      "note": "Write targets for the experiment's own new output -- never pre-existing Unit-202 material."
-    }
-  ],
+  "policyStatement": "AUTHORITATIVE local-input contract for the future blind Unit-202 acquisition run. Default principle: DENY ALL LOCAL UNIT-202 MATERIAL EXCEPT EXPLICITLY ALLOWED INPUTS (task section 10). A path is readable only if it matches an entry in guardConfig.allowedInputs below -- the denylist (UNIT202-BLIND-ACQUISITION-DENYLIST.json) is defence in depth only and never itself grants access. guardConfig is a literal @alp/technical-evidence-engine LocalAccessGuardConfig -- loadable directly into a real LocalAccessGuard, not prose.",
+  "guardConfig": {
+    "experimentId": "unit202-blind-acquisition",
+    "allowedInputs": [
+      {
+        "rule": "FROZEN_BLIND_TARGET_MANIFEST",
+        "matchKind": "EXACT_PATH",
+        "pathOrGlob": "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
+        "requiredHash": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+        "note": "The exact frozen file, identified by hash -- a file at this path with a different hash is NOT authorised by this rule."
+      },
+      {
+        "rule": "GENERIC_TECHNICAL_EVIDENCE_ENGINE_CODE",
+        "matchKind": "GLOB",
+        "pathOrGlob": "packages/technical-evidence-engine/**",
+        "note": "Generic planner/acquisition-contract/access-guard code and its default source-authority policy -- never Unit-202-specific data."
+      },
+      {
+        "rule": "EXPERIMENT_RUNTIME_OUTPUT",
+        "matchKind": "GLOB",
+        "pathOrGlob": "reports/backtests/unit202-blind-acquisition-run/**",
+        "note": "Write target reserved for the future acquisition run's own new output -- never pre-existing Unit-202 material. This directory does not exist yet; it is reserved by this rule for when the run is authorised."
+      }
+    ]
+  },
   "defaultForUnlistedPaths": "DENY",
   "unit202DefaultDenyExamples": [
     "any path containing 'unit202'",

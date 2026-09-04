@@ -1,0 +1,254 @@
+/**
+ * CC-23 sections 17-20/23/28: proves the Unit-202 regression adapter and
+ * preflight harness against the frozen blind acquisition target manifest
+ * -- the qualification-specific validation for the generic evidence-
+ * requirement-planning architecture (@alp/technical-evidence-engine).
+ */
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import { planEvidenceRequirements, type EvidenceRequirement } from "@alp/technical-evidence-engine";
+import { describe, expect, it } from "vitest";
+
+import { buildUnit202PlanningInput } from "./unit202-adapter.ts";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const repoRoot = path.resolve(__dirname, "..", "..", "..");
+
+const EXPECTED_BLIND_TARGET_HASH = "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4";
+
+function readJson<T>(relPath: string): T {
+  return JSON.parse(readFileSync(path.join(repoRoot, relPath), "utf-8")) as T;
+}
+function readText(relPath: string): string {
+  return readFileSync(path.join(repoRoot, relPath), "utf-8");
+}
+
+const { input, audit, blindTargetsContentHash } = buildUnit202PlanningInput();
+const planResult = planEvidenceRequirements(input);
+
+function requirementFor(text: string): EvidenceRequirement | undefined {
+  return planResult.requirements.find((r) => r.requirementText === text);
+}
+
+describe("CC-23 section 26/12 -- frozen blind target manifest hash is unchanged", () => {
+  it("the adapter's own observed content hash matches the CC-22C-frozen hash byte-for-byte", () => {
+    expect(blindTargetsContentHash).toBe(EXPECTED_BLIND_TARGET_HASH);
+  });
+
+  it("independently recomputing the hash from the raw file on disk also matches", () => {
+    const raw = readText("reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json");
+    expect(createHash("sha256").update(raw).digest("hex")).toBe(EXPECTED_BLIND_TARGET_HASH);
+  });
+});
+
+describe("CC-23 section 18 -- AC2.2 meaning/symbol/unit/distinction decomposes into independent coverage dimensions", () => {
+  it("Resistance (with an explicit 'distinction from resistivity') decomposes into 4 independent requirements", () => {
+    const resistanceReqs = planResult.requirements.filter((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-028"));
+    expect(resistanceReqs).toHaveLength(4);
+    const dims = resistanceReqs.map((r) => r.requiredCoverageDimensions[0]).sort();
+    expect(dims).toEqual(["DEFINITION", "DISTINCTION", "QUANTITY_SYMBOL", "UNIT_SYMBOL"]);
+  });
+
+  it("Current (no explicit distinction clause) decomposes into exactly 3 requirements, never inventing a DISTINCTION dimension", () => {
+    const currentReqs = planResult.requirements.filter((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-026"));
+    expect(currentReqs).toHaveLength(3);
+    expect(currentReqs.map((r) => r.requiredCoverageDimensions[0])).not.toContain("DISTINCTION");
+  });
+
+  it("all 11 AC2.2 quantities are decomposed as CONCEPT_DEFINITION targets, never left as one opaque fact", () => {
+    const ac2_2AcquisitionIds = audit.filter((a) => a.ac === "AC2.2").map((a) => a.knowledgeTargetId);
+    expect(ac2_2AcquisitionIds).toHaveLength(11);
+    for (const id of ac2_2AcquisitionIds) {
+      const target = input.knowledgeTargets.find((t) => t.knowledgeTargetId === id)!;
+      expect(target.kind).toBe("CONCEPT_DEFINITION");
+      expect(target.expectedCoverageDimensions!.length).toBeGreaterThan(1);
+    }
+  });
+});
+
+describe("CC-23 section 18 -- 'Fractions.' becomes TOPIC_BREADTH_COVERAGE, never a fake exact fact", () => {
+  it("Fractions./Percentages./Algebra. all resolve to TOPIC_BREADTH_COVERAGE", () => {
+    for (const text of ["Fractions.", "Percentages.", "Algebra."]) {
+      const r = requirementFor(text);
+      expect(r, `no requirement found for "${text}"`).toBeDefined();
+      expect(r!.requirementMode).toBe("TOPIC_BREADTH_COVERAGE");
+    }
+  });
+
+  it("Positive/Negative indices. and Pythagoras. are NOT swept into breadth -- narrow atomic facts stay atomic", () => {
+    for (const text of ["Positive indices.", "Negative indices.", "Pythagoras."]) {
+      const r = requirementFor(text);
+      expect(r!.requirementMode).not.toBe("TOPIC_BREADTH_COVERAGE");
+    }
+  });
+});
+
+describe("CC-23 section 18 -- basic electron theory decomposes rather than acting as one opaque fact", () => {
+  it("AC4.1's three electron-theory propositions each get their own evidence requirement, not one bundled fact", () => {
+    const ac41 = audit.filter((a) => a.ac === "AC4.1" && /electron/i.test(a.rawProposition));
+    expect(ac41.length).toBeGreaterThanOrEqual(2);
+    for (const a of ac41) {
+      expect(planResult.requirements.some((r) => r.sourceKnowledgeTargetIds.includes(a.knowledgeTargetId))).toBe(true);
+    }
+    // Distinct requirements, not one shared bundled requirement:
+    const reqIds = new Set(ac41.flatMap((a) => planResult.requirements.filter((r) => r.sourceKnowledgeTargetIds.includes(a.knowledgeTargetId)).map((r) => r.evidenceRequirementId)));
+    expect(reqIds.size).toBeGreaterThanOrEqual(2);
+  });
+});
+
+describe("CC-23 section 18 -- broad force/work/energy integration reuses constituent technical truths", () => {
+  it("the force/work/energy/power/efficiency relationship target is satisfied by its 5 constituents, emitting no requirement of its own", () => {
+    const satisfaction = planResult.structuralSatisfactions.find((s) => s.knowledgeTargetId === "unit202::ACQ-066");
+    expect(satisfaction?.kind).toBe("INTEGRATION_SATISFIED_BY_CONSTITUENTS");
+    expect(satisfaction?.satisfiedByKnowledgeTargetIds).toEqual(["unit202::ACQ-060", "unit202::ACQ-061", "unit202::ACQ-062", "unit202::ACQ-064", "unit202::ACQ-065"]);
+    expect(planResult.requirements.some((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-066"))).toBe(false);
+  });
+});
+
+describe("CC-23 section 10/18 -- F=mg is reused canonically across multiple learner targets", () => {
+  it("the two F=mg propositions (AC3.1, AC3.3) collapse into one canonical requirement", () => {
+    const r = requirementFor("F = mg.");
+    expect(r).toBeDefined();
+    expect([...r!.sourceKnowledgeTargetIds].sort()).toEqual(["unit202::ACQ-047", "unit202::ACQ-068"]);
+  });
+});
+
+describe("CC-23 section 18 -- schematic recognition exposes per-component-family coverage", () => {
+  it("PHYSICAL_OR_COMPONENT_RECOGNITION targets each become independent SCHEMATIC_OR_DIAGRAM_RECOGNITION requirements", () => {
+    const recognitionAudits = audit.filter((a) => {
+      const t = input.knowledgeTargets.find((kt) => kt.knowledgeTargetId === a.knowledgeTargetId);
+      return t?.kind === "RECOGNITION_REQUIREMENT";
+    });
+    expect(recognitionAudits.length).toBeGreaterThan(1);
+    for (const a of recognitionAudits) {
+      const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes(a.knowledgeTargetId));
+      expect(req?.requirementMode, `expected SCHEMATIC_OR_DIAGRAM_RECOGNITION for "${a.rawProposition}"`).toBe("SCHEMATIC_OR_DIAGRAM_RECOGNITION");
+    }
+  });
+});
+
+describe("CC-23 section 18 -- representative exemplars remain semantically distinct", () => {
+  it("each representative-exemplar target produces its own requirement, never merged into a generic bucket", () => {
+    const exemplarAudits = audit.filter((a) => input.knowledgeTargets.find((t) => t.knowledgeTargetId === a.knowledgeTargetId)?.isRepresentativeExemplar);
+    expect(exemplarAudits.length).toBeGreaterThanOrEqual(3);
+    const texts = new Set(exemplarAudits.map((a) => a.rawProposition));
+    expect(texts.size).toBe(exemplarAudits.length); // each is textually distinct, so canonical dedup does not collapse them
+    for (const a of exemplarAudits) {
+      const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes(a.knowledgeTargetId));
+      expect(req?.representativeExemplar).toBe(true);
+    }
+  });
+});
+
+describe("CC-23 section 18 -- contextual material remains optional", () => {
+  it("every CONTEXTUAL_TEACHING_SUPPORT target's requirement(s) carry acquisitionPriority OPTIONAL_CONTEXT", () => {
+    const contextualIds = input.knowledgeTargets.filter((t) => t.classification === "CONTEXTUAL_TEACHING_SUPPORT").map((t) => t.knowledgeTargetId);
+    expect(contextualIds.length).toBeGreaterThan(0);
+    for (const id of contextualIds) {
+      const reqs = planResult.requirements.filter((r) => r.sourceKnowledgeTargetIds.includes(id));
+      for (const r of reqs) expect(r.acquisitionPriority).toBe("OPTIONAL_CONTEXT");
+    }
+  });
+});
+
+describe("CC-23 section 27 -- decomposition gaps are honest, not forced to zero", () => {
+  it("at least one target legitimately abstains with SEMANTIC_DECOMPOSITION_REQUIRED", () => {
+    const gaps = planResult.requirements.filter((r) => r.decompositionStatus === "SEMANTIC_DECOMPOSITION_REQUIRED");
+    expect(gaps.length).toBeGreaterThan(0);
+    for (const g of gaps) expect(g.decompositionReason).toBeTruthy();
+  });
+});
+
+describe("CC-23 section 28 -- proof of architectural invariants", () => {
+  const adapterSource = readText("scripts/backtests/unit202-evidence-acquisition-preflight/unit202-adapter.ts");
+  const buildPreflightSource = readText("scripts/backtests/unit202-evidence-acquisition-preflight/build-preflight.ts");
+  const enginePackageJson = readJson<{ dependencies?: Record<string, string> }>("packages/technical-evidence-engine/package.json");
+  const engineTypesSource = readText("packages/technical-evidence-engine/src/types.ts");
+  const enginePlannerSource = readText("packages/technical-evidence-engine/src/planner.ts");
+  const engineAccessGuardSource = readText("packages/technical-evidence-engine/src/access-guard.ts");
+
+  it("(A) production acquisition/planner code contains zero Unit-202 branching literals", () => {
+    for (const source of [engineTypesSource, enginePlannerSource, engineAccessGuardSource]) {
+      const lower = source.toLowerCase();
+      for (const literal of ["unit202", "unit 202", "2365", "city & guilds", "ammeter", "voltmeter", "triac", "ac2.2"]) {
+        expect(lower.includes(literal), `generic package source must not contain "${literal}"`).toBe(false);
+      }
+    }
+  });
+
+  it("(B) generic tests run without Unit-202 data -- every fixture knowledgeTargetId in planner.test.ts uses a synthetic-* prefix, never unit202::", () => {
+    const genericTestSource = readText("packages/technical-evidence-engine/src/planner.test.ts");
+    const idLiterals = [...genericTestSource.matchAll(/knowledgeTargetId:\s*"([^"]+)"/g)].map((m) => m[1]!);
+    expect(idLiterals.length).toBeGreaterThan(10);
+    for (const id of idLiterals) {
+      expect(id.startsWith("synthetic-"), `fixture id "${id}" must use a synthetic-* prefix, never real qualification data`).toBe(true);
+    }
+  });
+
+  it("(C) the same canonical requirement supports two synthetic qualifications (proven directly in the generic package's own test suite, cross-checked here for presence)", () => {
+    const genericTestSource = readText("packages/technical-evidence-engine/src/planner.test.ts");
+    expect(genericTestSource).toContain("cross-qualification canonical reuse");
+  });
+
+  it("(D) the planner performs no research -- no I/O signature appears in generic planner/types/access-guard source", () => {
+    for (const signature of ["fetch(", "http.request", "https.request", "readFileSync", "writeFileSync", "WebFetch", "WebSearch"]) {
+      expect(enginePlannerSource.includes(signature), `planner.ts must not contain "${signature}"`).toBe(false);
+    }
+  });
+
+  it("(E) the Unit-202 adapter/preflight-harness dependency direction is one-way: it imports FROM @alp/technical-evidence-engine, and the generic package never references scripts/backtests or reports/", () => {
+    expect(adapterSource).toContain('from "@alp/technical-evidence-engine"');
+    expect(buildPreflightSource).toContain('from "@alp/technical-evidence-engine"');
+    for (const source of [engineTypesSource, enginePlannerSource, engineAccessGuardSource]) {
+      expect(source).not.toMatch(/scripts\/backtests/);
+      expect(source).not.toMatch(/reports\//);
+    }
+  });
+
+  it("this package declares zero dependency on any Unit-202-specific or reconciliation-specific workspace concept, and @alp/technical-evidence-engine itself still declares zero @alp/* dependency", () => {
+    expect(Object.keys(enginePackageJson.dependencies ?? {}).every((d) => !d.startsWith("@alp/"))).toBe(true);
+  });
+
+  it("(F) architecture documentation includes the new pipeline stage", () => {
+    const doc = readText("docs/architecture/qualification-knowledge-construction-pipeline.md");
+    expect(doc).toContain("EVIDENCE-REQUIREMENT PLANNING");
+    expect(doc).toContain("technical-evidence-engine");
+  });
+
+  it("(G) source authority cannot create qualification scope -- SourceAuthorityPolicy has no field capable of expressing scope/classification", () => {
+    expect(engineTypesSource).not.toMatch(/SourceAuthorityPolicy[\s\S]{0,400}classification/);
+  });
+
+  it("(I) no live web acquisition occurred -- no network signature anywhere in this package's own source", () => {
+    for (const source of [adapterSource, buildPreflightSource]) {
+      for (const signature of ["fetch(", "http.request", "https.request", "XMLHttpRequest", "WebFetch(", "WebSearch("]) {
+        expect(source.includes(signature), `"${signature}" must not appear in Unit-202 preflight harness source`).toBe(false);
+      }
+    }
+  });
+});
+
+describe("CC-23 section 20 -- evidence-requirement-level historical benchmark exists and carries provenance", () => {
+  it("the generated benchmark file scores requirements, not learner-target rows, with full per-source provenance", () => {
+    const benchmark = readJson<{ entries: { evidenceRequirementId: string; historicalCoverageState: string; sourceProvenance: unknown[] }[] }>("reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-BENCHMARK.json");
+    expect(benchmark.entries.length).toBe(planResult.requirements.length);
+    for (const e of benchmark.entries) {
+      expect(["HISTORICALLY_EXACTLY_SUPPORTED", "HISTORICALLY_PARTIALLY_SUPPORTED", "HISTORICALLY_SOURCE_GAP", "NO_HISTORICAL_BENCHMARK"]).toContain(e.historicalCoverageState);
+      expect(Array.isArray(e.sourceProvenance)).toBe(true);
+    }
+  });
+});
+
+describe("CC-23 section 26 -- preflight gate reports every required check", () => {
+  it("the gate file exists and every required target is accounted for", () => {
+    const gate = readJson<{ everyRequiredKnowledgeTargetMapsToReadyOrGap: boolean; unaccountedTargetIds: string[]; liveAcquisitionPerformed: boolean; duplicateDomainTruthsReused: boolean }>("reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-PREFLIGHT-GATE.json");
+    expect(gate.everyRequiredKnowledgeTargetMapsToReadyOrGap).toBe(true);
+    expect(gate.unaccountedTargetIds).toEqual([]);
+    expect(gate.liveAcquisitionPerformed).toBe(false);
+    expect(gate.duplicateDomainTruthsReused).toBe(true);
+  });
+});

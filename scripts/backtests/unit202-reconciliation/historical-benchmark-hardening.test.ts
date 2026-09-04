@@ -17,6 +17,10 @@ import { describe, expect, it } from "vitest";
 
 import { unit202TechnicalSourceVerification } from "../../content/data/unit202-technical-source-verification.ts";
 import { HISTORICAL_BENCHMARK_BINDINGS } from "./historical-benchmark-bindings.ts";
+import { historicalBenchmarkFor, validateHistoricalBenchmarkBindings } from "./historical-resolution.ts";
+import { PA_TARGET } from "./pa-target.ts";
+
+validateHistoricalBenchmarkBindings();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,7 +52,7 @@ const sealedBenchmark = readJson<{
 }>("reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.json");
 
 const allowlist = readJson<{
-  allowedInputs: { rule: string; path?: string; requiredHash?: string; pathPattern?: string }[];
+  guardConfig: { experimentId: string; allowedInputs: { rule: string; matchKind: string; pathOrGlob: string; requiredHash?: string }[] };
   defaultForUnlistedPaths: string;
   webResearchNote: string;
   accessAuditContract: { status: string; nonAllowlistedReadPolicy: { onAttempt: string; experimentValidity: string; continuation: string } };
@@ -76,14 +80,15 @@ describe("CC-22C section 18.BB -- no MANUAL_HISTORICAL_OVERRIDES state map exist
 });
 
 describe("CC-22C section 18.BC/A -- every VERIFIED target resolves to explicit historical verification record(s), all genuinely VERIFIED", () => {
-  it("every HISTORICALLY_VERIFIED row has >=1 bound record and none of them are SOURCE_GAP or CONDITIONAL_SOURCE_GAP", () => {
+  it("every HISTORICALLY_VERIFIED row has >=1 bound record, all genuinely VERIFIED UNLESS an explicit, audited CC-23 section-19 atomic-subclaim override justifies the exception", () => {
     const verifiedRows = ledger.filter((r) => r.historicalBenchmarkState === "HISTORICALLY_VERIFIED");
     expect(verifiedRows.length).toBeGreaterThan(0);
     for (const row of verifiedRows) {
-      const entry = sealedBenchmark.entries.find((e) => e.proposition === row.proposition);
+      const entry = sealedBenchmark.entries.find((e) => e.proposition === row.proposition) as { boundHistoricalRecords: { coverageState: string }[]; overrideNote?: string | null } | undefined;
       expect(entry, `no sealed-benchmark entry for "${row.proposition}"`).toBeDefined();
       expect(entry!.boundHistoricalRecords.length).toBeGreaterThan(0);
-      for (const rec of entry!.boundHistoricalRecords) expect(rec.coverageState).toBe("VERIFIED");
+      if (entry!.overrideNote) continue; // section-19 override: the raw bound record(s) may legitimately NOT all be VERIFIED -- the override itself is separately proven auditable below.
+      for (const rec of entry!.boundHistoricalRecords) expect(rec.coverageState, `"${row.proposition}" has no override yet a non-VERIFIED bound record -- would be an unaudited exception`).toBe("VERIFIED");
     }
   });
 });
@@ -157,15 +162,57 @@ describe("CC-22C section 18.I / 21.BF -- one historical row may support multiple
 });
 
 describe("CC-22C section 18.J / 21.BG -- a PA target may require multiple historical records through explicit subclaims, deterministically and conservatively", () => {
-  it("every MULTIPLE_HISTORICAL_RECORDS_REQUIRED binding's resulting state matches the section-6 aggregation rule recomputed independently", () => {
+  it("every MULTIPLE_HISTORICAL_RECORDS_REQUIRED binding's resulting state matches historical-resolution.ts's aggregation rule (including any section-19 atomic-subclaim override), recomputed independently via the shared module", () => {
     const multi = HISTORICAL_BENCHMARK_BINDINGS.filter((b) => b.mappingBasis === "MULTIPLE_HISTORICAL_RECORDS_REQUIRED");
     expect(multi.length).toBeGreaterThan(0);
     for (const b of multi) {
-      const resolved = b.records.map((r) => unit202TechnicalSourceVerification.propositionCoverage.find((c) => c.clusterKey === r.clusterKey && c.requirementKind === r.requirementKind && c.requirementText === r.requirementText)!);
-      const states = new Set(resolved.map((r) => r.coverageState));
-      const expectedState = states.has("SOURCE_GAP") ? "HISTORICALLY_SOURCE_GAP" : states.has("CONDITIONAL_SOURCE_GAP") ? "HISTORICALLY_CONDITIONAL" : "HISTORICALLY_VERIFIED";
+      const paRow = PA_TARGET.find((p) => p.proposition === b.paPropositionText)!;
+      const expected = historicalBenchmarkFor(paRow);
       const row = ledger.find((r) => r.proposition === b.paPropositionText)!;
-      expect(row.historicalBenchmarkState, `"${b.paPropositionText}" expected ${expectedState} from its ${resolved.length} bound records`).toBe(expectedState);
+      expect(row.historicalBenchmarkState, `"${b.paPropositionText}" expected ${expected.state} (independently recomputed via historical-resolution.ts)`).toBe(expected.state);
+    }
+  });
+});
+
+describe("CC-23 section 19 -- atomic subclaims never inherit a sibling sub-claim's gap from a shared compound record", () => {
+  it("Mean/Median/Mode read HISTORICALLY_VERIFIED even though their bound compound records carry CONDITIONAL_SOURCE_GAP, because the override is verified against the connected locator's own recorded coverage", () => {
+    for (const proposition of ["Mean.", "Median.", "Mode."]) {
+      const row = ledger.find((r) => r.proposition === proposition)!;
+      expect(row.historicalBenchmarkState, `"${proposition}" must not inherit the sibling "Statistical range." sub-claim's gap`).toBe("HISTORICALLY_VERIFIED");
+    }
+  });
+
+  it("Statistical range. correctly keeps its own genuine gap -- the override applies ONLY to the sub-claims the locator actually supports", () => {
+    const row = ledger.find((r) => r.proposition === "Statistical range.")!;
+    expect(row.historicalBenchmarkState).toBe("HISTORICALLY_CONDITIONAL");
+  });
+
+  it("the sealed benchmark records a transparent overrideNote for every subclaim-override-affected entry -- never a silent substitution", () => {
+    for (const proposition of ["Mean.", "Median.", "Mode."]) {
+      const entry = sealedBenchmark.entries.find((e) => e.proposition === proposition) as { overrideNote?: string | null } | undefined;
+      expect(entry?.overrideNote, `"${proposition}" sealed entry must carry an overrideNote`).toBeTruthy();
+    }
+  });
+
+  it("Dimmer: DIAC triggering. reads its atomic fact's own real VERIFIED record, not the full dimmer chain's SOURCE_GAP", () => {
+    const row = ledger.find((r) => r.proposition === "Dimmer: DIAC triggering.")!;
+    expect(row.historicalBenchmarkState).toBe("HISTORICALLY_VERIFIED");
+  });
+
+  it("Dimmer: TRIAC AC switching/control. still correctly reads the full chain's genuine SOURCE_GAP -- the DIAC rebinding did not mask a real gap elsewhere", () => {
+    const row = ledger.find((r) => r.proposition === "Dimmer: TRIAC AC switching/control.")!;
+    expect(row.historicalBenchmarkState).toBe("HISTORICALLY_SOURCE_GAP");
+  });
+
+  it("an atomicSubclaimOverride can only ever cite a locator connected to its own binding's records (mechanically validated at build time)", () => {
+    const overridden = HISTORICAL_BENCHMARK_BINDINGS.filter((b) => b.atomicSubclaimOverride);
+    expect(overridden.length).toBeGreaterThan(0);
+    for (const b of overridden) {
+      const locatorKey = b.atomicSubclaimOverride!.verifiedAgainstLocatorKey;
+      const locator = unit202TechnicalSourceVerification.sourceLocators.find((l) => l.key === locatorKey);
+      expect(locator, `override locator "${locatorKey}" for "${b.paPropositionText}" must be a real sourceLocators entry`).toBeDefined();
+      const resolvedRecords = b.records.map((r) => unit202TechnicalSourceVerification.propositionCoverage.find((c) => c.clusterKey === r.clusterKey && c.requirementKind === r.requirementKind && c.requirementText === r.requirementText)!);
+      expect(resolvedRecords.some((r) => r.supportingSourceLocatorKeys.includes(locatorKey)), `override locator "${locatorKey}" for "${b.paPropositionText}" must be connected to at least one of its own bound records`).toBe(true);
     }
   });
 });
@@ -178,18 +225,19 @@ describe("CC-22C section 18.BH / 15 -- blind target manifest hash is unchanged e
 });
 
 describe("CC-22C section 18.BI -- allowlist defaults to deny for arbitrary Unit-202 paths", () => {
-  it("defaultForUnlistedPaths is DENY and an arbitrary made-up unit202 path is not in allowedInputs", () => {
+  it("defaultForUnlistedPaths is DENY and an arbitrary made-up unit202 path is not in guardConfig.allowedInputs", () => {
     expect(allowlist.defaultForUnlistedPaths).toBe("DENY");
     const arbitraryPath = "scripts/content/data/unit202-completely-made-up-file.ts";
-    expect(allowlist.allowedInputs.some((a) => a.path === arbitraryPath || a.pathPattern === arbitraryPath)).toBe(false);
+    expect(allowlist.guardConfig.allowedInputs.some((a) => a.pathOrGlob === arbitraryPath)).toBe(false);
   });
 });
 
 describe("CC-22C section 18.BJ -- exact blind-target path+hash is allowed", () => {
   it("the FROZEN_BLIND_TARGET_MANIFEST rule names the real path and the real, current hash", () => {
-    const rule = allowlist.allowedInputs.find((a) => a.rule === "FROZEN_BLIND_TARGET_MANIFEST");
+    const rule = allowlist.guardConfig.allowedInputs.find((a) => a.rule === "FROZEN_BLIND_TARGET_MANIFEST");
     expect(rule).toBeDefined();
-    expect(rule!.path).toBe("reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json");
+    expect(rule!.matchKind).toBe("EXACT_PATH");
+    expect(rule!.pathOrGlob).toBe("reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json");
     expect(rule!.requiredHash).toBe(EXPECTED_BLIND_TARGET_HASH);
   });
 });
@@ -221,7 +269,7 @@ describe("CC-22C section 18.BN -- an unknown newly-created unit202-* file is den
   it("a path never seen by the denylist author is still denied by the allowlist's default-deny (never needs an explicit denylist entry)", () => {
     const neverSeenPath = "scripts/content/data/unit202-freshly-created-after-this-package.ts";
     expect(denylist.deniedPaths).not.toContain(neverSeenPath); // proves it was never enumerated
-    expect(allowlist.allowedInputs.some((a) => a.path === neverSeenPath)).toBe(false); // yet still denied, via default-deny
+    expect(allowlist.guardConfig.allowedInputs.some((a) => a.pathOrGlob === neverSeenPath)).toBe(false); // yet still denied, via default-deny
     expect(allowlist.defaultForUnlistedPaths).toBe("DENY");
   });
 });

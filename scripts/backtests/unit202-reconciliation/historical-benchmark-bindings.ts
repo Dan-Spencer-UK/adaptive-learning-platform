@@ -47,11 +47,38 @@ export interface HistoricalRecordRef {
 
 export type MappingBasis = "EXACT_EQUIVALENT" | "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET" | "MULTIPLE_HISTORICAL_RECORDS_REQUIRED";
 
+/**
+ * CC-23 section 19 correction: a bound record's own `coverageState`
+ * sometimes reflects a gap that genuinely belongs to a DIFFERENT atomic
+ * sub-claim than THIS proposition needs (a compound record covering
+ * several atomic facts, only some of which are actually gapped). Trusting
+ * the record's `coverageState` verbatim in that case would make an
+ * atomic target wrongly inherit a sibling sub-claim's gap (the exact
+ * MEAN/MEDIAN/MODE defect the task names).
+ *
+ * This is NOT a licence to hand-type a historical state (the same
+ * prohibition as before still applies to `records`/`mappingBasis`
+ * themselves) -- it is a narrow, mechanically-VALIDATED escape hatch:
+ * `verifiedAgainstLocatorKey` must resolve to a real
+ * `unit202TechnicalSourceVerification.sourceLocators` entry AND must
+ * appear in the `supportingSourceLocatorKeys` of at least one of this
+ * binding's own resolved `records` (historical-resolution.ts throws
+ * otherwise) -- an override can never cite a locator unconnected to the
+ * binding's own records. `overrideRationale` must name the specific
+ * locator text basis, never gapReason prose alone (task section 19: "Do
+ * not trust gapReason text alone. Verify against the actual stored
+ * approved historical locator/record.").
+ */
 export interface HistoricalBenchmarkBinding {
   readonly paPropositionText: string;
   readonly mappingBasis: MappingBasis;
   readonly records: readonly HistoricalRecordRef[];
   readonly rationale: string;
+  readonly atomicSubclaimOverride?: {
+    readonly state: "VERIFIED" | "CONDITIONAL_SOURCE_GAP" | "SOURCE_GAP";
+    readonly verifiedAgainstLocatorKey: string;
+    readonly overrideRationale: string;
+  };
 }
 
 function ref(clusterKey: string, requirementKind: string, requirementText: string): HistoricalRecordRef {
@@ -294,10 +321,48 @@ export const HISTORICAL_BENCHMARK_BINDINGS: readonly HistoricalBenchmarkBinding[
     records: [R_PYTHAGORAS_TRIG, R_SOLVE_RIGHT_TRIANGLE],
     rationale: "The concept record names the sine/cosine/tangent ratios; the procedure record covers solving from them -- both bear on 'use in right triangles'.",
   },
-  { paPropositionText: "Statistical range.", mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED", records: [R_RANGE_MEAN_MEDIAN_MODE_DEF, R_COMPUTE_RANGE_MEAN_MEDIAN_MODE], rationale: "Definition record explicitly names 'range'; procedure record covers computing it." },
-  { paPropositionText: "Mean.", mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED", records: [R_RANGE_MEAN_MEDIAN_MODE_DEF, R_COMPUTE_RANGE_MEAN_MEDIAN_MODE], rationale: "Definition record explicitly names 'mean'; procedure record covers computing it." },
-  { paPropositionText: "Median.", mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED", records: [R_RANGE_MEAN_MEDIAN_MODE_DEF, R_COMPUTE_RANGE_MEAN_MEDIAN_MODE], rationale: "Definition record explicitly names 'median'; procedure record covers computing it." },
-  { paPropositionText: "Mode.", mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED", records: [R_RANGE_MEAN_MEDIAN_MODE_DEF, R_COMPUTE_RANGE_MEAN_MEDIAN_MODE], rationale: "Definition record explicitly names 'mode'; procedure record covers computing it." },
+  {
+    paPropositionText: "Statistical range.",
+    mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
+    records: [R_RANGE_MEAN_MEDIAN_MODE_DEF, R_COMPUTE_RANGE_MEAN_MEDIAN_MODE],
+    rationale: "Definition record explicitly names 'range'; procedure record covers computing it. Both bound records' own coverageState (CONDITIONAL_SOURCE_GAP) is trusted verbatim here -- unlike mean/median/mode below, range genuinely IS the gapped sub-claim (loc-stats-center's own locatorSummary confirms range is absent, not merely unchecked; see the mean/median/mode override immediately below).",
+  },
+  {
+    paPropositionText: "Mean.",
+    mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
+    records: [R_RANGE_MEAN_MEDIAN_MODE_DEF, R_COMPUTE_RANGE_MEAN_MEDIAN_MODE],
+    rationale: "Definition record explicitly names 'mean'; procedure record covers computing it.",
+    atomicSubclaimOverride: {
+      state: "VERIFIED",
+      verifiedAgainstLocatorKey: "loc-stats-center",
+      overrideRationale:
+        "CC-23 section 19 correction: both bound records carry coverageState CONDITIONAL_SOURCE_GAP, but that gap belongs entirely to the SIBLING 'Statistical range.' sub-claim -- loc-stats-center's own locatorSummary states 'Defines mean, median and mode explicitly. Does NOT define statistical range anywhere in this section.' Mean's own atomic content is therefore fully, verifiably supported by the exact same locator; it must not inherit range's gap merely for sharing a compound record.",
+    },
+  },
+  {
+    paPropositionText: "Median.",
+    mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
+    records: [R_RANGE_MEAN_MEDIAN_MODE_DEF, R_COMPUTE_RANGE_MEAN_MEDIAN_MODE],
+    rationale: "Definition record explicitly names 'median'; procedure record covers computing it.",
+    atomicSubclaimOverride: {
+      state: "VERIFIED",
+      verifiedAgainstLocatorKey: "loc-stats-center",
+      overrideRationale:
+        "CC-23 section 19 correction: same basis as 'Mean.' above -- loc-stats-center's locatorSummary explicitly confirms median is defined; only range is absent from this source.",
+    },
+  },
+  {
+    paPropositionText: "Mode.",
+    mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
+    records: [R_RANGE_MEAN_MEDIAN_MODE_DEF, R_COMPUTE_RANGE_MEAN_MEDIAN_MODE],
+    rationale: "Definition record explicitly names 'mode'; procedure record covers computing it.",
+    atomicSubclaimOverride: {
+      state: "VERIFIED",
+      verifiedAgainstLocatorKey: "loc-stats-center",
+      overrideRationale:
+        "CC-23 section 19 correction: same basis as 'Mean.' above -- loc-stats-center's locatorSummary explicitly confirms mode is defined; only range is absent from this source.",
+    },
+  },
   { paPropositionText: "Formula transposition.", mappingBasis: "MULTIPLE_HISTORICAL_RECORDS_REQUIRED", records: [R_TRANSPOSITION, R_REARRANGE_EVALUATE_FORMULA], rationale: "Definition + matching procedure record, both about transposition." },
   { paPropositionText: "Ordinary decimal arithmetic.", mappingBasis: "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET", records: [R_FRACTIONS_DECIMALS_PCT], rationale: "Record explicitly names 'decimals' among the four operations." },
   { paPropositionText: "Proportional reasoning required to execute the above calculations.", mappingBasis: "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET", records: [R_FRACTIONS_DECIMALS_PCT], rationale: "Record explicitly names 'proportional reasoning'." },
@@ -486,7 +551,13 @@ export const HISTORICAL_BENCHMARK_BINDINGS: readonly HistoricalBenchmarkBinding[
   { paPropositionText: "Wireless control systems: application category/function.", mappingBasis: "EXACT_EQUIVALENT", records: [R_WIRELESS_TXRX], rationale: "Record names the wireless-control category and its function directly (unlike the other five applications, whose records address only a specific exemplar detail, not the bare category)." },
   { paPropositionText: "Security alarm: SCR/thyristor latching + sounder role.", mappingBasis: "EXACT_EQUIVALENT", records: [R_ALARM_SCR], rationale: "Record states this exactly (coverageState SOURCE_GAP)." },
   { paPropositionText: "Dimmer: TRIAC AC switching/control.", mappingBasis: "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET", records: [R_DIMMER_TRIAC_DIAC], rationale: "Record explicitly contains 'a TRIAC provides phase control' (coverageState SOURCE_GAP)." },
-  { paPropositionText: "Dimmer: DIAC triggering.", mappingBasis: "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET", records: [R_DIMMER_TRIAC_DIAC], rationale: "Same record explicitly contains 'a DIAC triggers'." },
+  {
+    paPropositionText: "Dimmer: DIAC triggering.",
+    mappingBasis: "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET",
+    records: [R_DIAC],
+    rationale:
+      "CC-23 section 19 correction: previously bound to R_DIMMER_TRIAC_DIAC (the full dimmer-chain record, coverageState SOURCE_GAP), which wrongly made this atomic sub-claim inherit the FULL CHAIN's gap (that record's own gapReason names the missing element as the capacitor-timing/phase-control assembly, not the DIAC-triggers-TRIAC fact). R_DIAC is a genuinely separate, VERIFIED record whose text ('...commonly used to trigger a TRIAC') states exactly this atomic fact, independent of whether the surrounding dimmer chain as a whole is fully sourced.",
+  },
   { paPropositionText: "Dimmer: basic timing/control -> delivered-power relationship.", mappingBasis: "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET", records: [R_DIMMER_TRIAC_DIAC], rationale: "Same record explicitly contains 'a capacitor provides timing...TRIAC provides phase control' -- one historical row explicitly supporting three PA targets, all SOURCE_GAP." },
   { paPropositionText: "Heating: thermistor sensing role.", mappingBasis: "EXACT_EQUIVALENT", records: [R_HEATING_THERMISTOR], rationale: "Record states this exactly." },
   { paPropositionText: "Motor: controlled electronic switching at general Level-2 depth.", mappingBasis: "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET", records: [R_MOTOR_RECTIFICATION], rationale: "Record explicitly contains 'controlled switching/protection at block-function level' (coverageState CONDITIONAL_SOURCE_GAP)." },

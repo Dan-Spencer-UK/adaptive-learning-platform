@@ -4,11 +4,11 @@
   "cc22bCommit": "8fa98b0",
   "blindTargetManifestHashUnchanged": true,
   "blindTargetManifestExpectedHash": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
-  "paPropositionLedgerHash": "30ace35f9fd9f30c32d6c57e38d821d005a5c037b51ba1a8658bc510b0bc9479",
+  "paPropositionLedgerHash": "6305a09c84eb5e0e8d48fa28c1b3cc655b781cbf2575cec6cf247ab2f98f6f8f",
   "blindAcquisitionTargetManifestHash": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
-  "historicalBindingsFileHash": "a4e513c98ba43164e6cf272657c03f22697cb55453ca509fd465c324d5c6946e",
-  "historicalBenchmarkHash": "5581b126ae48cefce6745ad404034d8a1b50cdab06c885a642a9ac2987e11a28",
-  "allowlistHash": "9672c5f47168b3e1eaed63b96ff5bb4c30cb92e9feb16aa76aa37d8d77e0d822",
+  "historicalBindingsFileHash": "027943c9124f83247fb25e4454faafa9ea618dc3c5cf4ba4362b94a8b1909c49",
+  "historicalBenchmarkHash": "e685209a21826fb22b438ddcd4e72d9b2bf70f603603c0187c0c3dbcf167158a",
+  "allowlistHash": "ac1f48da81facd72ab308d678ec6db09d52a4de45db6844d0163e6dbf84168be",
   "denylistHash": "750c70d99c73eea9c1524ee23709c1981a84bd57b8cc4b9365a6d9a722b6ffc0",
   "paPropositionCountsByClass": {
     "REQUIRED_QUALIFICATION_KNOWLEDGE": 168,
@@ -51,9 +51,9 @@
     "note": "SUPERSEDED. Task section 9: 'There is NO expected VERIFIED count... The correct counts are whatever the explicit audited bindings produce.'"
   },
   "finalExplicitBindingCounts": {
-    "historicallyVerified": 118,
-    "historicallyConditional": 17,
-    "historicallySourceGap": 8,
+    "historicallyVerified": 122,
+    "historicallyConditional": 14,
+    "historicallySourceGap": 7,
     "noHistoricalBenchmark": 28,
     "totalExplicitBindings": 143
   },
@@ -67,9 +67,9 @@
   "supersedesNote": "d828e78 (CC-22) and 48b1a98 (CC-22A/CC-22B) reconciliation counts and the CC-22B heuristic historical-benchmark counts (previousHeuristicCounts above) are SUPERSEDED. The blind acquisition target manifest itself is NOT superseded -- its hash is unchanged from CC-22B (task section 17's explicit instruction).",
   "denominators": {
     "acquisitionTargetsTotal": 171,
-    "historicallyVerified": 118,
-    "historicallyConditional": 17,
-    "historicallySourceGap": 8,
+    "historicallyVerified": 122,
+    "historicallyConditional": 14,
+    "historicallySourceGap": 7,
     "noHistoricalBenchmark": 28,
     "representativeExemplarTargets": 3,
     "contextualOptionalTargets": 15,

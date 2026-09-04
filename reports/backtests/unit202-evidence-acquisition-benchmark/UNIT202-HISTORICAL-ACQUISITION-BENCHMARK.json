@@ -21,6 +21,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -41,6 +42,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -50,6 +52,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -80,6 +83,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -100,6 +104,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -120,6 +125,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -129,6 +135,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -138,6 +145,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -159,6 +167,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -191,6 +200,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -221,12 +231,13 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
       "acquisitionTargetId": "ACQ-012",
       "proposition": "Mean.",
-      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
       "mappingBasis": "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
       "boundHistoricalRecords": [
         {
@@ -251,12 +262,13 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": "CC-23 section 19 atomic-subclaim override applied: raw record-level aggregation would read HISTORICALLY_CONDITIONAL, but loc-stats-center's own locator record establishes this specific atomic proposition independently. CC-23 section 19 correction: both bound records carry coverageState CONDITIONAL_SOURCE_GAP, but that gap belongs entirely to the SIBLING 'Statistical range.' sub-claim -- loc-stats-center's own locatorSummary states 'Defines mean, median and mode explicitly. Does NOT define statistical range anywhere in this section.' Mean's own atomic content is therefore fully, verifiably supported by the exact same locator; it must not inherit range's gap merely for sharing a compound record.",
       "currentQPBoundClaimKey": null
     },
     {
       "acquisitionTargetId": "ACQ-013",
       "proposition": "Median.",
-      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
       "mappingBasis": "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
       "boundHistoricalRecords": [
         {
@@ -281,12 +293,13 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": "CC-23 section 19 atomic-subclaim override applied: raw record-level aggregation would read HISTORICALLY_CONDITIONAL, but loc-stats-center's own locator record establishes this specific atomic proposition independently. CC-23 section 19 correction: same basis as 'Mean.' above -- loc-stats-center's locatorSummary explicitly confirms median is defined; only range is absent from this source.",
       "currentQPBoundClaimKey": null
     },
     {
       "acquisitionTargetId": "ACQ-014",
       "proposition": "Mode.",
-      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
       "mappingBasis": "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
       "boundHistoricalRecords": [
         {
@@ -311,6 +324,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": "CC-23 section 19 atomic-subclaim override applied: raw record-level aggregation would read HISTORICALLY_CONDITIONAL, but loc-stats-center's own locator record establishes this specific atomic proposition independently. CC-23 section 19 correction: same basis as 'Mean.' above -- loc-stats-center's locatorSummary explicitly confirms mode is defined; only range is absent from this source.",
       "currentQPBoundClaimKey": null
     },
     {
@@ -331,6 +345,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -351,6 +366,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -372,6 +388,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.si-unit.length"
     },
     {
@@ -393,6 +410,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.si-unit.area"
     },
     {
@@ -414,6 +432,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.si-unit.volume"
     },
     {
@@ -435,6 +454,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.si-unit.mass"
     },
     {
@@ -456,6 +476,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.si-unit.density"
     },
     {
@@ -477,6 +498,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.si-unit.time"
     },
     {
@@ -498,6 +520,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.si-unit.velocity"
     },
     {
@@ -529,6 +552,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.si-unit.temperature"
     },
     {
@@ -551,6 +575,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -560,6 +585,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -569,6 +595,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -578,6 +605,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -587,6 +615,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -596,6 +625,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -605,6 +635,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -614,6 +645,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -623,6 +655,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -632,6 +665,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -641,6 +675,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -650,6 +685,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -670,6 +706,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.ammeter-definition"
     },
     {
@@ -690,6 +727,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.voltmeter-definition"
     },
     {
@@ -699,6 +737,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.ohmmeter-definition"
     },
     {
@@ -719,6 +758,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -737,6 +777,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -757,6 +798,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -766,6 +808,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -786,6 +829,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.mass-definition"
     },
     {
@@ -806,6 +850,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.weight-definition"
     },
     {
@@ -836,6 +881,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -856,6 +902,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.weight-definition"
     },
     {
@@ -876,6 +923,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -885,6 +933,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -905,6 +954,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -935,6 +985,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -955,6 +1006,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -985,6 +1037,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.gear-mechanism"
     },
     {
@@ -1005,6 +1058,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1046,6 +1100,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.mechanical-advantage"
     },
     {
@@ -1067,6 +1122,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.pulley-mechanism"
     },
     {
@@ -1076,6 +1132,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1097,6 +1154,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1106,6 +1164,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1126,6 +1185,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1146,6 +1206,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1166,6 +1227,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1186,6 +1248,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1206,6 +1269,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1226,6 +1290,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1278,6 +1343,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1298,6 +1364,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.work-formula"
     },
     {
@@ -1318,6 +1385,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1327,6 +1395,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1336,6 +1405,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1356,6 +1426,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.power-mechanical-formula"
     },
     {
@@ -1376,6 +1447,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.efficiency-formula"
     },
     {
@@ -1398,6 +1470,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1459,6 +1532,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1480,6 +1554,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.current-charge-flow"
     },
     {
@@ -1500,6 +1575,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.conventional-vs-electron-flow"
     },
     {
@@ -1520,6 +1596,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.conductor-definition"
     },
     {
@@ -1540,6 +1617,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.insulator-definition"
     },
     {
@@ -1560,6 +1638,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1590,6 +1669,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1610,6 +1690,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1630,6 +1711,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1661,6 +1743,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.resistance-resistivity-relation"
     },
     {
@@ -1681,6 +1764,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.ohms-law"
     },
     {
@@ -1701,6 +1785,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.ohms-law"
     },
     {
@@ -1721,6 +1806,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1741,6 +1827,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1771,6 +1858,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.series-resistance"
     },
     {
@@ -1792,6 +1880,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1813,6 +1902,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1845,6 +1935,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.parallel-resistance"
     },
     {
@@ -1865,6 +1956,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1885,6 +1977,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.thermal-effect"
     },
     {
@@ -1905,6 +1998,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.thermal-effect"
     },
     {
@@ -1937,6 +2031,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1967,6 +2062,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -1987,6 +2083,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.ohms-law"
     },
     {
@@ -2009,6 +2106,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2029,6 +2127,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.thermal-effect"
     },
     {
@@ -2049,6 +2148,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.chemical-effect"
     },
     {
@@ -2058,6 +2158,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2078,6 +2179,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.magnetic-attraction-repulsion"
     },
     {
@@ -2098,6 +2200,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2119,6 +2222,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.flux-vs-flux-density"
     },
     {
@@ -2140,6 +2244,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.flux-vs-flux-density"
     },
     {
@@ -2161,6 +2266,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.flux-vs-flux-density"
     },
     {
@@ -2181,6 +2287,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.magnetic-field-production"
     },
     {
@@ -2201,6 +2308,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.magnetic-field-production"
     },
     {
@@ -2221,6 +2329,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2241,6 +2350,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2261,6 +2371,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2281,6 +2392,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2301,6 +2413,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2319,6 +2432,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2339,6 +2453,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2359,6 +2474,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2377,6 +2493,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2399,6 +2516,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2408,6 +2526,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2417,6 +2536,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2426,6 +2546,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2446,6 +2567,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2466,6 +2588,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2486,6 +2609,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2506,6 +2630,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2526,6 +2651,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2558,6 +2684,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2579,6 +2706,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2600,6 +2728,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2621,6 +2750,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2653,6 +2783,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2674,6 +2805,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2683,6 +2815,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2704,6 +2837,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2727,6 +2861,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2760,6 +2895,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2793,6 +2929,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2816,6 +2953,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2836,6 +2974,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2870,6 +3009,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2891,6 +3031,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2912,6 +3053,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2932,6 +3074,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2952,6 +3095,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2974,6 +3118,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -2996,6 +3141,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3005,6 +3151,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3014,6 +3161,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3023,6 +3171,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3032,6 +3181,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3041,6 +3191,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3062,6 +3213,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3080,6 +3232,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3089,6 +3242,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3098,6 +3252,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3107,6 +3262,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3116,6 +3272,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3125,6 +3282,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3134,6 +3292,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3143,6 +3302,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3161,24 +3321,28 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
       "acquisitionTargetId": "ACQ-162",
       "proposition": "Dimmer: DIAC triggering.",
-      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
       "mappingBasis": "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET",
       "boundHistoricalRecords": [
         {
-          "clusterKey": "electronic-systems-and-applications",
+          "clusterKey": "electronic-components-operating-principles",
           "requirementKind": "FACTUAL_PROPOSITION",
-          "requirementText": "Dimmer switch: a capacitor provides timing, a DIAC triggers, and a TRIAC provides phase control.",
-          "coverageState": "SOURCE_GAP",
-          "supportingSourceLocatorKeys": [],
-          "gapReason": "SRC-ST-AN3168-DIAC-TRIAC-DIMMER is the dossier's PRIMARY source for this exact chain and is RETRIEVAL_FAILED (no archive copy, hard origin block). SRC-ST-DIAC-DB3 (VERIFIED) covers only DIAC identity and its association with TRIAC triggering, not the full capacitor-timing/phase-control chain."
+          "requirementText": "A DIAC is a bidirectional breakover device commonly used to trigger a TRIAC.",
+          "coverageState": "VERIFIED",
+          "supportingSourceLocatorKeys": [
+            "loc-st-diac-db3"
+          ],
+          "gapReason": null
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3197,6 +3361,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3206,6 +3371,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3227,6 +3393,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3236,6 +3403,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3256,6 +3424,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3265,6 +3434,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3274,6 +3444,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3295,6 +3466,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.capacitor-definition"
     },
     {
@@ -3315,6 +3487,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.diac-definition"
     },
     {
@@ -3335,6 +3508,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.diode-definition"
     },
     {
@@ -3355,6 +3529,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3376,6 +3551,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.led-definition"
     },
     {
@@ -3397,6 +3573,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3418,6 +3595,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3438,6 +3616,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.rectifier-definition"
     },
     {
@@ -3459,6 +3638,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3480,6 +3660,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.thermistor-definition"
     },
     {
@@ -3501,6 +3682,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.thyristor-definition"
     },
     {
@@ -3521,6 +3703,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.transistor-definition"
     },
     {
@@ -3539,6 +3722,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.triac-definition"
     },
     {
@@ -3559,6 +3743,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": "unit202.review-fact.zener-definition"
     },
     {
@@ -3579,6 +3764,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3600,6 +3786,7 @@
         }
       ],
       "reasonIfUnmapped": null,
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     },
     {
@@ -3609,6 +3796,7 @@
       "mappingBasis": null,
       "boundHistoricalRecords": [],
       "reasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "overrideNote": null,
       "currentQPBoundClaimKey": null
     }
   ]

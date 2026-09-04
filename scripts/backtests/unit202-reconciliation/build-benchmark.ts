@@ -39,13 +39,14 @@ import {
   type StandardPipelineInput,
   type StandardPipelineResult,
 } from "@alp/qualification-pipeline";
+import type { LocalAccessGuardConfig } from "@alp/technical-evidence-engine";
 
-import { unit202TechnicalSourceVerification } from "../../content/data/unit202-technical-source-verification.ts";
 import { CERTIFICATION_DECISIONS } from "./certification-decisions.ts";
 import { CLAIM_DECISIONS } from "./claim-decisions.ts";
 import { EXACT_CLAIM_BINDINGS } from "./exact-claim-bindings.ts";
-import { HISTORICAL_BENCHMARK_BINDINGS, type HistoricalRecordRef } from "./historical-benchmark-bindings.ts";
-import { PA_TARGET, type PATargetProposition } from "./pa-target.ts";
+import { HISTORICAL_BENCHMARK_BINDINGS } from "./historical-benchmark-bindings.ts";
+import { historicalBenchmarkFor, validateHistoricalBenchmarkBindings, type HistoricalResolution, type HistoricalState } from "./historical-resolution.ts";
+import { PA_TARGET } from "./pa-target.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -209,54 +210,13 @@ const finalResult = buildStandardPipeline({ ...frozenInput, semanticAdjudication
 //    record identities -- no fuzzy/token matching, no manual state
 //    overrides (task section 2/4). Every binding's every record must
 //    resolve to EXACTLY one real propositionCoverage record, or the build
-//    fails loudly.
+//    fails loudly. CC-23 section 19 extracted this resolution logic (plus
+//    its atomic-subclaim-override correction) into historical-
+//    resolution.ts, shared with the evidence-requirement-level benchmark
+//    in scripts/backtests/unit202-evidence-acquisition-preflight/ -- see
+//    that module for the full rule.
 // ---------------------------------------------------------------------
-type HistoricalState = "HISTORICALLY_VERIFIED" | "HISTORICALLY_CONDITIONAL" | "HISTORICALLY_SOURCE_GAP" | "NO_HISTORICAL_BENCHMARK" | "NOT_APPLICABLE";
-
-type CoverageRecord = (typeof unit202TechnicalSourceVerification.propositionCoverage)[number];
-
-function resolveRecord(r: HistoricalRecordRef): CoverageRecord {
-  const matches = unit202TechnicalSourceVerification.propositionCoverage.filter((c) => c.clusterKey === r.clusterKey && c.requirementKind === r.requirementKind && c.requirementText === r.requirementText);
-  if (matches.length === 0) throw new Error(`CC-22C validation failure: historical-benchmark-bindings.ts references a record that does not exist: ${r.clusterKey}::${r.requirementKind}::"${r.requirementText}"`);
-  if (matches.length > 1) throw new Error(`CC-22C validation failure: historical-benchmark-bindings.ts record reference is ambiguous (${matches.length} matches): ${r.clusterKey}::${r.requirementKind}::"${r.requirementText}"`);
-  return matches[0]!;
-}
-
-for (const b of HISTORICAL_BENCHMARK_BINDINGS) {
-  if (!paByText.has(b.paPropositionText)) throw new Error(`CC-22C validation failure: historical-benchmark-bindings.ts references unknown PA proposition text "${b.paPropositionText}"`);
-  if (b.records.length === 0) throw new Error(`CC-22C validation failure: binding for "${b.paPropositionText}" names zero records`);
-  if (b.mappingBasis === "EXACT_EQUIVALENT" && b.records.length !== 1) throw new Error(`CC-22C validation failure: EXACT_EQUIVALENT binding for "${b.paPropositionText}" must name exactly one record`);
-}
-const bindingByText = new Map(HISTORICAL_BENCHMARK_BINDINGS.map((b) => [b.paPropositionText, b]));
-const bindingCountByText = new Map<string, number>();
-for (const b of HISTORICAL_BENCHMARK_BINDINGS) bindingCountByText.set(b.paPropositionText, (bindingCountByText.get(b.paPropositionText) ?? 0) + 1);
-const duplicateBindings = [...bindingCountByText.entries()].filter(([, n]) => n > 1);
-if (duplicateBindings.length > 0) throw new Error(`CC-22C validation failure: duplicate historical-benchmark-bindings.ts entries for: ${duplicateBindings.map(([t]) => t).join(" | ")}`);
-
-interface HistoricalResolution {
-  state: HistoricalState;
-  bindingBasis: string | null;
-  resolvedRecords: { clusterKey: string; requirementKind: string; requirementText: string; coverageState: string; supportingSourceLocatorKeys: readonly string[]; gapReason: string | null }[];
-  reasonIfUnmapped: string | null;
-}
-
-function historicalBenchmarkFor(p: PATargetProposition): HistoricalResolution {
-  if (p.class === "OUT_OF_SCOPE") return { state: "NOT_APPLICABLE", bindingBasis: null, resolvedRecords: [], reasonIfUnmapped: null };
-  const binding = bindingByText.get(p.proposition);
-  if (!binding) {
-    return { state: "NO_HISTORICAL_BENCHMARK", bindingBasis: null, resolvedRecords: [], reasonIfUnmapped: "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9)." };
-  }
-  const resolved = binding.records.map(resolveRecord);
-  // Task section 6's aggregation rule: SOURCE_GAP dominates; else CONDITIONAL dominates; else all VERIFIED.
-  const states = new Set(resolved.map((r) => r.coverageState));
-  const state: HistoricalState = states.has("SOURCE_GAP") ? "HISTORICALLY_SOURCE_GAP" : states.has("CONDITIONAL_SOURCE_GAP") ? "HISTORICALLY_CONDITIONAL" : "HISTORICALLY_VERIFIED";
-  return {
-    state,
-    bindingBasis: binding.mappingBasis,
-    resolvedRecords: resolved.map((r) => ({ clusterKey: r.clusterKey, requirementKind: r.requirementKind, requirementText: r.requirementText, coverageState: r.coverageState, supportingSourceLocatorKeys: r.supportingSourceLocatorKeys, gapReason: r.gapReason ?? null })),
-    reasonIfUnmapped: null,
-  };
-}
+validateHistoricalBenchmarkBindings();
 
 // ---------------------------------------------------------------------
 // 5. Per-PA-proposition candidate mapping + technical-evidence state
@@ -282,6 +242,7 @@ interface LedgerRow {
   historicalBindingBasis: string | null;
   historicalResolvedRecords: HistoricalResolution["resolvedRecords"];
   historicalReasonIfUnmapped: string | null;
+  historicalOverrideNote: string | null;
   acquisitionReplayRequirement: AcquisitionReplayRequirement;
   gapTypes: string[];
   nextActions: NextAction[];
@@ -361,6 +322,7 @@ const ledger: LedgerRow[] = PA_TARGET.map((p) => {
     historicalBindingBasis: historical.bindingBasis,
     historicalResolvedRecords: historical.resolvedRecords,
     historicalReasonIfUnmapped: historical.reasonIfUnmapped,
+    historicalOverrideNote: historical.overrideNote,
     acquisitionReplayRequirement,
     gapTypes,
     nextActions,
@@ -534,6 +496,7 @@ const sealedBenchmark = {
       mappingBasis: r.historicalBindingBasis,
       boundHistoricalRecords: r.historicalResolvedRecords,
       reasonIfUnmapped: r.historicalReasonIfUnmapped,
+      overrideNote: r.historicalOverrideNote,
       currentQPBoundClaimKey: r.boundClaimKey,
     })),
 };
@@ -545,32 +508,45 @@ writeJson(path.join(benchmarkOutDir, "UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.j
 //    ALL local Unit-202 material except what is explicitly listed here.
 // ---------------------------------------------------------------------
 const blindTargetsHashForAllowlist = sha256OfText(readFileSync(path.join(benchmarkOutDir, "UNIT202-BLIND-ACQUISITION-TARGETS.json"), "utf-8"));
-const allowlist = {
-  qualificationId: QUAL,
-  policyStatement: "AUTHORITATIVE local-input contract for the future blind Unit-202 acquisition run. Default principle: DENY ALL LOCAL UNIT-202 MATERIAL EXCEPT EXPLICITLY ALLOWED INPUTS (task section 10). A path is readable only if it matches an entry below -- the denylist (UNIT202-BLIND-ACQUISITION-DENYLIST.json) is defence in depth only and never itself grants access.",
+
+/**
+ * CC-23 section 21: the CONCRETE, machine-evaluable local-input contract --
+ * a real `LocalAccessGuardConfig` (from @alp/technical-evidence-engine),
+ * not prose placeholder paths. `scripts/backtests/unit202-evidence-
+ * acquisition-preflight/unit202-guard-config.test.ts` actually instantiates
+ * a `LocalAccessGuard` from this exact object and mechanically proves it
+ * denies a non-allowlisted path and enforces the pinned hash -- this is
+ * not merely documented, it is executable.
+ */
+const guardConfig: LocalAccessGuardConfig = {
+  experimentId: "unit202-blind-acquisition",
   allowedInputs: [
     {
       rule: "FROZEN_BLIND_TARGET_MANIFEST",
-      path: "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
+      matchKind: "EXACT_PATH",
+      pathOrGlob: "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
       requiredHash: blindTargetsHashForAllowlist,
       note: "The exact frozen file, identified by hash -- a file at this path with a different hash is NOT authorised by this rule.",
     },
     {
-      rule: "GENERIC_ACQUISITION_CODE",
-      pathPattern: "scripts/content/technical-evidence-acquisition/** (or wherever the next package locates it)",
-      note: "Generic technical-evidence-acquisition code/configuration, once identified in the next package -- never Unit-202-specific data.",
-    },
-    {
-      rule: "GENERIC_SOURCE_AUTHORITY_POLICY",
-      pathPattern: "non-Unit-202 generic source-authority policy/schema files needed to execute the research process",
-      note: "E.g. packages/content-schema source-authority/verification schema definitions -- structural/policy code, never Unit-202 content.",
+      rule: "GENERIC_TECHNICAL_EVIDENCE_ENGINE_CODE",
+      matchKind: "GLOB",
+      pathOrGlob: "packages/technical-evidence-engine/**",
+      note: "Generic planner/acquisition-contract/access-guard code and its default source-authority policy -- never Unit-202-specific data.",
     },
     {
       rule: "EXPERIMENT_RUNTIME_OUTPUT",
-      pathPattern: "runtime/output directories created specifically for the blind acquisition experiment",
-      note: "Write targets for the experiment's own new output -- never pre-existing Unit-202 material.",
+      matchKind: "GLOB",
+      pathOrGlob: "reports/backtests/unit202-blind-acquisition-run/**",
+      note: "Write target reserved for the future acquisition run's own new output -- never pre-existing Unit-202 material. This directory does not exist yet; it is reserved by this rule for when the run is authorised.",
     },
   ],
+};
+
+const allowlist = {
+  qualificationId: QUAL,
+  policyStatement: "AUTHORITATIVE local-input contract for the future blind Unit-202 acquisition run. Default principle: DENY ALL LOCAL UNIT-202 MATERIAL EXCEPT EXPLICITLY ALLOWED INPUTS (task section 10). A path is readable only if it matches an entry in guardConfig.allowedInputs below -- the denylist (UNIT202-BLIND-ACQUISITION-DENYLIST.json) is defence in depth only and never itself grants access. guardConfig is a literal @alp/technical-evidence-engine LocalAccessGuardConfig -- loadable directly into a real LocalAccessGuard, not prose.",
+  guardConfig,
   defaultForUnlistedPaths: "DENY",
   unit202DefaultDenyExamples: [
     "any path containing 'unit202'",

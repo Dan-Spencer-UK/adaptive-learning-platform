@@ -20,18 +20,18 @@
       "CALIBRATED_ONLY_PUBLIC_SUPPORT_NEEDED": 3
     },
     "technicalEvidenceStateCounts": {
-      "REVIEW_HISTORICAL_SOURCE_LOCATOR": 16,
-      "NEW_TECHNICAL_SOURCE_REQUIRED": 49,
-      "HISTORICAL_SOURCE_NEEDS_CLAIM_NORMALIZATION": 71,
+      "REVIEW_HISTORICAL_SOURCE_LOCATOR": 13,
+      "NEW_TECHNICAL_SOURCE_REQUIRED": 48,
+      "HISTORICAL_SOURCE_NEEDS_CLAIM_NORMALIZATION": 75,
       "NOT_APPLICABLE": 17,
       "EXACT_CURRENT_FACTUAL_CLAIM": 50
     },
     "historicalBenchmarkStateCounts": {
-      "HISTORICALLY_CONDITIONAL": 17,
+      "HISTORICALLY_CONDITIONAL": 14,
       "NO_HISTORICAL_BENCHMARK": 43,
-      "HISTORICALLY_VERIFIED": 118,
+      "HISTORICALLY_VERIFIED": 122,
       "NOT_APPLICABLE": 17,
-      "HISTORICALLY_SOURCE_GAP": 8
+      "HISTORICALLY_SOURCE_GAP": 7
     },
     "acquisitionReplayRequirementCounts": {
       "REQUIRED": 171,
@@ -39,9 +39,9 @@
       "OPTIONAL_CONTEXT": 15
     },
     "nextActionCounts": {
-      "REVIEW_HISTORICAL_SOURCE_LOCATOR": 16,
+      "REVIEW_HISTORICAL_SOURCE_LOCATOR": 13,
       "BLIND_ACQUISITION_REQUIRED": 171,
-      "NORMALIZE_CLAIM_FROM_HISTORICAL_VERIFIED_SOURCE": 71,
+      "NORMALIZE_CLAIM_FROM_HISTORICAL_VERIFIED_SOURCE": 75,
       "NONE": 32,
       "PUBLIC_QUALIFICATION_EVIDENCE_RESEARCH_REQUIRED": 3
     },
@@ -79,6 +79,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -116,6 +117,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -142,6 +144,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -188,6 +191,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -225,6 +229,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -262,6 +267,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -288,6 +294,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -313,6 +320,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -350,6 +358,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -399,6 +408,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -446,6 +456,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -467,8 +478,8 @@
       "kind": "FACTUAL_PROPOSITION",
       "isRepresentativeExemplar": false,
       "qualificationEvidenceState": "EXPLICIT_PUBLIC_CURRICULUM",
-      "technicalEvidenceState": "REVIEW_HISTORICAL_SOURCE_LOCATOR",
-      "historicalBenchmarkState": "HISTORICALLY_CONDITIONAL",
+      "technicalEvidenceState": "HISTORICAL_SOURCE_NEEDS_CLAIM_NORMALIZATION",
+      "historicalBenchmarkState": "HISTORICALLY_VERIFIED",
       "historicalBindingBasis": "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
       "historicalResolvedRecords": [
         {
@@ -493,13 +504,14 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": "CC-23 section 19 atomic-subclaim override applied: raw record-level aggregation would read HISTORICALLY_CONDITIONAL, but loc-stats-center's own locator record establishes this specific atomic proposition independently. CC-23 section 19 correction: both bound records carry coverageState CONDITIONAL_SOURCE_GAP, but that gap belongs entirely to the SIBLING 'Statistical range.' sub-claim -- loc-stats-center's own locatorSummary states 'Defines mean, median and mode explicitly. Does NOT define statistical range anywhere in this section.' Mean's own atomic content is therefore fully, verifiably supported by the exact same locator; it must not inherit range's gap merely for sharing a compound record.",
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
         "MISSING_TECHNICAL_TRUTH"
       ],
       "nextActions": [
-        "REVIEW_HISTORICAL_SOURCE_LOCATOR",
+        "NORMALIZE_CLAIM_FROM_HISTORICAL_VERIFIED_SOURCE",
         "BLIND_ACQUISITION_REQUIRED"
       ],
       "candidateKeys": [],
@@ -514,8 +526,8 @@
       "kind": "FACTUAL_PROPOSITION",
       "isRepresentativeExemplar": false,
       "qualificationEvidenceState": "EXPLICIT_PUBLIC_CURRICULUM",
-      "technicalEvidenceState": "REVIEW_HISTORICAL_SOURCE_LOCATOR",
-      "historicalBenchmarkState": "HISTORICALLY_CONDITIONAL",
+      "technicalEvidenceState": "HISTORICAL_SOURCE_NEEDS_CLAIM_NORMALIZATION",
+      "historicalBenchmarkState": "HISTORICALLY_VERIFIED",
       "historicalBindingBasis": "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
       "historicalResolvedRecords": [
         {
@@ -540,13 +552,14 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": "CC-23 section 19 atomic-subclaim override applied: raw record-level aggregation would read HISTORICALLY_CONDITIONAL, but loc-stats-center's own locator record establishes this specific atomic proposition independently. CC-23 section 19 correction: same basis as 'Mean.' above -- loc-stats-center's locatorSummary explicitly confirms median is defined; only range is absent from this source.",
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
         "MISSING_TECHNICAL_TRUTH"
       ],
       "nextActions": [
-        "REVIEW_HISTORICAL_SOURCE_LOCATOR",
+        "NORMALIZE_CLAIM_FROM_HISTORICAL_VERIFIED_SOURCE",
         "BLIND_ACQUISITION_REQUIRED"
       ],
       "candidateKeys": [],
@@ -561,8 +574,8 @@
       "kind": "FACTUAL_PROPOSITION",
       "isRepresentativeExemplar": false,
       "qualificationEvidenceState": "EXPLICIT_PUBLIC_CURRICULUM",
-      "technicalEvidenceState": "REVIEW_HISTORICAL_SOURCE_LOCATOR",
-      "historicalBenchmarkState": "HISTORICALLY_CONDITIONAL",
+      "technicalEvidenceState": "HISTORICAL_SOURCE_NEEDS_CLAIM_NORMALIZATION",
+      "historicalBenchmarkState": "HISTORICALLY_VERIFIED",
       "historicalBindingBasis": "MULTIPLE_HISTORICAL_RECORDS_REQUIRED",
       "historicalResolvedRecords": [
         {
@@ -587,13 +600,14 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": "CC-23 section 19 atomic-subclaim override applied: raw record-level aggregation would read HISTORICALLY_CONDITIONAL, but loc-stats-center's own locator record establishes this specific atomic proposition independently. CC-23 section 19 correction: same basis as 'Mean.' above -- loc-stats-center's locatorSummary explicitly confirms mode is defined; only range is absent from this source.",
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
         "MISSING_TECHNICAL_TRUTH"
       ],
       "nextActions": [
-        "REVIEW_HISTORICAL_SOURCE_LOCATOR",
+        "NORMALIZE_CLAIM_FROM_HISTORICAL_VERIFIED_SOURCE",
         "BLIND_ACQUISITION_REQUIRED"
       ],
       "candidateKeys": [],
@@ -624,6 +638,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -661,6 +676,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -687,6 +703,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -723,6 +740,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -761,6 +779,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -799,6 +818,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -837,6 +857,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -875,6 +896,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -913,6 +935,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -951,6 +974,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -999,6 +1023,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -1038,6 +1063,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1064,6 +1090,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1089,6 +1116,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1114,6 +1142,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1139,6 +1168,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1164,6 +1194,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1189,6 +1220,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1214,6 +1246,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1239,6 +1272,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1264,6 +1298,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1289,6 +1324,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1314,6 +1350,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1339,6 +1376,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -1374,6 +1412,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -1411,6 +1450,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -1437,6 +1477,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -1474,6 +1515,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1509,6 +1551,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1545,6 +1588,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1571,6 +1615,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -1606,6 +1651,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -1643,6 +1689,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -1690,6 +1737,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1727,6 +1775,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -1764,6 +1813,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1790,6 +1840,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1826,6 +1877,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1873,6 +1925,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1910,6 +1963,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -1957,6 +2011,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -1994,6 +2049,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2052,6 +2108,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -2090,6 +2147,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -2116,6 +2174,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2153,6 +2212,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2179,6 +2239,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2204,6 +2265,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -2239,6 +2301,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2276,6 +2339,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2313,6 +2377,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2350,6 +2415,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2387,6 +2453,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2424,6 +2491,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2493,6 +2561,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2530,6 +2599,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -2567,6 +2637,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2593,6 +2664,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2618,6 +2690,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2654,6 +2727,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -2691,6 +2765,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -2730,6 +2805,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2756,6 +2832,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -2780,6 +2857,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -2856,6 +2934,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -2894,6 +2973,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -2931,6 +3011,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -2968,6 +3049,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3005,6 +3087,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3042,6 +3125,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3089,6 +3173,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3126,6 +3211,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3163,6 +3249,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3211,6 +3298,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3248,6 +3336,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3285,6 +3374,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3322,6 +3412,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3359,6 +3450,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3406,6 +3498,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3444,6 +3537,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3482,6 +3576,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3531,6 +3626,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3568,6 +3664,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3605,6 +3702,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3642,6 +3740,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3691,6 +3790,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3738,6 +3838,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3775,6 +3876,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3814,6 +3916,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -3851,6 +3954,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3888,6 +3992,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -3914,6 +4019,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -3938,6 +4044,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -3962,6 +4069,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -3997,6 +4105,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -4034,6 +4143,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4072,6 +4182,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -4110,6 +4221,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -4148,6 +4260,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -4185,6 +4298,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -4222,6 +4336,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -4259,6 +4374,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4296,6 +4412,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4333,6 +4450,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4370,6 +4488,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4407,6 +4526,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4442,6 +4562,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4478,6 +4599,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4515,6 +4637,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4550,6 +4673,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4588,6 +4712,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4614,6 +4739,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -4638,6 +4764,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -4662,6 +4789,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -4686,6 +4814,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -4710,6 +4839,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -4745,6 +4875,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4782,6 +4913,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4819,6 +4951,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4856,6 +4989,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4893,6 +5027,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4942,6 +5077,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -4980,6 +5116,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5018,6 +5155,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5056,6 +5194,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5105,6 +5244,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5143,6 +5283,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5169,6 +5310,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5206,6 +5348,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5246,6 +5389,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5296,6 +5440,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5346,6 +5491,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5386,6 +5532,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5423,6 +5570,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5474,6 +5622,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5512,6 +5661,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5550,6 +5700,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5587,6 +5738,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5624,6 +5776,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5663,6 +5816,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5702,6 +5856,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5728,6 +5883,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -5752,6 +5908,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5777,6 +5934,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5802,6 +5960,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5827,6 +5986,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5852,6 +6012,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5889,6 +6050,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5924,6 +6086,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -5951,6 +6114,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -5975,6 +6139,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -5999,6 +6164,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6026,6 +6192,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6050,6 +6217,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6074,6 +6242,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6098,6 +6267,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6131,6 +6301,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6151,26 +6322,30 @@
       "kind": "FACTUAL_PROPOSITION",
       "isRepresentativeExemplar": false,
       "qualificationEvidenceState": "EXPLICIT_PUBLIC_CURRICULUM",
-      "technicalEvidenceState": "NEW_TECHNICAL_SOURCE_REQUIRED",
-      "historicalBenchmarkState": "HISTORICALLY_SOURCE_GAP",
+      "technicalEvidenceState": "HISTORICAL_SOURCE_NEEDS_CLAIM_NORMALIZATION",
+      "historicalBenchmarkState": "HISTORICALLY_VERIFIED",
       "historicalBindingBasis": "HISTORICAL_COMPOUND_EXPLICITLY_CONTAINS_TARGET",
       "historicalResolvedRecords": [
         {
-          "clusterKey": "electronic-systems-and-applications",
+          "clusterKey": "electronic-components-operating-principles",
           "requirementKind": "FACTUAL_PROPOSITION",
-          "requirementText": "Dimmer switch: a capacitor provides timing, a DIAC triggers, and a TRIAC provides phase control.",
-          "coverageState": "SOURCE_GAP",
-          "supportingSourceLocatorKeys": [],
-          "gapReason": "SRC-ST-AN3168-DIAC-TRIAC-DIMMER is the dossier's PRIMARY source for this exact chain and is RETRIEVAL_FAILED (no archive copy, hard origin block). SRC-ST-DIAC-DB3 (VERIFIED) covers only DIAC identity and its association with TRIAC triggering, not the full capacitor-timing/phase-control chain."
+          "requirementText": "A DIAC is a bidirectional breakover device commonly used to trigger a TRIAC.",
+          "coverageState": "VERIFIED",
+          "supportingSourceLocatorKeys": [
+            "loc-st-diac-db3"
+          ],
+          "gapReason": null
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
         "MISSING_TECHNICAL_TRUTH"
       ],
       "nextActions": [
+        "NORMALIZE_CLAIM_FROM_HISTORICAL_VERIFIED_SOURCE",
         "BLIND_ACQUISITION_REQUIRED"
       ],
       "candidateKeys": [],
@@ -6199,6 +6374,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6224,6 +6400,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6260,6 +6437,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6286,6 +6464,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6321,6 +6500,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6347,6 +6527,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6374,6 +6555,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6398,6 +6580,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6422,6 +6605,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6446,6 +6630,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6470,6 +6655,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6494,6 +6680,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6518,6 +6705,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6542,6 +6730,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "NOT_APPLICABLE",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
@@ -6578,6 +6767,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -6615,6 +6805,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -6652,6 +6843,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -6689,6 +6881,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6727,6 +6920,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -6765,6 +6959,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6803,6 +6998,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6840,6 +7036,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -6878,6 +7075,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -6916,6 +7114,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -6954,6 +7153,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -6991,6 +7191,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -7026,6 +7227,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -7063,6 +7265,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "NO_GAP"
@@ -7100,6 +7303,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -7138,6 +7342,7 @@
         }
       ],
       "historicalReasonIfUnmapped": null,
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "REQUIRED",
       "gapTypes": [
         "MISSING_NORMALIZED_CANDIDATE",
@@ -7164,6 +7369,7 @@
       "historicalBindingBasis": null,
       "historicalResolvedRecords": [],
       "historicalReasonIfUnmapped": "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9).",
+      "historicalOverrideNote": null,
       "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
       "gapTypes": [
         "NOT_A_MASTERY_ACQUISITION_TARGET"
