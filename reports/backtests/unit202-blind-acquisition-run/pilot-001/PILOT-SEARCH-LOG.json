@@ -1,0 +1,202 @@
+{
+  "pilotId": "pilot-001",
+  "note": "Every search query issued during acquisition (task section 5.1/5.2), in chronological order, with the candidates it surfaced and whether each was chosen or rejected (and why). Search-result titles/snippets were treated as discovery leads only, never as evidence -- every chosen candidate was separately opened and read (see PILOT-RETRIEVAL-LOG.json) before any claim was normalized from it.",
+  "entries": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "queries": ["OpenStax Prealgebra fractions chapter definition numerator denominator"],
+      "candidates": [
+        { "sourceRef": "https://openstax.org/books/prealgebra-2e/pages/4-1-visualize-fractions", "chosen": true, "reason": "Primary-publisher OpenStax textbook page, section directly titled around fractions, at a depth matching the qualification's foundational-mathematics topic-breadth target." },
+        { "sourceRef": "https://ecampusontario.pressbooks.pub/prehealthmath/chapter/4-1-visualize-fractions-prealgebra-2e-openstax/", "chosen": false, "reason": "Non-primary Pressbooks re-host of the same OpenStax chapter; the primary openstax.org page was preferred." },
+        { "sourceRef": "https://openstax.org/books/elementary-algebra-2e/pages/1-5-visualize-fractions", "chosen": false, "reason": "Same publisher but a different, higher-level book; the Prealgebra 2e chapter is the closer depth match for a bare 'Fractions.' topic-breadth target." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "queries": ["OpenStax Elementary Algebra formula transposition solve for a variable rearrange equation"],
+      "candidates": [
+        { "sourceRef": "https://openstax.org/books/elementary-algebra-2e/pages/2-6-solve-a-formula-for-a-specific-variable", "chosen": true, "reason": "Primary-publisher OpenStax textbook section titled exactly on solving/rearranging a formula for a specific variable." },
+        { "sourceRef": "https://www.onlinemathlearning.com/algebra-lesson-trans.html", "chosen": false, "reason": "Generic tutorial site -- forbidden source category." },
+        { "sourceRef": "https://www.thinkcalculator.com/algebra/transposition-equations-solver.php", "chosen": false, "reason": "An online calculator tool, not an explanatory authoritative source." },
+        { "sourceRef": "https://learninglab.rmit.edu.au/maths-statistics/algebra/algebra-getting-started/a21-rearranging-formulae/", "chosen": false, "reason": "A university study-skills handout rather than the qualification-appropriate primary textbook; the OpenStax section was preferred once confirmed on-point." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "queries": ["NIST SI unit temperature kelvin symbol definition"],
+      "candidates": [
+        { "sourceRef": "https://www.nist.gov/pml/owm/si-units-temperature", "chosen": true, "reason": "Primary national metrology institute page stating the SI unit name and symbol for thermodynamic temperature." },
+        { "sourceRef": "https://en.wikipedia.org/wiki/Kelvin", "chosen": false, "reason": "Wikipedia -- forbidden source category." },
+        { "sourceRef": "https://www.bipm.org/en/si-base-units/kelvin", "chosen": false, "reason": "An equally-valid PRIMARY_NORMATIVE_OR_STANDARDS_BODY alternative (BIPM); not pursued further once the NIST page was confirmed on-point, to keep candidate count within the task's 4-source cap." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "queries": ["OpenStax University Physics Volume 2 Ohm's law V=IR voltage current resistance"],
+      "candidates": [
+        { "sourceRef": "https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law", "chosen": true, "reason": "Primary-publisher OpenStax section stating V=IR with an explicit definition of each symbol, at university-introductory depth matching the qualification target." },
+        { "sourceRef": "https://pressbooks.online.ucf.edu/osuniversityphysics2/chapter/ohms-law/", "chosen": false, "reason": "Non-primary Pressbooks re-host of the same OpenStax chapter." },
+        { "sourceRef": "https://iastate.pressbooks.pub/universityphysics2/chapter/ohms-law/", "chosen": false, "reason": "Non-primary Pressbooks re-host of the same OpenStax chapter." },
+        { "sourceRef": "https://openstax.org/books/college-physics-2e/pages/20-introduction-to-electric-current-resistance-and-ohms-law", "chosen": false, "reason": "A different, more introductory OpenStax book; University Physics Volume 2 was the closer depth/notation match." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "queries": ["OpenStax University Physics Volume 1 weight F=mg gravitational force"],
+      "candidates": [
+        { "sourceRef": "https://openstax.org/books/university-physics-volume-1/pages/5-4-mass-and-weight", "chosen": true, "reason": "Primary-publisher OpenStax section stating the scalar weight equation w=mg with m and g both defined, directly on-point." },
+        { "sourceRef": "https://openstax.org/books/university-physics-volume-1/pages/13-2-gravitation-near-earths-surface", "chosen": false, "reason": "Same textbook, different chapter; §5.4 is the more direct statement of the scalar weight equation at qualification depth." },
+        { "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/Book:_University_Physics_I_-_Mechanics_Sound_Oscillations_and_Waves_(OpenStax)/05:_Newton's_Laws_of_Motion/5.05:_Mass_and_Weight", "chosen": false, "reason": "Non-primary LibreTexts mirror of the same OpenStax chapter." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "queries": ["Le Moyne College physics right hand rule PDF handout current magnetic field"],
+      "candidates": [
+        { "sourceRef": "https://web.lemoyne.edu/courseinformation/SC123/Instructor/Spring18%20Labs/10_MagneticFields-RHRs.pdf", "chosen": true, "reason": "A named, attributed physics-department lab handout with an explicit, separately-numbered 'Right Hand Rule #2' section giving the exact grip-rule mapping this requirement asks for." },
+        { "sourceRef": "http://www.mrstapleton.com/Physics%20200/Magnetism/21-22%20Unit%2010%20Packet%20--%20Electricity%20and%20Magnetism.pdf", "chosen": false, "reason": "Individual/unaffiliated teacher personal site -- not attributable to any of this requirement's permitted authority classes." },
+        { "sourceRef": "https://www.csusm.edu/lts/studentresources/handouts/project2_handouts/phys202_right_hand_rule.pdf", "chosen": false, "reason": "A student-success-center handout rather than a faculty-authored technical reference; the Le Moyne faculty handout was the stronger candidate once confirmed accessible." },
+        { "sourceRef": "https://en.wikipedia.org/wiki/Fleming's_right-hand_rule", "chosen": false, "reason": "Wikipedia -- forbidden source category, and the wrong rule (Fleming's, not the grip rule)." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "queries": [
+        "Fleming's left-hand rule motor UK electrical qualification IOP OR Williams College OR Oxford Reference",
+        "site:spark.iop.org Fleming's left hand rule",
+        "site:stem.org.uk Fleming's left hand rule",
+        "Fleming's left hand rule\" OR \"Fleming's right hand rule\" IET OR ABB OR Siemens OR motor manufacturer technical explanation",
+        "Fleming's left hand rule motor effect BEAMA OR electric motor manufacturer handbook OR Encyclopedia Britannica",
+        "site:theiet.org OR site:iet.org Fleming rule motor generator"
+      ],
+      "candidates": [
+        { "sourceRef": "https://spark.iop.org/flemings-left-hand-rule", "chosen": false, "reason": "Genuinely authoritative candidate (Institute of Physics teaching resource) but returned HTTP 403 to the retrieval tool -- inaccessible, not rejected on merit." },
+        { "sourceRef": "https://physics.williams.edu/demonstrations/.../flemings-left-hand-rule/", "chosen": false, "reason": "Genuinely authoritative candidate (Williams College Physics) but returned HTTP 403 to the retrieval tool -- inaccessible, not rejected on merit." },
+        { "sourceRef": "https://www.oxfordreference.com/display/...", "chosen": false, "reason": "Genuinely authoritative candidate (Oxford Reference) but returned HTTP 403 (likely paywalled) -- inaccessible, not rejected on merit." },
+        { "sourceRef": "https://www.stem.org.uk/search?...", "chosen": false, "reason": "UK STEM Learning search results page returned HTTP 403 -- inaccessible." },
+        { "sourceRef": "https://en.wikipedia.org/wiki/Fleming's_left-hand_rule_for_motors", "chosen": false, "reason": "Wikipedia -- forbidden source category." },
+        { "sourceRef": "https://www.electrical4u.com/fleming-left-hand-rule-and-fleming-right-hand-rule/", "chosen": false, "reason": "Generic technical-tutorial site with no identifiable authoring institution -- forbidden/non-allowed-authority-class." },
+        { "sourceRef": "https://study.com/academy/lesson/flemings-left-hand-rule-the-motor-effect.html", "chosen": false, "reason": "Commercial tutoring/SEO site -- forbidden source category." },
+        { "sourceRef": "https://www.geeksforgeeks.org/electrical-engineering/flemings-left-hand-rule-and-flemings-right-hand-rule/", "chosen": false, "reason": "Generic tutorial/SEO site -- forbidden source category." },
+        { "sourceRef": "https://www.automate.org/motion-control/blogs/fleming-s-left-hand-rule-electric-motor-theory-explained", "chosen": false, "reason": "Trade-association blog post, unattributed to a named author/institution -- not an allowed authority class for this requirement." },
+        { "sourceRef": "https://www.tutorchase.com/answers/ib/physics/how-does-fleming-s-left-hand-rule-relate-to-motors", "chosen": false, "reason": "Commercial tutoring site -- forbidden source category." },
+        { "sourceRef": "https://www.vedantu.com/physics/flemings-left-hand-rule-and-right-hand-rule", "chosen": false, "reason": "Commercial tutoring/SEO site -- forbidden source category." },
+        { "sourceRef": "https://byjus.com/physics/flemings-left-hand-rule-and-right-hand-rule/", "chosen": false, "reason": "Commercial tutoring/SEO site -- forbidden source category." },
+        { "sourceRef": "https://www.careers360.com/physics/flemings-left-hand-rule-and-right-hand-rule-topic-pge", "chosen": false, "reason": "Commercial exam-prep site -- forbidden source category." },
+        { "sourceRef": "sciencegeeks.co.uk / superprof.co.uk / tes.com worksheet", "chosen": false, "reason": "Unattributed personal/commercial tutoring resources -- forbidden source category." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "queries": [
+        "Fleming's right-hand rule generator UK electrical qualification IOP OR Williams College OR Oxford Reference",
+        "site:spark.iop.org Fleming's right hand rule",
+        "IDC-online Fleming right hand rule PDF"
+      ],
+      "candidates": [
+        { "sourceRef": "https://spark.iop.org/flemings-right-hand-rule", "chosen": false, "reason": "Genuinely authoritative candidate (Institute of Physics) but returned HTTP 403 -- inaccessible, not rejected on merit." },
+        { "sourceRef": "https://spark.iop.org/collections/electromagnetism", "chosen": false, "reason": "Same IOP domain, also HTTP 403." },
+        { "sourceRef": "IDC-online right-hand-rule PDF (technical_references/pdfs)", "chosen": false, "reason": "PDF was retrieved and read directly, but its content was an insufficient/unattributed generic summary with no identifiable authoring institution -- did not meet this requirement's permitted-authority-class bar." },
+        { "sourceRef": "https://en.wikipedia.org/wiki/Fleming's_right-hand_rule", "chosen": false, "reason": "Wikipedia -- forbidden source category." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "queries": ["LibreTexts frequency rotational speed pole pairs f=PN/120 generator formula electrician"],
+      "candidates": [
+        { "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03:_AC_Generation/3.05:_Frequency_and_Alternators", "chosen": true, "reason": "An electrician-trade-focused LibreTexts chapter stating the exact frequency/rotational-speed/pole relationship with a worked numeric example." },
+        { "sourceRef": "https://forum.allaboutcircuits.com/threads/frequency-determination-of-mains.146932/", "chosen": false, "reason": "Unattributed forum discussion -- forbidden source category." },
+        { "sourceRef": "several USPTO generator/alternator patent PDFs", "chosen": false, "reason": "Patents describe specific claimed inventions, not a general educational statement of the relationship -- not an appropriate authority for a qualification fact." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "queries": [
+        "OpenStax RMS voltage peak voltage sine wave 0.707 relationship AC",
+        "root mean square voltage sine wave 0.707 OR 1/√2 OpenStax OR LibreTexts electrical",
+        "eng.libretexts.org Fiore AC Electrical Circuit Analysis RMS 0.707 sine wave peak"
+      ],
+      "candidates": [
+        { "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis:_A_Practical_Approach_(Fiore)/01:_Fundamentals/1.2:_Sinusoidal_Waveforms", "chosen": true, "reason": "Named-author (Fiore) engineering-technology LibreTexts chapter with an explicit 'Root Mean Square Measurement' subsection stating the 0.707 relationship in prose." },
+        { "sourceRef": "https://hamradioschool.com/...", "chosen": false, "reason": "Hobbyist site -- forbidden source category." },
+        { "sourceRef": "https://learnabout-electronics.org/...", "chosen": false, "reason": "Generic tutorial site -- forbidden source category." },
+        { "sourceRef": "https://www.firgelliauto.com/...", "chosen": false, "reason": "Commercial vendor calculator page, not an educational statement of the relationship." },
+        { "sourceRef": "https://faculty.uml.edu/JeanFrancois_Millithaler/FunElec/Spring2017/pdf/Ch9%20-%20Alternating%20Current%20n%20Voltage.pdf", "chosen": false, "reason": "A genuine .edu faculty course PDF, but its text could not be extracted by the retrieval tool (image/slide-based PDF); the LibreTexts candidate was text-accessible and equally on-point, so it was used instead." },
+        { "sourceRef": "https://www.antentop.org/w4rnl.001/...", "chosen": false, "reason": "Personal/hobbyist site -- forbidden source category." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "queries": ["capacitor basic operating principle stores charge electric field dielectric OpenStax OR LibreTexts"],
+      "candidates": [
+        { "sourceRef": "https://openstax.org/books/college-physics-2e/pages/19-5-capacitors-and-dielectrics", "chosen": true, "reason": "Primary-publisher OpenStax section titled directly on capacitors, stating the basic operating principle in plain prose plus the field/charge relationship." },
+        { "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/Physics_(Boundless)/18:_Electric_Potential_and_Electric_Field/18.4:_Capacitors_and_Dielectrics", "chosen": false, "reason": "Non-primary LibreTexts mirror/adjacent chapter." },
+        { "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/08:_Capacitance/8.02:_Capacitors_and_Capacitance", "chosen": false, "reason": "Non-primary LibreTexts mirror of an OpenStax chapter; primary openstax.org preferred." },
+        { "sourceRef": "USPTO ultracapacitor/energy-storage patent PDFs", "chosen": false, "reason": "Patents describe specific claimed inventions, not a general educational statement of the operating principle." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "queries": ["TRIAC basic operating principle bidirectional thyristor manufacturer datasheet OR IEEE OR academic"],
+      "candidates": [
+        { "sourceRef": "https://www.idc-online.com/technical_references/pdfs/electrical_engineering/Thyristors_and_Triacs.pdf (IIT Kharagpur, Module 1 / Lesson 4)", "chosen": true, "reason": "A named academic institution's (IIT Kharagpur) power-electronics course module with an explicit '4.7.1 Construction and operating principle' section on the triac." },
+        { "sourceRef": "https://www.electronics-tutorials.ws/power/triac.html", "chosen": false, "reason": "Generic tutorial site -- forbidden source category." },
+        { "sourceRef": "https://www.topdiodes.com/working-principle-and-characteristics-of-thyristor/", "chosen": false, "reason": "Vendor-blog SEO page -- forbidden source category." },
+        { "sourceRef": "https://www.researchgate.net/publication/342805001_Triac_Principle_Structure_Working_with_Application_Circuits", "chosen": false, "reason": "Unattributed/non-peer-reviewed preprint listing -- forbidden source category." },
+        { "sourceRef": "https://www.farnell.com/datasheets/1708247.pdf (ON Semiconductor)", "chosen": false, "reason": "A genuine manufacturer datasheet, but its content is electrical ratings/specifications rather than a plain-language operating-principle statement -- the IIT Kharagpur lesson's explicit operating-principle section was the more directly on-point candidate for this specific requirement." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "queries": [
+        "wireless control systems application function building automation manufacturer OR standards definition",
+        "Lutron OR Siemens OR Legrand \"wireless control system\" what is definition function lighting heating",
+        "Lutron Caseta wireless \"no new wires\" OR \"without rewiring\" control lights shades"
+      ],
+      "candidates": [
+        { "sourceRef": "https://www.lutron.com/us/en/controls/systems/caseta", "chosen": true, "reason": "First-party manufacturer product page with an exact, directly quotable statement of the wireless control system's installation-free application/function." },
+        { "sourceRef": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7860495 (and sibling building-automation patents)", "chosen": false, "reason": "Patent claim language, not a plain product/function statement." },
+        { "sourceRef": "https://www.healthcarefacilitiestoday.com/posts/Wireless-controls-are-standard-building-automation--6248", "chosen": false, "reason": "Secondary trade-press commentary, not first-party." },
+        { "sourceRef": "https://www.csemag.com/wireless-controls-in-building-systems/", "chosen": false, "reason": "Secondary trade-press commentary, not first-party." },
+        { "sourceRef": "https://www.lutron.com/us/en/controls/systems/residential-systems", "chosen": false, "reason": "Lutron's own overview page, but its available text was paraphrased marketing copy without one precise quotable install/function passage; the Caséta product page yielded a stronger exact locator." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "queries": [
+        "NIST OR OpenStax wattmeter measures electrical power current voltage coil definition",
+        "site:nist.gov wattmeter power measurement",
+        "OpenStax University Physics wattmeter AC power measurement current voltage"
+      ],
+      "candidates": [
+        { "sourceRef": "https://www.philadelphia.edu.jo/academics/fobeidat/uploads/Electric%20Circuits%20II%20Course2/13%20Power%20Measurement.pdf", "chosen": true, "reason": "Named-instructor (Dr. Firas Obeidat) university course slides with an explicit slide defining the wattmeter and its current-coil/voltage-coil sensing arrangement, at qualification-appropriate depth." },
+        { "sourceRef": "https://www.nist.gov/calibrations/power-and-energy-measurements-low-frequency-calibrations (and sibling NIST wattmeter-calibration pages)", "chosen": false, "reason": "Genuine PRIMARY_NORMATIVE_OR_STANDARDS_BODY source, but its content is metrological calibration-uncertainty documentation, not a qualification-depth statement of what a wattmeter measures and how it senses current/voltage." },
+        { "sourceRef": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments", "chosen": false, "reason": "Opened and read directly; confirmed to cover voltmeters, ammeters and ohmmeters only -- no wattmeter content on this page." },
+        { "sourceRef": "https://eepower.com/technical-articles/measuring-power-using-ac-wattmeters/", "chosen": false, "reason": "Commercial trade-publication site -- not an allowed authority class for this requirement." }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "queries": [
+        "telephone ringer capacitor blocks DC passes AC ringing signal circuit explanation",
+        "FCC Part 68 OR ITU-T telephone ringer capacitor series ringing signal circuit requirement",
+        "ecfr.gov 47 CFR 68.308 OR 68.312 ringer equivalence number resistor capacitor series",
+        "govinfo.gov CFR title 47 part 68 ringer equivalence number definition capacitor",
+        "\"6900 ohms\" OR \"6930 ohms\" capacitor \"0.16 microfarad\" OR \"8 microfarad\" ringer network standard telephone FCC",
+        "\"telephone set\" ringer circuit capacitor blocks DC university course notes telecommunications",
+        "libretexts capacitor \"telephone\" coupling AC blocking DC example electronics",
+        "\"telephone set\" OR \"subscriber set\" ringer capacitor filetype:pdf university OR .edu circuit diagram"
+      ],
+      "candidates": [
+        { "sourceRef": "https://users.utcluj.ro/~dtl/TF/Cursuri/LAB1_eng.pdf", "chosen": true, "reason": "Technical University of Cluj-Napoca telecommunications-course lab handout with an explicit circuit diagram and annotation stating the capacitor's exact role: decoupling the ringer from the DC line." },
+        { "sourceRef": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-68/subpart-A/section-68.3", "chosen": false, "reason": "The genuinely authoritative primary GOVERNMENT_OR_REGULATOR source (FCC 47 CFR Part 68 Ringer Equivalence Number definition) -- but the retrieval tool was redirected to a bot-verification interstitial it could not pass." },
+        { "sourceRef": "https://www.govinfo.gov/content/pkg/CFR-2019-title47-vol3/pdf/CFR-2019-title47-vol3.pdf", "chosen": false, "reason": "The same regulation's official PDF publication, but the whole-volume CFR PDF exceeded the retrieval tool's content-size limit." },
+        { "sourceRef": "https://users.utcluj.ro/~dtl/TF/Cursuri/TFbook_final_eng.pdf", "chosen": false, "reason": "The same course's full textbook (same institution as the chosen source) -- exceeded the retrieval tool's content-size limit; the shorter companion lab handout from the same course was used instead." },
+        { "sourceRef": "https://www.epanorama.net/circuits/telephone_ringer.html", "chosen": false, "reason": "Long-standing hobbyist technical-reference site, not attributable to any of this requirement's permitted authority classes." },
+        { "sourceRef": "https://affon.narod.ru/Phoneline/Telephone.pdf", "chosen": false, "reason": "Personal-site republication of the same hobbyist content -- forbidden/non-allowed-authority-class." },
+        { "sourceRef": "https://en.wikipedia.org/wiki/Ringer_equivalence_number", "chosen": false, "reason": "Wikipedia -- forbidden source category." },
+        { "sourceRef": "sci.electronics.design / allaboutcircuits / sundance-communications forum threads", "chosen": false, "reason": "Unattributed forum discussion -- forbidden source category." }
+      ]
+    }
+  ]
+}

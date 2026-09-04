@@ -1,0 +1,359 @@
+{
+  "pilotId": "pilot-001",
+  "contractNote": "Each entry's `result` field is exactly the canonical `@alp/technical-evidence-engine` `TechnicalEvidenceAcquisitionResult` shape (types.ts lines 550-559) -- untouched, unextended. Every pilot-specific audit need that contract has no field for (search-query provenance, chosen-vs-rejected candidates, authority-class rationale, per-claim dimension binding, publisher-verification note) is recorded in the sibling `pilotAudit` object OUTSIDE the canonical shape. See PILOT-RUN-MANIFEST.json's `contractLimitationsForProjectArchitectReview` for the itemized list of what the canonical contract could not represent and had to be pushed out here.",
+  "results": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+        "candidateSources": [
+          { "sourceId": "SRC-01", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://openstax.org/books/prealgebra-2e/pages/4-1-visualize-fractions", "sourceLocator": "HTML; title \"4.1 Visualize Fractions - Prealgebra 2e | OpenStax\"; heading \"4.1 Visualize Fractions\"; opening definition paragraph", "retrievedPassage": "A fraction is written a/b, where a and b are integers and b≠0. In a fraction, a is called the numerator and b is called the denominator." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "A fraction a/b (a, b integers, b≠0) has numerator a and denominator b; fraction concepts (visualizing, comparing, operating on fractions) are covered as a dedicated foundational-mathematics topic.", "sourceId": "SRC-01" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["OpenStax Prealgebra fractions chapter definition numerator denominator"],
+        "authorityClassRationale": "OpenStax is published by Rice University, a non-profit institution of higher education; classified ACADEMIC_OR_RESEARCH_INSTITUTION per the requirement's permitted list.",
+        "claimDimensionBindings": [{ "claimText": "A fraction a/b ... foundational-mathematics topic.", "sourceId": "SRC-01", "dimensions": ["PROCEDURE"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+        "candidateSources": [
+          { "sourceId": "SRC-02", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://openstax.org/books/elementary-algebra-2e/pages/2-6-solve-a-formula-for-a-specific-variable", "sourceLocator": "HTML; title \"2.6 Solve a Formula for a Specific Variable - Elementary Algebra 2e | OpenStax\"; heading \"2.6 Solve a Formula for a Specific Variable\"; definition sentence + Example 2.60", "retrievedPassage": "To solve a formula for a specific variable means to isolate that variable on one side of the equals sign with a coefficient of 1. Example 2.60 rearranges d=rt to t=d/r by dividing both sides by r." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "Solving a formula for a specific variable means isolating that variable, with coefficient 1, on one side of the equation, using the same inverse-operation techniques as solving any linear equation (e.g. d=rt rearranged to t=d/r).", "sourceId": "SRC-02" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["OpenStax Elementary Algebra formula transposition solve for a variable rearrange equation"],
+        "authorityClassRationale": "OpenStax / Rice University -- ACADEMIC_OR_RESEARCH_INSTITUTION.",
+        "claimDimensionBindings": [{ "claimText": "Solving a formula for a specific variable ... t=d/r).", "sourceId": "SRC-02", "dimensions": ["PROCEDURE", "CALCULATION_METHOD"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "candidateSources": [
+          { "sourceId": "SRC-03", "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "sourceRef": "https://www.nist.gov/pml/owm/si-units-temperature", "sourceLocator": "HTML; title \"SI Units – Temperature | NIST\"; heading \"SI Units – Temperature\"; unit-definition paragraph", "retrievedPassage": "The kelvin (K) is defined by taking the fixed numerical value of the Boltzmann constant k to be 1.380649×10⁻²³ when expressed in the unit J K⁻¹. The kelvin is the SI base unit of thermodynamic temperature; its symbol is K." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "The correct SI unit for temperature is the kelvin, unit symbol K.", "sourceId": "SRC-03" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["NIST SI unit temperature kelvin symbol definition"],
+        "authorityClassRationale": "NIST is the U.S. national metrology institute, the body that maintains and publishes SI unit definitions for the United States -- PRIMARY_NORMATIVE_OR_STANDARDS_BODY.",
+        "claimDimensionBindings": [{ "claimText": "The correct SI unit for temperature is the kelvin, unit symbol K.", "sourceId": "SRC-03", "dimensions": ["DEFINITION"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+        "candidateSources": [
+          { "sourceId": "SRC-04", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law", "sourceLocator": "HTML; title \"9.4 Ohm's Law - University Physics Volume 2 | OpenStax\"; heading \"9.4 Ohm's Law\"; Equation 9.11", "retrievedPassage": "V=IR, where V is the voltage measured in volts across the object in question, I is the current measured through the object in amps, and R is the resistance in units of ohms. (Equation 9.11)" }
+        ],
+        "normalizedClaims": [
+          { "claimText": "V = IR (Ohm's law): V is voltage (volts), I is current (amps), R is resistance (ohms).", "sourceId": "SRC-04" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["FORMULA", "FORMULA_INTERPRETATION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["OpenStax University Physics Volume 2 Ohm's law V=IR voltage current resistance"],
+        "authorityClassRationale": "OpenStax / Rice University -- ACADEMIC_OR_RESEARCH_INSTITUTION.",
+        "verifiedAgainstKnownClaim": "The target's own KNOWN_CLAIM_TO_VERIFY text \"V = IR (Ohm's law), including the meanings of V (voltage), I (current) and R (resistance).\" matches the retrieved passage exactly, symbol-for-symbol -- VERIFIED, not merely PARTIALLY_VERIFIED.",
+        "claimDimensionBindings": [{ "claimText": "V = IR (Ohm's law) ...", "sourceId": "SRC-04", "dimensions": ["FORMULA", "FORMULA_INTERPRETATION"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+        "candidateSources": [
+          { "sourceId": "SRC-05", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://openstax.org/books/university-physics-volume-1/pages/5-4-mass-and-weight", "sourceLocator": "HTML; title \"5.4 Mass and Weight - University Physics Volume 1 | OpenStax\"; heading \"Weight and Gravitational Force\"; Equation 5.9", "retrievedPassage": "w=mg (Equation 5.9). m is the mass of the object; g is the acceleration due to gravity, 9.80 m/s² at Earth's surface. The gravitational force on a mass is its weight." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "Weight equals mass times the acceleration due to gravity (stated in the source as w = mg, an equivalent scalar form of the target's F = mg).", "sourceId": "SRC-05" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["OpenStax University Physics Volume 1 weight F=mg gravitational force"],
+        "authorityClassRationale": "OpenStax / Rice University -- ACADEMIC_OR_RESEARCH_INSTITUTION.",
+        "notationNote": "Source states the relationship as \"w = mg\" (w for weight) rather than the target's \"F = mg\"; recorded as an equivalent form of the same relationship, not a conflict -- consistent with the adapter's own documented equivalent-form pattern for other formula targets (e.g. f=N×P vs f=PN/120).",
+        "claimDimensionBindings": [{ "claimText": "Weight equals mass times ... F = mg).", "sourceId": "SRC-05", "dimensions": ["CONCEPTUAL_RELATIONSHIP"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+        "candidateSources": [
+          { "sourceId": "SRC-06", "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE", "sourceRef": "https://web.lemoyne.edu/courseinformation/SC123/Instructor/Spring18%20Labs/10_MagneticFields-RHRs.pdf", "sourceLocator": "PDF page 4 (printed \"Page 4\"); section \"0.6 Right Hand Rule #2: Direction of magnetic field around a current-carrying wire\"", "retrievedPassage": "If you seize the wire with your right hand in a fist and your thumb pointing in the direction the current is flowing, your fingers wrap around the wire in the direction of the magnetic field. This is Right Hand Rule #2. You can also use Right Hand Rule #2 to determine the direction of the magnetic field generated by a coil of wire. Grab the coil with your right hand in a fist (so that your fingers poke through the center of the coil) and with your thumb in the direction of the current. The direction of the magnetic field loops is the same as the direction your finger point." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "Right-hand grip rule: with the right hand gripping the conductor and thumb pointing in the direction of current flow, the curled fingers indicate the direction of the surrounding magnetic field; the same grip technique applies to a coil (thumb along current, fingers show field-loop direction through the coil).", "sourceId": "SRC-06" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["Le Moyne College physics right hand rule PDF handout current magnetic field"],
+        "authorityClassRationale": "This requirement's permitted list excludes ACADEMIC_OR_RESEARCH_INSTITUTION; the Le Moyne Physics Faculty handout is classified AUTHORITATIVE_TECHNICAL_REFERENCE -- a named, attributed, stable department instructional reference document (not a personal blog/SEO page), consistent with the task's permitted set for this requirement.",
+        "claimDimensionBindings": [{ "claimText": "Right-hand grip rule: ... through the coil).", "sourceId": "SRC-06", "dimensions": ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId",
+        "blindnessNote": "This is an OPEN_TECHNICAL_QUESTION target; the claim above was derived solely from the retrieved passage, not supplied or hinted by the frozen target manifest, which carries only the rule's name."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+        "candidateSources": [],
+        "normalizedClaims": [],
+        "verificationStatus": "SOURCE_GAP",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"],
+        "conflicts": [],
+        "gaps": [
+          {
+            "description": "No source in an allowed authority class (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR) for Fleming's left-hand rule was both accessible and adequately attributed within this pilot's effort budget.",
+            "reason": "Multiple genuinely authoritative candidates were identified (IOP Spark, Williams College Physics, Oxford Reference) but returned HTTP 403 (or a paywall interstitial) to the retrieval tool; every other retrievable candidate was either a forbidden source category (Wikipedia, commercial tutoring/SEO sites, unattributed worksheets) or an unaffiliated personal page not attributable to any of this requirement's four permitted authority classes."
+          }
+        ]
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["Fleming's left-hand rule motor UK electrical qualification IOP OR Williams College OR Oxford Reference", "site:spark.iop.org Fleming's left hand rule", "site:stem.org.uk Fleming's left hand rule", "\"Fleming's left hand rule\" OR \"Fleming's right hand rule\" IET OR ABB OR Siemens OR motor manufacturer technical explanation", "Fleming's left hand rule motor effect BEAMA OR electric motor manufacturer handbook OR Encyclopedia Britannica", "site:theiet.org OR site:iet.org Fleming rule motor generator"],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId (14 candidates considered, 0 chosen)",
+        "blindnessNote": "This is an OPEN_TECHNICAL_QUESTION target carrying only the rule's name; no answer was available to leak, and none was assumed -- this is an honest, effort-exhausted gap, not a fabricated negative result."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+        "candidateSources": [],
+        "normalizedClaims": [],
+        "verificationStatus": "SOURCE_GAP",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"],
+        "conflicts": [],
+        "gaps": [
+          {
+            "description": "No source in an allowed authority class (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR) for Fleming's right-hand/generator rule was both accessible and adequately attributed within this pilot's effort budget.",
+            "reason": "The same authoritative UK physics-education candidates identified for the left-hand rule (IOP Spark) again returned HTTP 403. One PDF candidate (IDC-online) was actually retrieved and read but its content was an insufficient/unattributed generic summary with no identifiable authoring institution, failing this requirement's attribution bar. All other retrievable candidates were forbidden-category sources."
+          }
+        ]
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["Fleming's right-hand rule generator UK electrical qualification IOP OR Williams College OR Oxford Reference", "site:spark.iop.org Fleming's right hand rule", "IDC-online Fleming right hand rule PDF"],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId (4 candidates considered, 0 chosen)",
+        "blindnessNote": "This is an OPEN_TECHNICAL_QUESTION target carrying only the rule's name; no answer was available to leak, and none was assumed -- this is an honest, effort-exhausted gap, not a fabricated negative result."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+        "candidateSources": [
+          { "sourceId": "SRC-09", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03:_AC_Generation/3.05:_Frequency_and_Alternators", "sourceLocator": "HTML; title \"3.5: Frequency and Alternators - Workforce LibreTexts\"; heading \"Formula time!\"", "retrievedPassage": "f = PN/120. Also f = (P/2) × (N/60), where f is frequency in hertz, P is the number of poles, and N is rotational speed in RPM." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "Frequency relates to rotational speed and pole count as f = PN/120 (P = total poles, N = RPM), an equivalent form of f = N × P when N is expressed in revolutions per second and P in pole PAIRS.", "sourceId": "SRC-09" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["FORMULA", "FORMULA_INTERPRETATION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["LibreTexts frequency rotational speed pole pairs f=PN/120 generator formula electrician"],
+        "authorityClassRationale": "LibreTexts Workforce library, NSF/multi-institution-supported open-education consortium -- ACADEMIC_OR_RESEARCH_INSTITUTION.",
+        "notationNote": "Source's P counts total POLES and N is in RPM (f=PN/120); the target's own P counts pole PAIRS and N is in rev/s (f=N×P). Both are the same physical relationship under a different, and separately conventional, notation -- recorded as an equivalent form, not a conflict.",
+        "claimDimensionBindings": [{ "claimText": "Frequency relates to rotational speed ... pole PAIRS.", "sourceId": "SRC-09", "dimensions": ["FORMULA", "FORMULA_INTERPRETATION"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+        "candidateSources": [
+          { "sourceId": "SRC-10", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis:_A_Practical_Approach_(Fiore)/01:_Fundamentals/1.2:_Sinusoidal_Waveforms", "sourceLocator": "HTML; title \"1.2: Sinusoidal Waveforms - Engineering LibreTexts\"; subsection \"Root Mean Square Measurement\"", "retrievedPassage": "for sine waves, RMS is always the peak value times 0.707. We could also say the RMS value of any sine wave is its peak divided by approximately 1.414." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "For a sine wave, Vrms ≈ 0.707 × Vpeak (equivalently Vpeak ≈ 1.414 × Vrms).", "sourceId": "SRC-10" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["OpenStax RMS voltage peak voltage sine wave 0.707 relationship AC", "root mean square voltage sine wave 0.707 OR 1/√2 OpenStax OR LibreTexts electrical", "eng.libretexts.org Fiore AC Electrical Circuit Analysis RMS 0.707 sine wave peak"],
+        "authorityClassRationale": "LibreTexts Engineering library, named-author (Fiore) open textbook -- ACADEMIC_OR_RESEARCH_INSTITUTION.",
+        "claimDimensionBindings": [{ "claimText": "For a sine wave, Vrms ≈ 0.707 ...", "sourceId": "SRC-10", "dimensions": ["CONCEPTUAL_RELATIONSHIP"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+        "candidateSources": [
+          { "sourceId": "SRC-11", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://openstax.org/books/college-physics-2e/pages/19-5-capacitors-and-dielectrics", "sourceLocator": "HTML; title \"19.5 Capacitors and Dielectrics - College Physics 2e | OpenStax\"; heading \"Capacitor\"; Equation 19.45", "retrievedPassage": "A capacitor is a device used to store electric charge. When battery terminals are connected to an initially uncharged capacitor, equal amounts of positive and negative charge, +Q and –Q, are separated into its two plates. The electric field strength is, thus, directly proportional to Q. (Equation 19.45)" }
+        ],
+        "normalizedClaims": [
+          { "claimText": "A capacitor's basic operating principle: it stores electric charge by separating equal and opposite charge onto its two plates when connected to a source, creating an electric field between the plates whose strength is proportional to the stored charge.", "sourceId": "SRC-11" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["OPERATING_PRINCIPLE"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["capacitor basic operating principle stores charge electric field dielectric OpenStax OR LibreTexts"],
+        "authorityClassRationale": "OpenStax / Rice University -- ACADEMIC_OR_RESEARCH_INSTITUTION.",
+        "claimDimensionBindings": [{ "claimText": "A capacitor's basic operating principle: ... stored charge.", "sourceId": "SRC-11", "dimensions": ["OPERATING_PRINCIPLE"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId",
+        "blindnessNote": "OPEN_TECHNICAL_QUESTION target carrying only the component's name; claim derived solely from the retrieved passage."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+        "candidateSources": [
+          { "sourceId": "SRC-12", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://www.idc-online.com/technical_references/pdfs/electrical_engineering/Thyristors_and_Triacs.pdf", "sourceLocator": "PDF page 23 (printed \"Version 2 EE IIT, Kharagpur 23\"); section \"4.7 The Triac / 4.7.1 Construction and operating principle\"", "retrievedPassage": "The Triac is a member of the thyristor family. But unlike a thyristor which conducts only in one direction (from anode to cathode) a triac can conduct in both directions. Thus a triac is similar to two back to back (anti parallel) connected thyristors but with only three terminals. As in the case of a thyristor, the conduction of a triac is initiated by injecting a current pulse into the gate terminal. The gate looses control over conduction once the triac is turned on. The triac turns off only when the current through the main terminals become zero. Therefore, a triac can be categorized as a minority carrier, a bidirectional semi-controlled device." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "A TRIAC's basic operating principle: it is a bidirectional (both-direction-conducting) member of the thyristor family, functionally similar to two anti-parallel thyristors sharing three terminals; conduction is initiated by a gate current pulse, and once conducting the gate loses control -- the TRIAC only turns off when current through the main terminals falls to zero.", "sourceId": "SRC-12" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["OPERATING_PRINCIPLE"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["TRIAC basic operating principle bidirectional thyristor manufacturer datasheet OR IEEE OR academic"],
+        "authorityClassRationale": "The document's own title/footer pages attribute it to IIT Kharagpur (a public research university); classified ACADEMIC_OR_RESEARCH_INSTITUTION by its actual authoring institution, not the idc-online.com aggregator that merely hosts the file.",
+        "claimDimensionBindings": [{ "claimText": "A TRIAC's basic operating principle: ... falls to zero.", "sourceId": "SRC-12", "dimensions": ["OPERATING_PRINCIPLE"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId",
+        "blindnessNote": "OPEN_TECHNICAL_QUESTION target carrying only the component's name; claim derived solely from the retrieved passage."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+        "candidateSources": [
+          { "sourceId": "SRC-13", "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR", "sourceRef": "https://www.lutron.com/us/en/controls/systems/caseta", "sourceLocator": "HTML; title \"Caséta Smart Home Lighting Control System | Lutron\"; headings \"QUICK INSTALLATION\" / \"Simple Startup\"", "retrievedPassage": "No cutting holes, pulling wire, or repairing drywall. Caséta makes smart lighting simple, delivering comfort, convenience, and peace of mind. From placing control where it's wanted, to creating preset lighting scenes, and putting lights on a schedule, Caséta helps you bring these benefits to your customers with ease." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "A wireless (RF) control system's application/function category: retrofit control of lighting (dimming/switching), shading, scene composition and scheduling, installed without cutting into walls or pulling new wiring -- i.e. wireless control of existing electrical loads/points from remote switches, sensors or an app, rather than a new hard-wired control circuit.", "sourceId": "SRC-13" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["APPLICATION_FUNCTION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["wireless control systems application function building automation manufacturer OR standards definition", "Lutron OR Siemens OR Legrand \"wireless control system\" what is definition function lighting heating", "Lutron Caseta wireless \"no new wires\" OR \"without rewiring\" control lights shades"],
+        "authorityClassRationale": "Lutron Electronics Co., Inc. is the first-party manufacturer of the product line described on its own domain -- ORIGINAL_MANUFACTURER_OR_VENDOR.",
+        "claimDimensionBindings": [{ "claimText": "A wireless (RF) control system's application/function category: ... hard-wired control circuit.", "sourceId": "SRC-13", "dimensions": ["APPLICATION_FUNCTION"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId",
+        "blindnessNote": "OPEN_TECHNICAL_QUESTION target carrying only the phrase \"Wireless control systems: application category/function.\"; claim derived solely from the retrieved passage."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+        "candidateSources": [
+          { "sourceId": "SRC-14", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://www.philadelphia.edu.jo/academics/fobeidat/uploads/Electric%20Circuits%20II%20Course2/13%20Power%20Measurement.pdf", "sourceLocator": "PDF page 3 (printed \"3\"); section \"Single-Phase Power Measurement\"", "retrievedPassage": "The wattmeter is the instrument used for measuring the average power. The wattmeter consists essentially of two coils: the current coil and the voltage coil. A current coil with very low impedance (ideally zero) is connected in series with the load and responds to the load current. The voltage coil with very high impedance (ideally infinite) is connected in parallel with the load and responds to the load voltage." }
+        ],
+        "normalizedClaims": [
+          { "claimText": "A wattmeter measures (average) electrical power using two sensing coils: a low-impedance current coil connected in series with the load (senses current) and a high-impedance voltage coil connected in parallel with the load (senses voltage).", "sourceId": "SRC-14" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["NIST OR OpenStax wattmeter measures electrical power current voltage coil definition", "site:nist.gov wattmeter power measurement", "OpenStax University Physics wattmeter AC power measurement current voltage"],
+        "authorityClassRationale": "Philadelphia University, Jordan -- a degree-granting university -- ACADEMIC_OR_RESEARCH_INSTITUTION.",
+        "claimDimensionBindings": [{ "claimText": "A wattmeter measures (average) electrical power ... senses voltage).", "sourceId": "SRC-14", "dimensions": ["DEFINITION"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId (NIST rejected as too advanced/calibration-focused for qualification depth -- see search log reason)"
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "result": {
+        "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+        "candidateSources": [
+          { "sourceId": "SRC-15", "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION", "sourceRef": "https://users.utcluj.ro/~dtl/TF/Cursuri/LAB1_eng.pdf", "sourceLocator": "PDF page 1 (unnumbered); \"The phone device – basic schematic\", Figure 1 annotation list", "retrievedPassage": "C – decouples the ringer from the line in DC. (Figure 1, \"Basic schematic of the telephone device\", showing the RINGER in series with capacitor C directly across the RING/TIP pair.)" }
+        ],
+        "normalizedClaims": [
+          { "claimText": "In a telephone set, a capacitor is connected in series with the ringer; this decouples the ringer from the line's DC voltage (blocking DC) while still allowing the AC ringing signal through to operate the ringer.", "sourceId": "SRC-15" }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      },
+      "pilotAudit": {
+        "searchQueriesUsed": ["telephone ringer capacitor blocks DC passes AC ringing signal circuit explanation", "FCC Part 68 OR ITU-T telephone ringer capacitor series ringing signal circuit requirement", "ecfr.gov 47 CFR 68.308 OR 68.312 ringer equivalence number resistor capacitor series", "govinfo.gov CFR title 47 part 68 ringer equivalence number definition capacitor", "\"6900 ohms\" OR \"6930 ohms\" capacitor \"0.16 microfarad\" OR \"8 microfarad\" ringer network standard telephone FCC", "\"telephone set\" ringer circuit capacitor blocks DC university course notes telecommunications", "libretexts capacitor \"telephone\" coupling AC blocking DC example electronics", "\"telephone set\" OR \"subscriber set\" ringer capacitor filetype:pdf university OR .edu circuit diagram"],
+        "authorityClassRationale": "Technical University of Cluj-Napoca -- a public technical university -- ACADEMIC_OR_RESEARCH_INSTITUTION.",
+        "claimDimensionBindings": [{ "claimText": "In a telephone set, a capacitor is connected ... operate the ringer.", "sourceId": "SRC-15", "dimensions": ["DEFINITION"] }],
+        "candidatesConsideredIncludingRejected": "see PILOT-SEARCH-LOG.json entry for this evidenceRequirementId (8 queries; the primary GOVERNMENT_OR_REGULATOR candidate, FCC 47 CFR Part 68, was identified but inaccessible to the retrieval tool -- see reasons in the search log)",
+        "representativeExemplarNote": "This requirement is flagged representativeExemplar=true in the frozen target manifest; no different handling was applied -- acquisition proceeded identically to every other EXACT_FACT requirement."
+      }
+    }
+  ]
+}

@@ -1803,6 +1803,28 @@ Implements exactly the four bounded corrections CC-12E recorded as architecture-
 
 **Commit:** see the CC-16 commit immediately following this entry. Local only, not pushed.
 
+## Documentation debt: CC-17 through CC-23B
+
+This file's package log jumps directly from CC-16 to CC-24 below. Packages CC-17 through CC-23B were implemented and committed (`@alp/technical-evidence-engine` created; generic knowledge→technical-evidence architecture; semantic-identity/authority-class/handoff-order hardening; the answer-free evidence-question handoff) but were never given entries here. This is recorded as pre-existing documentation debt, not reconstructed retroactively — a large historical write-up risks getting package boundaries or decisions wrong from git history alone. `git log` on `packages/technical-evidence-engine/` and `docs/architecture/decisions/ADR-0007*` is the authoritative record until a future package closes this gap deliberately.
+
+## CC-24 — Blind Technical-Evidence Acquisition Pilot, with Two Narrow Execution-Readiness Corrections
+
+**Status:** pilot complete, frozen, awaiting Project Architect review (ACCEPT / HOLD / NARROW CORRECTION). Not the full 213-requirement acquisition run, and not a comparison against the sealed historical benchmark.
+
+**Two narrow corrections (commit `b3bcd49`):** (A) adapter-adoption only — the Unit-202 adapter had never actually used the generic `APPLICATION_FUNCTION`/`OPERATING_PRINCIPLE` modes the planner already supported; six AC6.1 and fourteen AC6.2 targets are now mapped to them by explicit ID, zero planner change, plan totals otherwise unchanged (213 requirements, 20 `KNOWN_CLAIM_TO_VERIFY` / 193 `OPEN_TECHNICAL_QUESTION`). (B) `LocalAccessGuard` hardening — fixed read-before-check ordering (new `guardedReadUtf8`), superficial (non-normalizing) path-traversal matching, and a `requiredHash` rule that passed when content was simply omitted; ~22 new adversarial tests. A clean pilot-preparation path (`scripts/backtests/unit202-blind-acquisition-run/`) was added, mechanically proven to import nothing from historical/reconciliation material.
+
+**Pilot scope:** a fixed, pre-frozen 15-`evidenceRequirementId` stratified sample (`reports/backtests/unit202-blind-acquisition-run/pilot-001/PILOT-SELECTION.json`), acquired via real public web search/retrieval under the corrected guard — never the full 213. **Result: 13 `VERIFIED`, 2 `SOURCE_GAP`** (both Fleming's-rule directional targets — genuinely authoritative UK sources identified but blocked/paywalled to the retrieval tool; every accessible alternative failed this requirement's permitted-authority-class or forbidden-source-category bar). No conflicts, no partial verifications. Full per-requirement detail, every search query, every candidate (chosen and rejected, with reasons), and exact locators: `reports/backtests/unit202-blind-acquisition-run/pilot-001/PILOT-REPORT.md`.
+
+**One disclosed process deviation:** `build-preflight.ts` (which imports historical material) was run once by mistake while validating Correction A's plan counts; only aggregate counts were exposed (never claim content, sources, or any of the 15 pilot answers), the regenerated report files were reverted, and all subsequent work used the clean pilot-prep path exclusively. Full disclosure: `PILOT-RUN-MANIFEST.json.blindnessBoundary.deviationDisclosure`.
+
+**Generic contract limitations surfaced** (for Project Architect review, not acted on unilaterally): the canonical `TechnicalEvidenceAcquisitionResult`/`CandidateSourceRecord`/`NormalizedTechnicalClaim` shapes have no field for search-query provenance, chosen-vs-rejected candidates, per-claim coverage-dimension binding, or authority-class rationale — all carried in a `pilotAudit` sibling field outside the canonical contract, itemised in `PILOT-RUN-MANIFEST.json`.
+
+**Validated:** clean pilot-prep suite 19/19 passing; `@alp/technical-evidence-engine` suite 85/85 passing; package typecheck clean; pilot-script typecheck clean; full-monorepo `npm run typecheck` clean (exit 0, no genuine regressions, nothing pre-existing to distinguish). Frozen blind-target manifest hash confirmed unchanged before and after all work: `3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4`.
+
+**Explicitly not done:** the full 213-requirement acquisition; any comparison/scoring against the historical benchmark; any qualification-scope/learner-knowledge/lesson/storyboard/question/visual change; any architecture redesign; pushing; starting another package.
+
+**Commits:** `b3bcd49` (the two corrections) and the CC-24 pilot-run commit immediately following this entry. Local only, not pushed. `4928293` was not amended.
+
 ## Cold-handover gate
 
 Before each CC package begins, a fresh contributor with no chat history must be able to determine from the repository:

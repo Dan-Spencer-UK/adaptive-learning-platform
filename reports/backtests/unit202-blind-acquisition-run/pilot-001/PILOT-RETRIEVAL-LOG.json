@@ -1,0 +1,133 @@
+{
+  "pilotId": "pilot-001",
+  "note": "Every CHOSEN source from PILOT-SEARCH-LOG.json was actually opened and read (task section 5.5) via WebFetch, with a PDF-binary fallback of reading the tool's own saved local copy through the Read tool when WebFetch's text extraction failed on an image/slide-based PDF -- never inferred from a search snippet or title alone. Locator format follows task section 5.8: HTML = title + heading + bounded passage; PDF = PDF page (and printed page number where the document prints one) + section/heading.",
+  "entries": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "sourceId": "SRC-01",
+      "sourceRef": "https://openstax.org/books/prealgebra-2e/pages/4-1-visualize-fractions",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "Rice University / OpenStax, a named non-profit educational publisher; page served from the publisher's own openstax.org domain.",
+      "locator": { "type": "HTML", "title": "4.1 Visualize Fractions - Prealgebra 2e | OpenStax", "heading": "4.1 Visualize Fractions", "boundedPassage": "opening definition paragraph" },
+      "retrievedPassage": "A fraction is written a/b, where a and b are integers and b≠0. In a fraction, a is called the numerator and b is called the denominator."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "sourceId": "SRC-02",
+      "sourceRef": "https://openstax.org/books/elementary-algebra-2e/pages/2-6-solve-a-formula-for-a-specific-variable",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "Rice University / OpenStax, served from the publisher's own openstax.org domain.",
+      "locator": { "type": "HTML", "title": "2.6 Solve a Formula for a Specific Variable - Elementary Algebra 2e | OpenStax", "heading": "2.6 Solve a Formula for a Specific Variable", "boundedPassage": "definition sentence and Example 2.60" },
+      "retrievedPassage": "To solve a formula for a specific variable means to isolate that variable on one side of the equals sign with a coefficient of 1. Example 2.60 rearranges d=rt to t=d/r by dividing both sides by r."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "sourceId": "SRC-03",
+      "sourceRef": "https://www.nist.gov/pml/owm/si-units-temperature",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "U.S. National Institute of Standards and Technology, served from its own nist.gov domain.",
+      "locator": { "type": "HTML", "title": "SI Units – Temperature | NIST", "heading": "SI Units – Temperature", "boundedPassage": "unit-definition paragraph" },
+      "retrievedPassage": "The kelvin (K) is defined by taking the fixed numerical value of the Boltzmann constant k to be 1.380649×10⁻²³ when expressed in the unit J K⁻¹. The kelvin is the SI base unit of thermodynamic temperature; its symbol is K."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "sourceId": "SRC-04",
+      "sourceRef": "https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "Rice University / OpenStax, served from the publisher's own openstax.org domain.",
+      "locator": { "type": "HTML", "title": "9.4 Ohm's Law - University Physics Volume 2 | OpenStax", "heading": "9.4 Ohm's Law", "boundedPassage": "Equation 9.11 and its surrounding definition sentence" },
+      "retrievedPassage": "V=IR, where V is the voltage measured in volts across the object in question, I is the current measured through the object in amps, and R is the resistance in units of ohms. (Equation 9.11)"
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "sourceId": "SRC-05",
+      "sourceRef": "https://openstax.org/books/university-physics-volume-1/pages/5-4-mass-and-weight",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "Rice University / OpenStax, served from the publisher's own openstax.org domain.",
+      "locator": { "type": "HTML", "title": "5.4 Mass and Weight - University Physics Volume 1 | OpenStax", "heading": "Weight and Gravitational Force", "boundedPassage": "Equation 5.9 and its surrounding definitions of m and g" },
+      "retrievedPassage": "w=mg (Equation 5.9). m is the mass of the object; g is the acceleration due to gravity, 9.80 m/s² at Earth's surface. The gravitational force on a mass is its weight."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "sourceId": "SRC-06",
+      "sourceRef": "https://web.lemoyne.edu/courseinformation/SC123/Instructor/Spring18%20Labs/10_MagneticFields-RHRs.pdf",
+      "method": "WebFetch attempted text extraction (failed on this image/scan-heavy PDF) -> Read tool on the WebFetch-saved local copy, pages 1-4",
+      "publisherVerification": "Le Moyne College Physics Faculty (copyright line \"© Le Moyne Physics Faculty\" on every page); served from the college's own web.lemoyne.edu domain.",
+      "locator": { "type": "PDF", "pdfPage": 4, "printedPage": "Page 4", "section": "0.6 Right Hand Rule #2: Direction of magnetic field around a current-carrying wire" },
+      "retrievedPassage": "If you seize the wire with your right hand in a fist and your thumb pointing in the direction the current is flowing, your fingers wrap around the wire in the direction of the magnetic field. This is Right Hand Rule #2. You can also use Right Hand Rule #2 to determine the direction of the magnetic field generated by a coil of wire. Grab the coil with your right hand in a fist (so that your fingers poke through the center of the coil) and with your thumb in the direction of the current. The direction of the magnetic field loops is the same as the direction your finger point."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "sourceId": "SRC-09",
+      "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03:_AC_Generation/3.05:_Frequency_and_Alternators",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "LibreTexts Workforce library (NSF/multi-institution-supported open-education consortium), named author Ed Flinn; served from the consortium's own workforce.libretexts.org domain.",
+      "locator": { "type": "HTML", "title": "3.5: Frequency and Alternators - Workforce LibreTexts", "heading": "Formula time!", "boundedPassage": "combined and component formula lines" },
+      "retrievedPassage": "f = PN/120. Also f = (P/2) × (N/60), where f is frequency in hertz, P is the number of poles, and N is rotational speed in RPM."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "sourceId": "SRC-10",
+      "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis:_A_Practical_Approach_(Fiore)/01:_Fundamentals/1.2:_Sinusoidal_Waveforms",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "LibreTexts Engineering library, named author James M. Fiore (also independently corroborated as a Mohawk Valley Community College faculty author of the same text); served from the consortium's own eng.libretexts.org domain.",
+      "locator": { "type": "HTML", "title": "1.2: Sinusoidal Waveforms - Engineering LibreTexts", "heading": "Root Mean Square Measurement (subsection of 1.2 Sinusoidal Waveforms)", "boundedPassage": "RMS-to-peak coefficient statement" },
+      "retrievedPassage": "for sine waves, RMS is always the peak value times 0.707. We could also say the RMS value of any sine wave is its peak divided by approximately 1.414."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "sourceId": "SRC-11",
+      "sourceRef": "https://openstax.org/books/college-physics-2e/pages/19-5-capacitors-and-dielectrics",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "Rice University / OpenStax, served from the publisher's own openstax.org domain.",
+      "locator": { "type": "HTML", "title": "19.5 Capacitors and Dielectrics - College Physics 2e | OpenStax", "heading": "Capacitor", "boundedPassage": "opening definition sentence plus the parallel-plate charging description and Equation 19.45" },
+      "retrievedPassage": "A capacitor is a device used to store electric charge. When battery terminals are connected to an initially uncharged capacitor, equal amounts of positive and negative charge, +Q and –Q, are separated into its two plates. The electric field strength is, thus, directly proportional to Q. (Equation 19.45)"
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "sourceId": "SRC-12",
+      "sourceRef": "https://www.idc-online.com/technical_references/pdfs/electrical_engineering/Thyristors_and_Triacs.pdf",
+      "method": "WebFetch attempted text extraction (failed on this image/scan-heavy PDF) -> Read tool on the WebFetch-saved local copy, pages 21-26",
+      "publisherVerification": "Indian Institute of Technology Kharagpur (title page: \"Version 2 EE IIT, Kharagpur\"), a public research university; the aggregator idc-online.com merely hosts the file, but the document's own title/footer pages attribute it to IIT Kharagpur, which was treated as the actual publisher for authority-classification purposes.",
+      "locator": { "type": "PDF", "pdfPage": 23, "printedPage": "Version 2 EE IIT, Kharagpur 23", "section": "4.7 The Triac / 4.7.1 Construction and operating principle" },
+      "retrievedPassage": "The Triac is a member of the thyristor family. But unlike a thyristor which conducts only in one direction (from anode to cathode) a triac can conduct in both directions. Thus a triac is similar to two back to back (anti parallel) connected thyristors but with only three terminals. As in the case of a thyristor, the conduction of a triac is initiated by injecting a current pulse into the gate terminal. The gate looses control over conduction once the triac is turned on. The triac turns off only when the current through the main terminals become zero. Therefore, a triac can be categorized as a minority carrier, a bidirectional semi-controlled device."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "sourceId": "SRC-13",
+      "sourceRef": "https://www.lutron.com/us/en/controls/systems/caseta",
+      "method": "WebFetch (HTML)",
+      "publisherVerification": "Lutron Electronics Co., Inc., the first-party manufacturer of the Caséta product line; served from the manufacturer's own lutron.com domain.",
+      "locator": { "type": "HTML", "title": "Caséta Smart Home Lighting Control System | Lutron", "heading": "QUICK INSTALLATION / Simple Startup", "boundedPassage": "installation and function statements" },
+      "retrievedPassage": "No cutting holes, pulling wire, or repairing drywall. Caséta makes smart lighting simple, delivering comfort, convenience, and peace of mind. From placing control where it's wanted, to creating preset lighting scenes, and putting lights on a schedule, Caséta helps you bring these benefits to your customers with ease."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "sourceId": "SRC-14",
+      "sourceRef": "https://www.philadelphia.edu.jo/academics/fobeidat/uploads/Electric%20Circuits%20II%20Course2/13%20Power%20Measurement.pdf",
+      "method": "WebFetch attempted text extraction (failed on this image/slide-based PDF) -> Read tool on the WebFetch-saved local copy, pages 1-5",
+      "publisherVerification": "Philadelphia University, Jordan; named instructor Dr. Firas Obeidat (name printed on every slide, watermarked); served from the university's own philadelphia.edu.jo domain.",
+      "locator": { "type": "PDF", "pdfPage": 3, "printedPage": "3", "section": "Single-Phase Power Measurement" },
+      "retrievedPassage": "The wattmeter is the instrument used for measuring the average power. The wattmeter consists essentially of two coils: the current coil and the voltage coil. A current coil with very low impedance (ideally zero) is connected in series with the load and responds to the load current. The voltage coil with very high impedance (ideally infinite) is connected in parallel with the load and responds to the load voltage."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "sourceId": "SRC-15",
+      "sourceRef": "https://users.utcluj.ro/~dtl/TF/Cursuri/LAB1_eng.pdf",
+      "method": "WebFetch attempted text extraction (failed on this image-diagram-heavy PDF) -> Read tool on the WebFetch-saved local copy, all pages",
+      "publisherVerification": "Technical University of Cluj-Napoca (Universitatea Tehnică din Cluj-Napoca), served from the university's own users.utcluj.ro course-materials domain (path prefix indicates the Telecommunications / \"TF\" course area, author initials \"dtl\").",
+      "locator": { "type": "PDF", "pdfPage": 1, "printedPage": "1 (unnumbered)", "section": "The phone device – basic schematic, Figure 1 annotation list" },
+      "retrievedPassage": "C – decouples the ringer from the line in DC. (Figure 1, \"Basic schematic of the telephone device\", showing the RINGER in series with capacitor C directly across the RING/TIP pair.)"
+    }
+  ],
+  "sourceGapEntries": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "note": "No candidate in an allowed authority class was successfully retrieved -- see PILOT-SEARCH-LOG.json for the full candidate list and PILOT-RESULTS.json's gaps[] for the recorded SOURCE_GAP."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "note": "No candidate in an allowed authority class was successfully retrieved -- see PILOT-SEARCH-LOG.json for the full candidate list and PILOT-RESULTS.json's gaps[] for the recorded SOURCE_GAP."
+    }
+  ]
+}

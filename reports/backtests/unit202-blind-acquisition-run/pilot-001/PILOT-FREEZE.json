@@ -1,0 +1,26 @@
+{
+  "pilotId": "pilot-001",
+  "frozenAt": "2026-09-04T16:56:37.682Z",
+  "artifactHashes": {
+    "PILOT-CLEAN-PLAN.json": "d541e12cd9b3741c76f5dc53ac1338c82cd806093c8e19764ec952a3c2eaac0e",
+    "PILOT-SELECTION.json": "c47e8f0915e7b229db885e858f97e403fdf641bcf0550367f74ab6b317ff9a08",
+    "PILOT-RUN-MANIFEST.json": "7c2b9be7511f5079de531fbc1720c86b1b34a5545e8506d1db67a3b01f984166",
+    "PILOT-SEARCH-LOG.json": "2991dad8f44c3f6da1014d03c270efb7c015d83f3c89353f1aba7b15be44532a",
+    "PILOT-RETRIEVAL-LOG.json": "dee1165c2d132f7da484564bd0b7b4f297bbbcbbaf42b18dd52cdaa31065913d",
+    "PILOT-RESULTS.json": "46f08d97cc70c74efa16cc3e3ad0e2f65382d18ae08b68e6144feaab0bf1a71a",
+    "PILOT-ACCESS-AUDIT.json": "24f442fe64ba19b332de4f31841cb4d0b27669964fc7a8256e98ef94b14c1bb3",
+    "PILOT-REPORT.md": "58755b34b402cdae02f8fd6e3a7564bdc963043c5c9f2da40a9b206a7edb6aa4"
+  },
+  "frozenBlindTargetManifest": {
+    "path": "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
+    "hashBeforeThisRun": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+    "hashAtFreeze": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+    "unchanged": true
+  },
+  "declarations": {
+    "noHistoricalBenchmarkComparisonBeforeFreeze": true,
+    "noHistoricalBenchmarkComparisonBeforeFreezeStatement": "At no point before this freeze was any historical Unit-202 benchmark, reconciliation, or claim-content file read, imported, or compared against. The one disclosed process deviation (an accidental build-preflight.ts run) exposed only aggregate plan counts, never historical claim content, source URLs, or answers to any of the 15 pilot questions -- see PILOT-RUN-MANIFEST.json.blindnessBoundary.deviationDisclosure for full detail.",
+    "fullReplayNotPerformed": true,
+    "architectureNotRedesigned": true
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "pilotId": "pilot-001",
+  "generatedAt": "2026-09-04T16:47:11.969Z",
+  "note": "Every local read this pilot run performed, plus three deliberate denial demonstrations (historical material, path traversal, absolute path) proving the guard denies before any filesystem access -- not merely documented as denied.",
+  "allReadsAllowedExcludingDeliberateDenialDemonstrations": true,
+  "records": [
+    {
+      "canonicalPath": "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
+      "contentHash": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+      "reason": "translate frozen Unit-202 blind acquisition targets into the generic KnowledgeEvidencePlanningInput contract",
+      "matchedRule": "FROZEN_BLIND_TARGET_MANIFEST",
+      "outcome": "ALLOWED",
+      "recordedAt": "2026-09-04T16:47:11.955Z",
+      "source": "unit202-adapter.ts (adapterRepoRoot=D:\\Development\\adaptive-learning-platform)"
+    },
+    {
+      "canonicalPath": "reports/backtests/unit202-blind-acquisition-run/pilot-001/PILOT-CLEAN-PLAN.json",
+      "contentHash": "d541e12cd9b3741c76f5dc53ac1338c82cd806093c8e19764ec952a3c2eaac0e",
+      "reason": "pilot read-back of its own already-generated PILOT-CLEAN-PLAN.json, to compute the access-audit and freeze artifacts",
+      "matchedRule": "PILOT_OUTPUT_DIRECTORY",
+      "outcome": "ALLOWED",
+      "recordedAt": "2026-09-04T16:47:11.966Z",
+      "source": "record-access-audit.ts (legitimate read-back)"
+    },
+    {
+      "canonicalPath": "reports/backtests/unit202-blind-acquisition-run/pilot-001/PILOT-SELECTION.json",
+      "contentHash": "c47e8f0915e7b229db885e858f97e403fdf641bcf0550367f74ab6b317ff9a08",
+      "reason": "pilot read-back of its own already-generated PILOT-SELECTION.json, to compute the access-audit and freeze artifacts",
+      "matchedRule": "PILOT_OUTPUT_DIRECTORY",
+      "outcome": "ALLOWED",
+      "recordedAt": "2026-09-04T16:47:11.967Z",
+      "source": "record-access-audit.ts (legitimate read-back)"
+    },
+    {
+      "canonicalPath": "scripts/backtests/unit202-reconciliation/historical-resolution.ts",
+      "contentHash": null,
+      "reason": "attempted read of historical reconciliation source -- must be denied, this pilot must never see it",
+      "matchedRule": null,
+      "outcome": "DENIED",
+      "recordedAt": "2026-09-04T16:47:11.968Z",
+      "source": "record-access-audit.ts (denial demonstration: historical reconciliation material, out of the pilot allowlist entirely)"
+    },
+    {
+      "canonicalPath": "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-EVIDENCE-REQUIREMENT-BENCHMARK.json",
+      "contentHash": null,
+      "reason": "attempted traversal out of the pilot output directory -- must resolve to its true (unauthorized) location and be denied",
+      "matchedRule": null,
+      "outcome": "DENIED",
+      "recordedAt": "2026-09-04T16:47:11.968Z",
+      "source": "record-access-audit.ts (denial demonstration: path traversal escaping the pilot output directory back into historical benchmark output)"
+    },
+    {
+      "canonicalPath": "C:/Windows/System32/drivers/etc/hosts",
+      "contentHash": null,
+      "reason": "attempted absolute path read -- must be denied outright, before any normalization-based matching",
+      "matchedRule": null,
+      "outcome": "DENIED",
+      "recordedAt": "2026-09-04T16:47:11.968Z",
+      "source": "record-access-audit.ts (denial demonstration: absolute Windows path)"
+    }
+  ]
+}
