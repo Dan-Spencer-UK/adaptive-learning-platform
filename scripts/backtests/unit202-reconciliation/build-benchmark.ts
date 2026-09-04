@@ -1,17 +1,29 @@
 /**
- * CC-22B: freezes the FINAL Project-Architect Unit-202 knowledge target
- * (pa-target.ts, independent of any historical evidence file's row
- * count -- corrects CC-22A's remaining defect, task section 3), maps
+ * CC-22B/CC-22C: freezes the FINAL Project-Architect Unit-202 knowledge
+ * target (pa-target.ts, independent of any historical evidence file's
+ * row count -- corrects CC-22A's remaining defect, task section 3), maps
  * historical Unit-202 evidence onto it as a BENCHMARK ONLY (never as the
  * source of PA requirements), and emits the blind acquisition target
- * manifest + sealed historical answer key + denylist + freeze file the
- * next package's blind acquisition replay will consume.
+ * manifest + sealed historical answer key + allowlist + denylist +
+ * freeze file the next package's blind acquisition replay will consume.
+ *
+ * CC-22C hardens the historical benchmark: it is now resolved
+ * EXCLUSIVELY from historical-benchmark-bindings.ts's explicit,
+ * auditable (clusterKey, requirementKind, requirementText) record
+ * bindings -- CC-22B's fuzzy/token matcher and MANUAL_HISTORICAL_
+ * OVERRIDES mechanism are both gone (task section 2/4). CC-22C also
+ * adds the positive allowlist (task section 10/11) -- the future blind
+ * acquisition runner's authoritative local-input contract, with the
+ * denylist retained only as defence in depth (task section 12).
  *
  * This script performs NO source discovery, browses nothing, and writes
  * no new technical-truth claim. It reads the frozen CC-21 QP input, the
  * historical Source-Acquisition-Manifest, and the historical Technical
  * Source Verification manifest READ-ONLY. It modifies no generic
- * pipeline file.
+ * pipeline file. It must reproduce reports/backtests/unit202-evidence-
+ * acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json
+ * byte-for-byte (task section 15) -- its construction depends only on
+ * pa-target.ts, never on the historical benchmark resolution below.
  */
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
@@ -29,10 +41,10 @@ import {
 } from "@alp/qualification-pipeline";
 
 import { unit202TechnicalSourceVerification } from "../../content/data/unit202-technical-source-verification.ts";
-import { AC_TO_CLUSTER } from "./ac-to-cluster.ts";
 import { CERTIFICATION_DECISIONS } from "./certification-decisions.ts";
 import { CLAIM_DECISIONS } from "./claim-decisions.ts";
 import { EXACT_CLAIM_BINDINGS } from "./exact-claim-bindings.ts";
+import { HISTORICAL_BENCHMARK_BINDINGS, type HistoricalRecordRef } from "./historical-benchmark-bindings.ts";
 import { PA_TARGET, type PATargetProposition } from "./pa-target.ts";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -190,86 +202,60 @@ const knowledgeBoundaryCertifications: KnowledgeBoundaryCertification[] = CERTIF
 const finalResult = buildStandardPipeline({ ...frozenInput, semanticAdjudications, knowledgeBoundaryCertifications });
 
 // ---------------------------------------------------------------------
-// 4. Historical benchmark cross-reference (BENCHMARK ONLY -- never
-//    feeds back into PA classification, which is already fixed by
-//    pa-target.ts). Fuzzy, cluster-scoped keyword match: a PA
-//    proposition's significant words found in a historical
-//    requirementText within the SAME AC's cluster.
+// 4. Historical benchmark cross-reference (CC-22C: BENCHMARK ONLY --
+//    never feeds back into PA classification, which is already fixed by
+//    pa-target.ts). Resolves EXCLUSIVELY from historical-benchmark-
+//    bindings.ts's explicit (clusterKey, requirementKind, requirementText)
+//    record identities -- no fuzzy/token matching, no manual state
+//    overrides (task section 2/4). Every binding's every record must
+//    resolve to EXACTLY one real propositionCoverage record, or the build
+//    fails loudly.
 // ---------------------------------------------------------------------
-const STOPWORDS = new Set(["with", "from", "that", "this", "where", "when", "which", "their", "these", "those", "have", "been", "will", "using", "used", "each", "such", "than", "into", "over", "some", "more", "only", "also", "under", "while", "and", "the", "for"]);
-function significantTokens(text: string): string[] {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
-    .split(/\s+/)
-    .filter((t) => t.length >= 3 && !STOPWORDS.has(t));
-}
-const coverageByCluster = new Map<string, typeof unit202TechnicalSourceVerification.propositionCoverage>();
-for (const p of unit202TechnicalSourceVerification.propositionCoverage) {
-  const list = coverageByCluster.get(p.clusterKey) ?? [];
-  list.push(p);
-  coverageByCluster.set(p.clusterKey, list);
-}
-
 type HistoricalState = "HISTORICALLY_VERIFIED" | "HISTORICALLY_CONDITIONAL" | "HISTORICALLY_SOURCE_GAP" | "NO_HISTORICAL_BENCHMARK" | "NOT_APPLICABLE";
 
-/**
- * Formula-symbol propositions (e.g. "F = mg.") tokenize to almost nothing
- * meaningful and never lexically overlap a PROSE historical description
- * ("Work/energy = force x distance.") -- hand-verified overrides for
- * these, from direct inspection of the historical propositionCoverage
- * table (never re-derived automatically, to avoid guessing).
- */
-const MANUAL_HISTORICAL_OVERRIDES: Record<string, HistoricalState> = {
-  "F = mg.": "HISTORICALLY_VERIFIED",
-  "W = Fd.": "HISTORICALLY_VERIFIED",
-  "P = W/t.": "HISTORICALLY_VERIFIED",
-  "Efficiency relationship.": "HISTORICALLY_VERIFIED",
-  "R = rho L/A and appropriate rearrangement/use.": "HISTORICALLY_VERIFIED",
-  "B = Phi/A and appropriate rearrangement/use.": "HISTORICALLY_VERIFIED",
-  "Scalar F = BIl.": "HISTORICALLY_VERIFIED",
-  "e = Blv.": "HISTORICALLY_VERIFIED",
-  "Fleming left-hand rule.": "HISTORICALLY_SOURCE_GAP",
-  "Fleming right-hand/generator rule.": "HISTORICALLY_SOURCE_GAP",
-  "f = N x P (N = rev/s, P = pole pairs).": "HISTORICALLY_VERIFIED",
-  "T = 1/f.": "HISTORICALLY_VERIFIED",
-  "Vrms ~= 0.707 x Vpeak.": "HISTORICALLY_VERIFIED",
-  "Vpeak ~= 1.414 x Vrms.": "HISTORICALLY_VERIFIED",
-  "Average over one alternation ~= 0.6366 x Vpeak.": "HISTORICALLY_VERIFIED",
-  "Signed average of a complete symmetrical sine-wave cycle = 0.": "HISTORICALLY_VERIFIED",
-  "Vdrop = IR.": "HISTORICALLY_VERIFIED",
-  "V = IR and rearrangements.": "HISTORICALLY_VERIFIED",
-  // The lexical matcher over-matches "Solenoid magnetic field." against unrelated
-  // generic "magnetic field" rows -- the ONLY genuinely relevant historical row
-  // ("Coil/solenoid field and polarity; basic electromagnet/relay/contactor
-  // principle.") is CONDITIONAL_SOURCE_GAP, matching "Solenoid polarity." below.
-  "Solenoid magnetic field.": "HISTORICALLY_CONDITIONAL",
-};
-for (const text of Object.keys(MANUAL_HISTORICAL_OVERRIDES)) {
-  if (!paByText.has(text)) throw new Error(`CC-22B validation failure: MANUAL_HISTORICAL_OVERRIDES references unknown proposition text "${text}"`);
+type CoverageRecord = (typeof unit202TechnicalSourceVerification.propositionCoverage)[number];
+
+function resolveRecord(r: HistoricalRecordRef): CoverageRecord {
+  const matches = unit202TechnicalSourceVerification.propositionCoverage.filter((c) => c.clusterKey === r.clusterKey && c.requirementKind === r.requirementKind && c.requirementText === r.requirementText);
+  if (matches.length === 0) throw new Error(`CC-22C validation failure: historical-benchmark-bindings.ts references a record that does not exist: ${r.clusterKey}::${r.requirementKind}::"${r.requirementText}"`);
+  if (matches.length > 1) throw new Error(`CC-22C validation failure: historical-benchmark-bindings.ts record reference is ambiguous (${matches.length} matches): ${r.clusterKey}::${r.requirementKind}::"${r.requirementText}"`);
+  return matches[0]!;
 }
 
-function historicalBenchmarkFor(p: PATargetProposition): { state: HistoricalState; matchedClusterRows: string[] } {
-  if (p.class === "OUT_OF_SCOPE") return { state: "NOT_APPLICABLE", matchedClusterRows: [] };
-  const override = MANUAL_HISTORICAL_OVERRIDES[p.proposition];
-  if (override) return { state: override, matchedClusterRows: [`manual-override::${p.proposition}`] };
-  const clusterKey = AC_TO_CLUSTER[p.ac];
-  const candidates = clusterKey ? (coverageByCluster.get(clusterKey) ?? []) : [];
-  const paTokens = significantTokens(p.proposition);
-  const matches = candidates.filter((c) => {
-    const histTokens = new Set(significantTokens(c.requirementText));
-    if (paTokens.length === 0) return false;
-    const hits = paTokens.filter((t) => histTokens.has(t)).length;
-    // Require at least 2 overlapping significant tokens (unless the PA proposition itself has
-    // only 1) to avoid a single generic shared word (e.g. "magnetic", "field") producing a
-    // false-positive match against an unrelated historical row.
-    const minHits = paTokens.length === 1 ? 1 : 2;
-    return hits >= minHits && hits / paTokens.length >= 0.4;
-  });
-  if (matches.length === 0) return { state: "NO_HISTORICAL_BENCHMARK", matchedClusterRows: [] };
-  const states = new Set(matches.map((m) => m.coverageState));
-  const state: HistoricalState = states.has("VERIFIED") ? "HISTORICALLY_VERIFIED" : states.has("CONDITIONAL_SOURCE_GAP") ? "HISTORICALLY_CONDITIONAL" : "HISTORICALLY_SOURCE_GAP";
-  return { state, matchedClusterRows: matches.map((m) => `${m.clusterKey}::${m.requirementText}`) };
+for (const b of HISTORICAL_BENCHMARK_BINDINGS) {
+  if (!paByText.has(b.paPropositionText)) throw new Error(`CC-22C validation failure: historical-benchmark-bindings.ts references unknown PA proposition text "${b.paPropositionText}"`);
+  if (b.records.length === 0) throw new Error(`CC-22C validation failure: binding for "${b.paPropositionText}" names zero records`);
+  if (b.mappingBasis === "EXACT_EQUIVALENT" && b.records.length !== 1) throw new Error(`CC-22C validation failure: EXACT_EQUIVALENT binding for "${b.paPropositionText}" must name exactly one record`);
+}
+const bindingByText = new Map(HISTORICAL_BENCHMARK_BINDINGS.map((b) => [b.paPropositionText, b]));
+const bindingCountByText = new Map<string, number>();
+for (const b of HISTORICAL_BENCHMARK_BINDINGS) bindingCountByText.set(b.paPropositionText, (bindingCountByText.get(b.paPropositionText) ?? 0) + 1);
+const duplicateBindings = [...bindingCountByText.entries()].filter(([, n]) => n > 1);
+if (duplicateBindings.length > 0) throw new Error(`CC-22C validation failure: duplicate historical-benchmark-bindings.ts entries for: ${duplicateBindings.map(([t]) => t).join(" | ")}`);
+
+interface HistoricalResolution {
+  state: HistoricalState;
+  bindingBasis: string | null;
+  resolvedRecords: { clusterKey: string; requirementKind: string; requirementText: string; coverageState: string; supportingSourceLocatorKeys: readonly string[]; gapReason: string | null }[];
+  reasonIfUnmapped: string | null;
+}
+
+function historicalBenchmarkFor(p: PATargetProposition): HistoricalResolution {
+  if (p.class === "OUT_OF_SCOPE") return { state: "NOT_APPLICABLE", bindingBasis: null, resolvedRecords: [], reasonIfUnmapped: null };
+  const binding = bindingByText.get(p.proposition);
+  if (!binding) {
+    return { state: "NO_HISTORICAL_BENCHMARK", bindingBasis: null, resolvedRecords: [], reasonIfUnmapped: "No explicit historical-benchmark-bindings.ts entry exists for this proposition -- either no historical record states it, or equivalence to a plausible-looking historical row was not judged safe (task section 4/9)." };
+  }
+  const resolved = binding.records.map(resolveRecord);
+  // Task section 6's aggregation rule: SOURCE_GAP dominates; else CONDITIONAL dominates; else all VERIFIED.
+  const states = new Set(resolved.map((r) => r.coverageState));
+  const state: HistoricalState = states.has("SOURCE_GAP") ? "HISTORICALLY_SOURCE_GAP" : states.has("CONDITIONAL_SOURCE_GAP") ? "HISTORICALLY_CONDITIONAL" : "HISTORICALLY_VERIFIED";
+  return {
+    state,
+    bindingBasis: binding.mappingBasis,
+    resolvedRecords: resolved.map((r) => ({ clusterKey: r.clusterKey, requirementKind: r.requirementKind, requirementText: r.requirementText, coverageState: r.coverageState, supportingSourceLocatorKeys: r.supportingSourceLocatorKeys, gapReason: r.gapReason ?? null })),
+    reasonIfUnmapped: null,
+  };
 }
 
 // ---------------------------------------------------------------------
@@ -293,7 +279,9 @@ interface LedgerRow {
   qualificationEvidenceState: QualificationEvidenceState;
   technicalEvidenceState: TechnicalEvidenceState;
   historicalBenchmarkState: HistoricalState;
-  historicalMatchedRows: string[];
+  historicalBindingBasis: string | null;
+  historicalResolvedRecords: HistoricalResolution["resolvedRecords"];
+  historicalReasonIfUnmapped: string | null;
   acquisitionReplayRequirement: AcquisitionReplayRequirement;
   gapTypes: string[];
   nextActions: NextAction[];
@@ -370,7 +358,9 @@ const ledger: LedgerRow[] = PA_TARGET.map((p) => {
     qualificationEvidenceState: qes,
     technicalEvidenceState: tes,
     historicalBenchmarkState: historical.state,
-    historicalMatchedRows: historical.matchedClusterRows,
+    historicalBindingBasis: historical.bindingBasis,
+    historicalResolvedRecords: historical.resolvedRecords,
+    historicalReasonIfUnmapped: historical.reasonIfUnmapped,
     acquisitionReplayRequirement,
     gapTypes,
     nextActions,
@@ -450,7 +440,7 @@ function mdEscape(s: string): string {
   return s.replace(/\|/g, "\\|");
 }
 
-const ledgerMd = `# Unit 202 Project-Architect Proposition Ledger (CC-22B)
+const ledgerMd = `# Unit 202 Project-Architect Proposition Ledger (CC-22B propositions; CC-22C hardened historical benchmark)
 
 Supersedes \`d828e78\` (CC-22) and \`48b1a98\` (CC-22A). The PA proposition ledger is now authored directly from the LOCKED Project-Architect Unit-202 target (task prompt section 5) -- **${ledger.length} atomic propositions**, independent of the historical Source-Acquisition-Manifest's own row count (task section 3's correction). The historical manifest is consulted only as a benchmark cross-reference below.
 
@@ -526,28 +516,116 @@ writeFileSync(path.join(benchmarkOutDir, "UNIT202-BLIND-ACQUISITION-TARGETS.md")
 
 // ---------------------------------------------------------------------
 // 8. Sealed historical benchmark (answer key -- POST_RUN_COMPARISON_ONLY).
+//    CC-22C section 7: full auditable provenance per target -- every
+//    bound record's own identity, its OWN real coverageState (never
+//    re-typed), its supportingSourceLocatorKeys/gapReason, the mapping
+//    basis, and an explicit reason for any NO_HISTORICAL_BENCHMARK.
 // ---------------------------------------------------------------------
 const sealedBenchmark = {
   qualificationId: QUAL,
   BENCHMARK_ACCESS_POLICY: "POST_RUN_COMPARISON_ONLY",
-  policyStatement: "The next blind acquisition runner MUST mechanically exclude this file, and every path named in UNIT202-BLIND-ACQUISITION-DENYLIST.json, from its accessible evidence inputs. This file exists only for comparison AFTER a blind acquisition run has completed.",
+  policyStatement: "The next blind acquisition runner MUST mechanically exclude this file, and every path named in UNIT202-BLIND-ACQUISITION-DENYLIST.json, from its accessible evidence inputs. This file exists only for comparison AFTER a blind acquisition run has completed. It is never itself the authorisation contract -- see UNIT202-BLIND-ACQUISITION-ALLOWLIST.json (task section 12).",
   entries: ledger
     .filter((r) => r.acquisitionReplayRequirement !== "NOT_APPLICABLE")
     .map((r) => ({
       acquisitionTargetId: `ACQ-${String(blindTargets.findIndex((t) => t.proposition === r.proposition && t.ac === r.ac) + 1).padStart(3, "0")}`,
+      proposition: r.proposition,
       historicalCoverageState: r.historicalBenchmarkState,
-      historicalMatchedSourceVerificationRows: r.historicalMatchedRows,
+      mappingBasis: r.historicalBindingBasis,
+      boundHistoricalRecords: r.historicalResolvedRecords,
+      reasonIfUnmapped: r.historicalReasonIfUnmapped,
       currentQPBoundClaimKey: r.boundClaimKey,
     })),
 };
 writeJson(path.join(benchmarkOutDir, "UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.json"), sealedBenchmark);
 
 // ---------------------------------------------------------------------
-// 9. Denylist.
+// 9. Positive allowlist (task section 10/11) -- the AUTHORITATIVE local-
+//    input contract for the future blind acquisition run. Default: DENY
+//    ALL local Unit-202 material except what is explicitly listed here.
+// ---------------------------------------------------------------------
+const blindTargetsHashForAllowlist = sha256OfText(readFileSync(path.join(benchmarkOutDir, "UNIT202-BLIND-ACQUISITION-TARGETS.json"), "utf-8"));
+const allowlist = {
+  qualificationId: QUAL,
+  policyStatement: "AUTHORITATIVE local-input contract for the future blind Unit-202 acquisition run. Default principle: DENY ALL LOCAL UNIT-202 MATERIAL EXCEPT EXPLICITLY ALLOWED INPUTS (task section 10). A path is readable only if it matches an entry below -- the denylist (UNIT202-BLIND-ACQUISITION-DENYLIST.json) is defence in depth only and never itself grants access.",
+  allowedInputs: [
+    {
+      rule: "FROZEN_BLIND_TARGET_MANIFEST",
+      path: "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
+      requiredHash: blindTargetsHashForAllowlist,
+      note: "The exact frozen file, identified by hash -- a file at this path with a different hash is NOT authorised by this rule.",
+    },
+    {
+      rule: "GENERIC_ACQUISITION_CODE",
+      pathPattern: "scripts/content/technical-evidence-acquisition/** (or wherever the next package locates it)",
+      note: "Generic technical-evidence-acquisition code/configuration, once identified in the next package -- never Unit-202-specific data.",
+    },
+    {
+      rule: "GENERIC_SOURCE_AUTHORITY_POLICY",
+      pathPattern: "non-Unit-202 generic source-authority policy/schema files needed to execute the research process",
+      note: "E.g. packages/content-schema source-authority/verification schema definitions -- structural/policy code, never Unit-202 content.",
+    },
+    {
+      rule: "EXPERIMENT_RUNTIME_OUTPUT",
+      pathPattern: "runtime/output directories created specifically for the blind acquisition experiment",
+      note: "Write targets for the experiment's own new output -- never pre-existing Unit-202 material.",
+    },
+  ],
+  defaultForUnlistedPaths: "DENY",
+  unit202DefaultDenyExamples: [
+    "any path containing 'unit202'",
+    "Unit-202 reconciliation files",
+    "historical source acquisition/verification data",
+    "source dossiers",
+    "knowledge obligations",
+    "assertions",
+    "lessons",
+    "calibration material",
+    "clean-room results",
+    "post-hardening results",
+    "the historical acquisition benchmark",
+    "old factual claims",
+    "visual/storyboard material that could reveal technical content",
+  ],
+  exceptionNote: "The ONLY exception to the broad Unit-202 default-deny is the exact frozen blind acquisition target manifest (FROZEN_BLIND_TARGET_MANIFEST above) -- the allowlist overrides the deny for that one approved file and no other.",
+  webResearchNote: "This allowlist governs LOCAL file access only (task section 14). It does not restrict legitimate public web research the acquisition runner performs -- a newly-discovered public webpage is never rejected merely because the same URL happened to be found historically; the test is independent discovery, not discovery of a different URL. The runner must simply receive no historical URL/source hint before searching.",
+  /**
+   * Task section 13: the mechanical access contract the next package's
+   * acquisition runner must implement -- DEFINED here, NOT executed by
+   * this package (no runner exists yet; this is a contract, not code).
+   */
+  accessAuditContract: {
+    status: "DEFINED_NOT_EXECUTED",
+    perLocalReadRecord: {
+      requiredFields: ["canonicalPath", "contentHash", "reason", "allowlistRuleId"],
+      note: "Every local file read the runner performs must be logged with these four fields -- the exact path (canonical, resolved), a content hash of what was actually read, why it was read, and which allowlist rule (by `rule` id above) authorised it.",
+    },
+    nonAllowlistedReadPolicy: {
+      onAttempt: "IMMEDIATE_HARD_FAILURE",
+      experimentValidity: "INVALID",
+      continuation: "NONE",
+      note: "Any attempted local read of a path not matched by an allowedInputs rule above must immediately hard-fail the run -- the experiment is invalid and must not continue, partially or otherwise.",
+    },
+    blindTargetIntegrityCheck: {
+      when: ["before acquisition run starts", "after acquisition run completes"],
+      requirement: "Hash the blind target manifest at both points and compare -- any difference invalidates the run (the runner must never have modified its own input).",
+    },
+    webAccessPolicy: "Not governed by this local-file access contract -- see webResearchNote above.",
+  },
+};
+writeJson(path.join(benchmarkOutDir, "UNIT202-BLIND-ACQUISITION-ALLOWLIST.json"), allowlist);
+
+// ---------------------------------------------------------------------
+// 10. Denylist -- DEFENCE IN DEPTH ONLY (task section 12). The positive
+//     allowlist above is authoritative; a missed denylist entry must
+//     never make a file readable that the allowlist did not already
+//     authorise.
 // ---------------------------------------------------------------------
 const denylist = {
   qualificationId: QUAL,
-  policyStatement: "The future blind Unit-202 acquisition runner must NOT read any path/resource class below while performing source discovery. The next package will inspect this denylist and implement mechanical isolation.",
+  DENYLIST_ROLE: "DEFENCE_IN_DEPTH_ONLY",
+  policyStatement:
+    "This denylist is DEFENCE IN DEPTH ONLY -- it is never the authorisation source. UNIT202-BLIND-ACQUISITION-ALLOWLIST.json is authoritative: a path is readable only if the allowlist explicitly permits it, regardless of whether that path also appears (or fails to appear) here. A missed denylist entry must not make a file readable if the allowlist does not separately authorise it. The future blind Unit-202 acquisition runner must NOT read any path/resource class below while performing source discovery. The next package will inspect this denylist and implement mechanical isolation.",
   deniedPaths: [
     "scripts/content/data/unit202-source-acquisition-manifest.ts",
     "scripts/content/data/unit202-technical-source-verification.ts",
@@ -570,14 +648,20 @@ const denylist = {
     "reports/backtests/unit202-reconciliation/UNIT202-PA-PROPOSITION-LEDGER.json",
     "reports/backtests/unit202-reconciliation/UNIT202-PA-PROPOSITION-LEDGER.md",
     "reports/backtests/unit202-reconciliation/UNIT202-CANDIDATE-MAPPING.json",
+    "reports/backtests/unit202-reconciliation/UNIT202-EVIDENCE-ACTION-MANIFEST.json",
+    "reports/backtests/unit202-reconciliation/UNIT202-EVIDENCE-ACTION-MANIFEST.md",
+    "reports/backtests/unit202-reconciliation/UNIT202-KNOWLEDGE-BOUNDARY-STATUS.json",
     "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.json",
+    "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-EVIDENCE-ACQUISITION-BENCHMARK-FREEZE.json",
+    "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-EVIDENCE-ACQUISITION-BENCHMARK-REPORT.md",
     "scripts/backtests/unit202-reconciliation/exact-claim-bindings.ts",
-    "scripts/backtests/unit202-reconciliation/ac-to-cluster.ts",
+    "scripts/backtests/unit202-reconciliation/historical-benchmark-bindings.ts",
     "scripts/backtests/unit202-reconciliation/claim-decisions.ts",
     "scripts/backtests/unit202-reconciliation/certification-decisions.ts",
+    "scripts/backtests/unit202-reconciliation/pa-target.ts",
     "scripts/content/data/unit202-assessment-specification.ts",
   ],
-  allowedPaths: ["reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json", "generic qualification-level evidence not naming Unit-202-specific historical sources", "public qualification scope evidence, if explicitly authorised by a future package"],
+  authoritativeAllowlist: "UNIT202-BLIND-ACQUISITION-ALLOWLIST.json",
 };
 writeJson(path.join(benchmarkOutDir, "UNIT202-BLIND-ACQUISITION-DENYLIST.json"), denylist);
 
@@ -597,11 +681,12 @@ const denominators = {
 };
 
 // ---------------------------------------------------------------------
-// 11. Freeze file.
+// 11. Freeze file (CC-22C section 17).
 // ---------------------------------------------------------------------
 const paLedgerJsonPath = path.join(reconciliationOutDir, "UNIT202-PA-PROPOSITION-LEDGER.json");
 const blindTargetsJsonPath = path.join(benchmarkOutDir, "UNIT202-BLIND-ACQUISITION-TARGETS.json");
 const sealedBenchmarkJsonPath = path.join(benchmarkOutDir, "UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.json");
+const allowlistJsonPath = path.join(benchmarkOutDir, "UNIT202-BLIND-ACQUISITION-ALLOWLIST.json");
 const denylistJsonPath = path.join(benchmarkOutDir, "UNIT202-BLIND-ACQUISITION-DENYLIST.json");
 
 const sourceManifestPath = path.join(repoRoot, "scripts", "content", "data", "unit202-source-acquisition-manifest.ts");
@@ -610,32 +695,75 @@ const sourceVerificationPath = path.join(repoRoot, "scripts", "content", "data",
 const byACCounts: Record<string, number> = {};
 for (const t of blindTargets) byACCounts[t.ac] = (byACCounts[t.ac] ?? 0) + 1;
 
+/**
+ * CC-22C task section 9: provenance-only record of the CC-22B fuzzy/
+ * token-matched counts this package supersedes. Sourced from commit
+ * 8fa98b0's own UNIT202-EVIDENCE-ACQUISITION-BENCHMARK-FREEZE.json
+ * `denominators` -- never re-derived here (the fuzzy matcher is gone).
+ * These numbers were never a target to reproduce; they are recorded so
+ * the correction's direction and magnitude remain auditable.
+ */
+const previousHeuristicCounts = {
+  commit: "8fa98b0",
+  method: "cluster-scoped token/keyword overlap matcher plus MANUAL_HISTORICAL_OVERRIDES (both removed in CC-22C)",
+  historicallyVerified: 101,
+  historicallyConditional: 10,
+  historicallySourceGap: 6,
+  noHistoricalBenchmark: 54,
+  note: "SUPERSEDED. Task section 9: 'There is NO expected VERIFIED count... The correct counts are whatever the explicit audited bindings produce.'",
+};
+
+const finalExplicitBindingCounts = {
+  historicallyVerified: denominators.historicallyVerified,
+  historicallyConditional: denominators.historicallyConditional,
+  historicallySourceGap: denominators.historicallySourceGap,
+  noHistoricalBenchmark: denominators.noHistoricalBenchmark,
+  totalExplicitBindings: HISTORICAL_BENCHMARK_BINDINGS.length,
+};
+
 const freeze = {
-  parentHEAD: "48b1a98",
-  parentHEADSubject: "fix: correct Unit 202 evidence reconciliation",
+  parentHEAD: "8fa98b0",
+  parentHEADSubject: "audit: freeze Unit 202 acquisition benchmark",
+  cc22bCommit: "8fa98b0",
+  blindTargetManifestHashUnchanged: true,
+  blindTargetManifestExpectedHash: "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
   paPropositionLedgerHash: sha256OfText(readFileSync(paLedgerJsonPath, "utf-8")),
   blindAcquisitionTargetManifestHash: sha256OfText(readFileSync(blindTargetsJsonPath, "utf-8")),
+  historicalBindingsFileHash: sha256OfText(readFileSync(path.join(__dirname, "historical-benchmark-bindings.ts"), "utf-8")),
   historicalBenchmarkHash: sha256OfText(readFileSync(sealedBenchmarkJsonPath, "utf-8")),
+  allowlistHash: sha256OfText(readFileSync(allowlistJsonPath, "utf-8")),
   denylistHash: sha256OfText(readFileSync(denylistJsonPath, "utf-8")),
   paPropositionCountsByClass: classificationCounts,
   acquisitionTargetCount: blindTargets.length,
   acquisitionTargetCountsByAC: byACCounts,
-  benchmarkHistoricalStates: historicalCounts,
+  previousHeuristicCounts,
+  finalExplicitBindingCounts,
+  zeroFuzzyBenchmarkAssignments: true,
+  zeroManualStateOverrides: true,
+  targetSemanticHashUnchanged: true,
   projectArchitectDecisionsRemaining: summary.projectArchitectDecisionRemaining,
   sourceAcquisitionManifestHash: sha256OfText(readFileSync(sourceManifestPath, "utf-8")),
   technicalSourceVerificationHash: sha256OfText(readFileSync(sourceVerificationPath, "utf-8")),
-  statement: "The historical Unit-202 technical-source dossier (unit202-source-acquisition-manifest.ts, unit202-technical-source-verification.ts) is BENCHMARK-ONLY from this freeze forward. It is not evidence available to the future blind Unit-202 acquisition process, which must mechanically exclude it per UNIT202-BLIND-ACQUISITION-DENYLIST.json.",
+  statement:
+    "The historical Unit-202 technical-source dossier (unit202-source-acquisition-manifest.ts, unit202-technical-source-verification.ts) is BENCHMARK-ONLY. It is not evidence available to the future blind Unit-202 acquisition process, which must mechanically exclude it per the POSITIVE ALLOWLIST (UNIT202-BLIND-ACQUISITION-ALLOWLIST.json, authoritative) and the denylist (defence in depth only).",
+  supersedesNote: "d828e78 (CC-22) and 48b1a98 (CC-22A/CC-22B) reconciliation counts and the CC-22B heuristic historical-benchmark counts (previousHeuristicCounts above) are SUPERSEDED. The blind acquisition target manifest itself is NOT superseded -- its hash is unchanged from CC-22B (task section 17's explicit instruction).",
   denominators,
 };
 writeJson(path.join(benchmarkOutDir, "UNIT202-EVIDENCE-ACQUISITION-BENCHMARK-FREEZE.json"), freeze);
 
-const reportMd = `# Unit 202 Evidence Acquisition Benchmark Freeze (CC-22B)
+if (freeze.blindAcquisitionTargetManifestHash !== freeze.blindTargetManifestExpectedHash) {
+  throw new Error(`CC-22C STOP: blind acquisition target manifest hash changed! expected ${freeze.blindTargetManifestExpectedHash}, got ${freeze.blindAcquisitionTargetManifestHash}. Task section 15: do not regenerate/reorder/modify this file.`);
+}
 
-Parent HEAD: \`48b1a98\` (fix: correct Unit 202 evidence reconciliation).
+const reportMd = `# Unit 202 Evidence Acquisition Benchmark Freeze (CC-22C)
 
-This package freezes (A) the actual Project-Architect-approved Unit-202 knowledge target, and (B) a historical evidence benchmark hidden from the future blind acquisition process until after it runs.
+Parent HEAD: \`8fa98b0\` (audit: freeze Unit 202 acquisition benchmark).
 
-## PA proposition counts
+This package hardens the CC-22B benchmark: the historical answer key is now derived exclusively from explicit, auditable bindings (historical-benchmark-bindings.ts) -- no fuzzy/token matching, no manual state overrides -- and a positive, default-deny local-input allowlist is frozen for the future blind acquisition runner.
+
+**Blind target manifest hash unchanged (task section 15):** \`${freeze.blindAcquisitionTargetManifestHash}\` -- matches the CC-22B-frozen hash exactly. Not regenerated, not reordered, not modified.
+
+## PA proposition counts (unchanged from CC-22B -- pa-target.ts was not touched)
 
 ${Object.entries(classificationCounts).map(([k, v]) => `- ${k}: ${v}`).join("\n")}
 
@@ -646,7 +774,11 @@ ${Object.entries(classificationCounts).map(([k, v]) => `- ${k}: ${v}`).join("\n"
 - OPTIONAL_CONTEXT: ${denominators.contextualOptionalTargets}
 - Representative-exemplar targets: ${denominators.representativeExemplarTargets}
 
-## Benchmark denominators (REQUIRED targets only, no scoring)
+## Historical benchmark counts -- explicit bindings only (task section 9: no expected count)
+
+**Previous (CC-22B heuristic, SUPERSEDED):** VERIFIED=${previousHeuristicCounts.historicallyVerified}, CONDITIONAL=${previousHeuristicCounts.historicallyConditional}, SOURCE_GAP=${previousHeuristicCounts.historicallySourceGap}, NONE=${previousHeuristicCounts.noHistoricalBenchmark} (fuzzy/token matcher + manual overrides -- both removed).
+
+**Final (CC-22C explicit bindings, ${finalExplicitBindingCounts.totalExplicitBindings} bindings):**
 
 - Historically VERIFIED: ${denominators.historicallyVerified}
 - Historically CONDITIONAL: ${denominators.historicallyConditional}
@@ -659,20 +791,25 @@ ${Object.entries(byACCounts).sort().map(([ac, n2]) => `- ${ac}: ${n2}`).join("\n
 
 ## Files frozen
 
-- \`UNIT202-BLIND-ACQUISITION-TARGETS.json\` (sha256 ${freeze.blindAcquisitionTargetManifestHash})
+- \`UNIT202-BLIND-ACQUISITION-TARGETS.json\` (sha256 ${freeze.blindAcquisitionTargetManifestHash}, UNCHANGED from CC-22B)
 - \`UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.json\` (sealed, sha256 ${freeze.historicalBenchmarkHash})
-- \`UNIT202-BLIND-ACQUISITION-DENYLIST.json\` (sha256 ${freeze.denylistHash})
+- \`UNIT202-BLIND-ACQUISITION-ALLOWLIST.json\` (authoritative, sha256 ${freeze.allowlistHash})
+- \`UNIT202-BLIND-ACQUISITION-DENYLIST.json\` (defence in depth only, sha256 ${freeze.denylistHash})
 - \`UNIT202-PA-PROPOSITION-LEDGER.json\` (sha256 ${freeze.paPropositionLedgerHash})
+- \`historical-benchmark-bindings.ts\` (sha256 ${freeze.historicalBindingsFileHash})
 
 Project-Architect decisions remaining: **${summary.projectArchitectDecisionRemaining}** (expected 0).
 
-STOP. No acquisition performed. The next package inspects/builds the generic technical-evidence acquisition workflow and executes a mechanically isolated blind Unit-202 acquisition replay using ONLY \`UNIT202-BLIND-ACQUISITION-TARGETS.json\`.
+STOP. No acquisition performed. The next package inspects/builds the generic technical-evidence acquisition workflow and executes a mechanically isolated blind Unit-202 acquisition replay using ONLY \`UNIT202-BLIND-ACQUISITION-TARGETS.json\`, governed by \`UNIT202-BLIND-ACQUISITION-ALLOWLIST.json\`.
 `;
 writeFileSync(path.join(benchmarkOutDir, "UNIT202-EVIDENCE-ACQUISITION-BENCHMARK-REPORT.md"), reportMd, "utf-8");
 
-console.log("CC-22B benchmark freeze complete.");
-console.log(`  PA propositions: ${ledger.length}`);
+console.log("CC-22C benchmark hardening complete.");
+console.log(`  PA propositions: ${ledger.length} (unchanged from CC-22B)`);
 console.log(`  acquisition targets: ${blindTargets.length} (REQUIRED=${denominators.acquisitionTargetsTotal}, OPTIONAL_CONTEXT=${denominators.contextualOptionalTargets})`);
-console.log(`  historically VERIFIED/CONDITIONAL/SOURCE_GAP/none: ${denominators.historicallyVerified}/${denominators.historicallyConditional}/${denominators.historicallySourceGap}/${denominators.noHistoricalBenchmark}`);
+console.log(`  blind target manifest hash unchanged: ${freeze.blindAcquisitionTargetManifestHash === freeze.blindTargetManifestExpectedHash}`);
+console.log(`  explicit bindings: ${HISTORICAL_BENCHMARK_BINDINGS.length}`);
+console.log(`  historically VERIFIED/CONDITIONAL/SOURCE_GAP/none (explicit): ${denominators.historicallyVerified}/${denominators.historicallyConditional}/${denominators.historicallySourceGap}/${denominators.noHistoricalBenchmark}`);
+console.log(`  previous heuristic (superseded) VERIFIED/CONDITIONAL/SOURCE_GAP/none: ${previousHeuristicCounts.historicallyVerified}/${previousHeuristicCounts.historicallyConditional}/${previousHeuristicCounts.historicallySourceGap}/${previousHeuristicCounts.noHistoricalBenchmark}`);
 console.log(`  PROJECT_ARCHITECT_DECISION remaining: ${summary.projectArchitectDecisionRemaining}`);
 console.log(`  semanticAdjudications: ${semanticAdjudications.length}, certifications: ${knowledgeBoundaryCertifications.length}, unadjudicated REVIEW_PROPOSED: ${unadjudicatedReviewProposed.length}`);

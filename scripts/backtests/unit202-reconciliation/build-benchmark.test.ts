@@ -26,6 +26,13 @@ function readJson<T>(relPath: string): T {
   return JSON.parse(readFileSync(path.join(repoRoot, relPath), "utf-8")) as T;
 }
 
+interface HistoricalResolvedRecord {
+  clusterKey: string;
+  requirementKind: string;
+  requirementText: string;
+  coverageState: string;
+}
+
 interface LedgerRow {
   id: string;
   ac: string;
@@ -34,7 +41,7 @@ interface LedgerRow {
   isRepresentativeExemplar: boolean;
   technicalEvidenceState: string;
   historicalBenchmarkState: string;
-  historicalMatchedRows: string[];
+  historicalResolvedRecords: HistoricalResolvedRecord[];
   acquisitionReplayRequirement: string;
   nextActions: string[];
 }
@@ -182,20 +189,21 @@ describe("CC-22B section 19.18 -- denylist covers all known historical Unit-202 
   });
 });
 
-describe("CC-22B section 21.C -- same PA proposition can map to multiple historic source-verification rows", () => {
-  it("at least one row has more than one matched historical row", () => {
-    expect(ledger.some((r) => r.historicalMatchedRows.length > 1)).toBe(true);
+describe("CC-22B section 21.C -- same PA proposition can map to multiple historic source-verification rows (CC-22C: via an explicit MULTIPLE_HISTORICAL_RECORDS_REQUIRED binding)", () => {
+  it("at least one row has more than one bound historical record", () => {
+    expect(ledger.some((r) => r.historicalResolvedRecords.length > 1)).toBe(true);
   });
 });
 
-describe("CC-22B section 21.D -- one historic source proposition can support multiple PA propositions", () => {
-  it("at least one historical matched-row string is shared by two distinct PA propositions", () => {
+describe("CC-22B section 21.D -- one historic source proposition can support multiple PA propositions (CC-22C: via explicit compound bindings)", () => {
+  it("at least one bound historical record identity is shared by two distinct PA propositions", () => {
     const rowsByHistoricalMatch = new Map<string, Set<string>>();
     for (const r of ledger) {
-      for (const m of r.historicalMatchedRows) {
-        const set = rowsByHistoricalMatch.get(m) ?? new Set<string>();
+      for (const rec of r.historicalResolvedRecords) {
+        const key = `${rec.clusterKey}::${rec.requirementKind}::${rec.requirementText}`;
+        const set = rowsByHistoricalMatch.get(key) ?? new Set<string>();
         set.add(r.proposition);
-        rowsByHistoricalMatch.set(m, set);
+        rowsByHistoricalMatch.set(key, set);
       }
     }
     expect([...rowsByHistoricalMatch.values()].some((s) => s.size > 1)).toBe(true);

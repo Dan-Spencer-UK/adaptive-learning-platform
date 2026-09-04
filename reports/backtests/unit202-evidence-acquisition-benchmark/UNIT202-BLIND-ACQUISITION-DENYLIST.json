@@ -1,6 +1,7 @@
 {
   "qualificationId": "2365-02",
-  "policyStatement": "The future blind Unit-202 acquisition runner must NOT read any path/resource class below while performing source discovery. The next package will inspect this denylist and implement mechanical isolation.",
+  "DENYLIST_ROLE": "DEFENCE_IN_DEPTH_ONLY",
+  "policyStatement": "This denylist is DEFENCE IN DEPTH ONLY -- it is never the authorisation source. UNIT202-BLIND-ACQUISITION-ALLOWLIST.json is authoritative: a path is readable only if the allowlist explicitly permits it, regardless of whether that path also appears (or fails to appear) here. A missed denylist entry must not make a file readable if the allowlist does not separately authorise it. The future blind Unit-202 acquisition runner must NOT read any path/resource class below while performing source discovery. The next package will inspect this denylist and implement mechanical isolation.",
   "deniedPaths": [
     "scripts/content/data/unit202-source-acquisition-manifest.ts",
     "scripts/content/data/unit202-technical-source-verification.ts",
@@ -23,16 +24,18 @@
     "reports/backtests/unit202-reconciliation/UNIT202-PA-PROPOSITION-LEDGER.json",
     "reports/backtests/unit202-reconciliation/UNIT202-PA-PROPOSITION-LEDGER.md",
     "reports/backtests/unit202-reconciliation/UNIT202-CANDIDATE-MAPPING.json",
+    "reports/backtests/unit202-reconciliation/UNIT202-EVIDENCE-ACTION-MANIFEST.json",
+    "reports/backtests/unit202-reconciliation/UNIT202-EVIDENCE-ACTION-MANIFEST.md",
+    "reports/backtests/unit202-reconciliation/UNIT202-KNOWLEDGE-BOUNDARY-STATUS.json",
     "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-HISTORICAL-ACQUISITION-BENCHMARK.json",
+    "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-EVIDENCE-ACQUISITION-BENCHMARK-FREEZE.json",
+    "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-EVIDENCE-ACQUISITION-BENCHMARK-REPORT.md",
     "scripts/backtests/unit202-reconciliation/exact-claim-bindings.ts",
-    "scripts/backtests/unit202-reconciliation/ac-to-cluster.ts",
+    "scripts/backtests/unit202-reconciliation/historical-benchmark-bindings.ts",
     "scripts/backtests/unit202-reconciliation/claim-decisions.ts",
     "scripts/backtests/unit202-reconciliation/certification-decisions.ts",
+    "scripts/backtests/unit202-reconciliation/pa-target.ts",
     "scripts/content/data/unit202-assessment-specification.ts"
   ],
-  "allowedPaths": [
-    "reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json",
-    "generic qualification-level evidence not naming Unit-202-specific historical sources",
-    "public qualification scope evidence, if explicitly authorised by a future package"
-  ]
+  "authoritativeAllowlist": "UNIT202-BLIND-ACQUISITION-ALLOWLIST.json"
 }
