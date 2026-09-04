@@ -12,7 +12,6 @@
  * through a real `LocalAccessGuard` instance (task section 21 -- this is
  * not merely documented isolation, the read is actually gated).
  */
-import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -61,16 +60,23 @@ interface BlindAcquisitionTargetManifest {
  * expected hash independently; the sealed benchmark builder already
  * proves byte-identical reproduction -- see build-preflight.test.ts's
  * own independent hash check against the same constant used there).
+ *
+ * CC-24 §2 correction: uses `guardedReadUtf8` so authorization is checked
+ * BEFORE the filesystem is ever touched -- the prior pattern (read via
+ * `readFileSync`, then call `guard.checkRead` on the already-read content)
+ * meant the read had already happened by the time authorization was
+ * checked, which the guard could never actually have prevented.
  */
 export function readBlindAcquisitionTargets(): { manifest: BlindAcquisitionTargetManifest; contentHash: string } {
-  const guard = new LocalAccessGuard({
-    experimentId: "unit202-preflight-adapter",
-    allowedInputs: [{ rule: "FROZEN_BLIND_TARGET_MANIFEST", matchKind: "EXACT_PATH", pathOrGlob: BLIND_TARGETS_RELATIVE_PATH, note: "The one frozen input this adapter is authorised to read." }],
-  });
-  const absPath = path.join(repoRoot, BLIND_TARGETS_RELATIVE_PATH);
-  const raw = readFileSync(absPath, "utf-8");
-  guard.checkRead(BLIND_TARGETS_RELATIVE_PATH, "translate frozen Unit-202 blind acquisition targets into the generic KnowledgeEvidencePlanningInput contract", raw);
-  return { manifest: JSON.parse(raw) as BlindAcquisitionTargetManifest, contentHash: hashContent(raw) };
+  const guard = new LocalAccessGuard(
+    {
+      experimentId: "unit202-preflight-adapter",
+      allowedInputs: [{ rule: "FROZEN_BLIND_TARGET_MANIFEST", matchKind: "EXACT_PATH", pathOrGlob: BLIND_TARGETS_RELATIVE_PATH, note: "The one frozen input this adapter is authorised to read." }],
+    },
+    repoRoot,
+  );
+  const { content: raw, audit } = guard.guardedReadUtf8(BLIND_TARGETS_RELATIVE_PATH, "translate frozen Unit-202 blind acquisition targets into the generic KnowledgeEvidencePlanningInput contract");
+  return { manifest: JSON.parse(raw) as BlindAcquisitionTargetManifest, contentHash: audit.contentHash ?? hashContent(raw) };
 }
 
 // ---------------------------------------------------------------------
@@ -324,6 +330,36 @@ const FORMULA_REARRANGEMENT_TARGETS: Record<string, FormulaRearrangementOverride
 const DIRECTIONAL_RULE_TARGET_IDS = new Set(["ACQ-108", "ACQ-114", "ACQ-117"]);
 const DIRECTIONAL_RULE_DIMENSIONS: readonly CoverageDimension[] = ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"];
 
+// ---------------------------------------------------------------------
+// CC-24 §1 (Narrow Correction A): adapter-adoption of existing generic
+// modes the Unit-202 adapter had never actually used. The generic package
+// has always supported `APPLICATION_FUNCTION` and `OPERATING_PRINCIPLE`
+// (task §2/CC-23 §8) -- these two explicit, auditable ID sets correct the
+// six AC6.1 "application category/function" targets and fourteen AC6.2
+// "basic operating principle" targets, previously left as the generic
+// FACTUAL_PROPOSITION/EXACT_FACT default. This is an adapter mapping
+// correction only: no generic planner text-recognition logic, no change
+// to qualificationClassification/acquisitionPriority/targetText.
+// ---------------------------------------------------------------------
+
+const APPLICATION_FUNCTION_TARGET_IDS = new Set(["ACQ-147", "ACQ-148", "ACQ-149", "ACQ-150", "ACQ-151", "ACQ-152"]);
+const OPERATING_PRINCIPLE_TARGET_IDS = new Set([
+  "ACQ-170",
+  "ACQ-171",
+  "ACQ-172",
+  "ACQ-173",
+  "ACQ-174",
+  "ACQ-175",
+  "ACQ-176",
+  "ACQ-177",
+  "ACQ-178",
+  "ACQ-179",
+  "ACQ-180",
+  "ACQ-181",
+  "ACQ-182",
+  "ACQ-183",
+]);
+
 export interface AdapterAuditEntry {
   readonly knowledgeTargetId: string;
   readonly acquisitionTargetId: string;
@@ -381,6 +417,16 @@ export function buildUnit202PlanningInput(): AdapterResult {
       expectedCoverageDimensions = DIRECTIONAL_RULE_DIMENSIONS;
       requiresMultipleIndependentClaims = false; // resolved atomically -- never an unresolved multi-claim target
       notes.push("CC-23B directional-rule pattern -- kind overridden to OPERATIONAL_USE_RULE, generic DIRECTIONAL_MAPPING/ROLE_MAPPING/CORRECT_USE_CONDITIONS dimensions requested, NO answer mapping supplied (task §13)");
+    } else if (APPLICATION_FUNCTION_TARGET_IDS.has(t.acquisitionTargetId)) {
+      // CC-24 §1 (Correction A): adopt the generic APPLICATION_FUNCTION mode -- already
+      // supported by the planner, never previously used by this adapter.
+      kind = "APPLICATION_FUNCTION";
+      notes.push("CC-24 Correction A -- kind overridden to APPLICATION_FUNCTION (adapter-adoption of an existing generic mode, no planner change)");
+    } else if (OPERATING_PRINCIPLE_TARGET_IDS.has(t.acquisitionTargetId)) {
+      // CC-24 §1 (Correction A): adopt the generic OPERATING_PRINCIPLE mode -- already
+      // supported by the planner, never previously used by this adapter.
+      kind = "OPERATING_PRINCIPLE";
+      notes.push("CC-24 Correction A -- kind overridden to OPERATING_PRINCIPLE (adapter-adoption of an existing generic mode, no planner change)");
     }
 
     const constituentIds = INTEGRATION_CONSTITUENTS[t.proposition]?.map(knowledgeTargetIdFor);
