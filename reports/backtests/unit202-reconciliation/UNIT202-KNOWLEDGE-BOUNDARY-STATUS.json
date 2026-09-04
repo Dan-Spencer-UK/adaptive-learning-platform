@@ -2,16 +2,14 @@
   "qualificationId": "2365-02",
   "generatedFrom": "reports/backtests/unit202-post-hardening/CC-21-FULL-PUBLIC-INPUT.json (frozen, read-only)",
   "pipelineVersion": "packages/qualification-pipeline @ HEAD 9663120 (CC-21B, unmodified)",
-  "semanticAdjudicationsApplied": 65,
-  "knowledgeBoundaryCertificationsApplied": 64,
-  "unadjudicatedReviewProposedCount": 5,
+  "semanticAdjudicationsApplied": 70,
+  "knowledgeBoundaryCertificationsApplied": 69,
+  "unadjudicatedReviewProposedCount": 0,
   "candidates": [
     {
       "candidateKey": "mathematical principles::IDENTIFY",
       "subject": "mathematical principles",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "NOT_APPLICABLE",
       "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED"
@@ -20,8 +18,6 @@
       "candidateKey": "mathematical principles::APPLY",
       "subject": "mathematical principles",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "NOT_APPLICABLE",
       "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED"
@@ -30,8 +26,6 @@
       "candidateKey": "fractions and percentages::IDENTIFY",
       "subject": "fractions and percentages",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -40,8 +34,6 @@
       "candidateKey": "fractions and percentages::APPLY",
       "subject": "fractions and percentages",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -50,8 +42,6 @@
       "candidateKey": "algebra::IDENTIFY",
       "subject": "algebra",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -60,8 +50,6 @@
       "candidateKey": "algebra::APPLY",
       "subject": "algebra",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -70,8 +58,6 @@
       "candidateKey": "indices::IDENTIFY",
       "subject": "indices",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -80,8 +66,6 @@
       "candidateKey": "indices::APPLY",
       "subject": "indices",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -90,8 +74,6 @@
       "candidateKey": "transposition::IDENTIFY",
       "subject": "transposition",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -100,8 +82,6 @@
       "candidateKey": "transposition::APPLY",
       "subject": "transposition",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -110,8 +90,6 @@
       "candidateKey": "triangles and trigonometry::IDENTIFY",
       "subject": "triangles and trigonometry",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -120,8 +98,6 @@
       "candidateKey": "triangles and trigonometry::APPLY",
       "subject": "triangles and trigonometry",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -130,8 +106,6 @@
       "candidateKey": "statistics::IDENTIFY",
       "subject": "statistics",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -140,8 +114,6 @@
       "candidateKey": "statistics::APPLY",
       "subject": "statistics",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -150,8 +122,6 @@
       "candidateKey": "SI units of measurement for general physical quantities::IDENTIFY",
       "subject": "SI units of measurement for general physical quantities",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "NOT_APPLICABLE",
       "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED"
@@ -160,8 +130,6 @@
       "candidateKey": "SI units of measurement for general physical quantities::APPLY",
       "subject": "SI units of measurement for general physical quantities",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "NOT_APPLICABLE",
       "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED"
@@ -170,8 +138,6 @@
       "candidateKey": "length (SI unit)::IDENTIFY",
       "subject": "length (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.length"
       ],
@@ -182,8 +148,6 @@
       "candidateKey": "length (SI unit)::APPLY",
       "subject": "length (SI unit)",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.length"
       ],
@@ -194,8 +158,6 @@
       "candidateKey": "area (SI unit)::IDENTIFY",
       "subject": "area (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.area"
       ],
@@ -206,8 +168,6 @@
       "candidateKey": "area (SI unit)::APPLY",
       "subject": "area (SI unit)",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.area"
       ],
@@ -218,8 +178,6 @@
       "candidateKey": "volume (SI unit)::IDENTIFY",
       "subject": "volume (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.volume"
       ],
@@ -230,8 +188,6 @@
       "candidateKey": "volume (SI unit)::APPLY",
       "subject": "volume (SI unit)",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.volume"
       ],
@@ -242,8 +198,6 @@
       "candidateKey": "mass (SI unit)::IDENTIFY",
       "subject": "mass (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.mass"
       ],
@@ -254,8 +208,6 @@
       "candidateKey": "mass (SI unit)::APPLY",
       "subject": "mass (SI unit)",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.mass"
       ],
@@ -266,8 +218,6 @@
       "candidateKey": "density (SI unit)::IDENTIFY",
       "subject": "density (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.density"
       ],
@@ -278,8 +228,6 @@
       "candidateKey": "density (SI unit)::APPLY",
       "subject": "density (SI unit)",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.density"
       ],
@@ -290,8 +238,6 @@
       "candidateKey": "time (SI unit)::IDENTIFY",
       "subject": "time (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.time"
       ],
@@ -302,8 +248,6 @@
       "candidateKey": "time (SI unit)::APPLY",
       "subject": "time (SI unit)",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.time"
       ],
@@ -314,8 +258,6 @@
       "candidateKey": "temperature (SI unit)::IDENTIFY",
       "subject": "temperature (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.temperature"
       ],
@@ -326,8 +268,6 @@
       "candidateKey": "temperature (SI unit)::APPLY",
       "subject": "temperature (SI unit)",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.temperature"
       ],
@@ -338,8 +278,6 @@
       "candidateKey": "velocity (SI unit)::IDENTIFY",
       "subject": "velocity (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.velocity"
       ],
@@ -350,8 +288,6 @@
       "candidateKey": "velocity (SI unit)::APPLY",
       "subject": "velocity (SI unit)",
       "performanceType": "APPLY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.velocity"
       ],
@@ -362,8 +298,6 @@
       "candidateKey": "electrical quantities (SI units)::IDENTIFY",
       "subject": "electrical quantities (SI units)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "NOT_APPLICABLE",
       "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED"
@@ -372,8 +306,6 @@
       "candidateKey": "electrical quantities (SI units)::OTHER",
       "subject": "electrical quantities (SI units)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "NOT_APPLICABLE",
       "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED"
@@ -382,8 +314,6 @@
       "candidateKey": "resistance (SI unit)::IDENTIFY",
       "subject": "resistance (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.resistance"
       ],
@@ -394,8 +324,6 @@
       "candidateKey": "resistance (SI unit)::OTHER",
       "subject": "resistance (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.resistance"
       ],
@@ -406,8 +334,6 @@
       "candidateKey": "resistivity (SI unit)::IDENTIFY",
       "subject": "resistivity (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.resistivity"
       ],
@@ -418,8 +344,6 @@
       "candidateKey": "resistivity (SI unit)::OTHER",
       "subject": "resistivity (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.resistivity"
       ],
@@ -430,8 +354,6 @@
       "candidateKey": "power (SI unit)::IDENTIFY",
       "subject": "power (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.power"
       ],
@@ -442,8 +364,6 @@
       "candidateKey": "power (SI unit)::OTHER",
       "subject": "power (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.power"
       ],
@@ -454,8 +374,6 @@
       "candidateKey": "frequency (SI electrical quantity)::IDENTIFY",
       "subject": "frequency (SI electrical quantity)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.frequency"
       ],
@@ -466,8 +384,6 @@
       "candidateKey": "frequency (SI electrical quantity)::OTHER",
       "subject": "frequency (SI electrical quantity)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.frequency"
       ],
@@ -478,8 +394,6 @@
       "candidateKey": "current (SI unit)::IDENTIFY",
       "subject": "current (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.current"
       ],
@@ -490,8 +404,6 @@
       "candidateKey": "current (SI unit)::OTHER",
       "subject": "current (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.current"
       ],
@@ -502,8 +414,6 @@
       "candidateKey": "voltage (SI unit)::IDENTIFY",
       "subject": "voltage (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.voltage"
       ],
@@ -514,8 +424,6 @@
       "candidateKey": "voltage (SI unit)::OTHER",
       "subject": "voltage (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.voltage"
       ],
@@ -526,8 +434,6 @@
       "candidateKey": "energy (SI unit)::IDENTIFY",
       "subject": "energy (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.energy"
       ],
@@ -538,8 +444,6 @@
       "candidateKey": "energy (SI unit)::OTHER",
       "subject": "energy (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.energy"
       ],
@@ -550,8 +454,6 @@
       "candidateKey": "impedance (SI unit)::IDENTIFY",
       "subject": "impedance (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.impedance"
       ],
@@ -562,8 +464,6 @@
       "candidateKey": "impedance (SI unit)::OTHER",
       "subject": "impedance (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.impedance"
       ],
@@ -574,8 +474,6 @@
       "candidateKey": "inductance and inductive reactance (SI unit)::IDENTIFY",
       "subject": "inductance and inductive reactance (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.inductance",
         "unit202.si-unit.inductive-reactance"
@@ -587,8 +485,6 @@
       "candidateKey": "inductance and inductive reactance (SI unit)::OTHER",
       "subject": "inductance and inductive reactance (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.inductance",
         "unit202.si-unit.inductive-reactance"
@@ -600,8 +496,6 @@
       "candidateKey": "capacitance and capacitive reactance (SI unit)::IDENTIFY",
       "subject": "capacitance and capacitive reactance (SI unit)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.capacitance",
         "unit202.si-unit.capacitive-reactance"
@@ -613,8 +507,6 @@
       "candidateKey": "capacitance and capacitive reactance (SI unit)::OTHER",
       "subject": "capacitance and capacitive reactance (SI unit)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.capacitance",
         "unit202.si-unit.capacitive-reactance"
@@ -626,8 +518,6 @@
       "candidateKey": "power factor (SI unit / dimensional status)::IDENTIFY",
       "subject": "power factor (SI unit / dimensional status)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.power-factor.defining-relationship",
         "unit202.si-unit.power-factor.dimensionless-convention"
@@ -639,8 +529,6 @@
       "candidateKey": "power factor (SI unit / dimensional status)::OTHER",
       "subject": "power factor (SI unit / dimensional status)",
       "performanceType": "OTHER",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.si-unit.power-factor.defining-relationship",
         "unit202.si-unit.power-factor.dimensionless-convention"
@@ -652,8 +540,6 @@
       "candidateKey": "electrical instruments for the measurement of electrical quantities::IDENTIFY",
       "subject": "electrical instruments for the measurement of electrical quantities",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -662,8 +548,6 @@
       "candidateKey": "electrical quantities requiring instrument identification (measurement)::IDENTIFY",
       "subject": "electrical quantities requiring instrument identification (measurement)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -672,8 +556,6 @@
       "candidateKey": "instrument for measuring resistance::IDENTIFY",
       "subject": "instrument for measuring resistance",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ohmmeter-definition"
       ],
@@ -684,8 +566,6 @@
       "candidateKey": "instrument for measuring power::IDENTIFY",
       "subject": "instrument for measuring power",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.wattmeter"
       ],
@@ -696,8 +576,6 @@
       "candidateKey": "instrument for measuring current::IDENTIFY",
       "subject": "instrument for measuring current",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ammeter-definition"
       ],
@@ -708,8 +586,6 @@
       "candidateKey": "instrument for measuring voltage::IDENTIFY",
       "subject": "instrument for measuring voltage",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.voltmeter-definition"
       ],
@@ -720,8 +596,6 @@
       "candidateKey": "instrument for measuring energy::IDENTIFY",
       "subject": "instrument for measuring energy",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.energy-meter"
       ],
@@ -732,8 +606,6 @@
       "candidateKey": "mass and weight::DEFINE",
       "subject": "mass and weight",
       "performanceType": "DEFINE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.mass-definition",
         "unit202.review-fact.weight-definition"
@@ -745,8 +617,6 @@
       "candidateKey": "principles of basic mechanics as applied to levers, gears and pulleys::EXPLAIN",
       "subject": "principles of basic mechanics as applied to levers, gears and pulleys",
       "performanceType": "EXPLAIN",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -755,8 +625,6 @@
       "candidateKey": "gears::EXPLAIN",
       "subject": "gears",
       "performanceType": "EXPLAIN",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.gear-mechanism",
         "unit202.review-fact.mechanical-advantage"
@@ -768,8 +636,6 @@
       "candidateKey": "pulleys::EXPLAIN",
       "subject": "pulleys",
       "performanceType": "EXPLAIN",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.mechanical-advantage",
         "unit202.review-fact.pulley-mechanism"
@@ -781,8 +647,6 @@
       "candidateKey": "levers::EXPLAIN",
       "subject": "levers",
       "performanceType": "EXPLAIN",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "NOT_APPLICABLE",
       "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED"
@@ -791,8 +655,6 @@
       "candidateKey": "lever class I::EXPLAIN",
       "subject": "lever class I",
       "performanceType": "EXPLAIN",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.lever-class-1"
       ],
@@ -803,8 +665,6 @@
       "candidateKey": "lever class II::EXPLAIN",
       "subject": "lever class II",
       "performanceType": "EXPLAIN",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.lever-class-2"
       ],
@@ -815,8 +675,6 @@
       "candidateKey": "lever class III::EXPLAIN",
       "subject": "lever class III",
       "performanceType": "EXPLAIN",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.lever-class-3"
       ],
@@ -827,8 +685,6 @@
       "candidateKey": "principles of force, work, energy, power and efficiency::DESCRIBE",
       "subject": "principles of force, work, energy, power and efficiency",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -837,8 +693,6 @@
       "candidateKey": "force::DESCRIBE",
       "subject": "force",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -847,8 +701,6 @@
       "candidateKey": "work::DESCRIBE",
       "subject": "work",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.work-formula"
       ],
@@ -859,8 +711,6 @@
       "candidateKey": "energy (kinetic and potential)::DESCRIBE",
       "subject": "energy (kinetic and potential)",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -869,8 +719,6 @@
       "candidateKey": "power (mechanical)::DESCRIBE",
       "subject": "power (mechanical)",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.power-mechanical-formula"
       ],
@@ -881,8 +729,6 @@
       "candidateKey": "efficiency::DESCRIBE",
       "subject": "efficiency",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.efficiency-formula"
       ],
@@ -893,8 +739,6 @@
       "candidateKey": "inter-relationships between force, work, energy, power and efficiency::DESCRIBE",
       "subject": "inter-relationships between force, work, energy, power and efficiency",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.power-mechanical-formula"
       ],
@@ -905,8 +749,6 @@
       "candidateKey": "values of mechanical energy, power and efficiency::CALCULATE",
       "subject": "values of mechanical energy, power and efficiency",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -915,8 +757,6 @@
       "candidateKey": "mechanical energy (calculation)::CALCULATE",
       "subject": "mechanical energy (calculation)",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -925,8 +765,6 @@
       "candidateKey": "power (calculation, mechanical)::CALCULATE",
       "subject": "power (calculation, mechanical)",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.power-mechanical-formula"
       ],
@@ -937,8 +775,6 @@
       "candidateKey": "efficiency (calculation)::CALCULATE",
       "subject": "efficiency (calculation)",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.efficiency-formula"
       ],
@@ -949,8 +785,6 @@
       "candidateKey": "basic principles of electron theory::DESCRIBE",
       "subject": "basic principles of electron theory",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.conventional-vs-electron-flow",
         "unit202.review-fact.current-charge-flow"
@@ -962,8 +796,6 @@
       "candidateKey": "conductors (good electrical conductor materials)::IDENTIFY",
       "subject": "conductors (good electrical conductor materials)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.conductor-definition"
       ],
@@ -974,8 +806,6 @@
       "candidateKey": "conductors (good electrical conductor materials)::DISTINGUISH",
       "subject": "conductors (good electrical conductor materials)",
       "performanceType": "DISTINGUISH",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.conductor-definition"
       ],
@@ -986,8 +816,6 @@
       "candidateKey": "insulators (electrical insulator materials)::IDENTIFY",
       "subject": "insulators (electrical insulator materials)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.insulator-definition"
       ],
@@ -998,8 +826,6 @@
       "candidateKey": "insulators (electrical insulator materials)::DISTINGUISH",
       "subject": "insulators (electrical insulator materials)",
       "performanceType": "DISTINGUISH",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.insulator-definition"
       ],
@@ -1010,8 +836,6 @@
       "candidateKey": "resistance and resistivity in relation to electrical circuits::DESCRIBE",
       "subject": "resistance and resistivity in relation to electrical circuits",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ohms-law",
         "unit202.review-fact.resistance-resistivity-relation"
@@ -1023,8 +847,6 @@
       "candidateKey": "relationship between current, voltage and resistance in parallel and series D.C. circuits::EXPLAIN",
       "subject": "relationship between current, voltage and resistance in parallel and series D.C. circuits",
       "performanceType": "EXPLAIN",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ohms-law",
         "unit202.review-fact.parallel-resistance",
@@ -1037,8 +859,6 @@
       "candidateKey": "values of current, voltage and resistance in parallel and series D.C. circuits::CALCULATE",
       "subject": "values of current, voltage and resistance in parallel and series D.C. circuits",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ohms-law"
       ],
@@ -1049,8 +869,6 @@
       "candidateKey": "current (calculation, D.C. circuits)::CALCULATE",
       "subject": "current (calculation, D.C. circuits)",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ohms-law"
       ],
@@ -1061,8 +879,6 @@
       "candidateKey": "voltage (calculation, D.C. circuits)::CALCULATE",
       "subject": "voltage (calculation, D.C. circuits)",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ohms-law"
       ],
@@ -1073,8 +889,6 @@
       "candidateKey": "resistance (calculation, D.C. circuits)::CALCULATE",
       "subject": "resistance (calculation, D.C. circuits)",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ohms-law"
       ],
@@ -1085,8 +899,6 @@
       "candidateKey": "values of power in parallel and series D.C. circuits::CALCULATE",
       "subject": "values of power in parallel and series D.C. circuits",
       "performanceType": "CALCULATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.thermal-effect"
       ],
@@ -1097,8 +909,6 @@
       "candidateKey": "voltage drop::STATE",
       "subject": "voltage drop",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.ohms-law"
       ],
@@ -1109,8 +919,6 @@
       "candidateKey": "chemical and thermal effects of electric currents::DESCRIBE",
       "subject": "chemical and thermal effects of electric currents",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.chemical-effect",
         "unit202.review-fact.thermal-effect"
@@ -1122,8 +930,6 @@
       "candidateKey": "attraction and repulsion effects of magnetism::DESCRIBE",
       "subject": "attraction and repulsion effects of magnetism",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.magnetic-attraction-repulsion"
       ],
@@ -1134,8 +940,6 @@
       "candidateKey": "difference between magnetic flux and flux density::STATE",
       "subject": "difference between magnetic flux and flux density",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.flux-vs-flux-density"
       ],
@@ -1146,8 +950,6 @@
       "candidateKey": "magnetic effects of electrical currents::DESCRIBE",
       "subject": "magnetic effects of electrical currents",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1156,8 +958,6 @@
       "candidateKey": "production of a magnetic field::DESCRIBE",
       "subject": "production of a magnetic field",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.magnetic-field-production"
       ],
@@ -1168,8 +968,6 @@
       "candidateKey": "force on a current-carrying conductor in a magnetic field::DESCRIBE",
       "subject": "force on a current-carrying conductor in a magnetic field",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1178,8 +976,6 @@
       "candidateKey": "electromagnetism::DESCRIBE",
       "subject": "electromagnetism",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1188,8 +984,6 @@
       "candidateKey": "electromotive force::DESCRIBE",
       "subject": "electromotive force",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1198,8 +992,6 @@
       "candidateKey": "basic principles of generating an A.C. supply::DESCRIBE",
       "subject": "basic principles of generating an A.C. supply",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1208,8 +1000,6 @@
       "candidateKey": "single-loop generator::DESCRIBE",
       "subject": "single-loop generator",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1218,8 +1008,6 @@
       "candidateKey": "sine-wave (AC generation principle)::DESCRIBE",
       "subject": "sine-wave (AC generation principle)",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1228,8 +1016,6 @@
       "candidateKey": "frequency (AC generation principle)::DESCRIBE",
       "subject": "frequency (AC generation principle)",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1238,8 +1024,6 @@
       "candidateKey": "EMF (AC generation principle)::DESCRIBE",
       "subject": "EMF (AC generation principle)",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1248,8 +1032,6 @@
       "candidateKey": "magnetic flux (AC generation principle)::DESCRIBE",
       "subject": "magnetic flux (AC generation principle)",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1258,8 +1040,6 @@
       "candidateKey": "characteristics of sine-waves::IDENTIFY",
       "subject": "characteristics of sine-waves",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "NOT_APPLICABLE",
       "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED"
@@ -1268,48 +1048,46 @@
       "candidateKey": "RMS value (sine-wave characteristic)::IDENTIFY",
       "subject": "RMS value (sine-wave characteristic)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [],
+      "requiredFactKeys": [
+        "unit202.review-fact.rms-value"
+      ],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "average value (sine-wave characteristic)::IDENTIFY",
       "subject": "average value (sine-wave characteristic)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [],
+      "requiredFactKeys": [
+        "unit202.review-fact.average-value"
+      ],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "peak to peak value (sine-wave characteristic)::IDENTIFY",
       "subject": "peak to peak value (sine-wave characteristic)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [],
+      "requiredFactKeys": [
+        "unit202.review-fact.peak-to-peak-value"
+      ],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "periodic time (sine-wave characteristic)::IDENTIFY",
       "subject": "periodic time (sine-wave characteristic)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [],
+      "requiredFactKeys": [
+        "unit202.review-fact.periodic-time"
+      ],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "frequency (sine-wave characteristic)::IDENTIFY",
       "subject": "frequency (sine-wave characteristic)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1318,18 +1096,16 @@
       "candidateKey": "amplitude (sine-wave characteristic)::IDENTIFY",
       "subject": "amplitude (sine-wave characteristic)",
       "performanceType": "IDENTIFY",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [],
+      "requiredFactKeys": [
+        "unit202.review-fact.amplitude-value"
+      ],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "function and application of electronic components used in electrical systems::DESCRIBE",
       "subject": "function and application of electronic components used in electrical systems",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1338,8 +1114,6 @@
       "candidateKey": "electrical systems (context for electronic component function/application)::DESCRIBE",
       "subject": "electrical systems (context for electronic component function/application)",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1348,8 +1122,6 @@
       "candidateKey": "electronic components function/application: security alarms::DESCRIBE",
       "subject": "electronic components function/application: security alarms",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1358,8 +1130,6 @@
       "candidateKey": "electronic components function/application: telephones::DESCRIBE",
       "subject": "electronic components function/application: telephones",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1368,8 +1138,6 @@
       "candidateKey": "electronic components function/application: dimmer switches::DESCRIBE",
       "subject": "electronic components function/application: dimmer switches",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1378,8 +1146,6 @@
       "candidateKey": "electronic components function/application: heating/boiler controls::DESCRIBE",
       "subject": "electronic components function/application: heating/boiler controls",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1388,8 +1154,6 @@
       "candidateKey": "electronic components function/application: motor control::DESCRIBE",
       "subject": "electronic components function/application: motor control",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1398,8 +1162,6 @@
       "candidateKey": "electronic components function/application: wireless control systems::DESCRIBE",
       "subject": "electronic components function/application: wireless control systems",
       "performanceType": "DESCRIBE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1408,8 +1170,6 @@
       "candidateKey": "basic operating principles of electronic components and devices::STATE",
       "subject": "basic operating principles of electronic components and devices",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1418,8 +1178,6 @@
       "candidateKey": "electronic components and devices::STATE",
       "subject": "electronic components and devices",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": true,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1428,8 +1186,6 @@
       "candidateKey": "capacitors::STATE",
       "subject": "capacitors",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.capacitor-definition"
       ],
@@ -1440,8 +1196,6 @@
       "candidateKey": "resistors::STATE",
       "subject": "resistors",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
@@ -1450,8 +1204,6 @@
       "candidateKey": "rectifiers::STATE",
       "subject": "rectifiers",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.rectifier-definition"
       ],
@@ -1462,8 +1214,6 @@
       "candidateKey": "diodes::STATE",
       "subject": "diodes",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.diode-definition"
       ],
@@ -1474,8 +1224,6 @@
       "candidateKey": "Zener::STATE",
       "subject": "Zener",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.zener-definition"
       ],
@@ -1486,8 +1234,6 @@
       "candidateKey": "LED::STATE",
       "subject": "LED",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.led-definition"
       ],
@@ -1498,8 +1244,6 @@
       "candidateKey": "photo::STATE",
       "subject": "photo",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
       "knowledgeBoundaryStatus": "UNRESOLVED"
@@ -1508,8 +1252,6 @@
       "candidateKey": "thermistors::STATE",
       "subject": "thermistors",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.thermistor-definition"
       ],
@@ -1520,8 +1262,6 @@
       "candidateKey": "diacs::STATE",
       "subject": "diacs",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.diac-definition"
       ],
@@ -1532,8 +1272,6 @@
       "candidateKey": "triacs::STATE",
       "subject": "triacs",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.triac-definition"
       ],
@@ -1544,8 +1282,6 @@
       "candidateKey": "transistors::STATE",
       "subject": "transistors",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.transistor-definition"
       ],
@@ -1556,8 +1292,6 @@
       "candidateKey": "thyristors::STATE",
       "subject": "thyristors",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.thyristor-definition"
       ],
@@ -1568,8 +1302,6 @@
       "candidateKey": "invertors::STATE",
       "subject": "invertors",
       "performanceType": "STATE",
-      "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
-      "isExplicitlyStructuralNode": false,
       "requiredFactKeys": [
         "unit202.review-fact.invertor-definition"
       ],
@@ -1578,269 +1310,11 @@
     }
   ],
   "gapsByType": {
-    "EVIDENCE_NORMALIZATION_REVIEW": 17,
+    "EVIDENCE_NORMALIZATION_REVIEW": 12,
     "KNOWLEDGE_DECOMPOSITION_GAP": 31,
-    "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP": 52,
+    "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP": 57,
     "PERFORMANCE_DEPTH_GAP": 3,
-    "TECHNICAL_TRUTH_GAP": 3
+    "TECHNICAL_TRUTH_GAP": 8
   },
-  "totalGaps": 106,
-  "knowledgeBoundaryCertificationOutcomes": [
-    {
-      "targetCandidateKey": "length (SI unit)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "area (SI unit)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "volume (SI unit)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "mass (SI unit)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "density (SI unit)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "time (SI unit)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "velocity (SI unit)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "temperature (SI unit)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "current (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "voltage (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "resistance (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "resistivity (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "power (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "energy (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "frequency (SI electrical quantity)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "impedance (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "capacitance and capacitive reactance (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "inductance and inductive reactance (SI unit)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "power factor (SI unit / dimensional status)::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "instrument for measuring current::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "instrument for measuring voltage::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "instrument for measuring resistance::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "instrument for measuring power::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "instrument for measuring energy::IDENTIFY",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "mass and weight::DEFINE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "lever class I::EXPLAIN",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "lever class II::EXPLAIN",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "lever class III::EXPLAIN",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "gears::EXPLAIN",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "pulleys::EXPLAIN",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "work::DESCRIBE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "power (mechanical)::DESCRIBE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "inter-relationships between force, work, energy, power and efficiency::DESCRIBE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "power (calculation, mechanical)::CALCULATE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "efficiency::DESCRIBE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "efficiency (calculation)::CALCULATE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "basic principles of electron theory::DESCRIBE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "conductors (good electrical conductor materials)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "conductors (good electrical conductor materials)::DISTINGUISH",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "insulators (electrical insulator materials)::IDENTIFY",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "insulators (electrical insulator materials)::DISTINGUISH",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "resistance and resistivity in relation to electrical circuits::DESCRIBE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "relationship between current, voltage and resistance in parallel and series D.C. circuits::EXPLAIN",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "current (calculation, D.C. circuits)::CALCULATE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "voltage (calculation, D.C. circuits)::CALCULATE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "resistance (calculation, D.C. circuits)::CALCULATE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "values of current, voltage and resistance in parallel and series D.C. circuits::CALCULATE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "values of power in parallel and series D.C. circuits::CALCULATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "voltage drop::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "chemical and thermal effects of electric currents::DESCRIBE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "attraction and repulsion effects of magnetism::DESCRIBE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "difference between magnetic flux and flux density::STATE",
-      "decision": "COMPLETE"
-    },
-    {
-      "targetCandidateKey": "production of a magnetic field::DESCRIBE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "capacitors::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "diacs::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "diodes::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "invertors::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "LED::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "rectifiers::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "thermistors::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "thyristors::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "transistors::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "triacs::STATE",
-      "decision": "PARTIAL"
-    },
-    {
-      "targetCandidateKey": "Zener::STATE",
-      "decision": "PARTIAL"
-    }
-  ]
+  "totalGaps": 111
 }

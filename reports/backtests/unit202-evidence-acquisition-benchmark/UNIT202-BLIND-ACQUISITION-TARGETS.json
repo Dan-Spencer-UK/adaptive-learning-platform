@@ -1,0 +1,2796 @@
+{
+  "qualificationId": "2365-02",
+  "purpose": "The ONLY Unit-202 target file the future blind acquisition process should need. Contains no historical source identity, URL, locator, excerpt, or verification outcome.",
+  "targets": [
+    {
+      "acquisitionTargetId": "ACQ-001",
+      "ac": "AC1.1",
+      "proposition": "Fractions.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-002",
+      "ac": "AC1.1",
+      "proposition": "Percentages.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-003",
+      "ac": "AC1.1",
+      "proposition": "Algebra.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-004",
+      "ac": "AC1.1",
+      "proposition": "Formula transposition.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-005",
+      "ac": "AC1.1",
+      "proposition": "Positive indices.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-006",
+      "ac": "AC1.1",
+      "proposition": "Negative indices.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-007",
+      "ac": "AC1.1",
+      "proposition": "Standard/scientific notation.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "SYMBOL_OR_CONVENTION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-008",
+      "ac": "AC1.1",
+      "proposition": "Engineering notation.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "SYMBOL_OR_CONVENTION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-009",
+      "ac": "AC1.1",
+      "proposition": "Pythagoras.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-010",
+      "ac": "AC1.1",
+      "proposition": "Sine/cosine/tangent use in right triangles.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-011",
+      "ac": "AC1.1",
+      "proposition": "Statistical range.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-012",
+      "ac": "AC1.1",
+      "proposition": "Mean.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-013",
+      "ac": "AC1.1",
+      "proposition": "Median.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-014",
+      "ac": "AC1.1",
+      "proposition": "Mode.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-015",
+      "ac": "AC1.1",
+      "proposition": "Ordinary decimal arithmetic.",
+      "knowledgeClassification": "FOUNDATIONAL_PREREQUISITE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-016",
+      "ac": "AC1.1",
+      "proposition": "Proportional reasoning required to execute the above calculations.",
+      "knowledgeClassification": "FOUNDATIONAL_PREREQUISITE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC1.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-017",
+      "ac": "AC2.1",
+      "proposition": "Length: correct SI unit and unit symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-018",
+      "ac": "AC2.1",
+      "proposition": "Area: correct SI unit and unit symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-019",
+      "ac": "AC2.1",
+      "proposition": "Volume: correct SI unit and unit symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-020",
+      "ac": "AC2.1",
+      "proposition": "Mass: correct SI unit and unit symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-021",
+      "ac": "AC2.1",
+      "proposition": "Density: correct SI unit and unit symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-022",
+      "ac": "AC2.1",
+      "proposition": "Time: correct SI unit and unit symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-023",
+      "ac": "AC2.1",
+      "proposition": "Velocity: correct SI unit and unit symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-024",
+      "ac": "AC2.1",
+      "proposition": "Temperature: correct SI unit and unit symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-025",
+      "ac": "AC2.1",
+      "proposition": "Practical unit conversion needed elsewhere in Unit 202.",
+      "knowledgeClassification": "FOUNDATIONAL_PREREQUISITE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC2.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-026",
+      "ac": "AC2.2",
+      "proposition": "Current: meaning, quantity symbol, unit name/symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-027",
+      "ac": "AC2.2",
+      "proposition": "Voltage: meaning, quantity symbol, unit name/symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-028",
+      "ac": "AC2.2",
+      "proposition": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-029",
+      "ac": "AC2.2",
+      "proposition": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-030",
+      "ac": "AC2.2",
+      "proposition": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-031",
+      "ac": "AC2.2",
+      "proposition": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-032",
+      "ac": "AC2.2",
+      "proposition": "Frequency: meaning, quantity symbol, unit name/symbol.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-033",
+      "ac": "AC2.2",
+      "proposition": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-034",
+      "ac": "AC2.2",
+      "proposition": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-035",
+      "ac": "AC2.2",
+      "proposition": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-036",
+      "ac": "AC2.2",
+      "proposition": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-037",
+      "ac": "AC2.3",
+      "proposition": "Ammeter: measures current + series connection.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-038",
+      "ac": "AC2.3",
+      "proposition": "Voltmeter: measures potential difference + parallel connection.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-039",
+      "ac": "AC2.3",
+      "proposition": "Ohmmeter: measures resistance.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-040",
+      "ac": "AC2.3",
+      "proposition": "Ohmmeter: circuit de-energised/safe-use principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC2.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-041",
+      "ac": "AC2.3",
+      "proposition": "Wattmeter: measures electrical power + appropriate current/voltage sensing arrangement at qualification depth.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-042",
+      "ac": "AC2.3",
+      "proposition": "Energy meter: measures/integrates electrical energy.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-043",
+      "ac": "AC2.3",
+      "proposition": "Low/high meter internal resistance.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC2.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-044",
+      "ac": "AC3.1",
+      "proposition": "Mass meaning.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-045",
+      "ac": "AC3.1",
+      "proposition": "Weight meaning.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-046",
+      "ac": "AC3.1",
+      "proposition": "Mass/weight distinction.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-047",
+      "ac": "AC3.1",
+      "proposition": "F = mg.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-048",
+      "ac": "AC3.1",
+      "proposition": "Appropriate mass/weight calculations.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC3.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-049",
+      "ac": "AC3.2",
+      "proposition": "Levers.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-050",
+      "ac": "AC3.2",
+      "proposition": "Lever classes.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-051",
+      "ac": "AC3.2",
+      "proposition": "Basic lever effort/load/arm relationship at appropriate depth.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-052",
+      "ac": "AC3.2",
+      "proposition": "Gears.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-053",
+      "ac": "AC3.2",
+      "proposition": "Gear ratio / legitimate speed relationship.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-054",
+      "ac": "AC3.2",
+      "proposition": "Pulleys.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-055",
+      "ac": "AC3.2",
+      "proposition": "Mechanical advantage.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-056",
+      "ac": "AC3.2",
+      "proposition": "Force-distance trade.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-057",
+      "ac": "AC3.2",
+      "proposition": "Torque-speed relationship where applicable.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-058",
+      "ac": "AC3.2",
+      "proposition": "Ideal machine conserves power.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-059",
+      "ac": "AC3.2",
+      "proposition": "Real losses reduce useful output.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-060",
+      "ac": "AC3.3",
+      "proposition": "Force concept at qualification depth.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-061",
+      "ac": "AC3.3",
+      "proposition": "Work.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-062",
+      "ac": "AC3.3",
+      "proposition": "Energy.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-063",
+      "ac": "AC3.3",
+      "proposition": "Kinetic versus potential energy concept.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-064",
+      "ac": "AC3.3",
+      "proposition": "Power.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-065",
+      "ac": "AC3.3",
+      "proposition": "Efficiency.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-066",
+      "ac": "AC3.3",
+      "proposition": "Relationships between force, work, energy, power and efficiency.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-067",
+      "ac": "AC3.3",
+      "proposition": "W = Fd.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-068",
+      "ac": "AC3.3",
+      "proposition": "F = mg where relevant.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-069",
+      "ac": "AC3.3",
+      "proposition": "Gravitational lifting / work against gravity.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-070",
+      "ac": "AC3.3",
+      "proposition": "PE = mgh / work-against-gravity equivalence.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-071",
+      "ac": "AC3.4",
+      "proposition": "P = W/t.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-072",
+      "ac": "AC3.4",
+      "proposition": "Efficiency relationship.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC3.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-073",
+      "ac": "AC3.4",
+      "proposition": "Legitimate multistep mechanical calculations.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC3.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-074",
+      "ac": "AC4.1",
+      "proposition": "Basic electron theory.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-075",
+      "ac": "AC4.1",
+      "proposition": "Current as charge/electron-flow concept at calibrated depth.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-076",
+      "ac": "AC4.1",
+      "proposition": "Conventional-current versus electron-flow distinction.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-077",
+      "ac": "AC4.2",
+      "proposition": "Conductors.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-078",
+      "ac": "AC4.2",
+      "proposition": "Insulators.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-079",
+      "ac": "AC4.3",
+      "proposition": "Resistance.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-080",
+      "ac": "AC4.3",
+      "proposition": "Resistivity.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-081",
+      "ac": "AC4.3",
+      "proposition": "Rho (resistivity symbol).",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "SYMBOL_OR_CONVENTION",
+      "technicalDomainCategory": "AC4.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-082",
+      "ac": "AC4.3",
+      "proposition": "Ohm-metre (resistivity unit).",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "SYMBOL_OR_CONVENTION",
+      "technicalDomainCategory": "AC4.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-083",
+      "ac": "AC4.3",
+      "proposition": "R = rho L/A and appropriate rearrangement/use.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.3",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-084",
+      "ac": "AC4.4",
+      "proposition": "Ohm's law.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-085",
+      "ac": "AC4.4",
+      "proposition": "V = IR and rearrangements.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.4",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-086",
+      "ac": "AC4.4",
+      "proposition": "Series circuit: current common throughout.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-087",
+      "ac": "AC4.4",
+      "proposition": "Series circuit: voltage shares/sums.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-088",
+      "ac": "AC4.4",
+      "proposition": "Series circuit: resistance sums.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-089",
+      "ac": "AC4.4",
+      "proposition": "Parallel circuit: voltage common across branches.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-090",
+      "ac": "AC4.4",
+      "proposition": "Parallel circuit: current divides/sums.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-091",
+      "ac": "AC4.4",
+      "proposition": "Parallel circuit: equivalent-resistance relationship.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-092",
+      "ac": "AC4.6",
+      "proposition": "P = VI.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.6",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-093",
+      "ac": "AC4.6",
+      "proposition": "P = I^2 R.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.6",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-094",
+      "ac": "AC4.6",
+      "proposition": "P = V^2/R where appropriate.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.6",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-095",
+      "ac": "AC4.6",
+      "proposition": "Suitable DC-circuit-power calculations.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC4.6",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-096",
+      "ac": "AC4.7",
+      "proposition": "Voltage drop: voltage loss across resistance carrying current.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.7",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-097",
+      "ac": "AC4.7",
+      "proposition": "Vdrop = IR.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC4.7",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-098",
+      "ac": "AC4.7",
+      "proposition": "Appropriate voltage-drop calculation.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC4.7",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-099",
+      "ac": "AC4.8",
+      "proposition": "Thermal effect of current.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.8",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-100",
+      "ac": "AC4.8",
+      "proposition": "Chemical effect / electrolysis.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.8",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-101",
+      "ac": "AC4.8",
+      "proposition": "Fuse operation as an example of the thermal effect.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC4.8",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-102",
+      "ac": "AC5.1",
+      "proposition": "Magnetic attraction/repulsion.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-103",
+      "ac": "AC5.1",
+      "proposition": "Magnetic field patterns.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PHYSICAL_OR_COMPONENT_RECOGNITION",
+      "technicalDomainCategory": "AC5.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-104",
+      "ac": "AC5.2",
+      "proposition": "Magnetic flux: meaning, symbol, unit.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-105",
+      "ac": "AC5.2",
+      "proposition": "Magnetic flux density: meaning, symbol, unit.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-106",
+      "ac": "AC5.2",
+      "proposition": "B = Phi/A and appropriate rearrangement/use.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.2",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-107",
+      "ac": "AC5.3",
+      "proposition": "Magnetic field around a current-carrying conductor.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-108",
+      "ac": "AC5.3",
+      "proposition": "Right-hand grip rule.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-109",
+      "ac": "AC5.3",
+      "proposition": "Solenoid magnetic field.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-110",
+      "ac": "AC5.3",
+      "proposition": "Solenoid polarity.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-111",
+      "ac": "AC5.3",
+      "proposition": "Basic electromagnet principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-112",
+      "ac": "AC5.3",
+      "proposition": "Motor effect.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-113",
+      "ac": "AC5.3",
+      "proposition": "Scalar F = BIl.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-114",
+      "ac": "AC5.3",
+      "proposition": "Fleming left-hand rule.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-115",
+      "ac": "AC5.3",
+      "proposition": "Motional/induced EMF causal concept.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-116",
+      "ac": "AC5.3",
+      "proposition": "e = Blv.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-117",
+      "ac": "AC5.3",
+      "proposition": "Fleming right-hand/generator rule.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-118",
+      "ac": "AC5.3",
+      "proposition": "Suitable simple electromagnetism calculations/rearrangements.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-119",
+      "ac": "AC5.3",
+      "proposition": "Relay.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-120",
+      "ac": "AC5.3",
+      "proposition": "Contactor.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-121",
+      "ac": "AC5.3",
+      "proposition": "Dot/cross page convention.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "SYMBOL_OR_CONVENTION",
+      "technicalDomainCategory": "AC5.3",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-122",
+      "ac": "AC5.4",
+      "proposition": "Single-loop alternator/generator parts.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PHYSICAL_OR_COMPONENT_RECOGNITION",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-123",
+      "ac": "AC5.4",
+      "proposition": "Coil.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PHYSICAL_OR_COMPONENT_RECOGNITION",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-124",
+      "ac": "AC5.4",
+      "proposition": "Magnetic poles.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PHYSICAL_OR_COMPONENT_RECOGNITION",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-125",
+      "ac": "AC5.4",
+      "proposition": "Slip rings.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PHYSICAL_OR_COMPONENT_RECOGNITION",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-126",
+      "ac": "AC5.4",
+      "proposition": "Brushes.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PHYSICAL_OR_COMPONENT_RECOGNITION",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-127",
+      "ac": "AC5.4",
+      "proposition": "Rotation/field-cutting causality.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-128",
+      "ac": "AC5.4",
+      "proposition": "No/minimum induced EMF when motion does not cut flux appropriately.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-129",
+      "ac": "AC5.4",
+      "proposition": "Maximum induced EMF when cutting is maximum.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-130",
+      "ac": "AC5.4",
+      "proposition": "Alternating/sinusoidal output concept.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-131",
+      "ac": "AC5.4",
+      "proposition": "Frequency relationship to rotational speed and pole pairs.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-132",
+      "ac": "AC5.4",
+      "proposition": "f = N x P (N = rev/s, P = pole pairs).",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": true,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-133",
+      "ac": "AC5.4",
+      "proposition": "Equivalent rpm relationship f = n_rpm x P / 60.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-134",
+      "ac": "AC5.4",
+      "proposition": "Appropriate simple AC-generation calculations.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC5.4",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-135",
+      "ac": "AC5.5",
+      "proposition": "Amplitude / peak.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-136",
+      "ac": "AC5.5",
+      "proposition": "Peak-to-peak.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-137",
+      "ac": "AC5.5",
+      "proposition": "Periodic time.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-138",
+      "ac": "AC5.5",
+      "proposition": "Frequency.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-139",
+      "ac": "AC5.5",
+      "proposition": "T = 1/f.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-140",
+      "ac": "AC5.5",
+      "proposition": "RMS.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-141",
+      "ac": "AC5.5",
+      "proposition": "Vrms ~= 0.707 x Vpeak.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-142",
+      "ac": "AC5.5",
+      "proposition": "Vpeak ~= 1.414 x Vrms.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-143",
+      "ac": "AC5.5",
+      "proposition": "Average over one alternation ~= 0.6366 x Vpeak.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-144",
+      "ac": "AC5.5",
+      "proposition": "Analogous current relationship where applicable.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-145",
+      "ac": "AC5.5",
+      "proposition": "Signed average of a complete symmetrical sine-wave cycle = 0.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-146",
+      "ac": "AC5.5",
+      "proposition": "Appropriate sine-wave conversions/calculations.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC5.5",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-147",
+      "ac": "AC6.1",
+      "proposition": "Security alarms: application category/function.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-148",
+      "ac": "AC6.1",
+      "proposition": "Telephones: application category/function.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-149",
+      "ac": "AC6.1",
+      "proposition": "Dimmer switches: application category/function.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-150",
+      "ac": "AC6.1",
+      "proposition": "Heating/boiler controls: application category/function.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-151",
+      "ac": "AC6.1",
+      "proposition": "Motor control: application category/function.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-152",
+      "ac": "AC6.1",
+      "proposition": "Wireless control systems: application category/function.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-153",
+      "ac": "AC6.1",
+      "proposition": "Security alarm: SCR/thyristor latching + sounder role.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": true,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-154",
+      "ac": "AC6.1",
+      "proposition": "Security alarm: transistor switching.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-155",
+      "ac": "AC6.1",
+      "proposition": "Security alarm: exact NC/contact/bias topology.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-156",
+      "ac": "AC6.1",
+      "proposition": "Telephone: capacitor -> ringer.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": true,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-157",
+      "ac": "AC6.1",
+      "proposition": "Telephone: resistor -> line testing.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-158",
+      "ac": "AC6.1",
+      "proposition": "Telephone: surge protector.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-159",
+      "ac": "AC6.1",
+      "proposition": "Telephone: master/secondary socket details.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-160",
+      "ac": "AC6.1",
+      "proposition": "Telephone: legacy PSTN framing.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-161",
+      "ac": "AC6.1",
+      "proposition": "Dimmer: TRIAC AC switching/control.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-162",
+      "ac": "AC6.1",
+      "proposition": "Dimmer: DIAC triggering.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-163",
+      "ac": "AC6.1",
+      "proposition": "Dimmer: basic timing/control -> delivered-power relationship.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "RELATIONSHIP_OR_MECHANISM",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-164",
+      "ac": "AC6.1",
+      "proposition": "Dimmer: exact RC timing implementation/component values.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-165",
+      "ac": "AC6.1",
+      "proposition": "Heating: thermistor sensing role.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-166",
+      "ac": "AC6.1",
+      "proposition": "Heating: exact transistor/relay topology.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-167",
+      "ac": "AC6.1",
+      "proposition": "Motor: controlled electronic switching at general Level-2 depth.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-168",
+      "ac": "AC6.1",
+      "proposition": "Motor: bridge rectifier converts AC to DC.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": true,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-169",
+      "ac": "AC6.1",
+      "proposition": "Wireless: practical advantages/applications.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.1",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-170",
+      "ac": "AC6.2",
+      "proposition": "Capacitor: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-171",
+      "ac": "AC6.2",
+      "proposition": "DIAC: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-172",
+      "ac": "AC6.2",
+      "proposition": "Diode: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-173",
+      "ac": "AC6.2",
+      "proposition": "Inverter: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-174",
+      "ac": "AC6.2",
+      "proposition": "LED: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-175",
+      "ac": "AC6.2",
+      "proposition": "Photodiode: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-176",
+      "ac": "AC6.2",
+      "proposition": "LDR (light-dependent resistor): basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-177",
+      "ac": "AC6.2",
+      "proposition": "Rectifier: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-178",
+      "ac": "AC6.2",
+      "proposition": "Resistor: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-179",
+      "ac": "AC6.2",
+      "proposition": "Thermistor: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-180",
+      "ac": "AC6.2",
+      "proposition": "Thyristor (SCR): basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-181",
+      "ac": "AC6.2",
+      "proposition": "Transistor: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-182",
+      "ac": "AC6.2",
+      "proposition": "TRIAC: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-183",
+      "ac": "AC6.2",
+      "proposition": "Zener diode: basic operating principle.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "FACTUAL_PROPOSITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-184",
+      "ac": "AC6.2",
+      "proposition": "Schematic-symbol recognition for each named AC6.2 component/device family at qualification depth.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "SYMBOL_OR_CONVENTION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-185",
+      "ac": "AC6.2",
+      "proposition": "4-band resistor colour code.",
+      "knowledgeClassification": "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      "acquisitionReplayRequirement": "REQUIRED",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PROCEDURE_OR_CALCULATION_RULE",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    },
+    {
+      "acquisitionTargetId": "ACQ-186",
+      "ac": "AC6.2",
+      "proposition": "Physical/photo appearance recognition of each component.",
+      "knowledgeClassification": "CONTEXTUAL_TEACHING_SUPPORT",
+      "acquisitionReplayRequirement": "OPTIONAL_CONTEXT",
+      "isRepresentativeExemplar": false,
+      "propositionKind": "PHYSICAL_OR_COMPONENT_RECOGNITION",
+      "technicalDomainCategory": "AC6.2",
+      "requiresMultipleIndependentClaims": false,
+      "genericRequiredSourceCharacteristics": [
+        "AUTHORITATIVE_ENGINEERING_OR_SCIENCE_REFERENCE"
+      ],
+      "acceptanceCriteria": "At least one independently retrievable, publicly accessible authoritative source whose exact locator/passage states this proposition (or an equivalent, algebraically/semantically identical form) verbatim or near-verbatim; the passage must be actually read and cited, never inferred from a source title alone."
+    }
+  ]
+}

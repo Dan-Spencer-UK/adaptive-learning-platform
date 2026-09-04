@@ -185,6 +185,16 @@ export const CLAIM_DECISIONS: readonly ClaimDecision[] = [
   },
   { targetCandidateKey: "frequency (AC generation principle)::DESCRIBE", claimKey: "unit202.review-fact.ac-sine-equation", decision: "REJECT_OVERDEPTH", rationale: "Task section 5C -- same claim, independent CandidateFactRequirement.", taskSection: "5C" },
   { targetCandidateKey: "frequency (sine-wave characteristic)::IDENTIFY", claimKey: "unit202.review-fact.ac-sine-equation", decision: "REJECT_OVERDEPTH", rationale: "Task section 5C -- same claim, independent CandidateFactRequirement.", taskSection: "5C" },
+
+  // --- AC5.5 (CC-22B section 5: "ALL PROJECT-ARCHITECT DECISIONS ARE NOW RESOLVED" -- these five
+  // REVIEW_PROPOSED facts, left explicitly unadjudicated in CC-22A pending exactly this go-ahead,
+  // are now explicitly authorised REQUIRED_CORE.) ---
+  { targetCandidateKey: "amplitude (sine-wave characteristic)::IDENTIFY", claimKey: "unit202.review-fact.amplitude-value", decision: "REQUIRED_CORE", rationale: "CC-22B task section 5 (AC5.5): explicitly authorised REQUIRED_CORE.", taskSection: "CC-22B §5 AC5.5" },
+  { targetCandidateKey: "RMS value (sine-wave characteristic)::IDENTIFY", claimKey: "unit202.review-fact.rms-value", decision: "REQUIRED_CORE", rationale: "CC-22B task section 5 (AC5.5): explicitly authorised REQUIRED_CORE.", taskSection: "CC-22B §5 AC5.5" },
+  { targetCandidateKey: "peak to peak value (sine-wave characteristic)::IDENTIFY", claimKey: "unit202.review-fact.peak-to-peak-value", decision: "REQUIRED_CORE", rationale: "CC-22B task section 5 (AC5.5): explicitly authorised REQUIRED_CORE.", taskSection: "CC-22B §5 AC5.5" },
+  { targetCandidateKey: "average value (sine-wave characteristic)::IDENTIFY", claimKey: "unit202.review-fact.average-value", decision: "REQUIRED_CORE", rationale: "CC-22B task section 5 (AC5.5): explicitly authorised REQUIRED_CORE.", taskSection: "CC-22B §5 AC5.5" },
+  { targetCandidateKey: "periodic time (sine-wave characteristic)::IDENTIFY", claimKey: "unit202.review-fact.periodic-time", decision: "REQUIRED_CORE", rationale: "CC-22B task section 5 (AC5.5): explicitly authorised REQUIRED_CORE.", taskSection: "CC-22B §5 AC5.5" },
+
   {
     targetCandidateKey: "force::DESCRIBE",
     claimKey: "unit202.review-fact.force-definition",

@@ -1,0 +1,1460 @@
+{
+  "qualificationId": "2365-02",
+  "BENCHMARK_ACCESS_POLICY": "POST_RUN_COMPARISON_ONLY",
+  "policyStatement": "The next blind acquisition runner MUST mechanically exclude this file, and every path named in UNIT202-BLIND-ACQUISITION-DENYLIST.json, from its accessible evidence inputs. This file exists only for comparison AFTER a blind acquisition run has completed.",
+  "entries": [
+    {
+      "acquisitionTargetId": "ACQ-001",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "foundational-mathematics-for-electrical-work::The four operations on fractions, decimals and percentages, and proportional reasoning."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-002",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "foundational-mathematics-for-electrical-work::The four operations on fractions, decimals and percentages, and proportional reasoning."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-003",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-004",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "foundational-mathematics-for-electrical-work::Formula transposition: rearranging an equation to isolate an unknown, including squared/root forms."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-005",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-006",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-007",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-008",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-009",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "foundational-mathematics-for-electrical-work::Pythagoras' theorem and the sine/cosine/tangent ratios for a right triangle.",
+        "foundational-mathematics-for-electrical-work::Solving a right-triangle side/angle from Pythagoras or a trig ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-010",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "foundational-mathematics-for-electrical-work::Pythagoras' theorem and the sine/cosine/tangent ratios for a right triangle."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-011",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-012",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "foundational-mathematics-for-electrical-work::Definitions of range, mean, median and mode for a small dataset.",
+        "foundational-mathematics-for-electrical-work::Computing range/mean/median/mode from a small dataset."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-013",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "foundational-mathematics-for-electrical-work::Definitions of range, mean, median and mode for a small dataset.",
+        "foundational-mathematics-for-electrical-work::Computing range/mean/median/mode from a small dataset."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-014",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "foundational-mathematics-for-electrical-work::Definitions of range, mean, median and mode for a small dataset.",
+        "foundational-mathematics-for-electrical-work::Computing range/mean/median/mode from a small dataset."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-015",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-016",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-017",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::The distinction between an SI base unit and an SI derived unit.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": "unit202.si-unit.length"
+    },
+    {
+      "acquisitionTargetId": "ACQ-018",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::The distinction between an SI base unit and an SI derived unit.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": "unit202.si-unit.area"
+    },
+    {
+      "acquisitionTargetId": "ACQ-019",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::The distinction between an SI base unit and an SI derived unit.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": "unit202.si-unit.volume"
+    },
+    {
+      "acquisitionTargetId": "ACQ-020",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::The distinction between an SI base unit and an SI derived unit.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": "unit202.si-unit.mass"
+    },
+    {
+      "acquisitionTargetId": "ACQ-021",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::The distinction between an SI base unit and an SI derived unit.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": "unit202.si-unit.density"
+    },
+    {
+      "acquisitionTargetId": "ACQ-022",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::The distinction between an SI base unit and an SI derived unit.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": "unit202.si-unit.time"
+    },
+    {
+      "acquisitionTargetId": "ACQ-023",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::The distinction between an SI base unit and an SI derived unit.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": "unit202.si-unit.velocity"
+    },
+    {
+      "acquisitionTargetId": "ACQ-024",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::The distinction between an SI base unit and an SI derived unit.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": "unit202.si-unit.temperature"
+    },
+    {
+      "acquisitionTargetId": "ACQ-025",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "si-units-and-physical-quantities::Kelvin is the SI base unit of thermodynamic temperature; Celsius is a common practical scale related to it, not the SI unit itself.",
+        "si-units-and-physical-quantities::Practical unit conversions used elsewhere in the unit (e.g. mm→m, mm²→m², minutes→seconds)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-026",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio.",
+        "electrical-quantities-and-si-units::Standard formula-symbol conventions for each listed electrical quantity."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-027",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio.",
+        "electrical-quantities-and-si-units::Standard formula-symbol conventions for each listed electrical quantity."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-028",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-029",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-030",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-031",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-032",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio.",
+        "electrical-quantities-and-si-units::Standard formula-symbol conventions for each listed electrical quantity."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-033",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-034",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-035",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-036",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-quantities-and-si-units::The conventional symbol and SI unit for resistance (R, Ω), resistivity (ρ, Ω·m), power (P, W), frequency (f, Hz), current (I, A), voltage (V, V), energy (E/W, J), impedance (Z, Ω), inductance (L, H), inductive reactance (XL, Ω), capacitance (C, F), capacitive reactance (XC, Ω), and power factor as a dimensionless ratio."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-037",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-measurement-instruments::An ammeter is connected in series and has very low internal resistance.",
+        "electrical-measurement-instruments::A wattmeter measures power via combined current- and voltage-sensing paths."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.ammeter-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-038",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.voltmeter-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-039",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.ohmmeter-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-040",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-measurement-instruments::An ohmmeter requires the circuit under test to be de-energised."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-041",
+      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-measurement-instruments::A wattmeter measures power via combined current- and voltage-sensing paths."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-042",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-measurement-instruments::An energy meter integrates power over time (kWh)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-043",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electrical-measurement-instruments::An ammeter is connected in series and has very low internal resistance.",
+        "electrical-measurement-instruments::A voltmeter is connected in parallel and has high internal resistance."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-044",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.mass-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-045",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.weight-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-046",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "mass-and-weight::Weight is the force due to gravity acting on a mass (N) and depends on gravitational field strength.",
+        "mass-and-weight::Calculating weight from mass (and vice versa) under a stated gravitational field strength."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-047",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::F = mg."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.weight-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-048",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "mass-and-weight::Weight is the force due to gravity acting on a mass (N) and depends on gravitational field strength.",
+        "mass-and-weight::Calculating weight from mass (and vice versa) under a stated gravitational field strength."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-049",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-050",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "simple-machines-levers-gears-pulleys::The three lever classes are distinguished by the relative arrangement of fulcrum, effort and load."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-051",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-052",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-053",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "simple-machines-levers-gears-pulleys::A gear transmits rotary motion; gear ratio relates tooth count to speed ratio and direction (including the idler effect).",
+        "simple-machines-levers-gears-pulleys::Determining driven-gear speed/direction from tooth-count ratio."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.gear-mechanism"
+    },
+    {
+      "acquisitionTargetId": "ACQ-054",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-055",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "simple-machines-levers-gears-pulleys::A pulley system's mechanical advantage relates to the number of supporting strands.",
+        "simple-machines-levers-gears-pulleys::Determining pulley effort from mechanical advantage."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.mechanical-advantage"
+    },
+    {
+      "acquisitionTargetId": "ACQ-056",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "simple-machines-levers-gears-pulleys::An ideal machine trades force for distance; it does not create power."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.pulley-mechanism"
+    },
+    {
+      "acquisitionTargetId": "ACQ-057",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-058",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "simple-machines-levers-gears-pulleys::An ideal machine trades force for distance; it does not create power."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-059",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-060",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-061",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "work-energy-power-efficiency::Work is done when a force causes a displacement; work and energy are equivalent in this context.",
+        "work-energy-power-efficiency::Work/energy = force × distance.",
+        "work-energy-power-efficiency::Power = work (or energy) / time.",
+        "work-energy-power-efficiency::Multi-step mechanical calculations combining mass/weight, work/energy, time and efficiency (including chained motor/pump efficiency problems)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-062",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "work-energy-power-efficiency::Work is done when a force causes a displacement; work and energy are equivalent in this context.",
+        "work-energy-power-efficiency::Kinetic energy and potential energy are distinct forms of mechanical energy at Level-2 conceptual depth.",
+        "work-energy-power-efficiency::Work/energy = force × distance.",
+        "work-energy-power-efficiency::Power = work (or energy) / time.",
+        "work-energy-power-efficiency::Multi-step mechanical calculations combining mass/weight, work/energy, time and efficiency (including chained motor/pump efficiency problems)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-063",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "work-energy-power-efficiency::Kinetic energy and potential energy are distinct forms of mechanical energy at Level-2 conceptual depth."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-064",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "work-energy-power-efficiency::Power = work (or energy) / time."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-065",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "work-energy-power-efficiency::Efficiency is the ratio of useful output to total input; total input equals useful output plus losses.",
+        "work-energy-power-efficiency::Efficiency (%) = (useful output / input) × 100.",
+        "work-energy-power-efficiency::Multi-step mechanical calculations combining mass/weight, work/energy, time and efficiency (including chained motor/pump efficiency problems)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-066",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "work-energy-power-efficiency::Work is done when a force causes a displacement; work and energy are equivalent in this context.",
+        "work-energy-power-efficiency::Work/energy = force × distance.",
+        "work-energy-power-efficiency::Power = work (or energy) / time.",
+        "work-energy-power-efficiency::Multi-step mechanical calculations combining mass/weight, work/energy, time and efficiency (including chained motor/pump efficiency problems)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-067",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::W = Fd."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.work-formula"
+    },
+    {
+      "acquisitionTargetId": "ACQ-068",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-069",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-070",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-071",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::P = W/t."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.power-mechanical-formula"
+    },
+    {
+      "acquisitionTargetId": "ACQ-072",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Efficiency relationship."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.efficiency-formula"
+    },
+    {
+      "acquisitionTargetId": "ACQ-073",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "work-energy-power-efficiency::Multi-step mechanical calculations combining mass/weight, work/energy, time and efficiency (including chained motor/pump efficiency problems)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-074",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-075",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electron-theory-and-conduction::Conventional current flow (+ to −) is the opposite direction to electron flow (− to +)."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.current-charge-flow"
+    },
+    {
+      "acquisitionTargetId": "ACQ-076",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electron-theory-and-conduction::Conventional current flow (+ to −) is the opposite direction to electron flow (− to +)."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.conventional-vs-electron-flow"
+    },
+    {
+      "acquisitionTargetId": "ACQ-077",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.conductor-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-078",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.insulator-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-079",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "resistance-and-resistivity::Resistance (R, Ω) is distinct from resistivity (ρ, Ω·m), a material property.",
+        "resistance-and-resistivity::Resistance is directly proportional to conductor length and inversely proportional to cross-sectional area."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-080",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "resistance-and-resistivity::Resistance (R, Ω) is distinct from resistivity (ρ, Ω·m), a material property.",
+        "resistance-and-resistivity::Combining a resistivity calculation with V = IR in a cable voltage-drop context."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-081",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-082",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-083",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::R = rho L/A and appropriate rearrangement/use."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.resistance-resistivity-relation"
+    },
+    {
+      "acquisitionTargetId": "ACQ-084",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "dc-circuit-theory-series-parallel::Ohm's law V = IR holds for an ohmic conductor under stated/appropriate conditions."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.ohms-law"
+    },
+    {
+      "acquisitionTargetId": "ACQ-085",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::V = IR and rearrangements."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.ohms-law"
+    },
+    {
+      "acquisitionTargetId": "ACQ-086",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "dc-circuit-theory-series-parallel::In a series circuit: current is common, voltage divides across components, and resistances add.",
+        "dc-circuit-theory-series-parallel::In a parallel circuit: voltage is common across branches, current divides, and equivalent resistance is below the smallest branch resistance.",
+        "dc-circuit-theory-series-parallel::Basic Kirchhoff voltage/current conservation (KVL/KCL) at simple-circuit level.",
+        "dc-circuit-theory-series-parallel::Calculating total/branch resistance, current and voltage in pure series and pure parallel DC circuits, including multi-step and unknown-component problems."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-087",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "dc-circuit-theory-series-parallel::In a series circuit: current is common, voltage divides across components, and resistances add.",
+        "dc-circuit-theory-series-parallel::In a parallel circuit: voltage is common across branches, current divides, and equivalent resistance is below the smallest branch resistance.",
+        "dc-circuit-theory-series-parallel::Basic Kirchhoff voltage/current conservation (KVL/KCL) at simple-circuit level.",
+        "dc-circuit-theory-series-parallel::Calculating total/branch resistance, current and voltage in pure series and pure parallel DC circuits, including multi-step and unknown-component problems."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-088",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "dc-circuit-theory-series-parallel::In a series circuit: current is common, voltage divides across components, and resistances add.",
+        "dc-circuit-theory-series-parallel::In a parallel circuit: voltage is common across branches, current divides, and equivalent resistance is below the smallest branch resistance.",
+        "dc-circuit-theory-series-parallel::Series total resistance Rt = ΣR.",
+        "dc-circuit-theory-series-parallel::Calculating total/branch resistance, current and voltage in pure series and pure parallel DC circuits, including multi-step and unknown-component problems."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.series-resistance"
+    },
+    {
+      "acquisitionTargetId": "ACQ-089",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "dc-circuit-theory-series-parallel::In a series circuit: current is common, voltage divides across components, and resistances add.",
+        "dc-circuit-theory-series-parallel::In a parallel circuit: voltage is common across branches, current divides, and equivalent resistance is below the smallest branch resistance."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-090",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "dc-circuit-theory-series-parallel::In a series circuit: current is common, voltage divides across components, and resistances add.",
+        "dc-circuit-theory-series-parallel::In a parallel circuit: voltage is common across branches, current divides, and equivalent resistance is below the smallest branch resistance.",
+        "dc-circuit-theory-series-parallel::Basic Kirchhoff voltage/current conservation (KVL/KCL) at simple-circuit level.",
+        "dc-circuit-theory-series-parallel::Calculating total/branch resistance, current and voltage in pure series and pure parallel DC circuits, including multi-step and unknown-component problems."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-091",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "dc-circuit-theory-series-parallel::In a parallel circuit: voltage is common across branches, current divides, and equivalent resistance is below the smallest branch resistance.",
+        "dc-circuit-theory-series-parallel::Parallel total resistance 1/Rt = Σ(1/R), including the two-resistor product-over-sum shortcut.",
+        "dc-circuit-theory-series-parallel::Calculating total/branch resistance, current and voltage in pure series and pure parallel DC circuits, including multi-step and unknown-component problems."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.parallel-resistance"
+    },
+    {
+      "acquisitionTargetId": "ACQ-092",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-093",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.thermal-effect"
+    },
+    {
+      "acquisitionTargetId": "ACQ-094",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.thermal-effect"
+    },
+    {
+      "acquisitionTargetId": "ACQ-095",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "dc-circuit-power::Electrical power in a DC circuit can be calculated from voltage and current, or equivalently from current/resistance or voltage/resistance alone.",
+        "dc-circuit-power::Calculating power for an individual component, a whole circuit, or a resistive loss, selecting and rearranging the correct P/V/I/R relationship.",
+        "dc-circuit-power::Summing individual component powers to total circuit power in simple series/parallel circuits."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-096",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "voltage-drop::Voltage drop is the voltage developed across a resistance carrying current (Vdrop = IR).",
+        "voltage-drop::Calculating voltage drop from current and cable/circuit resistance, and simple supply-minus-drop load-terminal-voltage arithmetic."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-097",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Vdrop = IR."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.ohms-law"
+    },
+    {
+      "acquisitionTargetId": "ACQ-098",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "voltage-drop::Voltage drop is the voltage developed across a resistance carrying current (Vdrop = IR).",
+        "voltage-drop::Calculating voltage drop from current and cable/circuit resistance, and simple supply-minus-drop load-terminal-voltage arithmetic."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-099",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "thermal-and-chemical-effects-of-current::Fuse operation as a practical application of the thermal effect."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.thermal-effect"
+    },
+    {
+      "acquisitionTargetId": "ACQ-100",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "thermal-and-chemical-effects-of-current::Current through a suitable liquid can produce a chemical change (electrolysis); electroplating is a practical application."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.chemical-effect"
+    },
+    {
+      "acquisitionTargetId": "ACQ-101",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "thermal-and-chemical-effects-of-current::Fuse operation as a practical application of the thermal effect."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-102",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.magnetic-attraction-repulsion"
+    },
+    {
+      "acquisitionTargetId": "ACQ-103",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "magnetism-flux-and-flux-density::A magnetic field is the region in which a magnetic effect can be observed; field-line conventions (closed loops, external N→S direction, non-crossing lines)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-104",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "magnetism-flux-and-flux-density::Magnetic flux (Φ, weber) is distinct from flux density (B, tesla = Wb/m²), which is flux concentration per unit area.",
+        "magnetism-flux-and-flux-density::Standard B (flux density) and Φ (flux) symbol notation."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.flux-vs-flux-density"
+    },
+    {
+      "acquisitionTargetId": "ACQ-105",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "magnetism-flux-and-flux-density::Magnetic flux (Φ, weber) is distinct from flux density (B, tesla = Wb/m²), which is flux concentration per unit area.",
+        "magnetism-flux-and-flux-density::Standard B (flux density) and Φ (flux) symbol notation."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.flux-vs-flux-density"
+    },
+    {
+      "acquisitionTargetId": "ACQ-106",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::B = Phi/A and appropriate rearrangement/use."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.flux-vs-flux-density"
+    },
+    {
+      "acquisitionTargetId": "ACQ-107",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::A current-carrying conductor produces a magnetic field around it.",
+        "electromagnetism-motor-effect-and-induced-emf::A current-carrying conductor placed in a magnetic field experiences a force (the motor effect).",
+        "electromagnetism-motor-effect-and-induced-emf::A conductor moving through a magnetic field has an EMF induced in it (motional EMF).",
+        "electromagnetism-motor-effect-and-induced-emf::Right-hand grip / Maxwell's screw rule for field direction around a straight conductor.",
+        "electromagnetism-motor-effect-and-induced-emf::Fleming's left-hand rule for force direction on a current-carrying conductor in a field.",
+        "electromagnetism-motor-effect-and-induced-emf::Fleming's right-hand rule for induced-current direction in a conductor moving through a field."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.magnetic-field-production"
+    },
+    {
+      "acquisitionTargetId": "ACQ-108",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::Right-hand grip / Maxwell's screw rule for field direction around a straight conductor.",
+        "electromagnetism-motor-effect-and-induced-emf::Fleming's left-hand rule for force direction on a current-carrying conductor in a field.",
+        "electromagnetism-motor-effect-and-induced-emf::Fleming's right-hand rule for induced-current direction in a conductor moving through a field."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.magnetic-field-production"
+    },
+    {
+      "acquisitionTargetId": "ACQ-109",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Solenoid magnetic field."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-110",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::Coil/solenoid field and polarity; basic electromagnet/relay/contactor principle."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-111",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::Coil/solenoid field and polarity; basic electromagnet/relay/contactor principle."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-112",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::A current-carrying conductor placed in a magnetic field experiences a force (the motor effect)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-113",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Scalar F = BIl."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-114",
+      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Fleming left-hand rule."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-115",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::A conductor moving through a magnetic field has an EMF induced in it (motional EMF).",
+        "electromagnetism-motor-effect-and-induced-emf::Calculating force from F=BIl or induced EMF from e=Blv, including simple rearrangements and unit conversions."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-116",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::e = Blv."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-117",
+      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Fleming right-hand/generator rule."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-118",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::Calculating force from F=BIl or induced EMF from e=Blv, including simple rearrangements and unit conversions."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-119",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::Coil/solenoid field and polarity; basic electromagnet/relay/contactor principle."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-120",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::Coil/solenoid field and polarity; basic electromagnet/relay/contactor principle."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-121",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electromagnetism-motor-effect-and-induced-emf::Dot/cross page convention for field direction into/out of the page."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-122",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "ac-generation-single-loop-alternator::A single loop rotating within a magnetic field, connected via slip rings and brushes, produces an alternating EMF.",
+        "ac-generation-single-loop-alternator::The generator's output EMF varies as a sine wave as the loop rotates.",
+        "ac-generation-single-loop-alternator::Slip rings, brushes, poles and coil as the core parts of a single-loop alternator."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-123",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "ac-generation-single-loop-alternator::Slip rings, brushes, poles and coil as the core parts of a single-loop alternator."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-124",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-125",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "ac-generation-single-loop-alternator::A single loop rotating within a magnetic field, connected via slip rings and brushes, produces an alternating EMF.",
+        "ac-generation-single-loop-alternator::Slip rings, brushes, poles and coil as the core parts of a single-loop alternator."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-126",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "ac-generation-single-loop-alternator::A single loop rotating within a magnetic field, connected via slip rings and brushes, produces an alternating EMF.",
+        "ac-generation-single-loop-alternator::Slip rings, brushes, poles and coil as the core parts of a single-loop alternator."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-127",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "ac-generation-single-loop-alternator::No EMF is induced for motion parallel to the field; maximum EMF occurs for motion perpendicular to (cutting) the field."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-128",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-129",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "ac-generation-single-loop-alternator::No EMF is induced for motion parallel to the field; maximum EMF occurs for motion perpendicular to (cutting) the field."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-130",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-131",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "ac-generation-single-loop-alternator::f = N×P where N is rotational speed in rev/s and P is the number of pole pairs (per the C&G handout's own convention -- pole-pair definition requires independent verification, see review flag)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-132",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::f = N x P (N = rev/s, P = pole pairs)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-133",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-134",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "ac-generation-single-loop-alternator::Simple f=N×P calculations and rearrangements; cycle/period/time relations."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-135",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "sine-wave-characteristics::Definitions of amplitude/peak, peak-to-peak, periodic time, frequency, RMS value and average value for a sine wave."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-136",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "sine-wave-characteristics::Definitions of amplitude/peak, peak-to-peak, periodic time, frequency, RMS value and average value for a sine wave.",
+        "sine-wave-characteristics::Converting between frequency and period, and between peak, RMS and average-of-one-alternation values."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-137",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "sine-wave-characteristics::Definitions of amplitude/peak, peak-to-peak, periodic time, frequency, RMS value and average value for a sine wave."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-138",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "sine-wave-characteristics::Definitions of amplitude/peak, peak-to-peak, periodic time, frequency, RMS value and average value for a sine wave.",
+        "sine-wave-characteristics::Converting between frequency and period, and between peak, RMS and average-of-one-alternation values."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-139",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::T = 1/f."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-140",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "sine-wave-characteristics::Definitions of amplitude/peak, peak-to-peak, periodic time, frequency, RMS value and average value for a sine wave.",
+        "sine-wave-characteristics::Converting between frequency and period, and between peak, RMS and average-of-one-alternation values."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-141",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Vrms ~= 0.707 x Vpeak."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-142",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Vpeak ~= 1.414 x Vrms."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-143",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Average over one alternation ~= 0.6366 x Vpeak."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-144",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "sine-wave-characteristics::Vavg ≈ 0.636×Vpeak (average of one alternation), and the analogous current relationships."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-145",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "manual-override::Signed average of a complete symmetrical sine-wave cycle = 0."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-146",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "sine-wave-characteristics::Definitions of amplitude/peak, peak-to-peak, periodic time, frequency, RMS value and average value for a sine wave.",
+        "sine-wave-characteristics::The signed average of a complete symmetrical sine-wave cycle is zero; the 'average value' used in AC calculations is the average of one alternation."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-147",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-148",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-149",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-150",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-151",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Motor control: rectification and controlled switching/protection at block-function level."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-152",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-153",
+      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Security alarm: a transistor provides a switching role and a thyristor provides a latching/sounder role within the circuit."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-154",
+      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Security alarm: a transistor provides a switching role and a thyristor provides a latching/sounder role within the circuit."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-155",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-156",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-157",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-158",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-159",
+      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Telephone system: whether any specific master-socket component role remains qualification-relevant and current is itself unestablished -- currency must be independently verified before any such role is taught as current general technical truth."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-160",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-161",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Dimmer switch: a capacitor provides timing, a DIAC triggers, and a TRIAC provides phase control.",
+        "electronic-systems-and-applications::Heating/boiler control: a thermistor senses temperature, feeding a switching/relay chain.",
+        "electronic-systems-and-applications::Motor control: rectification and controlled switching/protection at block-function level."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-162",
+      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Dimmer switch: a capacitor provides timing, a DIAC triggers, and a TRIAC provides phase control."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-163",
+      "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Dimmer switch: a capacitor provides timing, a DIAC triggers, and a TRIAC provides phase control."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-164",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-165",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Heating/boiler control: a thermistor senses temperature, feeding a switching/relay chain."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-166",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Heating/boiler control: a thermistor senses temperature, feeding a switching/relay chain."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-167",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Motor control: rectification and controlled switching/protection at block-function level."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-168",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-169",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-systems-and-applications::Wireless control: transmitter/receiver arrangement and its practical advantages."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-170",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.capacitor-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-171",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.diac-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-172",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.diode-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-173",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-174",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.led-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-175",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-176",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-components-operating-principles::A photo-sensitive device's behaviour depends on light -- both a photodiode and a light-dependent resistor (LDR) are candidate devices for the Range's terse 'photo' entry (see review flag)."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-177",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.rectifier-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-178",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-179",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.thermistor-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-180",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-components-operating-principles::A thyristor (SCR) is a gate-triggered, latching, unidirectional controlled switch."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.thyristor-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-181",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.transistor-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-182",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": "unit202.review-fact.triac-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-183",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-components-operating-principles::A Zener diode provides controlled reverse conduction for simple regulation/reference use."
+      ],
+      "currentQPBoundClaimKey": "unit202.review-fact.zener-definition"
+    },
+    {
+      "acquisitionTargetId": "ACQ-184",
+      "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
+      "historicalMatchedSourceVerificationRows": [],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-185",
+      "historicalCoverageState": "HISTORICALLY_VERIFIED",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-components-operating-principles::A resistor opposes current flow; resistors carry a 4-band colour-code rating."
+      ],
+      "currentQPBoundClaimKey": null
+    },
+    {
+      "acquisitionTargetId": "ACQ-186",
+      "historicalCoverageState": "HISTORICALLY_CONDITIONAL",
+      "historicalMatchedSourceVerificationRows": [
+        "electronic-components-operating-principles::Physical appearance of each listed component as supporting recognition where useful."
+      ],
+      "currentQPBoundClaimKey": null
+    }
+  ]
+}

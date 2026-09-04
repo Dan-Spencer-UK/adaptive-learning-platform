@@ -149,18 +149,24 @@ export const CERTIFICATION_DECISIONS: readonly CertificationDecision[] = [
   // has not been normalized into any CandidateFactRequirement/claim at all -- these candidates
   // correctly remain un-adjudicated/non-governing until that authoring happens.
 
-  // --- AC5.5 (task section 11) -- 'frequency (sine-wave characteristic)' claim REJECTED (ac-sine-
-  // equation). The other five characteristic candidates (amplitude/RMS/peak-to-peak/average/
-  // periodic-time) are NOT in claim-decisions.ts's whitelist at all (task section 4 does not name
-  // them) -- per task section 3's strict rule, they remain un-adjudicated in this package even
-  // though task section 11 lists their content as required and the existing source dossier
-  // VERIFIES nearly all of it. No certification is constructed for any AC5.5 leaf candidate.
+  // --- AC5.5 -- 'frequency (sine-wave characteristic)' claim remains REJECTED (ac-sine-equation).
+  // The other five characteristic candidates (amplitude/RMS/peak-to-peak/average/periodic-time)
+  // are now explicitly authorised REQUIRED_CORE (CC-22B task section 5: "ALL PROJECT-ARCHITECT
+  // DECISIONS ARE NOW RESOLVED"), so requiredFactKeys is populated for each -- but zero technical
+  // claim exists for any of them in the frozen QP input, so technicalCoverageStatus stays
+  // incomplete. PARTIAL, never falsely COMPLETE (mirrors task section 2's own instruction: keep
+  // the calibrated decision visible, never certify evidence-complete when it is not).
+  { targetCandidateKey: "amplitude (sine-wave characteristic)::IDENTIFY", decision: "PARTIAL", rationale: "Adjudicated REQUIRED_CORE (CC-22B); zero technical claim exists yet in the frozen QP input. PARTIAL." },
+  { targetCandidateKey: "RMS value (sine-wave characteristic)::IDENTIFY", decision: "PARTIAL", rationale: "Adjudicated REQUIRED_CORE (CC-22B); zero technical claim exists yet in the frozen QP input. PARTIAL." },
+  { targetCandidateKey: "peak to peak value (sine-wave characteristic)::IDENTIFY", decision: "PARTIAL", rationale: "Adjudicated REQUIRED_CORE (CC-22B); zero technical claim exists yet in the frozen QP input. PARTIAL." },
+  { targetCandidateKey: "average value (sine-wave characteristic)::IDENTIFY", decision: "PARTIAL", rationale: "Adjudicated REQUIRED_CORE (CC-22B); zero technical claim exists yet in the frozen QP input. PARTIAL." },
+  { targetCandidateKey: "periodic time (sine-wave characteristic)::IDENTIFY", decision: "PARTIAL", rationale: "Adjudicated REQUIRED_CORE (CC-22B); zero technical claim exists yet in the frozen QP input. PARTIAL." },
 
   // --- AC6.2 components (task section 4's AC6.2 rule, section 13) ---
   { targetCandidateKey: "capacitors::STATE", decision: "PARTIAL", rationale: "Operating-principle claim real and adequate; schematic-symbol recognition (task section 13) is a CONDITIONAL_SOURCE_GAP in the existing dossier, not yet represented." },
   { targetCandidateKey: "diacs::STATE", decision: "PARTIAL", rationale: "Operating-principle claim real and adequate; schematic-symbol recognition not yet represented." },
   { targetCandidateKey: "diodes::STATE", decision: "PARTIAL", rationale: "Operating-principle claim real and adequate; schematic-symbol recognition not yet represented." },
-  { targetCandidateKey: "invertors::STATE", decision: "PARTIAL", rationale: "Operating-principle claim real and adequate; schematic-symbol recognition not yet represented." },
+  { targetCandidateKey: "invertors::STATE", decision: "PARTIAL", rationale: "CC-22B correction: adjudicated REQUIRED_CORE against real curriculum evidence, but NO matching SourceFactualClaim actually exists in the frozen QP input for unit202.review-fact.invertor-definition (mechanically confirmed) -- technicalCoverageStatus stays incomplete; schematic-symbol recognition also not represented." },
   { targetCandidateKey: "LED::STATE", decision: "PARTIAL", rationale: "Operating-principle claim real and adequate; schematic-symbol recognition not yet represented." },
   { targetCandidateKey: "rectifiers::STATE", decision: "PARTIAL", rationale: "General operating-principle claim real; half-wave/full-wave distinction is CONDITIONAL_SOURCE_GAP in the existing dossier; schematic-symbol recognition not yet represented." },
   { targetCandidateKey: "thermistors::STATE", decision: "PARTIAL", rationale: "Operating-principle claim real and adequate; schematic-symbol recognition not yet represented." },

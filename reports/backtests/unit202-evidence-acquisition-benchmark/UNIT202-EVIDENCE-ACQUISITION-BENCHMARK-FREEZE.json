@@ -1,0 +1,60 @@
+{
+  "parentHEAD": "48b1a98",
+  "parentHEADSubject": "fix: correct Unit 202 evidence reconciliation",
+  "paPropositionLedgerHash": "f809779858e946401a7fac3cd0651f826dadacd8482964de49f606c23020fda6",
+  "blindAcquisitionTargetManifestHash": "3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4",
+  "historicalBenchmarkHash": "9ab74638cee663caafdc1f3ef9af7a4b31790c5dd42ec38ba1d5b72c7ed07b80",
+  "denylistHash": "cd547a67d0dc24a4d26973af6cddd6425f4fb51e12a95cbb82f1c1448e5d8465",
+  "paPropositionCountsByClass": {
+    "REQUIRED_QUALIFICATION_KNOWLEDGE": 168,
+    "FOUNDATIONAL_PREREQUISITE": 3,
+    "OUT_OF_SCOPE": 17,
+    "CONTEXTUAL_TEACHING_SUPPORT": 15
+  },
+  "acquisitionTargetCount": 186,
+  "acquisitionTargetCountsByAC": {
+    "AC1.1": 16,
+    "AC2.1": 9,
+    "AC2.2": 11,
+    "AC2.3": 7,
+    "AC3.1": 5,
+    "AC3.2": 11,
+    "AC3.3": 11,
+    "AC3.4": 3,
+    "AC4.1": 3,
+    "AC4.2": 2,
+    "AC4.3": 5,
+    "AC4.4": 8,
+    "AC4.6": 4,
+    "AC4.7": 3,
+    "AC4.8": 3,
+    "AC5.1": 2,
+    "AC5.2": 3,
+    "AC5.3": 15,
+    "AC5.4": 13,
+    "AC5.5": 12,
+    "AC6.1": 23,
+    "AC6.2": 17
+  },
+  "benchmarkHistoricalStates": {
+    "HISTORICALLY_CONDITIONAL": 13,
+    "NO_HISTORICAL_BENCHMARK": 59,
+    "HISTORICALLY_VERIFIED": 106,
+    "NOT_APPLICABLE": 17,
+    "HISTORICALLY_SOURCE_GAP": 8
+  },
+  "projectArchitectDecisionsRemaining": 0,
+  "sourceAcquisitionManifestHash": "c141d72e7ce192704dabab73a9d501ced334dacbcd2b8317697e95aaefb08aef",
+  "technicalSourceVerificationHash": "81bdfc243d9d1ad9dfac66f60bb9199be2bf2e25e038e1ee07cdbace31f970df",
+  "statement": "The historical Unit-202 technical-source dossier (unit202-source-acquisition-manifest.ts, unit202-technical-source-verification.ts) is BENCHMARK-ONLY from this freeze forward. It is not evidence available to the future blind Unit-202 acquisition process, which must mechanically exclude it per UNIT202-BLIND-ACQUISITION-DENYLIST.json.",
+  "denominators": {
+    "acquisitionTargetsTotal": 171,
+    "historicallyVerified": 101,
+    "historicallyConditional": 10,
+    "historicallySourceGap": 6,
+    "noHistoricalBenchmark": 54,
+    "representativeExemplarTargets": 3,
+    "contextualOptionalTargets": 15,
+    "note": "Denominators only -- no acquisition scoring performed (task section 14)."
+  }
+}
