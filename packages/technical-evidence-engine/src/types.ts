@@ -106,6 +106,34 @@ export const coverageDimensionSchema = z.enum([
 export type CoverageDimension = z.infer<typeof coverageDimensionSchema>;
 
 // ---------------------------------------------------------------------
+// 3A. Technical semantic identity (CC-23A §2-§6). Identical human-readable
+// wording does NOT guarantee identical technical meaning ("range" in
+// statistics vs. "range" in measurement; "power" in mechanics vs. an
+// electrical quantity) -- canonical reuse must never be decided from
+// display text alone. `semanticNamespace` names the domain/subject area a
+// technical truth belongs to (qualification-independent, portable across
+// awarding organisations and course structures -- never a curriculum
+// location such as an AC/unit number); `semanticKey` names the specific
+// truth within that namespace. Both are supplied by the party that
+// approves learner knowledge (the upstream semantic-construction step, or
+// a qualification-specific adapter standing in for it during regression
+// testing) -- this package never derives them from free text itself
+// (task §6: "Do NOT make the generic planner discover semantic identity
+// using fuzzy NLP or word matching").
+// ---------------------------------------------------------------------
+
+export interface TechnicalSemanticIdentity {
+  readonly semanticNamespace: string;
+  readonly semanticKey: string;
+}
+
+/** Directional/spatial/operational mapping entry (task §17-§19 CH) -- generic enough for any domain's directional rule (a compass bearing, a rotation sense, a hand-rule), never named after a specific domain's own vocabulary. */
+export interface DirectionalMappingEntry {
+  readonly role: string;
+  readonly meaning: string;
+}
+
+// ---------------------------------------------------------------------
 // 4. Knowledge target (task §5) -- learner-facing semantic knowledge/
 // performance. NOT 1:1 with EvidenceRequirement (§6). Every field here is
 // either structurally generic or an opaque string the adapter supplies;
@@ -120,6 +148,15 @@ export interface KnowledgeTarget {
   readonly kind: KnowledgeTargetKind;
   readonly classification: KnowledgeTargetClassification;
   /**
+   * CC-23A §3-§4: mandatory structured semantic identity -- the SOLE basis
+   * for `canonicalRequirementKey` (never display text). Two targets whose
+   * `semanticIdentity` is equal are the same reusable technical truth,
+   * regardless of qualification, wording, or curriculum location; two
+   * targets whose wording is equal but `semanticIdentity` differs (a
+   * homonym) are never merged.
+   */
+  readonly semanticIdentity: TechnicalSemanticIdentity;
+  /**
    * Compound-decomposition hint (task §8.B) -- only meaningful for
    * `CONCEPT_DEFINITION` targets. When populated with more than one
    * dimension, the planner emits one `EvidenceRequirement` per requested
@@ -131,15 +168,32 @@ export interface KnowledgeTarget {
   readonly expectedCoverageDimensions?: readonly CoverageDimension[];
   /**
    * Integration-target signal (task §8.E) -- true only for a `RELATIONSHIP`
-   * target whose truth is jointly established by several already-
-   * sourceable constituent facts (e.g. "force, work, energy, power and
-   * efficiency are related" once force/work/energy/power/efficiency are
-   * each independently sourced). Requires `constituentKnowledgeTargetIds`
-   * to resolve; otherwise the planner abstains (§8.G).
+   * (or, CC-23A: `FORMULA_OR_RULE`) target whose truth is jointly
+   * established by several already-sourceable constituent facts (e.g.
+   * "force, work, energy, power and efficiency are related" once each is
+   * independently sourced), OR whose non-formula "use/rearrangement"
+   * dimension is satisfied by an existing foundational procedure (see
+   * `reusesFoundationalProcedureIds` below). Requires one of those two
+   * hints to resolve; otherwise the planner abstains (§8.G).
    */
   readonly requiresMultipleIndependentClaims?: boolean;
   /** `knowledgeTargetId`s of the already-sourceable constituent targets an integration target (above) can be satisfied by, instead of manufacturing a redundant combined source proposition. */
   readonly constituentKnowledgeTargetIds?: readonly string[];
+  /**
+   * CC-23A §11-§15: the generic formula+rearrangement rule. When a target
+   * requires a TECHNICAL FORMULA/RELATIONSHIP plus REARRANGEMENT/
+   * SUBSTITUTION/USE, this names the `knowledgeTargetId`(s) of an already-
+   * approved FOUNDATIONAL procedural capability (e.g. generic formula
+   * transposition/calculation) that satisfies the rearrangement/use
+   * dimension. The planner still emits a READY requirement for the
+   * formula/relationship itself (establishing the authoritative formula
+   * and the meaning of its variables) -- it never invents a SECOND
+   * technical-domain source requirement merely to prove ordinary algebraic
+   * manipulation. A domain-specific procedural constraint beyond ordinary
+   * algebra is a DIFFERENT target with its own evidence requirement, never
+   * folded into this reuse.
+   */
+  readonly reusesFoundationalProcedureIds?: readonly string[];
   /**
    * Structural/parent-target signal (task §8.F) -- `knowledgeTargetId`s of
    * governed child targets whose own evidence requirements already
@@ -147,6 +201,15 @@ export interface KnowledgeTarget {
    * with populated children emits zero evidence requirements of its own.
    */
   readonly childKnowledgeTargetIds?: readonly string[];
+  /**
+   * CC-23A §17-§19: generic structured representation of a directional/
+   * spatial/operational rule (a hand rule, a rotation-sense rule, a
+   * polarity rule) -- carried through as audit/provenance data, never
+   * interpreted or branched on by this package's own logic. Proves a
+   * domain can express directional knowledge without a domain-specific
+   * production field (task §CH).
+   */
+  readonly directionalMapping?: readonly DirectionalMappingEntry[];
   /** True only when this exact target was selected as a representative exemplar of a broader application (task §18 "representative exemplars remain semantically distinct" -- never merged away by dedup logic that would erase the distinction). */
   readonly isRepresentativeExemplar?: boolean;
   /** Opaque, adapter-supplied descriptor of the calibrated learner performance this target supports (e.g. a depth/assessment calibration note) -- carried through verbatim, never interpreted. */
@@ -174,25 +237,55 @@ export const requirementModeSchema = z.enum([
 export type RequirementMode = z.infer<typeof requirementModeSchema>;
 
 // ---------------------------------------------------------------------
-// 6. Source-authority classes (task §11) -- generic, requirement-
-// dependent authority model. No real institution/standards body is
-// hard-coded anywhere in this package; those are later-discovered
-// INSTANCES of these classes, supplied by the acquisition engine (§14),
-// never by this package.
+// 6. Source-authority classes (task §11; CC-23A §7 extensibility
+// correction). Generic, requirement-dependent authority model. No real
+// institution/standards body is hard-coded anywhere in this package;
+// those are later-discovered INSTANCES of these classes, supplied by the
+// acquisition engine (§14), never by this package.
+//
+// CC-23A §7: the taxonomy must be extensible through POLICY, never through
+// a production-code change every time a new domain needs a legitimate
+// authority class this list did not anticipate (construction, plumbing,
+// automotive, healthcare, laboratory science, legal/regulatory training,
+// computing, ...). `SourceAuthorityClass` is therefore an OPEN string type
+// -- `STANDARD_AUTHORITY_CLASSES` are useful, domain-neutral defaults a
+// caller may rely on, never an exhaustive closed set. A domain policy may
+// introduce any additional class string of its own (task §7/§CI) without
+// touching this package's production code.
 // ---------------------------------------------------------------------
 
-export const sourceAuthorityClassSchema = z.enum([
-  "PRIMARY_STANDARDS_OR_METROLOGY_AUTHORITY",
+export const STANDARD_AUTHORITY_CLASSES = [
+  "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
   "GOVERNMENT_OR_REGULATOR",
-  "UNIVERSITY_OR_OPEN_ACADEMIC_TEXT",
-  "PROFESSIONAL_ENGINEERING_INSTITUTION",
-  "ORIGINAL_COMPONENT_MANUFACTURER",
-  "AUTHORITATIVE_TECHNICAL_MANUAL",
-  "AUTHORITATIVE_MATHEMATICS_REFERENCE",
-]);
-export type SourceAuthorityClass = z.infer<typeof sourceAuthorityClassSchema>;
+  "ACADEMIC_OR_RESEARCH_INSTITUTION",
+  "PROFESSIONAL_BODY",
+  "ORIGINAL_MANUFACTURER_OR_VENDOR",
+  "AUTHORITATIVE_TECHNICAL_REFERENCE",
+  "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+] as const;
+export type StandardAuthorityClass = (typeof STANDARD_AUTHORITY_CLASSES)[number];
 
-/** Requirement-dependent authority policy (task §11/§12) -- which authority classes are acceptable for each requirement mode. A caller MAY supply its own; `DEFAULT_SOURCE_AUTHORITY_POLICY` (planner.ts) is a generic, reusable default, never a qualification-specific one. */
+/** Open extensible authority-class identity (CC-23A §7): any of the standard defaults, or a domain-policy-defined class string. Validate with `sourceAuthorityClassSchema` (any non-empty string) -- `standardAuthorityClassSchema` remains available where a caller specifically wants to restrict to the recommended defaults. */
+export type SourceAuthorityClass = StandardAuthorityClass | (string & {});
+
+export const standardAuthorityClassSchema = z.enum(STANDARD_AUTHORITY_CLASSES);
+export const sourceAuthorityClassSchema = z.string().min(1);
+
+/**
+ * Requirement-dependent authority policy (task §11/§12) -- which authority
+ * classes are acceptable for each requirement mode. A caller MAY supply
+ * its own, including classes `DEFAULT_SOURCE_AUTHORITY_POLICY` (planner.ts)
+ * never anticipated (CC-23A §7/§CI) -- this type places no restriction on
+ * which class strings a domain policy may introduce.
+ *
+ * CC-23A §8/§CJ: this policy selects ACCEPTABLE EVIDENCE AUTHORITY only.
+ * It structurally cannot create learner knowledge, expand qualification
+ * scope, set curriculum depth, or promote contextual material -- it has no
+ * field capable of expressing any of those, and the planner never reads
+ * `sourceAuthorityPolicy` when computing `classification`,
+ * `acquisitionPriority`, or `decompositionStatus` (see planner.test.ts's
+ * dedicated regression, task §CJ).
+ */
 export interface SourceAuthorityPolicy {
   readonly allowedAuthorityClassesByMode: Readonly<Partial<Record<RequirementMode, readonly SourceAuthorityClass[]>>>;
 }
@@ -234,12 +327,21 @@ export interface EvidenceRequirement {
 }
 
 // ---------------------------------------------------------------------
-// 9. Structural outcomes the planner records for targets that emit NO
-// evidence requirement of their own (task §8.E/§8.F) -- never silently
-// dropped; always traceable to why.
+// 9. Structural outcomes the planner records for a target whose FULL
+// evidence need, or one STRUCTURAL DIMENSION of it, is satisfied without
+// a new requirement (task §8.E/§8.F; CC-23A §11-§15 extends this to a
+// dimension-level satisfaction that coexists with a real requirement for
+// the target's remaining dimension) -- never silently dropped; always
+// traceable to why.
 // ---------------------------------------------------------------------
 
-export const structuralSatisfactionKindSchema = z.enum(["STRUCTURAL_PARENT_DECOMPOSED", "INTEGRATION_SATISFIED_BY_CONSTITUENTS", "OUT_OF_SCOPE_EXCLUDED"]);
+export const structuralSatisfactionKindSchema = z.enum([
+  "STRUCTURAL_PARENT_DECOMPOSED",
+  "INTEGRATION_SATISFIED_BY_CONSTITUENTS",
+  "OUT_OF_SCOPE_EXCLUDED",
+  /** CC-23A §11-§15: the target's REARRANGEMENT/SUBSTITUTION/USE dimension is satisfied by an already-approved foundational procedure -- coexists with a real, separately-emitted EvidenceRequirement covering the target's own formula/relationship dimension (never a zero-requirement outcome by itself). */
+  "REARRANGEMENT_SATISFIED_BY_FOUNDATIONAL_PROCEDURE",
+]);
 export type StructuralSatisfactionKind = z.infer<typeof structuralSatisfactionKindSchema>;
 
 export interface StructuralSatisfactionRecord {

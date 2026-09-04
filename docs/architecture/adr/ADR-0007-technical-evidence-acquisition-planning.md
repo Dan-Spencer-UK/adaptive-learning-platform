@@ -10,7 +10,7 @@ approved_date: 2026-09-04
 
 ## Status
 
-Accepted — 2026-09-04.
+Accepted — 2026-09-04. **Ratified — 2026-09-04 (CC-23A):** the Project Architect has explicitly reviewed and RATIFIED `packages/technical-evidence-engine/` as the correct, permanent home for technical/source-evidence planning, and confirms `packages/evidence-engine/` (learner-attempt/mastery evidence) must remain semantically separate from it. Neither package is to be merged or renamed. This ratification does not reopen the boundary decision below; it closes it.
 
 ## Context
 
@@ -46,6 +46,7 @@ Every one of these defects was fixed, each time, as a Unit-202-specific correcti
 - A new qualification-specific adapter is required before any future qualification can use this pipeline stage; the adapter is where all qualification-specific judgement calls belong (e.g. "this compound target needs DEFINITION + QUANTITY_SYMBOL + UNIT_SYMBOL + DISTINCTION coverage"), never inside `@alp/technical-evidence-engine` itself.
 - The future technical-evidence acquisition engine (source discovery, retrieval, factual verification, claim normalization) is a SEPARATE, not-yet-implemented package/stage; this ADR only fixes its input/output contract shape, and does not authorise building it.
 - The Unit-202 blind acquisition target manifest (`reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json`, hash `3052aede77b472247fbdf7a9e04d62adb2e98bba3a2896dacd610267e4a754b4`) remains frozen and untouched by this ADR.
+- **CC-23A hardening (2026-09-04):** `canonicalRequirementKey` was corrected to derive from `KnowledgeTarget.semanticIdentity` rather than normalized display text (closing a homonym-collision risk text-based reuse could not safely rule out), and `SourceAuthorityClass` was opened from a closed enum to an extensible string type with domain-neutral standard defaults. Both corrections are documented in `docs/architecture/qualification-knowledge-construction-pipeline.md` §25.5; neither changes the package-boundary decision this ADR records.
 
 ## Compatibility
 

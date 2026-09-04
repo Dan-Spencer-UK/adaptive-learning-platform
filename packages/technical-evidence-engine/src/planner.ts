@@ -1,15 +1,27 @@
 /**
- * CC-23: the generic EvidenceRequirementPlanner (task §6-§10). Consumes an
- * already-APPROVED, qualification-agnostic `KnowledgeEvidencePlanningInput`
- * and produces `EvidenceRequirement`s -- it never researches, browses, or
- * retrieves anything (task §13; mechanically proven in planner.test.ts).
+ * CC-23/CC-23A: the generic EvidenceRequirementPlanner (task §6-§10; CC-23A
+ * §2-§6 semantic-identity hardening, §11-§15 formula+rearrangement rule).
+ * Consumes an already-APPROVED, qualification-agnostic
+ * `KnowledgeEvidencePlanningInput` and produces `EvidenceRequirement`s -- it
+ * never researches, browses, or retrieves anything (task §13; mechanically
+ * proven in planner.test.ts).
  *
  * Every decomposition decision below is driven entirely by STRUCTURAL
- * fields on `KnowledgeTarget` (`kind`, `classification`,
+ * fields on `KnowledgeTarget` (`kind`, `classification`, `semanticIdentity`,
  * `expectedCoverageDimensions`, `requiresMultipleIndependentClaims`,
- * `constituentKnowledgeTargetIds`, `childKnowledgeTargetIds`) -- never by
- * inspecting `targetText` content. A qualification-specific adapter
- * supplies those structural hints; this package only ever reacts to them.
+ * `constituentKnowledgeTargetIds`, `reusesFoundationalProcedureIds`,
+ * `childKnowledgeTargetIds`) -- never by inspecting `targetText` content or
+ * discovering identity via fuzzy/NLP text matching (CC-23A §6). A
+ * qualification-specific adapter supplies those structural hints; this
+ * package only ever reacts to them.
+ *
+ * CC-23A §2-§4: canonical requirement identity is now SEMANTIC, never
+ * display-text-based. `KnowledgeTarget.semanticIdentity` (namespace + key)
+ * is the sole basis for `canonicalRequirementKey`, combined with
+ * `requirementMode` (and a coverage dimension, for compound
+ * sub-requirements) -- identical wording with different semantic identity
+ * (a homonym) never collapses, and different wording with equal semantic
+ * identity always reuses.
  */
 
 import type {
@@ -25,6 +37,7 @@ import type {
   SourceAuthorityClass,
   SourceAuthorityPolicy,
   StructuralSatisfactionRecord,
+  TechnicalSemanticIdentity,
 } from "./types.ts";
 
 // ---------------------------------------------------------------------
@@ -139,20 +152,20 @@ const ACCEPTANCE_CRITERIA_BY_MODE: Readonly<Record<RequirementMode, string>> = {
   TOPIC_BREADTH_COVERAGE: `Substantive authoritative coverage of the required topic breadth/procedure, not a single illustrative sentence. ${TITLE_ALONE_CLAUSE}`,
 };
 
-/** Task §11: a generic, reusable default authority policy. Any caller may pass its own `SourceAuthorityPolicy`; unset modes fall back to this. Every entry is a generic authority CLASS, never a named institution (task §11: those are later-discovered instances). */
+/** Task §11 (CC-23A §7: extensible authority classes). A generic, reusable default authority policy. Any caller may pass its own `SourceAuthorityPolicy`, including classes this default never anticipated; unset modes fall back to this. Every entry is a generic authority CLASS, never a named institution (task §11: those are later-discovered instances). */
 export const DEFAULT_SOURCE_AUTHORITY_POLICY: SourceAuthorityPolicy = {
   allowedAuthorityClassesByMode: {
-    EXACT_FACT: ["PRIMARY_STANDARDS_OR_METROLOGY_AUTHORITY", "GOVERNMENT_OR_REGULATOR", "UNIVERSITY_OR_OPEN_ACADEMIC_TEXT", "AUTHORITATIVE_TECHNICAL_MANUAL"],
-    FORMULA_OR_RULE: ["PRIMARY_STANDARDS_OR_METROLOGY_AUTHORITY", "UNIVERSITY_OR_OPEN_ACADEMIC_TEXT", "AUTHORITATIVE_MATHEMATICS_REFERENCE", "PROFESSIONAL_ENGINEERING_INSTITUTION"],
-    CONCEPT_DEFINITION: ["UNIVERSITY_OR_OPEN_ACADEMIC_TEXT", "PROFESSIONAL_ENGINEERING_INSTITUTION", "AUTHORITATIVE_TECHNICAL_MANUAL", "AUTHORITATIVE_MATHEMATICS_REFERENCE"],
-    RELATIONSHIP: ["UNIVERSITY_OR_OPEN_ACADEMIC_TEXT", "PROFESSIONAL_ENGINEERING_INSTITUTION", "AUTHORITATIVE_TECHNICAL_MANUAL"],
-    PROCEDURE_COVERAGE: ["UNIVERSITY_OR_OPEN_ACADEMIC_TEXT", "PROFESSIONAL_ENGINEERING_INSTITUTION", "AUTHORITATIVE_TECHNICAL_MANUAL", "AUTHORITATIVE_MATHEMATICS_REFERENCE"],
-    OPERATING_PRINCIPLE: ["UNIVERSITY_OR_OPEN_ACADEMIC_TEXT", "ORIGINAL_COMPONENT_MANUFACTURER", "AUTHORITATIVE_TECHNICAL_MANUAL"],
-    OPERATIONAL_USE_RULE: ["GOVERNMENT_OR_REGULATOR", "PROFESSIONAL_ENGINEERING_INSTITUTION", "AUTHORITATIVE_TECHNICAL_MANUAL", "ORIGINAL_COMPONENT_MANUFACTURER"],
-    SYMBOL_OR_CONVENTION: ["PRIMARY_STANDARDS_OR_METROLOGY_AUTHORITY", "PROFESSIONAL_ENGINEERING_INSTITUTION", "AUTHORITATIVE_TECHNICAL_MANUAL"],
-    SCHEMATIC_OR_DIAGRAM_RECOGNITION: ["ORIGINAL_COMPONENT_MANUFACTURER", "AUTHORITATIVE_TECHNICAL_MANUAL", "PROFESSIONAL_ENGINEERING_INSTITUTION"],
-    APPLICATION_FUNCTION: ["ORIGINAL_COMPONENT_MANUFACTURER", "AUTHORITATIVE_TECHNICAL_MANUAL", "UNIVERSITY_OR_OPEN_ACADEMIC_TEXT"],
-    TOPIC_BREADTH_COVERAGE: ["UNIVERSITY_OR_OPEN_ACADEMIC_TEXT", "AUTHORITATIVE_MATHEMATICS_REFERENCE", "PROFESSIONAL_ENGINEERING_INSTITUTION"],
+    EXACT_FACT: ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+    FORMULA_OR_RULE: ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_EDUCATIONAL_REFERENCE", "PROFESSIONAL_BODY"],
+    CONCEPT_DEFINITION: ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE", "AUTHORITATIVE_EDUCATIONAL_REFERENCE"],
+    RELATIONSHIP: ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+    PROCEDURE_COVERAGE: ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE", "AUTHORITATIVE_EDUCATIONAL_REFERENCE"],
+    OPERATING_PRINCIPLE: ["ACADEMIC_OR_RESEARCH_INSTITUTION", "ORIGINAL_MANUFACTURER_OR_VENDOR", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+    OPERATIONAL_USE_RULE: ["GOVERNMENT_OR_REGULATOR", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE", "ORIGINAL_MANUFACTURER_OR_VENDOR"],
+    SYMBOL_OR_CONVENTION: ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+    SCHEMATIC_OR_DIAGRAM_RECOGNITION: ["ORIGINAL_MANUFACTURER_OR_VENDOR", "AUTHORITATIVE_TECHNICAL_REFERENCE", "PROFESSIONAL_BODY"],
+    APPLICATION_FUNCTION: ["ORIGINAL_MANUFACTURER_OR_VENDOR", "AUTHORITATIVE_TECHNICAL_REFERENCE", "ACADEMIC_OR_RESEARCH_INSTITUTION"],
+    TOPIC_BREADTH_COVERAGE: ["ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_EDUCATIONAL_REFERENCE", "PROFESSIONAL_BODY"],
   },
 };
 
@@ -161,23 +174,26 @@ function authorityClassesFor(mode: RequirementMode, policy: SourceAuthorityPolic
 }
 
 // ---------------------------------------------------------------------
-// Task §10: domain-oriented canonical identity -- normalized text +
-// requirement mode (+ coverage dimension, for compound sub-requirements).
-// Qualification location is never part of this identity.
+// CC-23A §2-§4: domain-oriented canonical identity -- SEMANTIC identity
+// (namespace + key, task §3) + requirement mode (+ coverage dimension, for
+// compound sub-requirements). Neither qualification location nor display
+// text is ever part of this identity (task §4). A light slug
+// normalization is applied only to keep keys stable/printable -- it is
+// never itself the identity basis (contrast CC-23's `normalizeRequirementText`
+// applied to display text, now removed).
 // ---------------------------------------------------------------------
 
-function normalizeRequirementText(text: string): string {
-  return text
+function slug(value: string): string {
+  return value
     .trim()
     .toLowerCase()
-    .replace(/[.]+$/, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
 
-export function canonicalRequirementKey(requirementText: string, mode: RequirementMode, dimension?: CoverageDimension): string {
-  const base = `${mode.toLowerCase()}::${normalizeRequirementText(requirementText)}`;
-  return dimension ? `${base}::${dimension.toLowerCase()}` : base;
+export function canonicalRequirementKey(identity: TechnicalSemanticIdentity, mode: RequirementMode, dimension?: CoverageDimension): string {
+  const base = `${slug(identity.semanticNamespace)}::${slug(identity.semanticKey)}::${mode}`;
+  return dimension ? `${base}::${dimension}` : base;
 }
 
 // ---------------------------------------------------------------------
@@ -201,7 +217,7 @@ function priorityFor(target: KnowledgeTarget): AcquisitionPriority {
 }
 
 function buildRequirement(p: BuildRequirementParams): EvidenceRequirement {
-  const key = canonicalRequirementKey(p.requirementText, p.mode, p.dimensionSuffix);
+  const key = canonicalRequirementKey(p.target.semanticIdentity, p.mode, p.dimensionSuffix);
   return {
     evidenceRequirementId: `ER::${key}`,
     canonicalRequirementKey: key,
@@ -225,7 +241,11 @@ function buildRequirement(p: BuildRequirementParams): EvidenceRequirement {
 // two requirements sharing a `canonicalRequirementKey` -- whether from
 // the same planning call or two separate calls passed in via
 // `existingRequirements` -- collapse into one, union-merging their
-// `sourceKnowledgeTargetIds`.
+// `sourceKnowledgeTargetIds`. Because the key is now semantic-identity-
+// based (CC-23A §2-§4), two requirements only ever share a key when their
+// source targets' `semanticIdentity` and `requirementMode` (and coverage
+// dimension) genuinely agree -- equal display text with differing
+// semantic identity never reaches this merge as a collision (task §5 CB).
 // ---------------------------------------------------------------------
 
 function mergeRequirements(existing: readonly EvidenceRequirement[], fresh: readonly EvidenceRequirement[]): EvidenceRequirement[] {
@@ -256,8 +276,9 @@ function mergeRequirements(existing: readonly EvidenceRequirement[], fresh: read
 }
 
 // ---------------------------------------------------------------------
-// The planner itself (task §7/§8). Deterministic, order-independent
-// output: `requirements` is always sorted by `canonicalRequirementKey`.
+// The planner itself (task §7/§8; CC-23A §11-§15). Deterministic,
+// order-independent output: `requirements` is always sorted by
+// `canonicalRequirementKey`.
 // ---------------------------------------------------------------------
 
 export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, existingRequirements: readonly EvidenceRequirement[] = []): KnowledgeEvidencePlanResult {
@@ -288,8 +309,11 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
       continue;
     }
 
-    // Task §8.E: integration target.
-    if (target.kind === "RELATIONSHIP" && target.requiresMultipleIndependentClaims === true) {
+    // Task §8.E / CC-23A §11-§15: a RELATIONSHIP or FORMULA_OR_RULE target
+    // declaring multiple independent claims is resolved one of two ways --
+    // never guessed, never left compound.
+    if ((target.kind === "RELATIONSHIP" || target.kind === "FORMULA_OR_RULE") && target.requiresMultipleIndependentClaims === true) {
+      // (a) Integration target (§8.E): satisfied entirely by already-sourceable siblings.
       if (target.constituentKnowledgeTargetIds && target.constituentKnowledgeTargetIds.length >= 2) {
         structuralSatisfactions.push({
           knowledgeTargetId: target.knowledgeTargetId,
@@ -299,16 +323,47 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
         });
         continue;
       }
+      // (b) CC-23A §11-§15: formula/relationship + rearrangement-use, where the
+      // rearrangement dimension reuses an already-approved foundational
+      // procedure. The formula/relationship dimension STILL gets its own
+      // READY requirement (establishing the authoritative formula and the
+      // meaning of its variables) -- only the algebraic-manipulation
+      // dimension is satisfied structurally.
+      if (target.reusesFoundationalProcedureIds && target.reusesFoundationalProcedureIds.length >= 1) {
+        const mode = target.kind === "FORMULA_OR_RULE" ? "FORMULA_OR_RULE" : "RELATIONSHIP";
+        freshRequirements.push(
+          buildRequirement({
+            target,
+            mode,
+            requirementText: target.targetText,
+            dimensions: ["FORMULA", "FORMULA_INTERPRETATION"],
+            policy: sourceAuthorityPolicy,
+            decompositionStatus: "READY",
+            decompositionReason: null,
+            deduplicationBasis: "semantic identity + requirement mode",
+          }),
+        );
+        structuralSatisfactions.push({
+          knowledgeTargetId: target.knowledgeTargetId,
+          kind: "REARRANGEMENT_SATISFIED_BY_FOUNDATIONAL_PROCEDURE",
+          satisfiedByKnowledgeTargetIds: target.reusesFoundationalProcedureIds,
+          explanation:
+            "The formula/relationship itself is a READY evidence requirement (establishing the authoritative formula and the meaning of its variables); its rearrangement/substitution/use dimension is satisfied by an already-approved foundational procedural capability, never a second technical-domain source for ordinary algebraic manipulation (task §11-§15).",
+        });
+        continue;
+      }
+      // (c) Neither hint supplied -- abstain (§8.G).
       freshRequirements.push(
         buildRequirement({
           target,
-          mode: "RELATIONSHIP",
+          mode: target.kind === "FORMULA_OR_RULE" ? "FORMULA_OR_RULE" : "RELATIONSHIP",
           requirementText: target.targetText,
           dimensions: [],
           policy: sourceAuthorityPolicy,
           decompositionStatus: "SEMANTIC_DECOMPOSITION_REQUIRED",
-          decompositionReason: "Multi-claim relationship target requires explicit constituentKnowledgeTargetIds (>=2) to determine whether it can be satisfied by existing constituent evidence requirements, or genuinely needs its own combined-relationship source; none were supplied (task §8.G).",
-          deduplicationBasis: "under-specified integration target -- not yet deduplicated",
+          decompositionReason:
+            "Multi-claim relationship/formula target requires explicit constituentKnowledgeTargetIds (>=2, integration) or reusesFoundationalProcedureIds (>=1, formula+rearrangement) to determine how it can be satisfied; neither was supplied (task §8.G).",
+          deduplicationBasis: "under-specified multi-claim target -- not yet deduplicated",
         }),
       );
       continue;
@@ -329,7 +384,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
               policy: sourceAuthorityPolicy,
               decompositionStatus: "READY",
               decompositionReason: null,
-              deduplicationBasis: "normalized requirement text + requirement mode + coverage dimension",
+              deduplicationBasis: "semantic identity + requirement mode + coverage dimension",
             }),
           );
         }
@@ -350,7 +405,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
       continue;
     }
 
-    // Classes A/C/D and single-claim RELATIONSHIP: one requirement, kind-derived mode.
+    // Classes A/C/D and single-claim RELATIONSHIP/FORMULA_OR_RULE: one requirement, kind-derived mode.
     const mode = defaultRequirementModeForKind(target.kind);
     const dims = target.expectedCoverageDimensions ?? defaultDimensionsForKind(target.kind);
     freshRequirements.push(
@@ -362,7 +417,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
         policy: sourceAuthorityPolicy,
         decompositionStatus: "READY",
         decompositionReason: null,
-        deduplicationBasis: "normalized requirement text + requirement mode",
+        deduplicationBasis: "semantic identity + requirement mode",
       }),
     );
   }

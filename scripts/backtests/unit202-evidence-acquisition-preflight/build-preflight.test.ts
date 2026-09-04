@@ -155,11 +155,98 @@ describe("CC-23 section 18 -- contextual material remains optional", () => {
   });
 });
 
-describe("CC-23 section 27 -- decomposition gaps are honest, not forced to zero", () => {
-  it("at least one target legitimately abstains with SEMANTIC_DECOMPOSITION_REQUIRED", () => {
+describe("CC-23A section 20 -- the 8 known preflight decomposition gaps are resolved through the generic mechanisms alone", () => {
+  it("zero SEMANTIC_DECOMPOSITION_REQUIRED requirements remain for the current frozen target set", () => {
     const gaps = planResult.requirements.filter((r) => r.decompositionStatus === "SEMANTIC_DECOMPOSITION_REQUIRED");
-    expect(gaps.length).toBeGreaterThan(0);
-    for (const g of gaps) expect(g.decompositionReason).toBeTruthy();
+    expect(gaps.map((g) => g.requirementText)).toEqual([]);
+    expect(gaps).toHaveLength(0);
+  });
+});
+
+describe("CC-23A section 25 -- individual Unit-202 gap resolutions", () => {
+  it("R = rho L/A: READY FORMULA_OR_RULE requirement, rearrangement satisfied by the foundational formula-transposition procedure", () => {
+    const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-083"))!;
+    expect(req.requirementMode).toBe("FORMULA_OR_RULE");
+    expect(req.decompositionStatus).toBe("READY");
+    const satisfaction = planResult.structuralSatisfactions.find((s) => s.knowledgeTargetId === "unit202::ACQ-083");
+    expect(satisfaction?.kind).toBe("REARRANGEMENT_SATISFIED_BY_FOUNDATIONAL_PROCEDURE");
+    expect(satisfaction?.satisfiedByKnowledgeTargetIds).toEqual(["unit202::ACQ-004"]);
+  });
+
+  it("V = IR: READY FORMULA_OR_RULE requirement, rearrangement satisfied by the foundational procedure -- no new domain-specific rearrangement source", () => {
+    const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-085"))!;
+    expect(req.requirementMode).toBe("FORMULA_OR_RULE");
+    expect(req.decompositionStatus).toBe("READY");
+    const satisfaction = planResult.structuralSatisfactions.find((s) => s.knowledgeTargetId === "unit202::ACQ-085");
+    expect(satisfaction?.kind).toBe("REARRANGEMENT_SATISFIED_BY_FOUNDATIONAL_PROCEDURE");
+  });
+
+  it("B = Phi/A: READY FORMULA_OR_RULE requirement covering B/flux/area, rearrangement satisfied by the foundational procedure", () => {
+    const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-106"))!;
+    expect(req.requirementMode).toBe("FORMULA_OR_RULE");
+    expect(req.decompositionStatus).toBe("READY");
+    const satisfaction = planResult.structuralSatisfactions.find((s) => s.knowledgeTargetId === "unit202::ACQ-106");
+    expect(satisfaction?.kind).toBe("REARRANGEMENT_SATISFIED_BY_FOUNDATIONAL_PROCEDURE");
+  });
+
+  it("f = N x P: READY FORMULA_OR_RULE requirement covering f/N/P and the multiplicative relationship", () => {
+    const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-132"))!;
+    expect(req.requirementMode).toBe("FORMULA_OR_RULE");
+    expect(req.decompositionStatus).toBe("READY");
+    expect(req.requirementText).toMatch(/f is frequency/i);
+  });
+
+  it("the duplicate frequency learner target (§16) maps to the SAME canonical semantic evidence requirement, preserving both learner-target mappings", () => {
+    const req131 = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-131"));
+    const req132 = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-132"));
+    expect(req131).toBeDefined();
+    expect(req131).toBe(req132); // literally the same merged requirement object
+    expect([...req131!.sourceKnowledgeTargetIds].sort()).toEqual(["unit202::ACQ-131", "unit202::ACQ-132"]);
+  });
+
+  it("right-hand grip rule: READY OPERATIONAL_USE_RULE with structured directional metadata, resolved without a special-case in production planner logic", () => {
+    const target = input.knowledgeTargets.find((t) => t.knowledgeTargetId === "unit202::ACQ-108")!;
+    expect(target.kind).toBe("OPERATIONAL_USE_RULE");
+    expect(target.directionalMapping!.length).toBeGreaterThan(0);
+    const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-108"))!;
+    expect(req.decompositionStatus).toBe("READY");
+  });
+
+  it("Fleming's left-hand rule: READY OPERATIONAL_USE_RULE, motor-effect learner knowledge", () => {
+    const target = input.knowledgeTargets.find((t) => t.knowledgeTargetId === "unit202::ACQ-114")!;
+    expect(target.kind).toBe("OPERATIONAL_USE_RULE");
+    const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-114"))!;
+    expect(req.decompositionStatus).toBe("READY");
+  });
+
+  it("Fleming's right-hand/generator rule: READY OPERATIONAL_USE_RULE", () => {
+    const target = input.knowledgeTargets.find((t) => t.knowledgeTargetId === "unit202::ACQ-117")!;
+    expect(target.kind).toBe("OPERATIONAL_USE_RULE");
+    const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-117"))!;
+    expect(req.decompositionStatus).toBe("READY");
+  });
+
+  it("none of the 3 directional-rule targets carry an electrical-specific field name in their generic representation -- directionalMapping is role/meaning pairs only", () => {
+    for (const id of ["unit202::ACQ-108", "unit202::ACQ-114", "unit202::ACQ-117"]) {
+      const target = input.knowledgeTargets.find((t) => t.knowledgeTargetId === id)!;
+      for (const entry of target.directionalMapping!) {
+        expect(Object.keys(entry).sort()).toEqual(["meaning", "role"]);
+      }
+    }
+  });
+});
+
+describe("CC-23A section 2-5 -- semantic identity is assigned to every knowledge target, never derived from qualification location", () => {
+  it("every Unit-202 target carries a semanticIdentity with a non-empty namespace and key", () => {
+    for (const t of input.knowledgeTargets) {
+      expect(t.semanticIdentity.semanticNamespace.length).toBeGreaterThan(0);
+      expect(t.semanticIdentity.semanticKey.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("semantic namespaces are genuine subject-area names, never bare AC codes", () => {
+    const namespaces = new Set(input.knowledgeTargets.map((t) => t.semanticIdentity.semanticNamespace));
+    for (const ns of namespaces) expect(ns).not.toMatch(/^AC\d/);
   });
 });
 
@@ -191,7 +278,9 @@ describe("CC-23 section 28 -- proof of architectural invariants", () => {
 
   it("(C) the same canonical requirement supports two synthetic qualifications (proven directly in the generic package's own test suite, cross-checked here for presence)", () => {
     const genericTestSource = readText("packages/technical-evidence-engine/src/planner.test.ts");
-    expect(genericTestSource).toContain("cross-qualification canonical reuse");
+    expect(genericTestSource).toContain("cross-qualification");
+    expect(genericTestSource).toContain("synthetic-f1");
+    expect(genericTestSource).toContain("synthetic-f2");
   });
 
   it("(D) the planner performs no research -- no I/O signature appears in generic planner/types/access-guard source", () => {
@@ -219,8 +308,30 @@ describe("CC-23 section 28 -- proof of architectural invariants", () => {
     expect(doc).toContain("technical-evidence-engine");
   });
 
-  it("(G) source authority cannot create qualification scope -- SourceAuthorityPolicy has no field capable of expressing scope/classification", () => {
-    expect(engineTypesSource).not.toMatch(/SourceAuthorityPolicy[\s\S]{0,400}classification/);
+  it("§CK: pipeline documentation asserts the correct end-to-end order -- technical coverage -> assertion construction -> coverage gate -> course-construction handoff, in that order, with COURSE-CONSTRUCTION HANDOFF naming exactly one stage", () => {
+    const doc = readText("docs/architecture/qualification-knowledge-construction-pipeline.md");
+    const diagramMatch = doc.match(/```\r?\nRAW EVIDENCE\r?\n[\s\S]*?```/);
+    expect(diagramMatch, "canonical pipeline diagram not found").not.toBeNull();
+    const diagram = diagramMatch![0];
+    const coverageIdx = diagram.indexOf("TECHNICAL COVERAGE");
+    const assertionIdx = diagram.indexOf("ASSERTION");
+    const gateIdx = diagram.indexOf("COVERAGE GATE");
+    const handoffIdx = diagram.indexOf("COURSE-CONSTRUCTION HANDOFF");
+    expect(coverageIdx).toBeGreaterThan(-1);
+    expect(assertionIdx).toBeGreaterThan(coverageIdx);
+    expect(gateIdx).toBeGreaterThan(assertionIdx);
+    expect(handoffIdx).toBeGreaterThan(gateIdx);
+    // COURSE-CONSTRUCTION HANDOFF names exactly one stage in the diagram.
+    const handoffOccurrences = diagram.split("COURSE-CONSTRUCTION HANDOFF").length - 1;
+    expect(handoffOccurrences).toBe(1);
+  });
+
+  it("(G) source authority cannot create qualification scope -- the SourceAuthorityPolicy interface's ONLY member is allowedAuthorityClassesByMode, structurally incapable of expressing classification/scope/depth", () => {
+    const match = engineTypesSource.match(/export interface SourceAuthorityPolicy \{([\s\S]*?)\n\}/);
+    expect(match, "SourceAuthorityPolicy interface not found").not.toBeNull();
+    const body = match![1]!;
+    const memberNames = [...body.matchAll(/readonly\s+(\w+)\s*:/g)].map((m) => m[1]);
+    expect(memberNames).toEqual(["allowedAuthorityClassesByMode"]);
   });
 
   it("(I) no live web acquisition occurred -- no network signature anywhere in this package's own source", () => {

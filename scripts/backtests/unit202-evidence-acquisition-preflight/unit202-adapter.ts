@@ -16,8 +16,17 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { LocalAccessGuard, hashContent, type CoverageDimension, type KnowledgeEvidencePlanningInput, type KnowledgeTarget, type KnowledgeTargetKind } from "@alp/technical-evidence-engine";
-import { DEFAULT_SOURCE_AUTHORITY_POLICY } from "@alp/technical-evidence-engine";
+import {
+  DEFAULT_SOURCE_AUTHORITY_POLICY,
+  LocalAccessGuard,
+  hashContent,
+  type CoverageDimension,
+  type DirectionalMappingEntry,
+  type KnowledgeEvidencePlanningInput,
+  type KnowledgeTarget,
+  type KnowledgeTargetKind,
+  type TechnicalSemanticIdentity,
+} from "@alp/technical-evidence-engine";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -128,20 +137,6 @@ const INTEGRATION_CONSTITUENTS: Record<string, readonly string[]> = {
   "Relationships between force, work, energy, power and efficiency.": ["ACQ-060", "ACQ-061", "ACQ-062", "ACQ-064", "ACQ-065"],
 };
 
-/**
- * Task §10 "F = mg appearing in multiple ACs must become one canonical
- * evidence requirement" -- the manifest carries this as two SLIGHTLY
- * different raw strings ("F = mg." at AC3.1, "F = mg where relevant." at
- * AC3.3); this adapter is the qualification-specific place a human judges
- * them the SAME canonical technical truth and normalizes both to
- * identical `targetText` so the generic planner's own domain-oriented
- * canonical-key dedup (never text-content-aware on its own) collapses
- * them naturally.
- */
-const CANONICAL_TEXT_NORMALIZATION: Record<string, string> = {
-  "F = mg where relevant.": "F = mg.",
-};
-
 function expectedDimensionsForAC2_2(proposition: string): readonly CoverageDimension[] {
   const dims: CoverageDimension[] = ["DEFINITION", "QUANTITY_SYMBOL", "UNIT_SYMBOL"];
   if (proposition.includes("distinction")) dims.push("DISTINCTION");
@@ -151,6 +146,149 @@ function expectedDimensionsForAC2_2(proposition: string): readonly CoverageDimen
 function knowledgeTargetIdFor(acquisitionTargetId: string): string {
   return `unit202::${acquisitionTargetId}`;
 }
+
+// ---------------------------------------------------------------------
+// CC-23A §2-§6: structured semantic identity. Every Unit-202 target is
+// assigned a `TechnicalSemanticIdentity { semanticNamespace, semanticKey }`
+// HERE, in the adapter -- the generic planner never derives identity from
+// free text (task §6). `semanticNamespace` groups by genuine SUBJECT AREA
+// (never a curriculum location such as an AC number, even though the
+// lookup below happens to be indexed by AC for convenience -- the VALUES
+// are portable domain names any qualification with, say, a mechanics
+// section could reuse). `semanticKey` defaults to a slug of the
+// proposition text (an implementation convenience for the common case of
+// one atomic, non-reused target) but is explicitly OVERRIDDEN wherever two
+// targets are judged, by a human, to be the same reusable technical truth
+// (CC-23A §16's duplicate frequency/pole-pairs case) or where a homonym
+// risk exists -- never a generic word-matching heuristic.
+// ---------------------------------------------------------------------
+
+const AC_SEMANTIC_NAMESPACE: Record<string, string> = {
+  "AC1.1": "foundational-mathematics",
+  "AC2.1": "electrical-quantities-and-circuit-theory",
+  "AC2.2": "electrical-quantities-and-circuit-theory",
+  "AC2.3": "electrical-quantities-and-circuit-theory",
+  "AC3.1": "mechanics-and-machines",
+  "AC3.2": "mechanics-and-machines",
+  "AC3.3": "mechanics-and-machines",
+  "AC3.4": "mechanics-and-machines",
+  "AC4.1": "electrical-fundamentals-and-safety",
+  "AC4.2": "electrical-fundamentals-and-safety",
+  "AC4.3": "electrical-fundamentals-and-safety",
+  "AC4.4": "electrical-fundamentals-and-safety",
+  "AC4.6": "electrical-fundamentals-and-safety",
+  "AC4.7": "electrical-fundamentals-and-safety",
+  "AC4.8": "electrical-fundamentals-and-safety",
+  "AC5.1": "electromagnetism-and-induction",
+  "AC5.2": "electromagnetism-and-induction",
+  "AC5.3": "electromagnetism-and-induction",
+  "AC5.4": "electromagnetism-and-induction",
+  "AC5.5": "electromagnetism-and-induction",
+  "AC6.1": "electronic-devices-and-applications",
+  "AC6.2": "electronic-devices-and-applications",
+};
+
+function defaultSemanticKeyFor(proposition: string): string {
+  return proposition
+    .trim()
+    .toLowerCase()
+    .replace(/[.]+$/, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * CC-23A §16: two differently-worded propositions the Project Architect has
+ * identified as the SAME calibrated technical relationship. Hand-verified
+ * equality, never inferred from shared vocabulary -- an explicit
+ * `semanticKey` override is the mechanism (task §4: identity, never text).
+ */
+const SEMANTIC_KEY_OVERRIDE: Record<string, string> = {
+  "F = mg.": "weight-force-relationship",
+  "F = mg where relevant.": "weight-force-relationship",
+  "Frequency relationship to rotational speed and pole pairs.": "rotational-frequency-pole-pairs-relationship",
+  "f = N x P (N = rev/s, P = pole pairs).": "rotational-frequency-pole-pairs-relationship",
+};
+
+function semanticIdentityFor(ac: string, proposition: string): TechnicalSemanticIdentity {
+  return {
+    semanticNamespace: AC_SEMANTIC_NAMESPACE[ac] ?? "unclassified",
+    semanticKey: SEMANTIC_KEY_OVERRIDE[proposition] ?? defaultSemanticKeyFor(proposition),
+  };
+}
+
+// ---------------------------------------------------------------------
+// CC-23A §11-§15: the generic formula+rearrangement rule, applied to the
+// four Unit-202 formula targets that previously abstained
+// (SEMANTIC_DECOMPOSITION_REQUIRED) purely because they combined a formula
+// with an unresolved "rearrangement/use" claim. Each is reclassified to
+// FORMULA_OR_RULE and points `reusesFoundationalProcedureIds` at Unit
+// 202's own existing, already-approved foundational procedure target
+// ("Formula transposition.", ACQ-004) -- never a new technical-domain
+// source requirement for ordinary algebra.
+// ---------------------------------------------------------------------
+
+const FORMULA_TRANSPOSITION_TARGET_ID = knowledgeTargetIdFor("ACQ-004");
+
+interface FormulaRearrangementOverride {
+  readonly requirementText: string;
+}
+
+const FORMULA_REARRANGEMENT_TARGETS: Record<string, FormulaRearrangementOverride> = {
+  "ACQ-083": { requirementText: "R = ρL/A, including the meanings of R (resistance), ρ (resistivity), L (length) and A (cross-sectional area)." },
+  "ACQ-085": { requirementText: "V = IR (Ohm's law), including the meanings of V (voltage), I (current) and R (resistance)." },
+  "ACQ-106": { requirementText: "B = Φ/A, including the meanings of B (magnetic flux density), Φ (magnetic flux) and A (area)." },
+  "ACQ-131": { requirementText: "f = N × P, where f is frequency, N is rotational speed in revolutions per second, and P is the number of pole pairs." },
+  "ACQ-132": { requirementText: "f = N × P, where f is frequency, N is rotational speed in revolutions per second, and P is the number of pole pairs." },
+};
+
+// ---------------------------------------------------------------------
+// CC-23A §17-§19: the generic directional/operational-rule pattern,
+// applied to Unit 202's three hand-rule targets -- reclassified from
+// RELATIONSHIP (which previously required, and never received, integration
+// constituents or a foundational-procedure reuse) to OPERATIONAL_USE_RULE,
+// a kind the planner already treats as atomic/class-A/READY.
+// `directionalMapping` is generic structured metadata (role/meaning pairs)
+// -- never an electrical-specific production field (task §CH).
+// ---------------------------------------------------------------------
+
+interface DirectionalRuleOverride {
+  readonly requirementText: string;
+  readonly directionalMapping: readonly DirectionalMappingEntry[];
+}
+
+const DIRECTIONAL_RULE_TARGETS: Record<string, DirectionalRuleOverride> = {
+  "ACQ-108": {
+    requirementText:
+      "Right-hand grip rule: with the right hand's thumb aligned with the direction of conventional current, the curled fingers show the direction of magnetic-field circulation around the conductor; reversing the current reverses the field circulation.",
+    directionalMapping: [
+      { role: "hand", meaning: "right hand" },
+      { role: "thumb", meaning: "aligned with the direction of conventional current" },
+      { role: "curled-fingers", meaning: "show the direction of magnetic-field circulation" },
+      { role: "reversal-rule", meaning: "reversing the current reverses the field circulation" },
+    ],
+  },
+  "ACQ-114": {
+    requirementText:
+      "Fleming's left-hand rule (motor effect): with the left hand, the First finger points in the direction of the magnetic field, the Second finger points in the direction of conventional current, and the Thumb points in the direction of the resulting force/motion.",
+    directionalMapping: [
+      { role: "hand", meaning: "left hand" },
+      { role: "first-finger", meaning: "direction of magnetic field" },
+      { role: "second-finger", meaning: "direction of conventional current" },
+      { role: "thumb", meaning: "direction of force/motion" },
+    ],
+  },
+  "ACQ-117": {
+    requirementText:
+      "Fleming's right-hand rule (generator effect): with the right hand, the First finger points in the direction of the magnetic field, the Thumb points in the direction of conductor motion, and the Second finger points in the direction of the induced conventional current.",
+    directionalMapping: [
+      { role: "hand", meaning: "right hand" },
+      { role: "first-finger", meaning: "direction of magnetic field" },
+      { role: "thumb", meaning: "direction of conductor motion" },
+      { role: "second-finger", meaning: "direction of induced conventional current" },
+    ],
+  },
+};
 
 export interface AdapterAuditEntry {
   readonly knowledgeTargetId: string;
@@ -175,11 +313,15 @@ export function buildUnit202PlanningInput(): AdapterResult {
   const targets: KnowledgeTarget[] = manifest.targets.map((t) => {
     const notes: string[] = [];
     const knowledgeTargetId = knowledgeTargetIdFor(t.acquisitionTargetId);
-    const normalizedText = CANONICAL_TEXT_NORMALIZATION[t.proposition] ?? t.proposition;
-    if (CANONICAL_TEXT_NORMALIZATION[t.proposition]) notes.push(`text normalized for canonical dedup: "${t.proposition}" -> "${normalizedText}"`);
+    const semanticIdentity = semanticIdentityFor(t.ac, t.proposition);
+    if (SEMANTIC_KEY_OVERRIDE[t.proposition]) notes.push(`explicit semanticKey override for cross-target reuse: "${semanticIdentity.semanticKey}"`);
 
     let kind: KnowledgeTargetKind = KIND_BY_PROPOSITION_KIND[t.propositionKind];
     let expectedCoverageDimensions: readonly CoverageDimension[] | undefined;
+    let requirementText = t.proposition;
+    let reusesFoundationalProcedureIds: readonly string[] | undefined;
+    let directionalMapping: readonly DirectionalMappingEntry[] | undefined;
+    let requiresMultipleIndependentClaims = t.requiresMultipleIndependentClaims;
 
     if (AC2_2_QUANTITIES.has(t.proposition)) {
       kind = "CONCEPT_DEFINITION";
@@ -188,6 +330,23 @@ export function buildUnit202PlanningInput(): AdapterResult {
     } else if (BREADTH_PROPOSITIONS.has(t.proposition)) {
       kind = "BREADTH_TOPIC_COVERAGE";
       notes.push("hand-identified broad arithmetic/algebra topic -- kind overridden to BREADTH_TOPIC_COVERAGE");
+    } else if (FORMULA_REARRANGEMENT_TARGETS[t.acquisitionTargetId]) {
+      // CC-23A §11-§15/§12-§16: formula + ordinary algebraic rearrangement reuses the
+      // generic governed formula-transposition/calculation prerequisite.
+      const override = FORMULA_REARRANGEMENT_TARGETS[t.acquisitionTargetId]!;
+      kind = "FORMULA_OR_RULE";
+      requirementText = override.requirementText;
+      reusesFoundationalProcedureIds = [FORMULA_TRANSPOSITION_TARGET_ID];
+      notes.push(`CC-23A formula+rearrangement rule -- kind overridden to FORMULA_OR_RULE, reusesFoundationalProcedureIds=[${FORMULA_TRANSPOSITION_TARGET_ID}]`);
+    } else if (DIRECTIONAL_RULE_TARGETS[t.acquisitionTargetId]) {
+      // CC-23A §17-§19: directional/operational rule -- atomic, class A, READY.
+      const override = DIRECTIONAL_RULE_TARGETS[t.acquisitionTargetId]!;
+      kind = "OPERATIONAL_USE_RULE";
+      requirementText = override.requirementText;
+      directionalMapping = override.directionalMapping;
+      expectedCoverageDimensions = ["CAUSAL_MECHANISM"];
+      requiresMultipleIndependentClaims = false; // resolved atomically -- never an unresolved multi-claim target
+      notes.push("CC-23A directional-rule pattern -- kind overridden to OPERATIONAL_USE_RULE, structured directionalMapping attached");
     }
 
     const constituentIds = INTEGRATION_CONSTITUENTS[t.proposition]?.map(knowledgeTargetIdFor);
@@ -195,16 +354,19 @@ export function buildUnit202PlanningInput(): AdapterResult {
 
     const target: KnowledgeTarget = {
       knowledgeTargetId,
-      targetText: normalizedText,
+      targetText: requirementText,
       kind,
       classification: t.knowledgeClassification,
+      semanticIdentity,
       ...(expectedCoverageDimensions ? { expectedCoverageDimensions } : {}),
-      ...(t.requiresMultipleIndependentClaims ? { requiresMultipleIndependentClaims: true } : {}),
+      ...(requiresMultipleIndependentClaims ? { requiresMultipleIndependentClaims: true } : {}),
       ...(constituentIds ? { constituentKnowledgeTargetIds: constituentIds } : {}),
+      ...(reusesFoundationalProcedureIds ? { reusesFoundationalProcedureIds } : {}),
+      ...(directionalMapping ? { directionalMapping } : {}),
       isRepresentativeExemplar: t.isRepresentativeExemplar,
     };
 
-    audit.push({ knowledgeTargetId, acquisitionTargetId: t.acquisitionTargetId, ac: t.ac, rawProposition: t.proposition, normalizedTargetText: normalizedText, adapterDecisionNotes: notes });
+    audit.push({ knowledgeTargetId, acquisitionTargetId: t.acquisitionTargetId, ac: t.ac, rawProposition: t.proposition, normalizedTargetText: requirementText, adapterDecisionNotes: notes });
     return target;
   });
 
