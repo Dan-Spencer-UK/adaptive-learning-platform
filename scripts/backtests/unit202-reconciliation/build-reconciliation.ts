@@ -1,19 +1,31 @@
 /**
- * CC-22: mechanically constructs the Unit-202 knowledge-boundary
- * reconciliation. Reads the frozen, already-hardened Unit-202 input
- * (reports/backtests/unit202-post-hardening/CC-21-FULL-PUBLIC-INPUT.json)
- * READ-ONLY, applies the Project-Architect-directed decisions recorded in
- * ./decisions.ts to construct NEW SemanticAdjudication and
- * KnowledgeBoundaryCertification records (never mutating the frozen
- * input), runs the REAL, unmodified `buildStandardPipeline` from
- * @alp/qualification-pipeline at HEAD, and emits the reconciliation
- * ledger, technical-evidence-gap manifest, and candidate-level status
- * report into reports/backtests/unit202-reconciliation/.
+ * CC-22A: corrects the CC-22 Unit-202 reconciliation (commit d828e78,
+ * held for six defects -- see the CC-22A task prompt section 1). This
+ * script:
  *
- * This script performs NO renormalization, NO new research, and NO
- * generic-architecture changes. Every evidenceId/claimKey/candidateKey it
- * writes to its outputs is read directly from the real frozen input or
- * the real pipeline result -- never hand-transcribed.
+ *  1. Removes the blanket "every REVIEW_PROPOSED -> REQUIRED_CORE"
+ *     default entirely -- SemanticAdjudication records are constructed
+ *     ONLY from claim-decisions.ts's explicit whitelist.
+ *  2. Builds the reconciliation ledger from ATOMIC Project-Architect
+ *     propositions (the real, Product-Owner-approved Source-Acquisition-
+ *     Manifest's 126 required-knowledge items, plus 21 supplementary
+ *     rows for content that manifest does not decompose to -- see
+ *     cluster-mapping.ts), never from candidate count.
+ *  3. Classifies technical-evidence state from the REAL, already-
+ *     collected Unit-202 Technical Source Verification dossier
+ *     (scripts/content/data/unit202-technical-source-verification.ts,
+ *     126 propositionCoverage records, 67 approved sources) -- never
+ *     treating the frozen CC-21 blind-experiment input as the entire
+ *     evidence universe.
+ *  4. Separates qualification-evidence state, technical-evidence state,
+ *     and next-action from each other and from PA classification.
+ *  5. Constructs KnowledgeBoundaryCertification records only per
+ *     certification-decisions.ts's conservative, corrected list.
+ *  6. Emits NO automatic A/B/C verdict -- PROJECT_ARCHITECT_PENDING.
+ *
+ * Reads the frozen CC-21 input, the Source-Acquisition-Manifest and the
+ * Technical Source Verification manifest READ-ONLY. Modifies none of
+ * them. Modifies no generic pipeline file.
  */
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
@@ -29,7 +41,11 @@ import {
   type StandardPipelineResult,
 } from "@alp/qualification-pipeline";
 
-import { ADJUDICATION_OVERRIDES, AC21_SUBJECTS_NOT_ADDRESSED_BY_PA, MISSING_PROPOSITIONS, SUBJECT_NOTES, type SubjectNote } from "./decisions.ts";
+import { unit202SourceAcquisitionManifest } from "../../content/data/unit202-source-acquisition-manifest.ts";
+import { unit202TechnicalSourceVerification } from "../../content/data/unit202-technical-source-verification.ts";
+import { CLAIM_DECISIONS } from "./claim-decisions.ts";
+import { CERTIFICATION_DECISIONS } from "./certification-decisions.ts";
+import { CLUSTER_TO_SUBJECTS, SUPPLEMENTARY_PROPOSITIONS } from "./cluster-mapping.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,93 +59,113 @@ function canonicalJson(value: unknown): string {
 function writeJson(absPath: string, value: unknown): void {
   writeFileSync(absPath, canonicalJson(value), "utf-8");
 }
+function countBy(values: readonly (string | undefined)[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const v of values) {
+    const key = v ?? "(undeclared)";
+    out[key] = (out[key] ?? 0) + 1;
+  }
+  return out;
+}
 
 // ---------------------------------------------------------------------
-// 1. Load the frozen input -- READ ONLY, never written back to.
+// 1. Load frozen QP input (read-only) + the real, already-collected
+//    Unit-202 evidence inventory (read-only).
 // ---------------------------------------------------------------------
 const frozenInput = JSON.parse(readFileSync(frozenInputPath, "utf-8")) as StandardPipelineInput;
 const QUAL = frozenInput.qualificationId;
-
-const AC_PATTERN = /^AC[1-6]\./;
-
-// ---------------------------------------------------------------------
-// 2. Validate every locked-AC curriculum subject has a SUBJECT_NOTES
-//    entry (task section 18: "no locked proposition is silently
-//    omitted"). A typo in decisions.ts fails the build loudly instead of
-//    silently dropping a row.
-// ---------------------------------------------------------------------
-const subjectsInScope = new Set(frozenInput.curriculum.filter((c) => AC_PATTERN.test(c.curriculumUnitId)).map((c) => c.subject));
-const missingNotes: string[] = [];
-for (const subject of subjectsInScope) {
-  if (AC21_SUBJECTS_NOT_ADDRESSED_BY_PA.has(subject)) continue;
-  if (!(subject in SUBJECT_NOTES)) missingNotes.push(subject);
-}
-if (missingNotes.length > 0) {
-  throw new Error(`CC-22 validation failure: the following curriculum subjects have no SUBJECT_NOTES entry and are not whitelisted as AC2.1/unaddressed: ${missingNotes.join(" | ")}`);
-}
-const unusedNotes = Object.keys(SUBJECT_NOTES).filter((s) => !subjectsInScope.has(s));
-if (unusedNotes.length > 0) {
-  throw new Error(`CC-22 validation failure: SUBJECT_NOTES references subjects with no matching real curriculum candidate (possible typo): ${unusedNotes.join(" | ")}`);
-}
-
-// ---------------------------------------------------------------------
-// 3. Construct SemanticAdjudication[] mechanically: REQUIRED_CORE for
-//    every REVIEW_PROPOSED CandidateFactRequirement, except the explicit
-//    ADJUDICATION_OVERRIDES. supportingEvidenceRefs are reused DIRECTLY
-//    from the factRequirement's own sourceEvidenceRefs -- guaranteed
-//    real and already-correctly-targeted, never re-typed.
-// ---------------------------------------------------------------------
-const overrideByIdentity = new Map(ADJUDICATION_OVERRIDES.map((o) => [`${o.targetCandidateKey}::${o.claimKey}`, o]));
-
-const curriculumByEvidenceId = new Map(frozenInput.curriculum.map((c) => [c.evidenceId, c]));
-/** Real OFFICIAL_CURRICULUM evidenceId(s) for a given candidateKey -- the exact curriculum record(s) that generated it. */
-const curriculumEvidenceIdsByCandidateKey = new Map<string, string[]>();
-for (const c of frozenInput.curriculum) {
-  const key = `${c.subject}::${c.commandVerbPerformanceType}`;
-  const list = curriculumEvidenceIdsByCandidateKey.get(key) ?? [];
-  list.push(c.evidenceId);
-  curriculumEvidenceIdsByCandidateKey.set(key, list);
-}
-
 const allFactRequirements = frozenInput.factRequirements ?? [];
 const allFactualClaims = frozenInput.factualClaims ?? [];
-const allQualificationLevel = frozenInput.qualificationLevel ?? [];
+const allCurriculum = frozenInput.curriculum;
 
-const reviewProposed = allFactRequirements.filter((f) => f.derivationStatus === "REVIEW_PROPOSED");
+const curriculumBySubject = new Map<string, (typeof allCurriculum)[number][]>();
+for (const c of allCurriculum) {
+  const list = curriculumBySubject.get(c.subject) ?? [];
+  list.push(c);
+  curriculumBySubject.set(c.subject, list);
+}
+function candidateKeysForSubject(subject: string): string[] {
+  return (curriculumBySubject.get(subject) ?? []).map((c) => `${c.subject}::${c.commandVerbPerformanceType}`);
+}
+const factReqsByTarget = new Map<string, CandidateFactRequirement[]>();
+for (const f of allFactRequirements) {
+  const list = factReqsByTarget.get(f.targetCandidateKey) ?? [];
+  list.push(f);
+  factReqsByTarget.set(f.targetCandidateKey, list);
+}
+const claimsByKey = new Map(allFactualClaims.map((c) => [c.claimKey, c]));
+const curriculumByEvidenceId = new Map(allCurriculum.map((c) => [c.evidenceId, c]));
+
+// ---------------------------------------------------------------------
+// 2. Validate: every AC1-6 curriculum subject in the frozen input is
+//    covered by exactly one cluster mapping (task section 25: "every
+//    active SemanticAdjudication has an explicit decision entry" starts
+//    with knowing every subject's cluster).
+// ---------------------------------------------------------------------
+const AC_PATTERN = /^AC[1-6]\./;
+const subjectsInScope = new Set(allCurriculum.filter((c) => AC_PATTERN.test(c.curriculumUnitId)).map((c) => c.subject));
+const subjectToCluster = new Map<string, string>();
+for (const [clusterKey, subjects] of Object.entries(CLUSTER_TO_SUBJECTS)) {
+  for (const s of subjects) {
+    if (subjectToCluster.has(s)) throw new Error(`CC-22A validation failure: subject "${s}" is mapped to more than one cluster (${subjectToCluster.get(s)}, ${clusterKey})`);
+    subjectToCluster.set(s, clusterKey);
+    if (!subjectsInScope.has(s)) throw new Error(`CC-22A validation failure: CLUSTER_TO_SUBJECTS names subject "${s}" (cluster ${clusterKey}) with no matching real curriculum candidate -- possible typo`);
+  }
+}
+const uncoveredSubjects = [...subjectsInScope].filter((s) => !subjectToCluster.has(s));
+if (uncoveredSubjects.length > 0) {
+  throw new Error(`CC-22A validation failure: the following curriculum subjects have no cluster mapping: ${uncoveredSubjects.join(" | ")}`);
+}
+
+// ---------------------------------------------------------------------
+// 3. Construct SemanticAdjudication[] EXCLUSIVELY from claim-decisions.ts
+//    -- no default. Mechanically verify every listed (targetCandidateKey,
+//    claimKey) pair actually names a real REVIEW_PROPOSED
+//    CandidateFactRequirement in the frozen input (never adjudicating a
+//    fabricated pair), and that no REVIEW_PROPOSED requirement outside
+//    this whitelist is silently adjudicated.
+// ---------------------------------------------------------------------
+const decisionByIdentity = new Map(CLAIM_DECISIONS.map((d) => [`${d.targetCandidateKey}::${d.claimKey}`, d]));
+const allReviewProposed = allFactRequirements.filter((f) => f.derivationStatus === "REVIEW_PROPOSED");
+const reviewProposedIdentities = new Set(allReviewProposed.map((f) => `${f.targetCandidateKey}::${f.claimKey}`));
+
+const badDecisions = CLAIM_DECISIONS.filter((d) => !reviewProposedIdentities.has(`${d.targetCandidateKey}::${d.claimKey}`));
+if (badDecisions.length > 0) {
+  throw new Error(`CC-22A validation failure: claim-decisions.ts names (targetCandidateKey, claimKey) pairs with no matching REVIEW_PROPOSED CandidateFactRequirement: ${badDecisions.map((d) => `${d.targetCandidateKey}::${d.claimKey}`).join(" | ")}`);
+}
+
 let adjudicationCounter = 0;
-const semanticAdjudications: SemanticAdjudication[] = reviewProposed.map((f) => {
+const semanticAdjudications: SemanticAdjudication[] = CLAIM_DECISIONS.map((d) => {
   adjudicationCounter += 1;
-  const identity = `${f.targetCandidateKey}::${f.claimKey}`;
-  const override = overrideByIdentity.get(identity);
-  const curriculumRef = curriculumByEvidenceId.get(f.sourceEvidenceRefs[0]?.evidenceId ?? "");
+  const factReq = allReviewProposed.find((f) => f.targetCandidateKey === d.targetCandidateKey && f.claimKey === d.claimKey)!;
   return {
     qualificationId: QUAL,
-    targetCandidateKey: f.targetCandidateKey,
-    claimKey: f.claimKey,
-    decision: override?.decision ?? "REQUIRED_CORE",
-    adjudicationBasis: ["SEMANTIC_NECESSITY"],
+    targetCandidateKey: d.targetCandidateKey,
+    claimKey: d.claimKey,
+    decision: d.decision,
+    adjudicationBasis: d.decision === "REQUIRED_CORE" || d.decision === "REQUIRED_OPERATIONAL" ? ["SEMANTIC_NECESSITY"] : ["INSUFFICIENT_EVIDENCE"],
     adjudicatorKind: "LLM_EVIDENCE_BOUND",
-    decisionRef: `CC-22-ADJ-${String(adjudicationCounter).padStart(3, "0")}`,
-    rationale:
-      override?.rationale ??
-      `Project-Architect locked decision (CC-22 task section 5${curriculumRef ? `, ${curriculumRef.curriculumUnitId}` : ""}): required qualification knowledge, promoted REQUIRED_CORE against real curriculum evidence.`,
-    supportingEvidenceRefs: f.sourceEvidenceRefs,
-    sourceRef: "CC-22 task prompt: Project-Architect locked Unit-202 decisions, section 5",
-    sourceLocator: `${identity}`,
+    decisionRef: `CC-22A-ADJ-${String(adjudicationCounter).padStart(3, "0")}`,
+    rationale: d.rationale,
+    supportingEvidenceRefs: factReq.sourceEvidenceRefs,
+    sourceRef: "CC-22A task prompt: Project-Architect Unit-202 decisions, section " + d.taskSection,
+    sourceLocator: `${d.targetCandidateKey}::${d.claimKey}`,
     normalizationBasis: "SEMANTIC_ADJUDICATION_DECISION",
   };
 });
 
+// Mechanical proof (task section 25): no REVIEW_PROPOSED -> REQUIRED_CORE default remains --
+// every adjudicated identity is explicitly named in CLAIM_DECISIONS, and every REVIEW_PROPOSED
+// identity NOT in CLAIM_DECISIONS remains unadjudicated (governs nothing).
+const adjudicatedIdentities = new Set(semanticAdjudications.map((a) => `${a.targetCandidateKey}::${a.claimKey}`));
+const unadjudicatedReviewProposed = [...reviewProposedIdentities].filter((id) => !adjudicatedIdentities.has(id));
+
 // ---------------------------------------------------------------------
-// 4. Pass 1: run the pipeline with adjudications only, to learn each
-//    candidate's REAL current boundary fingerprint -- mirrors the exact
-//    logic buildStandardPipeline itself uses internally (rules.test.ts's
-//    computeFingerprintFromResult pattern), from public result fields
-//    only.
+// 4. Pass 1 -- adjudications only, to learn real current fingerprints.
 // ---------------------------------------------------------------------
 function computeFingerprintFromResult(result: StandardPipelineResult, targetCandidateKey: string): string {
   const candidate = result.candidates.find((c) => c.candidateKey === targetCandidateKey);
-  if (!candidate) throw new Error(`CC-22: cannot compute fingerprint -- no candidate for "${targetCandidateKey}"`);
+  if (!candidate) throw new Error(`CC-22A: cannot compute fingerprint -- no candidate for "${targetCandidateKey}"`);
   const governingKeys = new Set(candidate.requiredFactKeys ?? []);
   const pendingReviewProposedClaimKeys = allFactRequirements
     .filter((f) => f.targetCandidateKey === targetCandidateKey && f.derivationStatus === "REVIEW_PROPOSED" && !governingKeys.has(f.claimKey))
@@ -148,220 +184,313 @@ function computeFingerprintFromResult(result: StandardPipelineResult, targetCand
   });
 }
 
-const pass1Input: StandardPipelineInput = { ...frozenInput, semanticAdjudications };
-const pass1Result = buildStandardPipeline(pass1Input);
+const pass1Result = buildStandardPipeline({ ...frozenInput, semanticAdjudications });
 
 // ---------------------------------------------------------------------
-// 5. Construct KnowledgeBoundaryCertification[] for every subject whose
-//    SUBJECT_NOTES entry names a certification decision, bound to the
-//    REAL current fingerprint from pass 1, cited against the real
-//    OFFICIAL_CURRICULUM evidence for that exact candidate.
+// 5. Construct KnowledgeBoundaryCertification[] from certification-
+//    decisions.ts only.
 // ---------------------------------------------------------------------
+const curriculumEvidenceIdsByCandidateKey = new Map<string, string[]>();
+for (const c of allCurriculum) {
+  const key = `${c.subject}::${c.commandVerbPerformanceType}`;
+  const list = curriculumEvidenceIdsByCandidateKey.get(key) ?? [];
+  list.push(c.evidenceId);
+  curriculumEvidenceIdsByCandidateKey.set(key, list);
+}
+const badCertifications = CERTIFICATION_DECISIONS.filter((c) => !pass1Result.candidates.some((cand) => cand.candidateKey === c.targetCandidateKey));
+if (badCertifications.length > 0) {
+  throw new Error(`CC-22A validation failure: certification-decisions.ts names candidateKeys with no matching real candidate: ${badCertifications.map((c) => c.targetCandidateKey).join(" | ")}`);
+}
+
 let certificationCounter = 0;
-const knowledgeBoundaryCertifications: KnowledgeBoundaryCertification[] = [];
-for (const [subject, note] of Object.entries(SUBJECT_NOTES)) {
-  if (!note.certification) continue;
-  const candidatesForSubject = pass1Result.candidates.filter((c) => c.subject === subject);
-  for (const candidate of candidatesForSubject) {
-    certificationCounter += 1;
-    const fingerprint = computeFingerprintFromResult(pass1Result, candidate.candidateKey);
-    const curriculumIds = curriculumEvidenceIdsByCandidateKey.get(candidate.candidateKey) ?? [];
-    if (curriculumIds.length === 0) throw new Error(`CC-22: no real OFFICIAL_CURRICULUM evidenceId found for candidate "${candidate.candidateKey}" -- cannot construct a certification`);
-    knowledgeBoundaryCertifications.push({
-      qualificationId: QUAL,
-      targetCandidateKey: candidate.candidateKey,
-      decision: note.certification.decision,
-      adjudicatorKind: "LLM_EVIDENCE_BOUND",
-      certificationRef: `CC-22-CERT-${String(certificationCounter).padStart(3, "0")}`,
-      boundaryFingerprint: fingerprint,
-      rationale: note.certification.rationale,
-      supportingEvidenceRefs: curriculumIds.map((evidenceId) => ({ role: "OFFICIAL_CURRICULUM" as const, evidenceId })),
-      sourceRef: "CC-22 task prompt: Project-Architect locked Unit-202 decisions, section 5",
-      sourceLocator: `SUBJECT_NOTES["${subject}"].certification`,
-      normalizationBasis: "KNOWLEDGE_BOUNDARY_CERTIFICATION_DECISION",
-    });
+const knowledgeBoundaryCertifications: KnowledgeBoundaryCertification[] = CERTIFICATION_DECISIONS.map((d) => {
+  certificationCounter += 1;
+  const fingerprint = computeFingerprintFromResult(pass1Result, d.targetCandidateKey);
+  const curriculumIds = curriculumEvidenceIdsByCandidateKey.get(d.targetCandidateKey) ?? [];
+  if (curriculumIds.length === 0) throw new Error(`CC-22A: no real OFFICIAL_CURRICULUM evidenceId for "${d.targetCandidateKey}"`);
+  return {
+    qualificationId: QUAL,
+    targetCandidateKey: d.targetCandidateKey,
+    decision: d.decision,
+    adjudicatorKind: "LLM_EVIDENCE_BOUND",
+    certificationRef: `CC-22A-CERT-${String(certificationCounter).padStart(3, "0")}`,
+    boundaryFingerprint: fingerprint,
+    rationale: d.rationale,
+    supportingEvidenceRefs: curriculumIds.map((evidenceId) => ({ role: "OFFICIAL_CURRICULUM" as const, evidenceId })),
+    sourceRef: "CC-22A task prompt: Project-Architect Unit-202 decisions",
+    sourceLocator: `certification-decisions.ts["${d.targetCandidateKey}"]`,
+    normalizationBasis: "KNOWLEDGE_BOUNDARY_CERTIFICATION_DECISION",
+  };
+});
+
+const finalResult = buildStandardPipeline({ ...frozenInput, semanticAdjudications, knowledgeBoundaryCertifications });
+
+// ---------------------------------------------------------------------
+// 6. Build the ATOMIC PA proposition ledger.
+// ---------------------------------------------------------------------
+type TechnicalEvidenceState = "EXACT_CURRENT_FACTUAL_CLAIM" | "VERIFIED_EXISTING_SOURCE_NEEDS_CLAIM_NORMALIZATION" | "REVIEW_EXISTING_SOURCE_LOCATOR" | "NEW_EXTERNAL_TECHNICAL_SOURCE_REQUIRED" | "NOT_APPLICABLE";
+type QualificationEvidenceState = "EXPLICIT_PUBLIC_CURRICULUM" | "PUBLIC_ASSESSMENT_SUPPORTED" | "CALIBRATED_ONLY_PUBLIC_SUPPORT_NEEDED" | "FOUNDATIONAL_NECESSITY" | "CONTEXT_ONLY" | "OUT_OF_SCOPE";
+type NextAction = "NONE" | "AUTHOR_FACT_REQUIREMENT_FROM_EXISTING_AUTHORITY" | "NORMALIZE_CLAIM_FROM_EXISTING_VERIFIED_SOURCE" | "REVIEW_EXISTING_SOURCE_LOCATOR" | "GATHER_NEW_PUBLIC_QUALIFICATION_EVIDENCE" | "GATHER_NEW_TECHNICAL_SOURCE" | "PROJECT_ARCHITECT_DECISION";
+
+interface AtomicRow {
+  reconciliationId: string;
+  ac: string;
+  clusterKey: string | null;
+  proposition: string;
+  paClassification: string;
+  qualificationEvidenceState: QualificationEvidenceState;
+  technicalEvidenceState: TechnicalEvidenceState;
+  gapTypes: string[];
+  nextAction: NextAction;
+  candidateKeys: string[];
+  supportingSourceLocatorKeys: string[];
+  approvedSourceStatus: string | null;
+  gapReason: string | null;
+  notes: string;
+}
+
+const propositionCoverageByKey = new Map(unit202TechnicalSourceVerification.propositionCoverage.map((p) => [`${p.clusterKey}::${p.requirementText}`, p]));
+
+function technicalStateFromCoverage(coverageState: string | undefined): TechnicalEvidenceState {
+  switch (coverageState) {
+    case "VERIFIED":
+      return "VERIFIED_EXISTING_SOURCE_NEEDS_CLAIM_NORMALIZATION";
+    case "SOURCE_GAP":
+      return "NEW_EXTERNAL_TECHNICAL_SOURCE_REQUIRED";
+    case "CONDITIONAL_SOURCE_GAP":
+      return "REVIEW_EXISTING_SOURCE_LOCATOR";
+    default:
+      return "NOT_APPLICABLE";
   }
 }
 
-// ---------------------------------------------------------------------
-// 6. Pass 2 -- the REAL final result: adjudications + certifications
-//    together, against the unmodified frozen input.
-// ---------------------------------------------------------------------
-const finalInput: StandardPipelineInput = { ...frozenInput, semanticAdjudications, knowledgeBoundaryCertifications };
-const finalResult = buildStandardPipeline(finalInput);
-
-// ---------------------------------------------------------------------
-// 7. Reconciliation ledger -- one row per real candidate, joined with
-//    SUBJECT_NOTES (or AC2.1's AWAITING_PROJECT_ARCHITECT_DECISION
-//    default), plus one row per MISSING_PROPOSITIONS entry.
-// ---------------------------------------------------------------------
-const factReqsByTarget = new Map<string, CandidateFactRequirement[]>();
-for (const f of allFactRequirements) {
-  const list = factReqsByTarget.get(f.targetCandidateKey) ?? [];
-  list.push(f);
-  factReqsByTarget.set(f.targetCandidateKey, list);
-}
-const claimsByKey = new Map(allFactualClaims.map((c) => [c.claimKey, c]));
-const adjudicationsByTarget = new Map<string, SemanticAdjudication[]>();
-for (const a of semanticAdjudications) {
-  const list = adjudicationsByTarget.get(a.targetCandidateKey) ?? [];
-  list.push(a);
-  adjudicationsByTarget.set(a.targetCandidateKey, list);
-}
-const qualLevelByTarget = new Map<string, string[]>();
-for (const q of allQualificationLevel) {
-  const list = qualLevelByTarget.get(q.appliesToCandidateKey) ?? [];
-  list.push(q.evidenceId);
-  qualLevelByTarget.set(q.appliesToCandidateKey, list);
+/** Mechanical, candidate-mapping-derived gap dimensions + upgrade of technicalEvidenceState to EXACT_CURRENT_FACTUAL_CLAIM when a real, governing claim already exists for the mapped candidate(s). */
+function candidateMappingFindings(candidateKeys: readonly string[]): { gapTypes: string[]; hasRealGoverningClaim: boolean; hasAnyFactRequirement: boolean; hasUnadjudicatedReviewProposed: boolean } {
+  const gapTypes: string[] = [];
+  if (candidateKeys.length === 0) {
+    gapTypes.push("MISSING_NORMALIZED_CANDIDATE");
+    return { gapTypes, hasRealGoverningClaim: false, hasAnyFactRequirement: false, hasUnadjudicatedReviewProposed: false };
+  }
+  let hasAnyFactRequirement = false;
+  let hasUnadjudicatedReviewProposed = false;
+  let hasRealGoverningClaim = false;
+  for (const ck of candidateKeys) {
+    const reqs = factReqsByTarget.get(ck) ?? [];
+    if (reqs.length > 0) hasAnyFactRequirement = true;
+    for (const r of reqs) {
+      const identity = `${ck}::${r.claimKey}`;
+      const isGoverning = r.derivationStatus === "EXPLICIT_CURRICULUM_FACT" || r.derivationStatus === "EXPLICIT_ASSESSMENT_FACT" || adjudicatedIdentities.has(identity);
+      if (r.derivationStatus === "REVIEW_PROPOSED" && !adjudicatedIdentities.has(identity)) hasUnadjudicatedReviewProposed = true;
+      if (isGoverning) {
+        const decision = decisionByIdentity.get(identity)?.decision;
+        const rejected = decision === "REJECT_OVERDEPTH" || decision === "REJECT_NOT_NECESSARY";
+        if (!rejected && claimsByKey.has(r.claimKey)) hasRealGoverningClaim = true;
+      }
+    }
+  }
+  if (!hasAnyFactRequirement) gapTypes.push("MISSING_FACT_REQUIREMENT");
+  if (hasUnadjudicatedReviewProposed) gapTypes.push("SEMANTIC_ADJUDICATION_REQUIRED");
+  return { gapTypes, hasRealGoverningClaim, hasAnyFactRequirement, hasUnadjudicatedReviewProposed };
 }
 
-interface LedgerRow {
-  readonly reconciliationId: string;
-  readonly ac: string;
-  readonly subject: string;
-  readonly performanceType: string | null;
-  readonly paClassification: string;
-  readonly candidateExists: boolean;
-  readonly candidateKey: string | null;
-  readonly factRequirementExists: boolean;
-  readonly claimKeys: string[];
-  readonly semanticAdjudicationRequired: boolean;
-  readonly semanticAdjudicationDecisions: { claimKey: string; decision: string }[];
-  readonly officialCurriculumEvidenceIds: string[];
-  readonly publicAssessmentEvidenceIds: string[];
-  readonly qualificationLevelEvidenceIds: string[];
-  readonly technicalFactualClaimIds: string[];
-  readonly technicalSourceRefs: string[];
-  readonly technicalCoverageState: string | null;
-  readonly knowledgeBoundaryStatus: string | null;
-  readonly certificationEligibleComplete: boolean;
-  readonly certificationReasonIfNot: string | null;
-  readonly gapType: string;
-  readonly notes: string;
+function nextActionFor(qes: QualificationEvidenceState, tes: TechnicalEvidenceState, mappingGaps: readonly string[], paClassification: string): NextAction {
+  if (paClassification === "CONTEXTUAL_TEACHING_SUPPORT" || paClassification === "OUT_OF_SCOPE") return "NONE";
+  if (mappingGaps.includes("SEMANTIC_ADJUDICATION_REQUIRED")) return "PROJECT_ARCHITECT_DECISION";
+  if (tes === "NEW_EXTERNAL_TECHNICAL_SOURCE_REQUIRED") return "GATHER_NEW_TECHNICAL_SOURCE";
+  if (tes === "REVIEW_EXISTING_SOURCE_LOCATOR") return "REVIEW_EXISTING_SOURCE_LOCATOR";
+  if (tes === "VERIFIED_EXISTING_SOURCE_NEEDS_CLAIM_NORMALIZATION") return "NORMALIZE_CLAIM_FROM_EXISTING_VERIFIED_SOURCE";
+  if (mappingGaps.includes("MISSING_NORMALIZED_CANDIDATE")) return qes === "EXPLICIT_PUBLIC_CURRICULUM" || qes === "FOUNDATIONAL_NECESSITY" ? "PROJECT_ARCHITECT_DECISION" : "GATHER_NEW_PUBLIC_QUALIFICATION_EVIDENCE";
+  if (qes === "CALIBRATED_ONLY_PUBLIC_SUPPORT_NEEDED") return "GATHER_NEW_PUBLIC_QUALIFICATION_EVIDENCE";
+  if (mappingGaps.includes("MISSING_FACT_REQUIREMENT") && tes === "EXACT_CURRENT_FACTUAL_CLAIM") return "AUTHOR_FACT_REQUIREMENT_FROM_EXISTING_AUTHORITY";
+  return "NONE";
 }
 
 let rowCounter = 0;
-const ledger: LedgerRow[] = [];
+const atomicLedger: AtomicRow[] = [];
 
-for (const c of finalResult.candidates) {
-  if (!AC_PATTERN.test(curriculumByEvidenceId.get((c.evidenceRefs.find((r) => r.role === "OFFICIAL_CURRICULUM")?.evidenceId) ?? "")?.curriculumUnitId ?? "")) continue;
-  rowCounter += 1;
-  const note: SubjectNote | undefined = SUBJECT_NOTES[c.subject];
-  const isAC21 = AC21_SUBJECTS_NOT_ADDRESSED_BY_PA.has(c.subject);
-  const factReqs = factReqsByTarget.get(c.candidateKey) ?? [];
-  const claimKeys = [...new Set(factReqs.map((f) => f.claimKey))];
-  const claims = claimKeys.map((k) => claimsByKey.get(k)).filter((x): x is NonNullable<typeof x> => x !== undefined);
-  const adjudications = adjudicationsByTarget.get(c.candidateKey) ?? [];
-  const certification = knowledgeBoundaryCertifications.find((cert) => cert.targetCandidateKey === c.candidateKey);
-  const curriculumRef = frozenInput.curriculum.find((cur) => cur.evidenceId === (c.evidenceRefs.find((r) => r.role === "OFFICIAL_CURRICULUM")?.evidenceId));
-
-  ledger.push({
-    reconciliationId: `RL-${String(rowCounter).padStart(3, "0")}`,
-    ac: curriculumRef?.curriculumUnitId ?? note?.ac ?? "UNKNOWN",
-    subject: c.subject,
-    performanceType: c.performanceType,
-    paClassification: isAC21 ? "AWAITING_PROJECT_ARCHITECT_DECISION" : (note?.paClassification ?? "AWAITING_PROJECT_ARCHITECT_DECISION"),
-    candidateExists: true,
-    candidateKey: c.candidateKey,
-    factRequirementExists: factReqs.length > 0,
-    claimKeys,
-    semanticAdjudicationRequired: factReqs.some((f) => f.derivationStatus === "REVIEW_PROPOSED"),
-    semanticAdjudicationDecisions: adjudications.map((a) => ({ claimKey: a.claimKey, decision: a.decision })),
-    officialCurriculumEvidenceIds: c.evidenceRefs.filter((r) => r.role === "OFFICIAL_CURRICULUM").map((r) => r.evidenceId),
-    publicAssessmentEvidenceIds: c.evidenceRefs.filter((r) => r.role === "PUBLIC_ASSESSMENT").map((r) => r.evidenceId),
-    qualificationLevelEvidenceIds: qualLevelByTarget.get(c.candidateKey) ?? [],
-    technicalFactualClaimIds: claims.map((cl) => cl.evidenceId),
-    technicalSourceRefs: [...new Set(claims.map((cl) => cl.sourceRef))],
-    technicalCoverageState: c.technicalCoverageStatus ?? null,
-    knowledgeBoundaryStatus: c.knowledgeBoundaryStatus ?? null,
-    certificationEligibleComplete: certification?.decision === "COMPLETE",
-    certificationReasonIfNot: certification?.decision === "COMPLETE" ? null : (note?.notes ?? (isAC21 ? "AC2.1 not addressed by Project-Architect locked decisions in this package." : "No certification constructed in this package.")),
-    gapType: isAC21 ? "AWAITING_PA_DECISION" : (note?.gapType ?? "C_MISSING_FACT_REQUIREMENT"),
-    notes: isAC21 ? "AC2.1 is not part of the Project-Architect locked decisions in CC-22 task section 5 -- left unresolved and reported here for Project-Architect decision, per task section 9." : (note?.notes ?? "No SUBJECT_NOTES entry."),
-  });
-}
-
-const missingPropRows = MISSING_PROPOSITIONS.map((mp) => ({
-  reconciliationId: mp.reconciliationId,
-  ac: mp.ac,
-  subject: mp.proposition,
-  performanceType: null,
-  paClassification: mp.paClassification,
-  candidateExists: false,
-  candidateKey: mp.closestCandidateKey,
-  factRequirementExists: false,
-  claimKeys: [],
-  semanticAdjudicationRequired: false,
-  semanticAdjudicationDecisions: [],
-  officialCurriculumEvidenceIds: [],
-  publicAssessmentEvidenceIds: [],
-  qualificationLevelEvidenceIds: [],
-  technicalFactualClaimIds: [],
-  technicalSourceRefs: [],
-  technicalCoverageState: null,
-  knowledgeBoundaryStatus: null,
-  certificationEligibleComplete: false,
-  certificationReasonIfNot: mp.notes,
-  gapType: mp.gapType,
-  notes: mp.notes,
-}));
-
-const fullLedger = [...ledger, ...missingPropRows];
-
-// ---------------------------------------------------------------------
-// 8. Technical-evidence gap manifest -- every row whose gapType names a
-//    technical/scope/exemplar/adjudication deficiency (task section 14).
-// ---------------------------------------------------------------------
-const ACTIONABLE_GAP_TYPES = new Set(["B_MISSING_NORMALIZED_CANDIDATE", "C_MISSING_FACT_REQUIREMENT", "D_SEMANTIC_ADJUDICATION_REQUIRED", "E_MISSING_QUALIFICATION_SCOPE_EVIDENCE", "F_MISSING_PERFORMANCE_DEPTH_EVIDENCE", "G_MISSING_TECHNICAL_TRUTH", "H_TECHNICAL_CONFLICT", "I_CALIBRATED_EXEMPLAR_NEEDS_PUBLIC_SUPPORT"]);
-
-function sourceTypeFor(gapType: string): string {
-  switch (gapType) {
-    case "B_MISSING_NORMALIZED_CANDIDATE":
-    case "E_MISSING_QUALIFICATION_SCOPE_EVIDENCE":
-      return "official curriculum clarification or public assessment evidence";
-    case "I_CALIBRATED_EXEMPLAR_NEEDS_PUBLIC_SUPPORT":
-      return "official/public assessment evidence linking the named component to the named application";
-    case "G_MISSING_TECHNICAL_TRUTH":
-      return "authoritative electrical-engineering / electronics / mathematics source, as applicable to the proposition";
-    case "C_MISSING_FACT_REQUIREMENT":
-    case "D_SEMANTIC_ADJUDICATION_REQUIRED":
-      return "fact/procedure requirement authoring against existing curriculum evidence (no new source needed)";
-    default:
-      return "Project-Architect review";
+for (const cluster of unit202SourceAcquisitionManifest.clusters) {
+  const ac = cluster.relatedAcNumbers[0] ?? "?";
+  const subjects = CLUSTER_TO_SUBJECTS[cluster.clusterKey] ?? [];
+  const candidateKeys = subjects.flatMap((s) => candidateKeysForSubject(s));
+  const groups: { kind: string; texts: readonly string[] }[] = [
+    { kind: "FACTUAL_PROPOSITION", texts: cluster.factualPropositionsRequiringSupport },
+    { kind: "RELATIONSHIP_OR_MECHANISM", texts: cluster.relationshipsOrMechanismsRequiringSupport },
+    { kind: "PROCEDURE_OR_CALCULATION_RULE", texts: cluster.proceduresOrCalculationRulesRequiringSupport },
+    { kind: "SYMBOL_OR_CONVENTION", texts: cluster.symbolsOrConventionsRequiringSupport },
+    { kind: "PHYSICAL_OR_COMPONENT_RECOGNITION", texts: cluster.physicalOrComponentRecognitionRequirements },
+  ];
+  for (const group of groups) {
+    for (const text of group.texts) {
+      rowCounter += 1;
+      const coverage = propositionCoverageByKey.get(`${cluster.clusterKey}::${text}`);
+      const qes: QualificationEvidenceState = ac === "6.1" ? "CALIBRATED_ONLY_PUBLIC_SUPPORT_NEEDED" : "EXPLICIT_PUBLIC_CURRICULUM";
+      let tes = technicalStateFromCoverage(coverage?.coverageState);
+      const mapping = candidateMappingFindings(candidateKeys);
+      if (tes === "VERIFIED_EXISTING_SOURCE_NEEDS_CLAIM_NORMALIZATION" && mapping.hasRealGoverningClaim) tes = "EXACT_CURRENT_FACTUAL_CLAIM";
+      const gapTypes = [...mapping.gapTypes];
+      if (qes === "CALIBRATED_ONLY_PUBLIC_SUPPORT_NEEDED") gapTypes.push("CALIBRATED_EXEMPLAR_NEEDS_PUBLIC_SUPPORT");
+      if (tes !== "EXACT_CURRENT_FACTUAL_CLAIM" && tes !== "NOT_APPLICABLE") gapTypes.push("MISSING_TECHNICAL_TRUTH");
+      if (gapTypes.length === 0) gapTypes.push("NO_GAP");
+      atomicLedger.push({
+        reconciliationId: `AT-${String(rowCounter).padStart(3, "0")}`,
+        ac: `AC${ac}`,
+        clusterKey: cluster.clusterKey,
+        proposition: text,
+        paClassification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+        qualificationEvidenceState: qes,
+        technicalEvidenceState: tes,
+        gapTypes,
+        nextAction: nextActionFor(qes, tes, gapTypes, "REQUIRED_QUALIFICATION_KNOWLEDGE"),
+        candidateKeys,
+        supportingSourceLocatorKeys: [...(coverage?.supportingSourceLocatorKeys ?? [])],
+        approvedSourceStatus: coverage?.coverageState ?? null,
+        gapReason: coverage?.gapReason ?? null,
+        notes: `requirementKind=${group.kind}`,
+      });
+    }
   }
 }
 
-const technicalEvidenceGaps = fullLedger
-  .filter((r) => ACTIONABLE_GAP_TYPES.has(r.gapType))
-  .map((r) => ({
-    reconciliationId: r.reconciliationId,
-    ac: r.ac,
-    proposition: r.subject,
-    candidateKey: r.candidateKey,
-    claimKeys: r.claimKeys,
-    gapType: r.gapType,
-    missingEvidenceRole:
-      r.gapType === "I_CALIBRATED_EXEMPLAR_NEEDS_PUBLIC_SUPPORT" || r.gapType === "E_MISSING_QUALIFICATION_SCOPE_EVIDENCE"
-        ? "OFFICIAL_CURRICULUM / PUBLIC_ASSESSMENT"
-        : r.gapType === "G_MISSING_TECHNICAL_TRUTH"
-          ? "TECHNICAL_TRUTH"
-          : r.gapType === "B_MISSING_NORMALIZED_CANDIDATE"
-            ? "OFFICIAL_CURRICULUM (new candidate/Range member)"
-            : "CandidateFactRequirement",
-    whyInsufficient: r.notes,
-    newResearchRequired: r.gapType === "E_MISSING_QUALIFICATION_SCOPE_EVIDENCE" || r.gapType === "G_MISSING_TECHNICAL_TRUTH" || r.gapType === "I_CALIBRATED_EXEMPLAR_NEEDS_PUBLIC_SUPPORT" || r.gapType === "B_MISSING_NORMALIZED_CANDIDATE",
-    sourceTypeRequested: sourceTypeFor(r.gapType),
-  }));
+for (const sp of SUPPLEMENTARY_PROPOSITIONS) {
+  const candidateKeys = sp.closestSubject ? candidateKeysForSubject(sp.closestSubject) : [];
+  const mapping = candidateMappingFindings(sp.paClassification === "REQUIRED_QUALIFICATION_KNOWLEDGE" ? candidateKeys : []);
+  const gapTypes = sp.paClassification === "REQUIRED_QUALIFICATION_KNOWLEDGE" ? [...mapping.gapTypes] : ["CONTEXT_ONLY_OR_OUT_OF_SCOPE"];
+  if (sp.qualificationEvidenceState === "CALIBRATED_ONLY_PUBLIC_SUPPORT_NEEDED") gapTypes.push("CALIBRATED_EXEMPLAR_NEEDS_PUBLIC_SUPPORT");
+  if (sp.paClassification === "REQUIRED_QUALIFICATION_KNOWLEDGE" && gapTypes.filter((g) => g !== "NO_GAP").length === 0) gapTypes.push("NO_GAP");
+  atomicLedger.push({
+    reconciliationId: sp.reconciliationId,
+    ac: sp.ac,
+    clusterKey: sp.clusterKey,
+    proposition: sp.proposition,
+    paClassification: sp.paClassification,
+    qualificationEvidenceState: sp.qualificationEvidenceState,
+    technicalEvidenceState: "NOT_APPLICABLE",
+    gapTypes,
+    nextAction: nextActionFor(sp.qualificationEvidenceState, "NOT_APPLICABLE", gapTypes, sp.paClassification),
+    candidateKeys,
+    supportingSourceLocatorKeys: [],
+    approvedSourceStatus: null,
+    gapReason: null,
+    notes: sp.notes,
+  });
+}
 
 // ---------------------------------------------------------------------
-// 9. Candidate-level status output (task section 13 item 5).
+// 7. Candidate mapping (section 14.B) -- every real candidate, its
+//    atomic-proposition membership, fact-requirement/claim/certification
+//    state, from the REAL post-adjudication/certification result.
 // ---------------------------------------------------------------------
+const propositionsByCandidateKey = new Map<string, string[]>();
+for (const row of atomicLedger) {
+  for (const ck of row.candidateKeys) {
+    const list = propositionsByCandidateKey.get(ck) ?? [];
+    list.push(row.reconciliationId);
+    propositionsByCandidateKey.set(ck, list);
+  }
+}
+
+const candidateMapping = finalResult.candidates
+  .filter((c) => AC_PATTERN.test(curriculumByEvidenceId.get(c.evidenceRefs.find((r) => r.role === "OFFICIAL_CURRICULUM")?.evidenceId ?? "")?.curriculumUnitId ?? ""))
+  .map((c) => {
+    const factReqs = factReqsByTarget.get(c.candidateKey) ?? [];
+    const claimKeys = [...new Set(factReqs.map((f) => f.claimKey))];
+    const claims = claimKeys.map((k) => claimsByKey.get(k)).filter((x): x is NonNullable<typeof x> => x !== undefined);
+    const cert = knowledgeBoundaryCertifications.find((k) => k.targetCandidateKey === c.candidateKey);
+    return {
+      candidateKey: c.candidateKey,
+      subject: c.subject,
+      performanceType: c.performanceType,
+      atomicPropositionIds: propositionsByCandidateKey.get(c.candidateKey) ?? [],
+      factRequirementClaimKeys: claimKeys,
+      factRequirementStatuses: factReqs.map((f) => ({ claimKey: f.claimKey, derivationStatus: f.derivationStatus, adjudicationDecision: decisionByIdentity.get(`${c.candidateKey}::${f.claimKey}`)?.decision ?? null })),
+      technicalFactualClaimIds: claims.map((cl) => cl.evidenceId),
+      requiredFactKeys: c.requiredFactKeys ?? [],
+      technicalCoverageStatus: c.technicalCoverageStatus ?? null,
+      knowledgeBoundaryStatus: c.knowledgeBoundaryStatus ?? null,
+      certification: cert ? { decision: cert.decision, certificationRef: cert.certificationRef } : null,
+    };
+  });
+
+// ---------------------------------------------------------------------
+// 8. Outputs.
+// ---------------------------------------------------------------------
+mkdirSync(outDir, { recursive: true });
+
+const classificationCounts = countBy(atomicLedger.map((r) => r.paClassification));
+const qualificationStateCounts = countBy(atomicLedger.map((r) => r.qualificationEvidenceState));
+const technicalStateCounts = countBy(atomicLedger.map((r) => r.technicalEvidenceState));
+const nextActionCounts = countBy(atomicLedger.map((r) => r.nextAction));
+const byAC: Record<string, { total: number; classification: Record<string, number>; qualificationState: Record<string, number>; technicalState: Record<string, number>; nextAction: Record<string, number> }> = {};
+for (const r of atomicLedger) {
+  const g = byAC[r.ac] ?? { total: 0, classification: {}, qualificationState: {}, technicalState: {}, nextAction: {} };
+  g.total += 1;
+  g.classification[r.paClassification] = (g.classification[r.paClassification] ?? 0) + 1;
+  g.qualificationState[r.qualificationEvidenceState] = (g.qualificationState[r.qualificationEvidenceState] ?? 0) + 1;
+  g.technicalState[r.technicalEvidenceState] = (g.technicalState[r.technicalEvidenceState] ?? 0) + 1;
+  g.nextAction[r.nextAction] = (g.nextAction[r.nextAction] ?? 0) + 1;
+  byAC[r.ac] = g;
+}
+
+const summary = {
+  verdict: "PROJECT_ARCHITECT_PENDING",
+  totalAtomicPropositions: atomicLedger.length,
+  classificationCounts,
+  qualificationEvidenceStateCounts: qualificationStateCounts,
+  technicalEvidenceStateCounts: technicalStateCounts,
+  nextActionCounts,
+  candidateKnowledgeBoundaryStatusCounts: countBy(finalResult.candidates.map((c) => c.knowledgeBoundaryStatus)),
+  byAC: Object.fromEntries(Object.entries(byAC).sort()),
+  originalCC22ReportSuperseded: {
+    commit: "d828e78",
+    note: "The original CC-22 report (167 candidate-derived rows, verdict C via a numeric threshold) is SUPERSEDED by this atomic, whitelist-only reconciliation. See CC-22A task prompt section 1 for the six corrected defects.",
+  },
+};
+
+writeJson(path.join(outDir, "UNIT202-PA-PROPOSITION-LEDGER.json"), { qualificationId: QUAL, summary, ledger: atomicLedger });
+writeJson(path.join(outDir, "UNIT202-CANDIDATE-MAPPING.json"), { qualificationId: QUAL, candidates: candidateMapping });
+
+const existingEvidenceInventory = {
+  approvedSourcesTotal: unit202TechnicalSourceVerification.approvedSources.length,
+  approvedSourcesByStatus: countBy(unit202TechnicalSourceVerification.approvedSources.map((s) => s.status)),
+  propositionCoverageTotal: unit202TechnicalSourceVerification.propositionCoverage.length,
+  propositionCoverageByState: countBy(unit202TechnicalSourceVerification.propositionCoverage.map((p) => p.coverageState)),
+  sourceDossierNote: "scripts/content/data/unit202-technical-source-verification.ts -- Project-Architect-approved technical source dossier, retrieved 2026-08-30. NOT the frozen CC-21 blind-experiment input, which is only the mechanical evidence CC-19R/CC-21 assembled for the generic-pipeline back-test.",
+  approvedSources: unit202TechnicalSourceVerification.approvedSources,
+};
+writeJson(path.join(outDir, "UNIT202-EXISTING-EVIDENCE-INVENTORY.json"), existingEvidenceInventory);
+
+const gatherNewTechnical = atomicLedger.filter((r) => r.nextAction === "GATHER_NEW_TECHNICAL_SOURCE");
+const gatherNewQualification = atomicLedger.filter((r) => r.nextAction === "GATHER_NEW_PUBLIC_QUALIFICATION_EVIDENCE");
+const reviewLocator = atomicLedger.filter((r) => r.nextAction === "REVIEW_EXISTING_SOURCE_LOCATOR");
+const normalize = atomicLedger.filter((r) => r.nextAction === "NORMALIZE_CLAIM_FROM_EXISTING_VERIFIED_SOURCE");
+const authorFactReq = atomicLedger.filter((r) => r.nextAction === "AUTHOR_FACT_REQUIREMENT_FROM_EXISTING_AUTHORITY");
+const paDecision = atomicLedger.filter((r) => r.nextAction === "PROJECT_ARCHITECT_DECISION");
+
+const actionManifest = {
+  qualificationId: QUAL,
+  counts: {
+    noNewSourceRequired: atomicLedger.filter((r) => r.nextAction === "NONE" || r.nextAction === "AUTHOR_FACT_REQUIREMENT_FROM_EXISTING_AUTHORITY").length,
+    authoringOrNormalizationOnly: authorFactReq.length + normalize.length,
+    reviewExistingSourceLocator: reviewLocator.length,
+    newTechnicalSourceRequired: gatherNewTechnical.length,
+    newPublicQualificationEvidenceRequired: gatherNewQualification.length,
+    projectArchitectDecisionRequired: paDecision.length,
+  },
+  gatherNewTechnicalSource: gatherNewTechnical.map((r) => ({ id: r.reconciliationId, ac: r.ac, proposition: r.proposition, gapReason: r.gapReason })),
+  gatherNewPublicQualificationEvidence: gatherNewQualification.map((r) => ({ id: r.reconciliationId, ac: r.ac, proposition: r.proposition })),
+  reviewExistingSourceLocator: reviewLocator.map((r) => ({ id: r.reconciliationId, ac: r.ac, proposition: r.proposition, gapReason: r.gapReason })),
+  normalizeFromExistingVerifiedSource: normalize.map((r) => ({ id: r.reconciliationId, ac: r.ac, proposition: r.proposition, supportingSourceLocatorKeys: r.supportingSourceLocatorKeys })),
+  projectArchitectDecisionRequired: paDecision.map((r) => ({ id: r.reconciliationId, ac: r.ac, proposition: r.proposition, candidateKeys: r.candidateKeys })),
+};
+writeJson(path.join(outDir, "UNIT202-EVIDENCE-ACTION-MANIFEST.json"), actionManifest);
+
 const statusOutput = {
   qualificationId: QUAL,
   generatedFrom: "reports/backtests/unit202-post-hardening/CC-21-FULL-PUBLIC-INPUT.json (frozen, read-only)",
-  pipelineVersion: "packages/qualification-pipeline @ HEAD 9663120 (CC-21B)",
+  pipelineVersion: "packages/qualification-pipeline @ HEAD 9663120 (CC-21B, unmodified)",
   semanticAdjudicationsApplied: semanticAdjudications.length,
   knowledgeBoundaryCertificationsApplied: knowledgeBoundaryCertifications.length,
+  unadjudicatedReviewProposedCount: unadjudicatedReviewProposed.length,
   candidates: finalResult.candidates.map((c) => ({
     candidateKey: c.candidateKey,
     subject: c.subject,
@@ -374,156 +503,128 @@ const statusOutput = {
   })),
   gapsByType: countBy(finalResult.gaps.map((g) => g.gapType)),
   totalGaps: finalResult.gaps.length,
-  knowledgeBoundaryCertificationOutcomes: finalResult.knowledgeBoundaryCertificationOutcomes.map((cert) => ({ targetCandidateKey: cert.targetCandidateKey, decision: cert.decision, certificationRef: cert.certificationRef })),
+  knowledgeBoundaryCertificationOutcomes: finalResult.knowledgeBoundaryCertificationOutcomes.map((cert) => ({ targetCandidateKey: cert.targetCandidateKey, decision: cert.decision })),
 };
-
-function countBy<T extends string>(values: readonly (T | undefined)[]): Record<string, number> {
-  const out: Record<string, number> = {};
-  for (const v of values) {
-    const key = v ?? "(undeclared)";
-    out[key] = (out[key] ?? 0) + 1;
-  }
-  return out;
-}
-
-// ---------------------------------------------------------------------
-// 10. Summary counts (task section 15).
-// ---------------------------------------------------------------------
-const acCandidates = finalResult.candidates.filter((c) => AC_PATTERN.test(curriculumByEvidenceId.get(c.evidenceRefs.find((r) => r.role === "OFFICIAL_CURRICULUM")?.evidenceId ?? "")?.curriculumUnitId ?? ""));
-
-const summary = {
-  totalLockedPropositions: fullLedger.length,
-  fullyMapped: fullLedger.filter((r) => r.gapType === "A_NO_GAP").length,
-  missingNormalizedCandidate: fullLedger.filter((r) => r.gapType === "B_MISSING_NORMALIZED_CANDIDATE").length,
-  missingFactRequirement: fullLedger.filter((r) => r.gapType === "C_MISSING_FACT_REQUIREMENT").length,
-  awaitingSemanticAdjudication: fullLedger.filter((r) => r.gapType === "D_SEMANTIC_ADJUDICATION_REQUIRED").length,
-  qualificationScopeEvidenceGaps: fullLedger.filter((r) => r.gapType === "E_MISSING_QUALIFICATION_SCOPE_EVIDENCE").length,
-  depthPerformanceEvidenceGaps: fullLedger.filter((r) => r.gapType === "F_MISSING_PERFORMANCE_DEPTH_EVIDENCE").length,
-  technicalTruthGaps: fullLedger.filter((r) => r.gapType === "G_MISSING_TECHNICAL_TRUTH").length,
-  technicalConflicts: fullLedger.filter((r) => r.gapType === "H_TECHNICAL_CONFLICT").length,
-  calibratedExemplarPublicSupportGaps: fullLedger.filter((r) => r.gapType === "I_CALIBRATED_EXEMPLAR_NEEDS_PUBLIC_SUPPORT").length,
-  contextualSupport: fullLedger.filter((r) => r.paClassification === "CONTEXTUAL_TEACHING_SUPPORT").length,
-  outOfScopeOrOverdepth: fullLedger.filter((r) => r.gapType === "J_OUT_OF_SCOPE_OR_OVERDEPTH").length,
-  awaitingProjectArchitectDecision: fullLedger.filter((r) => r.paClassification === "AWAITING_PROJECT_ARCHITECT_DECISION").length,
-  candidatesGoverned: acCandidates.filter((c) => c.knowledgeBoundaryStatus === "GOVERNED").length,
-  candidatesPartial: acCandidates.filter((c) => c.knowledgeBoundaryStatus === "PARTIAL").length,
-  candidatesAdjudicationRequired: acCandidates.filter((c) => c.knowledgeBoundaryStatus === "ADJUDICATION_REQUIRED").length,
-  candidatesUnresolved: acCandidates.filter((c) => c.knowledgeBoundaryStatus === "UNRESOLVED").length,
-  candidatesStructurallyDecomposed: acCandidates.filter((c) => c.knowledgeBoundaryStatus === "STRUCTURALLY_DECOMPOSED").length,
-  byAC: (() => {
-    const groups = new Map<string, { total: number; noGap: number; gaps: Record<string, number> }>();
-    for (const r of fullLedger) {
-      const g = groups.get(r.ac) ?? { total: 0, noGap: 0, gaps: {} };
-      g.total += 1;
-      if (r.gapType === "A_NO_GAP") g.noGap += 1;
-      else g.gaps[r.gapType] = (g.gaps[r.gapType] ?? 0) + 1;
-      groups.set(r.ac, g);
-    }
-    return Object.fromEntries([...groups.entries()].sort());
-  })(),
-};
-
-// ---------------------------------------------------------------------
-// 11. Emit outputs.
-// ---------------------------------------------------------------------
-mkdirSync(outDir, { recursive: true });
-
-writeJson(path.join(outDir, "UNIT202-KNOWLEDGE-BOUNDARY-RECONCILIATION.json"), {
-  qualificationId: QUAL,
-  generatedFrom: frozenInputPath.replace(repoRoot + path.sep, "").replace(/\\/g, "/"),
-  summary,
-  ledger: fullLedger,
-});
-
-writeJson(path.join(outDir, "UNIT202-TECHNICAL-EVIDENCE-GAPS.json"), {
-  qualificationId: QUAL,
-  totalGaps: technicalEvidenceGaps.length,
-  gaps: technicalEvidenceGaps,
-});
-
 writeJson(path.join(outDir, "UNIT202-KNOWLEDGE-BOUNDARY-STATUS.json"), statusOutput);
+
+// Supersede the old CC-22 compatibility files.
+const supersededNote = {
+  status: "SUPERSEDED",
+  supersededBy: "UNIT202-PA-PROPOSITION-LEDGER.json / UNIT202-EVIDENCE-ACTION-MANIFEST.json (CC-22A)",
+  originalCommit: "d828e78",
+  reason: "CC-22 (167 candidate-derived rows, blanket REQUIRED_CORE default, arbitrary A/B/C threshold) held for six defects -- see CC-22A task prompt section 1. This file is retained only so the old filename does not silently disappear; it no longer claims candidate count is equivalent to atomic locked propositions.",
+};
+writeJson(path.join(outDir, "UNIT202-KNOWLEDGE-BOUNDARY-RECONCILIATION.json"), supersededNote);
+writeJson(path.join(outDir, "UNIT202-TECHNICAL-EVIDENCE-GAPS.json"), supersededNote);
+writeFileSync(path.join(outDir, "UNIT202-KNOWLEDGE-BOUNDARY-RECONCILIATION.md"), `# SUPERSEDED\n\nThis CC-22 report (commit d828e78) is superseded by CC-22A's atomic reconciliation.\n\nSee \`UNIT202-PA-PROPOSITION-LEDGER.md\` and \`UNIT202-EVIDENCE-ACTION-MANIFEST.md\`.\n\nReason: CC-22 applied a blanket REQUIRED_CORE default, treated the frozen CC-21 blind-experiment input as the entire evidence universe, used candidate count as proposition count, and produced an automatic A/B/C verdict from an arbitrary numeric threshold -- all six defects listed in the CC-22A task prompt section 1.\n`, "utf-8");
+writeFileSync(path.join(outDir, "UNIT202-TECHNICAL-EVIDENCE-GAPS.md"), `# SUPERSEDED\n\nThis CC-22 report (commit d828e78) is superseded by CC-22A's atomic reconciliation.\n\nSee \`UNIT202-EVIDENCE-ACTION-MANIFEST.md\`.\n`, "utf-8");
 
 function mdEscape(s: string): string {
   return s.replace(/\|/g, "\\|");
 }
 
-const answer = summary.qualificationScopeEvidenceGaps + summary.technicalTruthGaps + summary.calibratedExemplarPublicSupportGaps > 25 ? "C" : summary.qualificationScopeEvidenceGaps + summary.technicalTruthGaps + summary.calibratedExemplarPublicSupportGaps > 5 ? "B" : "A";
+const ledgerMd = `# Unit 202 Project-Architect Proposition Ledger (CC-22A)
 
-const reconciliationMd = `# Unit 202 Knowledge-Boundary Reconciliation (CC-22)
+Corrects and SUPERSEDES the CC-22 report committed in \`d828e78\`. Built from the real, Product-Owner-approved Source-Acquisition-Manifest (\`scripts/content/data/unit202-source-acquisition-manifest.ts\`, ${unit202SourceAcquisitionManifest.clusters.length} clusters) plus ${SUPPLEMENTARY_PROPOSITIONS.length} supplementary rows for content that manifest does not decompose to (task section 12's AC6.1 breakdown, the rejected "gears create power" misconception, relay/contactor context). **${atomicLedger.length} atomic propositions total** -- this count is the number of distinct required-knowledge items, never candidate count.
 
-Generated from \`reports/backtests/unit202-post-hardening/CC-21-FULL-PUBLIC-INPUT.json\` (frozen, read-only), against \`@alp/qualification-pipeline\` at HEAD 9663120 (CC-21B). ${semanticAdjudications.length} SemanticAdjudication and ${knowledgeBoundaryCertifications.length} KnowledgeBoundaryCertification records were constructed by this package (see \`decisions.ts\`) and applied to a COPY of the frozen input -- the frozen input itself is never modified.
+**Verdict: PROJECT_ARCHITECT_PENDING** (task section 20 -- no automatic A/B/C).
 
-## Summary counts
+## Classification counts
 
-| Metric | Count |
+| Classification | Count |
 |---|---|
-| Total locked propositions (candidate rows + explicit missing-proposition rows) | ${summary.totalLockedPropositions} |
-| Fully mapped (NO_GAP) | ${summary.fullyMapped} |
-| Missing normalized candidate | ${summary.missingNormalizedCandidate} |
-| Missing fact requirement | ${summary.missingFactRequirement} |
-| Awaiting semantic adjudication | ${summary.awaitingSemanticAdjudication} |
-| Qualification-scope evidence gaps | ${summary.qualificationScopeEvidenceGaps} |
-| Depth/performance evidence gaps | ${summary.depthPerformanceEvidenceGaps} |
-| Technical-truth gaps | ${summary.technicalTruthGaps} |
-| Technical conflicts | ${summary.technicalConflicts} |
-| Calibrated-exemplar public-support gaps | ${summary.calibratedExemplarPublicSupportGaps} |
-| Contextual support | ${summary.contextualSupport} |
-| Out-of-scope/overdepth | ${summary.outOfScopeOrOverdepth} |
-| Awaiting Project-Architect decision (AC2.1) | ${summary.awaitingProjectArchitectDecision} |
-| Candidates GOVERNED | ${summary.candidatesGoverned} |
-| Candidates PARTIAL | ${summary.candidatesPartial} |
-| Candidates ADJUDICATION_REQUIRED | ${summary.candidatesAdjudicationRequired} |
-| Candidates UNRESOLVED | ${summary.candidatesUnresolved} |
-| Candidates STRUCTURALLY_DECOMPOSED | ${summary.candidatesStructurallyDecomposed} |
+${Object.entries(classificationCounts).map(([k, v]) => `| ${k} | ${v} |`).join("\n")}
 
-## Gaps grouped by AC
+## Qualification-evidence state counts
 
-| AC | Total rows | NO_GAP | Other gap types |
-|---|---|---|---|
-${Object.entries(summary.byAC)
-  .map(([ac, g]) => `| ${ac} | ${g.total} | ${g.noGap} | ${Object.entries(g.gaps).map(([t, n]) => `${t}=${n}`).join(", ") || "-"} |`)
-  .join("\n")}
+| State | Count |
+|---|---|
+${Object.entries(qualificationStateCounts).map(([k, v]) => `| ${k} | ${v} |`).join("\n")}
 
-## Direct answer (task section 16)
+## Technical-evidence state counts
 
-**${answer}** -- ${answer === "A" ? "current evidence is sufficient." : answer === "B" ? "only a narrow targeted evidence pass is required." : "substantial evidence collection is required."}
+| State | Count |
+|---|---|
+${Object.entries(technicalStateCounts).map(([k, v]) => `| ${k} | ${v} |`).join("\n")}
 
-Based on: ${summary.qualificationScopeEvidenceGaps} qualification-scope evidence gaps (category E) + ${summary.technicalTruthGaps} technical-truth gaps (category G) + ${summary.calibratedExemplarPublicSupportGaps} calibrated-exemplar public-support gaps (category I) = ${summary.qualificationScopeEvidenceGaps + summary.technicalTruthGaps + summary.calibratedExemplarPublicSupportGaps} evidence-collection-relevant gaps out of ${summary.totalLockedPropositions} total locked propositions. See \`UNIT202-TECHNICAL-EVIDENCE-GAPS.md\` for the full actionable list.
+## Next-action counts
 
-## Systemic finding: umbrella parents not structurally linked to their own content
+| Action | Count |
+|---|---|
+${Object.entries(nextActionCounts).map(([k, v]) => `| ${k} | ${v} |`).join("\n")}
 
-Seven curriculum-authored "principles of..."/"basic operating principles of..." PRIMARY_REQUIREMENT candidates exist as umbrellas over real, well-evidenced sibling topics, but were never given \`refinesSubject\`/\`parentSubject\` links (or their own facts) connecting them to those siblings: \`electrical instruments for the measurement of electrical quantities\` (AC2.3), \`principles of basic mechanics as applied to levers, gears and pulleys\` (AC3.2), \`principles of force, work, energy, power and efficiency\` (AC3.3) and its AC3.4 sibling \`values of mechanical energy, power and efficiency\`, \`magnetic effects of electrical currents\` and \`electromagnetism\` (AC5.3), \`basic principles of generating an A.C. supply\` (AC5.4), \`function and application of electronic components used in electrical systems\` (AC6.1), and \`basic operating principles of electronic components and devices\` (AC6.2). Per CC-20A's correctly-conservative rule, a \`PRIMARY_REQUIREMENT\` is never treated as structurally exhausted merely because children point to it (and several of these have NO children pointing to them at all -- a parallel RANGE_CATEGORY sibling exists instead, e.g. AC2.3's dual-parent pattern). Each stays \`UNRESOLVED\`/\`ADJUDICATION_REQUIRED\`, correctly and conservatively, even though their constituent topics are individually well-governed. This is a real, recurring **evidence-authoring** pattern in the frozen Unit-202 curriculum data (not a generic-pipeline defect) -- flagged here for Project-Architect review; not corrected in this package (frozen evidence).
+## Candidate knowledge-boundary status (real pipeline result, corrected adjudications/certifications)
+
+| Status | Count |
+|---|---|
+${Object.entries(summary.candidateKnowledgeBoundaryStatusCounts).map(([k, v]) => `| ${k} | ${v} |`).join("\n")}
+
+## By AC
+
+${Object.entries(byAC)
+  .map(([ac, g]) => `### ${ac} (${g.total} propositions)\n\nClassification: ${Object.entries(g.classification).map(([k, v]) => `${k}=${v}`).join(", ")}\n\nTechnical state: ${Object.entries(g.technicalState).map(([k, v]) => `${k}=${v}`).join(", ")}\n\nNext action: ${Object.entries(g.nextAction).map(([k, v]) => `${k}=${v}`).join(", ")}`)
+  .join("\n\n")}
 
 ## Full ledger
 
-See \`UNIT202-KNOWLEDGE-BOUNDARY-RECONCILIATION.json\` for the complete, machine-readable ledger (${fullLedger.length} rows). Abbreviated view below (subject, AC, classification, gap type):
+See \`UNIT202-PA-PROPOSITION-LEDGER.json\` for the complete machine-readable ledger.
 
-| ID | AC | Subject | Classification | Gap |
-|---|---|---|---|---|
-${fullLedger.map((r) => `| ${r.reconciliationId} | ${r.ac} | ${mdEscape(r.subject)}${r.performanceType ? ` (${r.performanceType})` : ""} | ${r.paClassification} | ${r.gapType} |`).join("\n")}
-`;
-
-writeFileSync(path.join(outDir, "UNIT202-KNOWLEDGE-BOUNDARY-RECONCILIATION.md"), reconciliationMd, "utf-8");
-
-const gapsMd = `# Unit 202 Technical Evidence Gaps (CC-22)
-
-${technicalEvidenceGaps.length} actionable gaps, each naming the exact proposition, missing evidence role, why existing evidence is insufficient, whether new research is required, and what type of source would close it. No URLs are nominated (task section 14) -- source TYPE only.
-
-| ID | AC | Proposition | Missing role | New research? | Source type requested |
+| ID | AC | Proposition | Classification | Tech. state | Next action |
 |---|---|---|---|---|---|
-${technicalEvidenceGaps.map((g) => `| ${g.reconciliationId} | ${g.ac} | ${mdEscape(g.proposition)} | ${g.missingEvidenceRole} | ${g.newResearchRequired ? "yes" : "no"} | ${mdEscape(g.sourceTypeRequested)} |`).join("\n")}
-
-## Why each is insufficient
-
-${technicalEvidenceGaps.map((g) => `### ${g.reconciliationId} -- ${g.proposition}\n\n${g.whyInsufficient}`).join("\n\n")}
+${atomicLedger.map((r) => `| ${r.reconciliationId} | ${r.ac} | ${mdEscape(r.proposition.slice(0, 80))} | ${r.paClassification} | ${r.technicalEvidenceState} | ${r.nextAction} |`).join("\n")}
 `;
+writeFileSync(path.join(outDir, "UNIT202-PA-PROPOSITION-LEDGER.md"), ledgerMd, "utf-8");
 
-writeFileSync(path.join(outDir, "UNIT202-TECHNICAL-EVIDENCE-GAPS.md"), gapsMd, "utf-8");
+const inventoryMd = `# Unit 202 Existing Evidence Inventory (CC-22A)
 
-console.log("CC-22 reconciliation complete.");
-console.log(`  ledger rows: ${fullLedger.length}`);
-console.log(`  technical evidence gaps: ${technicalEvidenceGaps.length}`);
+Source: \`scripts/content/data/unit202-technical-source-verification.ts\` -- the Project-Architect-approved technical source dossier, retrieved 2026-08-30. This is the canonical existing-evidence universe CC-22 failed to inspect (task section 16) -- NOT the frozen CC-21 blind-experiment input.
+
+- Approved sources: ${existingEvidenceInventory.approvedSourcesTotal} (${Object.entries(existingEvidenceInventory.approvedSourcesByStatus).map(([k, v]) => `${k}=${v}`).join(", ")})
+- Proposition coverage records: ${existingEvidenceInventory.propositionCoverageTotal} (${Object.entries(existingEvidenceInventory.propositionCoverageByState).map(([k, v]) => `${k}=${v}`).join(", ")})
+
+No new external source was gathered or browsed by this package -- this inventory is a read of already-collected data.
+`;
+writeFileSync(path.join(outDir, "UNIT202-EXISTING-EVIDENCE-INVENTORY.md"), inventoryMd, "utf-8");
+
+const actionMd = `# Unit 202 Evidence Action Manifest (CC-22A)
+
+Distinguishes source AVAILABILITY from claim NORMALIZATION (task section 17/19) -- a missing candidate or fact requirement does not automatically mean web research is required.
+
+| Metric | Count |
+|---|---|
+| No new source required (NONE / author from existing authority) | ${actionManifest.counts.noNewSourceRequired} |
+| Authoring/normalization only from evidence already held | ${actionManifest.counts.authoringOrNormalizationOnly} |
+| Review of an existing source locator | ${actionManifest.counts.reviewExistingSourceLocator} |
+| Genuinely new TECHNICAL external evidence required | ${actionManifest.counts.newTechnicalSourceRequired} |
+| Genuinely new PUBLIC QUALIFICATION/ASSESSMENT evidence required | ${actionManifest.counts.newPublicQualificationEvidenceRequired} |
+| Still requires Project-Architect semantic decision | ${actionManifest.counts.projectArchitectDecisionRequired} |
+
+## GATHER_NEW_TECHNICAL_SOURCE (${gatherNewTechnical.length})
+
+${gatherNewTechnical.map((r) => `- **${r.reconciliationId}** (${r.ac}) ${mdEscape(r.proposition)}${r.gapReason ? ` -- ${mdEscape(r.gapReason)}` : ""}`).join("\n") || "(none)"}
+
+## GATHER_NEW_PUBLIC_QUALIFICATION_EVIDENCE (${gatherNewQualification.length})
+
+${gatherNewQualification.map((r) => `- **${r.reconciliationId}** (${r.ac}) ${mdEscape(r.proposition)}`).join("\n") || "(none)"}
+
+## REVIEW_EXISTING_SOURCE_LOCATOR (${reviewLocator.length})
+
+${reviewLocator.map((r) => `- **${r.reconciliationId}** (${r.ac}) ${mdEscape(r.proposition)}${r.gapReason ? ` -- ${mdEscape(r.gapReason)}` : ""}`).join("\n") || "(none)"}
+
+## NORMALIZE_CLAIM_FROM_EXISTING_VERIFIED_SOURCE (${normalize.length})
+
+${normalize.map((r) => `- **${r.reconciliationId}** (${r.ac}) ${mdEscape(r.proposition)}`).join("\n") || "(none)"}
+
+## PROJECT_ARCHITECT_DECISION still required (${paDecision.length})
+
+${paDecision.map((r) => `- **${r.reconciliationId}** (${r.ac}) ${mdEscape(r.proposition)} -- candidates: ${r.candidateKeys.join(", ") || "(none)"}`).join("\n") || "(none)"}
+`;
+writeFileSync(path.join(outDir, "UNIT202-EVIDENCE-ACTION-MANIFEST.md"), actionMd, "utf-8");
+
+console.log("CC-22A reconciliation complete.");
+console.log(`  atomic propositions: ${atomicLedger.length}`);
 console.log(`  semanticAdjudications applied: ${semanticAdjudications.length}`);
 console.log(`  knowledgeBoundaryCertifications applied: ${knowledgeBoundaryCertifications.length}`);
-console.log(`  answer: ${answer}`);
+console.log(`  unadjudicated REVIEW_PROPOSED remaining: ${unadjudicatedReviewProposed.length}`);
+console.log(`  verdict: PROJECT_ARCHITECT_PENDING`);
 console.log(`  outputs written to: ${outDir}`);

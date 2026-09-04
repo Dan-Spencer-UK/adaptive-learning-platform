@@ -1,0 +1,4380 @@
+{
+  "qualificationId": "2365-02",
+  "candidates": [
+    {
+      "candidateKey": "mathematical principles::IDENTIFY",
+      "subject": "mathematical principles",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "NOT_APPLICABLE",
+      "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED",
+      "certification": null
+    },
+    {
+      "candidateKey": "mathematical principles::APPLY",
+      "subject": "mathematical principles",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "NOT_APPLICABLE",
+      "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED",
+      "certification": null
+    },
+    {
+      "candidateKey": "fractions and percentages::IDENTIFY",
+      "subject": "fractions and percentages",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "fractions and percentages::APPLY",
+      "subject": "fractions and percentages",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "algebra::IDENTIFY",
+      "subject": "algebra",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "algebra::APPLY",
+      "subject": "algebra",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "indices::IDENTIFY",
+      "subject": "indices",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "indices::APPLY",
+      "subject": "indices",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "transposition::IDENTIFY",
+      "subject": "transposition",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "transposition::APPLY",
+      "subject": "transposition",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "triangles and trigonometry::IDENTIFY",
+      "subject": "triangles and trigonometry",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "triangles and trigonometry::APPLY",
+      "subject": "triangles and trigonometry",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "statistics::IDENTIFY",
+      "subject": "statistics",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "statistics::APPLY",
+      "subject": "statistics",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005",
+        "AT-006",
+        "AT-007",
+        "AT-008"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "SI units of measurement for general physical quantities::IDENTIFY",
+      "subject": "SI units of measurement for general physical quantities",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "NOT_APPLICABLE",
+      "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED",
+      "certification": null
+    },
+    {
+      "candidateKey": "SI units of measurement for general physical quantities::APPLY",
+      "subject": "SI units of measurement for general physical quantities",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "NOT_APPLICABLE",
+      "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED",
+      "certification": null
+    },
+    {
+      "candidateKey": "length (SI unit)::IDENTIFY",
+      "subject": "length (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.length"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.length",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0561"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.length"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-001"
+      }
+    },
+    {
+      "candidateKey": "length (SI unit)::APPLY",
+      "subject": "length (SI unit)",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.length"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.length",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0561"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.length"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "area (SI unit)::IDENTIFY",
+      "subject": "area (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.area"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.area",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0562"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.area"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-002"
+      }
+    },
+    {
+      "candidateKey": "area (SI unit)::APPLY",
+      "subject": "area (SI unit)",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.area"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.area",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0562"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.area"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "volume (SI unit)::IDENTIFY",
+      "subject": "volume (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.volume"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.volume",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0563"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.volume"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-003"
+      }
+    },
+    {
+      "candidateKey": "volume (SI unit)::APPLY",
+      "subject": "volume (SI unit)",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.volume"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.volume",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0563"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.volume"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "mass (SI unit)::IDENTIFY",
+      "subject": "mass (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.mass"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.mass",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0564"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.mass"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-004"
+      }
+    },
+    {
+      "candidateKey": "mass (SI unit)::APPLY",
+      "subject": "mass (SI unit)",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.mass"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.mass",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0564"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.mass"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "density (SI unit)::IDENTIFY",
+      "subject": "density (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.density"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.density",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0565"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.density"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-005"
+      }
+    },
+    {
+      "candidateKey": "density (SI unit)::APPLY",
+      "subject": "density (SI unit)",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.density"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.density",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0565"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.density"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "time (SI unit)::IDENTIFY",
+      "subject": "time (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.time"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.time",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0566"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.time"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-006"
+      }
+    },
+    {
+      "candidateKey": "time (SI unit)::APPLY",
+      "subject": "time (SI unit)",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.time"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.time",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0566"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.time"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "temperature (SI unit)::IDENTIFY",
+      "subject": "temperature (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.temperature"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.temperature",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0567"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.temperature"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-008"
+      }
+    },
+    {
+      "candidateKey": "temperature (SI unit)::APPLY",
+      "subject": "temperature (SI unit)",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.temperature"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.temperature",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0567"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.temperature"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "velocity (SI unit)::IDENTIFY",
+      "subject": "velocity (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.velocity"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.velocity",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0568"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.velocity"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-007"
+      }
+    },
+    {
+      "candidateKey": "velocity (SI unit)::APPLY",
+      "subject": "velocity (SI unit)",
+      "performanceType": "APPLY",
+      "atomicPropositionIds": [
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.velocity"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.velocity",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0568"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.velocity"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electrical quantities (SI units)::IDENTIFY",
+      "subject": "electrical quantities (SI units)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "NOT_APPLICABLE",
+      "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electrical quantities (SI units)::OTHER",
+      "subject": "electrical quantities (SI units)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "NOT_APPLICABLE",
+      "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED",
+      "certification": null
+    },
+    {
+      "candidateKey": "resistance (SI unit)::IDENTIFY",
+      "subject": "resistance (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.resistance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.resistance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0569"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.resistance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-011"
+      }
+    },
+    {
+      "candidateKey": "resistance (SI unit)::OTHER",
+      "subject": "resistance (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.resistance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.resistance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0569"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.resistance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "resistivity (SI unit)::IDENTIFY",
+      "subject": "resistivity (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.resistivity"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.resistivity",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0570"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.resistivity"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-012"
+      }
+    },
+    {
+      "candidateKey": "resistivity (SI unit)::OTHER",
+      "subject": "resistivity (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.resistivity"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.resistivity",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0570"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.resistivity"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "power (SI unit)::IDENTIFY",
+      "subject": "power (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.power"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.power",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0571"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.power"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-013"
+      }
+    },
+    {
+      "candidateKey": "power (SI unit)::OTHER",
+      "subject": "power (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.power"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.power",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0571"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.power"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "frequency (SI electrical quantity)::IDENTIFY",
+      "subject": "frequency (SI electrical quantity)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.frequency"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.frequency",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0572"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.frequency"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-015"
+      }
+    },
+    {
+      "candidateKey": "frequency (SI electrical quantity)::OTHER",
+      "subject": "frequency (SI electrical quantity)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.frequency"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.frequency",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0572"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.frequency"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "current (SI unit)::IDENTIFY",
+      "subject": "current (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.current"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.current",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0573"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.current"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-009"
+      }
+    },
+    {
+      "candidateKey": "current (SI unit)::OTHER",
+      "subject": "current (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.current"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.current",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0573"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.current"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "voltage (SI unit)::IDENTIFY",
+      "subject": "voltage (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.voltage"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.voltage",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0574"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.voltage"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-010"
+      }
+    },
+    {
+      "candidateKey": "voltage (SI unit)::OTHER",
+      "subject": "voltage (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.voltage"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.voltage",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0574"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.voltage"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "energy (SI unit)::IDENTIFY",
+      "subject": "energy (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.energy"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.energy",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0575"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.energy"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-014"
+      }
+    },
+    {
+      "candidateKey": "energy (SI unit)::OTHER",
+      "subject": "energy (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.energy"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.energy",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0575"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.energy"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "impedance (SI unit)::IDENTIFY",
+      "subject": "impedance (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.impedance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.impedance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0576"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.impedance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-016"
+      }
+    },
+    {
+      "candidateKey": "impedance (SI unit)::OTHER",
+      "subject": "impedance (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.impedance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.impedance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0576"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.impedance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "inductance and inductive reactance (SI unit)::IDENTIFY",
+      "subject": "inductance and inductive reactance (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.inductance",
+        "unit202.si-unit.inductive-reactance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.inductance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        },
+        {
+          "claimKey": "unit202.si-unit.inductive-reactance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0577",
+        "EV-TEC-0578"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.inductance",
+        "unit202.si-unit.inductive-reactance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-018"
+      }
+    },
+    {
+      "candidateKey": "inductance and inductive reactance (SI unit)::OTHER",
+      "subject": "inductance and inductive reactance (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.inductance",
+        "unit202.si-unit.inductive-reactance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.inductance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        },
+        {
+          "claimKey": "unit202.si-unit.inductive-reactance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0577",
+        "EV-TEC-0578"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.inductance",
+        "unit202.si-unit.inductive-reactance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "capacitance and capacitive reactance (SI unit)::IDENTIFY",
+      "subject": "capacitance and capacitive reactance (SI unit)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.capacitance",
+        "unit202.si-unit.capacitive-reactance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.capacitance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        },
+        {
+          "claimKey": "unit202.si-unit.capacitive-reactance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0579",
+        "EV-TEC-0580"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.capacitance",
+        "unit202.si-unit.capacitive-reactance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-017"
+      }
+    },
+    {
+      "candidateKey": "capacitance and capacitive reactance (SI unit)::OTHER",
+      "subject": "capacitance and capacitive reactance (SI unit)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.capacitance",
+        "unit202.si-unit.capacitive-reactance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.capacitance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        },
+        {
+          "claimKey": "unit202.si-unit.capacitive-reactance",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0579",
+        "EV-TEC-0580"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.capacitance",
+        "unit202.si-unit.capacitive-reactance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "power factor (SI unit / dimensional status)::IDENTIFY",
+      "subject": "power factor (SI unit / dimensional status)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.power-factor.defining-relationship",
+        "unit202.si-unit.power-factor.dimensionless-convention"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.power-factor.defining-relationship",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        },
+        {
+          "claimKey": "unit202.si-unit.power-factor.dimensionless-convention",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0581",
+        "EV-TEC-0582"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.power-factor.defining-relationship",
+        "unit202.si-unit.power-factor.dimensionless-convention"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-019"
+      }
+    },
+    {
+      "candidateKey": "power factor (SI unit / dimensional status)::OTHER",
+      "subject": "power factor (SI unit / dimensional status)",
+      "performanceType": "OTHER",
+      "atomicPropositionIds": [
+        "AT-013",
+        "AT-014",
+        "AT-015"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.si-unit.power-factor.defining-relationship",
+        "unit202.si-unit.power-factor.dimensionless-convention"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.si-unit.power-factor.defining-relationship",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        },
+        {
+          "claimKey": "unit202.si-unit.power-factor.dimensionless-convention",
+          "derivationStatus": "EXPLICIT_CURRICULUM_FACT",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0581",
+        "EV-TEC-0582"
+      ],
+      "requiredFactKeys": [
+        "unit202.si-unit.power-factor.defining-relationship",
+        "unit202.si-unit.power-factor.dimensionless-convention"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electrical instruments for the measurement of electrical quantities::IDENTIFY",
+      "subject": "electrical instruments for the measurement of electrical quantities",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-016",
+        "AT-017",
+        "AT-018",
+        "AT-019",
+        "AT-020",
+        "AT-021",
+        "AT-022"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electrical quantities requiring instrument identification (measurement)::IDENTIFY",
+      "subject": "electrical quantities requiring instrument identification (measurement)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-016",
+        "AT-017",
+        "AT-018",
+        "AT-019",
+        "AT-020",
+        "AT-021",
+        "AT-022"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "instrument for measuring resistance::IDENTIFY",
+      "subject": "instrument for measuring resistance",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-016",
+        "AT-017",
+        "AT-018",
+        "AT-019",
+        "AT-020",
+        "AT-021",
+        "AT-022"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohmmeter-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohmmeter-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0634"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ohmmeter-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-022"
+      }
+    },
+    {
+      "candidateKey": "instrument for measuring power::IDENTIFY",
+      "subject": "instrument for measuring power",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-016",
+        "AT-017",
+        "AT-018",
+        "AT-019",
+        "AT-020",
+        "AT-021",
+        "AT-022"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.wattmeter"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.wattmeter",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [
+        "unit202.review-fact.wattmeter"
+      ],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-023"
+      }
+    },
+    {
+      "candidateKey": "instrument for measuring current::IDENTIFY",
+      "subject": "instrument for measuring current",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-016",
+        "AT-017",
+        "AT-018",
+        "AT-019",
+        "AT-020",
+        "AT-021",
+        "AT-022"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ammeter-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ammeter-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_OPERATIONAL"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0635"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ammeter-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-020"
+      }
+    },
+    {
+      "candidateKey": "instrument for measuring voltage::IDENTIFY",
+      "subject": "instrument for measuring voltage",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-016",
+        "AT-017",
+        "AT-018",
+        "AT-019",
+        "AT-020",
+        "AT-021",
+        "AT-022"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.voltmeter-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.voltmeter-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_OPERATIONAL"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0636"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.voltmeter-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-021"
+      }
+    },
+    {
+      "candidateKey": "instrument for measuring energy::IDENTIFY",
+      "subject": "instrument for measuring energy",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-016",
+        "AT-017",
+        "AT-018",
+        "AT-019",
+        "AT-020",
+        "AT-021",
+        "AT-022"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.energy-meter"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.energy-meter",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [
+        "unit202.review-fact.energy-meter"
+      ],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-024"
+      }
+    },
+    {
+      "candidateKey": "mass and weight::DEFINE",
+      "subject": "mass and weight",
+      "performanceType": "DEFINE",
+      "atomicPropositionIds": [
+        "AT-023",
+        "AT-024",
+        "AT-025",
+        "AT-026",
+        "AT-027"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.mass-definition",
+        "unit202.review-fact.weight-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.mass-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        },
+        {
+          "claimKey": "unit202.review-fact.weight-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0583",
+        "EV-TEC-0584"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.mass-definition",
+        "unit202.review-fact.weight-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-025"
+      }
+    },
+    {
+      "candidateKey": "principles of basic mechanics as applied to levers, gears and pulleys::EXPLAIN",
+      "subject": "principles of basic mechanics as applied to levers, gears and pulleys",
+      "performanceType": "EXPLAIN",
+      "atomicPropositionIds": [
+        "AT-028",
+        "AT-029",
+        "AT-030",
+        "AT-031",
+        "AT-032",
+        "AT-033",
+        "AT-034",
+        "AT-035"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "gears::EXPLAIN",
+      "subject": "gears",
+      "performanceType": "EXPLAIN",
+      "atomicPropositionIds": [
+        "AT-028",
+        "AT-029",
+        "AT-030",
+        "AT-031",
+        "AT-032",
+        "AT-033",
+        "AT-034",
+        "AT-035",
+        "SP-001"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.gear-mechanism",
+        "unit202.review-fact.mechanical-advantage"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.gear-mechanism",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        },
+        {
+          "claimKey": "unit202.review-fact.mechanical-advantage",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0614",
+        "EV-TEC-0617"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.gear-mechanism",
+        "unit202.review-fact.mechanical-advantage"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-029"
+      }
+    },
+    {
+      "candidateKey": "pulleys::EXPLAIN",
+      "subject": "pulleys",
+      "performanceType": "EXPLAIN",
+      "atomicPropositionIds": [
+        "AT-028",
+        "AT-029",
+        "AT-030",
+        "AT-031",
+        "AT-032",
+        "AT-033",
+        "AT-034",
+        "AT-035"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.pulley-mechanism",
+        "unit202.review-fact.mechanical-advantage"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.pulley-mechanism",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        },
+        {
+          "claimKey": "unit202.review-fact.mechanical-advantage",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0616",
+        "EV-TEC-0617"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.mechanical-advantage",
+        "unit202.review-fact.pulley-mechanism"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-030"
+      }
+    },
+    {
+      "candidateKey": "levers::EXPLAIN",
+      "subject": "levers",
+      "performanceType": "EXPLAIN",
+      "atomicPropositionIds": [
+        "AT-028",
+        "AT-029",
+        "AT-030",
+        "AT-031",
+        "AT-032",
+        "AT-033",
+        "AT-034",
+        "AT-035"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "NOT_APPLICABLE",
+      "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED",
+      "certification": null
+    },
+    {
+      "candidateKey": "lever class I::EXPLAIN",
+      "subject": "lever class I",
+      "performanceType": "EXPLAIN",
+      "atomicPropositionIds": [
+        "AT-028",
+        "AT-029",
+        "AT-030",
+        "AT-031",
+        "AT-032",
+        "AT-033",
+        "AT-034",
+        "AT-035"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.lever-class-1"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.lever-class-1",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0618"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.lever-class-1"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-026"
+      }
+    },
+    {
+      "candidateKey": "lever class II::EXPLAIN",
+      "subject": "lever class II",
+      "performanceType": "EXPLAIN",
+      "atomicPropositionIds": [
+        "AT-028",
+        "AT-029",
+        "AT-030",
+        "AT-031",
+        "AT-032",
+        "AT-033",
+        "AT-034",
+        "AT-035"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.lever-class-2"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.lever-class-2",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0619"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.lever-class-2"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-027"
+      }
+    },
+    {
+      "candidateKey": "lever class III::EXPLAIN",
+      "subject": "lever class III",
+      "performanceType": "EXPLAIN",
+      "atomicPropositionIds": [
+        "AT-028",
+        "AT-029",
+        "AT-030",
+        "AT-031",
+        "AT-032",
+        "AT-033",
+        "AT-034",
+        "AT-035"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.lever-class-3"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.lever-class-3",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0620"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.lever-class-3"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-028"
+      }
+    },
+    {
+      "candidateKey": "principles of force, work, energy, power and efficiency::DESCRIBE",
+      "subject": "principles of force, work, energy, power and efficiency",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "force::DESCRIBE",
+      "subject": "force",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.force-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.force-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_NOT_NECESSARY"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0621"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "work::DESCRIBE",
+      "subject": "work",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.work-formula"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.work-formula",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0585"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.work-formula"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-031"
+      }
+    },
+    {
+      "candidateKey": "energy (kinetic and potential)::DESCRIBE",
+      "subject": "energy (kinetic and potential)",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.kinetic-potential-energy-formula"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.kinetic-potential-energy-formula",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0589"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "power (mechanical)::DESCRIBE",
+      "subject": "power (mechanical)",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.power-mechanical-formula"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.power-mechanical-formula",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0622"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.power-mechanical-formula"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-032"
+      }
+    },
+    {
+      "candidateKey": "efficiency::DESCRIBE",
+      "subject": "efficiency",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.efficiency-formula"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.efficiency-formula",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0591"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.efficiency-formula"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-035"
+      }
+    },
+    {
+      "candidateKey": "inter-relationships between force, work, energy, power and efficiency::DESCRIBE",
+      "subject": "inter-relationships between force, work, energy, power and efficiency",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.power-mechanical-formula"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.power-mechanical-formula",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0622"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.power-mechanical-formula"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-033"
+      }
+    },
+    {
+      "candidateKey": "values of mechanical energy, power and efficiency::CALCULATE",
+      "subject": "values of mechanical energy, power and efficiency",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "mechanical energy (calculation)::CALCULATE",
+      "subject": "mechanical energy (calculation)",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.kinetic-potential-energy-formula"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.kinetic-potential-energy-formula",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0589"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "power (calculation, mechanical)::CALCULATE",
+      "subject": "power (calculation, mechanical)",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.power-mechanical-formula"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.power-mechanical-formula",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0622"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.power-mechanical-formula"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-034"
+      }
+    },
+    {
+      "candidateKey": "efficiency (calculation)::CALCULATE",
+      "subject": "efficiency (calculation)",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-036",
+        "AT-037",
+        "AT-038",
+        "AT-039",
+        "AT-040",
+        "AT-041",
+        "AT-042",
+        "AT-043"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.efficiency-formula"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.efficiency-formula",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0591"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.efficiency-formula"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-036"
+      }
+    },
+    {
+      "candidateKey": "basic principles of electron theory::DESCRIBE",
+      "subject": "basic principles of electron theory",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-044",
+        "AT-045",
+        "AT-046",
+        "AT-047",
+        "AT-048"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.current-charge-flow",
+        "unit202.review-fact.conventional-vs-electron-flow"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.current-charge-flow",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        },
+        {
+          "claimKey": "unit202.review-fact.conventional-vs-electron-flow",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0592",
+        "EV-TEC-0593"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.conventional-vs-electron-flow",
+        "unit202.review-fact.current-charge-flow"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-037"
+      }
+    },
+    {
+      "candidateKey": "conductors (good electrical conductor materials)::IDENTIFY",
+      "subject": "conductors (good electrical conductor materials)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-049",
+        "AT-050"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.conductor-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.conductor-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0594"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.conductor-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-038"
+      }
+    },
+    {
+      "candidateKey": "conductors (good electrical conductor materials)::DISTINGUISH",
+      "subject": "conductors (good electrical conductor materials)",
+      "performanceType": "DISTINGUISH",
+      "atomicPropositionIds": [
+        "AT-049",
+        "AT-050"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.conductor-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.conductor-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0594"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.conductor-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-039"
+      }
+    },
+    {
+      "candidateKey": "insulators (electrical insulator materials)::IDENTIFY",
+      "subject": "insulators (electrical insulator materials)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-049",
+        "AT-050"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.insulator-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.insulator-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0595"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.insulator-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-040"
+      }
+    },
+    {
+      "candidateKey": "insulators (electrical insulator materials)::DISTINGUISH",
+      "subject": "insulators (electrical insulator materials)",
+      "performanceType": "DISTINGUISH",
+      "atomicPropositionIds": [
+        "AT-049",
+        "AT-050"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.insulator-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.insulator-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0595"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.insulator-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-041"
+      }
+    },
+    {
+      "candidateKey": "resistance and resistivity in relation to electrical circuits::DESCRIBE",
+      "subject": "resistance and resistivity in relation to electrical circuits",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-051",
+        "AT-052",
+        "AT-053",
+        "AT-054",
+        "AT-055"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohms-law",
+        "unit202.review-fact.resistance-resistivity-relation"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohms-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        },
+        {
+          "claimKey": "unit202.review-fact.resistance-resistivity-relation",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0628",
+        "EV-TEC-0597"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ohms-law",
+        "unit202.review-fact.resistance-resistivity-relation"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-042"
+      }
+    },
+    {
+      "candidateKey": "relationship between current, voltage and resistance in parallel and series D.C. circuits::EXPLAIN",
+      "subject": "relationship between current, voltage and resistance in parallel and series D.C. circuits",
+      "performanceType": "EXPLAIN",
+      "atomicPropositionIds": [
+        "AT-056",
+        "AT-057",
+        "AT-058",
+        "AT-059",
+        "AT-060",
+        "AT-061",
+        "AT-062",
+        "AT-063"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohms-law",
+        "unit202.review-fact.series-resistance",
+        "unit202.review-fact.parallel-resistance"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohms-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        },
+        {
+          "claimKey": "unit202.review-fact.series-resistance",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        },
+        {
+          "claimKey": "unit202.review-fact.parallel-resistance",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0628",
+        "EV-TEC-0599",
+        "EV-TEC-0600"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ohms-law",
+        "unit202.review-fact.parallel-resistance",
+        "unit202.review-fact.series-resistance"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-043"
+      }
+    },
+    {
+      "candidateKey": "values of current, voltage and resistance in parallel and series D.C. circuits::CALCULATE",
+      "subject": "values of current, voltage and resistance in parallel and series D.C. circuits",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-056",
+        "AT-057",
+        "AT-058",
+        "AT-059",
+        "AT-060",
+        "AT-061",
+        "AT-062",
+        "AT-063"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohms-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0628"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-047"
+      }
+    },
+    {
+      "candidateKey": "current (calculation, D.C. circuits)::CALCULATE",
+      "subject": "current (calculation, D.C. circuits)",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-056",
+        "AT-057",
+        "AT-058",
+        "AT-059",
+        "AT-060",
+        "AT-061",
+        "AT-062",
+        "AT-063"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohms-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0628"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-044"
+      }
+    },
+    {
+      "candidateKey": "voltage (calculation, D.C. circuits)::CALCULATE",
+      "subject": "voltage (calculation, D.C. circuits)",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-056",
+        "AT-057",
+        "AT-058",
+        "AT-059",
+        "AT-060",
+        "AT-061",
+        "AT-062",
+        "AT-063"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohms-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0628"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-045"
+      }
+    },
+    {
+      "candidateKey": "resistance (calculation, D.C. circuits)::CALCULATE",
+      "subject": "resistance (calculation, D.C. circuits)",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-056",
+        "AT-057",
+        "AT-058",
+        "AT-059",
+        "AT-060",
+        "AT-061",
+        "AT-062",
+        "AT-063"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohms-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0628"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-046"
+      }
+    },
+    {
+      "candidateKey": "values of power in parallel and series D.C. circuits::CALCULATE",
+      "subject": "values of power in parallel and series D.C. circuits",
+      "performanceType": "CALCULATE",
+      "atomicPropositionIds": [
+        "AT-064",
+        "AT-065",
+        "AT-066",
+        "AT-067"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.thermal-effect"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.thermal-effect",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0626"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.thermal-effect"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-048"
+      }
+    },
+    {
+      "candidateKey": "voltage drop::STATE",
+      "subject": "voltage drop",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-068",
+        "AT-069",
+        "AT-070",
+        "AT-071"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohms-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0628"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-049"
+      }
+    },
+    {
+      "candidateKey": "chemical and thermal effects of electric currents::DESCRIBE",
+      "subject": "chemical and thermal effects of electric currents",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-072",
+        "AT-073",
+        "AT-074"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.thermal-effect",
+        "unit202.review-fact.chemical-effect"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.thermal-effect",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        },
+        {
+          "claimKey": "unit202.review-fact.chemical-effect",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0626",
+        "EV-TEC-0603"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.chemical-effect",
+        "unit202.review-fact.thermal-effect"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-050"
+      }
+    },
+    {
+      "candidateKey": "attraction and repulsion effects of magnetism::DESCRIBE",
+      "subject": "attraction and repulsion effects of magnetism",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-075",
+        "AT-076",
+        "AT-077",
+        "AT-078",
+        "AT-079",
+        "AT-080"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.magnetic-attraction-repulsion"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.magnetic-attraction-repulsion",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0604"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.magnetic-attraction-repulsion"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-051"
+      }
+    },
+    {
+      "candidateKey": "difference between magnetic flux and flux density::STATE",
+      "subject": "difference between magnetic flux and flux density",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-075",
+        "AT-076",
+        "AT-077",
+        "AT-078",
+        "AT-079",
+        "AT-080"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.flux-vs-flux-density"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.flux-vs-flux-density",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0605"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.flux-vs-flux-density"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "GOVERNED",
+      "certification": {
+        "decision": "COMPLETE",
+        "certificationRef": "CC-22A-CERT-052"
+      }
+    },
+    {
+      "candidateKey": "magnetic effects of electrical currents::DESCRIBE",
+      "subject": "magnetic effects of electrical currents",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-081",
+        "AT-082",
+        "AT-083",
+        "AT-084",
+        "AT-085",
+        "AT-086",
+        "AT-087",
+        "AT-088",
+        "AT-089",
+        "AT-090",
+        "AT-091"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "production of a magnetic field::DESCRIBE",
+      "subject": "production of a magnetic field",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-081",
+        "AT-082",
+        "AT-083",
+        "AT-084",
+        "AT-085",
+        "AT-086",
+        "AT-087",
+        "AT-088",
+        "AT-089",
+        "AT-090",
+        "AT-091"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.magnetic-field-production"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.magnetic-field-production",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0637"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.magnetic-field-production"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-053"
+      }
+    },
+    {
+      "candidateKey": "force on a current-carrying conductor in a magnetic field::DESCRIBE",
+      "subject": "force on a current-carrying conductor in a magnetic field",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-081",
+        "AT-082",
+        "AT-083",
+        "AT-084",
+        "AT-085",
+        "AT-086",
+        "AT-087",
+        "AT-088",
+        "AT-089",
+        "AT-090",
+        "AT-091"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.force-on-conductor"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.force-on-conductor",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0606"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electromagnetism::DESCRIBE",
+      "subject": "electromagnetism",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-081",
+        "AT-082",
+        "AT-083",
+        "AT-084",
+        "AT-085",
+        "AT-086",
+        "AT-087",
+        "AT-088",
+        "AT-089",
+        "AT-090",
+        "AT-091",
+        "SP-002"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electromotive force::DESCRIBE",
+      "subject": "electromotive force",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-081",
+        "AT-082",
+        "AT-083",
+        "AT-084",
+        "AT-085",
+        "AT-086",
+        "AT-087",
+        "AT-088",
+        "AT-089",
+        "AT-090",
+        "AT-091"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.faradays-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.faradays-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0641"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "basic principles of generating an A.C. supply::DESCRIBE",
+      "subject": "basic principles of generating an A.C. supply",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-092",
+        "AT-093",
+        "AT-094",
+        "AT-095",
+        "AT-096",
+        "AT-097",
+        "AT-098"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "single-loop generator::DESCRIBE",
+      "subject": "single-loop generator",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-092",
+        "AT-093",
+        "AT-094",
+        "AT-095",
+        "AT-096",
+        "AT-097",
+        "AT-098"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.faradays-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.faradays-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0641"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "sine-wave (AC generation principle)::DESCRIBE",
+      "subject": "sine-wave (AC generation principle)",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-092",
+        "AT-093",
+        "AT-094",
+        "AT-095",
+        "AT-096",
+        "AT-097",
+        "AT-098"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ac-sine-equation"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ac-sine-equation",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0642"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "frequency (AC generation principle)::DESCRIBE",
+      "subject": "frequency (AC generation principle)",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-092",
+        "AT-093",
+        "AT-094",
+        "AT-095",
+        "AT-096",
+        "AT-097",
+        "AT-098"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ac-sine-equation"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ac-sine-equation",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0642"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "EMF (AC generation principle)::DESCRIBE",
+      "subject": "EMF (AC generation principle)",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-092",
+        "AT-093",
+        "AT-094",
+        "AT-095",
+        "AT-096",
+        "AT-097",
+        "AT-098"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.faradays-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.faradays-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0641"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "magnetic flux (AC generation principle)::DESCRIBE",
+      "subject": "magnetic flux (AC generation principle)",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-092",
+        "AT-093",
+        "AT-094",
+        "AT-095",
+        "AT-096",
+        "AT-097",
+        "AT-098"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.faradays-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.faradays-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0641"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "characteristics of sine-waves::IDENTIFY",
+      "subject": "characteristics of sine-waves",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-099",
+        "AT-100",
+        "AT-101",
+        "AT-102",
+        "AT-103",
+        "AT-104",
+        "AT-105"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "NOT_APPLICABLE",
+      "knowledgeBoundaryStatus": "STRUCTURALLY_DECOMPOSED",
+      "certification": null
+    },
+    {
+      "candidateKey": "RMS value (sine-wave characteristic)::IDENTIFY",
+      "subject": "RMS value (sine-wave characteristic)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-099",
+        "AT-100",
+        "AT-101",
+        "AT-102",
+        "AT-103",
+        "AT-104",
+        "AT-105"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.rms-value"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.rms-value",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "average value (sine-wave characteristic)::IDENTIFY",
+      "subject": "average value (sine-wave characteristic)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-099",
+        "AT-100",
+        "AT-101",
+        "AT-102",
+        "AT-103",
+        "AT-104",
+        "AT-105"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.average-value"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.average-value",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "peak to peak value (sine-wave characteristic)::IDENTIFY",
+      "subject": "peak to peak value (sine-wave characteristic)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-099",
+        "AT-100",
+        "AT-101",
+        "AT-102",
+        "AT-103",
+        "AT-104",
+        "AT-105"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.peak-to-peak-value"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.peak-to-peak-value",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "periodic time (sine-wave characteristic)::IDENTIFY",
+      "subject": "periodic time (sine-wave characteristic)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-099",
+        "AT-100",
+        "AT-101",
+        "AT-102",
+        "AT-103",
+        "AT-104",
+        "AT-105"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.periodic-time"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.periodic-time",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "frequency (sine-wave characteristic)::IDENTIFY",
+      "subject": "frequency (sine-wave characteristic)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-099",
+        "AT-100",
+        "AT-101",
+        "AT-102",
+        "AT-103",
+        "AT-104",
+        "AT-105"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ac-sine-equation"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ac-sine-equation",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_OVERDEPTH"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0642"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "amplitude (sine-wave characteristic)::IDENTIFY",
+      "subject": "amplitude (sine-wave characteristic)",
+      "performanceType": "IDENTIFY",
+      "atomicPropositionIds": [
+        "AT-099",
+        "AT-100",
+        "AT-101",
+        "AT-102",
+        "AT-103",
+        "AT-104",
+        "AT-105"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.amplitude-value"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.amplitude-value",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": null
+        }
+      ],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "function and application of electronic components used in electrical systems::DESCRIBE",
+      "subject": "function and application of electronic components used in electrical systems",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-106",
+        "AT-107",
+        "AT-108",
+        "AT-109",
+        "AT-110",
+        "AT-111"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electrical systems (context for electronic component function/application)::DESCRIBE",
+      "subject": "electrical systems (context for electronic component function/application)",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-106",
+        "AT-107",
+        "AT-108",
+        "AT-109",
+        "AT-110",
+        "AT-111"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electronic components function/application: security alarms::DESCRIBE",
+      "subject": "electronic components function/application: security alarms",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-106",
+        "AT-107",
+        "AT-108",
+        "AT-109",
+        "AT-110",
+        "AT-111",
+        "SP-003",
+        "SP-004"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electronic components function/application: telephones::DESCRIBE",
+      "subject": "electronic components function/application: telephones",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-106",
+        "AT-107",
+        "AT-108",
+        "AT-109",
+        "AT-110",
+        "AT-111",
+        "SP-005",
+        "SP-006",
+        "SP-007",
+        "SP-008",
+        "SP-009"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electronic components function/application: dimmer switches::DESCRIBE",
+      "subject": "electronic components function/application: dimmer switches",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-106",
+        "AT-107",
+        "AT-108",
+        "AT-109",
+        "AT-110",
+        "AT-111",
+        "SP-010",
+        "SP-011"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electronic components function/application: heating/boiler controls::DESCRIBE",
+      "subject": "electronic components function/application: heating/boiler controls",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-106",
+        "AT-107",
+        "AT-108",
+        "AT-109",
+        "AT-110",
+        "AT-111",
+        "SP-012"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electronic components function/application: motor control::DESCRIBE",
+      "subject": "electronic components function/application: motor control",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-106",
+        "AT-107",
+        "AT-108",
+        "AT-109",
+        "AT-110",
+        "AT-111",
+        "SP-013",
+        "SP-014",
+        "SP-015",
+        "SP-016"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electronic components function/application: wireless control systems::DESCRIBE",
+      "subject": "electronic components function/application: wireless control systems",
+      "performanceType": "DESCRIBE",
+      "atomicPropositionIds": [
+        "AT-106",
+        "AT-107",
+        "AT-108",
+        "AT-109",
+        "AT-110",
+        "AT-111",
+        "SP-017",
+        "SP-018",
+        "SP-019",
+        "SP-020"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "basic operating principles of electronic components and devices::STATE",
+      "subject": "basic operating principles of electronic components and devices",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "electronic components and devices::STATE",
+      "subject": "electronic components and devices",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "capacitors::STATE",
+      "subject": "capacitors",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.capacitor-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.capacitor-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0629"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.capacitor-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-054"
+      }
+    },
+    {
+      "candidateKey": "resistors::STATE",
+      "subject": "resistors",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.ohms-law"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.ohms-law",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REJECT_NOT_NECESSARY"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0628"
+      ],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED",
+      "certification": null
+    },
+    {
+      "candidateKey": "rectifiers::STATE",
+      "subject": "rectifiers",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.rectifier-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.rectifier-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0630"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.rectifier-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-059"
+      }
+    },
+    {
+      "candidateKey": "diodes::STATE",
+      "subject": "diodes",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.diode-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.diode-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0609"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.diode-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-056"
+      }
+    },
+    {
+      "candidateKey": "Zener::STATE",
+      "subject": "Zener",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.zener-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.zener-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0610"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.zener-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-064"
+      }
+    },
+    {
+      "candidateKey": "LED::STATE",
+      "subject": "LED",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.led-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.led-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0611"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.led-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-058"
+      }
+    },
+    {
+      "candidateKey": "photo::STATE",
+      "subject": "photo",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126",
+        "SP-021"
+      ],
+      "factRequirementClaimKeys": [],
+      "factRequirementStatuses": [],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "UNRESOLVED",
+      "certification": null
+    },
+    {
+      "candidateKey": "thermistors::STATE",
+      "subject": "thermistors",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.thermistor-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.thermistor-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0612"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.thermistor-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-060"
+      }
+    },
+    {
+      "candidateKey": "diacs::STATE",
+      "subject": "diacs",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.diac-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.diac-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0631"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.diac-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-055"
+      }
+    },
+    {
+      "candidateKey": "triacs::STATE",
+      "subject": "triacs",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.triac-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.triac-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0632"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.triac-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-063"
+      }
+    },
+    {
+      "candidateKey": "transistors::STATE",
+      "subject": "transistors",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.transistor-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.transistor-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0613"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.transistor-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-062"
+      }
+    },
+    {
+      "candidateKey": "thyristors::STATE",
+      "subject": "thyristors",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.thyristor-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.thyristor-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [
+        "EV-TEC-0633"
+      ],
+      "requiredFactKeys": [
+        "unit202.review-fact.thyristor-definition"
+      ],
+      "technicalCoverageStatus": "COMPLETE",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-061"
+      }
+    },
+    {
+      "candidateKey": "invertors::STATE",
+      "subject": "invertors",
+      "performanceType": "STATE",
+      "atomicPropositionIds": [
+        "AT-112",
+        "AT-113",
+        "AT-114",
+        "AT-115",
+        "AT-116",
+        "AT-117",
+        "AT-118",
+        "AT-119",
+        "AT-120",
+        "AT-121",
+        "AT-122",
+        "AT-123",
+        "AT-124",
+        "AT-125",
+        "AT-126"
+      ],
+      "factRequirementClaimKeys": [
+        "unit202.review-fact.invertor-definition"
+      ],
+      "factRequirementStatuses": [
+        {
+          "claimKey": "unit202.review-fact.invertor-definition",
+          "derivationStatus": "REVIEW_PROPOSED",
+          "adjudicationDecision": "REQUIRED_CORE"
+        }
+      ],
+      "technicalFactualClaimIds": [],
+      "requiredFactKeys": [
+        "unit202.review-fact.invertor-definition"
+      ],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "PARTIAL",
+      "certification": {
+        "decision": "PARTIAL",
+        "certificationRef": "CC-22A-CERT-057"
+      }
+    }
+  ]
+}

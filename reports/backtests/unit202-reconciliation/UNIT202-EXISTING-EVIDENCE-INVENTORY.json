@@ -1,0 +1,626 @@
+{
+  "approvedSourcesTotal": 67,
+  "approvedSourcesByStatus": {
+    "VERIFIED": 63,
+    "RETRIEVAL_FAILED": 4
+  },
+  "propositionCoverageTotal": 126,
+  "propositionCoverageByState": {
+    "CONDITIONAL_SOURCE_GAP": 13,
+    "VERIFIED": 106,
+    "SOURCE_GAP": 7
+  },
+  "sourceDossierNote": "scripts/content/data/unit202-technical-source-verification.ts -- Project-Architect-approved technical source dossier, retrieved 2026-08-30. NOT the frozen CC-21 blind-experiment input, which is only the mechanical evidence CC-19R/CC-21 assembled for the generic-pipeline back-test.",
+  "approvedSources": [
+    {
+      "dossierSourceId": "SRC-BIPM-SI-9E-V4.01",
+      "sourceKey": "src-bipm-si-brochure",
+      "approvedRole": "PRIMARY SI factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-bipm-base-units",
+        "loc-bipm-kelvin-celsius",
+        "loc-bipm-derived-units",
+        "loc-bipm-derived-units-examples",
+        "loc-bipm-si-prefixes",
+        "loc-bipm-nonsi-units"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-NIST-SP811-CH4",
+      "sourceKey": "src-nist-guide-to-si-sp811",
+      "approvedRole": "SECONDARY / practical SI factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-nist-sp811-ch4"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-NIST-SP811-B9",
+      "sourceKey": "src-nist-guide-to-si-sp811",
+      "approvedRole": "SECONDARY electrical/magnetic SI factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-nist-sp811-b9"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-NIST-SP811-B8",
+      "sourceKey": "src-nist-guide-to-si-sp811",
+      "approvedRole": "SECONDARY physical-quantity/conversion authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-nist-sp811-b8"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-PREALG-PERCENT",
+      "sourceKey": "src-openstax-prealgebra-2e",
+      "approvedRole": "factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-prealg-percent"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-INTERALG-FORMULA",
+      "sourceKey": "src-openstax-intermediate-algebra-2e",
+      "approvedRole": "factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-interalg-formula"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-PREALG-SCI-NOTATION",
+      "sourceKey": "src-openstax-prealgebra-2e",
+      "approvedRole": "factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-prealg-sci-notation"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-PREALG-PYTHAGORAS",
+      "sourceKey": "src-openstax-prealgebra-2e",
+      "approvedRole": "factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-prealg-pythagoras"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-PRECALC-TRIG",
+      "sourceKey": "src-openstax-precalculus-2e",
+      "approvedRole": "factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-precalc-trig"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-STATS-CENTER",
+      "sourceKey": "src-openstax-introductory-statistics-2e",
+      "approvedRole": "factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-stats-center"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP1-MASS-WEIGHT",
+      "sourceKey": "src-openstax-university-physics-v1",
+      "approvedRole": "PRIMARY mechanics factual authority for AC3.1",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up1-mass-weight"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-PHYSICS-WORK-POWER",
+      "sourceKey": "src-openstax-physics-2024",
+      "approvedRole": "PRIMARY mechanics factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-physics-work-power"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-PHYSICS-SIMPLE-MACHINES",
+      "sourceKey": "src-openstax-physics-2024",
+      "approvedRole": "PRIMARY simple-machines factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-physics-simple-machines",
+        "loc-physics-simple-machines-pulleys"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-LIBRETEXTS-LEVER-CLASSES",
+      "sourceKey": "src-libretexts-lever-classes",
+      "approvedRole": "factual authority for lever classification/operation",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-libretexts-lever"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-LIBRETEXTS-GEAR-SYSTEMS",
+      "sourceKey": "src-libretexts-gear-driven-systems",
+      "approvedRole": "factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-libretexts-gear-systems"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-LIBRETEXTS-GEAR-POWER-TORQUE",
+      "sourceKey": "src-libretexts-mechatronic-actuator-background",
+      "approvedRole": "secondary factual authority for ideal gearbox torque/speed/power relationships",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-libretexts-mechatronics"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-ELECTRIC-CHARGE",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-electric-charge"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-ELECTRICAL-CURRENT",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY electrical-current factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-electrical-current"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-CONDUCTORS-INSULATORS",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY conductor/insulator factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-conductors-insulators"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-RESISTIVITY",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY resistance/resistivity authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-resistivity"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-OHM",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-ohm"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-ELECTRICAL-POWER",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY electrical-power/thermal factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-electrical-power",
+        "loc-up2-electrical-power-fuse"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-SERIES-PARALLEL",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY DC circuit factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-series-parallel"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-KIRCHHOFF",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "secondary factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-kirchhoff"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-MEASURING-INSTRUMENTS",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-measuring-instruments"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-YOKOGAWA-POWER-MEASUREMENT",
+      "sourceKey": "src-yokogawa-power-measurement",
+      "approvedRole": "manufacturer factual/application authority",
+      "status": "RETRIEVAL_FAILED",
+      "verifiedSourceLocatorKeys": [],
+      "retrievalNote": "Site is protected by an AWS WAF JavaScript challenge (response body is a challenge.js page requiring JS execution) -- not retrievable by direct HTTP fetch. A Wayback Machine snapshot is confirmed to exist but web.archive.org itself returned \"Temporarily Offline\" on every attempt (14+) across two retrieval passes."
+    },
+    {
+      "dossierSourceId": "SRC-SCHNEIDER-ION7400-ENERGY",
+      "sourceKey": "src-schneider-ion7400-energy",
+      "approvedRole": "manufacturer application authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-schneider-ion7400-energy"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-CHEM-ELECTROLYSIS",
+      "sourceKey": "src-openstax-chemistry-2e",
+      "approvedRole": "PRIMARY chemistry factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-chem-electrolysis"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-SIMPLE-AC",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY AC quantity factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-simple-ac"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-RLC-IMPEDANCE",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "factual authority, tightly clipped",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-rlc-impedance"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-AC-POWER",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "factual authority, tightly clipped",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-ac-power"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-MAGNETIC-FIELDS",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY magnetism factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-magnetic-fields"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-CURRENT-CONDUCTOR-FORCE",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY motor-effect factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-current-conductor-force"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-STRAIGHT-WIRE",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "factual/directional authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-straight-wire"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-SOLENOID",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "factual/directional authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-solenoid"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-FARADAY-FLUX",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY magnetic-flux/induction authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-faraday-flux"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-MOTIONAL-EMF",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY induced-EMF factual/procedural authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-motional-emf"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-NAGOYA-OCW-ELECTROMAGNETICS",
+      "sourceKey": "src-nagoya-ocw-electromagnetics-2024",
+      "approvedRole": "authoritative educational convention source",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-nagoya-fleming-left",
+        "loc-nagoya-fleming-right"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-GENERATORS",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY AC-generator factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-generators",
+        "loc-up2-generators-period-frequency"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ECAMPUS-SIMPLE-AC-GENERATOR",
+      "sourceKey": "src-ecampus-electrotechnology",
+      "approvedRole": "secondary electrotechnology factual/pedagogical authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-ecampus-simple-ac-generator"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ECAMPUS-ALTERNATOR-RELATIONSHIPS",
+      "sourceKey": "src-ecampus-electrotechnology",
+      "approvedRole": "PRIMARY Unit-202-level alternator frequency relationship authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-ecampus-alternator-relationships"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ABB-POLE-PAIR-CONVENTION",
+      "sourceKey": "src-abb-technical-application-papers-no7-asynchronous-motors",
+      "approvedRole": "independent manufacturer cross-check for pole-pair convention",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-abb-pole-pair-annex-a"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-IASTATE-AC-WAVEFORMS",
+      "sourceKey": "src-iastate-applied-industrial-electricity",
+      "approvedRole": "applied-electrical factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-iastate-waveform-magnitude",
+        "loc-iastate-rms"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-CAPACITORS",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "PRIMARY capacitor factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-capacitors"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENSTAX-UP2-CAPACITOR-ENERGY",
+      "sourceKey": "src-openstax-university-physics-v2",
+      "approvedRole": "secondary capacitor authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-up2-capacitor-energy"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-TE-RESISTOR-COLOR",
+      "sourceKey": "src-te-resistor-color-codes",
+      "approvedRole": "manufacturer/component factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-te-resistor-4band"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ROHM-DIODE-BASICS",
+      "sourceKey": "src-rohm-diode-basics",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-rohm-diode-basics"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ROHM-RECTIFIER-DIODE",
+      "sourceKey": "src-rohm-rectifier-diode",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-rohm-rectifier"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ROHM-ZENER",
+      "sourceKey": "src-rohm-zener-diode",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-rohm-zener"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ROHM-LED-FORWARD",
+      "sourceKey": "src-rohm-led-forward-voltage",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-rohm-led-forward"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ROHM-LED-EMISSION",
+      "sourceKey": "src-rohm-laser-diode-led-emission-principle",
+      "approvedRole": "manufacturer factual authority, narrowly clipped",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-rohm-led-emission"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-HAMAMATSU-PHOTODIODE",
+      "sourceKey": "src-hamamatsu-photodiodes-exposed",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-hamamatsu-photodiode"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ADVPHOTONIX-LDR",
+      "sourceKey": "src-advancedphotonix-ldr",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-advphotonix-ldr"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-MURATA-NTC",
+      "sourceKey": "src-murata-ntc-thermistor-basics",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-murata-ntc"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-MURATA-PTC",
+      "sourceKey": "src-murata-ptc-thermistor-resistance-temperature",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-murata-ptc"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ST-DIAC-DB3",
+      "sourceKey": "src-st-diac-db3",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-st-diac-db3"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ST-AN3168-DIAC-TRIAC-DIMMER",
+      "sourceKey": "src-st-an3168-diac-triac-dimmer",
+      "approvedRole": "PRIMARY manufacturer factual/application authority for DIAC/TRIAC dimmer chain",
+      "status": "RETRIEVAL_FAILED",
+      "verifiedSourceLocatorKeys": [],
+      "retrievalNote": "Direct fetch consistently fails at the connection level (blocked, not a clean 403) from this network. No Wayback Machine snapshot exists for this exact PDF URL (confirmed via both the availability API and a CDX search, both empty). Unretrievable in this session by any available route."
+    },
+    {
+      "dossierSourceId": "SRC-ROHM-BJT",
+      "sourceKey": "src-rohm-bjt-transistor-basics",
+      "approvedRole": "manufacturer factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-rohm-bjt"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ROHM-NPN-SWITCH",
+      "sourceKey": "src-rohm-npn-transistor-switching",
+      "approvedRole": "manufacturer application authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-rohm-npn-switch"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ST-AN4607-SCR",
+      "sourceKey": "src-st-an4607-scr-thyristor-basics",
+      "approvedRole": "PRIMARY SCR/thyristor factual authority",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-st-an4607-1.1",
+        "loc-st-an4607-1.2"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OMRON-E5C2-TEMP-CONTROLLER",
+      "sourceKey": "src-omron-e5c2-temperature-controller",
+      "approvedRole": "bounded manufacturer application evidence",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-omron-e5c2-specs"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-ABB-DRIVE-SYSTEM",
+      "sourceKey": "src-abb-drives-technical-guide-no7-dimensioning",
+      "approvedRole": "PRIMARY manufacturer application authority for basic AC-drive block structure",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-abb-drives-fig1.1"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-TI-WIRELESS-ENV-SENSOR",
+      "sourceKey": "src-ti-wireless-environmental-sensor",
+      "approvedRole": "bounded manufacturer application evidence",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-ti-wireless-env-sensor"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-TI-TIDA-01067",
+      "sourceKey": "src-ti-tida-01067-smart-damper-control",
+      "approvedRole": "bounded manufacturer application evidence",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-ti-tida-01067"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OPENREACH-DIGITAL-PHONE",
+      "sourceKey": "src-openreach-digital-phone-lines",
+      "approvedRole": "PRIMARY current-industry authority for UK network-transition context",
+      "status": "VERIFIED",
+      "verifiedSourceLocatorKeys": [
+        "loc-openreach-digital-phone"
+      ]
+    },
+    {
+      "dossierSourceId": "SRC-OFCOM-PSTN-VOIP-2026",
+      "sourceKey": "src-ofcom-pstn-voip-switch-off-2026",
+      "approvedRole": "PRIMARY regulator authority for current UK telephony-transition context",
+      "status": "RETRIEVAL_FAILED",
+      "verifiedSourceLocatorKeys": [],
+      "retrievalNote": "Origin returns 403 Forbidden on every direct attempt. No Wayback Machine snapshot exists for this exact PDF URL (availability API returned an empty archived_snapshots object). The propositions this source was assigned (PSTN retirement context, 31 January 2027 date, VoIP migration) are independently already VERIFIED via SRC-OPENREACH-DIGITAL-PHONE, so no required proposition depends solely on this failed source."
+    },
+    {
+      "dossierSourceId": "SRC-OFCOM-FUTURE-LANDLINE",
+      "sourceKey": "src-ofcom-future-of-landline-calls",
+      "approvedRole": "current regulator/consumer context",
+      "status": "RETRIEVAL_FAILED",
+      "verifiedSourceLocatorKeys": [],
+      "retrievalNote": "Direct origin access returns 403 Forbidden. A Wayback Machine snapshot of this exact page is confirmed to exist (CDX search found a 200-status snapshot dated October 2025), but web.archive.org itself returned \"Temporarily Offline\" on every one of 14+ attempts in this session -- worth a future retry, not treated as a permanent gap. The proposition this source was assigned (migration to digital/IP landline context) is independently already VERIFIED via SRC-OPENREACH-DIGITAL-PHONE."
+    }
+  ]
+}

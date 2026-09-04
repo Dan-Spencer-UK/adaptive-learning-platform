@@ -1,0 +1,368 @@
+{
+  "qualificationId": "2365-02",
+  "counts": {
+    "noNewSourceRequired": 104,
+    "authoringOrNormalizationOnly": 13,
+    "reviewExistingSourceLocator": 13,
+    "newTechnicalSourceRequired": 7,
+    "newPublicQualificationEvidenceRequired": 3,
+    "projectArchitectDecisionRequired": 7
+  },
+  "gatherNewTechnicalSource": [
+    {
+      "id": "AT-019",
+      "ac": "AC2.3",
+      "proposition": "A wattmeter measures power via combined current- and voltage-sensing paths.",
+      "gapReason": "SRC-YOKOGAWA-POWER-MEASUREMENT is the dossier's only approved wattmeter source and is RETRIEVAL_FAILED (AWS WAF JS challenge). No other approved source in this cluster covers wattmeter measurement principle."
+    },
+    {
+      "id": "AT-085",
+      "ac": "AC5.3",
+      "proposition": "Fleming's left-hand rule for force direction on a current-carrying conductor in a field.",
+      "gapReason": "SRC-NAGOYA-OCW-ELECTROMAGNETICS is the dossier's sole approved source for this directional mapping. Only its course-index page was retrievable, which lists Lesson 12 subsection EM12_3 as titled \"Fleming's Left-Hand Rule\" -- a subsection TITLE alone, not the actual finger/current/field/force directional mapping. The lesson's instructional content is an off-site linked video, not retrieved or inspected in this pass, so the mapping itself remains unverified."
+    },
+    {
+      "id": "AT-086",
+      "ac": "AC5.3",
+      "proposition": "Fleming's right-hand rule for induced-current direction in a conductor moving through a field.",
+      "gapReason": "Same failure mode as Fleming's left-hand rule above: SRC-NAGOYA-OCW-ELECTROMAGNETICS's course-index page lists Lesson 13 subsection EM13_4-5 as titled \"Fleming's Right-Hand Rule\", but the actual directional-mapping content is an off-site linked video, not retrieved or inspected in this pass."
+    },
+    {
+      "id": "AT-106",
+      "ac": "AC6.1",
+      "proposition": "Security alarm: a transistor provides a switching role and a thyristor provides a latching/sounder role within the circuit.",
+      "gapReason": "GAP-UNIT202-SECURITY-ALARM-TOPOLOGY (dossier section 5.9/8, explicit deliberate gap): transistor switching (ROHM-NPN-SWITCH) and SCR latching/holding-current behaviour (ST-AN4607-SCR) are separately sourceable and VERIFIED as generic component behaviour (see cluster 20), but no approved source establishes that exact component chain as a representative/general security-alarm architecture. SRC-ROHM-NPN-SWITCH was explicitly checked and confirmed to show only generic switching examples (LED/relay/motor/solenoid), no alarm content."
+    },
+    {
+      "id": "AT-107",
+      "ac": "AC6.1",
+      "proposition": "Dimmer switch: a capacitor provides timing, a DIAC triggers, and a TRIAC provides phase control.",
+      "gapReason": "SRC-ST-AN3168-DIAC-TRIAC-DIMMER is the dossier's PRIMARY source for this exact chain and is RETRIEVAL_FAILED (no archive copy, hard origin block). SRC-ST-DIAC-DB3 (VERIFIED) covers only DIAC identity and its association with TRIAC triggering, not the full capacitor-timing/phase-control chain."
+    },
+    {
+      "id": "AT-111",
+      "ac": "AC6.1",
+      "proposition": "Telephone system: whether any specific master-socket component role remains qualification-relevant and current is itself unestablished -- currency must be independently verified before any such role is taught as current general technical truth.",
+      "gapReason": "GAP-UNIT202-TELEPHONE-MASTER-SOCKET (dossier section 5.8/8, LEGACY_CONTEXT_ONLY, explicit deliberate gap). The broader currency context (UK PSTN is legacy/being retired, digital/IP transition, 31 January 2027 target date) IS VERIFIED via SRC-OPENREACH-DIGITAL-PHONE (loc-openreach-digital-phone), which was also explicitly checked and confirmed to contain NO detailed master-socket internal-component description. The specific master-socket component-role proposition itself remains unsourced by design -- Wikipedia/community/DIY sources remain explicitly prohibited (dossier section 9) and were not used."
+    },
+    {
+      "id": "AT-121",
+      "ac": "AC6.2",
+      "proposition": "A TRIAC is a bidirectional gated AC switching device.",
+      "gapReason": "SRC-ST-AN3168-DIAC-TRIAC-DIMMER, the dossier's primary TRIAC-operation source, is RETRIEVAL_FAILED. SRC-ST-DIAC-DB3 (VERIFIED) mentions TRIACs only as DB3's trigger target, without describing TRIAC's own bidirectional gated-switching operation."
+    }
+  ],
+  "gatherNewPublicQualificationEvidence": [
+    {
+      "id": "SP-005",
+      "ac": "AC6.1",
+      "proposition": "Telephone: capacitor performs the ringer function (calibrated representative exemplar)."
+    },
+    {
+      "id": "SP-010",
+      "ac": "AC6.1",
+      "proposition": "Light dimmer: basic timing/control relationship to delivered power (required at calibrated depth)."
+    },
+    {
+      "id": "SP-013",
+      "ac": "AC6.1",
+      "proposition": "Motor control: bridge rectifier converts AC to DC (calibrated exemplar)."
+    }
+  ],
+  "reviewExistingSourceLocator": [
+    {
+      "id": "AT-001",
+      "ac": "AC1.1",
+      "proposition": "The four operations on fractions, decimals and percentages, and proportional reasoning.",
+      "gapReason": "SRC-OPENSTAX-PREALG-PERCENT (6.1 Understand Percent) is VERIFIED for percent-to-decimal/fraction conversion only. The approved dossier does not separately name a source for the four arithmetic operations on fractions/decimals or for proportional reasoning generally, and no retrieved approved source establishes them."
+    },
+    {
+      "id": "AT-002",
+      "ac": "AC1.1",
+      "proposition": "Laws of indices (multiplying/dividing powers of the same base; fractional indices as roots).",
+      "gapReason": "SRC-OPENSTAX-PREALG-SCI-NOTATION (10.5) is VERIFIED for multiplying/dividing powers of the same base (the product/quotient properties of integer exponents). Fractional indices as roots are outside that section's own stated integer-exponent scope and are not established by any retrieved approved source."
+    },
+    {
+      "id": "AT-004",
+      "ac": "AC1.1",
+      "proposition": "Definitions of range, mean, median and mode for a small dataset.",
+      "gapReason": "SRC-OPENSTAX-STATS-CENTER section 2.5 explicitly defines mean, median and mode but does NOT define statistical range anywhere in that section (independently confirmed absent). This is exactly the CONDITIONAL_SOURCE_GAP the dossier anticipated (GAP-UNIT202-MATH-STATISTICAL-RANGE). Note: the live corpus already cites an unapproved NIST/SEMATECH e-Handbook of Statistical Methods section that does define range -- not usable here per the dossier's explicit prohibition on substituting an unapproved source; flagged for Project Architect review as a candidate future approval."
+    },
+    {
+      "id": "AT-007",
+      "ac": "AC1.1",
+      "proposition": "Computing range/mean/median/mode from a small dataset.",
+      "gapReason": "Same gap as the range definition above: mean/median/mode computation is supported, range is not, by the approved and retrieved source."
+    },
+    {
+      "id": "AT-021",
+      "ac": "AC2.3",
+      "proposition": "Correct connection topology for each instrument in a given circuit.",
+      "gapReason": "Ammeter/voltmeter/ohmmeter connection topology is VERIFIED; wattmeter connection topology is not established by any retrieved approved source (see the wattmeter factual-proposition gap above)."
+    },
+    {
+      "id": "AT-022",
+      "ac": "AC2.3",
+      "proposition": "Recognise the correct instrument for a stated quantity, including a combined multimeter.",
+      "gapReason": "Ammeter/voltmeter/ohmmeter recognition is VERIFIED; no retrieved approved source specifically addresses a combined multimeter or wattmeter recognition."
+    },
+    {
+      "id": "AT-036",
+      "ac": "AC3.3",
+      "proposition": "A force is a push or pull that can cause or resist motion, deformation or equilibrium; weight is one example (force due to gravity).",
+      "gapReason": "Weight-as-gravitational-force is VERIFIED via SRC-OPENSTAX-UP1-MASS-WEIGHT. A generic definitional statement of 'force is a push or pull that can cause or resist motion/deformation/equilibrium' was not confirmed present in the specific approved-source sections retrieved (SRC-OPENSTAX-PHYSICS-WORK-POWER's 9.1 section discusses work/power, not a standalone force definition)."
+    },
+    {
+      "id": "AT-050",
+      "ac": "AC4.2",
+      "proposition": "Common conductor examples (e.g. copper, tungsten) and insulator examples (e.g. porcelain, glass, plastics).",
+      "gapReason": "Copper (conductor) and glass/plastic (insulators) are explicitly confirmed present in the retrieved section; tungsten and porcelain specifically were not found in the retrieved excerpt."
+    },
+    {
+      "id": "AT-091",
+      "ac": "AC5.3",
+      "proposition": "Coil/solenoid field and polarity; basic electromagnet/relay/contactor principle.",
+      "gapReason": "Solenoid field/polarity is VERIFIED. The word 'electromagnet' is not used explicitly by the retrieved source (only illustrated indirectly via application examples), and no approved source addresses relay/contactor principle at all."
+    },
+    {
+      "id": "AT-109",
+      "ac": "AC6.1",
+      "proposition": "Motor control: rectification and controlled switching/protection at block-function level.",
+      "gapReason": "Rectification and controlled switching (rectifier/DC-link/inverter block chain) are VERIFIED via SRC-ABB-DRIVE-SYSTEM Figure 1.1. No retrieved approved source names a protection function for this chain."
+    },
+    {
+      "id": "AT-114",
+      "ac": "AC6.2",
+      "proposition": "A rectifier converts AC to unidirectional/pulsating DC, with distinct half-wave and full-wave circuit forms.",
+      "gapReason": "AC-to-DC conversion and half-wave conduction/blocking behaviour are VERIFIED via SRC-ROHM-RECTIFIER-DIODE. That source describes single-diode half-wave behaviour only; a distinct full-wave (bridge) circuit form is not explicitly established by any retrieved approved source."
+    },
+    {
+      "id": "AT-125",
+      "ac": "AC6.2",
+      "proposition": "Standard schematic symbols for each listed component, including the NPN/PNP transistor distinction.",
+      "gapReason": "The NPN/PNP transistor symbol distinction is VERIFIED via SRC-ROHM-BJT's symbol figure. No retrieved approved source establishes standard schematic symbols for the cluster's other twelve listed components (capacitor, resistor, rectifier, diode, Zener, LED, photo device, thermistor, DIAC, TRIAC, thyristor, inverter)."
+    },
+    {
+      "id": "AT-126",
+      "ac": "AC6.2",
+      "proposition": "Physical appearance of each listed component as supporting recognition where useful.",
+      "gapReason": "No retrieved approved source is specifically a physical-appearance recognition guide (most are functional/technical articles); a dedicated appearance-recognition reference was not part of the approved dossier for this bullet."
+    }
+  ],
+  "normalizeFromExistingVerifiedSource": [
+    {
+      "id": "AT-003",
+      "ac": "AC1.1",
+      "proposition": "Pythagoras' theorem and the sine/cosine/tangent ratios for a right triangle.",
+      "supportingSourceLocatorKeys": [
+        "loc-prealg-pythagoras",
+        "loc-precalc-trig"
+      ]
+    },
+    {
+      "id": "AT-005",
+      "ac": "AC1.1",
+      "proposition": "Formula transposition: rearranging an equation to isolate an unknown, including squared/root forms.",
+      "supportingSourceLocatorKeys": [
+        "loc-interalg-formula"
+      ]
+    },
+    {
+      "id": "AT-006",
+      "ac": "AC1.1",
+      "proposition": "Solving a right-triangle side/angle from Pythagoras or a trig ratio.",
+      "supportingSourceLocatorKeys": [
+        "loc-prealg-pythagoras",
+        "loc-precalc-trig"
+      ]
+    },
+    {
+      "id": "AT-008",
+      "ac": "AC1.1",
+      "proposition": "Rearranging and evaluating a formula for an unknown quantity, including a square/root form.",
+      "supportingSourceLocatorKeys": [
+        "loc-interalg-formula"
+      ]
+    },
+    {
+      "id": "AT-092",
+      "ac": "AC5.4",
+      "proposition": "A single loop rotating within a magnetic field, connected via slip rings and brushes, produces an alternating EMF.",
+      "supportingSourceLocatorKeys": [
+        "loc-up2-generators",
+        "loc-ecampus-simple-ac-generator"
+      ]
+    },
+    {
+      "id": "AT-093",
+      "ac": "AC5.4",
+      "proposition": "No EMF is induced for motion parallel to the field; maximum EMF occurs for motion perpendicular to (cutting) the field.",
+      "supportingSourceLocatorKeys": [
+        "loc-ecampus-simple-ac-generator",
+        "loc-up2-motional-emf"
+      ]
+    },
+    {
+      "id": "AT-094",
+      "ac": "AC5.4",
+      "proposition": "The generator's output EMF varies as a sine wave as the loop rotates.",
+      "supportingSourceLocatorKeys": [
+        "loc-up2-generators",
+        "loc-ecampus-simple-ac-generator"
+      ]
+    },
+    {
+      "id": "AT-095",
+      "ac": "AC5.4",
+      "proposition": "f = N×P where N is rotational speed in rev/s and P is the number of pole pairs (per the C&G handout's own convention -- pole-pair definition requires independent verification, see review flag).",
+      "supportingSourceLocatorKeys": [
+        "loc-ecampus-alternator-relationships",
+        "loc-abb-pole-pair-annex-a"
+      ]
+    },
+    {
+      "id": "AT-096",
+      "ac": "AC5.4",
+      "proposition": "One cycle of output corresponds to one revolution per pole pair.",
+      "supportingSourceLocatorKeys": [
+        "loc-ecampus-alternator-relationships",
+        "loc-abb-pole-pair-annex-a"
+      ]
+    },
+    {
+      "id": "AT-097",
+      "ac": "AC5.4",
+      "proposition": "Simple f=N×P calculations and rearrangements; cycle/period/time relations.",
+      "supportingSourceLocatorKeys": [
+        "loc-ecampus-alternator-relationships",
+        "loc-abb-pole-pair-annex-a"
+      ]
+    },
+    {
+      "id": "AT-098",
+      "ac": "AC5.4",
+      "proposition": "Slip rings, brushes, poles and coil as the core parts of a single-loop alternator.",
+      "supportingSourceLocatorKeys": [
+        "loc-ecampus-simple-ac-generator"
+      ]
+    },
+    {
+      "id": "AT-108",
+      "ac": "AC6.1",
+      "proposition": "Heating/boiler control: a thermistor senses temperature, feeding a switching/relay chain.",
+      "supportingSourceLocatorKeys": [
+        "loc-murata-ntc",
+        "loc-omron-e5c2-specs"
+      ]
+    },
+    {
+      "id": "AT-110",
+      "ac": "AC6.1",
+      "proposition": "Wireless control: transmitter/receiver arrangement and its practical advantages.",
+      "supportingSourceLocatorKeys": [
+        "loc-ti-wireless-env-sensor",
+        "loc-ti-tida-01067"
+      ]
+    }
+  ],
+  "projectArchitectDecisionRequired": [
+    {
+      "id": "AT-099",
+      "ac": "AC5.5",
+      "proposition": "Definitions of amplitude/peak, peak-to-peak, periodic time, frequency, RMS value and average value for a sine wave.",
+      "candidateKeys": [
+        "characteristics of sine-waves::IDENTIFY",
+        "amplitude (sine-wave characteristic)::IDENTIFY",
+        "RMS value (sine-wave characteristic)::IDENTIFY",
+        "peak to peak value (sine-wave characteristic)::IDENTIFY",
+        "average value (sine-wave characteristic)::IDENTIFY",
+        "periodic time (sine-wave characteristic)::IDENTIFY",
+        "frequency (sine-wave characteristic)::IDENTIFY"
+      ]
+    },
+    {
+      "id": "AT-100",
+      "ac": "AC5.5",
+      "proposition": "The signed average of a complete symmetrical sine-wave cycle is zero; the 'average value' used in AC calculations is the average of one alternation.",
+      "candidateKeys": [
+        "characteristics of sine-waves::IDENTIFY",
+        "amplitude (sine-wave characteristic)::IDENTIFY",
+        "RMS value (sine-wave characteristic)::IDENTIFY",
+        "peak to peak value (sine-wave characteristic)::IDENTIFY",
+        "average value (sine-wave characteristic)::IDENTIFY",
+        "periodic time (sine-wave characteristic)::IDENTIFY",
+        "frequency (sine-wave characteristic)::IDENTIFY"
+      ]
+    },
+    {
+      "id": "AT-101",
+      "ac": "AC5.5",
+      "proposition": "Vpp = 2×Vpeak.",
+      "candidateKeys": [
+        "characteristics of sine-waves::IDENTIFY",
+        "amplitude (sine-wave characteristic)::IDENTIFY",
+        "RMS value (sine-wave characteristic)::IDENTIFY",
+        "peak to peak value (sine-wave characteristic)::IDENTIFY",
+        "average value (sine-wave characteristic)::IDENTIFY",
+        "periodic time (sine-wave characteristic)::IDENTIFY",
+        "frequency (sine-wave characteristic)::IDENTIFY"
+      ]
+    },
+    {
+      "id": "AT-102",
+      "ac": "AC5.5",
+      "proposition": "T = 1/f.",
+      "candidateKeys": [
+        "characteristics of sine-waves::IDENTIFY",
+        "amplitude (sine-wave characteristic)::IDENTIFY",
+        "RMS value (sine-wave characteristic)::IDENTIFY",
+        "peak to peak value (sine-wave characteristic)::IDENTIFY",
+        "average value (sine-wave characteristic)::IDENTIFY",
+        "periodic time (sine-wave characteristic)::IDENTIFY",
+        "frequency (sine-wave characteristic)::IDENTIFY"
+      ]
+    },
+    {
+      "id": "AT-103",
+      "ac": "AC5.5",
+      "proposition": "Vrms ≈ 0.707×Vpeak (and Vpeak ≈ 1.414×Vrms).",
+      "candidateKeys": [
+        "characteristics of sine-waves::IDENTIFY",
+        "amplitude (sine-wave characteristic)::IDENTIFY",
+        "RMS value (sine-wave characteristic)::IDENTIFY",
+        "peak to peak value (sine-wave characteristic)::IDENTIFY",
+        "average value (sine-wave characteristic)::IDENTIFY",
+        "periodic time (sine-wave characteristic)::IDENTIFY",
+        "frequency (sine-wave characteristic)::IDENTIFY"
+      ]
+    },
+    {
+      "id": "AT-104",
+      "ac": "AC5.5",
+      "proposition": "Vavg ≈ 0.636×Vpeak (average of one alternation), and the analogous current relationships.",
+      "candidateKeys": [
+        "characteristics of sine-waves::IDENTIFY",
+        "amplitude (sine-wave characteristic)::IDENTIFY",
+        "RMS value (sine-wave characteristic)::IDENTIFY",
+        "peak to peak value (sine-wave characteristic)::IDENTIFY",
+        "average value (sine-wave characteristic)::IDENTIFY",
+        "periodic time (sine-wave characteristic)::IDENTIFY",
+        "frequency (sine-wave characteristic)::IDENTIFY"
+      ]
+    },
+    {
+      "id": "AT-105",
+      "ac": "AC5.5",
+      "proposition": "Converting between frequency and period, and between peak, RMS and average-of-one-alternation values.",
+      "candidateKeys": [
+        "characteristics of sine-waves::IDENTIFY",
+        "amplitude (sine-wave characteristic)::IDENTIFY",
+        "RMS value (sine-wave characteristic)::IDENTIFY",
+        "peak to peak value (sine-wave characteristic)::IDENTIFY",
+        "average value (sine-wave characteristic)::IDENTIFY",
+        "periodic time (sine-wave characteristic)::IDENTIFY",
+        "frequency (sine-wave characteristic)::IDENTIFY"
+      ]
+    }
+  ]
+}

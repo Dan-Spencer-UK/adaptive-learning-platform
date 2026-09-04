@@ -1,9 +1,10 @@
 {
   "qualificationId": "2365-02",
   "generatedFrom": "reports/backtests/unit202-post-hardening/CC-21-FULL-PUBLIC-INPUT.json (frozen, read-only)",
-  "pipelineVersion": "packages/qualification-pipeline @ HEAD 9663120 (CC-21B)",
-  "semanticAdjudicationsApplied": 70,
-  "knowledgeBoundaryCertificationsApplied": 82,
+  "pipelineVersion": "packages/qualification-pipeline @ HEAD 9663120 (CC-21B, unmodified)",
+  "semanticAdjudicationsApplied": 65,
+  "knowledgeBoundaryCertificationsApplied": 64,
+  "unadjudicatedReviewProposedCount": 5,
   "candidates": [
     {
       "candidateKey": "mathematical principles::IDENTIFY",
@@ -175,7 +176,7 @@
         "unit202.si-unit.length"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "GOVERNED"
     },
     {
       "candidateKey": "length (SI unit)::APPLY",
@@ -199,7 +200,7 @@
         "unit202.si-unit.area"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "GOVERNED"
     },
     {
       "candidateKey": "area (SI unit)::APPLY",
@@ -223,7 +224,7 @@
         "unit202.si-unit.volume"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "GOVERNED"
     },
     {
       "candidateKey": "volume (SI unit)::APPLY",
@@ -247,7 +248,7 @@
         "unit202.si-unit.mass"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "GOVERNED"
     },
     {
       "candidateKey": "mass (SI unit)::APPLY",
@@ -271,7 +272,7 @@
         "unit202.si-unit.density"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "GOVERNED"
     },
     {
       "candidateKey": "density (SI unit)::APPLY",
@@ -295,7 +296,7 @@
         "unit202.si-unit.time"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "GOVERNED"
     },
     {
       "candidateKey": "time (SI unit)::APPLY",
@@ -319,7 +320,7 @@
         "unit202.si-unit.temperature"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "GOVERNED"
     },
     {
       "candidateKey": "temperature (SI unit)::APPLY",
@@ -343,7 +344,7 @@
         "unit202.si-unit.velocity"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
+      "knowledgeBoundaryStatus": "GOVERNED"
     },
     {
       "candidateKey": "velocity (SI unit)::APPLY",
@@ -387,7 +388,7 @@
         "unit202.si-unit.resistance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "resistance (SI unit)::OTHER",
@@ -399,7 +400,7 @@
         "unit202.si-unit.resistance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "resistivity (SI unit)::IDENTIFY",
@@ -411,7 +412,7 @@
         "unit202.si-unit.resistivity"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "resistivity (SI unit)::OTHER",
@@ -423,7 +424,7 @@
         "unit202.si-unit.resistivity"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "power (SI unit)::IDENTIFY",
@@ -435,7 +436,7 @@
         "unit202.si-unit.power"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "power (SI unit)::OTHER",
@@ -447,7 +448,7 @@
         "unit202.si-unit.power"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "frequency (SI electrical quantity)::IDENTIFY",
@@ -459,7 +460,7 @@
         "unit202.si-unit.frequency"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "frequency (SI electrical quantity)::OTHER",
@@ -471,7 +472,7 @@
         "unit202.si-unit.frequency"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "current (SI unit)::IDENTIFY",
@@ -483,7 +484,7 @@
         "unit202.si-unit.current"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "current (SI unit)::OTHER",
@@ -495,7 +496,7 @@
         "unit202.si-unit.current"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "voltage (SI unit)::IDENTIFY",
@@ -507,7 +508,7 @@
         "unit202.si-unit.voltage"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "voltage (SI unit)::OTHER",
@@ -519,7 +520,7 @@
         "unit202.si-unit.voltage"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "energy (SI unit)::IDENTIFY",
@@ -531,7 +532,7 @@
         "unit202.si-unit.energy"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "energy (SI unit)::OTHER",
@@ -543,7 +544,7 @@
         "unit202.si-unit.energy"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "impedance (SI unit)::IDENTIFY",
@@ -555,7 +556,7 @@
         "unit202.si-unit.impedance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "impedance (SI unit)::OTHER",
@@ -567,7 +568,7 @@
         "unit202.si-unit.impedance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "inductance and inductive reactance (SI unit)::IDENTIFY",
@@ -580,7 +581,7 @@
         "unit202.si-unit.inductive-reactance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "inductance and inductive reactance (SI unit)::OTHER",
@@ -593,7 +594,7 @@
         "unit202.si-unit.inductive-reactance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "capacitance and capacitive reactance (SI unit)::IDENTIFY",
@@ -606,7 +607,7 @@
         "unit202.si-unit.capacitive-reactance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "capacitance and capacitive reactance (SI unit)::OTHER",
@@ -619,7 +620,7 @@
         "unit202.si-unit.capacitive-reactance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "power factor (SI unit / dimensional status)::IDENTIFY",
@@ -632,7 +633,7 @@
         "unit202.si-unit.power-factor.dimensionless-convention"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "power factor (SI unit / dimensional status)::OTHER",
@@ -645,7 +646,7 @@
         "unit202.si-unit.power-factor.dimensionless-convention"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "electrical instruments for the measurement of electrical quantities::IDENTIFY",
@@ -677,7 +678,7 @@
         "unit202.review-fact.ohmmeter-definition"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "instrument for measuring power::IDENTIFY",
@@ -689,7 +690,7 @@
         "unit202.review-fact.wattmeter"
       ],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "instrument for measuring current::IDENTIFY",
@@ -725,7 +726,7 @@
         "unit202.review-fact.energy-meter"
       ],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "mass and weight::DEFINE",
@@ -838,11 +839,9 @@
       "performanceType": "DESCRIBE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.force-definition"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "work::DESCRIBE",
@@ -900,7 +899,7 @@
         "unit202.review-fact.power-mechanical-formula"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "values of mechanical energy, power and efficiency::CALCULATE",
@@ -1032,7 +1031,7 @@
         "unit202.review-fact.series-resistance"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "values of current, voltage and resistance in parallel and series D.C. circuits::CALCULATE",
@@ -1092,7 +1091,7 @@
         "unit202.review-fact.thermal-effect"
       ],
       "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "knowledgeBoundaryStatus": "PARTIAL"
     },
     {
       "candidateKey": "voltage drop::STATE",
@@ -1171,11 +1170,9 @@
       "performanceType": "DESCRIBE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.force-on-conductor"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "electromagnetism::DESCRIBE",
@@ -1193,11 +1190,9 @@
       "performanceType": "DESCRIBE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.faradays-law"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "basic principles of generating an A.C. supply::DESCRIBE",
@@ -1215,11 +1210,9 @@
       "performanceType": "DESCRIBE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.faradays-law"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "sine-wave (AC generation principle)::DESCRIBE",
@@ -1227,11 +1220,9 @@
       "performanceType": "DESCRIBE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.ac-sine-equation"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "frequency (AC generation principle)::DESCRIBE",
@@ -1239,11 +1230,9 @@
       "performanceType": "DESCRIBE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.ac-sine-equation"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "EMF (AC generation principle)::DESCRIBE",
@@ -1251,11 +1240,9 @@
       "performanceType": "DESCRIBE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.faradays-law"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "magnetic flux (AC generation principle)::DESCRIBE",
@@ -1263,11 +1250,9 @@
       "performanceType": "DESCRIBE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.faradays-law"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "characteristics of sine-waves::IDENTIFY",
@@ -1285,11 +1270,9 @@
       "performanceType": "IDENTIFY",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.rms-value"
-      ],
+      "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "average value (sine-wave characteristic)::IDENTIFY",
@@ -1297,11 +1280,9 @@
       "performanceType": "IDENTIFY",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.average-value"
-      ],
+      "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "peak to peak value (sine-wave characteristic)::IDENTIFY",
@@ -1309,11 +1290,9 @@
       "performanceType": "IDENTIFY",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.peak-to-peak-value"
-      ],
+      "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "periodic time (sine-wave characteristic)::IDENTIFY",
@@ -1321,11 +1300,9 @@
       "performanceType": "IDENTIFY",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.periodic-time"
-      ],
+      "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "frequency (sine-wave characteristic)::IDENTIFY",
@@ -1333,11 +1310,9 @@
       "performanceType": "IDENTIFY",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.ac-sine-equation"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "GOVERNED"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "amplitude (sine-wave characteristic)::IDENTIFY",
@@ -1345,11 +1320,9 @@
       "performanceType": "IDENTIFY",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.amplitude-value"
-      ],
+      "requiredFactKeys": [],
       "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "function and application of electronic components used in electrical systems::DESCRIBE",
@@ -1469,11 +1442,9 @@
       "performanceType": "STATE",
       "disposition": "REQUIRED_EXPLICIT_CURRICULUM",
       "isExplicitlyStructuralNode": false,
-      "requiredFactKeys": [
-        "unit202.review-fact.ohms-law"
-      ],
-      "technicalCoverageStatus": "COMPLETE",
-      "knowledgeBoundaryStatus": "PARTIAL"
+      "requiredFactKeys": [],
+      "technicalCoverageStatus": "UNRESOLVED_REQUIREMENTS",
+      "knowledgeBoundaryStatus": "ADJUDICATION_REQUIRED"
     },
     {
       "candidateKey": "rectifiers::STATE",
@@ -1607,423 +1578,269 @@
     }
   ],
   "gapsByType": {
-    "EVIDENCE_NORMALIZATION_REVIEW": 2,
+    "EVIDENCE_NORMALIZATION_REVIEW": 17,
     "KNOWLEDGE_DECOMPOSITION_GAP": 31,
-    "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP": 42,
+    "KNOWLEDGE_BOUNDARY_CERTIFICATION_GAP": 52,
     "PERFORMANCE_DEPTH_GAP": 3,
-    "TECHNICAL_TRUTH_GAP": 8
+    "TECHNICAL_TRUTH_GAP": 3
   },
-  "totalGaps": 86,
+  "totalGaps": 106,
   "knowledgeBoundaryCertificationOutcomes": [
     {
-      "targetCandidateKey": "current (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-001"
+      "targetCandidateKey": "length (SI unit)::IDENTIFY",
+      "decision": "COMPLETE"
     },
     {
-      "targetCandidateKey": "current (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-002"
+      "targetCandidateKey": "area (SI unit)::IDENTIFY",
+      "decision": "COMPLETE"
+    },
+    {
+      "targetCandidateKey": "volume (SI unit)::IDENTIFY",
+      "decision": "COMPLETE"
+    },
+    {
+      "targetCandidateKey": "mass (SI unit)::IDENTIFY",
+      "decision": "COMPLETE"
+    },
+    {
+      "targetCandidateKey": "density (SI unit)::IDENTIFY",
+      "decision": "COMPLETE"
+    },
+    {
+      "targetCandidateKey": "time (SI unit)::IDENTIFY",
+      "decision": "COMPLETE"
+    },
+    {
+      "targetCandidateKey": "velocity (SI unit)::IDENTIFY",
+      "decision": "COMPLETE"
+    },
+    {
+      "targetCandidateKey": "temperature (SI unit)::IDENTIFY",
+      "decision": "COMPLETE"
+    },
+    {
+      "targetCandidateKey": "current (SI unit)::IDENTIFY",
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "voltage (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-003"
-    },
-    {
-      "targetCandidateKey": "voltage (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-004"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "resistance (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-005"
-    },
-    {
-      "targetCandidateKey": "resistance (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-006"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "resistivity (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-007"
-    },
-    {
-      "targetCandidateKey": "resistivity (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-008"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "power (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-009"
-    },
-    {
-      "targetCandidateKey": "power (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-010"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "energy (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-011"
-    },
-    {
-      "targetCandidateKey": "energy (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-012"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "frequency (SI electrical quantity)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-013"
-    },
-    {
-      "targetCandidateKey": "frequency (SI electrical quantity)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-014"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "impedance (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-015"
-    },
-    {
-      "targetCandidateKey": "impedance (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-016"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "capacitance and capacitive reactance (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-017"
-    },
-    {
-      "targetCandidateKey": "capacitance and capacitive reactance (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-018"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "inductance and inductive reactance (SI unit)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-019"
-    },
-    {
-      "targetCandidateKey": "inductance and inductive reactance (SI unit)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-020"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "power factor (SI unit / dimensional status)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-021"
-    },
-    {
-      "targetCandidateKey": "power factor (SI unit / dimensional status)::OTHER",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-022"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "instrument for measuring current::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-023"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "instrument for measuring voltage::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-024"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "instrument for measuring resistance::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-025"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "instrument for measuring power::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-026"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "instrument for measuring energy::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-027"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "mass and weight::DEFINE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-028"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "lever class I::EXPLAIN",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-029"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "lever class II::EXPLAIN",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-030"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "lever class III::EXPLAIN",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-031"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "gears::EXPLAIN",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-032"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "pulleys::EXPLAIN",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-033"
-    },
-    {
-      "targetCandidateKey": "force::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-034"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "work::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-035"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "power (mechanical)::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-036"
-    },
-    {
-      "targetCandidateKey": "efficiency::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-037"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "inter-relationships between force, work, energy, power and efficiency::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-038"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "power (calculation, mechanical)::CALCULATE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-039"
+      "decision": "COMPLETE"
+    },
+    {
+      "targetCandidateKey": "efficiency::DESCRIBE",
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "efficiency (calculation)::CALCULATE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-040"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "basic principles of electron theory::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-041"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "conductors (good electrical conductor materials)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-042"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "conductors (good electrical conductor materials)::DISTINGUISH",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-043"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "insulators (electrical insulator materials)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-044"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "insulators (electrical insulator materials)::DISTINGUISH",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-045"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "resistance and resistivity in relation to electrical circuits::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-046"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "relationship between current, voltage and resistance in parallel and series D.C. circuits::EXPLAIN",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-047"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "current (calculation, D.C. circuits)::CALCULATE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-048"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "voltage (calculation, D.C. circuits)::CALCULATE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-049"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "resistance (calculation, D.C. circuits)::CALCULATE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-050"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "values of current, voltage and resistance in parallel and series D.C. circuits::CALCULATE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-051"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "values of power in parallel and series D.C. circuits::CALCULATE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-052"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "voltage drop::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-053"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "chemical and thermal effects of electric currents::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-054"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "attraction and repulsion effects of magnetism::DESCRIBE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-055"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "difference between magnetic flux and flux density::STATE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-056"
+      "decision": "COMPLETE"
     },
     {
       "targetCandidateKey": "production of a magnetic field::DESCRIBE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-057"
-    },
-    {
-      "targetCandidateKey": "force on a current-carrying conductor in a magnetic field::DESCRIBE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-058"
-    },
-    {
-      "targetCandidateKey": "electromotive force::DESCRIBE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-059"
-    },
-    {
-      "targetCandidateKey": "single-loop generator::DESCRIBE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-060"
-    },
-    {
-      "targetCandidateKey": "sine-wave (AC generation principle)::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-061"
-    },
-    {
-      "targetCandidateKey": "frequency (AC generation principle)::DESCRIBE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-062"
-    },
-    {
-      "targetCandidateKey": "EMF (AC generation principle)::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-063"
-    },
-    {
-      "targetCandidateKey": "magnetic flux (AC generation principle)::DESCRIBE",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-064"
-    },
-    {
-      "targetCandidateKey": "amplitude (sine-wave characteristic)::IDENTIFY",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-065"
-    },
-    {
-      "targetCandidateKey": "RMS value (sine-wave characteristic)::IDENTIFY",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-066"
-    },
-    {
-      "targetCandidateKey": "peak to peak value (sine-wave characteristic)::IDENTIFY",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-067"
-    },
-    {
-      "targetCandidateKey": "average value (sine-wave characteristic)::IDENTIFY",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-068"
-    },
-    {
-      "targetCandidateKey": "periodic time (sine-wave characteristic)::IDENTIFY",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-069"
-    },
-    {
-      "targetCandidateKey": "frequency (sine-wave characteristic)::IDENTIFY",
-      "decision": "COMPLETE",
-      "certificationRef": "CC-22-CERT-070"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "capacitors::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-071"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "diacs::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-072"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "diodes::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-073"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "invertors::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-074"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "LED::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-075"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "rectifiers::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-076"
-    },
-    {
-      "targetCandidateKey": "resistors::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-077"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "thermistors::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-078"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "thyristors::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-079"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "transistors::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-080"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "triacs::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-081"
+      "decision": "PARTIAL"
     },
     {
       "targetCandidateKey": "Zener::STATE",
-      "decision": "PARTIAL",
-      "certificationRef": "CC-22-CERT-082"
+      "decision": "PARTIAL"
     }
   ]
 }
