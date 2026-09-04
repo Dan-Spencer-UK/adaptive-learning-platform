@@ -1,0 +1,177 @@
+{
+  "pilotId": "pilot-002-review",
+  "scope": "Targeted repair research for requirements 3, 7, 8, 13, 15 only (per Project Architect review). Requirements 1, 2, 4, 6, 9, 10, 11, 12, 14 were not reacquired; requirement 5 was a wording-only correction using its existing source, no new research.",
+  "entries": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "BIPM degree Celsius kelvin relationship t = T - 273.15 SI brochure"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C-r1",
+          "order": 1,
+          "sourceRef": "https://www.bipm.org/en/publications/si-brochure/annex-1/thermodynamic-temperature",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "BIPM's own 'Thermodynamic temperature' annex page -- PRIMARY_NORMATIVE_OR_STANDARDS_BODY; retrieved, but the extracted excerpt did not contain the Celsius-kelvin relationship statement (only a list of historical CGPM/CIPM resolutions)."
+        },
+        {
+          "candidateId": "C-r2",
+          "order": 2,
+          "sourceRef": "https://www.bipm.org/documents/20126/41489682/SI-App2-kelvin.pdf/cd36cb68-3f00-05fd-339e-452df0b6215e",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "BIPM SI Brochure Appendix 2 ('Mise en pratique for the definition of the kelvin') -- PRIMARY_NORMATIVE_OR_STANDARDS_BODY; retrieved via direct document extraction and states the exact relationship and equal-magnitude fact."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "(Project Architect-supplied lead) https://web.chem.ox.ac.uk/teaching/Physics%20for%20CHemists/Magnetism/Force.html -- verify finger mapping and motor/force condition"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "Fleming's left hand rule thumb force first finger field second finger current mutually perpendicular right angles"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C-r1",
+          "order": 1,
+          "sourceRef": "https://web.chem.ox.ac.uk/teaching/Physics%20for%20CHemists/Magnetism/Force.html",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "University of Oxford, Dept. of Chemistry -- ACADEMIC_OR_RESEARCH_INSTITUTION (Project Architect-supplied lead); retrieved and confirmed to state the thumb/index/middle finger mapping, but not the perpendicularity condition."
+        },
+        {
+          "candidateId": "C-r2",
+          "order": 2,
+          "sourceRef": "https://www.staff.ncl.ac.uk/s.j.cotterill/hand.html",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Newcastle University staff page -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieved, but content is exclusively hand anatomy, unrelated to electromagnetism."
+        },
+        {
+          "candidateId": "C-r3",
+          "order": 3,
+          "sourceRef": "http://info.ee.surrey.ac.uk/Workshop/advice/coils/force.html",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "University of Surrey -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval attempted, but the site's TLS certificate has expired, so no content could be retrieved."
+        },
+        {
+          "candidateId": "C-r4",
+          "order": 4,
+          "sourceRef": "https://exetermathematicsschool.ac.uk/electromagnetism/",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Exeter Mathematics School -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval attempted, but the page returned HTTP 404 Not Found."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "Fleming's right hand rule generator thumb motion first finger field second finger induced current (restricted to ac.uk, gov.uk, .edu, iet.org)"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "pasco.com generator rule right hand Fleming induced current motion field"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C-r1",
+          "order": 1,
+          "sourceRef": "https://www.le.ac.uk/se/centres/sci/selfstudy/mam12.htm",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "University of Leicester self-study page -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval attempted, server returned HTTP 403 Forbidden (as in pilot-002)."
+        },
+        {
+          "candidateId": "C-r2",
+          "order": 2,
+          "sourceRef": "http://resources.hwb.wales.gov.uk/VTC/2009-10/engineering/1/downloads/supporting_notes.pdf",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Welsh Government (hwb.wales.gov.uk) engineering resource -- GOVERNMENT_OR_REGULATOR; retrieval attempted, but the domain no longer resolves (DNS failure)."
+        },
+        {
+          "candidateId": "C-r3",
+          "order": 3,
+          "sourceRef": "https://ph.qmul.ac.uk/sites/default/files/handout8.PDF",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "Queen Mary University of London physics handout -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval attempted, server returned HTTP 500 Internal Server Error."
+        },
+        {
+          "candidateId": "C-r4",
+          "order": 4,
+          "sourceRef": "https://www.pasco.com/resources/articles/right-hand-rule",
+          "chosen": false,
+          "retrievalAttempted": true,
+          "reason": "PASCO 'Right Hand Rule' article -- ORIGINAL_MANUFACTURER_OR_VENDOR; retrieved and re-examined for a generator-rule passage; states a structurally related right-hand rule for force on a moving positive charge, but not explicitly Fleming's named generator rule with a current/generator condition -- rejected as insufficiently exact to cite without inference."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "wireless control systems category remote operation without wired connection IEEE OR IET OR standards definition (restricted to ac.uk, gov.uk, .edu, iet.org, ieee.org)"
+        },
+        {
+          "queryId": "Q2",
+          "order": 2,
+          "queryText": "libretexts wireless remote control category function no wired connection engineering technology"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C-r1",
+          "order": 1,
+          "sourceRef": "https://edisontechcenter.org/RemoteControl.html",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Edison Tech Center (nonprofit engineering-education organisation) -- AUTHORITATIVE_TECHNICAL_REFERENCE; retrieved and found to describe wireless remote control at a general, non-manufacturer-specific category level."
+        }
+      ]
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "queries": [
+        {
+          "queryId": "Q1",
+          "order": 1,
+          "queryText": "(Project Architect-supplied lead) https://support.aa.net.uk/Bell_wire -- verify capacitor's causal role in ringing signal routing"
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "C-r1",
+          "order": 1,
+          "sourceRef": "https://support.aa.net.uk/Bell_wire",
+          "chosen": true,
+          "retrievalAttempted": true,
+          "reason": "Andrews & Arnold (aa.net.uk), a UK telecoms operator's technical support documentation -- AUTHORITATIVE_TECHNICAL_REFERENCE (Project Architect-supplied partial lead); retrieved and found to state the capacitor's causal routing/separation function directly."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "reviewId": "CC-24-PILOT-002-PA-REVIEW",
+  "reviewedRun": "pilot-002",
+  "reviewedBundlePath": "reports/backtests/unit202-blind-acquisition-run/pilot-002/",
+  "reviewedBundleUnchanged": true,
+  "correctionArtifactsPath": "reports/backtests/unit202-blind-acquisition-run/pilot-002-review/",
+  "verdictSummary": "Pilot-002 is structurally useful and demonstrates that the acquisition approach can produce usable evidence, but its reported 13 VERIFIED / 2 SOURCE_GAP result was not accepted unchanged. One accepted requirement's normalized claim (weight/mass, requirement 5) conflated the general definition of weight with a special-case condition and required correction. Two of the reported SOURCE_GAP requirements (13, 15) had usable partial evidence that a Project Architect-directed targeted repair could complete or substantially strengthen without weakening the underlying learning requirement. Two other requirements (7, 8 -- Fleming's hand rules) required fresh targeted research using Project Architect-supplied leads; requirement 7 improved to PARTIALLY_VERIFIED, requirement 8 remains a genuine SOURCE_GAP after a fresh candidate search. Requirement 3 (temperature) was accepted but incomplete -- it lacked the kelvin/Celsius relationship a full claim on this topic requires -- and was repaired with a second BIPM document.",
+  "reasonOriginalAggregateNotAcceptedUnchanged": [
+    "Requirement 5's normalized claim implied w=mg was conditional on the net external force being weight (a free-fall-like special case), rather than being the unconditional definition of the weight force -- a genuine pedagogical/physics defect in the normalization, not in the underlying source.",
+    "Requirement 3's claim named the kelvin/Celsius distinction only qualitatively; a claim that includes this distinction requires the quantitative relationship (t = T - 273.15) from an authoritative source, which pilot-002 did not acquire.",
+    "Requirement 13's sole source (Somfy) is a single manufacturer's product description; treating it as sufficient evidence for a category-wide claim about wireless control systems would generalise from one manufacturer's product, which the requirement's own depth ceiling explicitly excludes.",
+    "Requirement 15's sole source (AT&T Bell System Practices) documents that a ringer and a capacitor are co-located as standard apparatus, but never states why -- it does not establish the capacitor's causal signalling role, which the requirement's minimum sufficient depth requires.",
+    "Requirements 7 and 8 (Fleming's hand rules) were left as full SOURCE_GAP in pilot-002 without the Project Architect's now-supplied leads having been tried; a fresh, capped, targeted search was warranted before accepting that disposition as final."
+  ],
+  "acceptedUnchanged": {
+    "note": "These 9 requirements are accepted from pilot-002's existing evidence with no new research and no wording change. Full detail: reports/backtests/unit202-blind-acquisition-run/pilot-002/PILOT-RESULTS.json (unaltered).",
+    "requirementIds": [
+      "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT"
+    ]
+  },
+  "correctionApplied": {
+    "requirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+    "requirementNumber": 5,
+    "defect": "Normalized claim implied w=mg applies only when weight is the net external force on the object, confusing the general definition of weight with the special condition under which weight happens to equal the net force (e.g. free fall / no other forces acting).",
+    "correction": "Reworded to state weight as the gravitational force acting on an object unconditionally (w=mg, m=mass, g=local gravitational acceleration; mass constant across location, weight varies with g). No new source acquired -- same accepted source (OpenStax University Physics Vol.1, §5.5 'Mass and Weight', Eq. 5.9), same retrieved passage, same locator.",
+    "status": "VERIFIED",
+    "detailPath": "reports/backtests/unit202-blind-acquisition-run/pilot-002-review/PILOT-002-REVIEWED-RESULTS.json"
+  },
+  "targetedRepairs": [
+    {
+      "requirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementNumber": 3,
+      "priorStatus": "VERIFIED (incomplete for a claim including the kelvin/Celsius relationship)",
+      "finalStatus": "VERIFIED",
+      "candidatesOpenedThisRepair": 2,
+      "sourcesUsed": [
+        { "role": "kept", "publisher": "BIPM", "url": "https://www.bipm.org/en/si-base-units/kelvin" },
+        { "role": "added", "publisher": "BIPM (SI Brochure, 9th ed., Appendix 2)", "url": "https://www.bipm.org/documents/20126/41489682/SI-App2-kelvin.pdf/cd36cb68-3f00-05fd-339e-452df0b6215e" }
+      ],
+      "summary": "A second BIPM document (the same standards body) supplies the exact quantitative Celsius/kelvin relationship (t = T - 273.15; equal unit magnitude) that the original claim lacked."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "requirementNumber": 7,
+      "priorStatus": "SOURCE_GAP",
+      "finalStatus": "PARTIALLY_VERIFIED",
+      "candidatesOpenedThisRepair": 4,
+      "sourcesUsed": [
+        { "role": "added", "publisher": "University of Oxford, Department of Chemistry", "url": "https://web.chem.ox.ac.uk/teaching/Physics%20for%20CHemists/Magnetism/Force.html" }
+      ],
+      "satisfiedDimensions": ["DIRECTIONAL_MAPPING", "ROLE_MAPPING"],
+      "unresolvedDimensions": ["CORRECT_USE_CONDITIONS"],
+      "summary": "The Project Architect's Oxford lead confirms the thumb=force/index=field/middle=current mapping. The mutually-perpendicular-fingers correct-use condition, and an explicit current-carrying-conductor framing, were not found within a fresh 4-candidate cap (3 further candidates: off-topic, TLS-certificate-expired, 404)."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "requirementNumber": 8,
+      "priorStatus": "SOURCE_GAP",
+      "finalStatus": "SOURCE_GAP",
+      "candidatesOpenedThisRepair": 4,
+      "sourcesUsed": [],
+      "summary": "A fresh 4-candidate search (University of Leicester -- 403; Welsh Government resource -- DNS failure; QMUL handout -- HTTP 500; PASCO's right-hand rule article -- states a structurally related but differently-framed rule for force on a moving charge, not explicitly named as the generator rule and not naming 'current') did not produce a source precise enough to cite without inference. Remains SOURCE_GAP."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "requirementNumber": 13,
+      "priorStatus": "VERIFIED (manufacturer-specific only)",
+      "finalStatus": "VERIFIED",
+      "candidatesOpenedThisRepair": 1,
+      "sourcesUsed": [
+        { "role": "kept, now explicitly representative-example only", "publisher": "Somfy Systems", "url": "https://www.somfysystems.com/en-us/discover-somfy/power-technology/radio-technology-somfy" },
+        { "role": "added, category-level", "publisher": "Edison Tech Center", "url": "https://edisontechcenter.org/RemoteControl.html" }
+      ],
+      "summary": "Edison Tech Center (a nonprofit engineering-education organisation, not a manufacturer) supplies a genuine category-level description (input -> transmission -> receiver, enabling operation without a wired path). The Somfy claim is kept but now explicitly labelled a representative example, not the category definition."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "requirementNumber": 15,
+      "priorStatus": "VERIFIED (component pairing only, no causal role)",
+      "finalStatus": "VERIFIED",
+      "candidatesOpenedThisRepair": 1,
+      "sourcesUsed": [
+        { "role": "kept", "publisher": "AT&T Bell System Practices", "url": "https://www.telephonecollectors.info/index.php/browse/bsps-bell-system/most-popular/502-sets-cb/13211-502-200-100-i3-mar64-subscriber-sets-identification-and-assembly/file" },
+        { "role": "added, causal function", "publisher": "Andrews & Arnold (aa.net.uk)", "url": "https://support.aa.net.uk/Bell_wire" }
+      ],
+      "summary": "The Project Architect's aa.net.uk lead states the capacitor's causal role directly: it is used to route/separate the AC ringing current to the bell, distinct from the rest of the (DC) telephone circuit. Combined with the kept Bell System Practices component-pairing fact. The two sources describe two distinct national telephony wiring traditions (US internal subscriber-set wiring vs UK external bell-wire wiring) and are cited only for the general functional principle each individually states, not merged into one claimed circuit topology."
+    }
+  ],
+  "finalDispositionAllFifteen": [
+    { "n": 1, "requirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 2, "requirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 3, "requirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT", "status": "VERIFIED", "changedThisReview": true },
+    { "n": 4, "requirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 5, "requirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP", "status": "VERIFIED", "changedThisReview": true },
+    { "n": 6, "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 7, "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE", "status": "PARTIALLY_VERIFIED", "changedThisReview": true },
+    { "n": 8, "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE", "status": "SOURCE_GAP", "changedThisReview": false },
+    { "n": 9, "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 10, "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 11, "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 12, "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 13, "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION", "status": "VERIFIED", "changedThisReview": true },
+    { "n": 14, "requirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT", "status": "VERIFIED", "changedThisReview": false },
+    { "n": 15, "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT", "status": "VERIFIED", "changedThisReview": true }
+  ],
+  "totals": { "VERIFIED": 13, "PARTIALLY_VERIFIED": 1, "SOURCE_GAP": 1, "CONFLICTED": 0 },
+  "remainingSourceGaps": [
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "requirementNumber": 8,
+      "unresolvedDimensions": ["DIRECTIONAL_MAPPING", "ROLE_MAPPING", "CORRECT_USE_CONDITIONS"],
+      "note": "No source found within a total of 8 candidates across pilot-002 and this repair (4 + 4) states Fleming's right-hand/generator rule's mapping precisely enough to cite without inference."
+    }
+  ],
+  "remainingPartialResults": [
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "requirementNumber": 7,
+      "satisfiedDimensions": ["DIRECTIONAL_MAPPING", "ROLE_MAPPING"],
+      "unresolvedDimensions": ["CORRECT_USE_CONDITIONS"],
+      "note": "The finger-to-quantity mapping is sourced; the perpendicularity/correct-use condition is not, after a fresh 4-candidate cap."
+    }
+  ],
+  "explicitScopeStatement": "This review does not treat pilot-002 or this repair as production-complete evidence for Unit 202. The 15 reviewed requirements remain a stratified sample of the 213 Unit 202 evidence requirements, not the complete source set. Source count is not equivalent to evidence-requirement count. No new pilot was created; no other Unit 202 requirement was researched. This review does not generate any learner-facing content, lesson, assertion, or storyboard.",
+  "nextAction": "Acquire the remaining Unit 202 evidence requirements in manageable, production-sized batches; on completion, generate and review the complete Unit 202 learning-point list."
+}
