@@ -1,6 +1,6 @@
-# Mechanics and Machines — Proposed Learning Points
+# Mechanics and Machines — Learning Points
 
-**Status:** PROPOSED_FOR_PA_REVIEW — not accepted, not identity-frozen. Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically, not alphabetically. Every learning point traces to at least one evidence-requirement claim in `EVIDENCE-RESULTS.json`.
+**Status:** `ACCEPTED_BY_PRODUCT_ARCHITECT` — accepted in principle at the appropriate early-stage depth; identities frozen as of this closure pass. Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically, not alphabetically. Every learning point traces to at least one evidence-requirement claim in `EVIDENCE-RESULTS.json`.
 
 **Learning point count:** 18, covering all 28 mechanics-and-machines evidence requirements (see coverage matrix at the end).
 
@@ -26,6 +26,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 foundational-
 
 ### MM-LP-03 — Levers: parts and basic operation
 **Outcome:** Identify fulcrum, effort and load; explain in outline how a lever works.
+**Knowledge:** A lever is a rigid bar that turns around a fixed pivot point called the fulcrum. The effort is the force applied to the lever; the load (or resistance) is the force being overcome or moved.
 **Prerequisites:** none. **Cross-domain:** none.
 **Evidence:** levers.
 **Depth note:** Kept separate from classification and calculation — three independently diagnosable skills.
@@ -65,13 +66,14 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 foundational-
 
 ### MM-LP-08 — Pulleys: purpose and basic operation
 **Outcome:** Explain what a pulley is for; describe how fixed vs. movable pulleys affect the force needed to lift a load.
-**Knowledge:** A single fixed pulley changes only the direction of the applied force, not its magnitude. Movable pulleys can reduce the required force.
+**Knowledge:** A pulley is a wheel-and-rope mechanism used to lift objects. A single fixed pulley changes only the direction of the applied force, not its magnitude. Movable pulleys can reduce the required force.
 **Prerequisites:** none. **Cross-domain:** none.
 **Evidence:** pulleys.
 **Excludes:** lifting-equipment regulation/inspection; mechanical-advantage calculation (MM-LP-09).
 
 ### MM-LP-09 — Mechanical advantage
 **Outcome:** State what mechanical advantage means generally; calculate ideal MA of a pulley system by counting load-supporting rope sections.
+**Knowledge:** Mechanical advantage is the factor by which a machine multiplies an applied (effort) force to produce a larger output (load) force; for an ideal, frictionless machine, this is the ideal mechanical advantage. For a pulley system specifically, ideal MA equals the number of rope sections that directly support the load (the weight end) — not the total number of pulleys or the total rope length.
 **Prerequisites:** MM-LP-08. **Cross-domain:** none.
 **Evidence:** mechanical-advantage.
 **Depth note:** Pulley-counting rule bound exactly as sourced — sections at the load end, not total rope length or pulley count. **Corrected (PA narrow-correction pass):** removed decimal-arithmetic/ratio-notation/substitution prerequisites — counting rope sections requires none of these skills.
@@ -87,6 +89,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 foundational-
 
 ### MM-LP-11 — Real machines: friction and losses reduce useful output
 **Outcome:** Explain that real machines are never perfectly efficient because friction/losses convert input into heat rather than useful output.
+**Knowledge:** Not all input work or power reaches the useful output; the lost portion becomes heat rather than useful mechanical output — so the useful output of a real machine is always less than its input.
 **Prerequisites:** MM-LP-10. **Cross-domain:** none (qualitative; calculation is MM-LP-17).
 **Evidence:** real-losses-reduce-useful-output.
 **Depth note:** Independently diagnosable from the ideal case.
@@ -94,12 +97,14 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 foundational-
 
 ### MM-LP-12 — Force
 **Outcome:** State that force is a push or pull, its possible effects, and its SI unit.
+**Knowledge:** A force is a push or a pull exerted on a body; it may produce motion, change existing motion, or cause the body to deform. The SI unit of force is the newton (N): the force required to give a one-kilogram mass an acceleration of one metre per second squared.
 **Prerequisites:** none. **Cross-domain:** none.
 **Evidence:** force-concept-at-qualification-depth.
 **Excludes:** F=ma as an independent topic; vector force resolution; Newton's three laws as a formal system.
 
 ### MM-LP-13 — Work: concept and W = Fd
 **Outcome:** Explain what work means; use W=Fd for a force acting along the direction of displacement.
+**Knowledge:** Work is done when a force acts on an object and moves it through a distance in the direction of the force: W=Fd (joules = newtons × metres). One joule is the work done when a force of one newton moves its point of application one metre in the direction of the force.
 **Prerequisites:** MM-LP-12. **Cross-domain:** FM-LP-04, FM-LP-13.
 **Evidence:** work, w-fd.
 **Depth note:** Deliberately scoped to force-along-displacement; not generalised to an arbitrary angle. **Corrected (PA narrow-correction pass):** removed the formula-rearrangement prerequisite — only forward calculation (W from F and d) is evidenced.
@@ -107,6 +112,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 foundational-
 
 ### MM-LP-14 — Energy, kinetic energy and potential energy: concepts
 **Outcome:** State what energy is; explain the qualitative KE-vs-PE distinction.
+**Knowledge:** Energy is the capacity of a system to do work, measured in joules. Kinetic energy is the energy an object possesses because of its motion. Potential energy is energy associated with an object's position or configuration (a stored capacity to do work) — qualitatively distinct from kinetic energy: an object can possess potential energy at rest (zero KE), and vice versa.
 **Prerequisites:** MM-LP-13. **Cross-domain:** none (no formula bound).
 **Evidence:** energy, kinetic-versus-potential-energy-concept.
 **Depth note:** KE remains qualitative only — KE=½mv² explicitly excluded from mastery. PE's formula lives separately in MM-LP-15.
@@ -122,6 +128,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 foundational-
 
 ### MM-LP-16 — Power: concept and P = W/t
 **Outcome:** State power is the rate of doing work; use P=W/t.
+**Knowledge:** Power is the rate of doing work (equivalently, the rate energy is transferred): P=W/t, where W is work done and t is time taken. Power's SI unit is the watt, equal to one joule per second.
 **Prerequisites:** MM-LP-13. **Cross-domain:** FM-LP-04, FM-LP-13.
 **Evidence:** power, p-w-t.
 **Depth note (PA narrow-correction pass):** removed the formula-rearrangement prerequisite — rearranging P=W/t for W or t is substitution-level algebra already covered by FM-LP-13, not the more involved rearrangement skill FM-LP-16 represents elsewhere in this inventory.
@@ -135,11 +142,12 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 foundational-
 **Excludes:** mixing an energy numerator with a power denominator (or vice versa); loss-mechanism breakdowns.
 
 ### MM-LP-18 — Legitimate multistep mechanical calculations
-**Outcome:** Solve a multistep problem by chaining several simple relationships from this domain in sequence — e.g. finding work done lifting against gravity from a weight force and height, then calculating power over a given time.
-**Prerequisites:** MM-LP-05, MM-LP-07, MM-LP-09, MM-LP-13, MM-LP-15, MM-LP-16, MM-LP-17. **Cross-domain:** FM-LP-04, FM-LP-13.
+**Outcome:** Solve a multistep problem by chaining the weight/lifting-work relationship and the power relationship in sequence — specifically, finding the work done lifting an object against gravity from its weight force and height, then using that work and a stated time to calculate the power required — rather than relying on a single formula.
+**Knowledge:** (1) Work done raising an object against gravity = weight force × vertical height (the same relationship as gravitational-lifting-work-against-gravity/PE=mgh); (2) that work ÷ time taken = power required (P=W/t). Both steps reuse relationships already evidenced elsewhere in this batch; no new formula is introduced. The general chaining SKILL could in principle extend to other combinations of this batch's relationships, but this learning point's own EVIDENCE is specifically the weight-to-work-to-power chain — it does not itself evidence a lever/gear/pulley-to-work/power/efficiency chain.
+**Prerequisites:** MM-LP-15, MM-LP-16. **Cross-domain:** FM-LP-04, FM-LP-13.
 **Evidence:** legitimate-multistep-mechanical-calculations.
-**Depth note:** Distinct performance level from single-formula recognition. **Corrected (PA narrow-correction pass):** the sole procedure evidence was previously a hydraulic worked example, rejected because hydraulics is explicitly excluded from this batch's mastery scope — an out-of-scope example cannot be the sole procedure evidence for an in-scope learning point merely by calling it an analogy. Replaced with a genuinely in-scope worked example (from the already-registered Penn State power source): work done lifting a car against gravity (weight force × height), then power from that work and a time. Its own units are imperial (lbs, ft, hp), but the chaining PROCEDURE evidenced is unit-system-independent. The formula-rearrangement prerequisite was also removed, since the replacement example uses only forward substitution.
-**Excludes:** hydraulic systems as taught Unit 202 content (the rejected example is retained, clearly marked rejected, in ACQUISITION-LOG.json and SOURCE-REGISTER.json); single-formula calculations already covered by a prerequisite learning point.
+**Depth note:** Distinct performance level from single-formula recognition. **Corrected (PA narrow-correction pass):** the sole procedure evidence was previously a hydraulic worked example, rejected because hydraulics is explicitly excluded from this batch's mastery scope. Replaced with a genuinely in-scope worked example (Penn State power source, its worked-solution PDF now separately registered as `SRC-PSU-POWER-P2SOLUTION` for exact provenance): work done lifting a car against gravity (weight force × height), then power from that work and a time. Its own units are imperial (lbs, ft, hp), but the chaining PROCEDURE evidenced is unit-system-independent. The formula-rearrangement prerequisite was also removed, since the replacement example uses only forward substitution. **Narrowed further (PA closure pass):** the prerequisite list and application examples previously implied an unrestricted omnibus procedure spanning levers, gears, pulleys and efficiency, none of which this requirement's own evidence demonstrates chaining into a work/power calculation. Prerequisites are now limited to MM-LP-15 and MM-LP-16 — the two relationships this example actually uses; MM-LP-05, MM-LP-07, MM-LP-09, MM-LP-13, and MM-LP-17 were removed as prerequisites of THIS learning point specifically (they remain independently evidenced learning points in their own right).
+**Excludes:** hydraulic systems as taught Unit 202 content (the rejected example is retained, clearly marked rejected, in `ACQUISITION-LOG.json` and `SOURCE-REGISTER.json`); single-formula calculations already covered by a prerequisite learning point; a lever, gear, or pulley calculation chained into a work/power/efficiency calculation — not directly evidenced by this requirement's own worked example, even though each individual relationship is separately evidenced elsewhere in this batch.
 
 ---
 
@@ -194,8 +202,8 @@ All 28 requirements map to exactly one learning point each (no many-to-one colla
 
 ## Readiness
 
-All 18 learning points: **READY** (all 28 underlying evidence requirements are VERIFIED; no HELD or PARTIALLY_EVIDENCED learning points in this batch). This remains true after the Product Architect narrow-correction pass: MM-LP-06, MM-LP-07, MM-LP-10, and MM-LP-18 were corrected with genuinely-supporting or properly-qualified evidence, not merely left READY to preserve the original total.
+All 18 learning points: **READY** (all 28 underlying evidence requirements are VERIFIED; no HELD or PARTIALLY_EVIDENCED learning points in this batch). This remains true after both the Product Architect narrow-correction pass (MM-LP-06, MM-LP-07, MM-LP-10, and MM-LP-18 corrected with genuinely-supporting or properly-qualified evidence) and this closure pass (MM-LP-18 narrowed to its genuinely-evidenced scope) — none was merely left READY to preserve a total.
 
 ## Identity freeze status
 
-**NOT FROZEN.** This inventory is proposed for Product Architect review only. No `MM-LP-*` ID is accepted or identity-frozen in this session. The 18-point decomposition and all 18 IDs are unchanged by this correction pass -- only wording, evidence bindings, and cross-domain prerequisites were corrected.
+**FROZEN as of this closure pass.** Following the Product Architect's final closure review — a substantive JSON/Markdown field comparison, an MM-LP-18 scope check, a Penn State PDF provenance check, and an ideal-machine power-qualification reconfirmation, all of which passed (with corrections applied where needed) — `MM-LP-01` through `MM-LP-18` are declared the approved Batch 03 learning-point identity baseline: an ID is never reassigned, future genuinely-new learning points are appended (`MM-LP-19` onward) rather than inserted, removed learning points are deprecated rather than renumbered or reused, and instructional order remains tracked separately from stable identity. No ID was renumbered in this closure pass.

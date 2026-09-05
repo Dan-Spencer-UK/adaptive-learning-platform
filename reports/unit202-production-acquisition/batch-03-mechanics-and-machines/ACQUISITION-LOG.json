@@ -8,7 +8,7 @@
       "reports/unit202-production-acquisition/batch-02-electrical-fundamentals-and-safety/ELECTRICAL-FUNDAMENTALS-AND-SAFETY-LEARNING-POINTS.json (same purpose, structural precedent only)"
     ],
     "rediscoveryNote": "No previously-used public URL was knowingly carried over from any sealed or historical artifact. Every source in SOURCE-REGISTER.json was located through this session's own fresh web search queries, listed below in the order they were run.",
-    "complianceStatement": "All 17 registered sources were located via fresh search queries executed in this session (see clusterLogs below). None was seeded from, or cross-checked against, any historical or sealed artifact."
+    "complianceStatement": "All 18 registered sources were located via fresh search queries executed in this session (see clusterLogs below), or (for one, SRC-PSU-POWER-P2SOLUTION) via a Product Architect closure-pass provenance split of a document already fetched, read, and quoted from a fresh search in this session -- not a new discovery. None was seeded from, or cross-checked against, any historical or sealed artifact."
   },
   "boundedResearchDiscipline": {
     "maxCandidatesPerUnresolvedRequirement": 4,
@@ -93,7 +93,7 @@
     "resolution": "WebFetch saves the fetched binary locally and reports its path; the Read tool's image-based PDF-page reader (pages parameter, max 20 pages per call) was used on the saved path to visually read the rendered pages, successfully extracting the needed text, formulas, diagrams, and (for the P2.pdf handwritten solution) the worked calculation steps."
   },
   "stoppingRationale": "All 28 requirements reached VERIFIED status within the bounded search described above; no requirement required exhausting the 4-candidate bound, and no SOURCE_GAP, PARTIALLY_VERIFIED, or CONFLICTED result was produced.",
-  "totalUniqueSourcesRegistered": 17,
+  "totalUniqueSourcesRegistered": 18,
   "accessDate": "2026-09-05",
   "productArchitectCorrectionPass": {
     "trigger": "Product Architect HOLD: NARROW EVIDENCE AND LEARNING-POINT CORRECTION, identifying six specific false-green risks in the original 28-VERIFIED/18-READY acquisition (see PROJECT-STATUS.md for the full finding list).",
@@ -160,6 +160,34 @@
     "strictNormalizationReview": "Every retrievedPassage-to-normalizedClaims mapping in EVIDENCE-RESULTS.json was reviewed for unsupported enrichment beyond findings 1-5 above. No further corrections were found necessary; the remaining 23 requirements' normalized claims were confirmed to stay within what their cited passages actually state (or, where multiple passages are combined, the combination is a straightforward union of directly-stated facts, not an inference requiring separate disclosure).",
     "totalNewSearchQueries": 7,
     "totalNewCandidatesEvaluated": 4,
-    "sourcesAddedOrChanged": "No new sourceId was created. SRC-PSU-GEARDIRECTION and SRC-PSU-POWER (both already registered) gained additional supported requirements from bounded re-examination/re-fetch of the same already-registered pages. SRC-UW-SIMPLEMACHINES lost its support for one requirement (legitimate-multistep-mechanical-calculations), explicitly marked rejected rather than removed from the record. Total unique registered sources remains 17."
+    "sourcesAddedOrChanged": "No new sourceId was created. SRC-PSU-GEARDIRECTION and SRC-PSU-POWER (both already registered) gained additional supported requirements from bounded re-examination/re-fetch of the same already-registered pages. SRC-UW-SIMPLEMACHINES lost its support for one requirement (legitimate-multistep-mechanical-calculations), explicitly marked rejected rather than removed from the record. Total unique registered sources remains 17 as of this specific pass (a subsequent Product Architect closure pass later split SRC-PSU-POWER's worked-solution PDF into its own sourceId -- see productArchitectClosurePass below -- bringing the total to 18)."
+  },
+  "productArchitectClosurePass": {
+    "trigger": "Product Architect final closure: ACCEPTED IN PRINCIPLE AT THE APPROPRIATE EARLY-STAGE DEPTH, subject to (1) a genuinely substantive JSON/Markdown field-by-field comparison, (2) confirming MM-LP-18 is not broader than its replacement evidence, (3) confirming exact, reproducible provenance for the Penn State worked-solution PDF, and (4) reconfirming the ideal-machine power qualification is consistent throughout.",
+    "noNewResearch": "No new source was sought and no new candidate was evaluated in this pass. All corrections below re-examine already-registered, already-quoted content.",
+    "findingsAddressed": [
+      {
+        "finding": "MM-LP-18 scope check",
+        "action": "Reviewed MM-LP-18's outcome, procedure, prerequisites, and application examples against its sole evidenced worked example (the SRC-PSU-POWER-P2SOLUTION weight-force-to-work-to-power chain). Found it broader than its evidence: prerequisiteLearningPointIds included MM-LP-05 (lever calculations), MM-LP-07 (gear ratio), MM-LP-09 (mechanical advantage), MM-LP-13 (work), and MM-LP-17 (efficiency), none of which this requirement's own worked example demonstrates chaining into a work/power calculation; one applicationType example also introduced an unevidenced lever/pulley-to-work/power chain.",
+        "outcome": "Narrowed MM-LP-18's prerequisiteLearningPointIds to MM-LP-15 (the weight-force-times-height work relationship actually used) and MM-LP-16 (the power relationship actually used); replaced the lever/pulley applicationType example with a second weight/height/time example within the evidenced chain type; added an explicit exclusion naming lever/gear/pulley-to-work/power/efficiency chains as not directly evidenced by this requirement. legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE remains VERIFIED and MM-LP-18 remains READY on its own now-correctly-scoped claim."
+      },
+      {
+        "finding": "Penn State worked-solution PDF provenance",
+        "action": "Confirmed SRC-PSU-POWER's registered url (the teaching page, power.html) does not resolve directly to the worked-solution PDF (pdf/P2.pdf) that the legitimate-multistep-mechanical-calculations claim actually quotes -- a provenance gap for reproducibility.",
+        "outcome": "Registered the PDF as its own distinct sourceId, SRC-PSU-POWER-P2SOLUTION, with its own exact url (https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/pdf/P2.pdf), locator, authority classification, and support entry; updated EVIDENCE-RESULTS.json's candidateSources/normalizedClaims/candidatesEvaluatedInOrder for this requirement to cite the new sourceId. SRC-PSU-POWER's own entry now supports only what its own page states (p-w-t; the ideal-machine-conserves-power derivation, which cites the page's own P=W/t statement, not the PDF). Total unique registered sources is now 18 (17 -> 18); this is a provenance normalization of already-quoted content, not new acquisition."
+      },
+      {
+        "finding": "Ideal-machine power qualification reconfirmation",
+        "action": "Searched every Batch 03 artifact for 'conserve'/'conservation'/'conserves power' occurrences.",
+        "outcome": "Confirmed every occurrence is either (a) the frozen requirement identifier 'ideal-machine-conserves-power' itself (not renamed, per instruction), (b) a reference to the general, unrestricted, and correct law of conservation of energy (a distinct claim from power conservation, requiring no qualification), or (c) a properly-qualified or explicitly-negated statement (e.g. 'NOT that power is a generally conserved quantity'). No unqualified 'power is conserved' or 'ideal machines conserve power' shorthand appears anywhere as a positive, current, learner-facing claim. No correction was needed for this finding."
+      },
+      {
+        "finding": "Substantive JSON/Markdown comparison",
+        "action": "Programmatically compared all 18 learning points across ID, title, learner outcome, knowledge/procedure, within-domain prerequisites, cross-domain prerequisites, evidence-requirement mappings, evidence readiness, exclusions, and all 28 coverage-matrix mappings (full field list and results recorded in COVERAGE-REPORT.md and this closure pass's own validation output).",
+        "outcome": "See COVERAGE-REPORT.md for the complete field-by-field result. Any field found to differ semantically (not merely in punctuation/wording) was corrected in MECHANICS-AND-MACHINES-LEARNING-POINTS.md so both artifacts communicate the same teachable content."
+      }
+    ],
+    "acceptanceAndFreeze": "Following these checks, MM-LP-01 through MM-LP-18 are declared the approved Batch 03 learning-point identity baseline: status ACCEPTED_BY_PRODUCT_ARCHITECT, identityFreezePolicy.status FROZEN as of this closure pass. Future genuinely new mechanics-and-machines learning points begin at MM-LP-19; removed learning points would be deprecated, never renumbered or reused; instructional sequence remains tracked separately from stable identity.",
+    "explicitlyNotDone": "No new source was sought or evaluated; no requirement was reacquired or re-researched; the acquisition pipeline/generic planner was not touched; no schema or validator was created or changed; no lesson, storyboard, or assessment was generated; Batch 01, Batch 02, the frozen preflight artifacts, and the sealed pilot were not reopened or edited; Batch 04 was not started."
   }
 }

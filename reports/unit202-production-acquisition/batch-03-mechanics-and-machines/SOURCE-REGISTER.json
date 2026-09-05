@@ -1,10 +1,11 @@
 {
   "batchId": "batch-03-mechanics-and-machines",
-  "sourceCount": 17,
+  "sourceCount": 18,
   "reusedSourceCount": 0,
-  "newSourceCount": 17,
-  "note": "All 17 sources were freshly acquired in this session via real web search and retrieval, as fresh public-source acquisition per this batch's source-isolation boundary (see ACQUISITION-LOG.json). None are reused from pilot-002, batch-01, or batch-02 (no domain overlap). Several sources are reused ACROSS requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
-  "productArchitectCorrectionPassNote": "A subsequent Product Architect narrow-correction pass re-examined SRC-CUNY-GEARS, SRC-PSU-GEARDIRECTION, SRC-UW-SIMPLEMACHINES, and SRC-PSU-POWER (all already registered; no new sourceId was created). SRC-PSU-GEARDIRECTION gained an additional supported requirement (gears::EXACT_FACT's general definition, previously mis-attributed to SRC-CUNY-GEARS) from a bounded re-fetch of the same already-registered page. SRC-PSU-POWER gained two additional supported requirements (ideal-machine-conserves-power, via an explicit derivation; and legitimate-multistep-mechanical-calculations, via a newly-read worked-solution PDF linked from the same already-registered page) and its rawContentCaptured/locator were updated accordingly. SRC-UW-SIMPLEMACHINES's support for legitimate-multistep-mechanical-calculations was rejected (see its rejectedSupportNote) because that worked example is out of this batch's scope; its other supported requirements are unchanged. Source count remains 17 -- no source was added or removed, only re-examined and, where genuinely warranted, cited for an additional requirement.",
+  "newSourceCount": 18,
+  "note": "All 18 sources were freshly acquired in this session via real web search and retrieval, as fresh public-source acquisition per this batch's source-isolation boundary (see ACQUISITION-LOG.json). None are reused from pilot-002, batch-01, or batch-02 (no domain overlap). Several sources are reused ACROSS requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
+  "productArchitectCorrectionPassNote": "A subsequent Product Architect narrow-correction pass re-examined SRC-CUNY-GEARS, SRC-PSU-GEARDIRECTION, SRC-UW-SIMPLEMACHINES, and SRC-PSU-POWER (all already registered; no new sourceId was created at that time). SRC-PSU-GEARDIRECTION gained an additional supported requirement (gears::EXACT_FACT's general definition, previously mis-attributed to SRC-CUNY-GEARS) from a bounded re-fetch of the same already-registered page. SRC-PSU-POWER gained two additional supported requirements (ideal-machine-conserves-power, via an explicit derivation; and legitimate-multistep-mechanical-calculations, via a newly-read worked-solution PDF linked from the same already-registered page) and its rawContentCaptured/locator were updated accordingly. SRC-UW-SIMPLEMACHINES's support for legitimate-multistep-mechanical-calculations was rejected (see its rejectedSupportNote) because that worked example is out of this batch's scope; its other supported requirements are unchanged.",
+  "productArchitectClosurePassNote": "A subsequent Product Architect closure pass identified a provenance gap: SRC-PSU-POWER's registered url is the teaching page only, but its 'legitimate-multistep-mechanical-calculations' claim actually quoted a separately-linked PDF (pdf/P2.pdf) not reachable directly from that url. Corrected by registering the PDF as its own distinct sourceId, SRC-PSU-POWER-P2SOLUTION, with its own exact url, locator, and support entry; SRC-PSU-POWER's own entry now supports only what its own page (not the linked PDF) states. This is a provenance normalization, not new acquisition -- the PDF was already read and quoted in the prior correction pass; only its sourceId registration is corrected. Source count is now 18 (17 -> 18); no other source was added, removed, or re-examined in this pass.",
   "sources": [
     {
       "sourceId": "SRC-NIST-MASS",
@@ -304,17 +305,38 @@
       "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html",
       "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
       "authorityRationale": "Hosted directly on Penn State's own course-content server.",
-      "locator": "Penn State Mechanics Map, 'Power in Particle Systems' page, and its linked worked-solution PDF for 'Problem 2' (pdf/P2.pdf, raising a car with a lift)",
+      "locator": "Penn State Mechanics Map, 'Power in Particle Systems' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "relatedSourceId": "SRC-PSU-POWER-P2SOLUTION",
+      "relatedSourceNote": "This page links to a separate worked-solution PDF ('Problem 2') that is registered as its own independently-retrievable sourceId, SRC-PSU-POWER-P2SOLUTION, per the source-register convention that each independently retrievable document gets its own sourceId (corrected in a Product Architect closure pass -- the worked-solution PDF was previously cited under this sourceId, which registers only this page's own URL, creating a provenance gap for anyone verifying the multistep-calculation claim from this entry's URL alone).",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::p-w-t::RELATIONSHIP", "claimSummary": "P_ave = W/t: average power equals work done divided by the time interval; watt = joule/second = newton-metre/second." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP", "claimSummary": "Cited alongside SRC-HP-SIMMAC (added in a Product Architect correction pass) for a transparent, explicit derivation: P_ave=W/t, combined with the ideal-machine work equality, gives input power equals output power for an ideal machine with no internal energy storage, compared over the same time interval." }
+      ]
+    },
+    {
+      "sourceId": "SRC-PSU-POWER-P2SOLUTION",
+      "publisher": "Pennsylvania State University, Mechanics Map (particle power)",
+      "title": "Power in Particle Systems -- Worked Solution, Problem 2 (raising a car with a lift)",
+      "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/pdf/P2.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Penn State's own course-content server, as the worked-solution PDF linked directly from the 'Power in Particle Systems' teaching page (SRC-PSU-POWER, same course, same domain).",
+      "locator": "Penn State Mechanics Map, 'Power in Particle Systems' page, 'Problem 2' worked-solution PDF (pdf/P2.pdf), page 1",
       "accessDate": "2026-09-05",
       "rawContentCaptured": true,
       "contentHash": null,
-      "hashReason": "The main page's rendered passage was captured via the fetch tool; the linked Problem 2 solution PDF's raw bytes were retrieved and read visually via the harness's image-based PDF reader (added in a Product Architect correction pass) since WebFetch's text extraction returned only unreadable image/OneNote content for that PDF. No cryptographic hash of either is computed, so none is claimed.",
+      "hashReason": "Raw PDF bytes were retrieved and read visually via the harness's image-based PDF reader (WebFetch's text extraction returned only unreadable image/OneNote content for this handwritten-solution PDF); no cryptographic hash of those bytes was computed, so none is claimed.",
       "retrievalTimestamp": null,
       "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "relatedSourceId": "SRC-PSU-POWER",
+      "relatedSourceNote": "This is the worked-solution PDF linked from SRC-PSU-POWER's teaching page. Registered as a distinct sourceId (added in a Product Architect closure pass, replacing its prior citation under SRC-PSU-POWER itself) so this exact document -- the one the multistep-calculation claim below actually quotes -- is independently and unambiguously retrievable from this entry's own url field.",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::p-w-t::RELATIONSHIP", "claimSummary": "P_ave = W/t: average power equals work done divided by the time interval; watt = joule/second = newton-metre/second." },
-        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP", "claimSummary": "Cited alongside SRC-HP-SIMMAC (added in a Product Architect correction pass) for a transparent, explicit derivation: P_ave=W/t, combined with the ideal-machine work equality, gives input power equals output power for an ideal machine with no internal energy storage, compared over the same time interval." },
-        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE", "claimSummary": "Worked solution PDF, 'Problem 2': raising a 1.2-ton car (weight force 2400 lbs) 6 ft in 15 seconds -- chains W=(weight force)(height)=14400 ft-lbs, then P=W/t=960 ft-lbs/s=1.75 hp. Added in a Product Architect correction pass to replace a rejected out-of-scope hydraulic example (see SRC-UW-SIMPLEMACHINES's rejectedSupportNote)." }
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE", "claimSummary": "Problem 2, worked solution: raising a 1.2-ton car (weight force 2400 lbs) 6 ft in 15 seconds -- chains W=(weight force)(height)=14400 ft-lbs, then P=W/t=960 ft-lbs/s=1.75 hp." }
       ]
     },
     {
