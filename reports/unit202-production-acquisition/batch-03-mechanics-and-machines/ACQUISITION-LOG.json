@@ -1,0 +1,98 @@
+{
+  "domain": "mechanics-and-machines",
+  "batch": "batch-03",
+  "sourceIsolationBoundary": {
+    "declaration": "This acquisition was conducted as fresh, independent public-source research. Before acquisition was complete, the following were NOT inspected or used as research leads, answer sources, or search-query seeds: the sealed historical Unit 202 source benchmark; any historical Unit 202 source manifests or verification dossiers; pilot evidence-acquisition results or pilot repair artifacts; old (pre-existing) Unit 202 assertions or claim sets; existing lessons, storyboards, or other instructional content; private course material; private calibration material; and historical clean-room outputs that might contain source answers (including the unit202-cleanroom CC-19R reports present elsewhere in this repository, which were left untouched and unread for this purpose).",
+      "accessedForStructuralPrecedentOnly": [
+      "reports/unit202-production-acquisition/batch-01-foundational-mathematics/FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.json (read only for output-format precedent: top-level fields, learning-point field shapes, freeze-policy phrasing; not read for source leads or subject-matter claims)",
+      "reports/unit202-production-acquisition/batch-02-electrical-fundamentals-and-safety/ELECTRICAL-FUNDAMENTALS-AND-SAFETY-LEARNING-POINTS.json (same purpose, structural precedent only)"
+    ],
+    "rediscoveryNote": "No previously-used public URL was knowingly carried over from any sealed or historical artifact. Every source in SOURCE-REGISTER.json was located through this session's own fresh web search queries, listed below in the order they were run.",
+    "complianceStatement": "All 17 registered sources were located via fresh search queries executed in this session (see clusterLogs below). None was seeded from, or cross-checked against, any historical or sealed artifact."
+  },
+  "boundedResearchDiscipline": {
+    "maxCandidatesPerUnresolvedRequirement": 4,
+    "note": "No unresolved requirement required more than 4 genuinely-evaluated candidates before an adequate source was accepted. A source evaluated once and found to genuinely support multiple requirements (e.g. SRC-UW-SIMPLEMACHINES, SRC-HP-SIMMAC) is counted once as a discovery and reused across those requirements without being re-counted as a new candidate each time."
+  },
+  "clusterLogs": [
+    {
+      "cluster": "Mass and weight",
+      "requirementsCovered": ["mass-meaning", "weight-meaning", "mass-weight-distinction", "weight-force-relationship", "appropriate-mass-weight-calculations"],
+      "searchQueriesUsed": [
+        "NIST definition of mass and weight SI kilogram",
+        "hyperphysics weight force w=mg",
+        "OpenStax mass weight worked calculation examples site:courses.lumenlearning.com"
+      ],
+      "candidatesEvaluatedInOrder": [
+        {"query": "NIST definition of mass and weight SI kilogram", "candidate": "nist.gov/pml/owm/si-units-mass", "decision": "ACCEPTED", "reason": "Government/regulator source giving precise, qualification-appropriate definitions of mass, weight, and the distinction between them."},
+        {"query": "hyperphysics weight force w=mg", "candidate": "hyperphysics.phy-astr.gsu.edu/hbase/mass.html", "decision": "REJECTED (retry)", "reason": "TLS certificate hostname mismatch on the phy-astr subdomain; retried at hyperphysics.gsu.edu (same content), which succeeded."},
+        {"query": "hyperphysics weight force w=mg", "candidate": "hyperphysics.gsu.edu/hbase/mass.html", "decision": "ACCEPTED", "reason": "Confirms w=mg unconditionally (not restricted to free fall), academic authority."},
+        {"query": "OpenStax mass weight worked calculation examples", "candidate": "courses.lumenlearning.com (OpenStax College Physics, section 5.4 Normal Tension and Other Examples of Newton's Laws)", "decision": "ACCEPTED", "reason": "Provides worked mass/weight numeric calculation examples at an appropriate level; classified honestly as AUTHORITATIVE_EDUCATIONAL_REFERENCE (OpenStax content mirrored via Lumen, not itself a government or academic-institution domain)."}
+      ],
+      "sourceReuseNote": "None of these three sources overlap with other clusters."
+    },
+    {
+      "cluster": "Levers, gears, pulleys and machines",
+      "requirementsCovered": ["levers", "lever-classes", "basic-lever-effort-load-arm-relationship-at-appropriate-depth", "gears", "gear-ratio-legitimate-speed-relationship", "torque-speed-relationship-where-applicable", "pulleys", "mechanical-advantage", "force-distance-trade", "ideal-machine-conserves-power", "real-losses-reduce-useful-output"],
+      "searchQueriesUsed": [
+        "simple machines lever classes first second third class fulcrum effort load university",
+        "lever effort arm load arm torque balance formula site:.edu",
+        "simple machines mechanical advantage force distance trade ideal machine PDF engineering course",
+        "gear ratio driver driven teeth formula torque speed trade off site:.edu",
+        "gear rotation direction meshing external gears mechanicsmap",
+        "pulley mechanical advantage number of rope segments fixed movable pulley university",
+        "hyperphysics simple machines mechanical advantage",
+        "friction losses efficiency real machine useful output"
+      ],
+      "candidatesEvaluatedInOrder": [
+        {"query": "simple machines lever classes first second third class fulcrum effort load university", "candidate": "van.physics.illinois.edu (University of Illinois, 'Ask a Physicist' / lever explainer)", "decision": "ACCEPTED", "reason": "Academic source defining lever parts and the three lever classes by positional rule, cautioning against rote-memorising examples."},
+        {"query": "lever effort arm load arm torque balance formula site:.edu", "candidate": "comfsm.fm (College of Micronesia-FSM, physics/technology course notes)", "decision": "ACCEPTED", "reason": "States Fe x de = Fr x dr explicitly for lever balance; academic institution source."},
+        {"query": "simple machines mechanical advantage force distance trade ideal machine PDF engineering course", "candidate": "oregonstate.edu BoxSand engineering module", "decision": "REJECTED", "reason": "403 Forbidden on retrieval; abandoned."},
+        {"query": "simple machines mechanical advantage force distance trade ideal machine PDF engineering course", "candidate": "millersville.edu physics simple-machines handout", "decision": "REJECTED", "reason": "404 Not Found; abandoned."},
+        {"query": "simple machines mechanical advantage force distance trade ideal machine PDF engineering course", "candidate": "courses.washington.edu/engr100 Simple Machines PDF", "decision": "ACCEPTED", "reason": "University of Washington ENGR100 course PDF; WebFetch initially reported only binary/compressed content, so the saved PDF was read directly with the image-based PDF page reader (Read tool, pages parameter). Confirmed lever balance, force-distance trade, ideal-machine work-in=work-out equivalence, and a worked multistep hydraulic force/distance example usable as evidence for the multistep-calculation requirement."},
+        {"query": "gear ratio driver driven teeth formula torque speed trade off site:.edu", "candidate": "sci.brooklyn.cuny.edu gear_notes.pdf (CUNY Brooklyn College)", "decision": "ACCEPTED", "reason": "WebFetch again reported only binary/compressed content for this slide-deck PDF; read directly via the image-based PDF page reader. Defines driver/driven/idler gears, GR=output teeth/input teeth, OutputSpeed=InputSpeed x Input/Output, WheelTorque=MotorTorque x GR, and the torque/speed trade-off, all from one coherent academic source."},
+        {"query": "gear rotation direction meshing external gears mechanicsmap", "candidate": "mechanicsmap.psu.edu (Penn State, Mechanics Map gear-ratio/direction page)", "decision": "ACCEPTED", "reason": "Independent second academic source; confirms the identical GR=output/input teeth convention as CUNY before the two were combined in the same learning point, and separately confirms opposite-rotation-direction rule for directly-meshing external gears."},
+        {"query": "pulley mechanical advantage number of rope segments fixed movable pulley university", "candidate": "physics.wisc.edu/ingersollmuseum (University of Wisconsin-Madison, Ingersoll Physics Museum pulley explainer)", "decision": "ACCEPTED", "reason": "Academic source explicitly defining fixed vs. movable pulley operation and the rule that ideal pulley mechanical advantage equals the number of rope sections supporting the load."},
+        {"query": "hyperphysics simple machines mechanical advantage", "candidate": "hyperphysics.gsu.edu/hbase/Mechanics/simmac.html", "decision": "ACCEPTED", "reason": "States the general mechanical-advantage concept and Work_input=Work_output for an ideal machine, i.e. that an ideal machine cannot create energy or power."},
+        {"query": "friction losses efficiency real machine useful output", "candidate": "mechanicsmap.psu.edu efficiency page", "decision": "ACCEPTED (also serves force/work/energy cluster)", "reason": "States that friction and similar losses in a real machine convert part of the input into heat rather than useful output; reused below for the efficiency requirements as the same source covers both."}
+      ],
+      "sourceReuseNote": "SRC-UW-SIMPLEMACHINES supports levers, lever-classes (confirming), lever calculations, force-distance-trade, ideal-machine-conserves-power, and the multistep-calculation requirement. SRC-HP-SIMMAC supports mechanical-advantage, force-distance-trade, and ideal-machine-conserves-power. SRC-PSU-EFFICIENCY is reused between this cluster (real-losses) and the force/work/energy cluster (efficiency, efficiency-relationship)."
+    },
+    {
+      "cluster": "Force, work, energy, power and efficiency",
+      "requirementsCovered": ["force-concept-at-qualification-depth", "work", "w-fd", "energy", "kinetic-versus-potential-energy-concept", "gravitational-lifting-work-against-gravity", "pe-mgh-work-against-gravity-equivalence", "power", "p-w-t", "efficiency", "efficiency-relationship", "legitimate-multistep-mechanical-calculations"],
+      "searchQueriesUsed": [
+        "NIST what is force definition newton",
+        "hyperphysics work definition W=Fd",
+        "hyperphysics kinetic energy definition",
+        "mechanicsmap work energy potential energy gravity mgh",
+        "hyperphysics power definition watt",
+        "mechanicsmap power P=W/t",
+        "mechanicsmap efficiency formula useful output input percentage"
+      ],
+      "candidatesEvaluatedInOrder": [
+        {"query": "NIST what is force definition newton", "candidate": "nist.gov (NIST 'What is force?' / physical-measurement pages)", "decision": "ACCEPTED", "reason": "Government/regulator authority defining force as a push or pull and the newton unit at qualification-appropriate depth."},
+        {"query": "hyperphysics work definition W=Fd", "candidate": "hyperphysics.gsu.edu/hbase/work.html", "decision": "ACCEPTED", "reason": "States work definition, W=Fd for force along the displacement direction, and energy as the capacity to do work."},
+        {"query": "hyperphysics kinetic energy definition", "candidate": "hyperphysics.gsu.edu/hbase/ke.html", "decision": "ACCEPTED", "reason": "States kinetic energy as energy of motion at a qualitative level; formula not bound into this batch's mastery content, per the Product Architect's explicit exclusion."},
+        {"query": "mechanicsmap work energy potential energy gravity mgh", "candidate": "mechanicsmap.psu.edu (Penn State, Work and Energy page)", "decision": "ACCEPTED", "reason": "States potential energy as stored capacity due to position, the equivalence between work done against gravity and gravitational PE gained, and PE=mgh with the height term explicitly defined as vertical displacement."},
+        {"query": "hyperphysics power definition watt", "candidate": "hyperphysics.gsu.edu/hbase/pow.html", "decision": "ACCEPTED", "reason": "States power as rate of doing work and the watt unit."},
+        {"query": "mechanicsmap power P=W/t", "candidate": "mechanicsmap.psu.edu (Penn State, Power page)", "decision": "ACCEPTED", "reason": "States P=W/t explicitly with worked context."},
+        {"query": "mechanicsmap efficiency formula useful output input percentage", "candidate": "mechanicsmap.psu.edu (Penn State, Efficiency page)", "decision": "ACCEPTED", "reason": "States efficiency = useful output/total input as a ratio or percentage, gives both the work-ratio and power-ratio forms explicitly and separately, and states friction/loss mechanisms convert input into heat."}
+      ],
+      "sourceReuseNote": "SRC-UW-SIMPLEMACHINES (from the previous cluster) is reused here as the evidencing worked example for the legitimate-multistep-mechanical-calculations requirement (its hydraulic force/distance worked example is used only as a procedural analogy for chaining relationships, not as taught Unit 202 content, per the scope note recorded in EVIDENCE-RESULTS.json)."
+    }
+  ],
+  "accessFailures": [
+    {"url": "oregonstate.edu BoxSand engineering module", "failureType": "403 Forbidden", "resolution": "Abandoned; candidate not counted toward the 4-candidate bound as a rejected non-retrieval."},
+    {"url": "millersville.edu physics simple-machines handout", "failureType": "404 Not Found", "resolution": "Abandoned; candidate not counted toward the 4-candidate bound as a rejected non-retrieval."},
+    {"note": "hyperphysics.phy-astr.gsu.edu", "failureType": "TLS certificate hostname mismatch (certificate names hyperphysics.gsu.edu)", "resolution": "Retried successfully at hyperphysics.gsu.edu, identical content; used for every HyperPhysics fetch in this batch."}
+  ],
+  "pdfExtractionWorkaround": {
+    "issue": "WebFetch's text extraction returned only 'binary/compressed content' for two slide-deck/formula-heavy PDFs.",
+    "affectedSources": ["SRC-UW-SIMPLEMACHINES (courses.washington.edu/engr100 PDF)", "SRC-CUNY-GEARS (sci.brooklyn.cuny.edu gear_notes.pdf)"],
+    "resolution": "WebFetch saves the fetched binary locally and reports its path; the Read tool's image-based PDF-page reader (pages parameter, max 20 pages per call) was used on the saved path to visually read the rendered pages, successfully extracting the needed text, formulas and diagrams."
+  },
+  "stoppingRationale": "All 28 requirements reached VERIFIED status within the bounded search described above; no requirement required exhausting the 4-candidate bound, and no SOURCE_GAP, PARTIALLY_VERIFIED, or CONFLICTED result was produced.",
+  "totalUniqueSourcesRegistered": 17,
+  "accessDate": "2026-09-05"
+}

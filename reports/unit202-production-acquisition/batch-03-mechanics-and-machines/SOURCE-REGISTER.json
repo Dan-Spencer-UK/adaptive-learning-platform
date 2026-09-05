@@ -1,0 +1,338 @@
+{
+  "batchId": "batch-03-mechanics-and-machines",
+  "sourceCount": 17,
+  "reusedSourceCount": 0,
+  "newSourceCount": 17,
+  "note": "All 17 sources were freshly acquired in this session via real web search and retrieval, as fresh public-source acquisition per this batch's source-isolation boundary (see ACQUISITION-LOG.json). None are reused from pilot-002, batch-01, or batch-02 (no domain overlap). Several sources are reused ACROSS requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
+  "sources": [
+    {
+      "sourceId": "SRC-NIST-MASS",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "SI Units - Mass",
+      "url": "https://www.nist.gov/pml/owm/si-units-mass",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "NIST's Office of Weights and Measures is a US federal government body; this is its own official guidance page.",
+      "locator": "NIST, 'SI Units - Mass' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mass-meaning::EXACT_FACT", "claimSummary": "Mass is a measure of a body's inertial property, or how much matter it contains." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-meaning::EXACT_FACT", "claimSummary": "Weight is a measure of the force exerted on a body by gravity, or the force needed to support it." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mass-weight-distinction::EXACT_FACT", "claimSummary": "Mass and weight are distinct quantities; using 'weight' as a synonym for mass is technically incorrect and should be phased out." }
+      ]
+    },
+    {
+      "sourceId": "SRC-HP-MASS",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics)",
+      "title": "Mass, Weight, Density",
+      "url": "https://hyperphysics.gsu.edu/hbase/mass.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Georgia State University's own physics department server.",
+      "locator": "HyperPhysics, 'Mass, Weight, Density' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP", "claimSummary": "Weight is the force of gravity on an object, w = mg; mass is in kilograms (symbol m), weight (a force) is in newtons." }
+      ]
+    },
+    {
+      "sourceId": "SRC-OPENSTAX-MASSWEIGHT",
+      "publisher": "OpenStax (Rice University), hosted via Lumen Learning / Candela",
+      "title": "University Physics Volume 1, §5.4 'Mass and Weight'",
+      "url": "https://courses.lumenlearning.com/suny-osuniversityphysics/chapter/5-4-mass-and-weight/",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "OpenStax is a nonprofit, peer-reviewed open-education textbook publisher (Rice University); classified honestly as an educational reference, not a standards body or the hosting institution itself. This requirement's permitted authority-class list explicitly includes AUTHORITATIVE_EDUCATIONAL_REFERENCE, so no adjudication is needed (unlike Batch 01's narrow exception for a different requirement mode).",
+      "locator": "OpenStax University Physics Vol. 1, §5.4, worked examples (weight from mass; mass from weight, 'Clearing a Field')",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::appropriate-mass-weight-calculations::PROCEDURE_COVERAGE", "claimSummary": "Worked examples calculating weight from mass (w=mg=(1.00 kg)(9.8 m/s^2)=9.80 N) and mass from weight (m=w/g=180 N/9.8 m/s^2=18 kg)." }
+      ]
+    },
+    {
+      "sourceId": "SRC-UIUC-LEVERS",
+      "publisher": "University of Illinois, Physics Van (Department of Physics)",
+      "title": "Levers",
+      "url": "https://van.physics.illinois.edu/ask/listing/295",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on the University of Illinois Department of Physics's own outreach server.",
+      "locator": "Physics Van, 'Levers' Q&A entry",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::levers::EXACT_FACT", "claimSummary": "A lever is a rigid bar that turns around a fulcrum (pivot point); it has an effort (applied force) and a load (resistance)." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::lever-classes::EXACT_FACT", "claimSummary": "First class: effort and load on either side of the fulcrum. Second class: load between fulcrum and effort. Third class: effort between fulcrum and load." }
+      ]
+    },
+    {
+      "sourceId": "SRC-COMFSM-LEVERTORQUE",
+      "publisher": "College of Micronesia - FSM",
+      "title": "Levers and Torque",
+      "url": "http://www.comfsm.fm/~dleeling/physics/torque.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "College of Micronesia-FSM is an accredited public institution of higher education; page hosted on the college's own faculty server.",
+      "locator": "College of Micronesia-FSM Physics, 'Levers and Torque' page, Class I lever section",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP", "claimSummary": "Fe x de = Fr x dr: effort force multiplied by the effort's distance from the fulcrum equals the resistance (load) force multiplied by the load's distance from the fulcrum." }
+      ]
+    },
+    {
+      "sourceId": "SRC-UW-SIMPLEMACHINES",
+      "publisher": "University of Washington (Wei-Chih Wang)",
+      "title": "Simple Machines (ENGR 100 course slides)",
+      "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on the University of Washington's own course server, authored by UW faculty for its ENGR 100 course.",
+      "locator": "University of Washington ENGR100 'Simple Machines' slides: Lever/lever-order slides; 'Distance and velocity ratio' slide; 'Work' slide; 'Multiplying forces using hydraulic' and following slide (two-piston worked example)",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": true,
+      "contentHash": null,
+      "hashReason": "Raw PDF bytes were retrieved and read visually via the harness's image-based PDF reader; no cryptographic hash of those bytes was computed, so none is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::levers::EXACT_FACT", "claimSummary": "A lever has a fulcrum, effort, and load; first/second/third order levers defined by relative position of these three." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::lever-classes::EXACT_FACT", "claimSummary": "First order: fulcrum between load and effort. Second order: load between fulcrum and effort. Third order: effort between fulcrum and load (mechanical disadvantage, but load moves further than effort)." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP", "claimSummary": "Moment principle M1R1=M2R2 (applied to a lever, force x arm on each side of the fulcrum); worked example: velocity ratio = distance moved by effort / distance moved by load = 10cm/30cm = 1/3." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-distance-trade::RELATIONSHIP", "claimSummary": "Worked hydraulic-piston example: piston A moves 100N x 0.02m, piston B moves 10N x 0.2m; both equal 2 joules -- force is traded against distance." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP", "claimSummary": "'Notice how the work is the same. The law of conservation of energy (energy can not be created or destroyed) is not violated. The increase in force is compensated by a decrease in distance travelled.'" },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::work::EXACT_FACT", "claimSummary": "Work = force(N) x distance(m); worked example: Work = 3N x 3m = 9Nm = 9 Joules." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::w-fd::RELATIONSHIP", "claimSummary": "Same worked Work=Force x Distance example, confirming W=Fd." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE", "claimSummary": "Multi-step worked hydraulic example: Pressure=Force/Area (30N/100cm2=0.3N/cm2), then Force=Pressure x Area (0.3N/cm2 x 100cm2=100N... and the 10N/10cm2 case), then Work=Force x Distance for each piston, compared to confirm energy conservation." }
+      ]
+    },
+    {
+      "sourceId": "SRC-UWMADISON-PULLEY",
+      "publisher": "University of Wisconsin-Madison, L.R. Ingersoll Wonders of Physics Museum",
+      "title": "Pulleys",
+      "url": "https://www.physics.wisc.edu/ingersollmuseum/exhibits/mechanics/pulleys/",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on the University of Wisconsin-Madison Physics Department's own server, as its public-outreach museum exhibit text.",
+      "locator": "UW-Madison Ingersoll Museum, 'Pulleys' exhibit page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::pulleys::EXACT_FACT", "claimSummary": "Pulleys are wheel-and-rope mechanisms used to lift heavy objects; they change the direction of an applied force and can reduce the force needed to lift a weight." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mechanical-advantage::RELATIONSHIP", "claimSummary": "For a pulley system, mechanical advantage M is equal to the number of rope sections present at the weight (load) end." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-distance-trade::RELATIONSHIP", "claimSummary": "'You gained by having to apply a smaller force, but had to compensate by having to pull a longer length of rope' -- to lift a weight distance H, rope length L=H x M must be pulled." }
+      ]
+    },
+    {
+      "sourceId": "SRC-CUNY-GEARS",
+      "publisher": "City University of New York (CUNY), Brooklyn College (Joel Kammet)",
+      "title": "Supplemental notes on gear ratios, torque and speed (CORC 3303, Exploring Robotics)",
+      "url": "https://www.sci.brooklyn.cuny.edu/~kammet/gear_notes.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Brooklyn College (CUNY)'s own faculty server, as course notes for its CORC 3303 course.",
+      "locator": "CUNY Brooklyn College, gear_notes.pdf, pp.3-5 ('Gear Ratios and Torque', 'Gear Ratios and Speed')",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": true,
+      "contentHash": null,
+      "hashReason": "Raw PDF bytes were retrieved and read visually via the harness's image-based PDF reader; no cryptographic hash of those bytes was computed, so none is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT", "claimSummary": "The gear connected to the motor/source is the driver (input) gear; the gear connected to the driven load is the driven (output) gear; gears in between are idler gears." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP", "claimSummary": "GR = Output(teeth)/Input(teeth) = Driven/Driver (explicit numerator=output/driven, denominator=input/driver); OutputSpeed = InputSpeed x (InputSize/OutputSize), i.e. speed scales by the inverse of the gear ratio; worked example: 300 rev/min input with 8-tooth input and 24-tooth output gives 100 rev/min output." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::torque-speed-relationship-where-applicable::RELATIONSHIP", "claimSummary": "WheelTorque = MotorTorque x GR (torque scales BY the gear ratio, output/input); since speed scales by the inverse of GR, 'if...the torque increases, the rotational speed decreases. And if the torque decreases, the rotational speed increases.'" }
+      ]
+    },
+    {
+      "sourceId": "SRC-PSU-GEARDIRECTION",
+      "publisher": "Pennsylvania State University, Mechanics Map (rigid body kinematics)",
+      "title": "Belt and Gear Driven Systems",
+      "url": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Penn State's own course-content server (Mechanics Map is a Penn State engineering-mechanics teaching resource).",
+      "locator": "Penn State Mechanics Map, 'Belt and Gear Driven Systems' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT", "claimSummary": "'Meshed gears rotate in opposite directions (if one gear rotates clockwise, the other will rotate counter-clockwise)' -- for two directly meshing external gears." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP", "claimSummary": "'The gear ratio will be equal to the radius of the output gear divided by the radius of the input gear, or the number of teeth on the output gear divided by the number of teeth on the input gear' -- confirming the same output/input convention as SRC-CUNY-GEARS." }
+      ]
+    },
+    {
+      "sourceId": "SRC-HP-SIMMAC",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics)",
+      "title": "Simple Machines",
+      "url": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Georgia State University's own physics department server.",
+      "locator": "HyperPhysics, 'Simple Machines' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mechanical-advantage::RELATIONSHIP", "claimSummary": "'The factor by which a machine multiplies force is called the mechanical advantage'; for ideal machines (neglecting friction) this is the ideal mechanical advantage (IMA)." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-distance-trade::RELATIONSHIP", "claimSummary": "'You are trading a small force acting through a large distance for a large force acting through a small distance': Work input = F_input*d_input = F_output*d_output = Work output." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP", "claimSummary": "'No machine can output more energy than was put into it' (ideal case); Work input = Work output for an ideal machine." }
+      ]
+    },
+    {
+      "sourceId": "SRC-NIST-FORCE",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "What is Force?",
+      "url": "https://www.nist.gov/pml/quantum-measurement/mass-and-force/proving-ring/what-force",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "NIST is the US national metrology institute; this is its own technical measurement-methods documentation.",
+      "locator": "NIST, 'What is Force?' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-concept-at-qualification-depth::EXACT_FACT", "claimSummary": "'When we push or pull on a body, we are said to exert a force on it'; the force may produce motion or cause deformation; the SI unit of force is the newton." }
+      ]
+    },
+    {
+      "sourceId": "SRC-HP-WORK",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics)",
+      "title": "Work, Energy and Power",
+      "url": "https://hyperphysics.gsu.edu/hbase/work.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Georgia State University's own physics department server.",
+      "locator": "HyperPhysics, 'Work, Energy and Power' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::work::EXACT_FACT", "claimSummary": "Work is done when a force acts through a distance, in the direction of the force; a force of 20N through 5m does 100 joules of work." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::w-fd::RELATIONSHIP", "claimSummary": "Work (joules) = force (newtons) x distance (metres), scoped explicitly to a force acting in the direction of movement." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::energy::EXACT_FACT", "claimSummary": "'Energy is the capacity for doing work.'" }
+      ]
+    },
+    {
+      "sourceId": "SRC-HP-KE",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics)",
+      "title": "Kinetic Energy Concept",
+      "url": "https://hyperphysics.gsu.edu/hbase/ke.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Georgia State University's own physics department server.",
+      "locator": "HyperPhysics, 'Kinetic Energy Concept' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::kinetic-versus-potential-energy-concept::EXACT_FACT", "claimSummary": "'Kinetic energy is energy of motion' -- the energy an object possesses because of its motion." }
+      ]
+    },
+    {
+      "sourceId": "SRC-PSU-WORKENERGY",
+      "publisher": "Pennsylvania State University, Mechanics Map (particle work-energy)",
+      "title": "Work, Kinetic Energy, and Potential Energy",
+      "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-1_work_kinetic_and_potential_energy/work_kinetic_and_potential_energy.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Penn State's own course-content server.",
+      "locator": "Penn State Mechanics Map, 'Work, Kinetic Energy, and Potential Energy' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::kinetic-versus-potential-energy-concept::EXACT_FACT", "claimSummary": "Kinetic energy is 'the energy of mass in motion'; potential energy 'represents the work that a given force will potentially do', connected to stored capacity due to position, not motion." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gravitational-lifting-work-against-gravity::RELATIONSHIP", "claimSummary": "When work is done lifting against gravity, 'the negative work value' converts 'into a positive energy value' -- work done against gravity becomes stored gravitational potential energy." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::pe-mgh-work-against-gravity-equivalence::RELATIONSHIP", "claimSummary": "Delta-PE(gravity) = m*g*Delta-h, where Delta-h is 'the vertical displacement between the starting and ending states' (not total distance travelled)." }
+      ]
+    },
+    {
+      "sourceId": "SRC-HP-POWER",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics)",
+      "title": "Power",
+      "url": "https://hyperphysics.gsu.edu/hbase/pow.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Georgia State University's own physics department server.",
+      "locator": "HyperPhysics, 'Power' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::power::EXACT_FACT", "claimSummary": "'Power may be defined as the rate of doing work or the rate of using energy'; unit is the watt, a joule per second." }
+      ]
+    },
+    {
+      "sourceId": "SRC-PSU-POWER",
+      "publisher": "Pennsylvania State University, Mechanics Map (particle power)",
+      "title": "Power in Particle Systems",
+      "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Penn State's own course-content server.",
+      "locator": "Penn State Mechanics Map, 'Power in Particle Systems' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::p-w-t::RELATIONSHIP", "claimSummary": "P_ave = W/t: average power equals work done divided by the time interval; watt = joule/second = newton-metre/second." }
+      ]
+    },
+    {
+      "sourceId": "SRC-PSU-EFFICIENCY",
+      "publisher": "Pennsylvania State University, Mechanics Map (particle efficiency)",
+      "title": "Efficiency in Particle Systems",
+      "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-4_efficiency/efficiency.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Penn State's own course-content server.",
+      "locator": "Penn State Mechanics Map, 'Efficiency in Particle Systems' page",
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::efficiency::EXACT_FACT", "claimSummary": "Efficiency is 'the percentage of useful work or power that is transferred from input to output of some system'." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::efficiency-relationship::RELATIONSHIP", "claimSummary": "eta = W_out/W_in = P_out/P_in -- two equivalent, dimensionally-compatible forms (work-over-work or power-over-power), never a mixed work-over-power ratio." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::real-losses-reduce-useful-output::RELATIONSHIP", "claimSummary": "'It is impossible to have efficiencies greater than one (100%) because that would violate conservation of energy'; real devices lose work/power to friction, turned into heat." }
+      ]
+    }
+  ]
+}

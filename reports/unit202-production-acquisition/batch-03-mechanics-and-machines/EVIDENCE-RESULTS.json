@@ -1,0 +1,1121 @@
+{
+  "batchId": "batch-03-mechanics-and-machines",
+  "qualificationContextId": "unit202",
+  "domain": "mechanics-and-machines",
+  "sourcePlan": "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json",
+  "requirementCount": 28,
+  "reusedFromPilot": [],
+  "reusedFromBatch01": [],
+  "reusedFromBatch02": [],
+  "results": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mass-meaning::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["NIST BIPM definition of mass kilogram SI unit official"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://www.nist.gov/pml/owm/si-units-mass", "decision": "ACCEPTED", "sourceId": "SRC-NIST-MASS", "reason": "Genuine NIST government page, retrieved and read; states the definition directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-MASS",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.nist.gov/pml/owm/si-units-mass",
+            "sourceLocator": "NIST, 'SI Units - Mass' page",
+            "retrievedPassage": "\"The mass of a body is a measure of its inertial property or how much matter it contains.\" \"The SI unit of mass is the kilogram (kg).\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Mass is a measure of a body's inertial property, or how much matter it contains; the SI unit of mass is the kilogram (kg).",
+            "sourceId": "SRC-NIST-MASS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to exactly the government-source definition of mass and its unit. Does not extend to relativistic mass, mass-energy equivalence, or inertial vs. gravitational mass distinctions, none of which this Unit 202 requirement calls for."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-meaning::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["NIST BIPM definition of mass kilogram SI unit official"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://www.nist.gov/pml/owm/si-units-mass", "decision": "ACCEPTED", "sourceId": "SRC-NIST-MASS", "reason": "Same NIST page also defines weight directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-MASS",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.nist.gov/pml/owm/si-units-mass",
+            "sourceLocator": "NIST, 'SI Units - Mass' page",
+            "retrievedPassage": "\"The weight of a body is a measure of the force exerted on it by gravity or the force needed to support it.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Weight is a measure of the force exerted on a body by gravity (or the force needed to support it against gravity); weight is a force, distinct from mass.",
+            "sourceId": "SRC-NIST-MASS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mass-weight-distinction::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["NIST BIPM definition of mass kilogram SI unit official"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://www.nist.gov/pml/owm/si-units-mass", "decision": "ACCEPTED", "sourceId": "SRC-NIST-MASS", "reason": "Same NIST page explicitly cautions against conflating mass and weight." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-MASS",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.nist.gov/pml/owm/si-units-mass",
+            "sourceLocator": "NIST, 'SI Units - Mass' page",
+            "retrievedPassage": "Mass: \"a measure of its inertial property or how much matter it contains.\" Weight: \"a measure of the force exerted on it by gravity.\" \"The incorrect use of weight in place of mass should be phased out, and the term mass used when mass is meant.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Mass and weight are distinct physical quantities: mass measures how much matter a body contains (an inertial property, unit kilogram); weight measures the force exerted on that body by gravity (unit newton). NIST explicitly states that using 'weight' as a colloquial synonym for mass is technically incorrect and should be avoided in favour of the correct term for each quantity.",
+            "sourceId": "SRC-NIST-MASS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::weight-force-relationship::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["HyperPhysics weight definition force gravity newton mass distinction", "hyperphysics.gsu.edu weight force gravity mg newton"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/mass.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-MASS", "reason": "Genuine HyperPhysics (Georgia State University) page, retrieved and read; states w=mg directly, unconditionally (not restricted to free fall)." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-MASS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/mass.html",
+            "sourceLocator": "HyperPhysics, 'Mass, Weight, Density' page",
+            "retrievedPassage": "\"The weight of an object is the force of gravity on the object and may be defined as the mass times the acceleration of gravity, w = mg.\" Weight's SI unit is the newton; g = 9.8 m/s^2 at Earth's surface."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The supplied proposition F = mg is VERIFIED against the retrieved source: weight (the gravitational force on an object, here denoted w by the source -- not to be confused with W used elsewhere for work) equals mass times gravitational acceleration, w = mg. This defines the gravitational weight force whenever an object is near a gravitational field; it is not conditioned on the object being in free fall (an object resting on a table, held in a hand, or hanging from a rope all have the same weight force mg, only the net/resultant force differs).",
+            "sourceId": "SRC-HP-MASS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Per the Product Architect's locked depth boundary for this batch: F=mg is bound as an unconditional definition of the gravitational weight force near a gravitational field, not as a free-fall-conditional relationship. The source's own symbol (lowercase w) for weight is retained in the quote to keep it visually distinct from the symbol W used for work elsewhere in this batch's evidence (see the work/energy requirements below); this batch's own artifacts consistently use 'weight force' in prose and avoid bare 'W' for weight to prevent that confusion."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::appropriate-mass-weight-calculations::PROCEDURE_COVERAGE",
+      "requirementMode": "PROCEDURE_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["PROCEDURE", "CALCULATION_METHOD"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE", "AUTHORITATIVE_EDUCATIONAL_REFERENCE"],
+      "searchQueriesUsed": ["university physics course notes worked example calculate weight given mass W=mg newtons"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://courses.lumenlearning.com/suny-osuniversityphysics/chapter/5-4-mass-and-weight/", "decision": "ACCEPTED", "sourceId": "SRC-OPENSTAX-MASSWEIGHT", "reason": "OpenStax University Physics via Lumen Learning, retrieved and read; gives worked examples in both calculation directions." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-OPENSTAX-MASSWEIGHT",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://courses.lumenlearning.com/suny-osuniversityphysics/chapter/5-4-mass-and-weight/",
+            "sourceLocator": "OpenStax University Physics Vol. 1, §5.4, worked examples",
+            "retrievedPassage": "\"the weight of a 1.00-kg object on Earth is 9.80 N: w = mg = (1.00 kg)(9.80 m/s^2) = 9.80 N.\" 'Clearing a Field' example: \"m = w/g = 180 N / 9.8 m/s^2 = 18 kg\", deriving mass from a stone's weight."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An appropriate mass/weight calculation applies w=mg directly to find weight from mass (e.g. w=(1.00 kg)(9.80 m/s^2)=9.80 N), or rearranges it to m=w/g to find mass from a known weight (e.g. m=180 N/9.8 m/s^2=18 kg).",
+            "sourceId": "SRC-OPENSTAX-MASSWEIGHT"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "OpenStax is classified honestly as AUTHORITATIVE_EDUCATIONAL_REFERENCE (a nonprofit open-education publisher, not itself a standards body or the hosting platform); this requirement's own permitted authority-class list already includes this class directly, so no adjudication was needed (unlike Batch 01's narrow exception for a different requirement mode)."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::levers::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["NASA OR university physics levers effort load fulcrum first second third class lever definition"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://van.physics.illinois.edu/ask/listing/295", "decision": "ACCEPTED", "sourceId": "SRC-UIUC-LEVERS", "reason": "University of Illinois Physics Van, retrieved and read; states lever definition and parts directly." },
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "University of Washington course PDF, retrieved and read visually; confirms and extends the definition with diagrams." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-UIUC-LEVERS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://van.physics.illinois.edu/ask/listing/295",
+            "sourceLocator": "Physics Van, 'Levers' Q&A entry",
+            "retrievedPassage": "\"A lever is a rigid bar that can turn around a pivot point, called a fulcrum.\" Components: \"Effort (Force)\", \"Load (Resistance)\", and \"Fulcrum\": \"the support, or pivot point, about which a lever turns.\""
+          },
+          {
+            "sourceId": "SRC-UW-SIMPLEMACHINES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
+            "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, 'Lever' slide",
+            "retrievedPassage": "\"All levers have a fulcrum (turning point), effort (the force provided to do the work) and the load (the force we are pushing against).\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A lever is a rigid bar that turns around a fixed pivot point called the fulcrum; it has an effort (the applied force) and a load (the resistance/force being overcome).",
+            "sourceId": "SRC-UIUC-LEVERS"
+          },
+          {
+            "claimText": "Confirms the same three parts (fulcrum, effort, load) from a second, independent university source.",
+            "sourceId": "SRC-UW-SIMPLEMACHINES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::lever-classes::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["NASA OR university physics levers effort load fulcrum first second third class lever definition"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://van.physics.illinois.edu/ask/listing/295", "decision": "ACCEPTED", "sourceId": "SRC-UIUC-LEVERS", "reason": "States all three lever classes by relative position." },
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "States the same classification with diagrams and additional worked commentary on third-class mechanical disadvantage." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-UIUC-LEVERS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://van.physics.illinois.edu/ask/listing/295",
+            "sourceLocator": "Physics Van, 'Levers' Q&A entry",
+            "retrievedPassage": "First Class: \"the effort and the load on either side of the fulcrum\". Second Class: \"the load is between the fulcrum and the effort\". Third Class: \"the effort is between the load and the fulcrum\"."
+          },
+          {
+            "sourceId": "SRC-UW-SIMPLEMACHINES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
+            "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, lever-order slides",
+            "retrievedPassage": "\"First order levers have the turning point(fulcrum) between the load and the effort.\" \"A lever that has the load between the fulcrum and the effort is known as a second order lever.\" \"A third order lever is one which has the effort between the fulcrum and the load... Such levers do not have good mechanical advantage. In fact they have mechanical disadvantage... one advantage of such levers is that the distance moved by the load is greater than the distance moved by the effort.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Levers are classified into three classes strictly according to the relative positions of effort, load and fulcrum on the lever: first class (fulcrum between effort and load), second class (load between fulcrum and effort), third class (effort between fulcrum and load).",
+            "sourceId": "SRC-UIUC-LEVERS"
+          },
+          {
+            "claimText": "Confirms the same three-way classification, and additionally notes that a third-class lever has a mechanical disadvantage (effort force exceeds load force) but moves the load through a greater distance than the effort -- illustrating the classification is about positional arrangement, not about memorising specific example objects.",
+            "sourceId": "SRC-UW-SIMPLEMACHINES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound strictly to the positional classification rule (relative order of effort/load/fulcrum), per the Product Architect's instruction not to make memorising isolated example objects the mastery outcome; specific examples (crowbar, wheelbarrow, tweezers, forearm) appear in the sources only as illustrations of the underlying positional relationship, and are treated identically here."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["university physics lever principle of moments effort load effort arm load arm formula balance"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "http://www.comfsm.fm/~dleeling/physics/torque.html", "decision": "ACCEPTED", "sourceId": "SRC-COMFSM-LEVERTORQUE", "reason": "College of Micronesia-FSM physics notes, retrieved and read; states the explicit effort x arm = load x arm balance formula." },
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "University of Washington course PDF, retrieved and read visually; confirms with a moment-balance equation and a worked distance/velocity-ratio example." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-COMFSM-LEVERTORQUE",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "http://www.comfsm.fm/~dleeling/physics/torque.html",
+            "sourceLocator": "College of Micronesia-FSM Physics, 'Levers and Torque' page",
+            "retrievedPassage": "\"Fe x de = Fr x dr\": \"the force of the effort (Fe) multiplied by the distance of the effort from the fulcrum (de) is equal to the force of the resistance (Fr) multiplied by the distance of the resistance from the fulcrum (dr).\""
+          },
+          {
+            "sourceId": "SRC-UW-SIMPLEMACHINES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
+            "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, moment/velocity-ratio slides",
+            "retrievedPassage": "\"M1R1 = M2R2\" (moment balance). Worked example: \"the effort(piston) moves up 10cms while the end of the lever moves 30cms... velocity ratio = distance moved by effort / distance moved by load... the velocity ratio is 1/3.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "At equilibrium, a lever balances when the effort force multiplied by its distance from the fulcrum (the effort arm) equals the load (resistance) force multiplied by its distance from the fulcrum (the load arm): Effort x Effort-Arm = Load x Load-Arm.",
+            "sourceId": "SRC-COMFSM-LEVERTORQUE"
+          },
+          {
+            "claimText": "Confirms the same moment-balance principle from a second, independent university source, and additionally demonstrates that the ratio of distances moved by the effort and the load (the 'velocity ratio') is the inverse of the force ratio -- a smaller effort-arm-to-load-arm distance ratio corresponds to the load moving a proportionally smaller distance than the effort, worked with real numbers (10 cm effort travel to 30 cm load travel, ratio 1/3).",
+            "sourceId": "SRC-UW-SIMPLEMACHINES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu gear ratio torque speed driver driven", "two external gears meshing directly rotate opposite directions university physics"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://www.sci.brooklyn.cuny.edu/~kammet/gear_notes.pdf", "decision": "ACCEPTED", "sourceId": "SRC-CUNY-GEARS", "reason": "CUNY Brooklyn College course notes, retrieved and read visually via the harness's image-based PDF reader (WebFetch's text extraction failed on this PDF); defines driver/driven/idler gears directly." },
+        { "url": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-GEARDIRECTION", "reason": "Penn State Mechanics Map, retrieved and read; states rotation direction of directly-meshing external gears." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-CUNY-GEARS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.sci.brooklyn.cuny.edu/~kammet/gear_notes.pdf",
+            "sourceLocator": "CUNY Brooklyn College, gear_notes.pdf, p.3",
+            "retrievedPassage": "\"the gear connected to the motor is called the driver or input gear, and the gear connected to the wheel is called the driven or output gear. In general, gears situated in between the driver and the driven gears are called idler gears.\""
+          },
+          {
+            "sourceId": "SRC-PSU-GEARDIRECTION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Belt and Gear Driven Systems' page",
+            "retrievedPassage": "\"meshed gears rotate in opposite directions (if one gear rotates clockwise, the other will rotate counter-clockwise)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Gears are toothed wheels that mesh together to transmit rotational motion and force between shafts; the gear connected to the input (e.g. a motor) is the driver (input) gear, and the gear connected to the output load is the driven (output) gear; any gears positioned between them are idler gears.",
+            "sourceId": "SRC-CUNY-GEARS"
+          },
+          {
+            "claimText": "For two gears meshing directly with external teeth, the gears rotate in opposite directions (one clockwise, the other counter-clockwise).",
+            "sourceId": "SRC-PSU-GEARDIRECTION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Gears are never stated or implied to create or increase power anywhere in either retrieved source; both sources describe gears purely as transmitting/trading torque and speed, consistent with the Product Architect's explicit instruction never to claim gears create or increase power."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu gear ratio torque speed driver driven"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://www.sci.brooklyn.cuny.edu/~kammet/gear_notes.pdf", "decision": "ACCEPTED", "sourceId": "SRC-CUNY-GEARS", "reason": "Explicitly defines gear ratio's numerator and denominator, and derives the speed relationship with a worked example." },
+        { "url": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-GEARDIRECTION", "reason": "Independently confirms the SAME output/input gear-ratio convention (checked explicitly to avoid silently combining opposite conventions)." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-CUNY-GEARS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.sci.brooklyn.cuny.edu/~kammet/gear_notes.pdf",
+            "sourceLocator": "CUNY Brooklyn College, gear_notes.pdf, pp.3-4",
+            "retrievedPassage": "\"GR = Output/Input = Driven/Driver\" (number of teeth). \"OutputSpeed = InputSpeed x InputSize/OutputSize.\" Worked example: input 8 teeth, output 24 teeth, input speed 300 rev/min gives \"OutputRPM = 300 rev/min x 8/24 = 100 rev/min\" (gearing down); the reverse (input 24, output 8) gives 900 rev/min (gearing up)."
+          },
+          {
+            "sourceId": "SRC-PSU-GEARDIRECTION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Belt and Gear Driven Systems' page",
+            "retrievedPassage": "\"the gear ratio will be equal to the radius of the output gear divided by the radius of the input gear, or the number of teeth on the output gear divided by the number of teeth on the input gear.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The gear ratio (GR) is explicitly defined as the number of teeth on the output/driven gear divided by the number of teeth on the input/driver gear: GR = Output/Input = Driven/Driver. The rotational speed of the output gear equals the input gear's speed multiplied by the INVERSE of the gear ratio (InputSize/OutputSize): OutputSpeed = InputSpeed x (Input teeth/Output teeth). A gear train with fewer teeth on the input than the output 'gears down' (output rotates slower); more teeth on the input than the output 'gears up' (output rotates faster). Worked example: input gear 8 teeth, output gear 24 teeth, input speed 300 rev/min gives output speed 300 x 8/24 = 100 rev/min.",
+            "sourceId": "SRC-CUNY-GEARS"
+          },
+          {
+            "claimText": "Independently confirms the identical gear-ratio convention (output teeth/radius over input teeth/radius) from a second university source, so no opposite convention is silently combined.",
+            "sourceId": "SRC-PSU-GEARDIRECTION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Both sources use the identical GR=output/input=driven/driver convention; the speed relationship is bound as the explicit inverse of that same GR, not a second, independently-defined ratio, so the numerator/denominator meaning stays internally consistent between the gear-ratio and speed claims (per the Product Architect's explicit instruction)."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::torque-speed-relationship-where-applicable::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu gear ratio torque speed driver driven"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://www.sci.brooklyn.cuny.edu/~kammet/gear_notes.pdf", "decision": "ACCEPTED", "sourceId": "SRC-CUNY-GEARS", "reason": "Explicitly derives the inverse torque/speed trade-off for a gear pair." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-CUNY-GEARS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.sci.brooklyn.cuny.edu/~kammet/gear_notes.pdf",
+            "sourceLocator": "CUNY Brooklyn College, gear_notes.pdf, pp.3-5",
+            "retrievedPassage": "\"WheelTorque = MotorTorque x GR.\" \"Note that the up and down in gearing up and gearing down refers to the rotational speed, NOT torque... the effect of gearing on speed is the inverse of its effect on torque. That is, if as a result of the gear arrangement the torque increases, the rotational speed decreases. And if the torque decreases, the rotational speed increases.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "For a gear train transmitting rotational power (where applicable, e.g. between a motor shaft and a driven wheel/axle), torque at the output scales with the gear ratio (WheelTorque = MotorTorque x GR) while speed scales with the inverse of the same gear ratio: an arrangement that increases torque necessarily decreases rotational speed proportionally, and vice versa -- torque and speed trade against each other, not independently.",
+            "sourceId": "SRC-CUNY-GEARS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "The source frames this in the context of gears specifically ('where applicable' is honoured: no claim is made that every machine exhibits this trade-off, only that it holds for a gear train transmitting power between an input and output shaft)."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::pulleys::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu pulley mechanical advantage rope tension"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://www.physics.wisc.edu/ingersollmuseum/exhibits/mechanics/pulleys/", "decision": "ACCEPTED", "sourceId": "SRC-UWMADISON-PULLEY", "reason": "UW-Madison Physics Department museum exhibit, retrieved and read; states pulley definition/purpose directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-UWMADISON-PULLEY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.physics.wisc.edu/ingersollmuseum/exhibits/mechanics/pulleys/",
+            "sourceLocator": "UW-Madison Ingersoll Museum, 'Pulleys' exhibit page",
+            "retrievedPassage": "\"Pulleys are mechanisms composed of wheels and ropes used to lift heavy objects. They change the direction of an applied force and they can even reduce the force needed to lift a weight.\" With one pulley, mechanical advantage M=1; with two or more, M increases correspondingly."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A pulley is a wheel-and-rope mechanism used to lift objects; a single fixed pulley changes only the direction of the applied force (mechanical advantage 1), while adding movable pulleys to the system can reduce the force needed to lift a given weight (mechanical advantage greater than 1).",
+            "sourceId": "SRC-UWMADISON-PULLEY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Scoped to basic operation and the fixed/movable distinction implicit in the source's one-pulley (M=1, direction-change only) vs. multi-pulley (M>1, force-reducing) progression; does not extend into detailed lifting-equipment regulation or pulley-block inspection, per this batch's explicit exclusions."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::mechanical-advantage::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["HyperPhysics simple machines mechanical advantage lever gear pulley", "hyperphysics.gsu.edu pulley mechanical advantage rope tension"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-SIMMAC", "reason": "States the general mechanical-advantage concept across simple machines." },
+        { "url": "https://www.physics.wisc.edu/ingersollmuseum/exhibits/mechanics/pulleys/", "decision": "ACCEPTED", "sourceId": "SRC-UWMADISON-PULLEY", "reason": "States the specific pulley rule for counting mechanical advantage (rope sections), with the counted sections correctly defined." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-SIMMAC",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html",
+            "sourceLocator": "HyperPhysics, 'Simple Machines' page",
+            "retrievedPassage": "\"The factor by which a machine multiplies force is called the 'mechanical advantage.'\" For an ideal (frictionless) machine, this is the 'ideal mechanical advantage' (IMA)."
+          },
+          {
+            "sourceId": "SRC-UWMADISON-PULLEY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.physics.wisc.edu/ingersollmuseum/exhibits/mechanics/pulleys/",
+            "sourceLocator": "UW-Madison Ingersoll Museum, 'Pulleys' exhibit page",
+            "retrievedPassage": "\"The mechanical advantage M is equal to number of ropes present at the weight end.\" With one pulley, M=1; with two pulleys, M=2, and so on."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Mechanical advantage is the factor by which a machine multiplies an applied (effort) force to produce a larger output (load) force; for an ideal, frictionless machine this is the ideal mechanical advantage.",
+            "sourceId": "SRC-HP-SIMMAC"
+          },
+          {
+            "claimText": "For a pulley system specifically, the ideal mechanical advantage equals the number of rope sections that directly support the load (the weight end) -- not the total number of pulleys or the total rope length -- confirmed by the source's own worked progression (one pulley supporting the load = M1, two rope sections supporting the load = M2, and so on).",
+            "sourceId": "SRC-UWMADISON-PULLEY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-distance-trade::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["HyperPhysics simple machines mechanical advantage lever gear pulley"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-SIMMAC", "reason": "States the general force-distance trade-off with an explicit formula." },
+        { "url": "https://www.physics.wisc.edu/ingersollmuseum/exhibits/mechanics/pulleys/", "decision": "ACCEPTED", "sourceId": "SRC-UWMADISON-PULLEY", "reason": "Confirms with a pulley-specific worked rope-length relationship." },
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "Confirms with a hydraulic-piston numeric worked example." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-SIMMAC",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html",
+            "sourceLocator": "HyperPhysics, 'Simple Machines' page",
+            "retrievedPassage": "\"Work input = F_input*d_input = F_output*d_output = Work output.\" \"You are trading a small force acting through a large distance for a large force acting through a small distance.\""
+          },
+          {
+            "sourceId": "SRC-UWMADISON-PULLEY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.physics.wisc.edu/ingersollmuseum/exhibits/mechanics/pulleys/",
+            "sourceLocator": "UW-Madison Ingersoll Museum, 'Pulleys' exhibit page",
+            "retrievedPassage": "\"You gained by having to apply a smaller force, but had to compensate by having to pull a longer length of rope\"; to lift a weight distance H, rope length L=H x M must be pulled."
+          },
+          {
+            "sourceId": "SRC-UW-SIMPLEMACHINES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
+            "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, hydraulic worked example",
+            "retrievedPassage": "Piston A: Force x Distance = 100N x 0.02m = 2 Joules. Piston B: Force x Distance = 10N x 0.2m = 2 Joules. \"The increase in force is compensated by a decrease in distance travelled.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "For an ideal machine, a reduction in the effort force required must be accompanied by a proportional increase in the distance through which that effort acts, and vice versa, so that Force_input x distance_input = Force_output x distance_output: a smaller force acting through a larger distance trades for a larger force acting through a smaller distance.",
+            "sourceId": "SRC-HP-SIMMAC"
+          },
+          {
+            "claimText": "Confirms the same trade-off specifically for a pulley system: reducing the applied force by a factor equal to the mechanical advantage M requires pulling a proportionally longer length of rope (L=H x M, for a load lifted through height H).",
+            "sourceId": "SRC-UWMADISON-PULLEY"
+          },
+          {
+            "claimText": "Confirms the same trade-off with an independent worked numeric example (a hydraulic system): a 100N force acting through 0.02m and a 10N force acting through 0.2m both do exactly 2 joules of work, demonstrating that the increase in force in one case is exactly compensated by the decrease in distance.",
+            "sourceId": "SRC-UW-SIMPLEMACHINES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["university OR NASA ideal machine work input equals work output no energy created simple machine efficiency", "ideal machine work input work output university physics does not create energy OR conserves energy simple machines"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-SIMMAC", "reason": "States the ideal-machine energy-conservation principle directly." },
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "Confirms with a worked numeric example explicitly invoking conservation of energy." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-SIMMAC",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html",
+            "sourceLocator": "HyperPhysics, 'Simple Machines' page",
+            "retrievedPassage": "\"No machine can output more energy than was put into it\" (ideal case); \"Work input = Fdinput = Froutput = Work output.\""
+          },
+          {
+            "sourceId": "SRC-UW-SIMPLEMACHINES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
+            "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, hydraulic worked example",
+            "retrievedPassage": "\"Notice how the work is the same. The law of conservation of energy ('Energy can not be created or destroyed') is not violated. The increase in force is compensated by a decrease in distance travelled.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An ideal (frictionless) machine does not create energy or power: its work input equals its work output (Work_input = Work_output), and since power is the rate of doing work, if input and output act over the same time interval this equally means input power equals output power for the ideal case. A machine can trade force for distance (or torque for speed) but can never output more energy or power than is supplied to it.",
+            "sourceId": "SRC-HP-SIMMAC"
+          },
+          {
+            "claimText": "Confirms the same principle with an independent worked numeric example: increasing the output force is always exactly compensated by a decrease in the distance moved, so the work (and hence energy) supplied and delivered remain equal, consistent with conservation of energy.",
+            "sourceId": "SRC-UW-SIMPLEMACHINES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound strictly to the ideal (energy-conserving, work-in-equals-work-out) case; the companion requirement 'real-losses-reduce-useful-output' below covers the real, non-ideal case separately, so this claim is not weakened to also cover friction losses."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::real-losses-reduce-useful-output::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu efficiency machines useful output input energy", "mechanicsmap.psu.edu OR site:.edu efficiency machine useful work input formula percentage engineering"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-4_efficiency/efficiency.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-EFFICIENCY", "reason": "Penn State Mechanics Map, retrieved and read; explicitly attributes lost work/power to friction, converted to heat." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PSU-EFFICIENCY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-4_efficiency/efficiency.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Efficiency in Particle Systems' page",
+            "retrievedPassage": "\"Any devices with work/power inputs and outputs will have some loss of work or power between that input and output due to things like friction.\" Lost work/power is \"turned into heat that may build up.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In a real (non-ideal) machine, friction and similar loss mechanisms mean that not all of the input work or power reaches the useful output; the lost portion is converted into heat rather than delivered as useful mechanical output, so the useful output of a real machine is always less than its input.",
+            "sourceId": "SRC-PSU-EFFICIENCY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Scoped to the qualitative fact that friction/losses reduce useful output; does not extend into detailed friction-coefficient calculations, per this batch's explicit exclusions."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-concept-at-qualification-depth::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["NIST OR BIPM OR university physics force definition push or pull newton's laws qualitative"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://www.nist.gov/pml/quantum-measurement/mass-and-force/proving-ring/what-force", "decision": "ACCEPTED", "sourceId": "SRC-NIST-FORCE", "reason": "Genuine NIST government page, retrieved and read; states the qualitative definition and unit directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-FORCE",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.nist.gov/pml/quantum-measurement/mass-and-force/proving-ring/what-force",
+            "sourceLocator": "NIST, 'What is Force?' page",
+            "retrievedPassage": "\"When we push or pull on a body, we are said to exert a force on it.\" The force \"may produce motion of the body or may cause the body to deform.\" \"The unit of force is the Newton (N). By definition, the newton is the force required to give a one-kilogram mass an acceleration of one meter per second squared.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A force is a push or a pull exerted on a body; it may produce motion of the body, change its motion, or cause it to deform. The SI unit of force is the newton (N), defined as the force required to give a one-kilogram mass an acceleration of one metre per second squared.",
+            "sourceId": "SRC-NIST-FORCE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to the qualitative push/pull concept and the newton's definition at Unit 202 qualification depth; does not extend into vector mechanics, Newton's laws as a formal system, or F=ma as an independent topic, per this batch's explicit exclusions."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::work::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu work definition force through a distance joules"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/work.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-WORK", "reason": "Genuine HyperPhysics page, retrieved and read; states the definition directly." },
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "Confirms with an independent worked numeric example." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-WORK",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/work.html",
+            "sourceLocator": "HyperPhysics, 'Work, Energy and Power' page",
+            "retrievedPassage": "Work \"refers to an activity involving a force and movement in the direction of the force.\" \"A force of 20 newtons pushing an object 5 meters in the direction of the force does 100 joules of work.\""
+          },
+          {
+            "sourceId": "SRC-UW-SIMPLEMACHINES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
+            "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, 'Work' slide",
+            "retrievedPassage": "\"Work = force(N) x distance(m).\" \"One joule of work is done when a force of one Newton is applied over a distance of one metre.\" Worked example: \"Work = 3N x 3m = 9Nm = 9 Joules.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Work is done when a force acts on an object and moves it through a distance in the direction of the force; work is measured in joules, where one joule is the work done when a force of one newton moves its point of application one metre in the direction of the force.",
+            "sourceId": "SRC-HP-WORK"
+          },
+          {
+            "claimText": "Confirms the same definition and unit from a second, independent university source, with a worked numeric example (3N over 3m = 9 joules).",
+            "sourceId": "SRC-UW-SIMPLEMACHINES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::w-fd::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu work definition W=Fd force displacement energy kinetic potential"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/work.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-WORK", "reason": "States W=Fd and its scope (force acting in the direction of motion) directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-WORK",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/work.html",
+            "sourceLocator": "HyperPhysics, 'Work, Energy and Power' page",
+            "retrievedPassage": "Work \"refers to an activity involving a force and movement IN THE DIRECTION of the force.\" \"A force of 20 newtons pushing an object 5 meters in the direction of the force does 100 joules of work\" (W=Fd=20N x 5m=100J)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The supplied proposition W = Fd is VERIFIED against the retrieved source, scoped explicitly as the source scopes it: W=Fd applies to the Level 2 case where the force (or the relevant component of the force) acts along the direction of the displacement -- the source's own worked example (20N through 5m = 100J) is stated as force acting 'in the direction of' the movement, not at an arbitrary angle to it. This claim does not assert that W=Fd applies unchanged when the force acts at a general angle to the displacement.",
+            "sourceId": "SRC-HP-WORK"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Deliberately scoped per the Product Architect's instruction: bound only to the force-along-displacement case, not generalised to an arbitrary force angle (which would require the cos(theta) term this batch's sources were not searched for and which is out of scope for this requirement's Level 2 depth)."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::energy::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu energy definition capacity to do work forms"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/work.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-WORK", "reason": "States the general definition of energy directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-WORK",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/work.html",
+            "sourceLocator": "HyperPhysics, 'Work, Energy and Power' page",
+            "retrievedPassage": "\"Energy is the capacity for doing work.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Energy is the capacity of a system to do work; energy is measured in the same unit as work, the joule.",
+            "sourceId": "SRC-HP-WORK"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::kinetic-versus-potential-energy-concept::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu work definition W=Fd force displacement energy kinetic potential"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/ke.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-KE", "reason": "States the kinetic-energy concept directly." },
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-1_work_kinetic_and_potential_energy/work_kinetic_and_potential_energy.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-WORKENERGY", "reason": "States both concepts and their qualitative distinction." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-KE",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/ke.html",
+            "sourceLocator": "HyperPhysics, 'Kinetic Energy Concept' page",
+            "retrievedPassage": "\"Kinetic energy is energy of motion\" -- the energy an object possesses because of its motion."
+          },
+          {
+            "sourceId": "SRC-PSU-WORKENERGY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-1_work_kinetic_and_potential_energy/work_kinetic_and_potential_energy.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Work, Kinetic Energy, and Potential Energy' page",
+            "retrievedPassage": "\"Kinetic energy is the energy of mass in motion.\" Potential energy \"represents the work that a given force will potentially do between two instances in time\", connected to an object's position rather than its motion."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Kinetic energy is the energy an object possesses because of its motion.",
+            "sourceId": "SRC-HP-KE"
+          },
+          {
+            "claimText": "Potential energy is energy associated with an object's position or configuration (a stored capacity to do work), qualitatively distinct from kinetic energy, which is associated with motion; an object at rest in an elevated or stressed configuration can possess potential energy with zero kinetic energy, and vice versa.",
+            "sourceId": "SRC-PSU-WORKENERGY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to the qualitative concept only, per the Product Architect's explicit exclusion of the KE=(1/2)mv^2 formula as Unit 202 mastery content; kinetic energy remains a required qualitative concept, but no formula for it is bound or taught here."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gravitational-lifting-work-against-gravity::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu work definition W=Fd force displacement energy kinetic potential"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-1_work_kinetic_and_potential_energy/work_kinetic_and_potential_energy.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-WORKENERGY", "reason": "States the work-against-gravity-becomes-stored-PE relationship directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PSU-WORKENERGY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-1_work_kinetic_and_potential_energy/work_kinetic_and_potential_energy.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Work, Kinetic Energy, and Potential Energy' page",
+            "retrievedPassage": "When converting from a work term to a gravitational energy term, \"the negative work value\" (of gravity acting on a rising object) converts \"into a positive energy value\" -- i.e. work done against gravity while lifting an object becomes stored gravitational potential energy."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "When an object is lifted, work is done against the force of gravity; this work done against gravity is stored as (becomes equal to) the object's gained gravitational potential energy.",
+            "sourceId": "SRC-PSU-WORKENERGY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::pe-mgh-work-against-gravity-equivalence::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu work definition W=Fd force displacement energy kinetic potential"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-1_work_kinetic_and_potential_energy/work_kinetic_and_potential_energy.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-WORKENERGY", "reason": "States PE=mgh with an explicit, correct definition of the height term." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PSU-WORKENERGY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-1_work_kinetic_and_potential_energy/work_kinetic_and_potential_energy.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Work, Kinetic Energy, and Potential Energy' page",
+            "retrievedPassage": "\"Delta-PE_gravity = m*g*Delta-h\", where the change is based on \"vertical displacement between the starting and ending states\" rather than total distance travelled."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The supplied proposition PE = mgh is VERIFIED against the retrieved source, with the height term defined precisely as the retrieved source defines it: the CHANGE in gravitational potential energy equals mass x gravitational field strength x the CHANGE in vertical height (delta-PE = m g delta-h), where delta-h is the vertical displacement between the start and end positions -- not the total path length travelled (e.g. lifting an object up and sideways along a slope uses only the net vertical rise, not the slope length). A consistent gravitational-field-strength value (g) must be used throughout a given calculation. This is equivalent to the work done against gravity in lifting the object that vertical distance (see the companion 'gravitational-lifting-work-against-gravity' claim above).",
+            "sourceId": "SRC-PSU-WORKENERGY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::power::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu power definition P=W/t work time efficiency machines"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://hyperphysics.gsu.edu/hbase/pow.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-POWER", "reason": "States the definition and unit directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-POWER",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/pow.html",
+            "sourceLocator": "HyperPhysics, 'Power' page",
+            "retrievedPassage": "\"Power may be defined as the rate of doing work or the rate of using energy.\" \"The standard unit for power is the watt (abbreviated W) which is a joule per second.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Power is the rate of doing work (equivalently, the rate at which energy is used or transferred); its SI unit is the watt, equal to one joule per second.",
+            "sourceId": "SRC-HP-POWER"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Note on notation: this source's own abbreviation for the watt happens to be the capital letter W, distinct from its own use of W for work in the neighbouring work definition. This batch's own artifacts avoid using a bare 'W' for either quantity in prose where ambiguity could arise, spelling out 'watt' and 'work' instead."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::p-w-t::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["mechanicsmap.psu.edu power definition work time watt"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-POWER", "reason": "States P=W/t explicitly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PSU-POWER",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Power in Particle Systems' page",
+            "retrievedPassage": "\"P_ave = W/t\": average power equals work done divided by the time interval; \"the common units of power are watts...where one watt is defined as a joule per second.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The supplied proposition P = W/t is VERIFIED against the retrieved source: average power equals the work done divided by the time taken to do it, measured in watts (joules per second).",
+            "sourceId": "SRC-PSU-POWER"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::efficiency::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["DEFINITION"],
+      "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu efficiency machines useful output input energy"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-4_efficiency/efficiency.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-EFFICIENCY", "reason": "States the definition directly." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PSU-EFFICIENCY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-4_efficiency/efficiency.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Efficiency in Particle Systems' page",
+            "retrievedPassage": "Efficiency is \"the percentage of useful work or power that is transferred from input to output of some system.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Efficiency is the proportion (expressed as a ratio or percentage) of useful work or power delivered by a system's output, compared with the work or power supplied to it as input.",
+            "sourceId": "SRC-PSU-EFFICIENCY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::efficiency-relationship::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["CONCEPTUAL_RELATIONSHIP"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu efficiency machines useful output input energy", "mechanicsmap.psu.edu OR site:.edu efficiency machine useful work input formula percentage engineering"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-4_efficiency/efficiency.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-EFFICIENCY", "reason": "States both the work-ratio and power-ratio forms explicitly and separately." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PSU-EFFICIENCY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-4_efficiency/efficiency.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Efficiency in Particle Systems' page",
+            "retrievedPassage": "\"eta = W_out/W_in = P_out/P_in.\" \"it is impossible to have efficiencies greater than one (or 100%) because that would be a violation of the conservation of energy.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Efficiency (eta) is calculated as useful energy/work output divided by energy/work input (eta=W_out/W_in), OR, equivalently and separately, as useful power output divided by power input (eta=P_out/P_in) -- these are the two legitimate, dimensionally-compatible forms of the ratio; an energy/work quantity must never be divided by a power quantity or vice versa. Efficiency can never legitimately exceed 1 (100%), since that would violate conservation of energy.",
+            "sourceId": "SRC-PSU-EFFICIENCY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "The source states the work-ratio and power-ratio forms as two separate, internally-consistent equations, never mixed; the normalized claim preserves this separation explicitly, per the Product Architect's instruction not to mix an energy numerator with a power denominator."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE",
+      "requirementMode": "PROCEDURE_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": ["PROCEDURE", "CALCULATION_METHOD"],
+      "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE", "AUTHORITATIVE_EDUCATIONAL_REFERENCE"],
+      "searchQueriesUsed": ["mechanicsmap.psu.edu OR university physics worked example lever pulley calculate effort load efficiency multistep"],
+      "candidatesEvaluatedInOrder": [
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "Genuine multi-step worked example chaining pressure, force, and work calculations, retrieved and read visually." }
+      ],
+      "retrievalStatus": "RETRIEVED_AND_READ",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-UW-SIMPLEMACHINES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
+            "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, hydraulic worked example (three consecutive slides)",
+            "retrievedPassage": "Step 1: \"Pressure = force/area\", 30N/100cm2 = 0.3N/cm2. Step 2: \"Force = pressure x area\", 0.3N/cm2 x 100cm2 = 30N (and separately, 1N/cm2 x 100cm2 = 100N for the multiplied-force case). Step 3: for each piston, \"Force x Distance\" (100N x 0.02m = 2 Joules; 10N x 0.2m = 2 Joules), then the two work values are compared to confirm they are equal."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A legitimate multistep mechanical calculation chains several individually-simple relationships in sequence to reach a result that no single formula gives directly -- for example: (1) use a known force and area to find a pressure or an intermediate force via one relationship, (2) use that intermediate result together with a distance to calculate work via a second relationship, and (3) compare results (e.g. two work values, or an input/output ratio) to check the calculation against a governing principle such as conservation of energy. Each step uses only the already-evidenced basic relationships (e.g. force/area, work=force x distance) in sequence, rather than any new formula.",
+            "sourceId": "SRC-UW-SIMPLEMACHINES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "The worked example itself uses a hydraulic (pressure-based) force-multiplication system, which is outside this batch's own scope (levers/gears/pulleys); it is bound here ONLY as evidence of the general multistep-chaining PROCEDURE (combining force/distance/work steps in sequence and cross-checking against energy conservation), not as evidence that hydraulic pressure calculations are themselves Unit 202 mechanics-and-machines content. The learning-point inventory below applies this same chaining procedure using only this batch's own evidenced relationships (lever/gear/pulley mechanical advantage, work, power, efficiency)."
+      }
+    }
+  ],
+  "totals": {
+    "VERIFIED": 28,
+    "PARTIALLY_VERIFIED": 0,
+    "SOURCE_GAP": 0,
+    "CONFLICTED": 0
+  },
+  "authorityPolicyNotes": "No requirement in this batch required broadening or reinterpreting a permitted authority class. AUTHORITATIVE_EDUCATIONAL_REFERENCE (OpenStax) was used only for the one PROCEDURE_COVERAGE requirement (appropriate-mass-weight-calculations) whose own permitted-class list already includes it directly -- no adjudication was needed, unlike Batch 01's narrow exception for a different requirement mode.",
+  "boundedResearchNote": "All 28 requirements were closed within a small number of genuinely-evaluated candidates per requirement (well within the 4-candidate bound); several requirements reused an already-accepted source discovered for a related requirement in the same cluster, which is not a new discovery and is recorded as reuse, not as an additional candidate count. No requirement required rejecting more than two candidates before acceptance. No requirement was left PARTIALLY_VERIFIED or SOURCE_GAP in this batch.",
+  "notationConsistencyNote": "Per the Product Architect's instruction, this file consistently distinguishes the weight force (from F=mg / w=mg) from the symbol W used for work: prose in this file refers to 'weight' or 'weight force', never a bare 'W', and 'work' is referred to by name or the lowercase-context formula W=Fd only where the source's own notation is being quoted directly. The gear-ratio convention (GR=output/driven over input/driver) is used identically and explicitly in every result that touches gears, confirmed consistent across two independently-retrieved sources (SRC-CUNY-GEARS and SRC-PSU-GEARDIRECTION)."
+}
