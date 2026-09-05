@@ -1,8 +1,9 @@
 {
   "batchId": "batch-01-foundational-mathematics",
-  "sourceCount": 12,
+  "sourceCount": 16,
   "reusedSourceCount": 2,
-  "newSourceCount": 10,
+  "newSourceCount": 14,
+  "paDepthCorrectionNote": "Four new sources (SRC-DECIMAL-OPERATIONS, SRC-PERCENT-OF-ANOTHER, SRC-SUBS-FORMULAE, SRC-MATHLANGUAGE) were acquired in a targeted top-up pass after Product Architect review held the original evidence pending depth/granularity correction. Two already-registered sources (SRC-RATIOS, SRC-PYTHAGORAS) had their 'supports' claim summaries and locators extended to reflect genuinely present content that was previously under-quoted; they are not counted as new sources.",
   "sources": [
     {
       "sourceId": "SRC-PILOT-FRACTIONS",
@@ -44,6 +45,19 @@
       ]
     },
     {
+      "sourceId": "SRC-PERCENT-OF-ANOTHER",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Percentages (mc-TY-percent-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-percent-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units. This is a separate, fuller 'teach yourself' unit from mc-bus-percentage-2009-1 (SRC-PERCENTAGES above), acquired specifically for its 'express one quantity as a percentage of another' content.",
+      "locator": "mathcentre, 'Percentages' (mc-TY-percent-2009-1), §1, p.2",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::percentages::TOPIC_BREADTH_COVERAGE", "claimSummary": "Expressing one quantity as a percentage of another (e.g. 18 out of 20 = 90%)." }
+      ]
+    },
+    {
       "sourceId": "SRC-ALGEBRA-BRACKETS",
       "reused": false,
       "publisher": "mathcentre",
@@ -54,6 +68,32 @@
       "locator": "mathcentre, 'Expanding and removing brackets', §1 and §3, pp.2, 5",
       "supports": [
         { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE", "claimSummary": "Expanding brackets and collecting like terms." }
+      ]
+    },
+    {
+      "sourceId": "SRC-MATHLANGUAGE",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Mathematical language (mc-TY-mathlanguage-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-mathlanguage1-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Mathematical language', §3 'Variables' and §5 'Some more symbols', pp.4-5",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE", "claimSummary": "Meaning of a variable; conventions for reading algebraic notation (implicit multiplication, superscript powers)." }
+      ]
+    },
+    {
+      "sourceId": "SRC-SUBS-FORMULAE",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Substitution & Formulae (mc-subsandformulae-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-subsandformulae-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Substitution & Formulae', §5 'The equations of motion', pp.4-5",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE", "claimSummary": "Substituting numerical values into a formula and evaluating using the correct order of operations (BODMAS)." }
       ]
     },
     {
@@ -92,9 +132,9 @@
       "url": "https://www.mathcentre.ac.uk/resources/Engineering%20maths%20first%20aid%20kit/latexsource%20and%20diagrams/4_5.pdf",
       "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
       "authorityRationale": "mathcentre's Engineering Maths First Aid Kit is a citable HE-partnership engineering-mathematics resource.",
-      "locator": "mathcentre, Engineering Maths First Aid Kit §4.5, p.1",
+      "locator": "mathcentre, Engineering Maths First Aid Kit §4.5, pp.1-2",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::pythagoras::EXACT_FACT", "claimSummary": "c² = a² + b² for a right-angled triangle." }
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::pythagoras::EXACT_FACT", "claimSummary": "c² = a² + b² for a right-angled triangle, plus worked examples finding the hypotenuse and finding a shorter side." }
       ]
     },
     {
@@ -152,6 +192,19 @@
       ]
     },
     {
+      "sourceId": "SRC-DECIMAL-OPERATIONS",
+      "reused": false,
+      "publisher": "OpenStax (Rice University), hosted on Mathematics LibreTexts",
+      "title": "Prealgebra 2e, §5.3 'Decimal Operations'",
+      "url": "https://math.libretexts.org/Bookshelves/PreAlgebra/Prealgebra_2e_(OpenStax)/05:_Decimals/5.03:_Decimal_Operations",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "OpenStax is a nonprofit educational publisher (Rice University); LibreTexts is an established, multi-institution open-education hosting platform already used elsewhere in this repository as an AUTHORITATIVE_EDUCATIONAL_REFERENCE source.",
+      "locator": "OpenStax 'Prealgebra 2e' via Mathematics LibreTexts, §5.3 'Decimal Operations'",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::ordinary-decimal-arithmetic::PROCEDURE_COVERAGE", "claimSummary": "Step-by-step procedures for adding, subtracting, multiplying, and dividing decimal numbers." }
+      ]
+    },
+    {
       "sourceId": "SRC-RATIOS",
       "reused": false,
       "publisher": "mathcentre",
@@ -159,9 +212,9 @@
       "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-ratios-2009-1.pdf",
       "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
       "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
-      "locator": "mathcentre, 'Ratios', §1-§3, pp.2-4",
+      "locator": "mathcentre, 'Ratios', §1-§3, pp.2-7",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE", "claimSummary": "Ratio notation, simplifying ratios, sharing a quantity in a given ratio." }
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE", "claimSummary": "Ratio notation, simplifying ratios, sharing a quantity in a given ratio, and direct-proportion scaling via the unit-value method." }
       ]
     }
   ]

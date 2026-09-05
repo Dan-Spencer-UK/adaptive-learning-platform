@@ -47,19 +47,31 @@
             "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-bus-percentage-2009-1.pdf",
             "sourceLocator": "mathcentre, 'Percentages' (mc-bus-percentage-2009-1), pp.1-2",
             "retrievedPassage": "\"Any fraction which has a denominator of 100 can be written in a special way known as a percentage. The symbol for percentage is %.\" \"To find, say, 15% of 250, convert the percentage to a fraction, and remember that 'of' means multiply: 15/100 x 250/1 = 37.5\", with worked conversions between decimals, fractions and percentages."
+          },
+          {
+            "sourceId": "SRC-PERCENT-OF-ANOTHER",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-percent-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Percentages' (mc-TY-percent-2009-1), §1 'Introduction', p.2 (distinct 'teach yourself' unit from mc-bus-percentage-2009-1 above)",
+            "retrievedPassage": "Learning outcomes include \"express one quantity as a percentage of another.\" Worked example: \"say you get 18 marks out of 20 in a test. What percentage is this? First, write the information as a fraction. You gained 18 out of 20 marks, so the fraction is 18/20. Since a percentage requires a denominator of 100, we can turn 18/20 into a fraction out of 100 by multiplying both numerator and denominator by 5: 18/20 = 90/100 = 90%.\" Key Point: \"To change a fraction to a percentage, divide the numerator by the denominator and multiply by 100%.\""
           }
         ],
         "normalizedClaims": [
           {
             "claimText": "A percentage is a fraction with denominator 100, written with the symbol %; a decimal, fraction, or percentage can each be converted into either of the other two forms (e.g. by expressing as an equivalent fraction over 100, or by dividing/multiplying by 100); to find a percentage of a quantity, convert the percentage to a fraction (x% = x/100) and multiply by the quantity.",
             "sourceId": "SRC-PERCENTAGES"
+          },
+          {
+            "claimText": "One quantity is expressed as a percentage of another by writing the first quantity as a fraction of the second, then dividing the numerator by the denominator and multiplying by 100% (e.g. 18 marks out of 20 is 18/20 = 90%).",
+            "sourceId": "SRC-PERCENT-OF-ANOTHER"
           }
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": ["PROCEDURE"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "PA depth-and-granularity correction (this pass): the requirement's original evidence covered percentage meaning, conversion, and finding a percentage of a quantity, but not expressing one quantity as a percentage of another -- needed for calculations such as efficiency. A second mathcentre document (a full 'teach yourself' unit, distinct from the quick-reference leaflet already cited, found at the same publisher while searching for this gap) explicitly lists and teaches this as a named outcome. This same document's §3-§4 also cover percentage increase/decrease and reverse percentages (finding an original amount before a percentage change); those sections are deliberately NOT cited or used here, as the Product Architect's decision excludes compound percentage change, reverse percentages, and financial mathematics unless a Unit 202 requirement explicitly needs them, which none currently does."
       }
     },
     {
@@ -68,17 +80,39 @@
       "result": {
         "candidateSources": [
           {
+            "sourceId": "SRC-MATHLANGUAGE",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-mathlanguage1-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Mathematical language' (mc-TY-mathlanguage-2009-1), §3 'Variables' and §5 'Some more symbols', pp.4-5",
+            "retrievedPassage": "\"Variables are another form of mathematical symbol. These are used when quantities take different values... We will be using letters to stand for quantities like this.\" On implicit multiplication: \"Suppose we have a+a+a+a+a. We might write this expression as 5 x a. However... we would often write simply 5a.\" On powers: \"you will come across use of superscripts. These are small numbers or symbols written at the top right of another, as in 4^2. In this context 4^2 is a shorthand for 'four squared' or 4 x 4.\""
+          },
+          {
             "sourceId": "SRC-ALGEBRA-BRACKETS",
             "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
             "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-expandingbrackets-2009-1.pdf",
             "sourceLocator": "mathcentre, 'Expanding and removing brackets' (mc-TY-expandingbrackets-2009-1), §1 and §3, pp.2, 5",
             "retrievedPassage": "\"In this unit we will see how expressions involving brackets can be written in equivalent forms without any brackets. This process is called 'expanding' or 'removing' brackets\"; Key Point: \"The term outside the brackets multiplies each term inside the brackets\", a(b+c) = ab+ac, with worked examples e.g. 3(x+2) = 3x+6, -3a²(3-b) = -9a²+3a²b, and exercises combining expansion with simplifying (collecting like terms), e.g. 5+2(x+1)."
+          },
+          {
+            "sourceId": "SRC-SUBS-FORMULAE",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-subsandformulae-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Substitution & Formulae' (mc-subsandformulae-2009-1), §5 'The equations of motion', p.4-5",
+            "retrievedPassage": "\"v = u + at ... = 5 + 2 x 3 = 11 ... Here it is worth pointing out the correct order of carrying out the operations in the calculation of 5 + 2 x 3. The multiplication is carried out before the addition. You may recall the BODMAS rule which states the order in which operations should be carried out.\" [Brackets, pOwers, Division, Multiplication, Addition, Subtraction]"
           }
         ],
         "normalizedClaims": [
           {
+            "claimText": "A variable is a letter used to stand for a quantity that can take different values; by convention, multiplication between a number and a variable is written without a symbol (e.g. 5 x a is written 5a), and a superscript (e.g. 4^2) denotes a power.",
+            "sourceId": "SRC-MATHLANGUAGE"
+          },
+          {
             "claimText": "An algebraic expression containing brackets can be rewritten in an equivalent form without brackets by multiplying the term outside the brackets by each term inside them (e.g. a(b+c) = ab+ac; 3(x+2) = 3x+6; -3a²(3-b) = -9a²+3a²b), and the resulting expression can then be simplified by collecting like terms.",
             "sourceId": "SRC-ALGEBRA-BRACKETS"
+          },
+          {
+            "claimText": "Numerical values are substituted into a formula in place of its variables and then evaluated using the correct order of operations (the BODMAS rule: Brackets, pOwers, Division, Multiplication, Addition, Subtraction), e.g. for v = u + at with u=5, a=2, t=3: v = 5 + 2 x 3 = 11, where the multiplication is carried out before the addition.",
+            "sourceId": "SRC-SUBS-FORMULAE"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -86,7 +120,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Evidence covers introductory algebraic manipulation (notation, expanding brackets, collecting like terms) -- the depth needed for this qualification's basic formula work. It does not cover solving equations, factorising, or quadratic expressions, which are excluded by this requirement's depth ceiling."
+        "scopeNote": "PA depth-and-granularity correction (this pass): the original single-source claim (brackets/like terms only) did not support the full breadth implied by the requirement name 'Algebra'. Two further sources were acquired to close this: mathcentre's 'Mathematical language' unit for the meaning of a variable and the conventions for reading algebraic notation (implicit multiplication, superscript powers), and mathcentre's 'Substitution & Formulae' unit for substituting values into a formula and evaluating the result using the correct order of operations (BODMAS). Together the three sources now cover: variables and notation conventions; substitution and order of operations; expanding a single bracket; and collecting like terms -- the algebra needed before formula use and transposition. 'Constant' and 'coefficient' are not independently defined by name in any of the three sources (the sources demonstrate the underlying ideas operationally, e.g. 5a, without using that vocabulary) -- this is recorded honestly rather than overclaimed; the functional Level 2 skill (reading and using such notation) is still evidenced. Excluded, as before: solving equations, factorising, quadratic expressions, simultaneous equations, and formal proof."
       }
     },
     {
@@ -105,7 +139,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "mathcentre's 'Transposition of formulae' unit teaches transposing a formula by performing the same operation to both sides to isolate a variable, covering single-step examples (e.g. v = u + at rearranged for t) and multi-step/squared-and-rooted forms (e.g. v² = u² + 2as rearranged for u via subtraction then square root; the pendulum formula T = 2π√(l/g) rearranged for g via squaring, multiplying, and dividing), demonstrated through worked examples and practice exercises.",
+            "claimText": "mathcentre's 'Transposition of formulae' unit teaches transposing a formula by performing the same operation to both sides to isolate a variable, covering simple linear examples requiring one or more inverse operations (e.g. v = u + at rearranged for t: subtract u from both sides, then divide by a, giving t = (v-u)/a) and separately, formulae involving squares and square roots (e.g. v² = u² + 2as rearranged for u via subtraction then square root; the pendulum formula T = 2π√(l/g) rearranged for g via squaring, multiplying, and dividing), demonstrated through worked examples and practice exercises.",
             "sourceId": "SRC-PILOT-TRANSPOSITION"
           }
         ],
@@ -113,7 +147,8 @@
         "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "PA depth-and-granularity correction (this pass): the worked example v = u + at rearranged for t requires two inverse operations (subtract u, then divide by a), not one -- it was previously mischaracterised as a 'single-step'/'single balanced operation' example. The claim and the corresponding learning point are corrected to describe this category as 'simple linear rearrangement using one or more inverse operations', kept distinct from the separate squares/roots category. No new research was needed; this is a description correction to the existing, unchanged source and evidence."
       }
     },
     {
@@ -178,20 +213,25 @@
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
             "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values",
             "sourceLocator": "NIST Guide to the SI, Chapter 7 'Rules and Style Conventions for Expressing Values of Quantities', §7.9",
-            "retrievedPassage": "\"3.3 × 10⁷ Hz may be written as 33 × 10⁶ Hz = 33 MHz\" and \"0.009 52 g may be written as 9.52 × 10⁻³ g = 9.52 mg\", illustrating a number expressed as a coefficient multiplied by a power of ten."
+            "retrievedPassage": "\"3.3 × 10⁷ Hz may be written as 33 × 10⁶ Hz = 33 MHz\" and \"0.009 52 g may be written as 9.52 × 10⁻³ g = 9.52 mg\", illustrating a number expressed as a coefficient multiplied by a power of ten (each worked example's coefficient has exactly one non-zero digit before the decimal point)."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "A number in standard (scientific) form is written as a coefficient multiplied by a power of ten (e.g. 9.52 × 10⁻³), with the exponent chosen so the value being multiplied by a power of ten is repositioned accordingly.",
+            "claimText": "A number can be written as a coefficient multiplied by a power of ten (e.g. 9.52 × 10⁻³); NIST's own worked examples for this format use a coefficient with a single non-zero digit before the decimal point.",
             "sourceId": "SRC-NIST-SI-CH7"
           }
         ],
-        "verificationStatus": "VERIFIED",
-        "coverageDimensionsSatisfied": ["QUANTITY_SYMBOL"],
-        "unresolvedDimensions": [],
+        "verificationStatus": "PARTIALLY_VERIFIED",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": ["QUANTITY_SYMBOL"],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          {
+            "description": "The full standard/scientific-form convention -- that the coefficient a must satisfy 1 ≤ |a| < 10, for any integer exponent n -- is not stated as a general rule in the cited NIST passage; §7.9 of the NIST Guide to the SI is actually about choosing SI prefixes for engineering notation (values between 0.1 and 1000, exponents restricted to multiples of 3), and its two examples merely illustrate a coefficient-times-power-of-ten format in passing.",
+            "reason": "A capped search of sources within this requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) did not find a freely accessible document stating the precise 1 ≤ |a| < 10 convention: NIST SP811 Chapter 10 ('More on Printing and Using Symbols and Numbers') does not state it; the full NIST SP811 PDF and NIST factsheet J-032 ('Writing with the SI') do not state it; ISO 80000-1 (the likely normative source) is paywalled beyond its scope/foreword; no IET or equivalent professional-body technical-writing guide stating it was found. General encyclopedic sources (e.g. Wikipedia) do state the rule but are not within this requirement's permitted authority classes, consistent with this project's existing practice of rejecting general encyclopedias as evidence. This is recorded as an unresolved sourcing gap, not as evidence that no such source exists."
+          }
+        ]
       }
     },
     {
@@ -229,13 +269,13 @@
             "sourceId": "SRC-PYTHAGORAS",
             "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
             "sourceRef": "https://www.mathcentre.ac.uk/resources/Engineering%20maths%20first%20aid%20kit/latexsource%20and%20diagrams/4_5.pdf",
-            "sourceLocator": "mathcentre, 'Engineering Maths First Aid Kit' §4.5 'Pythagoras' theorem', p.1",
-            "retrievedPassage": "\"In any right-angled triangle, ABC, the side opposite the right-angle is called the hypotenuse.\" \"Pythagoras' theorem states that the square of the hypotenuse, (c²), is equal to the sum of the squares of the other two sides, (a² + b²).\" Key Point: \"Pythagoras' theorem: c² = a² + b²\"."
+            "sourceLocator": "mathcentre, 'Engineering Maths First Aid Kit' §4.5 'Pythagoras' theorem', pp.1-2 (leaflet pages 4.5.1-4.5.2)",
+            "retrievedPassage": "\"In any right-angled triangle, ABC, the side opposite the right-angle is called the hypotenuse.\" \"Pythagoras' theorem states that the square of the hypotenuse, (c²), is equal to the sum of the squares of the other two sides, (a² + b²).\" Key Point: \"Pythagoras' theorem: c² = a² + b²\". Worked example (p.2): \"Suppose AC = 9cm and BC = 5cm... Find the length of the hypotenuse, AB... c² = a² + b² = 5² + 9² = 25 + 81 = 106, c = √106 = 10.30 (2dp.)\". Second worked example (p.2): \"suppose that the length of the hypotenuse is 14cm and that a = BC = 3cm. Find the length of AC... 14² = 3² + b², 196 = 9 + b², b² = 196 − 9 = 187, b = √187 = 13.67 (2dp.)\", i.e. rearranging the theorem to find a shorter side when the hypotenuse is known."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "In a right-angled triangle, the side opposite the right angle is the hypotenuse; Pythagoras' theorem states that the square of the hypotenuse equals the sum of the squares of the other two sides: c² = a² + b².",
+            "claimText": "In a right-angled triangle, the side opposite the right angle is the hypotenuse; Pythagoras' theorem states that the square of the hypotenuse equals the sum of the squares of the other two sides: c² = a² + b². The theorem is used to find the hypotenuse directly from the other two sides (c = sqrt(a²+b²)), and, by rearranging, to find either shorter side when the hypotenuse and the other shorter side are known (e.g. b = sqrt(c²-a²)).",
             "sourceId": "SRC-PYTHAGORAS"
           }
         ],
@@ -243,7 +283,8 @@
         "coverageDimensionsSatisfied": ["DEFINITION"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "PA depth-and-granularity correction (this pass): the original claim quoted only the theorem statement (p.1), while the corresponding learning point's outcome also promised finding an unknown side -- an unsupported procedural promise. The same, already-cited source's second page (previously under-quoted) contains two full worked examples: finding the hypotenuse directly, and rearranging to find a shorter side given the hypotenuse and one other side. No new source was needed; the locator and passage are extended to the genuinely present procedural content."
       }
     },
     {
@@ -387,13 +428,24 @@
             "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
             "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-decimals-2009-1.pdf",
             "sourceLocator": "mathcentre, 'Decimals' (mc-TY-decimals-2009-1), §1-§3, pp.2-5",
-            "retrievedPassage": "Place-value chart showing columns 1000000...100...10...1 . 1/10...1/1000; \"each digit will now move two columns to the left\" when multiplying 0.507 by 100 = 50.7; \"127.5 ÷ 10 = 12.75\"; \"0.2 = 2/10 = 1/5\"; \"1/3 = 1 ÷ 3 = 0.3333333... = 0.3̇\"."
+            "retrievedPassage": "Place-value chart showing columns 1000000...100...10...1 . 1/10...1/1000; \"each digit will now move two columns to the left\" when multiplying 0.507 by 100 = 50.7; \"127.5 ÷ 10 = 12.75\"; \"0.2 = 2/10 = 1/5\"; \"1/3 = 1 ÷ 3 = 0.3333333... = 0.3̇\". [Confirmed this pass: this document's full contents (§1-5, covering place value, multiplying/dividing by ten, decimal-fraction conversion, rounding, and irrational numbers) do NOT include addition, subtraction, multiplication, or division of two decimal quantities -- see SRC-DECIMAL-OPERATIONS below for that missing procedure.]"
+          },
+          {
+            "sourceId": "SRC-DECIMAL-OPERATIONS",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://math.libretexts.org/Bookshelves/PreAlgebra/Prealgebra_2e_(OpenStax)/05:_Decimals/5.03:_Decimal_Operations",
+            "sourceLocator": "OpenStax 'Prealgebra 2e', §5.3 'Decimal Operations' (hosted on Mathematics LibreTexts)",
+            "retrievedPassage": "Add/subtract decimals: \"Step 1. Write the numbers vertically so the decimal points line up. Step 2. Use zeros as place holders, as needed. Step 3. Add or subtract the numbers as if they were whole numbers. Then place the decimal in the answer under the decimal points in the given numbers.\" Multiply decimals: \"Step 1. Determine the sign of the product. Step 2. Write the numbers in vertical format... Step 3. Multiply the numbers as if they were whole numbers... Step 4. Place the decimal point. The number of decimal places in the product is the sum of the number of decimal places in the factors... Step 5. Write the product with the appropriate sign.\" Divide decimals: \"Step 1. Determine the sign of the quotient. Step 2. Make the divisor a whole number by moving the decimal point all the way to the right. Move the decimal point in the dividend the same number of places to the right... Step 3. Divide. Place the decimal point in the quotient above the decimal point in the dividend. Step 4. Write the quotient with the appropriate sign.\""
           }
         ],
         "normalizedClaims": [
           {
             "claimText": "A decimal number's digits have place values that are powers of ten (units, tens, tenths, hundredths, etc.); multiplying by a power of ten shifts each digit that many places to the left, and dividing shifts them to the right (e.g. 0.507 × 100 = 50.7; 127.5 ÷ 10 = 12.75); a decimal is converted to a fraction using its place value (e.g. 0.2 = 2/10 = 1/5), and a fraction is converted to a decimal by dividing the numerator by the denominator (e.g. 1/3 = 1 ÷ 3 = 0.3̇, a non-terminating decimal).",
             "sourceId": "SRC-DECIMALS"
+          },
+          {
+            "claimText": "Two decimal numbers are added or subtracted by lining up their decimal points (using placeholder zeros as needed) and then adding/subtracting as whole numbers; two decimal numbers are multiplied by multiplying as whole numbers and then placing the decimal point so the product has as many decimal places as the two factors combined; one decimal number is divided by another by moving the divisor's decimal point to make it a whole number, moving the dividend's decimal point the same number of places, then dividing and placing the quotient's decimal point directly above the dividend's.",
+            "sourceId": "SRC-DECIMAL-OPERATIONS"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -401,7 +453,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Evidence covers decimal place value, multiplying/dividing decimals by powers of ten, and decimal-fraction conversion -- the core 'ordinary decimal arithmetic' skills an electrical Level 2 learner needs (e.g. shifting decimal places when converting between unit prefixes). It does not re-teach manual column addition/subtraction of decimals, which learners at this level are assumed to already possess from prior education."
+        "scopeNote": "PA depth-and-granularity correction (this pass): the original evidence covered only decimal place value, multiplying/dividing by powers of ten, and decimal-fraction conversion -- not addition, subtraction, multiplication, or division of two decimal quantities, which a requirement named 'ordinary decimal arithmetic' must support. A second source (OpenStax 'Prealgebra 2e' via Mathematics LibreTexts, the same publisher/platform combination already used elsewhere in this repository as an AUTHORITATIVE_EDUCATIONAL_REFERENCE) was acquired to close this gap; it was checked and confirmed absent from the original mathcentre 'Decimals' document's full contents (see that source's own note above) before searching further. Consistent with the depth policy, the resulting learning point emphasises calculator-supported computation and understanding of decimal-point placement, not mastery of the manual column algorithm as an end in itself -- the source's step-by-step procedure is cited to establish what the four operations require conceptually (aligning decimal points; combining decimal-place counts on multiplication; equalising divisor/dividend scaling on division), not as a mandate to teach or assess long-column arithmetic by hand."
       }
     },
     {
@@ -413,13 +465,17 @@
             "sourceId": "SRC-RATIOS",
             "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
             "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-ratios-2009-1.pdf",
-            "sourceLocator": "mathcentre, 'Ratios' (mc-TY-ratios-2009-1), §1-§3, pp.2-4",
-            "retrievedPassage": "\"A ratio is a way of comparing two or more similar quantities, by writing two or more numbers separated by colons.\" \"250 : 150 -> 25:15 -> 5:3\" (simplifying by cancelling a common factor); worked sharing example: £64,000 split 5:3 -> total parts 8, 1 part = £8,000, so £40,000 and £24,000."
+            "sourceLocator": "mathcentre, 'Ratios' (mc-TY-ratios-2009-1), §1-§3, pp.2-7 (§3 'Using ratios to share quantities' spans pp.4-7 and covers both sharing in a ratio and direct-proportion scaling)",
+            "retrievedPassage": "\"A ratio is a way of comparing two or more similar quantities, by writing two or more numbers separated by colons.\" \"250 : 150 -> 25:15 -> 5:3\" (simplifying by cancelling a common factor); worked sharing example: £64,000 split 5:3 -> total parts 8, 1 part = £8,000, so £40,000 and £24,000. Direct-proportion scaling (p.6): a houmous recipe for 6 people is scaled to 9 people by first finding the amount for 1 person (dividing by 6) and then multiplying by 9 -- \"We could have done these calculations more quickly by multiplying each amount by the fraction 9/6... But it is often safer to work out what the amounts are for one person, and then scale up or down afterwards accordingly.\" A currency-conversion example (p.6-7) applies the same method: \"1 euro = 100/1.65 pence... 50 euro = 100/1.65 × 50 pence... = £30.30.\" Key Point (p.7): \"When dividing a quantity in a given ratio, it is useful to work out (i) the total number of parts... and (ii) the value of one part.\""
           }
         ],
         "normalizedClaims": [
           {
             "claimText": "A ratio compares two or more quantities of the same kind, written with a colon (e.g. 2:5), and can be simplified by cancelling common factors, in the same way as a fraction; a quantity can be shared in a given ratio by adding the parts of the ratio to find the total number of parts, dividing the quantity by that total to find the value of one part, then multiplying by each ratio number to find each share.",
+            "sourceId": "SRC-RATIOS"
+          },
+          {
+            "claimText": "A quantity is scaled in direct proportion by first finding the amount corresponding to a single unit (dividing the known amount by the number of units it represents), then multiplying that unit amount by however many units are required (e.g. scaling a recipe for 6 people to 9 people by finding the amount for 1 person, then multiplying by 9; converting between two currencies by finding the value of 1 unit of one currency, then multiplying by the number of units required). This unit-value method is the same technique used to find the value of one part when sharing a quantity in a given ratio.",
             "sourceId": "SRC-RATIOS"
           }
         ],
@@ -427,14 +483,16 @@
         "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "PA depth-and-granularity correction (this pass): ratio notation, simplifying, and sharing in a ratio do not by themselves cover the direct-proportion reasoning (scaling a quantity; finding a unit value and scaling from it; applying a known ratio/proportional relationship to find an unknown) that this requirement's name and coverage dimensions require. This is already present, previously under-quoted, in the same already-cited source's §3 (pp.6-7): the houmous-scaling and currency-conversion worked examples both use the unit-value ('for one person'/'for 1 euro') method. No new source was needed. Inverse proportion is deliberately excluded: no requirement identified anywhere in this repository's Unit 202 evidence-requirement plan (213 requirements) currently calls for it, so it is not taught here; this exclusion should be revisited if a later production batch (e.g. mechanics-and-machines, which includes a separate 'gear-ratio-legitimate-speed-relationship' requirement) surfaces a genuine need for it."
       }
     }
   ],
   "totals": {
-    "VERIFIED": 16,
-    "PARTIALLY_VERIFIED": 0,
+    "VERIFIED": 15,
+    "PARTIALLY_VERIFIED": 1,
     "SOURCE_GAP": 0,
     "CONFLICTED": 0
-  }
+  },
+  "paDepthCorrectionNote": "This file was revised after Product Architect review held the original 16 VERIFIED / 17-learning-point claim pending a depth-and-granularity correction pass. Corrections applied: (1) ordinary-decimal-arithmetic now also covers the four decimal operations (new source); (2) percentages now also covers expressing one quantity as a percentage of another (new source); (3) proportional-reasoning now also covers direct proportion/the unit-value method (extended locator on the existing source); (4) algebra now also covers variable/notation conventions and substitution/order-of-operations (two new sources), in addition to brackets/like terms; (5) formula-transposition's 'single-step' description of v = u + at is corrected to 'one or more inverse operations'; (6) standard-scientific-notation is downgraded from VERIFIED to PARTIALLY_VERIFIED, as the precise 1 ≤ |a| < 10 convention was not found in a permitted-authority source after a capped search; (7) pythagoras now also covers the worked procedure for finding an unknown side (extended locator on the existing source). No requirement was weakened to preserve a VERIFIED status. See each affected result's scopeNote/gaps for full detail, and ACQUISITION-LOG.json for this pass's search record."
 }
