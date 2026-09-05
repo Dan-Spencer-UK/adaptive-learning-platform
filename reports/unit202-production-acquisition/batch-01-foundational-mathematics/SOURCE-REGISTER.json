@@ -1,9 +1,10 @@
 {
   "batchId": "batch-01-foundational-mathematics",
-  "sourceCount": 16,
+  "sourceCount": 17,
   "reusedSourceCount": 2,
-  "newSourceCount": 14,
+  "newSourceCount": 15,
   "paDepthCorrectionNote": "Four new sources (SRC-DECIMAL-OPERATIONS, SRC-PERCENT-OF-ANOTHER, SRC-SUBS-FORMULAE, SRC-MATHLANGUAGE) were acquired in a targeted top-up pass after Product Architect review held the original evidence pending depth/granularity correction. Two already-registered sources (SRC-RATIOS, SRC-PYTHAGORAS) had their 'supports' claim summaries and locators extended to reflect genuinely present content that was previously under-quoted; they are not counted as new sources.",
+  "paClosureNote": "A fifth new source (SRC-OPENSTAX-SCINOT, OpenStax 'Prealgebra 2e' Sec.10.5) was added in a subsequent narrow closure pass to resolve the standard-scientific-notation requirement's PARTIALLY_VERIFIED status, supplied directly by the Product Architect together with a narrow authority-policy adjudication approving AUTHORITATIVE_EDUCATIONAL_REFERENCE for this one binding -- see EVIDENCE-RESULTS.json's paAuthorityPolicyAdjudication field. No source search was performed for this closure.",
   "sources": [
     {
       "sourceId": "SRC-PILOT-FRACTIONS",
@@ -120,8 +121,21 @@
       "authorityRationale": "NIST Special Publication 811 is the US national metrology institute's official guide to the International System of Units, including its number-formatting conventions.",
       "locator": "NIST Guide to the SI, Chapter 7, §7.9",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION", "claimSummary": "Standard/scientific notation as coefficient x power of ten." },
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION", "claimSummary": "Illustrative coefficient x power-of-ten examples (supporting context only; the defining convention is bound to SRC-OPENSTAX-SCINOT)." },
         { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::engineering-notation::SYMBOL_OR_CONVENTION", "claimSummary": "Engineering notation restricted to powers of ten that are multiples of 3, matching SI prefixes." }
+      ]
+    },
+    {
+      "sourceId": "SRC-OPENSTAX-SCINOT",
+      "reused": false,
+      "publisher": "OpenStax (Rice University)",
+      "title": "Prealgebra 2e, §10.5 'Integer Exponents and Scientific Notation'",
+      "url": "https://openstax.org/books/prealgebra-2e/pages/10-5-integer-exponents-and-scientific-notation",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "OpenStax is a nonprofit, peer-reviewed open-education textbook publisher (Rice University), widely adopted across US higher/further education; classified honestly as an educational reference, not a standards body. Approved for this one binding by a narrow Product Architect authority-policy adjudication -- see EVIDENCE-RESULTS.json's paAuthorityPolicyAdjudication field for the full record. Supplied directly by the Product Architect; no source search was performed for this requirement in this session.",
+      "locator": "OpenStax 'Prealgebra 2e', §10.5, 'Scientific Notation' definition box and 'How To: Convert from decimal notation to scientific notation'",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION", "claimSummary": "The defining convention: a x 10^n, 1 <= |a| < 10 for non-zero a, n an integer; and the decimal-point-moving procedure that determines the exponent's magnitude and sign." }
       ]
     },
     {

@@ -110,6 +110,19 @@
       "pythagoras": 1,
       "algebra": 2
     },
-    "vocabularyGapNote": "For the algebra requirement, 'constant' and 'coefficient' as explicitly named, defined vocabulary terms were not found within the capped search (SRC-MATHLANGUAGE defines 'variable' but does not separately name 'constant' or 'coefficient', though it demonstrates the underlying idea operationally, e.g. 5 x a written as 5a). This is recorded honestly in EVIDENCE-RESULTS.json's algebra scopeNote rather than overclaimed."
+    "vocabularyGapNote": "For the algebra requirement, 'constant' and 'coefficient' as explicitly named, defined vocabulary terms were not found within the capped search (SRC-MATHLANGUAGE defines 'variable' but does not separately name 'constant' or 'coefficient', though it demonstrates the underlying idea operationally, e.g. 5 x a written as 5a). PA closure (see paClosurePass below): this is now recorded as a deliberate PA depth exclusion, not an unresolved gap -- those terms are not required unless they themselves appear as assessed Unit 202 qualification knowledge, which none currently do."
+  },
+  "paClosurePass": {
+    "note": "Narrow Product Architect closure following the depth-and-granularity correction pass above. Resolves the single remaining inconsistency (standard-scientific-notation marked PARTIALLY_VERIFIED while its learning point FM-LP-18 was marked READY). No source search was performed or required -- the Product Architect supplied the source directly.",
+    "queries": [
+      { "order": 39, "requirementIds": ["standard-scientific-notation"], "queryText": "n/a -- source supplied directly by the Product Architect (OpenStax Prealgebra 2e, Sec.10.5); no search performed" }
+    ],
+    "candidates": [
+      { "order": 36, "requirementId": "standard-scientific-notation", "url": "https://openstax.org/books/prealgebra-2e/pages/10-5-integer-exponents-and-scientific-notation", "decision": "ACCEPTED", "sourceId": "SRC-OPENSTAX-SCINOT", "reason": "Product-Architect-supplied source; retrieved and confirmed to state the exact convention (a x 10^n, 1 <= |a| < 10 for non-zero a, n an integer) and the decimal-point-moving conversion procedure, in a definition box and a numbered 'How To' procedure. Classified honestly as AUTHORITATIVE_EDUCATIONAL_REFERENCE, per the narrow authority-policy adjudication recorded in EVIDENCE-RESULTS.json." }
+    ],
+    "candidateCountsPerRequirement": {
+      "standard-scientific-notation": 1
+    },
+    "authorityPolicyAdjudicationNote": "See EVIDENCE-RESULTS.json's paAuthorityPolicyAdjudication field (id CC-BATCH01-PA-AUTHORITY-ADJUDICATION-001) for the full record. Summary: the generic SYMBOL_OR_CONVENTION authority-class list (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) is mode-based and built for engineering/measurement conventions; applied to a foundational mathematics teaching convention it produced a false source gap. The Product Architect approved AUTHORITATIVE_EDUCATIONAL_REFERENCE for this one binding only. This does not modify the generic planner, does not broaden authority policy for engineering-notation or any other requirement, and does not touch the frozen preflight artifacts."
   }
 }

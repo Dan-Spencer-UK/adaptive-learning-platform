@@ -1,12 +1,14 @@
 # Unit 202 Production Acquisition — Batch 01: Foundational Mathematics
 
 **Domain:** foundational-mathematics (16 of Unit 202's 213 evidence requirements)
-**Status:** 15 requirements VERIFIED, 1 PARTIALLY_VERIFIED, following a Product Architect depth-and-granularity correction pass.
+**Status:** All 16 requirements VERIFIED. Accepted by the Product Architect.
 **This is one of six planned Unit 202 production acquisition domains.** The remaining ~197 requirements across the other five domains are not addressed here and are not claimed complete.
 
-## Revision note
+## Revision history
 
-The Product Architect held the original acquisition's claim of 16 VERIFIED requirements and 17 learning points pending a targeted correction pass, because several requirements' evidence did not support the full breadth or depth implied by their name, and several learning points conflated multiple independently-diagnosable skills. This report reflects the corrected state after that pass. Full detail of every correction is in `EVIDENCE-RESULTS.json`'s `paDepthCorrectionNote` and each affected result's own `scopeNote`/`gaps` fields, and in `ACQUISITION-LOG.json`'s `paDepthCorrectionPass` record.
+1. **Original acquisition:** 16 VERIFIED requirements, 17 proposed learning points.
+2. **Depth-and-granularity correction pass:** the Product Architect held that claim pending correction, because several requirements' evidence did not support the full breadth or depth implied by their name, and several learning points conflated multiple independently-diagnosable skills. Resulted in 15 VERIFIED / 1 PARTIALLY_VERIFIED (standard-scientific-notation) and 25 learning points. Full detail in `EVIDENCE-RESULTS.json`'s `paDepthCorrectionNote` and `ACQUISITION-LOG.json`'s `paDepthCorrectionPass` record.
+3. **Closure pass (this revision):** the Product Architect accepted the corrected inventory in principle and closed the one remaining inconsistency -- standard-scientific-notation's evidence was `PARTIALLY_VERIFIED` while its learning point (`FM-LP-18`) was marked `READY`. Closed with a Product-Architect-supplied source and a narrow authority-policy adjudication. Two minor prerequisite corrections were also applied. See `EVIDENCE-RESULTS.json`'s `paClosureNote` and `paAuthorityPolicyAdjudication`, and `ACQUISITION-LOG.json`'s `paClosurePass` record.
 
 ## Summary
 
@@ -18,7 +20,7 @@ The Product Architect held the original acquisition's claim of 16 VERIFIED requi
 | 4 | Formula transposition | VERIFIED (reused, description corrected) | mathcentre, 'Transposition of formulae' |
 | 5 | Positive indices | VERIFIED | mathcentre, 'Indices or Powers' |
 | 6 | Negative indices | VERIFIED | mathcentre, 'Indices or Powers' (same document) |
-| 7 | Standard/scientific notation | **PARTIALLY_VERIFIED** | NIST Guide to the SI, Ch.7 (coefficient bound not sourced) |
+| 7 | Standard/scientific notation | VERIFIED (closed this revision) | NIST Guide to the SI Ch.7 (context) + OpenStax 'Prealgebra 2e' §10.5 (defining convention) |
 | 8 | Engineering notation | VERIFIED | NIST Guide to the SI, Ch.7 (same document) |
 | 9 | Pythagoras | VERIFIED (extended) | mathcentre, Engineering Maths First Aid Kit §4.5 |
 | 10 | Sine/cosine/tangent in right triangles | VERIFIED | mathcentre, 'Trigonometrical ratios in a right-angled triangle' |
@@ -29,58 +31,53 @@ The Product Architect held the original acquisition's claim of 16 VERIFIED requi
 | 15 | Ordinary decimal arithmetic | VERIFIED (extended) | mathcentre 'Decimals' + OpenStax 'Prealgebra 2e' (LibreTexts) |
 | 16 | Proportional reasoning | VERIFIED (extended) | mathcentre, 'Ratios' (fuller locator) |
 
-**Totals: 15 VERIFIED · 1 PARTIALLY_VERIFIED · 0 SOURCE_GAP · 0 CONFLICTED.**
+**Totals: 16 VERIFIED · 0 PARTIALLY_VERIFIED · 0 SOURCE_GAP · 0 CONFLICTED.**
 
-Two requirements (fractions, formula transposition) reuse already-reviewed pilot-002 evidence, corrected in description only where noted. The remaining 14 were freshly acquired or extended this session.
+Two requirements (fractions, formula transposition) reuse already-reviewed pilot-002 evidence, corrected in description only where noted.
 
-## What changed in the depth-correction pass
+## What changed in this closure pass
 
-- **Ordinary decimal arithmetic:** added a second source (OpenStax 'Prealgebra 2e' via Mathematics LibreTexts) covering addition, subtraction, multiplication, and division of decimals — the original evidence covered only place value, powers-of-ten, and fraction conversion.
-- **Percentages:** added a second mathcentre source covering "expressing one quantity as a percentage of another" (needed for efficiency-style calculations) — deliberately not extending into percentage change/reverse percentages, which the same new document also contains but which remain out of scope.
-- **Proportional reasoning:** extended the locator on the already-cited 'Ratios' source to include its direct-proportion/unit-value-method content (pp.6-7), which was present but previously under-quoted. Inverse proportion remains explicitly excluded — no Unit 202 requirement in the full 213-item plan currently needs it.
-- **Algebra:** added two sources (mathcentre 'Mathematical language' for variables/notation conventions; mathcentre 'Substitution & Formulae' for substitution and the BODMAS order-of-operations rule), alongside the original brackets/like-terms source. 'Constant' and 'coefficient' as named vocabulary remain unsourced this pass and are recorded honestly as a scoping gap.
-- **Formula transposition:** corrected the description of v = u + at rearranged for t from "single-step"/"single operation" to "one or more inverse operations" (it genuinely requires two: subtract, then divide). No new source needed.
-- **Standard/scientific notation:** downgraded from VERIFIED to **PARTIALLY_VERIFIED**. A capped search across this requirement's permitted authority classes did not find a source stating the precise "1 ≤ \|a\| < 10" coefficient convention; the NIST passage previously cited is actually about engineering-notation prefix selection, not standard form's general rule. The corresponding learning point is scoped to what is genuinely evidenced.
-- **Pythagoras:** extended the locator on the already-cited source to include its second page, which contains worked examples for finding both the hypotenuse and a shorter side — the original evidence supported only the theorem statement, while the learning point's outcome already promised the full procedure.
-- **Statistics:** the four requirements (mean, median, mode, range) each already had their own dedicated evidence requirement and source; only the *learning-point* inventory needed correction — split from one combined learning point into four independently diagnosable ones. No evidence change was needed for this item.
-- **Application examples:** reviewed all `applicationTypes` across every learning point. Several silently assumed an electrical or mechanical relationship not yet acquired in this batch (Ohm's law, transformer turns ratio, potential-divider, impedance triangle, AC phase angle, power formula P=I²R, efficiency). These were replaced with neutral mathematical examples, or, where a formula was already itself evidenced by the cited source (e.g. v = u + at), with that same formula.
+- **Standard/scientific notation:** restored from `PARTIALLY_VERIFIED` to **`VERIFIED`**. The Product Architect supplied OpenStax 'Prealgebra 2e' §10.5 "Integer Exponents and Scientific Notation" directly (no further source search was performed or required), which states the exact convention: `a x 10^n`, where for a non-zero number `1 <= |a| < 10` and `n` is an integer, and the decimal-point-moving procedure that determines the exponent. The NIST Chapter 7 passage previously cited is retained as supporting context only (it is properly about engineering-notation prefix selection), and the new source is bound as the requirement's defining evidence.
+- **Authority-policy adjudication (narrow, batch-scoped):** the generic `SYMBOL_OR_CONVENTION` authority-class list (`PRIMARY_NORMATIVE_OR_STANDARDS_BODY`, `PROFESSIONAL_BODY`, `AUTHORITATIVE_TECHNICAL_REFERENCE`) is mode-based, built for engineering/measurement conventions, and excludes `AUTHORITATIVE_EDUCATIONAL_REFERENCE`. Applied unmodified to a foundational *mathematics* teaching convention, it produced a false source gap despite an authoritative, peer-reviewed OpenStax textbook stating the rule directly. The Product Architect explicitly approved `AUTHORITATIVE_EDUCATIONAL_REFERENCE` for this **one** requirement binding only. OpenStax is classified honestly as `AUTHORITATIVE_EDUCATIONAL_REFERENCE` -- not disguised as a standards body or any other class. This adjudication does **not** modify the generic evidence-acquisition planner, does **not** broaden authority policy for engineering-notation or any other `SYMBOL_OR_CONVENTION` requirement in this or any other batch, and does **not** touch the frozen preflight artifacts under `reports/backtests/unit202-evidence-acquisition-preflight/`. Full record: `EVIDENCE-RESULTS.json`'s `paAuthorityPolicyAdjudication` field (id `CC-BATCH01-PA-AUTHORITY-ADJUDICATION-001`).
+- **Algebra depth decision confirmed:** the absence of named vocabulary for "constant" and "coefficient" is now recorded as a **deliberate depth exclusion**, not an unresolved evidence gap -- those terms are not required unless they themselves appear as assessed Unit 202 qualification knowledge, which none currently do. The algebra requirement remains `VERIFIED` (no evidence change was needed for this item).
+- **Prerequisite corrections (learning-point inventory only, no evidence change):** `FM-LP-10` (direct proportion) now requires only `FM-LP-08` (ratio notation), not `FM-LP-09` (sharing in a ratio) -- sharing is a sibling application of proportional reasoning, not a prerequisite for scaling. `FM-LP-24` (mode) now has no learning-point prerequisite -- finding the mode is a frequency count only and needs no addition/subtraction/division, unlike mean, median, and range, which retain `FM-LP-04`.
+- **Learning-point identities frozen:** `FM-LP-01` through `FM-LP-25` are now the approved Batch 01 identity baseline. No IDs were renumbered in this pass; see `FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.json`'s `identityFreezePolicy` field for the governing policy on future revisions.
 
 ## Source reuse
 
-**16 unique sources support 16 requirements** (up from 12 sources before this pass; 4 newly acquired, 2 extended in place, the remainder unchanged):
+**17 unique sources support 16 requirements** (up from 16 before this pass; 1 newly acquired this closure):
 
 - **mathcentre, 'Indices or Powers'** supports both positive indices and negative indices (one document, two requirements).
-- **NIST Guide to the SI, Chapter 7** supports both standard/scientific notation and engineering notation (one document, two requirements) — though standard/scientific notation's binding is now PARTIALLY_VERIFIED as noted above.
+- **OpenStax 'Prealgebra 2e'** now appears twice in this batch: §5.3 for decimal operations (added in the prior pass) and §10.5 for the scientific-notation convention (added this closure pass) -- two different sections of the same open-education textbook series, cited separately as distinct sources.
 - **NIST/SEMATECH e-Handbook, §1.3.5.1 'Measures of Location'** supports mean, median, and mode together (one document, three requirements).
-- **mathcentre, 'Ratios'** now supports proportional reasoning across its full breadth (ratio notation, sharing, and direct proportion) from a single already-cited document, previously under-quoted.
+- **mathcentre, 'Ratios'** supports proportional reasoning across its full breadth (ratio notation, sharing, and direct proportion) from a single already-cited document.
 - 2 sources are reused, unchanged, from already-reviewed pilot-002 evidence (fractions; formula transposition, the latter with a corrected description).
-- 4 sources are new this pass: OpenStax 'Prealgebra 2e' (decimal operations), a second mathcentre 'Percentages' unit (one quantity as a percentage of another), mathcentre 'Substitution & Formulae' (order of operations), and mathcentre 'Mathematical language' (variables/notation).
 
-No requirement's evidence was weakened or generalised merely to enable source reuse or to preserve a VERIFIED status; where full depth was not sourced (standard/scientific notation), the status was corrected downward instead.
+No requirement's evidence was weakened or generalised merely to enable source reuse or to preserve a `VERIFIED` status.
 
 ## Authority classes used
 
-- **PRIMARY_NORMATIVE_OR_STANDARDS_BODY** (4 requirement-bindings): NIST, for standard/scientific notation (partial), engineering notation, mean/median/mode, and range.
+- **PRIMARY_NORMATIVE_OR_STANDARDS_BODY** (3 requirement-bindings): NIST, for engineering notation, mean/median/mode, and range (standard-scientific-notation's NIST binding is now supporting context, not the defining source).
 - **ACADEMIC_OR_RESEARCH_INSTITUTION** (11 requirement-bindings, reuse counted once per document): mathcentre and Anglia Ruskin University.
-- **AUTHORITATIVE_EDUCATIONAL_REFERENCE** (1 requirement-binding): OpenStax 'Prealgebra 2e' via Mathematics LibreTexts.
+- **AUTHORITATIVE_EDUCATIONAL_REFERENCE** (2 requirement-bindings): OpenStax 'Prealgebra 2e' -- §5.3 for ordinary decimal arithmetic, §10.5 for standard/scientific notation (the latter via the narrow authority-policy adjudication described above).
 
-All sources fall within each requirement's own permitted authority-class list from the evidence-requirement plan.
+All sources fall within each requirement's own permitted authority-class list, with the one narrow, explicitly-recorded adjudication noted above.
 
 ## Depth discipline applied
 
-- A mathcentre page on the **sine rule and cosine rule** (general, non-right-angled-triangle trigonometry) was retrieved but not used for the sine/cosine/tangent requirement — scoped to right-angled-triangle ratios (SOHCAHTOA) only, and finding an unknown angle (inverse trigonometric functions) is explicitly excluded pending evidence of a genuine Unit 202 need.
+- A mathcentre page on the **sine rule and cosine rule** (general, non-right-angled-triangle trigonometry) was retrieved but not used for the sine/cosine/tangent requirement -- scoped to right-angled-triangle ratios (SOHCAHTOA) only, and finding an unknown angle (inverse trigonometric functions) is explicitly excluded pending evidence of a genuine Unit 202 need.
 - Inverse proportion is explicitly excluded from proportional reasoning, pending evidence of a genuine Unit 202 need.
-- Percentage change, reverse percentages, and compound percentage theory remain excluded from percentages, even though a newly-cited source also contains them.
-- Decimal arithmetic is taught for conceptual understanding of decimal-point placement, not to mandate manual long-column algorithm mastery — calculator-supported computation is acceptable per the approved depth policy.
-- "Constant" and "coefficient" as named algebra vocabulary are not claimed as evidenced; this is recorded honestly rather than papered over.
+- Percentage change, reverse percentages, and compound percentage theory remain excluded from percentages, even though a cited source also contains them.
+- Decimal arithmetic is taught for conceptual understanding of decimal-point placement, not to mandate manual long-column algorithm mastery -- calculator-supported computation is acceptable per the approved depth policy.
+- "Constant" and "coefficient" as named algebra vocabulary are a deliberate depth exclusion, not required unless assessed as qualification knowledge.
 
 ## Remaining gaps
 
-**One:** standard/scientific notation's precise coefficient-bound convention (1 ≤ \|a\| < 10) is not sourced to a permitted-authority document — recorded as `PARTIALLY_VERIFIED`, not as evidence that no such source exists. A further targeted search (or a Product Architect-supplied lead) is needed to close this fully.
+None. All 16 requirements are `VERIFIED`.
 
 ## What this batch does not do
 
 - It does not acquire evidence for any of the other ~197 Unit 202 requirements (the other five production domains remain unstarted).
-- It does not generate learner-facing lessons, storyboards, or assessment items — only a proposed learning-point inventory for Product Architect review (see `FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.{json,md}`).
+- It does not generate learner-facing lessons, storyboards, or assessment items -- only an accepted learning-point inventory (see `FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.{json,md}`).
 - It does not claim Unit 202 acquisition is complete.
-- It does not resolve the standard/scientific-notation coefficient-bound gap noted above.
+- It does not begin Batch 02 or modify any generic acquisition infrastructure or the frozen preflight artifacts.

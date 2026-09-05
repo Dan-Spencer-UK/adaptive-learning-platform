@@ -1,8 +1,9 @@
 {
   "domain": "foundational-mathematics",
-  "status": "PROPOSED_FOR_PA_REVIEW",
+  "status": "ACCEPTED_BY_PRODUCT_ARCHITECT",
   "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically, not alphabetically. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json.",
   "revisionNote": "This is a corrected revision following Product Architect review, which held the original 16 VERIFIED / 17-learning-point claim pending a depth-and-granularity correction pass (see PROJECT-STATUS.md and EVIDENCE-RESULTS.json's paDepthCorrectionNote for the full disposition). Eight learning points were added (decimal four operations; percentage of another quantity; direct proportion/unit-value method; algebraic notation/variables; substitution and order of operations; and mean, median, mode, and range split out of one combined point), none were removed, and several were corrected in wording, depth, or application example. Learning-point IDs were renumbered throughout to reflect the corrected instructional sequence.",
+  "closureNote": "Product Architect closure (this session): the corrected 25-learning-point inventory is accepted in principle and at the appropriate early-stage depth. All 24 non-held points were already accepted; FM-LP-18 (standard/scientific form) was held only for an internal inconsistency (its evidence requirement PARTIALLY_VERIFIED while it was marked READY, and its outcome inferring the defining convention from examples). That inconsistency is now closed with a Product-Architect-supplied source (SRC-OPENSTAX-SCINOT) and a narrow authority-policy adjudication -- see EVIDENCE-RESULTS.json's paAuthorityPolicyAdjudication field. All 25 learning points are now accepted and READY. Two minor prerequisite corrections were also applied (FM-LP-10 now requires only FM-LP-08, not FM-LP-09; FM-LP-24 now has no learning-point prerequisite) without renumbering anything -- see identityFreezePolicy below, which now governs all future revisions to this inventory.",
   "learningPointCount": 25,
   "learningPoints": [
     {
@@ -139,13 +140,13 @@
       "id": "FM-LP-10",
       "title": "Direct proportion: scaling and the unit-value method",
       "learnerOutcome": "The learner will be able to scale a quantity in direct proportion, including finding a unit value and scaling from it, and applying a known ratio or proportional relationship to find an unknown quantity.",
-      "knowledgeOrProcedure": "A quantity is scaled in direct proportion by first finding the amount corresponding to a single unit (dividing the known amount by the number of units it represents), then multiplying that unit amount by however many units are required. This is the same unit-value technique used to find the value of one part when sharing a quantity in a given ratio (FM-LP-09), applied instead to scale a quantity up or down.",
-      "prerequisiteLearningPointIds": ["FM-LP-08", "FM-LP-09"],
+      "knowledgeOrProcedure": "A quantity is scaled in direct proportion by first finding the amount corresponding to a single unit (dividing the known amount by the number of units it represents), then multiplying that unit amount by however many units are required. This unit-value technique is closely related to, but a separate application from, sharing a quantity in a given ratio (FM-LP-09) -- both derive from the same ratio-notation foundation (FM-LP-08).",
+      "prerequisiteLearningPointIds": ["FM-LP-08"],
       "knowledgeTargetIds": ["unit202::ACQ-016"],
       "evidenceRequirementIds": ["ER::provisional::unit202::foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE"],
       "normalizedClaimRefs": ["SRC-RATIOS: direct-proportion scaling / unit-value method portion"],
       "evidenceReadiness": "READY",
-      "depthJustification": "PA depth correction: ratio notation, simplifying, and sharing in a ratio do not by themselves cover the direct-proportion reasoning needed to execute Unit 202 calculations that scale a known relationship (e.g. scaling a quantity given a known rate). Inverse proportion is deliberately excluded -- no requirement in this repository's 213-item Unit 202 evidence-requirement plan currently names it, so it is not taught speculatively; this exclusion should be revisited if a later production batch (e.g. mechanics-and-machines, which includes a separate gear-ratio/speed relationship requirement) surfaces a genuine need for it. No electrical application example is used here for an electrical relationship that has not yet been acquired.",
+      "depthJustification": "PA depth correction: ratio notation, simplifying, and sharing in a ratio do not by themselves cover the direct-proportion reasoning needed to execute Unit 202 calculations that scale a known relationship (e.g. scaling a quantity given a known rate). Prerequisite correction (PA closure, this session): this learning point requires only ratio notation (FM-LP-08), not sharing a quantity in a given ratio (FM-LP-09) -- sharing is a sibling application of proportional reasoning, not a prerequisite for scaling; the two skills do not depend on each other. Inverse proportion is deliberately excluded -- no requirement in this repository's 213-item Unit 202 evidence-requirement plan currently names it, so it is not taught speculatively; this exclusion should be revisited if a later production batch (e.g. mechanics-and-machines, which includes a separate gear-ratio/speed relationship requirement) surfaces a genuine need for it. No electrical application example is used here for an electrical relationship that has not yet been acquired.",
       "explicitExclusions": ["Inverse proportion (explicitly excluded pending evidence of a genuine Unit 202 need -- none found in the current 213-requirement plan)", "Compound/combined-rate proportion problems"],
       "applicationTypes": ["Find the cost of 8 identical fixings given the cost of 5 of the same fixing, using the unit-value method."]
     },
@@ -159,8 +160,8 @@
       "evidenceRequirementIds": ["ER::provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE"],
       "normalizedClaimRefs": ["SRC-MATHLANGUAGE: variable definition and notation conventions"],
       "evidenceReadiness": "READY",
-      "depthJustification": "PA depth correction: the algebra requirement's original single-source evidence (brackets/like terms) did not cover the meaning of a variable or the conventions for reading algebraic notation, both needed before formula use and transposition. 'Constant' and 'coefficient' are not independently defined by name in the cited source (it demonstrates the underlying idea operationally, e.g. 5a, without using that vocabulary) -- this is recorded honestly rather than overclaimed; the functional skill of reading and using such notation is still evidenced.",
-      "explicitExclusions": ["Formal named vocabulary for 'constant' and 'coefficient' (not sourced to a permitted-authority document this pass; the underlying ideas are taught operationally)", "Function notation", "Set notation"],
+      "depthJustification": "PA depth correction: the algebra requirement's original single-source evidence (brackets/like terms) did not cover the meaning of a variable or the conventions for reading algebraic notation, both needed before formula use and transposition. PA algebra-depth adjudication (this session): named vocabulary for 'constant' and 'coefficient' is a deliberate depth exclusion for this Unit 202 foundational batch, not an unresolved evidence gap -- it is not required unless those terms themselves appear as assessed qualification knowledge, which none of Unit 202's evidence requirements currently do. The functional skill of reading and using such notation (e.g. 5a) is evidenced and sufficient at this depth.",
+      "explicitExclusions": ["Named vocabulary for 'constant' and 'coefficient' (deliberate depth exclusion -- not required unless assessed as qualification knowledge; the underlying ideas are taught operationally)", "Function notation", "Set notation"],
       "applicationTypes": ["Read and interpret an expression such as 5a + 3 appearing on a technical worksheet."]
     },
     {
@@ -250,15 +251,15 @@
     {
       "id": "FM-LP-18",
       "title": "Standard (scientific) form",
-      "learnerOutcome": "The learner will be able to write a number as a coefficient multiplied by a power of ten, following the pattern of a single non-zero digit before the decimal point, and interpret a number already given in that form.",
-      "knowledgeOrProcedure": "A number can be written as a coefficient multiplied by a power of ten (e.g. 9.52 x 10^-3); the sign and size of the exponent indicate how many places the decimal point moves. The evidenced examples of this format all use a coefficient with a single non-zero digit before the decimal point.",
+      "learnerOutcome": "The learner will be able to write a number in the form a x 10^n, where for a non-zero value 1 <= |a| < 10 and n is an integer, and interpret a number already given in that form.",
+      "knowledgeOrProcedure": "Scientific (standard) notation has the form a x 10^n, where, for a non-zero number, 1 <= |a| < 10 and n is an integer. To convert a number to this form: move the decimal point so the first factor (coefficient) is greater than or equal to 1 but less than 10; count the number of places the decimal point moved -- this gives n; the direction moved determines the exponent's sign (positive if the original number was 10 or greater, negative if it was between 0 and 1). E.g. 4000 = 4 x 10^3; 0.004 = 4 x 10^-3.",
       "prerequisiteLearningPointIds": ["FM-LP-14", "FM-LP-15"],
       "knowledgeTargetIds": ["unit202::ACQ-007"],
       "evidenceRequirementIds": ["ER::provisional::unit202::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION"],
-      "normalizedClaimRefs": ["SRC-NIST-SI-CH7: coefficient-times-power-of-ten format"],
+      "normalizedClaimRefs": ["SRC-OPENSTAX-SCINOT: scientific-notation definition and conversion procedure"],
       "evidenceReadiness": "READY",
-      "depthJustification": "Needed to read instrument displays and datasheet values. PA depth correction: the underlying evidence-requirement status is PARTIALLY_VERIFIED, not VERIFIED -- a capped search across this requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) did not find a source stating the precise universal convention that the coefficient's magnitude must satisfy 1 <= |a| < 10; see EVIDENCE-RESULTS.json's gaps entry for this requirement. This learning point is scoped to teach only the coefficient-times-power-of-ten pattern as actually demonstrated by the cited source's own examples (each of which happens to use a single leading non-zero digit), rather than asserting an unsourced universal rule. This scoping gap should be closed with a further targeted source before this point is treated as fully evidenced.",
-      "explicitExclusions": ["Significant-figure rounding theory", "Error/uncertainty notation", "A formally sourced statement of the universal 1 <= |a| < 10 bound (flagged as an open sourcing gap, not asserted)"],
+      "depthJustification": "Needed to read instrument displays and datasheet values. PA closure (this session): the exact convention (form, coefficient bound 1 <= |a| < 10, integer exponent, and the decimal-point-moving procedure that determines the exponent) is now fully and precisely sourced to OpenStax 'Prealgebra 2e' Sec.10.5, supplied directly by the Product Architect together with a narrow authority-policy adjudication approving AUTHORITATIVE_EDUCATIONAL_REFERENCE for this one binding (see EVIDENCE-RESULTS.json's paAuthorityPolicyAdjudication field). The requirement is restored to VERIFIED and this learning point's prior partial-evidence scoping is removed as obsolete.",
+      "explicitExclusions": ["Significant-figure rounding theory", "Error/uncertainty notation"],
       "applicationTypes": ["Write a measured resistance of 4,700,000 ohms in standard form."]
     },
     {
@@ -336,12 +337,12 @@
       "title": "Mode",
       "learnerOutcome": "The learner will be able to find the mode of a small, ungrouped data set.",
       "knowledgeOrProcedure": "The mode of a data set is the value that occurs with the greatest frequency.",
-      "prerequisiteLearningPointIds": ["FM-LP-04"],
+      "prerequisiteLearningPointIds": [],
       "knowledgeTargetIds": ["unit202::ACQ-014"],
       "evidenceRequirementIds": ["ER::provisional::unit202::foundational-mathematics::mode::EXACT_FACT"],
       "normalizedClaimRefs": ["SRC-NIST-STATS-LOCATION: mode definition"],
       "evidenceReadiness": "READY",
-      "depthJustification": "PA depth correction: split out of a single combined mean/median/mode/range learning point for independent diagnosability. Ungrouped small data sets only.",
+      "depthJustification": "PA depth correction: split out of a single combined mean/median/mode/range learning point for independent diagnosability. Ungrouped small data sets only. Prerequisite correction (PA closure, this session): finding the mode is purely a frequency count -- it requires no addition, subtraction, or division, so it has no learning-point prerequisite (unlike mean, median, and range, which retain FM-LP-04 because their procedures may require those decimal operations).",
       "explicitExclusions": ["Grouped-data modal class", "Bimodal/multimodal distribution theory"],
       "applicationTypes": ["Find the mode of a set of repeated test-instrument readings."]
     },
@@ -382,12 +383,12 @@
     "FM-LP-16", "FM-LP-17", "FM-LP-18", "FM-LP-19", "FM-LP-14", "FM-LP-15", "FM-LP-01", "FM-LP-02", "FM-LP-08", "FM-LP-09", "FM-LP-10"
   ],
   "heldLearningPoints": [],
-  "partiallyEvidencedLearningPoints": [
-    {
-      "id": "FM-LP-18",
-      "note": "Not held -- the core skill (writing/interpreting a number as coefficient x power of ten, single leading non-zero digit) is evidenced by example and remains READY. The underlying evidence requirement (standard-scientific-notation) is PARTIALLY_VERIFIED, not VERIFIED, because a precise universal statement of the coefficient bound (1 <= |a| < 10) was not found in a permitted-authority source this pass. See EVIDENCE-RESULTS.json's gaps entry for this requirement."
-    }
-  ],
+  "partiallyEvidencedLearningPoints": [],
+  "identityFreezePolicy": {
+    "status": "FROZEN as of this closure pass",
+    "note": "FM-LP-01 through FM-LP-25 are now the approved Batch 01 learning-point identity baseline. Future revisions to this inventory must: (1) preserve every existing ID exactly -- an ID is never reassigned to a different learning point; (2) append new IDs (FM-LP-26 onward) for genuinely new learning points, rather than inserting into the existing numeric sequence; (3) deprecate rather than silently reuse a removed ID -- if a learning point is retired, its ID is marked deprecated here, not recycled; (4) never renumber the inventory merely because the taught/instructional sequence changes. Instructional order is tracked separately via the instructionalSequence field below, which may be freely reordered without affecting any learning point's stable id."
+  },
+  "deprecatedLearningPointIds": [],
   "instructionalSequence": [
     "FM-LP-01", "FM-LP-02", "FM-LP-03", "FM-LP-04", "FM-LP-05", "FM-LP-06", "FM-LP-07",
     "FM-LP-08", "FM-LP-09", "FM-LP-10", "FM-LP-11", "FM-LP-12", "FM-LP-13", "FM-LP-14",
