@@ -4,6 +4,19 @@
 **Correction artifacts:** `reports/backtests/unit202-blind-acquisition-run/pilot-002-review/`
 **Machine-readable companion:** `CC-24-PILOT-002-PA-REVIEW.json`
 
+## Erratum (applies to commit `58fe62a`)
+
+Commit `58fe62a` remains in history and the pilot phase remains closed. Four audit-description corrections are recorded here, applied to this review and its correction artifacts **without rerunning the pilot review**:
+
+1. **Timestamps were not contemporaneous.** `PILOT-002-REPAIR-RETRIEVAL-LOG.json`'s per-event timestamps were reconstructed after the repair research was performed — a one-off assembly script first hardcoded a placeholder date, then substituted an approximate "realistic window" of times after checking the actual clock, and those substituted times were written into the file as though they were observed event times. They were not. Every entry's `timestamp` is now `null`; the file now carries `auditStatus: "RECONSTRUCTED_NOT_CONTEMPORANEOUS"` and `eventTimestampStatus: "NOT_CAPTURED"`. Query order, candidates, source decisions, and locators were reconstructed from the session transcript and remain accurate to it; event timing was not captured.
+2. **The QMUL retrieval record was mischaracterised.** The session transcript shows the Queen Mary University of London PDF was reported by the retrieval tool as fetched, but no substantive passage was ever inspected or captured from it. An earlier version of this review incorrectly called this an HTTP 500 server error. Corrected in every artifact that repeated it (this file, the JSON companion, both repair logs, and the reviewed-results file) to state it was rejected as unevaluated/insufficient.
+3. **Requirement 3's source binding over-attributed content to BIPM's base-unit page.** That page supports only "The kelvin, symbol K, is the SI unit of thermodynamic temperature." — it does not state that Celsius has an arbitrary zero point. The first normalized claim is now trimmed to the supported sentence; the Celsius relationship is now bound solely to the BIPM SI Brochure Appendix 2 source. Requirement 3 remains VERIFIED.
+4. **Requirement 8's SOURCE_GAP wording overclaimed.** Now stated precisely as "unresolved within the candidates evaluated during pilot-002 and its repair" — not a claim that no suitable public source exists.
+
+No further Fleming's-rule research was performed as part of this erratum; requirements 7 and 8 return during the electromagnetism production batch.
+
+**Pilot disposition after this erratum:** pilot-001 remains invalid; pilot-002 remains structurally useful; pilot-002's evidence output is usable subject to this PA overlay; pilot-002 is not a clean benchmark of contemporaneous acquisition logging; the pilot phase remains closed; no further pilot is authorised.
+
 ## Verdict
 
 Pilot-002 is structurally useful and demonstrates that the acquisition approach can produce usable evidence, but its reported **13 VERIFIED / 2 SOURCE_GAP** result is not accepted unchanged. This review corrects one accepted requirement's normalization, repairs three requirements' evidence (upgrading two SOURCE_GAP results and completing one under-supported VERIFIED result), and confirms one requirement's SOURCE_GAP after a fresh, capped search.
@@ -47,9 +60,9 @@ Source: OpenStax University Physics Vol. 1, §5.5 "Mass and Weight", Eq. 5.9 (un
 ## The five targeted repairs
 
 ### Requirement 3 — kelvin / Celsius distinction
-- **Prior:** VERIFIED, but incomplete for any claim including the Celsius relationship.
+- **Prior:** VERIFIED, but incomplete for any claim including the Celsius relationship, and (per the erratum above) its first claim over-attributed the Celsius "arbitrary zero point" gloss to the BIPM base-unit page, which does not state it.
 - **Repair:** 2 candidates opened. BIPM's "Thermodynamic temperature" annex page was opened and rejected (loaded, but the retrieved excerpt didn't contain the relationship). BIPM's own **SI Brochure, 9th edition, Appendix 2** ("Mise en pratique for the definition of the kelvin") was accepted: *"It remains common practice to call the difference T − 273.15 K Celsius temperature, symbol t. The unit of Celsius temperature is the degree Celsius, symbol °C, which is by definition equal in magnitude to the kelvin."*
-- **Final: VERIFIED**, now with both the kelvin definition and the quantitative Celsius relationship, both from BIPM.
+- **Final: VERIFIED.** First claim (BIPM base-unit page) now trimmed to exactly: *"The kelvin, symbol K, is the SI unit of thermodynamic temperature."* Second claim (BIPM SI Brochure Appendix 2, sole binding for the Celsius relationship): *"The degree Celsius is equal in magnitude to the kelvin, and Celsius temperature t and thermodynamic temperature T are related by t = T − 273.15."*
 
 ### Requirement 7 — Fleming's left-hand rule
 - **Prior:** SOURCE_GAP.
@@ -58,8 +71,8 @@ Source: OpenStax University Physics Vol. 1, §5.5 "Mass and Weight", Eq. 5.9 (un
 
 ### Requirement 8 — Fleming's right-hand (generator) rule
 - **Prior:** SOURCE_GAP.
-- **Repair:** 4 fresh candidates opened: University of Leicester (HTTP 403, as in pilot-002), a Welsh Government engineering resource (domain no longer resolves), a Queen Mary University of London handout (HTTP 500), and PASCO's "Right Hand Rule" article (states a structurally related but differently-framed rule for the force on a moving positive charge — not explicitly named as the generator rule, no explicit "current", no generator condition).
-- **Final: SOURCE_GAP, unchanged.** Accepting PASCO's related-but-different rule would require an inference beyond what it states; declined per the instruction not to weaken the requirement to obtain VERIFIED status.
+- **Repair:** 4 fresh candidates opened: University of Leicester (HTTP 403, as in pilot-002), a Welsh Government engineering resource (domain no longer resolves), a Queen Mary University of London handout (reported fetched, but no substantive passage was inspected or captured — rejected as unevaluated/insufficient, corrected from an earlier, inaccurate "HTTP 500" description), and PASCO's "Right Hand Rule" article (states a structurally related but differently-framed rule for the force on a moving positive charge — not explicitly named as the generator rule, no explicit "current", no generator condition).
+- **Final: SOURCE_GAP, unchanged** — precisely, *unresolved within the candidates evaluated during pilot-002 and its repair*, not a claim that no suitable public source exists. Accepting PASCO's related-but-different rule would require an inference beyond what it states; declined per the instruction not to weaken the requirement to obtain VERIFIED status.
 
 ### Requirement 13 — wireless control systems
 - **Prior:** VERIFIED, but sourced only to Somfy (one manufacturer).
@@ -95,7 +108,7 @@ Source: OpenStax University Physics Vol. 1, §5.5 "Mass and Weight", Eq. 5.9 (un
 
 ## Remaining gaps
 
-- **Requirement 8** (Fleming's right-hand rule): full SOURCE_GAP. No source found across 8 total candidates (4 in pilot-002 + 4 in this repair) states the rule's mapping precisely enough to cite without inference.
+- **Requirement 8** (Fleming's right-hand rule): SOURCE_GAP, precisely *unresolved within the candidates evaluated during pilot-002 and its repair* (8 total candidates: 4 in pilot-002 + 4 in this repair) — none stated the rule's mapping precisely enough to cite without inference. This is not evidence that no suitable public source exists.
 - **Requirement 7** (Fleming's left-hand rule): PARTIALLY_VERIFIED. The finger mapping is sourced (Oxford); the perpendicularity/correct-use condition is not.
 
 ## Explicit scope statement

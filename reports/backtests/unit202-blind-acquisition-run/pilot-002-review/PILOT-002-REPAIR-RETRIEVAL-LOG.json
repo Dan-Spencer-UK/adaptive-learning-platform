@@ -1,5 +1,8 @@
 {
   "pilotId": "pilot-002-review",
+  "auditStatus": "RECONSTRUCTED_NOT_CONTEMPORANEOUS",
+  "eventTimestampStatus": "NOT_CAPTURED",
+  "auditStatusExplanation": "This log's query order, candidate identities, source/rejection decisions, and locators were reconstructed from the session transcript after the repair research was performed, and are accurate to that transcript. Per-event wall-clock timestamps were NOT captured contemporaneously as the research occurred -- a one-off assembly script originally hardcoded a placeholder date, then substituted an approximate 'realistic window' of times after checking the actual clock, and those substituted times were mistakenly written into this file as though they were observed event timestamps. That was corrected: every entry's `timestamp` field below is `null`. No timestamp value in this file should be read as a real, observed event time.",
   "entries": [
     {
       "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
@@ -16,7 +19,7 @@
       "finalUrl": "https://www.bipm.org/en/publications/si-brochure/annex-1/thermodynamic-temperature",
       "contentHash": null,
       "contentHashReason": "Retrieved via an AI-summarizing fetch tool, not a raw byte capture.",
-      "timestamp": "2026-09-04T21:15:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
@@ -32,7 +35,7 @@
       "finalUrl": "https://www.bipm.org/documents/20126/41489682/SI-App2-kelvin.pdf/cd36cb68-3f00-05fd-339e-452df0b6215e",
       "contentHash": null,
       "contentHashReason": "PDF read via direct document/page-image extraction, not a raw byte capture; passage independently re-verifiable at the given URL, p.2.",
-      "timestamp": "2026-09-04T21:17:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
@@ -48,7 +51,7 @@
       "finalUrl": "https://web.chem.ox.ac.uk/teaching/Physics%20for%20CHemists/Magnetism/Force.html",
       "contentHash": null,
       "contentHashReason": "Retrieved via an AI-summarizing fetch tool, not a raw byte capture.",
-      "timestamp": "2026-09-04T21:20:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
@@ -65,7 +68,7 @@
       "finalUrl": "https://www.staff.ncl.ac.uk/s.j.cotterill/hand.html",
       "contentHash": null,
       "contentHashReason": "No relevant passage present to hash.",
-      "timestamp": "2026-09-04T21:22:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
@@ -82,7 +85,7 @@
       "finalUrl": "http://info.ee.surrey.ac.uk/Workshop/advice/coils/force.html",
       "contentHash": null,
       "contentHashReason": "No content was served.",
-      "timestamp": "2026-09-04T21:24:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
@@ -99,7 +102,7 @@
       "finalUrl": "https://exetermathematicsschool.ac.uk/electromagnetism/",
       "contentHash": null,
       "contentHashReason": "No content was served.",
-      "timestamp": "2026-09-04T21:26:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
@@ -116,7 +119,7 @@
       "finalUrl": "https://www.le.ac.uk/se/centres/sci/selfstudy/mam12.htm",
       "contentHash": null,
       "contentHashReason": "No content was served.",
-      "timestamp": "2026-09-04T21:30:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
@@ -133,24 +136,24 @@
       "finalUrl": "http://resources.hwb.wales.gov.uk/VTC/2009-10/engineering/1/downloads/supporting_notes.pdf",
       "contentHash": null,
       "contentHashReason": "No content was served.",
-      "timestamp": "2026-09-04T21:33:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
       "candidateId": "C-r3",
       "attemptedUrl": "https://ph.qmul.ac.uk/sites/default/files/handout8.PDF",
-      "status": "HTTP 500 Internal Server Error",
-      "publisher": "Queen Mary University of London (unconfirmed -- page inaccessible)",
+      "status": "Fetched; no substantive passage inspected or captured",
+      "publisher": "Queen Mary University of London (unconfirmed -- not established from an inspected passage)",
       "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
-      "authorityRationale": "Best-effort classification based on the qmul.ac.uk hosting domain; content could not be verified because the server returned HTTP 500.",
-      "locator": "(not obtained -- server error)",
-      "boundedPassageOrDiagramDescription": "(not obtained -- server error)",
+      "authorityRationale": "Best-effort classification based on the qmul.ac.uk hosting domain; not confirmed from any inspected page content.",
+      "locator": "(not obtained -- no passage was inspected or captured)",
+      "boundedPassageOrDiagramDescription": "(not obtained -- the retrieval tool reported the resource as fetched, but no usable passage was inspected or captured from it)",
       "outcome": "REJECTED",
-      "rejectionReason": "HTTP 500 Internal Server Error -- no content could be retrieved.",
+      "rejectionReason": "The retrieval tool reported the resource as fetched, but no usable passage was inspected or captured; it therefore could not support the requirement and was rejected as unevaluated/insufficient. Errata note: an earlier version of this record incorrectly described this as an HTTP 500 server error, which the session transcript does not support -- corrected here.",
       "finalUrl": "https://ph.qmul.ac.uk/sites/default/files/handout8.PDF",
       "contentHash": null,
-      "contentHashReason": "No content was served.",
-      "timestamp": "2026-09-04T21:36:00.000Z"
+      "contentHashReason": "No content was captured to hash.",
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
@@ -167,7 +170,7 @@
       "finalUrl": "https://www.pasco.com/resources/articles/right-hand-rule",
       "contentHash": null,
       "contentHashReason": "Retrieved via an AI-summarizing fetch tool, not a raw byte capture.",
-      "timestamp": "2026-09-04T21:39:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
@@ -183,7 +186,7 @@
       "finalUrl": "https://edisontechcenter.org/RemoteControl.html",
       "contentHash": null,
       "contentHashReason": "Retrieved via an AI-summarizing fetch tool, not a raw byte capture.",
-      "timestamp": "2026-09-04T21:42:00.000Z"
+      "timestamp": null
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
@@ -199,7 +202,7 @@
       "finalUrl": "https://support.aa.net.uk/Bell_wire",
       "contentHash": null,
       "contentHashReason": "Retrieved via an AI-summarizing fetch tool, not a raw byte capture.",
-      "timestamp": "2026-09-04T21:45:00.000Z"
+      "timestamp": null
     }
   ]
 }

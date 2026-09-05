@@ -93,7 +93,7 @@
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
             "sourceRef": "https://www.bipm.org/en/si-base-units/kelvin",
             "sourceLocator": "BIPM, 'SI base unit: kelvin (K)', https://www.bipm.org/en/si-base-units/kelvin, definition statement",
-            "retrievedPassage": "\"The kelvin, symbol K, is the SI unit of thermodynamic temperature.\" Distinguished from a practical scale: the Celsius scale has an arbitrary zero point, whereas the kelvin represents absolute thermodynamic temperature defined via the Boltzmann constant."
+            "retrievedPassage": "\"The kelvin, symbol K, is the SI unit of thermodynamic temperature.\""
           },
           {
             "sourceId": "C3-repair",
@@ -105,11 +105,11 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "The kelvin, symbol K, is the SI unit of thermodynamic temperature -- distinct from a practical temperature scale such as Celsius, which has an arbitrary zero point.",
+            "claimText": "The kelvin, symbol K, is the SI unit of thermodynamic temperature.",
             "sourceId": "C1"
           },
           {
-            "claimText": "The unit of Celsius temperature, the degree Celsius (°C), is by definition equal in magnitude to the kelvin. Celsius temperature t and thermodynamic temperature T (in kelvin) are related by t = T − 273.15 (equivalently T = t + 273.15), where 273.15 is the fixed offset between the two scales' zero points.",
+            "claimText": "The degree Celsius is equal in magnitude to the kelvin, and Celsius temperature t and thermodynamic temperature T are related by t = T − 273.15.",
             "sourceId": "C3-repair"
           }
         ],
@@ -125,21 +125,21 @@
         "claimDimensionBindings": [
           {
             "sourceId": "C1",
-            "claimText": "The kelvin, symbol K, is the SI unit of thermodynamic temperature -- distinct from a practical temperature scale such as Celsius, which has an arbitrary zero point.",
+            "claimText": "The kelvin, symbol K, is the SI unit of thermodynamic temperature.",
             "dimensions": [
               "DEFINITION"
             ]
           },
           {
             "sourceId": "C3-repair",
-            "claimText": "The unit of Celsius temperature, the degree Celsius (°C), is by definition equal in magnitude to the kelvin. Celsius temperature t and thermodynamic temperature T (in kelvin) are related by t = T − 273.15 (equivalently T = t + 273.15), where 273.15 is the fixed offset between the two scales' zero points.",
+            "claimText": "The degree Celsius is equal in magnitude to the kelvin, and Celsius temperature t and thermodynamic temperature T are related by t = T − 273.15.",
             "dimensions": [
               "DEFINITION"
             ]
           }
         ]
       },
-      "reviewNote": "Repair: the original claim named the kelvin/Celsius distinction only qualitatively (\"arbitrary zero point\"). The Project Architect required the actual relationship if the claim includes it. A second BIPM document (the official SI Brochure Appendix 2, the same standards body as the kept source) supplies the exact quantitative relationship (t = T - 273.15; equal magnitude of the two units). One candidate opened and rejected before this: BIPM's 'Thermodynamic temperature' annex-1 page (loaded, but the retrieved excerpt did not contain the relationship statement)."
+      "reviewNote": "Repair, corrected again by PA erratum: the original repair claim named the kelvin/Celsius distinction only qualitatively (\"arbitrary zero point\") and, on further PA review, that qualitative gloss was itself found unsupported by the BIPM base-unit page, which states only the kelvin definition. The C1 claim is now trimmed to exactly what that page supports; the Celsius relationship (equal magnitude; t = T - 273.15) is bound solely to the second BIPM document (SI Brochure Appendix 2), which does state it. One candidate opened and rejected before that document was found: BIPM's 'Thermodynamic temperature' annex-1 page (loaded, but the retrieved excerpt did not contain the relationship statement)."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
@@ -330,8 +330,8 @@
         "conflicts": [],
         "gaps": [
           {
-            "description": "No accessible, permitted-authority source clearly stating Fleming's right-hand (generator) rule's finger/thumb-to-quantity mapping and its generator/moving-conductor condition was found within this repair round's fresh 4-candidate cap.",
-            "reason": "University of Leicester's self-study page returned HTTP 403 Forbidden (as in pilot-002); a Welsh Government (hwb.wales.gov.uk) engineering resource no longer resolves (DNS failure); a Queen Mary University of London physics handout returned HTTP 500 Internal Server Error; PASCO's 'Right Hand Rule' article (already accepted for requirement 6) does state a structurally related right-hand rule for the force on a moving positive charge (thumb=velocity, index=field, middle=force), but does not name it as Fleming's right-hand/generator rule, does not state 'current' for the third finger, and does not state a generator/moving-conductor condition -- accepting it would require inferring a bridge the source does not itself state, which this review declines to do."
+            "description": "Unresolved within the candidates evaluated during pilot-002 and its repair -- not a claim that no suitable public source exists.",
+            "reason": "University of Leicester's self-study page returned HTTP 403 Forbidden (as in pilot-002); a Welsh Government (hwb.wales.gov.uk) engineering resource no longer resolves (DNS failure); a Queen Mary University of London physics handout was reported by the retrieval tool as fetched, but no usable passage was inspected or captured from it, so it could not support the requirement and was rejected as unevaluated/insufficient (corrected from an earlier, inaccurate 'HTTP 500' description); PASCO's 'Right Hand Rule' article (already accepted for requirement 6) does state a structurally related right-hand rule for the force on a moving positive charge (thumb=velocity, index=field, middle=force), but does not name it as Fleming's right-hand/generator rule, does not state 'current' for the third finger, and does not state a generator/moving-conductor condition -- accepting it would require inferring a bridge the source does not itself state, which this review declines to do. This disposition reflects the candidates evaluated within pilot-002 and this repair only; no further Fleming-rule research was performed as part of this erratum, and none is implied to be futile."
           }
         ]
       },

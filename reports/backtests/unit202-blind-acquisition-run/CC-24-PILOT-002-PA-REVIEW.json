@@ -4,6 +4,25 @@
   "reviewedBundlePath": "reports/backtests/unit202-blind-acquisition-run/pilot-002/",
   "reviewedBundleUnchanged": true,
   "correctionArtifactsPath": "reports/backtests/unit202-blind-acquisition-run/pilot-002-review/",
+  "erratum": {
+    "erratumId": "CC-24-PILOT-002-PA-REVIEW-ERRATUM-001",
+    "appliesToCommit": "58fe62a",
+    "summary": "Four audit-description corrections applied to this review and its correction artifacts, without rerunning the pilot review. Commit 58fe62a remains in history and the pilot phase remains closed.",
+    "corrections": [
+      "Event timestamps in PILOT-002-REPAIR-RETRIEVAL-LOG.json were reconstructed after the research occurred (a one-off assembly script first hardcoded a placeholder date, then substituted an approximate 'realistic window' of times after checking the actual clock) and were written into the file as though they were observed event times. They were not. Every entry's timestamp is now null; the file carries auditStatus: RECONSTRUCTED_NOT_CONTEMPORANEOUS and eventTimestampStatus: NOT_CAPTURED, with an explanation that query order, candidates, source decisions and locators were reconstructed from the session transcript, but event timing was not captured.",
+      "The QMUL (Queen Mary University of London) retrieval record for requirement 8 was incorrectly described as an HTTP 500 server error. The session transcript shows the retrieval tool reported the resource as fetched, but no substantive passage was inspected or captured from it. Corrected in PILOT-002-REPAIR-RETRIEVAL-LOG.json, PILOT-002-REPAIR-SEARCH-LOG.json, PILOT-002-REVIEWED-RESULTS.json, and this file to state it was rejected as unevaluated/insufficient, never as an HTTP 500 failure.",
+      "Requirement 3's first normalized claim over-attributed content to the BIPM base-unit page. That page supports only 'The kelvin, symbol K, is the SI unit of thermodynamic temperature.' -- it does not state that Celsius has an arbitrary zero point. That claim is now trimmed to the supported sentence; the Celsius relationship claim is now bound solely to the BIPM SI Brochure Appendix 2 source. Requirement 3 remains VERIFIED.",
+      "Requirement 8's SOURCE_GAP status is now described precisely as 'unresolved within the candidates evaluated during pilot-002 and its repair', not as evidence that no suitable public source exists. No further Fleming-rule research was performed as part of this erratum; those requirements return during the electromagnetism production batch."
+    ],
+    "pilotDispositionAfterErratum": [
+      "pilot-001 remains invalid.",
+      "pilot-002 remains structurally useful.",
+      "pilot-002's evidence output is usable subject to this PA overlay.",
+      "pilot-002 is not a clean benchmark of contemporaneous acquisition logging.",
+      "The pilot phase remains closed.",
+      "No further pilot is authorised."
+    ]
+  },
   "verdictSummary": "Pilot-002 is structurally useful and demonstrates that the acquisition approach can produce usable evidence, but its reported 13 VERIFIED / 2 SOURCE_GAP result was not accepted unchanged. One accepted requirement's normalized claim (weight/mass, requirement 5) conflated the general definition of weight with a special-case condition and required correction. Two of the reported SOURCE_GAP requirements (13, 15) had usable partial evidence that a Project Architect-directed targeted repair could complete or substantially strengthen without weakening the underlying learning requirement. Two other requirements (7, 8 -- Fleming's hand rules) required fresh targeted research using Project Architect-supplied leads; requirement 7 improved to PARTIALLY_VERIFIED, requirement 8 remains a genuine SOURCE_GAP after a fresh candidate search. Requirement 3 (temperature) was accepted but incomplete -- it lacked the kelvin/Celsius relationship a full claim on this topic requires -- and was repaired with a second BIPM document.",
   "reasonOriginalAggregateNotAcceptedUnchanged": [
     "Requirement 5's normalized claim implied w=mg was conditional on the net external force being weight (a free-fall-like special case), rather than being the unconditional definition of the weight force -- a genuine pedagogical/physics defect in the normalization, not in the underlying source.",
@@ -38,14 +57,14 @@
     {
       "requirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
       "requirementNumber": 3,
-      "priorStatus": "VERIFIED (incomplete for a claim including the kelvin/Celsius relationship)",
+      "priorStatus": "VERIFIED (incomplete for a claim including the kelvin/Celsius relationship; and, per a further correction below, over-attributed to the kept source a claim it does not support)",
       "finalStatus": "VERIFIED",
       "candidatesOpenedThisRepair": 2,
       "sourcesUsed": [
-        { "role": "kept", "publisher": "BIPM", "url": "https://www.bipm.org/en/si-base-units/kelvin" },
-        { "role": "added", "publisher": "BIPM (SI Brochure, 9th ed., Appendix 2)", "url": "https://www.bipm.org/documents/20126/41489682/SI-App2-kelvin.pdf/cd36cb68-3f00-05fd-339e-452df0b6215e" }
+        { "role": "kept, now trimmed to exactly what it supports", "publisher": "BIPM", "url": "https://www.bipm.org/en/si-base-units/kelvin" },
+        { "role": "added -- sole binding for the Celsius relationship", "publisher": "BIPM (SI Brochure, 9th ed., Appendix 2)", "url": "https://www.bipm.org/documents/20126/41489682/SI-App2-kelvin.pdf/cd36cb68-3f00-05fd-339e-452df0b6215e" }
       ],
-      "summary": "A second BIPM document (the same standards body) supplies the exact quantitative Celsius/kelvin relationship (t = T - 273.15; equal unit magnitude) that the original claim lacked."
+      "summary": "A second BIPM document (the same standards body) supplies the exact quantitative Celsius/kelvin relationship (t = T - 273.15; equal unit magnitude) that the original claim lacked. Correction (this erratum): the BIPM base-unit page supports only 'The kelvin, symbol K, is the SI unit of thermodynamic temperature' -- it does not state that Celsius has an arbitrary zero point, and the claim bound to it has been trimmed to remove that unsupported assertion. The Celsius relationship is now bound solely to the SI Brochure Appendix 2 document, worded exactly as: 'The degree Celsius is equal in magnitude to the kelvin, and Celsius temperature t and thermodynamic temperature T are related by t = T - 273.15.'"
     },
     {
       "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
@@ -67,7 +86,7 @@
       "finalStatus": "SOURCE_GAP",
       "candidatesOpenedThisRepair": 4,
       "sourcesUsed": [],
-      "summary": "A fresh 4-candidate search (University of Leicester -- 403; Welsh Government resource -- DNS failure; QMUL handout -- HTTP 500; PASCO's right-hand rule article -- states a structurally related but differently-framed rule for force on a moving charge, not explicitly named as the generator rule and not naming 'current') did not produce a source precise enough to cite without inference. Remains SOURCE_GAP."
+      "summary": "A fresh 4-candidate search (University of Leicester -- 403; Welsh Government resource -- DNS failure; QMUL handout -- reported fetched but no usable passage was inspected or captured, rejected as unevaluated/insufficient (corrected from an earlier, inaccurate 'HTTP 500' description); PASCO's right-hand rule article -- states a structurally related but differently-framed rule for force on a moving charge, not explicitly named as the generator rule and not naming 'current') did not produce a source precise enough to cite without inference. Status: unresolved within the candidates evaluated during pilot-002 and its repair -- this is not a claim that no suitable public source exists."
     },
     {
       "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",

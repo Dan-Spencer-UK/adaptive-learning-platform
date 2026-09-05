@@ -1,0 +1,440 @@
+{
+  "batchId": "batch-01-foundational-mathematics",
+  "qualificationContextId": "unit202",
+  "domain": "foundational-mathematics",
+  "sourcePlan": "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json",
+  "requirementCount": 16,
+  "reusedFromPilot": [
+    "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+    "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE"
+  ],
+  "results": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE",
+      "reused": true,
+      "reusedFrom": "reports/backtests/unit202-blind-acquisition-run/pilot-002-review/PILOT-002-REVIEWED-RESULTS.json",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PILOT-FRACTIONS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://anglia.libguides.com/maths-stats/fractionsAndDecimals",
+            "sourceLocator": "Anglia Ruskin University, Maths and Stats LibGuide, 'Fractions and Decimals' page, sections on equivalence, conversion, and the four operations",
+            "retrievedPassage": "\"One half (1/2) is the same as two quarters (2/4) which is also equal to 50 out of 100 (50/100)\"; conversion by \"numerator divided by denominator\"; addition/subtraction distinguishing \"Like fractions\" from \"Unlike Fractions\"; multiplication by \"multiply the top numbers ... and multiply the bottom numbers\"; division by \"turn the second fraction upside down ... then carry out multiplication\", each with worked examples."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Fraction equivalence (e.g. 1/2 = 2/4 = 50/100), comparison via common denominators, conversion between fraction/decimal/percentage forms, and all four basic arithmetic operations on fractions (addition/subtraction of like and unlike fractions, multiplication, and division via the reciprocal method) are taught with worked examples.",
+            "sourceId": "SRC-PILOT-FRACTIONS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::percentages::TOPIC_BREADTH_COVERAGE",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PERCENTAGES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-bus-percentage-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Percentages' (mc-bus-percentage-2009-1), pp.1-2",
+            "retrievedPassage": "\"Any fraction which has a denominator of 100 can be written in a special way known as a percentage. The symbol for percentage is %.\" \"To find, say, 15% of 250, convert the percentage to a fraction, and remember that 'of' means multiply: 15/100 x 250/1 = 37.5\", with worked conversions between decimals, fractions and percentages."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A percentage is a fraction with denominator 100, written with the symbol %; a decimal, fraction, or percentage can each be converted into either of the other two forms (e.g. by expressing as an equivalent fraction over 100, or by dividing/multiplying by 100); to find a percentage of a quantity, convert the percentage to a fraction (x% = x/100) and multiply by the quantity.",
+            "sourceId": "SRC-PERCENTAGES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ALGEBRA-BRACKETS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-expandingbrackets-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Expanding and removing brackets' (mc-TY-expandingbrackets-2009-1), §1 and §3, pp.2, 5",
+            "retrievedPassage": "\"In this unit we will see how expressions involving brackets can be written in equivalent forms without any brackets. This process is called 'expanding' or 'removing' brackets\"; Key Point: \"The term outside the brackets multiplies each term inside the brackets\", a(b+c) = ab+ac, with worked examples e.g. 3(x+2) = 3x+6, -3a²(3-b) = -9a²+3a²b, and exercises combining expansion with simplifying (collecting like terms), e.g. 5+2(x+1)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An algebraic expression containing brackets can be rewritten in an equivalent form without brackets by multiplying the term outside the brackets by each term inside them (e.g. a(b+c) = ab+ac; 3(x+2) = 3x+6; -3a²(3-b) = -9a²+3a²b), and the resulting expression can then be simplified by collecting like terms.",
+            "sourceId": "SRC-ALGEBRA-BRACKETS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Evidence covers introductory algebraic manipulation (notation, expanding brackets, collecting like terms) -- the depth needed for this qualification's basic formula work. It does not cover solving equations, factorising, or quadratic expressions, which are excluded by this requirement's depth ceiling."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE",
+      "reused": true,
+      "reusedFrom": "reports/backtests/unit202-blind-acquisition-run/pilot-002-review/PILOT-002-REVIEWED-RESULTS.json",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PILOT-TRANSPOSITION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-transposition-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Transposition of formulae' (mc-TY-transposition-2009-1), §2 'Solving a simple linear equation' and §3 'Transposition of simple formulae', pp.2-3",
+            "retrievedPassage": "\"Consider the formula v² = u² + 2as ... Finally, taking the square root of both sides: u = √(v² − 2as)\"; \"Consider the formula v = u + at ... t = (v − u)/a\"; and (p.5) the pendulum formula \"T = 2π√(l/g)\" rearranged for g \"by squaring both sides ... to remove the square root\", multiplying and dividing to give \"g = (2π)²l/T²\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "mathcentre's 'Transposition of formulae' unit teaches transposing a formula by performing the same operation to both sides to isolate a variable, covering single-step examples (e.g. v = u + at rearranged for t) and multi-step/squared-and-rooted forms (e.g. v² = u² + 2as rearranged for u via subtraction then square root; the pendulum formula T = 2π√(l/g) rearranged for g via squaring, multiplying, and dividing), demonstrated through worked examples and practice exercises.",
+            "sourceId": "SRC-PILOT-TRANSPOSITION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::positive-indices::EXACT_FACT",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-INDICES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-indicespowers-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Indices or Powers' (mc-TY-indicespowers-2009-1), §1-§5, pp.2-5",
+            "retrievedPassage": "\"An index, or power, is used to show that a quantity is repeatedly multiplied by itself.\" Key Points: \"a^m × a^n = a^(m+n)\" (first rule), \"(a^m)^n = a^(mn)\" (second rule), \"a^m ÷ a^n = a^(m-n)\" (third rule), \"a^0 = 1\" (fourth rule)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An index (power) shows that a quantity is repeatedly multiplied by itself (e.g. a×a×a×a×a = a⁵); the laws of indices for positive whole-number powers are: a^m × a^n = a^(m+n); (a^m)^n = a^(mn); a^m ÷ a^n = a^(m-n); and a^0 = 1 (for any non-zero a).",
+            "sourceId": "SRC-INDICES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::negative-indices::EXACT_FACT",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-INDICES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-indicespowers-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Indices or Powers' (mc-TY-indicespowers-2009-1), §6 'The fifth rule', p.5",
+            "retrievedPassage": "\"So a negative sign in the index can be thought of as meaning '1 over'.\" Key Point: \"a^(-1) = 1/a and more generally a^(-m) = 1/(a^m)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A negative index means the reciprocal of the corresponding positive power: a^(-1) = 1/a, and more generally a^(-m) = 1/(a^m).",
+            "sourceId": "SRC-INDICES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-SI-CH7",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values",
+            "sourceLocator": "NIST Guide to the SI, Chapter 7 'Rules and Style Conventions for Expressing Values of Quantities', §7.9",
+            "retrievedPassage": "\"3.3 × 10⁷ Hz may be written as 33 × 10⁶ Hz = 33 MHz\" and \"0.009 52 g may be written as 9.52 × 10⁻³ g = 9.52 mg\", illustrating a number expressed as a coefficient multiplied by a power of ten."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A number in standard (scientific) form is written as a coefficient multiplied by a power of ten (e.g. 9.52 × 10⁻³), with the exponent chosen so the value being multiplied by a power of ten is repositioned accordingly.",
+            "sourceId": "SRC-NIST-SI-CH7"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["QUANTITY_SYMBOL"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::engineering-notation::SYMBOL_OR_CONVENTION",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-SI-CH7",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values",
+            "sourceLocator": "NIST Guide to the SI, Chapter 7 'Rules and Style Conventions for Expressing Values of Quantities', §7.9",
+            "retrievedPassage": "\"It is often recommended that, for ease of understanding, prefix symbols should be chosen in such a way that numerical values are between 0.1 and 1000\"; \"only prefix symbols that represent the number 10 raised to a power that is a multiple of 3 should be used\"; example: \"3.3 × 10⁷ Hz may be written as 33 × 10⁶ Hz = 33 MHz\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Engineering notation expresses a number as a coefficient (typically between 0.1 and 1000) multiplied by a power of ten that is a multiple of 3, so that the exponent matches a standard SI prefix (e.g. k, M, m, µ); e.g. 3.3 × 10⁷ Hz is written as 33 × 10⁶ Hz = 33 MHz.",
+            "sourceId": "SRC-NIST-SI-CH7"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["QUANTITY_SYMBOL"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::pythagoras::EXACT_FACT",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PYTHAGORAS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/Engineering%20maths%20first%20aid%20kit/latexsource%20and%20diagrams/4_5.pdf",
+            "sourceLocator": "mathcentre, 'Engineering Maths First Aid Kit' §4.5 'Pythagoras' theorem', p.1",
+            "retrievedPassage": "\"In any right-angled triangle, ABC, the side opposite the right-angle is called the hypotenuse.\" \"Pythagoras' theorem states that the square of the hypotenuse, (c²), is equal to the sum of the squares of the other two sides, (a² + b²).\" Key Point: \"Pythagoras' theorem: c² = a² + b²\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In a right-angled triangle, the side opposite the right angle is the hypotenuse; Pythagoras' theorem states that the square of the hypotenuse equals the sum of the squares of the other two sides: c² = a² + b².",
+            "sourceId": "SRC-PYTHAGORAS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::sine-cosine-tangent-use-in-right-triangles::PROCEDURE_COVERAGE",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-TRIG-RATIOS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-trigratios-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Trigonometrical ratios in a right-angled triangle' (mc-TY-trigratios-2009-1), §3-§6, pp.3-6",
+            "retrievedPassage": "Key Point: \"sin A = OPPOSITE/HYPOTENUSE, cos A = ADJACENT/HYPOTENUSE, tan A = OPPOSITE/ADJACENT\"; mnemonic \"SOH CAH TOA\"; worked surveying example finding a tower's height x from x/5 = tan 32°, giving x = 5 × tan 32° = 3.124, height = 3.124 + 1.72 = 4.8 m (2 s.f.)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "For a right-angled triangle and a marked angle A, sin A = opposite/hypotenuse, cos A = adjacent/hypotenuse, and tan A = opposite/adjacent (mnemonic SOHCAHTOA); given one side and one non-right angle, the appropriate ratio can be rearranged to find an unknown side (e.g. opposite = adjacent × tan A).",
+            "sourceId": "SRC-TRIG-RATIOS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Evidence is scoped to right-angled-triangle trigonometry (SOHCAHTOA) only. A candidate source found in the same mathcentre collection (§4.6, 'The sine rule and cosine rule') covers general (non-right-angled) triangle trigonometry and was deliberately NOT used, as it exceeds this requirement's depth ceiling."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::statistical-range::EXACT_FACT",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-STATS-SCALE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda356.htm",
+            "sourceLocator": "NIST/SEMATECH e-Handbook of Statistical Methods, §1.3.5.6 'Measures of Scale'",
+            "retrievedPassage": "\"range -- the range is the largest value minus the smallest value in a data set.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The range of a data set is the largest value minus the smallest value.",
+            "sourceId": "SRC-NIST-STATS-SCALE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::mean::EXACT_FACT",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-STATS-LOCATION",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://itl.nist.gov/div898/handbook/eda/section3/eda351.htm",
+            "sourceLocator": "NIST/SEMATECH e-Handbook of Statistical Methods, §1.3.5.1 'Measures of Location'",
+            "retrievedPassage": "\"the mean is the sum of the data points divided by the number of data points. That is, Ȳ = Σ(i=1 to N) Yi / N\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The mean of a data set is the sum of the data points divided by the number of data points.",
+            "sourceId": "SRC-NIST-STATS-LOCATION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::median::EXACT_FACT",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-STATS-LOCATION",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://itl.nist.gov/div898/handbook/eda/section3/eda351.htm",
+            "sourceLocator": "NIST/SEMATECH e-Handbook of Statistical Methods, §1.3.5.1 'Measures of Location'",
+            "retrievedPassage": "\"the median is the value of the point which has half the data smaller than that point and half the data larger than that point.\" For odd N the median is the middle ordered value; for even N it is the mean of the two middle ordered values."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The median of a data set is the middle value when the data are arranged in order (half the data are smaller, half larger); for an even number of data points, the median is the mean of the two middle values.",
+            "sourceId": "SRC-NIST-STATS-LOCATION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::mode::EXACT_FACT",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-STATS-LOCATION",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://itl.nist.gov/div898/handbook/eda/section3/eda351.htm",
+            "sourceLocator": "NIST/SEMATECH e-Handbook of Statistical Methods, §1.3.5.1 'Measures of Location'",
+            "retrievedPassage": "\"the mode is the value of the random sample that occurs with the greatest frequency.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The mode of a data set is the value that occurs with the greatest frequency.",
+            "sourceId": "SRC-NIST-STATS-LOCATION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::ordinary-decimal-arithmetic::PROCEDURE_COVERAGE",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-DECIMALS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-decimals-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Decimals' (mc-TY-decimals-2009-1), §1-§3, pp.2-5",
+            "retrievedPassage": "Place-value chart showing columns 1000000...100...10...1 . 1/10...1/1000; \"each digit will now move two columns to the left\" when multiplying 0.507 by 100 = 50.7; \"127.5 ÷ 10 = 12.75\"; \"0.2 = 2/10 = 1/5\"; \"1/3 = 1 ÷ 3 = 0.3333333... = 0.3̇\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A decimal number's digits have place values that are powers of ten (units, tens, tenths, hundredths, etc.); multiplying by a power of ten shifts each digit that many places to the left, and dividing shifts them to the right (e.g. 0.507 × 100 = 50.7; 127.5 ÷ 10 = 12.75); a decimal is converted to a fraction using its place value (e.g. 0.2 = 2/10 = 1/5), and a fraction is converted to a decimal by dividing the numerator by the denominator (e.g. 1/3 = 1 ÷ 3 = 0.3̇, a non-terminating decimal).",
+            "sourceId": "SRC-DECIMALS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Evidence covers decimal place value, multiplying/dividing decimals by powers of ten, and decimal-fraction conversion -- the core 'ordinary decimal arithmetic' skills an electrical Level 2 learner needs (e.g. shifting decimal places when converting between unit prefixes). It does not re-teach manual column addition/subtraction of decimals, which learners at this level are assumed to already possess from prior education."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE",
+      "reused": false,
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-RATIOS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-ratios-2009-1.pdf",
+            "sourceLocator": "mathcentre, 'Ratios' (mc-TY-ratios-2009-1), §1-§3, pp.2-4",
+            "retrievedPassage": "\"A ratio is a way of comparing two or more similar quantities, by writing two or more numbers separated by colons.\" \"250 : 150 -> 25:15 -> 5:3\" (simplifying by cancelling a common factor); worked sharing example: £64,000 split 5:3 -> total parts 8, 1 part = £8,000, so £40,000 and £24,000."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A ratio compares two or more quantities of the same kind, written with a colon (e.g. 2:5), and can be simplified by cancelling common factors, in the same way as a fraction; a quantity can be shared in a given ratio by adding the parts of the ratio to find the total number of parts, dividing the quantity by that total to find the value of one part, then multiplying by each ratio number to find each share.",
+            "sourceId": "SRC-RATIOS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    }
+  ],
+  "totals": {
+    "VERIFIED": 16,
+    "PARTIALLY_VERIFIED": 0,
+    "SOURCE_GAP": 0,
+    "CONFLICTED": 0
+  }
+}

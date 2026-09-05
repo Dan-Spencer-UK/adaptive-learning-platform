@@ -1,0 +1,168 @@
+{
+  "batchId": "batch-01-foundational-mathematics",
+  "sourceCount": 12,
+  "reusedSourceCount": 2,
+  "newSourceCount": 10,
+  "sources": [
+    {
+      "sourceId": "SRC-PILOT-FRACTIONS",
+      "reused": true,
+      "publisher": "Anglia Ruskin University",
+      "title": "Maths and Stats LibGuide -- 'Fractions and Decimals'",
+      "url": "https://anglia.libguides.com/maths-stats/fractionsAndDecimals",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Published and maintained by Anglia Ruskin University's own library/learning-support service.",
+      "locator": "Anglia Ruskin University, Maths and Stats LibGuide, 'Fractions and Decimals' page",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::fractions::TOPIC_BREADTH_COVERAGE", "claimSummary": "Fraction equivalence, comparison, conversion, and the four operations." }
+      ]
+    },
+    {
+      "sourceId": "SRC-PILOT-TRANSPOSITION",
+      "reused": true,
+      "publisher": "mathcentre",
+      "title": "Transposition of formulae (mc-TY-transposition-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-transposition-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Transposition of formulae', §2-§3, pp.2-3",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::formula-transposition::PROCEDURE_COVERAGE", "claimSummary": "Single-step and squared/rooted formula rearrangement." }
+      ]
+    },
+    {
+      "sourceId": "SRC-PERCENTAGES",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Percentages (mc-bus-percentage-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-bus-percentage-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership (sigma network / HE institutions) providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Percentages', pp.1-2",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::percentages::TOPIC_BREADTH_COVERAGE", "claimSummary": "Percentage meaning, fraction/decimal/percentage conversion, finding a percentage of a quantity." }
+      ]
+    },
+    {
+      "sourceId": "SRC-ALGEBRA-BRACKETS",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Expanding and removing brackets (mc-TY-expandingbrackets-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-expandingbrackets-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Expanding and removing brackets', §1 and §3, pp.2, 5",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE", "claimSummary": "Expanding brackets and collecting like terms." }
+      ]
+    },
+    {
+      "sourceId": "SRC-INDICES",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Indices or Powers (mc-TY-indicespowers-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-indicespowers-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Indices or Powers', §1-§6, pp.2-5",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::positive-indices::EXACT_FACT", "claimSummary": "Definition of an index; first four laws of indices; a^0=1." },
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::negative-indices::EXACT_FACT", "claimSummary": "a^(-1) = 1/a and a^(-m) = 1/(a^m)." }
+      ]
+    },
+    {
+      "sourceId": "SRC-NIST-SI-CH7",
+      "reused": false,
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "NIST Guide to the SI, Chapter 7 -- Rules and Style Conventions for Expressing Values of Quantities",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "NIST Special Publication 811 is the US national metrology institute's official guide to the International System of Units, including its number-formatting conventions.",
+      "locator": "NIST Guide to the SI, Chapter 7, §7.9",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::standard-scientific-notation::SYMBOL_OR_CONVENTION", "claimSummary": "Standard/scientific notation as coefficient x power of ten." },
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::engineering-notation::SYMBOL_OR_CONVENTION", "claimSummary": "Engineering notation restricted to powers of ten that are multiples of 3, matching SI prefixes." }
+      ]
+    },
+    {
+      "sourceId": "SRC-PYTHAGORAS",
+      "reused": false,
+      "publisher": "mathcentre (Engineering Maths First Aid Kit, Pearson Education Ltd)",
+      "title": "Engineering Maths First Aid Kit §4.5 -- Pythagoras' theorem",
+      "url": "https://www.mathcentre.ac.uk/resources/Engineering%20maths%20first%20aid%20kit/latexsource%20and%20diagrams/4_5.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre's Engineering Maths First Aid Kit is a citable HE-partnership engineering-mathematics resource.",
+      "locator": "mathcentre, Engineering Maths First Aid Kit §4.5, p.1",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::pythagoras::EXACT_FACT", "claimSummary": "c² = a² + b² for a right-angled triangle." }
+      ]
+    },
+    {
+      "sourceId": "SRC-TRIG-RATIOS",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Trigonometrical ratios in a right-angled triangle (mc-TY-trigratios-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-trigratios-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Trigonometrical ratios in a right-angled triangle', §3-§6, pp.3-6",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::sine-cosine-tangent-use-in-right-triangles::PROCEDURE_COVERAGE", "claimSummary": "SOHCAHTOA definitions plus worked example finding an unknown side." }
+      ]
+    },
+    {
+      "sourceId": "SRC-NIST-STATS-LOCATION",
+      "reused": false,
+      "publisher": "NIST/SEMATECH",
+      "title": "e-Handbook of Statistical Methods, §1.3.5.1 -- Measures of Location",
+      "url": "https://itl.nist.gov/div898/handbook/eda/section3/eda351.htm",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "NIST is the US national metrology institute; the e-Handbook of Statistical Methods is its standard engineering-statistics reference.",
+      "locator": "NIST/SEMATECH e-Handbook of Statistical Methods, §1.3.5.1",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::mean::EXACT_FACT", "claimSummary": "Mean = sum of data points / number of data points." },
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::median::EXACT_FACT", "claimSummary": "Median = middle value of ordered data." },
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::mode::EXACT_FACT", "claimSummary": "Mode = most frequently occurring value." }
+      ]
+    },
+    {
+      "sourceId": "SRC-NIST-STATS-SCALE",
+      "reused": false,
+      "publisher": "NIST/SEMATECH",
+      "title": "e-Handbook of Statistical Methods, §1.3.5.6 -- Measures of Scale",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda356.htm",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "NIST is the US national metrology institute; the e-Handbook of Statistical Methods is its standard engineering-statistics reference.",
+      "locator": "NIST/SEMATECH e-Handbook of Statistical Methods, §1.3.5.6",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::statistical-range::EXACT_FACT", "claimSummary": "Range = largest value minus smallest value." }
+      ]
+    },
+    {
+      "sourceId": "SRC-DECIMALS",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Decimals (mc-TY-decimals-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-decimals-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Decimals', §1-§3, pp.2-5",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::ordinary-decimal-arithmetic::PROCEDURE_COVERAGE", "claimSummary": "Decimal place value, multiplying/dividing by powers of ten, decimal-fraction conversion." }
+      ]
+    },
+    {
+      "sourceId": "SRC-RATIOS",
+      "reused": false,
+      "publisher": "mathcentre",
+      "title": "Ratios (mc-TY-ratios-2009-1)",
+      "url": "https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-ratios-2009-1.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "mathcentre is produced by a UK higher-education partnership providing citable mathematics-support teaching units.",
+      "locator": "mathcentre, 'Ratios', §1-§3, pp.2-4",
+      "supports": [
+        { "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::proportional-reasoning-required-to-execute-the-above-calculations::PROCEDURE_COVERAGE", "claimSummary": "Ratio notation, simplifying ratios, sharing a quantity in a given ratio." }
+      ]
+    }
+  ]
+}

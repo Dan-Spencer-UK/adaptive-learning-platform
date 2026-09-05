@@ -1,6 +1,7 @@
 {
   "pilotId": "pilot-002-review",
-  "scope": "Targeted repair research for requirements 3, 7, 8, 13, 15 only (per Project Architect review). Requirements 1, 2, 4, 6, 9, 10, 11, 12, 14 were not reacquired; requirement 5 was a wording-only correction using its existing source, no new research.",
+  "auditStatus": "RECONSTRUCTED_NOT_CONTEMPORANEOUS",
+  "scope": "Targeted repair research for requirements 3, 7, 8, 13, 15 only (per Project Architect review). Requirements 1, 2, 4, 6, 9, 10, 11, 12, 14 were not reacquired; requirement 5 was a wording-only correction using its existing source, no new research. Query order, candidates, and accept/reject decisions below were reconstructed from the session transcript after the research was performed; no event-level timing is claimed anywhere in this file (this log carries no timestamp field). See PILOT-002-REPAIR-RETRIEVAL-LOG.json's auditStatus/eventTimestampStatus fields for the corresponding correction to that file's timestamps.",
   "entries": [
     {
       "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
@@ -116,7 +117,7 @@
           "sourceRef": "https://ph.qmul.ac.uk/sites/default/files/handout8.PDF",
           "chosen": false,
           "retrievalAttempted": true,
-          "reason": "Queen Mary University of London physics handout -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval attempted, server returned HTTP 500 Internal Server Error."
+          "reason": "Queen Mary University of London physics handout -- ACADEMIC_OR_RESEARCH_INSTITUTION; retrieval tool reported the resource as fetched, but no usable passage was inspected or captured, so it was rejected as unevaluated/insufficient (corrected from an earlier, inaccurate 'HTTP 500' description)."
         },
         {
           "candidateId": "C-r4",
