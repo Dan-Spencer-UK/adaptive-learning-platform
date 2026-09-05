@@ -1,0 +1,532 @@
+{
+  "batchId": "batch-04-electrical-quantities-and-circuit-theory",
+  "sourceCount": 26,
+  "reusedSourceCount": 4,
+  "newSourceCount": 22,
+  "note": "22 sources were freshly acquired in this session via real web search and retrieval. 4 sources (SRC-NIST-MASS, SRC-NIST-SP811-B9, SRC-HP-RESIS, SRC-NIST-RESHALL) were registered in earlier accepted batches (Batch 02 and/or Batch 03) and are reused here; see reusedSourceIds below for the exact list. Each reused source was re-fetched and its exact passage freshly re-read in this session (not assumed from the prior normalized claim), per the task's cross-batch reuse discipline. Several sources are also reused ACROSS multiple Batch 04 requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
+  "reusedSourceIds": [
+    "SRC-NIST-MASS",
+    "SRC-NIST-SP811-B9",
+    "SRC-HP-RESIS",
+    "SRC-NIST-RESHALL"
+  ],
+  "sources": [
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIST-LENGTH",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "SI Units - Length",
+      "url": "https://www.nist.gov/pml/owm/si-units-length",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "NIST's Office of Weights and Measures is a US federal government body; this is its own official guidance page (classification consistent with Batch 03's SRC-NIST-MASS).",
+      "locator": "NIST, 'SI Units - Length' page",
+      "supportsRequirementSuffixes": [
+        "length-correct-si-unit-and-unit-symbol::EXACT_FACT"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIST-MASS",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "SI Units - Mass",
+      "url": "https://www.nist.gov/pml/owm/si-units-mass",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "NIST's Office of Weights and Measures is a US federal government body; this is its own official guidance page.",
+      "locator": "NIST, 'SI Units - Mass' page",
+      "crossBatchReuse": "This exact source (SRC-NIST-MASS) was originally registered in Batch 03 (mechanics-and-machines) for the mass-meaning/weight-meaning/mass-weight-distinction requirements. It is reused here for a DIFFERENT requirement (Batch 04's 'mass: correct SI unit and unit symbol'). Per the task's cross-batch reuse discipline, the page was re-fetched and its exact passage re-read fresh in this session rather than assumed from the prior normalized claim.",
+      "supportsRequirementSuffixes": [
+        "mass-correct-si-unit-and-unit-symbol::EXACT_FACT"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIST-TIME",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "SI Units - Time",
+      "url": "https://www.nist.gov/pml/owm/si-units-time",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "NIST's Office of Weights and Measures is a US federal government body; this is its own official guidance page.",
+      "locator": "NIST, 'SI Units - Time' page",
+      "supportsRequirementSuffixes": [
+        "time-correct-si-unit-and-unit-symbol::EXACT_FACT"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIST-TEMPERATURE",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "SI Units - Temperature",
+      "url": "https://www.nist.gov/pml/owm/si-units-temperature",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "NIST's Office of Weights and Measures is a US federal government body; this is its own official guidance page.",
+      "locator": "NIST, 'SI Units - Temperature' page",
+      "supportsRequirementSuffixes": [
+        "temperature-correct-si-unit-and-unit-symbol::EXACT_FACT"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIST-SP811-B9",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "NIST Guide to the SI, Appendix B.9: Factors for units listed by kind of quantity or field of science",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "NIST Special Publication 811 ('Guide for the Use of the International System of Units') is NIST's own authoritative guide realizing and documenting SI usage in the US; classified PRIMARY_NORMATIVE_OR_STANDARDS_BODY consistent with Batch 02's identical classification of this same page (SRC-NIST-SP811-B9) for the ohm-metre resistivity-unit requirement.",
+      "locator": "NIST Guide to the SI, Appendix B.9, tables for AREA, VOLUME, VELOCITY, and MASS DIVIDED BY VOLUME (density); and the ELECTRICITY AND MAGNETISM table row for ohm centimeter -> ohm meter",
+      "crossBatchReuse": "This exact source (SRC-NIST-SP811-B9) was originally registered in Batch 02 for the ohm-metre resistivity-unit requirement. It is reused here, re-fetched and re-read fresh, both for that same resistivity-unit facet (now under a new Batch 04 evidence-requirement ID) and for four new facets (area, volume, velocity, density SI units) that the same page's tables genuinely also support.",
+      "supportsRequirementSuffixes": [
+        "area-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "volume-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "velocity-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "density-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIST-SP811-CH4",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "NIST Guide to the SI, Chapter 4: The Two Classes of SI Units and the SI Prefixes",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-4-two-classes-si-units-and-si-prefixes",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "Same NIST SP811 guide as SRC-NIST-SP811-B9; classified identically as PRIMARY_NORMATIVE_OR_STANDARDS_BODY.",
+      "locator": "NIST Guide to the SI, Chapter 4, Table 2 (derived units incl. area=square metre m^2, volume=cubic metre m^3, acceleration=m/s^2) and prefix discussion",
+      "supportsRequirementSuffixes": []
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-SQCUBIC",
+      "publisher": "LibreTexts (Chemistry LibreTexts, Heartland Community College CHEM 120 course)",
+      "title": "1.12: Squared and Cubic Units",
+      "url": "https://chem.libretexts.org/Courses/Heartland_Community_College/CHEM_120:_Fundamentals_of_Chemistry/01:_Measurement_and_Problem_Solving/1.12:_Squared_and_Cubic_Units",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "LibreTexts is a substantive, multi-institution open-education textbook consortium (backed by California State University Affordable Learning Solutions and NSF/DOE funding); this page is course-integrated open-textbook content, not a marketing page, classified honestly as an educational reference rather than the host institution's own academic-research output.",
+      "locator": "Chemistry LibreTexts 1.12, worked example converting 18,900,000 cm^3 to m^3 via (1 m/100 cm)^3",
+      "supportsRequirementSuffixes": [
+        "practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": true,
+      "contentHash": null,
+      "hashReason": "Raw PDF bytes were retrieved and read visually via the harness's image-based PDF reader; no cryptographic hash of those bytes was computed, so none is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-BIPM-BROCHURE",
+      "publisher": "BIPM (Bureau International des Poids et Mesures / International Bureau of Weights and Measures)",
+      "title": "SI - A concise summary of the International System of Units, SI",
+      "url": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "BIPM is the international treaty organisation that literally maintains and defines the SI; this is BIPM's own official concise summary document, the most directly primary-standards-body source available for SI unit names and symbols.",
+      "locator": "BIPM SI concise brochure, Table 1 (seven base units: time-second-s, length-metre-m, mass-kilogram-kg, electric current-ampere-A, thermodynamic temperature-kelvin-K), Table 2 (derived units with special names: frequency-hertz-Hz, energy/work-joule-J, power-watt-W, electric potential difference-volt-V, capacitance-farad-F, electric resistance-ohm, inductance-henry-H), Table 4 (non-SI units: volume-litre-L or l, mass-tonne-t, time-minute/hour/day, energy-electronvolt-eV), and the 'language of science' section on quantity-symbol conventions (italic single Latin/Greek letters, e.g. T for thermodynamic temperature)",
+      "supportsRequirementSuffixes": [
+        "current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+        "voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+        "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-DC1",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "DC Circuit Theory of Voltage, Current and Resistance",
+      "url": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "A substantive, systematically-organised, multi-chapter electronics/electrical-engineering technical reference textbook (long-established, widely used in technical/vocational electrical education), not a marketing page; classified as an authoritative technical reference rather than an academic institution's own page since it is an independent technical publisher, not a university.",
+      "locator": "electronics-tutorials.ws, DC Circuit Theory page, summary table of voltage/current/resistance symbols and units",
+      "supportsRequirementSuffixes": [
+        "current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+        "current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-DC3",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "Ohms Law Tutorial and Power in Electrical Circuits",
+      "url": "https://www.electronics-tutorials.ws/dccircuits/dcp_3.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, Ohms Law and Power page, 'Unit of Power P = V x I ... Watt [W]' and watt-hour/kWh energy discussion",
+      "supportsRequirementSuffixes": [
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-ENERGY",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "Electrical Energy, Power and Charge in an Electrical Circuit",
+      "url": "https://www.electronics-tutorials.ws/dccircuits/electrical-energy.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, Electrical Energy page: energy defined as ability to produce work; joule defined as 'one ampere at one volt, moving in one second'; kWh = 3.6 MJ; Power (P, watts) as rate vs Energy as cumulative work over time (Work = Power x Time)",
+      "supportsRequirementSuffixes": [
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-IMPEDANCE",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "Impedance and Complex AC Impedance",
+      "url": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, Impedance page: 'Impedance is the total opposition to the flow of alternating electrical current...expressed in Ohms'; 'Impedance combines resistance (R) and reactance (X) into one single complex number'; 'R + X does not equal Z' (reactance is 90 degrees out of phase with the resistive component, so impedance is their vector sum, not their arithmetic sum)",
+      "supportsRequirementSuffixes": [
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-POWERTRIANGLE",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "Understanding the Power Triangle and Power Factor in AC Circuits",
+      "url": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, Power Triangle page: 'Cos(phi) = Real/Apparent = P/S = W/VA = power factor, p.f.'; power factor expressed as a decimal (e.g. 0.95) or percentage, i.e. dimensionless; power factor distinguished from power P (watts)",
+      "supportsRequirementSuffixes": [
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-CAP1",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "Capacitance and Charge",
+      "url": "https://www.electronics-tutorials.ws/capacitor/cap_1.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, Capacitance page: 'Capacitance is the electrical property of a capacitor...measure of a capacitor's ability to store an electrical charge...unit of capacitance being the Farad (F)'; letter symbol C",
+      "supportsRequirementSuffixes": [
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-FILTER1",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "Passive Low Pass Filter",
+      "url": "https://www.electronics-tutorials.ws/filter/filter_1.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, Passive Low Pass Filter page: capacitive reactance Xc 'limits the flow of alternating current...measured in Ohms, the same unit as resistance'; Xc = 1/(2.pi.f.C); 'Capacitive Reactance varies inversely proportional with the applied frequency', unlike resistance which has a fixed value",
+      "supportsRequirementSuffixes": [
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-INDUCTOR",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "Inductance of a Coil",
+      "url": "https://www.electronics-tutorials.ws/inductor/inductor.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, Inductance page: 'This ability of an inductor to resist changes in current...is called Inductance which is given the symbol L with units of Henry, (H)'",
+      "supportsRequirementSuffixes": [
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-ACINDUCTORS",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "Inductive Reactance - The Reactance of an Inductor",
+      "url": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, Inductive Reactance page: 'Inductive Reactance, which is given the symbol XL...measured in Ohm's...XL = 2.pi.f.L...proportional to frequency'; 'inductance is a fixed property of a coil...whereas inductive reactance depends on AC frequency...reactance is dynamic and frequency-dependent, whereas inductance itself remains constant'",
+      "supportsRequirementSuffixes": [
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ETW-ACWAVEFORM",
+      "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
+      "title": "AC Waveform and AC Circuit Theory of Sinusoids",
+      "url": "https://www.electronics-tutorials.ws/accircuits/ac-waveform.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
+      "locator": "electronics-tutorials.ws, AC Waveform page: 'The number of complete cycles...within one second...is called the Frequency, symbol f, of the alternating waveform. Frequency is measured in Hertz, (Hz)'",
+      "supportsRequirementSuffixes": [
+        "frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+        "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HP-ELEVOL",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics)",
+      "title": "Electric Potential (Voltage)",
+      "url": "https://hyperphysics.gsu.edu/hbase/electric/elevol.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Georgia State University's own physics department server (same classification precedent as Batch 03's SRC-HP-MASS).",
+      "locator": "HyperPhysics, 'Electric Potential' page: 'Voltage is electric potential energy per unit charge, measured in joules per coulomb (=volts)'",
+      "supportsRequirementSuffixes": [
+        "voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": true,
+      "contentHash": null,
+      "hashReason": "Raw PDF bytes were retrieved and read visually via the harness's image-based PDF reader; no cryptographic hash of those bytes was computed, so none is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-EOLSS-ELECQUANT",
+      "publisher": "Encyclopedia of Life Support Systems (EOLSS Publishers, under UNESCO auspices), chapter by Jan Saliga, Technical University of Kosice",
+      "title": "Measurements of Electrical Quantities (Physical Methods, Instruments and Measurements)",
+      "url": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "A peer-reviewed, professionally-edited technical encyclopedia chapter (EOLSS, developed under UNESCO auspices), authored by a named university academic; classified as a substantive authoritative technical reference rather than the author's own academic-institution page, since the publication itself (not a university website) is the source being cited.",
+      "locator": "EOLSS 'Measurements of Electrical Quantities' sample chapter, sections 2.1-2.4: electric current (symbol I or i, unit ampere A), electric voltage (symbol V or sometimes U, unit volt V), resistance (symbol R, R=V/I, unit ohm), capacitance (symbol C, unit farad F), inductance (symbol L, unit henry H), impedance (unit ohm, complex R+jX, vector sum not arithmetic sum), electrical power (symbol P, P=V.I=I^2.R=V^2/R, unit watt W=J/s) and electrical energy (symbol E, p(t)=dE/dt, unit joule J, kWh used more often in practice than J)",
+      "supportsRequirementSuffixes": [
+        "current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+        "voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+        "voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HP-RESIS",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics)",
+      "title": "Resistance",
+      "url": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Georgia State University's own physics department server.",
+      "locator": "HyperPhysics, 'Resistance' page: 'The electrical resistance...is the ratio of the voltage applied to the electric current which flows through it'; R=rho*L/A; 'The factor in the resistance which takes into account the nature of the material is the resistivity'",
+      "crossBatchReuse": "This exact source was originally registered in Batch 02 (SRC-HP-RESIS) for the resistance and resistivity EXACT_FACT requirements. Re-fetched and re-read fresh in this session; reused here for the corresponding Batch 04 CONCEPT_DEFINITION::DEFINITION/DISTINCTION facets of resistance and resistivity (learning-point mastery for these facets is judged already covered by the accepted Batch 02 EFS-LP-05/EFS-LP-06 -- see overlap audit -- but each Batch 04 evidence requirement still receives its own genuine, re-verified evidence result here).",
+      "supportsRequirementSuffixes": [
+        "resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DEFINITION",
+        "resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DISTINCTION",
+        "resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DEFINITION",
+        "resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DISTINCTION"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIST-RESHALL",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "Resistivity and Hall Measurements",
+      "url": "https://www.nist.gov/pml/nanoscale-device-characterization-division/popular-links/hall-effect/resistivity-and-hall",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "Classified identically to Batch 02's use of this same page (SRC-NIST-RESHALL) for the same rho-symbol facet.",
+      "locator": "NIST, 'Resistivity and Hall Measurements' page: 'rho = sample resistivity (in ohm-cm)'",
+      "crossBatchReuse": "This exact source was originally registered in Batch 02 for the rho-resistivity-symbol requirement. Re-fetched and re-read fresh in this session; reused here for the corresponding Batch 04 QUANTITY_SYMBOL facet of the combined resistivity requirement.",
+      "supportsRequirementSuffixes": [
+        "resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-METERS",
+      "publisher": "OpenStax (Rice University)",
+      "title": "College Physics for AP(R) Courses, 21.4 DC Voltmeters and Ammeters",
+      "url": "https://openstax.org/books/college-physics-ap-courses/pages/21-4-dc-voltmeters-and-ammeters",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Fetched directly from OpenStax's own official platform (openstax.org), a Rice University nonprofit publishing initiative, not a third-party mirror; classified as an academic/research institution's own publication (distinguished from Batch 03's SRC-OPENSTAX-MASSWEIGHT, which was accessed via a third-party Lumen Learning mirror and classified AUTHORITATIVE_EDUCATIONAL_REFERENCE for that reason). This requirement's permitted authority classes do not include AUTHORITATIVE_EDUCATIONAL_REFERENCE, so the distinction is load-bearing and is disclosed here.",
+      "locator": "OpenStax College Physics AP Courses, 21.4: 'Ammeters are connected in series with whatever device's current is to be measured'; 'Voltmeters are connected in parallel with whatever device's voltage is to be measured'; ammeter resistance 'very small compared with the resistances of the devices in the circuit'; voltmeter resistance 'a few orders of magnitude greater than the device'",
+      "supportsRequirementSuffixes": [
+        "ammeter-measures-current-series-connection::EXACT_FACT",
+        "voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT",
+        "low-high-meter-internal-resistance::EXACT_FACT"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-FLUKE-RESISTANCE",
+      "publisher": "Fluke Corporation",
+      "title": "How to Measure Resistance with a Digital Multimeter",
+      "url": "https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-resistance",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Fluke is a leading test-and-measurement equipment manufacturer; this is a substantive how-to/technical-procedure page (not a marketing page) explaining correct, safe measurement procedure, so it is classified and disclosed as a manufacturer authoritative-technical-reference source per the task's explicit allowance for such sources when substantive and disclosed.",
+      "locator": "Fluke, 'How to Measure Resistance with a Digital Multimeter': 'Step 1. Turn Off Power to Circuit'; 'If a circuit includes a capacitor, discharge the capacitor before taking any resistance reading'",
+      "supportsRequirementSuffixes": [
+        "ohmmeter-measures-resistance::EXACT_FACT",
+        "ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": true,
+      "contentHash": null,
+      "hashReason": "Raw PDF bytes were retrieved and read visually via the harness's image-based PDF reader; no cryptographic hash of those bytes was computed, so none is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-PHILADELPHIA-WATTMETER",
+      "publisher": "Philadelphia University (Jordan), Dr. Firas Obeidat, Electric Circuits II course",
+      "title": "Power Measurement (Electric Circuits II, lecture 13)",
+      "url": "https://www.philadelphia.edu.jo/academics/fobeidat/uploads/Electric%20Circuits%20II%20Course2/13%20Power%20Measurement.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Hosted directly on Philadelphia University's own faculty course server, authored by its own faculty member for its own Electric Circuits course.",
+      "locator": "Philadelphia University, Power Measurement lecture, 'Single-Phase Power Measurement' slide: 'The wattmeter is the instrument used for measuring the average power...consists essentially of two coils: the current coil and the voltage coil. A current coil with very low impedance (ideally zero) is connected in series with the load...The voltage coil with very high impedance (ideally infinite) is connected in parallel with the load'",
+      "supportsRequirementSuffixes": [
+        "wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT"
+      ]
+    },
+    {
+      "accessDate": "2026-09-05",
+      "rawContentCaptured": true,
+      "contentHash": null,
+      "hashReason": "Raw PDF bytes were retrieved and read visually via the harness's image-based PDF reader; no cryptographic hash of those bytes was computed, so none is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NISTIR-8248",
+      "publisher": "NIST (National Institute of Standards and Technology)",
+      "title": "NISTIR 8248: A NIST Testbed for Examining the Accuracy of Smart Meters under High Harmonic Waveform Loads",
+      "url": "https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8248.pdf",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "NIST is a US federal government body; this is NIST's own published interagency/internal report (classification consistent with NIST's non-SP811 pages elsewhere in this batch, e.g. SRC-NIST-MASS).",
+      "locator": "NISTIR 8248, Section 1 Introduction: 'Electrical energy usage is measured with watt-hour meters'",
+      "supportsRequirementSuffixes": [
+        "energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
+      ]
+    }
+  ]
+}

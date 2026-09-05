@@ -1,0 +1,281 @@
+{
+  "domain": "electrical-quantities-and-circuit-theory",
+  "batch": "batch-04",
+  "selectedRequirementCount": 57,
+  "selectionNote": "57 requirements / 57 unique evidenceRequirementIds were pre-confirmed by the orchestrating session from reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json and dumped verbatim to a local reference file, which this session read first and treated as authoritative ground truth for exact IDs, modes, dimensions, authority classes and acceptance criteria. No requirement was added, removed, renamed, merged or reinterpreted.",
+  "sourceIsolationBoundary": {
+    "declaration": "This acquisition was conducted as fresh, independent public-source research. The following were NOT inspected or used as research leads, answer sources, or search-query seeds: the sealed historical Unit 202 source benchmark; any historical Unit 202 source manifests or verification dossiers; pilot evidence-acquisition results or pilot repair artifacts; old (pre-existing) Unit 202 assertions or claim sets; existing lessons, storyboards, or other instructional content; private course material; private calibration material; historical clean-room outputs (including the unit202-cleanroom CC-19R reports elsewhere in this repository, left untouched and unread); and reports/instructional-visuals (left untouched and unread).",
+    "accessedForStructuralPrecedentOnly": [
+      "reports/unit202-production-acquisition/batch-03-mechanics-and-machines/*.json (read only for output-format precedent: top-level fields, learning-point field shapes, freeze-policy phrasing; not read for source leads or subject-matter claims)",
+      "reports/unit202-production-acquisition/batch-02-electrical-fundamentals-and-safety/ELECTRICAL-FUNDAMENTALS-AND-SAFETY-LEARNING-POINTS.json and its EVIDENCE-RESULTS.json / SOURCE-REGISTER.json (read for genuine prerequisite mapping, semantic-overlap checking, and identification of cross-batch-reusable sourceIds -- this is the explicit purpose the task specification directs for these accepted baselines, not a source-answer shortcut)",
+      "reports/unit202-production-acquisition/batch-01-foundational-mathematics/FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.json (read for the same genuine cross-domain-prerequisite purpose)"
+    ],
+    "rediscoveryNote": "No previously-used public URL was knowingly carried over from any sealed or historical artifact without disclosure. Four sources (SRC-NIST-MASS, SRC-NIST-SP811-B9, SRC-HP-RESIS, SRC-NIST-RESHALL) were already registered in Batch 02 and/or Batch 03; each was re-fetched and its exact passage freshly re-read in this session (never assumed from the prior normalized claim), and the reuse is disclosed in both SOURCE-REGISTER.json and EVIDENCE-RESULTS.json. Every other source was located through this session's own fresh web search queries, listed below in the order they were run.",
+    "complianceStatement": "All non-reused sources were located via fresh search queries executed in this session. None was seeded from, or cross-checked against, any historical or sealed artifact."
+  },
+  "boundedResearchDiscipline": {
+    "maxCandidatesPerUnresolvedRequirement": 4,
+    "note": "No unresolved requirement bundle required more than four genuinely-evaluated candidates before an adequate source was accepted or an alternative bundle was tried. Several access failures (blocked/paywalled/unreadable candidates, listed below) were encountered and abandoned honestly rather than substituted with a search-summary or snippet as evidence."
+  },
+  "accessFailuresAndWorkarounds": [
+    {
+      "candidate": "https://www.theiet.org/media/4173/units-and-symbols.pdf (IET 'Units & Symbols for Electrical & Electronic Engineers')",
+      "issue": "Blocked by an Incapsula bot-protection challenge page on direct fetch (both WebFetch and a direct curl attempt returned only a JS challenge stub, no content).",
+      "workaround": "Abandoned; electrical quantity-symbol conventions were instead evidenced from electronics-tutorials.ws (AUTHORITATIVE_TECHNICAL_REFERENCE) and the EOLSS encyclopedia chapter (AUTHORITATIVE_TECHNICAL_REFERENCE), both genuinely retrieved and read."
+    },
+    {
+      "candidate": "https://www.electropedia.org/ (IEC International Electrotechnical Vocabulary, Electropedia)",
+      "issue": "Returned HTTP 403 (WebFetch) and HTTP 202 with zero bytes (direct curl, an async bot-challenge response) on multiple attempted entry points.",
+      "workaround": "Abandoned; would have been an excellent PRIMARY_NORMATIVE_OR_STANDARDS_BODY source for electrical quantity symbols had it been reachable. No substitute claim was fabricated from its absence."
+    },
+    {
+      "candidate": "https://ieeexplore.ieee.org/document/9540824 (IEEE Std 280-2021, Standard Letter Symbols for Quantities Used in Electrical Science and Electrical Engineering)",
+      "issue": "IEEE Xplore's abstract page is JavaScript-rendered; the fetch tool returned an empty page body.",
+      "workaround": "Abandoned; the standard's existence and general subject (I, U, P etc. as internationally recognised letter symbols) is well attested by secondary discussion, but per this batch's own rule that search summaries are not evidence, no claim was bound to this source."
+    },
+    {
+      "candidate": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-2/voltage-current-resistance-relate/ (All About Circuits, Ohm's Law)",
+      "issue": "HTTP 403 Forbidden on both WebFetch and a direct curl with a browser user-agent.",
+      "workaround": "Abandoned in favour of electronics-tutorials.ws, an equivalent-tier open electronics reference which was reachable and gave an exact quotable passage for the same facts (V/E, I, R symbols)."
+    },
+    {
+      "candidate": "https://ecampusontario.pressbooks.pub/multimeters101/chapter/1-6-introduction-to-resistance-measurements/ ('Multimeters 101' OER, eCampusOntario)",
+      "issue": "HTTP 403 Forbidden on WebFetch.",
+      "workaround": "Abandoned in favour of Fluke's own 'How to Measure Resistance with a Digital Multimeter' page, a substantive manufacturer technical how-to reference which was reachable and explicitly covers both the de-energisation requirement and the charged-capacitor stored-energy caution."
+    },
+    {
+      "candidate": "NIST Handbook 44 (2023), full PDF (~5.4MB, hundreds of pages)",
+      "issue": "The fetch tool could not extract readable text from the compressed PDF stream, and the document is too large to page through blindly to locate the specific Electricity Meters section (3.30) without a known page number.",
+      "workaround": "Abandoned in favour of the much shorter, directly page-read NISTIR 8248 (NIST Testbed for Examining the Accuracy of Smart Meters), whose introduction explicitly states energy meters measure electrical energy usage."
+    },
+    {
+      "candidate": "https://www.nist.gov/system/files/documents/2022/11/30/2023%20NIST%20Handbook%2044.pdf and https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf and https://www.philadelphia.edu.jo/.../13%20Power%20Measurement.pdf and https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8248.pdf and https://www.bipm.org/.../SI-Brochure-9-concise-EN.pdf",
+      "issue": "WebFetch's automatic HTML-conversion step could not render these PDFs' compressed content streams as plain text.",
+      "workaround": "Each PDF was instead downloaded (the WebFetch tool itself saves the raw bytes to a local file on this failure) and read directly, page by page, with the harness's image-based PDF page reader -- the same workaround used in Batch 03 for SRC-UW-SIMPLEMACHINES and SRC-CUNY-GEARS. Exact passages were read visually from the rendered pages, not inferred from metadata or file names."
+    }
+  ],
+  "clusterLogs": [
+    {
+      "cluster": "1. SI quantities and practical unit conversion",
+      "requirementsCovered": [
+        "length",
+        "area",
+        "volume",
+        "mass",
+        "density",
+        "time",
+        "velocity",
+        "temperature",
+        "practical-unit-conversion"
+      ],
+      "requirementCount": 9,
+      "searchQueriesUsed": [
+        "(direct fetch) NIST SI Units - Length/Mass/Time/Temperature pages",
+        "NIST SP811 derived units table area square meter volume cubic meter velocity meter per second density kilogram per cubic meter",
+        "(direct fetch) NIST Guide to the SI Appendix B.9 and Chapter 4",
+        "university physics chemistry dimensional analysis converting square units cubic units conversion factor squared cubed example .edu"
+      ],
+      "candidatesEvaluatedInOrder": [
+        {
+          "query": "(direct fetch)",
+          "candidate": "nist.gov/pml/owm/si-units-length, -mass, -time, -temperature",
+          "decision": "ACCEPTED (x4)",
+          "reason": "NIST's own official SI-unit pages, directly stating unit name and symbol for each quantity; -mass re-fetched fresh despite being a Batch 03 cross-batch reuse."
+        },
+        {
+          "query": "NIST SP811 derived units table",
+          "candidate": "nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+          "decision": "ACCEPTED",
+          "reason": "Same page already registered in Batch 02 for the ohm-metre fact; re-fetched fresh and found to also genuinely list area, volume, velocity and density SI units in its own tables -- reused across five Batch 04 facets, disclosed."
+        },
+        {
+          "query": "(direct fetch)",
+          "candidate": "nist.gov/.../nist-guide-si-chapter-4-two-classes-si-units-and-si-prefixes",
+          "decision": "ACCEPTED",
+          "reason": "Confirms derived units are formed algebraically with exponents (m^2, m^3), supporting the practical-conversion requirement's conceptual basis."
+        },
+        {
+          "query": "university dimensional analysis squared cubic units conversion factor",
+          "candidate": "chem.libretexts.org Heartland Community College CHEM 120, '1.12 Squared and Cubic Units'",
+          "decision": "ACCEPTED",
+          "reason": "Gives an explicit worked numeric example (18,900,000 cm^3 -> 18.9 m^3) of squaring/cubing a linear conversion factor, exactly the genuinely-needed method this requirement calls for."
+        }
+      ],
+      "sourceReuseNote": "SRC-NIST-SP811-B9 is reused across area, volume, velocity, density and (from Batch 02) resistivity's unit-symbol facet."
+    },
+    {
+      "cluster": "2. Core electrical quantities (current, voltage, resistance, resistivity, power, energy, power factor)",
+      "requirementsCovered": [
+        "current",
+        "voltage",
+        "resistance",
+        "resistivity",
+        "power",
+        "energy",
+        "power-factor"
+      ],
+      "requirementCount": 26,
+      "searchQueriesUsed": [
+        "IEC quantity symbol electric current I voltage U ampere volt letter symbols standard",
+        "\"theiet.org\" units and symbols pdf electrical quantities table (access failure, see log)",
+        "BIPM SI brochure table 4 derived units electric potential difference volt electric resistance ohm electric capacitance farad",
+        "(direct fetch) BIPM SI concise brochure PDF",
+        "(direct fetch) electronics-tutorials.ws DC circuit theory / Ohms law and power / electrical energy pages",
+        "\"quantity\" \"symbol\" table electric current I voltage U power P energy W frequency f impedance Z capacitance C inductance L filetype:pdf",
+        "(direct fetch) EOLSS 'Measurements of Electrical Quantities' sample chapter",
+        "(direct fetch) HyperPhysics electric potential / resistance pages (resistance page re-fetched fresh, cross-batch reuse from Batch 02)",
+        "(direct fetch) NIST Resistivity and Hall Measurements page (re-fetched fresh, cross-batch reuse from Batch 02)"
+      ],
+      "candidatesEvaluatedInOrder": [
+        {
+          "query": "IEC quantity symbol...",
+          "candidate": "theiet.org units-and-symbols.pdf",
+          "decision": "REJECTED (access failure)",
+          "reason": "Incapsula bot-protection block; see accessFailuresAndWorkarounds."
+        },
+        {
+          "query": "BIPM SI brochure table 4...",
+          "candidate": "bipm.org SI-Brochure-9-concise-EN.pdf",
+          "decision": "ACCEPTED",
+          "reason": "BIPM's own official concise SI summary; read directly via image-based PDF reader; gives unit names/symbols for ampere, volt, watt, joule, hertz, farad, henry and general quantity-symbol convention guidance."
+        },
+        {
+          "query": "electrical energy symbol W joule...",
+          "candidate": "eolss.net 'Measurements of Electrical Quantities' (Jan Saliga, Technical University of Kosice)",
+          "decision": "ACCEPTED",
+          "reason": "A peer-reviewed EOLSS/UNESCO encyclopedia chapter; read directly via image-based PDF reader; gives current (I), voltage (V or U), resistance (R, R=V/I), capacitance (C), inductance (L), impedance (Z, complex R+jX, vector not arithmetic sum), power (P) and -- critically -- energy's own quantity symbol E (distinct from watt's unit symbol W), resolving a genuine cross-source ambiguity (some secondary sources use W for energy, which this batch deliberately avoids per the depth guardrail against conflating energy's symbol with the watt)."
+        },
+        {
+          "query": "electronics-tutorials.ws DC circuit theory",
+          "candidate": "electronics-tutorials.ws/dccircuits/dcp_1.html, dcp_3.html, electrical-energy.html",
+          "decision": "ACCEPTED (x3)",
+          "reason": "A substantive, systematically-organised electrical/electronics reference textbook; gives current/voltage/resistance symbols, power P=VI, and an explicit power-vs-energy distinction (rate vs cumulative, kWh as energy not power)."
+        },
+        {
+          "query": "allaboutcircuits.com Ohm's Law",
+          "candidate": "allaboutcircuits.com/textbook/.../voltage-current-resistance-relate/",
+          "decision": "REJECTED (access failure)",
+          "reason": "HTTP 403 on both WebFetch and direct curl; see accessFailuresAndWorkarounds."
+        },
+        {
+          "query": "(direct fetch, cross-batch reuse)",
+          "candidate": "hyperphysics.gsu.edu/hbase/electric/elevol.html and resis.html; nist.gov/.../resistivity-and-hall",
+          "decision": "ACCEPTED",
+          "reason": "elevol.html newly used for voltage's definition (potential energy per charge); resis.html and the NIST Hall-effect page are Batch 02 cross-batch reuses, re-fetched fresh, confirming resistance/resistivity's definition, distinction, and rho symbol for this batch's own evidence requirements."
+        }
+      ],
+      "sourceReuseNote": "SRC-EOLSS-ELECQUANT is reused across current, voltage, power, energy, impedance, capacitance and inductance definition/symbol facets -- a single coherent bundle source, disclosed per-requirement in EVIDENCE-RESULTS.json. SRC-HP-RESIS and SRC-NIST-RESHALL are cross-batch reuses from Batch 02; their mastery (resistance and resistivity) is judged already covered by accepted EFS-LP-05/EFS-LP-06, so no new EQCT-LP is created for these eight requirements -- see the overlap audit in COVERAGE-REPORT.md."
+    },
+    {
+      "cluster": "3. AC quantities (frequency, impedance, capacitance/capacitive reactance, inductance/inductive reactance)",
+      "requirementsCovered": [
+        "frequency",
+        "impedance",
+        "capacitance-and-capacitive-reactance",
+        "inductance-and-inductive-reactance"
+      ],
+      "requirementCount": 15,
+      "searchQueriesUsed": [
+        "electronics-tutorials.ws AC waveform frequency period hertz definition",
+        "electronics-tutorials.ws impedance symbol Z ohms reactance capacitive inductive definition",
+        "(direct fetch) electronics-tutorials.ws impedance.html, cap_1.html, filter_1.html, inductor.html, ac-inductors.html, ac-waveform.html"
+      ],
+      "candidatesEvaluatedInOrder": [
+        {
+          "query": "electronics-tutorials.ws AC waveform frequency",
+          "candidate": "electronics-tutorials.ws/accircuits/ac-waveform.html",
+          "decision": "ACCEPTED",
+          "reason": "Explicit 'Frequency, symbol f...measured in Hertz (Hz)' passage."
+        },
+        {
+          "query": "electronics-tutorials.ws impedance",
+          "candidate": "electronics-tutorials.ws/accircuits/impedance.html",
+          "decision": "ACCEPTED",
+          "reason": "Explicit 'R + X does not equal Z' passage, directly evidencing the non-arithmetic-sum distinction required by this batch's depth guardrail."
+        },
+        {
+          "query": "(direct fetch)",
+          "candidate": "electronics-tutorials.ws/capacitor/cap_1.html",
+          "decision": "ACCEPTED",
+          "reason": "Capacitance definition, symbol C, unit farad F."
+        },
+        {
+          "query": "(direct fetch)",
+          "candidate": "electronics-tutorials.ws/filter/filter_1.html (found after an initial 404 on filter_5.html, a wrong guessed URL for the same topic)",
+          "decision": "ACCEPTED",
+          "reason": "Capacitive reactance Xc, ohms, frequency dependence, explicit contrast with capacitance's fixed value."
+        },
+        {
+          "query": "(direct fetch)",
+          "candidate": "electronics-tutorials.ws/inductor/inductor.html and ac-inductors.html",
+          "decision": "ACCEPTED (x2)",
+          "reason": "Inductance L/henry and inductive reactance XL/ohms, with an explicit 'inductance...remains constant...reactance is dynamic and frequency-dependent' distinction passage."
+        }
+      ],
+      "sourceReuseNote": "SRC-EOLSS-ELECQUANT (already registered in cluster 2) is reused again here for impedance's definition/distinction facets, disclosed."
+    },
+    {
+      "cluster": "4. Measuring instruments",
+      "requirementsCovered": [
+        "ammeter",
+        "voltmeter",
+        "ohmmeter (measures + safe-use)",
+        "wattmeter",
+        "energy-meter",
+        "low-high-internal-resistance"
+      ],
+      "requirementCount": 7,
+      "searchQueriesUsed": [
+        "university physics lab manual ammeter series connection voltmeter parallel connection measure current potential difference .edu",
+        "ohmmeter measures resistance circuit must be de-energised disconnected power off safety multimeter",
+        "Fluke how to measure resistance ohmmeter de-energized circuit safety never measure resistance live circuit",
+        "wattmeter measures electrical power current coil voltage coil series parallel connection definition university",
+        "energy meter kWh meter integrates electrical energy over time measures definition NIST OR university",
+        "NIST Handbook 44 watt-hour meter electricity meter measures registers energy (led to access failure, see log)",
+        "eia.gov how electricity meters work measure energy kilowatt-hours"
+      ],
+      "candidatesEvaluatedInOrder": [
+        {
+          "query": "university physics lab manual ammeter voltmeter",
+          "candidate": "openstax.org/books/college-physics-ap-courses/pages/21-4-dc-voltmeters-and-ammeters",
+          "decision": "ACCEPTED",
+          "reason": "OpenStax's own official platform (Rice University); gives ammeter-series/voltmeter-parallel facts AND a genuinely non-idealised low/high internal-resistance passage in one page."
+        },
+        {
+          "query": "ohmmeter de-energised safety",
+          "candidate": "ecampusontario.pressbooks.pub multimeters101",
+          "decision": "REJECTED (access failure)",
+          "reason": "HTTP 403; see accessFailuresAndWorkarounds."
+        },
+        {
+          "query": "Fluke how to measure resistance",
+          "candidate": "fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-resistance",
+          "decision": "ACCEPTED",
+          "reason": "Substantive manufacturer how-to reference; explicit 'Turn Off Power to Circuit' and 'discharge the capacitor before taking any resistance reading' steps, directly addressing this batch's stored-energy depth guardrail."
+        },
+        {
+          "query": "wattmeter current coil voltage coil university",
+          "candidate": "philadelphia.edu.jo Dr. Firas Obeidat, 'Power Measurement' lecture PDF",
+          "decision": "ACCEPTED",
+          "reason": "University faculty course material read directly via image-based PDF reader; explicit current-coil-series/voltage-coil-parallel wattmeter description at single-phase depth."
+        },
+        {
+          "query": "NIST Handbook 44 watt-hour meter",
+          "candidate": "nist.gov 2023 NIST Handbook 44 PDF (~5.4MB)",
+          "decision": "REJECTED (access failure)",
+          "reason": "Unreadable compressed PDF stream and impractical to page-search without a known page number; see accessFailuresAndWorkarounds."
+        },
+        {
+          "query": "site:nist.gov electricity meter definition",
+          "candidate": "nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8248.pdf (NISTIR 8248)",
+          "decision": "ACCEPTED",
+          "reason": "Short, directly page-readable NIST report; explicit 'Electrical energy usage is measured with watt-hour meters' introductory sentence."
+        }
+      ],
+      "sourceReuseNote": "No cross-cluster source reuse within this cluster; each instrument's requirement is supported by its own dedicated source."
+    }
+  ],
+  "internalClusterProgressNote": "All four internal research clusters were completed and their evidence validated (ID coverage, authority-class matching, genuine-passage binding) before learning-point design began, per the task's required sequencing. Partial artifacts were persisted to this directory after each cluster's evidence was drafted, culminating in this single final, complete 57-requirement EVIDENCE-RESULTS.json.",
+  "stoppingRationale": "All 57 requirements reached VERIFIED status with genuinely read, authority-class-matched sources; no requirement was left as an honest gap in this pass. Research stopped at exactly the evidence needed to satisfy each requirement's own acceptance criteria -- no additional sources were sought once a requirement was adequately supported (per the 'stop when the requirement is adequately supported' instruction), and no unresolved requirement required more than four evaluated candidates.",
+  "unresolvedGaps": []
+}

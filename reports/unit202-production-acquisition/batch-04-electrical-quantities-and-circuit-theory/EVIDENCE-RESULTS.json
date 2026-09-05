@@ -1,0 +1,2401 @@
+{
+  "batchId": "batch-04-electrical-quantities-and-circuit-theory",
+  "qualificationContextId": "unit202",
+  "domain": "electrical-quantities-and-circuit-theory",
+  "sourcePlan": "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json",
+  "requirementCount": 57,
+  "statusVocabulary": {
+    "VERIFIED": "At least one genuinely retrieved-and-read authoritative source (matching this requirement's own permitted sourceAuthorityClasses) explicitly supports the exact requirement text/dimension; no unresolved gap remains.",
+    "PARTIAL": "Genuine evidence was found and read but only partially satisfies the requirement's coverage dimension(s), or rests on a disclosed compounding of more than one passage where no single passage states the full claim.",
+    "GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
+  },
+  "statusTotals": {
+    "VERIFIED": 57
+  },
+  "reusedFromBatch01": [],
+  "reusedFromBatch02": [
+    "SRC-HP-RESIS",
+    "SRC-NIST-RESHALL",
+    "SRC-NIST-SP811-B9"
+  ],
+  "reusedFromBatch03": [
+    "SRC-NIST-MASS"
+  ],
+  "results": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::length-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Length: correct SI unit and unit symbol.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-LENGTH",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.nist.gov/pml/owm/si-units-length",
+            "sourceLocator": "NIST, 'SI Units - Length' page",
+            "retrievedPassage": "\"The SI unit of length is the meter, with the unit symbol m.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The SI unit of length is the metre, unit symbol m.",
+            "sourceId": "SRC-NIST-LENGTH"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::area-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Area: correct SI unit and unit symbol.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-SP811-B9",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+            "sourceLocator": "NIST Guide to the SI, Appendix B.9, Area table",
+            "retrievedPassage": "\"square meter (m2)\" listed as the standard SI unit in the Area and Second Moment of Area conversion table."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The SI unit of area is the square metre, unit symbol m^2 (the square of the metre, the SI unit of length).",
+            "sourceId": "SRC-NIST-SP811-B9"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to the SI derived unit itself (square metre, m^2). Does not extend to non-SI area units (acre, hectare) as mastery content."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::volume-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Volume: correct SI unit and unit symbol.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-SP811-B9",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+            "sourceLocator": "NIST Guide to the SI, Appendix B.9, Volume table",
+            "retrievedPassage": "\"cubic meter (m3)\" appears as the primary SI unit for capacity/volume measurements."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The SI unit of volume is the cubic metre, unit symbol m^3 (the cube of the metre).",
+            "sourceId": "SRC-NIST-SP811-B9"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to the SI derived unit (cubic metre, m^3). The litre (BIPM SI Brochure Table 4) is separately evidenced as a permitted non-SI volume unit under SRC-BIPM-BROCHURE and is not conflated with the SI unit itself."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::mass-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Mass: correct SI unit and unit symbol.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-MASS",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.nist.gov/pml/owm/si-units-mass",
+            "sourceLocator": "NIST, 'SI Units - Mass' page",
+            "retrievedPassage": "\"The SI unit of mass is the kilogram (kg).\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The SI unit of mass is the kilogram, unit symbol kg.",
+            "sourceId": "SRC-NIST-MASS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::density-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Density: correct SI unit and unit symbol.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-SP811-B9",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+            "sourceLocator": "NIST Guide to the SI, Appendix B.9, Mass Divided by Volume table",
+            "retrievedPassage": "\"kilogram per cubic meter (kg/m3)\" presented as the SI density unit in the Mass Divided by Volume section."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The SI unit of (mass) density is the kilogram per cubic metre, unit symbol kg/m^3 -- a valid mass-per-volume compound unit, not a bare mass or bare volume unit.",
+            "sourceId": "SRC-NIST-SP811-B9"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::time-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Time: correct SI unit and unit symbol.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-TIME",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.nist.gov/pml/owm/si-units-time",
+            "sourceLocator": "NIST, 'SI Units - Time' page",
+            "retrievedPassage": "\"the SI unit for time is the second, with the symbol s.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The SI unit of time is the second, unit symbol s.",
+            "sourceId": "SRC-NIST-TIME"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::velocity-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Velocity: correct SI unit and unit symbol.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-SP811-B9",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+            "sourceLocator": "NIST Guide to the SI, Appendix B.9, Velocity table",
+            "retrievedPassage": "\"meter per second (m/s)\" shown as the SI unit for speed/velocity conversions."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The SI unit of velocity is the metre per second, unit symbol m/s (a compound length-per-time unit).",
+            "sourceId": "SRC-NIST-SP811-B9"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Temperature: correct SI unit and unit symbol.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-TEMPERATURE",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.nist.gov/pml/owm/si-units-temperature",
+            "sourceLocator": "NIST, 'SI Units - Temperature' page",
+            "retrievedPassage": "\"The SI unit for temperature is the kelvin (K).\" ... \"One Celsius degree is an interval of 1 K, and zero degrees Celsius is 273.15 K.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The SI unit of thermodynamic temperature is the kelvin, unit symbol K. Degree Celsius (deg C) is a related, permitted temperature scale (offset by 273.15 from kelvin) but is not itself the SI base unit; K and deg C are not interchangeable symbols -- deg C is only valid for Celsius temperature, and a bare temperature interval/SI-base value uses K.",
+            "sourceId": "SRC-NIST-TEMPERATURE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE",
+      "requirementMode": "PROCEDURE_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "PROCEDURE",
+        "CALCULATION_METHOD"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Practical unit conversion needed elsewhere in Unit 202.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-SQCUBIC",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://chem.libretexts.org/Courses/Heartland_Community_College/CHEM_120:_Fundamentals_of_Chemistry/01:_Measurement_and_Problem_Solving/1.12:_Squared_and_Cubic_Units",
+            "sourceLocator": "Chemistry LibreTexts 1.12 'Squared and Cubic Units'",
+            "retrievedPassage": "\"the conversion factor is effectively multiplied by itself to achieve the required unit cancelation...the entire conversion factor is being multiplied by itself...the numbers and the units must both be squared.\" Worked example: 18,900,000 cm^3 x (1 m/100 cm)^3 = 18.9 m^3."
+          },
+          {
+            "sourceId": "SRC-NIST-SP811-CH4",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-4-two-classes-si-units-and-si-prefixes",
+            "sourceLocator": "NIST Guide to the SI, Chapter 4",
+            "retrievedPassage": "\"Derived units are expressed algebraically in terms of base units or other derived units.\" Table 2 gives area=square metre (m^2), volume=cubic metre (m^3), acceleration=metre per second squared (m/s^2) as worked examples of exponentiated derived units."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A usable method for practical unit conversion (e.g. mm to m, or between SI-prefixed multiples) is to multiply/divide by the appropriate power-of-ten prefix factor; this is the same substitution/rearrangement skill as Batch 01's FM-LP-19 (engineering notation and SI prefixes).",
+            "sourceId": "SRC-NIST-SP811-CH4"
+          },
+          {
+            "claimText": "When the quantity being converted is itself squared or cubed (area, m^2; volume, m^3), a plain linear conversion factor must NOT be applied once -- the linear factor itself must be raised to the same power (squared for area, cubed for volume) before use, since e.g. cm^3 means cm x cm x cm and each of the three factors must be converted.",
+            "sourceId": "SRC-LIBRETEXTS-SQCUBIC"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "PROCEDURE",
+          "CALCULATION_METHOD"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to conversion of the quantities this batch and Unit 202 elsewhere genuinely use (length/prefix conversion; area and volume as squared/cubed cases). Does not assume a length conversion factor automatically applies unmodified to an area or volume conversion -- the evidenced method explicitly requires squaring/cubing the factor first. General base conversion mechanics (prefix scaling) reuse the accepted Batch 01 FM-LP-19 mastery rather than re-deriving it."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Current: meaning, quantity symbol, unit name/symbol. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page",
+            "retrievedPassage": "Current: \"the movement or flow of electrical charge in the form of electrons through a wire conductor.\""
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.1",
+            "retrievedPassage": "\"electric current is movement of elementary electric charges carried by electrons. When there is a constant flow of approximately 1.602176487x10^19 electrons per second through a surface, the current of 1 ampere is flowing.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Electric current is the movement/flow of electric charge (carried by electrons in a conductor) past a point.",
+            "sourceId": "SRC-ETW-DC1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Current: meaning, quantity symbol, unit name/symbol. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
+            "retrievedPassage": "\"Current has symbol I measured in Amperes (A)\"."
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.1",
+            "retrievedPassage": "\"The symbol for electric current is I (or i, if the current is time varying)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The quantity symbol for electric current is I (lower-case i for an instantaneous/time-varying value).",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Current: meaning, quantity symbol, unit name/symbol. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 1",
+            "retrievedPassage": "\"electric current | The ampere, symbol A, is the SI unit of electric current.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The unit symbol for the ampere (current's SI unit) is A -- distinct from the quantity symbol I used for the quantity itself.",
+            "sourceId": "SRC-BIPM-BROCHURE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Voltage: meaning, quantity symbol, unit name/symbol. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-ELEVOL",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/elevol.html",
+            "sourceLocator": "HyperPhysics, 'Electric Potential' page",
+            "retrievedPassage": "\"Voltage is electric potential energy per unit charge, measured in joules per coulomb (= volts).\""
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.2",
+            "retrievedPassage": "\"Electric voltage is a difference of potential between two places with different charges. Voltage provides the ability to move charges and hence do a work, and therefore voltage is also sometimes called electromotive force (EMF).\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Voltage (potential difference) is the electric potential energy per unit charge between two points -- the ability to move charge and do work; it is sometimes also called electromotive force (EMF) in a source context.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Voltage: meaning, quantity symbol, unit name/symbol. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
+            "retrievedPassage": "\"Voltage has symbol V or E measured in Volts (V)\"."
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.2",
+            "retrievedPassage": "\"The symbol for voltage is V or sometimes U (v or u, if the voltage is a time varying quantity)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Authoritative technical references genuinely differ on the exact letter used for voltage's quantity symbol: V is the most common (used throughout this qualification's own Ohm's law and voltage-drop formulae, V=IR, per the accepted Batch 02 inventory), with U and E also documented as recognised alternative conventions elsewhere (U is common in IEC/European practice; E is used specifically for electromotive force in some texts). This qualification teaches V as its working symbol and does not teach U/E as a second, conflicting formula system -- learners are told the alternative exists, not taught to switch between them.",
+            "sourceId": "SRC-ETW-DC1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Voltage: meaning, quantity symbol, unit name/symbol. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 2",
+            "retrievedPassage": "\"electric potential difference | volt | V | W/A = kg m^2 s^-3 A^-1\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The unit symbol for the volt (voltage's SI unit) is V -- note this is the same letter V commonly also used as voltage's quantity symbol, so context (italic quantity symbol vs upright unit symbol) distinguishes the two uses.",
+            "sourceId": "SRC-BIPM-BROCHURE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-RESIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+            "sourceLocator": "HyperPhysics, 'Resistance' page",
+            "retrievedPassage": "\"The electrical resistance of a circuit component or device is defined as the ratio of the voltage applied to the electric current which flows through it.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistance is the ratio of voltage applied across a component to the current flowing through it (R=V/I) -- a property of that particular component/conductor.",
+            "sourceId": "SRC-HP-RESIS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "This mastery (resistance's meaning, R, ohm/Ω, and its distinction from resistivity) is already taught by the accepted Batch 02 learning points EFS-LP-05 (Resistance) and EFS-LP-06 (Resistivity); see the overlap audit in COVERAGE-REPORT.md. This evidence result exists to satisfy this Batch 04 evidence requirement's own identity; no new EQCT-LP is created for it."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DISTINCTION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DISTINCTION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity. [DISTINCTION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-RESIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+            "sourceLocator": "HyperPhysics, 'Resistance' page",
+            "retrievedPassage": "R=rho*L/A; \"The factor in the resistance which takes into account the nature of the material is the resistivity.\" Resistance also depends on length and cross-sectional area, unlike resistivity."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistance (a property of a specific conductor, depending on its length, cross-sectional area AND material) is distinct from resistivity (a material-only property); R=rho*L/A relates them without equating them.",
+            "sourceId": "SRC-HP-RESIS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DISTINCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Reused mastery -- see EFS-LP-06's accepted distinction; no new EQCT-LP created."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
+            "retrievedPassage": "\"Resistance has symbol R measured in Ohms (Ω)\"."
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.3",
+            "retrievedPassage": "\"Resistance (symbol R) is a very important electrical quantity...R=V/I.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The quantity symbol for resistance is R.",
+            "sourceId": "SRC-ETW-DC1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Reused mastery -- already implicit in EFS-LP-05's own stated formula (R=V/I, ohms); this result supplies the Batch 04 requirement's own dedicated, correctly-authority-classed symbol evidence."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Resistance: meaning, quantity symbol, unit name/symbol, distinction from resistivity. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
+            "retrievedPassage": "\"Resistance has symbol R measured in Ohms (Ω)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The unit symbol for the ohm (resistance's SI unit) is Ω.",
+            "sourceId": "SRC-ETW-DC1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Reused mastery -- see EFS-LP-05."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-RESIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+            "sourceLocator": "HyperPhysics, 'Resistance' page",
+            "retrievedPassage": "\"The factor in the resistance which takes into account the nature of the material is the resistivity.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistivity is the material property (independent of a specific conductor's shape/size) that determines how strongly a given material opposes current flow.",
+            "sourceId": "SRC-HP-RESIS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Reused mastery -- see EFS-LP-06."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DISTINCTION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DISTINCTION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance. [DISTINCTION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-RESIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+            "sourceLocator": "HyperPhysics, 'Resistance' page",
+            "retrievedPassage": "R=rho*L/A: resistance depends on rho (material) AND on length/area (geometry); resistivity is only the material factor."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistivity is distinct from resistance: resistivity is a fixed material property, while resistance also depends on a specific conductor's length and cross-sectional area.",
+            "sourceId": "SRC-HP-RESIS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DISTINCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Reused mastery -- see EFS-LP-06."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-RESHALL",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/nanoscale-device-characterization-division/popular-links/hall-effect/resistivity-and-hall",
+            "sourceLocator": "NIST, 'Resistivity and Hall Measurements'",
+            "retrievedPassage": "\"rho = sample resistivity (in ohm-cm)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The quantity symbol for resistivity is the Greek letter rho (ρ).",
+            "sourceId": "SRC-NIST-RESHALL"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Reused mastery -- see EFS-LP-06."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Resistivity: meaning, quantity symbol, unit name/symbol, distinction from resistance. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-RESHALL",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/nanoscale-device-characterization-division/popular-links/hall-effect/resistivity-and-hall",
+            "sourceLocator": "NIST, 'Resistivity and Hall Measurements'",
+            "retrievedPassage": "\"rho = sample resistivity (in ohm-cm)\" -- resistivity expressed in an ohm-length unit."
+          },
+          {
+            "sourceId": "SRC-NIST-SP811-B9",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+            "sourceLocator": "NIST Guide to the SI, Appendix B.9, Electricity and Magnetism table",
+            "retrievedPassage": "\"ohm centimeter (Ω·cm) | ohm meter (Ω·m) | 1.0 E-02\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistivity's SI unit is the ohm-metre (Ω·m); NIST's own conversion table names ohm-metre as the SI form of this unit family (with ohm-centimetre as a related non-SI-multiple, factor 0.01).",
+            "sourceId": "SRC-NIST-SP811-B9"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Reused mastery -- see EFS-LP-06. Claim established honestly by combining two genuine NIST passages, consistent with Batch 02's identical disclosed compounding for this exact fact."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-DC3",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_3.html",
+            "sourceLocator": "electronics-tutorials.ws, Ohms Law and Power page",
+            "retrievedPassage": "\"Unit of Power P = V x I or I^2 x R\", SI unit Watt [W]."
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.4",
+            "retrievedPassage": "\"the power P in a circuit with a steady voltage V and current I...can be simply calculated as P=V.I=I^2.R=V^2/R.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Electrical power is the rate at which electrical energy is transferred/work is done, P=V.I (equivalently I^2R or V^2/R), unit watt.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DISTINCTION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor. [DISTINCTION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-ENERGY",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/electrical-energy.html",
+            "sourceLocator": "electronics-tutorials.ws, Electrical Energy page",
+            "retrievedPassage": "\"Power (P, measured in Watts): the rate at which work is performed\" vs \"Energy: the cumulative work over time...Work equals Power multiplied by Time.\""
+          },
+          {
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
+            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
+            "retrievedPassage": "\"Power (P): Measured in watts, represents actual work performed\" vs \"Power Factor: A unitless ratio describing the phase relationship between voltage and current.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Power is a rate (instantaneous/time-independent quantity, watts); energy is the cumulative amount transferred over a time interval (Energy = Power x Time) -- they are not the same quantity despite the relationship between them.",
+            "sourceId": "SRC-ETW-ENERGY"
+          },
+          {
+            "claimText": "Power factor is a separate, dimensionless ratio (real power/apparent power) describing how effectively power is delivered in an AC circuit; it is not itself a power and carries no unit.",
+            "sourceId": "SRC-ETW-POWERTRIANGLE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DISTINCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-DC3",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_3.html",
+            "sourceLocator": "electronics-tutorials.ws, Ohms Law and Power page",
+            "retrievedPassage": "\"Unit of Power P = V x I\" -- P used throughout as power's quantity symbol."
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.4",
+            "retrievedPassage": "\"the power P in a circuit...P=V.I=I^2.R=V^2/R.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The quantity symbol for (electrical) power is P.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Power: meaning, quantity symbol, unit name/symbol, distinction from energy and from power factor. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 2",
+            "retrievedPassage": "\"power, radiant flux | watt | W | J/s = kg m^2 s^-3\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The unit symbol for the watt (power's SI unit) is W -- distinct from the quantity symbol P for power itself, and distinct from any quantity symbol used for energy (see energy's own symbol facet).",
+            "sourceId": "SRC-BIPM-BROCHURE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-ENERGY",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/electrical-energy.html",
+            "sourceLocator": "electronics-tutorials.ws, Electrical Energy page",
+            "retrievedPassage": "\"the ability of an electrical circuit to produce work by creating an action\"; joule defined as \"one ampere at one volt, moving in one second\"; kWh = 3.6 MJ."
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.4",
+            "retrievedPassage": "\"Electrical energy describes the ability of electricity to perform a work...p(t)=dE/dt...at measurement of electrical quantities Ws or their multiplications, e.g. kWh, MWs, are formally used more often than J.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Electrical energy is the (accumulated/transferred) capacity of electricity to do work; its SI unit is the joule (J), though kWh is the practically-used unit for billing/consumption.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DISTINCTION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power. [DISTINCTION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-ENERGY",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/electrical-energy.html",
+            "sourceLocator": "electronics-tutorials.ws, Electrical Energy page",
+            "retrievedPassage": "\"Work equals Power multiplied by Time, (V*I*t joules)\"; \"1 watt = 1 joule per second (J/s)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Energy is accumulated over time (Energy = Power x Time); power is the instantaneous rate. The kilowatt-hour (kWh) is consequently a unit of ENERGY (an accumulated quantity, 1 kWh = 3.6 MJ), never a unit of power, despite containing 'kilowatt' in its name.",
+            "sourceId": "SRC-ETW-ENERGY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DISTINCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.4",
+            "retrievedPassage": "\"Electrical power can be also expressed as a change of electrical energy E in time t: p(t) = dE/dt.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The quantity symbol for (electrical) energy is E -- deliberately distinct from W, the UNIT symbol for power (the watt); this qualification does not use W as energy's quantity symbol, precisely to avoid conflating it with the watt.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Energy: meaning, quantity symbol, unit name/symbol, distinction from power. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 2",
+            "retrievedPassage": "\"energy, work, amount of heat | joule | J | N m = kg m^2 s^-2\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The unit symbol for the joule (energy's SI unit) is J. The kilowatt-hour (kWh), a practically-used non-SI multiple of energy, is not itself a joule-multiple SI symbol but is a recognised energy unit (see SRC-ETW-ENERGY: 1 kWh = 3.6 MJ) -- kWh is never a unit of power.",
+            "sourceId": "SRC-BIPM-BROCHURE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
+            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
+            "retrievedPassage": "\"Cos(phi) = Real/Apparent = P/S = W/VA = power factor, p.f.\"; expressed as a decimal (e.g. 0.95) or percentage (95%)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Power factor is the ratio of real (true) power to apparent power in an AC circuit; for a sinusoidal supply with a purely displacement (phase-angle) difference between voltage and current, this ratio equals cos(phi).",
+            "sourceId": "SRC-ETW-POWERTRIANGLE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound narrowly to the sinusoidal displacement-power-factor case (cos phi) that this source actually demonstrates; does not extend to distortion/harmonic power-factor components, which this source does not address and which are out of scope at this qualification depth."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DISTINCTION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power. [DISTINCTION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
+            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
+            "retrievedPassage": "\"Power (P): Measured in watts, represents actual work performed by the resistive component\" vs \"Power Factor: A unitless ratio describing the phase relationship between voltage and current, determining how efficiently that power is delivered.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Power factor is not power: power (P) is a real, wattage quantity; power factor is a dimensionless ratio (0 to 1, or a percentage) describing how much of the apparent power is actually real/useful power -- it never itself carries a watt value.",
+            "sourceId": "SRC-ETW-POWERTRIANGLE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DISTINCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
+            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
+            "retrievedPassage": "\"Cos(phi)...= power factor, p.f.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Power factor's conventional notation is cos(phi) (in the sinusoidal displacement case) or the abbreviation p.f.; it is not assigned a single-letter algebraic quantity symbol the way current (I) or voltage (V) are.",
+            "sourceId": "SRC-ETW-POWERTRIANGLE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Power factor: meaning, quantity symbol, unit name/symbol (dimensionless), distinction from power. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
+            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
+            "retrievedPassage": "power factor \"generally expressed as either a decimal value...or as a percentage\"; ratio of two power quantities (P/S) so the watt units cancel."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Power factor is dimensionless and has no unit symbol at all -- it is expressed as a plain ratio/decimal (e.g. 0.95) or a percentage; there is no unit such as 'unity' and no watt-like symbol attached to it.",
+            "sourceId": "SRC-ETW-POWERTRIANGLE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Frequency: meaning, quantity symbol, unit name/symbol. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-ACWAVEFORM",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/ac-waveform.html",
+            "sourceLocator": "electronics-tutorials.ws, AC Waveform page",
+            "retrievedPassage": "\"The number of complete cycles that are produced within one second (cycles/second) is called the Frequency, symbol f, of the alternating waveform. Frequency is measured in Hertz, (Hz).\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Frequency is the number of complete cycles of a periodic (e.g. AC) waveform occurring per second.",
+            "sourceId": "SRC-ETW-ACWAVEFORM"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Frequency: meaning, quantity symbol, unit name/symbol. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-ACWAVEFORM",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/ac-waveform.html",
+            "sourceLocator": "electronics-tutorials.ws, AC Waveform page",
+            "retrievedPassage": "\"...is called the Frequency, symbol f, of the alternating waveform.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The quantity symbol for frequency is f.",
+            "sourceId": "SRC-ETW-ACWAVEFORM"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Frequency: meaning, quantity symbol, unit name/symbol. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 2",
+            "retrievedPassage": "\"frequency | hertz | Hz | s^-1\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The unit symbol for the hertz (frequency's SI unit) is Hz.",
+            "sourceId": "SRC-BIPM-BROCHURE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-IMPEDANCE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
+            "sourceLocator": "electronics-tutorials.ws, Impedance page",
+            "retrievedPassage": "\"Impedance is the total opposition to the flow of alternating electrical current in an AC circuit and is expressed in Ohms.\""
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.3",
+            "retrievedPassage": "\"the complex quantity impedance is used [to express the relation between AC voltage and current]...The unit of impedance measurement is ohm -- the same as for resistance. Impedance is a function of frequency.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Impedance is the total opposition an AC circuit presents to current flow, combining resistance and reactance; it is measured in ohms (the same unit as resistance) and, unlike plain resistance, is frequency-dependent.",
+            "sourceId": "SRC-ETW-IMPEDANCE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DISTINCTION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance. [DISTINCTION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-IMPEDANCE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
+            "sourceLocator": "electronics-tutorials.ws, Impedance page",
+            "retrievedPassage": "\"Impedance combines resistance (R) and reactance (X) into one single complex number\"...\"R + X does not equal Z\" because reactance is \"90 degrees out-of-phase with the resistive component\"...impedance is \"the vector sum\" of R and X."
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.3",
+            "retrievedPassage": "\"the impedance vector consists of a real part (resistance, R) and an imaginary part (reactance, X)\"; Z=R+jX, magnitude |Z| at phase angle theta."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Impedance is NOT the simple arithmetic sum of resistance and reactance (R+X does not equal Z); resistance and reactance combine as a vector/complex quantity (their values are 90 degrees out of phase), so impedance's magnitude must be found by combining them geometrically, not by adding their ohm values directly. This qualification teaches this distinction conceptually only; it does not require learners to perform the complex-number/phasor calculation itself.",
+            "sourceId": "SRC-ETW-IMPEDANCE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DISTINCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-IMPEDANCE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
+            "sourceLocator": "electronics-tutorials.ws, Impedance page",
+            "retrievedPassage": "\"the letter symbol 'Z' represents impedance in AC circuits, while 'R' denotes resistance in DC circuits.\""
+          },
+          {
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
+            "sourceLocator": "EOLSS 'Measurements of Electrical Quantities', section 2.3, Figure 1",
+            "retrievedPassage": "\"Figure 1. Expressions of complex impedance Z.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The quantity symbol for impedance is Z.",
+            "sourceId": "SRC-ETW-IMPEDANCE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Impedance: meaning, quantity symbol, unit name/symbol, distinction from resistance and reactance. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-IMPEDANCE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
+            "sourceLocator": "electronics-tutorials.ws, Impedance page",
+            "retrievedPassage": "\"Impedance...is expressed in Ohms\", the same unit symbol (Ω) as resistance."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Impedance's unit symbol is the ohm (Ω) -- the same unit symbol used for resistance and for reactance, even though impedance, resistance and reactance are not the same quantity.",
+            "sourceId": "SRC-ETW-IMPEDANCE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-CAP1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/capacitor/cap_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Capacitance page",
+            "retrievedPassage": "\"Capacitance is the electrical property of a capacitor and is the measure of a capacitor's ability to store an electrical charge onto its two plates with the unit of capacitance being the Farad\"; \"a capacitor has the capacitance of One Farad when a charge of One Coulomb is stored on the plates by a voltage of One volt.\""
+          },
+          {
+            "sourceId": "SRC-ETW-FILTER1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
+            "retrievedPassage": "capacitive reactance \"limits the flow of alternating current (AC)\" through a capacitor; \"measured in Ohms, the same unit as resistance\"; Xc = 1/(2.pi.f.C)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Capacitance is a capacitor's fixed ability to store electrical charge (farad, F).",
+            "sourceId": "SRC-ETW-CAP1"
+          },
+          {
+            "claimText": "Capacitive reactance is the frequency-dependent opposition a capacitor presents to alternating current (ohms), given by Xc=1/(2*pi*f*C).",
+            "sourceId": "SRC-ETW-FILTER1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DISTINCTION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [DISTINCTION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-FILTER1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
+            "retrievedPassage": "\"Unlike resistance which has a fixed value...Capacitive Reactance varies inversely proportional with the applied frequency\"; capacitance itself (farads) is a fixed physical property of the capacitor (per SRC-ETW-CAP1)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Capacitance (farads) is a fixed physical property of a capacitor, independent of frequency; capacitive reactance (ohms) is that capacitor's frequency- and capacitance-dependent AC opposition, which falls as frequency rises -- the two are related but not the same quantity, and do not share a unit (F vs ohms).",
+            "sourceId": "SRC-ETW-FILTER1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DISTINCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-CAP1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/capacitor/cap_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Capacitance page",
+            "retrievedPassage": "capacitance's \"letter symbol: C (always positive in value)\"."
+          },
+          {
+            "sourceId": "SRC-ETW-FILTER1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
+            "retrievedPassage": "\"Xc = 1/(2.pi.f.C)\" -- Xc used throughout as capacitive reactance's symbol."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Capacitance's quantity symbol is C; capacitive reactance's quantity symbol is Xc -- two distinct symbols for two distinct quantities.",
+            "sourceId": "SRC-ETW-CAP1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Capacitance and capacitive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 2",
+            "retrievedPassage": "\"capacitance | farad | F | C/V = kg^-1 m^-2 s^4 A^2\"."
+          },
+          {
+            "sourceId": "SRC-ETW-FILTER1",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
+            "retrievedPassage": "capacitive reactance is \"measured in Ohms, the same unit as resistance\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Capacitance's SI unit symbol is F (farad); capacitive reactance, despite being related to capacitance, is measured in ohms (the same unit symbol as resistance) -- not in farads.",
+            "sourceId": "SRC-BIPM-BROCHURE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [DEFINITION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-INDUCTOR",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/inductor.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductance page",
+            "retrievedPassage": "\"This ability of an inductor to resist changes in current...is called Inductance which is given the symbol L with units of Henry, (H)\"."
+          },
+          {
+            "sourceId": "SRC-ETW-ACINDUCTORS",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
+            "retrievedPassage": "\"Inductive Reactance, which is given the symbol XL, is the property in an AC circuit which opposes the change in the current\"; \"Just like resistance, the value of reactance is also measured in Ohm's\"; XL=2*pi*f*L."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Inductance is a coil's fixed ability to oppose changes in current (henry, H).",
+            "sourceId": "SRC-ETW-INDUCTOR"
+          },
+          {
+            "claimText": "Inductive reactance is the frequency-dependent opposition an inductor presents to alternating current (ohms), given by XL=2*pi*f*L.",
+            "sourceId": "SRC-ETW-ACINDUCTORS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+      "requirementMode": "CONCEPT_DEFINITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DISTINCTION"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [DISTINCTION]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-ACINDUCTORS",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
+            "retrievedPassage": "\"inductance is a fixed property of a coil...whereas inductive reactance depends on AC frequency...reactance is dynamic and frequency-dependent, whereas inductance itself remains constant regardless of the applied signal frequency\"; \"at DC an inductor has zero reactance (short-circuit), at high frequencies an inductor has infinite reactance (open-circuit).\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Inductance (henries) is a fixed physical property of a coil; inductive reactance (ohms) is that coil's frequency-dependent AC opposition, which rises as frequency rises -- the two are related but are not the same quantity and do not share a unit.",
+            "sourceId": "SRC-ETW-ACINDUCTORS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DISTINCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [QUANTITY_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETW-INDUCTOR",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/inductor.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductance page",
+            "retrievedPassage": "inductance \"is given the symbol L\"."
+          },
+          {
+            "sourceId": "SRC-ETW-ACINDUCTORS",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
+            "retrievedPassage": "inductive reactance \"is given the symbol XL\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Inductance's quantity symbol is L; inductive reactance's quantity symbol is XL -- two distinct symbols for two distinct quantities.",
+            "sourceId": "SRC-ETW-INDUCTOR"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "QUANTITY_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "UNIT_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Inductance and inductive reactance: meaning, quantity symbol, unit name/symbol, distinction between the two. [UNIT_SYMBOL]",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 2",
+            "retrievedPassage": "\"inductance | henry | H | Wb/A = kg m^2 s^-2 A^-2\"."
+          },
+          {
+            "sourceId": "SRC-ETW-ACINDUCTORS",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
+            "retrievedPassage": "\"Just like resistance, the value of reactance is also measured in Ohm's\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Inductance's SI unit symbol is H (henry); inductive reactance, despite being related to inductance, is measured in ohms (the same unit symbol as resistance) -- not in henries.",
+            "sourceId": "SRC-BIPM-BROCHURE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "UNIT_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ammeter-measures-current-series-connection::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Ammeter: measures current + series connection.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-OPENSTAX-METERS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/college-physics-ap-courses/pages/21-4-dc-voltmeters-and-ammeters",
+            "sourceLocator": "OpenStax College Physics AP Courses, 21.4",
+            "retrievedPassage": "\"Ammeters are connected in series with whatever device's current is to be measured. A series connection is used because objects in series have the same current passing through them.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An ammeter measures electric current and must be connected in series with the component/circuit whose current is being measured.",
+            "sourceId": "SRC-OPENSTAX-METERS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Voltmeter: measures potential difference + parallel connection.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-OPENSTAX-METERS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/college-physics-ap-courses/pages/21-4-dc-voltmeters-and-ammeters",
+            "sourceLocator": "OpenStax College Physics AP Courses, 21.4",
+            "retrievedPassage": "\"Voltmeters are connected in parallel with whatever device's voltage is to be measured. A parallel connection is used because objects in parallel experience the same potential difference.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A voltmeter measures potential difference (voltage) and must be connected in parallel with the component/circuit whose voltage is being measured.",
+            "sourceId": "SRC-OPENSTAX-METERS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-measures-resistance::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Ohmmeter: measures resistance.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-FLUKE-RESISTANCE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-resistance",
+            "sourceLocator": "Fluke, 'How to Measure Resistance with a Digital Multimeter'",
+            "retrievedPassage": "The page's entire procedure is titled and structured around using the meter's resistance/ohms function to measure a component's resistance."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An ohmmeter (or a multimeter's resistance/ohms function) measures the resistance of a component or circuit.",
+            "sourceId": "SRC-FLUKE-RESISTANCE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE",
+      "requirementMode": "PROCEDURE_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "PROCEDURE",
+        "CALCULATION_METHOD"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Ohmmeter: circuit de-energised/safe-use principle.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-FLUKE-RESISTANCE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-resistance",
+            "sourceLocator": "Fluke, 'How to Measure Resistance with a Digital Multimeter'",
+            "retrievedPassage": "\"Step 1. Turn Off Power to Circuit\"; \"If a circuit includes a capacitor, discharge the capacitor before taking any resistance reading.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first, and any charged capacitor must be discharged before measuring, since an ohmmeter applies its own small internal test current/voltage and stored or externally-applied energy will produce an incorrect reading, damage the meter, or present a safety hazard.",
+            "sourceId": "SRC-FLUKE-RESISTANCE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "PROCEDURE",
+          "CALCULATION_METHOD"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to the de-energisation/safe-use principle itself, including the explicit stored-energy (charged-capacitor) case this source addresses. Does not extend to a general electrical safe-isolation procedure (lock-off/proving dead sequences) beyond what this source itself states."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Wattmeter: measures electrical power + appropriate current/voltage sensing arrangement at qualification depth.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-PHILADELPHIA-WATTMETER",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.philadelphia.edu.jo/academics/fobeidat/uploads/Electric%20Circuits%20II%20Course2/13%20Power%20Measurement.pdf",
+            "sourceLocator": "Philadelphia University, Electric Circuits II, 'Power Measurement' lecture, 'Single-Phase Power Measurement' slide",
+            "retrievedPassage": "\"The wattmeter is the instrument used for measuring the average power...consists essentially of two coils: the current coil and the voltage coil. A current coil with very low impedance (ideally zero) is connected in series with the load...The voltage coil with very high impedance (ideally infinite) is connected in parallel with the load.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A wattmeter measures electrical power using two sensing elements together: a low-impedance current coil connected in series with the load (like an ammeter) and a high-impedance voltage coil connected in parallel with the load (like a voltmeter); the combined series-current + parallel-voltage sensing arrangement is what allows it to derive power (V x I) directly.",
+            "sourceId": "SRC-PHILADELPHIA-WATTMETER"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to single-phase wattmeter operation at this qualification's depth. Explicitly excludes three-phase wattmeter methods (e.g. the two-wattmeter method), instrument transformers, and detailed electrodynamometer/calibration engineering, none of which this source's single-phase slide addresses or which this qualification's depth requires."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Energy meter: measures/integrates electrical energy.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NISTIR-8248",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8248.pdf",
+            "sourceLocator": "NISTIR 8248, Section 1 Introduction",
+            "retrievedPassage": "\"Electrical energy usage is measured with watt-hour meters.\" (context: distinguishing this accumulated-usage measurement from the instantaneous power measurements discussed in the same paragraph)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An energy meter (watt-hour/kWh meter) measures accumulated electrical energy usage over time -- i.e. it integrates the power delivered over the period of use to register a total energy quantity -- rather than reading out an instantaneous power value.",
+            "sourceId": "SRC-NISTIR-8248"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::low-high-meter-internal-resistance::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Low/high meter internal resistance.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-OPENSTAX-METERS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/college-physics-ap-courses/pages/21-4-dc-voltmeters-and-ammeters",
+            "sourceLocator": "OpenStax College Physics AP Courses, 21.4",
+            "retrievedPassage": "\"the ammeter's resistance is very small compared with the resistances of the devices in the circuit, and so the extra resistance is negligible\"; \"Very little current flows through the voltmeter if its resistance is a few orders of magnitude greater than the device, and so the circuit is not appreciably affected.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A practical ammeter is built to have a very low internal resistance (small compared with the circuit it is inserted into, so it disturbs the current being measured as little as possible); a practical voltmeter is built to have a very high internal resistance (large compared with the circuit it is connected across, so it draws negligible current and does not appreciably load the circuit). This is a design/construction goal of real meters, not a literal claim that any real meter has exactly zero or infinite resistance -- 'zero'/'infinite' describe only the idealised limiting model.",
+            "sourceId": "SRC-OPENSTAX-METERS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    }
+  ]
+}
