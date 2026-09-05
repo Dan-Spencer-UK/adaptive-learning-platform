@@ -1,0 +1,783 @@
+{
+  "batchId": "batch-02-electrical-fundamentals-and-safety",
+  "qualificationContextId": "unit202",
+  "domain": "electrical-fundamentals-and-safety",
+  "sourcePlan": "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json",
+  "requirementCount": 28,
+  "reusedFromPilot": [],
+  "reusedFromBatch01": [],
+  "results": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::basic-electron-theory::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-ATOM",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/Chemical/atom.html",
+            "sourceLocator": "HyperPhysics, 'Atoms and Elements'",
+            "retrievedPassage": "\"Ordinary matter is made up of protons, neutrons, and electrons and is composed of atoms.\" \"An atom consists of a tiny nucleus made up of protons and neutrons... The outer part of the atom consists of a number of electrons equal to the number of protons, making the normal atom electrically neutral.\""
+          },
+          {
+            "sourceId": "SRC-HP-CONINS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/conins.html",
+            "sourceLocator": "HyperPhysics, 'Conductors and Insulators'",
+            "retrievedPassage": "\"In a conductor, electric current can flow freely\" because the outer electrons of the atoms are \"loosely bound and free to move through the material.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An atom consists of a tiny, positively-charged nucleus (protons and neutrons) surrounded by a number of electrons equal to the number of protons, making the atom electrically neutral overall.",
+            "sourceId": "SRC-HP-ATOM"
+          },
+          {
+            "claimText": "In some materials (conductors), the outermost electrons are loosely bound to their atoms and are free to move through the material; this electron mobility is what allows such materials to carry an electric current.",
+            "sourceId": "SRC-HP-CONINS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound to exactly what these two sources state: atomic structure (proton/neutron/electron, neutral atom) and the free-electron basis of conduction. Does not extend to electron shells/energy bands, ionisation, or quantum-mechanical detail, none of which this Unit 202 requirement calls for."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::current-as-charge-electron-flow-concept-at-calibrated-depth::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-ELECUR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/elecur.html",
+            "sourceLocator": "HyperPhysics, 'Electric current'",
+            "retrievedPassage": "\"Electric current is the rate of charge flow past a given point in an electric circuit, measured in Coulombs/second which is named Amperes.\" \"1A = 1C/s\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Electric current is defined as the rate of flow of electric charge past a point in a circuit (I = charge/time); its SI unit, the ampere, is one coulomb of charge per second (1 A = 1 C/s). In a conductor, this charge is physically carried by moving electrons, but the current itself is properly defined and measured as charge flow, not as 'how fast electrons move'.",
+            "sourceId": "SRC-HP-ELECUR"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Deliberately calibrated to avoid the false-green risk the task named: the claim states current AS charge flow (I=q/t) as the primary, correct definition, with electron motion as the physical carrier in a conductor -- it does not present 'electron flow' as an equivalent simplified restatement of the definition itself."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::conventional-current-versus-electron-flow-distinction::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-ELECUR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/elecur.html",
+            "sourceLocator": "HyperPhysics, 'Electric current'",
+            "retrievedPassage": "\"It has long been the convention to take the direction of electric current as if it were the positive charges which are moving\", even though electrons (negative charge carriers) physically drift in the opposite direction; both conventions give identical results for circuit analysis."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Conventional current is defined as flowing from the higher-potential (positive) terminal to the lower-potential (negative) terminal, as if the moving charge carriers were positive -- a convention retained from before the electron was discovered. In a metallic conductor the actual charge carriers are electrons, which physically drift in the opposite direction (negative to positive terminal). Both descriptions are self-consistent and give identical results for circuit calculations; only their assumed carrier and direction differ.",
+            "sourceId": "SRC-HP-ELECUR"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::conductors::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-CONINS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/conins.html",
+            "sourceLocator": "HyperPhysics, 'Conductors and Insulators'",
+            "retrievedPassage": "\"In a conductor, electric current can flow freely\" because the outer electrons of atoms are \"loosely bound and free to move through the material.\" Copper is given as an example with resistivity ~1.7 x 10^-8 ohm-m."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A conductor is a material (e.g. copper) whose outer electrons are loosely bound and free to move through the material, allowing electric current to flow freely; conductors have very low resistivity.",
+            "sourceId": "SRC-HP-CONINS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::insulators::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-CONINS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/conins.html",
+            "sourceLocator": "HyperPhysics, 'Conductors and Insulators'",
+            "retrievedPassage": "In an insulator, current \"cannot\" flow freely: insulators \"offer very large resistance to the flow of electric current\" because \"even the outermost electrons are so tightly bound that there is essentially zero electron flow through them.\" Glass is given as an example with resistivity ~10^12 ohm-m."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An insulator is a material (e.g. glass) whose electrons, including the outermost ones, are so tightly bound that essentially no electron flow occurs through it, so it offers very large resistance to current; insulators have very high resistivity.",
+            "sourceId": "SRC-HP-CONINS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::resistance::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-RESIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+            "sourceLocator": "HyperPhysics, 'Resistance and Resistivity'",
+            "retrievedPassage": "\"The electrical resistance of a circuit component or device is defined as the ratio of the voltage applied to the electric current which flows through it.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistance is defined as the ratio of the voltage applied across a component to the current that flows through it (R = V/I), measured in ohms.",
+            "sourceId": "SRC-HP-RESIS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::resistivity::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-RESIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+            "sourceLocator": "HyperPhysics, 'Resistance and Resistivity'",
+            "retrievedPassage": "Resistivity is \"the factor in the resistance which takes about the nature of the material\" and \"can be used at a given temperature to calculate the resistance of a wire of given geometry\" via R = rho*L/A; resistivity is measured in \"ohm meters\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistivity is a property of a material itself (not of a particular wire's shape) that determines how much resistance a given geometry of that material will have; it is used together with a conductor's length and cross-sectional area to calculate its resistance, and is measured in ohm-metres. This is distinct from resistance, which depends on the conductor's dimensions as well as the material.",
+            "sourceId": "SRC-HP-RESIS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::rho-resistivity-symbol::SYMBOL_OR_CONVENTION",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-RESHALL",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/nanoscale-device-characterization-division/popular-links/hall-effect/resistivity-and-hall",
+            "sourceLocator": "NIST, 'Resistivity and Hall Measurements'",
+            "retrievedPassage": "\"_rho_ = sample resistivity (in Ω·cm)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The Greek letter rho (ρ) is the standard quantity symbol used for electrical resistivity.",
+            "sourceId": "SRC-NIST-RESHALL"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["QUANTITY_SYMBOL"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::ohm-metre-resistivity-unit::SYMBOL_OR_CONVENTION",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIST-RESHALL",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/nanoscale-device-characterization-division/popular-links/hall-effect/resistivity-and-hall",
+            "sourceLocator": "NIST, 'Resistivity and Hall Measurements'",
+            "retrievedPassage": "\"_rho_ = sample resistivity (in Ω·cm)\" -- resistivity expressed in an ohm-length unit."
+          },
+          {
+            "sourceId": "SRC-NIST-SP811-B9",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+            "sourceLocator": "NIST Guide to the SI, Appendix B.9, Electricity and Magnetism conversion table",
+            "retrievedPassage": "Table row: \"ohm centimeter (Ω·cm)\" converts \"to ohm meter (Ω·m)\" by a factor of \"1.0 E-02\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Resistivity (symbol rho) is measured in an ohm-length unit; NIST's own SI conversion table names 'ohm meter (Ω·m)' as the SI form of this unit family (with ohm-centimetre as a commonly-used non-SI-multiple alternative, related by a factor of 0.01).",
+            "sourceId": "SRC-NIST-SP811-B9"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["QUANTITY_SYMBOL"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "No single retrieved NIST passage states in one sentence 'the SI unit of resistivity is the ohm-metre'; the claim is instead established honestly by combining two genuine NIST passages -- one using rho for resistivity in an ohm-length unit (Ω·cm), the other naming 'ohm meter (Ω·m)' as the SI form of that same unit family in an official conversion table. This is disclosed compounding of two real, directly-read sources, not an inference from a title or snippet."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::r-rho-l-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-RESIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+            "sourceLocator": "HyperPhysics, 'Resistance and Resistivity'",
+            "retrievedPassage": "\"R = ρL/A\" where \"R = resistance (in ohms)\", \"ρ (rho) = resistivity of the material\", \"L = length of the wire\", \"A = cross-sectional area\"."
+          },
+          {
+            "sourceId": "SRC-UNION-PHYS111",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://minerva.union.edu/newmanj/physics111/chapter16.pdf",
+            "sourceLocator": "Union College Physics 111, Chapter 16, 'Microscopic Picture of Electric Current' slide",
+            "retrievedPassage": "\"We can also introduce intrinsic parameters: conductivity, σ = ne²τ/m and resistivity, ρ = 1/σ to write R = ρL/A\", where n is free charge density, e is electron charge, A is wire cross-sectional area, R is the wire's resistance."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "R = ρL/A relates a conductor's resistance R (ohms) to its resistivity ρ (ohm-metres, a property of the material only), its length L (metres) and its cross-sectional area A (square metres): resistance increases with length and resistivity, and decreases with cross-sectional area.",
+            "sourceId": "SRC-HP-RESIS"
+          },
+          {
+            "claimText": "R = ρL/A is derived from the microscopic behaviour of charge carriers in a conductor (conductivity σ = ne²τ/m, resistivity ρ = 1/σ), confirming the formula and the meaning of its terms from a second, independent derivation.",
+            "sourceId": "SRC-UNION-PHYS111"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["FORMULA", "FORMULA_INTERPRETATION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Both sources state and interpret R=rho*L/A itself; neither shows the formula explicitly rearranged in text for rho, L or A. 'Appropriate rearrangement use' is treated here as the same general formula-transposition skill already evidenced for Unit 202's foundational-mathematics batch (FM-LP-16, 'one or more inverse operations' rearrangement of a simple formula) applied to this specific formula, not as a separate physics fact requiring its own citation -- disclosed honestly rather than fabricating a rearranged-form quotation that was not actually found."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::ohm-s-law::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-OHMLAW",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/ohmlaw.html",
+            "sourceLocator": "HyperPhysics, \"Ohm's Law\"",
+            "retrievedPassage": "\"For many conductors of electricity, the electric current which will flow through them is directly proportional to the voltage applied to them.\" The material is \"ohmic\" only \"if the ratio is constant over a wide range of voltages\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Ohm's law states that, for an ohmic conductor, current is directly proportional to the voltage applied across it, with resistance (the voltage/current ratio) constant over a wide range of voltages. This is a property of 'ohmic' materials specifically, not a universal law holding for every component (e.g. it does not hold for a component whose resistance changes with voltage/current).",
+            "sourceId": "SRC-HP-OHMLAW"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Bound deliberately as a conditional relationship (true for ohmic materials, not a universal law), per the depth guidance against false-greening Ohm's law as unconditional."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::v-ir-and-rearrangements::FORMULA_OR_RULE",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-OHMLAW",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/ohmlaw.html",
+            "sourceLocator": "HyperPhysics, \"Ohm's Law\"",
+            "retrievedPassage": "\"Amperes = volts / ohms\", rearranged to the standard form V=IR, where V=voltage, I=current (amperes), R=resistance (ohms)."
+          },
+          {
+            "sourceId": "SRC-HP-RESIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+            "sourceLocator": "HyperPhysics, 'Resistance and Resistivity'",
+            "retrievedPassage": "\"The electrical resistance... is defined as the ratio of the voltage applied to the electric current which flows through it\" -- i.e. R = V/I."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "V = IR relates voltage V (volts), current I (amperes) and resistance R (ohms). The same relationship rearranges to I = V/R (current equals voltage divided by resistance) and to R = V/I (resistance equals voltage divided by current, its own defining ratio).",
+            "sourceId": "SRC-HP-OHMLAW"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["FORMULA", "FORMULA_INTERPRETATION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::voltage-drop-voltage-loss-across-resistance-carrying-current::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-UTAH-OHMSLAW",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ctools.ece.utah.edu/Circuits/OhmsLaw/CircOhmsPhysics.htm",
+            "sourceLocator": "University of Utah ECE, Conceptual Tools, Ohm's Law physics derivation",
+            "retrievedPassage": "\"The electric field must be the voltage drop across the resistor, V0, divided by the length, l, of the resistor\", in a derivation that concludes with the standard form V=IR (equation 12)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The 'voltage drop' across a resistor is the potential difference (loss of voltage) that appears across it as a result of current flowing through its resistance; it is this voltage drop, divided by the resistor's length, that determines the electric field inside it, and it is what the relationship V=IR describes.",
+            "sourceId": "SRC-UTAH-OHMSLAW"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::vdrop-ir::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-UTAH-OHMSLAW",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ctools.ece.utah.edu/Circuits/OhmsLaw/CircOhmsPhysics.htm",
+            "sourceLocator": "University of Utah ECE, Conceptual Tools, Ohm's Law physics derivation",
+            "retrievedPassage": "Derivation proceeding from the voltage drop across a resistor to its standard form, \"V = IR\" (equation 12)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The voltage drop across a resistance carrying current I is Vdrop = IR -- the same relationship as Ohm's law, applied specifically to describe the potential difference lost across that resistance.",
+            "sourceId": "SRC-UTAH-OHMSLAW"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::appropriate-voltage-drop-calculation::PROCEDURE_COVERAGE",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-IET-VDROP",
+            "authorityClass": "PROFESSIONAL_BODY",
+            "sourceRef": "https://electrical.theiet.org/wiring-matters/years/2023/96-july-2023/how-voltage-drop-can-affect-ev-charging-point-open-pen-detection-devices/",
+            "sourceLocator": "IET Wiring Matters, issue 96 (July 2023)",
+            "retrievedPassage": "\"Voltage drop = (mV/A/m) x Ib x Length / 1000\"; \"the recommended maximum voltage drop between the origin and any load point for a load other than lighting, is 5%\" per BS 7671:2018+A2:2022."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A cable's voltage drop is calculated as (mV/A/m tabulated factor) x (design current, Ib) x (circuit length) / 1000, giving the drop in volts; the result is checked against a permitted maximum (5% of supply voltage for other-than-lighting circuits, per UK wiring regulations).",
+            "sourceId": "SRC-IET-VDROP"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "Scoped to the calculation procedure and its permitted-maximum check only, at a depth appropriate for Unit 202 foundational electrical-installation content; it does not extend into full BS 7671 cable-selection/correction-factor compliance (Ca/Cg/Ci/Cc), which is out of scope for this requirement and this qualification level."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::series-circuit-current-common-throughout::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETSU-PHYS2020",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf",
+            "sourceLocator": "ETSU PHYS-2020 Section IV, p. IV-2",
+            "retrievedPassage": "\"The current through all resistors in a series circuit is the same.\" I = I1 = I2 = ... (Eq. IV-3)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In a series circuit, the same current flows through every component, because there is only one path for charge to follow.",
+            "sourceId": "SRC-ETSU-PHYS2020"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::series-circuit-resistance-sums::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETSU-PHYS2020",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf",
+            "sourceLocator": "ETSU PHYS-2020 Section IV, p. IV-3",
+            "retrievedPassage": "\"Req = R1 + R2\" (Eq. IV-4) \"for two series resistors or more generally... Req = sum(i=1 to N) Ri\" (Eq. IV-5)."
+          },
+          {
+            "sourceId": "SRC-UNION-PHYS111",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://minerva.union.edu/newmanj/physics111/chapter16.pdf",
+            "sourceLocator": "Union College Physics 111, Chapter 16",
+            "retrievedPassage": "\"Resistors in series: Req = R1 + R2 + ...\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The equivalent (total) resistance of resistors connected in series is the sum of their individual resistances: Req = R1 + R2 + ... + RN.",
+            "sourceId": "SRC-ETSU-PHYS2020"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::series-circuit-voltage-shares-sums::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETSU-PHYS2020",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf",
+            "sourceLocator": "ETSU PHYS-2020 Section IV, p. IV-2",
+            "retrievedPassage": "\"deltaV = deltaV1 + deltaV2 = I1*R1 + I2*R2 = I*R1 + I*R2\", i.e. IReq = IR1 + IR2, for two series resistors."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In a series circuit, the supply voltage is shared (divided) among the resistors in proportion to their resistance, and the sum of the individual voltage drops equals the total supply voltage: deltaV = deltaV1 + deltaV2 + ... where each deltaVi = I*Ri.",
+            "sourceId": "SRC-ETSU-PHYS2020"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-voltage-common-across-branches::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETSU-PHYS2020",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf",
+            "sourceLocator": "ETSU PHYS-2020 Section IV, p. IV-3",
+            "retrievedPassage": "\"When resistors are connected in parallel, the potential difference across them are the same\": deltaV = deltaV1 = deltaV2 (Eq. IV-6)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In a parallel circuit, the voltage (potential difference) across every branch is the same and equal to the supply voltage.",
+            "sourceId": "SRC-ETSU-PHYS2020"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-current-divides-sums::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETSU-PHYS2020",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf",
+            "sourceLocator": "ETSU PHYS-2020 Section IV, p. IV-4",
+            "retrievedPassage": "\"The current entering a parallel circuit is equal to the sum of all currents traveling through each resistor\": I = I1 + I2 (Eq. IV-7)."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In a parallel circuit, the total current divides among the branches, and the individual branch currents sum to the total current entering (and leaving) the parallel combination: I = I1 + I2 + ...",
+            "sourceId": "SRC-ETSU-PHYS2020"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-equivalent-resistance-relationship::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETSU-PHYS2020",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf",
+            "sourceLocator": "ETSU PHYS-2020 Section IV, p. IV-4",
+            "retrievedPassage": "\"1/Req = 1/R1 + 1/R2\" (Eq. IV-8) \"for two parallel resistors. If more that 2 resistors are in a parallel configuration, we use 1/Req = sum(i=1 to N) 1/Ri\" (Eq. IV-9), with a worked example (IV-5, p. IV-5-IV-6) reducing a multi-resistor network step by step."
+          },
+          {
+            "sourceId": "SRC-UNION-PHYS111",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://minerva.union.edu/newmanj/physics111/chapter16.pdf",
+            "sourceLocator": "Union College Physics 111, Chapter 16",
+            "retrievedPassage": "\"Resistors in parallel: Req^-1 = R1^-1 + R2^-1 + ...\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The equivalent (total) resistance of resistors connected in parallel is found from the reciprocal relationship 1/Req = 1/R1 + 1/R2 + ... + 1/RN; the equivalent resistance is always smaller than the smallest individual resistor in the combination.",
+            "sourceId": "SRC-ETSU-PHYS2020"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::p-vi::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HP-ELEPOW",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/electric/elepow.html",
+            "sourceLocator": "HyperPhysics, 'Electric Power'",
+            "retrievedPassage": "\"P = VI\", \"Power = Voltage x Current\", measured in \"watts = volts x amperes\"."
+          },
+          {
+            "sourceId": "SRC-UNION-PHYS111",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://minerva.union.edu/newmanj/physics111/chapter16.pdf",
+            "sourceLocator": "Union College Physics 111, Chapter 16",
+            "retrievedPassage": "\"Power dissipated (Joule heating) = P = I^2R = IV\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Electrical power is the product of voltage and current: P = VI (watts = volts x amperes). This is the fundamental power relationship, from which P=I^2R and P=V^2/R are derived using Ohm's law.",
+            "sourceId": "SRC-HP-ELEPOW"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::p-i-2-r::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-UNION-PHYS111",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://minerva.union.edu/newmanj/physics111/chapter16.pdf",
+            "sourceLocator": "Union College Physics 111, Chapter 16",
+            "retrievedPassage": "\"Ohm's Law: V = IR\", \"Power dissipated (Joule heating) = P = I^2R = IV\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "P = I^2R gives the power dissipated as heat in a resistance R carrying current I; it is obtained by substituting V=IR into P=VI, and is the form to use when the current and resistance (rather than the voltage) are known.",
+            "sourceId": "SRC-UNION-PHYS111"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::p-v-2-r-where-appropriate::RELATIONSHIP",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETSU-PHYS2020",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf",
+            "sourceLocator": "ETSU PHYS-2020 Section IV, p. IV-7, worked Example IV-1 solution (b)",
+            "retrievedPassage": "\"If we assume that the internal resistance of the battery is negligible to the load resistance, we have deltaV = E, so P = (deltaV)^2/Req, deltaV = sqrt(P*Req)\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "P = V^2/R gives the power dissipated in a resistance R when the voltage V across it (rather than the current) is known; it is obtained by substituting I=V/R into P=VI. The worked source example makes explicit that using this form to equate the source emf with V requires the assumption that any internal/source resistance is negligible compared with the load resistance -- i.e. it applies 'where appropriate', not unconditionally.",
+            "sourceId": "SRC-ETSU-PHYS2020"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::suitable-dc-circuit-power-calculations::PROCEDURE_COVERAGE",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ETSU-PHYS2020",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf",
+            "sourceLocator": "ETSU PHYS-2020 Section IV, pp. IV-5 to IV-7, worked Example IV-1",
+            "retrievedPassage": "Worked example: a 5-resistor DC network is reduced step-by-step (parallel pair to Ra=3.33 ohm, series with R4 to Rb=7.33 ohm, parallel with R5 to Rc=2.13 ohm, series with R1 to Req=5.13 ohm), then the emf is found from the given total power via deltaV = sqrt(P*Req) = sqrt((4.00 W)(5.13 ohm)) = 4.53 V."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A suitable procedure for a DC-circuit power calculation is: (1) reduce the circuit's series and parallel resistor combinations step by step to a single equivalent resistance; (2) apply the appropriate power relationship (P=VI, P=I^2R or P=V^2/R, as the known quantities allow) to find the required unknown (current, voltage, or power).",
+            "sourceId": "SRC-ETSU-PHYS2020"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["PROCEDURE", "CALCULATION_METHOD"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::thermal-effect-of-current::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-UNION-PHYS111",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://minerva.union.edu/newmanj/physics111/chapter16.pdf",
+            "sourceLocator": "Union College Physics 111, Chapter 16",
+            "retrievedPassage": "\"Power dissipated (Joule heating) = P = I^2R = IV\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The thermal effect of current (Joule heating) is the conversion of electrical energy into heat as current flows through a resistance; the rate of heat production is P=I^2R=IV, so it increases with the square of the current.",
+            "sourceId": "SRC-UNION-PHYS111"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::fuse-operation-as-an-example-of-the-thermal-effect::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-CALGARY-FUSE",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://energyeducation.ca/encyclopedia/Fuse",
+            "sourceLocator": "Energy Education (University of Calgary), 'Fuse'",
+            "retrievedPassage": "\"Fuses are designed to allow current through the circuit, but in the event that the current exceeds some maximum value it will burn out the wire, so that there is no longer a circuit.\" A fuse \"contains a thin conductor designed to melt at a low temperature. Once the current reaches a level that can generate enough heat to match or surpass the designed melting point, the connection will break.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A fuse contains a thin conductor that melts at a designed (low) temperature; when the circuit current becomes high enough to generate sufficient heat to reach that melting point, the conductor melts and breaks the circuit. This is a direct practical application of the thermal effect of current (heat generation proportional to current) as a protective mechanism.",
+            "sourceId": "SRC-CALGARY-FUSE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "scopeNote": "This requirement carries OPTIONAL_CONTEXT acquisition priority in the frozen plan (lower than the batch's other, REQUIRED-priority requirements); it is nonetheless fully VERIFIED here, so no priority-based shortfall is being reported."
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::chemical-effect-electrolysis::EXACT_FACT",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-CUBOULDER-ELECTROLYSIS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://www.colorado.edu/lab/lecture-demo-manual/x840-electrolysis-water",
+            "sourceLocator": "University of Colorado Boulder, Lecture Demonstration Manual, X840",
+            "retrievedPassage": "\"Electrical current is applied to water containing Na2SO4 as an electrolyte. The water is converted into gaseous H2 and O2 at the electrodes.\" \"Oxygen and H+ are formed at the anode (oxidation)\" (2H2O -> 4H+ + O2 + 4e-); \"Hydrogen and OH- are formed at the cathode (reduction)\" (4H2O + 4e- -> 2H2 + 4OH-); overall \"2H2O -> 2H2 + O2\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The chemical effect of an electric current (electrolysis) is the chemical decomposition of a substance caused by passing a current through it via an electrolyte: oxidation occurs at the positive electrode (anode) and reduction occurs at the negative electrode (cathode), producing new substances (e.g. passing current through water containing an electrolyte decomposes it into hydrogen gas at the cathode and oxygen gas at the anode).",
+            "sourceId": "SRC-CUBOULDER-ELECTROLYSIS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": ["DEFINITION"],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    }
+  ],
+  "totals": {
+    "VERIFIED": 28,
+    "PARTIALLY_VERIFIED": 0,
+    "SOURCE_GAP": 0,
+    "CONFLICTED": 0
+  },
+  "authorityPolicyNotes": "No requirement in this batch required broadening or reinterpreting a permitted authority class. The one compound-source binding (ohm-metre-resistivity-unit) is disclosed in that result's own scopeNote rather than presented as a single-passage statement it is not.",
+  "boundedResearchNote": "This batch's research stayed within each requirement's permitted authority classes throughout; unlike batch-01, no requirement here required escalation to the Product Architect for an authority-policy adjudication. A small number of candidate URLs failed on access (see ACQUISITION-LOG.json) and were abandoned in favour of successfully-retrieved alternatives already within the permitted classes -- no requirement was left SOURCE_GAP."
+}

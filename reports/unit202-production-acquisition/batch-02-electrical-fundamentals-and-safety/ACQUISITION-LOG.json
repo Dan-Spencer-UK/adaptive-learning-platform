@@ -1,0 +1,171 @@
+{
+  "batchId": "batch-02-electrical-fundamentals-and-safety",
+  "note": "Real search/retrieval activity as it occurred in this session, recorded in sequence by cluster. No event-level timestamps are claimed anywhere in this file, consistent with this repository's established practice (see batch-01's own ACQUISITION-LOG.json note) -- only order is asserted, never wall-clock time. This batch used the harness's live web-search and web-fetch tools directly (no scripted acquisition pipeline invoked), consistent with the task's explicit instruction that bounded, explicitly-logged manual research is acceptable where the existing tooling does not itself perform live retrieval.",
+  "pipelineLimitationNote": "The generic acquisition planner/contracts under @alp/technical-evidence-engine define the EvidenceRequirement/CandidateSourceRecord/NormalizedTechnicalClaim SHAPES this batch's artefacts follow, but there is no separate scripted 'acquisition engine' invoked to perform live web research in this repository -- research was performed directly, by the acquiring session, using the harness's web-search/web-fetch tools, exactly as batch-01 and both blind-acquisition pilots also did. This is not a new limitation discovered in this batch; it is the same, already-accepted acquisition method used throughout this project's production-acquisition phase.",
+  "clusters": [
+    {
+      "clusterId": 1,
+      "title": "Electron theory, current, conventional current vs electron flow",
+      "requirementIds": ["basic-electron-theory", "current-as-charge-electron-flow-concept-at-calibrated-depth", "conventional-current-versus-electron-flow-distinction"]
+    },
+    {
+      "clusterId": 2,
+      "title": "Conductors, insulators, resistance, resistivity",
+      "requirementIds": ["conductors", "insulators", "resistance", "resistivity", "rho-resistivity-symbol", "ohm-metre-resistivity-unit", "r-rho-l-a-and-appropriate-rearrangement-use"]
+    },
+    {
+      "clusterId": 3,
+      "title": "Ohm's law, voltage drop",
+      "requirementIds": ["ohm-s-law", "v-ir-and-rearrangements", "voltage-drop-voltage-loss-across-resistance-carrying-current", "vdrop-ir", "appropriate-voltage-drop-calculation"]
+    },
+    {
+      "clusterId": 4,
+      "title": "Series-circuit relationships",
+      "requirementIds": ["series-circuit-current-common-throughout", "series-circuit-resistance-sums", "series-circuit-voltage-shares-sums"]
+    },
+    {
+      "clusterId": 5,
+      "title": "Parallel-circuit relationships",
+      "requirementIds": ["parallel-circuit-voltage-common-across-branches", "parallel-circuit-current-divides-sums", "parallel-circuit-equivalent-resistance-relationship"]
+    },
+    {
+      "clusterId": 6,
+      "title": "Electrical power, thermal effect, fuse operation",
+      "requirementIds": ["p-vi", "p-i-2-r", "p-v-2-r-where-appropriate", "suitable-dc-circuit-power-calculations", "thermal-effect-of-current", "fuse-operation-as-an-example-of-the-thermal-effect"]
+    },
+    {
+      "clusterId": 7,
+      "title": "Chemical effect / electrolysis",
+      "requirementIds": ["chemical-effect-electrolysis"]
+    }
+  ],
+  "queries": [
+    { "order": 1, "clusterId": 1, "requirementIds": ["conventional-current-versus-electron-flow-distinction"], "queryText": "HyperPhysics electron theory conventional current electron flow direction" },
+    { "order": 2, "clusterId": 2, "requirementIds": ["resistance", "resistivity", "conductors", "insulators"], "queryText": "HyperPhysics electrical resistance resistivity definition conductor insulator" },
+    { "order": 3, "clusterId": 1, "requirementIds": ["current-as-charge-electron-flow-concept-at-calibrated-depth"], "queryText": "hyperphysics.phy-astr.gsu.edu electric current definition charge flow ampere" },
+    { "order": 4, "clusterId": 3, "requirementIds": ["ohm-s-law", "series-circuit-resistance-sums", "parallel-circuit-equivalent-resistance-relationship"], "queryText": "hyperphysics.phy-astr.gsu.edu Ohm's law series circuit parallel circuit" },
+    { "order": 5, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "NIST SI brochure resistivity ohm metre symbol rho derived unit" },
+    { "order": 6, "clusterId": 1, "requirementIds": ["basic-electron-theory"], "queryText": "basic electron theory atomic structure free electrons charge carriers electricity" },
+    { "order": 7, "clusterId": 6, "requirementIds": ["p-vi", "p-i-2-r", "p-v-2-r-where-appropriate"], "queryText": "hyperphysics electric power P=VI P=I2R P=V2/R Joule heating" },
+    { "order": 8, "clusterId": 7, "requirementIds": ["chemical-effect-electrolysis"], "queryText": "hyperphysics electrolysis chemical effect of current definition" },
+    { "order": 9, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "site:hyperphysics.gsu.edu electric power watts (used to locate the Electric Power page URL)" },
+    { "order": 10, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "NPL National Physical Laboratory resistivity units ohm metre" },
+    { "order": 11, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "BIPM SI brochure Table 4 electric resistivity ohm metre derived unit" },
+    { "order": 12, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "IEC Electropedia resistivity definition symbol rho ohm metre 121-12" },
+    { "order": 13, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "NIST resistivity symbol rho SRM standard reference material silicon ohm cm" },
+    { "order": 14, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "resistivity site:nist.gov ohm-meter symbol" },
+    { "order": 15, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "NIST Engineering Statistics Handbook OR NIST SP811 resistivity symbol rho ohm meter table quantities units" },
+    { "order": 16, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "NIST Guide to SI Chapter 8 resistivity table quantities units" },
+    { "order": 17, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "\"resistivity (rho)\" \"ohm.m\" OR \"ohm metre\" IET OR Institution of Engineering and Technology" },
+    { "order": 18, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "Kaye and Laby NPL resistivity table electrical resistivity ohm metre symbol rho" },
+    { "order": 19, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "kayelaby.npl.co.uk electrical resistivity conductivity metals" },
+    { "order": 20, "clusterId": 2, "requirementIds": ["ohm-metre-resistivity-unit"], "queryText": "NIST SP811 appendix B conversion factors resistivity ohm meter" },
+    { "order": 21, "clusterId": 3, "requirementIds": ["appropriate-voltage-drop-calculation", "series-circuit-voltage-shares-sums", "parallel-circuit-current-divides-sums"], "queryText": "hyperphysics voltage drop across resistor series circuit IR drop" },
+    { "order": 22, "clusterId": 4, "requirementIds": ["series-circuit-current-common-throughout", "series-circuit-voltage-shares-sums"], "queryText": "hyperphysics series resistors circuit current same throughout voltage divider" },
+    { "order": 23, "clusterId": 5, "requirementIds": ["parallel-circuit-equivalent-resistance-relationship"], "queryText": "hyperphysics parallel resistors equivalent resistance reciprocal formula" },
+    { "order": 24, "clusterId": 6, "requirementIds": ["fuse-operation-as-an-example-of-the-thermal-effect", "thermal-effect-of-current"], "queryText": "hyperphysics fuse thermal effect current heating wire I2R" },
+    { "order": 25, "clusterId": 5, "requirementIds": ["parallel-circuit-equivalent-resistance-relationship"], "queryText": "site:hyperphysics.gsu.edu resistor series parallel combination" },
+    { "order": 26, "clusterId": 6, "requirementIds": ["p-vi", "p-i-2-r"], "queryText": "site:hyperphysics.gsu.edu electric power heat joule" },
+    { "order": 27, "clusterId": 5, "requirementIds": ["parallel-circuit-equivalent-resistance-relationship"], "queryText": "hyperphysics resistor combinations series parallel Req reciprocal" },
+    { "order": 28, "clusterId": 4, "requirementIds": ["series-circuit-voltage-shares-sums"], "queryText": "hyperphysics.gsu.edu Kirchhoff voltage law loop rule series circuit" },
+    { "order": 29, "clusterId": 1, "requirementIds": ["basic-electron-theory"], "queryText": "site:hyperphysics.gsu.edu atomic structure electron proton neutron charge basic theory" },
+    { "order": 30, "clusterId": 6, "requirementIds": ["fuse-operation-as-an-example-of-the-thermal-effect"], "queryText": "CPSC OR NIST fuse thermal fusing element overcurrent protection wire melts government" },
+    { "order": 31, "clusterId": 6, "requirementIds": ["suitable-dc-circuit-power-calculations"], "queryText": "university physics worked example calculate power dissipated resistor DC circuit watts" },
+    { "order": 32, "clusterId": 1, "requirementIds": ["basic-electron-theory"], "queryText": "hyperphysics.gsu.edu atomic structure electron proton neutron charge basic theory (retry)" },
+    { "order": 33, "clusterId": 6, "requirementIds": ["fuse-operation-as-an-example-of-the-thermal-effect"], "queryText": "hyperphysics.gsu.edu fuse electric circuit protection" },
+    { "order": 34, "clusterId": 7, "requirementIds": ["chemical-effect-electrolysis"], "queryText": "\"electrolysis\" \"anode\" \"cathode\" university chemistry outreach .ac.uk school resource" },
+    { "order": 35, "clusterId": 3, "requirementIds": ["appropriate-voltage-drop-calculation"], "queryText": "IET OR BS 7671 voltage drop calculation mV/A/m cable sizing procedure" },
+    { "order": 36, "clusterId": 7, "requirementIds": ["chemical-effect-electrolysis"], "queryText": "university chemistry department electrolysis definition electrolyte ions decomposition .edu" },
+    { "order": 37, "clusterId": 3, "requirementIds": ["appropriate-voltage-drop-calculation"], "queryText": "IET.org OR theiet.org voltage drop guidance free article electrical installations" },
+    { "order": 38, "clusterId": 7, "requirementIds": ["chemical-effect-electrolysis"], "queryText": "university chemistry course notes electrolysis molten ionic compound decomposition electric current .edu OR ac.uk" },
+    { "order": 39, "clusterId": 7, "requirementIds": ["chemical-effect-electrolysis"], "queryText": "chem.ox.ac.uk OR chem.cam.ac.uk electrolysis definition electrode ions" },
+    { "order": 40, "clusterId": 3, "requirementIds": ["appropriate-voltage-drop-calculation"], "queryText": "\"IET Wiring Matters\" voltage drop calculation article theiet.org pdf mV/A/m" },
+    { "order": 41, "clusterId": 6, "requirementIds": ["thermal-effect-of-current"], "queryText": "hyperphysics.gsu.edu joule heating resistor heat dissipated" },
+    { "order": 42, "clusterId": 6, "requirementIds": ["p-v-2-r-where-appropriate"], "queryText": "\"P = V^2/R\" OR \"P=V2/R\" physics course notes university pdf power resistor" }
+  ],
+  "candidates": [
+    { "order": 1, "requirementId": "conductors / insulators", "url": "https://hyperphysics.phy-astr.gsu.edu/hbase/electric/conins.html", "decision": "REJECTED", "reason": "TLS certificate hostname mismatch (cert covers hyperphysics.gsu.edu, not the phy-astr.gsu.edu subdomain path); not itself a content defect, retried at the working hostname below." },
+    { "order": 2, "requirementId": "conductors / insulators", "url": "https://hyperphysics.gsu.edu/hbase/electric/conins.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-CONINS", "reason": "Retrieved successfully at the corrected hostname; states the conductor/insulator distinction directly." },
+    { "order": 3, "requirementId": "resistance / resistivity / r-rho-l-a", "url": "https://hyperphysics.gsu.edu/hbase/electric/resis.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-RESIS", "reason": "States the resistance definition, resistivity's role, and R=rho*L/A with variable meanings." },
+    { "order": 4, "requirementId": "current-as-charge-electron-flow-concept / conventional-current-versus-electron-flow", "url": "https://hyperphysics.gsu.edu/hbase/electric/elecur.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-ELECUR", "reason": "States current as rate of charge flow and the conventional-current-vs-electron-flow convention directly." },
+    { "order": 5, "requirementId": "ohm-s-law / v-ir-and-rearrangements", "url": "https://hyperphysics.gsu.edu/hbase/electric/ohmlaw.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-OHMLAW", "reason": "States Ohm's law as a conditional (ohmic-material) relationship and V=IR with its rearrangement to I=V/R." },
+    { "order": 6, "requirementId": "basic-electron-theory", "url": "https://hyperphysics.gsu.edu/hbase/Chemical/atom.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-ATOM", "reason": "States atomic structure (protons/neutrons/electrons, neutral atom) directly." },
+    { "order": 7, "requirementId": "p-vi", "url": "https://hyperphysics.gsu.edu/hbase/electric/elepow.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-ELEPOW", "reason": "States P=VI directly in text; note the page's P=I^2R/P=V^2/R forms are shown only in an embedded image (imgele/powr.gif), not extractable as quoted text, so this source is bound only to the P=VI claim -- the two derived forms are instead bound to sources that state them in readable text (see below)." },
+    { "order": 8, "requirementId": "ohm-metre-resistivity-unit", "url": "https://www.nist.gov/pml/nanoscale-device-characterization-division/popular-links/hall-effect/resistivity-and-hall", "decision": "ACCEPTED", "sourceId": "SRC-NIST-RESHALL", "reason": "Genuine NIST technical page using symbol rho for resistivity in an ohm-length unit (ohm-cm)." },
+    { "order": 9, "requirementId": "ohm-metre-resistivity-unit", "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-8", "decision": "REJECTED", "reason": "Retrieved and reviewed in full; this NIST SP811 chapter's quantity/unit tables cover other quantities (time, volume, mass, concentration, viscosity, etc.) but do not include resistivity." },
+    { "order": 10, "requirementId": "ohm-metre-resistivity-unit", "url": "https://www.kayelaby.npl.co.uk/general_physics/2_6/2_6_1.html", "decision": "REJECTED", "reason": "TLS certificate could not be verified (site's certificate chain broken/untrusted) on repeated attempts, both with and without the 'www' host and over plain HTTP (auto-upgraded); genuine access failure, not a content decision." },
+    { "order": 11, "requirementId": "ohm-metre-resistivity-unit", "url": "https://www.electropedia.org/iev/iev.nsf/index?openform&part=121", "decision": "REJECTED", "reason": "HTTP 403 Forbidden on retrieval." },
+    { "order": 12, "requirementId": "ohm-metre-resistivity-unit", "url": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9.pdf", "decision": "REJECTED", "reason": "Retrieved and read directly (pages 18-25, the SI base/derived-unit tables); Table 4 (the SI Brochure's list of 22 specially-named coherent derived units) does not include electric resistivity, since ohm-metre is a compound (non-specially-named) unit -- confirmed by direct inspection, not merely assumed absent." },
+    { "order": 13, "requirementId": "ohm-metre-resistivity-unit", "url": "https://www.nist.gov/system/files/documents/srm/260-142-2ndVersion.pdf", "decision": "REJECTED", "reason": "Retrieved but found (on direct visual inspection) to be a NIST SRM certification report for electrolytic-conductivity standards (a different, unrelated resistivity-adjacent NIST publication reached via an imprecise search match), not a source stating the resistivity unit convention." },
+    { "order": 14, "requirementId": "ohm-metre-resistivity-unit", "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9", "decision": "ACCEPTED", "sourceId": "SRC-NIST-SP811-B9", "reason": "NIST's own SI conversion-factor table for Electricity and Magnetism carries the row 'ohm centimeter (ohm.cm) -> ohm meter (ohm.m)', naming ohm-metre as the SI form of this unit family." },
+    { "order": 15, "requirementId": "voltage-drop-voltage-loss-across-resistance-carrying-current / vdrop-ir", "url": "https://ctools.ece.utah.edu/Circuits/OhmsLaw/CircOhmsPhysics.htm", "decision": "ACCEPTED", "sourceId": "SRC-UTAH-OHMSLAW", "reason": "University of Utah ECE department's own physics-of-Ohm's-law derivation, using the term 'voltage drop across the resistor' directly and deriving V=IR from it." },
+    { "order": 16, "requirementId": "voltage-drop-voltage-loss-across-resistance-carrying-current", "url": "https://hyperphysics.gsu.edu/hbase/electric/voldiv.html", "decision": "REJECTED", "reason": "Retrieved; covers loaded voltage-divider output-voltage behaviour, not a direct statement of the basic voltage-drop definition; a more directly on-point source (University of Utah, above) was used instead." },
+    { "order": 17, "requirementId": "series-circuit-voltage-shares-sums", "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/99b2a662083d1b1f487c55ea0f0d0220_6002_l2.pdf", "decision": "REJECTED (superseded)", "reason": "Retrieved and read in full (MIT 6.002 Lecture 2, KVL/KCL and element-combination-rules slides); genuinely confirms KVL and Req=R1+R2+... in readable form, but a single source (ETSU PHYS-2020, below) was subsequently found to cover this same ground more completely (including the explicit deltaV=deltaV1+deltaV2 series-voltage-sum statement this MIT slide deck does not spell out numerically), so it was not registered as a separate source to avoid an unused, redundant register entry." },
+    { "order": 18, "requirementId": "series-circuit-current-common-throughout / parallel-circuit-*", "url": "http://physics.bu.edu/py106/notes/Circuits.html", "decision": "REJECTED (superseded)", "reason": "Retrieved and read in full (Boston University Physics py106 notes); genuinely confirms series-current-common and parallel-voltage-common/reciprocal-resistance, but was superseded by ETSU PHYS-2020 (below), which independently states the same relationships plus the series-voltage-sum and parallel-current-sum relationships this page does not cover; not registered as a separate source to avoid an unused, redundant register entry." },
+    { "order": 19, "requirementId": "series-circuit-resistance-sums / parallel-circuit-equivalent-resistance-relationship / p-i-2-r / thermal-effect-of-current", "url": "https://minerva.union.edu/newmanj/physics111/chapter16.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UNION-PHYS111", "reason": "Union College Physics 111 course-notes PDF; visually read (image-based slides) rather than relying on the web-fetch tool's text-only summarisation, which had failed to extract this PDF's content. States Ohm's law, P=I^2R=IV, Kirchhoff's rules, Req for series/parallel resistors, and a microscopic R=rho*L/A derivation, all in readable slide text." },
+    { "order": 20, "requirementId": "series-circuit-* / parallel-circuit-* / p-v-2-r-where-appropriate / suitable-dc-circuit-power-calculations", "url": "https://faculty.etsu.edu/lutter/courses/phys2020/p2020chap04.pdf", "decision": "ACCEPTED", "sourceId": "SRC-ETSU-PHYS2020", "reason": "East Tennessee State University PHYS-2020 course-notes PDF (Dr. Donald G. Luttermoser); visually read for the same reason as the Union College PDF above (the web-fetch tool's text extraction failed on this scanned/formula-heavy PDF, but its actual page images are genuine, readable typeset text, not scans of handwriting or low-quality images). States all three series-circuit relationships, all three parallel-circuit relationships, P=(deltaV)^2/Req with an explicit 'negligible internal resistance' condition, and a fully worked multi-resistor DC-circuit power-calculation example." },
+    { "order": 21, "requirementId": "appropriate-voltage-drop-calculation", "url": "https://electrical.theiet.org/media/1617/appendix-4-of-bs-7671.pdf", "decision": "REJECTED", "reason": "Genuine, freely-accessible IET Wiring Matters article (Appendix 4 of BS 7671, by Mark Coles) retrieved and read in full; covers current-carrying capacity/cable-sizing/overcurrent-protection coordination (Iz, It, Ca, Cg, Ci, Cc) but does not itself state the voltage-drop calculation formula, despite listing voltage drop as one of the requirements Appendix 4 addresses; a different IET Wiring Matters article (below) was found that does state the formula directly." },
+    { "order": 22, "requirementId": "appropriate-voltage-drop-calculation", "url": "https://electrical.theiet.org/wiring-matters/years/2023/96-july-2023/how-voltage-drop-can-affect-ev-charging-point-open-pen-detection-devices/", "decision": "ACCEPTED", "sourceId": "SRC-IET-VDROP", "reason": "IET Wiring Matters (July 2023); states the voltage-drop formula '(mV/A/m) x Ib x Length/1000' and the BS 7671 5% maximum voltage-drop recommendation directly." },
+    { "order": 23, "requirementId": "fuse-operation-as-an-example-of-the-thermal-effect", "url": "https://energyeducation.ca/encyclopedia/Fuse", "decision": "ACCEPTED", "sourceId": "SRC-CALGARY-FUSE", "reason": "University of Calgary institutional attribution confirmed on the page itself (logo/branding); states the fuse-melts-from-heat mechanism directly." },
+    { "order": 24, "requirementId": "chemical-effect-electrolysis", "url": "https://www.monash.edu/student-academic-success/chemistry/electrolysis", "decision": "REJECTED", "reason": "HTTP 403 Forbidden on repeated retrieval attempts; a genuine Monash University (Australia) academic-support page that could not be accessed, not a content decision." },
+    { "order": 25, "requirementId": "chemical-effect-electrolysis", "url": "https://www.ceb.cam.ac.uk/research/groups/rg-eme/Edu/electrode-kinetics", "decision": "REJECTED (superseded)", "reason": "Genuine University of Cambridge (Department of Chemical Engineering and Biotechnology) page retrieved and read; confirms 'this process is called electrolysis and results in a reactant undergoing an oxidation or reduction reaction' and that electrolysis involves current flow around a circuit, but does not itself name the electrolyte/anode/cathode roles; superseded by a more complete source (below) so as not to leave the claim narrower than the requirement's depth calls for." },
+    { "order": 26, "requirementId": "chemical-effect-electrolysis", "url": "https://singteach.nie.edu.sg/wp-content/uploads/2021/04/Chemistry-lesson.pdf", "decision": "REJECTED", "reason": "Retrieved (a National Institute of Education, Singapore, 38-page teacher-magazine PDF) but not evaluated further once a more directly on-point, single-topic source (below) was found; abandoned rather than searched page-by-page for the relevant lesson within an unrelated 38-page issue." },
+    { "order": 27, "requirementId": "chemical-effect-electrolysis", "url": "https://www.colorado.edu/lab/lecture-demo-manual/x840-electrolysis-water", "decision": "ACCEPTED", "sourceId": "SRC-CUBOULDER-ELECTROLYSIS", "reason": "University of Colorado Boulder's own chemistry-department lecture-demonstration manual; states the full electrolysis mechanism (electrolyte, anode oxidation, cathode reduction, decomposition products) directly and completely." }
+  ],
+  "candidateCountsPerRequirement": {
+    "note": "Counts include both accepted and rejected candidates actually inspected for that requirement in this session.",
+    "conductors": 2,
+    "insulators": 1,
+    "resistance": 1,
+    "resistivity": 1,
+    "r-rho-l-a-and-appropriate-rearrangement-use": 2,
+    "current-as-charge-electron-flow-concept-at-calibrated-depth": 1,
+    "conventional-current-versus-electron-flow-distinction": 1,
+    "ohm-s-law": 1,
+    "v-ir-and-rearrangements": 1,
+    "basic-electron-theory": 1,
+    "p-vi": 2,
+    "ohm-metre-resistivity-unit": 8,
+    "rho-resistivity-symbol": 1,
+    "voltage-drop-voltage-loss-across-resistance-carrying-current": 2,
+    "vdrop-ir": 1,
+    "series-circuit-current-common-throughout": 2,
+    "series-circuit-resistance-sums": 2,
+    "series-circuit-voltage-shares-sums": 3,
+    "parallel-circuit-voltage-common-across-branches": 2,
+    "parallel-circuit-current-divides-sums": 1,
+    "parallel-circuit-equivalent-resistance-relationship": 2,
+    "appropriate-voltage-drop-calculation": 2,
+    "fuse-operation-as-an-example-of-the-thermal-effect": 1,
+    "thermal-effect-of-current": 1,
+    "p-i-2-r": 1,
+    "p-v-2-r-where-appropriate": 1,
+    "suitable-dc-circuit-power-calculations": 1,
+    "chemical-effect-electrolysis": 4
+  },
+  "sourceReuseAcrossRequirements": [
+    { "sourceId": "SRC-HP-CONINS", "reusedFor": ["conductors", "insulators", "basic-electron-theory"] },
+    { "sourceId": "SRC-HP-RESIS", "reusedFor": ["resistance", "resistivity", "r-rho-l-a-and-appropriate-rearrangement-use", "v-ir-and-rearrangements"] },
+    { "sourceId": "SRC-HP-ELECUR", "reusedFor": ["current-as-charge-electron-flow-concept-at-calibrated-depth", "conventional-current-versus-electron-flow-distinction"] },
+    { "sourceId": "SRC-HP-OHMLAW", "reusedFor": ["ohm-s-law", "v-ir-and-rearrangements"] },
+    { "sourceId": "SRC-NIST-RESHALL", "reusedFor": ["rho-resistivity-symbol", "ohm-metre-resistivity-unit"] },
+    { "sourceId": "SRC-UTAH-OHMSLAW", "reusedFor": ["voltage-drop-voltage-loss-across-resistance-carrying-current", "vdrop-ir"] },
+    { "sourceId": "SRC-UNION-PHYS111", "reusedFor": ["p-i-2-r", "p-vi", "thermal-effect-of-current", "series-circuit-resistance-sums", "parallel-circuit-equivalent-resistance-relationship", "r-rho-l-a-and-appropriate-rearrangement-use"] },
+    { "sourceId": "SRC-ETSU-PHYS2020", "reusedFor": ["series-circuit-current-common-throughout", "series-circuit-resistance-sums", "series-circuit-voltage-shares-sums", "parallel-circuit-voltage-common-across-branches", "parallel-circuit-current-divides-sums", "parallel-circuit-equivalent-resistance-relationship", "p-v-2-r-where-appropriate", "suitable-dc-circuit-power-calculations"] }
+  ],
+  "accessFailures": [
+    { "url": "https://hyperphysics.phy-astr.gsu.edu/hbase/*", "reason": "TLS certificate hostname mismatch on the phy-astr subdomain; resolved by using the hyperphysics.gsu.edu hostname instead, which serves the same content." },
+    { "url": "https://www.kayelaby.npl.co.uk/general_physics/2_6/2_6_1.html", "reason": "TLS certificate could not be verified; genuinely inaccessible via this session's tools, not a content rejection." },
+    { "url": "https://www.electropedia.org/iev/iev.nsf/index?openform&part=121", "reason": "HTTP 403 Forbidden." },
+    { "url": "https://www.monash.edu/student-academic-success/chemistry/electrolysis", "reason": "HTTP 403 Forbidden on repeated attempts." },
+    { "url": "https://srd.nist.gov/JPCRD/jpcrd155.pdf", "reason": "HTTP 503 Service Unavailable." }
+  ],
+  "boundedSearchStoppingDecisions": [
+    { "requirementId": "ohm-metre-resistivity-unit", "note": "After 8 candidates across NIST, BIPM, IEC Electropedia, NPL/Kaye-and-Laby and a site-search for an IET statement, the search was stopped once two genuine, independently-read NIST passages together established the claim (rho as resistivity's symbol in an ohm-length unit; ohm-metre named as that unit family's SI form in NIST's own conversion table). No single passage stating both facts together was found within this candidate cap; this is disclosed in the evidence result's own scopeNote rather than concealed." },
+    { "requirementId": "chemical-effect-electrolysis", "note": "Stopped once a single source (University of Colorado Boulder) was found that covers the full expected depth (electrolyte, current, anode/cathode, oxidation/reduction, decomposition products) directly, after two narrower/inaccessible candidates (Cambridge CEB, Monash) were tried first." }
+  ],
+  "manualNormalizationNote": "Two PDFs (Union College Physics 111 Chapter 16; ETSU PHYS-2020 Section IV) could not be read as text by the harness's web-fetch tool (it reported only compressed/binary stream content), because both are slide/formula-heavy documents where the actual page content is typeset text rendered as page images rather than a text layer the summarisation step could extract. Both were instead read directly and visually via the harness's PDF-page-image reader, and the quotations bound to them in EVIDENCE-RESULTS.json were transcribed directly from those page images, not inferred or reconstructed from a partial extraction. This is disclosed as a genuine pipeline limitation of the web-fetch tool's text-summarisation step (not of the harness generally, which read the same files successfully via its image-based PDF reader) and was worked around, not silently papered over.",
+  "unresolvedAuthorityPolicyQuestions": [
+    "None. Every source bound in EVIDENCE-RESULTS.json falls within its requirement's existing permitted-authority-class list; no requirement in this batch needed a narrow authority-policy adjudication of the kind batch-01 required for standard-scientific-notation."
+  ]
+}
