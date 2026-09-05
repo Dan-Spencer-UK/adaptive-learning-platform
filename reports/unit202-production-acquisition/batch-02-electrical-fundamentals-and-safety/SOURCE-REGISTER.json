@@ -4,6 +4,7 @@
   "reusedSourceCount": 0,
   "newSourceCount": 14,
   "note": "All 14 sources were freshly acquired in this session via real web search and retrieval. None are reused from pilot-002 or batch-01 (that batch's domain, foundational mathematics, does not overlap this batch's electrical content). Several sources are reused ACROSS requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
+  "paCorrectionNote": "Product Architect narrow correction pass (this session, HOLD -- NARROW CORRECTION verdict): no new source was sought and no source was replaced; the same 14 sources are retained. Five 'claimSummary' entries were narrowed or qualified to match the corresponding corrected claims in EVIDENCE-RESULTS.json (appropriate-voltage-drop-calculation; p-v-2-r-where-appropriate; conductors; insulators) -- see EVIDENCE-RESULTS.json's own paCorrectionNote for the full rationale.",
   "sources": [
     {
       "sourceId": "SRC-HP-CONINS",
@@ -15,8 +16,8 @@
       "locator": "HyperPhysics, 'Conductors and Insulators' page",
       "accessDate": "2026-09-05",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::conductors::EXACT_FACT", "claimSummary": "In a conductor, outer electrons are loosely bound and free to move, so current flows freely." },
-        { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::insulators::EXACT_FACT", "claimSummary": "In an insulator, even the outermost electrons are tightly bound, so current cannot flow; resistivity is very large (example: glass ~10^12 ohm-m vs copper ~1.7x10^-8 ohm-m)." },
+        { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::conductors::EXACT_FACT", "claimSummary": "In a conductor, outer electrons are loosely bound and free to move, so charge moves relatively readily (comparatively low resistance/resistivity)." },
+        { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::insulators::EXACT_FACT", "claimSummary": "In an insulator, even the outermost electrons are tightly bound, so charge movement is strongly opposed (negligible/extremely small current at ordinary voltages); resistivity is very large (example: glass ~10^12 ohm-m vs copper ~1.7x10^-8 ohm-m)." },
         { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::basic-electron-theory::EXACT_FACT", "claimSummary": "Electron mobility (loosely bound outer electrons free to move through the material) is what allows a conductor to carry current." }
       ]
     },
@@ -141,7 +142,7 @@
       "locator": "IET Wiring Matters, issue 96 (July 2023) article",
       "accessDate": "2026-09-05",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::appropriate-voltage-drop-calculation::PROCEDURE_COVERAGE", "claimSummary": "Voltage drop = (mV/A/m) x Ib x Length / 1000, where mV/A/m is the cable's tabulated voltage-drop factor, Ib is the design current and Length is the circuit length; BS 7671:2018+A2:2022 recommends a maximum voltage drop of 5% (for a load other than lighting) between origin and any load point." }
+        { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::appropriate-voltage-drop-calculation::PROCEDURE_COVERAGE", "claimSummary": "Voltage drop = (mV/A/m) x Ib x Length / 1000, where mV/A/m is the cable's tabulated voltage-drop factor, Ib is the design current and Length is the circuit length. BS 7671 Table 4Ab's 5% figure (for a load other than lighting, supplied directly from a public low-voltage distribution system) is a recommended, informative value for that specific context, not a universal permitted maximum -- the acceptable voltage drop in a real design depends on the connected equipment's requirements." }
       ]
     },
     {
@@ -204,7 +205,7 @@
         { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-voltage-common-across-branches::RELATIONSHIP", "claimSummary": "When resistors are connected in parallel, the potential difference across them is the same: deltaV = deltaV1 = deltaV2 (Eq. IV-6)." },
         { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-current-divides-sums::RELATIONSHIP", "claimSummary": "The current entering a parallel circuit equals the sum of the currents through each branch: I = I1+I2 (Eq. IV-7)." },
         { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::parallel-circuit-equivalent-resistance-relationship::RELATIONSHIP", "claimSummary": "1/Req = 1/R1 + 1/R2 (Eq. IV-8), generalised to 1/Req = sum(1/Ri) for N parallel resistors (Eq. IV-9)." },
-        { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::p-v-2-r-where-appropriate::RELATIONSHIP", "claimSummary": "Worked example IV-1: given total power P and equivalent resistance Req, P = (deltaV)^2/Req, so deltaV = sqrt(P*Req) -- explicitly conditioned on internal/battery resistance being negligible compared with the load ('where appropriate')." },
+        { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::p-v-2-r-where-appropriate::RELATIONSHIP", "claimSummary": "Worked example IV-1: given total power P and equivalent resistance Req, P = (deltaV)^2/Req, so deltaV = sqrt(P*Req). P=V^2/R itself is unconditional for a resistor given the actual voltage across it; the example's negligible-internal-resistance assumption instead applies to substituting the source's emf E in place of the actual load voltage deltaV." },
         { "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::suitable-dc-circuit-power-calculations::PROCEDURE_COVERAGE", "claimSummary": "Worked example IV-1 demonstrates a full DC-circuit power-calculation procedure: reduce a series/parallel resistor network step-by-step to a single equivalent resistance, then use P=(deltaV)^2/Req to find the unknown emf/voltage from the given power." }
       ]
     }

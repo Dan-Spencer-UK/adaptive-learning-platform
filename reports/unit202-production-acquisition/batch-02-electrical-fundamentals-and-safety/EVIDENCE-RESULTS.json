@@ -84,7 +84,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "Conventional current is defined as flowing from the higher-potential (positive) terminal to the lower-potential (negative) terminal, as if the moving charge carriers were positive -- a convention retained from before the electron was discovered. In a metallic conductor the actual charge carriers are electrons, which physically drift in the opposite direction (negative to positive terminal). Both descriptions are self-consistent and give identical results for circuit calculations; only their assumed carrier and direction differ.",
+            "claimText": "Conventional current is defined as the direction in which positive charge would move, as if the moving charge carriers were positive -- a convention retained from before the electron was discovered. In the external metallic circuit of a DC source this is commonly described as flowing from the positive terminal towards the negative terminal, but this direction is a description of that particular case, not an unqualified rule for every physical situation (e.g. it does not describe the direction of positive-charge motion inside the source itself, or in circuits where the actual charge carriers are not electrons). In a metallic conductor the actual charge carriers are electrons, which physically drift in the opposite direction to conventional current. Both descriptions are self-consistent and give identical results for circuit calculations; only their assumed carrier and direction differ.",
             "sourceId": "SRC-HP-ELECUR"
           }
         ],
@@ -92,7 +92,8 @@
         "coverageDimensionsSatisfied": ["DEFINITION"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "Corrected in the Product Architect's narrow batch-02 review (this pass): 'flowing from the higher-potential (positive) terminal to the lower-potential (negative) terminal' is now presented as the common description for the external circuit of a DC source specifically, not as an unqualified universal rule -- conventional current is more generally defined as the direction positive charge would move, which is the primary claim."
       }
     },
     {
@@ -109,7 +110,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "A conductor is a material (e.g. copper) whose outer electrons are loosely bound and free to move through the material, allowing electric current to flow freely; conductors have very low resistivity.",
+            "claimText": "A conductor is a material (e.g. copper) whose outer electrons are loosely bound and free to move through the material; this allows charge to move relatively readily through it because it has comparatively low resistance/resistivity.",
             "sourceId": "SRC-HP-CONINS"
           }
         ],
@@ -117,7 +118,8 @@
         "coverageDimensionsSatisfied": ["DEFINITION"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "Corrected in the Product Architect's narrow batch-02 review (this pass): the claim's 'flow freely' wording is replaced with a comparatively-qualified statement (charge moves relatively readily due to comparatively low resistance/resistivity), consistent with the source's own use of 'loosely bound' rather than an absolute claim."
       }
     },
     {
@@ -134,7 +136,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "An insulator is a material (e.g. glass) whose electrons, including the outermost ones, are so tightly bound that essentially no electron flow occurs through it, so it offers very large resistance to current; insulators have very high resistivity.",
+            "claimText": "An insulator is a material (e.g. glass) whose electrons, including the outermost ones, are so tightly bound that they strongly oppose charge movement, carrying only negligible or extremely small current at ordinary applied voltages; insulators have very high resistivity.",
             "sourceId": "SRC-HP-CONINS"
           }
         ],
@@ -142,7 +144,8 @@
         "coverageDimensionsSatisfied": ["DEFINITION"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "Corrected in the Product Architect's narrow batch-02 review (this pass): 'cannot flow' is replaced with appropriately qualified wording (strongly opposes charge movement; negligible/extremely small current at ordinary applied voltages), since an insulator is not an absolute non-conductor -- this remains within the source's own 'essentially zero' framing without overstating it as exactly zero."
       }
     },
     {
@@ -412,7 +415,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "A cable's voltage drop is calculated as (mV/A/m tabulated factor) x (design current, Ib) x (circuit length) / 1000, giving the drop in volts; the result is checked against a permitted maximum (5% of supply voltage for other-than-lighting circuits, per UK wiring regulations).",
+            "claimText": "A cable's voltage drop is calculated as (mV/A/m tabulated factor) x (design current, Ib) x (circuit length) / 1000, giving the drop in volts. BS 7671 Table 4Ab gives recommended maximum voltage-drop values; these are informative (guidance), not an absolute statutory limit applying in every case. The source's own cited figure -- 5% -- applies in the specific context it describes: a load other than lighting, supplied directly from a public low-voltage distribution system. The voltage drop that is actually acceptable in a given design depends on the requirements of the connected equipment, so a calculated voltage drop must be compared against the stated or applicable design criterion for the problem at hand, not assumed against a universal 5% figure.",
             "sourceId": "SRC-IET-VDROP"
           }
         ],
@@ -421,7 +424,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Scoped to the calculation procedure and its permitted-maximum check only, at a depth appropriate for Unit 202 foundational electrical-installation content; it does not extend into full BS 7671 cable-selection/correction-factor compliance (Ca/Cg/Ci/Cc), which is out of scope for this requirement and this qualification level."
+        "scopeNote": "Corrected in the Product Architect's narrow batch-02 review (this pass): the original claim described the source's 5% figure as if it were a universal 'permitted maximum', which the source does not establish -- it is BS 7671 Table 4Ab's recommended (informative) value for a specific context (non-lighting loads supplied directly from a public low-voltage distribution system). The claim now states that the acceptable voltage drop depends on the connected equipment's requirements and that a calculated result must be compared against the applicable design criterion, not a universal figure. No new source was sought; this is a narrowing of the existing claim to what SRC-IET-VDROP actually supports. Scoped to the calculation procedure only, at a depth appropriate for Unit 202 foundational electrical-installation content; it does not extend into full BS 7671 cable-selection/correction-factor compliance (Ca/Cg/Ci/Cc), which is out of scope for this requirement and this qualification level."
       }
     },
     {
@@ -577,7 +580,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "The equivalent (total) resistance of resistors connected in parallel is found from the reciprocal relationship 1/Req = 1/R1 + 1/R2 + ... + 1/RN; the equivalent resistance is always smaller than the smallest individual resistor in the combination.",
+            "claimText": "The equivalent (total) resistance of resistors connected in parallel is found from the reciprocal relationship 1/Req = 1/R1 + 1/R2 + ... + 1/RN.",
             "sourceId": "SRC-ETSU-PHYS2020"
           }
         ],
@@ -585,7 +588,8 @@
         "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "Corrected in the Product Architect's narrow batch-02 review (this pass): the original claim additionally asserted that the equivalent resistance is always smaller than the smallest individual branch resistance. That assertion was this session's own inference, not a statement quoted from either retrieved source, and is not required by this requirement's evidence plan; it is removed so the claim states only the reciprocal relationship the sources actually establish."
       }
     },
     {
@@ -659,7 +663,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "P = V^2/R gives the power dissipated in a resistance R when the voltage V across it (rather than the current) is known; it is obtained by substituting I=V/R into P=VI. The worked source example makes explicit that using this form to equate the source emf with V requires the assumption that any internal/source resistance is negligible compared with the load resistance -- i.e. it applies 'where appropriate', not unconditionally.",
+            "claimText": "P = V^2/R gives the power dissipated in a resistance R for the actual voltage V across that specific resistance (rather than its current); it is obtained by substituting I=V/R into P=VI, and holds for a resistor or other ohmic load whenever V, and R both refer to the same component. In the worked source example, the source's emf E is substituted in place of the actual terminal/load voltage deltaV (deltaV=E) in order to use P=(deltaV)^2/Req -- that substitution, not the P=V^2/R relationship itself, is what requires the source's internal resistance to be negligible compared with the load. Where internal/source resistance is not negligible, P=V^2/R remains valid, but V must be the actual voltage across the load, not the source's emf.",
             "sourceId": "SRC-ETSU-PHYS2020"
           }
         ],
@@ -667,7 +671,8 @@
         "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "Corrected in the Product Architect's narrow batch-02 review (this pass): the original claim implied that P=V^2/R itself requires negligible source/internal resistance. On re-reading the same, already-acquired source passage, the negligible-resistance assumption is actually attached to a different step in the worked example -- substituting the source's emf E for the actual load voltage deltaV, so that E can be used in place of V in the formula. The formula P=V^2/R itself is unconditional for a resistor given the true voltage across it; the corrected claim states this and isolates the emf-substitution condition separately. No new source was sought."
       }
     },
     {
@@ -709,7 +714,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "The thermal effect of current (Joule heating) is the conversion of electrical energy into heat as current flows through a resistance; the rate of heat production is P=I^2R=IV, so it increases with the square of the current.",
+            "claimText": "The thermal effect of current (Joule heating) is the conversion of electrical energy into heat as current flows through a resistance; the rate of heat production is P=I^2R=IV, so for a fixed resistance and time, it increases with the square of the current.",
             "sourceId": "SRC-UNION-PHYS111"
           }
         ],
@@ -717,7 +722,8 @@
         "coverageDimensionsSatisfied": ["DEFINITION"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "Corrected in the Product Architect's narrow batch-02 review (this pass): 'increases with the square of the current' is now qualified as holding for a fixed resistance and time, since P=I^2R is itself a rate (power), and R is not assumed constant in general. This requirement's learning point (see the learning-point inventory) now also carries the fuse-operation evidence requirement's mapping, since fuse operation is taught as an application/example of this same thermal effect rather than as its own standalone mastery outcome -- the fuse evidence requirement itself remains a separate, independently-VERIFIED record below."
       }
     },
     {
@@ -743,7 +749,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "This requirement carries OPTIONAL_CONTEXT acquisition priority in the frozen plan (lower than the batch's other, REQUIRED-priority requirements); it is nonetheless fully VERIFIED here, so no priority-based shortfall is being reported."
+        "scopeNote": "This requirement carries OPTIONAL_CONTEXT acquisition priority in the frozen plan (lower than the batch's other, REQUIRED-priority requirements); it is nonetheless fully VERIFIED here, so no priority-based shortfall is being reported. Product Architect correction (this pass): this requirement is no longer mapped to a standalone learning point. It now maps to EFS-LP-19 (thermal effect of electric current), where fuse operation is taught as a practical application/example of the same thermal effect, not as its own independently-assessed mastery outcome (fuse construction, types, selection, coordination, regulations and fault-protection design remain explicitly out of scope for this batch). The requirement itself remains VERIFIED and its own evidence record is unchanged; only its learning-point mapping changed -- a requirement's evidence status and its role in the learning-point inventory are independent."
       }
     },
     {
@@ -778,6 +784,7 @@
     "SOURCE_GAP": 0,
     "CONFLICTED": 0
   },
+  "paCorrectionNote": "Product Architect narrow correction pass (this session): HOLD -- NARROW CORRECTION verdict on the original batch-02 acquisition. No requirement was reacquired and no new source was sought; all 28 requirements remain VERIFIED and the same 14 sources are retained. Six semantic corrections were applied to existing claims, narrowing each to what its already-registered source actually supports: (1) appropriate-voltage-drop-calculation's claim no longer presents the source's 5% figure as a universal permitted maximum -- it is now stated as BS 7671 Table 4Ab's recommended (informative) value for a specific context, with the learner directed to compare against the applicable design criterion; (2) p-v-2-r-where-appropriate's claim no longer implies P=V^2/R itself requires negligible source/internal resistance -- that condition is now correctly attributed to substituting source emf for actual load voltage, a distinct step in the same worked example; (3) parallel-circuit-equivalent-resistance-relationship's claim no longer carries the unsupported 'always smaller than the smallest branch' assertion, which was this session's own prior inference, not a quoted source statement; (4)-(5) conductors and insulators are now stated with comparative/qualified language (comparatively low resistance/resistivity; negligible or extremely small current) rather than absolute 'flows freely'/'cannot flow' wording; (6) conventional-current-versus-electron-flow-distinction's claim now presents 'positive to negative in the external circuit' as the common description for a DC source's external circuit specifically, not an unqualified universal rule, and thermal-effect-of-current's claim now qualifies the current-squared heating relationship as holding for a fixed resistance and time. See each affected result's own scopeNote for the specific correction and rationale.",
   "authorityPolicyNotes": "No requirement in this batch required broadening or reinterpreting a permitted authority class. The one compound-source binding (ohm-metre-resistivity-unit) is disclosed in that result's own scopeNote rather than presented as a single-passage statement it is not.",
   "boundedResearchNote": "This batch's research stayed within each requirement's permitted authority classes throughout; unlike batch-01, no requirement here required escalation to the Product Architect for an authority-policy adjudication. A small number of candidate URLs failed on access (see ACQUISITION-LOG.json) and were abandoned in favour of successfully-retrieved alternatives already within the permitted classes -- no requirement was left SOURCE_GAP."
 }
