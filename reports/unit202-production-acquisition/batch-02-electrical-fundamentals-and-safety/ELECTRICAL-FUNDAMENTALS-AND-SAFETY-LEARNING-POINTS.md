@@ -1,12 +1,14 @@
-# Electrical Fundamentals and Safety — Proposed Learning-Point Inventory
+# Electrical Fundamentals and Safety — Accepted Learning-Point Inventory
 
-**Status:** Proposed for Product Architect review. This is a curriculum-review artifact, not finished lesson prose — no full lessons, storyboards, assessment questions, or app content have been generated. No learning point here is Product-Architect-approved.
+**Status:** Accepted by the Product Architect. This is a curriculum-review artifact, not finished lesson prose — no full lessons, storyboards, assessment questions, or app content have been generated.
 
-**Correction note (this revision):** the Product Architect reviewed the original 20-learning-point inventory and returned a verdict of **HOLD — NARROW CORRECTION**: the acquisition itself is sound (all 28 requirements processed, the 14-source evidence set sufficient, the inventory broadly at the correct depth), but several semantic claims, mastery-granularity decisions, and prerequisite mappings needed correcting. This is a **one-time, pre-freeze renumbering**, authorized explicitly by the Product Architect, not a reopening of the acquisition — no new source was sought and no requirement was reacquired. Two structural changes were made: (1) the original combined resistivity/`R=ρL/A` learning point is **split** into two independently-diagnosable outcomes (`EFS-LP-06`, resistivity's meaning/symbol/unit; `EFS-LP-07`, using the formula); (2) the standalone fuse-operation learning point is **removed**, with its evidence requirement remapped to the thermal-effect learning point (`EFS-LP-19`), since fuse operation is an application of the thermal effect, not its own mastery outcome. The split and the removal net to the same total of 20 learning points. See `EVIDENCE-RESULTS.json`'s own `paCorrectionNote` for the underlying evidence-level corrections (voltage drop, `P=V²/R`, parallel-resistance claim, conductors/insulators, conventional current, thermal effect).
+**Closure note (this revision):** the Product Architect reviewed the corrected 20-learning-point inventory and accepted it in principle, at the appropriate early-stage depth. Two remaining corrections were applied before closure: (1) `EFS-LP-19`'s (thermal effect of electric current) qualifier is corrected from "for a fixed resistance and time" to "for a fixed resistance" only — the rate of heat generation (power, P=I²R) is proportional to the square of the current for a fixed resistance; time governs the total heat energy produced over an interval, not the instantaneous rate, so it is no longer conflated with the rate itself; (2) `EFS-LP-06`'s (resistivity: meaning, symbol and unit) cross-domain prerequisites `FM-LP-18`/`FM-LP-19` (scientific/engineering notation) are removed, since that learning point is purely conceptual and does not itself require notation skills — those two prerequisites are moved to `EFS-LP-07` (using R=ρL/A), the calculation learning point that genuinely requires them. Following these corrections, **`EFS-LP-01` through `EFS-LP-20` are now frozen** as the approved Batch 02 learning-point identity baseline — see "Identity policy (frozen)" below.
+
+**Prior narrow-correction revision:** before this closure, the Product Architect returned a verdict of **HOLD — NARROW CORRECTION** on the original 20-learning-point inventory: the acquisition itself was sound (all 28 requirements processed, the 14-source evidence set sufficient, the inventory broadly at the correct depth), but several semantic claims, mastery-granularity decisions, and prerequisite mappings needed correcting. A one-time, pre-freeze renumbering was authorized and applied: (1) the original combined resistivity/`R=ρL/A` learning point was **split** into two independently-diagnosable outcomes (`EFS-LP-06`, resistivity's meaning/symbol/unit; `EFS-LP-07`, using the formula); (2) the standalone fuse-operation learning point was **removed**, with its evidence requirement remapped to the thermal-effect learning point (`EFS-LP-19`), since fuse operation is an application of the thermal effect, not its own mastery outcome. The split and the removal net to the same total of 20 learning points. See `EVIDENCE-RESULTS.json`'s own `paCorrectionNote` and `paClosureNote` for the underlying evidence-level corrections (voltage drop, `P=V²/R`, parallel-resistance claim, conductors/insulators, conventional current, thermal effect).
 
 **Total learning points: 20**, covering all 28 electrical-fundamentals-and-safety evidence requirements (batch 02 of six planned Unit 202 production domains; batch 01, foundational mathematics, is already accepted).
 
-## Proposed instructional sequence
+## Instructional sequence
 
 Sequenced pedagogically (electron theory/current → conductors/resistance → Ohm's law → voltage drop → series circuits → parallel circuits → power → thermal effect/fuse → chemical effect), not alphabetically.
 
@@ -17,8 +19,8 @@ Sequenced pedagogically (electron theory/current → conductors/resistance → O
 | 3 | EFS-LP-03 | Conventional current and electron flow | Distinguish the two directional conventions | EFS-LP-01, EFS-LP-02 | — | READY |
 | 4 | EFS-LP-04 | Conductors and insulators | Explain the conductor/insulator distinction via resistivity | EFS-LP-01 | — | READY |
 | 5 | EFS-LP-05 | Resistance | State the definition and unit of resistance | — | — | READY |
-| 6 | EFS-LP-06 | Resistivity: meaning, symbol and unit | Explain resistivity as a material property and state ρ/Ω·m | EFS-LP-05 | FM-LP-18, FM-LP-19 | READY |
-| 7 | EFS-LP-07 | Using R = ρL/A | Identify R, ρ, L, A and calculate/rearrange R=ρL/A | EFS-LP-06 | FM-LP-04, FM-LP-13, FM-LP-16 | READY |
+| 6 | EFS-LP-06 | Resistivity: meaning, symbol and unit | Explain resistivity as a material property and state ρ/Ω·m | EFS-LP-05 | — | READY |
+| 7 | EFS-LP-07 | Using R = ρL/A | Identify R, ρ, L, A and calculate/rearrange R=ρL/A, including with scientific/engineering-notation values | EFS-LP-06 | FM-LP-04, FM-LP-13, FM-LP-16, FM-LP-18, FM-LP-19 | READY |
 | 8 | EFS-LP-08 | Ohm's law: V = IR and rearrangements | State Ohm's law and use V=IR, I=V/R, R=V/I | EFS-LP-05 | FM-LP-04, FM-LP-13, FM-LP-16 | READY |
 | 9 | EFS-LP-09 | Voltage drop across resistance | Explain voltage drop and use Vdrop=IR | EFS-LP-08 | — | READY |
 | 10 | EFS-LP-10 | Calculating voltage drop | Calculate cable voltage drop and compare against the applicable design criterion | EFS-LP-09 | FM-LP-04, FM-LP-13, FM-LP-19 | READY |
@@ -30,10 +32,10 @@ Sequenced pedagogically (electron theory/current → conductors/resistance → O
 | 16 | EFS-LP-16 | Parallel circuit: equivalent resistance | Calculate parallel equivalent resistance | EFS-LP-05, EFS-LP-15 | FM-LP-01, FM-LP-02, FM-LP-04 | READY |
 | 17 | EFS-LP-17 | Electrical power formulas | State and select the appropriate power formula | EFS-LP-08 | FM-LP-04, FM-LP-13, FM-LP-14 | READY |
 | 18 | EFS-LP-18 | Calculating power in a DC circuit | Reduce a network and calculate its power | EFS-LP-17, EFS-LP-12, EFS-LP-16 | FM-LP-04, FM-LP-16 | READY |
-| 19 | EFS-LP-19 | Thermal effect of electric current | State that current generates heat via P=I²R and explain fuse operation | EFS-LP-17 | — | READY |
+| 19 | EFS-LP-19 | Thermal effect of electric current | State that, for a fixed resistance, heating power is proportional to I², and explain fuse operation | EFS-LP-17 | — | READY |
 | 20 | EFS-LP-20 | Chemical effect and electrolysis | Explain electrolysis and anode/cathode roles | EFS-LP-02 | — | READY |
 
-**All 20 learning points are READY and proposed. None are HELD or partially evidenced.**
+**All 20 learning points are READY and accepted. None are HELD or partially evidenced.**
 
 ## Design rationale: why 20 learning points, not 28
 
@@ -57,12 +59,14 @@ Every cross-domain prerequisite below is a genuine dependency, checked against t
 | FM-LP-13 (substitution and order of operations) | EFS-LP-02, EFS-LP-07, EFS-LP-08, EFS-LP-10, EFS-LP-17 |
 | FM-LP-14 (laws of indices, positive powers) | EFS-LP-17 (power formulas — I² and V² are powers) |
 | FM-LP-16 (simple formula rearrangement) | EFS-LP-07, EFS-LP-08, EFS-LP-18 |
-| FM-LP-18 (standard/scientific form) | EFS-LP-06 (resistivity values, e.g. 1.7×10⁻⁸ Ω·m) |
-| FM-LP-19 (engineering notation/SI prefixes) | EFS-LP-06, EFS-LP-10 (mV/A/m cable tables, µΩ·m-scale resistivity values) |
+| FM-LP-18 (standard/scientific form) | EFS-LP-07 (using R=ρL/A with resistivity values in scientific notation, e.g. 1.7×10⁻⁸ Ω·m) |
+| FM-LP-19 (engineering notation/SI prefixes) | EFS-LP-07 (SI-prefixed dimensions, e.g. a cross-sectional area given in mm²), EFS-LP-10 (mV/A/m cable tables) |
 
 Batch 01's own `FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.json` had already flagged `FM-LP-01`/`FM-LP-02` as foundational for "parallel-resistance-style formulae (1/R = 1/R₁ + 1/R₂)" before this batch existed — that anticipated prerequisite is confirmed and used here (EFS-LP-16), not invented after the fact.
 
-**Correction applied this pass:** `FM-LP-13` (substitution/order of operations) is removed from `EFS-LP-05` (resistance), which is purely definitional (states what resistance is and its unit, with no calculation outcome of its own) — arithmetic prerequisites are not attached to purely conceptual or definitional learning points. `FM-LP-04` (decimal arithmetic) is newly added to every learning point with an explicit numerical calculation outcome, listed in the table above.
+**Correction applied in the prior pass:** `FM-LP-13` (substitution/order of operations) is removed from `EFS-LP-05` (resistance), which is purely definitional (states what resistance is and its unit, with no calculation outcome of its own) — arithmetic prerequisites are not attached to purely conceptual or definitional learning points. `FM-LP-04` (decimal arithmetic) is attached to every learning point with an explicit numerical calculation outcome, listed in the table above.
+
+**Correction applied in this closure pass:** `FM-LP-18`/`FM-LP-19` (scientific/engineering notation) are moved from `EFS-LP-06` to `EFS-LP-07` — `EFS-LP-06` is purely conceptual (resistivity's meaning, symbol, unit) and does not itself require notation skills to understand; `EFS-LP-07` is the calculation learning point that genuinely requires reading resistivity values in scientific notation and handling SI-prefixed dimensions consistently. This does not create a separate unit-conversion learning point — notation/prefix handling remains reused foundational mathematics knowledge, applied within EFS-LP-07, not retaught.
 
 Not every mathematically-adjacent `FM-LP-*` ID was added "just in case" — for example, indices' second half (FM-LP-15, negative indices) is not listed as a prerequisite anywhere in this batch, since no electrical-fundamentals learning point in this batch requires it.
 
@@ -72,20 +76,20 @@ Not every mathematically-adjacent `FM-LP-*` ID was added "just in case" — for 
 
 - **EFS-LP-01 — Basic electron theory.** Atomic structure (protons/neutrons/electrons, neutral atom) and free-electron mobility as the basis of conduction. *Exclusions:* electron shells/orbitals, band theory, ionisation.
 - **EFS-LP-02 — Current as the rate of flow of electric charge.** I=charge/time, ampere=coulomb/second. Deliberately worded to teach current as charge flow as the correct definition (not electron flow as an equivalent restatement) — the false-green risk this batch's brief explicitly named. *Exclusions:* drift velocity, charge-carrier density.
-- **EFS-LP-03 — Conventional current and electron flow.** Conventional current is defined as the direction positive charge would move; in the external circuit of a DC source this is commonly described as positive-to-negative, but this is scoped to that specific case, not presented as an unqualified universal rule (**corrected this pass**). Electrons drift in the opposite direction; both give identical circuit-analysis results. *Exclusions:* semiconductor hole flow.
+- **EFS-LP-03 — Conventional current and electron flow.** Conventional current is defined as the direction positive charge would move; in the external circuit of a DC source this is commonly described as positive-to-negative, but this is scoped to that specific case, not presented as an unqualified universal rule. Electrons drift in the opposite direction; both give identical circuit-analysis results. *Exclusions:* semiconductor hole flow.
 
 ### Conductors, resistance, resistivity (EFS-LP-04 to EFS-LP-07)
 
-- **EFS-LP-04 — Conductors and insulators.** Combined as one comparison. **Corrected this pass:** conductors allow charge to move relatively readily (comparatively low resistance/resistivity), rather than "flow freely"; insulators strongly oppose charge movement and carry negligible/extremely small current at ordinary voltages, rather than an absolute "cannot flow". *Exclusions:* semiconductors, superconductivity.
-- **EFS-LP-05 — Resistance.** R=V/I, unit ohms. Definitional only — no calculation prerequisite attached (**corrected this pass**: `FM-LP-13` removed).
-- **EFS-LP-06 — Resistivity: meaning, symbol and unit.** Resistivity as a shape-independent material property; symbol ρ; unit ohm-metre (Ω·m). **Split this pass** from a previously combined learning point that also included the formula — a learner can know what resistivity is without yet applying R=ρL/A. *Exclusions:* temperature dependence, semiconductor/superconductor resistivity, the formula itself (see EFS-LP-07).
-- **EFS-LP-07 — Using R = ρL/A.** Identifying R, ρ, L, A; qualitative reasoning about how R changes with each; calculating or rearranging for an unknown. **Split this pass** from EFS-LP-06 as a separately-diagnosable procedural outcome. *Exclusions:* anisotropic conductors, first-principles derivation.
+- **EFS-LP-04 — Conductors and insulators.** Combined as one comparison. Conductors allow charge to move relatively readily (comparatively low resistance/resistivity), rather than "flow freely"; insulators strongly oppose charge movement and carry negligible/extremely small current at ordinary voltages, rather than an absolute "cannot flow". *Exclusions:* semiconductors, superconductivity.
+- **EFS-LP-05 — Resistance.** R=V/I, unit ohms. Definitional only — no calculation prerequisite attached.
+- **EFS-LP-06 — Resistivity: meaning, symbol and unit.** Resistivity as a shape-independent material property; symbol ρ; unit ohm-metre (Ω·m). Split from a previously combined learning point that also included the formula — a learner can know what resistivity is without yet applying R=ρL/A. Purely conceptual: carries no cross-domain (mathematics) prerequisite of its own — notation skills belong to EFS-LP-07, the calculation learning point (**corrected this closure pass**). *Exclusions:* temperature dependence, semiconductor/superconductor resistivity, the formula itself (see EFS-LP-07).
+- **EFS-LP-07 — Using R = ρL/A.** Identifying R, ρ, L, A; qualitative reasoning about how R changes with each; calculating or rearranging for an unknown, including where resistivity is given in scientific notation or a dimension is given with an SI prefix (**corrected this closure pass**: FM-LP-18/FM-LP-19 moved here from EFS-LP-06). *Exclusions:* anisotropic conductors, first-principles derivation.
 
 ### Ohm's law and voltage drop (EFS-LP-08 to EFS-LP-10)
 
 - **EFS-LP-08 — Ohm's law: V = IR and rearrangements.** Stated as a conditional (ohmic-material) relationship, not a universal law. Concept and formula combined — the same single skill. *Exclusions:* non-ohmic devices, AC impedance.
 - **EFS-LP-09 — Voltage drop across resistance.** What a voltage drop is, and Vdrop=IR. Kept separate from EFS-LP-10 (calculation procedure) — concept vs. procedure are different skills.
-- **EFS-LP-10 — Calculating voltage drop.** The (mV/A/m)×Ib×L/1000 procedure. **Corrected this pass:** the outcome now directs the learner to calculate the voltage drop and compare it with the stated or applicable design criterion for the problem, rather than checking against a universal "permitted maximum" — BS 7671 Table 4Ab's 5% figure is a recommended, informative value for one specific context (non-lighting loads from a public LV distribution system), not a statutory limit applying to every design. No separate mastery point is created for the 5% example. *Exclusions:* cable correction factors, three-phase/AC voltage drop, treating 5% as universal.
+- **EFS-LP-10 — Calculating voltage drop.** The (mV/A/m)×Ib×L/1000 procedure. The outcome directs the learner to calculate the voltage drop and compare it with the stated or applicable design criterion for the problem, rather than checking against a universal "permitted maximum" — BS 7671 Table 4Ab's 5% figure is a recommended, informative value for one specific context (non-lighting loads from a public LV distribution system), not a statutory limit applying to every design. No separate mastery point is created for the 5% example. *Exclusions:* cable correction factors, three-phase/AC voltage drop, treating 5% as universal.
 
 ### Series circuits (EFS-LP-11 to EFS-LP-13)
 
@@ -97,17 +101,17 @@ Not every mathematically-adjacent `FM-LP-*` ID was added "just in case" — for 
 
 - **EFS-LP-14 — Parallel circuit: voltage.** Voltage common across branches.
 - **EFS-LP-15 — Parallel circuit: current.** Current divides and sums.
-- **EFS-LP-16 — Parallel circuit: equivalent resistance.** 1/Req=1/R1+1/R2+... **Corrected this pass:** the additional, unsupported assertion that the equivalent resistance is "always less than the smallest branch resistance" (this session's own prior inference, not a quoted source statement) is removed — the learning point now states only the reciprocal relationship the evidence actually establishes. Still requires fraction arithmetic (FM-LP-01/FM-LP-02), as Batch 01's own inventory anticipated.
+- **EFS-LP-16 — Parallel circuit: equivalent resistance.** 1/Req=1/R1+1/R2+... States only the reciprocal relationship the evidence actually establishes (no "always less than the smallest branch" assertion). Requires fraction arithmetic (FM-LP-01/FM-LP-02), as Batch 01's own inventory anticipated.
 
 ### Power and thermal effect (EFS-LP-17 to EFS-LP-19)
 
-- **EFS-LP-17 — Electrical power formulas.** Three equivalent forms of one relationship, combined as the frozen plan itself frames them. **Corrected this pass:** the condition on P=V²/R no longer implies the formula itself requires negligible internal/source resistance. P=V²/R applies whenever V is the actual voltage across the resistance in question; negligible internal resistance is relevant only when a source's emf is substituted for the load's actual terminal voltage — a distinct step, not a property of the formula. Learners must choose V, I and R values that refer to the same component or equivalent load. *Exclusions:* AC power/power factor, energy (kWh) calculations.
+- **EFS-LP-17 — Electrical power formulas.** Three equivalent forms of one relationship, combined as the frozen plan itself frames them. P=V²/R applies whenever V is the actual voltage across the resistance in question; negligible internal resistance is relevant only when a source's emf is substituted for the load's actual terminal voltage — a distinct step, not a property of the formula. Learners must choose V, I and R values that refer to the same component or equivalent load. *Exclusions:* AC power/power factor, energy (kWh) calculations.
 - **EFS-LP-18 — Calculating power in a DC circuit.** Network reduction to Req, then formula application. Kept separate from EFS-LP-17 — knowing the formulas and executing a multi-resistor calculation are different skills.
-- **EFS-LP-19 — Thermal effect of electric current.** Heat generation proportional to I²R, **now qualified this pass** as holding "for a fixed resistance and time" (power is a rate; resistance is not assumed constant in general). **Now also covers fuse operation** as a practical application/example of this same thermal effect (excessive current → heating in the fuse element → melting → circuit interruption) — the previously standalone fuse-operation learning point is removed and its evidence requirement remapped here (**corrected this pass**). Independent mastery of fuse construction, types, selection, coordination, regulations, or fault-protection design remains out of scope.
+- **EFS-LP-19 — Thermal effect of electric current.** For a fixed resistance, the rate of heat generation (power, P=I²R) is proportional to the square of the current — doubling the current quadruples the heating power (**corrected this closure pass**: "and time" removed; time governs the total heat energy produced over an interval, not the instantaneous rate, so it is not part of the rate qualifier). Also covers fuse operation as a practical application/example of this same thermal effect (excessive current → heating in the fuse element → melting → circuit interruption) — the previously standalone fuse-operation learning point was removed and its evidence requirement remapped here. Independent mastery of fuse construction, types, selection, coordination, regulations, or fault-protection design remains out of scope.
 
 ### Chemical effect (EFS-LP-20)
 
-- **EFS-LP-20 — Chemical effect and electrolysis.** Electrolyte, anode oxidation, cathode reduction, decomposition, via the electrolysis-of-water example. Unchanged in this correction pass other than renumbering. *Exclusions:* Faraday's laws of electrolysis, electrode potentials, industrial-scale processes.
+- **EFS-LP-20 — Chemical effect and electrolysis.** Electrolyte, anode oxidation, cathode reduction, decomposition, via the electrolysis-of-water example. *Exclusions:* Faraday's laws of electrolysis, electrode potentials, industrial-scale processes.
 
 ## Coverage matrix — every requirement maps to at least one learning point
 
@@ -146,8 +150,15 @@ No orphaned learning points: every one of the 20 traces to at least one evidence
 
 ## Held learning points
 
-None. Every learning point is `READY` and proposed for review.
+None. Every learning point is `READY` and accepted.
 
-## Identity policy (proposed, not yet frozen; one renumbering authorized and applied)
+## Identity policy (frozen)
 
-`EFS-LP-01` through `EFS-LP-20` are proposed IDs, not yet an approved identity baseline — unlike `FM-LP-*`, which the Product Architect has already frozen. The Product Architect explicitly authorized **one** pre-freeze renumbering in this correction pass (the resistivity split and fuse-removal described above); no further renumbering of this kind is permitted once this inventory is accepted and frozen. If accepted, the same discipline Batch 01 now follows would then apply: IDs preserved exactly, new learning points appended (`EFS-LP-21` onward) rather than inserted, and instructional order tracked separately from identity via the `instructionalSequence` field.
+`EFS-LP-01` through `EFS-LP-20` are now the **approved Batch 02 learning-point identity baseline**, mirroring the discipline already applied to the accepted Batch 01 `FM-LP-*` inventory. Future revisions to this inventory must:
+
+1. **Preserve every existing ID exactly** — an ID is never reassigned to a different learning point.
+2. **Append new IDs** (`EFS-LP-21` onward) for genuinely new learning points, rather than inserting into the existing numeric sequence.
+3. **Deprecate rather than silently reuse** a removed ID — if a learning point is retired, its ID is recorded as deprecated (see `deprecatedLearningPointIds` in the JSON), not recycled.
+4. **Never renumber** the inventory merely because the taught/instructional sequence changes.
+
+Instructional order is tracked separately via the `instructionalSequence` field, which may be freely reordered without affecting any learning point's stable `id`. No further renumbering of the kind applied during the prior correction pass (the resistivity split, the fuse removal) is authorized.
