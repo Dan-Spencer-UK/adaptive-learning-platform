@@ -88,11 +88,78 @@
     {"note": "hyperphysics.phy-astr.gsu.edu", "failureType": "TLS certificate hostname mismatch (certificate names hyperphysics.gsu.edu)", "resolution": "Retried successfully at hyperphysics.gsu.edu, identical content; used for every HyperPhysics fetch in this batch."}
   ],
   "pdfExtractionWorkaround": {
-    "issue": "WebFetch's text extraction returned only 'binary/compressed content' for two slide-deck/formula-heavy PDFs.",
-    "affectedSources": ["SRC-UW-SIMPLEMACHINES (courses.washington.edu/engr100 PDF)", "SRC-CUNY-GEARS (sci.brooklyn.cuny.edu gear_notes.pdf)"],
-    "resolution": "WebFetch saves the fetched binary locally and reports its path; the Read tool's image-based PDF-page reader (pages parameter, max 20 pages per call) was used on the saved path to visually read the rendered pages, successfully extracting the needed text, formulas and diagrams."
+    "issue": "WebFetch's text extraction returned only 'binary/compressed content' (or unreadable OneNote-image content) for slide-deck/formula-heavy or handwritten PDFs.",
+    "affectedSources": ["SRC-UW-SIMPLEMACHINES (courses.washington.edu/engr100 PDF)", "SRC-CUNY-GEARS (sci.brooklyn.cuny.edu gear_notes.pdf)", "SRC-PSU-POWER, Problem 2 worked-solution PDF (mechanicsmap.psu.edu/.../pdf/P2.pdf, added in the Product Architect correction pass)"],
+    "resolution": "WebFetch saves the fetched binary locally and reports its path; the Read tool's image-based PDF-page reader (pages parameter, max 20 pages per call) was used on the saved path to visually read the rendered pages, successfully extracting the needed text, formulas, diagrams, and (for the P2.pdf handwritten solution) the worked calculation steps."
   },
   "stoppingRationale": "All 28 requirements reached VERIFIED status within the bounded search described above; no requirement required exhausting the 4-candidate bound, and no SOURCE_GAP, PARTIALLY_VERIFIED, or CONFLICTED result was produced.",
   "totalUniqueSourcesRegistered": 17,
-  "accessDate": "2026-09-05"
+  "accessDate": "2026-09-05",
+  "productArchitectCorrectionPass": {
+    "trigger": "Product Architect HOLD: NARROW EVIDENCE AND LEARNING-POINT CORRECTION, identifying six specific false-green risks in the original 28-VERIFIED/18-READY acquisition (see PROJECT-STATUS.md for the full finding list).",
+    "sourceIsolationBoundaryReaffirmed": "This correction pass re-examined only already-registered sources and, where genuinely necessary, performed bounded new web searches. No sealed historical benchmark, historical manifest/dossier, pilot artifact, old Unit 202 assertion, existing lesson/storyboard, private material, or historical clean-room output was inspected or used as a research lead at any point in this pass, consistent with the original source-isolation boundary above.",
+    "findingsAddressed": [
+      {
+        "finding": "1. Ideal-machine power relationship",
+        "action": "Re-examined the already-registered SRC-HP-SIMMAC (work equality) and SRC-PSU-POWER (P=W/t) sources. No new search was needed: constructed a transparent, explicitly-labelled derivation combining the two, qualified to (a) no internal energy storage and (b) the same time interval for input and output. Re-cited SRC-PSU-POWER as a candidate source for this requirement (already registered; no new sourceId).",
+        "searchQueriesUsed": [],
+        "candidatesEvaluated": 0,
+        "outcome": "ideal-machine-conserves-power::RELATIONSHIP remains VERIFIED, now with an explicit, properly-qualified derived claim replacing the previously-unqualified inline inference."
+      },
+      {
+        "finding": "2. Multistep mechanical calculations",
+        "action": "The previous sole evidence (SRC-UW-SIMPLEMACHINES's hydraulic worked example) was formally rejected for this requirement as out-of-scope (hydraulics is excluded from this batch's mastery scope). Searched for a genuine in-scope multistep worked example.",
+        "searchQueriesUsed": [
+          "worked example lever mechanical advantage calculate work done lifting load joules university physics engineering",
+          "pulley system worked example calculate effort force then work done joules lifting load university course notes",
+          "site:mechanicsmap.psu.edu gears (checking Penn State's own site structure for a usable worked example)",
+          "power worked example calculate work done lifting mass against gravity then power over time university (Penn State Mechanics Map power page, Question 2)"
+        ],
+        "candidatesEvaluated": [
+          {"url": "https://ecampus.matc.edu/mihalj/scitech/unit1/levers/levers.htm", "decision": "REJECTED", "reason": "Milwaukee Area Technical College hosts the page, but it is individually authored with no course number/department/syllabus reference identifying it as institutional course content; its worked example uses non-metric (lb-ft) units without institutional framing. A stronger, unambiguously institutional candidate was found instead."},
+          {"url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-4_efficiency/efficiency.html (Question 1, hydraulic)", "decision": "REJECTED", "reason": "Also a hydraulic worked example (same out-of-scope topic as the original rejected candidate); not used."},
+          {"url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html (Question 2, car lift) + linked pdf/P2.pdf worked solution", "decision": "ACCEPTED", "reason": "Already-registered Penn State Mechanics Map source (SRC-PSU-POWER); its Question 2 worked-solution PDF genuinely chains a gravitational lifting-work calculation (weight force x height) into a power calculation (P=W/t) -- both already independently evidenced elsewhere in this batch, and both in-scope. Read visually via the image-based PDF reader after WebFetch's text extraction failed on the handwritten-solution image."}
+        ],
+        "outcome": "legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE remains VERIFIED, now bound to a genuinely in-scope worked example from an already-registered source; the rejected hydraulic example is retained here and in SOURCE-REGISTER.json, explicitly marked rejected for this specific requirement (it remains valid, separately-accepted evidence for force-distance-trade and ideal-machine-conserves-power, which do not require the example itself to be in-scope content)."
+      },
+      {
+        "finding": "3. Gear definition overreach",
+        "action": "Re-examined SRC-CUNY-GEARS's own quoted passage and confirmed it supports only the driver/driven/idler definitions, not a general 'what is a gear' statement. Performed a bounded re-fetch of the already-registered SRC-PSU-GEARDIRECTION page specifically to find an exact supporting passage.",
+        "searchQueriesUsed": [
+          "gears definition toothed wheels transmit rotational motion torque between shafts university engineering",
+          "\"gear\" definition \"toothed wheel\" transmit motion site:.edu mechanical engineering course",
+          "site:mechanicsmap.psu.edu gears"
+        ],
+        "candidatesEvaluated": [
+          {"url": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html", "decision": "ACCEPTED (bounded top-up on an already-registered source)", "reason": "Re-fetched the same page (already SRC-PSU-GEARDIRECTION) and found: 'Gears are another common way of transmitting motion and torque from one shaft to another shaft,' plus confirmation that meshing occurs via teeth."}
+        ],
+        "outcome": "gears::EXACT_FACT remains VERIFIED; the general definition claim previously mis-attributed to SRC-CUNY-GEARS is now correctly bound to SRC-PSU-GEARDIRECTION, and SRC-CUNY-GEARS's claim is narrowed to only what it actually states (driver/driven/idler)."
+      },
+      {
+        "finding": "4. Incorrect lever normalization",
+        "action": "Re-examined SRC-UW-SIMPLEMACHINES's already-quoted passage (10cm effort travel, 30cm load travel, velocity ratio 1/3) and corrected the normalized claim, which had inverted the description (previously said the load moves a smaller distance than the effort). No new search was needed.",
+        "searchQueriesUsed": [],
+        "candidatesEvaluated": 0,
+        "outcome": "basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP remains VERIFIED; the corrected claim accurately states the load moves a greater distance than the effort in this specific worked example, and keeps arm length distinct from distance travelled."
+      },
+      {
+        "finding": "5. Gear torque/speed qualification",
+        "action": "Re-examined SRC-CUNY-GEARS's already-quoted torque/speed passage; added an explicit 'ideal (lossless) model' qualifier, since the source itself does not address real friction losses. No new search was needed.",
+        "searchQueriesUsed": [],
+        "candidatesEvaluated": 0,
+        "outcome": "torque-speed-relationship-where-applicable::RELATIONSHIP remains VERIFIED, now explicitly scoped to the ideal gear model."
+      },
+      {
+        "finding": "6. Cross-domain prerequisites",
+        "action": "Re-checked every FM-LP-* prerequisite on every learning point against the operation genuinely required by that learning point's own outcome and evidenced worked examples. No new search was needed (this was an internal design review, not an evidence-acquisition task).",
+        "searchQueriesUsed": [],
+        "candidatesEvaluated": 0,
+        "outcome": "Removed all cross-domain prerequisites from MM-LP-09 (rope-section counting) and MM-LP-10 (now purely conceptual); removed the formula-rearrangement prerequisite FM-LP-16 from MM-LP-13, MM-LP-15, and MM-LP-16, whose evidenced worked examples only perform forward substitution, not rearrangement. FM-LP-16 is retained on MM-LP-02, MM-LP-05, and MM-LP-07, whose outcomes and evidence genuinely include solving for a different unknown."
+      }
+    ],
+    "strictNormalizationReview": "Every retrievedPassage-to-normalizedClaims mapping in EVIDENCE-RESULTS.json was reviewed for unsupported enrichment beyond findings 1-5 above. No further corrections were found necessary; the remaining 23 requirements' normalized claims were confirmed to stay within what their cited passages actually state (or, where multiple passages are combined, the combination is a straightforward union of directly-stated facts, not an inference requiring separate disclosure).",
+    "totalNewSearchQueries": 7,
+    "totalNewCandidatesEvaluated": 4,
+    "sourcesAddedOrChanged": "No new sourceId was created. SRC-PSU-GEARDIRECTION and SRC-PSU-POWER (both already registered) gained additional supported requirements from bounded re-examination/re-fetch of the same already-registered pages. SRC-UW-SIMPLEMACHINES lost its support for one requirement (legitimate-multistep-mechanical-calculations), explicitly marked rejected rather than removed from the record. Total unique registered sources remains 17."
+  }
 }

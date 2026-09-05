@@ -309,7 +309,7 @@
             "sourceId": "SRC-COMFSM-LEVERTORQUE"
           },
           {
-            "claimText": "Confirms the same moment-balance principle from a second, independent university source, and additionally demonstrates that the ratio of distances moved by the effort and the load (the 'velocity ratio') is the inverse of the force ratio -- a smaller effort-arm-to-load-arm distance ratio corresponds to the load moving a proportionally smaller distance than the effort, worked with real numbers (10 cm effort travel to 30 cm load travel, ratio 1/3).",
+            "claimText": "Confirms the same moment-balance principle from a second, independent university source, and additionally demonstrates with a worked numeric example that the ratio of distances moved by two points on a rotating lever is directly proportional to their own distances from the fulcrum (their arm lengths) -- NOT to the force ratio, which is the inverse. In this specific worked example, the effort moves 10 cm while the load (at a point farther from the fulcrum) moves 30 cm: a velocity ratio (distance moved by effort / distance moved by load) of 1/3, meaning the load moves three times farther than the effort in this arrangement. This illustrates that a longer load arm produces a proportionally greater distance travelled at the load end for a given rotation, in exchange for requiring a correspondingly larger effort force (per Fe x de = Fr x dr) -- the source's own numbers do not describe the load moving a smaller distance than the effort.",
             "sourceId": "SRC-UW-SIMPLEMACHINES"
           }
         ],
@@ -317,7 +317,8 @@
         "coverageDimensionsSatisfied": ["CONCEPTUAL_RELATIONSHIP"],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "Corrected in a Product Architect narrow-correction pass: the second normalized claim previously stated an internally contradictory description (asserting the load moves a smaller distance than the effort while citing an example where the load moves 30cm against the effort's 10cm). The claim is now corrected to accurately describe the source's own worked numbers, and is careful to distinguish the distance travelled by a point on the lever (proportional to its own arm length, for a given rotation) from the arm length itself, which is a distinct geometric quantity."
       }
     },
     {
@@ -326,10 +327,11 @@
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": ["DEFINITION"],
       "sourceAuthorityClasses": ["PRIMARY_NORMATIVE_OR_STANDARDS_BODY", "GOVERNMENT_OR_REGULATOR", "ACADEMIC_OR_RESEARCH_INSTITUTION", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
-      "searchQueriesUsed": ["hyperphysics.gsu.edu gear ratio torque speed driver driven", "two external gears meshing directly rotate opposite directions university physics"],
+      "searchQueriesUsed": ["hyperphysics.gsu.edu gear ratio torque speed driver driven", "two external gears meshing directly rotate opposite directions university physics", "gears definition toothed wheels transmit rotational motion torque between shafts (bounded top-up, PA correction pass)"],
       "candidatesEvaluatedInOrder": [
         { "url": "https://www.sci.brooklyn.cuny.edu/~kammet/gear_notes.pdf", "decision": "ACCEPTED", "sourceId": "SRC-CUNY-GEARS", "reason": "CUNY Brooklyn College course notes, retrieved and read visually via the harness's image-based PDF reader (WebFetch's text extraction failed on this PDF); defines driver/driven/idler gears directly." },
-        { "url": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-GEARDIRECTION", "reason": "Penn State Mechanics Map, retrieved and read; states rotation direction of directly-meshing external gears." }
+        { "url": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-GEARDIRECTION", "reason": "Penn State Mechanics Map, retrieved and read; states rotation direction of directly-meshing external gears." },
+        { "url": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html", "decision": "ACCEPTED (bounded top-up, Product Architect correction pass)", "sourceId": "SRC-PSU-GEARDIRECTION", "reason": "Re-fetched the same already-registered page specifically to find an exact passage supporting the general 'what a gear does' claim, since the CUNY passage supports only driver/driven/idler, not a general definition. Found: 'Gears are another common way of transmitting motion and torque from one shaft to another shaft', plus confirmation that meshing is via teeth ('the teeth of one gear would be passing through the teeth of the other gear' if not properly meshed)." }
       ],
       "retrievalStatus": "RETRIEVED_AND_READ",
       "result": {
@@ -346,13 +348,17 @@
             "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
             "sourceRef": "https://mechanicsmap.psu.edu/websites/12_rigid_body_kinematics/12-3_belt_and_gear_driven_systems/belt_and_gear_driven_systems.html",
             "sourceLocator": "Penn State Mechanics Map, 'Belt and Gear Driven Systems' page",
-            "retrievedPassage": "\"meshed gears rotate in opposite directions (if one gear rotates clockwise, the other will rotate counter-clockwise)\"."
+            "retrievedPassage": "\"Gears are another common way of transmitting motion and torque from one shaft to another shaft.\" \"If this were not true, the teeth of one gear would be passing through the teeth of the other gear\" (confirming meshing occurs via teeth). \"meshed gears rotate in opposite directions (if one gear rotates clockwise, the other will rotate counter-clockwise)\"."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Gears are toothed wheels that mesh together to transmit rotational motion and force between shafts; the gear connected to the input (e.g. a motor) is the driver (input) gear, and the gear connected to the output load is the driven (output) gear; any gears positioned between them are idler gears.",
+            "claimText": "The gear connected to the input (e.g. a motor) is the driver (input) gear, and the gear connected to the output load is the driven (output) gear; any gears positioned between them are idler gears.",
             "sourceId": "SRC-CUNY-GEARS"
+          },
+          {
+            "claimText": "Gears transmit rotational motion and torque from one shaft to another shaft; when two gears mesh, they engage via their teeth (the source's own caution that improperly-meshed gears would otherwise have 'the teeth of one gear...passing through the teeth of the other gear' confirms meshing is a tooth-to-tooth engagement).",
+            "sourceId": "SRC-PSU-GEARDIRECTION"
           },
           {
             "claimText": "For two gears meshing directly with external teeth, the gears rotate in opposite directions (one clockwise, the other counter-clockwise).",
@@ -364,7 +370,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Gears are never stated or implied to create or increase power anywhere in either retrieved source; both sources describe gears purely as transmitting/trading torque and speed, consistent with the Product Architect's explicit instruction never to claim gears create or increase power."
+        "scopeNote": "Corrected in a Product Architect narrow-correction pass: the general 'what a gear does' claim was previously attached to the CUNY passage, which in fact supports only the driver/driven/idler definitions, not a general description of gears -- that was unsupported enrichment. The general definition is now bound to an exact passage from the already-registered SRC-PSU-GEARDIRECTION page (re-examined for this purpose), which directly states that gears transmit motion and torque between shafts and confirms meshing occurs via teeth. Gears are never stated or implied to create or increase power anywhere in either retrieved source; both sources describe gears purely as transmitting/trading torque and speed, consistent with the Product Architect's explicit instruction never to claim gears create or increase power."
       }
     },
     {
@@ -437,7 +443,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "For a gear train transmitting rotational power (where applicable, e.g. between a motor shaft and a driven wheel/axle), torque at the output scales with the gear ratio (WheelTorque = MotorTorque x GR) while speed scales with the inverse of the same gear ratio: an arrangement that increases torque necessarily decreases rotational speed proportionally, and vice versa -- torque and speed trade against each other, not independently.",
+            "claimText": "For a gear train transmitting rotational power (where applicable, e.g. between a motor shaft and a driven wheel/axle), in the IDEAL (lossless) gear model, torque at the output scales with the gear ratio (WheelTorque = MotorTorque x GR) while speed scales with the inverse of the same gear ratio: an arrangement that increases torque necessarily decreases rotational speed proportionally, and vice versa -- torque and speed trade against each other, not independently. Real gear trains lose some torque to friction between meshing teeth and in their bearings, so an actual output torque is somewhat less than this ideal value; the DIRECTION of the torque/speed trade-off (increase one, decrease the other) still holds for real gear trains, but the exact equation WheelTorque=MotorTorque x GR is an ideal-model simplification, not an unconditional property of real, lossy gear trains.",
             "sourceId": "SRC-CUNY-GEARS"
           }
         ],
@@ -446,7 +452,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "The source frames this in the context of gears specifically ('where applicable' is honoured: no claim is made that every machine exhibits this trade-off, only that it holds for a gear train transmitting power between an input and output shaft)."
+        "scopeNote": "The source frames this in the context of gears specifically ('where applicable' is honoured: no claim is made that every machine exhibits this trade-off, only that it holds for a gear train transmitting power between an input and output shaft). Corrected in a Product Architect narrow-correction pass to make explicit that WheelTorque=MotorTorque x GR is the simplified ideal (lossless) gear model, not an unconditional property of real gear trains, which lose some torque to friction; the source itself does not discuss friction losses, so this qualifier is added as an honest scoping of the claim's applicability, consistent with this batch's general treatment of ideal-vs-real machines (see real-losses-reduce-useful-output below)."
       }
     },
     {
@@ -596,8 +602,9 @@
       "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE"],
       "searchQueriesUsed": ["university OR NASA ideal machine work input equals work output no energy created simple machine efficiency", "ideal machine work input work output university physics does not create energy OR conserves energy simple machines"],
       "candidatesEvaluatedInOrder": [
-        { "url": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-SIMMAC", "reason": "States the ideal-machine energy-conservation principle directly." },
-        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "Confirms with a worked numeric example explicitly invoking conservation of energy." }
+        { "url": "https://hyperphysics.gsu.edu/hbase/Mechanics/simmac.html", "decision": "ACCEPTED", "sourceId": "SRC-HP-SIMMAC", "reason": "States the ideal-machine work-equality (energy-conservation) principle directly." },
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "Confirms with a worked numeric example explicitly invoking conservation of energy." },
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html", "decision": "ACCEPTED (bounded top-up, Product Architect correction pass)", "sourceId": "SRC-PSU-POWER", "reason": "Already-registered source for P=W/t; re-cited here to make explicit, transparent derivation of the input-power/output-power relationship from the work equality plus the power definition, since neither single source directly states a power (as opposed to work) equality claim." }
       ],
       "retrievalStatus": "RETRIEVED_AND_READ",
       "result": {
@@ -614,17 +621,28 @@
             "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
             "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
             "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, hydraulic worked example",
-            "retrievedPassage": "\"Notice how the work is the same. The law of conservation of energy ('Energy can not be created or destroyed') is not violated. The increase in force is compensated by a decrease in distance travelled.\""
+            "retrievedPassage": "\"Notice how the work is the same. The law of conservation of energy ('Energy can not be destroyed') is not violated. The increase in force is compensated by a decrease in distance travelled.\""
+          },
+          {
+            "sourceId": "SRC-PSU-POWER",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html",
+            "sourceLocator": "Penn State Mechanics Map, 'Power in Particle Systems' page",
+            "retrievedPassage": "\"P_ave = W/t\": average power equals work done divided by the time interval."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "An ideal (frictionless) machine does not create energy or power: its work input equals its work output (Work_input = Work_output), and since power is the rate of doing work, if input and output act over the same time interval this equally means input power equals output power for the ideal case. A machine can trade force for distance (or torque for speed) but can never output more energy or power than is supplied to it.",
+            "claimText": "An ideal (frictionless) machine does not create energy: its work input equals its work output (Work_input = Work_output). A machine can trade force for distance (or torque for speed) but can never output more work or energy than is supplied to it.",
             "sourceId": "SRC-HP-SIMMAC"
           },
           {
             "claimText": "Confirms the same principle with an independent worked numeric example: increasing the output force is always exactly compensated by a decrease in the distance moved, so the work (and hence energy) supplied and delivered remain equal, consistent with conservation of energy.",
             "sourceId": "SRC-UW-SIMPLEMACHINES"
+          },
+          {
+            "claimText": "DERIVED (transparent synthesis of two independently-verified claims; not itself directly stated by either single source): combining the ideal-machine work equality (Work_input=Work_output) with the independently-evidenced definition of average power (P_ave=W/t), it follows that for an ideal (frictionless) machine with NO internal energy storage, comparing the input and the output over the SAME time interval t gives P_input = W_input/t = W_output/t = P_output. This is a restricted, explicitly-qualified result -- input mechanical power equals output mechanical power for such an ideal machine in steady operation, compared over a shared time interval -- and is NOT a claim that power is a generally conserved quantity in itself, nor does it hold for a machine that stores or releases energy internally (e.g. a flywheel or spring accumulating energy) or when input and output are compared over different time intervals.",
+            "derivedFrom": ["SRC-HP-SIMMAC", "SRC-PSU-POWER"]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -632,7 +650,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Bound strictly to the ideal (energy-conserving, work-in-equals-work-out) case; the companion requirement 'real-losses-reduce-useful-output' below covers the real, non-ideal case separately, so this claim is not weakened to also cover friction losses."
+        "scopeNote": "Corrected in a Product Architect narrow-correction pass: the previous normalized claim embedded an unqualified power-equality inference inside the SRC-HP-SIMMAC claim itself, without an explicit no-storage/same-interval qualification or an explicit source binding for the power side of the inference. The power-equality statement is now split out into its own explicitly-derived claim, transparently combining the ideal-machine work equality with the separately-evidenced P=W/t relationship, with the no-energy-storage and same-time-interval conditions stated explicitly. Bound strictly to the ideal (energy-conserving, work-in-equals-work-out) case; the companion requirement 'real-losses-reduce-useful-output' below covers the real, non-ideal case separately, so this claim is not weakened to also cover friction losses. This claim does not assert that gears, pulleys, or any machine create or increase power -- only that, under the stated ideal conditions, output power cannot exceed input power."
       }
     },
     {
@@ -1079,25 +1097,27 @@
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": ["PROCEDURE", "CALCULATION_METHOD"],
       "sourceAuthorityClasses": ["ACADEMIC_OR_RESEARCH_INSTITUTION", "PROFESSIONAL_BODY", "AUTHORITATIVE_TECHNICAL_REFERENCE", "AUTHORITATIVE_EDUCATIONAL_REFERENCE"],
-      "searchQueriesUsed": ["mechanicsmap.psu.edu OR university physics worked example lever pulley calculate effort load efficiency multistep"],
+      "searchQueriesUsed": ["mechanicsmap.psu.edu OR university physics worked example lever pulley calculate effort load efficiency multistep", "worked example lever mechanical advantage calculate work done lifting load joules university physics engineering (PA correction pass, bounded top-up)", "power worked example calculate work done lifting mass against gravity then power over time university (PA correction pass, bounded top-up)"],
       "candidatesEvaluatedInOrder": [
-        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "ACCEPTED", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "Genuine multi-step worked example chaining pressure, force, and work calculations, retrieved and read visually." }
+        { "url": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf", "decision": "REJECTED for this requirement (Product Architect correction pass)", "sourceId": "SRC-UW-SIMPLEMACHINES", "reason": "Genuine multi-step worked example chaining pressure, force, and work calculations, but the worked example itself is a hydraulic (pressure-based) system, which is explicitly excluded from this batch's own mastery scope. An out-of-scope example cannot serve as the sole procedure evidence for an in-scope learning point merely by calling it an analogy. Rejected as the evidential basis for this requirement; retained in ACQUISITION-LOG.json as a historically-evaluated, explicitly-rejected candidate. (It remains valid, separately-accepted evidence for the force-distance-trade and ideal-machine-conserves-power requirements above, which do not require the example itself to be in-scope content -- only to demonstrate the general force-distance/energy principle.)" },
+        { "url": "https://ecampus.matc.edu/mihalj/scitech/unit1/levers/levers.htm", "decision": "REJECTED", "reason": "Milwaukee Area Technical College hosts this page, but it is an individually-authored page (copyright to the named author) with no course number, department, or syllabus reference identifying it as institutional course content, and its worked example uses non-metric (lb-ft) units without a clear institutional-course framing; a stronger candidate (an unambiguous Penn State Mechanics Map worked solution, already a registered source in this batch) was found and preferred." },
+        { "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html", "decision": "ACCEPTED", "sourceId": "SRC-PSU-POWER", "reason": "Already-registered Penn State Mechanics Map source (previously used for p-w-t); its linked worked-solution PDF for 'Question 2' contains a genuine in-scope multistep calculation: work done raising a mass against gravity (weight force x height), then power from that work and a time -- exactly the mass/weight-to-lifting-work-to-power chain the Product Architect identified as a legitimate in-scope example category. Read visually via the harness's image-based PDF reader after WebFetch's text extraction returned only unreadable image/OneNote content." }
       ],
       "retrievalStatus": "RETRIEVED_AND_READ",
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-UW-SIMPLEMACHINES",
+            "sourceId": "SRC-PSU-POWER",
             "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
-            "sourceRef": "https://courses.washington.edu/engr100/Section_Wei/rube_goldberg/Simple%20machine.pdf",
-            "sourceLocator": "University of Washington ENGR100 'Simple Machines' slides, hydraulic worked example (three consecutive slides)",
-            "retrievedPassage": "Step 1: \"Pressure = force/area\", 30N/100cm2 = 0.3N/cm2. Step 2: \"Force = pressure x area\", 0.3N/cm2 x 100cm2 = 30N (and separately, 1N/cm2 x 100cm2 = 100N for the multiplied-force case). Step 3: for each piston, \"Force x Distance\" (100N x 0.02m = 2 Joules; 10N x 0.2m = 2 Joules), then the two work values are compared to confirm they are equal."
+            "sourceRef": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/pdf/P2.pdf",
+            "sourceLocator": "Penn State Mechanics Map, 'Power in Particle Systems' page, worked-solution PDF for 'Problem 2' (raising a car with a lift)",
+            "retrievedPassage": "\"Problem 2: Your car broke down and now needs to be repaired. How much power is required for a lift to raise your 1.2 ton car 6 ft off the ground in 15 seconds?\" Worked solution (handwritten): \"F_lift = 2400 lbs\" (the car's weight force); \"W = m g (Delta)h = (2400 lbs)(6ft)\"; \"W = 14400 ft lbs\"; \"P = W/t = 14400 ft lbs / 15s = 960 ft lbs/s = 1.75 hp.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "A legitimate multistep mechanical calculation chains several individually-simple relationships in sequence to reach a result that no single formula gives directly -- for example: (1) use a known force and area to find a pressure or an intermediate force via one relationship, (2) use that intermediate result together with a distance to calculate work via a second relationship, and (3) compare results (e.g. two work values, or an input/output ratio) to check the calculation against a governing principle such as conservation of energy. Each step uses only the already-evidenced basic relationships (e.g. force/area, work=force x distance) in sequence, rather than any new formula.",
-            "sourceId": "SRC-UW-SIMPLEMACHINES"
+            "claimText": "A legitimate multistep mechanical calculation chains two or more of this batch's own already-evidenced relationships in sequence to reach a result that no single formula gives directly. In this worked example: (1) the work done raising the car against gravity is found from its weight force and the vertical height risen (work = weight force x height -- the same relationship evidenced above for gravitational-lifting-work-against-gravity/PE=mgh, here applied directly with a given weight force rather than deriving weight from a mass and g), giving W=(2400 lbs)(6 ft)=14400 ft-lbs; then (2) that work is divided by the time taken to find the power required (P=W/t, the same relationship evidenced above for p-w-t), giving P=14400 ft-lbs/15s=960 ft-lbs/s (1.75 hp). Each step reuses an already-evidenced relationship from this batch; no new formula is introduced, and the final answer is reached only by chaining the two steps in sequence.",
+            "sourceId": "SRC-PSU-POWER"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1105,7 +1125,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "The worked example itself uses a hydraulic (pressure-based) force-multiplication system, which is outside this batch's own scope (levers/gears/pulleys); it is bound here ONLY as evidence of the general multistep-chaining PROCEDURE (combining force/distance/work steps in sequence and cross-checking against energy conservation), not as evidence that hydraulic pressure calculations are themselves Unit 202 mechanics-and-machines content. The learning-point inventory below applies this same chaining procedure using only this batch's own evidenced relationships (lever/gear/pulley mechanical advantage, work, power, efficiency)."
+        "scopeNote": "Corrected in a Product Architect narrow-correction pass: the previously-cited hydraulic pressure/force/work worked example (SRC-UW-SIMPLEMACHINES) used a topic (hydraulics) explicitly excluded from this batch's own mastery scope; an out-of-scope example cannot be the sole procedure evidence for an in-scope learning point merely by calling it an analogy, so it has been replaced. The replacement worked example is genuinely in-scope: it chains a gravitational lifting-work calculation with a power calculation, both already independently evidenced elsewhere in this batch, using an already-registered source (SRC-PSU-POWER). The replacement example's own units are imperial (lbs, ft, hp) rather than SI, but the chaining PROCEDURE evidenced -- calculate work from a weight force and a height, then divide by time to find power -- is unit-system-independent and directly on-topic, unlike the rejected hydraulic example. The rejected hydraulic example remains recorded in ACQUISITION-LOG.json, explicitly identified as rejected for this specific requirement, though it remains valid, separately-accepted evidence for the force-distance-trade and ideal-machine-conserves-power requirements above."
       }
     }
   ],
@@ -1117,5 +1137,6 @@
   },
   "authorityPolicyNotes": "No requirement in this batch required broadening or reinterpreting a permitted authority class. AUTHORITATIVE_EDUCATIONAL_REFERENCE (OpenStax) was used only for the one PROCEDURE_COVERAGE requirement (appropriate-mass-weight-calculations) whose own permitted-class list already includes it directly -- no adjudication was needed, unlike Batch 01's narrow exception for a different requirement mode.",
   "boundedResearchNote": "All 28 requirements were closed within a small number of genuinely-evaluated candidates per requirement (well within the 4-candidate bound); several requirements reused an already-accepted source discovered for a related requirement in the same cluster, which is not a new discovery and is recorded as reuse, not as an additional candidate count. No requirement required rejecting more than two candidates before acceptance. No requirement was left PARTIALLY_VERIFIED or SOURCE_GAP in this batch.",
+  "productArchitectCorrectionPassNote": "A Product Architect narrow-correction pass (HOLD: NARROW EVIDENCE AND LEARNING-POINT CORRECTION) was applied after the original acquisition, addressing six specific false-green risks: (1) the ideal-machine-conserves-power claim previously embedded an unqualified power-conservation inference; it is now split into an explicitly-derived, properly-qualified claim (no internal energy storage, same time interval) transparently combining two independently-verified sources. (2) The legitimate-multistep-mechanical-calculations requirement's sole evidence was an out-of-scope hydraulic worked example; it has been replaced with a genuinely in-scope worked example (gravitational lifting work chained into a power calculation) from an already-registered source, with the hydraulic example's rejection for this specific requirement recorded in ACQUISITION-LOG.json. (3) The gears::EXACT_FACT claim previously attributed an unsupported general definition to the CUNY passage; it is now bound to an exact passage from the already-registered Penn State source instead. (4) An internally-contradictory lever distance-ratio claim (asserting the load moves a smaller distance than the effort while citing numbers showing the opposite) has been corrected to accurately reflect the source's own worked numbers. (5) The gear torque/speed relationship is now explicitly qualified as the ideal (lossless) model, not an unconditional property of real, lossy gear trains. All four requirements affected by corrections 1-4 remain VERIFIED, on the honest basis that genuine, properly-qualified evidence was found for each -- not merely to preserve a 28/28 total. No requirement was forced to PARTIALLY_VERIFIED or SOURCE_GAP status where it did not belong, and none was left at VERIFIED where the underlying evidence did not genuinely support it.",
   "notationConsistencyNote": "Per the Product Architect's instruction, this file consistently distinguishes the weight force (from F=mg / w=mg) from the symbol W used for work: prose in this file refers to 'weight' or 'weight force', never a bare 'W', and 'work' is referred to by name or the lowercase-context formula W=Fd only where the source's own notation is being quoted directly. The gear-ratio convention (GR=output/driven over input/driver) is used identically and explicitly in every result that touches gears, confirmed consistent across two independently-retrieved sources (SRC-CUNY-GEARS and SRC-PSU-GEARDIRECTION)."
 }

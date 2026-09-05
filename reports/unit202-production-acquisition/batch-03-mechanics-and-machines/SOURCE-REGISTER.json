@@ -4,6 +4,7 @@
   "reusedSourceCount": 0,
   "newSourceCount": 17,
   "note": "All 17 sources were freshly acquired in this session via real web search and retrieval, as fresh public-source acquisition per this batch's source-isolation boundary (see ACQUISITION-LOG.json). None are reused from pilot-002, batch-01, or batch-02 (no domain overlap). Several sources are reused ACROSS requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
+  "productArchitectCorrectionPassNote": "A subsequent Product Architect narrow-correction pass re-examined SRC-CUNY-GEARS, SRC-PSU-GEARDIRECTION, SRC-UW-SIMPLEMACHINES, and SRC-PSU-POWER (all already registered; no new sourceId was created). SRC-PSU-GEARDIRECTION gained an additional supported requirement (gears::EXACT_FACT's general definition, previously mis-attributed to SRC-CUNY-GEARS) from a bounded re-fetch of the same already-registered page. SRC-PSU-POWER gained two additional supported requirements (ideal-machine-conserves-power, via an explicit derivation; and legitimate-multistep-mechanical-calculations, via a newly-read worked-solution PDF linked from the same already-registered page) and its rawContentCaptured/locator were updated accordingly. SRC-UW-SIMPLEMACHINES's support for legitimate-multistep-mechanical-calculations was rejected (see its rejectedSupportNote) because that worked example is out of this batch's scope; its other supported requirements are unchanged. Source count remains 17 -- no source was added or removed, only re-examined and, where genuinely warranted, cited for an additional requirement.",
   "sources": [
     {
       "sourceId": "SRC-NIST-MASS",
@@ -119,9 +120,9 @@
         { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::force-distance-trade::RELATIONSHIP", "claimSummary": "Worked hydraulic-piston example: piston A moves 100N x 0.02m, piston B moves 10N x 0.2m; both equal 2 joules -- force is traded against distance." },
         { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP", "claimSummary": "'Notice how the work is the same. The law of conservation of energy (energy can not be created or destroyed) is not violated. The increase in force is compensated by a decrease in distance travelled.'" },
         { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::work::EXACT_FACT", "claimSummary": "Work = force(N) x distance(m); worked example: Work = 3N x 3m = 9Nm = 9 Joules." },
-        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::w-fd::RELATIONSHIP", "claimSummary": "Same worked Work=Force x Distance example, confirming W=Fd." },
-        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE", "claimSummary": "Multi-step worked hydraulic example: Pressure=Force/Area (30N/100cm2=0.3N/cm2), then Force=Pressure x Area (0.3N/cm2 x 100cm2=100N... and the 10N/10cm2 case), then Work=Force x Distance for each piston, compared to confirm energy conservation." }
-      ]
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::w-fd::RELATIONSHIP", "claimSummary": "Same worked Work=Force x Distance example, confirming W=Fd." }
+      ],
+      "rejectedSupportNote": "Previously also cited to support legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE (multi-step worked hydraulic example: Pressure=Force/Area, then Force=Pressure x Area, then Work=Force x Distance for each piston). Rejected for that requirement in a Product Architect narrow-correction pass because the worked example itself (hydraulics) is outside this batch's own mastery scope, and an out-of-scope example cannot be the sole procedure evidence for an in-scope learning point; replaced with a genuinely in-scope example from SRC-PSU-POWER. This source's other supported requirements above (force-distance-trade, ideal-machine-conserves-power, levers, lever-classes, basic-lever-effort-load-arm-relationship, work, w-fd) are unaffected."
     },
     {
       "sourceId": "SRC-UWMADISON-PULLEY",
@@ -158,7 +159,7 @@
       "retrievalTimestamp": null,
       "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT", "claimSummary": "The gear connected to the motor/source is the driver (input) gear; the gear connected to the driven load is the driven (output) gear; gears in between are idler gears." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT", "claimSummary": "The gear connected to the motor/source is the driver (input) gear; the gear connected to the driven load is the driven (output) gear; gears in between are idler gears. (Corrected: this passage does not itself support a general 'what a gear is/does' definition -- that is now bound separately to SRC-PSU-GEARDIRECTION.)" },
         { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP", "claimSummary": "GR = Output(teeth)/Input(teeth) = Driven/Driver (explicit numerator=output/driven, denominator=input/driver); OutputSpeed = InputSpeed x (InputSize/OutputSize), i.e. speed scales by the inverse of the gear ratio; worked example: 300 rev/min input with 8-tooth input and 24-tooth output gives 100 rev/min output." },
         { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::torque-speed-relationship-where-applicable::RELATIONSHIP", "claimSummary": "WheelTorque = MotorTorque x GR (torque scales BY the gear ratio, output/input); since speed scales by the inverse of GR, 'if...the torque increases, the rotational speed decreases. And if the torque decreases, the rotational speed increases.'" }
       ]
@@ -178,7 +179,7 @@
       "retrievalTimestamp": null,
       "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT", "claimSummary": "'Meshed gears rotate in opposite directions (if one gear rotates clockwise, the other will rotate counter-clockwise)' -- for two directly meshing external gears." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT", "claimSummary": "'Gears are another common way of transmitting motion and torque from one shaft to another shaft'; meshing occurs via teeth ('the teeth of one gear would be passing through the teeth of the other gear' if not properly meshed); 'meshed gears rotate in opposite directions (if one gear rotates clockwise, the other will rotate counter-clockwise)' -- for two directly meshing external gears. (Added in a Product Architect correction pass: the general 'what a gear does' definition, re-examined from this already-registered page, to replace an unsupported claim previously attributed to SRC-CUNY-GEARS.)" },
         { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP", "claimSummary": "'The gear ratio will be equal to the radius of the output gear divided by the radius of the input gear, or the number of teeth on the output gear divided by the number of teeth on the input gear' -- confirming the same output/input convention as SRC-CUNY-GEARS." }
       ]
     },
@@ -303,15 +304,17 @@
       "url": "https://mechanicsmap.psu.edu/websites/10_work_energy_particle/10-3_power/power.html",
       "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
       "authorityRationale": "Hosted directly on Penn State's own course-content server.",
-      "locator": "Penn State Mechanics Map, 'Power in Particle Systems' page",
+      "locator": "Penn State Mechanics Map, 'Power in Particle Systems' page, and its linked worked-solution PDF for 'Problem 2' (pdf/P2.pdf, raising a car with a lift)",
       "accessDate": "2026-09-05",
-      "rawContentCaptured": false,
+      "rawContentCaptured": true,
       "contentHash": null,
-      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "hashReason": "The main page's rendered passage was captured via the fetch tool; the linked Problem 2 solution PDF's raw bytes were retrieved and read visually via the harness's image-based PDF reader (added in a Product Architect correction pass) since WebFetch's text extraction returned only unreadable image/OneNote content for that PDF. No cryptographic hash of either is computed, so none is claimed.",
       "retrievalTimestamp": null,
       "timestampNote": "Event timing was not captured contemporaneously; only order is recorded.",
       "supports": [
-        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::p-w-t::RELATIONSHIP", "claimSummary": "P_ave = W/t: average power equals work done divided by the time interval; watt = joule/second = newton-metre/second." }
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::p-w-t::RELATIONSHIP", "claimSummary": "P_ave = W/t: average power equals work done divided by the time interval; watt = joule/second = newton-metre/second." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP", "claimSummary": "Cited alongside SRC-HP-SIMMAC (added in a Product Architect correction pass) for a transparent, explicit derivation: P_ave=W/t, combined with the ideal-machine work equality, gives input power equals output power for an ideal machine with no internal energy storage, compared over the same time interval." },
+        { "evidenceRequirementId": "ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE", "claimSummary": "Worked solution PDF, 'Problem 2': raising a 1.2-ton car (weight force 2400 lbs) 6 ft in 15 seconds -- chains W=(weight force)(height)=14400 ft-lbs, then P=W/t=960 ft-lbs/s=1.75 hp. Added in a Product Architect correction pass to replace a rejected out-of-scope hydraulic example (see SRC-UW-SIMPLEMACHINES's rejectedSupportNote)." }
       ]
     },
     {

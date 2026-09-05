@@ -4,6 +4,7 @@
   "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically, not alphabetically. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. This inventory is proposed only -- no learning point here is Product-Architect-approved or identity-frozen, and none has been used to generate a lesson, storyboard, or assessment.",
   "learningPointCount": 18,
   "crossDomainPrerequisiteNote": "Cross-domain prerequisites reference the accepted, frozen Batch 01 foundational-mathematics inventory (FM-LP-01 through FM-LP-25, reports/unit202-production-acquisition/batch-01-foundational-mathematics/FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.json). No FM-LP-* or EFS-LP-* ID is edited, renumbered, or duplicated here; only genuine prerequisites are recorded where a learning point's own outcome actually performs that mathematical operation, not as blanket attachments.",
+  "productArchitectCorrectionPassNote": "A Product Architect narrow-correction pass (HOLD: NARROW EVIDENCE AND LEARNING-POINT CORRECTION) was applied after the original 18-learning-point proposal. The 18-point decomposition itself was confirmed appropriate for early-stage Unit 202 and left unchanged in structure/count/IDs. Corrected: MM-LP-06 (gear definition wording, now bound to properly-supported evidence), MM-LP-07 and its evidence (torque relationship now explicitly framed as the ideal/lossless model), MM-LP-05 and its evidence (a self-contradictory lever distance-ratio claim, corrected), MM-LP-10 (rewritten: the power relationship is now an explicitly-qualified, transparently-derived claim -- no internal energy storage, same time interval -- rather than an unrestricted 'ideal machines conserve power' statement), and MM-LP-18 (rewritten with a genuinely in-scope procedure-evidence source, replacing a rejected out-of-scope hydraulic example). Cross-domain prerequisites were also narrowed on MM-LP-09, MM-LP-10, MM-LP-13, MM-LP-15, MM-LP-16, and MM-LP-18, removing prerequisites that were not genuinely required by the outcome. All 18 learning points remain READY on the honest basis that genuine, properly-qualified or replaced evidence supports each -- not merely to preserve the original 18/18 READY total. No `MM-LP-*` identity is accepted or frozen in this pass.",
   "learningPoints": [
     {
       "id": "MM-LP-01",
@@ -76,14 +77,14 @@
       "id": "MM-LP-05",
       "title": "Lever calculations: effort, load and arm lengths",
       "learnerOutcome": "The learner will be able to use the relationship Effort x Effort-Arm = Load x Load-Arm to calculate an unknown effort, load, or arm length for a lever in balance.",
-      "knowledgeOrProcedure": "At equilibrium, a lever balances when the effort force multiplied by its distance from the fulcrum (the effort arm) equals the load force multiplied by its distance from the fulcrum (the load arm): Effort x Effort-Arm = Load x Load-Arm. The ratio of distances moved by the effort and the load is the inverse of the ratio of the effort and load arms.",
+      "knowledgeOrProcedure": "At equilibrium, a lever balances when the effort force multiplied by its distance from the fulcrum (the effort arm) equals the load force multiplied by its distance from the fulcrum (the load arm): Effort x Effort-Arm = Load x Load-Arm. For a given rotation of the lever, the distance each point moves is proportional to its own distance from the fulcrum (its arm length): the effort and load therefore move through distances in the SAME ratio as their respective arm lengths -- the INVERSE of the force ratio (a point with a longer arm moves a proportionally greater distance but requires a proportionally smaller force to move it, and vice versa). Arm length and distance travelled are related but distinct quantities: arm length is fixed by the lever's geometry, while distance travelled also depends on how far the lever is rotated.",
       "prerequisiteLearningPointIds": ["MM-LP-03"],
       "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-13", "FM-LP-16"],
       "knowledgeTargetIds": ["unit202::ACQ-051"],
       "evidenceRequirementIds": ["ER::provisional::unit202::mechanics-and-machines::basic-lever-effort-load-arm-relationship-at-appropriate-depth::RELATIONSHIP"],
       "normalizedClaimRefs": ["SRC-COMFSM-LEVERTORQUE: Fe x de = Fr x dr", "SRC-UW-SIMPLEMACHINES: moment balance, worked velocity-ratio example"],
       "evidenceReadiness": "READY",
-      "depthJustification": "Kept as its own learning point, separate from MM-LP-03/MM-LP-04, per the Product Architect's explicit instruction that lever calculations are separately diagnosable from identifying parts or classifying a lever -- a learner may know what a lever is and its class without yet being able to calculate a balance.",
+      "depthJustification": "Kept as its own learning point, separate from MM-LP-03/MM-LP-04, per the Product Architect's explicit instruction that lever calculations are separately diagnosable from identifying parts or classifying a lever -- a learner may know what a lever is and its class without yet being able to calculate a balance. Corrected in a Product Architect narrow-correction pass: the distance/arm-length relationship previously stated the ratio backwards (as the inverse of the arm ratio); it is now stated correctly as the SAME ratio as the arm lengths (the inverse of the force ratio), with arm length kept explicitly distinct from distance travelled by a point on the lever.",
       "explicitExclusions": ["Torque/moment as a formal rotational-mechanics topic beyond the lever balance itself", "Compound lever systems (multiple linked levers)"],
       "applicationTypes": ["Given an effort force and both arm lengths, calculate the maximum load a lever can balance.", "Given a load, its arm length, and the effort arm length, calculate the effort force required."]
     },
@@ -91,22 +92,22 @@
       "id": "MM-LP-06",
       "title": "Gears: what they do, driver and driven gears",
       "learnerOutcome": "The learner will be able to explain what gears do, identify the driver (input) and driven (output) gear in a simple gear pair, and state the rotation direction of two directly-meshing external gears.",
-      "knowledgeOrProcedure": "Gears are toothed wheels that mesh to transmit rotational motion and force between shafts. The gear connected to the input (e.g. a motor) is the driver (input) gear; the gear connected to the output load is the driven (output) gear; any gears in between are idler gears. Two gears meshing directly with external teeth rotate in opposite directions.",
+      "knowledgeOrProcedure": "Gears transmit rotational motion and torque from one shaft to another shaft via their meshing teeth. The gear connected to the input (e.g. a motor) is the driver (input) gear; the gear connected to the output load is the driven (output) gear; any gears in between are idler gears. Two gears meshing directly with external teeth rotate in opposite directions.",
       "prerequisiteLearningPointIds": [],
       "crossDomainPrerequisiteIds": [],
       "knowledgeTargetIds": ["unit202::ACQ-052"],
       "evidenceRequirementIds": ["ER::provisional::unit202::mechanics-and-machines::gears::EXACT_FACT"],
-      "normalizedClaimRefs": ["SRC-CUNY-GEARS: driver/driven/idler gears", "SRC-PSU-GEARDIRECTION: opposite rotation direction"],
+      "normalizedClaimRefs": ["SRC-CUNY-GEARS: driver/driven/idler gears", "SRC-PSU-GEARDIRECTION: general definition (transmits motion/torque between shafts, meshes via teeth) and opposite rotation direction"],
       "evidenceReadiness": "READY",
-      "depthJustification": "Kept separate from the gear-ratio/speed/torque calculation outcome (MM-LP-07) so a learner who can identify a driver/driven gear and rotation direction, but cannot yet calculate a ratio, is diagnosed correctly. Gears are never claimed to create or increase power anywhere in this learning point or its evidence, per the Product Architect's explicit instruction.",
+      "depthJustification": "Kept separate from the gear-ratio/speed/torque calculation outcome (MM-LP-07) so a learner who can identify a driver/driven gear and rotation direction, but cannot yet calculate a ratio, is diagnosed correctly. Gears are never claimed to create or increase power anywhere in this learning point or its evidence, per the Product Architect's explicit instruction. Corrected in a Product Architect narrow-correction pass: the general 'what a gear does' definition was previously attributed to a passage (SRC-CUNY-GEARS) that in fact supports only the driver/driven/idler definitions; it is now bound to an exact passage from the already-registered SRC-PSU-GEARDIRECTION source instead.",
       "explicitExclusions": ["Internal (ring) gears, which do not follow the opposite-rotation rule", "Gear-ratio speed/torque calculations (see MM-LP-07)"],
       "applicationTypes": ["Given a diagram of two meshing external gears with one driven by a motor, identify the driver and driven gear and state the driven gear's direction of rotation."]
     },
     {
       "id": "MM-LP-07",
       "title": "Gear ratio: speed and torque relationships",
-      "learnerOutcome": "The learner will be able to calculate a gear ratio from the number of teeth on the driver and driven gears, use it to calculate the resulting output speed from a known input speed, and explain that an increase in torque through a gear train corresponds to a proportional decrease in rotational speed, and vice versa.",
-      "knowledgeOrProcedure": "The gear ratio (GR) is defined as GR = (teeth on the driven/output gear) / (teeth on the driver/input gear). Rotational speed scales by the INVERSE of the gear ratio: OutputSpeed = InputSpeed x (driver teeth/driven teeth). Where a gear train transmits torque, torque at the output scales BY the gear ratio (OutputTorque = InputTorque x GR); since speed scales by the inverse of the same ratio, an arrangement that increases torque necessarily decreases rotational speed proportionally, and vice versa.",
+      "learnerOutcome": "The learner will be able to calculate a gear ratio from the number of teeth on the driver and driven gears, use it to calculate the resulting output speed from a known input speed, and explain that, in the ideal (lossless) gear model, an increase in torque through a gear train corresponds to a proportional decrease in rotational speed, and vice versa.",
+      "knowledgeOrProcedure": "The gear ratio (GR) is defined as GR = (teeth on the driven/output gear) / (teeth on the driver/input gear). Rotational speed scales by the INVERSE of the gear ratio: OutputSpeed = InputSpeed x (driver teeth/driven teeth) -- this speed relationship holds for any meshing gear pair, regardless of losses. In the IDEAL (lossless) gear model, torque at the output scales BY the gear ratio (OutputTorque = InputTorque x GR); since speed scales by the inverse of the same ratio, an arrangement that increases torque necessarily decreases rotational speed proportionally, and vice versa. Real gear trains lose some torque to friction between meshing teeth and in their bearings, so an actual output torque is somewhat less than this ideal value; the DIRECTION of the torque/speed trade-off still holds for real gear trains, but the exact equation is an ideal-model simplification, not an unconditional property of real, lossy gears.",
       "prerequisiteLearningPointIds": ["MM-LP-06"],
       "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-08", "FM-LP-13", "FM-LP-16"],
       "knowledgeTargetIds": ["unit202::ACQ-053", "unit202::ACQ-057"],
@@ -114,10 +115,10 @@
         "ER::provisional::unit202::mechanics-and-machines::gear-ratio-legitimate-speed-relationship::RELATIONSHIP",
         "ER::provisional::unit202::mechanics-and-machines::torque-speed-relationship-where-applicable::RELATIONSHIP"
       ],
-      "normalizedClaimRefs": ["SRC-CUNY-GEARS: GR=output/input, OutputSpeed=InputSpeed x Input/Output, WheelTorque=MotorTorque x GR, torque/speed trade-off", "SRC-PSU-GEARDIRECTION: confirming the same GR=output/input convention"],
+      "normalizedClaimRefs": ["SRC-CUNY-GEARS: GR=output/input, OutputSpeed=InputSpeed x Input/Output, WheelTorque=MotorTorque x GR (ideal/lossless model), torque/speed trade-off", "SRC-PSU-GEARDIRECTION: confirming the same GR=output/input convention"],
       "evidenceReadiness": "READY",
-      "depthJustification": "The speed calculation and the torque/speed trade-off are combined into one learning point because they are the same single gear-ratio relationship viewed from two angles (calculating a specific output speed, and explaining the general inverse trade-off with torque) -- both are derived from the identical GR=output/input definition in the same evidence, and splitting them would fragment one coherent outcome. The gear-ratio convention (numerator=output/driven, denominator=input/driver) is stated explicitly and used identically throughout, confirmed consistent across two independently-retrieved sources.",
-      "explicitExclusions": ["Compound gear trains with multiple idler-gear stages (only a simple two-gear pair is evidenced)", "Gear efficiency/losses (see MM-LP-11, which covers real losses generally)"],
+      "depthJustification": "The speed calculation and the torque/speed trade-off are combined into one learning point because they are the same single gear-ratio relationship viewed from two angles (calculating a specific output speed, and explaining the general inverse trade-off with torque) -- both are derived from the identical GR=output/input definition in the same evidence, and splitting them would fragment one coherent outcome. The gear-ratio convention (numerator=output/driven, denominator=input/driver) is stated explicitly and used identically throughout, confirmed consistent across two independently-retrieved sources. Corrected in a Product Architect narrow-correction pass: the torque relationship (OutputTorque=InputTorque x GR) is now explicitly framed as the ideal, lossless gear model rather than an unconditional property of real gear trains, which lose some torque to friction; this does not change the evidence status, since the source itself describes the ideal relationship and the qualifier is an honest scoping, not a retraction.",
+      "explicitExclusions": ["Compound gear trains with multiple idler-gear stages (only a simple two-gear pair is evidenced)", "Gear efficiency/losses as a calculated quantity (see MM-LP-11, which covers real losses generally, only qualitatively)"],
       "applicationTypes": ["Calculate the gear ratio for a driver gear with 12 teeth and a driven gear with 36 teeth, and find the output speed for a given input speed.", "Explain why a gear train that increases torque at the output must reduce the output's rotational speed."]
     },
     {
@@ -141,32 +142,32 @@
       "learnerOutcome": "The learner will be able to state what mechanical advantage means for a machine in general, and calculate the ideal mechanical advantage of a pulley system by correctly counting the rope sections that support the load.",
       "knowledgeOrProcedure": "Mechanical advantage is the factor by which a machine multiplies an applied (effort) force to produce a larger output (load) force; for an ideal, frictionless machine this is the ideal mechanical advantage. For a pulley system specifically, the ideal mechanical advantage equals the number of rope sections that directly support the load (the weight end) -- not the total number of pulleys or the total rope length.",
       "prerequisiteLearningPointIds": ["MM-LP-08"],
-      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-08", "FM-LP-13"],
+      "crossDomainPrerequisiteIds": [],
       "knowledgeTargetIds": ["unit202::ACQ-055"],
       "evidenceRequirementIds": ["ER::provisional::unit202::mechanics-and-machines::mechanical-advantage::RELATIONSHIP"],
       "normalizedClaimRefs": ["SRC-HP-SIMMAC: mechanical advantage as force-multiplying factor", "SRC-UWMADISON-PULLEY: pulley MA = number of supporting rope sections"],
       "evidenceReadiness": "READY",
-      "depthJustification": "The general mechanical-advantage concept and its specific pulley-counting rule are combined because the counting rule is simply the pulley-specific instance of the same general concept; the rule for what counts as a 'supporting rope section' is bound exactly as the source defines it (the sections at the load end, not total rope length or pulley count), per the Product Architect's explicit caution.",
+      "depthJustification": "The general mechanical-advantage concept and its specific pulley-counting rule are combined because the counting rule is simply the pulley-specific instance of the same general concept; the rule for what counts as a 'supporting rope section' is bound exactly as the source defines it (the sections at the load end, not total rope length or pulley count), per the Product Architect's explicit caution. Corrected in a Product Architect narrow-correction pass: decimal-arithmetic, ratio-notation and substitution cross-domain prerequisites were removed, since the outcome's actual procedure is counting load-supporting rope sections, which requires none of those skills; attaching them was a defensive, not genuinely-required, dependency.",
       "explicitExclusions": ["Actual (real, friction-reduced) mechanical advantage as distinct from ideal mechanical advantage (see MM-LP-11 for real losses generally)"],
       "applicationTypes": ["Given a diagram of a block-and-tackle pulley system, count the supporting rope sections and state the ideal mechanical advantage."]
     },
     {
       "id": "MM-LP-10",
-      "title": "Ideal machines: the force-distance trade and energy conservation",
-      "learnerOutcome": "The learner will be able to explain that an ideal machine trades a reduction in effort force for a proportional increase in the distance moved (and vice versa), and that an ideal machine cannot create energy or power.",
-      "knowledgeOrProcedure": "For an ideal (frictionless) machine, Force_input x distance_input = Force_output x distance_output: a smaller effort force acting through a larger distance trades for a larger output force acting through a smaller distance, and this means the machine's work input equals its work output. An ideal machine can never output more energy or power than is supplied to it -- it can only trade force for distance (or torque for speed), never create energy.",
+      "title": "Ideal machines: the force-distance trade and the input/output power relationship",
+      "learnerOutcome": "The learner will be able to explain that an ideal machine trades a reduction in effort force for a proportional increase in the distance moved (and vice versa), that its work input equals its work output, and that -- for such an ideal machine with no internal energy storage, comparing input and output over the same time interval (i.e. in steady operation) -- input mechanical power equals output mechanical power; not that power is a generally conserved quantity in itself.",
+      "knowledgeOrProcedure": "For an ideal (frictionless) machine, Force_input x distance_input = Force_output x distance_output: a smaller effort force acting through a larger distance trades for a larger output force acting through a smaller distance, and this means the machine's work input equals its work output. Since power is the rate of doing work (P=W/t), comparing the input and the output over the SAME time interval, with no energy stored or released inside the machine between input and output, gives P_input=W_input/t=W_output/t=P_output for the ideal case -- a restricted consequence of the work equality and the definition of power, not an independent 'power conservation law', and not applicable to a machine that stores energy (e.g. a flywheel or spring) or when input and output are compared over different time intervals. An ideal machine can trade force for distance (or torque for speed) but can never output more work, energy, or power than is supplied to it.",
       "prerequisiteLearningPointIds": ["MM-LP-09"],
-      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-13", "FM-LP-16"],
+      "crossDomainPrerequisiteIds": [],
       "knowledgeTargetIds": ["unit202::ACQ-056", "unit202::ACQ-058"],
       "evidenceRequirementIds": [
         "ER::provisional::unit202::mechanics-and-machines::force-distance-trade::RELATIONSHIP",
         "ER::provisional::unit202::mechanics-and-machines::ideal-machine-conserves-power::RELATIONSHIP"
       ],
-      "normalizedClaimRefs": ["SRC-HP-SIMMAC: Work_input=Work_output, force-distance trade", "SRC-UWMADISON-PULLEY: pulley rope-length trade-off", "SRC-UW-SIMPLEMACHINES: worked hydraulic force-distance example"],
+      "normalizedClaimRefs": ["SRC-HP-SIMMAC: Work_input=Work_output, force-distance trade", "SRC-UWMADISON-PULLEY: pulley rope-length trade-off", "SRC-UW-SIMPLEMACHINES: worked hydraulic force-distance example", "Derived (SRC-HP-SIMMAC + SRC-PSU-POWER): explicitly-qualified input-power-equals-output-power relationship for an ideal, no-storage machine compared over the same time interval"],
       "evidenceReadiness": "READY",
-      "depthJustification": "The force-distance trade and the energy-conservation statement are combined into one learning point because they are the same single principle viewed from two angles (the mechanism of the trade, and why it must hold true) -- separating them would create an artificial fragment. Kept separate from real losses (MM-LP-11), which covers the non-ideal case where this equality does not hold exactly.",
-      "explicitExclusions": ["Real (non-ideal) machines and friction losses (see MM-LP-11)", "Hydraulic pressure-multiplication systems as their own Unit 202 topic (used only as confirming evidence of the general principle, not as taught content)"],
-      "applicationTypes": ["Explain why a machine that reduces the effort force needed to lift a load must require the effort to move further.", "Explain why no machine, however cleverly designed, can output more energy than is put into it."]
+      "depthJustification": "The force-distance trade and the qualified power relationship are combined into one learning point because they are the same underlying principle viewed from two angles. Corrected in a Product Architect narrow-correction pass: the power-equality statement is now bound only under its genuine conditions -- no internal energy storage, and input/output compared over the same time interval (steady operation) -- rather than as an unrestricted claim that 'power is conserved'; it is a transparent, explicitly-derived synthesis of the independently-verified ideal-machine work equality and the independently-verified P=W/t definition, not a claim made directly by either source alone. This is a purely conceptual/explanatory learning point (no numeric calculation is asked of the learner), so its cross-domain arithmetic prerequisites (previously attached defensively) have been removed. Kept separate from real losses (MM-LP-11), which covers the non-ideal case where this equality does not hold exactly.",
+      "explicitExclusions": ["Real (non-ideal) machines and friction losses (see MM-LP-11)", "Hydraulic pressure-multiplication systems as their own Unit 202 topic (used only as confirming evidence of the general principle, not as taught content)", "Any claim that power is a generally conserved quantity independent of this specific ideal, no-storage, same-interval case", "Machines that store or release internal energy (e.g. flywheels, springs) as a context for this relationship"],
+      "applicationTypes": ["Explain why a machine that reduces the effort force needed to lift a load must require the effort to move further.", "Explain why, for an ideal machine operating steadily with no internal energy storage, the power delivered to the input must equal the power delivered at the output."]
     },
     {
       "id": "MM-LP-11",
@@ -204,7 +205,7 @@
       "learnerOutcome": "The learner will be able to explain what work means in mechanics and use W=Fd to calculate the work done by a force acting along the direction of displacement.",
       "knowledgeOrProcedure": "Work is done when a force acts on an object and moves it through a distance in the direction of the force: W=Fd (work in joules = force in newtons x distance in metres, for a force acting along the direction of the displacement). One joule of work is done when a force of one newton moves its point of application one metre in the direction of the force.",
       "prerequisiteLearningPointIds": ["MM-LP-12"],
-      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-13", "FM-LP-16"],
+      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-13"],
       "knowledgeTargetIds": ["unit202::ACQ-061", "unit202::ACQ-067"],
       "evidenceRequirementIds": [
         "ER::provisional::unit202::mechanics-and-machines::work::EXACT_FACT",
@@ -212,7 +213,7 @@
       ],
       "normalizedClaimRefs": ["SRC-HP-WORK: work definition and W=Fd", "SRC-UW-SIMPLEMACHINES: confirming worked example"],
       "evidenceReadiness": "READY",
-      "depthJustification": "Definition and formula combined, as one concept (the same reasoning already applied to Ohm's law and F=mg in this and the accepted Batch 02 inventory). Deliberately scoped to the case where the force acts along the direction of displacement, per the locked depth boundary -- not generalised to an arbitrary force angle.",
+      "depthJustification": "Definition and formula combined, as one concept (the same reasoning already applied to Ohm's law and F=mg in this and the accepted Batch 02 inventory). Deliberately scoped to the case where the force acts along the direction of displacement, per the locked depth boundary -- not generalised to an arbitrary force angle. Corrected in a Product Architect narrow-correction pass: the formula-rearrangement prerequisite (FM-LP-16) was removed, since the evidenced worked examples (and this outcome) only ever calculate W from F and d -- no rearrangement to find F or d from the other two is evidenced.",
       "explicitExclusions": ["Work done by a force at an angle to the displacement (the cos(theta) case)", "Negative work / work done against a force as a separate formal topic (the specific case of work against gravity is covered in MM-LP-15)"],
       "applicationTypes": ["Calculate the work done pushing a trolley 8 m with a steady force of 15 N acting in the direction of travel."]
     },
@@ -240,7 +241,7 @@
       "learnerOutcome": "The learner will be able to explain that lifting an object does work against gravity that is stored as gravitational potential energy, and calculate the gravitational potential energy gained using PE=mgh.",
       "knowledgeOrProcedure": "Lifting an object does work against the force of gravity; this work is stored as (equals) the gained gravitational potential energy: PE=mgh, where h is the change in vertical height between the start and end positions (not the total distance travelled along any sloped or indirect path), m is mass, and g is a consistent gravitational field strength used throughout the calculation.",
       "prerequisiteLearningPointIds": ["MM-LP-14", "MM-LP-02"],
-      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-10", "FM-LP-13", "FM-LP-16"],
+      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-10", "FM-LP-13"],
       "knowledgeTargetIds": ["unit202::ACQ-069", "unit202::ACQ-070"],
       "evidenceRequirementIds": [
         "ER::provisional::unit202::mechanics-and-machines::gravitational-lifting-work-against-gravity::RELATIONSHIP",
@@ -248,7 +249,7 @@
       ],
       "normalizedClaimRefs": ["SRC-PSU-WORKENERGY: work against gravity becomes stored PE; delta-PE=mgh with delta-h defined as vertical displacement"],
       "evidenceReadiness": "READY",
-      "depthJustification": "The work-against-gravity concept and the PE=mgh formula are combined into one learning point, since the formula is simply the calculable form of the same equivalence -- separating them would fragment one coherent outcome. Height (h) is bound explicitly as vertical displacement, not path length, per the Product Architect's locked depth boundary; PE gained is directly proportional to h for fixed m and g (hence FM-LP-10).",
+      "depthJustification": "The work-against-gravity concept and the PE=mgh formula are combined into one learning point, since the formula is simply the calculable form of the same equivalence -- separating them would fragment one coherent outcome. Height (h) is bound explicitly as vertical displacement, not path length, per the Product Architect's locked depth boundary; PE gained is directly proportional to h for fixed m and g (hence FM-LP-10). Corrected in a Product Architect narrow-correction pass: the formula-rearrangement prerequisite (FM-LP-16) was removed, since the evidenced worked examples (and this outcome) only ever calculate PE from m, g and h -- no rearrangement to find h or m from the other quantities is evidenced.",
       "explicitExclusions": ["Non-vertical/inclined-path work calculations beyond using the net vertical rise", "Elastic potential energy or other non-gravitational potential-energy forms"],
       "applicationTypes": ["Calculate the gravitational potential energy gained when a 40 kg load is lifted vertically 3 m.", "Explain why sliding a load up a ramp to a given height stores the same potential energy as lifting it straight up to that height."]
     },
@@ -258,7 +259,7 @@
       "learnerOutcome": "The learner will be able to state that power is the rate of doing work and use P=W/t to calculate power, work, or time.",
       "knowledgeOrProcedure": "Power is the rate of doing work (equivalently, the rate at which energy is transferred): P=W/t, where W is the work done and t is the time taken. Power's SI unit is the watt, equal to one joule per second.",
       "prerequisiteLearningPointIds": ["MM-LP-13"],
-      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-13", "FM-LP-16"],
+      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-13"],
       "knowledgeTargetIds": ["unit202::ACQ-064", "unit202::ACQ-071"],
       "evidenceRequirementIds": [
         "ER::provisional::unit202::mechanics-and-machines::power::EXACT_FACT",
@@ -266,7 +267,7 @@
       ],
       "normalizedClaimRefs": ["SRC-HP-POWER: power as rate of doing work, watt unit", "SRC-PSU-POWER: P=W/t"],
       "evidenceReadiness": "READY",
-      "depthJustification": "Definition and formula combined as one concept, consistent with the pattern already used for work (MM-LP-13) and F=mg (MM-LP-02).",
+      "depthJustification": "Definition and formula combined as one concept, consistent with the pattern already used for work (MM-LP-13) and F=mg (MM-LP-02). Corrected in a Product Architect narrow-correction pass: the formula-rearrangement prerequisite (FM-LP-16) was removed, since the evidenced worked examples only calculate power from work and time; rearranging P=W/t for W or t (as the outcome still allows) is straightforward substitution-level algebra already covered by FM-LP-13, not the more involved rearrangement skill FM-LP-16 represents elsewhere in this inventory (e.g. solving Fe x de = Fr x dr for an unknown arm length).",
       "explicitExclusions": ["Instantaneous power / calculus-based rate of change", "Electrical power (already evidenced separately in Batch 02)"],
       "applicationTypes": ["Calculate the power developed by a motor that does 3000 J of work in 12 seconds."]
     },
@@ -291,17 +292,17 @@
     {
       "id": "MM-LP-18",
       "title": "Legitimate multistep mechanical calculations",
-      "learnerOutcome": "The learner will be able to solve a multistep mechanical problem by correctly chaining together individually-simple relationships from this domain (e.g. lever/gear/pulley mechanical advantage, work, power, or efficiency) in sequence, rather than relying on a single formula.",
-      "knowledgeOrProcedure": "A legitimate multistep mechanical calculation chains several already-evidenced simple relationships in sequence to reach a result that no single formula gives directly -- for example: find an intermediate quantity using one relationship (e.g. a lever's load force, or a gear's output speed), then use that intermediate result together with a further relationship (e.g. work=force x distance, or power=work/time) to reach the final answer, and where appropriate compare the result against a governing principle such as conservation of energy or an efficiency limit.",
-      "prerequisiteLearningPointIds": ["MM-LP-05", "MM-LP-07", "MM-LP-09", "MM-LP-13", "MM-LP-16", "MM-LP-17"],
-      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-13", "FM-LP-16"],
+      "learnerOutcome": "The learner will be able to solve a multistep mechanical problem by correctly chaining together individually-simple relationships from this domain in sequence -- for example, finding the work done lifting an object against gravity from its weight force and height, then using that work to calculate the power required over a given time -- rather than relying on a single formula.",
+      "knowledgeOrProcedure": "A legitimate multistep mechanical calculation chains several already-evidenced simple relationships from this domain in sequence to reach a result that no single formula gives directly. For example: (1) find the work done raising an object against gravity from its weight force and the vertical height risen (work = weight force x height, the same relationship as gravitational-lifting-work-against-gravity/PE=mgh), then (2) divide that work by the time taken to find the power required (P=W/t). Each step reuses an already-evidenced relationship from this batch (weight/lifting work, lever/gear/pulley relationships, work, power, efficiency) rather than introducing any new formula.",
+      "prerequisiteLearningPointIds": ["MM-LP-05", "MM-LP-07", "MM-LP-09", "MM-LP-13", "MM-LP-15", "MM-LP-16", "MM-LP-17"],
+      "crossDomainPrerequisiteIds": ["FM-LP-04", "FM-LP-13"],
       "knowledgeTargetIds": ["unit202::ACQ-073"],
       "evidenceRequirementIds": ["ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE"],
-      "normalizedClaimRefs": ["SRC-UW-SIMPLEMACHINES: multistep pressure/force/work worked example, used as evidence of the general chaining procedure"],
+      "normalizedClaimRefs": ["SRC-PSU-POWER (worked-solution PDF, 'Problem 2'): weight force x height = work done lifting a car; work / time = power required -- chaining the gravitational-work and power relationships already evidenced elsewhere in this batch"],
       "evidenceReadiness": "READY",
-      "depthJustification": "Kept as its own learning point, separate from each individual formula-recognition point, because genuinely multistep problem-solving (chaining two or more relationships, using an intermediate result) is a distinct, more demanding performance level than recognising or applying any one formula alone -- a learner may know every individual relationship in this domain and still be unable to combine them correctly in sequence. The evidencing worked example itself uses a hydraulic (pressure-based) system, outside this batch's own scope; it is bound only as evidence of the general multistep-chaining procedure, and this learning point's own application examples use only this batch's evidenced lever/gear/pulley/work/power/efficiency relationships, not hydraulics.",
-      "explicitExclusions": ["Hydraulic pressure systems as Unit 202 mechanics-and-machines content (evidenced only as a procedural analogy, not taught content)", "Any single-formula calculation already covered by one of this learning point's own prerequisite learning points"],
-      "applicationTypes": ["Given a lever connected to a pulley system lifting a load a stated height in a stated time, calculate the effort force, the work done, the power developed, and the overall efficiency if some useful output is also given.", "Given a gear train driving a hoisting mechanism, calculate the output speed, then the work done raising a load through a given height in a given time, then the power required."]
+      "depthJustification": "Kept as its own learning point, separate from each individual formula-recognition point, because genuinely multistep problem-solving (chaining two or more relationships, using an intermediate result) is a distinct, more demanding performance level than recognising or applying any one formula alone. Corrected in a Product Architect narrow-correction pass: this learning point's sole procedure evidence was previously a hydraulic worked example, rejected because hydraulics is explicitly excluded from this batch's mastery scope and an out-of-scope example cannot be the sole procedure evidence for an in-scope learning point merely by calling it an analogy. The replacement worked example (from the already-registered SRC-PSU-POWER source) genuinely chains two in-scope relationships already evidenced elsewhere in this batch -- gravitational lifting work and P=W/t -- even though its own units are imperial (lbs, ft, hp) rather than SI; the chaining PROCEDURE evidenced is unit-system-independent. The formula-rearrangement prerequisite (FM-LP-16) has also been removed, since the replacement example only performs forward substitution at each step, not rearrangement.",
+      "explicitExclusions": ["Hydraulic systems as taught Unit 202 content (the previously-cited hydraulic example is retained only in ACQUISITION-LOG.json and SOURCE-REGISTER.json as a rejected candidate for this specific requirement)", "Any single-formula calculation already covered by one of this learning point's own prerequisite learning points"],
+      "applicationTypes": ["Given the weight of a component and the height it must be lifted in a stated time, calculate the work done and then the power required.", "Given a lever or pulley system lifting a load a stated height in a stated time, calculate the effort force, the work done, and the power developed."]
     }
   ],
   "coverageMatrix": {
@@ -335,14 +336,15 @@
     "ER::provisional::unit202::mechanics-and-machines::legitimate-multistep-mechanical-calculations::PROCEDURE_COVERAGE": ["MM-LP-18"]
   },
   "crossDomainPrerequisitesUsed": {
-    "FM-LP-04": ["MM-LP-02", "MM-LP-05", "MM-LP-07", "MM-LP-09", "MM-LP-10", "MM-LP-13", "MM-LP-15", "MM-LP-16", "MM-LP-17", "MM-LP-18"],
+    "FM-LP-04": ["MM-LP-02", "MM-LP-05", "MM-LP-07", "MM-LP-13", "MM-LP-15", "MM-LP-16", "MM-LP-17", "MM-LP-18"],
     "FM-LP-06": ["MM-LP-17"],
     "FM-LP-07": ["MM-LP-17"],
-    "FM-LP-08": ["MM-LP-07", "MM-LP-09"],
+    "FM-LP-08": ["MM-LP-07"],
     "FM-LP-10": ["MM-LP-02", "MM-LP-15"],
-    "FM-LP-13": ["MM-LP-02", "MM-LP-05", "MM-LP-07", "MM-LP-09", "MM-LP-10", "MM-LP-13", "MM-LP-15", "MM-LP-16", "MM-LP-17", "MM-LP-18"],
-    "FM-LP-16": ["MM-LP-02", "MM-LP-05", "MM-LP-07", "MM-LP-10", "MM-LP-13", "MM-LP-15", "MM-LP-16", "MM-LP-18"]
+    "FM-LP-13": ["MM-LP-02", "MM-LP-05", "MM-LP-07", "MM-LP-13", "MM-LP-15", "MM-LP-16", "MM-LP-17", "MM-LP-18"],
+    "FM-LP-16": ["MM-LP-02", "MM-LP-05", "MM-LP-07"]
   },
+  "crossDomainPrerequisiteCorrectionNote": "Corrected in a Product Architect narrow-correction pass: MM-LP-09 (pulley mechanical advantage by counting rope sections) and MM-LP-10 (now purely conceptual after the power-relationship correction) had their cross-domain arithmetic prerequisites (FM-LP-04, FM-LP-08, FM-LP-13, FM-LP-16) removed entirely, since neither outcome genuinely requires decimal arithmetic, substitution, ratio notation, or formula rearrangement. FM-LP-16 (formula rearrangement) was also removed from MM-LP-13, MM-LP-15, MM-LP-16, and MM-LP-18, since none of their evidenced worked examples demonstrate rearranging the relevant formula for a different unknown -- only forward substitution is evidenced. FM-LP-16 is retained on MM-LP-02, MM-LP-05, and MM-LP-07, whose outcomes and evidence genuinely include finding a different unknown by rearrangement (e.g. m=w/g; solving Fe x de = Fr x dr for an unknown arm or force; solving the gear-ratio relationship for an unknown tooth count or speed).",
   "heldLearningPoints": [],
   "partiallyEvidencedLearningPoints": [],
   "identityFreezePolicy": {
