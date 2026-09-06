@@ -156,10 +156,29 @@ describe("CC-23 section 18 -- contextual material remains optional", () => {
 });
 
 describe("CC-23A section 20 -- the 8 known preflight decomposition gaps are resolved through the generic mechanisms alone", () => {
-  it("zero SEMANTIC_DECOMPOSITION_REQUIRED requirements remain for the current frozen target set", () => {
+  it("the only SEMANTIC_DECOMPOSITION_REQUIRED requirements remaining are the three genuinely underspecified Batch-06 exemplars, never the resolved exemplars or any other target", () => {
+    // [Correction, Stage 1.3 underspecified-exemplar detection]: a
+    // representative exemplar naming an exact circuit/component-value
+    // object that no governed reference determinately identifies must
+    // never be planner-READY -- these three are exactly that case (no
+    // determinate dimmer RC values, heating relay/transistor topology, or
+    // alarm NC/contact/bias topology exists anywhere in the frozen
+    // manifest or its sources). This is an intentional, correct gap, not a
+    // regression: it replaces a prior false-green result that let "a row
+    // was researched" stand in for "the row is the right canonical object".
     const gaps = planResult.requirements.filter((r) => r.decompositionStatus === "SEMANTIC_DECOMPOSITION_REQUIRED");
-    expect(gaps.map((g) => g.requirementText)).toEqual([]);
-    expect(gaps).toHaveLength(0);
+    expect(gaps.map((g) => g.requirementText).sort()).toEqual(["Dimmer: exact RC timing implementation/component values.", "Heating: exact transistor/relay topology.", "Security alarm: exact NC/contact/bias topology."]);
+    for (const g of gaps) {
+      expect(g.decompositionReason).toMatch(/governed reference/i);
+    }
+  });
+
+  it("the resolved exemplars (bridge rectifier, telephone capacitor->ringer, alarm SCR/thyristor role) remain READY, never swept into the same gap", () => {
+    for (const id of ["unit202::ACQ-153", "unit202::ACQ-156", "unit202::ACQ-168"]) {
+      const req = planResult.requirements.find((r) => r.sourceKnowledgeTargetIds.includes(id));
+      expect(req?.decompositionStatus, `${id} should be READY`).toBe("READY");
+      expect(req?.representativeExemplar).toBe(true);
+    }
   });
 });
 
@@ -273,10 +292,10 @@ describe("CC-23B §14/§25 -- formula targets remain KNOWN_CLAIM_TO_VERIFY (qual
   });
 });
 
-describe("CC-23B §21/§26 -- zero semantic-decomposition gaps remain, and no new gap was invented shut", () => {
-  it("SEMANTIC_DECOMPOSITION_REQUIRED count is exactly zero for the current frozen target set", () => {
+describe("CC-23B §21/§26 -- semantic-decomposition gaps are exactly the intentional, structurally-justified set, and no OTHER gap was invented shut", () => {
+  it("SEMANTIC_DECOMPOSITION_REQUIRED count is exactly 3 (the genuinely underspecified exemplars) for the current frozen target set", () => {
     const gaps = planResult.requirements.filter((r) => r.decompositionStatus === "SEMANTIC_DECOMPOSITION_REQUIRED");
-    expect(gaps).toHaveLength(0);
+    expect(gaps).toHaveLength(3);
   });
 });
 

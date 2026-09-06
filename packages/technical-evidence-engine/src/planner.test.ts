@@ -255,6 +255,10 @@ describe("CC-23A §17-§19/§24 -- CH: directional mapping is domain-agnostic st
       targetText: "Back-bearing rule: the back bearing is the forward bearing plus or minus 180 degrees.",
       kind: "OPERATIONAL_USE_RULE",
       classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      // [Correction]: OPERATIONAL_USE_RULE has no safe default dimension (a
+      // non-safety directional rule like this one is not a SAFE_USE
+      // requirement) -- the coverage dimension must be declared explicitly.
+      expectedCoverageDimensions: ["DIRECTIONAL_MAPPING", "ROLE_MAPPING"],
       directionalMapping: [
         { role: "forward-bearing", meaning: "the measured compass bearing in the direction of travel" },
         { role: "back-bearing", meaning: "forward bearing plus 180 degrees if less than 180, otherwise minus 180 degrees" },
@@ -266,6 +270,142 @@ describe("CC-23A §17-§19/§24 -- CH: directional mapping is domain-agnostic st
     expect(result.requirements[0]!.decompositionStatus).toBe("READY");
     // The field itself is generic (role/meaning), never named after a specific domain's own vocabulary (hand/finger/current).
     expect(t.directionalMapping!.every((d) => typeof d.role === "string" && typeof d.meaning === "string")).toBe(true);
+  });
+});
+
+describe("[Correction] dimension-inference correctness -- qualification-agnostic", () => {
+  it("a SYMBOL_OR_CONVENTION target with no explicit coverage dimension abstains rather than guessing QUANTITY_SYMBOL", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-symdim::compass-rose",
+      targetText: "Compass-rose cardinal/intercardinal point convention.",
+      kind: "SYMBOL_OR_CONVENTION",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+    });
+    const result = planEvidenceRequirements(input("synthetic-symdim", [t]));
+    const r = result.requirements[0]!;
+    expect(r.decompositionStatus).toBe("SEMANTIC_DECOMPOSITION_REQUIRED");
+    expect(r.decompositionReason).toMatch(/explicit expectedCoverageDimensions/i);
+    expect(r.requiredCoverageDimensions).toEqual([]);
+  });
+
+  it("a SYMBOL_OR_CONVENTION target with an explicit SCHEMATIC_SYMBOL dimension is READY and never coerced to QUANTITY_SYMBOL", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-symdim::map-symbol",
+      targetText: "Standard topographic map symbol for a road bridge.",
+      kind: "SYMBOL_OR_CONVENTION",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      expectedCoverageDimensions: ["SCHEMATIC_SYMBOL"],
+    });
+    const result = planEvidenceRequirements(input("synthetic-symdim", [t]));
+    const r = result.requirements[0]!;
+    expect(r.decompositionStatus).toBe("READY");
+    expect(r.requiredCoverageDimensions).toEqual(["SCHEMATIC_SYMBOL"]);
+  });
+
+  it("an OPERATIONAL_USE_RULE target with no explicit coverage dimension abstains rather than guessing SAFE_USE", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-opdim::right-of-way",
+      targetText: "Give-way rule at an unmarked road junction.",
+      kind: "OPERATIONAL_USE_RULE",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+    });
+    const result = planEvidenceRequirements(input("synthetic-opdim", [t]));
+    const r = result.requirements[0]!;
+    expect(r.decompositionStatus).toBe("SEMANTIC_DECOMPOSITION_REQUIRED");
+    expect(r.requiredCoverageDimensions).toEqual([]);
+  });
+
+  it("a PROCEDURE target defaults to PROCEDURE only -- CALCULATION_METHOD is never assumed for a non-calculation procedure", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-procdim::evacuation",
+      targetText: "Fire-evacuation assembly-point procedure.",
+      kind: "PROCEDURE",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+    });
+    const result = planEvidenceRequirements(input("synthetic-procdim", [t]));
+    const r = result.requirements[0]!;
+    expect(r.decompositionStatus).toBe("READY");
+    expect(r.requiredCoverageDimensions).toEqual(["PROCEDURE"]);
+    expect(r.requiredCoverageDimensions).not.toContain("CALCULATION_METHOD");
+  });
+
+  it("a PROCEDURE target may still explicitly declare CALCULATION_METHOD when it genuinely computes a numeric result", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-procdim::dosage",
+      targetText: "Calculating a medication dose from body mass and concentration.",
+      kind: "PROCEDURE",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      expectedCoverageDimensions: ["PROCEDURE", "CALCULATION_METHOD"],
+    });
+    const result = planEvidenceRequirements(input("synthetic-procdim", [t]));
+    expect(result.requirements[0]!.requiredCoverageDimensions).toEqual(["PROCEDURE", "CALCULATION_METHOD"]);
+  });
+
+  it("a compound PROCEDURE target built from already-sourceable constituents is satisfied structurally, never demanding one omnibus source", () => {
+    const stepA = target({ knowledgeTargetId: "synthetic-procint::stepA", targetText: "Converting a peak value to an RMS value.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE" });
+    const stepB = target({ knowledgeTargetId: "synthetic-procint::stepB", targetText: "Converting an RMS value to a peak value.", kind: "FACTUAL_PROPOSITION", classification: "REQUIRED_QUALIFICATION_KNOWLEDGE" });
+    const compoundProcedure = target({
+      knowledgeTargetId: "synthetic-procint::conversions",
+      targetText: "Appropriate waveform-value conversions.",
+      kind: "PROCEDURE",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      requiresMultipleIndependentClaims: true,
+      constituentKnowledgeTargetIds: ["synthetic-procint::stepA", "synthetic-procint::stepB"],
+    });
+    const result = planEvidenceRequirements(input("synthetic-procint", [stepA, stepB, compoundProcedure]));
+    expect(result.requirements).toHaveLength(2); // one per constituent, none for the compound procedure itself
+    expect(result.requirements.some((r) => r.sourceKnowledgeTargetIds.includes("synthetic-procint::conversions"))).toBe(false);
+    const satisfaction = result.structuralSatisfactions.find((s) => s.knowledgeTargetId === "synthetic-procint::conversions");
+    expect(satisfaction?.kind).toBe("INTEGRATION_SATISFIED_BY_CONSTITUENTS");
+  });
+});
+
+describe("[Correction] underspecified-exemplar detection -- qualification-agnostic", () => {
+  it("a representative exemplar with no governed reference is never READY, even when every other structural field would otherwise allow it", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-exemplar::unnamed-circuit",
+      targetText: "A worked example circuit demonstrating the concept.",
+      kind: "FACTUAL_PROPOSITION",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      isRepresentativeExemplar: true,
+    });
+    const result = planEvidenceRequirements(input("synthetic-exemplar", [t]));
+    const r = result.requirements[0]!;
+    expect(r.decompositionStatus).toBe("SEMANTIC_DECOMPOSITION_REQUIRED");
+    expect(r.decompositionReason).toMatch(/governed reference/i);
+    expect(r.representativeExemplar).toBe(true);
+  });
+
+  it("a representative exemplar explicitly resolved by a governed reference is READY like any other atomic target", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-exemplar::named-circuit",
+      targetText: "The manufacturer-specified reference circuit for this application.",
+      kind: "FACTUAL_PROPOSITION",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      isRepresentativeExemplar: true,
+      exemplarObjectIdentity: "GOVERNED_REFERENCE_RESOLVED",
+    });
+    const result = planEvidenceRequirements(input("synthetic-exemplar", [t]));
+    const r = result.requirements[0]!;
+    expect(r.decompositionStatus).toBe("READY");
+    expect(r.representativeExemplar).toBe(true);
+  });
+});
+
+describe("[Correction] cross-batch/cross-run structural satisfaction -- qualification-agnostic", () => {
+  it("a target already satisfied by an existing approved outcome from a prior run emits no new requirement", () => {
+    const t = target({
+      knowledgeTargetId: "synthetic-priorrun::T1",
+      targetText: "A fact already taught and approved in an earlier run.",
+      kind: "FACTUAL_PROPOSITION",
+      classification: "REQUIRED_QUALIFICATION_KNOWLEDGE",
+      satisfiedByExistingLearningPointIds: ["PRIOR-RUN-LP-05"],
+    });
+    const result = planEvidenceRequirements(input("synthetic-priorrun", [t]));
+    expect(result.requirements).toHaveLength(0);
+    const satisfaction = result.structuralSatisfactions.find((s) => s.knowledgeTargetId === "synthetic-priorrun::T1");
+    expect(satisfaction?.kind).toBe("SATISFIED_BY_EXISTING_LEARNING_POINT");
+    expect(satisfaction?.satisfiedByKnowledgeTargetIds).toEqual(["PRIOR-RUN-LP-05"]);
   });
 });
 

@@ -1,8 +1,8 @@
 {
   "qualificationContextId": "unit202",
   "knowledgeTargetCount": 186,
-  "evidenceRequirementCount": 213,
-  "structuralSatisfactionCount": 6,
+  "evidenceRequirementCount": 211,
+  "structuralSatisfactionCount": 8,
   "requirements": [
     {
       "evidenceRequirementId": "ER::provisional::unit202::electrical-fundamentals-and-safety::appropriate-voltage-drop-calculation::PROCEDURE_COVERAGE",
@@ -1532,8 +1532,7 @@
       "requirementText": "Ohmmeter: circuit de-energised/safe-use principle.",
       "evidenceQuestion": "What is the authoritative step-by-step procedure for: Ohmmeter: circuit de-energised/safe-use principle.?",
       "requiredCoverageDimensions": [
-        "PROCEDURE",
-        "CALCULATION_METHOD"
+        "SAFE_USE"
       ],
       "sourceAuthorityClasses": [
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
@@ -2350,62 +2349,6 @@
       "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
-      "sourceKnowledgeTargetIds": [
-        "unit202::ACQ-134"
-      ],
-      "requirementMode": "PROCEDURE_COVERAGE",
-      "specificationMode": "OPEN_TECHNICAL_QUESTION",
-      "requirementText": "Appropriate simple AC-generation calculations.",
-      "evidenceQuestion": "What is the authoritative step-by-step procedure for: Appropriate simple AC-generation calculations.?",
-      "requiredCoverageDimensions": [
-        "PROCEDURE",
-        "CALCULATION_METHOD"
-      ],
-      "sourceAuthorityClasses": [
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "PROFESSIONAL_BODY",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE",
-        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
-      ],
-      "acquisitionPriority": "REQUIRED",
-      "representativeExemplar": false,
-      "calibratedSupportingPerformance": null,
-      "deduplicationBasis": "semantic identity + requirement mode",
-      "decompositionStatus": "READY",
-      "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source that actually teaches or describes the real procedure -- a sentence merely containing the topic name never satisfies this. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
-    },
-    {
-      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
-      "sourceKnowledgeTargetIds": [
-        "unit202::ACQ-146"
-      ],
-      "requirementMode": "PROCEDURE_COVERAGE",
-      "specificationMode": "OPEN_TECHNICAL_QUESTION",
-      "requirementText": "Appropriate sine-wave conversions/calculations.",
-      "evidenceQuestion": "What is the authoritative step-by-step procedure for: Appropriate sine-wave conversions/calculations.?",
-      "requiredCoverageDimensions": [
-        "PROCEDURE",
-        "CALCULATION_METHOD"
-      ],
-      "sourceAuthorityClasses": [
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "PROFESSIONAL_BODY",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE",
-        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
-      ],
-      "acquisitionPriority": "REQUIRED",
-      "representativeExemplar": false,
-      "calibratedSupportingPerformance": null,
-      "deduplicationBasis": "semantic identity + requirement mode",
-      "decompositionStatus": "READY",
-      "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source that actually teaches or describes the real procedure -- a sentence merely containing the topic name never satisfies this. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
-    },
-    {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
       "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
       "sourceKnowledgeTargetIds": [
@@ -2576,7 +2519,7 @@
       "requirementText": "Dot/cross page convention.",
       "evidenceQuestion": "What is the standard symbol/convention for: Dot/cross page convention.?",
       "requiredCoverageDimensions": [
-        "QUANTITY_SYMBOL"
+        "SCHEMATIC_SYMBOL"
       ],
       "sourceAuthorityClasses": [
         "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
@@ -3595,7 +3538,7 @@
       "requirementMode": "EXACT_FACT",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Dimmer: exact RC timing implementation/component values.",
-      "evidenceQuestion": "What authoritative fact establishes: Dimmer: exact RC timing implementation/component values.?",
+      "evidenceQuestion": null,
       "requiredCoverageDimensions": [
         "DEFINITION"
       ],
@@ -3606,12 +3549,12 @@
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "OPTIONAL_CONTEXT",
-      "representativeExemplar": false,
+      "representativeExemplar": true,
       "calibratedSupportingPerformance": null,
       "deduplicationBasis": "semantic identity + requirement mode",
-      "decompositionStatus": "READY",
-      "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "decompositionStatus": "SEMANTIC_DECOMPOSITION_REQUIRED",
+      "decompositionReason": "This target is a representative exemplar (isRepresentativeExemplar) naming a specified object (e.g. an exact circuit or exact component values) that is not yet determinately identified by a governed reference/locator/exemplar identity (exemplarObjectIdentity !== 'GOVERNED_REFERENCE_RESOLVED'). A row being researched does not by itself prove the researched object is the right canonical exemplar -- this is never READY until a governed reference resolves it, distinct from an ordinary technical-evidence gap [Correction: underspecified-exemplar detection].",
+      "acceptanceCriteria": "Not yet determinable -- semantic decomposition required before an acceptance criterion can be stated (task §8.G); return to Project Architect."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
@@ -3730,7 +3673,7 @@
       "requirementMode": "EXACT_FACT",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Heating: exact transistor/relay topology.",
-      "evidenceQuestion": "What authoritative fact establishes: Heating: exact transistor/relay topology.?",
+      "evidenceQuestion": null,
       "requiredCoverageDimensions": [
         "DEFINITION"
       ],
@@ -3741,12 +3684,12 @@
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "OPTIONAL_CONTEXT",
-      "representativeExemplar": false,
+      "representativeExemplar": true,
       "calibratedSupportingPerformance": null,
       "deduplicationBasis": "semantic identity + requirement mode",
-      "decompositionStatus": "READY",
-      "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "decompositionStatus": "SEMANTIC_DECOMPOSITION_REQUIRED",
+      "decompositionReason": "This target is a representative exemplar (isRepresentativeExemplar) naming a specified object (e.g. an exact circuit or exact component values) that is not yet determinately identified by a governed reference/locator/exemplar identity (exemplarObjectIdentity !== 'GOVERNED_REFERENCE_RESOLVED'). A row being researched does not by itself prove the researched object is the right canonical exemplar -- this is never READY until a governed reference resolves it, distinct from an ordinary technical-evidence gap [Correction: underspecified-exemplar detection].",
+      "acceptanceCriteria": "Not yet determinable -- semantic decomposition required before an acceptance criterion can be stated (task §8.G); return to Project Architect."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-thermistor-sensing-role::EXACT_FACT",
@@ -4055,7 +3998,7 @@
       "requirementText": "Schematic-symbol recognition for each named AC6.2 component/device family at qualification depth.",
       "evidenceQuestion": "What is the standard symbol/convention for: Schematic-symbol recognition for each named AC6.2 component/device family at qualification depth.?",
       "requiredCoverageDimensions": [
-        "QUANTITY_SYMBOL"
+        "SCHEMATIC_SYMBOL"
       ],
       "sourceAuthorityClasses": [
         "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
@@ -4079,7 +4022,7 @@
       "requirementMode": "EXACT_FACT",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Security alarm: exact NC/contact/bias topology.",
-      "evidenceQuestion": "What authoritative fact establishes: Security alarm: exact NC/contact/bias topology.?",
+      "evidenceQuestion": null,
       "requiredCoverageDimensions": [
         "DEFINITION"
       ],
@@ -4090,12 +4033,12 @@
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "OPTIONAL_CONTEXT",
-      "representativeExemplar": false,
+      "representativeExemplar": true,
       "calibratedSupportingPerformance": null,
       "deduplicationBasis": "semantic identity + requirement mode",
-      "decompositionStatus": "READY",
-      "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "decompositionStatus": "SEMANTIC_DECOMPOSITION_REQUIRED",
+      "decompositionReason": "This target is a representative exemplar (isRepresentativeExemplar) naming a specified object (e.g. an exact circuit or exact component values) that is not yet determinately identified by a governed reference/locator/exemplar identity (exemplarObjectIdentity !== 'GOVERNED_REFERENCE_RESOLVED'). A row being researched does not by itself prove the researched object is the right canonical exemplar -- this is never READY until a governed reference resolves it, distinct from an ordinary technical-evidence gap [Correction: underspecified-exemplar detection].",
+      "acceptanceCriteria": "Not yet determinable -- semantic decomposition required before an acceptance criterion can be stated (task §8.G); return to Project Architect."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
@@ -5759,6 +5702,30 @@
         "unit202::ACQ-004"
       ],
       "explanation": "The formula/relationship itself is a READY evidence requirement (establishing the authoritative formula and the meaning of its variables); its rearrangement/substitution/use dimension is satisfied by an already-approved foundational procedural capability, never a second technical-domain source for ordinary algebraic manipulation (task §11-§15)."
+    },
+    {
+      "knowledgeTargetId": "unit202::ACQ-134",
+      "kind": "INTEGRATION_SATISFIED_BY_CONSTITUENTS",
+      "satisfiedByKnowledgeTargetIds": [
+        "unit202::ACQ-131",
+        "unit202::ACQ-132",
+        "unit202::ACQ-133",
+        "unit202::ACQ-004"
+      ],
+      "explanation": "Integration target -- jointly satisfied by its already-sourceable constituent evidence requirements rather than a manufactured combined-relationship source proposition (task §8.E)."
+    },
+    {
+      "knowledgeTargetId": "unit202::ACQ-146",
+      "kind": "INTEGRATION_SATISFIED_BY_CONSTITUENTS",
+      "satisfiedByKnowledgeTargetIds": [
+        "unit202::ACQ-141",
+        "unit202::ACQ-142",
+        "unit202::ACQ-143",
+        "unit202::ACQ-144",
+        "unit202::ACQ-145",
+        "unit202::ACQ-004"
+      ],
+      "explanation": "Integration target -- jointly satisfied by its already-sourceable constituent evidence requirements rather than a manufactured combined-relationship source proposition (task §8.E)."
     }
   ]
 }

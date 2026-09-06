@@ -1962,56 +1962,6 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
-      "requirementText": "Appropriate simple AC-generation calculations.",
-      "requirementMode": "PROCEDURE_COVERAGE",
-      "decompositionStatus": "READY",
-      "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
-      "sourceProvenance": [
-        {
-          "knowledgeTargetId": "unit202::ACQ-134",
-          "acquisitionTargetId": "ACQ-134",
-          "rawProposition": "Appropriate simple AC-generation calculations.",
-          "historicalState": "HISTORICALLY_VERIFIED",
-          "bindingBasis": "EXACT_EQUIVALENT",
-          "resolvedRecords": [
-            {
-              "clusterKey": "ac-generation-single-loop-alternator",
-              "requirementKind": "PROCEDURE_OR_CALCULATION_RULE",
-              "requirementText": "Simple f=N×P calculations and rearrangements; cycle/period/time relations.",
-              "coverageState": "VERIFIED"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
-      "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
-      "requirementText": "Appropriate sine-wave conversions/calculations.",
-      "requirementMode": "PROCEDURE_COVERAGE",
-      "decompositionStatus": "READY",
-      "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
-      "sourceProvenance": [
-        {
-          "knowledgeTargetId": "unit202::ACQ-146",
-          "acquisitionTargetId": "ACQ-146",
-          "rawProposition": "Appropriate sine-wave conversions/calculations.",
-          "historicalState": "HISTORICALLY_VERIFIED",
-          "bindingBasis": "EXACT_EQUIVALENT",
-          "resolvedRecords": [
-            {
-              "clusterKey": "sine-wave-characteristics",
-              "requirementKind": "PROCEDURE_OR_CALCULATION_RULE",
-              "requirementText": "Converting between frequency and period, and between peak, RMS and average-of-one-alternation values.",
-              "coverageState": "VERIFIED"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
       "canonicalRequirementKey": "provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
       "requirementText": "Average over one alternation ~= 0.6366 x Vpeak.",
@@ -3133,7 +3083,7 @@
       "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
       "requirementText": "Dimmer: exact RC timing implementation/component values.",
       "requirementMode": "EXACT_FACT",
-      "decompositionStatus": "READY",
+      "decompositionStatus": "SEMANTIC_DECOMPOSITION_REQUIRED",
       "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
       "sourceProvenance": [
         {
@@ -3237,7 +3187,7 @@
       "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
       "requirementText": "Heating: exact transistor/relay topology.",
       "requirementMode": "EXACT_FACT",
-      "decompositionStatus": "READY",
+      "decompositionStatus": "SEMANTIC_DECOMPOSITION_REQUIRED",
       "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
       "sourceProvenance": [
         {
@@ -3534,7 +3484,7 @@
       "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
       "requirementText": "Security alarm: exact NC/contact/bias topology.",
       "requirementMode": "EXACT_FACT",
-      "decompositionStatus": "READY",
+      "decompositionStatus": "SEMANTIC_DECOMPOSITION_REQUIRED",
       "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
       "sourceProvenance": [
         {

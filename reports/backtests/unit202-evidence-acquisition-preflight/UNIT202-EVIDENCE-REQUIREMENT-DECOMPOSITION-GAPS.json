@@ -1,5 +1,30 @@
 {
   "policyStatement": "Task §27: these are NOT forced to zero -- an under-specified target abstains rather than inventing a decomposition, and is returned to the Project Architect.",
-  "count": 0,
-  "gaps": []
+  "count": 3,
+  "gaps": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
+      "requirementText": "Dimmer: exact RC timing implementation/component values.",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-164"
+      ],
+      "decompositionReason": "This target is a representative exemplar (isRepresentativeExemplar) naming a specified object (e.g. an exact circuit or exact component values) that is not yet determinately identified by a governed reference/locator/exemplar identity (exemplarObjectIdentity !== 'GOVERNED_REFERENCE_RESOLVED'). A row being researched does not by itself prove the researched object is the right canonical exemplar -- this is never READY until a governed reference resolves it, distinct from an ordinary technical-evidence gap [Correction: underspecified-exemplar detection]."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
+      "requirementText": "Heating: exact transistor/relay topology.",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-166"
+      ],
+      "decompositionReason": "This target is a representative exemplar (isRepresentativeExemplar) naming a specified object (e.g. an exact circuit or exact component values) that is not yet determinately identified by a governed reference/locator/exemplar identity (exemplarObjectIdentity !== 'GOVERNED_REFERENCE_RESOLVED'). A row being researched does not by itself prove the researched object is the right canonical exemplar -- this is never READY until a governed reference resolves it, distinct from an ordinary technical-evidence gap [Correction: underspecified-exemplar detection]."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
+      "requirementText": "Security alarm: exact NC/contact/bias topology.",
+      "sourceKnowledgeTargetIds": [
+        "unit202::ACQ-155"
+      ],
+      "decompositionReason": "This target is a representative exemplar (isRepresentativeExemplar) naming a specified object (e.g. an exact circuit or exact component values) that is not yet determinately identified by a governed reference/locator/exemplar identity (exemplarObjectIdentity !== 'GOVERNED_REFERENCE_RESOLVED'). A row being researched does not by itself prove the researched object is the right canonical exemplar -- this is never READY until a governed reference resolves it, distinct from an ordinary technical-evidence gap [Correction: underspecified-exemplar detection]."
+    }
+  ]
 }

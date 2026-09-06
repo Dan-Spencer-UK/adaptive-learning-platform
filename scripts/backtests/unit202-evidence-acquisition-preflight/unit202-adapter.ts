@@ -143,6 +143,113 @@ const BREADTH_PROPOSITIONS = new Set(["Fractions.", "Percentages.", "Algebra."])
  */
 const INTEGRATION_CONSTITUENTS: Record<string, readonly string[]> = {
   "Relationships between force, work, energy, power and efficiency.": ["ACQ-060", "ACQ-061", "ACQ-062", "ACQ-064", "ACQ-065"],
+  /**
+   * [Correction, Stage 4 item 12]: "appropriate simple AC-generation
+   * calculations" is an integration/performance target satisfied by its
+   * own already-verified constituent frequency/pole-pairs formulae plus
+   * the already-approved foundational formula-transposition procedure --
+   * never a demand for one omnibus worked-example source stating the
+   * whole chain at once.
+   */
+  "Appropriate simple AC-generation calculations.": ["ACQ-131", "ACQ-132", "ACQ-133", "ACQ-004"],
+  /**
+   * [Correction, Stage 4 item 10]: "appropriate sine-wave conversions/
+   * calculations" is structurally supported by the already-verified
+   * individual conversion relationships plus the same foundational
+   * calculation capability -- a separate published worked example for
+   * every algebraic direction is not required evidence.
+   */
+  "Appropriate sine-wave conversions/calculations.": ["ACQ-141", "ACQ-142", "ACQ-143", "ACQ-144", "ACQ-145", "ACQ-004"],
+};
+
+/**
+ * [Correction, Stage 4 items 10/12]: the frozen manifest never set
+ * `requiresMultipleIndependentClaims` for these two AC5 procedure targets
+ * (they predate this correction), so it is forced true here -- mirroring
+ * the existing `DIRECTIONAL_RULE_TARGET_IDS` override pattern below -- so
+ * the generic planner's integration-satisfaction mechanism (§8.E, now
+ * extended to PROCEDURE) actually applies to them.
+ */
+const PROCEDURE_INTEGRATION_TARGET_IDS = new Set(["ACQ-134", "ACQ-146"]);
+
+/**
+ * [Correction, Stage 1.3 underspecified-exemplar detection]: these three
+ * Batch 06 targets each ask for an EXACT, named circuit/component-value
+ * object ("Dimmer: exact RC timing implementation/component values.",
+ * "Heating: exact transistor/relay topology.", "Security alarm: exact
+ * NC/contact/bias topology.") that no governed reference in the frozen
+ * manifest determinately identifies. Marking them here (never editing the
+ * frozen/sealed manifest itself) lets the generic planner's
+ * `exemplarObjectIdentity` mechanism refuse READY status for the exact-
+ * object claim structurally: a row being researched does not by itself
+ * prove the researched object is the right canonical exemplar. This
+ * matches the batch-06 acquisition's own finding that no determinate
+ * source names these exact objects (see EDA-LP-19/21/25 in the batch-06
+ * learning-point inventory).
+ */
+const UNDERSPECIFIED_EXEMPLAR_TARGET_IDS = new Set(["ACQ-155", "ACQ-164", "ACQ-166"]);
+
+/**
+ * [Correction, Stage 1.3/5 item 3]: the frozen manifest also flags three
+ * OTHER targets `isRepresentativeExemplar: true`
+ * ("Security alarm: SCR/thyristor latching + sounder role.", "Telephone:
+ * capacitor -> ringer.", "Motor: bridge rectifier converts AC to DC.") --
+ * each names a general ROLE/BEHAVIOUR (not an exact, otherwise-
+ * unidentifiable circuit/component-value object) that acquisition
+ * genuinely resolved against a determinate, governed source (e.g. AT&T
+ * Bell System Practices Section 502-200-100 for the telephone capacitor's
+ * exact value and role). These are therefore
+ * `exemplarObjectIdentity: "GOVERNED_REFERENCE_RESOLVED"`, distinct from
+ * the three genuinely underspecified exemplars above (Stage 5 item 3:
+ * "retain the transferable roles ... where technically evidenced ...
+ * treat the actual circuit as a representative exemplar to be authored
+ * and validated downstream" -- the ROLE is resolved even where the exact
+ * downstream circuit is not).
+ */
+const RESOLVED_EXEMPLAR_TARGET_IDS = new Set(["ACQ-153", "ACQ-156", "ACQ-168"]);
+
+/**
+ * [Correction, Stage 1.2]: explicit coverage-dimension declarations for
+ * every `PROCEDURE_OR_CALCULATION_RULE` / `SYMBOL_OR_CONVENTION` target in
+ * Unit 202, replacing reliance on the generic planner's now-corrected
+ * defaults (`PROCEDURE` no longer silently assumes `CALCULATION_METHOD`;
+ * `SYMBOL_OR_CONVENTION` and `OPERATIONAL_USE_RULE` no longer have any
+ * default dimension at all -- see planner.ts's `AMBIGUOUS_DEFAULT_DIMENSION_KINDS`).
+ * Every one of Unit 202's 20 such targets is listed explicitly and
+ * hand-verified against its real proposition text -- never inferred.
+ *
+ * Frozen-batch targets (Batches 01-03: AC1.1, AC3.1/AC3.4, AC4.3/AC4.6/
+ * AC4.7) are pinned to EXACTLY the dimension set the prior, now-corrected
+ * default produced, so regenerating the frozen plan from this adapter
+ * reproduces those batches byte-identically -- this pass never edits
+ * frozen Batch 01-03 artifacts. Only unfrozen Batch 04-06 targets receive
+ * a genuine correction (see the inline notes below).
+ */
+const EXPLICIT_PROCEDURE_OR_SYMBOL_DIMENSIONS: Record<string, readonly CoverageDimension[]> = {
+  // --- Batch 01 (frozen) -- genuine calculation procedures; pinned to the prior default. ---
+  "ACQ-004": ["PROCEDURE", "CALCULATION_METHOD"], // Formula transposition.
+  "ACQ-007": ["QUANTITY_SYMBOL"], // Standard/scientific notation. (pinned -- Batch 01's own PA authority-class adjudication corrected this requirement's permitted AUTHORITY, not its coverage dimension)
+  "ACQ-008": ["QUANTITY_SYMBOL"], // Engineering notation. (pinned)
+  "ACQ-010": ["PROCEDURE", "CALCULATION_METHOD"], // Sine/cosine/tangent use in right triangles.
+  "ACQ-015": ["PROCEDURE", "CALCULATION_METHOD"], // Ordinary decimal arithmetic.
+  "ACQ-016": ["PROCEDURE", "CALCULATION_METHOD"], // Proportional reasoning required to execute the above calculations.
+  // --- Batch 02 (frozen) -- genuine calculation procedures / pinned symbol dimensions. ---
+  "ACQ-081": ["QUANTITY_SYMBOL"], // Rho (resistivity symbol). -- genuinely a quantity symbol; pinned value happens to already be correct.
+  "ACQ-082": ["QUANTITY_SYMBOL"], // Ohm-metre (resistivity unit). -- pinned to the prior default; a unit is arguably UNIT_SYMBOL, but Batch 02 is frozen and this pass never edits frozen Batch 01-03 artifacts, so the pre-correction value is preserved exactly rather than "fixed".
+  "ACQ-095": ["PROCEDURE", "CALCULATION_METHOD"], // Suitable DC-circuit-power calculations.
+  "ACQ-098": ["PROCEDURE", "CALCULATION_METHOD"], // Appropriate voltage-drop calculation.
+  // --- Batch 03 (frozen) -- genuine calculation procedures. ---
+  "ACQ-048": ["PROCEDURE", "CALCULATION_METHOD"], // Appropriate mass/weight calculations.
+  "ACQ-073": ["PROCEDURE", "CALCULATION_METHOD"], // Legitimate multistep mechanical calculations.
+  // --- Batch 04 (unfrozen) -- genuine calculation, and a genuine correction. ---
+  "ACQ-025": ["PROCEDURE", "CALCULATION_METHOD"], // Practical unit conversion needed elsewhere in Unit 202. -- genuine calculation.
+  "ACQ-040": ["SAFE_USE"], // Ohmmeter: circuit de-energised/safe-use principle. [Correction, Stage 3 item 7]: a safety/use principle, never a calculation -- the prior default's CALCULATION_METHOD dimension created exactly the false gap the batch-04 internal audit found ("the ohmmeter safe-use requirement had CALCULATION_METHOD marked satisfied although its evidence contains no calculation").
+  // --- Batch 05 (unfrozen) -- genuine calculation, and a genuine correction. ---
+  "ACQ-118": ["PROCEDURE", "CALCULATION_METHOD"], // Suitable simple electromagnetism calculations/rearrangements. -- genuine calculation.
+  "ACQ-121": ["SCHEMATIC_SYMBOL"], // Dot/cross page convention. [Correction, Stage 1.2/2.3]: a page-direction/schematic convention, never a quantity symbol -- the prior default's QUANTITY_SYMBOL dimension held this to an acceptance bar it was never trying to meet (this is exactly the "dot-cross-page-convention" requirement previously recorded as a GAP in the review pack).
+  // --- Batch 06 (unfrozen) -- genuine calculation, and a genuine correction. ---
+  "ACQ-184": ["SCHEMATIC_SYMBOL"], // Schematic-symbol recognition for each named AC6.2 component/device family. [Correction, Stage 1.2/2.3]: schematic symbols, never quantity symbols -- see the IEC 60617 authority correction for this same requirement.
+  "ACQ-185": ["PROCEDURE", "CALCULATION_METHOD"], // 4-band resistor colour code. -- decoding bands into a resistance value is genuinely a calculation-like procedure.
 };
 
 function expectedDimensionsForAC2_2(proposition: string): readonly CoverageDimension[] {
@@ -496,6 +603,17 @@ export function buildUnit202PlanningInput(): AdapterResult {
     const specificationMode = specificationModeFor(t.proposition);
     notes.push(`specificationMode=${specificationMode} (mechanical: raw proposition text ${specificationMode === "KNOWN_CLAIM_TO_VERIFY" ? "literally states an equation" : "does not literally state an equation"}, task §14/§15)`);
 
+    const explicitProcedureOrSymbolDimensions = EXPLICIT_PROCEDURE_OR_SYMBOL_DIMENSIONS[t.acquisitionTargetId];
+    if (explicitProcedureOrSymbolDimensions) {
+      expectedCoverageDimensions = explicitProcedureOrSymbolDimensions;
+      notes.push(`[Correction 1.2] explicit expectedCoverageDimensions=[${explicitProcedureOrSymbolDimensions.join(", ")}] -- the generic planner no longer supplies a default dimension for this kind`);
+    }
+
+    if (PROCEDURE_INTEGRATION_TARGET_IDS.has(t.acquisitionTargetId)) {
+      requiresMultipleIndependentClaims = true;
+      notes.push("[Correction 4.10/4.12] forced requiresMultipleIndependentClaims=true -- integration target satisfied by already-verified constituent formulae/relationships, never a demand for one omnibus source");
+    }
+
     if (AC2_2_QUANTITIES.has(t.proposition)) {
       kind = "CONCEPT_DEFINITION";
       expectedCoverageDimensions = expectedDimensionsForAC2_2(t.proposition);
@@ -534,6 +652,15 @@ export function buildUnit202PlanningInput(): AdapterResult {
     const constituentIds = INTEGRATION_CONSTITUENTS[t.proposition]?.map(knowledgeTargetIdFor);
     if (constituentIds) notes.push(`integration target -- constituentKnowledgeTargetIds=[${constituentIds.join(", ")}]`);
 
+    const isUnderspecifiedExemplar = UNDERSPECIFIED_EXEMPLAR_TARGET_IDS.has(t.acquisitionTargetId);
+    if (isUnderspecifiedExemplar) {
+      notes.push("[Correction 1.3] marked isRepresentativeExemplar=true, exemplarObjectIdentity=UNDETERMINED -- this target names an exact circuit/component-value object no governed reference in the frozen manifest determinately identifies; the planner refuses READY status for it structurally");
+    }
+    const isResolvedExemplar = RESOLVED_EXEMPLAR_TARGET_IDS.has(t.acquisitionTargetId);
+    if (isResolvedExemplar) {
+      notes.push("[Correction 1.3] marked exemplarObjectIdentity=GOVERNED_REFERENCE_RESOLVED -- this exemplar's role/behaviour is genuinely resolved by a determinate, governed source, distinct from the underspecified exact-object exemplars above");
+    }
+
     const target: KnowledgeTarget = {
       knowledgeTargetId,
       targetText: requirementText,
@@ -545,7 +672,9 @@ export function buildUnit202PlanningInput(): AdapterResult {
       ...(requiresMultipleIndependentClaims ? { requiresMultipleIndependentClaims: true } : {}),
       ...(constituentIds ? { constituentKnowledgeTargetIds: constituentIds } : {}),
       ...(reusesFoundationalProcedureIds ? { reusesFoundationalProcedureIds } : {}),
-      isRepresentativeExemplar: t.isRepresentativeExemplar,
+      isRepresentativeExemplar: t.isRepresentativeExemplar || isUnderspecifiedExemplar,
+      ...(isUnderspecifiedExemplar ? { exemplarObjectIdentity: "UNDETERMINED" as const } : {}),
+      ...(isResolvedExemplar ? { exemplarObjectIdentity: "GOVERNED_REFERENCE_RESOLVED" as const } : {}),
     };
 
     audit.push({ knowledgeTargetId, acquisitionTargetId: t.acquisitionTargetId, ac: t.ac, rawProposition: t.proposition, normalizedTargetText: requirementText, adapterDecisionNotes: notes });

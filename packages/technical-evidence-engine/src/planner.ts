@@ -82,10 +82,37 @@ function defaultRequirementModeForKind(kind: KnowledgeTargetKind): RequirementMo
   }
 }
 
+/**
+ * [Correction] These two kinds are NOT reached by `defaultDimensionsForKind`
+ * when a target omits `expectedCoverageDimensions` -- the planner abstains
+ * instead (see the `AMBIGUOUS_DEFAULT_DIMENSION_KINDS` guard in
+ * `planEvidenceRequirements`), because each is genuinely multi-shaped and a
+ * single guessed default silently created false evidence gaps/false-green
+ * results: a `SYMBOL_OR_CONVENTION` may be a quantity symbol, a schematic
+ * symbol, or a directional/page convention (previously always guessed
+ * `QUANTITY_SYMBOL`, wrongly holding a schematic symbol or a page-direction
+ * convention to a quantity-symbol acceptance bar it was never trying to
+ * meet); an `OPERATIONAL_USE_RULE` may be a genuine safety rule or an
+ * ordinary non-safety operational/directional rule (previously always
+ * guessed `SAFE_USE`, wrongly marking a non-safety rule's evidence
+ * satisfied by proving something it never needed to prove, or demanding
+ * safety-specific sourcing an ordinary rule never needed). Retained here,
+ * unreachable via the default path, purely so the switch stays exhaustive
+ * and self-documenting; the real behaviour is the abstention.
+ */
+const AMBIGUOUS_DEFAULT_DIMENSION_KINDS: ReadonlySet<KnowledgeTargetKind> = new Set(["SYMBOL_OR_CONVENTION", "OPERATIONAL_USE_RULE"]);
+
 function defaultDimensionsForKind(kind: KnowledgeTargetKind): readonly CoverageDimension[] {
   switch (kind) {
     case "PROCEDURE":
-      return ["PROCEDURE", "CALCULATION_METHOD"];
+      // [Correction]: a procedure is not, by default, also a calculation --
+      // callers must declare CALCULATION_METHOD explicitly via
+      // expectedCoverageDimensions when the procedure genuinely computes a
+      // numeric result (previously every PROCEDURE silently demanded
+      // CALCULATION_METHOD evidence too, creating a false gap for
+      // non-calculation procedures, e.g. a de-energisation safety
+      // procedure with no calculation in it at all).
+      return ["PROCEDURE"];
     case "BREADTH_TOPIC_COVERAGE":
       return ["PROCEDURE"];
     case "RECOGNITION_REQUIREMENT":
@@ -93,11 +120,11 @@ function defaultDimensionsForKind(kind: KnowledgeTargetKind): readonly CoverageD
     case "OPERATING_PRINCIPLE":
       return ["OPERATING_PRINCIPLE"];
     case "OPERATIONAL_USE_RULE":
-      return ["SAFE_USE"];
+      return [];
     case "APPLICATION_FUNCTION":
       return ["APPLICATION_FUNCTION"];
     case "SYMBOL_OR_CONVENTION":
-      return ["QUANTITY_SYMBOL"];
+      return [];
     case "FORMULA_OR_RULE":
       return ["FORMULA"];
     case "RELATIONSHIP":
@@ -290,9 +317,19 @@ function evidenceQuestionFor(target: KnowledgeTarget, mode: RequirementMode, req
   return target.evidenceQuestionOverride?.trim() || EVIDENCE_QUESTION_TEMPLATE_BY_MODE[mode](requirementText);
 }
 
+const UNDERSPECIFIED_EXEMPLAR_REASON =
+  "This target is a representative exemplar (isRepresentativeExemplar) naming a specified object (e.g. an exact circuit or exact component values) that is not yet determinately identified by a governed reference/locator/exemplar identity (exemplarObjectIdentity !== 'GOVERNED_REFERENCE_RESOLVED'). A row being researched does not by itself prove the researched object is the right canonical exemplar -- this is never READY until a governed reference resolves it, distinct from an ordinary technical-evidence gap [Correction: underspecified-exemplar detection].";
+
 function buildRequirement(p: BuildRequirementParams): EvidenceRequirement {
   const key = canonicalRequirementKey(p.target.semanticIdentity, p.mode, p.qualificationContextId, p.dimensionSuffix);
   const specificationMode: RequirementSpecificationMode = p.target.specificationMode;
+  // [Correction: underspecified-exemplar detection] An exemplar target whose
+  // specified object is not determinately identified can never be READY,
+  // regardless of what decomposition status the caller otherwise computed --
+  // this is a structural override, not a fuzzy inspection of requirementText.
+  const exemplarUnresolved = p.target.isRepresentativeExemplar === true && p.target.exemplarObjectIdentity !== "GOVERNED_REFERENCE_RESOLVED";
+  const decompositionStatus: DecompositionStatus = exemplarUnresolved ? "SEMANTIC_DECOMPOSITION_REQUIRED" : p.decompositionStatus;
+  const decompositionReason = exemplarUnresolved ? UNDERSPECIFIED_EXEMPLAR_REASON : p.decompositionReason;
   return {
     evidenceRequirementId: `ER::${key}`,
     canonicalRequirementKey: key,
@@ -300,16 +337,16 @@ function buildRequirement(p: BuildRequirementParams): EvidenceRequirement {
     requirementMode: p.mode,
     specificationMode,
     requirementText: p.requirementText,
-    evidenceQuestion: specificationMode === "OPEN_TECHNICAL_QUESTION" && p.decompositionStatus === "READY" ? evidenceQuestionFor(p.target, p.mode, p.requirementText) : null,
+    evidenceQuestion: specificationMode === "OPEN_TECHNICAL_QUESTION" && decompositionStatus === "READY" ? evidenceQuestionFor(p.target, p.mode, p.requirementText) : null,
     requiredCoverageDimensions: p.dimensions,
     sourceAuthorityClasses: authorityClassesFor(p.mode, p.policy),
     acquisitionPriority: priorityFor(p.target),
     representativeExemplar: p.target.isRepresentativeExemplar === true,
     calibratedSupportingPerformance: p.target.calibratedSupportingPerformance ?? null,
     deduplicationBasis: p.deduplicationBasis,
-    decompositionStatus: p.decompositionStatus,
-    decompositionReason: p.decompositionReason,
-    acceptanceCriteria: p.decompositionStatus === "READY" ? ACCEPTANCE_CRITERIA_BY_MODE[p.mode] : "Not yet determinable -- semantic decomposition required before an acceptance criterion can be stated (task §8.G); return to Project Architect.",
+    decompositionStatus,
+    decompositionReason,
+    acceptanceCriteria: decompositionStatus === "READY" ? ACCEPTANCE_CRITERIA_BY_MODE[p.mode] : "Not yet determinable -- semantic decomposition required before an acceptance criterion can be stated (task §8.G); return to Project Architect.",
   };
 }
 
@@ -419,10 +456,32 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
       continue;
     }
 
-    // Task §8.E / CC-23A §11-§15: a RELATIONSHIP or FORMULA_OR_RULE target
-    // declaring multiple independent claims is resolved one of two ways --
-    // never guessed, never left compound.
-    if ((target.kind === "RELATIONSHIP" || target.kind === "FORMULA_OR_RULE") && target.requiresMultipleIndependentClaims === true) {
+    // [Correction: cross-batch/cross-run structural satisfaction] An
+    // already-approved teaching outcome produced OUTSIDE this planning run
+    // (e.g. a frozen learning point from an earlier acquisition batch)
+    // already exhausts this target's technical evidence need -- reported,
+    // never silently dropped, and never re-verified as if new.
+    if (target.satisfiedByExistingLearningPointIds && target.satisfiedByExistingLearningPointIds.length > 0) {
+      structuralSatisfactions.push({
+        knowledgeTargetId: target.knowledgeTargetId,
+        kind: "SATISFIED_BY_EXISTING_LEARNING_POINT",
+        satisfiedByKnowledgeTargetIds: target.satisfiedByExistingLearningPointIds,
+        explanation: "Already satisfied by an existing, already-approved teaching outcome produced outside this planning run (e.g. a frozen learning point from an earlier acquisition batch) -- no independent evidence requirement is emitted [Correction].",
+      });
+      continue;
+    }
+
+    // Task §8.E / CC-23A §11-§15 [Correction: extended to PROCEDURE]: a
+    // RELATIONSHIP, FORMULA_OR_RULE, or PROCEDURE target declaring multiple
+    // independent claims is resolved one of two ways -- never guessed,
+    // never left compound. PROCEDURE is included because a compound
+    // procedure genuinely built from several already-sourceable
+    // constituent steps/relationships (e.g. "appropriate sine-wave
+    // conversions" built from already-verified individual conversion
+    // relationships plus a foundational calculation capability) is
+    // structurally identical to a compound relationship -- it must not be
+    // treated as demanding one omnibus source it was never going to find.
+    if ((target.kind === "RELATIONSHIP" || target.kind === "FORMULA_OR_RULE" || target.kind === "PROCEDURE") && target.requiresMultipleIndependentClaims === true) {
       // (a) Integration target (§8.E): satisfied entirely by already-sourceable siblings.
       if (target.constituentKnowledgeTargetIds && target.constituentKnowledgeTargetIds.length >= 2) {
         structuralSatisfactions.push({
@@ -440,7 +499,7 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
       // meaning of its variables) -- only the algebraic-manipulation
       // dimension is satisfied structurally.
       if (target.reusesFoundationalProcedureIds && target.reusesFoundationalProcedureIds.length >= 1) {
-        const mode = target.kind === "FORMULA_OR_RULE" ? "FORMULA_OR_RULE" : "RELATIONSHIP";
+        const mode = defaultRequirementModeForKind(target.kind);
         freshRequirements.push(
           buildRequirement({
             target,
@@ -468,13 +527,13 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
         buildRequirement({
           target,
           qualificationContextId,
-          mode: target.kind === "FORMULA_OR_RULE" ? "FORMULA_OR_RULE" : "RELATIONSHIP",
+          mode: defaultRequirementModeForKind(target.kind),
           requirementText: target.targetText,
           dimensions: [],
           policy: sourceAuthorityPolicy,
           decompositionStatus: "SEMANTIC_DECOMPOSITION_REQUIRED",
           decompositionReason:
-            "Multi-claim relationship/formula target requires explicit constituentKnowledgeTargetIds (>=2, integration) or reusesFoundationalProcedureIds (>=1, formula+rearrangement) to determine how it can be satisfied; neither was supplied (task §8.G).",
+            "Multi-claim relationship/formula/procedure target requires explicit constituentKnowledgeTargetIds (>=2, integration) or reusesFoundationalProcedureIds (>=1, formula+rearrangement) to determine how it can be satisfied; neither was supplied (task §8.G).",
           deduplicationBasis: "under-specified multi-claim target -- not yet deduplicated",
         }),
       );
@@ -521,6 +580,29 @@ export function planEvidenceRequirements(input: KnowledgeEvidencePlanningInput, 
 
     // Classes A/C/D and single-claim RELATIONSHIP/FORMULA_OR_RULE: one requirement, kind-derived mode.
     const mode = defaultRequirementModeForKind(target.kind);
+
+    // [Correction]: SYMBOL_OR_CONVENTION and OPERATIONAL_USE_RULE are each
+    // genuinely multi-shaped (see AMBIGUOUS_DEFAULT_DIMENSION_KINDS above)
+    // -- without an explicit expectedCoverageDimensions declaration, the
+    // planner abstains rather than guessing a single dimension that may not
+    // apply to this particular target.
+    if (!target.expectedCoverageDimensions && AMBIGUOUS_DEFAULT_DIMENSION_KINDS.has(target.kind)) {
+      freshRequirements.push(
+        buildRequirement({
+          target,
+          qualificationContextId,
+          mode,
+          requirementText: target.targetText,
+          dimensions: [],
+          policy: sourceAuthorityPolicy,
+          decompositionStatus: "SEMANTIC_DECOMPOSITION_REQUIRED",
+          decompositionReason: `${target.kind} targets require an explicit expectedCoverageDimensions declaration -- several genuinely different dimensions are possible (e.g. a quantity symbol vs. a schematic symbol vs. a directional/page convention; a safety rule vs. an ordinary non-safety operational rule) and the planner never guesses which one applies [Correction].`,
+          deduplicationBasis: "under-specified symbol/operational-use-rule target -- not yet deduplicated",
+        }),
+      );
+      continue;
+    }
+
     const dims = target.expectedCoverageDimensions ?? defaultDimensionsForKind(target.kind);
     freshRequirements.push(
       buildRequirement({

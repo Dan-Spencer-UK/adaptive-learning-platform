@@ -302,8 +302,44 @@ export interface KnowledgeTarget {
   readonly directionalMapping?: readonly DirectionalMappingEntry[];
   /** True only when this exact target was selected as a representative exemplar of a broader application (task §18 "representative exemplars remain semantically distinct" -- never merged away by dedup logic that would erase the distinction). */
   readonly isRepresentativeExemplar?: boolean;
+  /**
+   * [Correction: underspecified-exemplar detection] Meaningful ONLY when
+   * `isRepresentativeExemplar` is true. An exemplar target names a
+   * specified OBJECT ("an exact circuit", "exact component values") that
+   * is a genuinely different kind of obligation from ordinary technical
+   * evidence: the object itself must be determinately identified by a
+   * governed reference/locator/exemplar identity before acquisition can
+   * even begin, or acquisition silently invents/selects one and calls it
+   * "the" answer. `"GOVERNED_REFERENCE_RESOLVED"` means a qualification-
+   * approved reference/locator already determinately identifies the exact
+   * object (safe to plan as an ordinary READY requirement); any other
+   * value (or omission) means the object is not yet determinately
+   * identified, and the planner refuses READY status for this target
+   * (see `buildRequirement` in planner.ts) rather than silently treating
+   * "a row was researched" as proof "the row is the right canonical
+   * object" -- this is a STRUCTURAL check on this one field, never fuzzy
+   * inspection of `targetText` content.
+   */
+  readonly exemplarObjectIdentity?: "GOVERNED_REFERENCE_RESOLVED" | "UNDETERMINED";
   /** Opaque, adapter-supplied descriptor of the calibrated learner performance this target supports (e.g. a depth/assessment calibration note) -- carried through verbatim, never interpreted. */
   readonly calibratedSupportingPerformance?: string;
+  /**
+   * [Correction: cross-batch/cross-run structural satisfaction] Opaque
+   * identifiers of an already-approved, previously-produced teaching
+   * outcome (e.g. a frozen learning point from an earlier acquisition
+   * batch or an earlier qualification run) that already exhausts this
+   * target's technical evidence need. Distinct from
+   * `reusesFoundationalProcedureIds` (which reuses a FOUNDATIONAL
+   * PROCEDURE, always still requiring its own formula/relationship
+   * requirement) and from `childKnowledgeTargetIds` (governed children
+   * WITHIN the same planning run) -- this covers reuse of an outcome
+   * produced entirely OUTSIDE this planning run. This package never
+   * resolves, validates, or interprets these identifiers -- it only
+   * records the structural satisfaction and carries the IDs through
+   * verbatim (task: a requirement being satisfied by prior mastery is
+   * reported, never silently dropped, and never re-verified as if new).
+   */
+  readonly satisfiedByExistingLearningPointIds?: readonly string[];
 }
 
 // ---------------------------------------------------------------------
@@ -454,6 +490,8 @@ export const structuralSatisfactionKindSchema = z.enum([
   "OUT_OF_SCOPE_EXCLUDED",
   /** CC-23A §11-§15: the target's REARRANGEMENT/SUBSTITUTION/USE dimension is satisfied by an already-approved foundational procedure -- coexists with a real, separately-emitted EvidenceRequirement covering the target's own formula/relationship dimension (never a zero-requirement outcome by itself). */
   "REARRANGEMENT_SATISFIED_BY_FOUNDATIONAL_PROCEDURE",
+  /** [Correction]: the target's technical evidence need is already exhausted by an already-approved teaching outcome produced OUTSIDE this planning run (e.g. a frozen learning point from an earlier acquisition batch) -- see `KnowledgeTarget.satisfiedByExistingLearningPointIds`. */
+  "SATISFIED_BY_EXISTING_LEARNING_POINT",
 ]);
 export type StructuralSatisfactionKind = z.infer<typeof structuralSatisfactionKindSchema>;
 
@@ -512,8 +550,40 @@ export interface TechnicalEvidenceAcquisitionRequest {
   readonly acquisitionPolicy: AcquisitionPolicy;
 }
 
+/**
+ * [Correction: one canonical status vocabulary] This is the SOLE
+ * verification-status vocabulary for technical evidence acquisition --
+ * every acquisition result, generator, report, and validator MUST use
+ * these five values verbatim (never a shortened production alias such as
+ * "PARTIAL" or "GAP"). A requirement is `VERIFIED` when every required
+ * atomic claim or coverage dimension is explicitly supported by one or
+ * more permitted authoritative sources and no material conflict remains
+ * -- multiple-source composition is valid (a compound account may be
+ * assembled from several sources), provided every constituent claim
+ * retains its own exact source binding; `VERIFIED` is never downgraded
+ * merely because no single passage states the whole compound account.
+ * `PARTIALLY_VERIFIED` applies only when a required constituent or
+ * dimension remains unsupported, inferential, materially ambiguous, or
+ * unresolved.
+ */
 export const verificationStatusSchema = z.enum(["VERIFIED", "PARTIALLY_VERIFIED", "SOURCE_GAP", "CONFLICTED", "NOT_ATTEMPTED"]);
 export type VerificationStatus = z.infer<typeof verificationStatusSchema>;
+
+/**
+ * [Correction: separate readiness concerns] A technical-evidence result
+ * (`verificationStatus`) answers only "is the underlying fact/relationship
+ * correctly evidenced?". It must never be conflated with whether a
+ * REPRESENTATIVE EXEMPLAR still needs authoring/validation, or whether a
+ * learner-facing RECOGNITION ASSET (e.g. a commissioned photograph or
+ * schematic-symbol artwork) still needs producing -- a missing photograph
+ * may block final lesson production without making the underlying
+ * learning-point identity or technical fact unsupported. These are
+ * reported as separate, explicit, non-blocking dependency flags on the
+ * result, never smuggled into `verificationStatus` or `gaps` as if they
+ * were the same kind of gap as an unresolved technical claim.
+ */
+export const outstandingProductionDependencyKindSchema = z.enum(["REPRESENTATIVE_EXEMPLAR_AUTHORING", "LEARNER_FACING_VISUAL_ASSET"]);
+export type OutstandingProductionDependencyKind = z.infer<typeof outstandingProductionDependencyKindSchema>;
 
 export interface CandidateSourceRecord {
   readonly sourceId: string;
@@ -556,6 +626,23 @@ export interface TechnicalEvidenceAcquisitionResult {
   readonly unresolvedDimensions: readonly CoverageDimension[];
   readonly conflicts: readonly AcquisitionConflictRecord[];
   readonly gaps: readonly AcquisitionGapRecord[];
+  /**
+   * [Correction: cross-batch/cross-run structural satisfaction] Present
+   * only when this requirement's technical evidence need is (wholly or
+   * partly) satisfied by an already-approved teaching outcome produced
+   * outside this acquisition run -- see
+   * `KnowledgeTarget.satisfiedByExistingLearningPointIds`. Never implies
+   * `verificationStatus` is VERIFIED by itself; the requirement still
+   * carries its own genuinely-evaluated `verificationStatus`.
+   */
+  readonly satisfiedByExistingLearningPointIds?: readonly string[];
+  /**
+   * [Correction: separate readiness concerns] Non-blocking-for-evidence
+   * production dependencies still outstanding for this requirement (see
+   * `OutstandingProductionDependencyKind`) -- reported separately from,
+   * and never allowed to lower, `verificationStatus`.
+   */
+  readonly outstandingProductionDependencies?: readonly OutstandingProductionDependencyKind[];
 }
 
 // ---------------------------------------------------------------------
