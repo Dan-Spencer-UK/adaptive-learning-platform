@@ -414,7 +414,7 @@
       "id": "EQCT-LP-09",
       "title": "Capacitance: meaning, quantity symbol and unit",
       "learnerOutcome": "The learner will be able to state what capacitance is, its quantity symbol (C), and its SI unit name and symbol (farad, F).",
-      "knowledgeOrProcedure": "Capacitance is a capacitor's fixed physical ability to store electrical charge on its plates for a given applied voltage; it does not itself depend on the frequency of any applied signal. Its quantity symbol is C; its SI unit is the farad, symbol F.",
+      "knowledgeOrProcedure": "Capacitance is a capacitor's physical ability to store electrical charge on its plates for a given applied voltage. At this level, capacitance is treated as a basic property of the component (set by its construction), in contrast with capacitive reactance, which is explicitly frequency-dependent; this is the ideal/basic-component model appropriate here, not a claim that a real capacitor's capacitance can never be affected by anything (e.g. temperature or applied voltage in a real device) -- that further nuance is out of scope for this qualification. Its quantity symbol is C; its SI unit is the farad, symbol F.",
       "prerequisiteLearningPointIds": [],
       "crossDomainPrerequisiteIds": [],
       "knowledgeTargetIds": [
@@ -440,7 +440,7 @@
         "State the quantity symbol and SI unit for capacitance.",
         "Explain why doubling a capacitor's stored charge for the same voltage means its capacitance has doubled, not its capacitive reactance."
       ],
-      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding."
+      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding. [Correction, Stage 3 item 4] Removed the absolute fixed/frequency-independent claim; scoped to the ideal/basic-component model."
     },
     {
       "id": "EQCT-LP-10",
@@ -480,7 +480,7 @@
       "id": "EQCT-LP-11",
       "title": "Inductance: meaning, quantity symbol and unit",
       "learnerOutcome": "The learner will be able to state what inductance is, its quantity symbol (L), and its SI unit name and symbol (henry, H).",
-      "knowledgeOrProcedure": "Inductance is a coil's fixed physical ability to oppose changes in current, independent of the frequency of any applied signal. Its quantity symbol is L; its SI unit is the henry, symbol H.",
+      "knowledgeOrProcedure": "Inductance is a coil's physical ability to oppose changes in current. At this level, inductance is treated as a basic property of the component (set by its construction, e.g. turns and core), in contrast with inductive reactance, which is explicitly frequency-dependent; this is the ideal/basic-component model appropriate here, not a claim that a real coil's inductance can never be affected by anything (e.g. core saturation in a real device) -- that further nuance is out of scope for this qualification. Its quantity symbol is L; its SI unit is the henry, symbol H.",
       "prerequisiteLearningPointIds": [],
       "crossDomainPrerequisiteIds": [],
       "knowledgeTargetIds": [
@@ -505,7 +505,7 @@
       "applicationTypes": [
         "State the quantity symbol and SI unit for inductance."
       ],
-      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding."
+      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding. [Correction, Stage 3 item 4] Removed the absolute fixed/frequency-independent claim; scoped to the ideal/basic-component model."
     },
     {
       "id": "EQCT-LP-12",
