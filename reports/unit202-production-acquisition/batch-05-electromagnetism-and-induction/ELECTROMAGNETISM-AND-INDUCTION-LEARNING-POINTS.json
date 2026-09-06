@@ -1,0 +1,1064 @@
+{
+  "domain": "electromagnetism-and-induction",
+  "status": "PROPOSED_FOR_PA_REVIEW",
+  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIAL or GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
+  "learningPointCount": 22,
+  "readinessCounts": {
+    "READY": 13,
+    "HELD_PENDING_EVIDENCE_CORRECTION": 9
+  },
+  "instructionalSequence": [
+    "EMI-LP-01",
+    "EMI-LP-02",
+    "EMI-LP-03",
+    "EMI-LP-04",
+    "EMI-LP-05",
+    "EMI-LP-06",
+    "EMI-LP-07",
+    "EMI-LP-08",
+    "EMI-LP-09",
+    "EMI-LP-10",
+    "EMI-LP-11",
+    "EMI-LP-12",
+    "EMI-LP-13",
+    "EMI-LP-14",
+    "EMI-LP-15",
+    "EMI-LP-16",
+    "EMI-LP-17",
+    "EMI-LP-18",
+    "EMI-LP-19",
+    "EMI-LP-20",
+    "EMI-LP-21",
+    "EMI-LP-22"
+  ],
+  "crossDomainPrerequisiteNote": "Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25) and Batch 02 (EFS-LP-01..20) inventories. No FM-LP-*, EFS-LP-* or MM-LP-* identity is edited, renumbered or duplicated here; a prerequisite is attached only where a learning point's own outcome genuinely uses that prior skill. EFS-LP-03 (conventional current and electron flow) is attached to all three directional-rule learning points because each rule is only correct for one current convention. No prerequisite is declared on any EQCT-LP-* identity, because Batch 04 is itself PROPOSED and unfrozen -- the one genuine relationship (frequency) is disclosed in the overlap audit instead of encoded as a dependency on an unfrozen identity.",
+  "overlapAudit": [
+    {
+      "topic": "Frequency (meaning, quantity symbol, unit) versus frequency as a property of the generated AC waveform",
+      "decision": "NEW_LP_ADDED_DISTINCT_MASTERY",
+      "relatedLearningPointId": "EQCT-LP-08 (Batch 04, PROPOSED and unfrozen)",
+      "newLearningPointId": "EMI-LP-18",
+      "rationale": "Batch 04's EQCT-LP-08 teaches frequency as an ELECTRICAL QUANTITY -- its meaning, quantity symbol f and unit hertz -- alongside the other quantities of that domain. EMI-LP-18 teaches frequency as a property of the GENERATED AC WAVEFORM, defined in terms of the cycle and tied to periodic time by T = 1/f, in the context of what an alternator actually produces. The two are genuinely different masteries and Batch 05's frequency requirement carries its own distinct evidence-requirement ID. No content is duplicated: EMI-LP-18 does not re-teach the quantity symbol/unit identity.",
+      "flaggedForProductArchitect": "Batch 04 is PROPOSED, not frozen, so this relationship cannot be resolved as a settled reuse the way Batch 04 could reuse the frozen EFS-LP-05/06. If the Product Architect accepts EQCT-LP-08 as-is, confirm whether EMI-LP-18 should carry it as a cross-domain prerequisite. That dependency is deliberately NOT encoded here, because encoding a dependency on an unfrozen identity would create exactly the kind of coupling the batch-by-batch freeze discipline exists to prevent."
+    },
+    {
+      "topic": "Inductance and inductive reactance",
+      "decision": "NO_OVERLAP_NO_ACTION",
+      "relatedLearningPointId": "EQCT-LP-11 / EQCT-LP-12 (Batch 04)",
+      "rationale": "Batch 05 contains no inductance requirement. Coils appear here only as machine parts (EMI-LP-17) and as the field-producing element of solenoids and electromagnets (EMI-LP-06, EMI-LP-07); the electrical quantity inductance is entirely Batch 04's. No duplication exists and none was created."
+    },
+    {
+      "topic": "Conventional current and electron flow",
+      "decision": "REUSED_AS_CROSS_DOMAIN_PREREQUISITE",
+      "existingLearningPointId": "EFS-LP-03",
+      "rationale": "The accepted, frozen Batch 02 EFS-LP-03 already teaches the conventional-current/electron-flow distinction. All three of this batch's directional rules (EMI-LP-05, EMI-LP-13, EMI-LP-16) depend on it absolutely -- each is correct only for the conventional-current convention -- so it is attached as a genuine cross-domain prerequisite rather than re-taught. One retrieved source (LibreTexts Coalinga) describes generator action using a LEFT-hand rule and electron flow, which is flatly incompatible with the UK conventional-current convention this qualification uses; its convention-independent flux-cutting statements were used and its directional statements were quarantined. That conflict is recorded on the affected results."
+    }
+  ],
+  "reversePrerequisiteMap": {
+    "EMI-LP-01": [
+      "EMI-LP-02"
+    ],
+    "EMI-LP-02": [
+      "EMI-LP-04"
+    ],
+    "EMI-LP-03": [
+      "EMI-LP-05",
+      "EMI-LP-13"
+    ],
+    "EMI-LP-04": [
+      "EMI-LP-05",
+      "EMI-LP-12"
+    ],
+    "EMI-LP-05": [
+      "EMI-LP-06"
+    ],
+    "EMI-LP-06": [
+      "EMI-LP-07"
+    ],
+    "EMI-LP-07": [
+      "EMI-LP-08"
+    ],
+    "EMI-LP-08": [],
+    "EMI-LP-09": [
+      "EMI-LP-10",
+      "EMI-LP-11",
+      "EMI-LP-14"
+    ],
+    "EMI-LP-10": [
+      "EMI-LP-11",
+      "EMI-LP-12",
+      "EMI-LP-14"
+    ],
+    "EMI-LP-11": [],
+    "EMI-LP-12": [
+      "EMI-LP-13"
+    ],
+    "EMI-LP-13": [
+      "EMI-LP-16"
+    ],
+    "EMI-LP-14": [
+      "EMI-LP-15",
+      "EMI-LP-16",
+      "EMI-LP-17"
+    ],
+    "EMI-LP-15": [],
+    "EMI-LP-16": [
+      "EMI-LP-17"
+    ],
+    "EMI-LP-17": [
+      "EMI-LP-18",
+      "EMI-LP-22"
+    ],
+    "EMI-LP-18": [
+      "EMI-LP-19",
+      "EMI-LP-22"
+    ],
+    "EMI-LP-19": [
+      "EMI-LP-20",
+      "EMI-LP-21"
+    ],
+    "EMI-LP-20": [
+      "EMI-LP-21"
+    ],
+    "EMI-LP-21": [],
+    "EMI-LP-22": []
+  },
+  "learningPoints": [
+    {
+      "id": "EMI-LP-01",
+      "title": "Magnetic poles, and attraction and repulsion between them",
+      "learnerOutcome": "The learner will be able to identify the north and south poles on a diagram of a magnet, and state whether a given pair of poles will attract or repel.",
+      "knowledgeOrProcedure": "A magnet has two poles, a north (N) pole and a south (S) pole. On a diagram the poles are identified by their labelling together with the magnetic lines of force drawn leaving one pole and entering the other. LIKE poles repel each other (N with N, or S with S); OPPOSITE poles attract (N with S). In an iron-filing figure, a pair of opposite poles attracting is recognised from the filing pattern running between the two poles, showing the magnetic force bridging them.",
+      "prerequisiteLearningPointIds": [],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-124",
+        "unit202::ACQ-102"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-attraction-repulsion::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-USF-ETC-MAGPOLES-20143: Magnetic poles are recognised in a diagram from the bar magnet's outline together with the influence of its po...",
+        "SRC-USF-ETC-ATTRACTPOLES-20144: A pair of OPPOSITE poles attracting is recognised from the iron-filing pattern running between the two poles, ...",
+        "SRC-USF-ETC-MAGFIELD-POLES-35728: North and south poles are identified on a diagram by their labelling together with the magnetic lines of force...",
+        "SRC-MIT802-CH8-MAGFIELDS: When two bar magnets are held close to each other, like poles (N with N, or S with S) repel each other and opp...",
+        "SRC-OPENSTAX-UP2-11-1: Magnetic poles repel if they are alike (both N or both S) and attract if they are opposite (one N and the othe..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "Recognising poles and knowing the attract/repel rule are a single indivisible mastery at this level -- a learner who can label N and S but cannot say what happens when two N poles meet has not learned anything usable, and the two are always taught and assessed together. Kept deliberately separate from field PATTERNS (EMI-LP-02), which is a different recognition skill about the shape of the field rather than the identity of the poles.",
+      "explicitExclusions": [
+        "Magnetic domain theory and why materials become magnetised",
+        "The Earth's magnetic field and magnetic declination",
+        "Calculating the force between two poles",
+        "Ferromagnetic/paramagnetic/diamagnetic material classification"
+      ],
+      "applicationTypes": [
+        "Given a labelled diagram of two bar magnets placed end to end, state whether they will attract or repel.",
+        "Identify the north and south poles on a field-line diagram of a bar magnet.",
+        "Explain why two magnets pushed together the wrong way round resist each other."
+      ],
+      "underlyingEvidenceStatuses": {
+        "magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED",
+        "magnetic-attraction-repulsion::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-02",
+      "title": "Recognising magnetic field patterns",
+      "learnerOutcome": "The learner will be able to recognise, from a diagram, the magnetic field pattern surrounding a straight current-carrying conductor and the field pattern of a bar magnet.",
+      "knowledgeOrProcedure": "A magnetic field is drawn as lines of force. Around a STRAIGHT CONDUCTOR carrying a current the lines of force encircle the conductor. Around a BAR MAGNET the lines of force run between its north and south poles. Iron filings sprinkled near a magnet or a current-carrying conductor line up along these lines of force, which is how the patterns are made visible experimentally.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-01"
+      ],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-103"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-USF-ETC-CONDUCTORFIELD-35665: The magnetic field pattern surrounding a straight conductor carrying an electric current is recognised from th...",
+        "SRC-USF-ETC-MAGFIELD-POLES-35728: The magnetic field pattern of a bar magnet is recognised from the drawn lines of force running between, and id..."
+      ],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "Field-pattern recognition is separated from pole identification (EMI-LP-01) because they are diagnosably different: a learner can label poles correctly and still not recognise that the field around a current-carrying wire is circular. It is also kept separate from the right-hand grip rule (EMI-LP-05), which is about the DIRECTION of that field rather than its shape -- shape is recognisable before direction is determinable.",
+      "explicitExclusions": [
+        "Determining the DIRECTION of the field (see EMI-LP-05 for the grip rule)",
+        "Calculating field strength at a distance from a conductor",
+        "Field patterns of arrangements not covered by retrieved evidence (e.g. two adjacent conductors, horseshoe magnets)",
+        "Flux-line density as a quantitative measure"
+      ],
+      "applicationTypes": [
+        "Given a diagram of a straight conductor carrying current, describe the shape of the magnetic field around it.",
+        "Identify which of several diagrams correctly shows the field pattern of a bar magnet."
+      ],
+      "evidenceReadinessNote": "Underlying evidence is PARTIAL on BREADTH. The frozen requirement says \"magnetic field patterns\" (plural) without enumerating which patterns are intended, and in-class retrieved figures cover only two: the field around a straight current-carrying conductor, and the field of a bar magnet. No in-class field-pattern figure was obtained for the SOLENOID/coil pattern. A Product Architect decision is needed on the intended pattern set before this learning point can be treated as complete.",
+      "underlyingEvidenceStatuses": {
+        "magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "PARTIAL"
+      }
+    },
+    {
+      "id": "EMI-LP-03",
+      "title": "The dot-and-cross page convention for field and current direction",
+      "learnerOutcome": "The learner will be able to interpret the dot and cross symbols used on diagrams to show a field or current directed out of, or into, the page.",
+      "knowledgeOrProcedure": "On a two-dimensional diagram a quantity pointing OUT of the page (towards the reader) is drawn as a DOT; a quantity pointing INTO the page (away from the reader) is drawn as a CROSS. The convention is commonly explained as the tip of an approaching arrow (the dot) and the flights of a receding one (the cross).",
+      "prerequisiteLearningPointIds": [],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-121"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION"
+      ],
+      "normalizedClaimRefs": [],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "A pure notation-reading skill, kept as its own learning point because it is a prerequisite for interpreting almost every subsequent directional diagram (Fleming's rules, the grip rule, motor and generator figures) yet is diagnosably separate from any of the physics. A learner who misreads a cross as \"out of the page\" will get every direction question wrong for a reason that has nothing to do with electromagnetism.",
+      "explicitExclusions": [
+        "Any physics of the quantity being represented -- this is notation only",
+        "Three-dimensional vector drawing conventions",
+        "Right-hand/left-hand rules themselves (see EMI-LP-05, EMI-LP-13, EMI-LP-16)"
+      ],
+      "applicationTypes": [
+        "State whether a cross on a field diagram means the field is directed into or out of the page.",
+        "Given a diagram using dots and crosses, describe the direction of the current in each conductor."
+      ],
+      "evidenceReadinessNote": "Underlying evidence is a GAP on AUTHORITY CLASS, not on content. The convention was genuinely retrieved and read from MIT 8.02 (which states both directions verbatim) and OpenStax, but this requirement's frozen sourceAuthorityClasses are PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY and AUTHORITATIVE_TECHNICAL_REFERENCE -- ACADEMIC_OR_RESEARCH_INSTITUTION is excluded, and no in-class source could be obtained (IEC Electropedia returned 403). The knowledge statement above reflects what was actually read and should NOT be treated as evidenced until an in-class source is acquired or the frozen requirement's permitted classes are reconsidered at plan level.",
+      "underlyingEvidenceStatuses": {
+        "dot-cross-page-convention::SYMBOL_OR_CONVENTION": "GAP"
+      }
+    },
+    {
+      "id": "EMI-LP-04",
+      "title": "The magnetic field around a current-carrying conductor",
+      "learnerOutcome": "The learner will be able to state that a conductor carrying an electric current is surrounded by a magnetic field, and describe the shape of that field.",
+      "knowledgeOrProcedure": "An electric current produces a magnetic field: currents arising from the motion of charge are the source of magnetic fields. A long straight wire carrying a current is surrounded by magnetic field lines forming concentric circles centred on the wire, lying in planes perpendicular to the wire. This concentric-circle description is strictly the LONG/straight-wire idealisation -- it is the result for the infinite-length limit, with the finite-wire case derived separately.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-02"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "EFS-LP-02"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-107"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-around-a-current-carrying-conductor::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-HYPERPHYSICS-MAGCUR: A long straight wire carrying an electric current is surrounded by magnetic field lines that form concentric c...",
+        "SRC-MIT802-CH9-SOURCES: MIT states the circular field-line result explicitly for the infinite-length limit of a straight wire (cylindr..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "This is the foundational causal fact of the whole domain -- current produces magnetism -- and everything from the solenoid to the motor effect rests on it. Kept separate from the grip rule (EMI-LP-05) because knowing THAT a field exists and what shape it is, is diagnosably prior to determining WHICH WAY round it points. Carries a genuine cross-domain prerequisite on the accepted Batch 02 EFS-LP-02, since the outcome presupposes knowing what a current is.",
+      "explicitExclusions": [
+        "The direction of the field (see EMI-LP-05)",
+        "Calculating field strength (B = mu0*I/2*pi*r) -- not required at this level",
+        "The finite-conductor derivation",
+        "Force between two parallel current-carrying conductors"
+      ],
+      "applicationTypes": [
+        "State what surrounds a conductor when it carries a current.",
+        "Describe the shape of the magnetic field around a long straight current-carrying wire."
+      ],
+      "underlyingEvidenceStatuses": {
+        "magnetic-field-around-a-current-carrying-conductor::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-05",
+      "title": "The right-hand grip rule for a current-carrying conductor",
+      "learnerOutcome": "The learner will be able to apply the right-hand grip rule to determine the direction of the magnetic field around a straight current-carrying conductor.",
+      "knowledgeOrProcedure": "Point the RIGHT hand's THUMB along the direction of the current -- meaning CONVENTIONAL current, the direction in which positive charge flows -- and curl the fingers as if wrapping around the wire. The curled FINGERS then give the direction of the magnetic field encircling the conductor. The rule is tied to the conventional-current convention: it is the conventional-current direction that goes with the right hand.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-04",
+        "EMI-LP-03"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "EFS-LP-03"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-108"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-ARBORSCI-RHR-THREE-RULES: Right-hand grip rule, directional and role mapping: point the RIGHT hand's THUMB along the flow of current -- ..."
+      ],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "A directional rule kept as its own learning point because it is exactly where learners make reproducible errors, and because the error is diagnosable: using the wrong hand, or applying the right hand to electron flow. Carries a genuine cross-domain prerequisite on the accepted Batch 02 EFS-LP-03 (conventional current and electron flow), since the rule is only correct for one of those two conventions and a learner who has not distinguished them cannot apply it safely.",
+      "explicitExclusions": [
+        "The solenoid/coil form of the grip rule (see EMI-LP-06) -- the hand roles differ and must not be conflated",
+        "The right-hand PALM rule, which is a different rule",
+        "Fleming's left-hand and right-hand rules (see EMI-LP-13, EMI-LP-16)",
+        "Vector cross-product formulations"
+      ],
+      "applicationTypes": [
+        "Given a vertical conductor with current flowing upwards, state the direction of the magnetic field in front of it.",
+        "Explain why the right-hand grip rule gives the wrong answer if applied to the direction of electron flow."
+      ],
+      "evidenceReadinessNote": "Underlying evidence is PARTIAL. The thumb-to-conventional-current / curled-fingers-to-field mapping rests on a SINGLE in-class source (a science-equipment vendor's teaching page, permitted only because this requirement's frozen classes include ORIGINAL_MANUFACTURER_OR_VENDOR), with no in-class corroboration, and the CORRECT_USE_CONDITIONS dimension is unresolved. The clearest statements found -- including the explicit warning that an ELECTRON-flow convention requires the LEFT hand instead -- were all outside the permitted classes. This is an authority-tier gap, not a content gap.",
+      "underlyingEvidenceStatuses": {
+        "right-hand-grip-rule::OPERATIONAL_USE_RULE": "PARTIAL"
+      }
+    },
+    {
+      "id": "EMI-LP-06",
+      "title": "The solenoid: its magnetic field and how to find its polarity",
+      "learnerOutcome": "The learner will be able to describe the magnetic field produced by a current-carrying solenoid and determine which end is its north pole.",
+      "knowledgeOrProcedure": "A solenoid is a long coil of wire wound in helical form. When it carries a steady current and its turns are closely spaced, the magnetic field INSIDE it is fairly uniform and parallel to its axis, provided its length is much greater than its diameter. Externally it behaves like a bar magnet: it has an identifiable N end and S end, with field lines leaving the N end and entering the S end. The flux density B inside is proportional to the current I in the coil. POLARITY IS FOUND BY THE RIGHT-HAND GRIP RULE APPLIED TO THE COIL: grasp the solenoid in the right hand so that the FINGERS point in the direction the current flows in the wires; the EXTENDED THUMB then points toward the solenoid's NORTH pole. Note carefully that the hand roles are REVERSED compared with the straight-conductor grip rule (EMI-LP-05), where the thumb is the current and the fingers are the field -- this reversal is a predictable source of error.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-05"
+      ],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-109",
+        "unit202::ACQ-110"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::solenoid-magnetic-field::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::solenoid-polarity::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-MIT802-CH9-SOURCES: A solenoid is a long coil of wire tightly wound in helical form. When it carries a steady current and its turn...",
+        "SRC-HYPERPHYSICS-SOLENOID: A long straight coil of wire generates a nearly uniform magnetic field similar to that of a bar magnet, and th...",
+        "SRC-USF-ETC-RHR-SOLENOID-35671: Solenoid end-polarity is determined by the right-hand grip rule applied to the COIL: grasp the solenoid in the...",
+        "SRC-MIT802-CH9-SOURCES: A current-carrying solenoid has an identifiable S end and N end, with external field lines leaving the N end a..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "Field shape and polarity determination for a solenoid are combined because they are one practical skill -- a learner asked about a solenoid is asked simultaneously what its field looks like and which end is north, and the polarity rule only makes sense once the bar-magnet-like field is understood. The explicit warning about the hand-role reversal versus EMI-LP-05 is included as knowledge content precisely because it is the misconception this pairing generates.",
+      "explicitExclusions": [
+        "Calculating the internal flux density from turns and current (B = mu0*n*I)",
+        "The idealised infinite-solenoid result that the external field vanishes entirely -- a real long solenoid has a small but non-zero external field",
+        "Toroids and other coil geometries",
+        "Inductance of a coil (covered as an electrical quantity in Batch 04)"
+      ],
+      "applicationTypes": [
+        "Given a diagram of a solenoid with the current direction marked, identify which end is the north pole.",
+        "Describe the magnetic field inside a long current-carrying solenoid.",
+        "Explain why the right-hand rule is applied differently to a solenoid than to a straight wire."
+      ],
+      "underlyingEvidenceStatuses": {
+        "solenoid-magnetic-field::EXACT_FACT": "VERIFIED",
+        "solenoid-polarity::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-07",
+      "title": "The electromagnet",
+      "learnerOutcome": "The learner will be able to explain the basic principle of an electromagnet and state why its magnetism can be switched on and off.",
+      "knowledgeOrProcedure": "An electromagnet is a TEMPORARY magnet whose magnetic field is created by an electric current. Coiling the current-carrying wire concentrates the magnetic field in the centre of the coil, producing a much stronger field than a straight conductor would. Because the field exists only while current flows, it DISAPPEARS when the current is turned off -- this switchability is what makes electromagnets useful in devices such as relays and contactors.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-06"
+      ],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-111"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::basic-electromagnet-principle::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-MAGLAB-ELECTROMAGNETS: An electromagnet is a temporary magnet whose magnetic field is created by an electric current; coiling the cur...",
+        "SRC-MIT802-CH9-SOURCES: Currents arising from the motion of charges are the source of magnetic fields...."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "A short, single-idea learning point, but a genuinely separate mastery from the solenoid (EMI-LP-06): the solenoid point is about field shape and polarity, whereas this is about the electromagnet as a controllable DEVICE, and specifically about the on/off property that motivates every application in EMI-LP-08. A learner can describe a solenoid's field correctly and still not have grasped that switching the current off removes the magnetism.",
+      "explicitExclusions": [
+        "The role and effect of a soft-iron core -- NOT evidenced in this batch (the acquisition returned a description but never a verbatim passage), so it must not be taught as established here",
+        "Magnetic materials, hysteresis and remanence",
+        "Calculating magnetomotive force or ampere-turns",
+        "Permanent-magnet manufacture"
+      ],
+      "applicationTypes": [
+        "Explain what happens to an electromagnet's magnetic field when the current is switched off.",
+        "State why the wire in an electromagnet is wound into a coil rather than left straight."
+      ],
+      "underlyingEvidenceStatuses": {
+        "basic-electromagnet-principle::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-08",
+      "title": "Relays and contactors: electromagnetically operated switches",
+      "learnerOutcome": "The learner will be able to explain how a relay works, state the two benefits it provides, and explain how a contactor differs from a relay.",
+      "knowledgeOrProcedure": "A RELAY is a solenoid arranged to actuate switch contacts when its coil is energised. It provides two distinct benefits: (1) a relatively SMALL electrical signal can switch a relatively LARGE one; and (2) it provides electrical ISOLATION between the coil circuit and the contact circuit -- the two are electrically insulated from one another, so one may be DC and the other AC, and/or they may sit at completely different voltage levels. A CONTACTOR is a relay used to switch a LARGE amount of electrical POWER through its contacts. Contactors typically have multiple contacts, usually (but not always) normally-open, so that power to the load is shut off when the coil is de-energised. The most common industrial use for contactors is the control of electric motors. The two terms are therefore NOT interchangeable: a contactor is a particular kind of relay, distinguished by the power level it is built to switch.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-07"
+      ],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-119",
+        "unit202::ACQ-120"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::relay::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::contactor::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-LIBRETEXTS-WF-RELAY-5-1: A relay is a solenoid arranged to actuate switch contacts when its coil is energised. It allows a relatively s...",
+        "SRC-LIBRETEXTS-WF-CONTACTOR-5-2: A contactor is a relay used to switch a large amount of electrical power through its contacts. Contactors typi..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "Relay and contactor are combined into one learning point because the evidenced definition of a contactor is literally \"a relay used to switch a large amount of electrical power\" -- they cannot be taught independently without either duplicating the relay explanation or leaving the contactor undefined. The batch guardrail requiring the two to be kept DISTINCT is satisfied within the learning point by stating the distinguishing property explicitly, rather than by splitting into two points that would each have to restate the other.",
+      "explicitExclusions": [
+        "Relay contact arrangements and terminology beyond normally-open/normally-closed",
+        "Contactor sizing, utilisation categories and BS EN 60947 classification",
+        "Motor starter circuits and control-circuit design",
+        "Solid-state relays and semiconductor switching (Batch 06 covers electronic switching devices)"
+      ],
+      "applicationTypes": [
+        "Explain how a small switch can be used to control a large motor current using a contactor.",
+        "State the difference between a relay and a contactor.",
+        "Explain what is meant by saying a relay provides electrical isolation."
+      ],
+      "underlyingEvidenceStatuses": {
+        "relay::EXACT_FACT": "VERIFIED",
+        "contactor::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-09",
+      "title": "Magnetic flux: meaning, symbol and unit",
+      "learnerOutcome": "The learner will be able to state what magnetic flux is, and give its quantity symbol and its SI unit name and symbol.",
+      "knowledgeOrProcedure": "Magnetic flux is the product of the magnetic field and the perpendicular area it penetrates -- that is, the total amount of magnetic field passing through a given surface. Its quantity symbol is the Greek capital letter phi, written as the Greek capital phi in engineering usage. Its SI unit is the WEBER, unit symbol Wb, where 1 Wb = 1 T*m^2.",
+      "prerequisiteLearningPointIds": [],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-104"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-flux-meaning-symbol-unit::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-MIT802-CH10-FLUX: Magnetic flux is denoted by the Greek capital phi, written Φ_B in MIT's notation and Φ in engineering usage; i...",
+        "SRC-HYPERPHYSICS-MAGFLUX: Expressed as a plain meaning: magnetic flux is the product of the average magnetic field and the perpendicular..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "An identity/recall mastery for one quantity, held separate from flux density (EMI-LP-10) because the pair is precisely where learners conflate two different quantities with two different units, and separating them makes the confusion diagnosable. This mirrors the split the accepted Batch 04 inventory made between capacitance and capacitive reactance, and between inductance and inductive reactance, for the same reason.",
+      "explicitExclusions": [
+        "The surface-integral definition for a non-uniform field",
+        "Flux linkage and the number of turns",
+        "Calculating flux from B and A (see EMI-LP-11)",
+        "Magnetic circuits, reluctance and permeability"
+      ],
+      "applicationTypes": [
+        "State the SI unit of magnetic flux and its unit symbol.",
+        "Give the quantity symbol used for magnetic flux."
+      ],
+      "underlyingEvidenceStatuses": {
+        "magnetic-flux-meaning-symbol-unit::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-10",
+      "title": "Magnetic flux density: meaning, symbol and unit",
+      "learnerOutcome": "The learner will be able to state what magnetic flux density is, give its quantity symbol and SI unit name and symbol, and distinguish it from magnetic flux.",
+      "knowledgeOrProcedure": "Magnetic flux density is the magnetic flux PER UNIT AREA -- which is why it is called a flux \"density\". Its quantity symbol is B. Its SI unit is the TESLA, unit symbol T, equivalently webers per square metre, where 1 Wb/m^2 = 1 T. Flux and flux density are NOT the same quantity: flux (phi, webers) is a total amount passing through a surface, whereas flux density (B, teslas) is how much of that flux is concentrated into each square metre.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-09"
+      ],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-105"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-flux-density-meaning-symbol-unit::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-LIBRETEXTS-ELLINGSON-FLUXDENSITY: Magnetic flux density is denoted by the symbol B and has SI units of tesla (T), equivalently webers per square..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "Deliberately taught immediately after, and prerequisite on, magnetic flux (EMI-LP-09), because flux density is defined in terms of flux and cannot be understood first. The explicit flux-vs-flux-density contrast is included as knowledge content here rather than in EMI-LP-09 so that the distinction is taught once, at the point where both quantities are available to the learner.",
+      "explicitExclusions": [
+        "The force-based definition of B via F = qv x B",
+        "Non-SI units such as the gauss",
+        "Calculating B from phi and A (see EMI-LP-11)",
+        "Field strength H and the B-H relationship"
+      ],
+      "applicationTypes": [
+        "State the SI unit of magnetic flux density and its unit symbol.",
+        "Explain the difference between magnetic flux and magnetic flux density.",
+        "Identify which of a list of units (Wb, T, Wb/m^2, A/m) are units of flux density."
+      ],
+      "underlyingEvidenceStatuses": {
+        "magnetic-flux-density-meaning-symbol-unit::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-11",
+      "title": "Using B = flux/area, including rearrangement",
+      "learnerOutcome": "The learner will be able to use B = phi/A to calculate flux density, magnetic flux or area, rearranging the formula as required, and state the conditions under which the formula applies.",
+      "knowledgeOrProcedure": "Where magnetic flux is distributed over a cross-sectional area, the magnetic flux density is B = phi/A, in which B is the flux density in teslas, phi is the magnetic flux in webers and A is the area in square metres. It rearranges to phi = B x A and to A = phi/B. METHOD: (1) convert the stated dimensions to SI and compute the cross-sectional area A from the core dimensions; (2) apply the formula in the direction required. Worked instances: 6E-5 Wb distributed over 2E-4 m^2 gives B = 0.3 T; a flux density of 0.52 T over an area of 4E-4 m^2 gives phi = 2.08E-4 Wb. CONDITION OF USE: this simple form is valid for the UNIFORM-field case with the field PERPENDICULAR to the area (parallel to the area's normal). In general the flux is phi = BA cos(theta), where theta is the angle between the field and the normal to the surface, so B = phi/A holds when theta = 0; and only the COMPONENT of the field perpendicular to the area contributes. It is not the unrestricted general definition.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-09",
+        "EMI-LP-10"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "FM-LP-13",
+        "FM-LP-16",
+        "FM-LP-18",
+        "FM-LP-19"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-106",
+        "unit202::ACQ-118"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+        "ER::provisional::unit202::electromagnetism-and-induction::suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-LIBRETEXTS-FIORE-MAGCIRCUITS: Where magnetic flux Φ is constrained within (i.e. distributed over) a cross-sectional area A, the magnetic flu...",
+        "SRC-MIT802-CH10-FLUX: The rearrangement Φ = BA is valid only for the uniform-field, field-normal-to-the-area case: MIT states Φ_B = ...",
+        "SRC-HYPERPHYSICS-MAGFLUX: In the general case the contribution to magnetic flux for a given area equals the area times the COMPONENT of ...",
+        "SRC-LIBRETEXTS-MAGNETIC-CIRCUITS-14-03: Worked method for simple electromagnetism calculations with formula rearrangement: (1) convert the stated dime..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "The formula and the calculation procedure are combined because the retrieved procedural evidence IS a set of worked B = phi/A rearrangements -- there is no separate body of \"simple electromagnetism calculations\" in this batch's evidence beyond this relationship, so splitting them would create a learning point with no distinct content. Carries genuine cross-domain prerequisites on the accepted Batch 01 inventory: FM-LP-13 (substitution) and FM-LP-16 (rearrangement) because the outcome explicitly requires solving for a different unknown, and FM-LP-18/FM-LP-19 because the worked values are in standard form with SI prefixes.",
+      "explicitExclusions": [
+        "The surface-integral form for non-uniform fields",
+        "Calculations involving the angle theta -- the cos(theta) qualification is taught as a CONDITION OF USE, not as a calculation outcome",
+        "Magnetic circuit calculations involving reluctance, permeability or ampere-turns",
+        "Deriving the formula"
+      ],
+      "applicationTypes": [
+        "A flux of 4E-4 Wb passes uniformly and perpendicularly through a core of cross-sectional area 5E-4 m^2. Calculate the flux density.",
+        "A core of area 2E-4 m^2 carries a flux density of 0.8 T. Calculate the magnetic flux.",
+        "State the condition under which B = phi/A may be used."
+      ],
+      "underlyingEvidenceStatuses": {
+        "b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE": "VERIFIED",
+        "suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-12",
+      "title": "The motor effect and the force on a current-carrying conductor",
+      "learnerOutcome": "The learner will be able to state that a current-carrying conductor in a magnetic field experiences a force, and use F = BIl to calculate the size of that force in the perpendicular case.",
+      "knowledgeOrProcedure": "A conductor carrying a current in a magnetic field experiences a FORCE. The magnetic force acts on the charges moving in the conductor and, because those charges ordinarily cannot escape the conductor, that force is transmitted to the conductor itself. The resulting force is PERPENDICULAR to both the wire and the magnetic field. SIZE OF THE FORCE: the general relationship is F = BIl sin(theta), where theta is the angle between the current direction and the field. The scalar form F = BIl is the SPECIAL CASE in which the current is PERPENDICULAR to the magnetic field (theta = 90 degrees, so sin theta = 1). F = BIl must therefore not be presented as unconditionally general -- it is the perpendicular-conductor case, in which B is the flux density in teslas, I the current in amperes and l the length of conductor in the field in metres.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-10",
+        "EMI-LP-04"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "FM-LP-13",
+        "FM-LP-16"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-112",
+        "unit202::ACQ-113"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-OPENSTAX-CP2E-22-7: The motor effect: a conductor carrying a current in a magnetic field experiences a force. The magnetic force a...",
+        "SRC-OPENSTAX-CP2E-22-7: The general relationship for the magnitude of the magnetic force on a length l of wire carrying current I in a...",
+        "SRC-HYPERPHYSICS-FORWIR: The force so produced is perpendicular to both the wire and the magnetic field; its direction is given by the ..."
+      ],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "The qualitative effect and its quantitative formula are combined because F = BIl is the size of the very force the motor effect describes; teaching them separately would either duplicate the setup or leave the formula's physical meaning unstated. The perpendicular-case qualification is carried as explicit knowledge content, per this batch's guardrail, rather than being relegated to an exclusion.",
+      "explicitExclusions": [
+        "The general F = BIl sin(theta) case as a CALCULATION outcome -- the sin(theta) form is taught as a scope qualification only",
+        "Vector cross-product formulation F = Il x B",
+        "The direction of the force (see EMI-LP-13 for Fleming's left-hand rule)",
+        "Torque on a current loop, and motor design",
+        "Force between parallel conductors"
+      ],
+      "applicationTypes": [
+        "A conductor of length 0.2 m carrying 5 A lies perpendicular to a field of 0.4 T. Calculate the force on it.",
+        "State what happens to a current-carrying wire placed at right angles to a magnetic field.",
+        "Explain why F = BIl cannot be used when the conductor lies along the field direction."
+      ],
+      "evidenceReadinessNote": "The F = BIl half of this learning point is fully VERIFIED, including its perpendicularity condition. The motor-effect half is PARTIAL: the physics is fully evidenced, but no retrieved in-class source uses the UK term \"motor effect\" itself, so the naming of the phenomenon is not evidenced even though the phenomenon is. A Product Architect decision is needed on whether terminology-only support is sufficient for this requirement.",
+      "underlyingEvidenceStatuses": {
+        "motor-effect::EXACT_FACT": "PARTIAL",
+        "scalar-f-bil::RELATIONSHIP": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-13",
+      "title": "Fleming's left-hand (motor) rule",
+      "learnerOutcome": "The learner will be able to apply Fleming's left-hand rule to determine the direction of the force produced on a current-carrying conductor in a magnetic field.",
+      "knowledgeOrProcedure": "Fleming's LEFT-hand rule is the MOTOR (force) rule. Using the LEFT hand, hold the thumb, first finger and second finger mutually at right angles. The mapping runs \"F, B, I\" from the thumb: THUMB = Force (the direction of the force or motion produced on the conductor); FIRST/fore FINGER = B (the magnetic field); SECOND/middle FINGER = I (the current). CONDITIONS OF USE: the rule applies to a current-carrying conductor placed across a magnetic field, and gives the direction of the force generated on that conductor when current passes through it. The magnitude of that force is given separately by F = BIl (EMI-LP-12). Fleming's LEFT hand is for the MOTOR case; the RIGHT hand is the generator rule (EMI-LP-16) and the two must never be interchanged.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-12",
+        "EMI-LP-03"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "EFS-LP-03"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-114"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-NIDEC-BASIC-00012: Fleming's LEFT-hand rule is the motor/force rule. Using the left hand, the finger-to-quantity mapping runs 'F,...",
+        "SRC-NIDEC-GLOSSARY-FLEMING: Correct-use conditions: the rule applies to a current-carrying conductor placed across (in) a magnetic field, ..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "A directional rule kept as its own learning point for the same reason as the grip rule (EMI-LP-05): it is a discrete, highly error-prone procedural skill whose failure mode (wrong hand, or wrong finger-to-quantity assignment) is specifically diagnosable and specifically remediable. The explicit left-is-motor / right-is-generator contrast is carried as knowledge content because confusing the two is the single most common error in this topic.",
+      "explicitExclusions": [
+        "Fleming's right-hand rule (see EMI-LP-16)",
+        "The right-hand grip rule (see EMI-LP-05) -- a different rule with different hand roles",
+        "The vector right-hand rule used with cross products, which gives the same direction by a different mnemonic",
+        "Calculating the magnitude of the force (see EMI-LP-12)",
+        "Commutation and practical motor construction"
+      ],
+      "applicationTypes": [
+        "Given a diagram showing the field direction and the current direction in a conductor, state the direction of the force on it.",
+        "State which hand is used for the motor rule and which for the generator rule.",
+        "Identify the quantity represented by the first finger in Fleming's left-hand rule."
+      ],
+      "underlyingEvidenceStatuses": {
+        "fleming-left-hand-rule::OPERATIONAL_USE_RULE": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-14",
+      "title": "Electromagnetic induction: motion, flux cutting, and when EMF is greatest or zero",
+      "learnerOutcome": "The learner will be able to explain that moving a conductor so that it cuts magnetic flux induces an EMF, and state the positions of maximum and zero induced EMF for a conductor rotating in a magnetic field.",
+      "knowledgeOrProcedure": "MOTIONAL EMF is the EMF induced because a conductor MOVES relative to a magnetic field. Its cause can be stated two equivalent ways: the magnetic force acting on the free charges within the moving conductor drives them along it, separating charge and establishing an EMF; equivalently, the motion changes the magnetic flux enclosed by the circuit, and a changing flux induces an EMF. ROTATION AND FLUX CUTTING: rotating a conductor loop in a magnetic field causes the loop sides to CUT ACROSS the magnetic flux, and it is that cutting which induces the EMF. The induced EMF therefore varies continuously through each revolution. MAXIMUM: the induced EMF is greatest at the instant the conductor is cutting PERPENDICULARLY across the field -- when the rate at which flux is being cut is at its maximum. For a rotating loop this is when the plane of the loop is PARALLEL to the field, the instant at which the flux linking the loop is momentarily ZERO but its rate of change is greatest. ZERO: when the conductor's motion is PARALLEL to the field lines it is not cutting across the field at all and the induced EMF is zero; for a rotating loop this is when the loop plane is PERPENDICULAR to the field, where the flux linking the loop is at its MAXIMUM but its rate of change is zero. Note the trap carefully: maximum FLUX and maximum EMF occur at OPPOSITE instants -- it is the RATE of flux cutting, not the amount of flux, that determines the EMF.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-09",
+        "EMI-LP-10"
+      ],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-115",
+        "unit202::ACQ-127",
+        "unit202::ACQ-129",
+        "unit202::ACQ-128"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-LIBRETEXTS-UP2-13-4: Motional EMF is the emf induced because a conductor MOVES relative to a magnetic field. Its cause can be state...",
+        "SRC-LIBRETEXTS-COALINGA-GENERATOR: Rotating a conductor loop in a magnetic field causes the loop sides to cut across the magnetic flux, and it is...",
+        "SRC-LIBRETEXTS-ELLINGSON-8-7: For a rudimentary single-loop generator rotating in a time-invariant, spatially-uniform magnetic flux density,...",
+        "SRC-LIBRETEXTS-COALINGA-GENERATOR: The induced EMF is greatest at the instant when the conductor is cutting perpendicularly across the magnetic f...",
+        "SRC-LIBRETEXTS-ELLINGSON-8-7: For a loop rotating in a uniform field, the maximum voltage magnitude is achieved when the plane of the loop i...",
+        "SRC-LIBRETEXTS-COALINGA-GENERATOR: When the conductor's motion is PARALLEL to the magnetic field lines it is not cutting across the field at all,..."
+      ],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "Four requirements are combined here because they form one continuous causal story that cannot be split without breaking it: motion causes flux cutting, flux cutting causes EMF, and the maximum and zero cases are the two ends of that same continuous variation through a revolution. Teaching \"maximum EMF\" and \"zero EMF\" as separate learning points would present as two isolated facts what is actually a single understanding, and would lose the crucial maximum-flux-versus-maximum-EMF contrast, which only exists when both cases are held together. This contrast is the domain's principal misconception and is stated explicitly as knowledge content.",
+      "explicitExclusions": [
+        "Faraday's law as a quantitative formula, and Lenz's law",
+        "The direction of the induced current (see EMI-LP-16)",
+        "The magnitude of the induced EMF (see EMI-LP-15)",
+        "Self-inductance and mutual inductance",
+        "Eddy currents and transformer action"
+      ],
+      "applicationTypes": [
+        "Explain why an EMF is induced when a conductor is moved across a magnetic field.",
+        "State the position of a rotating loop at which the induced EMF is greatest.",
+        "Explain why the induced EMF is zero at the instant the flux linking a rotating loop is at its maximum."
+      ],
+      "evidenceReadinessNote": "Three of the four underlying requirements are fully VERIFIED. The fourth, motional-induced-emf-causal-concept, is PARTIAL on a DISCLOSED COMPOUNDING: the two-part causal account given above (the magnetic force on free charges within the moving conductor, AND the changing enclosed flux) rests on combining two genuinely read passages, because no single passage states both halves. Both halves are properly evidenced individually and the taught content is not in question; what is missing is single-passage support for the combined statement. Marked PARTIAL to apply this batch's own status vocabulary consistently -- the same correction was applied to Batch 04's resistivity result.",
+      "underlyingEvidenceStatuses": {
+        "motional-induced-emf-causal-concept::RELATIONSHIP": "PARTIAL",
+        "rotation-field-cutting-causality::RELATIONSHIP": "VERIFIED",
+        "maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT": "VERIFIED",
+        "no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-15",
+      "title": "Using e = Blv for a moving conductor",
+      "learnerOutcome": "The learner will be able to use e = Blv to calculate the EMF induced in a straight conductor moving through a magnetic field, and state the conditions under which the formula applies.",
+      "knowledgeOrProcedure": "For a straight conductor of length l moving with velocity v through a uniform magnetic field of flux density B, the magnitude of the motional EMF is e = Blv, where e is in volts, B in teslas, l in metres and v in metres per second. CONDITIONS OF USE: this scalar form holds only when B, l and v are MUTUALLY PERPENDICULAR, and B and l must be constant over the moving conductor. This is the maximum-flux-cutting case -- the same instant identified in EMI-LP-14 as giving maximum induced EMF. If the motion is not perpendicular to the field, less flux is cut per second and the induced EMF is correspondingly smaller, falling to zero when the motion is parallel to the field.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-14"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "FM-LP-13",
+        "FM-LP-16"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-116"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::e-blv::RELATIONSHIP"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-OPENSTAX-CP2E-23-3: For a straight conductor of length l moving with velocity v through a uniform magnetic field of flux density B...",
+        "SRC-OPENSTAX-UP2-13-3: e = Blv is obtained from Faraday's law for a conducting rod sliding on rails: the flux through the circuit is ..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "The quantitative counterpart to EMI-LP-14, kept separate because it is a calculation mastery rather than a conceptual one -- a learner may understand flux cutting perfectly and still be unable to substitute into and rearrange e = Blv, and vice versa. Its perpendicularity condition is carried as explicit knowledge content per this batch's guardrail, and is tied back to the maximum-cutting case so the formula is not learned as a context-free string of letters.",
+      "explicitExclusions": [
+        "Faraday's law in its general form",
+        "The direction/polarity of the induced EMF (see EMI-LP-16)",
+        "Non-perpendicular cases as a CALCULATION outcome -- taught as a scope qualification only",
+        "EMF induced by a changing field rather than by motion"
+      ],
+      "applicationTypes": [
+        "A conductor 0.25 m long moves at 4 m/s perpendicular to a field of 0.6 T. Calculate the induced EMF.",
+        "State the three quantities that must be mutually perpendicular for e = Blv to apply.",
+        "Explain what happens to the induced EMF if the conductor moves parallel to the field lines."
+      ],
+      "underlyingEvidenceStatuses": {
+        "e-blv::RELATIONSHIP": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-16",
+      "title": "Fleming's right-hand (generator) rule",
+      "learnerOutcome": "The learner will be able to apply Fleming's right-hand rule to determine the direction of the induced EMF and current in a conductor moving through a magnetic field.",
+      "knowledgeOrProcedure": "Fleming's RIGHT-hand rule is the GENERATOR rule: it gives the direction of the electromotive force -- and hence of the induced current -- generated in a conductor that is MOVING through a magnetic field. Using the RIGHT hand with thumb, first finger and second finger mutually at right angles: THUMB = motion of the conductor; FIRST finger = field; SECOND finger = induced current/EMF. CONDITIONS OF USE: the rule applies where a conductor of length l in a field of flux density B moves with velocity v through the magnetic flux, producing a generated voltage of magnitude e = Blv (EMI-LP-15); the right-hand rule determines the DIRECTION of that voltage. It is one of a PAIR of Fleming's rules, the other (left-hand) being the force/motor rule (EMI-LP-13); the two must not be interchanged. The memory aid is that geNerator goes with the riGht hand and moTor with the lefT hand.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-14",
+        "EMI-LP-13"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "EFS-LP-03"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-117"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-NIDEC-GLOSSARY-FLEMING: Fleming's RIGHT-hand rule is the generator rule: it gives the direction of the electromotive force (and hence ...",
+        "SRC-NIDEC-BASIC-00013: Correct-use conditions: the rule applies where a conductor of length L in a field of flux density B moves with..."
+      ],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "Kept separate from Fleming's left-hand rule (EMI-LP-13) despite the structural similarity, because the whole pedagogical problem here is that learners merge the two. Two separate learning points, each explicitly naming the other as the thing it is not, is the arrangement that makes the confusion diagnosable; a single combined \"Fleming's rules\" point would hide exactly the error it needs to surface. Prerequisite on EMI-LP-13 so the contrast is available.",
+      "explicitExclusions": [
+        "Fleming's left-hand rule (see EMI-LP-13)",
+        "The right-hand grip rule (see EMI-LP-05)",
+        "Lenz's law and the sign conventions of Faraday's law",
+        "The magnitude of the induced EMF (see EMI-LP-15)"
+      ],
+      "applicationTypes": [
+        "Given a diagram showing a conductor moving upwards through a field directed to the right, state the direction of the induced current.",
+        "State which of Fleming's rules applies to a generator and which to a motor."
+      ],
+      "evidenceReadinessNote": "Underlying evidence is PARTIAL on the DIRECTIONAL_MAPPING dimension. The rule's ROLE (generator rule, giving induced EMF/current direction for a conductor moving in a field) and its CONDITIONS OF USE are both properly evidenced from an in-class manufacturer source. However, NO in-class source states the thumb-to-motion / first-finger-to-field / second-finger-to-current assignment IN TEXT: the one located in-class locator is an unrendered diagram, and the only readable explicit mapping found was on a personal website outside the permitted authority classes and was deliberately not used. The finger mapping given above is therefore NOT yet evidenced and must not be treated as established until an in-class source is acquired.",
+      "underlyingEvidenceStatuses": {
+        "fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE": "PARTIAL"
+      }
+    },
+    {
+      "id": "EMI-LP-17",
+      "title": "The simple AC generator: parts and how they work together",
+      "learnerOutcome": "The learner will be able to identify the parts of a simple single-loop AC generator on a diagram and state the function of each.",
+      "knowledgeOrProcedure": "A simple AC generator (alternator) is recognised by three functional elements plus its output connection: (a) a strong MAGNETIC FIELD, shown as poles marked N and S; (b) CONDUCTORS -- the rotating loop or winding -- that rotate through that field; and (c) a means of continuous connection to the rotating conductors as they turn, namely SLIP RINGS with BRUSHES. COIL: a coil is a set of turns of wire wound on a former or into machine slots; the field coils receive excitation and produce the magnetic flux, and the armature consists of coils of wire large enough to carry the machine's full-load current. SLIP RING: a continuous circular conducting ring fixed to, but insulated from, the rotor shaft and connected to the rotor windings, with a brush riding on it to connect to the stationary circuit; its function is to transfer power between a stationary and a rotating structure. BRUSH: a sliding contact, made of one or more carbon blocks, that transmits current between the stationary part and the rotating part; in a diagram it is the block-shaped contact pressed against and riding on the slip ring. CRITICAL DISTINCTION: an AC generator uses SLIP RINGS, not a split-ring commutator, because the desired output is a sine wave -- slip rings allow the output current and voltage to oscillate through positive and negative values, whereas a DC generator's commutator produces an output whose current always flows in the positive direction (pulsating DC). The two are distinct components producing distinct output waveforms and must never be substituted for one another.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-14",
+        "EMI-LP-16"
+      ],
+      "crossDomainPrerequisiteIds": [],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-122",
+        "unit202::ACQ-125",
+        "unit202::ACQ-126",
+        "unit202::ACQ-123"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-DOE-HDBK-1011-3-ES10: A simple AC generator/alternator diagram is recognised by three functional elements plus the output connection...",
+        "SRC-DOE-HDBK-1011-3-ES10: In the small-machine arrangement corresponding to the classic single-loop alternator — stationary field, rotat...",
+        "SRC-DOE-HDBK-1011-3-ES10: A slip ring is recognised in a machine diagram as a continuous circular conducting ring fixed to (but insulate...",
+        "SRC-DOE-HDBK-1011-3-ES10: Slip rings, not a split-ring commutator, are what an AC generator uses, because the desired output is a sine w...",
+        "SRC-MOOG-SLIPRING-FUNDAMENTALS: The basic slip ring configuration is drawn as: the ring (the electrically conductive rotating conductor path),...",
+        "SRC-MERSEN-CARBON-BRUSH-GUIDE: A (carbon) brush is a sliding contact used to transmit electrical current between a stationary part and a rota...",
+        "SRC-MERSEN-CARBON-BRUSH-GUIDE: In a machine diagram a brush is recognised as the block-shaped contact pressed against, and riding on, the rot...",
+        "SRC-DOE-HDBK-1011-3-ES10: In an AC generator schematic the brush appears as the stationary contact riding on the slip ring, labelled 'Br...",
+        "SRC-DOE-HDBK-1011-3-ES10: In a generator/motor diagram a coil is recognised as a set of turns of wire wound on a former or into machine ..."
+      ],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "The four part-recognition requirements are combined into one learning point because they are parts of ONE object and are only meaningful in relation to each other -- a slip ring is defined by the brush riding on it, and both exist to serve the rotating coil. Four separate recognition points would fragment a single diagram-reading skill into four trivial ones. The slip-ring-versus-commutator distinction is carried as explicit knowledge content, per this batch's guardrail, because substituting a commutator is the characteristic error and it changes the output waveform.",
+      "explicitExclusions": [
+        "Split-ring commutators and DC generator operation as a mastery topic -- named here only as the contrast to be avoided",
+        "Rotating-field versus rotating-armature machine variants and when each is used",
+        "Field excitation systems, exciters and rheostats beyond identifying them on a diagram",
+        "Winding design, pitch and distribution factors",
+        "Three-phase generation"
+      ],
+      "applicationTypes": [
+        "Label the slip rings and brushes on a diagram of a simple AC generator.",
+        "State the function of the slip rings in an AC generator.",
+        "Explain why an AC generator uses slip rings rather than a commutator."
+      ],
+      "evidenceReadinessNote": "Two of the four underlying requirements are PARTIAL. (1) single-loop-alternator-generator-parts: the fully labelled in-class diagram (US DOE handbook Figures 1 and 5) shows the correct topology and all part labels but a MULTI-TURN rotor; the source that is explicitly \"single-loop\" is academic-class and shows no slip rings, so the exact single-loop arrangement rests on a disclosed compounding. (2) coil: no labelled \"coil\" callout or standard graphical symbol could be obtained from an in-class source (IEC Electropedia and std.iec.ch both returned 403); the coil description rests on the DOE handbook's prose rather than on a labelled figure. A further judgment is flagged for the Product Architect: the DOE handbook was classified AUTHORITATIVE_TECHNICAL_REFERENCE on the basis that it is a formally issued engineering handbook; a reviewer who reads it instead as a purely governmental publication would need to downgrade the slip-ring and single-loop-alternator results, though brushes would still stand on the two manufacturer sources.",
+      "underlyingEvidenceStatuses": {
+        "single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "PARTIAL",
+        "slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED",
+        "brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED",
+        "coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "PARTIAL"
+      }
+    },
+    {
+      "id": "EMI-LP-18",
+      "title": "Alternating output: the sine wave, the cycle, periodic time and frequency",
+      "learnerOutcome": "The learner will be able to describe the sinusoidal output of an AC generator, define one cycle, periodic time and frequency, and convert between periodic time and frequency.",
+      "knowledgeOrProcedure": "ALTERNATING CURRENT is a flow of electric charge that periodically REVERSES DIRECTION. The alternating voltage produced by a rotating-magnet alternator traces a SINE WAVE, because the rate of magnetic flux change due to the rotating magnet follows a sine function, so the coil voltage follows that same function. ONE CYCLE is the interval from any point on the sine-wave graph to the point at which the wave shape begins to repeat itself. PERIODIC TIME (the period) is the time taken to complete one complete cycle; its symbol is T and, with frequency in hertz, T is in seconds. FREQUENCY is the number of complete cycles completed in a given amount of time -- how many cycles occur in one second -- measured in HERTZ (Hz), where 1 Hz is one complete cycle per second. RELATIONSHIP: period and frequency are reciprocals, T = 1/f and equivalently f = 1/T.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-17"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "FM-LP-13",
+        "FM-LP-16",
+        "FM-LP-19"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-130",
+        "unit202::ACQ-137",
+        "unit202::ACQ-138",
+        "unit202::ACQ-139"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::alternating-sinusoidal-output-concept::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::periodic-time::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::frequency::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::t-1-f::RELATIONSHIP"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-LIBRETEXTS-KUPHALDT-AC-1-02: Alternating current is a flow of electric charge that periodically reverses direction; the alternating voltage...",
+        "SRC-OPENSTAX-UP2-15-1: Alternating current (ac) is the flow of electric charge that periodically reverses direction....",
+        "SRC-LIBRETEXTS-FIORE-AC-1-2: The period (periodic time) is the amount of time taken to complete one complete cycle of the waveform - one cy...",
+        "SRC-LIBRETEXTS-KUPHALDT-AC-1-02: Frequency is the number of complete cycles a wave completes in a given amount of time; it is the reciprocal of...",
+        "SRC-LIBRETEXTS-KUPHALDT-AC-1-02: Period and frequency are reciprocals: f = 1/T, and equivalently T = 1/f, with the period T being the time in s..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "These four requirements are combined because period and frequency are defined in terms of the cycle, and T = 1/f simply states that the two are reciprocals -- they are one interlocking definition set, taught and assessed together, and separating them would produce learning points that each have to restate the others to make sense. Note that Batch 04's EQCT-LP-08 covers frequency as an ELECTRICAL QUANTITY (meaning, symbol, unit); this learning point covers it as a property of the generated AC WAVEFORM, tied to the cycle and the period. See the overlap audit -- that relationship is flagged for Product Architect confirmation.",
+      "explicitExclusions": [
+        "Angular frequency (omega = 2*pi*f) and radian measure",
+        "Phase, phase difference and phasor representation",
+        "Harmonics and non-sinusoidal waveforms",
+        "Three-phase supply",
+        "Deriving the sine function from the rotating geometry"
+      ],
+      "applicationTypes": [
+        "State the periodic time of a 50 Hz supply.",
+        "A waveform has a period of 20 ms. Calculate its frequency.",
+        "Explain what is meant by one cycle of an alternating waveform."
+      ],
+      "underlyingEvidenceStatuses": {
+        "alternating-sinusoidal-output-concept::EXACT_FACT": "VERIFIED",
+        "periodic-time::EXACT_FACT": "VERIFIED",
+        "frequency::EXACT_FACT": "VERIFIED",
+        "t-1-f::RELATIONSHIP": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-19",
+      "title": "AC magnitude: peak (amplitude) and peak-to-peak values",
+      "learnerOutcome": "The learner will be able to define the peak and peak-to-peak values of an AC waveform and convert between them for a sine wave.",
+      "knowledgeOrProcedure": "The AMPLITUDE of an AC waveform expressed as a PEAK (or crest) value is the change measured from the centre zero line to the most positive value -- that is, from zero to the maximum point of the cycle. The PEAK-TO-PEAK value is the total height between opposite peaks: the distance from the most negative to the most positive value, i.e. cycle minimum to cycle maximum. It is obtained by subtracting the cycle minimum from the cycle maximum. For a SINE WAVE the peak-to-peak value is always TWICE the peak value. Worked instance: a waveform peaking at +130 V and -130 V has a peak-to-peak value of 260 V, since 130 - (-130) = 260.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-18"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "FM-LP-04"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-135",
+        "unit202::ACQ-136"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::amplitude-peak::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::peak-to-peak::EXACT_FACT"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-LIBRETEXTS-FIORE-AC-1-2: The amplitude of an AC waveform expressed as a peak (or crest) value is the change measured from the centre ze...",
+        "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION: Peak voltage is the voltage value at the local maximum point in the cycle graph, measured from 0 to that maxim...",
+        "SRC-LIBRETEXTS-KUPHALDT-AC-1-03: The intensity or magnitude of an AC quantity - also called the amplitude - may be expressed by its peak height...",
+        "SRC-LIBRETEXTS-FIORE-AC-1-2: The peak-to-peak value of an AC waveform is the total height between opposite peaks - the distance from the mo..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "Peak and peak-to-peak are combined because peak-to-peak is defined by reference to the peaks and the conversion between them is the whole of the mastery; taught apart, the second point would consist of nothing but the relationship to the first. The \"twice the peak\" relation is stated with its symmetrical-sine-wave qualification retained, because the evidence states it specifically for a sine wave.",
+      "explicitExclusions": [
+        "RMS and average values (see EMI-LP-20)",
+        "Instantaneous values and the v = Vpk sin(theta) expression",
+        "Crest factor and form factor",
+        "Peak values of non-sinusoidal waveforms"
+      ],
+      "applicationTypes": [
+        "A sinusoidal waveform has a peak value of 100 V. State its peak-to-peak value.",
+        "An oscilloscope trace shows a waveform reaching +12 V and -12 V. State its peak and peak-to-peak values."
+      ],
+      "underlyingEvidenceStatuses": {
+        "amplitude-peak::EXACT_FACT": "VERIFIED",
+        "peak-to-peak::EXACT_FACT": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-20",
+      "title": "RMS and average values of a sine wave, and what each one means",
+      "learnerOutcome": "The learner will be able to explain what the RMS value of an AC waveform means, convert between RMS and peak values for a sine wave, and distinguish the half-cycle average value from the zero signed average over a complete cycle.",
+      "knowledgeOrProcedure": "RMS (root-mean-square), also called the EFFECTIVE value, is the EQUIVALENT DC value of an AC quantity: the magnitude of DC voltage or current that would produce the SAME POWER DISSIPATION AND HEATING through an equal resistance. A 1 V RMS sine produces the same heating in a given resistor as 1 V DC. RMS is explicitly NOT the same thing as the average value -- it is a measure of how much work the AC source can do, and power in a resistor must be computed from RMS values, never from peak or peak-to-peak values. CONVERSIONS (PURE SINE WAVES ONLY): Vrms = 0.707 x Vpeak (0.707 being 1/root2), and Vpeak = 1.414 x Vrms (1.414 being root2). These constants hold only for pure sine waves; for non-sinusoidal or non-symmetric signals the RMS value departs from them and must be computed from the root-mean-square definition itself. THE TWO AVERAGES -- do not confuse them: (1) the SIGNED average over one COMPLETE cycle of a symmetrical waveform is ZERO, because the positive points cancel the negative points; (2) the PRACTICAL average, taken over ONE ALTERNATION (one half-cycle) or equivalently by treating all points as positive (the rectified average), is approximately 0.637 -- that is 2/pi, about 0.6366 -- times the peak value, i.e. 63.6% of peak. The 0.637 figure is a HALF-CYCLE/rectified quantity and is NOT the signed full-cycle average; and it is distinct again from the 70.7%-of-peak RMS value. CURRENT BEHAVES THE SAME WAY: the same peak/RMS/average relationships defined for voltage hold for current in a pure sine wave, so Irms = 0.707 x Ipeak, and the mean rate of energy dissipation in a resistor over a complete cycle is Irms^2 x R.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-19"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "FM-LP-04",
+        "FM-LP-13"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-140",
+        "unit202::ACQ-141",
+        "unit202::ACQ-142",
+        "unit202::ACQ-143",
+        "unit202::ACQ-145",
+        "unit202::ACQ-144"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::rms::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::vpeak-1-414-x-vrms::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::analogous-current-relationship-where-applicable::RELATIONSHIP"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-LIBRETEXTS-FIORE-AC-1-2: RMS (root-mean-square), also called the effective value, is the equivalent DC value of an AC quantity: the mag...",
+        "SRC-LIBRETEXTS-TATUM-EM-13-11: Mathematically the RMS value is obtained by squaring the instantaneous values, taking the mean over the period...",
+        "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION: RMS is explicitly NOT the same thing as the average value of the waveform; it is the measure of how much work ...",
+        "SRC-LIBRETEXTS-FIORE-AC-1-2: For a PURE SINE WAVE the RMS (effective) value is 0.707 - that is, 1/√2 - times the peak value; this follows f...",
+        "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION: Worked instance: a sinusoidal waveform of 130 V peak has an RMS value of 91.9 V....",
+        "SRC-LIBRETEXTS-FIORE-AC-1-2: For a pure sine wave the peak value is approximately 1.414 (i.e. √2) times the RMS value - stated by Fiore in ...",
+        "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION: Peak-reading (non-true-RMS) meters obtain the RMS reading from the measured peak value via a 1.414:1 divider, ...",
+        "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION: The average value of a sinusoidal waveform taken as the arithmetic average of the positive half of the cycle (...",
+        "SRC-LIBRETEXTS-KUPHALDT-AC-1-03: The practical average value of an AC waveform, obtained by considering all points on the wave as positive quan...",
+        "SRC-LIBRETEXTS-TATUM-EM-13-11: Taken algebraically - that is, retaining the sign of each instantaneous value - the average of a symmetrical A...",
+        "SRC-LIBRETEXTS-KUPHALDT-AC-1-03: The signed full-cycle average being zero is the reason the 'average value' quoted for a sine wave (0.637 x pea...",
+        "SRC-LIBRETEXTS-TATUM-EM-13-11: The same peak-to-RMS relationship that holds for voltage holds for current in a pure sine wave: for I = Î sin(...",
+        "SRC-LIBRETEXTS-KUPHALDT-AC-1-03: The magnitude measures (peak, peak-to-peak, average, RMS) are defined for an AC quantity generally, and the RM..."
+      ],
+      "evidenceReadiness": "READY",
+      "depthJustification": "Six requirements are combined because they form one tightly coupled set of facts about the SAME question -- \"how big is this AC waveform?\" -- and the principal learning hazard is precisely that learners conflate the three answers (RMS 0.707, half-cycle average 0.637, signed full-cycle average 0). Those three can only be distinguished if they are held side by side; splitting them into separate learning points would remove the contrast that makes each one meaningful and would practically guarantee the conflation. The current-analogous requirement is included here rather than duplicated as its own point because the evidence establishes it as the same relationships applied to current, not as new content. All sine-wave-only restrictions and the heating-equivalence meaning of RMS are carried as explicit knowledge content, per this batch's guardrails.",
+      "explicitExclusions": [
+        "Deriving the 1/root2 and 2/pi constants from the mean-square integral",
+        "RMS of non-sinusoidal waveforms as a calculation outcome",
+        "True-RMS versus averaging meter construction as an engineering topic",
+        "Form factor and crest factor as named quantities",
+        "Power-factor and reactive-power calculations (Batch 04 covers power factor)"
+      ],
+      "applicationTypes": [
+        "A sinusoidal supply has a peak value of 340 V. Calculate its RMS value.",
+        "A 230 V RMS supply is sinusoidal. Calculate its peak value.",
+        "Explain why the average value of a complete sine-wave cycle is zero but its RMS value is not.",
+        "State what the RMS value of an alternating current tells you about its heating effect."
+      ],
+      "underlyingEvidenceStatuses": {
+        "rms::EXACT_FACT": "VERIFIED",
+        "vrms-0-707-x-vpeak::RELATIONSHIP": "VERIFIED",
+        "vpeak-1-414-x-vrms::RELATIONSHIP": "VERIFIED",
+        "average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP": "VERIFIED",
+        "signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP": "VERIFIED",
+        "analogous-current-relationship-where-applicable::RELATIONSHIP": "VERIFIED"
+      }
+    },
+    {
+      "id": "EMI-LP-21",
+      "title": "Carrying out sine-wave conversion calculations",
+      "learnerOutcome": "The learner will be able to carry out conversions between peak, peak-to-peak and RMS values for a sinusoidal waveform, selecting the correct conversion for the quantities given.",
+      "knowledgeOrProcedure": "METHOD: (1) identify which value you have been given and which you are asked for; (2) apply the correct conversion. Peak-to-peak is obtained by subtracting the cycle minimum from the cycle maximum (worked: a waveform with +130 V and -130 V peaks has a peak-to-peak value of 260 V). RMS is obtained for a sinusoid by multiplying the peak value by 0.707 (worked: a sinusoidal waveform of 130 V peak has an RMS value of 91.9 V -- the value a typical multimeter reads in AC mode). Peak is obtained from RMS by multiplying by 1.414. IMPORTANT RESTRICTION: peak, peak-to-peak, average and RMS are alternative expressions of a waveform's magnitude related by FIXED conversion constants, but those constants hold true only for PURE forms of the named waveshapes. For a non-sinusoidal waveform these conversions do not apply.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-19",
+        "EMI-LP-20"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "FM-LP-04",
+        "FM-LP-13"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-146"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION: Sine-wave conversion method: peak-to-peak is obtained by subtracting the cycle minimum from the cycle maximum ...",
+        "SRC-LIBRETEXTS-KUPHALDT-AC-1-03: Peak, peak-to-peak, average and RMS are alternative expressions of an AC waveform's magnitude related by fixed..."
+      ],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "Separated from EMI-LP-20 as a procedural/calculation mastery rather than a conceptual one. The distinction is diagnosable and practically important: a learner may be able to explain correctly what RMS means and still pick the wrong conversion constant, or apply a sine-wave constant to a square wave. This point is where the selection and execution of the conversion is practised, on the understanding established in EMI-LP-20.",
+      "explicitExclusions": [
+        "Deriving the conversion constants",
+        "Conversions for non-sinusoidal waveforms -- excluded and explicitly flagged as invalid",
+        "Instantaneous-value calculations requiring trigonometry",
+        "Power calculations from the converted values"
+      ],
+      "applicationTypes": [
+        "An oscilloscope shows a sine wave of 340 V peak-to-peak. Calculate its RMS value.",
+        "A multimeter reads 110 V RMS on a sinusoidal supply. Calculate the peak-to-peak value.",
+        "Explain why the 0.707 factor must not be used on a square wave."
+      ],
+      "evidenceReadinessNote": "Underlying evidence is PARTIAL on CALCULATION_METHOD breadth. Worked numerical method IS genuinely evidenced for two conversion directions -- peak-to-peak from the cycle maximum and minimum, and RMS from peak (130 V peak giving 91.9 V RMS). It is NOT evidenced by a worked example for the average-value conversion (0.637 x peak) or for the reverse peak-from-RMS conversion (x1.414); those two directions rest on stated conversion factors alone. The factors themselves are separately and fully VERIFIED in EMI-LP-20; what is missing is worked method for those two directions.",
+      "underlyingEvidenceStatuses": {
+        "appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE": "PARTIAL"
+      }
+    },
+    {
+      "id": "EMI-LP-22",
+      "title": "Generated frequency, pole pairs and rotational speed",
+      "learnerOutcome": "The learner will be able to calculate the frequency generated by an alternator from its rotational speed and its number of pole pairs.",
+      "knowledgeOrProcedure": "One full mechanical rotation of a two-pole (one pole-PAIR) alternator produces one complete sine wave. A four-pole (two pole-pair) machine produces two complete sine waves per revolution. The number of cycles generated per revolution therefore equals the number of POLE PAIRS. This gives f = N x P, where f is the frequency in hertz, N is the rotational speed in revolutions per SECOND, and P is the number of POLE PAIRS (not the total number of poles). When the speed is given in revolutions per MINUTE it must first be divided by 60, giving the equivalent form f = n_rpm x P / 60. METHOD for a simple AC-generation calculation: (1) convert the machine's rotational speed from rev/min to rev/s by dividing by 60; (2) determine the number of pole pairs; (3) multiply. CONVENTION WARNING: sources differ. Some write this relationship using the TOTAL number of poles instead of pole pairs, in the forms f = P_total x N / 120 or synchronous speed n_s = 120f / P_total. Those are equivalent only because P_total = 2 x P_pairs. Always check which convention a formula uses before substituting, because using total poles in a pole-pair formula doubles the answer.",
+      "prerequisiteLearningPointIds": [
+        "EMI-LP-18",
+        "EMI-LP-17"
+      ],
+      "crossDomainPrerequisiteIds": [
+        "FM-LP-13",
+        "FM-LP-16"
+      ],
+      "knowledgeTargetIds": [
+        "unit202::ACQ-131",
+        "unit202::ACQ-132",
+        "unit202::ACQ-133",
+        "unit202::ACQ-134"
+      ],
+      "evidenceRequirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+        "ER::provisional::unit202::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE"
+      ],
+      "normalizedClaimRefs": [
+        "SRC-MITOCW-6685-CH8: In an AC machine the electrical rotation speed equals the number of pole pairs multiplied by the mechanical ro...",
+        "SRC-LIBRETEXTS-FLINN-3-05: One full mechanical rotation of the armature creates one full sine wave on a two-pole (one pole-pair) alternat...",
+        "SRC-SIU-ET332B-LESSON17: Synchronous speed n_s = 120 f / P, where f is the power-system frequency in Hz and P is the number of motor po...",
+        "SRC-LIBRETEXTS-FLINN-3-05: Procedure for a simple AC-generation frequency calculation: (1) convert the machine's rotational speed from re..."
+      ],
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "depthJustification": "The formula, its rpm variant and the calculation procedure are combined because the rpm form is the same relationship with a unit conversion folded in, and the procedure is simply applying it -- three separate learning points would teach one relationship three times. The pole-pairs-versus-total-poles warning is carried as explicit knowledge content rather than hidden, because it is a genuine cross-source conflict that will otherwise produce silent factor-of-two errors.",
+      "explicitExclusions": [
+        "Synchronous motor and induction motor speed/slip calculations as a topic in their own right",
+        "Machine construction, winding arrangements and pole design",
+        "Variable-frequency drives and frequency conversion",
+        "Why the relationship holds, beyond the cycles-per-revolution argument"
+      ],
+      "applicationTypes": [
+        "A four-pole alternator runs at 1500 rev/min. Calculate the frequency it generates.",
+        "State how many pole pairs a six-pole machine has.",
+        "A two-pole alternator must generate 50 Hz. Calculate the required speed in rev/min.",
+        "Explain why it matters whether a formula uses pole pairs or total poles."
+      ],
+      "evidenceReadinessNote": "All three underlying requirements are now PARTIAL. The appropriate-simple-ac-generation-calculations requirement is PARTIAL on breadth: the frequency/speed/pole procedure is fully evidenced with a worked instance, but no procedure for calculating generated EMF magnitude (e = Blv or E = 2*pi*f*N*Phi forms) was evidenced, and the requirement is plural. The other two are PARTIAL because of a genuine and unresolved CONVENTION CONFLICT in the sources, which is recorded rather than silently harmonised. The frozen requirements are written in the POLE-PAIR convention. Only one retrieved source (MIT 6.685) uses pole pairs, and it states the relationship in ANGULAR-FREQUENCY form with the definition of p sitting two pages from the relation. Both sources that state it in Hz-and-rpm terms use TOTAL POLES: f = P/2 x N/60 and n_s = 120f/P. No in-class source stating the pole-pair convention directly in Hz/rev-per-second terms could be obtained -- four further candidates were all blocked. A Product Architect decision is needed on which convention this qualification will teach, since the two give answers differing by a factor of two.",
+      "underlyingEvidenceStatuses": {
+        "rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE": "PARTIAL",
+        "equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP": "PARTIAL",
+        "appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE": "PARTIAL"
+      }
+    }
+  ]
+}

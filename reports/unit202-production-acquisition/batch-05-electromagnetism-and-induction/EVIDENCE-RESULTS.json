@@ -1,0 +1,2546 @@
+{
+  "batchId": "batch-05",
+  "qualificationContextId": "unit202",
+  "domain": "electromagnetism-and-induction",
+  "sourcePlan": "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json",
+  "requirementCount": 44,
+  "statusVocabulary": {
+    "VERIFIED": "At least one genuinely retrieved-and-read authoritative source (matching this requirement's own permitted sourceAuthorityClasses) explicitly supports the exact requirement text/dimension; no unresolved gap remains.",
+    "PARTIAL": "Genuine evidence was found and read but only partially satisfies the requirement's coverage dimension(s), or rests on a disclosed compounding of more than one passage where no single passage states the full claim.",
+    "GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
+  },
+  "authorityClassDiscipline": "Every candidate source cited as verifying evidence was checked against its OWN requirement's frozen sourceAuthorityClasses. Sources that were genuinely retrieved and read but whose authority class is not permitted for that requirement are preserved under `evaluatedButOutOfPermittedAuthorityClass` on the result, and NO normalized claim rests on them. No frozen requirement's permitted authority classes were widened to accommodate an available source.",
+  "statusTotals": {
+    "VERIFIED": 32,
+    "PARTIAL": 11,
+    "GAP": 1
+  },
+  "results": [
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::alternating-sinusoidal-output-concept::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Alternating/sinusoidal output concept.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-02",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.02%3A_AC_Waveforms",
+            "sourceLocator": "Section 1.02 AC Waveforms - opening paragraphs on the alternator waveform and the cycle definition",
+            "retrievedPassage": "\"When an alternator produces AC voltage, the voltage switches polarity over time, but does so in a very particular manner.\" ... \"the 'wave' traced by this voltage of alternating polarity from an alternator takes on a distinct shape, known as a sine wave.\" ... \"Mathematically, the rate of magnetic flux change due to a rotating magnet follows that of a sine function, so the voltage produced by the coils follows that same function.\" ... \"If we were to follow the changing voltage produced by a coil in an alternator from any point on the sine wave graph to that point when the wave shape begins to repeat itself, we would have marked exactly one cycle of that wave.\""
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-UP2-15-1",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/university-physics-volume-2/pages/15-1-ac-sources",
+            "sourceLocator": "Section 15.1 AC Sources - opening definition and sinusoidal source equation",
+            "retrievedPassage": "\"Alternating current (ac) is the flow of electric charge that periodically reverses direction.\" The sinusoidal source is written \"v = V0 sin ωt\", where v is the instantaneous voltage, V0 is the peak (maximum) voltage and ω is angular frequency in radians per second; the section also states that \"an ac is produced by an alternating emf, which is generated in a power plant\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Alternating current is a flow of electric charge that periodically reverses direction; the alternating voltage produced by a rotating-magnet alternator traces a sine wave, because the rate of magnetic flux change due to a rotating magnet follows a sine function, so the coil voltage follows that same function. One cycle is the interval from any point on the sine-wave graph to the point at which the wave shape begins to repeat itself. The sinusoidal source is written v = V0 sin(ωt) with V0 the peak voltage and ω the angular frequency in rad/s.",
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-02"
+          },
+          {
+            "claimText": "Alternating current (ac) is the flow of electric charge that periodically reverses direction.",
+            "sourceId": "SRC-OPENSTAX-UP2-15-1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "The sinusoidal shape is attributed by Kuphaldt to a rotating magnet in an alternator; neither read source derives the sinusoid for a coil rotating in a uniform field (the single-loop alternator model normally used at Level 2). The causal statement is therefore evidenced for the rotating-field construction, not for every generator geometry."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::amplitude-peak::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Amplitude / peak.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+            "sourceLocator": "Section 1.2 Sinusoidal Waveforms - amplitude paragraph",
+            "retrievedPassage": "\"The amplitude (vertical) of the wave can be expressed as a peak quantity, which is the change from the center zero line up to the most positive value.\""
+          },
+          {
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+            "sourceLocator": "Section 1.1 Voltage Measurements, page 2, first bullet",
+            "retrievedPassage": "\"Peak Voltage -   The voltage value at the local maximum point in the cycle graph.  The Voltage measure is from 0 to this maximum.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+            "sourceLocator": "Section 1.03 Measurements of AC Magnitude - peak value paragraph",
+            "retrievedPassage": "\"One way to express the intensity, or magnitude (also called the amplitude), of an AC quantity is to measure its peak height on a waveform graph. This is known as the peak or crest value of an AC waveform.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The amplitude of an AC waveform expressed as a peak (or crest) value is the change measured from the centre zero line to the most positive value, i.e. from zero to the maximum point of the cycle.",
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2"
+          },
+          {
+            "claimText": "Peak voltage is the voltage value at the local maximum point in the cycle graph, measured from 0 to that maximum.",
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION"
+          },
+          {
+            "claimText": "The intensity or magnitude of an AC quantity - also called the amplitude - may be expressed by its peak height on a waveform graph, known as the peak or crest value.",
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::analogous-current-relationship-where-applicable::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Analogous current relationship where applicable.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-TATUM-EM-13-11",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electricity_and_Magnetism_(Tatum)/13:_Alternating_Current/13.11:_Root-mean-square_values,_power_and_impedance_matching",
+            "sourceLocator": "Section 13.11, Equation 13.11.2 and the third paragraph",
+            "retrievedPassage": "\"The mean square current, Ī², is defined such that Ī²P=∫₀ᴾ I² dt. With I=Î sin ωt this gives Ī²=½Î². The square root of this is the root-mean-square current, or the RMS value of the current: I_RMS = (1/√2)Î = 0.707Î.\" ... \"The mean rate of dissipation of energy during a complete cycle is I_RMS²R.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+            "sourceLocator": "Section 1.03 Measurements of AC Magnitude - opening sentence and RMS paragraph",
+            "retrievedPassage": "\"One way to express the intensity, or magnitude (also called the amplitude), of an AC quantity is to measure its peak height on a waveform graph.\" ... \"Whatever magnitude of DC voltage or current would produce the same amount of heat energy dissipation through an equal resistance\" [is the RMS value]; \"RMS stands for Root Mean Square, the algorithm used to obtain the DC equivalent value.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The same peak-to-RMS relationship that holds for voltage holds for current in a pure sine wave: for I = Î sin(ωt) the mean-square current is ½Î², so I_RMS = (1/√2)Î = 0.707Î, and the mean rate of energy dissipation in a resistor over a complete cycle is I_RMS²R.",
+            "sourceId": "SRC-LIBRETEXTS-TATUM-EM-13-11"
+          },
+          {
+            "claimText": "The magnitude measures (peak, peak-to-peak, average, RMS) are defined for an AC quantity generally, and the RMS value is defined for DC voltage or current alike as whatever magnitude of DC voltage or current would produce the same amount of heat energy dissipation through an equal resistance.",
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "Tatum states the peak/RMS analogue explicitly in terms of current (I_RMS = 0.707Î). The corresponding current forms of the other conversions - I_average(one alternation) = 0.6366Î and I_peak-to-peak = 2Î - are covered only by Kuphaldt's generic framing of the measures as applying to 'an AC quantity'; no read passage states those two current forms with explicit current symbols."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
+      "requirementMode": "PROCEDURE_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "PROCEDURE",
+        "CALCULATION_METHOD"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Appropriate simple AC-generation calculations.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FLINN-3-05",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03%3A_AC_Generation/3.05%3A_Frequency_and_Alternators",
+            "sourceLocator": "Section 3.05 Frequency and Alternators - rotation-speed paragraph, pole-count paragraph, worked 1800 RPM illustration, and formula statement",
+            "retrievedPassage": "\"One full mechanical rotation of the armature creates one full sine wave on a two-pole alternator.\" ... \"all we have to do is to divide the RPM by 60 to convert it to RPS\" ... \"For example, if the armature is spinning at a rate of 1800 RPM on a two-pole alternator, we can say that it is spinning at 30 rotations per second. If this alternator has two poles, then in one second it will generate 30 cycles of voltage.\" ... \"In a two-pole alternator, Side A of the armature passes from north to south, and then south to north, to create one complete sine wave.\" ... with four poles \"Side A of the armature will move past two north poles and two south poles in one full mechanical revolution\" [generating two complete sine waves per rotation]. ... \"Knowing that rotation speed is directly proportional to frequency and that the number of poles is directly proportional to frequency, we can use a formula.\" f = P/2 × N/60, and combined, f = PN/120, where \"f = frequency in hertz,\" \"P = number of poles,\" \"N = rotational speed in RPM\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Procedure for a simple AC-generation frequency calculation: (1) convert the machine's rotational speed from rev/min to rev/s by dividing the RPM by 60; (2) recognise that a two-pole alternator generates one complete sine wave per mechanical revolution, and that each additional pair of poles adds one further cycle per revolution (a four-pole machine gives two cycles per revolution); (3) multiply. Worked instance: an armature spinning at 1800 RPM on a two-pole alternator is spinning at 30 rotations per second, and in one second it generates 30 cycles of voltage, i.e. 30 Hz. Formally f = (P/2) × (N/60), i.e. f = PN/120, where f is frequency in hertz, P is the number of poles (total poles, not pole pairs) and N is rotational speed in RPM.",
+            "sourceId": "SRC-LIBRETEXTS-FLINN-3-05"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "PROCEDURE",
+          "CALCULATION_METHOD"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          "Convention: this source expresses the calculation in the TOTAL-POLES convention (P = number of poles, divide by 2 because 'there will always be a set of two poles'), whereas the cluster's own formula requirement is stated in the POLE-PAIRS convention. The two are equivalent only under P_total = 2 × P_pole-pairs. Recorded rather than silently converted."
+        ],
+        "gaps": [
+          "Downgraded VERIFIED -> PARTIAL during the internal audit pass, on BREADTH. This result's own record states that 'the read passage covers the frequency/speed/pole calculation only. It does not set out a procedure for calculating generated EMF magnitude (e.g. e = Blv or E = 2*pi*f*N*Phi forms).' The requirement is 'appropriate simple AC-generation calculations' (plural, with both PROCEDURE and CALCULATION_METHOD dimensions), and only one calculation family is procedurally evidenced. The frequency/speed/pole procedure itself is fully and genuinely evidenced with a worked instance.",
+          "The read passage covers the frequency/speed/pole calculation only. It does not set out a procedure for calculating generated EMF magnitude (e.g. e = Blv or E = 2π f N Φ forms), so 'simple AC-generation calculations' is evidenced for the frequency family of calculations only."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+      "requirementMode": "PROCEDURE_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "PROCEDURE",
+        "CALCULATION_METHOD"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Appropriate sine-wave conversions/calculations.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+            "sourceLocator": "Section 1.1 Voltage Measurements, pages 2-3: peak-to-peak bullet with worked number, RMS bullet, RMS summation formula, and the 130 V worked conversion",
+            "retrievedPassage": "\"Peak to Peak Voltage – The Peak to Peak voltage is measured from the cycle minimum value to the cycle maximum value.  As an example if the ac waveform below the  P-P voltage would be 260 Volts (130 – (-130)).\" ... \"The RMS value for a sinusoidal wave form is = .707 * Peak Voltage.  For non sinusoidal signals, the RMS value must be calculated.  Taking one cycle of AC signal and breaking it into many small samples, you can calculate the RMS value based on the following formula.\" [x_rms = sqrt((1/N)Σx_i²) = sqrt((x₁²+x₂²+...+x_N²)/N)] ... \"In the above example we saw a sinusoidal waveform with a peak value of 130V.  The RMS value of this signal would be 91.9 Volts.  This is the value your typical multi meter will read in the AC mode.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+            "sourceLocator": "Section 1.03 Measurements of AC Magnitude - conversion-factor table and its accompanying caveat",
+            "retrievedPassage": "\"The conversion constants shown here for peak, RMS, and average amplitudes of sine waves, square waves, and triangle waves hold true only for pure forms of these waveshapes.\" (The section presents peak, peak-to-peak, average and RMS as alternative expressions of the same waveform's magnitude, with a table of conversion constants between them; for a sine wave \"the RMS value is approximately 0.707 of its peak value\" and \"the average value so calculated is approximately 0.637 of its peak value\".)"
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Sine-wave conversion method: peak-to-peak is obtained by subtracting the cycle minimum from the cycle maximum (worked: a waveform with +130 V and −130 V peaks has a peak-to-peak value of 260 V, i.e. 130 − (−130)); RMS is obtained for a sinusoid by multiplying the peak value by 0.707 (worked: a sinusoidal waveform of 130 V peak has an RMS value of 91.9 V, the value a typical multimeter reads in AC mode); for non-sinusoidal signals the multiplier cannot be used and the RMS value must instead be computed by sampling one cycle into many small samples and applying x_rms = sqrt((1/N)Σx_i²).",
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION"
+          },
+          {
+            "claimText": "Peak, peak-to-peak, average and RMS are alternative expressions of an AC waveform's magnitude related by fixed conversion constants, but those constants hold true only for pure forms of the named waveshapes (sine, square, triangle).",
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "PROCEDURE",
+          "CALCULATION_METHOD"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [
+          "Downgraded VERIFIED -> PARTIAL during the internal audit pass, on CALCULATION_METHOD breadth. This result's own record states that 'no read source gives a worked numerical example of the average-value conversion (0.637 x peak) or of the reverse peak-from-RMS conversion (x1.414); those directions are evidenced as stated factors rather than as worked method.' Worked numerical method IS genuinely evidenced for the peak-to-peak conversion and for RMS-from-peak; two of the conversion directions rest on stated factors alone.",
+          "No read source gives a worked numerical example of the average-value conversion (0.637 × peak) or of the reverse peak-from-RMS conversion (×1.414); those directions are evidenced as stated factors rather than as worked calculations."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Average over one alternation ~= 0.6366 x Vpeak.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+            "sourceLocator": "Section 1.1 Voltage Measurements, page 2, 'Average Voltage' bullet; and the annotated waveform figure on page 3",
+            "retrievedPassage": "\"Average Voltage – The average voltage is the arithmatic average of the positive half of the cycle.  In a standard sinusoidal wave form this value is 0.637 * Peak Voltage.\" [verbatim, including the source's spelling 'arithmatic'] The page-3 figure axis is labelled 'PERCENT OF PEAK' with the horizontal markers \"70.7% - EFFECTIVE\" and \"63.6% - AVERAGE\"."
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+            "sourceLocator": "Section 1.03 Measurements of AC Magnitude - average value paragraph",
+            "retrievedPassage": "[We obtain] \"the practical average value of the waveform by considering all points on the wave as positive quantities\" ... \"the average value so calculated is approximately 0.637 of its peak value.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The average value of a sinusoidal waveform taken as the arithmetic average of the positive half of the cycle (equivalently, the average computed treating all points on the wave as positive quantities, i.e. the rectified average) is approximately 0.637 - i.e. 2/π ≈ 0.6366 - times the peak value. It is 63.6% of peak, distinct from the 70.7%-of-peak RMS/effective value.",
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION"
+          },
+          {
+            "claimText": "The practical average value of an AC waveform, obtained by considering all points on the wave as positive quantities, is for a sine wave approximately 0.637 of its peak value - explicitly contrasted in the same section with the algebraic full-cycle average, which is zero.",
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "Neither read source uses the word 'alternation'. The Missouri S&T handout says 'the positive half of the cycle' (a direct half-cycle statement); Kuphaldt says 'considering all points on the wave as positive quantities' (the rectified average, numerically identical for a symmetrical sine). This half-cycle/rectified scope must be preserved: it is emphatically NOT the signed full-cycle average, which both sources separately state is zero.",
+          "Both sources quote the rounded 0.637; neither read passage states the exact 2/π derivation or the 4-figure value 0.6366."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+      "requirementMode": "FORMULA_OR_RULE",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "FORMULA",
+        "FORMULA_INTERPRETATION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "requirementText": "B = Φ/A, including the meanings of B (magnetic flux density), Φ (magnetic flux) and A (area).",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-MAGCIRCUITS",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/DC_Electrical_Circuit_Analysis_-_A_Practical_Approach_(Fiore)/10:_Magnetic_Circuits_and_Transformers/10.3:_Magnetic_Circuits",
+            "sourceLocator": "Section 10.3 'Magnetic Circuits', Equation 10.4 and its definition list",
+            "retrievedPassage": "\"As this flux is constrained within the cross sectional area of the core, A, we can derive a flux density, B.\\n\\nB = Φ/A\\n\\nWhere B is the magnetic flux density in teslas, Φ is the magnetic flux in webers, A is the area in square meters.\""
+          },
+          {
+            "sourceId": "SRC-MIT802-CH10-FLUX",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/724a162b8c03487f5faae202b395fadd_cha10faraday_law.pdf",
+            "sourceLocator": "§10.1.1 Magnetic Flux, doc p. 2, Figure 10.1.2 and Equations (10.1.1) and (10.1.2)",
+            "retrievedPassage": "\"Consider a uniform magnetic field passing through a surface S, as shown in Figure 10.1.2 below: ... Let the area vector be A = A n̂, where A is the area of the surface and n̂ its unit normal. The magnetic flux through the surface is given by Φ_B = B · A = BA cos θ   (10.1.1) where θ is the angle between B and n̂. If the field is non-uniform, Φ_B then becomes Φ_B = ∫∫_S B · dA   (10.1.2)\""
+          },
+          {
+            "sourceId": "SRC-HYPERPHYSICS-MAGFLUX",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magnetic/fluxmg.html",
+            "sourceLocator": "Page 'Magnetic Flux', main definition sentence and the perpendicular-component sentence",
+            "retrievedPassage": "\"Magnetic flux is the product of the average magnetic field times the perpendicular area that it penetrates.\" ... \"The contribution to magnetic flux for a given area is equal to the area times the component of magnetic field perpendicular to the area.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Where magnetic flux Φ is constrained within (i.e. distributed over) a cross-sectional area A, the magnetic flux density is B = Φ/A, in which B is the magnetic flux density in teslas, Φ is the magnetic flux in webers and A is the area in square metres.",
+            "sourceId": "SRC-LIBRETEXTS-FIORE-MAGCIRCUITS"
+          },
+          {
+            "claimText": "The rearrangement Φ = BA is valid only for the uniform-field, field-normal-to-the-area case: MIT states Φ_B = B·A = BA cos θ, where θ is the angle between B and the unit normal n̂ of the surface, so Φ = BA (and hence B = Φ/A) holds when θ = 0, i.e. the field is perpendicular to the plane of the area / parallel to its normal. For a non-uniform field the flux is the surface integral Φ_B = ∫∫_S B · dA.",
+            "sourceId": "SRC-MIT802-CH10-FLUX"
+          },
+          {
+            "claimText": "In the general case the contribution to magnetic flux for a given area equals the area times the COMPONENT of magnetic field perpendicular to that area, not the full field magnitude.",
+            "sourceId": "SRC-HYPERPHYSICS-MAGFLUX"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "FORMULA",
+          "FORMULA_INTERPRETATION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          {
+            "issue": "Scope statement differs between sources.",
+            "detail": "Fiore states B = Φ/A directly with the single qualification that the flux is 'constrained within the cross sectional area of the core' and does not spell out a perpendicularity or uniformity condition. MIT and HyperPhysics both make the restriction explicit (uniform field with θ = 0 between B and the surface normal; in general only the component of B normal to the area contributes, and for a non-uniform field a surface integral is required). This cluster therefore records B = Φ/A as the UNIFORM-FIELD, FIELD-NORMAL-TO-AREA case, NOT as an unrestricted general definition, per the stated guardrail. Downstream authoring must carry that scope."
+          }
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::basic-electromagnet-principle::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Basic electromagnet principle.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-MAGLAB-ELECTROMAGNETS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://nationalmaglab.org/magnet-academy/plan-a-lesson/electromagnets/",
+            "sourceLocator": "Magnet Academy page 'Electromagnets', opening definition and the coil / field-collapse statements",
+            "retrievedPassage": "\"An electromagnet is a temporary magnet. An electromagnet has a magnetic field created by electric current.\" ... \"By coiling a current carrying wire, you can concentrate the magnetic field in the center of the coil.\" ... \"The field disappears when the current is turned off.\""
+          },
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+            "sourceLocator": "§9.1 Biot-Savart Law, doc p. 2, opening sentence",
+            "retrievedPassage": "\"Currents which arise due to the motion of charges are the source of magnetic fields.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "An electromagnet is a temporary magnet whose magnetic field is created by an electric current; coiling the current-carrying wire concentrates the magnetic field in the centre of the coil, and the field disappears when the current is turned off.",
+            "sourceId": "SRC-MAGLAB-ELECTROMAGNETS"
+          },
+          {
+            "claimText": "Currents arising from the motion of charges are the source of magnetic fields.",
+            "sourceId": "SRC-MIT802-CH9-SOURCES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "The ferromagnetic-core element of the electromagnet principle (a soft-iron core concentrating the flux and increasing the field) was described by the National MagLab page in reference to 'the iron rod' used in its activity, but no single verbatim sentence stating the core's function was returned by the fetch. That sub-claim is therefore NOT recorded as verified here; if a downstream learning point asserts the soft-iron-core role, it needs its own citation."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "RECOGNITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "requirementText": "Brushes.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-MERSEN-CARBON-BRUSH-GUIDE",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://us.mersen.com/sites/default/files/files_imported/2-ptt-carbon-brush-technical-guide-mersen.pdf",
+            "sourceLocator": "Section 1 'WHAT IS A CARBON BRUSH? (ALSO CALLED \"MOTOR BRUSH\")', page 3",
+            "retrievedPassage": "\"A carbon brush is a sliding contact used to transmit electrical current from a static to a rotating part in a motor or generator, and, as regards DC machines, ensuring a spark-free commutation. A carbon brush can be: Made of one or more carbon blocks; Equipped with one or more shunts / terminals.\""
+          },
+          {
+            "sourceId": "SRC-MERSEN-CARBON-BRUSH-GUIDE",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://us.mersen.com/sites/default/files/files_imported/2-ptt-carbon-brush-technical-guide-mersen.pdf",
+            "sourceLocator": "Section 3 'MAIN CARBON BRUSH TYPES, DIMENSIONS AND HARDWARE', page 18 — dimensioned brush drawings labelled 'COMMUTATOR' and 'SLIP RING', and orientation drawings labelled 'NORMAL ORIENTATION OF A CARBON BRUSH ON A COMMUTATOR' and 'NORMAL ORIENTATION OF A CARBON BRUSH ON A SLIP RING'",
+            "retrievedPassage": "\"Dimensions in “t” x “a” x “r” (IEC norm 60136). where “t” is the tangential dimension or “thickness”; “a” is the axial dimension or “width”; and “r” is the radial dimension or “length”’. The “r” dimension may be for information only. The same rule applies whether this is a commutator or slip ring brush.\" [Figure block caption on the same page: \"Orientation of a carbon brush on a commutator or on a slip ring\"; sub-labels \"COMMUTATOR\", \"SLIP RING\", \"NORMAL ORIENTATION OF A CARBON BRUSH ON A COMMUTATOR\", \"NORMAL ORIENTATION OF A CARBON BRUSH ON A SLIP RING\"]"
+          },
+          {
+            "sourceId": "SRC-MOOG-SLIPRING-FUNDAMENTALS",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.moog.com/news/blog/Industrial/slip-ring-fundamentals.html",
+            "sourceLocator": "Article 'Slip Ring Fundamentals', component list accompanying the figure captioned 'basic slip ring configuration'",
+            "retrievedPassage": "\"Brushes provide electrical contact between the rotating (usually the ring) and the stationary parts of the assembly. The brushes ride on the ring, and are mounted in a brush block assembly, usually on the stationary structure.\""
+          },
+          {
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+            "sourceLocator": "Module ES-10 'AC Generators', Figure 1 'Basic AC Generator', Page 2 — callout label 'Brush'; and Page 3 body text under heading 'Slip Rings'",
+            "retrievedPassage": "\"Brushes ride on the slip ring as the rotor rotates. The electrical connection to the rotor is made by connections to the brushes.\" [Figure 1 'Basic AC Generator', Page 2, carries the labelled callouts: 'Field excitation', 'Exciter field rheostat', 'Stator field (stationary)', 'Slip rings', 'Rotor', 'Brush', 'AC output', with the rotor poles marked 'S' and 'N'.]"
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A (carbon) brush is a sliding contact used to transmit electrical current between a stationary part and a rotating part of a motor or generator; in DC machines it also ensures spark-free commutation. It is made of one or more carbon blocks and is fitted with one or more shunts/terminals.",
+            "sourceId": "SRC-MERSEN-CARBON-BRUSH-GUIDE"
+          },
+          {
+            "claimText": "In a machine diagram a brush is recognised as the block-shaped contact pressed against, and riding on, the rotating commutator or slip ring; Mersen's dimensioned drawings distinguish the concave 'commutator' brush face from the 'slip ring' brush face, and show the normal orientation of a carbon brush on a commutator and on a slip ring. Brush dimensions are given as t (tangential/thickness) x a (axial/width) x r (radial/length) per IEC 60136.",
+            "sourceId": "SRC-MERSEN-CARBON-BRUSH-GUIDE"
+          },
+          {
+            "claimText": "In an AC generator schematic the brush appears as the stationary contact riding on the slip ring, labelled 'Brush', through which the electrical connection to the rotor is made.",
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "RECOGNITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "No IEC 60617 graphical circuit symbol for a brush was obtained (the IEC Electropedia and IEC standards servers returned HTTP 403); the recognition evidence is pictorial/constructional (labelled machine and component drawings), not a standardised single-line schematic symbol."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "RECOGNITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "requirementText": "Coil.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+            "sourceLocator": "Module ES-10 'AC Generators', chapter 'AC GENERATOR COMPONENTS', headings 'Field' and 'Armature', Page 1; Figure 1 'Basic AC Generator', Page 2",
+            "retrievedPassage": "\"The field in an AC generator consists of coils of conductors within the generator that receive a voltage from a source (called excitation) and produce a magnetic flux. The magnetic flux in the field cuts the armature to produce a voltage. This voltage is ultimately the output voltage of the AC generator.\" ... \"The armature is the part of an AC generator in which voltage is produced. This component consists of many coils of wire that are large enough to carry the full-load current of the generator.\""
+          },
+          {
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+            "sourceLocator": "Module ES-10 'AC Generators', chapter 'AC GENERATOR THEORY', 'Theory of Operation', Page 5 (text accompanying Figure 3 'Simple AC Generator')",
+            "retrievedPassage": "\"The strong magnetic field is produced by a current flow through the field coil of the rotor. The field coil in the rotor receives excitation through the use of slip rings and brushes. ... A generator has many turns of wire wound into the slots of the rotor.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In a generator/motor diagram a coil is recognised as a set of turns of wire wound on a former or into machine slots: the field of an AC generator consists of coils of conductors that receive excitation and produce magnetic flux, and the armature consists of many coils of wire large enough to carry the machine's full-load current. In DOE Figure 1 'Basic AC Generator' and Figure 3 'Simple AC Generator' the windings are drawn as repeated turns around the stator/rotor and are named in the accompanying text as the 'field coil'.",
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": [
+          "RECOGNITION"
+        ],
+        "conflicts": [],
+        "gaps": [
+          "No source within the requirement's permitted authority classes was obtained that shows a coil with an explicit figure callout reading 'coil', nor a standardised graphical symbol for a coil/winding. The DOE figures draw the windings as repeated turns and the surrounding text names them 'field coil', but the label in the figure itself reads 'Stator field (stationary)' / 'Rotor field (rotating)', so the visual-recognition dimension rests on a compounding of figure and body text.",
+          "IEC 60617 (graphical symbols for diagrams), which carries the normative coil/winding symbol, is behind an access barrier: std.iec.ch and electropedia.org both returned HTTP 403. TDK's manufacturer 'electronics primer' inductor/coil article also returned HTTP 403."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::contactor::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Contactor.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-WF-CONTACTOR-5-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_IV_-_Digital_Circuitry_(Kuphaldt)/05:_Electromechanical_Relays/5.02:_Contactors",
+            "sourceLocator": "Section 5.2 'Contactors', subheading 'All About Contactors'",
+            "retrievedPassage": "\"When a relay is used to switch a large amount of electrical power through its contacts, it is designated by a special name: contactor. Contactors typically have multiple contacts, and those contacts are usually (but not always) normally-open, so that power to the load is shut off when the coil is de-energized. Perhaps the most common industrial use for contactors is the control of electric motors.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A contactor is a relay used to switch a large amount of electrical power through its contacts. Contactors typically have multiple contacts, which are usually (but not always) normally-open so that power to the load is shut off when the coil is de-energised; the most common industrial use for contactors is the control of electric motors.",
+            "sourceId": "SRC-LIBRETEXTS-WF-CONTACTOR-5-2"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "The normative IEC/IEV definition of 'contactor' (IEV 441-14-33) could not be read: both electropedia.org and std.iec.ch returned HTTP 403. The definition recorded here is therefore an authoritative textbook definition, not the standards-body wording."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION",
+      "requirementMode": "SYMBOL_OR_CONVENTION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "QUANTITY_SYMBOL"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Dot/cross page convention.",
+      "result": {
+        "candidateSources": [],
+        "normalizedClaims": [],
+        "verificationStatus": "GAP",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": [
+          "QUANTITY_SYMBOL"
+        ],
+        "conflicts": [],
+        "gaps": [
+          "AUTHORITY-CLASS MISMATCH, not a content gap. The convention is stated explicitly and unambiguously in both directions (dot = out of page, cross = into page) in a source that was genuinely opened and read (MIT 8.02 Chapter 8, §8.3). However, MIT OpenCourseWare is ACADEMIC_OR_RESEARCH_INSTITUTION, which is NOT among this requirement's declared sourceAuthorityClasses (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). No source within the declared classes was obtained: IEC Electropedia / IEV returned HTTP 403 and Encyclopaedia Britannica returned HTTP 403. Status is therefore PARTIAL rather than VERIFIED. Recommendation to the assembling agent: either accept the class widening explicitly, or obtain the IEC 60050 / IEV entry (or an IET publication) through an unblocked route.",
+          "No source read in this session gave the complementary 'arrow fletching/tail' rationale for the cross symbol as a verbatim sentence; only the dot's arrow-head rationale was obtained verbatim (OpenStax Figure 20.20). The cross = into-page mapping itself IS stated verbatim by MIT.",
+          "AUTHORITY-CLASS GAP. Genuine, authoritative evidence for this requirement WAS retrieved and read, but NO source of a permitted authority class could be obtained. This requirement's frozen sourceAuthorityClasses are PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE; every source found sits outside them: SRC-MIT802-CH8-MAGFIELDS (ACADEMIC_OR_RESEARCH_INSTITUTION); SRC-MIT802-CH9-SOURCES (ACADEMIC_OR_RESEARCH_INSTITUTION); SRC-OPENSTAX-PHYSICS-20-1 (ACADEMIC_OR_RESEARCH_INSTITUTION). Their passages are preserved under evaluatedButOutOfPermittedAuthorityClass so the reading is not lost. Recorded as a GAP rather than resolved by widening the frozen requirement's permitted classes, which this pass has no authority to do. NOTE FOR PRODUCT ARCHITECT: the underlying content is not in doubt -- what is missing is a source of the required authority tier. Either an in-class source must be acquired, or the frozen requirement's permitted classes must be reconsidered at plan level."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf",
+            "sourceLocator": "§8.3 Magnetic Force on a Current-Carrying Wire, doc p. 3 (text introducing Figure 8.3.1) and doc p. 4 (text introducing Figure 8.3.2)",
+            "retrievedPassage": "\"Consider a long straight wire suspended in the region between the two magnetic poles. The magnetic field points out the page and is represented with dots (•).\" ... \"To calculate the force exerted on the wire, consider a segment of wire of length ℓ and cross-sectional area A, as shown in Figure 8.3.2. The magnetic field points into the page, and is represented with crosses ( X ).\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          },
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+            "sourceLocator": "Figure 9.1.5 'Direction of the magnetic field due to an infinite straight wire' (doc p. 6), in-figure label",
+            "retrievedPassage": "\"Current flowing out of the page\" (in-figure label attached to the dot symbol at the centre of the concentric field circles, Figure 9.1.5)",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-PHYSICS-20-1",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force",
+            "sourceLocator": "Section 20.1, Figure 20.20 caption",
+            "retrievedPassage": "\"The magnetic field is coming out of the page—the circles with dots represent vector arrow heads coming out of the page.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::e-blv::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "e = Blv.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-OPENSTAX-CP2E-23-3",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/college-physics-2e/pages/23-3-motional-emf",
+            "sourceLocator": "Section 23.3 'Motional Emf', Equation 23.9",
+            "retrievedPassage": "\"emf = Bℓv (B, ℓ, and v perpendicular)\""
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-UP2-13-3",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/university-physics-volume-2/pages/13-3-motional-emf",
+            "sourceLocator": "Section 13.3 'Motional Emf', Equation 13.5",
+            "retrievedPassage": "\"ε = dΦm/dt = Bl dx/dt = Blv\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-UP2-13-4",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/13:_Electromagnetic_Induction/13.04:_Motional_Emf",
+            "sourceLocator": "Section 13.4 'Motional Emf'",
+            "retrievedPassage": "\"Since B and l are constant and the velocity of the rod is v = dx/dt, we can now restate Faraday's law ... for the magnitude of the emf in terms of the moving conducting rod as ε = Blv.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "For a straight conductor of length l moving with velocity v through a uniform magnetic field of flux density B, the magnitude of the motional emf is e = Blv, and this scalar form holds only when B, l and v are mutually perpendicular (OpenStax states the condition explicitly as '(B, ℓ, and v perpendicular)'). B and l must be constant over the moving conductor.",
+            "sourceId": "SRC-OPENSTAX-CP2E-23-3"
+          },
+          {
+            "claimText": "e = Blv is obtained from Faraday's law for a conducting rod sliding on rails: the flux through the circuit is Φm = Blx with the enclosed area perpendicular to the field, so with B and l constant and v = dx/dt the magnitude of the emf is Blv.",
+            "sourceId": "SRC-OPENSTAX-UP2-13-3"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Equivalent rpm relationship f = n_rpm x P / 60.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-SIU-ET332B-LESSON17",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://engr.siu.edu/staff/spezia/Web332b/Lecture%20Notes/Lesson%2017_et332b.pdf",
+            "sourceLocator": "Slide 'Synchronous Motor Operation' (handout page 4, lower slide)",
+            "retrievedPassage": "\"Motor speed constant at synchronous speed, n_s\"; the boxed equation \"n_s = 120·f / P\"; \"Where   f = power system frequency (Hz)   P = number of motor poles\"; and the note \"Speed can only be changed by changing system f or number of poles in machine\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Synchronous speed n_s = 120 f / P, where f is the power-system frequency in Hz and P is the number of motor poles (total poles). Rearranged, f = n_s × P_total / 120, again the total-poles convention.",
+            "sourceId": "SRC-SIU-ET332B-LESSON17"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          "POLE-PAIRS vs TOTAL-POLES CONVENTION CONFLICT. The requirement states f = n_rpm × P / 60 with P = number of POLE PAIRS. Both sources actually read state the relationship with P = TOTAL number of poles and a divisor of 120 (Flinn: f = PN/120; SIU: n_s = 120f/P). These are mathematically equivalent only under the substitution P_total = 2 × P_pole-pairs. This convention difference is recorded rather than silently converted, as instructed. No source stating the /60 pole-pair form was successfully opened and read within the source-count bound."
+        ],
+        "gaps": [
+          "The n_rpm-with-pole-pairs form (f = n_rpm × P_pole-pairs / 60) was not directly evidenced by any read passage; four further candidates (IEC Electropedia, Britannica, ScienceDirect topic pages, University of Tennessee ECE 522 notes) were all inaccessible - see accessFailures.",
+          "1 normalized claim(s) were REMOVED because their only support came from a source outside this requirement's permitted authority classes: SRC-LIBRETEXTS-FLINN-3-05 (AUTHORITATIVE_EDUCATIONAL_REFERENCE). The removed claim text(s): \"For an alternator, output frequency in hertz equals (number of poles / 2) multiplied by (rotational speed in rev/min divided by 60), i.e. f = PN/120 with P the TOTAL number of poles and N in RPM. Sinc\". The passages remain under evaluatedButOutOfPermittedAuthorityClass."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FLINN-3-05",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03%3A_AC_Generation/3.05%3A_Frequency_and_Alternators",
+            "sourceLocator": "Section 3.05 Frequency and Alternators - formula statement and 'Where' symbol key",
+            "retrievedPassage": "\"Knowing that rotation speed is directly proportional to frequency and that the number of poles is directly proportional to frequency, we can use a formula.\" f = P/2 × N/60, combined as f = PN/120, where \"f = frequency in hertz,\" \"P = number of poles,\" \"N = rotational speed in RPM\". The text divides by 2 because \"there will always be a set of two poles.\" ... \"all we have to do is to divide the RPM by 60 to convert it to RPS\".",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class AUTHORITATIVE_EDUCATIONAL_REFERENCE is NOT among this requirement's frozen permitted classes (ACADEMIC_OR_RESEARCH_INSTITUTION, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+      "requirementMode": "OPERATIONAL_USE_RULE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DIRECTIONAL_MAPPING",
+        "ROLE_MAPPING",
+        "CORRECT_USE_CONDITIONS"
+      ],
+      "sourceAuthorityClasses": [
+        "GOVERNMENT_OR_REGULATOR",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR"
+      ],
+      "requirementText": "Fleming left-hand rule.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIDEC-BASIC-00012",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.nidec.com/en/technology/motor/basic/00012/",
+            "sourceLocator": "Section 2-1-2 'Basics Rotation Principles'; text accompanying Fig. 2.2 'Fleming's left-hand rule' and Equation (2.1)",
+            "retrievedPassage": "\"Regarding the corresponding relationship between your fingers and symbols, memorize it using 'F, B, I' starting with the thumb, or going in reverse starting from the middle finger and moving toward the thumb using 'Current, Field and Force'.\" ... \"the direction of force applied to the wire is in the direction shown in the figure according to Fleming's left-hand rule.\" ... \"F = BLI ...... (2.1) F: Force [N] B: Magnetic flux density [T] L: Length of wire in the field [m] I: Current [A]\" ... \"magnetic field B in the air. When current I is applied to the wire placed across the field, force F is generated in the wire.\""
+          },
+          {
+            "sourceId": "SRC-NIDEC-GLOSSARY-FLEMING",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.nidec.com/en/technology/motor/glossary/item/fleming_law/",
+            "sourceLocator": "Glossary entry 'Fleming's law'",
+            "retrievedPassage": "\"Fleming's law is a set of two rules of force and electromotive force generated on a conductor placed in a magnetic field.\" ... \"The left-hand rule gives the direction of the force generated on the conductor when it passes an electric current, the quantity of the force is given by the BLI law.\" ... \"The right-hand rule gives the direction of electromotive force generated in the conductor, when it is moving.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Fleming's LEFT-hand rule is the motor/force rule. Using the left hand, the finger-to-quantity mapping runs 'F, B, I' from the thumb: thumb = Force (the direction of the force/motion produced on the conductor), fore/first finger = B (magnetic field), middle/second finger = I (current). Equivalently, read in reverse from the middle finger toward the thumb it is 'Current, Field and Force'.",
+            "sourceId": "SRC-NIDEC-BASIC-00012"
+          },
+          {
+            "claimText": "Correct-use conditions: the rule applies to a current-carrying conductor placed across (in) a magnetic field, and gives the direction of the force generated on that conductor when current passes through it; the magnitude of that force is given by the BLI law F = BLI, where B is magnetic flux density [T], L is the length of wire in the field [m] and I is the current [A]. The left-hand rule is the causes-are-current-and-field / effect-is-force case (motor action); the right-hand rule is the separate generator case and must not be substituted for it.",
+            "sourceId": "SRC-NIDEC-GLOSSARY-FLEMING"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DIRECTIONAL_MAPPING",
+          "ROLE_MAPPING",
+          "CORRECT_USE_CONDITIONS"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          "Mnemonic-convention difference (not a physical contradiction): HyperPhysics (SRC-HYPERPHYSICS-FORWIR) and OpenStax 22.7 give the direction of the force on a current-carrying wire using the vector cross-product RIGHT-hand rule for F = IL x B, whereas Fleming's LEFT-hand rule reaches the same physical direction using a different finger mnemonic. Teaching material must not present these as competing answers."
+        ],
+        "gaps": [],
+        "disclosures": [
+          "None of the read sources within the permitted authority classes states in words the usual additional caveat that the thumb and two fingers must be held mutually at right angles; this appears only in the source's figure (Nidec Fig. 2.2), which was not visually rendered by the fetch tool.",
+          "Encyclopaedia Britannica ('Fleming's rule'), IOPSpark (Institute of Physics) and ScienceDirect topic pages were all blocked (HTTP 403), so no independent PROFESSIONAL_BODY or encyclopaedic corroboration could be read."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "requirementMode": "OPERATIONAL_USE_RULE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DIRECTIONAL_MAPPING",
+        "ROLE_MAPPING",
+        "CORRECT_USE_CONDITIONS"
+      ],
+      "sourceAuthorityClasses": [
+        "GOVERNMENT_OR_REGULATOR",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR"
+      ],
+      "requirementText": "Fleming right-hand/generator rule.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-NIDEC-GLOSSARY-FLEMING",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.nidec.com/en/technology/motor/glossary/item/fleming_law/",
+            "sourceLocator": "Glossary entry 'Fleming's law'",
+            "retrievedPassage": "\"Fleming's law is a set of two rules of force and electromotive force generated on a conductor placed in a magnetic field.\" ... \"The right-hand rule gives the direction of electromotive force generated in the conductor, when it is moving.\""
+          },
+          {
+            "sourceId": "SRC-NIDEC-BASIC-00013",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.nidec.com/en/technology/motor/basic/00013/",
+            "sourceLocator": "Section 2-1-3 'Rotating Speed of DC Motor and Counter-electromotive Force'; Equation (2.5) and Fig. 2.7 'Fleming's right-hand rule'",
+            "retrievedPassage": "\"e = BLv ...... (2.5) e: Generated voltage, counter-electromotive force [V] B: Magnetic flux density [T] L: Length of wire in the field [m] v: velocity [m/s]\" ... \"The direction of the voltage is determined by Fleming's right-hand rule.\""
+          },
+          {
+            "sourceId": "SRC-ROHM-TECHWEB-74",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://techweb.rohm.com/product/motor/motor-driver/74/",
+            "sourceLocator": "Article 'Power Generation Principle of Motors', paragraph accompanying the left-hand figure",
+            "retrievedPassage": "\"The figure on the left illustrates the flow of current according to Fleming's right-hand rule. Motion of a conducting wire through magnetic flux induces an electromotive force in the wire, causing current to flow.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Fleming's RIGHT-hand rule is the generator rule: it gives the direction of the electromotive force (and hence the induced current) generated in a conductor when that conductor is moving through a magnetic field. It is one of the pair of Fleming's rules, the other (left-hand) being the force/motor rule; the two must not be interchanged.",
+            "sourceId": "SRC-NIDEC-GLOSSARY-FLEMING"
+          },
+          {
+            "claimText": "Correct-use conditions: the rule applies where a conductor of length L in a field of flux density B moves with velocity v through the magnetic flux, producing a generated voltage of magnitude e = BLv; the right-hand rule determines the direction of that voltage.",
+            "sourceId": "SRC-NIDEC-BASIC-00013"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "ROLE_MAPPING",
+          "CORRECT_USE_CONDITIONS"
+        ],
+        "unresolvedDimensions": [
+          "DIRECTIONAL_MAPPING"
+        ],
+        "conflicts": [
+          "Current-flow-convention conflict, reported not harmonised: SRC-LIBRETEXTS-COALINGA-GENERATOR (section 12.5.4) describes generator action with a LEFT-hand rule and electron flow — \"the left hand rule indicates that the electron flow will be from the back to the front in that side of the coil\". That is the electron-flow (conventional-current-reversed) formulation used in some North American training material and is NOT Fleming's right-hand rule. UK Level-2 practice uses conventional current, for which the generator rule is the RIGHT hand. Learners must not be shown the two side by side without the convention being stated."
+        ],
+        "gaps": [
+          "No source within the permitted authority classes was found that states IN TEXT the finger-to-quantity assignment for the right hand (thumb = motion/velocity, first finger = field, second finger = induced current). Nidec's Fig. 2.7 'Fleming's right-hand rule' is a real figure locator but its content is an image that the fetch tool did not render, and the accompanying prose does not enumerate the fingers.",
+          "Serious candidates exhausted for the directional mapping: Encyclopaedia Britannica 'Fleming's rule' (HTTP 403), IOPSpark 'Fleming's left hand rule' (HTTP 403), ScienceDirect engineering topic page (HTTP 403), Nidec (role only), ROHM TechWeb (role only). A conventional-current, permitted-class statement of the right-hand finger mapping remains an open gap; the only readable explicit finger mapping found (schoolphysics.co.uk) is a personal educational website and falls outside this requirement's permitted authority classes, so it was deliberately not used."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::frequency::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Frequency.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-02",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.02%3A_AC_Waveforms",
+            "sourceLocator": "Section 1.02 AC Waveforms - frequency definition",
+            "retrievedPassage": "Frequency is \"the number of complete cycles that a wave completes in a given amount of time. Usually measured in Hertz (Hz), 1 Hz being equal to one complete wave cycle per second.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+            "sourceLocator": "Section 1.2 Sinusoidal Waveforms - frequency paragraph",
+            "retrievedPassage": "\"The reciprocal of the period is the frequency, f.\" ... \"The frequency indicates how many cycles exist in one second. To honor one of the 19th century researchers in the field, instead of calling the unit 'cycles per second', we use Hertz, named after Heinrich Hertz and abbreviated Hz.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Frequency is the number of complete cycles a wave completes in a given amount of time; it is the reciprocal of the period, indicates how many cycles exist in one second, and is measured in hertz (Hz), 1 Hz being one complete wave cycle per second.",
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-02"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "A primary-normative definition (IEC Electropedia/IEV or the BIPM SI Brochure entry for the hertz) was sought but Electropedia returned HTTP 403 - see accessFailures. The definition rests on academic textbook sources only."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-attraction-repulsion::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Magnetic attraction/repulsion.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf",
+            "sourceLocator": "§8.1 Introduction, doc p. 8-2, paragraph following Figure 8.1.1; Figure 8.1.2 'Magnets attracting and repelling'",
+            "retrievedPassage": "\"Notice that the bar magnet consists of two poles, which are designated as the north (N) and the south (S). Magnetic fields are strongest at the poles. The magnetic field lines leave from the north pole and enter the south pole. When holding two bar magnets close to each other, the like poles will repel each other while the opposite poles attract (Figure 8.1.2).\""
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-UP2-11-1",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/university-physics-volume-2/pages/11-1-magnetism-and-its-historical-discoveries",
+            "sourceLocator": "Section 11.1 'Magnetism and Its Historical Discoveries', body text on poles",
+            "retrievedPassage": "\"Magnetic poles repel if they are alike (both N or both S), they attract if they are opposite (one N and the other S)\""
+          },
+          {
+            "sourceId": "SRC-USF-ETC-ATTRACTPOLES-20144",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://etc.usf.edu/clipart/20100/20144/attractpoles_20144.htm",
+            "sourceLocator": "ClipArt ETC illustration 20144 'Attractive poles', caption; cited source Elroy M. Avery, School Physics (New York: Sheldon and Company, 1895), page 459",
+            "retrievedPassage": "\"A pair of opposite poles attracting, the magnetic force shown by iron filings.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "When two bar magnets are held close to each other, like poles (N with N, or S with S) repel each other and opposite poles (N with S) attract.",
+            "sourceId": "SRC-MIT802-CH8-MAGFIELDS"
+          },
+          {
+            "claimText": "Magnetic poles repel if they are alike (both N or both S) and attract if they are opposite (one N and the other S).",
+            "sourceId": "SRC-OPENSTAX-UP2-11-1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-around-a-current-carrying-conductor::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Magnetic field around a current-carrying conductor.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HYPERPHYSICS-MAGCUR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magcur.html",
+            "sourceLocator": "Page 'Magnetic Field of Current', section heading 'Magnetic Field of Current', opening sentence",
+            "retrievedPassage": "\"The magnetic field lines around a long wire which carries an electric current form concentric circles around the wire.\" ... \"The direction of the magnetic field is perpendicular to the wire and is in the direction the fingers of your right hand would curl if you wrapped them around the wire with your thumb in the direction of the current.\""
+          },
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+            "sourceLocator": "§9.1, Example 9.1, doc p. 6, sentence introducing Figure 9.1.4; Figure 9.1.4 caption",
+            "retrievedPassage": "\"Note that in this limit, the system possesses cylindrical symmetry, and the magnetic field lines are circular, as shown in Figure 9.1.4.\" — Figure 9.1.4 caption: \"Magnetic field lines due to an infinite wire carrying current I.\""
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-UP2-12-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/university-physics-volume-2/pages/12-2-magnetic-field-due-to-a-thin-straight-wire",
+            "sourceLocator": "Section 12.2 'Magnetic Field Due to a Thin Straight Wire'",
+            "retrievedPassage": "\"The magnetic field lines of the infinite wire are circular and centered at the wire.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A long straight wire carrying an electric current is surrounded by magnetic field lines that form concentric circles centred on the wire, lying in planes perpendicular to the wire.",
+            "sourceId": "SRC-HYPERPHYSICS-MAGCUR"
+          },
+          {
+            "claimText": "MIT states the circular field-line result explicitly for the infinite-length limit of a straight wire (cylindrical symmetry); the finite-wire case is derived separately. The circular-concentric description is therefore strictly an infinite/long-straight-wire idealisation.",
+            "sourceId": "SRC-MIT802-CH9-SOURCES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "Scope note to preserve, not a gap in evidence: the 'concentric circles' description is stated by both MIT and OpenStax for the infinite (long) straight wire. Do not present it as exact for a short conductor or one bent into a loop."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "RECOGNITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "requirementText": "Magnetic field patterns.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-USF-ETC-CONDUCTORFIELD-35665",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://etc.usf.edu/clipart/35600/35665/mag_35665.htm",
+            "sourceLocator": "ClipArt ETC illustration ID 35665, title 'Magnetic Field'; cited source Hawkins and Staff, Hawkins Electrical Guide Number One (New York: Theo. Audel and Company, 1917), page 113",
+            "retrievedPassage": "\"Experiment showing lines of force in the magnetic field surrounding a conductor carrying an electric current.\" -Hawkins, 1917"
+          },
+          {
+            "sourceId": "SRC-USF-ETC-MAGFIELD-POLES-35728",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://etc.usf.edu/clipart/35700/35728/mag_field_35728.htm",
+            "sourceLocator": "ClipArt ETC illustration ID 35728, title 'Magnetic Field'; cited source Philip Atkinson, Electricity for Everybody; Its Nature and Uses Explained (The Century Company, 1903), page 94",
+            "retrievedPassage": "\"Figure showing magnetic lines of force from a magnet, as well as both north and south poles.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The magnetic field pattern surrounding a straight conductor carrying an electric current is recognised from the experimental iron-filing figure showing the lines of force encircling the conductor (Hawkins Electrical Guide Number One, 1917, p. 113).",
+            "sourceId": "SRC-USF-ETC-CONDUCTORFIELD-35665"
+          },
+          {
+            "claimText": "The magnetic field pattern of a bar magnet is recognised from the drawn lines of force running between, and identified with, its north and south poles (Atkinson, Electricity for Everybody, 1903, p. 94).",
+            "sourceId": "SRC-USF-ETC-MAGFIELD-POLES-35728"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "RECOGNITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [
+          "PARTIAL on BREADTH. 'Magnetic field patterns' is plural and open-ended; in-class retrieved figures cover two patterns -- the field around a straight current-carrying conductor, and the field of a bar magnet with its poles. The SOLENOID/coil field pattern is not covered by an in-class figure cited on this requirement (a solenoid figure, SRC-USF-ETC-RHR-SOLENOID-35671, is cited on the solenoid-polarity requirement, but it is a polarity-determination figure rather than a field-pattern figure and is not double-counted here). The set of patterns this requirement intends is not enumerated by the frozen requirement text, so completeness cannot be established.",
+          "All normalized claims previously on this result were attributed to out-of-permitted-class MIT sources and were removed; the claims now recorded are rebuilt from the surviving in-class figures. Out-of-class candidates retained for the audit trail: SRC-MIT802-CH8-MAGFIELDS, SRC-MIT802-CH9-SOURCES (both ACADEMIC_OR_RESEARCH_INSTITUTION).",
+          "PROVENANCE NOTE: as with the magnetic-poles requirement, the in-class figures are historical handbook illustrations (Hawkins 1917, Atkinson 1903) reproduced by the University of South Florida's ClipArt ETC."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf",
+            "sourceLocator": "Figure 8.1.1 (doc p. 8-2)",
+            "retrievedPassage": "Figure 8.1.1 caption: \"Magnetic field produced by a bar magnet\" — the rendered figure shows a vertical bar magnet labelled N (top) and S (bottom), surrounded by closed dashed field lines and eight compass needles whose arrows lie tangent to those lines.",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, PROFESSIONAL_BODY). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          },
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+            "sourceLocator": "Figure 9.1.4 (doc p. 6) and Figure 9.4.1 (doc p. 20)",
+            "retrievedPassage": "Figure 9.1.4 caption: \"Magnetic field lines due to an infinite wire carrying current I.\" — rendered figure shows a straight conductor with current arrow I and three circular field loops encircling it. Figure 9.4.1 caption: \"Magnetic field lines of a solenoid\" — rendered figure is a two-panel image: left panel shows the field lines threading and looping around a four-turn helical coil; right panel shows the same pattern in cross-section with the left-hand end labelled 'S' and the right-hand end labelled 'N'.",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, PROFESSIONAL_BODY). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-flux-density-meaning-symbol-unit::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Magnetic flux density: meaning, symbol, unit.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-ELLINGSON-FLUXDENSITY",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/02%3A_Electric_and_Magnetic_Fields/2.05%3A_Magnetic_Flux_Density",
+            "sourceLocator": "Section 2.5 'Magnetic Flux Density' (Steven W. Ellingson, Virginia Polytechnic Institute and State University), boxed definition and following paragraph",
+            "retrievedPassage": "\"Magnetic flux density (B, T or Wb/m²) is a description of the magnetic field that can be defined as the solution to [F = q v × B].\" ... \"The preference for referring to B as a 'flux density' is because we frequently find ourselves integrating B over a mathematical surface. Any quantity obtained by integration over a surface is referred to as 'flux,' and so it becomes natural to think of B as a flux density; i.e., as flux per unit area.\""
+          },
+          {
+            "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf",
+            "sourceLocator": "§8.2 The Definition of a Magnetic Field, doc p. 3, unit statement",
+            "retrievedPassage": "\"The SI unit of magnetic field is the tesla (T): 1 tesla = 1 T = 1 Newton/((Coulomb)(meter/second)) = 1 N/(C·m/s) = 1 N/(A·m)\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Magnetic flux density is denoted by the symbol B and has SI units of tesla (T), equivalently webers per square metre (Wb/m²), with 1 Wb/m² = 1 T; it is called a flux density because it represents magnetic flux per unit area.",
+            "sourceId": "SRC-LIBRETEXTS-ELLINGSON-FLUXDENSITY"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          {
+            "issue": "Terminology variance between physics and engineering usage.",
+            "detail": "MIT 8.02 §8.2 calls B 'the magnetic field' and gives its SI unit as the tesla; Ellingson and Fiore call the same quantity B 'magnetic flux density'. Ellingson explicitly notes the terminology 'is somewhat arbitrary, and in fact is not even uniformly accepted'. Unit 202 should use the engineering term 'magnetic flux density' for B, but learners will meet 'magnetic field' for the same symbol and unit."
+          }
+        ],
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-MAGCIRCUITS",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/DC_Electrical_Circuit_Analysis_-_A_Practical_Approach_(Fiore)/10:_Magnetic_Circuits_and_Transformers/10.3:_Magnetic_Circuits",
+            "sourceLocator": "Section 10.3 'Magnetic Circuits', definition list under Equation 10.4",
+            "retrievedPassage": "\"B is the magnetic flux density in teslas, Φ is the magnetic flux in webers, A is the area in square meters.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class AUTHORITATIVE_EDUCATIONAL_REFERENCE is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ],
+        "disclosures": [
+          "Out-of-permitted-class candidate evaluated and retained for the audit trail but NOT used as verifying evidence: SRC-LIBRETEXTS-FIORE-MAGCIRCUITS (AUTHORITATIVE_EDUCATIONAL_REFERENCE). Its claim was redundant with the in-class evidence and its removal costs this requirement nothing: the surviving in-class source SRC-LIBRETEXTS-ELLINGSON-FLUXDENSITY (ACADEMIC_OR_RESEARCH_INSTITUTION, Virginia Tech) states the symbol (B), the unit (tesla, equivalently Wb/m^2) and the meaning (flux per unit area) together, which is the whole of this requirement's single DEFINITION dimension. Re-judged individually during the internal audit pass rather than left on the blanket downgrade."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-flux-meaning-symbol-unit::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Magnetic flux: meaning, symbol, unit.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-MIT802-CH10-FLUX",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/724a162b8c03487f5faae202b395fadd_cha10faraday_law.pdf",
+            "sourceLocator": "§10.1.1 Magnetic Flux, doc p. 2, Figure 10.1.2, Equations (10.1.1) and (10.1.2) and the SI-unit statement immediately following",
+            "retrievedPassage": "\"The magnetic flux through the surface is given by Φ_B = B · A = BA cos θ   (10.1.1) where θ is the angle between B and n̂. If the field is non-uniform, Φ_B then becomes Φ_B = ∫∫_S B · dA   (10.1.2). The SI unit of magnetic flux is the weber (Wb): 1 Wb = 1 T · m²\""
+          },
+          {
+            "sourceId": "SRC-HYPERPHYSICS-MAGFLUX",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magnetic/fluxmg.html",
+            "sourceLocator": "Page 'Magnetic Flux', main definition sentence and unit paragraph",
+            "retrievedPassage": "\"Magnetic flux is the product of the average magnetic field times the perpendicular area that it penetrates.\" ... \"the SI unit for magnetic field is the Tesla, the unit for magnetic flux would be Tesla m2. This unit combination has the historical name Weber (Wb).\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Magnetic flux is denoted by the Greek capital phi, written Φ_B in MIT's notation and Φ in engineering usage; its SI unit is the weber (Wb), where 1 Wb = 1 T·m²; and its meaning is the scalar product of the magnetic flux density and the area vector of the surface, Φ_B = B·A = BA cos θ, θ being the angle between B and the unit normal to the surface (surface integral ∫∫_S B·dA when the field is non-uniform).",
+            "sourceId": "SRC-MIT802-CH10-FLUX"
+          },
+          {
+            "claimText": "Expressed as a plain meaning: magnetic flux is the product of the average magnetic field and the perpendicular area it penetrates, with the SI unit named the weber (Wb).",
+            "sourceId": "SRC-HYPERPHYSICS-MAGFLUX"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-MAGCIRCUITS",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/DC_Electrical_Circuit_Analysis_-_A_Practical_Approach_(Fiore)/10:_Magnetic_Circuits_and_Transformers/10.3:_Magnetic_Circuits",
+            "sourceLocator": "Section 10.3 'Magnetic Circuits', definition list under Equation 10.4",
+            "retrievedPassage": "\"Φ is the magnetic flux in webers\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class AUTHORITATIVE_EDUCATIONAL_REFERENCE is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ],
+        "disclosures": [
+          "Symbol notation qualification to preserve: MIT writes the symbol with a subscript, Φ_B, to distinguish magnetic flux from electric flux. Unit 202 uses the unsubscripted Φ, which matches Fiore's engineering usage ('Φ is the magnetic flux in webers'). Both were read; neither contradicts the other.",
+          "No PRIMARY_NORMATIVE_OR_STANDARDS_BODY / GOVERNMENT_OR_REGULATOR statement of 'weber = SI unit of magnetic flux' was obtained (NIST CUU table URL redirected away; IEC Electropedia HTTP 403).",
+          "Out-of-permitted-class candidate(s) evaluated and retained for the audit trail but NOT used as verifying evidence: SRC-LIBRETEXTS-FIORE-MAGCIRCUITS (AUTHORITATIVE_EDUCATIONAL_REFERENCE). Verification rests solely on the in-class source(s): SRC-MIT802-CH10-FLUX, SRC-HYPERPHYSICS-MAGFLUX."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "RECOGNITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "requirementText": "Magnetic poles.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-USF-ETC-MAGPOLES-20143",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://etc.usf.edu/clipart/20100/20143/magpoles_20143.htm",
+            "sourceLocator": "ClipArt ETC illustration ID 20143 (page title rendered 'Magnetic polse'); cited source Elroy M. Avery, School Physics (New York: Sheldon and Company, 1895), page 459",
+            "retrievedPassage": "\"The outline of a bar magnet, and the influence of its poles on a surface covered with iron filings.\""
+          },
+          {
+            "sourceId": "SRC-USF-ETC-ATTRACTPOLES-20144",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://etc.usf.edu/clipart/20100/20144/attractpoles_20144.htm",
+            "sourceLocator": "ClipArt ETC illustration ID 20144 'Attractive poles'; cited source Elroy M. Avery, School Physics (New York: Sheldon and Company, 1895), page 459",
+            "retrievedPassage": "\"A pair of opposite poles attracting, the magnetic force shown by iron filings.\""
+          },
+          {
+            "sourceId": "SRC-USF-ETC-MAGFIELD-POLES-35728",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://etc.usf.edu/clipart/35700/35728/mag_field_35728.htm",
+            "sourceLocator": "ClipArt ETC illustration ID 35728 'Magnetic Field'; cited source Philip Atkinson, Electricity for Everybody; Its Nature and Uses Explained (The Century Company, 1903), page 94",
+            "retrievedPassage": "\"Figure showing magnetic lines of force from a magnet, as well as both north and south poles.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Magnetic poles are recognised in a diagram from the bar magnet's outline together with the influence of its poles on a surface covered with iron filings, which reveals the field around each pole (Avery, School Physics, 1895, p. 459).",
+            "sourceId": "SRC-USF-ETC-MAGPOLES-20143"
+          },
+          {
+            "claimText": "A pair of OPPOSITE poles attracting is recognised from the iron-filing pattern running between the two poles, showing the magnetic force bridging them (Avery, School Physics, 1895, p. 459).",
+            "sourceId": "SRC-USF-ETC-ATTRACTPOLES-20144"
+          },
+          {
+            "claimText": "North and south poles are identified on a diagram by their labelling together with the magnetic lines of force drawn leaving one pole and entering the other (Atkinson, Electricity for Everybody, 1903, p. 94).",
+            "sourceId": "SRC-USF-ETC-MAGFIELD-POLES-35728"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "RECOGNITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf",
+            "sourceLocator": "Figures 8.1.1, 8.1.2 and 8.1.3, doc p. 8-2",
+            "retrievedPassage": "Figure 8.1.1 caption: \"Magnetic field produced by a bar magnet\" (rendered figure shows the bar magnet labelled N at the top and S at the bottom). Figure 8.1.2 caption: \"Magnets attracting and repelling\" (rendered figure shows, upper row, two bar magnets labelled S–N and S–N facing each other with force arrows pointing toward each other; lower row, two bar magnets labelled S–N and N–S with force arrows pointing apart). Figure 8.1.3 caption: \"Magnetic monopoles do not exist in isolation\" (rendered figure shows a bar magnet labelled S…N and, beside it, the same magnet broken into two pieces each labelled S…N).",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, PROFESSIONAL_BODY). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ],
+        "disclosures": [
+          "Out-of-permitted-class candidate evaluated and retained but NOT used as verifying evidence: SRC-MIT802-CH8-MAGFIELDS (ACADEMIC_OR_RESEARCH_INSTITUTION). Its removal costs this requirement nothing: three in-class figures survive, each an actual retrieved illustration with an exact ClipArt ETC identifier and full original book/page provenance. Re-judged individually during the internal audit pass.",
+          "PROVENANCE NOTE FOR PRODUCT ARCHITECT: the in-class diagram sources for this requirement are historical engineering-handbook figures (Avery 1895, Atkinson 1903) reproduced by the University of South Florida's ClipArt ETC. The physics they depict is not time-sensitive and the figures are clear, but a reviewer may wish to consider whether period illustrations are the right register for learner-facing material, or whether modern equivalents should be commissioned."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Maximum induced EMF when cutting is maximum.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-GENERATOR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Courses/Coalinga_College/Physical_Science_for_Educators_(CID:_PHYS_14)/12:_Magnetism/12.05:_Electromagnetism/12.5.04:_Generator",
+            "sourceLocator": "Section 12.5.4 'Generator'",
+            "retrievedPassage": "\"The current generated will have the greatest EMF as the wire is cutting perpendicularly across the field.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-ELLINGSON-8-7",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/08%3A_Time-Varying_Fields/8.07%3A_The_Electric_Generator",
+            "sourceLocator": "Section 8.7 'The Electric Generator' (rudimentary single-loop generator, Figure 8.7.1)",
+            "retrievedPassage": "\"the maximum voltage magnitude is achieved when the plane of the loop is parallel to B; i.e., when the magnetic flux Φ(t)=0\""
+          },
+          {
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+            "sourceLocator": "Module ES-10 'AC Generators', chapter 'AC GENERATOR COMPONENTS', heading 'Field', Page 1",
+            "retrievedPassage": "\"The magnetic flux in the field cuts the armature to produce a voltage. This voltage is ultimately the output voltage of the AC generator.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The induced EMF is greatest at the instant when the conductor is cutting perpendicularly across the magnetic field — i.e. when the rate at which flux is being cut is at its maximum.",
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-GENERATOR"
+          },
+          {
+            "claimText": "For a loop rotating in a uniform field, the maximum voltage magnitude is achieved when the plane of the loop is parallel to B — the instant at which the flux linking the loop is momentarily zero but its rate of change (and hence the rate of flux cutting by the loop sides) is greatest.",
+            "sourceId": "SRC-LIBRETEXTS-ELLINGSON-8-7"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          "Apparent-but-not-real tension to preserve in teaching: Ellingson expresses the maximum condition in terms of the LOOP PLANE being parallel to B (flux Φ = 0, dΦ/dt maximum), whereas Coalinga expresses it in terms of the CONDUCTOR cutting perpendicularly across the field. These are the same instant described from two viewpoints (loop-plane orientation vs. conductor velocity relative to B) and must not be conflated into a single sloppy statement such as 'maximum when the coil is perpendicular to the field'."
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Motional/induced EMF causal concept.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-UP2-13-4",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/13:_Electromagnetic_Induction/13.04:_Motional_Emf",
+            "sourceLocator": "Section 13.4 'Motional Emf'",
+            "retrievedPassage": "\"With F = qv × B as the starting point, it can be shown that ε = −dΦm/dt holds for any change in flux caused by the motion of a conductor.\""
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-CP2E-23-3",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/college-physics-2e/pages/23-3-motional-emf",
+            "sourceLocator": "Section 23.3 'Motional Emf' (rod-on-rails derivation preceding Equation 23.9)",
+            "retrievedPassage": "\"the magnetic flux enclosed by the rails, rod, and resistor is increasing. When flux changes, an emf is induced according to Faraday's law of induction.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Motional EMF is the emf induced because a conductor MOVES relative to a magnetic field. Its cause can be stated two equivalent ways: (a) the magnetic force F = qv × B acting on the free charges within the moving conductor drives them along the conductor, separating charge and establishing an emf; and (b) the motion changes the magnetic flux enclosed by the circuit, and a changing flux induces an emf according to Faraday's law of induction. Starting from F = qv × B it can be shown that ε = −dΦm/dt holds for any change in flux caused by the motion of a conductor.",
+            "sourceId": "SRC-LIBRETEXTS-UP2-13-4"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [
+          "Downgraded VERIFIED -> PARTIAL during the internal audit pass. This result's own record states that the claim 'is a disclosed compounding of the Lorentz-force mechanism (LibreTexts 13.4) with the changing-flux/Faraday statement (OpenStax 23.3). Both were read; neither single passage states both halves.' That is precisely this batch's own definition of PARTIAL ('rests on a disclosed compounding of more than one passage where no single passage states the full claim'). The compounding was already disclosed; only the status was inconsistent with it. Both halves of the causal account are genuinely evidenced and the learning point content is unaffected -- what is PARTIAL is single-passage support for the combined claim.",
+          "The claim is a disclosed compounding of the Lorentz-force mechanism (LibreTexts 13.4) with the changing-flux/Faraday statement (OpenStax 23.3). Both were read; neither single passage states both halves."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Motor effect.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-OPENSTAX-CP2E-22-7",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/college-physics-2e/pages/22-7-magnetic-force-on-a-current-carrying-conductor",
+            "sourceLocator": "Section 22.7 'Magnetic Force on a Current-Carrying Conductor'",
+            "retrievedPassage": "\"Because charges ordinarily cannot escape a conductor, the magnetic force on charges moving in a conductor is transmitted to the conductor itself.\""
+          },
+          {
+            "sourceId": "SRC-HYPERPHYSICS-FORWIR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magnetic/forwir2.html",
+            "sourceLocator": "Page 'Magnetic Force on a Current-Carrying Wire'",
+            "retrievedPassage": "\"The magnetic force on a current-carrying wire is perpendicular to both the wire and the magnetic field with direction given by the right hand rule.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The motor effect: a conductor carrying a current in a magnetic field experiences a force. The magnetic force acts on the charges moving in the conductor and, because those charges ordinarily cannot escape the conductor, that force is transmitted to the conductor itself. The resulting force is perpendicular to both the wire and the magnetic field.",
+            "sourceId": "SRC-OPENSTAX-CP2E-22-7"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [
+          "The physical fact is fully evidenced, but no read source within the permitted authority classes uses the UK-syllabus TERM 'motor effect' itself; both sources title the phenomenon 'magnetic force on a current-carrying conductor/wire'. The terminological equivalence is asserted by the pipeline, not by a cited passage, so this is recorded as PARTIAL rather than VERIFIED. Encyclopaedia Britannica and IOPSpark, the natural sources for the UK term, both returned HTTP 403."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "No/minimum induced EMF when motion does not cut flux appropriately.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-GENERATOR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Courses/Coalinga_College/Physical_Science_for_Educators_(CID:_PHYS_14)/12:_Magnetism/12.05:_Electromagnetism/12.5.04:_Generator",
+            "sourceLocator": "Section 12.5.4 'Generator'",
+            "retrievedPassage": "\"When the wire reaches the top of its arc, it is moving parallel to the field and therefore, not cutting across the field at all. The EMF at this point will be zero.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-ELLINGSON-8-7",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/08%3A_Time-Varying_Fields/8.07%3A_The_Electric_Generator",
+            "sourceLocator": "Section 8.7 'The Electric Generator'",
+            "retrievedPassage": "\"when the plane of the loop is perpendicular to B ... V_T(t)=0 at this instant\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "When the conductor's motion is PARALLEL to the magnetic field lines it is not cutting across the field at all, and the induced EMF at that instant is zero. Equivalently, for a rotating loop the terminal voltage is zero at the instant when the plane of the loop is perpendicular to B — the instant at which the flux linking the loop is at its maximum but its rate of change is zero.",
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-GENERATOR"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          "Same viewpoint tension as the maximum-EMF requirement: 'moving parallel to the field / not cutting flux' (conductor viewpoint) and 'plane of the loop perpendicular to B' (loop viewpoint) describe the same zero-EMF instant. Maximum FLUX linkage coincides with ZERO induced EMF; teaching material must not equate maximum flux with maximum EMF."
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::peak-to-peak::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Peak-to-peak.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+            "sourceLocator": "Section 1.2 Sinusoidal Waveforms - amplitude paragraph, second sentence",
+            "retrievedPassage": "\"Amplitude may also be expressed as peak-to-peak; the distance from the most negative to the most positive. For a sine wave this will always be twice the peak value.\""
+          },
+          {
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+            "sourceLocator": "Section 1.1 Voltage Measurements, page 2, 'Peak to Peak Voltage' bullet and the accompanying +130 V / -130 V waveform figure",
+            "retrievedPassage": "\"Peak to Peak Voltage – The Peak to Peak voltage is measured from the cycle minimum value to the cycle maximum value.  As an example if the ac waveform below the  P-P voltage would be 260 Volts (130 – (-130)).\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+            "sourceLocator": "Section 1.03 Measurements of AC Magnitude - peak-to-peak paragraph",
+            "retrievedPassage": "\"Another way is to measure the total height between opposite peaks. This is known as the peak-to-peak (P-P) value of an AC waveform.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The peak-to-peak value of an AC waveform is the total height between opposite peaks - the distance from the most negative to the most positive value, i.e. from the cycle minimum to the cycle maximum. For a sine wave this will always be twice the peak value (worked instance: a waveform peaking at +130 V and -130 V has a peak-to-peak value of 260 V). The 'twice the peak' relation is stated by Fiore specifically for a sine wave, i.e. it presupposes a symmetrical waveform.",
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::periodic-time::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Periodic time.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+            "sourceLocator": "Section 1.2 Sinusoidal Waveforms - period paragraph",
+            "retrievedPassage": "\"The time it takes to complete one cycle is called the period and is denoted with the symbol T (for Time). The reciprocal of the period is the frequency, f.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-02",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.02%3A_AC_Waveforms",
+            "sourceLocator": "Section 1.02 AC Waveforms - cycle and period definitions",
+            "retrievedPassage": "\"If we were to follow the changing voltage produced by a coil in an alternator from any point on the sine wave graph to that point when the wave shape begins to repeat itself, we would have marked exactly one cycle of that wave.\" Period is \"the amount of time it takes to complete one cycle.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The period (periodic time) is the amount of time taken to complete one complete cycle of the waveform - one cycle being the interval from any point on the sine-wave graph to the point at which the wave shape begins to repeat itself. It is denoted by the symbol T and is the reciprocal of the frequency; with frequency in hertz, T is in seconds.",
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "Neither read passage states the unit of T explicitly as 'seconds'; the second is implied by Kuphaldt's 'Frequency = 1/(period in seconds)' formulation and by the definition of the hertz as one cycle per second."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::relay::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Relay.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-WF-RELAY-5-1",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_IV_-_Digital_Circuitry_(Kuphaldt)/05:_Electromechanical_Relays/5.01:_Relay_Construction",
+            "sourceLocator": "Section 5.1 'Relay Construction'",
+            "retrievedPassage": "\"A relay is a solenoid set up to actuate switch contacts when its coil is energized.\" ... \"Aside from the ability to allow a relatively small electrical signal to switch a relatively large electric signal, relays also offer electrical isolation between coil and contact circuits.\" ... \"the coil circuit and contact circuit(s) are electrically insulated from one another. One circuit may be DC and the other AC ... and/or they may be at completely different voltage levels.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A relay is a solenoid arranged to actuate switch contacts when its coil is energised. It allows a relatively small electrical signal to switch a relatively large one, and it provides electrical isolation between the coil circuit and the contact circuit(s): the two are electrically insulated from one another, so one may be DC and the other AC and/or they may be at completely different voltage levels.",
+            "sourceId": "SRC-LIBRETEXTS-WF-RELAY-5-1"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "The normative IEC/IEV definition of 'relay' (IEV 444-01-01) could not be read: both electropedia.org and std.iec.ch returned HTTP 403."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "requirementMode": "OPERATIONAL_USE_RULE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DIRECTIONAL_MAPPING",
+        "ROLE_MAPPING",
+        "CORRECT_USE_CONDITIONS"
+      ],
+      "sourceAuthorityClasses": [
+        "GOVERNMENT_OR_REGULATOR",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR"
+      ],
+      "requirementText": "Right-hand grip rule.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-ARBORSCI-RHR-THREE-RULES",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.arborsci.com/blogs/cool/three-right-hand-rules-of-electromagnetism",
+            "sourceLocator": "Heading 'Rule #1 – Oersted's Law'",
+            "retrievedPassage": "\"Point your right hand's thumb along the flow of current – defined as the flow of positive charge. Now curl your fingers as if they were wrapping around the wire.\""
+          },
+          {
+            "sourceId": "SRC-USF-ETC-RHR-CONDUCTOR-35667",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://etc.usf.edu/clipart/35600/35667/rhp_35667.htm",
+            "sourceLocator": "ClipArt ETC illustration ID 35667 'Right Hand Rule'; cited source Hawkins and Staff, Hawkins Electrical Guide Number One (New York: Theo. Audel and Company, 1917), page 114",
+            "retrievedPassage": "\"Right hand palm rule to determine the direction of the magnetic field around a conductor carrying a current.\" -Hawkins, 1917"
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Right-hand grip rule, directional and role mapping: point the RIGHT hand's THUMB along the flow of current -- defined by this source explicitly as the flow of POSITIVE charge, i.e. conventional current -- and curl the fingers as if wrapping around the wire; the curled FINGERS then give the direction of the magnetic field encircling the conductor.",
+            "sourceId": "SRC-ARBORSCI-RHR-THREE-RULES"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "DIRECTIONAL_MAPPING",
+          "ROLE_MAPPING"
+        ],
+        "unresolvedDimensions": [
+          "CORRECT_USE_CONDITIONS"
+        ],
+        "conflicts": [
+          {
+            "issue": "Two different 'right hand' rules exist for magnetism and must not be conflated.",
+            "detail": "(a) The GRIP rule for a straight conductor: thumb = conventional current, curled fingers = magnetic field (MIT §9.1; LibreTexts 12.3; HyperPhysics). (b) The COIL/SOLENOID rule: curled fingers = current in the windings, extended thumb = north pole (Hawkins 1917 p.117 via ClipArt ETC 35671; Arbor Scientific 'Rule #3 – The Solenoid Rule'). The hand roles are swapped between the two. Additionally, Hawkins (1917) p.114 illustration 35667 is a right-hand PALM rule, a third distinct variant, not the grip rule — it was read and is recorded here only so it is not mistaken for the grip rule."
+          }
+        ],
+        "gaps": [
+          "PARTIAL on AUTHORITY DEPTH and on the CORRECT_USE_CONDITIONS dimension. The thumb-to-conventional-current / curled-fingers-to-field mapping is genuinely retrieved, but from only ONE in-class source, SRC-ARBORSCI-RHR-THREE-RULES, which is a science-equipment vendor's teaching page (permitted here only because this requirement's frozen classes include ORIGINAL_MANUFACTURER_OR_VENDOR). It is not corroborated by any other in-class source, and it states no conditions on when the rule is correctly applied, so CORRECT_USE_CONDITIONS is unresolved.",
+          "The clearest and best-corroborated statements of this rule -- including the explicit warning that an ELECTRON-flow convention requires the LEFT hand instead -- came from LibreTexts 12.3, MIT 8.02 §9.1 and HyperPhysics, ALL of which are outside this requirement's permitted authority classes (ACADEMIC_OR_RESEARCH_INSTITUTION / AUTHORITATIVE_EDUCATIONAL_REFERENCE are not among GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Their passages are retained under evaluatedButOutOfPermittedAuthorityClass. This is an authority-tier gap, not a content gap.",
+          "CAUTION FOR CONTENT AUTHORS: the second in-class figure cited here, SRC-USF-ETC-RHR-CONDUCTOR-35667 (Hawkins 1917, p. 114), depicts the right-hand PALM rule, which is a DIFFERENT rule from the grip rule. It is retained as a candidate because it is genuine in-class retrieved material about determining field direction around a conductor, but NO grip-rule mapping claim rests on it and it must not be conflated with the grip rule."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+            "sourceLocator": "§9.1, doc p. 6, sentence introducing Figure 9.1.5 and the paragraph following Figure 9.1.5",
+            "retrievedPassage": "\"In fact, the direction of the magnetic field due to a long straight wire can be determined by the right-hand rule (Figure 9.1.5).\" ... \"If you direct your right thumb along the direction of the current in the wire, then the fingers of your right hand curl in the direction of the magnetic field.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-CONVCURRENT",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://phys.libretexts.org/Courses/Coalinga_College/Physical_Science_for_Educators_(CID%3A_PHYS_14)/12%3A_Magnetism/12.03%3A_Magnetic_Fields",
+            "sourceLocator": "Section 12.3 'Magnetic Fields', heading 'Magnetic Field Around a Current Carrying Wire'",
+            "retrievedPassage": "\"curl your right hand around the wire such that your thumb points in the direction of the conventional current. Having done this, your fingers will curl around the wire in the direction of the magnetic field.\" ... \"Note that the right hand rule is for conventional current. If you are dealing with an electron flow current, the charges are flowing in the opposite direction, so you must use your left hand.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class AUTHORITATIVE_EDUCATIONAL_REFERENCE is NOT among this requirement's frozen permitted classes (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          },
+          {
+            "sourceId": "SRC-HYPERPHYSICS-MAGCUR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magcur.html",
+            "sourceLocator": "Page 'Magnetic Field of Current', second sentence",
+            "retrievedPassage": "\"The direction of the magnetic field is perpendicular to the wire and is in the direction the fingers of your right hand would curl if you wrapped them around the wire with your thumb in the direction of the current.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rms::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "RMS.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+            "sourceLocator": "Section 1.2 Sinusoidal Waveforms - RMS subsection, opening paragraph",
+            "retrievedPassage": "\"Along with peak and peak-to-peak, amplitude may be given as an RMS (Root Mean Square) value. In fact, if peak or peak-to-peak is not specified, the measurement is assumed to be RMS. RMS is a special calculation used for finding equivalent DC power (very common, for example, with audio power amplifiers). In other words, if we are interested in finding the power in a resistor, the calculation must be performed using RMS values for voltage or current, not peak or peak-to-peak values. Failure to do so will result in erroneous powers. This is true regardless of the waveshape; be it a sine wave, triangle wave or the complex waves of music signals. If a voltage is specified as RMS, it can be treated for power calculations just like an equivalently sized DC voltage. For example, a 1 volt RMS sine will produce the same power dissipation and heating in a given resistor as will 1 volt DC. For this reason, RMS is sometimes referred to as the effective value (i.e., effective DC value).\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+            "sourceLocator": "Section 1.03 Measurements of AC Magnitude - RMS value paragraphs",
+            "retrievedPassage": "\"Whatever magnitude of DC voltage or current would produce the same amount of heat energy dissipation through an equal resistance\" [defines the RMS value]. \"RMS stands for Root Mean Square, the algorithm used to obtain the DC equivalent value.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-TATUM-EM-13-11",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electricity_and_Magnetism_(Tatum)/13:_Alternating_Current/13.11:_Root-mean-square_values,_power_and_impedance_matching",
+            "sourceLocator": "Section 13.11, Equation 13.11.2 and third paragraph",
+            "retrievedPassage": "\"The mean square current, Ī², is defined such that Ī²P=∫₀ᴾ I² dt. With I=Î sin ωt this gives Ī²=½Î². The square root of this is the root-mean-square current, or the RMS value of the current: I_RMS = (1/√2)Î = 0.707Î.\" ... \"If an alternating current is flowing through a resistor, at some instant when the current is I, the instantaneous rate of dissipation of energy in the resistor is I²R. The mean rate of dissipation of energy during a complete cycle is I_RMS²R.\""
+          },
+          {
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+            "sourceLocator": "Section 1.1 Voltage Measurements, pages 2-3, 'RMS or Effective Voltage' bullet",
+            "retrievedPassage": "\"RMS or Effective Voltage – This is the Root-Mean-Square calculation of the AC signal.  This is the measure of how much work can be done by the AC power source.  The RMS value for a sinusoidal wave form is = .707 * Peak Voltage.\" ... \"As you can see in the following diagram, the RMS value is not the same thing as the average value.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "RMS (root-mean-square), also called the effective value, is the equivalent DC value of an AC quantity: the magnitude of DC voltage or current that would produce the same power dissipation and heating through an equal resistance. A 1 V RMS sine produces the same power dissipation and heating in a given resistor as 1 V DC. Power in a resistor must be computed from RMS values, not peak or peak-to-peak values, and this holds regardless of waveshape. If peak or peak-to-peak is not specified, an AC measurement is assumed to be RMS.",
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2"
+          },
+          {
+            "claimText": "Mathematically the RMS value is obtained by squaring the instantaneous values, taking the mean over the period, and taking the square root: for I = Î sin(ωt) the mean square is ½Î² and I_RMS = (1/√2)Î = 0.707Î; the mean rate of energy dissipation in a resistor over a complete cycle is I_RMS²R.",
+            "sourceId": "SRC-LIBRETEXTS-TATUM-EM-13-11"
+          },
+          {
+            "claimText": "RMS is explicitly NOT the same thing as the average value of the waveform; it is the measure of how much work can be done by the AC source.",
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "A primary-normative definition (IEC 60050 / Electropedia 'r.m.s. value') could not be obtained - Electropedia returned HTTP 403 on both an index and a term-display URL."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Rotation/field-cutting causality.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-GENERATOR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Courses/Coalinga_College/Physical_Science_for_Educators_(CID:_PHYS_14)/12:_Magnetism/12.05:_Electromagnetism/12.5.04:_Generator",
+            "sourceLocator": "Section 12.5.4 'Generator'; Figure 19.4.2 'Diagram of an electrical generator'",
+            "retrievedPassage": "\"The current generated will have the greatest EMF as the wire is cutting perpendicularly across the field. When the wire reaches the top of its arc, it is moving parallel to the field and therefore, not cutting across the field at all. The EMF at this point will be zero. As that same wire then cuts down through the field as it continues to spin ... In this second half of the arc, the direction of the electron flow has reversed.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-ELLINGSON-8-7",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/08%3A_Time-Varying_Fields/8.07%3A_The_Electric_Generator",
+            "sourceLocator": "Section 8.7 'The Electric Generator'; Figure 8.7.1 'A rudimentary single-loop generator, shown at time t=0'",
+            "retrievedPassage": "\"the maximum voltage magnitude is achieved when the plane of the loop is parallel to B; i.e., when the magnetic flux Φ(t)=0\" ... \"when the plane of the loop is perpendicular to B ... V_T(t)=0 at this instant\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Rotating a conductor loop in a magnetic field causes the loop sides to cut across the magnetic flux, and it is that cutting that induces the EMF. The induced EMF therefore varies continuously through each revolution: it is greatest when the conductor is cutting perpendicularly across the field (loop plane parallel to B), falls to zero when the conductor is moving parallel to the field and cutting no flux (loop plane perpendicular to B), and reverses in polarity during the second half of the revolution when the same conductor cuts through the field in the opposite sense — which is why continuous rotation produces an alternating output.",
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-GENERATOR"
+          },
+          {
+            "claimText": "For a rudimentary single-loop generator rotating in a time-invariant, spatially-uniform magnetic flux density, the terminal voltage is produced by the rotation via Faraday's law: maximum magnitude when the loop plane is parallel to B (flux momentarily zero, rate of change maximum) and zero when the loop plane is perpendicular to B (flux maximum, rate of change zero).",
+            "sourceId": "SRC-LIBRETEXTS-ELLINGSON-8-7"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          "SRC-LIBRETEXTS-COALINGA-GENERATOR uses ELECTRON FLOW and a left-hand rule for the direction of the generated current, and its worked example uses a split-ring commutator. Its flux-cutting causality statements are convention-independent and are used here; its directional and hardware statements must NOT be carried across into UK conventional-current material or into slip-ring alternator material."
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "requirementMode": "FORMULA_OR_RULE",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "FORMULA",
+        "FORMULA_INTERPRETATION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "requirementText": "f = N × P, where f is frequency, N is rotational speed in revolutions per second, and P is the number of pole pairs.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-MITOCW-6685-CH8",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/0de9b020130c619030b631311d920070_MIT6_685F13_chapter8.pdf",
+            "sourceLocator": "Class Notes 8, page 3 (Equation 12 and the frequency glossary), page 4 (opening sentence), page 5 (machine-parameter symbol list)",
+            "retrievedPassage": "Page 3: \"The next step is to make another assumption, that the stator and rotor frequencies match through rotor rotation. That is:  ω − pω_m = ω_R   (12)\"  — \"It is important to keep straight the different frequencies here:  ω is stator electrical frequency; ω_R is rotor electrical frequency; ω_m is mechanical rotation speed\". Page 4, opening line: \"so that pω_m is electrical rotation speed.\"  Page 5, symbol list: \"p   is the number of pole- pairs\"."
+          },
+          {
+            "sourceId": "SRC-MITOCW-6061-CH9",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/6-061-introduction-to-electric-power-systems-spring-2011/f99554aa923748fa210a30a874ee5fc8_MIT6_061S11_ch9.pdf",
+            "sourceLocator": "Chapter 9, Section 5 'Balanced Operation', page 5",
+            "retrievedPassage": "\"Now, suppose the machine is operated in this fashion: the rotor turns at a constant velocity, the field current is held constant, and the three stator currents are sinusoids in time, with the same amplitude and with phases that differ by 120 degrees.\" followed by the substitution list opening with \"pφ = ωt + δ_i\" (φ being the rotor physical angle, ω the stator electrical frequency)."
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-FLINN-3-05",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03%3A_AC_Generation/3.05%3A_Frequency_and_Alternators",
+            "sourceLocator": "Section 3.05 Frequency and Alternators - two-pole and four-pole paragraphs and the formula statement",
+            "retrievedPassage": "\"One full mechanical rotation of the armature creates one full sine wave on a two-pole alternator.\" ... \"In a two-pole alternator, Side A of the armature passes from north to south, and then south to north, to create one complete sine wave.\" With four poles \"Side A of the armature will move past two north poles and two south poles in one full mechanical revolution\" [producing two complete sine waves per rotation]. Formula: f = P/2 × N/60 (combined f = PN/120), with \"f = frequency in hertz,\" \"P = number of poles,\" \"N = rotational speed in RPM\"; the divisor 2 is used because \"there will always be a set of two poles.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "In an AC machine the electrical rotation speed equals the number of pole pairs multiplied by the mechanical rotation speed: with p the number of pole-pairs and ω_m the mechanical rotation speed, pω_m is the electrical rotation speed (MIT: ω − pω_m = ω_R, so for a machine in which rotor electrical frequency ω_R is zero, ω = pω_m). Dividing both angular quantities by 2π gives f = N × P with f in hertz, N in revolutions per second and P the number of pole pairs. NOTE: MIT states this in angular-frequency form (rad/s), not in Hz and rev/s, and the definition of p as pole pairs appears in a symbol list two pages away from the relation itself.",
+            "sourceId": "SRC-MITOCW-6685-CH8"
+          },
+          {
+            "claimText": "One full mechanical rotation of the armature creates one full sine wave on a two-pole (one pole-pair) alternator; a four-pole (two pole-pair) machine produces two complete sine waves per mechanical revolution - i.e. the number of cycles generated per revolution equals the number of pole pairs. Flinn writes this as f = (P/2) × (N/60) with P the total number of poles.",
+            "sourceId": "SRC-LIBRETEXTS-FLINN-3-05"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "FORMULA_INTERPRETATION"
+        ],
+        "unresolvedDimensions": [
+          "FORMULA"
+        ],
+        "conflicts": [
+          "POLE-PAIRS vs TOTAL-POLES CONVENTION CONFLICT (the principal guardrail tension in this cluster). MIT 6.685 Class Notes 8 explicitly defines p as 'the number of pole-pairs' and states that pω_m is the electrical rotation speed - the pole-pair convention the requirement asks for. Flinn (LibreTexts) and SIU ET 332b both use the TOTAL-poles convention (f = PN/120; n_s = 120f/P) with an explicit divisor of 2. The two families are equivalent only under P_total = 2 × p. Recorded, not silently harmonised."
+        ],
+        "gaps": [
+          "No read source states the formula in the requirement's exact units (f in Hz, N in rev/s, P = pole pairs). The MIT evidence is in angular form and its 'pole-pairs' definition and the relation itself are two separate passages of the same document, so the full claim rests on a disclosed compounding plus a 2π unit conversion - hence PARTIAL rather than VERIFIED. Four further candidate sources for the Hz/rev-s pole-pair form were blocked or unreadable (see accessFailures)."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Scalar F = BIl.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-HYPERPHYSICS-FORWIR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magnetic/forwir2.html",
+            "sourceLocator": "Page 'Magnetic Force on a Current-Carrying Wire'",
+            "retrievedPassage": "\"If the current is perpendicular to the magnetic field then the force is given by the simple product: Force = Current x Length x B-field\" ... \"The magnetic force on a current-carrying wire is perpendicular to both the wire and the magnetic field with direction given by the right hand rule.\""
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-CP2E-22-7",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/college-physics-2e/pages/22-7-magnetic-force-on-a-current-carrying-conductor",
+            "sourceLocator": "Section 22.7, Equation 22.16",
+            "retrievedPassage": "\"F = IlB sin θ\" — \"the equation for magnetic force on a length l of wire carrying a current I in a uniform magnetic field B\"; and, for the perpendicular case, \"the angle θ between I and B is 90º, so that sinθ=1\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "The general relationship for the magnitude of the magnetic force on a length l of wire carrying current I in a uniform magnetic field B is F = IlB sin θ, where θ is the angle between the current direction and the field. The scalar form F = BIl is the SPECIAL CASE in which the current is perpendicular to the magnetic field (θ = 90°, sin θ = 1), i.e. 'if the current is perpendicular to the magnetic field then the force is given by the simple product: Force = Current x Length x B-field'. F = BIl is therefore not unconditionally general.",
+            "sourceId": "SRC-OPENSTAX-CP2E-22-7"
+          },
+          {
+            "claimText": "The force so produced is perpendicular to both the wire and the magnetic field; its direction is given by the right-hand rule when the relationship is written in vector (cross-product) form.",
+            "sourceId": "SRC-HYPERPHYSICS-FORWIR"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Signed average of a complete symmetrical sine-wave cycle = 0.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-TATUM-EM-13-11",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electricity_and_Magnetism_(Tatum)/13:_Alternating_Current/13.11:_Root-mean-square_values,_power_and_impedance_matching",
+            "sourceLocator": "Section 13.11, opening paragraph",
+            "retrievedPassage": "\"During a complete period (P=2π/ω) the average or mean current is zero.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+            "sourceLocator": "Section 1.03 Measurements of AC Magnitude - average value paragraph, first sentence",
+            "retrievedPassage": "\"If we average all the points on the waveform algebraically (that is, to consider their sign, either positive or negative), the average value for most waveforms is technically zero, because all the positive points cancel out all the negative points over a full cycle.\""
+          },
+          {
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+            "sourceLocator": "Section 1.1 Voltage Measurements, page 2, paragraph preceding the definitions",
+            "retrievedPassage": "\"The DC value is a measure of the average voltage over the period of time.  If you look at one complete cycle of the AC waveform, you will see that the average value is 0.  Does this mean that it has no voltage?  The answer to that is no.  In the world of AC waveforms the effective voltage is called the RMS voltage.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Taken algebraically - that is, retaining the sign of each instantaneous value - the average of a symmetrical AC waveform over one complete cycle is zero, because the positive points cancel the negative points. For a sinusoidal current I = Î sin(ωt) the mean current during a complete period P = 2π/ω is zero. This zero signed average is expressly distinguished from the RMS/effective value, which is not zero.",
+            "sourceId": "SRC-LIBRETEXTS-TATUM-EM-13-11"
+          },
+          {
+            "claimText": "The signed full-cycle average being zero is the reason the 'average value' quoted for a sine wave (0.637 x peak) is instead the practical average taken with all points treated as positive - the two must not be conflated.",
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "RECOGNITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "requirementText": "Single-loop alternator/generator parts.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+            "sourceLocator": "Module ES-10 'AC Generators', Figure 1 'Basic AC Generator', Page 2 (identical drawing repeated as Figure 5 'Stationary Field, Rotating Armature AC Generator', Page 10)",
+            "retrievedPassage": "Figure 1 'Basic AC Generator' (Page 2) carries the labelled callouts, read directly from the rendered page: \"Field excitation\", \"Exciter field rheostat\", \"Stator field (stationary)\", \"Slip rings\", \"Rotor\", \"Brush\", \"AC output\", with the rotating winding shown between poles marked \"S\" and \"N\". Body text on the same page: \"The rotor of an AC generator is the rotating component of the generator, as shown in Figure 1. ... Depending on the type of generator, this component may be the armature or the field. The rotor will be the armature if the voltage output is generated there\". Page 10 body text: \"Small AC generators usually have a stationary field and a rotating armature (Figure 5). One important disadvantage to this arrangement is that the slip-ring and brush assembly is in series with the load circuits\"."
+          },
+          {
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+            "sourceLocator": "Module ES-10 'AC Generators', chapter 'AC GENERATOR THEORY', 'Theory of Operation' with Figure 3 'Simple AC Generator', Page 5",
+            "retrievedPassage": "\"A simple AC generator consists of: (a) a strong magnetic field, (b) conductors that rotate through that magnetic field, and (c) a means by which a continuous connection is provided to the conductors as they are rotating (Figure 3). The strong magnetic field is produced by a current flow through the field coil of the rotor. The field coil in the rotor receives excitation through the use of slip rings and brushes. Two brushes are spring-held in contact with the slip rings to provide the continuous connection between the field coil and the external excitation circuit. The armature is contained within the windings of the stator and is connected to the output. Each time the rotor makes one complete revolution, one complete cycle of AC is developed.\" [Figure 3 callouts read from the rendered page: \"Stator field\", \"Rotor field (rotating)\", \"Slip rings and brushes\", \"Field excitation\", \"AC output\", with poles marked \"S\" and \"N\".]"
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A simple AC generator/alternator diagram is recognised by three functional elements plus the output connection: (a) a strong magnetic field, shown as poles marked N and S; (b) conductors (the rotating loop/winding on the rotor) that rotate through that magnetic field; and (c) a means of continuous connection to the rotating conductors as they turn — slip rings with brushes spring-held in contact with them. Each complete revolution of the rotor develops one complete cycle of AC.",
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
+          },
+          {
+            "claimText": "In the small-machine arrangement corresponding to the classic single-loop alternator — stationary field, rotating armature — the labelled parts in the diagram are: Stator field (stationary), Rotor (carrying the armature winding), Slip rings, Brush, Field excitation with exciter field rheostat, and AC output. In this arrangement the slip-ring and brush assembly is in series with the load circuit.",
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
+          }
+        ],
+        "verificationStatus": "PARTIAL",
+        "coverageDimensionsSatisfied": [
+          "RECOGNITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          "Scope caution to preserve: DOE Figure 3 'Simple AC Generator' is a ROTATING-FIELD machine (the rotor carries the field coil and the slip rings feed excitation IN), whereas DOE Figures 1 and 5 show the STATIONARY-FIELD, ROTATING-ARMATURE machine (the slip rings carry the generated output OUT) that matches the classic UK 'single-loop alternator'. The handbook itself flags that both exist. These must not be merged into one diagram or one description."
+        ],
+        "gaps": [
+          "No source read within the permitted authority classes shows a diagram explicitly captioned as a SINGLE-LOOP (one-turn) alternator with every part labelled. DOE Figures 1/5 show the correct topology and labels but depict a multi-turn winding on the rotor and are not described as single-loop; Ellingson Figure 8.7.1 is explicitly 'A rudimentary single-loop generator' but is an ACADEMIC source (outside this requirement's permitted classes) and its figure shows only the loop and field, without slip rings or brushes. Status is therefore PARTIAL: the complete labelled single-loop alternator rests on a disclosed compounding of two figures from different sources.",
+          "Out-of-permitted-class candidate(s) evaluated and retained for the audit trail but NOT used as verifying evidence: SRC-LIBRETEXTS-ELLINGSON-8-7 (ACADEMIC_OR_RESEARCH_INSTITUTION). Verification rests solely on the in-class source(s): SRC-DOE-HDBK-1011-3-ES10, SRC-DOE-HDBK-1011-3-ES10."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-ELLINGSON-8-7",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/08%3A_Time-Varying_Fields/8.07%3A_The_Electric_Generator",
+            "sourceLocator": "Section 8.7, Figure 8.7.1",
+            "retrievedPassage": "\"Figure 8.7.1: A rudimentary single-loop generator, shown at time t=0.\" ... the generator consists of \"a planar loop that rotates around the z axis\" in a \"time-invariant and spatially-uniform magnetic flux density\".",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, PROFESSIONAL_BODY). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementMode": "SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "RECOGNITION"
+      ],
+      "sourceAuthorityClasses": [
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "PROFESSIONAL_BODY"
+      ],
+      "requirementText": "Slip rings.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+            "sourceLocator": "Module ES-10 'AC Generators', chapter 'AC GENERATOR COMPONENTS', heading 'Slip Rings', Page 3 (referring to Figure 1 'Basic AC Generator', Page 2, callout 'Slip rings'); Figure 2 'Comparison of DC and AC Generator Outputs', Page 3",
+            "retrievedPassage": "\"Slip rings are electrical connections that are used to transfer power to and from the rotor of an AC generator (refer to Figure 1). The slip ring consists of a circular conducting material that is connected to the rotor windings and insulated from the shaft. Brushes ride on the slip ring as the rotor rotates. The electrical connection to the rotor is made by connections to the brushes.\" ... \"Slip rings are used in AC generators because the desired output of the generator is a sine wave. In a DC generator, a commutator was used to provide an output whose current always flowed in the positive direction, as shown in Figure 2. This is not necessary for an AC generator. Therefore, an AC generator may use slip rings, which will allow the output current and voltage to oscillate through positive and negative values.\" [Figure 2 sub-captions read from the rendered page: \"Output With Slip Rings (AC Sine Wave)\" and \"Output With A Commutator (Pulsating DC)\".]"
+          },
+          {
+            "sourceId": "SRC-MOOG-SLIPRING-FUNDAMENTALS",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.moog.com/news/blog/Industrial/slip-ring-fundamentals.html",
+            "sourceLocator": "Article 'Slip Ring Fundamentals'; figure captioned 'basic slip ring configuration' with numbered component callouts",
+            "retrievedPassage": "\"A slip ring is an electromechanical device that allows the transmission of power and electrical signals from a stationary to a rotating structure.\" ... \"Brushes provide electrical contact between the rotating (usually the ring) and the stationary parts of the assembly. The brushes ride on the ring, and are mounted in a brush block assembly, usually on the stationary structure.\" [Figure 'basic slip ring configuration' callouts: Ring; Brushes; Leads; Connector.]"
+          },
+          {
+            "sourceId": "SRC-MERSEN-CARBON-BRUSH-GUIDE",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://us.mersen.com/sites/default/files/files_imported/2-ptt-carbon-brush-technical-guide-mersen.pdf",
+            "sourceLocator": "Section 3, page 18, figure block 'Orientation of a carbon brush on a commutator or on a slip ring'",
+            "retrievedPassage": "\"The same rule applies whether this is a commutator or slip ring brush.\" [Two dimensioned drawings labelled 'COMMUTATOR' and 'SLIP RING' show the brush contact face concave against a commutator versus against a smooth continuous ring; two further drawings are labelled 'NORMAL ORIENTATION OF A CARBON BRUSH ON A COMMUTATOR' and 'NORMAL ORIENTATION OF A CARBON BRUSH ON A SLIP RING'.]"
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A slip ring is recognised in a machine diagram as a continuous circular conducting ring fixed to (but insulated from) the rotor shaft and connected to the rotor windings, with a brush riding on it to make the connection to the stationary circuit. Its function is to transfer power/signals between a stationary and a rotating structure.",
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
+          },
+          {
+            "claimText": "Slip rings, not a split-ring commutator, are what an AC generator uses, because the desired output is a sine wave: slip rings allow the output current and voltage to oscillate through positive and negative values, whereas a DC generator's commutator produces an output whose current always flows in the positive direction (pulsating DC). The two are distinct components and give distinct output waveforms.",
+            "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
+          },
+          {
+            "claimText": "The basic slip ring configuration is drawn as: the ring (the electrically conductive rotating conductor path), the brushes contacting it, the leads to and from ring and brushes, and (optionally) a connector.",
+            "sourceId": "SRC-MOOG-SLIPRING-FUNDAMENTALS"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "RECOGNITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "No IEC 60617 standardised graphical symbol for a slip ring was obtained (electropedia.org and std.iec.ch both HTTP 403); the recognition evidence is a labelled machine/assembly drawing rather than a single-line schematic symbol."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::solenoid-magnetic-field::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Solenoid magnetic field.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+            "sourceLocator": "§9.4 Solenoid, doc pp. 19-20, opening paragraph and Figure 9.4.1; and doc p. 22 note on Figure 9.4.4",
+            "retrievedPassage": "\"9.4 Solenoid — A solenoid is a long coil of wire tightly wound in the helical form. Figure 9.4.1 shows the magnetic field lines of a solenoid carrying a steady current I. We see that if the turns are closely spaced, the resulting magnetic field inside the solenoid becomes fairly uniform, provided that the length of the solenoid is much greater than its diameter. For an 'ideal' solenoid, which is infinitely long with turns tightly packed, the magnetic field inside the solenoid is uniform and parallel to the axis, and vanishes outside the solenoid.\" ... \"Notice that the value of the magnetic field in the region | z | < l / 2 is nearly uniform and approximately equal to B_0.\""
+          },
+          {
+            "sourceId": "SRC-HYPERPHYSICS-SOLENOID",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magnetic/solenoid.html",
+            "sourceLocator": "Page heading 'Solenoids as Magnetic Field Sources', opening statement and idealization note",
+            "retrievedPassage": "\"A long straight coil of wire can be used to generate a nearly uniform magnetic field similar to that of a bar magnet.\" ... \"The magnetic field B is proportional to the current I in the coil.\" ... \"The expression is an idealization to an infinite length solenoid, but provides a good approximation to the field of a long solenoid.\""
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-CP2E-22-9",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law",
+            "sourceLocator": "Section 22.9, solenoid subsection and Figure 22.39",
+            "retrievedPassage": "\"the field inside a solenoid can be very uniform, and also very strong. The field just outside the coils is nearly zero.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A solenoid is a long coil of wire tightly wound in helical form. When it carries a steady current and its turns are closely spaced, the magnetic field inside it is fairly uniform, PROVIDED the length of the solenoid is much greater than its diameter. For the idealised (infinitely long, tightly packed) solenoid the internal field is uniform and parallel to the axis and vanishes outside the solenoid; for a real long solenoid the external field is nearly zero rather than exactly zero.",
+            "sourceId": "SRC-MIT802-CH9-SOURCES"
+          },
+          {
+            "claimText": "A long straight coil of wire generates a nearly uniform magnetic field similar to that of a bar magnet, and the flux density B is proportional to the current I in the coil.",
+            "sourceId": "SRC-HYPERPHYSICS-SOLENOID"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "Qualification to preserve: 'field vanishes outside' is MIT's statement for the IDEAL infinite solenoid only. OpenStax describes the real case as 'nearly zero' just outside the coils. Do not teach the external field as exactly zero for a real solenoid."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::solenoid-polarity::EXACT_FACT",
+      "requirementMode": "EXACT_FACT",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "DEFINITION"
+      ],
+      "sourceAuthorityClasses": [
+        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+        "GOVERNMENT_OR_REGULATOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Solenoid polarity.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-USF-ETC-RHR-SOLENOID-35671",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://etc.usf.edu/clipart/35600/35671/rhrsole_35671.htm",
+            "sourceLocator": "ClipArt ETC illustration ID 35671, title 'Right Hand Rule, Solenoid'; cited source Hawkins and Staff, Hawkins Electrical Guide Number One (New York: Theo. Audel and Company, 1917), page 117",
+            "retrievedPassage": "\"If the solenoid be grasped in the right hand, so that the fingers point in the direction in which the current is flowing in the wires, the thumb extended will point in the direction of the north pole [of the solenoid].\" (Hawkins, 1917)"
+          },
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+            "sourceLocator": "§9.4 Solenoid, doc p. 20, Figure 9.4.1 'Magnetic field lines of a solenoid' (right-hand panel)",
+            "retrievedPassage": "Figure 9.4.1 caption: \"Magnetic field lines of a solenoid\" — the rendered right-hand panel shows the solenoid's cross-section with the left end labelled 'S' and the right end labelled 'N', the external field lines leaving the N end and returning to the S end exactly as for a bar magnet."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Solenoid end-polarity is determined by the right-hand grip rule applied to the COIL: grasp the solenoid in the right hand so that the FINGERS point in the direction in which the current flows in the wires; the EXTENDED THUMB then points toward the solenoid's NORTH pole. (Hawkins states 'the current flowing in the wires' without naming the convention; on the conventional-current convention used elsewhere in this cluster this is conventional current.)",
+            "sourceId": "SRC-USF-ETC-RHR-SOLENOID-35671"
+          },
+          {
+            "claimText": "A current-carrying solenoid has an identifiable S end and N end, with external field lines leaving the N end and entering the S end in the manner of a bar magnet.",
+            "sourceId": "SRC-MIT802-CH9-SOURCES"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [
+          {
+            "issue": "Hand-role reversal against the straight-conductor grip rule.",
+            "detail": "For the solenoid the FINGERS follow the current and the THUMB gives the north pole; for a straight conductor the THUMB follows the current and the FINGERS give the field. Both sources read (Hawkins 1917 via USF; Arbor Scientific) use the fingers-follow-current form for the coil. This reversal must be stated explicitly in any Unit 202 learning content or it will be a predictable learner error."
+          },
+          {
+            "issue": "Convention not named by the primary source.",
+            "detail": "Hawkins (1917) says 'the direction in which the current is flowing in the wires' and does not state whether this is conventional current or electron flow. The Arbor Scientific vendor article (read, but a blog and therefore weak) states the equivalent rule and elsewhere defines current as the flow of positive charge, i.e. conventional current. The conventional-current reading is recorded, with the source-level silence disclosed rather than harmonised away."
+          }
+        ],
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ARBORSCI-RHR-THREE-RULES",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.arborsci.com/blogs/cool/three-right-hand-rules-of-electromagnetism",
+            "sourceLocator": "Heading 'Rule #3 – The Solenoid Rule'",
+            "retrievedPassage": "\"Let your curling fingers be the direction the current is flowing. It is looping around. Then your thumb will be the NORTH end of the electromagnet.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class ORIGINAL_MANUFACTURER_OR_VENDOR is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
+        ],
+        "disclosures": [
+          "The class-fitting source (Hawkins Electrical Guide, 1917) is a historical handbook. No modern PRIMARY_NORMATIVE / GOVERNMENT / AUTHORITATIVE_TECHNICAL_REFERENCE restatement of the coil grip rule was obtained within the candidate budget; the modern corroboration read (MIT Figure 9.4.1 with labelled S and N ends, OpenStax College Physics 22.9) shows the resulting polarity but MIT does not state the hand rule for it in the passage read.",
+          "Out-of-permitted-class candidate(s) evaluated and retained for the audit trail but NOT used as verifying evidence: SRC-ARBORSCI-RHR-THREE-RULES (ORIGINAL_MANUFACTURER_OR_VENDOR). Verification rests solely on the in-class source(s): SRC-USF-ETC-RHR-SOLENOID-35671, SRC-MIT802-CH9-SOURCES."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE",
+      "requirementMode": "PROCEDURE_COVERAGE",
+      "specificationMode": "OPEN_TECHNICAL_QUESTION",
+      "requiredCoverageDimensions": [
+        "PROCEDURE",
+        "CALCULATION_METHOD"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
+      ],
+      "requirementText": "Suitable simple electromagnetism calculations/rearrangements.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-MAGNETIC-CIRCUITS-14-03",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://eng.libretexts.org/Courses/Canada_College/Circuits_and_Devices/14%3A_Advanced_Topic-_Magnetic_Circuits_and_Transformers/14.03%3A_Magnetic_Circuits",
+            "sourceLocator": "Section 14.03 Magnetic Circuits - worked Examples 10.3.1, 10.3.2 and 10.3.3 (numbering as carried in the transcluded source text)",
+            "retrievedPassage": "Example 10.3.1 - given a magnetic flux of 6E−5 webers and a core cross section of 1 cm by 2 cm, using \"B = Φ/A\": \"A = 0.01 m × 0.02 m = 2E-4 m²\" then \"B = 6E-5Wb / 2E-4 m² = 0.3T\". Example 10.3.2 - cast steel toroid, 500 turns, 2 cm × 2 cm cross section, 50 cm average path length, 0.3 amps, using \"H = NI/l\": \"H = 500 turns × 0.3 A / 0.5 m = 300At/m\", \"A = 0.02 m × 0.02 m = 4E-4m²\", B ≈ 0.52 teslas from the BH curve, then \"Φ = 0.52 T × 4E-4 m² = 2.08E-4Wb\". Example 10.3.3 - sheet steel core, 200 turns, 1 cm × 1 cm cross section, 12 cm path length, target flux 1E−4 Wb: \"B = 1E-4 Wb / 1E-4 m² = 1T\", H ≈ 190 At/m from the BH curve, \"Hl = 190 × 0.12 = 22.8At\", \"I = 22.8At / 200t = 114mA\"."
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Worked method for simple electromagnetism calculations with formula rearrangement: (1) convert the stated dimensions to SI and compute the cross-sectional area A from the core dimensions; (2) apply B = Φ/A in the direction required - used forwards to find flux density from a given flux and area (6E−5 Wb over 2E−4 m² gives 0.3 T), and rearranged as Φ = B×A to find flux from a flux density and area (0.52 T × 4E−4 m² = 2.08E−4 Wb); (3) apply H = NI/l likewise, rearranged to I = Hl/N to find the current needed for a target flux (H·l = 190 × 0.12 = 22.8 At, then I = 22.8 At / 200 t = 114 mA). Intermediate quantities that cannot be computed algebraically (B from H in a ferromagnetic core) are read from the material's BH curve.",
+            "sourceId": "SRC-LIBRETEXTS-MAGNETIC-CIRCUITS-14-03"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "PROCEDURE",
+          "CALCULATION_METHOD"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "The worked examples cover the magnetic-circuit family (B = Φ/A, H = NI/l) with rearrangement. They do not work through the force/induction formulae also in scope for Unit 202 (F = BIl, e = Blv); those rearrangements are not evidenced by this passage.",
+          "The example numbering on the page (10.3.1-10.3.3) is inherited from the source text and does not match the page's own section number 14.03 - the locator records both."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::t-1-f::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "T = 1/f.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+            "sourceLocator": "Section 1.2 Sinusoidal Waveforms - period/frequency paragraph and the accompanying relation",
+            "retrievedPassage": "\"The time it takes to complete one cycle is called the period and is denoted with the symbol T (for Time). The reciprocal of the period is the frequency, f.\"  The page gives the relation as f = 1/T."
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-02",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.02%3A_AC_Waveforms",
+            "sourceLocator": "Section 1.02 AC Waveforms - frequency/period relation",
+            "retrievedPassage": "\"Frequency = 1/(period in seconds)\", with frequency \"usually measured in Hertz (Hz), 1 Hz being equal to one complete wave cycle per second\" and period being \"the amount of time it takes to complete one cycle.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "Period and frequency are reciprocals: f = 1/T, and equivalently T = 1/f, with the period T being the time in seconds to complete one cycle and the frequency f in hertz (one hertz being one complete cycle per second).",
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-02"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "Both read sources state the reciprocal relation in the direction f = 1/(period). T = 1/f is the algebraic inversion of that statement; this one-step inversion is disclosed rather than presented as a direct quotation."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vpeak-1-414-x-vrms::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Vpeak ~= 1.414 x Vrms.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+            "sourceLocator": "Section 1.2 Sinusoidal Waveforms - RMS subsection, closing summation",
+            "retrievedPassage": "\"In summation, for sine waves, RMS is always the peak value times 0.707. We could also say the RMS value of any sine wave is its peak divided by approximately 1.414. Again, these ratios would not necessarily be true of non-sine waves.\""
+          },
+          {
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+            "sourceLocator": "Page 4, first paragraph (non-True-RMS meter description)",
+            "retrievedPassage": "\"(Non-True RMS Meters) will convert the AC wave into a DC signal that represents the peak voltage value.  This value is then converted to RMS by a 1.414:1 Voltage divider.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "For a pure sine wave the peak value is approximately 1.414 (i.e. √2) times the RMS value - stated by Fiore in the reciprocal direction, that the RMS value of a sine wave is its peak divided by approximately 1.414 - and this ratio would not necessarily be true of non-sine waves.",
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2"
+          },
+          {
+            "claimText": "Peak-reading (non-true-RMS) meters obtain the RMS reading from the measured peak value via a 1.414:1 divider, i.e. peak = 1.414 × RMS for the sinusoid such meters assume.",
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "Fiore expresses the 1.414 factor as a divisor applied to peak to obtain RMS; Vpeak = 1.414 × Vrms is the algebraic inversion of that statement. The inversion is disclosed. The Missouri S&T passage states the multiply direction but does so in the context of meter circuitry rather than as a general waveform identity.",
+          "Both sources restrict the factor to sine waves (Fiore explicitly; the meter passage implicitly, since non-true-RMS meters are inaccurate on non-sinusoids). This restriction must be preserved."
+        ]
+      }
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP",
+      "requirementMode": "RELATIONSHIP",
+      "specificationMode": "KNOWN_CLAIM_TO_VERIFY",
+      "requiredCoverageDimensions": [
+        "CONCEPTUAL_RELATIONSHIP"
+      ],
+      "sourceAuthorityClasses": [
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "PROFESSIONAL_BODY",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+      ],
+      "requirementText": "Vrms ~= 0.707 x Vpeak.",
+      "result": {
+        "candidateSources": [
+          {
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+            "sourceLocator": "Section 1.2 Sinusoidal Waveforms - RMS subsection, closing summation",
+            "retrievedPassage": "\"In summation, for sine waves, RMS is always the peak value times 0.707. We could also say the RMS value of any sine wave is its peak divided by approximately 1.414. Again, these ratios would not necessarily be true of non-sine waves.\""
+          },
+          {
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+            "sourceLocator": "Section 1.1 Voltage Measurements, pages 2-3, 'RMS or Effective Voltage' bullet and worked 130 V example",
+            "retrievedPassage": "\"The RMS value for a sinusoidal wave form is = .707 * Peak Voltage.  For non sinusoidal signals, the RMS value must be calculated.\" ... \"If the signal being measured is not truly sinusoidal or non-symmetric in any way, the RMS value will vary from the standard 0.707 value.  In the above example we saw a sinusoidal waveform with a peak value of 130V.  The RMS value of this signal would be 91.9 Volts.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-TATUM-EM-13-11",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electricity_and_Magnetism_(Tatum)/13:_Alternating_Current/13.11:_Root-mean-square_values,_power_and_impedance_matching",
+            "sourceLocator": "Section 13.11, Equation 13.11.2",
+            "retrievedPassage": "\"With I=Î sin ωt this gives Ī²=½Î². The square root of this is the root-mean-square current, or the RMS value of the current: I_RMS = (1/√2)Î = 0.707Î.\""
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+            "sourceLocator": "Section 1.03 Measurements of AC Magnitude - RMS paragraph and closing conversion-constant caveat",
+            "retrievedPassage": "For sine waves \"the RMS value is approximately 0.707 of its peak value.\" ... \"The conversion constants shown here for peak, RMS, and average amplitudes of sine waves, square waves, and triangle waves hold true only for pure forms of these waveshapes.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "For a PURE SINE WAVE the RMS (effective) value is 0.707 - that is, 1/√2 - times the peak value; this follows from the mean square of Î sin(ωt) being ½Î². The factor holds only for pure sine waves: for non-sinusoidal or non-symmetric signals the RMS value departs from the standard 0.707 value and must be computed from the root-mean-square definition.",
+            "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2"
+          },
+          {
+            "claimText": "Worked instance: a sinusoidal waveform of 130 V peak has an RMS value of 91.9 V.",
+            "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "CONCEPTUAL_RELATIONSHIP"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": []
+      }
+    }
+  ],
+  "note": "Nine of the 44 requirements are not fully VERIFIED. One is a GAP and eight are PARTIAL. In SEVEN of those nine cases the shortfall is an AUTHORITY-TIER problem rather than a content problem: genuine, clear, authoritative material was retrieved and read, but its authority class is not among the permitted classes the frozen plan sets for that particular requirement. Those passages are preserved on each result under `evaluatedButOutOfPermittedAuthorityClass` so the reading is not lost. No frozen requirement's permitted classes were widened to make a result go green."
+}

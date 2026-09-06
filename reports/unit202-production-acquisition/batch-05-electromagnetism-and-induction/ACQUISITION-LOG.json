@@ -1,0 +1,354 @@
+{
+  "domain": "electromagnetism-and-induction",
+  "batch": "batch-05",
+  "selectedRequirementCount": 44,
+  "selectionNote": "44 requirements / 44 unique evidenceRequirementIds were taken from the frozen UNIT202-EVIDENCE-REQUIREMENT-PLAN.json (all with canonicalRequirementKey containing ::electromagnetism-and-induction::). Requirement metadata (mode, specification mode, coverage dimensions, permitted authority classes, requirement text) is copied MECHANICALLY from the frozen plan during assembly, never transcribed by hand, so it cannot drift. No requirement was added, removed, renamed, merged or reinterpreted.",
+  "sourceIsolationBoundary": {
+    "declaration": "This acquisition was conducted as fresh, independent public-source research. The following were NOT inspected or used as research leads, answer sources, or search-query seeds: the sealed historical Unit 202 source benchmark; historical Unit 202 source manifests or verification dossiers; pilot evidence-acquisition results or repair artifacts; pre-existing Unit 202 assertions or claim sets; existing lessons, storyboards or other instructional content; private course material; private calibration material; historical clean-room outputs (including the unit202-cleanroom CC-19R reports elsewhere in this repository, left untouched and unread); and reports/instructional-visuals (left untouched and unread).",
+    "accessedForStructuralPrecedentOnly": [
+      "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory/*.json (read only for output-format precedent, not for evidence)"
+    ]
+  },
+  "boundedResearchDiscipline": {
+    "maxCandidatesPerUnresolvedRequirement": 4,
+    "note": "No unresolved requirement bundle was pursued past four genuinely-evaluated candidates before an adequate source was accepted or an honest gap recorded. Blocked, paywalled and unreadable candidates were abandoned and logged rather than substituted with a search-summary or snippet as evidence."
+  },
+  "accessFailuresAndWorkarounds": [
+    {
+      "cluster": "B05-A",
+      "url": "https://www.britannica.com/science/magnetic-flux",
+      "issue": "HTTP 403 Forbidden; response body not retrieved. Britannica appears to block automated fetching entirely, so no Britannica article could be used anywhere in this cluster.",
+      "workaround": "Substituted MIT OpenCourseWare 8.02 Chapter 10 §10.1.1 and HyperPhysics (Georgia State University) for the magnetic-flux definition."
+    },
+    {
+      "cluster": "B05-A",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-11-19",
+      "issue": "HTTP 403 Forbidden. IEC Electropedia / IEV could not be read, so no PRIMARY_NORMATIVE_OR_STANDARDS_BODY definition of magnetic flux, magnetic flux density or the dot/cross convention was obtainable.",
+      "workaround": "None found. This is the direct cause of the PARTIAL status on dot-cross-page-convention and of the normative-source gaps noted on the two flux-quantity requirements."
+    },
+    {
+      "cluster": "B05-A",
+      "url": "https://physics.nist.gov/cuu/Units/units.html",
+      "issue": "HTTP 301 to https://www.nist.gov/pml/owm/metric-si/si-units, which was then fetched and read but no longer carries the table of SI derived units with special names; it only points onward to NIST SP 330 / SP 811.",
+      "workaround": "Did not pursue the NIST SP PDFs within budget; the weber and tesla unit assignments were instead taken from MIT 8.02 (read) and Ellingson/Fiore (read). A normative NIST/BIPM citation remains outstanding if wanted."
+    },
+    {
+      "cluster": "B05-A",
+      "url": "https://www.nde-ed.org/Physics/Magnetism/MagneticFluxDensity.xhtml",
+      "issue": "Request rejected by the site's web application firewall ('The requested URL was rejected. Please consult with your administrator.').",
+      "workaround": "Used Physics LibreTexts (Ellingson, Virginia Tech) 2.5 Magnetic Flux Density instead."
+    },
+    {
+      "cluster": "B05-A",
+      "url": "https://web.mit.edu/8.02t/www/materials/StudyGuide/guide09.pdf",
+      "issue": "HTTP 302 to an MIT Okta/Touchstone OAuth authorization endpoint; the resource is behind MIT authentication.",
+      "workaround": "Used the openly published equivalents on ocw.mit.edu (Chapter 8, Chapter 9 and Chapter 10 PDFs), which were downloaded and read as rendered pages."
+    },
+    {
+      "cluster": "B05-A",
+      "url": "https://hyperphysics.phy-astr.gsu.edu/hbase/magnetic/elemag.html",
+      "issue": "TLS failure: 'Hostname/IP does not match certificate's altnames' — the legacy hyperphysics.phy-astr.gsu.edu hostname is not covered by the certificate (only DNS:hyperphysics.gsu.edu is).",
+      "workaround": "Refetched successfully at the hyperphysics.gsu.edu hostname. All HyperPhysics citations in this file use that hostname."
+    },
+    {
+      "cluster": "B05-A",
+      "url": "https://phys.libretexts.org/Courses/University_of_California_Davis/UCD%3A_Physics_7C_-_General_Physics/Appendices/Vectors",
+      "issue": "The fetch returned a LibreTexts login/sign-in page rather than the article content, so the vector dot/cross appendix could not be read.",
+      "workaround": "Obtained the dot/cross convention instead from MIT 8.02 Chapter 8 §8.3 (both directions stated verbatim) and OpenStax Physics Figure 20.20 (dot only)."
+    },
+    {
+      "cluster": "B05-A",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/12-7-solenoids-and-toroids",
+      "issue": "HTTP 404 Not Found — guessed section number was wrong.",
+      "workaround": "Correct path is .../12-6-solenoids-and-toroids, which was then fetched and read."
+    },
+    {
+      "cluster": "B05-A",
+      "url": "https://ocw.mit.edu/courses/... (three MIT 8.02 chapter PDFs)",
+      "issue": "WebFetch could not extract text from these PDFs and returned only raw/binary content with an inability to answer the prompt.",
+      "workaround": "Each PDF was saved locally by the fetch tool and then opened directly with the file Read tool, which rendered the actual typeset pages including all figures. Every MIT quotation and every MIT figure description in this file comes from pages that were rendered and viewed, not from the failed text extraction."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://www.britannica.com/science/Flemings-rule",
+      "issue": "HTTP 403 Forbidden. Britannica appears to block this fetch tool site-wide (https://www.britannica.com/technology/relay also returned 403).",
+      "workaround": "Substituted manufacturer technical references (Nidec, ROHM) for Fleming's rules and an academic open textbook (Workforce LibreTexts) for relay/contactor. The Britannica statement of the UK term 'motor effect' and of the right-hand finger mapping remains unobtained."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://spark.iop.org/flemings-left-hand-rule",
+      "issue": "HTTP 403 Forbidden (Institute of Physics IOPSpark). This was the strongest PROFESSIONAL_BODY candidate for both Fleming rules.",
+      "workaround": "Used Nidec Corporation's own motor-technology reference (ORIGINAL_MANUFACTURER_OR_VENDOR, a permitted class) instead."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=444-01-01",
+      "issue": "HTTP 403 Forbidden. IEC Electropedia (IEV) blocked.",
+      "workaround": "Also tried https://std.iec.ch/iev/iev.nsf/display?openform&ievref=444-01-01 (HTTP 403). No normative IEV wording for 'relay' or 'contactor' could be read; textbook definitions used instead and the gap disclosed."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://www.sciencedirect.com/topics/engineering/flemings-left-hand-rule",
+      "issue": "HTTP 403 Forbidden (Elsevier ScienceDirect topic pages).",
+      "workaround": "Not used; alternative manufacturer sources sought."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/magnetic/magfor.html",
+      "issue": "TLS certificate hostname mismatch: 'hyperphysics.phy-astr.gsu.edu' is not in the certificate's altnames (cert covers hyperphysics.gsu.edu).",
+      "workaround": "Refetched successfully via https://hyperphysics.gsu.edu/hbase/magnetic/forwir2.html."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "http://labman.phys.utk.edu/phys222core/modules/m5/motional_emf.html",
+      "issue": "Connection refused (ECONNREFUSED 160.36.28.91:443) — University of Tennessee physics lab manual server unreachable.",
+      "workaround": "Used OpenStax and Physics LibreTexts for motional emf instead."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://www.standards.doe.gov/standards-documents/1000/1011-bhdbk-1992-v3/@@images/file",
+      "issue": "HTTP 301 redirect to a generic DOE Technical Standards Program landing page rather than the PDF (same for the v4 URL).",
+      "workaround": "Retrieved the PDFs directly from https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf and ..._VOL4.pdf."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+      "issue": "The fetch tool could not extract text from the PDF (compressed streams returned as binary).",
+      "workaround": "The tool saved the PDF locally; its pages were then rendered and read as page images, which is how the Module 10 figures and text quoted above were actually read. The same approach was used for the Mersen carbon brush guide."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://ecampusontario.pressbooks.pub/electrotechnology/chapter/part-4-switches-and-contactors/",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used Workforce LibreTexts sections 5.1 and 5.2 for relay and contactor."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://www.tdk.com/en/tech-mag/electronics_primer/1",
+      "issue": "HTTP 403 Forbidden. This was the manufacturer candidate for the coil/inductor symbol.",
+      "workaround": "None found; the 'coil' recognition requirement is recorded as PARTIAL."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://www.automate.org/motion-control/blogs/fleming-s-left-hand-rule-electric-motor-theory-explained",
+      "issue": "HTTP 403 Forbidden (Association for Advancing Automation).",
+      "workaround": "Not used. It is in any case a 'blogs' path and would have been treated with caution."
+    },
+    {
+      "cluster": "B05-B",
+      "url": "https://phys.libretexts.org/Bookshelves/College_Physics/College_Physics_1e_(OpenStax)/23%3A_Electromagnetic_Induction_AC_Circuits_and_Electrical_Technologies/23.05%3A_Electric_Generators",
+      "issue": "HTTP 404 Not Found (section is numbered 23.8, not 23.5, in that LibreTexts shelf).",
+      "workaround": "Used the Coalinga College and Ellingson LibreTexts generator sections instead, both of which state the flux-cutting maximum/zero conditions explicitly."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://www.electropedia.org/iev/iev.nsf/index?openform&part=103",
+      "issue": "HTTP 403 Forbidden - IEC Electropedia (IEV) refused the fetch. This blocked the intended PRIMARY_NORMATIVE_OR_STANDARDS_BODY definitions of frequency, period, peak value, peak-to-peak value and r.m.s. value.",
+      "workaround": "Fell back to ACADEMIC_OR_RESEARCH_INSTITUTION textbook sources (LibreTexts/Fiore, LibreTexts/Kuphaldt, LibreTexts/Tatum, Missouri S&T). Recorded that no normative IEV wording was obtained."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=103-05-05",
+      "issue": "HTTP 403 Forbidden - second attempt at Electropedia using a term-display URL also refused.",
+      "workaround": "Abandoned Electropedia as a source for this cluster."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://www.britannica.com/technology/root-mean-square-voltage",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used academic textbook sources for the RMS definition instead."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://www.britannica.com/technology/electric-generator",
+      "issue": "HTTP 403 Forbidden - would have provided an AUTHORITATIVE_TECHNICAL_REFERENCE statement on poles per revolution and generator frequency.",
+      "workaround": "Used MIT OCW class notes, LibreTexts (Flinn) and SIU ET 332b lecture slides instead."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://www.sciencedirect.com/topics/engineering/pole-pairs",
+      "issue": "HTTP 403 Forbidden - blocked the handbook-derived pole-pair frequency statement.",
+      "workaround": "Used MIT OCW 6.685 Class Notes 8, which explicitly defines p as the number of pole-pairs."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://web.eecs.utk.edu/~kaisun/ECE522/ECE522_2-Generator.pdf",
+      "issue": "TLS error: 'unable to verify the first certificate' - University of Tennessee ECE 522 generator-modelling notes could not be fetched.",
+      "workaround": "No further pole-pair candidate pursued; the four-candidate bound for that requirement was reached and a PARTIAL status with a documented convention conflict was recorded."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://spark.iop.org/explaining-rms-voltage-and-current",
+      "issue": "HTTP 403 Forbidden - Institute of Physics (PROFESSIONAL_BODY) page on rms could not be read.",
+      "workaround": "Used LibreTexts/Tatum, LibreTexts/Fiore, LibreTexts/Kuphaldt and Missouri S&T instead."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/rmscur.html",
+      "issue": "TLS hostname/certificate mismatch (cert only covers hyperphysics.gsu.edu); the replacement host paths hyperphysics.gsu.edu/hbase/electric/rmscur.html and /hbase/electric/acpow.html both returned HTTP 404.",
+      "workaround": "HyperPhysics (Georgia State) abandoned; equivalent academic coverage obtained from LibreTexts and Missouri S&T."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/15-3-rms-current-and-voltage",
+      "issue": "HTTP 404 - the guessed OpenStax section slug does not exist (rms is treated in 15.4 Power in an AC Circuit).",
+      "workaround": "Fetched 15.1 AC Sources and 15.4 Power in an AC Circuit; however the OpenStax MathML rendered poorly through the fetch tool (e.g. Irms=I0/√2 came back mangled as 'Irms=12I0'), so OpenStax was used only for the plain-prose definition of alternating current in 15.1 and was NOT used as the source for any numeric conversion factor."
+    },
+    {
+      "cluster": "B05-C",
+      "url": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/Semiconductor_Devices_-_Theory_and_Application_(Fiore)/03%3A_Diode_Applications/3.2%3A_Rectification",
+      "issue": "Page fetched successfully but contained no quantitative average-value statement (no 0.318/0.636/2Vpπ figures), contrary to the search snippet that suggested it.",
+      "workaround": "Obtained the 0.637 half-cycle average from the Missouri S&T handout and LibreTexts/Kuphaldt instead."
+    }
+  ],
+  "clusterLogs": [
+    {
+      "cluster": "B05-A -- Magnetism fundamentals, flux quantities, field patterns and page conventions",
+      "requirementCount": 12,
+      "requirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+        "ER::provisional::unit202::electromagnetism-and-induction::basic-electromagnet-principle::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION",
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-attraction-repulsion::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-around-a-current-carrying-conductor::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-flux-density-meaning-symbol-unit::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-flux-meaning-symbol-unit::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+        "ER::provisional::unit202::electromagnetism-and-induction::solenoid-magnetic-field::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::solenoid-polarity::EXACT_FACT"
+      ],
+      "notes": "CANDIDATE-EVALUATION DISCIPLINE. Every passage quoted here comes from a source that was actually opened: web pages via WebFetch, and the three MIT OpenCourseWare 8.02 chapter PDFs via local Read of the downloaded file, which renders the typeset pages and figures. No search-result snippet was accepted as evidence anywhere; where a search summary suggested a claim (for example the dot/cross convention, the conventional-current qualification, and the solenoid grip rule), the underlying page was then fetched and read before the claim was recorded, and where the fetch failed the claim was NOT recorded. No requirement exceeded the four-serious-candidate budget except right-hand-grip-rule, which used five (the fifth, HyperPhysics, was an obvious authoritative source likely to resolve the remaining question, as permitted).\n\nGUARDRAIL COMPLIANCE.\n1. Right-hand grip rule: the thumb = conventional current / curled fingers = magnetic field mapping was obtained explicitly and verbatim (Physics LibreTexts 12.3 uses the exact phrase 'conventional current' and adds that electron-flow current requires the LEFT hand; Arbor Scientific defines current as 'the flow of positive charge'; MIT and HyperPhysics state the mapping without naming the convention). Nothing was inferred.\n2. Dot/cross: an explicit authoritative statement of BOTH directions was obtained verbatim from MIT 8.02 Chapter 8 §8.3 — dots for out of the page, crosses for into the page. It was not taken from memory.\n3. B = Φ/A is recorded strictly as the uniform-field, field-normal-to-area case. The general qualification (only the component of B normal to the area contributes; a surface integral for non-uniform fields) is captured from MIT Eq. (10.1.1)/(10.1.2) and HyperPhysics and is carried in the conflicts block.\n4. Magnetic flux (Φ / Φ_B, weber, Wb) and magnetic flux density (B, tesla, T = Wb/m²) each have meaning, symbol and unit covered by read passages.\n5. Solenoid polarity preserves the exact convention the source uses: right-hand grip applied to the COIL, fingers along the current in the windings, extended thumb to the north pole (Hawkins 1917 p.117). The reversal of hand roles versus the straight-conductor grip rule is flagged as a conflict for the assembler.\n6. Both recognition requirements cite real, viewed figures with exact identifiers and provenance — MIT Figures 8.1.1, 8.1.2, 8.1.3, 9.1.4, 9.4.1 (rendered and viewed), and ClipArt ETC illustrations 20143, 20144, 35665, 35728 with full book/page citations. No diagram was generated or imagined.\n7. Maxwell's equations, vector calculus and phasor treatment were excluded; the Biot-Savart and Ampere's-law derivations present in the MIT chapters were read past and are not carried into any claim, other than the plain-language field-shape and uniformity statements.\n\nTHE MAIN THING THE ASSEMBLING AGENT MUST KNOW. Three requirements carry an AUTHORITY-CLASS mismatch rather than a content shortfall, because their declared sourceAuthorityClasses exclude ACADEMIC_OR_RESEARCH_INSTITUTION even though the best available evidence for them is academic:\n- dot-cross-page-convention (declared: standards body / professional body / authoritative technical reference) — content fully verified from MIT, class does not fit. Marked PARTIAL.\n- right-hand-grip-rule (declared: government / professional body / authoritative technical reference / manufacturer) — content fully verified from MIT + LibreTexts + HyperPhysics; the only in-class modern source read is a vendor blog article. Marked PARTIAL.\n- magnetic-field-patterns and magnetic-poles (declared: manufacturer / authoritative technical reference / professional body) — in-class figures exist and were read, but they are historical (Hawkins 1917, Atkinson 1903, Avery 1895) reproduced with citation by the University of South Florida; the modern figures are MIT's. Marked VERIFIED with the caveat recorded.\nIf the pipeline can widen these requirements' sourceAuthorityClasses to include ACADEMIC_OR_RESEARCH_INSTITUTION (which is already accepted for most other requirements in this cluster), all three become straightforwardly VERIFIED on already-read evidence. If it cannot, the outstanding acquisitions are an IEC 60050 / IEV entry (currently HTTP 403) and an IET or equivalent professional-body statement of the grip rule.\n\nAlso outstanding, though not blocking: no PRIMARY_NORMATIVE_OR_STANDARDS_BODY or GOVERNMENT_OR_REGULATOR source was successfully read anywhere in this cluster (Britannica 403, Electropedia 403, NIST CUU table URL redirected to a page that no longer carries it). The weber/tesla unit assignments rest on academic and educational sources that were read, not on BIPM/NIST/IEC text."
+    },
+    {
+      "cluster": "B05-B -- Motor effect, electromagnetic induction, and generator hardware",
+      "requirementCount": 15,
+      "requirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::contactor::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::e-blv::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+        "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+        "ER::provisional::unit202::electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::relay::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electromagnetism-and-induction::slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "notes": "Method: every passage recorded above came from a source that was actually opened and read in this session, either through the fetch tool's rendered text or, for the two PDFs (DOE-HDBK-1011/3-92 Module 10 and the Mersen Carbon Brush Technical Guide), by downloading the PDF and rendering its pages as images that were then read directly. Figure callouts quoted in square brackets for those two PDFs were transcribed from pages actually viewed. No diagram was generated or imagined.\n\nGuardrail handling. (1) Hand rules: Fleming's LEFT hand is recorded strictly as the motor/force rule and Fleming's RIGHT hand strictly as the generator/induced-EMF rule; Nidec's glossary states both roles in one passage, which anchors the distinction. The left-hand finger mapping (thumb=F, forefinger=B, middle=I) was obtained in text from Nidec; the equivalent right-hand mapping could NOT be obtained in text from any permitted-class source and is recorded as an open gap rather than filled in from memory or from a non-permitted site. (2) F = BIl is recorded as the perpendicular-conductor special case of F = IlB sin θ, with the perpendicularity condition quoted from both HyperPhysics and OpenStax. (3) e = Blv is recorded only with its perpendicularity condition, quoted verbatim from OpenStax as '(B, ℓ, and v perpendicular)'. (4) Maximum, zero and reduced flux-cutting are kept distinct, and the trap that maximum FLUX coincides with ZERO EMF is called out. (5) Slip rings vs commutator: the DOE handbook's own wording explicitly contrasts 'Output With Slip Rings (AC Sine Wave)' against 'Output With A Commutator (Pulsating DC)', so the AC alternator is evidenced as using slip rings and no commutator was silently substituted; Mersen's brush drawings likewise keep commutator and slip ring brushes distinct. (6) Relay and contactor were evidenced from two separate sections and are kept distinct: a relay is a solenoid actuating switch contacts with isolation between coil and contact circuits; a contactor is the name given to a relay used to switch a large amount of electrical power, typically for motors. (7) Nothing from Maxwell's equations, vector calculus, phasors or winding design was carried into any claim.\n\nCorroboration outside permitted authority classes (recorded for transparency, deliberately NOT used as candidate evidence): Nidec's 'BLI law' glossary entry states 'F = BLI' with B = magnetic flux density (T), I = current (A), L = conductor length (m), and Nidec section 2-1-3 states 'e = BLv ...... (2.5)' with e = generated voltage/counter-electromotive force [V], B = magnetic flux density [T], L = length of wire in the field [m], v = velocity [m/s]. Both agree with the academic sources cited for scalar-f-bil and e-blv, but ORIGINAL_MANUFACTURER_OR_VENDOR is not among those two requirements' permitted authority classes, so they appear only here.\n\nAuthority-class tension disclosed: DOE-HDBK-1011/3-92 is simultaneously a US Government publication and a formally issued engineering handbook. The four SCHEMATIC_OR_DIAGRAM_RECOGNITION requirements do not permit GOVERNMENT_OR_REGULATOR, so it is classed as AUTHORITATIVE_TECHNICAL_REFERENCE ('established engineering handbook') for those; a reviewer who rejects that reading should downgrade slip-rings and single-loop-alternator-generator-parts accordingly (brushes would still stand on Mersen and Moog alone).\n\nStatus summary across the 15 requirements: 11 VERIFIED (brushes, contactor, e-blv, fleming-left-hand-rule, maximum-induced-emf-when-cutting-is-maximum, motional-induced-emf-causal-concept, no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately, relay, rotation-field-cutting-causality, scalar-f-bil, slip-rings); 4 PARTIAL (coil, fleming-right-hand-generator-rule, motor-effect, single-loop-alternator-generator-parts); 0 GAP."
+    },
+    {
+      "cluster": "B05-C -- AC waveform quantities, sine-wave conversions and AC generation calculations",
+      "requirementCount": 17,
+      "requirementIds": [
+        "ER::provisional::unit202::electromagnetism-and-induction::alternating-sinusoidal-output-concept::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::amplitude-peak::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::analogous-current-relationship-where-applicable::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
+        "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+        "ER::provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::frequency::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::peak-to-peak::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::periodic-time::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::rms::EXACT_FACT",
+        "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+        "ER::provisional::unit202::electromagnetism-and-induction::signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE",
+        "ER::provisional::unit202::electromagnetism-and-induction::t-1-f::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::vpeak-1-414-x-vrms::RELATIONSHIP",
+        "ER::provisional::unit202::electromagnetism-and-induction::vrms-0-707-x-vpeak::RELATIONSHIP"
+      ],
+      "notes": "Acquisition log (order of retrieval within this session): LibreTexts/Tatum 13.11; OpenStax 15.1 and 15.4; LibreTexts/Fiore AC 1.2 (fetched three times to obtain unabridged RMS wording); MIT OCW 6.685 Class Notes 8 (PDF downloaded and read as page images); LibreTexts/Kuphaldt 1.03 then 1.02; LibreTexts/Flinn 3.05 (fetched twice); MIT OCW 6.061 Chapter 9 (PDF read as page images); SIU ET 332b Lesson 17 (PDF read as page images); Missouri S&T Basic_Instrumentation.pdf (read as page images, pages 1-4); LibreTexts Canada College 14.03 Magnetic Circuits.\n\nGUARDRAIL HANDLING.\n(1) Signed full-cycle average vs half-cycle average were evidenced SEPARATELY and are kept strictly distinct. The zero signed average is carried by Tatum 13.11, Kuphaldt 1.03 and Missouri S&T p.2; the 0.637-of-peak figure is carried by Missouri S&T p.2 ('the arithmatic average of the positive half of the cycle') and Kuphaldt 1.03 ('considering all points on the wave as positive quantities'). Kuphaldt states both in the same section and explicitly contrasts them, which is the strongest guard against the two being conflated downstream. Neither read source uses the word 'alternation'; that terminology gap is recorded on the requirement.\n(2) The 0.707 and 1.414 factors are recorded with their sine-wave-only restriction preserved from three independent read sources (Fiore: 'these ratios would not necessarily be true of non-sine waves'; Missouri S&T: 'For non sinusoidal signals, the RMS value must be calculated' / 'If the signal ... is not truly sinusoidal or non-symmetric in any way, the RMS value will vary from the standard 0.707 value'; Kuphaldt: conversion constants 'hold true only for pure forms of these waveshapes').\n(3) RMS is evidenced as an equivalent-heating/power value, not as an average. Fiore states a 1 V RMS sine 'will produce the same power dissipation and heating in a given resistor as will 1 volt DC'; Kuphaldt defines it as 'whatever magnitude of DC voltage or current would produce the same amount of heat energy dissipation through an equal resistance'; Tatum gives the mean dissipation rate as I_RMS²R; and Missouri S&T states outright that 'the RMS value is not the same thing as the average value'.\n(4) POLE-PAIRS CONVENTION - the principal tension found. Only ONE read source uses the pole-pair convention the requirements are written in: MIT OCW 6.685 Class Notes 8, whose symbol list states 'p is the number of pole- pairs' and whose text states 'so that pω_m is electrical rotation speed'. That is angular-frequency form. BOTH sources that state the relationship in Hz-and-rpm terms - LibreTexts/Flinn 3.05 (f = P/2 × N/60, combined f = PN/120) and SIU ET 332b Lesson 17 (n_s = 120f/P) - use TOTAL POLES with an explicit factor of 2, not pole pairs. This is recorded as a conflict on both machine requirements and NOT silently converted; the two conventions coincide only under P_total = 2 × P_pole-pairs. Both those requirements are therefore PARTIAL. Four further candidates for a Hz/rev-s pole-pair statement (IEC Electropedia, Britannica, ScienceDirect topics, University of Tennessee ECE 522) were all blocked - see accessFailures - so the bound of four serious candidates was reached and the gap is reported honestly rather than filled by inference.\n(5) Peak-to-peak = 2 × peak is recorded with its symmetry qualification: Fiore states it 'For a sine wave', and the Missouri S&T worked instance (260 V from +130/-130 V) is a symmetrical waveform.\n(6) Scope was held at Level 2: no phasor algebra, no Fourier decomposition and no non-sinusoidal RMS derivation was drawn on, although the sources' own caveats about non-sinusoidal waveforms were retained because they are the restriction that makes 0.707/1.414/0.637 safe to teach.\n\nAUTHORITY-CLASS NOTE. No PRIMARY_NORMATIVE_OR_STANDARDS_BODY or GOVERNMENT_OR_REGULATOR source was obtainable for this cluster: IEC Electropedia refused every request. All evidence therefore rests on ACADEMIC_OR_RESEARCH_INSTITUTION and AUTHORITATIVE_EDUCATIONAL_REFERENCE sources, which are within each requirement's declared sourceAuthorityClasses but are a weaker tier than would be ideal for the EXACT_FACT definitions (frequency, periodic time, peak, peak-to-peak, RMS). LibreTexts pages are classed as ACADEMIC_OR_RESEARCH_INSTITUTION on the basis of named university/college faculty authorship and academic platform hosting; the two vocational LibreTexts titles used for AC generation (Flinn) and the magnetic-circuits examples (Canada College) are classed more conservatively as AUTHORITATIVE_EDUCATIONAL_REFERENCE, which those two requirements permit. No forum, blog, content farm, question bank or AI-generated page was used at any point; search-result snippets were used only to locate candidates and never as evidence."
+    }
+  ],
+  "stoppingRationale": "Research stopped at exactly the evidence needed to satisfy each requirement's own acceptance criteria within its own permitted authority classes. Where an in-class source could not be obtained within the four-candidate discipline, the shortfall was recorded honestly as PARTIAL or GAP rather than resolved by citing an out-of-class source or by widening the frozen requirement. IEC Electropedia (403 on every attempt), Britannica (403), ScienceDirect (403) and the IEC 60617/60050 databases were the recurring blockers, and they are the reason no PRIMARY_NORMATIVE_OR_STANDARDS_BODY source appears anywhere in this batch.",
+  "unresolvedGaps": [
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
+      "requirementText": "Appropriate simple AC-generation calculations.",
+      "status": "PARTIAL",
+      "summary": "Downgraded VERIFIED -> PARTIAL during the internal audit pass, on BREADTH. This result's own record states that 'the read passage covers the frequency/speed/pole calculation only. It does not set out a procedure for calculating generated EMF magnitude (e.g. e = Blv or E = 2*pi*f*N*Phi forms).' The requirement is 'appropriate simple AC-generation calculations' (plural, with both PROCEDURE and CALCULATION_METHOD dimensions), and only one calculation family is procedurally evidenced. The frequency/speed/pole procedure itself is fully and genuinely evidenced with a worked instance."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+      "requirementText": "Appropriate sine-wave conversions/calculations.",
+      "status": "PARTIAL",
+      "summary": "Downgraded VERIFIED -> PARTIAL during the internal audit pass, on CALCULATION_METHOD breadth. This result's own record states that 'no read source gives a worked numerical example of the average-value conversion (0.637 x peak) or of the reverse peak-from-RMS conversion (x1.414); those directions are evidenced as stated factors rather than as worked method.' Worked numerical method IS genuinely evidenced for the peak-to-peak conversion and for RMS-from-peak; two of the conversion directions rest on stated factors alone."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementText": "Coil.",
+      "status": "PARTIAL",
+      "summary": "No source within the requirement's permitted authority classes was obtained that shows a coil with an explicit figure callout reading 'coil', nor a standardised graphical symbol for a coil/winding. The DOE figures draw the windings as repeated turns and the surrounding text names them 'field coil', but the label in the figure itself reads 'Stator field (stationary)' / 'Rotor field (rotating)', so the visual-recognition dimension rests on a compounding of figure and body text."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION",
+      "requirementText": "Dot/cross page convention.",
+      "status": "GAP",
+      "summary": "AUTHORITY-CLASS MISMATCH, not a content gap. The convention is stated explicitly and unambiguously in both directions (dot = out of page, cross = into page) in a source that was genuinely opened and read (MIT 8.02 Chapter 8, §8.3). However, MIT OpenCourseWare is ACADEMIC_OR_RESEARCH_INSTITUTION, which is NOT among this requirement's declared sourceAuthorityClasses (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). No source within the declared classes was obtained: IEC Electropedia / IEV returned HTTP 403 and Encyclopaedia Britannica returned HTTP 403. Status is therefore PARTIAL rather than VERIFIED. Recommendation to the assembling agent: either accept the class widening explicitly, or obtain the IEC 60050 / IEV entry (or an IET publication) through an unblocked route."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP",
+      "requirementText": "Equivalent rpm relationship f = n_rpm x P / 60.",
+      "status": "PARTIAL",
+      "summary": "The n_rpm-with-pole-pairs form (f = n_rpm × P_pole-pairs / 60) was not directly evidenced by any read passage; four further candidates (IEC Electropedia, Britannica, ScienceDirect topic pages, University of Tennessee ECE 522 notes) were all inaccessible - see accessFailures."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE",
+      "requirementText": "Fleming right-hand/generator rule.",
+      "status": "PARTIAL",
+      "summary": "No source within the permitted authority classes was found that states IN TEXT the finger-to-quantity assignment for the right hand (thumb = motion/velocity, first finger = field, second finger = induced current). Nidec's Fig. 2.7 'Fleming's right-hand rule' is a real figure locator but its content is an image that the fetch tool did not render, and the accompanying prose does not enumerate the fingers."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementText": "Magnetic field patterns.",
+      "status": "PARTIAL",
+      "summary": "PARTIAL on BREADTH. 'Magnetic field patterns' is plural and open-ended; in-class retrieved figures cover two patterns -- the field around a straight current-carrying conductor, and the field of a bar magnet with its poles. The SOLENOID/coil field pattern is not covered by an in-class figure cited on this requirement (a solenoid figure, SRC-USF-ETC-RHR-SOLENOID-35671, is cited on the solenoid-polarity requirement, but it is a polarity-determination figure rather than a field-pattern figure and is not double-counted here). The set of patterns this requirement intends is not enumerated by the frozen requirement text, so completeness cannot be established."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP",
+      "requirementText": "Motional/induced EMF causal concept.",
+      "status": "PARTIAL",
+      "summary": "Downgraded VERIFIED -> PARTIAL during the internal audit pass. This result's own record states that the claim 'is a disclosed compounding of the Lorentz-force mechanism (LibreTexts 13.4) with the changing-flux/Faraday statement (OpenStax 23.3). Both were read; neither single passage states both halves.' That is precisely this batch's own definition of PARTIAL ('rests on a disclosed compounding of more than one passage where no single passage states the full claim'). The compounding was already disclosed; only the status was inconsistent with it. Both halves of the causal account are genuinely evidenced and the learning point content is unaffected -- what is PARTIAL is single-passage support for the combined claim."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT",
+      "requirementText": "Motor effect.",
+      "status": "PARTIAL",
+      "summary": "The physical fact is fully evidenced, but no read source within the permitted authority classes uses the UK-syllabus TERM 'motor effect' itself; both sources title the phenomenon 'magnetic force on a current-carrying conductor/wire'. The terminological equivalence is asserted by the pipeline, not by a cited passage, so this is recorded as PARTIAL rather than VERIFIED. Encyclopaedia Britannica and IOPSpark, the natural sources for the UK term, both returned HTTP 403."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE",
+      "requirementText": "Right-hand grip rule.",
+      "status": "PARTIAL",
+      "summary": "PARTIAL on AUTHORITY DEPTH and on the CORRECT_USE_CONDITIONS dimension. The thumb-to-conventional-current / curled-fingers-to-field mapping is genuinely retrieved, but from only ONE in-class source, SRC-ARBORSCI-RHR-THREE-RULES, which is a science-equipment vendor's teaching page (permitted here only because this requirement's frozen classes include ORIGINAL_MANUFACTURER_OR_VENDOR). It is not corroborated by any other in-class source, and it states no conditions on when the rule is correctly applied, so CORRECT_USE_CONDITIONS is unresolved."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE",
+      "requirementText": "f = N × P, where f is frequency, N is rotational speed in revolutions per second, and P is the number of pole pairs.",
+      "status": "PARTIAL",
+      "summary": "No read source states the formula in the requirement's exact units (f in Hz, N in rev/s, P = pole pairs). The MIT evidence is in angular form and its 'pole-pairs' definition and the relation itself are two separate passages of the same document, so the full claim rests on a disclosed compounding plus a 2π unit conversion - hence PARTIAL rather than VERIFIED. Four further candidate sources for the Hz/rev-s pole-pair form were blocked or unreadable (see accessFailures)."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementText": "Single-loop alternator/generator parts.",
+      "status": "PARTIAL",
+      "summary": "No source read within the permitted authority classes shows a diagram explicitly captioned as a SINGLE-LOOP (one-turn) alternator with every part labelled. DOE Figures 1/5 show the correct topology and labels but depict a multi-turn winding on the rotor and are not described as single-loop; Ellingson Figure 8.7.1 is explicitly 'A rudimentary single-loop generator' but is an ACADEMIC source (outside this requirement's permitted classes) and its figure shows only the loop and field, without slip rings or brushes. Status is therefore PARTIAL: the complete labelled single-loop alternator rests on a disclosed compounding of two figures from different sources."
+    }
+  ],
+  "internalAuditPass": {
+    "performed": "Internal adversarial audit of Batch 05, conducted after assembly and before any Product Architect review.",
+    "authorityClassEnforcement": "Every cited candidate source was checked mechanically against its own requirement's frozen sourceAuthorityClasses. Fourteen citations across nine requirements were found to sit outside the permitted classes. They were demoted to `evaluatedButOutOfPermittedAuthorityClass` and every normalized claim resting solely on them was removed. One requirement (dot-cross-page-convention) was left with NO in-class source at all and is recorded as a GAP.",
+    "individualReJudgement": "A blanket rule downgrading every result that lost a claim proved over-conservative, so four results were then re-judged individually on their surviving in-class evidence. magnetic-flux-density and magnetic-poles were RESTORED to VERIFIED because their surviving in-class sources cover the requirement's own dimensions in full. magnetic-field-patterns and right-hand-grip-rule remain PARTIAL, and their normalized claims were rebuilt from the surviving in-class passages, since the originals had all been attributed to out-of-class sources.",
+    "learningPointReadiness": "No learning point is marked READY over PARTIAL or GAP evidence. Readiness is derived mechanically from the underlying evidence statuses during generation, and the generator fails the build if an authored readiness contradicts the evidence.",
+    "registerIntegrity": "SOURCE-REGISTER.json's supportsRequirementSuffixes is derived mechanically from actual citations, so the over-claim defect found in Batch 04 cannot occur here by construction.",
+    "statusOfBatch": "Remains PROPOSED_FOR_PA_REVIEW and unfrozen. An internal audit is a progression gate, not acceptance, and confers no Product Architect approval."
+  }
+}

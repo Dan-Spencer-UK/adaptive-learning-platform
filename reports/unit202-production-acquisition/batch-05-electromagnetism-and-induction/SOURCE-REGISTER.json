@@ -1,0 +1,971 @@
+{
+  "batchId": "batch-05",
+  "sourceCount": 48,
+  "reusedSourceCount": 0,
+  "newSourceCount": 48,
+  "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
+  "reusedSourceIds": [],
+  "sources": [
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
+      "publisher": "MIT OpenCourseWare, Massachusetts Institute of Technology, Department of Physics",
+      "title": "8.02T Electricity and Magnetism (Spring 2005) — Chapter 8: Introduction to Magnetic Fields (course notes PDF)",
+      "url": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Primary teaching text authored by the MIT Department of Physics and published through MIT OpenCourseWare. The PDF was downloaded and the actual typeset pages (contents page, doc pp. 8-2 through 5) were read page-by-page, including the figures.",
+      "locator": "§8.1 Introduction (doc p. 8-2), Figures 8.1.1, 8.1.2, 8.1.3; §8.2 The Definition of a Magnetic Field (doc p. 2); §8.3 Magnetic Force on a Current-Carrying Wire (doc pp. 3-4), Figures 8.3.1 and 8.3.2",
+      "supportsRequirementSuffixes": [
+        "magnetic-attraction-repulsion::EXACT_FACT",
+        "magnetic-flux-density-meaning-symbol-unit::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MIT802-CH9-SOURCES",
+      "publisher": "MIT OpenCourseWare, Massachusetts Institute of Technology, Department of Physics",
+      "title": "8.02 Physics II: Electricity and Magnetism — Chapter 9: Sources of Magnetic Fields (course notes PDF)",
+      "url": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "MIT Department of Physics course notes published via MIT OpenCourseWare. PDF downloaded; contents pages and doc pp. 5, 6, 7, 19, 20, 21, 22 read as rendered pages including all figures.",
+      "locator": "§9.1 Biot-Savart Law, Example 9.1 (doc p. 6), Figure 9.1.4 'Magnetic field lines due to an infinite wire carrying current I' and Figure 9.1.5 'Direction of the magnetic field due to an infinite straight wire'; §9.4 Solenoid (doc pp. 19-20), Figure 9.4.1 'Magnetic field lines of a solenoid'; §9.4 (doc p. 22), Figure 9.4.4",
+      "supportsRequirementSuffixes": [
+        "basic-electromagnet-principle::EXACT_FACT",
+        "magnetic-field-around-a-current-carrying-conductor::EXACT_FACT",
+        "solenoid-magnetic-field::EXACT_FACT",
+        "solenoid-polarity::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MIT802-CH10-FLUX",
+      "publisher": "MIT OpenCourseWare, Massachusetts Institute of Technology, Department of Physics",
+      "title": "8.02T Electricity and Magnetism (Spring 2005) — Chapter 10: Faraday's Law of Induction (course notes PDF)",
+      "url": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/724a162b8c03487f5faae202b395fadd_cha10faraday_law.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "MIT Department of Physics course notes published via MIT OpenCourseWare. PDF downloaded; doc pp. 2-4 read as rendered pages including equations and figures.",
+      "locator": "§10.1.1 Magnetic Flux (doc p. 2), Figure 10.1.2 'Magnetic flux through a surface', Equations (10.1.1) and (10.1.2), and the SI-unit statement immediately following",
+      "supportsRequirementSuffixes": [
+        "b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+        "magnetic-flux-meaning-symbol-unit::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-FIORE-MAGCIRCUITS",
+      "publisher": "Engineering LibreTexts (author: James M. Fiore, Mohawk Valley Community College)",
+      "title": "DC Electrical Circuit Analysis: A Practical Approach — 10.3: Magnetic Circuits",
+      "url": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/DC_Electrical_Circuit_Analysis_-_A_Practical_Approach_(Fiore)/10:_Magnetic_Circuits_and_Transformers/10.3:_Magnetic_Circuits",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "Peer-reviewed open engineering textbook hosted on the LibreTexts platform, attributed to a named electrical-engineering author and institution. Page was fetched and the relevant equation block read twice with different prompts to confirm the wording.",
+      "locator": "Section 10.3 'Magnetic Circuits', subsection 'Ohm's Law for Magnetic Circuits (Hopkinson's or Rowland's Law)', Equation 10.4 and the definition list immediately following it",
+      "supportsRequirementSuffixes": [
+        "b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-ELLINGSON-FLUXDENSITY",
+      "publisher": "Physics LibreTexts (author: Steven W. Ellingson, Virginia Polytechnic Institute and State University)",
+      "title": "Electromagnetics I (Ellingson) — 2.5: Magnetic Flux Density",
+      "url": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/02%3A_Electric_and_Magnetic_Fields/2.05%3A_Magnetic_Flux_Density",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University-authored electromagnetics textbook (Virginia Tech) published openly; the section page was fetched and read.",
+      "locator": "Section 2.5 'Magnetic Flux Density' — boxed definition and the paragraph beginning 'The preference for referring to B as a \"flux density\"...'",
+      "supportsRequirementSuffixes": [
+        "magnetic-flux-density-meaning-symbol-unit::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-MAGCUR",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C. R. Nave)",
+      "title": "Magnetic Field of Current",
+      "url": "https://hyperphysics.gsu.edu/hbase/magcur.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Long-established physics reference maintained by the Department of Physics and Astronomy at Georgia State University. Page fetched and read at the corrected hostname (hyperphysics.gsu.edu) after the legacy hostname failed TLS validation.",
+      "locator": "Page 'Magnetic Field of Current', section heading 'Magnetic Field of Current', body text accompanying figure imgmag/magcur.gif",
+      "supportsRequirementSuffixes": [
+        "magnetic-field-around-a-current-carrying-conductor::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-SOLENOID",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C. R. Nave)",
+      "title": "Solenoids as Magnetic Field Sources",
+      "url": "https://hyperphysics.gsu.edu/hbase/magnetic/solenoid.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University-maintained physics reference (Georgia State University). Page fetched and read.",
+      "locator": "Page heading 'Solenoids as Magnetic Field Sources', opening paragraph and the idealization note",
+      "supportsRequirementSuffixes": [
+        "solenoid-magnetic-field::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-MAGFLUX",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C. R. Nave)",
+      "title": "Magnetic Flux",
+      "url": "https://hyperphysics.gsu.edu/hbase/magnetic/fluxmg.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University-maintained physics reference (Georgia State University). Page fetched and read.",
+      "locator": "Page 'Magnetic Flux' — main definition sentence, the perpendicular-component sentence, and the unit paragraph naming the Weber (Wb)",
+      "supportsRequirementSuffixes": [
+        "b-phi-a-and-appropriate-rearrangement-use::FORMULA_OR_RULE",
+        "magnetic-flux-meaning-symbol-unit::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-UP2-11-1",
+      "publisher": "OpenStax, Rice University",
+      "title": "University Physics Volume 2 — 11.1 Magnetism and Its Historical Discoveries",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/11-1-magnetism-and-its-historical-discoveries",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed university physics textbook published by OpenStax, an initiative of Rice University. Section fetched and read twice with different prompts.",
+      "locator": "Section 11.1 'Magnetism and Its Historical Discoveries', body text on poles; Figure 11.2 (Earth's magnetic field)",
+      "supportsRequirementSuffixes": [
+        "magnetic-attraction-repulsion::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-UP2-12-2",
+      "publisher": "OpenStax, Rice University",
+      "title": "University Physics Volume 2 — 12.2 Magnetic Field Due to a Thin Straight Wire",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/12-2-magnetic-field-due-to-a-thin-straight-wire",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed university physics textbook published by OpenStax (Rice University). Section fetched and read.",
+      "locator": "Section 12.2 'Magnetic Field Due to a Thin Straight Wire', right-hand-rule statement and Figure 12.6",
+      "supportsRequirementSuffixes": [
+        "magnetic-field-around-a-current-carrying-conductor::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-CP2E-22-9",
+      "publisher": "OpenStax, Rice University",
+      "title": "College Physics 2e — 22.9 Magnetic Fields Produced by Currents: Ampere's Law",
+      "url": "https://openstax.org/books/college-physics-2e/pages/22-9-magnetic-fields-produced-by-currents-amperes-law",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed college physics textbook published by OpenStax (Rice University). Section fetched and read.",
+      "locator": "Section 22.9, statement of Right Hand Rule 2 (RHR-2); Figure 22.37 (straight wire), Figure 22.38 (circular loop), Figure 22.39 (solenoid)",
+      "supportsRequirementSuffixes": [
+        "solenoid-magnetic-field::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-PHYSICS-20-1",
+      "publisher": "OpenStax, Rice University",
+      "title": "Physics (OpenStax high-school title) — 20.1 Magnetic Fields, Field Lines, and Force",
+      "url": "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed physics textbook published by OpenStax (Rice University). Section fetched and read twice with different prompts to try to obtain both halves of the dot/cross convention.",
+      "locator": "Section 20.1; Figure 20.20 caption; Figure 20.9, Figure 20.11, Figure 20.15 captions; body sentence 'Like poles repel and unlike poles attract.'",
+      "supportsRequirementSuffixes": [],
+      "citedAsVerifyingEvidence": false,
+      "registrationNote": "Genuinely retrieved and read, but not cited as verifying evidence for any requirement in this batch -- its authority class is outside the permitted classes of every requirement it was evaluated for. Retained for the audit trail."
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-USF-ETC-RHR-SOLENOID-35671",
+      "publisher": "Florida Center for Instructional Technology, College of Education, University of South Florida (ClipArt ETC), reproducing Hawkins and Staff, Hawkins Electrical Guide Number One (New York: Theo. Audel and Company, 1917)",
+      "title": "Right Hand Rule, Solenoid — ClipArt ETC illustration 35671",
+      "url": "https://etc.usf.edu/clipart/35600/35671/rhrsole_35671.htm",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "The illustration and its caption are reproduced verbatim from Hawkins Electrical Guide Number One (1917) p. 117, an established practical electrical engineering handbook, and are republished with full citation by a university instructional-technology centre. Historical vintage is disclosed as a limitation.",
+      "locator": "ClipArt ETC illustration ID 35671, title 'Right Hand Rule, Solenoid'; source cited on the page as Hawkins and Staff, Hawkins Electrical Guide Number One (New York: Theo. Audel and Company, 1917), page 117",
+      "supportsRequirementSuffixes": [
+        "solenoid-polarity::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-USF-ETC-RHR-CONDUCTOR-35667",
+      "publisher": "Florida Center for Instructional Technology, University of South Florida (ClipArt ETC), reproducing Hawkins and Staff, Hawkins Electrical Guide Number One (1917)",
+      "title": "Right Hand Rule — ClipArt ETC illustration 35667",
+      "url": "https://etc.usf.edu/clipart/35600/35667/rhp_35667.htm",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Verbatim reproduction of a figure and caption from Hawkins Electrical Guide Number One (1917) p. 114, an established practical electrical engineering handbook, republished with citation by the University of South Florida.",
+      "locator": "ClipArt ETC illustration ID 35667, title 'Right Hand Rule'; cited source Hawkins and Staff, Hawkins Electrical Guide Number One (New York: Theo. Audel and Company, 1917), page 114",
+      "supportsRequirementSuffixes": [
+        "right-hand-grip-rule::OPERATIONAL_USE_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-USF-ETC-CONDUCTORFIELD-35665",
+      "publisher": "Florida Center for Instructional Technology, University of South Florida (ClipArt ETC), reproducing Hawkins and Staff, Hawkins Electrical Guide Number One (1917)",
+      "title": "Magnetic Field — ClipArt ETC illustration 35665",
+      "url": "https://etc.usf.edu/clipart/35600/35665/mag_35665.htm",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Verbatim reproduction of a figure and caption from Hawkins Electrical Guide Number One (1917) p. 113, an established practical electrical engineering handbook, republished with citation by the University of South Florida.",
+      "locator": "ClipArt ETC illustration ID 35665, title 'Magnetic Field'; cited source Hawkins and Staff, Hawkins Electrical Guide Number One (New York: Theo. Audel and Company, 1917), page 113",
+      "supportsRequirementSuffixes": [
+        "magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-USF-ETC-MAGFIELD-POLES-35728",
+      "publisher": "Florida Center for Instructional Technology, University of South Florida (ClipArt ETC), reproducing Philip Atkinson, Electricity for Everybody; Its Nature and Uses Explained (The Century Company, 1903)",
+      "title": "Magnetic Field — ClipArt ETC illustration 35728",
+      "url": "https://etc.usf.edu/clipart/35700/35728/mag_field_35728.htm",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Figure and caption reproduced with full citation to Atkinson (1903) p. 94 by a university instructional-technology centre. Weaker than the Hawkins handbook items (Atkinson is a popular-exposition work) and historical; both limitations are disclosed.",
+      "locator": "ClipArt ETC illustration ID 35728, title 'Magnetic Field'; cited source Philip Atkinson, Electricity for Everybody; Its Nature and Uses Explained (The Century Company, 1903), page 94",
+      "supportsRequirementSuffixes": [
+        "magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-USF-ETC-MAGPOLES-20143",
+      "publisher": "Florida Center for Instructional Technology, University of South Florida (ClipArt ETC), reproducing Elroy M. Avery, School Physics (New York: Sheldon and Company, 1895)",
+      "title": "Magnetic poles — ClipArt ETC illustration 20143 (page title rendered as 'Magnetic polse')",
+      "url": "https://etc.usf.edu/clipart/20100/20143/magpoles_20143.htm",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Figure and caption reproduced with full citation to Avery, School Physics (1895) p. 459 by a university instructional-technology centre. Historical vintage disclosed.",
+      "locator": "ClipArt ETC illustration ID 20143; cited source Elroy M. Avery, School Physics (New York: Sheldon and Company, 1895), page 459",
+      "supportsRequirementSuffixes": [
+        "magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-USF-ETC-ATTRACTPOLES-20144",
+      "publisher": "Florida Center for Instructional Technology, University of South Florida (ClipArt ETC), reproducing Elroy M. Avery, School Physics (New York: Sheldon and Company, 1895)",
+      "title": "Attractive poles — ClipArt ETC illustration 20144",
+      "url": "https://etc.usf.edu/clipart/20100/20144/attractpoles_20144.htm",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Figure and caption reproduced with full citation to Avery, School Physics (1895) p. 459 by a university instructional-technology centre. Historical vintage disclosed.",
+      "locator": "ClipArt ETC illustration ID 20144; cited source Elroy M. Avery, School Physics (New York: Sheldon and Company, 1895), page 459",
+      "supportsRequirementSuffixes": [
+        "magnetic-attraction-repulsion::EXACT_FACT",
+        "magnetic-poles::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MAGLAB-ELECTROMAGNETS",
+      "publisher": "National High Magnetic Field Laboratory (National MagLab), Florida State University / University of Florida / Los Alamos National Laboratory, funded by the National Science Foundation and the State of Florida — Magnet Academy",
+      "title": "Electromagnets — Magnet Academy",
+      "url": "https://nationalmaglab.org/magnet-academy/plan-a-lesson/electromagnets/",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Public education material published by a national research laboratory specialising in magnet science. Page fetched and read.",
+      "locator": "Magnet Academy page 'Electromagnets' — opening definition paragraph and the coil/field-collapse statements",
+      "supportsRequirementSuffixes": [
+        "basic-electromagnet-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-COALINGA-CONVCURRENT",
+      "publisher": "Physics LibreTexts — Coalinga College, Physical Science for Educators (CID: PHYS 14)",
+      "title": "12.3: Magnetic Fields — subsection 'Magnetic Field Around a Current Carrying Wire'",
+      "url": "https://phys.libretexts.org/Courses/Coalinga_College/Physical_Science_for_Educators_(CID%3A_PHYS_14)/12%3A_Magnetism/12.03%3A_Magnetic_Fields",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "College course text on the LibreTexts academic OER platform. Used specifically because it states the conventional-current qualification and the electron-flow caveat explicitly; page fetched and read.",
+      "locator": "Section 12.3 'Magnetic Fields', heading 'Magnetic Field Around a Current Carrying Wire'",
+      "supportsRequirementSuffixes": [],
+      "citedAsVerifyingEvidence": false,
+      "registrationNote": "Genuinely retrieved and read, but not cited as verifying evidence for any requirement in this batch -- its authority class is outside the permitted classes of every requirement it was evaluated for. Retained for the audit trail."
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ARBORSCI-RHR-THREE-RULES",
+      "publisher": "Arbor Scientific (science-teaching equipment manufacturer/vendor)",
+      "title": "Three Right Hand Rules of Electromagnetism",
+      "url": "https://www.arborsci.com/blogs/cool/three-right-hand-rules-of-electromagnetism",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Vendor technical/education article. Included ONLY because ORIGINAL_MANUFACTURER_OR_VENDOR is an explicitly permitted class for the right-hand-grip-rule and because it states the conventional-current mapping in terms of positive-charge flow. It is a vendor blog article, which sits at the weak edge of the acquisition rules, so it is used as corroboration and never as the sole basis for a VERIFIED status.",
+      "locator": "Headings 'Rule #1 – Oersted's Law' and 'Rule #3 – The Solenoid Rule'",
+      "supportsRequirementSuffixes": [
+        "right-hand-grip-rule::OPERATIONAL_USE_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-FORWIR",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics, C. R. Nave)",
+      "title": "Magnetic Force on a Current-Carrying Wire (HyperPhysics)",
+      "url": "https://hyperphysics.gsu.edu/hbase/magnetic/forwir2.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "HyperPhysics is a physics reference maintained by the Department of Physics and Astronomy at Georgia State University, hosted on the university's own domain.",
+      "locator": "Page heading 'Magnetic Force on a Current-Carrying Wire'",
+      "supportsRequirementSuffixes": [
+        "motor-effect::EXACT_FACT",
+        "scalar-f-bil::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-CP2E-22-7",
+      "publisher": "OpenStax, Rice University",
+      "title": "College Physics 2e, 22.7 Magnetic Force on a Current-Carrying Conductor",
+      "url": "https://openstax.org/books/college-physics-2e/pages/22-7-magnetic-force-on-a-current-carrying-conductor",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed openly licensed university physics textbook published by OpenStax, an initiative of Rice University.",
+      "locator": "Section 22.7, Equations 22.15 and 22.16",
+      "supportsRequirementSuffixes": [
+        "motor-effect::EXACT_FACT",
+        "scalar-f-bil::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-CP2E-23-3",
+      "publisher": "OpenStax, Rice University",
+      "title": "College Physics 2e, 23.3 Motional Emf",
+      "url": "https://openstax.org/books/college-physics-2e/pages/23-3-motional-emf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed openly licensed university physics textbook published by OpenStax, an initiative of Rice University.",
+      "locator": "Section 23.3, Equation 23.9",
+      "supportsRequirementSuffixes": [
+        "e-blv::RELATIONSHIP",
+        "motional-induced-emf-causal-concept::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-UP2-13-3",
+      "publisher": "OpenStax, Rice University",
+      "title": "University Physics Volume 2, 13.3 Motional Emf",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/13-3-motional-emf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed openly licensed calculus-based university physics textbook published by OpenStax, an initiative of Rice University.",
+      "locator": "Section 13.3 Motional Emf, Equation 13.5",
+      "supportsRequirementSuffixes": [
+        "e-blv::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-UP2-13-4",
+      "publisher": "Physics LibreTexts (LibreTexts project, University of California, Davis)",
+      "title": "13.4: Motional Emf — University Physics II (OpenStax) on Physics LibreTexts",
+      "url": "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/13:_Electromagnetic_Induction/13.04:_Motional_Emf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "LibreTexts is an academic open-textbook platform led by the University of California, Davis and funded by the US National Science Foundation; this page hosts the OpenStax University Physics text.",
+      "locator": "Section 13.4 Motional Emf",
+      "supportsRequirementSuffixes": [
+        "e-blv::RELATIONSHIP",
+        "motional-induced-emf-causal-concept::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-COALINGA-GENERATOR",
+      "publisher": "Physics LibreTexts (LibreTexts project) — Coalinga College, Physical Science for Educators (CID: PHYS 14)",
+      "title": "12.5.4: Generator",
+      "url": "https://phys.libretexts.org/Courses/Coalinga_College/Physical_Science_for_Educators_(CID:_PHYS_14)/12:_Magnetism/12.05:_Electromagnetism/12.5.04:_Generator",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "College course text hosted on the academic LibreTexts platform (UC Davis-led, NSF-funded) under Coalinga College's course shell.",
+      "locator": "Section 12.5.4 Generator; Figure 19.4.2 'Diagram of an electrical generator'",
+      "supportsRequirementSuffixes": [
+        "maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
+        "no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT",
+        "rotation-field-cutting-causality::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-ELLINGSON-8-7",
+      "publisher": "Physics LibreTexts — Electromagnetics I, S. W. Ellingson (Virginia Polytechnic Institute and State University)",
+      "title": "8.7: The Electric Generator",
+      "url": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/08%3A_Time-Varying_Fields/8.07%3A_The_Electric_Generator",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University-level electromagnetics textbook authored by a Virginia Tech professor, hosted on the academic LibreTexts platform.",
+      "locator": "Section 8.7 The Electric Generator; Figure 8.7.1 'A rudimentary single-loop generator, shown at time t=0'",
+      "supportsRequirementSuffixes": [
+        "maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
+        "no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT",
+        "rotation-field-cutting-causality::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-WF-RELAY-5-1",
+      "publisher": "Workforce LibreTexts — 'Lessons In Electric Circuits' Volume IV (Digital), Tony R. Kuphaldt",
+      "title": "5.1: Relay Construction",
+      "url": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_IV_-_Digital_Circuitry_(Kuphaldt)/05:_Electromechanical_Relays/5.01:_Relay_Construction",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Established open electronics textbook hosted on the academic LibreTexts platform (UC Davis-led, NSF-funded) as part of its Workforce library.",
+      "locator": "Chapter 5 'Electromechanical Relays', Section 5.1 'Relay Construction'",
+      "supportsRequirementSuffixes": [
+        "relay::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-WF-CONTACTOR-5-2",
+      "publisher": "Workforce LibreTexts — 'Lessons In Electric Circuits' Volume IV (Digital), Tony R. Kuphaldt",
+      "title": "5.2: Contactors",
+      "url": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_IV_-_Digital_Circuitry_(Kuphaldt)/05:_Electromechanical_Relays/5.02:_Contactors",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Established open electronics textbook hosted on the academic LibreTexts platform (UC Davis-led, NSF-funded) as part of its Workforce library.",
+      "locator": "Chapter 5 'Electromechanical Relays', Section 5.2 'Contactors' (subheading 'All About Contactors')",
+      "supportsRequirementSuffixes": [
+        "contactor::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIDEC-BASIC-00012",
+      "publisher": "Nidec Corporation",
+      "title": "2-1-2. Basics Rotation Principles (Motor Technology — Small-size and precision motors)",
+      "url": "https://www.nidec.com/en/technology/motor/basic/00012/",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Nidec Corporation is a major original manufacturer of electric motors; this is its own published motor-technology reference material.",
+      "locator": "Section 2-1-2 'Basics Rotation Principles'; Equation (2.1); Fig. 2.2 'Fleming's left-hand rule'",
+      "supportsRequirementSuffixes": [
+        "fleming-left-hand-rule::OPERATIONAL_USE_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIDEC-BASIC-00013",
+      "publisher": "Nidec Corporation",
+      "title": "2-1-3. Rotating Speed of DC Motor and Counter-electromotive Force",
+      "url": "https://www.nidec.com/en/technology/motor/basic/00013/",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Nidec Corporation is a major original manufacturer of electric motors; this is its own published motor-technology reference material.",
+      "locator": "Section 2-1-3; Equation (2.5); Fig. 2.7 'Fleming's right-hand rule'",
+      "supportsRequirementSuffixes": [
+        "fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NIDEC-GLOSSARY-FLEMING",
+      "publisher": "Nidec Corporation",
+      "title": "Fleming's law (Motor Technology Glossary)",
+      "url": "https://www.nidec.com/en/technology/motor/glossary/item/fleming_law/",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Nidec Corporation is a major original manufacturer of electric motors; this is its own published motor-technology glossary.",
+      "locator": "Glossary entry 'Fleming's law'",
+      "supportsRequirementSuffixes": [
+        "fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+        "fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ROHM-TECHWEB-74",
+      "publisher": "ROHM Co., Ltd. (ROHM TechWeb)",
+      "title": "Power Generation Principle of Motors — Motor Rotation Principles and Power Generation Principles",
+      "url": "https://techweb.rohm.com/product/motor/motor-driver/74/",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "ROHM is an original semiconductor/motor-driver manufacturer; TechWeb is its own published engineering reference material.",
+      "locator": "Article 'Power Generation Principle of Motors', paragraph accompanying the left-hand figure",
+      "supportsRequirementSuffixes": [
+        "fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MOOG-SLIPRING-FUNDAMENTALS",
+      "publisher": "Moog Inc.",
+      "title": "Slip Ring Fundamentals",
+      "url": "https://www.moog.com/news/blog/Industrial/slip-ring-fundamentals.html",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Moog Inc. is an original manufacturer of slip-ring assemblies; this is its own product-technology explanation on its corporate site.",
+      "locator": "Article 'Slip Ring Fundamentals', figure captioned 'basic slip ring configuration' and its accompanying numbered component list",
+      "supportsRequirementSuffixes": [
+        "brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "The PDF was downloaded by the fetch tool and its pages were then rendered and read as page images; raw source bytes were not hashed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MERSEN-CARBON-BRUSH-GUIDE",
+      "publisher": "Mersen (Mersen USA)",
+      "title": "Carbon Brush Technical Guide (Process Industries / Transportation / Energy — Carbon Brushes for Motors)",
+      "url": "https://us.mersen.com/sites/default/files/files_imported/2-ptt-carbon-brush-technical-guide-mersen.pdf",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Mersen is an original manufacturer of carbon brushes and brush-holder hardware; this is its own published technical guide/catalogue.",
+      "locator": "Section 1 'WHAT IS A CARBON BRUSH? (ALSO CALLED \"MOTOR BRUSH\")', p.3; Section 3 'MAIN CARBON BRUSH TYPES, DIMENSIONS AND HARDWARE', p.18-19",
+      "supportsRequirementSuffixes": [
+        "brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "The PDF was downloaded by the fetch tool and its pages were then rendered and read as page images; raw source bytes were not hashed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-DOE-HDBK-1011-3-ES10",
+      "publisher": "U.S. Department of Energy (DOE-HDBK-1011/3-92, June 1992)",
+      "title": "DOE Fundamentals Handbook — Electrical Science, Volume 3 of 4, Module 10 'AC Generators'",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "A formally issued, publicly released engineering handbook (DOE-HDBK-1011/3-92) in the DOE Technical Standards Program. It is simultaneously a GOVERNMENT_OR_REGULATOR publication; it is classed here as an established engineering handbook so that it fits the recognition requirements' permitted authority classes, and the dual status is disclosed.",
+      "locator": "Module ES-10 'AC Generators': Figure 1 'Basic AC Generator' (Page 2); 'Slip Rings' (Page 3); Figure 3 'Simple AC Generator' with 'Theory of Operation' (Page 5); Figure 5 'Stationary Field, Rotating Armature AC Generator' (Page 10)",
+      "supportsRequirementSuffixes": [
+        "brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT",
+        "single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-TATUM-EM-13-11",
+      "publisher": "Physics LibreTexts (LibreTexts open-textbook project) - text authored by Jeremy Tatum, University of Victoria",
+      "title": "Electricity and Magnetism (Tatum), 13: Alternating Current - 13.11: Root-mean-square values, power and impedance matching",
+      "url": "https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electricity_and_Magnetism_(Tatum)/13:_Alternating_Current/13.11:_Root-mean-square_values,_power_and_impedance_matching",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University-authored open physics textbook (J. Tatum, University of Victoria) hosted on the academic LibreTexts platform; not a forum, blog or question bank.",
+      "locator": "Section 13.11, opening paragraph, third paragraph, and Equation 13.11.2",
+      "supportsRequirementSuffixes": [
+        "analogous-current-relationship-where-applicable::RELATIONSHIP",
+        "rms::EXACT_FACT",
+        "signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
+        "vrms-0-707-x-vpeak::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-FIORE-AC-1-2",
+      "publisher": "Engineering LibreTexts - AC Electrical Circuit Analysis: A Practical Approach, James M. Fiore (Mohawk Valley Community College)",
+      "title": "AC Electrical Circuit Analysis: A Practical Approach (Fiore), 01: Fundamentals - 1.2: Sinusoidal Waveforms",
+      "url": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/AC_Electrical_Circuit_Analysis%3A_A_Practical_Approach_(Fiore)/01%3A_Fundamentals/1.2%3A_Sinusoidal_Waveforms",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "College-faculty-authored open engineering textbook (J. Fiore, Mohawk Valley Community College) hosted on the academic LibreTexts platform; peer-adopted teaching text, not a content farm.",
+      "locator": "Section 1.2 Sinusoidal Waveforms - amplitude/peak and peak-to-peak paragraph; period/frequency paragraph; RMS subsection including summation sentence",
+      "supportsRequirementSuffixes": [
+        "amplitude-peak::EXACT_FACT",
+        "frequency::EXACT_FACT",
+        "peak-to-peak::EXACT_FACT",
+        "periodic-time::EXACT_FACT",
+        "rms::EXACT_FACT",
+        "t-1-f::RELATIONSHIP",
+        "vpeak-1-414-x-vrms::RELATIONSHIP",
+        "vrms-0-707-x-vpeak::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-02",
+      "publisher": "Workforce LibreTexts - Electric Circuits II: Alternating Current (Kuphaldt)",
+      "title": "Electric Circuits II - Alternating Current (Kuphaldt), 01: Basic AC Theory - 1.02: AC Waveforms",
+      "url": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.02%3A_AC_Waveforms",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Long-established open electrical-engineering textbook (Kuphaldt, 'Lessons In Electric Circuits') curated and hosted on the academic LibreTexts platform and adopted in college electronics programmes.",
+      "locator": "Section 1.02 AC Waveforms - sine-wave paragraph, cycle definition, period and frequency definitions",
+      "supportsRequirementSuffixes": [
+        "alternating-sinusoidal-output-concept::EXACT_FACT",
+        "frequency::EXACT_FACT",
+        "periodic-time::EXACT_FACT",
+        "t-1-f::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03",
+      "publisher": "Workforce LibreTexts - Electric Circuits II: Alternating Current (Kuphaldt)",
+      "title": "Electric Circuits II - Alternating Current (Kuphaldt), 01: Basic AC Theory - 1.03: Measurements of AC Magnitude",
+      "url": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/01%3A_Basic_AC_Theory/1.03%3A_Measurements_of_AC_Magnitude",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Long-established open electrical-engineering textbook curated and hosted on the academic LibreTexts platform; used as a college electronics text.",
+      "locator": "Section 1.03 Measurements of AC Magnitude - peak, peak-to-peak, average value and RMS value paragraphs, and the closing note on conversion constants",
+      "supportsRequirementSuffixes": [
+        "amplitude-peak::EXACT_FACT",
+        "analogous-current-relationship-where-applicable::RELATIONSHIP",
+        "appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+        "average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
+        "peak-to-peak::EXACT_FACT",
+        "rms::EXACT_FACT",
+        "signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
+        "vrms-0-707-x-vpeak::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MST-COTTRELL-BASIC-INSTRUMENTATION",
+      "publisher": "Missouri University of Science and Technology (web.mst.edu), Department of Mechanical and Aerospace Engineering - ME 240 course resources",
+      "title": "General electronic instrumentation (Basic Electronic instrumentation, Version 1.0, 7/13/2007), Mitchell S. Cottrell",
+      "url": "https://web.mst.edu/~cottrell/me240/resources/basic_inst/Basic_Instrumentation.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Course handout published on a US university (Missouri S&T) engineering-department web space and authored by named university staff; read directly from the PDF pages.",
+      "locator": "Section 1.1 Voltage Measurements, pages 2-3 (bullet definitions of Peak Voltage, Peak to Peak Voltage, Average Voltage, RMS or Effective Voltage; RMS formula; annotated waveform figure labelled 70.7% EFFECTIVE / 63.6% AVERAGE); page 4 first paragraph",
+      "supportsRequirementSuffixes": [
+        "amplitude-peak::EXACT_FACT",
+        "appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+        "average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
+        "peak-to-peak::EXACT_FACT",
+        "rms::EXACT_FACT",
+        "signed-average-of-a-complete-symmetrical-sine-wave-cycle-0::RELATIONSHIP",
+        "vpeak-1-414-x-vrms::RELATIONSHIP",
+        "vrms-0-707-x-vpeak::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-FLINN-3-05",
+      "publisher": "Workforce LibreTexts - Trigonometry and Single Phase AC Generation for Electricians (Flinn)",
+      "title": "Trigonometry and Single Phase AC Generation for Electricians (Flinn), 03: AC Generation - 3.05: Frequency and Alternators",
+      "url": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Trigonometry_and_Single_Phase_AC_Generation_for_Electricians_(Flinn)/03%3A_AC_Generation/3.05%3A_Frequency_and_Alternators",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "Open vocational-education textbook for electricians hosted on the academic LibreTexts (Workforce) platform; written for the same apprenticeship level as UK Level-2 electrical qualifications.",
+      "locator": "Section 3.05 Frequency and Alternators - worked 1800 RPM two-pole illustration; formula statement f = P/2 x N/60 and f = PN/120 with symbol definitions",
+      "supportsRequirementSuffixes": [
+        "appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
+        "rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MITOCW-6685-CH8",
+      "publisher": "MIT OpenCourseWare - Massachusetts Institute of Technology, Department of Electrical Engineering and Computer Science",
+      "title": "6.685 Electric Machinery, Class Notes 8: Analytic Design Evaluation of Induction Machines, J.L. Kirtley Jr. (2005)",
+      "url": "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/0de9b020130c619030b631311d920070_MIT6_685F13_chapter8.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "MIT OpenCourseWare graduate class notes authored by a named MIT professor; PDF pages read directly.",
+      "locator": "Section 2 Induction Motor Transformer Model - Equation (12) and the frequency glossary immediately following it (page 3); the sentence opening page 4; and the machine-parameter symbol list on page 5",
+      "supportsRequirementSuffixes": [
+        "rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MITOCW-6061-CH9",
+      "publisher": "MIT OpenCourseWare - Massachusetts Institute of Technology, Department of Electrical Engineering and Computer Science",
+      "title": "6.061 Introduction to Power Systems, Class Notes Chapter 9: Synchronous Machine and Winding Models, J.L. Kirtley Jr. (2003)",
+      "url": "https://ocw.mit.edu/courses/6-061-introduction-to-electric-power-systems-spring-2011/f99554aa923748fa210a30a874ee5fc8_MIT6_061S11_ch9.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "MIT OpenCourseWare class notes authored by a named MIT professor; PDF pages read directly.",
+      "locator": "Section 5 Balanced Operation, page 5 - the balanced-operation substitution list beginning with the relation between the electrical angle and the rotor physical angle",
+      "supportsRequirementSuffixes": [
+        "rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-SIU-ET332B-LESSON17",
+      "publisher": "Southern Illinois University Carbondale, College of Engineering (engr.siu.edu) - ET 332b: AC Motors, Generators and Power Systems",
+      "title": "Lesson 17: Synchronous Machines, ET 332b (course lecture slides, 1/15/2016)",
+      "url": "https://engr.siu.edu/staff/spezia/Web332b/Lecture%20Notes/Lesson%2017_et332b.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University course lecture notes published on a US university engineering-faculty web space; PDF slides read directly as images.",
+      "locator": "Slide 'Synchronous Motor Operation' (page 4 of the handout, lower slide) - synchronous speed equation and its 'Where' symbol key",
+      "supportsRequirementSuffixes": [
+        "equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-MAGNETIC-CIRCUITS-14-03",
+      "publisher": "Engineering LibreTexts - Canada College, Circuits and Devices (text derived from J. M. Fiore)",
+      "title": "Circuits and Devices, 14: Advanced Topic - Magnetic Circuits and Transformers - 14.03: Magnetic Circuits",
+      "url": "https://eng.libretexts.org/Courses/Canada_College/Circuits_and_Devices/14%3A_Advanced_Topic-_Magnetic_Circuits_and_Transformers/14.03%3A_Magnetic_Circuits",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "College course text hosted on the academic LibreTexts platform, derived from J. M. Fiore's open engineering textbook; contains fully worked, step-by-step electromagnetism calculations.",
+      "locator": "Section 14.03 Magnetic Circuits - worked Examples numbered 10.3.1, 10.3.2 and 10.3.3 in the transcluded source text",
+      "supportsRequirementSuffixes": [
+        "suitable-simple-electromagnetism-calculations-rearrangements::PROCEDURE_COVERAGE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENSTAX-UP2-15-1",
+      "publisher": "OpenStax (Rice University)",
+      "title": "University Physics Volume 2, 15.1 AC Sources",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/15-1-ac-sources",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed university physics textbook published by OpenStax, an initiative of Rice University.",
+      "locator": "Section 15.1 AC Sources - opening definition of alternating current and the sinusoidal source equation",
+      "supportsRequirementSuffixes": [
+        "alternating-sinusoidal-output-concept::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    }
+  ]
+}
