@@ -1010,6 +1010,72 @@ check(45, "Review-pack required/context totals recompute independently from sour
   return `whole-unit=${JSON.stringify(wholeComputed)} batches0406=${JSON.stringify(b0406Computed)}, both match the review pack`;
 });
 
+// =====================================================================
+// Checks 46-48 (Stage 7, 2026-09-06 continuation pass): guard the new
+// DEFERRED_CONTEXT_ONLY state and the held-point completion ledger this
+// pass introduced, without weakening any check above.
+// =====================================================================
+check(46, "DEFERRED_CONTEXT_ONLY is used only for non-blocking context-only learning points", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      if (p.evidenceReadiness !== "DEFERRED_CONTEXT_ONLY") continue;
+      n++;
+      if (p.curriculumRole !== "CONTEXTUAL_SUPPORT_ONLY") problems.push(`${b.dir} ${p.id}: DEFERRED_CONTEXT_ONLY but curriculumRole=${p.curriculumRole} (must be CONTEXTUAL_SUPPORT_ONLY)`);
+      if (p.assessmentEligibility !== "CONTEXT_ONLY_NOT_ASSESSED") problems.push(`${b.dir} ${p.id}: DEFERRED_CONTEXT_ONLY but assessmentEligibility=${p.assessmentEligibility} (must be CONTEXT_ONLY_NOT_ASSESSED)`);
+      if ((p.requiredMasteryEvidenceRequirementIds ?? []).length > 0) problems.push(`${b.dir} ${p.id}: DEFERRED_CONTEXT_ONLY but carries a non-empty requiredMasteryEvidenceRequirementIds`);
+      if ((p.applicationTypes ?? []).length > 0) problems.push(`${b.dir} ${p.id}: DEFERRED_CONTEXT_ONLY but applicationTypes is non-empty (would expose assessable content from a non-blocking deferral)`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} DEFERRED_CONTEXT_ONLY LP(s) checked, each is genuinely non-blocking context-only`;
+});
+
+check(47, "Core-release-blocker and contextual-deferral counts in the review pack are mechanically correct", () => {
+  const liveBlockers = [];
+  const liveDeferrals = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      if (p.evidenceReadiness === "HELD_PENDING_EVIDENCE_CORRECTION") liveBlockers.push(p.id);
+      if (p.evidenceReadiness === "DEFERRED_CONTEXT_ONLY") liveDeferrals.push(p.id);
+    }
+  }
+  if (pack.coreReleaseBlockerCount !== liveBlockers.length) throw new Error(`pack.coreReleaseBlockerCount=${pack.coreReleaseBlockerCount} but ${liveBlockers.length} LP(s) are actually HELD_PENDING_EVIDENCE_CORRECTION: ${liveBlockers.join(", ")}`);
+  if (pack.contextualDeferralCount !== liveDeferrals.length) throw new Error(`pack.contextualDeferralCount=${pack.contextualDeferralCount} but ${liveDeferrals.length} LP(s) are actually DEFERRED_CONTEXT_ONLY: ${liveDeferrals.join(", ")}`);
+  const packBlockerSet = new Set(pack.coreReleaseBlockerLearningPointIds ?? []);
+  const packDeferralSet = new Set(pack.contextualDeferralLearningPointIds ?? []);
+  for (const id of liveBlockers) if (!packBlockerSet.has(id)) throw new Error(`${id} is HELD_PENDING_EVIDENCE_CORRECTION but missing from pack.coreReleaseBlockerLearningPointIds`);
+  for (const id of liveDeferrals) if (!packDeferralSet.has(id)) throw new Error(`${id} is DEFERRED_CONTEXT_ONLY but missing from pack.contextualDeferralLearningPointIds`);
+  if (pack.productArchitectFreezeReadiness.coreAcquisitionAndCurriculumInputFreezeReady !== (liveBlockers.length === 0)) {
+    throw new Error(`productArchitectFreezeReadiness.coreAcquisitionAndCurriculumInputFreezeReady=${pack.productArchitectFreezeReadiness.coreAcquisitionAndCurriculumInputFreezeReady} but liveBlockers.length=${liveBlockers.length}`);
+  }
+  return `${liveBlockers.length} core blocker(s), ${liveDeferrals.length} contextual deferral(s), all match the review pack exactly`;
+});
+
+check(48, "The held-point completion ledger's 16 entries exactly match current live learning-point state", () => {
+  const ledger = readJson("reports/unit202-production-acquisition/UNIT202-HELD-POINT-COMPLETION-LEDGER.json");
+  if (ledger.entries.length !== 16) throw new Error(`ledger has ${ledger.entries.length} entries, expected exactly 16`);
+  const lpById = new Map();
+  for (const b of batches) for (const p of b.lpJson.learningPoints) lpById.set(p.id, p);
+  const problems = [];
+  for (const e of ledger.entries) {
+    const p = lpById.get(e.id);
+    if (!p) { problems.push(`${e.id}: not found in any batch's learning points`); continue; }
+    if (p.evidenceReadiness !== e.after) problems.push(`${e.id}: ledger.after=${e.after} but live evidenceReadiness=${p.evidenceReadiness}`);
+    const liveCoreBlockerAfter = p.evidenceReadiness === "HELD_PENDING_EVIDENCE_CORRECTION";
+    if (e.coreBlockerAfter !== liveCoreBlockerAfter) problems.push(`${e.id}: ledger.coreBlockerAfter=${e.coreBlockerAfter} but live state implies ${liveCoreBlockerAfter}`);
+  }
+  const resolvedCount = ledger.entries.filter((e) => e.after === "READY").length;
+  const deferredCount = ledger.entries.filter((e) => e.after === "DEFERRED_CONTEXT_ONLY").length;
+  const blockerCount = ledger.entries.filter((e) => e.coreBlockerAfter).length;
+  if (ledger.summary.resolvedToReady !== resolvedCount) problems.push(`ledger.summary.resolvedToReady=${ledger.summary.resolvedToReady} recomputed=${resolvedCount}`);
+  if (ledger.summary.reclassifiedDeferredContextOnly !== deferredCount) problems.push(`ledger.summary.reclassifiedDeferredContextOnly=${ledger.summary.reclassifiedDeferredContextOnly} recomputed=${deferredCount}`);
+  if (ledger.summary.remainingCoreBlockers !== blockerCount) problems.push(`ledger.summary.remainingCoreBlockers=${ledger.summary.remainingCoreBlockers} recomputed=${blockerCount}`);
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `16/16 held-point ledger entries verified against live state; summary counts recompute correctly`;
+});
+
 // --- Report ---
 let failed = 0;
 for (const r of results) {
