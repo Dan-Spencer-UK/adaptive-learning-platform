@@ -11,8 +11,8 @@
   },
   "authorityClassDiscipline": "Every candidate source cited as verifying evidence was checked against its OWN requirement's frozen sourceAuthorityClasses. Sources that were genuinely retrieved and read but whose authority class is not permitted for that requirement are preserved under `evaluatedButOutOfPermittedAuthorityClass` on the result, and NO normalized claim rests on them. No frozen requirement's permitted authority classes were widened to accommodate an available source.",
   "statusTotals": {
-    "VERIFIED": 29,
-    "PARTIALLY_VERIFIED": 8
+    "VERIFIED": 30,
+    "PARTIALLY_VERIFIED": 7
   },
   "results": [
     {
@@ -1614,7 +1614,8 @@
           "The LATCHING half of the requirement is fully and explicitly supported, including the holding-current condition and the fact that latching persists after the gate signal is removed.",
           "The SOUNDER ROLE half is NOT supported. No authoritative source was read that states an SCR is used in a security alarm to keep a sounder/bell/siren energised once triggered. No such claim has been recorded. The Littelfuse compendium's single mention of alarms is an unrelated Triac IR-motion-detector example.",
           "Consequently the compound claim 'in a security alarm the SCR latches and thereby holds the sounder on until the supply is interrupted' is NOT evidenced and must not be presented as sourced. The latching property and the alarm/sounder application must be kept separable in downstream content until an alarm-specific authoritative source is obtained.",
-          "Same four exhausted candidate routes as recorded for the topology requirement."
+          "Same four exhausted candidate routes as recorded for the topology requirement.",
+          "[Re-sourcing attempted, Stage 4, not resolved] Further candidate routes exhausted: Littelfuse AN1002 \"Gating, Latching, and Holding of SCRs and Triacs\" (found, but full text could not be extracted/read by available tooling); onsemi \"Thyristor Theory and Design Considerations Handbook\" HBD855D/2005 (fetched, 3.7MB, content not extractable); STMicroelectronics AN4607 (search snippet mentioned \"light alarms\" but the document could not be fetched/read to confirm or quote); IEEE Xplore search for burglar-alarm + thyristor/SCR returned only unrelated patents and a modern PIR-sensor paper, no matching abstract. No permitted-class, directly-read passage was obtained. This remains a genuine, bounded, honestly-disclosed gap -- not fabricated closed."
         ]
       }
     },
@@ -1665,11 +1666,22 @@
         ],
         "gaps": [
           "[Re-adjudicated, false-green correction] Previously recorded VERIFIED on the strength of general BJT switching behaviour alone. That was a false green: this requirement's own text (\"Security alarm: transistor switching\") asks for the transistor's role WITHIN A SECURITY-ALARM circuit specifically, and no read source ties the transistor's cutoff/saturation switching behaviour to any security-alarm application -- SRC-OSU-ECE322-BJT is generic BJT teaching material with no alarm-circuit reference of any kind. Genuinely corrected to PARTIALLY_VERIFIED: the DEFINITION dimension (the alarm-specific application) remains unresolved. The general transistor-switching principle itself is not in question and remains separately VERIFIED under EDA-LP-10; only the alarm-specific application claim is unresolved here.",
-          "Inherits the specification ambiguity recorded against security-alarm-exact-nc-contact-bias-topology: no security alarm circuit is identified by the frozen requirement, so there is no determinate circuit against which an alarm-specific transistor role could even be tested."
+          "Inherits the specification ambiguity recorded against security-alarm-exact-nc-contact-bias-topology: no security alarm circuit is identified by the frozen requirement, so there is no determinate circuit against which an alarm-specific transistor role could even be tested.",
+          "[Re-sourcing attempted, Stage 4, not resolved within permitted authority classes] A genuinely alarm-specific transistor-switching source WAS found and read: \"Sensitive Security: The Next Generation Alarm System\", 2024 IEEE Pune Section International Conference (PuneCon), DOI 10.1109/PuneCon63413.2024.10895525 -- its abstract states a BC547 transistor \"acts as a switch to control the output devices\" in a security-alarm circuit with an LED and buzzer. This is genuine, on-point, alarm-specific evidence, but IEEE Xplore is PROFESSIONAL_BODY, which is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE). This is an authority-tier gap, not a content gap, and is recorded here for a future Product Architect authority-policy review rather than used to close this row on a widened policy. Separately, MIT OpenCourseWare \"EC.S06 Practical Electronics\", Lecture 5 \"Relays and Transistors\" (ACADEMIC_OR_RESEARCH_INSTITUTION, a permitted class) was read in full and confirmed to cover only generic transistor-switching theory (driving a lamp/relay), with no alarm-specific content of any kind -- consistent with, not curing, the existing gap."
         ],
         "disclosures": [
           "General BJT cutoff/saturation switching behaviour (the transistor operating as a non-linear switch, not a linear amplifier) is fully and genuinely evidenced by SRC-OSU-ECE322-BJT and is retained here for corroboration -- but that general principle is independently verified and taught under EDA-LP-10 (transistor switching, as a reusable prerequisite), not by this requirement. This requirement specifically asks about the transistor's role WITHIN A SECURITY ALARM circuit, which the general source does not address.",
           "The V_CE,sat value of approximately 200 mV is a teaching approximation from the cited course, not a device specification, and is not relied upon by any taught claim."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-IEEE-PUNECON2024-ALARM",
+            "authorityClass": "PROFESSIONAL_BODY",
+            "sourceRef": "https://ieeexplore.ieee.org/document/10895525/",
+            "sourceLocator": "2024 IEEE Pune Section International Conference (PuneCon), \"Sensitive Security: The Next Generation Alarm System\"",
+            "retrievedPassage": "\"This circuit is run by a 9-V battery and is equipped with a 555 timer integrated circuit and a BC547 transistor. ... The BC547 transistor acts as a switch to control the output devices since its versatility enables its use in different security systems.\"",
+            "exclusionReason": "Genuinely retrieved and read (abstract), directly on-point (a bipolar transistor used as a switch specifically within a security-alarm circuit), but PROFESSIONAL_BODY is not among this requirement's frozen permitted classes. Retained for the audit trail; NOT counted as verifying evidence, and no normalized claim rests on it."
+          }
         ]
       }
     },
@@ -1818,7 +1830,8 @@
           "What IS evidenced: the existence, value (1.8 microfarad), series partner (470 kilohm resistor), connection point (across 'A' and 'B' wires) and Openreach's own naming of the resulting shunt as the 'Bell wire'; and separately that ringing is a 25 Hz alternating signal of 40-100 V a.c. r.m.s.",
           "What is NOT evidenced: the functional mechanism itself. No authoritative source was read that states the capacitor blocks the d.c. line condition while passing the a.c. ringing current to the ringer/bell. That mechanism must NOT be presented as sourced; it currently rests on inference from the 'Bell wire' label plus the a.c. nature of the ringing signal.",
           "Candidate routes exhausted: (1) SIN 351 (read in full for the relevant sections); (2) Encyclopaedia Britannica 'ringer (telephone)' article - HTTP 403; (3) ETSI ETS 300 001, which SIN 351 itself cites for the GB national requirements - HTTP 403 from etsi.org; (4) searches restricted to .ac.uk/.edu/itu.int/nist.gov returned no source stating the mechanism. Every source that did state it plainly (enthusiast telephone-history sites, ISP support wikis, DIY forums) is excluded by the source-authority rules.",
-          "ERA/SCOPE QUALIFICATION that must be carried into any downstream content: this is legacy UK analogue PSTN master-socket practice. It does not describe VoIP/digital voice services, and the UK PSTN is being retired (see telephone-legacy-pstn-framing)."
+          "ERA/SCOPE QUALIFICATION that must be carried into any downstream content: this is legacy UK analogue PSTN master-socket practice. It does not describe VoIP/digital voice services, and the UK PSTN is being retired (see telephone-legacy-pstn-framing).",
+          "[Re-sourcing attempted, Stage 4, not resolved] Further candidate routes exhausted: TDK technical article \"The Capacitor is the Hidden Star of Electronic Circuits -- Role #2: Blocking DC and Passing AC\" (a genuine capacitor-manufacturer technical article; returned HTTP 403, could not confirm whether it names telephone ringers specifically); \"Understanding Telephone Electronics\" (Texas Instruments Learning Center text, known historically to cover this exact mechanism) -- no legitimately-hosted full-text copy could be located. IEC Electropedia's \"(telephone) bell\"/\"ringer\" entry (IEV 722-02-16) was read and confirmed to give only a structural definition (\"a call indicating device consisting of an electric bell\"), with no mechanism stated. This remains a genuine, bounded, honestly-disclosed gap -- not fabricated closed."
         ]
       }
     },
@@ -2024,6 +2037,13 @@
             "sourceLocator": "Section 10.1 'Line Test Conditions', printed page 16, with Table 7 'Line Test Conditions', printed page 17",
             "sourceRef": "https://www.openreach.co.uk/cpportal/content/dam/cpportal/public/images-and-documents/home/help-and-support/sins/documents/SIN_351.pdf",
             "retrievedPassage": "\"The conditions below may be applied in accordance with table 7. a) Up to 50 Volt battery (Positive and Negative with respect to earth) with a source resistance between 0 and 120 kΩ; b) Earth via a source resistance of between zero and 120 kΩ; c) Open circuit greater than 10 MΩ; d) AC voltage to be less than 25 volts peak to peak at no more than 30 Hz, either balanced or longitudinal.\" ... \"i) Exchange voltage disconnected; ii) Transient current limited to 1.0 mA while switching between tests; iii) Transient settling time between tests of up to 1 second; iv) Total test time of up to 18 seconds; v) Exchange voltage reconnected.\""
+          },
+          {
+            "sourceId": "SRC-NICC-ND1601",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://niccstandards.org.uk/wp-content/uploads/2019/03/nd1601_2005_05.pdf",
+            "sourceLocator": "ND1601:2005/05, section 5.1.1, Note 2, page 6",
+            "retrievedPassage": "\"The shunt connection is derived from the centre point between a 470 kOhm resistor and a 1.8 uF capacitor connected in series across the A and B wires. Additionally there is an overvoltage protection device connected across the A and B wires.\""
           }
         ],
         "normalizedClaims": [
@@ -2050,7 +2070,8 @@
           "The two halves of this requirement are each evidenced, but the CAUSAL LINK between them is not. SIN 351 establishes (a) that a 470 kilohm resistor exists in the master socket in that exact configuration, and (b) that Openreach runs automatic line test routines on the local line plant roughly every 24 hours, with specified test conditions. It nowhere states that the resistor is there in order to permit or support line testing.",
           "The claim 'the 470 kilohm resistor is a test resistor that allows the line to be remotely tested with no telephone plugged in' was found stated plainly, but ONLY on excluded sources (enthusiast telephone-wiring sites, ISP community forums, installer blogs). It has NOT been recorded and must not be presented as sourced.",
           "Candidate routes exhausted: (1) SIN 351 sections 2.1 and 10 (read); (2) Openreach Copper handbook (read; silent on socket internals); (3) targeted searches restricted to openreach.co.uk / bt.com / btplc.com for the resistor's purpose - nothing authoritative returned; (4) general web search - only excluded sources.",
-          "ERA/JURISDICTION QUALIFICATION: UK Openreach/BT legacy analogue PSTN only."
+          "ERA/JURISDICTION QUALIFICATION: UK Openreach/BT legacy analogue PSTN only.",
+          "[Re-sourcing attempted, Stage 4, not resolved for the purpose-claim specifically] A second independent industry document, NICC ND1601:2005/05 \"Specification of the BT Metallic Path Facility\" (Ofcom-copyrighted), now corroborates the resistor's existence, value and exact wiring configuration -- but, like SIN 351, states configuration only and never states the resistor's PURPOSE (enabling remote line testing with no telephone connected). BT Business support pages and Ofcom document searches were also checked and found nothing authoritative on point. This remains a genuine, bounded, honestly-disclosed gap on the specific causal/purpose claim -- not fabricated closed."
         ]
       }
     },
@@ -2135,51 +2156,58 @@
       "result": {
         "candidateSources": [
           {
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceLocator": "Section 1 'Scope' (p.4); Section 5 'Outgoing Calls' / 5.1 'Call Initiation' (p.9); Section 6 'Incoming Calls' / 6.1 'Call Arrival Indication' and 6.2 'Called Customer Answer' (pp.10-11); Section 4 'Signalling Method' (p.8)",
+            "sourceRef": "https://www.openreach.co.uk/cpportal/content/dam/cpportal/public/images-and-documents/home/help-and-support/sins/documents/SIN_351.pdf",
+            "retrievedPassage": "\"This Suppliers' Information Note (SIN) specifies those technical characteristics of a single analogue line interface of the Public Switched Telephone Network (PSTN) provided by Openreach and known commonly as a Direct Exchange Line (DEL), without Supplementary Services, delivered to a customer at the Network Termination Point (NTP).\" ... \"Where appropriate, the Openreach network interface will provide call arrival indication to any off-line terminal as shown in annex A: Call Arrival Indication (Ringing).\" ... \"The Openreach network interface will recognise the application of the on-line d.c. condition of section 3.2 as a called party answer, and disconnect ringing.\""
+          },
+          {
+            "sourceId": "SRC-GALE-EOS-TELEPHONE",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.encyclopedia.com/science-and-technology/computers-and-electrical-engineering/electrical-engineering/telephones",
+            "sourceLocator": "Gale Encyclopedia of Science, \"Telephones\" article",
+            "retrievedPassage": "\"The apparatus used for converting the verbal sounds into electromagnetic signals and vice versa is called a telephone set and is also commonly referred to as a telephone.\" ... \"a telecommunications instrument that sends and receives sound such as voice messages and data across a certain distance.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "On the UK legacy analogue PSTN, the telephone is the terminal connected at the Network Termination Point of a single analogue line (Direct Exchange Line); the network provides it with call arrival indication (ringing) when off-line, and recognises the terminal going on-line (the on-line d.c. condition) as a called party answer, at which point ringing is disconnected. Jurisdiction: UK. Era: legacy analogue PSTN.",
+            "sourceId": "SRC-OPENREACH-SIN351"
+          },
+          {
+            "claimText": "A telephone (telephone set) is, at the device level, the apparatus that converts speech/sound to an electrical (electromagnetic) signal and back, for two-way communication across a distance -- resolving the prior gap where only the SERVICE/NETWORK level (not the device itself) had been defined.",
+            "sourceId": "SRC-GALE-EOS-TELEPHONE"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "APPLICATION_FUNCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 4 re-sourcing] The prior compounding (SIN 351 for the line interface, legislation.gov.uk for the service) supplied everything except a device-level definition. A permitted-class general science reference (Gale Encyclopedia of Science, AUTHORITATIVE_TECHNICAL_REFERENCE -- comparable editorial standing to this batch's existing EOLSS precedent) now supplies that device-level definition directly and explicitly. The ERA/scope qualification already recorded (legacy analogue PSTN framing; must not be generalised to VoIP/digital handsets) is retained unchanged.",
+          "[Correction, Stage 4] The two SRC-UKSI-2003-1904-USO candidates (UK statutory service/network definitions) were moved out of this row's counted evidence: GOVERNMENT_OR_REGULATOR is not among this APPLICATION_FUNCTION requirement's permitted classes, and they are no longer needed now that SRC-GALE-EOS-TELEPHONE directly supplies a permitted-class device-level definition. They remain genuinely relevant background on the service/network context and are preserved under evaluatedButOutOfPermittedAuthorityClass."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
             "sourceId": "SRC-UKSI-2003-1904-USO",
             "authorityClass": "GOVERNMENT_OR_REGULATOR",
             "sourceLocator": "Article 2 (Interpretation)",
             "sourceRef": "https://www.legislation.gov.uk/uksi/2003/1904/made?view=plain",
-            "retrievedPassage": "\"publicly available telephone service\" means \"a service available to the public for originating and receiving national and international calls and access to emergency services through a telephone number or numbers in a national or international telephone numbering plan\"; \"public telephone network\" means \"an electronic communications network which is used to provide publicly available telephone services and supports the transfer between network termination points of speech communications\""
+            "retrievedPassage": "\"publicly available telephone service\" means \"a service available to the public for originating and receiving national and international calls and access to emergency services through a telephone number or numbers in a national or international telephone numbering plan\"; \"public telephone network\" means \"an electronic communications network which is used to provide publicly available telephone services and supports the transfer between network termination points of speech communications\"",
+            "exclusionReason": "Genuinely retrieved and read (UK statutory instrument defining the telephone SERVICE/NETWORK, not the device), but GOVERNMENT_OR_REGULATOR is not among this requirement's frozen permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, ACADEMIC_OR_RESEARCH_INSTITUTION). No longer needed as a normalized claim now that SRC-GALE-EOS-TELEPHONE supplies the device-level definition directly within a permitted class; retained here for the audit trail only."
           },
           {
             "sourceId": "SRC-UKSI-2003-1904-USO",
             "authorityClass": "GOVERNMENT_OR_REGULATOR",
             "sourceLocator": "Schedule, paragraph 1(1) and 1(2)",
             "sourceRef": "https://www.legislation.gov.uk/uksi/2003/1904/made?view=plain",
-            "retrievedPassage": "Paragraph 1(1) requires designated universal service providers to meet reasonable requests for connection at fixed locations to the public telephone network and access to publicly available telephone services; paragraph 1(2) specifies these connections must enable local, national, and international calls, facsimile communications, and data communications at sufficient rates for functional Internet access."
-          },
-          {
-            "sourceId": "SRC-OPENREACH-SIN351",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceLocator": "Section 1 'Scope' (p.4); Section 5 'Outgoing Calls' / 5.1 'Call Initiation' (p.9); Section 6 'Incoming Calls' / 6.1 'Call Arrival Indication' and 6.2 'Called Customer Answer' (pp.10-11); Section 4 'Signalling Method' (p.8)",
-            "sourceRef": "https://www.openreach.co.uk/cpportal/content/dam/cpportal/public/images-and-documents/home/help-and-support/sins/documents/SIN_351.pdf",
-            "retrievedPassage": "\"This Suppliers' Information Note (SIN) specifies those technical characteristics of a single analogue line interface of the Public Switched Telephone Network (PSTN) provided by Openreach and known commonly as a Direct Exchange Line (DEL), without Supplementary Services, delivered to a customer at the Network Termination Point (NTP).\" ... \"Where appropriate, the Openreach network interface will provide call arrival indication to any off-line terminal as shown in annex A: Call Arrival Indication (Ringing).\" ... \"The Openreach network interface will recognise the application of the on-line d.c. condition of section 3.2 as a called party answer, and disconnect ringing.\""
+            "retrievedPassage": "Paragraph 1(1) requires designated universal service providers to meet reasonable requests for connection at fixed locations to the public telephone network and access to publicly available telephone services; paragraph 1(2) specifies these connections must enable local, national, and international calls, facsimile communications, and data communications at sufficient rates for functional Internet access.",
+            "exclusionReason": "Genuinely retrieved and read (UK statutory instrument defining the telephone SERVICE/NETWORK, not the device), but GOVERNMENT_OR_REGULATOR is not among this requirement's frozen permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, ACADEMIC_OR_RESEARCH_INSTITUTION). No longer needed as a normalized claim now that SRC-GALE-EOS-TELEPHONE supplies the device-level definition directly within a permitted class; retained here for the audit trail only."
           }
-        ],
-        "normalizedClaims": [
-          {
-            "claimText": "In UK law, a 'publicly available telephone service' is a service available to the public for originating and receiving national and international calls and access to emergency services through a telephone number or numbers in a national or international telephone numbering plan; a 'public telephone network' is an electronic communications network used to provide publicly available telephone services and which supports the transfer between network termination points of speech communications. Jurisdiction: UK statutory instrument, S.I. 2003/1904.",
-            "sourceId": "SRC-UKSI-2003-1904-USO"
-          },
-          {
-            "claimText": "UK universal service obligations require designated providers to meet reasonable requests for connection at a fixed location to the public telephone network and access to publicly available telephone services, with the connection enabling local, national and international calls, facsimile communications and data communications at rates sufficient for functional internet access. Jurisdiction: UK.",
-            "sourceId": "SRC-UKSI-2003-1904-USO"
-          },
-          {
-            "claimText": "On the UK legacy analogue PSTN, the telephone is the terminal connected at the Network Termination Point of a single analogue line (Direct Exchange Line); the network provides it with call arrival indication (ringing) when off-line, and recognises the terminal going on-line (the on-line d.c. condition) as a called party answer, at which point ringing is disconnected. Jurisdiction: UK. Era: legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
-          }
-        ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
-        "coverageDimensionsSatisfied": [],
-        "unresolvedDimensions": [
-          "APPLICATION_FUNCTION"
-        ],
-        "conflicts": [],
-        "gaps": [
-          "PARTIALLY_VERIFIED because the answer rests on a disclosed compounding of two sources, AND because both define the SERVICE and the NETWORK rather than the DEVICE. No read authoritative source gives a device-level definition of a telephone (an instrument for converting speech to an electrical signal and back, for two-way voice communication at a distance).",
-          "Candidate routes exhausted for a device-level definition: (1) Encyclopaedia Britannica 'ringer (telephone)' and 'security and protection system' - HTTP 403 on both; (2) academic/standards searches restricted to itu.int, etsi.org, nist.gov and university domains - nothing giving a plain device definition; (3) SIN 351 (read; defines the line interface, not the instrument); (4) legislation.gov.uk (read; defines the service).",
-          "ERA QUALIFICATION carried forward: the SIN 351 material describes the legacy analogue PSTN telephone. It must not be generalised to VoIP/digital voice handsets, which Ofcom states connect to a broadband router rather than the wall socket."
         ]
       }
     },

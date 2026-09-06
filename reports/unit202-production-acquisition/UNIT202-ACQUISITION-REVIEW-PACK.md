@@ -21,14 +21,14 @@ Batches 01-03 are accepted and identity-frozen. Batches 04-06 have received the 
 
 ## Disposition totals -- WHOLE UNIT 202 (all six batches)
 
-- Evidence-status totals: {"VERIFIED":197,"PARTIALLY_VERIFIED":11}
+- Evidence-status totals: {"VERIFIED":198,"PARTIALLY_VERIFIED":10}
 - Requirement count: **213**
 - Structurally satisfied (integration targets, zero independent requirement): **2**
 - Retired out of scope (non-canonical exemplar detail): **3**
 
 ## Disposition totals -- BATCHES 04-06 ONLY (the batches this pass corrects; Batches 01-03 are frozen and excluded from this scope)
 
-- Evidence-status totals: {"VERIFIED":125,"PARTIALLY_VERIFIED":11}
+- Evidence-status totals: {"VERIFIED":126,"PARTIALLY_VERIFIED":10}
 - Requirement count: **141**
 - Structurally satisfied: **2**
 - Retired out of scope: **3**
@@ -40,18 +40,18 @@ Batches 01-03 are accepted and identity-frozen. Batches 04-06 have received the 
 - **batch-03 (mechanics-and-machines)** -- FROZEN: 28 requirements, status {"VERIFIED":28}, structurally satisfied 0, retired 0
 - **batch-04 (electrical-quantities-and-circuit-theory)** -- unfrozen, proposed: 57 requirements, status {"VERIFIED":56,"PARTIALLY_VERIFIED":1}, structurally satisfied 0, retired 0
 - **batch-05 (electromagnetism-and-induction)** -- unfrozen, proposed: 44 requirements, status {"VERIFIED":40,"PARTIALLY_VERIFIED":2}, structurally satisfied 2, retired 0
-- **batch-06 (electronic-devices-and-applications)** -- unfrozen, proposed: 40 requirements, status {"VERIFIED":29,"PARTIALLY_VERIFIED":8}, structurally satisfied 0, retired 3
+- **batch-06 (electronic-devices-and-applications)** -- unfrozen, proposed: 40 requirements, status {"VERIFIED":30,"PARTIALLY_VERIFIED":7}, structurally satisfied 0, retired 3
 
 ## Learning points -- WHOLE UNIT 202 (all six batches)
 
 - Total: **133**
-- Readiness totals: {"READY":122,"HELD_PENDING_EVIDENCE_CORRECTION":9,"RETIRED_OUT_OF_SCOPE":2}
+- Readiness totals: {"READY":123,"HELD_PENDING_EVIDENCE_CORRECTION":8,"RETIRED_OUT_OF_SCOPE":2}
 - Curriculum-role totals (Batches 04-06 only carry this Stage-6 field): {"REQUIRED_MASTERY":59,"CONTEXTUAL_SUPPORT_ONLY":7,"MIXED_REQUIRED_AND_CONTEXT":4}
 
 ## Learning points -- BATCHES 04-06 ONLY
 
 - Total: **70**
-- Readiness totals: {"READY":59,"HELD_PENDING_EVIDENCE_CORRECTION":9,"RETIRED_OUT_OF_SCOPE":2}
+- Readiness totals: {"READY":60,"HELD_PENDING_EVIDENCE_CORRECTION":8,"RETIRED_OUT_OF_SCOPE":2}
 - Curriculum-role totals: {"REQUIRED_MASTERY":59,"CONTEXTUAL_SUPPORT_ONLY":7,"MIXED_REQUIRED_AND_CONTEXT":4} -- i.e. required-only, mixed and context-only learning points are reported separately here rather than as one undifferentiated "held" total; a context-only or mixed-but-context-facet gap does not by itself block core course production.
 
 - **batch-01**: 25 learning points, readiness {"READY":25}, curriculum role {}, identity status ACCEPTED_AND_FROZEN
@@ -59,7 +59,7 @@ Batches 01-03 are accepted and identity-frozen. Batches 04-06 have received the 
 - **batch-03**: 18 learning points, readiness {"READY":18}, curriculum role {}, identity status ACCEPTED_AND_FROZEN
 - **batch-04**: 19 learning points, readiness {"READY":18,"HELD_PENDING_EVIDENCE_CORRECTION":1}, curriculum role {"REQUIRED_MASTERY":18,"CONTEXTUAL_SUPPORT_ONLY":1}, identity status PROPOSED_FOR_PA_REVIEW
 - **batch-05**: 22 learning points, readiness {"READY":20,"HELD_PENDING_EVIDENCE_CORRECTION":2}, curriculum role {"REQUIRED_MASTERY":20,"CONTEXTUAL_SUPPORT_ONLY":2}, identity status PROPOSED_FOR_PA_REVIEW
-- **batch-06**: 29 learning points, readiness {"READY":21,"HELD_PENDING_EVIDENCE_CORRECTION":6,"RETIRED_OUT_OF_SCOPE":2}, curriculum role {"REQUIRED_MASTERY":21,"CONTEXTUAL_SUPPORT_ONLY":4,"MIXED_REQUIRED_AND_CONTEXT":4}, identity status PROPOSED_FOR_PA_REVIEW
+- **batch-06**: 29 learning points, readiness {"READY":22,"HELD_PENDING_EVIDENCE_CORRECTION":5,"RETIRED_OUT_OF_SCOPE":2}, curriculum role {"REQUIRED_MASTERY":21,"CONTEXTUAL_SUPPORT_ONLY":4,"MIXED_REQUIRED_AND_CONTEXT":4}, identity status PROPOSED_FOR_PA_REVIEW
 
 ## Technical evidence vs. exemplar vs. asset dependencies (Stage 1.5 separation)
 

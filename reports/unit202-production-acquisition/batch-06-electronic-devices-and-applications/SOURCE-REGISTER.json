@@ -1,8 +1,8 @@
 {
   "batchId": "batch-06",
-  "sourceCount": 50,
+  "sourceCount": 53,
   "reusedSourceCount": 0,
-  "newSourceCount": 50,
+  "newSourceCount": 53,
   "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
   "reusedSourceIds": [],
   "sources": [
@@ -991,6 +991,59 @@
       ],
       "citedAsVerifyingEvidence": true,
       "scopeLimitation": "Confirms symbol IDENTITY/NAME only for the six entries actually read (S00641, S00652, S00659, S00684, S01919, S01920). Does NOT confirm graphical artwork/geometry (behind a password-gated login) or per-entry Standard-vs-Obsolete status (a recorded database field not shown in this table view)."
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-GALE-EOS-TELEPHONE",
+      "publisher": "Gale (The Gale Encyclopedia of Science), hosted via encyclopedia.com",
+      "title": "Telephones",
+      "url": "https://www.encyclopedia.com/science-and-technology/computers-and-electrical-engineering/electrical-engineering/telephones",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "A professionally edited, multi-volume general science reference encyclopedia published by Gale/Cengage, not user-generated -- comparable in editorial standing to this batch's existing EOLSS (Encyclopedia of Life Support Systems) AUTHORITATIVE_TECHNICAL_REFERENCE precedent.",
+      "locator": "Gale Encyclopedia of Science, \"Telephones\" article (updated 2018-05-29)",
+      "supportsRequirementSuffixes": [
+        "telephones-application-category-function::APPLICATION_FUNCTION"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NICC-ND1601",
+      "publisher": "NICC Standards Ltd (Network Interoperability Consultative Committee), Ofcom copyright",
+      "title": "ND1601:2005/05 \"Specification of the BT Metallic Path Facility\", Issue 4",
+      "url": "https://niccstandards.org.uk/wp-content/uploads/2019/03/nd1601_2005_05.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "An industry-interoperability specification produced by NICC (Network Interoperability Consultative Committee) with Ofcom/DTI participation and Ofcom copyright -- classed AUTHORITATIVE_TECHNICAL_REFERENCE for consistency with this batch's existing SRC-OPENREACH-SIN351 classification (a comparable Openreach/industry technical bulletin operating under the same regulatory umbrella).",
+      "locator": "ND1601:2005/05, section 5.1.1, Note 2, page 6",
+      "supportsRequirementSuffixes": [
+        "telephone-resistor-line-testing::EXACT_FACT"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage (abstract) returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEEE-PUNECON2024-ALARM",
+      "publisher": "IEEE (2024 IEEE Pune Section International Conference, PuneCon)",
+      "title": "Sensitive Security: The Next Generation Alarm System",
+      "url": "https://ieeexplore.ieee.org/document/10895525/",
+      "authorityClass": "PROFESSIONAL_BODY",
+      "authorityRationale": "An IEEE Xplore conference publication; genuinely retrieved (abstract) and read, but PROFESSIONAL_BODY is not among the security-alarm-transistor-switching requirement's frozen permitted classes -- retained for the audit trail as an authority-tier gap, not counted as verifying evidence anywhere.",
+      "locator": "DOI 10.1109/PuneCon63413.2024.10895525, abstract",
+      "supportsRequirementSuffixes": [],
+      "citedAsVerifyingEvidence": false
     }
   ]
 }

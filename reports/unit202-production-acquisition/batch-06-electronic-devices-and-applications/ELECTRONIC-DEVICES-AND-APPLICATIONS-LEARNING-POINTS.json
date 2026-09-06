@@ -4,8 +4,8 @@
   "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EDA-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 29 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
   "learningPointCount": 29,
   "readinessCounts": {
-    "READY": 21,
-    "HELD_PENDING_EVIDENCE_CORRECTION": 6,
+    "READY": 22,
+    "HELD_PENDING_EVIDENCE_CORRECTION": 5,
     "RETIRED_OUT_OF_SCOPE": 2
   },
   "instructionalSequence": [
@@ -1336,7 +1336,7 @@
         "SRC-OPENREACH-SIN351: Openreach specifies the technical characteristics of a single ANALOGUE line interface of the PSTN, commonly kn...",
         "SRC-OPENREACH-SIN351: On the UK legacy analogue PSTN, the telephone is the terminal connected at the Network Termination Point of a ..."
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "The framing and the application/function requirements are combined because at this level \"what a telephone service is\" and \"what the legacy PSTN is\" are answered by the same regulatory and network description; separating them would split one account across two points. The jurisdiction and era qualifications are carried as prominent knowledge content, per this batch's guardrail, because the whole topic is time-limited and country-specific.",
       "explicitExclusions": [
         "VoIP, digital voice and SIP as topics in their own right",
@@ -1348,10 +1348,10 @@
         "The exact PSTN retirement date as a required-recall fact -- retained only as dated contextual metadata"
       ],
       "applicationTypes": [],
-      "evidenceReadinessNote": "The legacy-PSTN framing requirement is fully VERIFIED from Ofcom and Openreach sources. The telephones-application-category requirement is PARTIALLY_VERIFIED: the UK regulatory definition of the telephone SERVICE and the network's role at the termination point are well evidenced, but no retrieved source gives a device-level definition of a telephone (Encyclopaedia Britannica returned 403 throughout, and legislation.gov.uk defines the service rather than the device).",
+      "evidenceReadinessNote": "[Resolved, Stage 4 re-sourcing] The required telephones-application-category-function requirement is now VERIFIED: a permitted-class general science reference (Gale Encyclopedia of Science, AUTHORITATIVE_TECHNICAL_REFERENCE) supplies the device-level definition of a telephone that was previously missing (the prior compounding of SIN 351 and UK statutory instrument material covered only the line interface and the service/network, never the device itself). The contextual telephone-legacy-pstn-framing facet was already VERIFIED. Required mastery is now fully evidenced; the contextual facet remains correctly deferred/non-assessed per its own classification.",
       "underlyingEvidenceStatuses": {
         "telephone-legacy-pstn-framing::EXACT_FACT": "VERIFIED",
-        "telephones-application-category-function::APPLICATION_FUNCTION": "PARTIALLY_VERIFIED"
+        "telephones-application-category-function::APPLICATION_FUNCTION": "VERIFIED"
       },
       "correctionNote": "[Correction, Batch 06 early-stage depth recalibration] Removed the statutory legal definition of a \"publicly available telephone service\" and provider-migration/business detail from required mastery. The PSTN retirement date is retained only as dated contextual metadata, not as a required-recall application type, since the qualification evidence does not itself require that exact date. [Correction, Stage 6 curriculum-role partition] Both previous application types tested only the CONTEXTUAL PSTN-framing facet, with no application type testing the REQUIRED telephone-application-function facet at all. Moved to contextualExamples; applicationTypes left empty pending resolution of the required facet (no new assessable item invented ahead of evidence). Learner outcome narrowed to concern the required facet only, per the mixed-point curriculum-role rule.",
       "curriculumRole": "MIXED_REQUIRED_AND_CONTEXT",
