@@ -338,6 +338,105 @@
       "after": "This pass's assistant personally opened the official IEC 60617 webstore preview URL and read it directly, page by page (53 pages), not delegated to a subagent and not inferred from search-engine snippets. The preview's ID/Name catalogue table (English/French columns) genuinely and specifically lists all six entries: S00641 \"Semiconductor diode, general symbol\" (p.25); S00652 \"Bidirectional diode thyristor; Diac\", S00659 \"Bidirectional triode thyristor; Triac\", S00684 \"Light dependent resistor (LDR); Photo resistor\" (p.26); S01919 \"Light emitting diode (LED), general symbol\", S01920 \"Photodiode\" (p.53). The prior pass's conclusion that these are not visible was itself incorrect -- caused by an insufficiently rigorous verification method (delegated fetch summarisation and generic web search), not by the preview genuinely lacking the content. The bounded, corrected conclusion: identities and English names for all six are now confirmed; the table exposes no graphical artwork/geometry and no per-entry Standard-vs-Obsolete status (both require the password-gated login), so the overall SCHEMATIC_SYMBOL requirement correctly remains PARTIALLY_VERIFIED -- identity confirmation is not shape/status confirmation.",
       "reason": "Product Architect instruction (this pass): open and read the official preview directly rather than delegating the factual check or relying on search snippets. Direct, careful primary-source reading overturned an incorrect conclusion reached by a previous pass's less rigorous verification method. Process lesson: a WebFetch summarisation of a large scanned/paginated PDF, or a generic web search for specific catalogue numbers, is not equivalent to actually opening and reading the source's own pages -- the former can produce a confident-sounding but wrong negative finding.",
       "priorIncorrectVerificationRetained": "The prior pass's incorrect verification narrative is retained here for audit-trail transparency rather than silently deleted: it claimed a targeted web search and Wikipedia cross-check as corroboration, which shows that secondary corroboration methods are not a substitute for reading the primary source directly when the primary source is reachable."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (SI-prefix half uncited after an unpermitted-class source was removed)",
+      "after": "VERIFIED (structured satisfaction via accepted Batch 01 FM-LP-19, already a cross-domain prerequisite)",
+      "reason": "Stage 2: the SI-prefix mechanism is already independently verified elsewhere in the curriculum; formally recorded as a structured satisfaction rather than re-acquired from a fresh external source."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (sole source reclassified to an unpermitted authority class)",
+      "after": "VERIFIED (IEC Electropedia IEV 103-06-02, PRIMARY_NORMATIVE_OR_STANDARDS_BODY)",
+      "reason": "Stage 2: re-sourced to a permitted-class authority independently confirming the symbol f."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (sole source reclassified to an unpermitted authority class)",
+      "after": "VERIFIED (IEC Electropedia IEV 131-12-13, PRIMARY_NORMATIVE_OR_STANDARDS_BODY)",
+      "reason": "Stage 2: re-sourced to a permitted-class authority independently confirming the symbol C."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (sole source reclassified to an unpermitted authority class)",
+      "after": "VERIFIED (IEC Electropedia IEV 131-12-19 \"inductance\" and IEV 131-12-46/131-12-47 \"reactance\"/\"inductive reactance\", PRIMARY_NORMATIVE_OR_STANDARDS_BODY)",
+      "reason": "Stage 2: re-sourced; discloses that IEC assigns inductance symbol L and general reactance symbol X, with \"inductive reactance\" defined as reactance having a positive value (no separate IEC letter symbol) -- the customary subscript X_L is a disclosed engineering convention, not independently IEC-attested."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (prior distinguishing sentence was fabricated, not present on cited page)",
+      "after": "VERIFIED (valid multi-source composition: SRC-ETW-INDUCTOR's frequency-free inductance definition + SRC-LIBRETEXTS-REACTANCE's explicit frequency-proportionality statement for reactance)",
+      "reason": "Stage 2: restored via two genuinely-read, permitted-class (AUTHORITATIVE_EDUCATIONAL_REFERENCE) sources read together, per this batch's own Stage 1.1 multi-source-composition policy."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (dimensionless nature of power factor was a disclosed inference, not retrieved text)",
+      "after": "VERIFIED (LibreTexts/Kuphaldt explicit \"power factor ... is a unitless quantity\")",
+      "reason": "Stage 2: direct retrieved statement replaces inference."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (dimensionless nature was a disclosed inference)",
+      "after": "VERIFIED (LibreTexts/Kuphaldt explicit \"power factor ... is a unitless quantity\")",
+      "reason": "Stage 2: direct retrieved statement replaces inference."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (unpermitted-class source; claim assumed \"cos phi\"/\"p.f.\" as the general symbol)",
+      "after": "VERIFIED (IEC Electropedia IEV 131-11-46: power factor's IEC-assigned symbol is lambda)",
+      "reason": "Stage 2: materially corrects the prior assumed symbol -- cos phi is the IEC-defined sinusoidal special case, not the general symbol."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-measures-resistance::EXACT_FACT",
+      "batch": "batch-04",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (no verbatim passage ever captured)",
+      "after": "VERIFIED (IEC Electropedia IEV 313-01-09: \"instrument intended to measure electrical resistance\")",
+      "reason": "Stage 2: direct, exact, device-level definitional sentence closes the gap without inference."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "batch": "batch-05",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (only multi-turn, non-single-loop-captioned DOE ES-10 figures available in a permitted class)",
+      "after": "VERIFIED (DOE Fundamentals Handbook Module ES-07 \"Basic AC Theory\", a different module of the same handbook family, explicitly and repeatedly uses singular \"a conductor, or loop of wire\"/\"a conductor loop\" language with a fully-labelled figure)",
+      "reason": "Stage 3: genuinely single-loop framing found in a permitted-class (AUTHORITATIVE_TECHNICAL_REFERENCE, consistent with this batch's existing DOE-handbook precedent) source."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION",
+      "batch": "batch-06",
+      "category": "RESOURCING",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "PARTIALLY_VERIFIED (only service/network-level definitions available; no device-level definition)",
+      "after": "VERIFIED (Gale Encyclopedia of Science, AUTHORITATIVE_TECHNICAL_REFERENCE, supplies a direct device-level definition)",
+      "reason": "Stage 4: closes the device-level definition gap; two GOVERNMENT_OR_REGULATOR candidates (UK statutory instrument) moved to the disclosed-but-not-counted audit trail since they are not a permitted class for this requirement and are no longer needed."
     }
   ],
   "notCorrectedInThisPass_flaggedForFollowUp": [
@@ -349,6 +448,11 @@
       "description": "Stage 5 depth-reduction items 15-16 (telephone/master-socket-specific trims) were flagged in the previous pass as not individually re-edited.",
       "status": "RESOLVED_IN_THIS_PASS",
       "resolution": "EDA-LP-26, EDA-LP-27 and EDA-LP-28 have now been trimmed to early-stage depth: statutory legal definitions and provider-migration detail removed from EDA-LP-26; full contact/IDC tables and cable specification removed from EDA-LP-27; exact ringing/line-test figures removed from EDA-LP-28. See the corresponding CORRECTED_IN_PLACE-style entries in this ledger's notes above (recorded at the learning-point level rather than as individual evidence-requirement entries, since no evidence-requirement ID or status changed -- only taught depth)."
+    },
+    {
+      "description": "Stage 2-4 (2026-09-06 continuation pass) re-sourcing left 6 of the original 16 held learning points genuinely unresolved after real, bounded, permitted-class-respecting acquisition attempts: EQCT-LP-07 (power factor's formal UNIT_SYMBOL/dimensionless attestation -- IEC's own entry is silent on unit, only a general BIPM \"unit one\" principle applies via disclosed inference), EMI-LP-16 (Fleming's right-hand-rule finger mapping -- a confirmed-genuine Hughes textbook citation trail could not be rendered by available tooling), EMI-LP-17 (the coil's own standardised schematic symbol geometry -- IEC 60617 login-gated; a promising IEEE Std 315-1975/ANSI Y32.2-1975 lead's hosted copy is truncated before the relevant page), EDA-LP-16 (2 of 15 AC6.2 families -- LED, inverter -- have no dedicated symbol in the retrieved 1975 standard, only a general symbol plus letter code, and 6 identities are confirmed by ID/name only in the current IEC 60617 database, not by geometry, which sits behind a paid login), EDA-LP-25 (the SCR-to-sounder alarm-specific application -- already correctly isolated as the sole required facet, structurally BLOCKED pending representative-exemplar authoring, not demoted), EDA-LP-28 (the ringer capacitor's DC-block/AC-pass functional mechanism -- existence/value/connection are evidenced, the mechanism itself is not, in any permitted-class source found).",
+      "status": "GENUINELY_UNRESOLVED_AFTER_BOUNDED_ACQUISITION",
+      "whyNotCorrectedHere": "Each was pursued via real external source acquisition (WebFetch/WebSearch across IEC Electropedia, BIPM, government handbooks, manufacturer application notes, IEEE/ANSI standards, and general reference encyclopedias) within this requirement's own frozen permitted authority classes. No permitted-class source stating the missing fact/geometry/mechanism could be found and read. None was fabricated, inferred without disclosure, or closed on an unpermitted-class source. See each requirement's own EVIDENCE-RESULTS.json gaps field for the full list of exhausted candidate routes."
     }
   ],
   "requirementIdMigrations": [

@@ -1,0 +1,292 @@
+{
+  "ledgerId": "UNIT202-HELD-POINT-COMPLETION-LEDGER",
+  "purpose": "Stage 1 deliverable of the 2026-09-06 continuation pass: a machine-readable, per-learning-point accounting of the exact 16 learning points independently enumerated as HELD_PENDING_EVIDENCE_CORRECTION at the start of this pass (from the live batch-04/05/06 artifacts, not merely the operator-supplied expected list, which was independently confirmed to match exactly). Every classification below uses only the seven mandated resolution-route categories.",
+  "resolutionCategories": [
+    "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
+    "VALID_MULTI_SOURCE_COMPOSITION",
+    "STRUCTURED_SATISFACTION_FROM_VERIFIED_REQUIREMENTS",
+    "GOVERNED_DETERMINISTIC_INSTRUCTIONAL_ASSET",
+    "OPTIONAL_CONTEXT_DEFERRED_FROM_V1",
+    "GENUINELY_OUT_OF_QUALIFICATION_SCOPE",
+    "UNRESOLVED_EXTERNAL_BLOCKER"
+  ],
+  "generatedOn": "DETERMINISTIC -- see git commit for the generation point; hand-assembled from the same EVIDENCE-RESULTS.json/LEARNING-POINTS.json artifacts the validator and review-pack generator read, cross-checked against both before writing.",
+  "summary": {
+    "totalHeldAtStart": 16,
+    "resolvedToReady": 8,
+    "reclassifiedDeferredContextOnly": 2,
+    "remainingCoreBlockers": 6,
+    "coreBlockerCountBefore": 14
+  },
+  "entries": [
+    {
+      "id": "EQCT-LP-02",
+      "batch": "batch-04",
+      "title": "Practical unit conversion, including squared and cubed quantities",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "STRUCTURED_SATISFACTION_FROM_VERIFIED_REQUIREMENTS",
+      "whyHeld": "SI-prefix half of the requirement had no in-batch citation after an unpermitted-class/unsupported source was removed in a prior audit.",
+      "resolution": "Formally recorded as a structured satisfaction: the already-VERIFIED, accepted Batch 01 mastery FM-LP-19 (engineering notation and SI unit prefixes) independently covers the SI-prefix mechanism, and EQCT-LP-02 already depends on it as a cross-domain prerequisite. The squared/cubed half remained separately and directly evidenced throughout (SRC-LIBRETEXTS-SQCUBIC).",
+      "sourcesUsed": [
+        "FM-LP-19 (structured satisfaction) / SRC-NIST-SI-CH7",
+        "SRC-LIBRETEXTS-SQCUBIC (unchanged)"
+      ]
+    },
+    {
+      "id": "EQCT-LP-05",
+      "batch": "batch-04",
+      "title": "Power: meaning, quantity symbol, unit, and distinction from energy and power factor",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
+      "whyHeld": "The DISTINCTION dimension's dimensionless-power-factor claim rested on a disclosed inference (P/S=W/VA cancellation), not retrieved text.",
+      "resolution": "A direct, explicit, permitted-class (AUTHORITATIVE_EDUCATIONAL_REFERENCE) passage was found and read: LibreTexts/Kuphaldt states plainly that power factor \"is a unitless quantity\".",
+      "sourcesUsed": [
+        "SRC-LIBRETEXTS-PFUNITLESS"
+      ]
+    },
+    {
+      "id": "EQCT-LP-07",
+      "batch": "batch-04",
+      "title": "Power factor: meaning, notation, dimensionless nature, and distinction from power",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": true,
+      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "whyHeld": "Narrowed from 3 unresolved dimensions to 1: DISTINCTION and QUANTITY_SYMBOL are now resolved (see below), but UNIT_SYMBOL (power factor's formal dimensionless/no-unit attestation) has no permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY / PROFESSIONAL_BODY / AUTHORITATIVE_TECHNICAL_REFERENCE) source that explicitly states it -- IEC's own power-factor entry (IEV 131-11-46) is silent on unit, unlike sibling entries; only a general BIPM 'unit one' principle applies via disclosed inference, and LibreTexts' explicit statement is not a permitted class for this SYMBOL_OR_CONVENTION-mode dimension.",
+      "resolution": "DISTINCTION resolved via LibreTexts explicit statement (see EQCT-LP-05 route); QUANTITY_SYMBOL resolved via IEC Electropedia IEV 131-11-46 (symbol lambda, correcting the prior \"cos phi\"/\"p.f.\" assumption). UNIT_SYMBOL remains genuinely unresolved after a real, bounded, permitted-class-respecting search (IEC Electropedia, BIPM SI Brochure, targeted web search for IEC/ISO/IEEE/NIST statements) -- not fabricated closed.",
+      "sourcesUsed": [
+        "SRC-LIBRETEXTS-PFUNITLESS",
+        "SRC-IEC-IEV-131-11-46"
+      ]
+    },
+    {
+      "id": "EQCT-LP-08",
+      "batch": "batch-04",
+      "title": "Frequency: meaning, quantity symbol and unit",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
+      "whyHeld": "Sole QUANTITY_SYMBOL source (electronics-tutorials.ws) was reclassified to an authority class not permitted for SYMBOL_OR_CONVENTION-mode requirements.",
+      "resolution": "IEC Electropedia IEV 103-06-02 (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) independently confirms the symbol f.",
+      "sourcesUsed": [
+        "SRC-IEC-IEV-103-06-02"
+      ]
+    },
+    {
+      "id": "EQCT-LP-09",
+      "batch": "batch-04",
+      "title": "Capacitance: meaning, quantity symbol and unit",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
+      "whyHeld": "Sole QUANTITY_SYMBOL source reclassified to an unpermitted authority class.",
+      "resolution": "IEC Electropedia IEV 131-12-13 (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) independently confirms the symbol C.",
+      "sourcesUsed": [
+        "SRC-IEC-IEV-131-12-13"
+      ]
+    },
+    {
+      "id": "EQCT-LP-11",
+      "batch": "batch-04",
+      "title": "Inductance: meaning, quantity symbol and unit",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
+      "whyHeld": "Sole QUANTITY_SYMBOL source reclassified to an unpermitted authority class.",
+      "resolution": "IEC Electropedia IEV 131-12-19 (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) confirms symbol L; the related reactance/inductive-reactance entries (IEV 131-12-46/131-12-47) are disclosed alongside for the shared row with EQCT-LP-12.",
+      "sourcesUsed": [
+        "SRC-IEC-IEV-131-12-19",
+        "SRC-IEC-IEV-131-12-46",
+        "SRC-IEC-IEV-131-12-47"
+      ]
+    },
+    {
+      "id": "EQCT-LP-12",
+      "batch": "batch-04",
+      "title": "Inductive reactance: meaning, unit, and distinction from inductance",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "VALID_MULTI_SOURCE_COMPOSITION",
+      "whyHeld": "DISTINCTION's prior source sentence was fabricated (not present on the cited page); QUANTITY_SYMBOL's sole source was reclassified to an unpermitted authority class.",
+      "resolution": "DISTINCTION restored via two genuinely-read, permitted-class (AUTHORITATIVE_EDUCATIONAL_REFERENCE) sources read together: inductance's own definition contains no frequency term (SRC-ETW-INDUCTOR), while reactance's own formula X=omega*L explicitly contains an angular-frequency multiplier (SRC-LIBRETEXTS-REACTANCE). QUANTITY_SYMBOL resolved the same way as EQCT-LP-11 (shared evidence row).",
+      "sourcesUsed": [
+        "SRC-ETW-INDUCTOR",
+        "SRC-LIBRETEXTS-REACTANCE",
+        "SRC-IEC-IEV-131-12-19",
+        "SRC-IEC-IEV-131-12-46"
+      ]
+    },
+    {
+      "id": "EQCT-LP-15",
+      "batch": "batch-04",
+      "title": "Ohmmeter: measures resistance",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
+      "whyHeld": "No verbatim passage had ever actually been captured for this specific requirement, despite the underlying fact not being in doubt.",
+      "resolution": "IEC Electropedia IEV 313-01-09 supplies a direct, exact sentence: \"ohmmeter, resistance meter -- instrument intended to measure electrical resistance.\"",
+      "sourcesUsed": [
+        "SRC-IEC-IEV-313-01-09"
+      ]
+    },
+    {
+      "id": "EMI-LP-16",
+      "batch": "batch-05",
+      "title": "Fleming's right-hand (generator) rule",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": true,
+      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "whyHeld": "No permitted-class source was found and read in text form stating the exact thumb=motion/first-finger=field/second-finger=current mapping specifically for the RIGHT-hand GENERATOR rule (not the left-hand motor rule, not the unrelated grip rule).",
+      "resolution": "Two further dedicated re-sourcing attempts (one via a background research agent, one independently by the primary session) confirmed a genuine citation trail (Wikipedia -> Hughes, \"Electrical & Electronic Technology\", 12th ed., p.145) but could not render/read that textbook page through any available tool. Sources found and explicitly rejected as confusable-but-different rules (motor rule, grip rule) were correctly excluded rather than misused. Remains a genuine, bounded, honestly-disclosed gap.",
+      "sourcesUsed": []
+    },
+    {
+      "id": "EMI-LP-17",
+      "batch": "batch-05",
+      "title": "The simple AC generator: parts and how they work together",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "BLOCKED",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": true,
+      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "whyHeld": "Narrowed from 2 unresolved requirements (single-loop-alternator-generator-parts, coil) to 1 (coil only); slip-rings and brushes were already VERIFIED.",
+      "resolution": "single-loop-alternator-generator-parts is now VERIFIED: DOE Fundamentals Handbook Module ES-07 \"Basic AC Theory\" (a different module of the same already-accepted handbook family) explicitly and repeatedly describes a genuinely single loop (\"a conductor, or loop of wire\" / \"a conductor loop\"), fully labelled with field, slip rings and brushes. The coil's own standardised schematic-SYMBOL geometry remains genuinely unresolved: IEC 60617 is login-gated, and a real IEEE Std 315-1975/ANSI Y32.2-1975 lead (Section 6.2, naming inductor/coil/winding symbols) was found but its only located copy is truncated before the relevant page.",
+      "sourcesUsed": [
+        "SRC-DOE-HDBK-1011-3-ES07"
+      ]
+    },
+    {
+      "id": "EDA-LP-16",
+      "batch": "batch-06",
+      "title": "Recognising the schematic symbols for Unit 202 components",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": true,
+      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "whyHeld": "This is a breadth requirement over all 15 AC6.2 component families. 13 of 15 already have real, directly-read symbol geometry from IEEE Std 315-1975/ANSI Y32.2-1975 (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, disclosed foreword-claimed IEC-117/predecessor compatibility). 2 of 15 (LED, inverter) have no dedicated named symbol in that 1975 standard -- only a general symbol plus an inserted letter code, which is genuinely how that standard represents them, not a sourcing failure. Separately, the CURRENT IEC 60617 database's own free preview confirms 6 relevant ID/name pairs (including LED as S01919) but not their artwork/geometry or Standard/Obsolete status, both of which sit behind a paid login not accessed in this pass.",
+      "resolution": "No further external acquisition was attempted this pass beyond confirming the existing record; the paid IEC 60617 login is a genuine, disclosed access barrier, and the 1975 standard's own lack of dedicated LED/inverter symbols is a fact about the standard, not an unresolved search. Remains an honestly bounded partial.",
+      "sourcesUsed": []
+    },
+    {
+      "id": "EDA-LP-17",
+      "batch": "batch-06",
+      "title": "Recognising components by their physical appearance",
+      "curriculumRole": "CONTEXTUAL_SUPPORT_ONLY",
+      "assessmentEligibility": "CONTEXT_ONLY_NOT_ASSESSED",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "DEFERRED_CONTEXT_ONLY",
+      "coreBlockerBefore": false,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "OPTIONAL_CONTEXT_DEFERRED_FROM_V1",
+      "whyHeld": "Was formally sharing the HELD_PENDING_EVIDENCE_CORRECTION state with genuine core release blockers, even though its curriculumRole/assessmentEligibility already marked it as non-assessable context. Appearance evidence covers only 4 of 15 families, and no photographs exist for any family.",
+      "resolution": "Introduced the new DEFERRED_CONTEXT_ONLY evidenceReadiness state (Stage 5 schema addition) reserved for CONTEXTUAL_SUPPORT_ONLY learning points with genuinely incomplete but non-blocking optional-context evidence. Reclassified accordingly; was already a core-blocker=false LP by curriculum role, now also correctly excluded from the HELD_PENDING_EVIDENCE_CORRECTION tally.",
+      "sourcesUsed": []
+    },
+    {
+      "id": "EDA-LP-25",
+      "batch": "batch-06",
+      "title": "Security alarm application: transferable component roles (transistor switching, SCR latching)",
+      "curriculumRole": "MIXED_REQUIRED_AND_CONTEXT",
+      "assessmentEligibility": "BLOCKED",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": true,
+      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "whyHeld": "The sole required facet (an SCR specifically keeping an alarm sounder energised) has no permitted-class source. The NC-contact/bias-topology facet is correctly RETIRED_OUT_OF_SCOPE (no identified circuit exists in the frozen requirement); the transistor-switching alarm-specific facet is correctly demoted to context (a real but PROFESSIONAL_BODY-tier alarm-specific source was found -- IEEE PuneCon 2024 -- but that class is not permitted for this requirement).",
+      "resolution": "Already correctly restructured in a prior pass: required facet isolated, non-required facets separated, outstandingProductionDependencies (REPRESENTATIVE_EXEMPLAR_AUTHORING) tracked. This pass re-attempted external acquisition for the SCR-sounder claim (Littelfuse, onsemi, STMicro, IEEE Xplore search) and found nothing permitted-class and on point. Genuinely, honestly held -- not demoted, not fabricated closed.",
+      "sourcesUsed": []
+    },
+    {
+      "id": "EDA-LP-26",
+      "batch": "batch-06",
+      "title": "The legacy UK analogue PSTN and what a telephone service is",
+      "curriculumRole": "MIXED_REQUIRED_AND_CONTEXT",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
+      "whyHeld": "The required telephones-application-category-function requirement had only service/network-level definitions (SIN 351, UK statutory instrument), never a device-level definition of the telephone itself.",
+      "resolution": "Gale Encyclopedia of Science (AUTHORITATIVE_TECHNICAL_REFERENCE, same tier precedent as this batch's EOLSS source) supplies a direct device-level definition. The two GOVERNMENT_OR_REGULATOR statutory-instrument candidates, no longer needed and not a permitted class for this requirement, were moved to the disclosed-but-not-counted audit trail.",
+      "sourcesUsed": [
+        "SRC-GALE-EOS-TELEPHONE"
+      ]
+    },
+    {
+      "id": "EDA-LP-27",
+      "batch": "batch-06",
+      "title": "The UK master socket and extension sockets",
+      "curriculumRole": "CONTEXTUAL_SUPPORT_ONLY",
+      "assessmentEligibility": "CONTEXT_ONLY_NOT_ASSESSED",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "DEFERRED_CONTEXT_ONLY",
+      "coreBlockerBefore": false,
+      "coreBlockerAfter": false,
+      "resolutionRoute": "OPTIONAL_CONTEXT_DEFERRED_FROM_V1",
+      "whyHeld": "Was formally sharing HELD_PENDING_EVIDENCE_CORRECTION with genuine core blockers despite already being non-assessable context (a terminology mismatch -- \"secondary\" vs \"extension\" socket -- and no source describing extension-socket internals).",
+      "resolution": "Reclassified to DEFERRED_CONTEXT_ONLY under the new Stage 5 schema state, for the same reasons as EDA-LP-17.",
+      "sourcesUsed": []
+    },
+    {
+      "id": "EDA-LP-28",
+      "batch": "batch-06",
+      "title": "Inside the UK master socket: ringer capacitor, line-test resistor and surge protector",
+      "curriculumRole": "MIXED_REQUIRED_AND_CONTEXT",
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "before": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "coreBlockerBefore": true,
+      "coreBlockerAfter": true,
+      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "whyHeld": "The sole required facet -- the capacitor's DC-block/AC-pass functional mechanism enabling the ringer -- is evidenced for existence/value/connection (SIN 351) but not for the mechanism itself, in any permitted-class source.",
+      "resolution": "Further re-sourcing attempted (TDK manufacturer article -- 403; Texas Instruments \"Understanding Telephone Electronics\" -- no legitimately hosted copy found; IEC Electropedia \"(telephone) bell\" -- structural definition only, no mechanism). The contextual resistor-line-testing facet was also re-attempted (a second authoritative source, NICC ND1601:2005/05, now corroborates existence/config but likewise never states the purpose). Both remain genuine, bounded, honestly-disclosed gaps.",
+      "sourcesUsed": [
+        "SRC-NICC-ND1601 (contextual facet corroboration only, does not close the required facet)"
+      ]
+    }
+  ]
+}

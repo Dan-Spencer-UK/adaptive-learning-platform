@@ -57,6 +57,27 @@ interface PlanFile {
   readonly requirements: readonly { readonly evidenceRequirementId: string; readonly canonicalRequirementKey: string; readonly decompositionStatus: string; readonly acquisitionPriority: string }[];
 }
 
+interface HeldLedgerEntry {
+  readonly id: string;
+  readonly batch: string;
+  readonly title: string;
+  readonly curriculumRole: string;
+  readonly assessmentEligibility: string;
+  readonly before: string;
+  readonly after: string;
+  readonly coreBlockerBefore: boolean;
+  readonly coreBlockerAfter: boolean;
+  readonly resolutionRoute: string;
+  readonly whyHeld: string;
+  readonly resolution: string;
+}
+interface HeldLedgerFile {
+  readonly summary: { readonly totalHeldAtStart: number; readonly resolvedToReady: number; readonly reclassifiedDeferredContextOnly: number; readonly remainingCoreBlockers: number; readonly coreBlockerCountBefore: number };
+  readonly entries: readonly HeldLedgerEntry[];
+}
+const HELD_LEDGER_PATH = "reports/unit202-production-acquisition/UNIT202-HELD-POINT-COMPLETION-LEDGER.json";
+const heldLedger = readJson<HeldLedgerFile>(HELD_LEDGER_PATH);
+
 const plan = readJson<PlanFile>(PLAN_PATH);
 const originalRequirementCount = plan.requirements.length; // this IS the corrected count post-Stage-1; the historically-cited "213" is recorded separately below.
 const HISTORICAL_ORIGINAL_COUNT = 213;
@@ -93,6 +114,8 @@ interface BatchSummary {
   readonly learningPointReadiness: Record<string, number>;
   readonly learningPointCurriculumRole: Record<string, number>;
   readonly learningPointsWithOutstandingDependencies: readonly string[];
+  readonly coreReleaseBlockerLPIds: readonly string[];
+  readonly contextualDeferralLPIds: readonly string[];
   readonly crossBatchSatisfactions: readonly { readonly evidenceRequirementId: string; readonly satisfiedByExistingLearningPointIds: readonly string[] }[];
   readonly identityStatus: string;
 }
@@ -121,10 +144,19 @@ for (const b of BATCHES) {
   const lpReadiness: Record<string, number> = {};
   const lpCurriculumRole: Record<string, number> = {};
   const lpWithDeps: string[] = [];
+  const coreReleaseBlockerLPIds: string[] = [];
+  const contextualDeferralLPIds: string[] = [];
   for (const p of lp.learningPoints) {
     lpReadiness[p.evidenceReadiness] = (lpReadiness[p.evidenceReadiness] ?? 0) + 1;
     if (p.curriculumRole) lpCurriculumRole[p.curriculumRole] = (lpCurriculumRole[p.curriculumRole] ?? 0) + 1;
     if (p.outstandingProductionDependencies && p.outstandingProductionDependencies.length > 0) lpWithDeps.push(p.id);
+    // A core release blocker is mechanically defined as any learning point still
+    // HELD_PENDING_EVIDENCE_CORRECTION. This is safe post-Stage-5: a context-only
+    // learning point with genuinely incomplete but non-blocking evidence is now
+    // DEFERRED_CONTEXT_ONLY, never HELD_PENDING_EVIDENCE_CORRECTION, so this
+    // single-field check can never conflate the two again.
+    if (p.evidenceReadiness === "HELD_PENDING_EVIDENCE_CORRECTION") coreReleaseBlockerLPIds.push(p.id);
+    if (p.evidenceReadiness === "DEFERRED_CONTEXT_ONLY") contextualDeferralLPIds.push(p.id);
   }
 
   batchSummaries.push({
@@ -141,6 +173,8 @@ for (const b of BATCHES) {
     learningPointReadiness: lpReadiness,
     learningPointCurriculumRole: lpCurriculumRole,
     learningPointsWithOutstandingDependencies: lpWithDeps,
+    coreReleaseBlockerLPIds,
+    contextualDeferralLPIds,
     crossBatchSatisfactions,
     identityStatus: b.frozen ? "ACCEPTED_AND_FROZEN" : (lp.status ?? "PROPOSED_FOR_PA_REVIEW"),
   });
@@ -189,6 +223,11 @@ const totalLearningPoints = wholeUnit.learningPointCount;
 const aggregateLpReadiness = wholeUnit.lpReadiness;
 
 const allOutstandingDependencyLPs = batchSummaries.flatMap((b) => b.learningPointsWithOutstandingDependencies.map((id) => `${b.id}::${id}`));
+const allCoreReleaseBlockerLPIds = batchSummaries.flatMap((b) => b.coreReleaseBlockerLPIds);
+const allContextualDeferralLPIds = batchSummaries.flatMap((b) => b.contextualDeferralLPIds);
+const coreReleaseBlockerCount = allCoreReleaseBlockerLPIds.length;
+const contextualDeferralCount = allContextualDeferralLPIds.length;
+const paFreezeReady = coreReleaseBlockerCount === 0;
 const allCrossBatchSatisfactions = batchSummaries.flatMap((b) => b.crossBatchSatisfactions.map((s) => ({ batch: b.id, ...s })));
 
 const pack = {
@@ -229,20 +268,40 @@ const pack = {
     knownAssetGaps: ["No photographic material for component physical-appearance recognition exists in Batch 06's evidence (component identity is accepted; photographs remain a LEARNER_FACING_VISUAL_ASSET production dependency, not a technical-evidence gap).", "AC6.2 schematic-symbol artwork for learner-facing lessons remains a production-asset dependency once the underlying symbol facts are settled; missing artwork must never be invented to close this dependency."],
   },
   crossBatchSatisfaction: allCrossBatchSatisfactions,
+  heldPointCompletionLedger: {
+    explanation: "Stage 1/6 (2026-09-06 continuation pass): every number below is read directly from UNIT202-HELD-POINT-COMPLETION-LEDGER.json and cross-checked against the live learning-point readiness data above -- never hand-retyped. That ledger independently enumerated all 16 learning points HELD_PENDING_EVIDENCE_CORRECTION at the start of the pass (confirmed to exactly match the operator-supplied expected list) and records, for each, its curriculum role, why it was held, its resolution route (one of seven mandated categories), and its final disposition.",
+    ledgerPath: HELD_LEDGER_PATH,
+    totalHeldAtPassStart: heldLedger.summary.totalHeldAtStart,
+    resolvedToReady: heldLedger.summary.resolvedToReady,
+    reclassifiedDeferredContextOnly: heldLedger.summary.reclassifiedDeferredContextOnly,
+    remainingCoreBlockers: heldLedger.summary.remainingCoreBlockers,
+    accountingTable: heldLedger.entries.map((e) => ({ id: e.id, batch: e.batch, curriculumRole: e.curriculumRole, before: e.before, after: e.after, coreBlockerBefore: e.coreBlockerBefore, coreBlockerAfter: e.coreBlockerAfter, resolutionRoute: e.resolutionRoute })),
+  },
+  coreReleaseBlockerCount,
+  contextualDeferralCount,
+  coreReleaseBlockerLearningPointIds: allCoreReleaseBlockerLPIds,
+  contextualDeferralLearningPointIds: allContextualDeferralLPIds,
+  productArchitectFreezeReadiness: {
+    coreAcquisitionAndCurriculumInputFreezeReady: paFreezeReady,
+    statement: paFreezeReady
+      ? "All required-mastery and mixed required/context learning points across Batches 04-06 have their required facet(s) VERIFIED or STRUCTURALLY_SATISFIED. Zero core release blockers remain. Unit 202's evidence-acquisition and curriculum-definition input is a genuine freeze candidate for Product Architect sign-off, subject to the remaining Product Architect questions below and the explicit non-claims -- this is NOT a claim that the learner-facing course/app is finished; see the runtime-to-curriculum delta mapping for that separate, larger body of work."
+      : `${coreReleaseBlockerCount} core release blocker(s) remain across Batches 04-06 (${allCoreReleaseBlockerLPIds.join(", ")}). Each is a required-mastery or mixed required/context learning point with a genuinely unresolved required facet after real, bounded, permitted-class-respecting acquisition attempts -- see heldPointCompletionLedger and each requirement's own EVIDENCE-RESULTS.json gaps for detail. Unit 202 is NOT yet a full freeze candidate while these remain; ${contextualDeferralCount} additional learning point(s) are correctly excluded from this blocker count as non-blocking DEFERRED_CONTEXT_ONLY optional-context deferrals, not core gaps.`,
+  },
   remainingGenuineGaps: {
-    battery: "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail (Stage 8: every VERIFIED row now has an empty `gaps` array -- resolved history lives in `disclosures`, genuine open items below). CORE (required-mastery) blockers: (1) Batch 06 -- the security-alarm SCR/sounder-role requirement (required facet of EDA-LP-25) remains PARTIALLY_VERIFIED and BLOCKED pending REPRESENTATIVE_EXEMPLAR_AUTHORING (no governed exemplar circuit exists); EMI-LP-17's single-loop generator diagram is similarly BLOCKED pending a REPRESENTATIVE_DIAGRAM_AUTHORING dependency (no permitted-class source shows one diagram both captioned single-loop and fully labelled with slip rings/brushes); the telephone application-function device-level definition (required facet of EDA-LP-26) and the telephone-capacitor-ringer function (required facet of EDA-LP-28) remain genuinely unresolved. (2) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class source despite a genuine re-sourcing attempt. OPTIONAL-CONTEXT-ONLY gaps (do not block core mastery): the ohmmeter-measures-resistance device-level definition; Fleming's right-hand-rule finger mapping in directly-read text form; AC6.2 schematic-symbol currency against the current IEC 60617 database (the official webstore free preview was directly opened and read, confirming six symbol identities/names -- S00641, S00652, S00659, S00684, S01919, S01920 -- but not the corresponding artwork/geometry or per-entry Standard/Obsolete status, both paid-login-gated); no photographic component-recognition evidence exists; the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority).",
+    battery: `See each batch's own EVIDENCE-RESULTS.json \`gaps\` fields for full detail (every VERIFIED row has an empty \`gaps\` array -- resolved history lives in \`disclosures\`, genuine open items below). CORE (required-mastery) blockers remaining after this pass's re-sourcing (${coreReleaseBlockerCount} total, see coreReleaseBlockerLearningPointIds): EQCT-LP-07 (power factor's formal UNIT_SYMBOL/dimensionless attestation -- IEC's own entry is silent on unit; only a general BIPM "unit one" principle applies via disclosed inference, not a permitted-class statement naming power factor); EMI-LP-16 (Fleming's right-hand-rule finger mapping -- a confirmed-genuine Hughes textbook citation trail could not be rendered by available tooling); EMI-LP-17 (the coil's own standardised schematic-symbol geometry -- IEC 60617 login-gated; a real IEEE Std 315-1975/ANSI Y32.2-1975 lead's only located copy is truncated before the relevant page; note the single-loop generator diagram gap itself is now RESOLVED via DOE Handbook Module ES-07); EDA-LP-16 (2 of 15 AC6.2 families -- LED, inverter -- have no dedicated symbol in the retrieved 1975 standard, and 6 identities are confirmed by ID/name only, not geometry, in the current IEC 60617 database preview); EDA-LP-25 (the SCR-to-sounder alarm-specific application, already correctly isolated as the sole required facet and BLOCKED pending representative-exemplar authoring); EDA-LP-28 (the ringer capacitor's DC-block/AC-pass functional mechanism). OPTIONAL-CONTEXT-ONLY, non-blocking (DEFERRED_CONTEXT_ONLY, see contextualDeferralLearningPointIds): EDA-LP-17 (component physical-appearance recognition -- evidence covers only 4 of 15 families, no photographs); EDA-LP-27 (UK master/extension socket terminology and internals). Other non-blocking items: the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority).`,
   },
   remainingProductArchitectQuestions: [
     "Is the corrected 211-requirement count (down from the historical 213, both integration targets structurally satisfied) accepted, given full traceability is preserved via the amendment ledger's requirementIdMigrations?",
-    "EDA-LP-25 is now HELD/BLOCKED (not READY): the security-alarm SCR/sounder-role required facet remains PARTIALLY_VERIFIED pending a representative exemplar, and the alarm-specific transistor-switching claim was found to be a false green (re-adjudicated to PARTIALLY_VERIFIED) and reclassified OPTIONAL_CONTEXT in the plan. Is this bounded, BLOCKED-not-READY disposition accepted, or is a different disposition preferred?",
-    "Is the disclosed judgment call classifying Instrumentation Tools, Microchip AN994, and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
-    "Are the 4 remaining Batch 04 quantity-symbol gaps (power factor, frequency, capacitance, inductance) and the Fleming right-hand-rule finger-mapping gap worth a further dedicated re-sourcing pass (e.g. paid access to IEC 60027-1/ISO 80000-6, or the Hughes textbook) before Batch 04/05 are frozen?",
+    "6 learning points remain genuine core release blockers after real, bounded re-sourcing (see heldPointCompletionLedger and remainingGenuineGaps). Each rests on a disclosed, honestly-recorded external access barrier (a paid IEC 60617 login, an unrendered textbook page, a genuinely silent standard, no on-point permitted-class source found). Is a further dedicated, possibly paid, re-sourcing pass authorised for these six before Batches 04-06 are frozen, or should any be re-scoped/retired instead?",
+    "Is the new DEFERRED_CONTEXT_ONLY evidenceReadiness state (Stage 5 of this pass), reserved for CONTEXTUAL_SUPPORT_ONLY learning points with incomplete-but-non-blocking optional-context evidence, accepted as the correct way to keep a V1 context deferral from being counted as a core release blocker?",
+    "Is the disclosed judgment call classifying Instrumentation Tools, Microchip AN994, the DOE power-thyristor/AC-generator handbook host, NICC ND1601, and the Gale Encyclopedia of Science as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
     "Is the Stage-6 required-vs-context curriculum-role partition (mechanically derived from the plan's acquisitionPriority field) an acceptable basis for scoping assessable content, including the BLOCKED/ASSESSABLE_WHEN_READY/CONTEXT_ONLY_NOT_ASSESSED assessmentEligibility classification?",
   ],
   explicitNonClaims: [
     "This pack does not claim Batches 04-06 are accepted, complete for lesson production, or identity-frozen.",
     "This pack does not claim the corrected requirement count is a coverage loss where a removed/retired row was an inappropriate course-specific exemplar detail rather than genuine syllabus-performance content.",
-    "This pack does not claim every genuine remaining gap has been resolved -- see remainingGenuineGaps above.",
+    "This pack does not claim every genuine remaining gap has been resolved -- see remainingGenuineGaps and heldPointCompletionLedger above.",
+    "This pack does not claim the learner-facing Unit 202 course or mobile app is finished. It reports the governed evidence-acquisition and curriculum-definition input only; see the runtime-to-curriculum delta mapping (separate artifact) for the remaining lesson/storyboard/app-production scope.",
     "Batches 01-03 remain accepted and identity-frozen and were not modified by this pass.",
   ],
 };
@@ -315,6 +374,32 @@ ${pack.technicalEvidenceExemplarAndAssetDependenciesSeparated.knownAssetGaps.map
 ## Cross-batch satisfaction
 
 ${allCrossBatchSatisfactions.length > 0 ? allCrossBatchSatisfactions.map((s) => `- \`${s.evidenceRequirementId}\` (${s.batch}) satisfied by existing learning point(s): ${s.satisfiedByExistingLearningPointIds.join(", ")}`).join("\n") : "(none recorded)"}
+
+## Held-point completion ledger (Stage 1/6)
+
+${pack.heldPointCompletionLedger.explanation}
+
+- Total held at pass start: **${pack.heldPointCompletionLedger.totalHeldAtPassStart}**
+- Resolved to READY: **${pack.heldPointCompletionLedger.resolvedToReady}**
+- Reclassified DEFERRED_CONTEXT_ONLY (non-blocking): **${pack.heldPointCompletionLedger.reclassifiedDeferredContextOnly}**
+- Remaining core release blockers: **${pack.heldPointCompletionLedger.remainingCoreBlockers}**
+
+| Learning point | Batch | Curriculum role | Before | After | Core blocker before | Core blocker after | Resolution route |
+|---|---|---|---|---|---|---|---|
+${pack.heldPointCompletionLedger.accountingTable.map((e) => `| \`${e.id}\` | ${e.batch} | ${e.curriculumRole} | ${e.before} | ${e.after} | ${e.coreBlockerBefore ? "yes" : "no"} | ${e.coreBlockerAfter ? "yes" : "no"} | ${e.resolutionRoute} |`).join("\n")}
+
+Full detail (why held, resolution narrative, sources used) is in \`${pack.heldPointCompletionLedger.ledgerPath}\`.
+
+## Core release blockers vs. contextual deferrals
+
+- **Core release blocker count: ${pack.coreReleaseBlockerCount}** -- ${pack.coreReleaseBlockerLearningPointIds.length > 0 ? pack.coreReleaseBlockerLearningPointIds.join(", ") : "(none)"}
+- **Contextual deferral count: ${pack.contextualDeferralCount}** -- ${pack.contextualDeferralLearningPointIds.length > 0 ? pack.contextualDeferralLearningPointIds.join(", ") : "(none)"}
+
+## Product Architect freeze readiness
+
+**${pack.productArchitectFreezeReadiness.coreAcquisitionAndCurriculumInputFreezeReady ? "READY" : "NOT YET READY"}**
+
+${pack.productArchitectFreezeReadiness.statement}
 
 ## Remaining genuine gaps
 
