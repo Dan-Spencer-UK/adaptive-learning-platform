@@ -1,8 +1,8 @@
 {
   "batchId": "batch-06",
-  "sourceCount": 53,
+  "sourceCount": 54,
   "reusedSourceCount": 0,
-  "newSourceCount": 53,
+  "newSourceCount": 54,
   "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
   "reusedSourceIds": [],
   "sources": [
@@ -1044,6 +1044,24 @@
       "locator": "DOI 10.1109/PuneCon63413.2024.10895525, abstract",
       "supportsRequirementSuffixes": [],
       "citedAsVerifyingEvidence": false
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IXYS-LITTELFUSE-AN144-RINGING-LOADS",
+      "publisher": "IXYS Integrated Circuits Division (now Littelfuse, Inc.)",
+      "title": "AN-144: Impulse Noise Benefits of Line Card Access Switches, Section 3.1 \"Ringing Loads\"",
+      "url": "https://www.littelfuse.com/assetdocs/littelfuse-impulse-noise-benefits-of-line-card-access-switches-application-note?assetguid=7ea4c8d4-33a8-49f8-b426-633bd1c0f3c8",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "A telecom/semiconductor-industry manufacturer application note, classed AUTHORITATIVE_TECHNICAL_REFERENCE for consistency with this batch's existing Littelfuse/Teccor thyristor application-note precedent (SRC-LITTELFUSE-AN1001/1002/1003/1004), all classed the same way.",
+      "locator": "AN-144, Section 3.1 \"Ringing Loads\", page 4",
+      "supportsRequirementSuffixes": [
+        "telephone-capacitor-ringer::EXACT_FACT"
+      ]
     }
   ]
 }

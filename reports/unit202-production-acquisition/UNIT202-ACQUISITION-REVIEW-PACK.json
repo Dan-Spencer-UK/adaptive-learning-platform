@@ -26,9 +26,9 @@
     "scopeNote": "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums only the unfrozen batches this correction pass touches. Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
     "wholeUnit202": {
       "verifiedOrPartiallyVerifiedOrGap": {
-        "VERIFIED": 199,
+        "VERIFIED": 200,
         "SOURCE_GAP": 1,
-        "PARTIALLY_VERIFIED": 8
+        "PARTIALLY_VERIFIED": 7
       },
       "structurallySatisfied": 2,
       "retiredOutOfScope": 3,
@@ -36,9 +36,9 @@
     },
     "batches0406Only": {
       "verifiedOrPartiallyVerifiedOrGap": {
-        "VERIFIED": 127,
+        "VERIFIED": 128,
         "SOURCE_GAP": 1,
-        "PARTIALLY_VERIFIED": 8
+        "PARTIALLY_VERIFIED": 7
       },
       "structurallySatisfied": 2,
       "retiredOutOfScope": 3,
@@ -79,8 +79,8 @@
       "requirementCount": 44
     },
     "batch-06": {
-      "VERIFIED": 30,
-      "PARTIALLY_VERIFIED": 7,
+      "VERIFIED": 31,
+      "PARTIALLY_VERIFIED": 6,
       "STRUCTURALLY_SATISFIED": 0,
       "RETIRED_OUT_OF_SCOPE": 3,
       "requirementCount": 40
@@ -91,18 +91,18 @@
     "wholeUnit202": {
       "total": 133,
       "readinessTotals": {
-        "READY": 124,
+        "READY": 125,
         "DEFERRED_CONTEXT_ONLY": 3,
-        "HELD_PENDING_EVIDENCE_CORRECTION": 4,
+        "HELD_PENDING_EVIDENCE_CORRECTION": 3,
         "RETIRED_OUT_OF_SCOPE": 2
       }
     },
     "batches0406Only": {
       "total": 70,
       "readinessTotals": {
-        "READY": 61,
+        "READY": 62,
         "DEFERRED_CONTEXT_ONLY": 3,
-        "HELD_PENDING_EVIDENCE_CORRECTION": 4,
+        "HELD_PENDING_EVIDENCE_CORRECTION": 3,
         "RETIRED_OUT_OF_SCOPE": 2
       }
     },
@@ -171,8 +171,8 @@
       "batch-06": {
         "count": 29,
         "readiness": {
-          "READY": 22,
-          "HELD_PENDING_EVIDENCE_CORRECTION": 3,
+          "READY": 23,
+          "HELD_PENDING_EVIDENCE_CORRECTION": 2,
           "DEFERRED_CONTEXT_ONLY": 2,
           "RETIRED_OUT_OF_SCOPE": 2
         },
@@ -271,9 +271,9 @@
     "explanation": "Stage 1/6 (2026-09-06 continuation pass): every number below is read directly from UNIT202-HELD-POINT-COMPLETION-LEDGER.json and cross-checked against the live learning-point readiness data above -- never hand-retyped. That ledger independently enumerated all 16 learning points HELD_PENDING_EVIDENCE_CORRECTION at the start of the pass (confirmed to exactly match the operator-supplied expected list) and records, for each, its curriculum role, why it was held, its resolution route (one of seven mandated categories), and its final disposition.",
     "ledgerPath": "reports/unit202-production-acquisition/UNIT202-HELD-POINT-COMPLETION-LEDGER.json",
     "totalHeldAtPassStart": 16,
-    "resolvedToReady": 10,
+    "resolvedToReady": 11,
     "reclassifiedDeferredContextOnly": 2,
-    "remainingCoreBlockers": 4,
+    "remainingCoreBlockers": 3,
     "accountingTable": [
       {
         "id": "EQCT-LP-02",
@@ -430,20 +430,19 @@
         "batch": "batch-06",
         "curriculumRole": "MIXED_REQUIRED_AND_CONTEXT",
         "before": "HELD_PENDING_EVIDENCE_CORRECTION",
-        "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+        "after": "READY",
         "coreBlockerBefore": true,
-        "coreBlockerAfter": true,
-        "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER"
+        "coreBlockerAfter": false,
+        "resolutionRoute": "VALID_MULTI_SOURCE_COMPOSITION"
       }
     ]
   },
-  "coreReleaseBlockerCount": 4,
+  "coreReleaseBlockerCount": 3,
   "contextualDeferralCount": 3,
   "coreReleaseBlockerLearningPointIds": [
     "EMI-LP-16",
     "EDA-LP-16",
-    "EDA-LP-25",
-    "EDA-LP-28"
+    "EDA-LP-25"
   ],
   "contextualDeferralLearningPointIds": [
     "EMI-LP-03",
@@ -452,10 +451,10 @@
   ],
   "productArchitectFreezeReadiness": {
     "coreAcquisitionAndCurriculumInputFreezeReady": false,
-    "statement": "4 core release blocker(s) remain across Batches 04-06 (EMI-LP-16, EDA-LP-16, EDA-LP-25, EDA-LP-28). Each is a required-mastery or mixed required/context learning point with a genuinely unresolved required facet after real, bounded, permitted-class-respecting acquisition attempts -- see heldPointCompletionLedger and each requirement's own EVIDENCE-RESULTS.json gaps for detail. Unit 202 is NOT yet a full freeze candidate while these remain; 3 additional learning point(s) are correctly excluded from this blocker count as non-blocking DEFERRED_CONTEXT_ONLY optional-context deferrals, not core gaps."
+    "statement": "3 core release blocker(s) remain across Batches 04-06 (EMI-LP-16, EDA-LP-16, EDA-LP-25). Each is a required-mastery or mixed required/context learning point with a genuinely unresolved required facet after real, bounded, permitted-class-respecting acquisition attempts -- see heldPointCompletionLedger and each requirement's own EVIDENCE-RESULTS.json gaps for detail. Unit 202 is NOT yet a full freeze candidate while these remain; 3 additional learning point(s) are correctly excluded from this blocker count as non-blocking DEFERRED_CONTEXT_ONLY optional-context deferrals, not core gaps."
   },
   "remainingGenuineGaps": {
-    "battery": "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail (every VERIFIED row has an empty `gaps` array -- resolved history lives in `disclosures`, genuine open items below). CORE (required-mastery) blockers remaining after this pass's re-sourcing (4 total, see coreReleaseBlockerLearningPointIds): EQCT-LP-07 (power factor's formal UNIT_SYMBOL/dimensionless attestation -- IEC's own entry is silent on unit; only a general BIPM \"unit one\" principle applies via disclosed inference, not a permitted-class statement naming power factor); EMI-LP-16 (Fleming's right-hand-rule finger mapping -- a confirmed-genuine Hughes textbook citation trail could not be rendered by available tooling); EMI-LP-17 (the coil's own standardised schematic-symbol geometry -- IEC 60617 login-gated; a real IEEE Std 315-1975/ANSI Y32.2-1975 lead's only located copy is truncated before the relevant page; note the single-loop generator diagram gap itself is now RESOLVED via DOE Handbook Module ES-07); EDA-LP-16 (2 of 15 AC6.2 families -- LED, inverter -- have no dedicated symbol in the retrieved 1975 standard, and 6 identities are confirmed by ID/name only, not geometry, in the current IEC 60617 database preview); EDA-LP-25 (the SCR-to-sounder alarm-specific application, already correctly isolated as the sole required facet and BLOCKED pending representative-exemplar authoring); EDA-LP-28 (the ringer capacitor's DC-block/AC-pass functional mechanism). OPTIONAL-CONTEXT-ONLY, non-blocking (DEFERRED_CONTEXT_ONLY, see contextualDeferralLearningPointIds): EDA-LP-17 (component physical-appearance recognition -- evidence covers only 4 of 15 families, no photographs); EDA-LP-27 (UK master/extension socket terminology and internals). Other non-blocking items: the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority)."
+    "battery": "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail (every VERIFIED row has an empty `gaps` array -- resolved history lives in `disclosures`, genuine open items below). CORE (required-mastery) blockers remaining after this pass's re-sourcing (3 total, see coreReleaseBlockerLearningPointIds): EQCT-LP-07 (power factor's formal UNIT_SYMBOL/dimensionless attestation -- IEC's own entry is silent on unit; only a general BIPM \"unit one\" principle applies via disclosed inference, not a permitted-class statement naming power factor); EMI-LP-16 (Fleming's right-hand-rule finger mapping -- a confirmed-genuine Hughes textbook citation trail could not be rendered by available tooling); EMI-LP-17 (the coil's own standardised schematic-symbol geometry -- IEC 60617 login-gated; a real IEEE Std 315-1975/ANSI Y32.2-1975 lead's only located copy is truncated before the relevant page; note the single-loop generator diagram gap itself is now RESOLVED via DOE Handbook Module ES-07); EDA-LP-16 (2 of 15 AC6.2 families -- LED, inverter -- have no dedicated symbol in the retrieved 1975 standard, and 6 identities are confirmed by ID/name only, not geometry, in the current IEC 60617 database preview); EDA-LP-25 (the SCR-to-sounder alarm-specific application, already correctly isolated as the sole required facet and BLOCKED pending representative-exemplar authoring); EDA-LP-28 (the ringer capacitor's DC-block/AC-pass functional mechanism). OPTIONAL-CONTEXT-ONLY, non-blocking (DEFERRED_CONTEXT_ONLY, see contextualDeferralLearningPointIds): EDA-LP-17 (component physical-appearance recognition -- evidence covers only 4 of 15 families, no photographs); EDA-LP-27 (UK master/extension socket terminology and internals). Other non-blocking items: the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority)."
   },
   "remainingProductArchitectQuestions": [
     "Is the corrected 211-requirement count (down from the historical 213, both integration targets structurally satisfied) accepted, given full traceability is preserved via the amendment ledger's requirementIdMigrations?",

@@ -13,9 +13,9 @@
   "generatedOn": "DETERMINISTIC -- see git commit for the generation point; hand-assembled from the same EVIDENCE-RESULTS.json/LEARNING-POINTS.json artifacts the validator and review-pack generator read, cross-checked against both before writing.",
   "summary": {
     "totalHeldAtStart": 16,
-    "resolvedToReady": 10,
+    "resolvedToReady": 11,
     "reclassifiedDeferredContextOnly": 2,
-    "remainingCoreBlockers": 4,
+    "remainingCoreBlockers": 3,
     "coreBlockerCountBefore": 14
   },
   "entries": [
@@ -279,14 +279,15 @@
       "curriculumRole": "MIXED_REQUIRED_AND_CONTEXT",
       "assessmentEligibility": "ASSESSABLE_WHEN_READY",
       "before": "HELD_PENDING_EVIDENCE_CORRECTION",
-      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
       "coreBlockerBefore": true,
-      "coreBlockerAfter": true,
-      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "coreBlockerAfter": false,
+      "resolutionRoute": "VALID_MULTI_SOURCE_COMPOSITION",
       "whyHeld": "The sole required facet -- the capacitor's DC-block/AC-pass functional mechanism enabling the ringer -- is evidenced for existence/value/connection (SIN 351) but not for the mechanism itself, in any permitted-class source.",
-      "resolution": "Further re-sourcing attempted (TDK manufacturer article -- 403; Texas Instruments \"Understanding Telephone Electronics\" -- no legitimately hosted copy found; IEC Electropedia \"(telephone) bell\" -- structural definition only, no mechanism). The contextual resistor-line-testing facet was also re-attempted (a second authoritative source, NICC ND1601:2005/05, now corroborates existence/config but likewise never states the purpose). Both remain genuine, bounded, honestly-disclosed gaps.",
+      "resolution": "Further re-sourcing attempted (TDK manufacturer article -- 403; Texas Instruments \"Understanding Telephone Electronics\" -- no legitimately hosted copy found; IEC Electropedia \"(telephone) bell\" -- structural definition only, no mechanism). The contextual resistor-line-testing facet was also re-attempted (a second authoritative source, NICC ND1601:2005/05, now corroborates existence/config but likewise never states the purpose). Both remain genuine, bounded, honestly-disclosed gaps. [Narrow correction pass, Stage D] Closed via a disclosed, transparent two-source composition: Openreach SIN 351 (UK-specific topology/presence/connection) plus IXYS/Littelfuse AN-144 (the general historical DC-blocking mechanism of exactly this topology, not claimed to describe the Openreach NTE specifically). EDA-LP-28 is now READY; the contextual resistor line-testing attribution remains genuinely unevidenced and correctly excluded from required content.",
       "sourcesUsed": [
-        "SRC-NICC-ND1601 (contextual facet corroboration only, does not close the required facet)"
+        "SRC-NICC-ND1601 (contextual facet corroboration only, does not close the required facet)",
+        "SRC-IXYS-LITTELFUSE-AN144-RINGING-LOADS (contextual facet remains unresolved, does not block)"
       ]
     }
   ]

@@ -4,8 +4,8 @@
   "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EDA-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 29 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
   "learningPointCount": 29,
   "readinessCounts": {
-    "READY": 22,
-    "HELD_PENDING_EVIDENCE_CORRECTION": 3,
+    "READY": 23,
+    "HELD_PENDING_EVIDENCE_CORRECTION": 2,
     "DEFERRED_CONTEXT_ONLY": 2,
     "RETIRED_OUT_OF_SCOPE": 2
   },
@@ -1422,7 +1422,7 @@
       "id": "EDA-LP-28",
       "title": "Inside the UK master socket: ringer capacitor, line-test resistor and surge protector",
       "learnerOutcome": "The learner will be able to state the capacitor-to-ringer role within a UK master socket (required mastery, currently unresolved -- see evidenceReadinessNote). CONTEXT ONLY: the resistor/line-testing role, the surge protector, exact component values, and connection/contact details may be described as background, but are not required recall.",
-      "knowledgeOrProcedure": "Openreach specifies that the master socket contains, connected ACROSS the \"A\" and \"B\" wires: a 1.8 MICROFARAD CAPACITOR in series with a 470 KILOHM RESISTOR, with the socket's SHUNT CONNECTION taken from the CENTRE POINT between the two; and, separately, an OVER-VOLTAGE PROTECTION DEVICE connected across the \"A\" and \"B\" wires. RINGING (context only, not required recall): UK call-arrival indication is an alternating ringing signal applied across the \"A\" and \"B\" wires. LINE TESTING (context only, not required recall): Openreach runs periodic automatic test routines on its local line plant. SURGE PROTECTION: the analogue line is subject to noise, induced voltages and line surges, which is what the over-voltage protection device guards against. IMPORTANT LIMIT ON WHAT IS KNOWN: Openreach documents that these components are PRESENT and how they are CONNECTED, but no retrieved authoritative source states the FUNCTION of the capacitor as passing ringing current to the ringer, nor the function of the 470 kilohm resistor as a line-test resistor. Those functional attributions are widely repeated but were NOT authoritatively evidenced and must not be taught as established. JURISDICTION AND ERA: UK legacy analogue PSTN only.",
+      "knowledgeOrProcedure": "Openreach specifies that the master socket contains, connected ACROSS the \"A\" and \"B\" wires: a 1.8 MICROFARAD CAPACITOR in series with a 470 KILOHM RESISTOR, with the socket's SHUNT CONNECTION (named the 'Bell wire') taken from the CENTRE POINT between the two; and, separately, an OVER-VOLTAGE PROTECTION DEVICE connected across the \"A\" and \"B\" wires. CAPACITOR FUNCTION (required): in the general topology this arrangement represents -- a capacitor in series with an inductive ringer -- the capacitor's role is to DC-block: it prevents the line's d.c. condition from passing to the ringer while allowing the a.c. ringing signal through, with the capacitor's value chosen for resonance near the ringing frequency. RINGING (context only, not required recall): UK call-arrival indication is a 25 Hz alternating signal of 40-100 V a.c. r.m.s. applied across the \"A\" and \"B\" wires. LINE TESTING (context only, not required recall): Openreach runs periodic automatic test routines on its local line plant; no authoritative source states the 470 kilohm resistor's function as a line-test resistor specifically, and that attribution remains unevidenced and must not be taught as established. SURGE PROTECTION: the analogue line is subject to noise, induced voltages and line surges, which is what the over-voltage protection device guards against. JURISDICTION AND ERA: UK legacy analogue PSTN only.",
       "prerequisiteLearningPointIds": [
         "EDA-LP-03",
         "EDA-LP-01"
@@ -1448,7 +1448,7 @@
         "SRC-OPENREACH-SIN351: In the UK Openreach master socket for the legacy analogue PSTN, in addition to the 470 kilohm resistor and 1.8...",
         "SRC-OPENREACH-SIN351: Openreach documents that the analogue line is subject to noise, induced voltages and line surges: permanent lo..."
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "The three master-socket component requirements are combined because they describe three parts of ONE socket, specified together in one clause of one Openreach document, and because they share exactly the same evidential situation -- presence and connection well evidenced, function much less so. Teaching them together makes that shared limitation statable once and clearly.",
       "explicitExclusions": [
         "The FUNCTION of the capacitor as a ringer-coupling component and of the resistor as a line-test component -- widely repeated but NOT authoritatively evidenced here",
@@ -1459,9 +1459,9 @@
         "Exact line-test schedule, applied voltage and source-resistance range figures -- removed as professional-installation-level detail"
       ],
       "applicationTypes": [],
-      "evidenceReadinessNote": "Two of the three underlying requirements are PARTIALLY_VERIFIED, and the shortfall is specifically about FUNCTION rather than presence. Openreach SIN 351 authoritatively establishes that the 1.8 uF capacitor, the 470 kohm resistor and the over-voltage protection device are present, their values, and how they are connected. It does NOT state that the capacitor blocks DC and passes AC ringing current to the ringer, nor that the resistor serves line testing -- both are widely repeated attributions that no retrieved authoritative source confirms, and both have therefore been excluded from the taught content rather than assumed. A further CURRENCY CONFLICT is recorded and not harmonised: many excluded sources claim sockets have omitted the surge arrester since around 2012, whereas the current Openreach SIN still specifies one as present.",
+      "evidenceReadinessNote": "[Resolved, Stage D bounded acquisition, narrow correction pass] The required capacitor-to-ringer functional mechanism is now VERIFIED via a disclosed, transparent two-source composition: Openreach SIN 351 (UK-specific topology/presence/connection/values) plus IXYS/Littelfuse AN-144 (the general historical telephone-ringer DC-blocking mechanism this exact topology represents -- not claimed to describe the Openreach NTE specifically). The contextual 470 kilohm resistor line-testing attribution remains genuinely unevidenced and stays correctly excluded from required/taught content.",
       "underlyingEvidenceStatuses": {
-        "telephone-capacitor-ringer::EXACT_FACT": "PARTIALLY_VERIFIED",
+        "telephone-capacitor-ringer::EXACT_FACT": "VERIFIED",
         "telephone-resistor-line-testing::EXACT_FACT": "PARTIALLY_VERIFIED",
         "telephone-surge-protector::EXACT_FACT": "VERIFIED"
       },
