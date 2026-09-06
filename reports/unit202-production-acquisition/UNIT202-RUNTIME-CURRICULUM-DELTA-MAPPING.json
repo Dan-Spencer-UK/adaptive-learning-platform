@@ -1,0 +1,1000 @@
+{
+  "reportId": "UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING",
+  "purpose": "Stage 8 deliverable (2026-09-06 continuation pass): a diagnostic, read-only mapping of all 133 governed Unit 202 learning points against the existing, older learner-facing runtime corpus (scripts/content/data assertions and lessons, apps/mobile diagram components, instructional visual assets). The governed 133-point curriculum is the source of truth; the runtime corpus is evaluated against it, not the reverse. This mapping does NOT re-author any lesson, storyboard, assertion, or question -- it scopes the remaining production delta only.",
+  "method": "Six independent research agents, one per batch, each read every learning point in that batch's LEARNING-POINTS.json in full and searched the live runtime corpus (scripts/content/data/*.ts, apps/mobile/src/lib/proving-content, apps/mobile/src/components/diagrams, reports/instructional-visuals/semantic-audit.json and premium-artwork/proof/) for matching, missing, wrong-depth, obsolete, or unvisualised content.",
+  "categoryDefinitions": {
+    "MAPPED_CORRECT": "A runtime lesson/assertion/question genuinely and correctly teaches/tests this LP at the right depth.",
+    "MAPPED_WRONG_DEPTH": "Runtime content addresses the topic but at the wrong depth (too shallow, too deep/scope-creep, or an explicitly-excluded elaboration).",
+    "MISSING_FROM_LESSONS": "No runtime lesson content addresses this LP at all (a knowledge-graph assertion may exist as an unused prerequisite node).",
+    "MISSING_ASSESSMENT_COVERAGE": "Lesson content exists but no question/assertion tests this LP's required application type.",
+    "MISSING_OR_UNSUITABLE_VISUAL": "A diagram/visual this LP depends on does not exist, or an existing one is technically wrong per the governed evidence.",
+    "OBSOLETE_SHOULD_REMOVE": "The runtime corpus teaches something this LP's topic area that the governed curriculum has explicitly retired, corrected, or found unsupported.",
+    "CONTEXTUAL_DEFERRED": "This LP is DEFERRED_CONTEXT_ONLY/CONTEXTUAL_SUPPORT_ONLY in the governed curriculum; runtime correctly treats it as non-assessable/absent.",
+    "RETIRED": "This LP is RETIRED_OUT_OF_SCOPE; runtime correctly omits it."
+  },
+  "categoryTotals": {
+    "MISSING_FROM_LESSONS": 43,
+    "MAPPED_WRONG_DEPTH": 29,
+    "MAPPED_CORRECT": 52,
+    "MISSING_ASSESSMENT_COVERAGE": 4,
+    "CONTEXTUAL_DEFERRED": 1,
+    "RETIRED": 2,
+    "OBSOLETE_SHOULD_REMOVE": 2
+  },
+  "totalLearningPoints": 133,
+  "safetyFindingsCount": 5,
+  "safetyFindings": [
+    {
+      "id": "EQCT-LP-07",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "note": "SAFETY-CHECKED: power factor is taught as ratio/cos(phase angle) but the runtime never asserts it is dimensionless/unitless -- the still-HELD claim is NOT taught ahead of its evidence. Notation (cos phi/p.f./lambda) is under-taught relative to even the VERIFIED dimensions."
+    },
+    {
+      "id": "EMI-LP-16",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "note": "SAFETY FLAG: the exact thumb=motion/first-finger=field/second-finger=current mapping the governed evidence pipeline could NOT verify from any permitted-class source is taught in the runtime corpus as a directly-supported fact (sourced to a general encyclopedia article, not a permitted-class technical/professional-body/standards source). Content is ahead of its evidence here. No dedicated visual exists for this specific rule."
+    },
+    {
+      "id": "EMI-LP-17",
+      "batch": "batch-05",
+      "category": "MISSING_FROM_LESSONS",
+      "note": "SAFETY-RELEVANT GAP: the governed LP is held only on the coil's schematic-symbol geometry (slip rings/brushes/single-loop framing are independently VERIFIED) -- but the runtime corpus's actual gap is broader: no 'slip ring' or 'brush' text exists anywhere, and the generator diagram component never depicts or names a brush. Even the governed-VERIFIED parts of this LP are not yet taught."
+    },
+    {
+      "id": "EDA-LP-25",
+      "batch": "batch-06",
+      "category": "OBSOLETE_SHOULD_REMOVE",
+      "note": "SAFETY FINDING: a live, actively-assessed runtime assertion states an SCR keeps a sounder energised after a normally-closed loop is broken -- exactly the topology/sounder-role claim the governed evidence review retired and marked unevidenced, sourced from a hobbyist tutorial site outside any permitted authority class. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11."
+    },
+    {
+      "id": "EDA-LP-28",
+      "batch": "batch-06",
+      "category": "OBSOLETE_SHOULD_REMOVE",
+      "note": "SAFETY FINDING: a live, actively-assessed runtime assertion states the master-socket capacitor blocks DC/passes AC ringing current and the resistor provides a line-test load -- exactly the functional claims the governed evidence review found no authoritative source confirms and excluded from taught content, sourced to Wikipedia. It also claims extension sockets contain none of these components, which has no evidentiary basis at all."
+    }
+  ],
+  "rows": [
+    {
+      "id": "FM-LP-01",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No equivalence/simplify assertion anywhere in the runtime corpus."
+    },
+    {
+      "id": "FM-LP-02",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "FM-ARITH-FRACTION-OPS-001 exists as a knowledge-graph node but is untaught/untested by any lesson."
+    },
+    {
+      "id": "FM-LP-03",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No decimal place-value/powers-of-ten assertion found."
+    },
+    {
+      "id": "FM-LP-04",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No decimal-arithmetic assertion found."
+    },
+    {
+      "id": "FM-LP-05",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No fraction/decimal/percentage conversion assertion found."
+    },
+    {
+      "id": "FM-LP-06",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "medium",
+      "note": "FM-ARITH-PERCENTAGE-001 used only as an electrical-efficiency prerequisite, never taught as a standalone skill."
+    },
+    {
+      "id": "FM-LP-07",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "medium",
+      "note": "Same percentage assertion; never generalised or tested as a foundational skill."
+    },
+    {
+      "id": "FM-LP-08",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No ratio-notation/simplify assertion found."
+    },
+    {
+      "id": "FM-LP-09",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No sharing-in-a-ratio assertion found."
+    },
+    {
+      "id": "FM-LP-10",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "FM-ALG-PROPORTION-DIRECT-001 used only as a prerequisite for resistivity/series-voltage; not taught in any lesson."
+    },
+    {
+      "id": "FM-LP-11",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No variable/notation-convention assertion found."
+    },
+    {
+      "id": "FM-LP-12",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No bracket-expansion/like-terms assertion found."
+    },
+    {
+      "id": "FM-LP-13",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "FM-ALG-SUBSTITUTION-001 is prerequisite-only; BODMAS/order-of-operations never taught."
+    },
+    {
+      "id": "FM-LP-14",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "FM-NUM-INDICES-LAWS-001 untaught; also conflates positive-index laws with fractional-index/root, which this LP excludes."
+    },
+    {
+      "id": "FM-LP-15",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No negative-index assertion found."
+    },
+    {
+      "id": "FM-LP-16",
+      "batch": "batch-01",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "high",
+      "note": "Formula-rearrangement lesson teaches only single-step isolation; the required chained two-operation case (v=u+at -> t) is never modelled."
+    },
+    {
+      "id": "FM-LP-17",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No general squared/square-root transposition technique found."
+    },
+    {
+      "id": "FM-LP-18",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "FM-NUM-STANDARD-FORM-001 untaught; the SI-units lesson covers unit identification only, not notation."
+    },
+    {
+      "id": "FM-LP-19",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "SI-prefix assertions untaught; closest touch is a misconception-diagnostic that tests confusion but never teaches the convention."
+    },
+    {
+      "id": "FM-LP-20",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Pythagoras assertions exist as knowledge-graph nodes, untaught."
+    },
+    {
+      "id": "FM-LP-21",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Trig-ratio assertions untaught; one assertion's wording also conflicts with this LP's explicit exclusion of finding an unknown angle."
+    },
+    {
+      "id": "FM-LP-22",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Mean assertion untaught, no question blueprint."
+    },
+    {
+      "id": "FM-LP-23",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Median assertion untaught."
+    },
+    {
+      "id": "FM-LP-24",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Mode assertion untaught."
+    },
+    {
+      "id": "FM-LP-25",
+      "batch": "batch-01",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Range assertion untaught."
+    },
+    {
+      "id": "EFS-LP-01",
+      "batch": "batch-02",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Free-electron flow taught; the atom-structure half (nucleus/protons/neutrons/electrons) is never a teaches-target in any wired lesson."
+    },
+    {
+      "id": "EFS-LP-02",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "I=Q/t correctly taught, avoiding the electron-flow false-green risk the LP flags."
+    },
+    {
+      "id": "EFS-LP-03",
+      "batch": "batch-02",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Only exists as a misconception-diagnostic target; conventional current's own definition and the battery-labelling application type are never taught."
+    },
+    {
+      "id": "EFS-LP-04",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Conductor/insulator concepts and comparative wording match the governed correction."
+    },
+    {
+      "id": "EFS-LP-05",
+      "batch": "batch-02",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Resistance taught qualitatively (\"opposition to current flow\"), not as the ratio definition R=V/I this LP requires."
+    },
+    {
+      "id": "EFS-LP-06",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Resistivity concept, unit and symbol all correctly taught -- important since Batch 04 reuses this LP."
+    },
+    {
+      "id": "EFS-LP-07",
+      "batch": "batch-02",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium-high",
+      "note": "Formula and length/area reasoning taught with a passing visual, but no scientific-notation/SI-prefix handling anywhere -- worked example uses plain integers."
+    },
+    {
+      "id": "EFS-LP-08",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Ohm's law and all rearrangements fully covered."
+    },
+    {
+      "id": "EFS-LP-09",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "medium",
+      "note": "Voltage-drop concept correct but never a standalone teaches-target -- only delivered embedded inside series-circuit content."
+    },
+    {
+      "id": "EFS-LP-10",
+      "batch": "batch-02",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No mV/A/m cable-run calculation or BS 7671 Table 4Ab content anywhere; also no assessment coverage."
+    },
+    {
+      "id": "EFS-LP-11",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Series current correctly taught with a passing visual."
+    },
+    {
+      "id": "EFS-LP-12",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Series resistance correctly taught."
+    },
+    {
+      "id": "EFS-LP-13",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Series voltage correctly taught (with a bonus Kirchhoff's-voltage-law framing)."
+    },
+    {
+      "id": "EFS-LP-14",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Parallel voltage correctly taught with a passing visual."
+    },
+    {
+      "id": "EFS-LP-15",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Parallel current correctly taught."
+    },
+    {
+      "id": "EFS-LP-16",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Parallel resistance correctly taught."
+    },
+    {
+      "id": "EFS-LP-17",
+      "batch": "batch-02",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "All three power formulas (P=VI, I^2R, V^2/R) correctly taught."
+    },
+    {
+      "id": "EFS-LP-18",
+      "batch": "batch-02",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "medium-high",
+      "note": "Only pure-series-vs-pure-parallel comparison exists; no lesson reduces a genuinely mixed network to one equivalent resistance and applies a power formula."
+    },
+    {
+      "id": "EFS-LP-19",
+      "batch": "batch-02",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Thermal effect taught only qualitatively; the required I^2 rate-proportionality (\"doubling current quadruples heating power\") is never stated."
+    },
+    {
+      "id": "EFS-LP-20",
+      "batch": "batch-02",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "high",
+      "note": "Chemical effect stated only as \"causes chemical changes\" -- no anode/cathode, oxidation/reduction, or electrolysis example; no assessment coverage either."
+    },
+    {
+      "id": "MM-LP-01",
+      "batch": "batch-03",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Mass vs weight correctly taught and tested."
+    },
+    {
+      "id": "MM-LP-02",
+      "batch": "batch-03",
+      "category": "MISSING_ASSESSMENT_COVERAGE",
+      "confidence": "high",
+      "note": "Weight-force calculation assertion is deliberately documented as non-required; lesson never reaches a calculate step."
+    },
+    {
+      "id": "MM-LP-03",
+      "batch": "batch-03",
+      "category": "MISSING_ASSESSMENT_COVERAGE",
+      "confidence": "medium",
+      "note": "Fulcrum/effort/load only appear inside a broader concept step; no question isolates bare part-labelling as the governed LP requires."
+    },
+    {
+      "id": "MM-LP-04",
+      "batch": "batch-03",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Lever classes correctly taught and tested with passing visuals."
+    },
+    {
+      "id": "MM-LP-05",
+      "batch": "batch-03",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Force-balance calculation covered, but the distance/arm-length ratio explanation the LP requires is absent."
+    },
+    {
+      "id": "MM-LP-06",
+      "batch": "batch-03",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "high",
+      "note": "Driver/driven gear concept taught; rotation-direction reversal and idler-gear content are documented as non-required and untaught."
+    },
+    {
+      "id": "MM-LP-07",
+      "batch": "batch-03",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "high",
+      "note": "Torque/speed trade-off correctly stated (no \"twice the power\" contamination found), but gears carry only a recognise capability -- no numeric gear-ratio calculation taught or tested."
+    },
+    {
+      "id": "MM-LP-08",
+      "batch": "batch-03",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Fixed vs movable pulleys correctly taught and tested with passing visuals."
+    },
+    {
+      "id": "MM-LP-09",
+      "batch": "batch-03",
+      "category": "MAPPED_CORRECT",
+      "confidence": "medium",
+      "note": "Mechanical advantage taught and tested, though as a recognise-style question rather than governed's numeric rope-counting application type."
+    },
+    {
+      "id": "MM-LP-10",
+      "batch": "batch-03",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No general ideal-machine work-in=work-out or input-power=output-power statement found anywhere."
+    },
+    {
+      "id": "MM-LP-11",
+      "batch": "batch-03",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No assertion states real machines lose useful output to friction/heat."
+    },
+    {
+      "id": "MM-LP-12",
+      "batch": "batch-03",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Push/pull force concept well covered; no assertion gives the newton's SI definition on its own."
+    },
+    {
+      "id": "MM-LP-13",
+      "batch": "batch-03",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Work correctly taught and tested."
+    },
+    {
+      "id": "MM-LP-14",
+      "batch": "batch-03",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "high",
+      "note": "SCOPE CREEP: runtime teaches and tests the full KE=1/2 m v^2 formula/calculation, which the governed LP explicitly excludes as a required-mastery outcome for this batch."
+    },
+    {
+      "id": "MM-LP-15",
+      "batch": "batch-03",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Potential energy correctly taught and tested."
+    },
+    {
+      "id": "MM-LP-16",
+      "batch": "batch-03",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Power correctly taught and tested."
+    },
+    {
+      "id": "MM-LP-17",
+      "batch": "batch-03",
+      "category": "MAPPED_CORRECT",
+      "confidence": "medium",
+      "note": "Efficiency correctly taught and tested; minor depth nuance (never-mix-units caveat) not explicit."
+    },
+    {
+      "id": "MM-LP-18",
+      "batch": "batch-03",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No lesson chains weight-force -> work -> power; the five calculation forms are taught only in isolation."
+    },
+    {
+      "id": "EQCT-LP-01",
+      "batch": "batch-04",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No runtime content covers general-physics SI units (length/area/volume/mass/density/time/velocity/temperature) or the K-vs-degC interval distinction."
+    },
+    {
+      "id": "EQCT-LP-02",
+      "batch": "batch-04",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No lesson or assertion teaches linear-vs-squared/cubed unit conversion."
+    },
+    {
+      "id": "EQCT-LP-03",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Current concept and unit taught; no explicit quantity-symbol-vs-unit-symbol identity drill."
+    },
+    {
+      "id": "EQCT-LP-04",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Voltage concept and unit taught; same missing symbol-identity drill and no U-vs-V convention disclosure."
+    },
+    {
+      "id": "EQCT-LP-05",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Power concept/distinction-from-energy assertion exists but is not itself a teaches-target of any wired lesson; no distinction from power factor anywhere."
+    },
+    {
+      "id": "EQCT-LP-06",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Energy concept assertion exists but is likewise not a teaches-target of any wired lesson."
+    },
+    {
+      "id": "EQCT-LP-07",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "SAFETY-CHECKED: power factor is taught as ratio/cos(phase angle) but the runtime never asserts it is dimensionless/unitless -- the still-HELD claim is NOT taught ahead of its evidence. Notation (cos phi/p.f./lambda) is under-taught relative to even the VERIFIED dimensions."
+    },
+    {
+      "id": "EQCT-LP-08",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Frequency concept/unit only reachable inside the AC-waveform lesson context, not as a standalone identity fact."
+    },
+    {
+      "id": "EQCT-LP-09",
+      "batch": "batch-04",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Capacitance correctly taught with qualified (non-absolute) wording matching the governed correction."
+    },
+    {
+      "id": "EQCT-LP-10",
+      "batch": "batch-04",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Capacitive reactance correctly taught and distinguished from capacitance."
+    },
+    {
+      "id": "EQCT-LP-11",
+      "batch": "batch-04",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Inductance correctly taught with qualified wording, no absolute \"frequency-independent\" overclaim."
+    },
+    {
+      "id": "EQCT-LP-12",
+      "batch": "batch-04",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Inductive reactance correctly taught and distinguished from inductance."
+    },
+    {
+      "id": "EQCT-LP-13",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "high",
+      "note": "SCOPE CREEP: full Z=sqrt(R^2+X^2) phasor-style calculation is taught and assessed; the governed LP requires the R/X/Z distinction conceptually only, explicitly excluding this calculation."
+    },
+    {
+      "id": "EQCT-LP-14",
+      "batch": "batch-04",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Ammeter/voltmeter function and connection correctly taught and tested with passing visuals."
+    },
+    {
+      "id": "EQCT-LP-15",
+      "batch": "batch-04",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Ohmmeter correctly taught with a passing visual."
+    },
+    {
+      "id": "EQCT-LP-16",
+      "batch": "batch-04",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "De-energised-circuit principle taught; the capacitor-discharge safety caveat this LP's own correction added is not present."
+    },
+    {
+      "id": "EQCT-LP-17",
+      "batch": "batch-04",
+      "category": "MISSING_ASSESSMENT_COVERAGE",
+      "confidence": "high",
+      "note": "Wattmeter is taught but explicitly excluded from the only relevant assessment step's test list."
+    },
+    {
+      "id": "EQCT-LP-18",
+      "batch": "batch-04",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Energy-meter assertion exists in the knowledge graph but is not included in the instrumentation lesson's target list -- untaught and untested."
+    },
+    {
+      "id": "EQCT-LP-19",
+      "batch": "batch-04",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Ammeter/voltmeter internal-resistance property correctly taught and tested, matching the governed idealised-limit framing."
+    },
+    {
+      "id": "EMI-LP-01",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Pole interaction correctly taught with a passing visual."
+    },
+    {
+      "id": "EMI-LP-02",
+      "batch": "batch-05",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Bar-magnet field pattern shown, but the straight-conductor field shape is never taught independently of the direction rule; a related hybrid image pair has no semantic-audit contract entry."
+    },
+    {
+      "id": "EMI-LP-03",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Dot/cross page-direction notation correctly taught as context."
+    },
+    {
+      "id": "EMI-LP-04",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "medium",
+      "note": "Field-around-a-conductor existence stated; circular shape only implied via the grip-rule wording, minor conflation with EMI-LP-05."
+    },
+    {
+      "id": "EMI-LP-05",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Right-hand grip rule correctly taught with a passing visual."
+    },
+    {
+      "id": "EMI-LP-06",
+      "batch": "batch-05",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Zero occurrences of \"solenoid\" anywhere in the runtime corpus; no visual asset or diagram component exists either."
+    },
+    {
+      "id": "EMI-LP-07",
+      "batch": "batch-05",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Electromagnet-vs-permanent-magnet comparison exists, but the required reasoning (coiling concentrates the field; switch-off de-energises it; hence relay/contactor use) is never taught."
+    },
+    {
+      "id": "EMI-LP-08",
+      "batch": "batch-05",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No relay/contactor operating-principle content anywhere; \"relay\" appears only as an unrelated distractor."
+    },
+    {
+      "id": "EMI-LP-09",
+      "batch": "batch-05",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Flux meaning/unit taught; the quantity symbol (Phi) is never explicitly asserted as a recall fact."
+    },
+    {
+      "id": "EMI-LP-10",
+      "batch": "batch-05",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Flux density meaning/unit/contrast-with-flux taught; same missing symbol-recall gap for B."
+    },
+    {
+      "id": "EMI-LP-11",
+      "batch": "batch-05",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No B=Phi/A formula or rearrangement calculation anywhere."
+    },
+    {
+      "id": "EMI-LP-12",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "F=BIL correctly taught with a passing visual."
+    },
+    {
+      "id": "EMI-LP-13",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Fleming's left-hand (motor) rule correctly taught with the exact finger mapping."
+    },
+    {
+      "id": "EMI-LP-14",
+      "batch": "batch-05",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium-high",
+      "note": "Causal concept (motion -> flux cutting -> EMF) exists, but the specific max/zero-EMF-position analysis and the max-flux-vs-max-EMF misconception trap are never taught."
+    },
+    {
+      "id": "EMI-LP-15",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "e=BLv correctly taught with a passing visual built specifically to show the perpendicularity condition."
+    },
+    {
+      "id": "EMI-LP-16",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "SAFETY FLAG: the exact thumb=motion/first-finger=field/second-finger=current mapping the governed evidence pipeline could NOT verify from any permitted-class source is taught in the runtime corpus as a directly-supported fact (sourced to a general encyclopedia article, not a permitted-class technical/professional-body/standards source). Content is ahead of its evidence here. No dedicated visual exists for this specific rule."
+    },
+    {
+      "id": "EMI-LP-17",
+      "batch": "batch-05",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "SAFETY-RELEVANT GAP: the governed LP is held only on the coil's schematic-symbol geometry (slip rings/brushes/single-loop framing are independently VERIFIED) -- but the runtime corpus's actual gap is broader: no 'slip ring' or 'brush' text exists anywhere, and the generator diagram component never depicts or names a brush. Even the governed-VERIFIED parts of this LP are not yet taught."
+    },
+    {
+      "id": "EMI-LP-18",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Rotating-loop/armature model correctly and consistently used, matching the corrected consistency requirement."
+    },
+    {
+      "id": "EMI-LP-19",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Amplitude and peak-to-peak correctly taught."
+    },
+    {
+      "id": "EMI-LP-20",
+      "batch": "batch-05",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "RMS and average value, including the half-cycle-average-vs-signed-zero-average distinction, correctly taught almost verbatim to the governed wording."
+    },
+    {
+      "id": "EMI-LP-21",
+      "batch": "batch-05",
+      "category": "MISSING_ASSESSMENT_COVERAGE",
+      "confidence": "medium",
+      "note": "Only RMS<->peak and frequency<->period conversions are exercised; no blueprint chains peak-to-peak<->RMS or exercises selecting the correct conversion across all three."
+    },
+    {
+      "id": "EMI-LP-22",
+      "batch": "batch-05",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "Zero occurrences of pole-pairs or a rotational-frequency (f=N*P) relationship anywhere, confirming a prior diagnostic finding."
+    },
+    {
+      "id": "EDA-LP-01",
+      "batch": "batch-06",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Resistor principle omits the heat-dissipation/Ohm's-law framing and adds a voltage-divider claim the governed LP explicitly scopes out."
+    },
+    {
+      "id": "EDA-LP-02",
+      "batch": "batch-06",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No 4-band resistor colour-code content, assertion, or question blueprint anywhere."
+    },
+    {
+      "id": "EDA-LP-03",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Capacitor principle correctly taught."
+    },
+    {
+      "id": "EDA-LP-04",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Diode principle correctly taught."
+    },
+    {
+      "id": "EDA-LP-05",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "LED principle correctly taught, no invented numeric forward-voltage value."
+    },
+    {
+      "id": "EDA-LP-06",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Zener diode correctly taught."
+    },
+    {
+      "id": "EDA-LP-07",
+      "batch": "batch-06",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Photodiode taught with one unqualified behaviour, missing the zero-bias-vs-reverse-biased mode qualification the governed LP requires."
+    },
+    {
+      "id": "EDA-LP-08",
+      "batch": "batch-06",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "LDR content confirmed absent from the runtime corpus, consistent with a prior diagnostic finding."
+    },
+    {
+      "id": "EDA-LP-09",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "NTC/PTC thermistor direction correctly taught both ways, but the PTC-specific Curie-point qualification the governed LP requires (resistance is flat/slightly falling below the Curie point, only rising sharply above it) is missing -- a real, explicitly-flagged overclaim reproduced in the runtime."
+    },
+    {
+      "id": "EDA-LP-10",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Transistor principle correctly taught."
+    },
+    {
+      "id": "EDA-LP-11",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "SCR latching, including the holding-current turn-off condition, correctly taught -- confirmed clean of the previously-corrected \"conducts until AC voltage reaches zero\" error."
+    },
+    {
+      "id": "EDA-LP-12",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "TRIAC principle correctly taught, confirmed clean of the holding-current error."
+    },
+    {
+      "id": "EDA-LP-13",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "DIAC principle correctly taught."
+    },
+    {
+      "id": "EDA-LP-14",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Rectifier (half/full-wave) correctly taught, correctly states pulsating not smooth DC."
+    },
+    {
+      "id": "EDA-LP-15",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Inverter principle correctly taught as DC-to-AC switching."
+    },
+    {
+      "id": "EDA-LP-16",
+      "batch": "batch-06",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "high",
+      "note": "A deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat, though the governed LP explicitly holds both as unverified against the current standard; no LDR symbol exists at all."
+    },
+    {
+      "id": "EDA-LP-17",
+      "batch": "batch-06",
+      "category": "CONTEXTUAL_DEFERRED",
+      "confidence": "high",
+      "note": "Correctly not assessed. 11 physical-appearance photo assets exist in production-proof storage for 11 of 15 families but are not yet wired into the shipped app."
+    },
+    {
+      "id": "EDA-LP-18",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Dimmer function correctly taught conceptually only, no exact RC values or wiring instruction -- confirmed clean."
+    },
+    {
+      "id": "EDA-LP-19",
+      "batch": "batch-06",
+      "category": "RETIRED",
+      "confidence": "high",
+      "note": "Correctly absent -- no exact dimmer RC values found anywhere; retirement respected."
+    },
+    {
+      "id": "EDA-LP-20",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "high",
+      "note": "Heating/thermistor application correctly taught."
+    },
+    {
+      "id": "EDA-LP-21",
+      "batch": "batch-06",
+      "category": "RETIRED",
+      "confidence": "high",
+      "note": "Correctly absent -- no exact heating relay topology found anywhere; retirement respected."
+    },
+    {
+      "id": "EDA-LP-22",
+      "batch": "batch-06",
+      "category": "MAPPED_WRONG_DEPTH",
+      "confidence": "medium",
+      "note": "Motor control states only that SCRs are used; omits the required TRIAC (full-wave) vs SCR (half-wave) contrast and phase-delay-controls-speed mechanism."
+    },
+    {
+      "id": "EDA-LP-23",
+      "batch": "batch-06",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No permanent-magnet DC motor / bridge-rectifier-feeds-motor content anywhere."
+    },
+    {
+      "id": "EDA-LP-24",
+      "batch": "batch-06",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "medium",
+      "note": "No standalone security-alarm application-category assertion; the corpus jumps straight to the problematic specific-circuit content."
+    },
+    {
+      "id": "EDA-LP-25",
+      "batch": "batch-06",
+      "category": "OBSOLETE_SHOULD_REMOVE",
+      "confidence": "high",
+      "note": "SAFETY FINDING: a live, actively-assessed runtime assertion states an SCR keeps a sounder energised after a normally-closed loop is broken -- exactly the topology/sounder-role claim the governed evidence review retired and marked unevidenced, sourced from a hobbyist tutorial site outside any permitted authority class. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11."
+    },
+    {
+      "id": "EDA-LP-26",
+      "batch": "batch-06",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "high",
+      "note": "No PSTN/Ofcom/legacy-network-retirement content anywhere; only downstream master-socket component detail exists."
+    },
+    {
+      "id": "EDA-LP-27",
+      "batch": "batch-06",
+      "category": "MISSING_FROM_LESSONS",
+      "confidence": "medium",
+      "note": "No content teaches the Openreach-ownership/customer-responsibility boundary or the contact-vs-IDC numbering hazard (this LP's now-deferred scope)."
+    },
+    {
+      "id": "EDA-LP-28",
+      "batch": "batch-06",
+      "category": "OBSOLETE_SHOULD_REMOVE",
+      "confidence": "high",
+      "note": "SAFETY FINDING: a live, actively-assessed runtime assertion states the master-socket capacitor blocks DC/passes AC ringing current and the resistor provides a line-test load -- exactly the functional claims the governed evidence review found no authoritative source confirms and excluded from taught content, sourced to Wikipedia. It also claims extension sockets contain none of these components, which has no evidentiary basis at all."
+    },
+    {
+      "id": "EDA-LP-29",
+      "batch": "batch-06",
+      "category": "MAPPED_CORRECT",
+      "confidence": "medium-high",
+      "note": "Wireless control application correctly taught at a narrower depth; practical-advantages facet not separately taught."
+    }
+  ],
+  "productionDeltaSummary": {
+    "newLessonContentNeeded": "43 learning points have zero runtime teaching content -- the largest single category, dominated by Batch 01 (24 of 25 foundational-mathematics LPs exist only as unused knowledge-graph prerequisite nodes, never taught or tested standalone).",
+    "depthCorrectionNeeded": "29 learning points have some runtime content but at the wrong depth -- both under-depth (missing a required nuance, e.g. EDA-LP-09's PTC Curie-point qualification, EQCT-LP-16's capacitor-discharge caveat) and over-depth/scope-creep (MM-LP-14 teaches the excluded KE=1/2 m v^2 calculation; EQCT-LP-13 teaches the excluded Z=sqrt(R^2+X^2) phasor calculation; EMI-LP-14 corpus separately teaches Faraday's law quantitatively beyond this batch's scope).",
+    "newAssessmentItemsNeeded": "4 learning points have teaching content but no assessment reaching the required application type.",
+    "obsoleteContentToRemoveOrCorrect": "2 learning points (both in Batch 06: EDA-LP-25, EDA-LP-28) have runtime content that is LIVE, ACTIVELY ASSESSED, and directly contradicts the governed evidence review's explicit retirement/exclusion of the same claim -- see safetyFindings. This is the single most safety-relevant finding of this mapping and should be prioritised over any other production-delta item.",
+    "visualsAssessment": "Visual coverage is generally strong where lesson content already exists (series/parallel topology, instrument connections, lever/gear/pulley diagrams, motional-EMF geometry all pass semantic-audit contracts) and is not the primary bottleneck. Known exceptions: EDA-LP-16's deterministic component-symbols renderer draws LED/inverter/LDR symbols with more confidence than the governed evidence currently supports; EDA-LP-17's 11 physical-appearance photo assets are produced but not wired into the shipped app; EMI-LP-02's straight-conductor field-pattern hybrid image has no semantic-audit contract entry; EMI-LP-06 (solenoid) has no visual asset of any kind.",
+    "contentAheadOfEvidence": "EMI-LP-16 (Fleming's right-hand rule): the runtime corpus teaches, as settled fact, the exact thumb/field/current finger mapping the governed evidence pipeline could not verify from any permitted-class source after multiple genuine re-sourcing attempts -- sourced instead to a general encyclopedia article. This is not a factual error (the mapping is almost certainly correct) but is content whose confidence in the runtime exceeds what the governed evidence review currently supports, and should be reconciled (either accept the encyclopedia-tier source into the governed evidence with disclosure, or flag the runtime claim as provisional) rather than left silently mismatched.",
+    "overallFraming": "This mapping confirms the user's own framing exactly: the governed 133-point curriculum-definition input finishing (this pass's work) is a distinct and substantially smaller achievement than the learner-facing Unit 202 course/app being finished. The old runtime corpus (24 lessons historically reported) was authored before, and independently of, this governed evidence-acquisition pipeline, and only partially and unevenly overlaps with it."
+  }
+}
