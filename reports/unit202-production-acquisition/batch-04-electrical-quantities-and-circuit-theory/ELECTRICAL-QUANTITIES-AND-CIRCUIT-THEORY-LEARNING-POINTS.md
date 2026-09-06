@@ -415,7 +415,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Learner outcome:** The learner will be able to state what capacitive reactance is, its unit (ohms), and explain how it differs from capacitance itself.
 
-**Knowledge / procedure:** Capacitive reactance (symbol Xc) is the frequency-dependent opposition a capacitor presents to alternating current, given conceptually by Xc=1/(2.pi.f.C) -- it FALLS as frequency rises. Unlike capacitance (a fixed component property, farads), capacitive reactance is measured in ohms (the same unit symbol as resistance) and varies with both frequency and capacitance. Capacitance and capacitive reactance are related but are not the same quantity, and do not share a unit (farad vs ohms).
+**Knowledge / procedure:** Capacitive reactance (symbol Xc) is the frequency-dependent opposition a capacitor presents to alternating current, given conceptually by Xc=1/(2.pi.f.C) -- it FALLS as frequency rises. Unlike capacitance (an ideal/basic-component property, measured in farads, treated as constant for a given capacitor at this level), capacitive reactance is measured in ohms (the same unit symbol as resistance) and varies with both frequency and capacitance. Capacitance and capacitive reactance are related but are not the same quantity, and do not share a unit (farad vs ohms).
+
+**Evidence readiness note:** The QUANTITY_SYMBOL facet (capacitance's letter symbol "C") is PARTIALLY_VERIFIED: a source of the required authority tier (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY or AUTHORITATIVE_TECHNICAL_REFERENCE) stating the symbol convention explicitly has not yet been acquired (see the corresponding evidence requirement). The symbol "C" is nonetheless used as notation throughout this and related learning points, consistent with universal practice; only the formal authority-tier citation for the convention itself remains open. DEFINITION, DISTINCTION and UNIT_SYMBOL are all VERIFIED.
 
 **Within-domain prerequisites:** `EQCT-LP-09`, `EQCT-LP-08`
 

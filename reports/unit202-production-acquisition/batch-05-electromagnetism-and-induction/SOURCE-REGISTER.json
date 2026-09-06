@@ -1,8 +1,8 @@
 {
   "batchId": "batch-05",
-  "sourceCount": 48,
+  "sourceCount": 49,
   "reusedSourceCount": 0,
-  "newSourceCount": 48,
+  "newSourceCount": 49,
   "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
   "reusedSourceIds": [],
   "sources": [
@@ -964,6 +964,25 @@
       "locator": "Section 15.1 AC Sources - opening definition of alternating current and the sinusoidal source equation",
       "supportsRequirementSuffixes": [
         "alternating-sinusoidal-output-concept::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-EPCI-INDUCTOR-SYMBOLS",
+      "publisher": "European Passive Components Institute (EPCI)",
+      "title": "Inductor and Transformer Symbols",
+      "url": "https://passive-components.eu/inductor-symbols/",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Industry technical-reference body for passive components; confirms a standardised generic inductor/coil symbol identity referenced to IEC 60617, without itself depicting the symbol geometry.",
+      "locator": "Article body, generic inductor symbol description",
+      "supportsRequirementSuffixes": [
+        "coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
       ],
       "citedAsVerifyingEvidence": true
     }

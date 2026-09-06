@@ -1,8 +1,8 @@
 {
   "batchId": "batch-04-electrical-quantities-and-circuit-theory",
-  "sourceCount": 26,
+  "sourceCount": 27,
   "reusedSourceCount": 4,
-  "newSourceCount": 22,
+  "newSourceCount": 23,
   "note": "22 sources were freshly acquired in this session via real web search and retrieval. 4 sources (SRC-NIST-MASS, SRC-NIST-SP811-B9, SRC-HP-RESIS, SRC-NIST-RESHALL) were registered in earlier accepted batches (Batch 02 and/or Batch 03) and are reused here; see reusedSourceIds below for the exact list. Each reused source was re-fetched and its exact passage freshly re-read in this session (not assumed from the prior normalized claim), per the task's cross-batch reuse discipline. Several sources are also reused ACROSS multiple Batch 04 requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
   "reusedSourceIds": [
     "SRC-NIST-MASS",
@@ -535,6 +535,25 @@
       "supportsRequirementSuffixes": [
         "energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
       ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-INSTRUMENTATIONTOOLS-WATTMETER-VS-ENERGYMETER",
+      "publisher": "Instrumentation Tools",
+      "title": "Difference Between Wattmeter and Energy Meter",
+      "url": "https://instrumentationtools.com/difference-between-wattmeter-and-energy-meter/",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Industry instrumentation-engineering technical reference (not a general hobbyist tutorial); used only for the power-integration/accumulation mechanism distinguishing an energy meter from a wattmeter. Classification is a disclosed judgment call.",
+      "locator": "Article body, power-vs-energy integration passage",
+      "supportsRequirementSuffixes": [
+        "energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
     }
   ],
   "correctionNote": "Corrected during the internal adversarial audit pass. Three supportsRequirementSuffixes entries were REMOVED as over-claims -- each asserted that a source supported a requirement on which it was not actually a candidate source (SRC-ETW-INDUCTOR on the inductance UNIT_SYMBOL requirement; SRC-EOLSS-ELECQUANT on the capacitance and inductance DEFINITION requirements). The register now matches the evidence results exactly.",

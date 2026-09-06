@@ -195,9 +195,9 @@
         "Given a diagram of a straight conductor carrying current, describe the shape of the magnetic field around it.",
         "Identify which of several diagrams correctly shows the field pattern of a bar magnet."
       ],
-      "evidenceReadinessNote": "Underlying evidence is PARTIALLY_VERIFIED on BREADTH. The frozen requirement says \"magnetic field patterns\" (plural) without enumerating which patterns are intended, and in-class retrieved figures cover only two: the field around a straight current-carrying conductor, and the field of a bar magnet. No in-class field-pattern figure was obtained for the SOLENOID/coil pattern. A Product Architect decision is needed on the intended pattern set before this learning point can be treated as complete.",
+      "evidenceReadinessNote": "The vague, open-ended \"magnetic field patterns\" (plural, unenumerated) framing is replaced by an explicit, closed set of exactly three patterns this batch actually addresses: the bar magnet, the straight current-carrying conductor, and the solenoid/coil. This learning point's own DIAGRAM-RECOGNITION evidence genuinely covers only the first two (bar magnet, straight conductor); it is scoped to exactly those two and is fully READY on that explicit scope, not held pending a third pattern it never claimed. The third pattern (solenoid/coil) is not a gap: its field shape is already taught, with genuine VERIFIED evidence, as part of EMI-LP-06. No diagnostic value is lost by this split -- EMI-LP-02 and EMI-LP-06 remain independently assessable.",
       "underlyingEvidenceStatuses": {
-        "magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "PARTIALLY_VERIFIED"
+        "magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED"
       },
       "correctionNote": "[Correction, Stage 4 item 1/2] The vague, open-ended \"magnetic field patterns\" framing is replaced by an explicit, closed set of exactly three patterns this batch addresses: bar magnet, straight current-carrying conductor, and solenoid/coil. This learning point covers the first two, which are fully evidenced, and is READY on that explicit scope; the solenoid/coil pattern is separately and adequately taught, with genuine VERIFIED evidence, by the sibling learning point EMI-LP-06."
     },
@@ -814,7 +814,7 @@
         "brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED",
         "coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "PARTIALLY_VERIFIED"
       },
-      "correctionNote": "[Correction, Stage 1.1/4.8] Single-loop alternator parts restored to VERIFIED against the simplified elementary model."
+      "correctionNote": "[Correction] single-loop-alternator-generator-parts genuinely re-adjudicated to PARTIALLY_VERIFIED (not restored to VERIFIED): no source within the permitted authority classes shows one diagram both explicitly captioned single-loop and fully labelled with slip rings/brushes. A downstream authored-and-validated diagram dependency is recorded rather than a merged/invented figure. General simple-AC-generator part recognition (field, rotating winding, slip rings, brushes) remains soundly evidenced; only the strict single-loop framing and the coil facet remain PARTIALLY_VERIFIED, as already reflected in evidenceReadinessNote and underlyingEvidenceStatuses."
     },
     {
       "id": "EMI-LP-18",

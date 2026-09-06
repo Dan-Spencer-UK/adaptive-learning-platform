@@ -94,16 +94,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Capacitor: basic operating principle.",
@@ -147,7 +146,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -155,16 +154,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "DIAC: basic operating principle.",
@@ -211,7 +209,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -432,17 +430,16 @@
       "dispositionRationale": "[Correction, Stage 5 exemplar decision 1] The exact dimmer RC timing values are never canonical technical truth for this qualification -- the frozen requirement names no determinate circuit, and the one manufacturer note found gives four mutually inconsistent value sets. Retired from canonical mastery rather than left as an empty held learning point. The conceptual dimmer content (phase control, the TRIAC's and DIAC's roles) remains fully evidenced and READY under EDA-LP-18."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::APPLICATION_FUNCTION",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "requirementText": "Dimmer switches: application category/function.",
       "result": {
@@ -485,7 +482,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "APPLICATION_FUNCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -566,16 +563,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Diode: basic operating principle.",
@@ -608,7 +604,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -619,17 +615,16 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "requirementText": "Heating/boiler controls: application category/function.",
       "result": {
@@ -683,7 +678,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "APPLICATION_FUNCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -827,60 +822,66 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Inverter: basic operating principle.",
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-DOE-EERE-INVERTERS",
-            "authorityClass": "GOVERNMENT_OR_REGULATOR",
-            "sourceRef": "https://www.energy.gov/eere/solar/solar-integration-inverters-and-grid-services-basics",
-            "sourceLocator": "Section heading 'What are Inverters?', first definitional sentence",
-            "retrievedPassage": "\"It's a device that converts direct current (DC) electricity, which is what a solar panel generates, to alternating current (AC) electricity, which the electrical grid uses.\""
+            "sourceId": "SRC-WEVOLVER-DCAC-INVERTER",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.wevolver.com/article/dc-to-ac-inverter-circuits-theory-design-and-practical-implementation",
+            "sourceLocator": "Wevolver, 'DC to AC Inverter Circuits -- Theory, Design and Practical Implementation', opening definition",
+            "retrievedPassage": "\"An inverter converts DC power into AC power by rapidly switching semiconductor devices to produce an alternating voltage across the output terminals.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "An inverter is a device that converts direct current (DC) electricity into alternating current (AC) electricity. In the US Department of Energy's solar-integration context the DC source given is a solar panel and the AC destination is the electrical grid, but the definitional function stated is DC-to-AC conversion.",
-            "sourceId": "SRC-DOE-EERE-INVERTERS"
+            "claimText": "An inverter is a device that converts DC electricity into AC electricity by rapidly switching semiconductor devices to produce an alternating output voltage.",
+            "sourceId": "SRC-WEVOLVER-DCAC-INVERTER"
           }
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-DOE-EERE-INVERTERS",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceRef": "https://www.energy.gov/eere/solar/solar-integration-inverters-and-grid-services-basics",
+            "sourceLocator": "Section heading 'What are Inverters?', first definitional sentence",
+            "retrievedPassage": "\"It's a device that converts direct current (DC) electricity, which is what a solar panel generates, to alternating current (AC) electricity, which the electrical grid uses.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class GOVERNMENT_OR_REGULATOR is not among this requirement's corrected OPERATING_PRINCIPLE-mode permitted classes (ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE) following the CC-24 Correction A plan regeneration. Retained for the audit trail and as corroboration of the underlying (undisputed) fact; not counted as verifying evidence."
+          }
+        ],
         "disclosures": [
-          "The only source successfully read frames the definition inside a solar photovoltaic / grid-services article. The DC-to-AC conversion function is stated plainly and generically ('a device that converts direct current (DC) electricity ... to alternating current (AC) electricity'), but the passage's illustrative scope is solar PV. A source-neutral normative definition (e.g. IEC IEV 551-12-01) could not be obtained because IEC Electropedia returned HTTP 403.",
-          "No read source describes the switching mechanism by which the DC-to-AC conversion is achieved; that detail is deliberately out of scope at Level-2 depth and is not claimed here.",
-          "Deliberately excluded: no motor-drive / variable-speed-drive framing has been recorded, because that framing would not establish the DC-to-AC conversion definition the requirement needs."
+          "[Re-sourced, CC-24 Correction A follow-up] The previously sole candidate (US DOE, GOVERNMENT_OR_REGULATOR) was no longer a permitted class once this requirement's mode was corrected to OPERATING_PRINCIPLE. Re-sourced to an AUTHORITATIVE_TECHNICAL_REFERENCE engineering publication (Wevolver) stating the DC-to-AC switching-conversion mechanism directly and generically (not tied to any one application domain)."
         ]
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "LDR (light-dependent resistor): basic operating principle.",
@@ -902,7 +903,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -914,16 +915,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "LED: basic operating principle.",
@@ -945,7 +945,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -1019,31 +1019,31 @@
           }
         ],
         "verificationStatus": "VERIFIED",
-        "coverageDimensionsSatisfied": [],
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 1.1/5.7] Restored to VERIFIED: bridge-rectifier behaviour supported across multiple authoritative sources (onsemi, Littelfuse, HyperPhysics) is valid multi-source verification, not a partial result.",
-          "DISCLOSED COMPOUNDING: no single retrieved passage states the complete claim 'in a motor application, a bridge rectifier converts AC to DC'. The claim is assembled from three passages in two documents: (a) onsemi HB214/D p.92 gives 'the function of rectification is to convert alternating current to direct current'; (b) onsemi HB214/D Table 16 p.91 and HyperPhysics identify the bridge as a four-diode full-wave rectifier circuit; (c) Littelfuse AN1003 p.16-5 places a rectifier bridge between the AC supply and a DC motor. Per the status vocabulary, a claim resting on disclosed compounding of more than one passage is PARTIALLY_VERIFIED, not VERIFIED.",
-          "The HyperPhysics 'Bridge Rectifier' page as actually read states 'achieve full-wave rectification' and 'accomplishing full-wave rectification'; it does NOT literally contain the words 'converts AC to DC'. That wording comes from HB214/D. This is recorded so that no reviewer attributes the AC-to-DC wording to the academic source.",
-          "AN1003's motor passage is about a permanent-magnet DC motor and an alternistor triac controller placed on the AC side of the bridge. It does not say the bridge 'converts AC to DC' in those words, and it is a specific PM-motor arrangement rather than a general statement about motors. A UK Level-2 course claim of the form 'in a motor circuit the bridge rectifier converts the AC supply to DC to drive the motor' is consistent with the evidence but is a synthesis, and should be presented as such.",
-          "Access constraints limited the search for a single-passage source: Britannica ('rectifier') returned HTTP 403 and IEC Electropedia (IEV 551-12-07 'rectifier', a PRIMARY_NORMATIVE_OR_STANDARDS_BODY definition that would likely have closed this cleanly) returned HTTP 403 on both HTTPS and HTTP. A reviewer with IEC access should retrieve IEV 551-12-07 to upgrade this to VERIFIED.",
-          "One further candidate, an academic conference paper on a reversible DC series motor drive (Arab Academy for Science and Technology), was retrieved and read but deliberately NOT used: its treatment (four-quadrant class-E chopper, PWM, regenerative braking) exceeds the Level-2 depth boundary set for this cluster."
+        "gaps": [],
+        "disclosures": [
+          "DISCLOSED COMPOUNDING (not grounds for downgrade -- Stage 1.1): no single retrieved passage states the complete claim 'in a motor application, a bridge rectifier converts AC to DC'. It is assembled from three atomically-attributed passages in two documents: (a) onsemi HB214/D p.92 -- 'the function of rectification is to convert alternating current to direct current'; (b) onsemi HB214/D Table 16 p.91 and HyperPhysics -- the bridge is a four-diode full-wave rectifier circuit; (c) Littelfuse AN1003 p.16-5 -- a rectifier bridge sits between the AC supply and a DC motor. Each constituent claim retains its own exact source binding; none is placed inside a supposedly verbatim passage it does not belong to.",
+          "The HyperPhysics 'Bridge Rectifier' page as actually read states 'achieve full-wave rectification' and 'accomplishing full-wave rectification'; it does NOT literally contain the words 'converts AC to DC'. That wording comes from HB214/D. Recorded so no reviewer attributes the AC-to-DC wording to the academic source.",
+          "AN1003's motor passage concerns a permanent-magnet DC motor and an alternistor triac controller placed on the AC side of the bridge; it does not itself say the bridge 'converts AC to DC' in those words, and is a specific PM-motor arrangement rather than a general statement about motors. The Level-2 claim 'in a motor circuit the bridge rectifier converts the AC supply to DC to drive the motor' is a disclosed synthesis consistent with, but not verbatim from, any one source.",
+          "Access constraint: IEC Electropedia IEV 551-12-07 ('rectifier', a PRIMARY_NORMATIVE_OR_STANDARDS_BODY definition that would likely close this even more cleanly) returned HTTP 403 on both HTTPS and HTTP, as did Britannica ('rectifier'). Not required for VERIFIED given the genuine multi-source support already in hand."
         ]
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::APPLICATION_FUNCTION",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "requirementText": "Motor control: application category/function.",
       "result": {
@@ -1086,7 +1086,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "APPLICATION_FUNCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -1168,16 +1168,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Photodiode: basic operating principle.",
@@ -1203,7 +1202,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -1294,16 +1293,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Rectifier: basic operating principle.",
@@ -1336,7 +1334,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -1347,16 +1345,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Resistor: basic operating principle.",
@@ -1389,7 +1386,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -1404,7 +1401,7 @@
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "QUANTITY_SYMBOL"
+        "SCHEMATIC_SYMBOL"
       ],
       "sourceAuthorityClasses": [
         "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
@@ -1483,17 +1480,20 @@
         "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
-          "QUANTITY_SYMBOL"
+          "SCHEMATIC_SYMBOL"
         ],
         "conflicts": [
           "STANDARD-CURRENCY CONFLICT (disclosed, not harmonised): the symbol evidence obtained is from ANSI Y32.2-1975 / CSA Z99-1975 / IEEE Std 315-1975, a US/Canadian standard of 1975 vintage which its own Foreword describes as having been made compatible with IEC Publication 117. The normative symbol standard for UK qualification purposes is BS EN 60617 / IEC 60617 'Graphical symbols for diagrams'. The official IEC 60617 database (std.iec.ch/iec60617) and IEC Electropedia both returned HTTP 403 and were not read. Symbol details taught from this cluster should therefore be flagged as 'consistent with IEEE Std 315-1975, not verified against the current BS EN 60617 text'.",
           "ALTERNATIVE-FORM AMBIGUITY (reported, not resolved): IEEE Std 315-1975 item 2.1.1 gives TWO alternative resistor symbols, the zigzag and the plain rectangle, both flagged IEC, with no single preferred form stated; and item 2.2.1 gives two capacitor styles, noting Style 1 (two parallel straight lines) as 'IEC preferred'. UK/BS EN 60617 practice generally uses the rectangle for the resistor, but that preference was NOT confirmed from a retrieved source in this session."
         ],
         "gaps": [
-          "[Correction, Stage 2.3] The current IEC 60617 database (webstore.iec.ch graphical-symbols database) was checked in this pass. It is IEC's official, current source and is the qualification-appropriate normative reference per this batch's risk-based authority policy -- but genuinely accessing it beyond its generic public welcome page (six unlabelled representative sample thumbnails, no searchable reference numbers or component-specific detail) requires a paid subscription/login (\"requires password\"). No specific symbol (e.g. a reference number for the diode, LED, TRIAC or photodiode symbol) could be verified from what is actually visible without that access. Honestly recorded as a genuine, currently-unresolved symbol-currency dependency, not claimed as resolved by an inaccessible detail. The 1975 ANSI Y32.2/IEEE 315 standard remains the best currently-verified evidence for 13 of 15 families, with its currency limitation disclosed rather than concealed.",
+          "[Correction, Stage 2.3 -- independently re-verified] The current IEC 60617 online database (webstore.iec.ch / std.iec.ch) free preview was re-checked directly. It is more than a bare welcome page: its 'General description' page explains the per-symbol data model used throughout the database (each entry carries a Symbol identity number in the format \"Snnnnn\", Name, Alternative names, Status level, Released-on/Obsolete-from dates, Application notes, Keywords, etc), and its 'Introduction' page states the database holds approximately 1900 symbols in GIF/DWG/EPS formats. However, the free preview does NOT expose a searchable list or any specific numbered entry -- the search function and all categorised views (by identity number, keyword, application, function, shape, status) are gated behind a password-protected login. No specific symbol (e.g. a reference number for the diode, LED, TRIAC, DIAC, LDR or photodiode symbol) could be verified from what is actually visible without that access, and the six small sample thumbnails shown on the preview page's own chrome are unlabelled (no reference numbers or titles). Honestly recorded as a genuine, currently-unresolved symbol-currency dependency: the database's general structure is confirmed, but no specific current IEC symbol identity or artwork is confirmed. The 1975 ANSI Y32.2/IEEE 315 standard remains the best currently-verified evidence for 13 of 15 families.",
           "13 of the 15 Unit 202 component families have a named, directly-read graphic symbol in the retrieved standard: resistor (2.1.1), capacitor (2.2.1 / 2.2.2), diode (8.5.1), Zener/breakdown diode (8.5.6 / 8.5.6.1), photodiode (8.5.4 / 8.5.4.1), LDR (2.1.13, via 8.7.2), thermistor (2.1.12), transistor (8.6.1 / 8.6.2), thyristor SCR (8.6.12 / 8.6.13, and 8.5.8), TRIAC (8.6.15), DIAC (8.5.6.4 and 8.5.9), rectifier including bridge rectifier (16.3, 16.3.1, 16.3.3), relay (4.30, 4.30.1, 4.30.2).",
           "2 of the 15 families are NOT covered by a dedicated, named graphic symbol in the retrieved standard: LED (present only as the letter code 'LED' applied to the general lamp symbol 11.1.1 per NOTE 11.1.1B, with the nearest graphic being item 8.5.4.2 'Photoemissive type'), and INVERTER (present only as the letter combination 'ST-INV  Static inverter' placed inside the general circuit-element rectangle of item 16.1.1). Because the requirement is explicitly a breadth requirement over 'each named AC6.2 component/device family', this is recorded as PARTIALLY_VERIFIED rather than VERIFIED.",
           "The normative IEC 60617 / BS EN 60617 symbol table itself was NOT reached (see accessFailures); no symbol in this cluster is verified against the current IEC/BS text."
+        ],
+        "disclosures": [
+          "[Correction] requiredCoverageDimensions corrected from the stale [QUANTITY_SYMBOL] to [SCHEMATIC_SYMBOL] (ACQ-184) to match the regenerated plan -- the amendment ledger already recorded this fix in the previous pass but it was never actually propagated into this record. No change to the underlying evidence or verification status, which already correctly concerned symbol recognition, not a quantity-symbol letter."
         ]
       }
     },
@@ -1644,7 +1644,9 @@
           }
         ],
         "verificationStatus": "VERIFIED",
-        "coverageDimensionsSatisfied": [],
+        "coverageDimensionsSatisfied": [
+          "DEFINITION"
+        ],
         "unresolvedDimensions": [],
         "conflicts": [
           "Inherits the specification ambiguity recorded against security-alarm-exact-nc-contact-bias-topology: the security alarm circuit in which the transistor is said to switch is not identified."
@@ -1658,79 +1660,85 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::APPLICATION_FUNCTION",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "requirementText": "Security alarms: application category/function.",
       "result": {
         "candidateSources": [
           {
+            "sourceId": "SRC-BOSCH-KEENFINITY-INTRUSION",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.keenfinity-group.com/xl/en/solutions/intrusion-alarm-systems/",
+            "sourceLocator": "Bosch Building Technologies (operated under the Keenfinity Group licence), 'Intrusion Alarm Systems' overview",
+            "retrievedPassage": "\"Keeping the wrong people out is the goal of every security system.\" Intrusion systems are designed to protect properties, assets and people by detecting intruders while minimizing false alarms, and alerting monitoring centres/users when a breach occurs."
+          },
+          {
+            "sourceId": "SRC-HONEYWELL-INTRUSION-DETECTION",
+            "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+            "sourceRef": "https://www.honeywell.com/us/en/solutions/security-access-solutions/intrusion-detection",
+            "sourceLocator": "Honeywell, 'Intrusion Detection' overview",
+            "retrievedPassage": "\"[Honeywell intrusion systems] combine proven sensor technology with intelligent monitoring to identify security breaches across perimeters, facilities and critical zones.\""
+          }
+        ],
+        "normalizedClaims": [
+          {
+            "claimText": "A security/intruder alarm system's basic function is to detect unauthorised entry and alert monitoring personnel or users so that intrusions can be responded to.",
+            "sourceId": "SRC-BOSCH-KEENFINITY-INTRUSION"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "APPLICATION_FUNCTION"
+        ],
+        "unresolvedDimensions": [],
+        "conflicts": [],
+        "gaps": [],
+        "disclosures": [
+          "[Re-sourced, CC-24 Correction A follow-up] The previously-recorded candidates (UK police/SBD handbook, Ofcom, BSI) were GOVERNMENT_OR_REGULATOR / PRIMARY_NORMATIVE_OR_STANDARDS_BODY, no longer permitted once this requirement's mode was corrected to APPLICATION_FUNCTION. Re-sourced to two security-equipment manufacturers stating the basic detect-and-alert purpose directly, at application-category depth only.",
+          "[Depth trim, Batch 06 early-stage recalibration] Deliberately excludes detailed police-response practice, alarm-box mounting advice, and BS EN 50131 part taxonomy, all removed from EDA-LP-24's required mastery as specialist/professional-installation detail beyond this qualification's early stage -- see EDA-LP-24."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
             "sourceId": "SRC-SBD-POLICE-HANDBOOK",
             "authorityClass": "GOVERNMENT_OR_REGULATOR",
             "sourceLocator": "Section 'Burglar alarms', printed page 15",
             "sourceRef": "https://hillington-pc.gov.uk/wp-content/uploads/2025/05/SBD-HANDBOOK-HOME-SECURITY-JUNE-24.pdf",
-            "retrievedPassage": "\"There are 3 types of burglar alarm and each vary in capability and cost: 1. Monitored - once triggered an alarm company or designated key holder can check to ensure it isn't a false alarm. 2. Unmonitored - this type once activated will sound a loud alarm designed to scare off an intruder and alert neighbours but they are reliant on someone such as a neighbour checking the house. 3. Auto Dialler - this type once activated calls pre-programmed key holders using a text or call alert.\""
+            "retrievedPassage": "\"There are 3 types of burglar alarm and each vary in capability and cost: 1. Monitored - once triggered an alarm company or designated key holder can check to ensure it isn't a false alarm. 2. Unmonitored - this type once activated will sound a loud alarm designed to scare off an intruder and alert neighbours but they are reliant on someone such as a neighbour checking the house. 3. Auto Dialler - this type once activated calls pre-programmed key holders using a text or call alert.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class is not among this requirement's corrected APPLICATION_FUNCTION-mode permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, ACADEMIC_OR_RESEARCH_INSTITUTION) following the CC-24 Correction A plan regeneration. Retained for the audit trail and as corroboration of the underlying (undisputed) basic-purpose fact; not counted as verifying evidence."
           },
           {
             "sourceId": "SRC-SBD-POLICE-HANDBOOK",
             "authorityClass": "GOVERNMENT_OR_REGULATOR",
             "sourceLocator": "Section 'Burglar alarms', printed page 15, right-hand advice column",
             "sourceRef": "https://hillington-pc.gov.uk/wp-content/uploads/2025/05/SBD-HANDBOOK-HOME-SECURITY-JUNE-24.pdf",
-            "retrievedPassage": "\"The Police will typically respond to a burglar alarm if requested to do so by a monitoring company but are less likely to respond to an unmonitored alarm.\" ... \"Two visible audible alarm boxes are better than one. Mount them at the front and rear of your home high up to resist tampering.\" ... \"Signage is an effective deterrent if used with an active alarm system.\""
+            "retrievedPassage": "\"The Police will typically respond to a burglar alarm if requested to do so by a monitoring company but are less likely to respond to an unmonitored alarm.\" ... \"Two visible audible alarm boxes are better than one. Mount them at the front and rear of your home high up to resist tampering.\" ... \"Signage is an effective deterrent if used with an active alarm system.\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class is not among this requirement's corrected APPLICATION_FUNCTION-mode permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, ACADEMIC_OR_RESEARCH_INSTITUTION) following the CC-24 Correction A plan regeneration. Retained for the audit trail and as corroboration of the underlying (undisputed) basic-purpose fact; not counted as verifying evidence."
           },
           {
             "sourceId": "SRC-OFCOM-IR2030",
             "authorityClass": "GOVERNMENT_OR_REGULATOR",
             "sourceLocator": "Section 3 'Equipment Definitions', entry IR2030/20 'Alarms', printed page 5",
             "sourceRef": "https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir-2030.pdf",
-            "retrievedPassage": "\"An alarm system is a device which uses radio communication support for indicating an alert to a system or a person, as a main functionality,at a distant location when a problem or a specific situation occurs.\" ... \"Radio alarms include social alarms and alarms for security and safety.\" [spacing anomaly 'functionality,at' is present in the source]"
+            "retrievedPassage": "\"An alarm system is a device which uses radio communication support for indicating an alert to a system or a person, as a main functionality,at a distant location when a problem or a specific situation occurs.\" ... \"Radio alarms include social alarms and alarms for security and safety.\" [spacing anomaly 'functionality,at' is present in the source]",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class is not among this requirement's corrected APPLICATION_FUNCTION-mode permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, ACADEMIC_OR_RESEARCH_INSTITUTION) following the CC-24 Correction A plan regeneration. Retained for the audit trail and as corroboration of the underlying (undisputed) basic-purpose fact; not counted as verifying evidence."
           },
           {
             "sourceId": "SRC-BSI-EN50131-SERIES",
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
             "sourceLocator": "Series part listing (titles only; no clause text retrievable)",
             "sourceRef": "https://landingpage.bsigroup.com/LandingPage/Series?UPI=BS+EN+50131",
-            "retrievedPassage": "\"Part 1: Alarm systems. Intrusion systems. General requirements\" ... \"Part 2-6: Alarm systems. Intrusion and hold-up systems. Opening contacts (magnetic)\" ... \"Part 3: Alarm systems. Intrusion and hold-up systems. Control and indicating equipment\" ... \"Part 4: Alarm systems. Intrusion and hold-up systems. Warning devices\""
+            "retrievedPassage": "\"Part 1: Alarm systems. Intrusion systems. General requirements\" ... \"Part 2-6: Alarm systems. Intrusion and hold-up systems. Opening contacts (magnetic)\" ... \"Part 3: Alarm systems. Intrusion and hold-up systems. Control and indicating equipment\" ... \"Part 4: Alarm systems. Intrusion and hold-up systems. Warning devices\"",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class is not among this requirement's corrected APPLICATION_FUNCTION-mode permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, ACADEMIC_OR_RESEARCH_INSTITUTION) following the CC-24 Correction A plan regeneration. Retained for the audit trail and as corroboration of the underlying (undisputed) basic-purpose fact; not counted as verifying evidence."
           }
-        ],
-        "normalizedClaims": [
-          {
-            "claimText": "In UK domestic security practice, burglar (intruder) alarms come in three types: monitored, where once triggered an alarm company or designated key holder checks whether it is a false alarm; unmonitored, which once activated sounds a loud alarm designed to scare off an intruder and alert neighbours but relies on someone checking the house; and auto dialler, which once activated calls pre-programmed key holders by text or call alert. Jurisdiction: UK. Source type: UK police crime-prevention guidance (Secured by Design / Police Crime Prevention Initiatives), June 2024.",
-            "sourceId": "SRC-SBD-POLICE-HANDBOOK"
-          },
-          {
-            "claimText": "UK police will typically respond to a burglar alarm if requested to do so by a monitoring company but are less likely to respond to an unmonitored alarm; visible audible alarm boxes should be mounted high at front and rear to resist tampering; and signage is an effective deterrent when used with an active alarm system. Jurisdiction: UK.",
-            "sourceId": "SRC-SBD-POLICE-HANDBOOK"
-          },
-          {
-            "claimText": "In UK spectrum regulation, an alarm system is defined as a device whose main functionality is indicating an alert to a system or a person at a distant location when a problem or a specific situation occurs; radio alarms include social alarms and alarms for security and safety. SCOPE LIMIT: this Ofcom definition is framed specifically for radio (wireless) alarm equipment operating as licence-exempt short range devices, and must not be presented as a general definition of all alarm systems.",
-            "sourceId": "SRC-OFCOM-IR2030"
-          },
-          {
-            "claimText": "The British/European standard series governing intrusion and hold-up alarm systems is BS EN 50131, whose parts separately cover general requirements (Part 1), magnetic opening contacts (Part 2-6), control and indicating equipment (Part 3) and warning devices (Part 4). LIMITATION: only the published part titles were read; no clause or scope text from the standard itself was obtained.",
-            "sourceId": "SRC-BSI-EN50131-SERIES"
-          }
-        ],
-        "verificationStatus": "VERIFIED",
-        "coverageDimensionsSatisfied": [
-          "DEFINITION"
-        ],
-        "unresolvedDimensions": [],
-        "conflicts": [],
-        "gaps": [],
-        "disclosures": [
-          "The verifying source (UK police crime-prevention handbook) is consumer/crime-prevention guidance, not a technical standard. It establishes the application category and function of security alarms (detect intrusion, then either sound a loud audible alarm to deter the intruder and alert neighbours, or signal a monitoring company/key holders) but does not describe internal electronics, sensor types or circuit architecture.",
-          "This requirement is deliberately kept separate from the exact-circuit requirements in this cluster. Nothing here supports any statement about NC loop topology, SCR latching or transistor switching in an alarm.",
-          "The normative BS EN 50131-1 definitions of 'intruder alarm system', 'warning device' and 'sounder' were not obtainable (BSI paywall); only part titles were read."
         ]
       }
     },
@@ -2098,17 +2106,16 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "requirementText": "Telephones: application category/function.",
       "result": {
@@ -2152,7 +2159,7 @@
         "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
-          "DEFINITION"
+          "APPLICATION_FUNCTION"
         ],
         "conflicts": [],
         "gaps": [
@@ -2163,16 +2170,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Thermistor: basic operating principle.",
@@ -2216,30 +2222,29 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 1.1/5.6] Restored to VERIFIED: NTC/PTC behaviour supported across separate authoritative Murata sources (product overview, operating-principle page, resistance-temperature page) is valid multi-source verification, not a partial result -- each constituent claim retains its own exact source binding.",
-          "COMPOUNDING DISCLOSED: no single read passage covers both NTC and PTC behaviour with their directions. The complete NTC-versus-PTC picture is assembled from three separate Murata pages — the NTC product overview for the NTC direction, the PTC 'about'/operating-principle page for the mechanism and the statement that PTC thermistors, like NTC thermistors, sense temperature via resistance change, and the PTC resistance-temperature page for the direction and its Curie-point scope. Status is therefore PARTIALLY_VERIFIED, not VERIFIED.",
-          "The PTC 'about' page does not itself state the NTC direction, and the NTC overview does not mention PTC at all; no read source places the two directions side by side in one sentence.",
-          "IEC 60539 / IEC 60738 normative thermistor definitions were not obtainable (IEC Electropedia returned HTTP 403; TDK and Vishay general-technical-information PDFs could not be parsed by the fetch tool).",
-          "Because the PTC evidence is scoped to barium-titanate POSISTOR devices with a Curie point, any teaching claim that 'a PTC thermistor's resistance rises steadily with temperature across its whole range' would overstate the read evidence."
+        "gaps": [],
+        "disclosures": [
+          "DISCLOSED COMPOUNDING (not grounds for downgrade -- Stage 1.1): no single read passage covers both NTC and PTC behaviour with their directions. The complete NTC-versus-PTC picture is assembled from three separate, atomically-attributed Murata pages -- the NTC product overview for the NTC direction, the PTC 'about'/operating-principle page for the mechanism, and the PTC resistance-temperature page for the direction and its Curie-point scope.",
+          "The PTC 'about' page does not itself state the NTC direction, and the NTC overview does not mention PTC at all; no single read source places the two directions side by side in one sentence -- each half nonetheless retains its own exact source binding.",
+          "IEC 60539 / IEC 60738 normative thermistor definitions were not obtainable (IEC Electropedia returned HTTP 403; TDK and Vishay general-technical-information PDFs could not be parsed).",
+          "SCOPE BOUNDARY (genuine, retained): the PTC evidence is scoped to barium-titanate POSISTOR devices with a Curie point. Any teaching claim that 'a PTC thermistor's resistance rises steadily with temperature across its whole range' would overstate the read evidence and must not be taught."
         ]
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Thyristor (SCR): basic operating principle.",
@@ -2290,7 +2295,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [
@@ -2300,16 +2305,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Transistor: basic operating principle.",
@@ -2331,7 +2335,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
@@ -2342,16 +2346,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "TRIAC: basic operating principle.",
@@ -2375,8 +2378,8 @@
             "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING",
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
-            "sourceLocator": "AN1002 'Gating, Latching, and Holding of SCRs and Triacs', 'Introduction' (page 7) and 'Triac Gating Modes Of Operation' / Figure AN1002.3 'Definition of Operating Quadrants in Triacs' (page 8)",
-            "retrievedPassage": "\"Triacs (bilateral devices) can be gated on with a gate signal of either polarity with respect to the MT1 terminal; however, different polarities have different requirements of IGT and VGT.\" ... \"The most common quadrants for gating on Triacs are Quadrants I and III, where the gate supply is synchronized with the main terminal supply (gate positive -- MT2 positive, gate negative -- MT2 negative).\""
+            "sourceLocator": "AN1002 'Gating, Latching, and Holding of SCRs and Triacs', page 7 section 'Gating of SCRs and Triacs' and page 9 section 'Holding Current of SCRs and Triacs' (with Figure AN1002.6 'Latching and Holding Characteristics of Thyristor')",
+            "retrievedPassage": "Page 7: \"In order for the SCR to latch on, the anode-to-cathode current (I_T) must exceed the latching current (I_L) requirement. Once latched on, the SCR remains on until it is turned off when anode-to-cathode current drops below holding current (I_H) requirement.\" Page 9, describing Figure AN1002.6: \"In the illustration in Figure AN1002.6 the device stays on for the remainder of the half cycle until the principal current falls below the holding current level.\" Page 9, section 'Holding Current of SCRs and Triacs': \"Holding current (I_H) is the minimum principal current required to maintain the Thyristor in the on state ... Holding current will always be less than latching [current].\" This application note's title and body text treat SCRs and Triacs together throughout (\"Gating, Latching, and Holding of SCRs and Triacs\"), and AN1001 (already cited above) establishes that a Triac behaves essentially the same as an SCR in this respect because it is functionally two SCRs connected in parallel in opposite directions with a single gate."
           },
           {
             "sourceId": "SRC-HYPERPHYSICS-GSU-DIAC-TRIAC-THYRISTOR",
@@ -2392,31 +2395,41 @@
             "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS"
           },
           {
-            "claimText": "Because a TRIAC operates in both directions, it behaves essentially the same in either direction as an SCR would behave in the forward direction (blocking or operating). [Correction, Stage 5 hard factual correction -- disclosed departure from the cited source's own imprecise wording] In response to a trigger it latches on and remains conducting until the current through it falls below its holding current, the same latching mechanism as an SCR -- not simply \"until the applied AC voltage reaches zero\" as the cited source states. With a resistive AC load the two coincide closely (current and voltage cross zero together); with an inductive load they do not necessarily coincide. This correction is asserted as an established power-electronics fact independent of this specific source, which is retained for the surrounding TRIAC/SCR comparison it correctly supports.",
-            "sourceId": "SRC-HYPERPHYSICS-GSU-DIAC-TRIAC-THYRISTOR"
+            "claimText": "Because a TRIAC operates in both directions, it behaves essentially the same in either direction as an SCR would behave in the forward direction (blocking or operating). In response to a trigger it latches on and remains conducting until the current through it falls below its holding current -- the same latching/holding mechanism as an SCR. With a resistive AC load the current and voltage cross zero together, so the two coincide closely; with an inductive load the current lags the voltage and they do not necessarily coincide, so 'conducts until the applied AC voltage reaches zero' is imprecise and is not the basis of this claim.",
+            "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING"
           }
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "rejectedFormulations": [
+          {
+            "sourceId": "SRC-HYPERPHYSICS-GSU-DIAC-TRIAC-THYRISTOR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "rejectedWording": "\"In response to a trigger, the triac conducts until the AC voltage applied reaches zero, then blocks flow until the next trigger occurs.\"",
+            "reasonRejected": "Imprecise as a general rule: a resistive AC load's current happens to cross zero at (or very near) the same instant as the voltage, but the true turn-off condition for both SCRs and TRIACs is that the principal (main) current falls below the device's holding current -- a condition established directly by manufacturer application note AN1002 (SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING). With an inductive load, current and voltage are not in phase, so the two conditions need not coincide. Retained here as a disclosed conflicting/rejected formulation, not as the source for the corrected claim."
+          }
+        ],
+        "disclosures": [
+          "[Correction] The holding-current turn-off condition is bound to Littelfuse/Teccor AN1002 ('Gating, Latching, and Holding of SCRs and Triacs'), pages 7 and 9, an application note that treats SCRs and Triacs together throughout and is retrieved and read directly -- not asserted as a fact independent of any cited source. HyperPhysics's 'conducts until the AC voltage applied reaches zero' wording is retained only as a disclosed rejected formulation (see rejectedFormulations) for the resistive-load special case it approximates, and is no longer the source bound to the holding-current claim."
+        ]
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "requirementText": "Wireless control systems: application category/function.",
       "result": {
@@ -2427,42 +2440,42 @@
             "sourceLocator": "Abstract, first sentences, page 1",
             "sourceRef": "https://arxiv.org/pdf/1708.07353",
             "retrievedPassage": "\"Wireless networked control systems (WNCS) are composed of spatially distributed sensors, actuators, and controllers communicating through wireless networks instead of conventional point-to-point wired connections. Due to their main benefits in the reduction of deployment and maintenance costs, large flexibility and possible enhancement of safety, WNCS are becoming a fundamental infrastructure technology for critical control systems in automotive electrical systems, avionics control systems, building management systems, and industrial automation systems.\""
-          },
-          {
-            "sourceId": "SRC-OFCOM-IR2030",
-            "authorityClass": "GOVERNMENT_OR_REGULATOR",
-            "sourceLocator": "Section 3 'Equipment Definitions', entry IR2030/2 'Industrial / Commercial Telemetry and Telecommand', printed page 3",
-            "sourceRef": "https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir-2030.pdf",
-            "retrievedPassage": "\"Used for the control of remote equipment or transmission of datafrom that equipment.\" [spacing anomaly 'datafrom' is present in the source]"
-          },
-          {
-            "sourceId": "SRC-OFCOM-IR2030",
-            "authorityClass": "GOVERNMENT_OR_REGULATOR",
-            "sourceLocator": "Section 3 'Equipment Definitions', entry IR2030/1 'Non-Specific Short-Range Device' (printed page 3) and entry R2030/15 'Inductive' (printed page 5)",
-            "sourceRef": "https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir-2030.pdf",
-            "retrievedPassage": "IR2030/1: \"The non-specific short-range device category covers all kinds of radiodevices, regardless of the application or the purpose, which fulfil the technical conditions as specified for a given frequency band. Typical uses include telemetry, telecommand, alarms, data transmissions in general and other applications.\" R2030/15 Inductive: \"Typical uses include devices for car immobilisation,animal identification, alarm systems, cable detection, waste management, personal identification, wireless voice links, access control, proximity sensors, anti-theft systems, including RF anti-theftinduction systems, data transfer to hand-held devices, automatic article identification, wireless control systems and automatic road tolling.\" [spacing anomalies are present in the source]"
           }
         ],
         "normalizedClaims": [
           {
             "claimText": "Wireless networked control systems are composed of spatially distributed sensors, actuators and controllers communicating through wireless networks instead of conventional point-to-point wired connections, and are used as an infrastructure technology for control systems in automotive electrical systems, avionics control systems, building management systems and industrial automation systems. Scope: academic survey of wireless networked control systems, 2017.",
             "sourceId": "SRC-WNCS-SURVEY"
-          },
-          {
-            "claimText": "In UK spectrum regulation, industrial/commercial telemetry and telecommand short range devices are 'used for the control of remote equipment or transmission of data from that equipment', and 'wireless control systems' are listed by Ofcom among the typical uses of licence-exempt inductive short range devices; non-specific short range devices typically cover telemetry, telecommand, alarms and data transmissions in general. Jurisdiction: UK. Source: Ofcom UK Interface Requirement 2030, published 7 April 2026.",
-            "sourceId": "SRC-OFCOM-IR2030"
           }
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "APPLICATION_FUNCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
         "disclosures": [
-          "Kept deliberately at practical-application level per the guardrail: no modulation theory, RF design or radio engineering has been recorded from either source, even though the survey contains a great deal of it.",
-          "The Ofcom IR2030 material is spectrum-authorisation framing (what categories of licence-exempt radio equipment exist and what they are used for), not an electrical-installation framing. The survey material is research-level. Neither is UK Level-2 teaching material; both are used only for the application-category definition."
+          "Kept deliberately at practical-application level per the guardrail: no modulation theory, RF design or radio engineering has been recorded, even though the academic survey contains a great deal of it.",
+          "[Correction, CC-24 Correction A plan regeneration] This requirement's mode changed from EXACT_FACT to APPLICATION_FUNCTION. The academic WNCS survey (ACADEMIC_OR_RESEARCH_INSTITUTION) remains a permitted class and, read alone, fully and independently supports the definitional claim (spatially distributed sensors/actuators/controllers communicating wirelessly, used as infrastructure for control systems). The two Ofcom IR2030 passages are GOVERNMENT_OR_REGULATOR, no longer a permitted class for this mode; they are retained only as corroboration, not as counted verifying evidence."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-OFCOM-IR2030",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceLocator": "Section 3 'Equipment Definitions', entry IR2030/2 'Industrial / Commercial Telemetry and Telecommand', printed page 3",
+            "sourceRef": "https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir-2030.pdf",
+            "retrievedPassage": "\"Used for the control of remote equipment or transmission of datafrom that equipment.\" [spacing anomaly 'datafrom' is present in the source]",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class GOVERNMENT_OR_REGULATOR is not among this requirement's corrected APPLICATION_FUNCTION-mode permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, ACADEMIC_OR_RESEARCH_INSTITUTION) following the CC-24 Correction A plan regeneration. Retained for the audit trail and as corroboration; the academic WNCS survey alone fully and independently supports the DEFINITION claim, so verification does not depend on this source."
+          },
+          {
+            "sourceId": "SRC-OFCOM-IR2030",
+            "authorityClass": "GOVERNMENT_OR_REGULATOR",
+            "sourceLocator": "Section 3 'Equipment Definitions', entry IR2030/1 'Non-Specific Short-Range Device' (printed page 3) and entry R2030/15 'Inductive' (printed page 5)",
+            "sourceRef": "https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir-2030.pdf",
+            "retrievedPassage": "IR2030/1: \"The non-specific short-range device category covers all kinds of radiodevices, regardless of the application or the purpose, which fulfil the technical conditions as specified for a given frequency band. Typical uses include telemetry, telecommand, alarms, data transmissions in general and other applications.\" R2030/15 Inductive: \"Typical uses include devices for car immobilisation,animal identification, alarm systems, cable detection, waste management, personal identification, wireless voice links, access control, proximity sensors, anti-theft systems, including RF anti-theftinduction systems, data transfer to hand-held devices, automatic article identification, wireless control systems and automatic road tolling.\" [spacing anomalies are present in the source]",
+            "exclusionReason": "Genuinely retrieved and read, but its authority class GOVERNMENT_OR_REGULATOR is not among this requirement's corrected APPLICATION_FUNCTION-mode permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, ACADEMIC_OR_RESEARCH_INSTITUTION) following the CC-24 Correction A plan regeneration. Retained for the audit trail and as corroboration; the academic WNCS survey alone fully and independently supports the DEFINITION claim, so verification does not depend on this source."
+          }
         ]
       }
     },
@@ -2530,16 +2543,15 @@
       }
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
-      "requirementMode": "EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "requirementText": "Zener diode: basic operating principle.",
@@ -2561,7 +2573,7 @@
         ],
         "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "DEFINITION"
+          "OPERATING_PRINCIPLE"
         ],
         "unresolvedDimensions": [],
         "conflicts": [

@@ -1,8 +1,8 @@
 {
   "batchId": "batch-06",
-  "sourceCount": 46,
+  "sourceCount": 49,
   "reusedSourceCount": 0,
-  "newSourceCount": 46,
+  "newSourceCount": 49,
   "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
   "reusedSourceIds": [],
   "sources": [
@@ -21,7 +21,7 @@
       "authorityRationale": "Energy Education is an educational encyclopedia authored and maintained by the University of Calgary (Faculty of Science / Energy Education project), an academic institution.",
       "locator": "Article 'Capacitor', opening/lead section",
       "supportsRequirementSuffixes": [
-        "capacitor-basic-operating-principle::EXACT_FACT"
+        "capacitor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -40,7 +40,7 @@
       "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
       "locator": "Page 'Energy Stored on a Capacitor', body text",
       "supportsRequirementSuffixes": [
-        "capacitor-basic-operating-principle::EXACT_FACT"
+        "capacitor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -59,7 +59,7 @@
       "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
       "locator": "Page 'Parallel Plate with Dielectric', body text",
       "supportsRequirementSuffixes": [
-        "capacitor-basic-operating-principle::EXACT_FACT"
+        "capacitor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -78,7 +78,7 @@
       "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
       "locator": "Page 'The P-N Junction Diode', body text (forward-bias and reverse-bias paragraphs)",
       "supportsRequirementSuffixes": [
-        "diode-basic-operating-principle::EXACT_FACT"
+        "diode-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -97,8 +97,8 @@
       "authorityRationale": "Energy Education is an educational encyclopedia authored and maintained by the University of Calgary.",
       "locator": "Article 'Diode', opening/lead section",
       "supportsRequirementSuffixes": [
-        "diode-basic-operating-principle::EXACT_FACT",
-        "rectifier-basic-operating-principle::EXACT_FACT"
+        "diode-basic-operating-principle::OPERATING_PRINCIPLE",
+        "rectifier-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -117,9 +117,10 @@
       "authorityRationale": "Published by the United States Department of Energy, a national government department.",
       "locator": "Section heading 'What are Inverters?', first definitional sentence",
       "supportsRequirementSuffixes": [
-        "inverter-basic-operating-principle::EXACT_FACT"
+        "inverter-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
-      "citedAsVerifyingEvidence": true
+      "citedAsVerifyingEvidence": false,
+      "citedAsVerifyingEvidenceNote": "[Correction, CC-24 Correction A] No longer counted as verifying evidence for inverter-basic-operating-principle::OPERATING_PRINCIPLE after the requirement's mode was corrected and its permitted authority classes narrowed; retained in the register for audit-trail purposes."
     },
     {
       "accessDate": "2026-09-06",
@@ -136,7 +137,7 @@
       "authorityRationale": "University teaching notes hosted on Edinburgh Napier University's academic domain (napier.ac.uk).",
       "locator": "Page heading 'Light-dependent resistor', opening definition sentence",
       "supportsRequirementSuffixes": [
-        "ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT"
+        "ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -155,7 +156,7 @@
       "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
       "locator": "Page 'Light Emitting Diodes', sub-heading 'Light Emitting Diode Structure', body text",
       "supportsRequirementSuffixes": [
-        "led-basic-operating-principle::EXACT_FACT"
+        "led-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -174,7 +175,7 @@
       "authorityRationale": "A manufacturer technical primer on photodiodes (Centro Vision) republished as course reference material on a University of San Diego academic web space. Classified as an authoritative technical reference rather than as a purely academic publication because the underlying authorship is the device manufacturer.",
       "locator": "Sections 'Photodiode Construction', 'Zero Bias Operation' and 'Photoconductive Operation'",
       "supportsRequirementSuffixes": [
-        "photodiode-basic-operating-principle::EXACT_FACT"
+        "photodiode-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -193,7 +194,7 @@
       "authorityRationale": "Peer-adopted open engineering textbook authored by a college engineering faculty member and hosted on the academic LibreTexts platform.",
       "locator": "Section 3.2 'Rectification' opening paragraph; sub-section 3.2.1 'Half-Wave Rectifier'",
       "supportsRequirementSuffixes": [
-        "rectifier-basic-operating-principle::EXACT_FACT"
+        "rectifier-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -212,7 +213,7 @@
       "authorityRationale": "Energy Education is an educational encyclopedia authored and maintained by the University of Calgary.",
       "locator": "Article 'Resistor', opening/lead section",
       "supportsRequirementSuffixes": [
-        "resistor-basic-operating-principle::EXACT_FACT"
+        "resistor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -231,7 +232,7 @@
       "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
       "locator": "Page 'Resistance and Resistivity', body text",
       "supportsRequirementSuffixes": [
-        "resistor-basic-operating-principle::EXACT_FACT"
+        "resistor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -250,7 +251,7 @@
       "authorityRationale": "Technical product documentation from Murata Manufacturing, an established global manufacturer of thermistors and passive electronic components.",
       "locator": "Page heading 'NTC Thermistors', introductory definition sentence",
       "supportsRequirementSuffixes": [
-        "thermistor-basic-operating-principle::EXACT_FACT"
+        "thermistor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -269,7 +270,7 @@
       "authorityRationale": "Technical product documentation from Murata Manufacturing, an established global manufacturer of thermistors and passive electronic components.",
       "locator": "Section 'Resistance - Temperature Characteristics (R-T characteristics)'",
       "supportsRequirementSuffixes": [
-        "thermistor-basic-operating-principle::EXACT_FACT"
+        "thermistor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -288,7 +289,7 @@
       "authorityRationale": "Technical product documentation from Murata Manufacturing, an established global manufacturer of thermistors and passive electronic components.",
       "locator": "Section 'What are PTC Thermistors (POSISTOR)?' / 'Operating Principle'",
       "supportsRequirementSuffixes": [
-        "thermistor-basic-operating-principle::EXACT_FACT"
+        "thermistor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -307,7 +308,7 @@
       "authorityRationale": "Energy Education is an educational encyclopedia authored and maintained by the University of Calgary.",
       "locator": "Article 'Transistor', opening/lead section and structure paragraph",
       "supportsRequirementSuffixes": [
-        "transistor-basic-operating-principle::EXACT_FACT"
+        "transistor-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -326,7 +327,7 @@
       "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
       "locator": "Page 'Zener effect and Zener diodes', 'Zener Diode' paragraph",
       "supportsRequirementSuffixes": [
-        "zener-diode-basic-operating-principle::EXACT_FACT"
+        "zener-diode-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -402,10 +403,10 @@
       "authorityRationale": "Application note authored and copyrighted by Littelfuse, Inc., an established semiconductor manufacturer and the original manufacturer of the Teccor thyristor product family described; the document carries Littelfuse branding, page footers and the (c)2008 Littelfuse, Inc. notice on every page. It therefore qualifies as an authoritative technical reference (and equally as original-manufacturer documentation). DISCLOSURE: the littelfuse.com copy of this application note returned HTTP 403 to the fetch tool; the identical Littelfuse-branded PDF was retrieved instead from an Iowa State University ECE course handout directory. The host is a university, not Littelfuse, but the document content, branding and copyright notice are Littelfuse's own.",
       "locator": "AN1001 'Fundamental Characteristics of Thyristors': Introduction and 'SCR / Basic Operation' (p.1, Figures AN1001.1-AN1001.3); 'Triac / Basic Operation' (p.2, Figures AN1001.4-AN1001.5); 'DIAC / Basic Operation' (p.3, Figures AN1001.9-AN1001.11); 'Methods of Switching on Thyristors / Application Of Gate Signal' and 'Voltage Breakover Turn-on' (pp.4-5, Figures AN1001.12-AN1001.14)",
       "supportsRequirementSuffixes": [
-        "diac-basic-operating-principle::EXACT_FACT",
+        "diac-basic-operating-principle::OPERATING_PRINCIPLE",
         "schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
-        "thyristor-scr-basic-operating-principle::EXACT_FACT",
-        "triac-basic-operating-principle::EXACT_FACT"
+        "thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
+        "triac-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -424,8 +425,8 @@
       "authorityRationale": "Second application note (AN1002) within the same Littelfuse-copyrighted Teccor thyristor application-note collection; same authority and same host disclosure as SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS.",
       "locator": "AN1002 'Gating, Latching, and Holding of SCRs and Triacs': 'Gating of SCRs and Triacs' (p.7, Figures AN1002.1-AN1002.2) and 'Latching Current of SCRs and Triacs' (p.8, Figures AN1002.5-AN1002.6)",
       "supportsRequirementSuffixes": [
-        "thyristor-scr-basic-operating-principle::EXACT_FACT",
-        "triac-basic-operating-principle::EXACT_FACT"
+        "thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
+        "triac-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -463,9 +464,9 @@
       "authorityRationale": "HyperPhysics is a physics/electronics reference resource authored and maintained within the Department of Physics and Astronomy at Georgia State University, a degree-granting research university; it is not a forum, blog or user-generated content farm.",
       "locator": "Page 'Diacs, Triacs and Thyristers'; headed sections 'Diac', 'Triac', 'Thyristers' and 'Silicon Controlled Rectifier'",
       "supportsRequirementSuffixes": [
-        "diac-basic-operating-principle::EXACT_FACT",
-        "thyristor-scr-basic-operating-principle::EXACT_FACT",
-        "triac-basic-operating-principle::EXACT_FACT"
+        "diac-basic-operating-principle::OPERATING_PRINCIPLE",
+        "thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
+        "triac-basic-operating-principle::OPERATING_PRINCIPLE"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -563,12 +564,12 @@
         "dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
         "dimmer-diac-triggering::EXACT_FACT",
         "dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
-        "dimmer-switches-application-category-function::EXACT_FACT",
+        "dimmer-switches-application-category-function::APPLICATION_FUNCTION",
         "dimmer-triac-ac-switching-control::EXACT_FACT",
-        "heating-boiler-controls-application-category-function::EXACT_FACT",
+        "heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
         "heating-thermistor-sensing-role::EXACT_FACT",
         "motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
-        "motor-control-application-category-function::EXACT_FACT",
+        "motor-control-application-category-function::APPLICATION_FUNCTION",
         "motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT"
       ],
       "citedAsVerifyingEvidence": true
@@ -589,10 +590,10 @@
       "locator": "Pages 1/12 to 11/12; sections 'INTRODUCTION', 'UNIVERSAL MOTOR DRIVE - Basic function / Power control / Triac drive', 'AC SWITCH', 'LIGHT DIMMER - Basic function / Power control / Hardware', 'PRACTICAL RESULTS'; Figures 1-8",
       "supportsRequirementSuffixes": [
         "dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
-        "dimmer-switches-application-category-function::EXACT_FACT",
+        "dimmer-switches-application-category-function::APPLICATION_FUNCTION",
         "dimmer-triac-ac-switching-control::EXACT_FACT",
-        "heating-boiler-controls-application-category-function::EXACT_FACT",
-        "motor-control-application-category-function::EXACT_FACT",
+        "heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
+        "motor-control-application-category-function::APPLICATION_FUNCTION",
         "motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT"
       ],
       "citedAsVerifyingEvidence": true
@@ -612,7 +613,7 @@
       "authorityRationale": "Application note published on the manufacturer's own domain (vishay.com) by an established passive-component maker; retrieved directly from the publisher, no mirror involved.",
       "locator": "Document 29053, page 1 sections 'APPLICATIONS / DOMESTIC APPLIANCES' and 'APPLICATIONS / INDUSTRIAL, TELECOMMUNICATIONS, CONSUMER'; page 3 section 'HOW NTC TEMPERATURE SENSORS WORK' and Fig. 1",
       "supportsRequirementSuffixes": [
-        "heating-boiler-controls-application-category-function::EXACT_FACT",
+        "heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
         "heating-thermistor-sensing-role::EXACT_FACT"
       ],
       "citedAsVerifyingEvidence": true
@@ -632,7 +633,7 @@
       "authorityRationale": "Product datasheet published on the manufacturer's own domain (vishay.com) by an established sensor/passive-component maker; retrieved directly from the publisher, no mirror involved.",
       "locator": "Document 29252, page 1, sections 'DESCRIPTION' and 'APPLICATIONS'",
       "supportsRequirementSuffixes": [
-        "heating-boiler-controls-application-category-function::EXACT_FACT",
+        "heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
         "heating-thermistor-sensing-role::EXACT_FACT"
       ],
       "citedAsVerifyingEvidence": true
@@ -714,7 +715,7 @@
         "telephone-master-secondary-socket-details::EXACT_FACT",
         "telephone-resistor-line-testing::EXACT_FACT",
         "telephone-surge-protector::EXACT_FACT",
-        "telephones-application-category-function::EXACT_FACT"
+        "telephones-application-category-function::APPLICATION_FUNCTION"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -790,10 +791,11 @@
       "authorityRationale": "Statutory UK Radio Interface Requirement issued by Ofcom under the Wireless Telegraphy Act 2006 framework; the authoritative UK definition set for licence-exempt short range device categories.",
       "locator": "Section 3 'Equipment Definitions': IR2030/1 Non-Specific Short-Range Device and IR2030/2 Industrial / Commercial Telemetry and Telecommand (printed p.3); IR2030/15 Inductive, IR2030/17 Reliable Alarm Devices, IR2030/18 Social Alarm Devices, IR2030/20 Alarms (printed p.5)",
       "supportsRequirementSuffixes": [
-        "security-alarms-application-category-function::EXACT_FACT",
-        "wireless-control-systems-application-category-function::EXACT_FACT"
+        "security-alarms-application-category-function::APPLICATION_FUNCTION",
+        "wireless-control-systems-application-category-function::APPLICATION_FUNCTION"
       ],
-      "citedAsVerifyingEvidence": true
+      "citedAsVerifyingEvidence": false,
+      "citedAsVerifyingEvidenceNote": "[Correction, CC-24 Correction A] No longer counted as verifying evidence for security-alarms-application-category-function::APPLICATION_FUNCTION after the requirement's mode was corrected and its permitted authority classes narrowed; retained in the register for audit-trail purposes."
     },
     {
       "accessDate": "2026-09-06",
@@ -810,9 +812,10 @@
       "authorityRationale": "Authored by Secured by Design, the official police security initiative owned by the UK police service (Police Crime Prevention Initiatives Ltd). PROVENANCE CAVEAT: the copy actually read was a mirror hosted on a UK parish council .gov.uk site, not on securedbydesign.com (which was not reached in this session); the document's own branding, content and June 2024 date were confirmed on reading.",
       "locator": "Section 'Burglar alarms', printed page 15",
       "supportsRequirementSuffixes": [
-        "security-alarms-application-category-function::EXACT_FACT"
+        "security-alarms-application-category-function::APPLICATION_FUNCTION"
       ],
-      "citedAsVerifyingEvidence": true
+      "citedAsVerifyingEvidence": false,
+      "citedAsVerifyingEvidenceNote": "[Correction, CC-24 Correction A] No longer counted as verifying evidence for security-alarms-application-category-function::APPLICATION_FUNCTION after the requirement's mode was corrected and its permitted authority classes narrowed; retained in the register for audit-trail purposes."
     },
     {
       "accessDate": "2026-09-06",
@@ -868,7 +871,7 @@
       "authorityRationale": "Peer-reviewed survey article authored by named academic researchers at established universities; read in its arXiv preprint form.",
       "locator": "Abstract (p.1); Section II-C 'Building Automation' (p.3)",
       "supportsRequirementSuffixes": [
-        "wireless-control-systems-application-category-function::EXACT_FACT",
+        "wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
         "wireless-practical-advantages-applications::EXACT_FACT"
       ],
       "citedAsVerifyingEvidence": true
@@ -888,7 +891,7 @@
       "authorityRationale": "UK statutory instrument published on the official UK legislation website.",
       "locator": "Article 2 (Interpretation), definitions of 'publicly available telephone service' and 'public telephone network'; Schedule, paragraph 1(1) and 1(2)",
       "supportsRequirementSuffixes": [
-        "telephones-application-category-function::EXACT_FACT"
+        "telephones-application-category-function::APPLICATION_FUNCTION"
       ],
       "citedAsVerifyingEvidence": true
     },
@@ -907,7 +910,65 @@
       "authorityRationale": "Official BSI catalogue page for the British adoption of the EN 50131 European standard series for intrusion and hold-up alarm systems.",
       "locator": "Series part listing (part numbers and full part titles). IMPORTANT LIMITATION: only the part titles were retrievable; no scope, clause or definition text was behind the paywall-free page, so this source is recorded as contextual corroboration only and is not treated as satisfying any acceptance criterion on its own.",
       "supportsRequirementSuffixes": [
-        "security-alarms-application-category-function::EXACT_FACT"
+        "security-alarms-application-category-function::APPLICATION_FUNCTION"
+      ],
+      "citedAsVerifyingEvidence": false,
+      "citedAsVerifyingEvidenceNote": "[Correction, CC-24 Correction A] No longer counted as verifying evidence for security-alarms-application-category-function::APPLICATION_FUNCTION after the requirement's mode was corrected and its permitted authority classes narrowed; retained in the register for audit-trail purposes."
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-WEVOLVER-DCAC-INVERTER",
+      "publisher": "Wevolver",
+      "title": "DC to AC Inverter Circuits -- Theory, Design and Practical Implementation",
+      "url": "https://www.wevolver.com/article/dc-to-ac-inverter-circuits-theory-design-and-practical-implementation",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Established engineering-content publication carrying a signed technical article on power-electronics circuit theory; used only for the generic DC-to-AC switching-conversion definition, not for any calculation or design detail beyond Level-2 depth.",
+      "locator": "Opening definitional sentence",
+      "supportsRequirementSuffixes": [
+        "inverter-basic-operating-principle::OPERATING_PRINCIPLE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-BOSCH-KEENFINITY-INTRUSION",
+      "publisher": "Bosch Building Technologies (Keenfinity Group licence)",
+      "title": "Intrusion Alarm Systems",
+      "url": "https://www.keenfinity-group.com/xl/en/solutions/intrusion-alarm-systems/",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Security-equipment manufacturer's own product/solutions overview; used only for the basic detect-and-alert application purpose, not for installation, siting or standards-compliance detail.",
+      "locator": "Overview page, opening statement of purpose",
+      "supportsRequirementSuffixes": [
+        "security-alarms-application-category-function::APPLICATION_FUNCTION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HONEYWELL-INTRUSION-DETECTION",
+      "publisher": "Honeywell",
+      "title": "Intrusion Detection",
+      "url": "https://www.honeywell.com/us/en/solutions/security-access-solutions/intrusion-detection",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Security-equipment manufacturer's own solutions overview; corroborates the basic detect-and-alert application purpose.",
+      "locator": "Overview page, opening statement of purpose",
+      "supportsRequirementSuffixes": [
+        "security-alarms-application-category-function::APPLICATION_FUNCTION"
       ],
       "citedAsVerifyingEvidence": true
     }

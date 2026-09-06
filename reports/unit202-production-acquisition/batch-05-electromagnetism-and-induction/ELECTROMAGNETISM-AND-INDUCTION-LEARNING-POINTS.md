@@ -90,7 +90,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-103`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-USF-ETC-CONDUCTORFIELD-35665: The magnetic field pattern surrounding a straight conductor carrying an electric current is recognised from th...
@@ -637,7 +637,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness:** READY
 
-**Evidence readiness note:** [Correction, Stage 1.1/4.8] Previously held because no source was captioned specifically "single-loop". Corrected: DOE HDBK-1011-3 ES-10 genuinely shows and labels exactly the simplified elementary model this qualification needs (field, rotating armature, slip rings, brushes); requiring a diagram literally captioned "single-loop" is a precision beyond that simplified model. Now fully VERIFIED.
+**Evidence readiness note:** Two of the four underlying requirements are PARTIALLY_VERIFIED. (1) single-loop-alternator-generator-parts: the fully labelled in-class diagram (US DOE handbook Figures 1 and 5) shows the correct topology and all part labels but a MULTI-TURN rotor; the source that is explicitly "single-loop" is academic-class and shows no slip rings, so the exact single-loop arrangement rests on a disclosed compounding. (2) coil: no labelled "coil" callout or standard graphical symbol could be obtained from an in-class source (IEC Electropedia and std.iec.ch both returned 403); the coil description rests on the DOE handbook's prose rather than on a labelled figure. A further judgment is flagged for the Product Architect: the DOE handbook was classified AUTHORITATIVE_TECHNICAL_REFERENCE on the basis that it is a formally issued engineering handbook; a reviewer who reads it instead as a purely governmental publication would need to downgrade the slip-ring and single-loop-alternator results, though brushes would still stand on the two manufacturer sources.
+
+**Correction note:** [Correction] single-loop-alternator-generator-parts genuinely re-adjudicated to PARTIALLY_VERIFIED (not restored to VERIFIED): no source within the permitted authority classes shows one diagram both explicitly captioned single-loop and fully labelled with slip rings/brushes. A downstream authored-and-validated diagram dependency is recorded rather than a merged/invented figure. General simple-AC-generator part recognition (field, rotating winding, slip rings, brushes) remains soundly evidenced; only the strict single-loop framing and the coil facet remain PARTIALLY_VERIFIED, as already reflected above and in underlyingEvidenceStatuses.
 
 **Learner outcome:** The learner will be able to identify the parts of a simple single-loop AC generator on a diagram and state the function of each.
 

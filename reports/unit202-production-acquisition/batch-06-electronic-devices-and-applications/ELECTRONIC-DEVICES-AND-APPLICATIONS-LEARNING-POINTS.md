@@ -55,7 +55,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-178`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-ENERGYEDU-RESISTOR: A resistor is an electrical component in an electric circuit that slows down (opposes and limits) the current ...
@@ -132,7 +132,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-170`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-ENERGYEDU-CAPACITOR: A capacitor is an electronic device that stores charge and energy. It consists of two conductors carrying equa...
@@ -172,7 +172,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-172`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-HYPERPHYSICS-PN-DIODE: A diode is a component built on a p-n junction that conducts current in the forward direction (when forward bi...
@@ -209,7 +209,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-174`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-HYPERPHYSICS-LED: A light-emitting diode (LED) is a p-n junction device (constructed of compound semiconductors such as gallium ...
@@ -244,7 +244,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-183`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-HYPERPHYSICS-ZENER: A Zener diode uses a p-n junction in REVERSE BIAS to make use of the Zener effect, a breakdown phenomenon whic...
@@ -279,7 +279,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-175`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-SANDIEGO-CENTROVISION-PHOTODIODE: A photodiode is fundamentally a current generator: when light is absorbed in its active area an electron-hole ...
@@ -315,7 +315,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-176`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-NAPIER-LDR: A light-dependent resistor (LDR), also called a photoresistor, changes its electrical resistance as the light ...
@@ -351,7 +351,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-179`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::OPERATING_PRINCIPLE` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-MURATA-PTC-ABOUT: A thermistor is a resistive element whose resistance changes with temperature, and thermistors are used as tem...
@@ -388,7 +388,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-181`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-ENERGYEDU-TRANSISTOR: A transistor is a component of electric circuits that can act as an amplifier and as a switch. It comprises th...
@@ -424,7 +424,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-180`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING: A thyristor (SCR, silicon controlled rectifier) is a four-layer PNPN semiconductor switch that is UNIDIRECTION...
@@ -461,7 +461,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-182`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS: A TRIAC (triode AC switch) is a three-terminal BIDIRECTIONAL thyristor whose primary function is to control po...
@@ -497,7 +497,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-171`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS: A DIAC is a two-terminal bidirectional thyristor-family device with no gate. Its bidirectional, transistor-lik...
@@ -534,7 +534,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-177`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-LIBRETEXTS-FIORE-RECTIFICATION: A rectifier performs rectification, which is the process of turning an alternating current waveform into a dir...
@@ -571,7 +571,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-173`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::OPERATING_PRINCIPLE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-DOE-EERE-INVERTERS: An inverter is a device that converts direct current (DC) electricity into alternating current (AC) electricit...
@@ -689,7 +689,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-149`, `unit202::ACQ-161`, `unit202::ACQ-162`, `unit202::ACQ-163`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::APPLICATION_FUNCTION` -- **VERIFIED**
 - `ER::provisional::unit202::electronic-devices-and-applications::dimmer-triac-ac-switching-control::EXACT_FACT` -- **VERIFIED**
 - `ER::provisional::unit202::electronic-devices-and-applications::dimmer-diac-triggering::EXACT_FACT` -- **VERIFIED**
 - `ER::provisional::unit202::electronic-devices-and-applications::dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP` -- **VERIFIED**
@@ -778,7 +778,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-150`, `unit202::ACQ-165`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::APPLICATION_FUNCTION` -- **VERIFIED**
 - `ER::provisional::unit202::electronic-devices-and-applications::heating-thermistor-sensing-role::EXACT_FACT` -- **VERIFIED**
 
 **Normalized claim references:**
@@ -857,7 +857,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-151`, `unit202::ACQ-167`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::APPLICATION_FUNCTION` -- **VERIFIED**
 - `ER::provisional::unit202::electronic-devices-and-applications::motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT` -- **VERIFIED**
 
 **Normalized claim references:**
@@ -932,7 +932,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to explain what an intruder alarm system does and describe the main types found in UK domestic practice.
 
-**Knowledge / procedure:** An alarm system is a device whose main function is to INDICATE AN ALERT to a system or to a person at a distant location when a problem or specific situation occurs. In UK domestic security practice, burglar (intruder) alarms come in three types: MONITORED, where once triggered an alarm company or designated key holder checks whether it is a false alarm; UNMONITORED, which once activated simply sounds an audible alarm locally; and types combining features of both. UK police will typically respond to an alarm if requested by a monitoring company, but are less likely to respond to an unmonitored alarm. Visible audible alarm boxes should be mounted high at front and rear to resist tampering. The British/European standard series governing intrusion and hold-up alarm systems is BS EN 50131, whose parts separately cover general requirements, magnetic opening contacts, and control and indicating equipment among others. JURISDICTION: this is UK practice and UK police guidance.
+**Knowledge / procedure:** An alarm system is a device whose main function is to INDICATE AN ALERT to a system or to a person when a problem or specific situation occurs -- i.e. to detect an intrusion and alert someone so it can be responded to. In UK domestic security practice, burglar (intruder) alarms come in two broad types: MONITORED, where once triggered an alarm company or designated key holder checks whether it is a false alarm; and UNMONITORED, which once activated simply sounds an audible alarm locally. JURISDICTION: this is UK domestic security practice.
 
 **Within-domain prerequisites:** (none)
 
@@ -941,30 +941,31 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-147`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::APPLICATION_FUNCTION` -- **VERIFIED**
 
 **Normalized claim references:**
-- SRC-SBD-POLICE-HANDBOOK: In UK domestic security practice, burglar (intruder) alarms come in three types: monitored, where once trigger...
-- SRC-SBD-POLICE-HANDBOOK: UK police will typically respond to a burglar alarm if requested to do so by a monitoring company but are less...
-- SRC-OFCOM-IR2030: In UK spectrum regulation, an alarm system is defined as a device whose main functionality is indicating an al...
-- SRC-BSI-EN50131-SERIES: The British/European standard series governing intrusion and hold-up alarm systems is BS EN 50131, whose parts...
+- SRC-BOSCH-KEENFINITY-INTRUSION: A security/intruder alarm system's basic function is to detect unauthorised entry and alert monitoring pe...
+- SRC-HONEYWELL-INTRUSION-DETECTION: Intrusion systems combine sensor technology with intelligent monitoring to identify security breach...
 
-**Depth justification:** Deliberately kept separate from the alarm CIRCUIT requirements (EDA-LP-25). The distinction matters: a source describing what alarms are for genuinely satisfies this application-category requirement but says nothing whatever about loop topology, SCR latching or transistor switching. Keeping them apart means the well-evidenced application content is deliverable while the circuit content is held.
+**Depth justification:** Deliberately kept separate from the alarm CIRCUIT requirements (EDA-LP-25). The distinction matters: a source describing what alarms are for genuinely satisfies this application-category requirement but says nothing whatever about loop topology, SCR latching or transistor switching. Trimmed to early-stage depth (Batch 06 recalibration): police-response practice, installation/mounting advice and BS EN 50131 taxonomy are professional-installation detail beyond what an early-stage learner can plausibly be tested on.
+
+**Correction note:** [Correction, Batch 06 early-stage depth recalibration + CC-24 mode correction] Re-sourced under the corrected APPLICATION_FUNCTION mode to two security-equipment manufacturers (Bosch, Honeywell) stating the basic detect-and-alert purpose. Trimmed required mastery to the basic purpose and the monitored/unmonitored distinction only; removed police-response practice, alarm-box mounting advice and BS EN 50131 part taxonomy from required mastery and application questions.
 
 **Explicit exclusions:**
 - The internal circuit of any specific alarm (see EDA-LP-25, which is held)
-- BS EN 50131 grading, alarm confirmation and police response policy in detail
+- Detailed police-response practice and call-handling policy
+- Alarm-box mounting, siting and tamper-resistance installation advice
+- BS EN 50131 part-by-part taxonomy and grading
 - System design, zoning, detector siting and commissioning
 - Detector technologies (PIR, magnetic contact, vibration) as a topic
 
 **Representative application types:**
 - State the main function of an intruder alarm system.
 - Explain the difference between a monitored and an unmonitored alarm.
-- Name the standard series covering intruder alarm systems.
 
 ---
 
-### `EDA-LP-25` -- Security alarm application: transferable component roles (NC detection, transistor switching, SCR latching) [TRANSFORMED_TO_EXEMPLAR]
+### `EDA-LP-25` -- Security alarm application: transferable component roles (transistor switching, SCR latching) [TRANSFORMED_TO_EXEMPLAR]
 
 **Evidence readiness:** READY
 
@@ -972,7 +973,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness note (Stage 5 exemplar decision 3):** Transformed rather than left held. The exact NC-loop/bias topology of a specific security alarm circuit is never canonical technical truth for this qualification (the frozen requirement names no circuit, figure or source document, and the generic pattern found appears only on vendor blogs/installer marketing/DIY sites, all outside permitted authority classes) and is retired from canonical mastery. The TRANSFERABLE roles -- transistor switching and SCR latching -- ARE fully and genuinely evidenced as general device behaviour and are retained as READY technical content. The claim that an SCR specifically "keeps a sounder energised" is NOT evidenced by any retrieved source and is dropped. A representative, validated worked alarm circuit remains an outstanding REPRESENTATIVE_EXEMPLAR_AUTHORING dependency for downstream lesson production -- this may block final lesson production without making the underlying transferable-role technical facts unsupported.
 
-**Learner outcome:** The learner will be able to explain the transistor's cutoff/saturation switching role and the SCR's latching behaviour as transferable building blocks that a security-alarm detection circuit can use, without reference to any one specific, unnamed circuit.
+**Learner outcome:** The learner will be able to explain the general transferable roles a transistor (switching) and an SCR (latching) can play within a security-alarm detection circuit, without reference to any one specific circuit's exact topology.
 
 **Knowledge / procedure:** TRANSFERABLE ROLES (retained as technical truth, general device behaviour): a bipolar transistor used as a switch operates as a NON-LINEAR switch alternating between the CUTOFF region (an open switch, both junctions reverse biased) and the SATURATION region (a closed switch) -- this is the switching role a transistor can play in a normally-closed detection loop. An SCR LATCHES -- once a momentary gate pulse has triggered it and the anode current exceeds the latching current, it remains conducting even after the trigger is removed, until the current falls below the holding current -- this latching property is why an SCR is a plausible building block for maintaining an alarm condition once triggered. NOT TAUGHT (retired/outstanding): no exact normally-closed loop, bias topology, or SCR-to-sounder connection is taught as canonical mastery -- no governed public exemplar circuit exists in the evidence, and the widely-repeated vendor/installer pattern is excluded as out-of-class. Authoring a validated representative exemplar circuit is a downstream production task, not a technical-evidence gap.
 
@@ -1015,7 +1016,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to explain what the legacy PSTN is, describe its current status in the UK, and state what the telephone service provides.
 
-**Knowledge / procedure:** The PUBLIC SWITCHED TELEPHONE NETWORK (PSTN) is the traditional UK telephone network. Ofcom describes providers still offering it as "providers of legacy PSTN services". THE NETWORK IS BEING RETIRED: BT plans to retire its PSTN by 31 JANUARY 2027, because the technology is beyond its intended lifespan and is becoming increasingly unreliable; landlines are moving to digital technology ("digital landlines"). Businesses use the PSTN to support non-voice devices such as alarms, telemetry and monitoring equipment, some of which may need reconfiguring or replacing. THE LINE: Openreach specifies the technical characteristics of a single ANALOGUE line interface of the PSTN, commonly known as a DIRECT EXCHANGE LINE (DEL), delivered to the customer at the NETWORK TERMINATION POINT (NTP). The telephone is the terminal connected at that point, and the network provides it with call arrival indication (ringing) when on-hook. IN UK LAW a "publicly available telephone service" is a service available to the public for originating and receiving national and international calls and access to emergency services through numbers in a national numbering plan. JURISDICTION AND ERA: all of this is UK-specific and describes the LEGACY ANALOGUE PSTN. None of it may be generalised to VoIP, to digital voice, or to telephone systems in other countries.
+**Knowledge / procedure:** The PUBLIC SWITCHED TELEPHONE NETWORK (PSTN) is the traditional UK telephone network. Ofcom describes providers still offering it as "providers of legacy PSTN services". CONTEXT (dated metadata, not required core mastery): BT has stated a plan to retire the PSTN (currently 31 January 2027) because the technology is beyond its intended lifespan, with landlines moving to digital technology. THE LINE: Openreach specifies the technical characteristics of a single ANALOGUE line interface of the PSTN, commonly known as a DIRECT EXCHANGE LINE (DEL), delivered to the customer at the NETWORK TERMINATION POINT (NTP). The telephone is the terminal connected at that point, and the network provides it with call arrival indication (ringing) when on-hook. JURISDICTION AND ERA: all of this is UK-specific and describes the LEGACY ANALOGUE PSTN. None of it may be generalised to VoIP, to digital voice, or to telephone systems in other countries.
+
+**Correction note:** [Correction, Batch 06 early-stage depth recalibration] Removed the statutory legal definition of a "publicly available telephone service" and provider-migration/business detail from required mastery. The PSTN retirement date is retained only as dated contextual metadata, not as a required-recall application type, since the qualification evidence does not itself require that exact date.
 
 **Within-domain prerequisites:** (none)
 
@@ -1025,16 +1028,13 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence-requirement IDs and their status:**
 - `ER::provisional::unit202::electronic-devices-and-applications::telephone-legacy-pstn-framing::EXACT_FACT` -- **VERIFIED**
-- `ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-OFCOM-PSTN-LETTER-2026: The public switched telephone network (PSTN) is the traditional UK telephone network; Ofcom describes provider...
 - SRC-OFCOM-PSTN-LETTER-2026: BT is planning to retire its public switched telephone network (PSTN) by 31 January 2027; Ofcom states this tr...
 - SRC-OFCOM-LANDLINE-CONSUMER: Ofcom states that the traditional telephone network, known as the public switched telephone network (PSTN), is...
 - SRC-OPENREACH-SIN351: Openreach specifies the technical characteristics of a single ANALOGUE line interface of the PSTN, commonly kn...
-- SRC-OFCOM-PSTN-LETTER-2026: Ofcom records that businesses use the PSTN to support non-voice devices such as alarms, telemetry and monitori...
-- SRC-UKSI-2003-1904-USO: In UK law, a 'publicly available telephone service' is a service available to the public for originating and r...
-- SRC-UKSI-2003-1904-USO: UK universal service obligations require designated providers to meet reasonable requests for connection at a ...
 - SRC-OPENREACH-SIN351: On the UK legacy analogue PSTN, the telephone is the terminal connected at the Network Termination Point of a ...
 
 **Depth justification:** The framing and the application/function requirements are combined because at this level "what a telephone service is" and "what the legacy PSTN is" are answered by the same regulatory and network description; separating them would split one account across two points. The jurisdiction and era qualifications are carried as prominent knowledge content, per this batch's guardrail, because the whole topic is time-limited and country-specific.
@@ -1044,10 +1044,12 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - PSTN internal architecture (exchanges, local loop, circuit switching) -- NOT evidenced by any retrieved source
 - Telephone handset internals, dialling and speech circuits
 - Non-UK telephone practice, including US RJ11 wiring conventions
+- The statutory legal definition of a 'publicly available telephone service' and UK universal-service-obligation detail -- removed from required mastery
+- Provider-migration and business/non-voice-device (alarms, telemetry) detail -- removed from required mastery
+- The exact PSTN retirement date as a required-recall fact -- retained only as dated contextual metadata
 
 **Representative application types:**
 - State what the letters PSTN stand for and what the network is.
-- State the date by which BT plans to retire the PSTN.
 - Explain why legacy PSTN wiring details must not be applied to a digital voice service.
 
 ---
@@ -1060,7 +1062,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to describe the UK master socket arrangement, state where the customer boundary lies, and explain the contact and IDC numbering hazard.
 
-**Knowledge / procedure:** THE INTERFACE: the Openreach network interface consists of two conductors, the "A" and "B" wires. Customer access is via an Openreach MASTER SOCKET or an insulation displacement connection. Openreach fits the master socket -- the Network Terminating Equipment (NTE) -- which REMAINS OPENREACH PROPERTY. The customer connection point is at the back of the REMOVABLE FRONT PLATE of the master NTE5, and extension sockets are wired from there. RESPONSIBILITY BOUNDARY: internal wiring beyond the master socket is normally the customer's responsibility. MASTER SOCKET CONTACTS: 1 = not used for PSTN; 2 = "A" or "B" wire; 3 = local earth when required; 4 = shunt connection when required; 5 = "B" or "A" wire; 6 = not used for PSTN. EXTENSION WIRING IDCs USE DIFFERENT NUMBERING: IDC 2 = "A" or "B" wire; IDC 3 = shunt connection (the "Bell wire"); IDC 4 = local earth when required. IMPORTANT HAZARD: the SAME shunt/bell connection is IDC 3 on the extension wiring but CONTACT 4 on the master socket. Any statement that simply refers to "pin 3" without saying which numbering scheme is meant will be wrong for one of them. EXTENSION CABLE: telephone/data-grade solid copper, 0.5 to 0.63 mm diameter, in twisted-pair format. JURISDICTION AND ERA: UK legacy analogue PSTN only.
+**Knowledge / procedure:** Customer access to the UK legacy analogue PSTN is via an Openreach MASTER SOCKET. Openreach fits the master socket -- the Network Terminating Equipment (NTE) -- which REMAINS OPENREACH PROPERTY. RESPONSIBILITY BOUNDARY: internal wiring beyond the master socket, including any EXTENSION SOCKETS, is normally the customer's responsibility. SAFE-BOUNDARY AWARENESS: the master socket and its extension wiring use DIFFERENT internal contact/IDC numbering conventions for the same connection, so a bare instruction such as "pin 3" is ambiguous unless the numbering scheme is stated -- a reason to treat socket-interior wiring as specialist work, not a table to be memorised. JURISDICTION AND ERA: UK legacy analogue PSTN only.
+
+**Correction note:** [Correction, Batch 06 early-stage depth recalibration] Removed the full master-socket contact table, extension IDC numbering table and exact cable-diameter specification from required mastery -- retained only the ownership/responsibility-boundary distinction and the safe-boundary awareness that the two numbering schemes differ (without requiring the tables themselves to be memorised), which is the qualification-relevant content at this depth.
 
 **Within-domain prerequisites:** `EDA-LP-26`
 
@@ -1083,13 +1087,15 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Explicit exclusions:**
 - Wiring or installation instruction for work on the Openreach side of the boundary
 - Master socket internal components (see EDA-LP-28)
+- The full master-socket contact table and extension IDC numbering as required recall -- removed as professional-installation detail beyond early-stage depth
+- Exact extension cable diameter/specification -- removed as professional-installation detail
 - Modern NTE5C/filtered faceplate and broadband splitter variants beyond what was retrieved
 - Non-UK socket types including RJ11
 
 **Representative application types:**
 - State who owns the master socket in a UK property.
 - State where the customer's responsibility for telephone wiring begins.
-- Explain why "pin 3" is an ambiguous instruction in UK telephone wiring.
+- Explain why quoting a bare contact/pin number is not, by itself, sufficient instruction for telephone socket wiring.
 
 ---
 
@@ -1101,7 +1107,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to identify the components inside a UK master socket and state what is authoritatively known about each.
 
-**Knowledge / procedure:** Openreach specifies that the master socket contains, connected ACROSS the "A" and "B" wires: a 1.8 MICROFARAD CAPACITOR in series with a 470 KILOHM RESISTOR, with the socket's SHUNT CONNECTION taken from the CENTRE POINT between the two; and, separately, an OVER-VOLTAGE PROTECTION DEVICE connected across the "A" and "B" wires. THE SHUNT CONNECTION is designated by Openreach as the "BELL WIRE" where presented for internal extension wiring, appearing on extension IDC 3 and master socket contact 4. RINGING: the UK call arrival indication is an alternating signal between 100 V and 40 V a.c. r.m.s. between the "A" and "B" wires, at 25 Hz (+1 / -5 Hz). LINE TESTING: Openreach has for many years run automatic test routines on its local line plant, now approaching once every 24 hours, applying up to 50 V battery with a source resistance between 0 and 120 kilohms. SURGE PROTECTION: the analogue line is subject to noise, induced voltages and line surges, which is what the over-voltage protection device guards against. IMPORTANT LIMIT ON WHAT IS KNOWN: Openreach documents that these components are PRESENT and how they are CONNECTED, but no retrieved authoritative source states the FUNCTION of the capacitor as passing ringing current to the ringer, nor the function of the 470 kilohm resistor as a line-test resistor. Those functional attributions are widely repeated but were NOT authoritatively evidenced and must not be taught as established. JURISDICTION AND ERA: UK legacy analogue PSTN only.
+**Knowledge / procedure:** Openreach specifies that the master socket contains, connected ACROSS the "A" and "B" wires: a 1.8 MICROFARAD CAPACITOR in series with a 470 KILOHM RESISTOR, with the socket's SHUNT CONNECTION taken from the CENTRE POINT between the two; and, separately, an OVER-VOLTAGE PROTECTION DEVICE connected across the "A" and "B" wires. RINGING (context only, not required recall): UK call-arrival indication is an alternating ringing signal applied across the "A" and "B" wires. LINE TESTING (context only, not required recall): Openreach runs periodic automatic test routines on its local line plant. SURGE PROTECTION: the analogue line is subject to noise, induced voltages and line surges, which is what the over-voltage protection device guards against. IMPORTANT LIMIT ON WHAT IS KNOWN: Openreach documents that these components are PRESENT and how they are CONNECTED, but no retrieved authoritative source states the FUNCTION of the capacitor as passing ringing current to the ringer, nor the function of the 470 kilohm resistor as a line-test resistor. Those functional attributions are widely repeated but were NOT authoritatively evidenced and must not be taught as established. JURISDICTION AND ERA: UK legacy analogue PSTN only.
+
+**Correction note:** [Correction, Batch 06 early-stage depth recalibration] Removed exact ringing-voltage/frequency figures and exact line-test schedule/resistance-range figures from required mastery. The already-honest presence-vs-function distinction (components present and connected per Openreach; capacitor/resistor FUNCTION not authoritatively evidenced) is unchanged.
 
 **Within-domain prerequisites:** `EDA-LP-27`, `EDA-LP-03`, `EDA-LP-01`
 
@@ -1130,6 +1138,8 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - The FUNCTION of the capacitor as a ringer-coupling component and of the resistor as a line-test component -- widely repeated but NOT authoritatively evidenced here
 - The physical technology of the surge protector (gas discharge tube, 3-electrode arrester), its rating, and legacy 11A/26A arrester designations -- NOT evidenced
 - Any work on or modification of the Openreach-owned master socket
+- Exact ringing-voltage range, frequency and tolerance figures -- removed as professional-installation-level detail
+- Exact line-test schedule, applied voltage and source-resistance range figures -- removed as professional-installation-level detail
 - Non-UK telephone socket components
 
 **Representative application types:**
@@ -1154,7 +1164,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-152`, `unit202::ACQ-169`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION` -- **VERIFIED**
 - `ER::provisional::unit202::electronic-devices-and-applications::wireless-practical-advantages-applications::EXACT_FACT` -- **VERIFIED**
 
 **Normalized claim references:**

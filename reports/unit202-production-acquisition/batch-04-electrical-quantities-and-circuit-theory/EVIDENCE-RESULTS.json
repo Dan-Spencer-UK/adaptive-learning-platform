@@ -10,8 +10,8 @@
     "SOURCE_GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
   },
   "statusTotals": {
-    "VERIFIED": 45,
-    "PARTIALLY_VERIFIED": 12
+    "VERIFIED": 47,
+    "PARTIALLY_VERIFIED": 10
   },
   "reusedFromBatch01": [],
   "reusedFromBatch02": [
@@ -1013,13 +1013,13 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 1.1] Restored to VERIFIED: legitimate multi-passage composition (two genuine NIST passages) is never, by itself, grounds for PARTIALLY_VERIFIED -- every constituent claim retains its own exact source binding and no material conflict remains.",
-          "No single retrieved passage states both that the quantity in question is RESISTIVITY and that its SI unit symbol is the ohm-metre. The claim is established by compounding two genuine NIST passages: SRC-NIST-RESHALL supplies 'rho = sample resistivity (in ohm-cm)' (linking resistivity to an ohm-length unit) and SRC-NIST-SP811-B9's conversion table supplies the SI form 'ohm meter (Ohm-m)'. Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass to match this batch's own statusVocabulary, which defines PARTIALLY_VERIFIED as including a claim that 'rests on a disclosed compounding of more than one passage where no single passage states the full claim'. The compounding was already disclosed in the scopeNote; only the status was inconsistent with it."
-        ],
-        "scopeNote": "Reused mastery -- see EFS-LP-06. Claim established by a disclosed compounding of two genuine NIST passages; status corrected to PARTIALLY_VERIFIED in the internal audit pass to match this batch's own PARTIALLY_VERIFIED definition. The underlying fact (resistivity's SI unit is the ohm-metre) is not in doubt and is independently taught by the accepted Batch 02 EFS-LP-06; what is PARTIALLY_VERIFIED is this batch's single-passage support for it.",
+        "gaps": [],
+        "scopeNote": "Reused mastery -- see EFS-LP-06. The underlying fact (resistivity's SI unit is the ohm-metre) is independently taught by the accepted Batch 02 EFS-LP-06.",
         "satisfiedByExistingLearningPointIds": [
           "EFS-LP-06"
+        ],
+        "disclosures": [
+          "DISCLOSED COMPOUNDING (not grounds for downgrade -- Stage 1.1): no single retrieved passage states both that the quantity in question is RESISTIVITY and that its SI unit symbol is the ohm-metre. SRC-NIST-RESHALL supplies 'rho = sample resistivity (in ohm-cm)' (linking resistivity to an ohm-length unit); SRC-NIST-SP811-B9's conversion table supplies the SI form 'ohm meter (Ohm-m)'. Each constituent claim retains its own exact NIST source binding."
         ]
       }
     },
@@ -2321,7 +2321,8 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass: no sentence from the source was ever reproduced for this requirement, so the requirement's own acceptance criterion ('the exact passage must be actually read and cited, never inferred') is not met on the record as it stands. The underlying fact is not in doubt and the same source genuinely supports the sibling safe-use PROCEDURE requirement with real quoted text; what is missing is a retrieved passage for this specific DEFINITION requirement. Resolving this needs only a re-fetch and one quoted sentence -- deliberately NOT done by inference during the audit."
+          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass: no sentence from the source was ever reproduced for this requirement, so the requirement's own acceptance criterion ('the exact passage must be actually read and cited, never inferred') is not met on the record as it stands. The underlying fact is not in doubt and the same source genuinely supports the sibling safe-use PROCEDURE requirement with real quoted text; what is missing is a retrieved passage for this specific DEFINITION requirement. Resolving this needs only a re-fetch and one quoted sentence -- deliberately NOT done by inference during the audit.",
+          "[Re-sourcing attempted, not resolved] Wikipedia's 'Ohmmeter' article gives a plain device-level definition ('An ohmmeter is an electrical instrument that measures electrical resistance') but is itself flagged by Wikipedia as under-cited, is not a permitted-class source for this requirement, and was not used as verifying evidence. Fluke and Keysight instrument pages were attempted; neither yielded an explicit device-level definitional sentence within a successfully fetched page. Left as previously recorded (PARTIALLY_VERIFIED, device-level definition genuinely unresolved) rather than closed on an unpermitted or unconfirmed source."
         ]
       }
     },
@@ -2330,8 +2331,7 @@
       "requirementMode": "PROCEDURE_COVERAGE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "PROCEDURE",
-        "CALCULATION_METHOD"
+        "SAFE_USE"
       ],
       "sourceAuthorityClasses": [
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
@@ -2356,19 +2356,18 @@
             "sourceId": "SRC-FLUKE-RESISTANCE"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
-          "PROCEDURE"
+          "SAFE_USE"
         ],
-        "unresolvedDimensions": [
-          "CALCULATION_METHOD"
-        ],
+        "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass. This requirement declares two coverage dimensions, PROCEDURE and CALCULATION_METHOD; the evidence ('Step 1. Turn Off Power to Circuit'; 'If a circuit includes a capacitor, discharge the capacitor before taking any resistance reading') delivers a genuine PROCEDURE but contains no calculation of any kind. CALCULATION_METHOD had been marked satisfied with an empty unresolvedDimensions list purely because the requirementMode is PROCEDURE_COVERAGE -- a false green. It is now recorded as unresolved. NOTE FOR PRODUCT ARCHITECT: this may instead be a plan-level artefact (a safe-use principle arguably has no calculation dimension to satisfy). That is a judgment about the frozen plan, which this pass has no authority to amend, so the honest unresolved marking is used instead.",
-          "The claim previously asserted a mechanism -- that an ohmmeter 'applies its own small internal test current/voltage' -- which appears in NO retrieved passage anywhere in this batch. It has been removed from the claim. The safety conclusion does not depend on it."
-        ],
-        "scopeNote": "Bound to the de-energisation/safe-use principle itself, including the explicit stored-energy (charged-capacitor) case this source addresses. Does not extend to a general electrical safe-isolation procedure (lock-off/proving-dead sequences) beyond what this source itself states. The safety content of this requirement (both de-energisation AND stored capacitor charge) is fully and genuinely evidenced; the PARTIALLY_VERIFIED status concerns only the unsatisfied CALCULATION_METHOD dimension."
+        "gaps": [],
+        "scopeNote": "Bound to the de-energisation/safe-use principle itself, including the explicit stored-energy (charged-capacitor) case this source addresses. Does not extend to a general electrical safe-isolation procedure (lock-off/proving-dead sequences) beyond what this source itself states.",
+        "disclosures": [
+          "[Correction] This requirement's plan-level requiredCoverageDimensions was regenerated from the adapter as [SAFE_USE] only (ACQ-040), replacing the generic PROCEDURE_COVERAGE-kind default of [PROCEDURE, CALCULATION_METHOD]. A safety/de-energisation principle has no calculation dimension to satisfy; the previously-recorded CALCULATION_METHOD unresolved-dimension was a plan-level artefact, not a genuine evidence gap. The safety content (power off first; discharge any charged capacitor before taking a resistance reading) remains fully and genuinely evidenced by the Fluke source.",
+          "A previously-recorded claim that an ohmmeter 'applies its own small internal test current/voltage' was removed because it appears in no retrieved passage anywhere in this batch; the safety conclusion does not depend on it."
+        ]
       }
     },
     {
@@ -2433,22 +2432,34 @@
             "sourceRef": "https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8248.pdf",
             "sourceLocator": "NISTIR 8248, Section 1 Introduction",
             "retrievedPassage": "\"Electrical energy usage is measured with watt-hour meters.\""
+          },
+          {
+            "sourceId": "SRC-INSTRUMENTATIONTOOLS-WATTMETER-VS-ENERGYMETER",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://instrumentationtools.com/difference-between-wattmeter-and-energy-meter/",
+            "sourceLocator": "Instrumentation Tools, 'Difference Between Wattmeter and Energy Meter'",
+            "retrievedPassage": "\"Energy = Integral of power with respect to the derivative of time.\" An energy meter measures power first and then it is integrated over a period of time (accumulating consumption into kWh), whereas \"Wattmeter will just show the total power present in the circuit\" (instantaneous)."
           }
         ],
         "normalizedClaims": [
           {
             "claimText": "Electrical energy usage is measured with watt-hour meters (energy meters), which register accumulated energy usage in watt-hours/kilowatt-hours.",
             "sourceId": "SRC-NISTIR-8248"
+          },
+          {
+            "claimText": "An energy meter measures energy by integrating (accumulating) instantaneous power over time into a running total (e.g. kWh), unlike a wattmeter, which displays only the instantaneous power present in the circuit at that moment.",
+            "sourceId": "SRC-INSTRUMENTATIONTOOLS-WATTMETER-VS-ENERGYMETER"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass. The requirement is 'energy meter measures/INTEGRATES electrical energy', but the sole retrieved passage is the single sentence 'Electrical energy usage is measured with watt-hour meters.' NISTIR 8248 as quoted states nothing about an integration mechanism, and nothing about contrasting accumulated energy with instantaneous power. The integration half of the requirement is therefore UNEVIDENCED. The previous record also carried the acquirer's own gloss INSIDE the retrievedPassage field -- '(context: distinguishing this accumulated-usage measurement from the instantaneous power measurements discussed in the same paragraph)' -- which has been removed; retrievedPassage is a verbatim-quotation field. The accumulation/integration property remains derivable from the already-evidenced energy = power x time relationship (EQCT-LP-06), but that is an internal derivation, not this source's statement."
+        "gaps": [],
+        "disclosures": [
+          "[Re-sourced] The integration/accumulation half of this claim (previously unevidenced -- NISTIR 8248 stated only that watt-hour meters measure electrical energy usage, with no statement of an integration mechanism or a contrast with instantaneous power) is now sourced to an instrumentation-engineering technical reference (Instrumentation Tools) explicitly stating that an energy meter integrates power over time and contrasting this with a wattmeter's instantaneous reading. Classifying this site as AUTHORITATIVE_TECHNICAL_REFERENCE (an industry instrumentation-engineering reference, not a hobbyist tutorial) is a disclosed judgment call."
         ]
       }
     },
@@ -2492,5 +2503,7 @@
       }
     }
   ],
-  "correctionNote": "Corrected during the internal adversarial audit pass following the initial acquisition. The batch was originally recorded as 57/57 VERIFIED; that was not earned. Nine results were downgraded to PARTIALLY_VERIFIED and several claims were corrected for attribution, lost qualifications, or curriculum prose recorded as if it were a source's assertion. Two retrievedPassage fields were found to contain text that does NOT appear on the cited page (SRC-ETW-POWERTRIANGLE on the two power-factor/power DISTINCTION results, and SRC-ETW-ACINDUCTORS on the inductance DISTINCTION result); both were confirmed by re-fetching the pages during the audit and both now hold what the pages actually say. One taught claim (temperature intervals) was factually WRONG and contradicted its own quoted passage; it has been corrected. No status was raised, and no gap was papered over."
+  "correctionNote": "Corrected during the internal adversarial audit pass following the initial acquisition. The batch was originally recorded as 57/57 VERIFIED; that was not earned. Nine results were downgraded to PARTIALLY_VERIFIED and several claims were corrected for attribution, lost qualifications, or curriculum prose recorded as if it were a source's assertion. Two retrievedPassage fields were found to contain text that does NOT appear on the cited page (SRC-ETW-POWERTRIANGLE on the two power-factor/power DISTINCTION results, and SRC-ETW-ACINDUCTORS on the inductance DISTINCTION result); both were confirmed by re-fetching the pages during the audit and both now hold what the pages actually say. One taught claim (temperature intervals) was factually WRONG and contradicted its own quoted passage; it has been corrected. No status was raised, and no gap was papered over.",
+  "structurallySatisfiedCount": 0,
+  "retiredOutOfScopeCount": 0
 }
