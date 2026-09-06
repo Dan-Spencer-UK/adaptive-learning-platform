@@ -2605,7 +2605,9 @@
         "GOVERNMENT_OR_REGULATOR",
         "PROFESSIONAL_BODY",
         "AUTHORITATIVE_TECHNICAL_REFERENCE",
-        "ORIGINAL_MANUFACTURER_OR_VENDOR"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -2634,7 +2636,9 @@
         "GOVERNMENT_OR_REGULATOR",
         "PROFESSIONAL_BODY",
         "AUTHORITATIVE_TECHNICAL_REFERENCE",
-        "ORIGINAL_MANUFACTURER_OR_VENDOR"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -3038,7 +3042,9 @@
         "GOVERNMENT_OR_REGULATOR",
         "PROFESSIONAL_BODY",
         "AUTHORITATIVE_TECHNICAL_REFERENCE",
-        "ORIGINAL_MANUFACTURER_OR_VENDOR"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -3423,22 +3429,21 @@
       "acceptanceCriteria": "At least one authoritative source that actually teaches or describes the real procedure -- a sentence merely containing the topic name never satisfies this. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-170"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Capacitor: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Capacitor: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Capacitor: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3447,25 +3452,24 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-171"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "DIAC: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: DIAC: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: DIAC: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3474,7 +3478,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
@@ -3557,23 +3561,22 @@
       "acceptanceCriteria": "Not yet determinable -- semantic decomposition required before an acceptance criterion can be stated (task §8.G); return to Project Architect."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::APPLICATION_FUNCTION",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-149"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Dimmer switches: application category/function.",
-      "evidenceQuestion": "What authoritative fact establishes: Dimmer switches: application category/function.?",
+      "evidenceQuestion": "What is the application/function relationship for: Dimmer switches: application category/function.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -3581,7 +3584,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this application/function relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-triac-ac-switching-control::EXACT_FACT",
@@ -3611,22 +3614,21 @@
       "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-172"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Diode: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Diode: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Diode: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3635,26 +3637,25 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-150"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Heating/boiler controls: application category/function.",
-      "evidenceQuestion": "What authoritative fact establishes: Heating/boiler controls: application category/function.?",
+      "evidenceQuestion": "What is the application/function relationship for: Heating/boiler controls: application category/function.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -3662,7 +3663,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this application/function relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
@@ -3719,22 +3720,21 @@
       "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-173"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Inverter: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Inverter: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Inverter: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3743,25 +3743,24 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-176"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "LDR (light-dependent resistor): basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: LDR (light-dependent resistor): basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: LDR (light-dependent resistor): basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3770,25 +3769,24 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-174"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "LED: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: LED: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: LED: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3797,7 +3795,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
@@ -3827,23 +3825,22 @@
       "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::APPLICATION_FUNCTION",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-151"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Motor control: application category/function.",
-      "evidenceQuestion": "What authoritative fact establishes: Motor control: application category/function.?",
+      "evidenceQuestion": "What is the application/function relationship for: Motor control: application category/function.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -3851,7 +3848,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this application/function relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT",
@@ -3881,22 +3878,21 @@
       "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-175"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Photodiode: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Photodiode: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Photodiode: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3905,7 +3901,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
@@ -3934,22 +3930,21 @@
       "acceptanceCriteria": "At least one authoritative source providing exact visual/symbol coverage sufficient for recognition. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-177"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Rectifier: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Rectifier: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Rectifier: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3958,25 +3953,24 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-178"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Resistor: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Resistor: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Resistor: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -3985,7 +3979,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
@@ -4095,23 +4089,22 @@
       "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::APPLICATION_FUNCTION",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-147"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Security alarms: application category/function.",
-      "evidenceQuestion": "What authoritative fact establishes: Security alarms: application category/function.?",
+      "evidenceQuestion": "What is the application/function relationship for: Security alarms: application category/function.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -4119,7 +4112,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this application/function relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
@@ -4257,23 +4250,22 @@
       "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-148"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Telephones: application category/function.",
-      "evidenceQuestion": "What authoritative fact establishes: Telephones: application category/function.?",
+      "evidenceQuestion": "What is the application/function relationship for: Telephones: application category/function.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -4281,25 +4273,24 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this application/function relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-179"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Thermistor: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Thermistor: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Thermistor: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -4308,25 +4299,24 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-180"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Thyristor (SCR): basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Thyristor (SCR): basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Thyristor (SCR): basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -4335,25 +4325,24 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-181"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Transistor: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Transistor: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Transistor: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -4362,25 +4351,24 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-182"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "TRIAC: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: TRIAC: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: TRIAC: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -4389,26 +4377,25 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-152"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Wireless control systems: application category/function.",
-      "evidenceQuestion": "What authoritative fact establishes: Wireless control systems: application category/function.?",
+      "evidenceQuestion": "What is the application/function relationship for: Wireless control systems: application category/function.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "APPLICATION_FUNCTION"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
-        "ACADEMIC_OR_RESEARCH_INSTITUTION",
-        "AUTHORITATIVE_TECHNICAL_REFERENCE"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "AUTHORITATIVE_TECHNICAL_REFERENCE",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION"
       ],
       "acquisitionPriority": "REQUIRED",
       "representativeExemplar": false,
@@ -4416,7 +4403,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this application/function relationship. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-practical-advantages-applications::EXACT_FACT",
@@ -4446,22 +4433,21 @@
       "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::OPERATING_PRINCIPLE",
       "sourceKnowledgeTargetIds": [
         "unit202::ACQ-183"
       ],
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requirementText": "Zener diode: basic operating principle.",
-      "evidenceQuestion": "What authoritative fact establishes: Zener diode: basic operating principle.?",
+      "evidenceQuestion": "What is the operating principle (mechanism of action) of: Zener diode: basic operating principle.?",
       "requiredCoverageDimensions": [
-        "DEFINITION"
+        "OPERATING_PRINCIPLE"
       ],
       "sourceAuthorityClasses": [
-        "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-        "GOVERNMENT_OR_REGULATOR",
         "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
         "AUTHORITATIVE_TECHNICAL_REFERENCE"
       ],
       "acquisitionPriority": "REQUIRED",
@@ -4470,7 +4456,7 @@
       "deduplicationBasis": "semantic identity + requirement mode",
       "decompositionStatus": "READY",
       "decompositionReason": null,
-      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explicitly states this fact. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
+      "acceptanceCriteria": "At least one authoritative source whose exact locator/passage explains the relevant operating behaviour. A source title alone never satisfies this criterion -- the exact passage must be actually read and cited, never inferred."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::foundational-mathematics::algebra::TOPIC_BREADTH_COVERAGE",

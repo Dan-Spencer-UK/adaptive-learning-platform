@@ -2979,10 +2979,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Capacitor: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3004,10 +3004,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "DIAC: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3097,10 +3097,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::APPLICATION_FUNCTION",
       "requirementText": "Dimmer switches: application category/function.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "decompositionStatus": "READY",
       "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
       "sourceProvenance": [
@@ -3140,10 +3140,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Diode: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3165,10 +3165,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
       "requirementText": "Heating/boiler controls: application category/function.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "decompositionStatus": "READY",
       "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
       "sourceProvenance": [
@@ -3226,10 +3226,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Inverter: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3251,10 +3251,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "LDR (light-dependent resistor): basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3276,10 +3276,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "LED: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3319,10 +3319,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::APPLICATION_FUNCTION",
       "requirementText": "Motor control: application category/function.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "decompositionStatus": "READY",
       "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
       "sourceProvenance": [
@@ -3362,10 +3362,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Photodiode: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3405,10 +3405,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Rectifier: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_PARTIALLY_SUPPORTED",
       "sourceProvenance": [
@@ -3430,10 +3430,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Resistor: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3541,10 +3541,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::APPLICATION_FUNCTION",
       "requirementText": "Security alarms: application category/function.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "decompositionStatus": "READY",
       "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
       "sourceProvenance": [
@@ -3649,10 +3649,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION",
       "requirementText": "Telephones: application category/function.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "decompositionStatus": "READY",
       "historicalCoverageState": "NO_HISTORICAL_BENCHMARK",
       "sourceProvenance": [
@@ -3667,10 +3667,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Thermistor: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3692,10 +3692,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Thyristor (SCR): basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3717,10 +3717,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Transistor: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3742,10 +3742,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "TRIAC: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_SOURCE_GAP",
       "sourceProvenance": [
@@ -3767,10 +3767,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
       "requirementText": "Wireless control systems: application category/function.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "APPLICATION_FUNCTION",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
@@ -3810,10 +3810,10 @@
       ]
     },
     {
-      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
-      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "canonicalRequirementKey": "provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::OPERATING_PRINCIPLE",
       "requirementText": "Zener diode: basic operating principle.",
-      "requirementMode": "EXACT_FACT",
+      "requirementMode": "OPERATING_PRINCIPLE",
       "decompositionStatus": "READY",
       "historicalCoverageState": "HISTORICALLY_EXACTLY_SUPPORTED",
       "sourceProvenance": [
