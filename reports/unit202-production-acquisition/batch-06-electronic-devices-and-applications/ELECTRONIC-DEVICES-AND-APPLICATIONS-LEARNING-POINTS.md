@@ -4,7 +4,7 @@
 
 Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EDA-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 29 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
 
-**Readiness:** 19 READY, 10 HELD_PENDING_EVIDENCE_CORRECTION.
+**Readiness:** 21 READY, 6 HELD_PENDING_EVIDENCE_CORRECTION, 2 RETIRED_OUT_OF_SCOPE. **Curriculum role:** 21 REQUIRED_MASTERY, 4 CONTEXTUAL_SUPPORT_ONLY, 4 MIXED_REQUIRED_AND_CONTEXT.
 
 ## Instructional sequence
 
@@ -32,7 +32,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 22. `EDA-LP-22` -- Motor control: function and controlled electronic switching
 23. `EDA-LP-23` -- Motor drives: the bridge rectifier converting AC to DC
 24. `EDA-LP-24` -- Security alarms: application category and function
-25. `EDA-LP-25` -- Security alarm circuit: NC loop, transistor switching and SCR latching
+25. `EDA-LP-25` -- Security alarm application: transferable component roles (transistor switching, SCR latching)
 26. `EDA-LP-26` -- The legacy UK analogue PSTN and what a telephone service is
 27. `EDA-LP-27` -- The UK master socket and extension sockets
 28. `EDA-LP-28` -- Inside the UK master socket: ringer capacitor, line-test resistor and surge protector
@@ -667,7 +667,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Surface-mount package identification
 - Decoding manufacturer date and lot codes
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - Identify the cathode end of an axial rectifier diode.
 - Explain why a TO-92 package does not by itself tell you that a device is a transistor.
 - State what you would look at, besides shape, to identify an unknown three-legged component.
@@ -680,7 +682,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to explain the function of a dimmer, describe how phase control varies the power delivered to a lamp, and state the roles of the TRIAC and the DIAC in the circuit.
 
-**Knowledge / procedure:** FUNCTION: a light dimmer operates directly on the mains, connected in series with the line conductor in place of a mechanical switch, and controls lamps supplied directly from the mains. Light dimming is one of a family of phase-control applications alongside heat control and motor speed control. HOW PHASE CONTROL WORKS: the trigger point within each half-cycle is set by an RC charging network. Varying the RC time constant makes the trigger device break down at different phase angles within the cycle, which varies the CONDUCTION ANGLE -- the portion of each half-cycle for which the power device conducts -- and hence the power delivered to the load. THE RELATIONSHIP IS STRONGLY NON-LINEAR: in a full-wave circuit a conduction angle of 150 degrees delivers about 97% of full power, while 30 degrees delivers only about 3%. ROLE OF THE TRIAC: the TRIAC is the power switching device operating directly on the mains. It provides full-wave AC control, remaining off and blocking all current except a minute leakage until triggered, then conducting for the remainder of that half-cycle. ROLE OF THE DIAC: the DIAC is the trigger. When the voltage across the timing capacitor reaches the DIAC's breakover voltage, the capacitor discharges through the DIAC into the TRIAC gate, firing it. Because the DIAC is bidirectional it provides triggering on both the positive and negative half-cycles. QUALIFICATION: the power-versus-conduction-angle figures above are stated for a RESISTIVE / constant-impedance load; lamps and motors change impedance with applied voltage, so the relationship differs for those loads.
+**Correction note (Stage 7 early-stage depth trim):** Removed the specific numerical worked examples (150 degrees to ~97% power; 30 degrees to ~3% power) and the resistive-load-qualification prose tied to those exact figures, and removed the assessment demand to explain why halving the conduction angle does not halve the power delivered -- these are beyond early-stage conceptual mastery. Retained: dimmer function, the TRIAC power-switch role, the DIAC trigger role, and the qualitative (non-numeric) relationship that changing the trigger timing/conduction angle changes the delivered power non-linearly. The mains-safety boundary is now stated once, prominently, rather than implied only in explicitExclusions.
+
+**Knowledge / procedure:** FUNCTION: a light dimmer operates directly on the mains, connected in series with the line conductor in place of a mechanical switch, and controls lamps supplied directly from the mains. Light dimming is one of a family of phase-control applications alongside heat control and motor speed control. SAFETY BOUNDARY: this is mains equipment -- treatment here is function and conceptual topology only, and no construction or wiring instruction is given. HOW PHASE CONTROL WORKS: the trigger point within each half-cycle is set by an RC charging network. Varying the RC time constant makes the trigger device break down at different phase angles within the cycle, which varies the CONDUCTION ANGLE -- the portion of each half-cycle for which the power device conducts -- and hence the power delivered to the load. This relationship is NON-LINEAR (delivered power is not directly proportional to the conduction angle). ROLE OF THE TRIAC: the TRIAC is the power switching device operating directly on the mains. It provides full-wave AC control, remaining off and blocking all current except a minute leakage until triggered, then conducting for the remainder of that half-cycle. ROLE OF THE DIAC: the DIAC is the trigger. When the voltage across the timing capacitor reaches the DIAC's breakover voltage, the capacitor discharges through the DIAC into the TRIAC gate, firing it. Because the DIAC is bidirectional it provides triggering on both the positive and negative half-cycles.
 
 **Within-domain prerequisites:** `EDA-LP-12`, `EDA-LP-13`, `EDA-LP-03`
 
@@ -723,7 +727,6 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Explain how a dimmer reduces the brightness of a lamp without wasting energy as heat in a resistor.
 - State the function of the TRIAC in a dimmer circuit.
 - Explain what the DIAC does in a dimmer circuit.
-- Explain why halving the conduction angle does not halve the power delivered.
 
 ---
 
@@ -744,7 +747,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-164`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT` -- **RETIRED_OUT_OF_SCOPE**
 
 **Normalized claim references:**
 - SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL: Littelfuse/Teccor AN1003 states exact RC timing component values for its OWN named reference circuits: Figure ...
@@ -758,7 +761,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Circuit construction or wiring instruction of any kind
 - Component selection and design calculation
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - (Held pending adjudication -- no application types are proposed while the intended circuit is unidentified.)
 
 ---
@@ -769,7 +774,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to explain what electronic heating controls do and describe the role of the thermistor within them.
 
-**Knowledge / procedure:** FUNCTION: heating and boiler control is an established application category for electronic devices. Its function at this level is to SENSE the temperature of the medium and SWITCH OR PROPORTION the power to the heating element accordingly -- a sensing element plus a power-switching element. Heat control is one of the application categories served by the thyristor phase-control circuit family, alongside light dimming and motor speed control. THERMISTOR SENSING ROLE: an NTC thermistor is the temperature-sensing element. Its resistance has a NEGATIVE relationship with temperature, and the relatively large negative slope means even small temperature changes cause a significant change in resistance -- which is what makes it suited to sensing. In heating applications specifically, an immersion NTC thermistor is fitted directly into the medium in heat pumps, heat exchangers, storage tanks and boilers to acquire the medium temperature. In a thyristor heating-control circuit the thermistor appears as the temperature-sensing resistance within the trigger network. TYPE QUALIFICATION: the evidence here is specifically for NTC thermistors. Do not assume a PTC would behave the same way -- see EDA-LP-09.
+**Knowledge / procedure:** FUNCTION: heating and boiler control is an established application category for electronic devices. Its function at this level is to SENSE the temperature of the medium and SWITCH OR PROPORTION the power to the heating element accordingly -- a sensing element plus a power-switching element. Heat control is one of the application categories served by the thyristor phase-control circuit family, alongside light dimming and motor speed control. THERMISTOR SENSING ROLE: an NTC thermistor is the temperature-sensing element. Its resistance has a NEGATIVE relationship with temperature, and the relatively large negative slope means even small temperature changes cause a significant change in resistance -- which is what makes it suited to sensing. In heating applications specifically, an immersion NTC thermistor is fitted directly into the heating medium (e.g. the water in a boiler system) to acquire its temperature.
+
+**Correction note (Stage 7 early-stage depth trim):** Removed the itemised list of application contexts (heat pumps, heat exchangers, storage tanks, boilers) as separate required mastery -- retained one illustrative example (a boiler system) only. In a thyristor heating-control circuit the thermistor appears as the temperature-sensing resistance within the trigger network. TYPE QUALIFICATION: the evidence here is specifically for NTC thermistors. Do not assume a PTC would behave the same way -- see EDA-LP-09.
 
 **Within-domain prerequisites:** `EDA-LP-09`, `EDA-LP-11`
 
@@ -824,7 +831,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-166`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT` -- **RETIRED_OUT_OF_SCOPE**
 
 **Normalized claim references:**
 - SRC-ONSEMI-AND8116D-RELAY-DRIVERS: The traditional and most popular discrete relay-driver topology, as stated by an established semiconductor man...
@@ -837,7 +844,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Relay-driver design, flyback protection sizing and transistor selection
 - Mains switching construction or wiring instruction
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - (Held pending adjudication -- no application types are proposed while the intended circuit is unidentified.)
 
 ---
@@ -848,7 +857,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to explain what electronic motor control does and how phase-controlled switching regulates motor speed.
 
-**Knowledge / procedure:** FUNCTION: motor control is a named application category for electronic power-control devices, appearing alongside light dimming and heat control as one of the three applications served by the same thyristor phase-control circuit family. Its function at this level is to REGULATE THE POWER delivered to the motor and thereby its SPEED. HOW THE SWITCHING WORKS: an electronic switching device -- a TRIAC for full-wave AC control, or an SCR for half-wave control -- is held in the off condition, blocking all current except a minute leakage, until it is triggered into conduction within each half-cycle. Because the device can be triggered earlier or later within the half-cycle, the output power, and therefore the motor speed, is controlled by the PHASE DELAY of the drive. A half-wave phase-control circuit using an SCR is used for controlling a universal motor, the RC network's phase-shifting characteristics permitting firing beyond the peak of the applied voltage to give small conduction angles. QUALIFICATION [Correction, Stage 5 hard factual correction]: a universal motor is an INDUCTIVE load, so its current LAGS its voltage. Both the SCR and the TRIAC turn off when current falls below the holding current, not simply when the applied voltage reaches zero (see EDA-LP-11, EDA-LP-12); for this inductive load, the current's own zero crossing does not coincide with the voltage's zero crossing, so turn-off happens at a different point in the cycle than it would for a resistive load -- which is why motor control is more demanding of the device than the resistive-load dimmer case.
+**Correction note (Stage 7 early-stage depth trim):** Removed the inductive-load current-lag qualification, the current-zero-versus-voltage-zero commutation-timing detail, and the claim that motor control is more demanding on the switching device than dimming -- all beyond early-stage conceptual mastery (the general holding-current turn-off principle itself remains taught under EDA-LP-11/EDA-LP-12). Removed the corresponding assessment demand. Retained: electronic switching controls the power delivered to the motor, trigger timing regulates speed, and the TRIAC (full-wave) versus SCR (half-wave) distinction.
+
+**Knowledge / procedure:** FUNCTION: motor control is a named application category for electronic power-control devices, appearing alongside light dimming and heat control as one of the three applications served by the same thyristor phase-control circuit family. Its function at this level is to REGULATE THE POWER delivered to the motor and thereby its SPEED. HOW THE SWITCHING WORKS: an electronic switching device -- a TRIAC for full-wave AC control, or an SCR for half-wave control -- is held in the off condition, blocking all current except a minute leakage, until it is triggered into conduction within each half-cycle. Because the device can be triggered earlier or later within the half-cycle, the output power, and therefore the motor speed, is controlled by the PHASE DELAY of the drive. A half-wave phase-control circuit using an SCR is used for controlling a universal motor.
 
 **Within-domain prerequisites:** `EDA-LP-11`, `EDA-LP-12`, `EDA-LP-18`
 
@@ -882,7 +893,6 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - State what electronic motor control regulates.
 - Explain how delaying the trigger point reduces motor speed.
 - State which device is used for full-wave AC control and which for half-wave.
-- Explain why controlling a motor is more demanding on the switching device than dimming a lamp.
 
 ---
 
@@ -903,7 +913,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-168`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-ONSEMI-HB214D-RECTIFIER-HANDBOOK: The function of rectification is to convert alternating current to direct current....
@@ -930,9 +940,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness:** READY
 
-**Learner outcome:** The learner will be able to explain what an intruder alarm system does and describe the main types found in UK domestic practice.
+**Learner outcome:** The learner will be able to state the main function of an intruder alarm system.
 
-**Knowledge / procedure:** An alarm system is a device whose main function is to INDICATE AN ALERT to a system or to a person when a problem or specific situation occurs -- i.e. to detect an intrusion and alert someone so it can be responded to. In UK domestic security practice, burglar (intruder) alarms come in two broad types: MONITORED, where once triggered an alarm company or designated key holder checks whether it is a false alarm; and UNMONITORED, which once activated simply sounds an audible alarm locally. JURISDICTION: this is UK domestic security practice.
+**Knowledge / procedure:** An alarm system is a device whose main function is to INDICATE AN ALERT to a system or to a person when a problem or specific situation occurs -- i.e. to detect an intrusion and alert someone so it can be responded to. CONTEXT ONLY (not required recall): in UK domestic security practice, burglar alarms are commonly described as MONITORED (an alarm company or key holder checks a triggered alarm) or UNMONITORED (sounds locally only) -- this distinction was introduced by the source material describing alarms generally and is background only, not part of the approved qualification target. JURISDICTION: this is UK domestic security practice.
 
 **Within-domain prerequisites:** (none)
 
@@ -949,7 +959,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Depth justification:** Deliberately kept separate from the alarm CIRCUIT requirements (EDA-LP-25). The distinction matters: a source describing what alarms are for genuinely satisfies this application-category requirement but says nothing whatever about loop topology, SCR latching or transistor switching. Trimmed to early-stage depth (Batch 06 recalibration): police-response practice, installation/mounting advice and BS EN 50131 taxonomy are professional-installation detail beyond what an early-stage learner can plausibly be tested on.
 
-**Correction note:** [Correction, Batch 06 early-stage depth recalibration + CC-24 mode correction] Re-sourced under the corrected APPLICATION_FUNCTION mode to two security-equipment manufacturers (Bosch, Honeywell) stating the basic detect-and-alert purpose. Trimmed required mastery to the basic purpose and the monitored/unmonitored distinction only; removed police-response practice, alarm-box mounting advice and BS EN 50131 part taxonomy from required mastery and application questions.
+**Correction note:** [Correction, Batch 06 early-stage depth recalibration + CC-24 mode correction] Re-sourced under the corrected APPLICATION_FUNCTION mode to two security-equipment manufacturers (Bosch, Honeywell) stating the basic detect-and-alert purpose; removed police-response practice, alarm-box mounting advice and BS EN 50131 part taxonomy from required mastery and application questions. **[Further correction, Stage 7]** The monitored-versus-unmonitored taxonomy is now also removed from the learner outcome and assessable applications: it was introduced by the source material's own elaboration, not by the approved qualification target (a single knowledge target, ACQ-147, concerning only the basic detect-and-alert function). Retained only as a brief, explicitly non-assessed contextual mention in the knowledge text.
 
 **Explicit exclusions:**
 - The internal circuit of any specific alarm (see EDA-LP-25, which is held)
@@ -961,17 +971,18 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Representative application types:**
 - State the main function of an intruder alarm system.
-- Explain the difference between a monitored and an unmonitored alarm.
 
 ---
 
 ### `EDA-LP-25` -- Security alarm application: transferable component roles (transistor switching, SCR latching) [TRANSFORMED_TO_EXEMPLAR]
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
 **Outstanding production dependency:** REPRESENTATIVE_EXEMPLAR_AUTHORING (a validated worked alarm circuit, not a technical-evidence gap)
 
-**Evidence readiness note (Stage 5 exemplar decision 3):** Transformed rather than left held. The exact NC-loop/bias topology of a specific security alarm circuit is never canonical technical truth for this qualification (the frozen requirement names no circuit, figure or source document, and the generic pattern found appears only on vendor blogs/installer marketing/DIY sites, all outside permitted authority classes) and is retired from canonical mastery. The TRANSFERABLE roles -- transistor switching and SCR latching -- ARE fully and genuinely evidenced as general device behaviour and are retained as READY technical content. The claim that an SCR specifically "keeps a sounder energised" is NOT evidenced by any retrieved source and is dropped. A representative, validated worked alarm circuit remains an outstanding REPRESENTATIVE_EXEMPLAR_AUTHORING dependency for downstream lesson production -- this may block final lesson production without making the underlying transferable-role technical facts unsupported.
+**Correction note (false-green re-adjudication):** Previously marked READY on the strength of general BJT switching behaviour alone, which was a false green: this learning point's own evidence requirement asks specifically about the transistor's role WITHIN a security-alarm circuit, and no read source ties the general cutoff/saturation behaviour to any alarm application. Reverted to HELD_PENDING_EVIDENCE_CORRECTION.
+
+**Evidence readiness note:** All three underlying requirements are now non-VERIFIED. `security-alarm-exact-nc-contact-bias-topology` is RETIRED_OUT_OF_SCOPE (specification ambiguity: the frozen requirement names no circuit, figure or source document; the exact NC-loop/bias topology is never canonical technical truth for this qualification). `security-alarm-scr-thyristor-latching-sounder-role` is PARTIALLY_VERIFIED (the general SCR latching mechanism is evidenced; the sounder-energising claim is dropped as unevidenced). `security-alarm-transistor-switching` is PARTIALLY_VERIFIED (the general BJT cutoff/saturation switching principle is fully evidenced, but that is a DIFFERENT, separately-verified technical fact taught under EDA-LP-10 -- no read source ties that general behaviour to a security-alarm circuit specifically). This learning point is therefore HELD: no alarm-specific transistor/SCR role may be taught as sourced fact here, and the general transistor-switching and SCR-latching principles remain available as separately READY prerequisites (EDA-LP-10, EDA-LP-11). A representative, validated worked alarm circuit remains an outstanding REPRESENTATIVE_EXEMPLAR_AUTHORING dependency for downstream lesson production.
 
 **Learner outcome:** The learner will be able to explain the general transferable roles a transistor (switching) and an SCR (latching) can play within a security-alarm detection circuit, without reference to any one specific circuit's exact topology.
 
@@ -986,14 +997,14 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Evidence-requirement IDs and their status:**
 - `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT` -- **RETIRED_OUT_OF_SCOPE**
 - `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT` -- **PARTIALLY_VERIFIED** (latching itself is fully evidenced; the sounder-energising claim is dropped as unevidenced)
-- `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT` -- **VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT` -- **PARTIALLY_VERIFIED** (general BJT cutoff/saturation switching is fully evidenced as a separate technical fact under EDA-LP-10, but no source ties it to a security-alarm circuit specifically)
 
 **Normalized claim references:**
 - SRC-LITTELFUSE-THYRISTOR-APPNOTES: An SCR (silicon controlled rectifier) latches: once a momentary gate pulse has triggered it and the anode-to-c...
 - SRC-LITTELFUSE-THYRISTOR-APPNOTES: Holding current (IH) is defined by the manufacturer as the minimum principal current required to maintain the ...
 - SRC-OSU-ECE322-BJT: A bipolar junction transistor used as a switch operates as a non-linear switch, alternating between the cutoff...
 
-**Depth justification:** The three circuit-level alarm requirements were originally combined into one held learning point because all three presuppose the SAME unidentified circuit. Stage 5 resolves that shared dependency by disposition rather than leaving it held indefinitely: the transferable device-level roles are separated out and retained as READY technical content, independent of which exact circuit a downstream author eventually validates as the representative exemplar. Kept separate from EDA-LP-24 so the application-category content remains independently deliverable.
+**Depth justification:** The three circuit-level alarm requirements are combined into one held learning point because all three presuppose the SAME unidentified circuit. The transferable device-level roles (transistor switching, SCR latching) are genuine, separately-evidenced technical truth and are independently READY as their own prerequisite learning points (EDA-LP-10, EDA-LP-11); this learning point itself remains HELD because it specifically concerns their APPLICATION within a security-alarm circuit, which is not evidenced. Kept separate from EDA-LP-24 so the application-category content remains independently deliverable.
 
 **Explicit exclusions:**
 - Any specific alarm circuit topology as canonical taught content -- retired out of scope (Stage 5 exemplar decision 3); authoring one is a downstream REPRESENTATIVE_EXEMPLAR_AUTHORING production task, not technical evidence
@@ -1001,7 +1012,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - End-of-line resistor supervision and tamper-loop design
 - Alarm panel programming and installation practice
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - Identify whether a transistor is in cutoff or saturation given a described bias condition.
 - Explain why an SCR, once triggered, continues conducting even after the triggering signal is removed.
 - Explain in general terms why a normally-closed loop and a latching device are useful building blocks for a security-alarm detection circuit (without reference to any one specific circuit).
@@ -1048,7 +1061,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Provider-migration and business/non-voice-device (alarms, telemetry) detail -- removed from required mastery
 - The exact PSTN retirement date as a required-recall fact -- retained only as dated contextual metadata
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - State what the letters PSTN stand for and what the network is.
 - Explain why legacy PSTN wiring details must not be applied to a digital voice service.
 
@@ -1092,7 +1107,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Modern NTE5C/filtered faceplate and broadband splitter variants beyond what was retrieved
 - Non-UK socket types including RJ11
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - State who owns the master socket in a UK property.
 - State where the customer's responsibility for telephone wiring begins.
 - Explain why quoting a bare contact/pin number is not, by itself, sufficient instruction for telephone socket wiring.
@@ -1142,7 +1159,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Exact line-test schedule, applied voltage and source-resistance range figures -- removed as professional-installation-level detail
 - Non-UK telephone socket components
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - State the components Openreach specifies inside the UK master socket.
 - State the value of the capacitor and of the resistor in the master socket.
 - Explain what the "bell wire" refers to and where it appears.
@@ -1184,6 +1203,8 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Representative application types:**
 - State what a wireless control system replaces.
+
+**Contextual examples (non-assessable, background only):**
 - Give three practical advantages of wireless control over wired control.
 - Explain why wireless control is particularly attractive when upgrading an existing building.
 

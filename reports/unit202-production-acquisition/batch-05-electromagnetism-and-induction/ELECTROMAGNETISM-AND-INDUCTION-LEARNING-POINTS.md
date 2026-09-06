@@ -4,7 +4,7 @@
 
 Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
 
-**Readiness:** 13 READY, 9 HELD_PENDING_EVIDENCE_CORRECTION.
+**Readiness:** 20 READY, 2 HELD_PENDING_EVIDENCE_CORRECTION. **Curriculum role:** 20 REQUIRED_MASTERY, 2 CONTEXTUAL_SUPPORT_ONLY.
 
 ## Instructional sequence
 
@@ -139,7 +139,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Three-dimensional vector drawing conventions
 - Right-hand/left-hand rules themselves (see EMI-LP-05, EMI-LP-13, EMI-LP-16)
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - State whether a cross on a field diagram means the field is directed into or out of the page.
 - Given a diagram using dots and crosses, describe the direction of the current in each conductor.
 
@@ -320,7 +322,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - Motor starter circuits and control-circuit design
 - Solid-state relays and semiconductor switching (Batch 06 covers electronic switching devices)
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - Explain how a small switch can be used to control a large motor current using a contactor.
 - State the difference between a relay and a contactor.
 - Explain what is meant by saying a relay provides electrical isolation.
@@ -453,7 +457,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-112`, `unit202::ACQ-113`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT` -- **VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP` -- **VERIFIED**
 
 **Normalized claim references:**
@@ -531,7 +535,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-115`, `unit202::ACQ-127`, `unit202::ACQ-129`, `unit202::ACQ-128`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP` -- **VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP` -- **VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT` -- **VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT` -- **VERIFIED**
@@ -635,11 +639,13 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-17` -- The simple AC generator: parts and how they work together
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note:** Two of the four underlying requirements are PARTIALLY_VERIFIED. (1) single-loop-alternator-generator-parts: the fully labelled in-class diagram (US DOE handbook Figures 1 and 5) shows the correct topology and all part labels but a MULTI-TURN rotor; the source that is explicitly "single-loop" is academic-class and shows no slip rings, so the exact single-loop arrangement rests on a disclosed compounding. (2) coil: no labelled "coil" callout or standard graphical symbol could be obtained from an in-class source (IEC Electropedia and std.iec.ch both returned 403); the coil description rests on the DOE handbook's prose rather than on a labelled figure. A further judgment is flagged for the Product Architect: the DOE handbook was classified AUTHORITATIVE_TECHNICAL_REFERENCE on the basis that it is a formally issued engineering handbook; a reviewer who reads it instead as a purely governmental publication would need to downgrade the slip-ring and single-loop-alternator results, though brushes would still stand on the two manufacturer sources.
+**Outstanding production dependency:** REPRESENTATIVE_DIAGRAM_AUTHORING (a diagram merging the single-loop framing with full slip-ring/brush labelling, not yet authored/validated)
 
-**Correction note:** [Correction] single-loop-alternator-generator-parts genuinely re-adjudicated to PARTIALLY_VERIFIED (not restored to VERIFIED): no source within the permitted authority classes shows one diagram both explicitly captioned single-loop and fully labelled with slip rings/brushes. A downstream authored-and-validated diagram dependency is recorded rather than a merged/invented figure. General simple-AC-generator part recognition (field, rotating winding, slip rings, brushes) remains soundly evidenced; only the strict single-loop framing and the coil facet remain PARTIALLY_VERIFIED, as already reflected above and in underlyingEvidenceStatuses.
+**Correction note (false-green re-adjudication):** Previously marked READY despite two of its four underlying requirements being PARTIALLY_VERIFIED. This learner outcome explicitly requires identifying a SINGLE-LOOP generator on a diagram, but no permitted-class source shows one diagram both captioned single-loop and fully labelled with slip rings/brushes (single-loop-alternator-generator-parts), and no labelled coil callout or symbol was obtained from an in-class source (coil). Reverted to HELD_PENDING_EVIDENCE_CORRECTION.
+
+**Evidence readiness note:** Two of the four underlying requirements are PARTIALLY_VERIFIED. (1) single-loop-alternator-generator-parts: the fully labelled in-class diagram (US DOE handbook Figures 1 and 5) shows the correct topology and all part labels but a MULTI-TURN rotor; the source that is explicitly "single-loop" is academic-class and shows no slip rings, so the exact single-loop arrangement rests on a disclosed compounding. (2) coil: no labelled "coil" callout or standard graphical symbol could be obtained from an in-class source (IEC Electropedia and std.iec.ch both returned 403); the coil description rests on the DOE handbook's prose rather than on a labelled figure. Slip rings and brushes remain independently, fully VERIFIED.
 
 **Learner outcome:** The learner will be able to identify the parts of a simple single-loop AC generator on a diagram and state the function of each.
 

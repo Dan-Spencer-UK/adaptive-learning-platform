@@ -4,6 +4,8 @@
 
 Learning point count: **19** (`EQCT-LP-01` through `EQCT-LP-19`).
 
+**Readiness:** 11 READY, 8 HELD_PENDING_EVIDENCE_CORRECTION. **Curriculum role:** 18 REQUIRED_MASTERY, 1 CONTEXTUAL_SUPPORT_ONLY.
+
 ## Instructional sequence
 
 (Pedagogical teaching order -- distinct from each learning point's stable numeric ID.)
@@ -396,7 +398,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Normalized claim references:** SRC-ETW-CAP1: capacitance definition, symbol C, farad F; SRC-BIPM-BROCHURE: farad, unit symbol F
 
-**Depth justification:** Deliberately split from capacitive reactance (EQCT-LP-10) even though the frozen evidence requirement bundles both quantities together in its text, because capacitance and capacitive reactance are independently-diagnosable concepts -- a learner can know what capacitance is (a fixed material/component property, farads) without yet knowing what capacitive reactance is (a frequency-dependent AC opposition, ohms), and vice versa; collapsing them into one point would hide that distinction as a single vocabulary item rather than teaching it as a genuine comparison. The QUANTITY_SYMBOL and UNIT_SYMBOL evidence requirements are shared with EQCT-LP-10 because the single frozen evidence requirement's own passage genuinely establishes both quantities' symbols together (see SOURCE-REGISTER.json); this is disclosed here and at EQCT-LP-10.
+**Depth justification:** Deliberately split from capacitive reactance (EQCT-LP-10) even though the frozen evidence requirement bundles both quantities together in its text, because capacitance and capacitive reactance are independently-diagnosable concepts -- a learner can know what capacitance is (a fixed material/component property, farads) without yet knowing what capacitive reactance is (a frequency-dependent AC opposition, ohms), and vice versa; collapsing them into one point would hide that distinction as a single vocabulary item rather than teaching it as a genuine comparison. [Correction, Stage 6/curriculum-role reconciliation] The UNIT_SYMBOL evidence requirement is shared with EQCT-LP-10 because the single frozen evidence requirement's own passage genuinely establishes both quantities' unit symbols together (see SOURCE-REGISTER.json). The QUANTITY_SYMBOL requirement ("C") is NOT shared with EQCT-LP-10: it is capacitance's own letter-symbol facet and remains held here only, since EQCT-LP-10's assessed outcome concerns capacitive reactance's behaviour, not recall of capacitance's symbol.
 
 **Explicit exclusions:**
 - Capacitive reactance itself (see EQCT-LP-10)
@@ -417,7 +419,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Knowledge / procedure:** Capacitive reactance (symbol Xc) is the frequency-dependent opposition a capacitor presents to alternating current, given conceptually by Xc=1/(2.pi.f.C) -- it FALLS as frequency rises. Unlike capacitance (an ideal/basic-component property, measured in farads, treated as constant for a given capacitor at this level), capacitive reactance is measured in ohms (the same unit symbol as resistance) and varies with both frequency and capacitance. Capacitance and capacitive reactance are related but are not the same quantity, and do not share a unit (farad vs ohms).
 
-**Evidence readiness note:** The QUANTITY_SYMBOL facet (capacitance's letter symbol "C") is PARTIALLY_VERIFIED: a source of the required authority tier (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY or AUTHORITATIVE_TECHNICAL_REFERENCE) stating the symbol convention explicitly has not yet been acquired (see the corresponding evidence requirement). The symbol "C" is nonetheless used as notation throughout this and related learning points, consistent with universal practice; only the formal authority-tier citation for the convention itself remains open. DEFINITION, DISTINCTION and UNIT_SYMBOL are all VERIFIED.
+**Correction note (Stage 6/curriculum-role reconciliation):** Removed the shared capacitance-quantity-symbol requirement (QUANTITY_SYMBOL, "C") from this learning point's own references: this LP's assessed outcome concerns capacitive reactance's behaviour and unit, not recall of capacitance's own letter symbol, which remains EQCT-LP-09's (the held owner of that symbol facet). This LP now references only DISTINCTION and UNIT_SYMBOL, both VERIFIED, and is cleanly READY without a partial dependency it does not actually need.
 
 **Within-domain prerequisites:** `EQCT-LP-09`, `EQCT-LP-08`
 
@@ -427,7 +429,6 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence-requirement IDs:**
 - `ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION`
-- `ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL`
 - `ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL`
 
 **Normalized claim references:** SRC-ETW-FILTER1: Xc=1/(2 pi f C), ohms, inverse frequency dependence, distinct from fixed capacitance
@@ -620,13 +621,13 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-16` -- Ohmmeter safe use: the circuit must be de-energised
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note (internal audit pass):** Underlying ohmmeter safe-use evidence downgraded to PARTIALLY_VERIFIED because its CALCULATION_METHOD dimension is unresolved. NOTE: the safety CONTENT of this learning point (de-energisation AND discharging stored capacitor charge) is fully and genuinely evidenced and is unaffected.
+**Correction note (false-green reconciliation):** Removed unsupported explanatory content: the claim that an ohmmeter "applies its own small internal test current/voltage", and the added claims that mismeasurement "can damage the meter" and "presents a safety hazard to the user", appear in no retrieved passage and have been removed. The evidence supports only the bare safe-use RULE (de-energise; discharge any capacitor) -- no source explains the underlying mechanism or consequence, so the learner outcome and applications are narrowed to stating and applying the rule itself, not explaining why. The underlying evidence is VERIFIED against its corrected [SAFE_USE] dimension (the previous CALCULATION_METHOD unresolved-dimension was a plan-level artefact, not a genuine gap).
 
-**Learner outcome:** The learner will be able to state that a circuit or component must be de-energised (and any capacitor discharged) before measuring its resistance with an ohmmeter, and explain why.
+**Learner outcome:** The learner will be able to state and apply the safe-use rule for an ohmmeter: de-energise the circuit or component, and discharge any capacitor, before measuring its resistance.
 
-**Knowledge / procedure:** Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first, and any charged capacitor must be discharged before measuring. This matters because an ohmmeter applies its own small internal test current/voltage to make the measurement -- stored energy (e.g. a charged capacitor) or an externally-applied voltage from an energised circuit will produce an incorrect reading, can damage the meter, and presents a safety hazard to the user.
+**Knowledge / procedure:** Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first, and any charged capacitor must be discharged before measuring.
 
 **Within-domain prerequisites:** `EQCT-LP-15`
 
@@ -646,8 +647,8 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 - Live fault-finding techniques
 
 **Representative application types:**
-- Explain why a technician must switch off the supply (and discharge any capacitor) before checking a component's resistance with an ohmmeter.
-- Identify the safety/accuracy risk of measuring resistance on an energised circuit.
+- State the safe-use rule for measuring resistance with an ohmmeter.
+- Apply the rule: identify what must be done to a given circuit or component before taking a resistance reading with an ohmmeter.
 
 ---
 
@@ -685,9 +686,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-18` -- Energy meter: measures and integrates electrical energy over time
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note (internal audit pass):** Underlying energy-meter evidence downgraded to PARTIALLY_VERIFIED: the "integrates" half of the requirement is unevidenced by the quoted NISTIR 8248 sentence.
+**Correction note (Stage 5):** The integration/accumulation half of this claim is now bound to a directly-read original-manufacturer source (Microchip AN994, an energy-metering-IC application note) stating the principle explicitly ("you are measuring energy (i.e., accumulating power over time)"), rather than resting on a disputed secondary source.
 
 **Learner outcome:** The learner will be able to state that an energy meter (watt-hour/kWh meter) measures accumulated electrical energy usage over time, as distinct from an instantaneous power reading.
 
@@ -702,7 +703,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 **Evidence-requirement IDs:**
 - `ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT`
 
-**Normalized claim references:** SRC-NISTIR-8248: 'electrical energy usage is measured with watt-hour meters'
+**Normalized claim references:** SRC-MICROCHIP-AN994-ENERGY-METER: "you are measuring energy (i.e., accumulating power over time)"; SRC-NISTIR-8248: 'electrical energy usage is measured with watt-hour meters'
 
 **Depth justification:** Depends on already knowing what energy is and how it differs from power (EQCT-LP-06), since an energy meter's function is explained precisely as measuring the accumulated (energy) quantity rather than the instantaneous (power) one.
 
@@ -742,7 +743,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 - Calculating loading error/measurement error introduced by a meter's finite internal resistance
 - Specific numeric internal-resistance values for named meter models
 
-**Representative application types:**
+**Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
+
+**Contextual examples (non-assessable, background only):**
 - Explain why an ammeter is designed with as low an internal resistance as practical.
 - Explain why treating a real voltmeter as having exactly infinite resistance is a simplification, not a literal fact.
 

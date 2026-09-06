@@ -173,7 +173,30 @@
         "Identify which of a list of candidate units (e.g. kg, kg/m^3, m^3) is the correct SI unit for density.",
         "Explain why 20 degC and 20 K are not the same temperature."
       ],
-      "correctionNote": "CORRECTED in the internal audit pass. This learning point previously taught that 'a temperature INTERVAL or an SI base-unit value uses K'. That was factually wrong and was contradicted by its own evidence result's quoted NIST passage ('One Celsius degree is an interval of 1 K'): intervals may be expressed in either deg C or K with the same numerical value. Only absolute values differ, by the 273.15 offset."
+      "correctionNote": "CORRECTED in the internal audit pass. This learning point previously taught that 'a temperature INTERVAL or an SI base-unit value uses K'. That was factually wrong and was contradicted by its own evidence result's quoted NIST passage ('One Celsius degree is an interval of 1 K'): intervals may be expressed in either deg C or K with the same numerical value. Only absolute values differ, by the 273.15 offset.",
+      "underlyingEvidenceStatuses": {
+        "length-correct-si-unit-and-unit-symbol::EXACT_FACT": "VERIFIED",
+        "area-correct-si-unit-and-unit-symbol::EXACT_FACT": "VERIFIED",
+        "volume-correct-si-unit-and-unit-symbol::EXACT_FACT": "VERIFIED",
+        "mass-correct-si-unit-and-unit-symbol::EXACT_FACT": "VERIFIED",
+        "density-correct-si-unit-and-unit-symbol::EXACT_FACT": "VERIFIED",
+        "time-correct-si-unit-and-unit-symbol::EXACT_FACT": "VERIFIED",
+        "velocity-correct-si-unit-and-unit-symbol::EXACT_FACT": "VERIFIED",
+        "temperature-correct-si-unit-and-unit-symbol::EXACT_FACT": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::length-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::area-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::volume-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::mass-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::density-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::time-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::velocity-correct-si-unit-and-unit-symbol::EXACT_FACT",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-02",
@@ -210,7 +233,16 @@
         "Convert a floor area given in cm^2 to m^2.",
         "Convert a tank volume given in cm^3 to m^3."
       ],
-      "evidenceReadinessNote": "Underlying practical-unit-conversion evidence downgraded to PARTIALLY_VERIFIED: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced."
+      "evidenceReadinessNote": "Underlying practical-unit-conversion evidence downgraded to PARTIALLY_VERIFIED: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced.",
+      "underlyingEvidenceStatuses": {
+        "practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE": "PARTIALLY_VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-03",
@@ -241,7 +273,20 @@
       "applicationTypes": [
         "State the quantity symbol and SI unit for electric current.",
         "Identify which of a list of symbols (I, A, i, Q) is current's quantity symbol versus its unit symbol."
-      ]
+      ],
+      "underlyingEvidenceStatuses": {
+        "current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
+        "current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-04",
@@ -274,7 +319,20 @@
       "applicationTypes": [
         "State the quantity symbol and SI unit for voltage.",
         "Explain why encountering 'U' for voltage in a different textbook does not mean a different quantity is being described."
-      ]
+      ],
+      "underlyingEvidenceStatuses": {
+        "voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
+        "voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-05",
@@ -314,7 +372,22 @@
         "Explain why a 100 W lamp left on for 10 hours is described in kWh, not in watts, when billed.",
         "Explain why a high power factor is not itself 'more power'."
       ],
-      "evidenceReadinessNote": "Underlying power::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification."
+      "evidenceReadinessNote": "Underlying power::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification.",
+      "underlyingEvidenceStatuses": {
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION": "PARTIALLY_VERIFIED",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-06",
@@ -345,7 +418,22 @@
       "applicationTypes": [
         "State the quantity symbol and practical unit for electrical energy.",
         "Explain why 'kilowatt-hour' names a quantity of energy, not a power rating."
-      ]
+      ],
+      "underlyingEvidenceStatuses": {
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
+        "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-07",
@@ -377,7 +465,22 @@
         "State whether power factor has a unit.",
         "Explain why a power factor of 0.8 does not mean '0.8 watts'."
       ],
-      "evidenceReadinessNote": "Underlying power-factor::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement."
+      "evidenceReadinessNote": "Underlying power-factor::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement.",
+      "underlyingEvidenceStatuses": {
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION": "PARTIALLY_VERIFIED",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "PARTIALLY_VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-08",
@@ -408,7 +511,20 @@
         "State the quantity symbol and SI unit for frequency.",
         "State the UK mains supply frequency and its unit."
       ],
-      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding."
+      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding.",
+      "underlyingEvidenceStatuses": {
+        "frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-09",
@@ -440,7 +556,20 @@
         "State the quantity symbol and SI unit for capacitance.",
         "Explain why doubling a capacitor's stored charge for the same voltage means its capacitance has doubled, not its capacitive reactance."
       ],
-      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding. [Correction, Stage 3 item 4] Removed the absolute fixed/frequency-independent claim; scoped to the ideal/basic-component model."
+      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding. [Correction, Stage 3 item 4] Removed the absolute fixed/frequency-independent claim; scoped to the ideal/basic-component model.",
+      "underlyingEvidenceStatuses": {
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-10",
@@ -457,7 +586,6 @@
       ],
       "evidenceRequirementIds": [
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
-        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
@@ -475,12 +603,18 @@
         "State the unit in which capacitive reactance is measured.",
         "Explain why capacitive reactance and capacitance are not simply two names for the same thing."
       ],
-      "evidenceReadinessNote": "The QUANTITY_SYMBOL facet (capacitance's letter symbol \"C\") is PARTIALLY_VERIFIED: a source of the required authority tier (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY or AUTHORITATIVE_TECHNICAL_REFERENCE) stating the symbol convention explicitly has not yet been acquired. The symbol \"C\" is nonetheless used as notation throughout this and related learning points, consistent with universal practice; only the formal authority-tier citation for the convention itself remains open. DEFINITION, DISTINCTION and UNIT_SYMBOL are all VERIFIED.",
       "underlyingEvidenceStatuses": {
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
-        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
-      }
+      },
+      "correctionNote": "[Correction, Stage 6/curriculum-role reconciliation] Removed the shared capacitance-quantity-symbol requirement (QUANTITY_SYMBOL, \"C\") from this learning point's own references: this LP's assessed outcome concerns capacitive reactance's behaviour and unit, not recall of capacitance's own letter symbol, which remains EQCT-LP-09's (the held owner of that symbol facet). This LP now references only DISTINCTION and UNIT_SYMBOL, both VERIFIED, and is cleanly READY without a partial dependency it does not actually need.",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-11",
@@ -511,7 +645,20 @@
       "applicationTypes": [
         "State the quantity symbol and SI unit for inductance."
       ],
-      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding. [Correction, Stage 3 item 4] Removed the absolute fixed/frequency-independent claim; scoped to the ideal/basic-component model."
+      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding. [Correction, Stage 3 item 4] Removed the absolute fixed/frequency-independent claim; scoped to the ideal/basic-component model.",
+      "underlyingEvidenceStatuses": {
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-12",
@@ -545,7 +692,20 @@
         "Explain why an inductor presents more opposition to a higher-frequency AC signal (the opposite behaviour to a capacitor).",
         "State the unit in which inductive reactance is measured."
       ],
-      "evidenceReadinessNote": "Underlying inductance::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch."
+      "evidenceReadinessNote": "Underlying inductance::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch.",
+      "underlyingEvidenceStatuses": {
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION": "PARTIALLY_VERIFIED",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-13",
@@ -582,7 +742,22 @@
       "applicationTypes": [
         "State the quantity symbol and unit for impedance.",
         "Explain why a circuit with 3 ohms resistance and 4 ohms reactance does not have 7 ohms of impedance."
-      ]
+      ],
+      "underlyingEvidenceStatuses": {
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-14",
@@ -615,7 +790,18 @@
       "applicationTypes": [
         "Given a circuit diagram, show the correct placement of an ammeter to measure the current through a named resistor.",
         "Given a circuit diagram, show the correct placement of a voltmeter to measure the potential difference across a named resistor."
-      ]
+      ],
+      "underlyingEvidenceStatuses": {
+        "ammeter-measures-current-series-connection::EXACT_FACT": "VERIFIED",
+        "voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ammeter-measures-current-series-connection::EXACT_FACT",
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-15",
@@ -645,13 +831,22 @@
       "applicationTypes": [
         "State what physical quantity an ohmmeter measures."
       ],
-      "evidenceReadinessNote": "Underlying ohmmeter-measures-resistance evidence downgraded to PARTIALLY_VERIFIED (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed."
+      "evidenceReadinessNote": "Underlying ohmmeter-measures-resistance evidence downgraded to PARTIALLY_VERIFIED (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed.",
+      "underlyingEvidenceStatuses": {
+        "ohmmeter-measures-resistance::EXACT_FACT": "PARTIALLY_VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-measures-resistance::EXACT_FACT"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-16",
       "title": "Ohmmeter safe use: the circuit must be de-energised",
-      "learnerOutcome": "The learner will be able to state that a circuit or component must be de-energised (and any capacitor discharged) before measuring its resistance with an ohmmeter, and explain why.",
-      "knowledgeOrProcedure": "Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first, and any charged capacitor must be discharged before measuring. This matters because an ohmmeter applies its own small internal test current/voltage to make the measurement -- stored energy (e.g. a charged capacitor) or an externally-applied voltage from an energised circuit will produce an incorrect reading, can damage the meter, and presents a safety hazard to the user.",
+      "learnerOutcome": "The learner will be able to state and apply the safe-use rule for an ohmmeter: de-energise the circuit or component, and discharge any capacitor, before measuring its resistance.",
+      "knowledgeOrProcedure": "Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first, and any charged capacitor must be discharged before measuring.",
       "prerequisiteLearningPointIds": [
         "EQCT-LP-15"
       ],
@@ -665,17 +860,26 @@
       "normalizedClaimRefs": [
         "SRC-FLUKE-RESISTANCE: turn off power, discharge capacitor before resistance reading"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Kept separate from EQCT-LP-15 as its own procedural/safety mastery point (see EQCT-LP-15's justification). Explicitly includes the stored-energy (charged capacitor) case named in the evidence and required by this batch's depth guardrail, since a de-energised MAIN supply alone does not address charge already stored in a component.",
       "explicitExclusions": [
         "General electrical safe-isolation procedure (lock-off/proving-dead sequences) beyond the specific ohmmeter case evidenced here",
         "Live fault-finding techniques"
       ],
       "applicationTypes": [
-        "Explain why a technician must switch off the supply (and discharge any capacitor) before checking a component's resistance with an ohmmeter.",
-        "Identify the safety/accuracy risk of measuring resistance on an energised circuit."
+        "State the safe-use rule for measuring resistance with an ohmmeter.",
+        "Apply the rule: identify what must be done to a given circuit or component before taking a resistance reading with an ohmmeter."
       ],
-      "evidenceReadinessNote": "Underlying ohmmeter safe-use evidence downgraded to PARTIALLY_VERIFIED because its CALCULATION_METHOD dimension is unresolved. NOTE: the safety CONTENT of this learning point (de-energisation AND discharging stored capacitor charge) is fully and genuinely evidenced and is unaffected."
+      "underlyingEvidenceStatuses": {
+        "ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE": "VERIFIED"
+      },
+      "correctionNote": "[Correction, false-green reconciliation] Removed unsupported explanatory content: the claim that an ohmmeter \"applies its own small internal test current/voltage\", and the added claims that mismeasurement \"can damage the meter\" and \"presents a safety hazard to the user\", appear in no retrieved passage and have been removed. The evidence supports only the bare safe-use RULE (de-energise; discharge any capacitor) -- no source explains the underlying mechanism or consequence, so the learner outcome and applications are narrowed to stating and applying the rule itself, not explaining why. Marked READY: the underlying evidence is VERIFIED against its corrected [SAFE_USE] dimension.",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-17",
@@ -706,7 +910,16 @@
       "applicationTypes": [
         "State what a wattmeter measures and describe its two sensing connections.",
         "Explain why a wattmeter's current coil is built with very low impedance."
-      ]
+      ],
+      "underlyingEvidenceStatuses": {
+        "wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT": "VERIFIED"
+      },
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-18",
@@ -724,9 +937,10 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
       ],
       "normalizedClaimRefs": [
-        "SRC-NISTIR-8248: 'electrical energy usage is measured with watt-hour meters'"
+        "SRC-MICROCHIP-AN994-ENERGY-METER: \"you are measuring energy (i.e., accumulating power over time)\"",
+        "SRC-NISTIR-8248: electrical energy usage is measured with watt-hour meters"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Depends on already knowing what energy is and how it differs from power (EQCT-LP-06), since an energy meter's function is explained precisely as measuring the accumulated (energy) quantity rather than the instantaneous (power) one.",
       "explicitExclusions": [
         "Electromechanical vs solid-state/smart-meter internal construction detail",
@@ -737,7 +951,16 @@
         "State what physical quantity a domestic electricity (kWh) meter measures.",
         "Explain why an energy meter's reading keeps increasing even though the instantaneous power drawn varies."
       ],
-      "evidenceReadinessNote": "Underlying energy-meter evidence downgraded to PARTIALLY_VERIFIED: the \"integrates\" half of the requirement is unevidenced by the quoted NISTIR 8248 sentence."
+      "underlyingEvidenceStatuses": {
+        "energy-meter-measures-integrates-electrical-energy::EXACT_FACT": "VERIFIED"
+      },
+      "correctionNote": "[Correction, Stage 5] The integration/accumulation half of this claim is now bound to a directly-read original-manufacturer source (Microchip AN994, an energy-metering-IC application note) stating the principle explicitly, rather than resting on a disputed secondary source. READY.",
+      "curriculumRole": "REQUIRED_MASTERY",
+      "requiredMasteryEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
+      ],
+      "contextualEvidenceRequirementIds": [],
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EQCT-LP-19",
@@ -763,11 +986,49 @@
         "Calculating loading error/measurement error introduced by a meter's finite internal resistance",
         "Specific numeric internal-resistance values for named meter models"
       ],
-      "applicationTypes": [
+      "applicationTypes": [],
+      "underlyingEvidenceStatuses": {
+        "low-high-meter-internal-resistance::EXACT_FACT": "VERIFIED"
+      },
+      "curriculumRole": "CONTEXTUAL_SUPPORT_ONLY",
+      "requiredMasteryEvidenceRequirementIds": [],
+      "contextualEvidenceRequirementIds": [
+        "ER::provisional::unit202::electrical-quantities-and-circuit-theory::low-high-meter-internal-resistance::EXACT_FACT"
+      ],
+      "assessmentEligibility": "CONTEXT_ONLY_NOT_ASSESSED",
+      "contextualExamples": [
         "Explain why an ammeter is designed with as low an internal resistance as practical.",
         "Explain why treating a real voltmeter as having exactly infinite resistance is a simplification, not a literal fact."
       ]
     }
   ],
-  "correctionNote": "Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIALLY_VERIFIED; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen."
+  "correctionNote": "Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIALLY_VERIFIED; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen.",
+  "readinessCounts": {
+    "READY": 11,
+    "HELD_PENDING_EVIDENCE_CORRECTION": 8
+  },
+  "curriculumRoleCounts": {
+    "REQUIRED_MASTERY": 18,
+    "CONTEXTUAL_SUPPORT_ONLY": 1
+  },
+  "coreInstructionalSequence": [
+    "EQCT-LP-01",
+    "EQCT-LP-02",
+    "EQCT-LP-03",
+    "EQCT-LP-04",
+    "EQCT-LP-06",
+    "EQCT-LP-07",
+    "EQCT-LP-05",
+    "EQCT-LP-08",
+    "EQCT-LP-09",
+    "EQCT-LP-10",
+    "EQCT-LP-11",
+    "EQCT-LP-12",
+    "EQCT-LP-13",
+    "EQCT-LP-14",
+    "EQCT-LP-15",
+    "EQCT-LP-16",
+    "EQCT-LP-17",
+    "EQCT-LP-18"
+  ]
 }
