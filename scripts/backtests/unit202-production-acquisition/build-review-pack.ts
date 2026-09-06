@@ -119,19 +119,38 @@ for (const b of BATCHES) {
 // --- Set-equality validation: do the six batches' requirement sets union to exactly the frozen plan's own requirements (accounting for structural satisfactions/retirements, which are still each traced to exactly one original requirement)? ---
 const totalAccountedFor = batchSummaries.reduce((sum, b) => sum + b.requirementCount, 0);
 
-// --- Aggregate evidence-status totals across unfrozen batches 04-06 (the batches this pass corrected). ---
-const aggregateStatusTotals: Record<string, number> = {};
-let aggregateStructSat = 0;
-let aggregateRetired = 0;
-for (const b of batchSummaries) {
-  for (const [k, v] of Object.entries(b.statusTotals)) aggregateStatusTotals[k] = (aggregateStatusTotals[k] ?? 0) + v;
-  aggregateStructSat += b.structurallySatisfiedCount;
-  aggregateRetired += b.retiredOutOfScopeCount;
+// --- Two distinct, never-mixed scopes: WHOLE UNIT 202 (all six batches) and
+//     BATCHES 04-06 ONLY (the batches this pass corrects). Every total below
+//     is mechanically derived from `batchSummaries`, split by `b.frozen`, so
+//     the two scopes can never silently collapse into one another again. ---
+function aggregate(scope: readonly BatchSummary[]) {
+  const statusTotals: Record<string, number> = {};
+  let structSat = 0;
+  let retired = 0;
+  let learningPointCount = 0;
+  const lpReadiness: Record<string, number> = {};
+  for (const b of scope) {
+    for (const [k, v] of Object.entries(b.statusTotals)) statusTotals[k] = (statusTotals[k] ?? 0) + v;
+    structSat += b.structurallySatisfiedCount;
+    retired += b.retiredOutOfScopeCount;
+    learningPointCount += b.learningPointCount;
+    for (const [k, v] of Object.entries(b.learningPointReadiness)) lpReadiness[k] = (lpReadiness[k] ?? 0) + v;
+  }
+  const requirementCount = scope.reduce((s, b) => s + b.requirementCount, 0);
+  return { requirementCount, statusTotals, structSat, retired, learningPointCount, lpReadiness };
 }
 
-const totalLearningPoints = batchSummaries.reduce((s, b) => s + b.learningPointCount, 0);
-const aggregateLpReadiness: Record<string, number> = {};
-for (const b of batchSummaries) for (const [k, v] of Object.entries(b.learningPointReadiness)) aggregateLpReadiness[k] = (aggregateLpReadiness[k] ?? 0) + v;
+const wholeUnit = aggregate(batchSummaries);
+const batches0406 = aggregate(batchSummaries.filter((b) => !b.frozen));
+
+// Back-compat local names used by the JSON/MD below refer to the WHOLE-UNIT
+// scope only where historically they meant "all six batches"; the
+// Batches-04-06-only scope is reported separately and explicitly.
+const aggregateStatusTotals = wholeUnit.statusTotals;
+const aggregateStructSat = wholeUnit.structSat;
+const aggregateRetired = wholeUnit.retired;
+const totalLearningPoints = wholeUnit.learningPointCount;
+const aggregateLpReadiness = wholeUnit.lpReadiness;
 
 const allOutstandingDependencyLPs = batchSummaries.flatMap((b) => b.learningPointsWithOutstandingDependencies.map((id) => `${b.id}::${id}`));
 const allCrossBatchSatisfactions = batchSummaries.flatMap((b) => b.crossBatchSatisfactions.map((s) => ({ batch: b.id, ...s })));
@@ -150,14 +169,15 @@ const pack = {
     totalAccountedForAcrossBatches: totalAccountedFor,
   },
   dispositionTotals: {
-    verifiedOrPartiallyVerifiedOrGap: aggregateStatusTotals,
-    structurallySatisfied: aggregateStructSat,
-    retiredOutOfScope: aggregateRetired,
+    scopeNote: "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums only the unfrozen batches this correction pass touches. Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
+    wholeUnit202: { verifiedOrPartiallyVerifiedOrGap: wholeUnit.statusTotals, structurallySatisfied: wholeUnit.structSat, retiredOutOfScope: wholeUnit.retired, requirementCount: wholeUnit.requirementCount },
+    batches0406Only: { verifiedOrPartiallyVerifiedOrGap: batches0406.statusTotals, structurallySatisfied: batches0406.structSat, retiredOutOfScope: batches0406.retired, requirementCount: batches0406.requirementCount },
   },
   evidenceStatusTotalsByBatch: Object.fromEntries(batchSummaries.map((b) => [b.id, { ...b.statusTotals, STRUCTURALLY_SATISFIED: b.structurallySatisfiedCount, RETIRED_OUT_OF_SCOPE: b.retiredOutOfScopeCount, requirementCount: b.requirementCount }])),
   learningPoints: {
-    totalProposedOrAccepted: totalLearningPoints,
-    readinessTotals: aggregateLpReadiness,
+    scopeNote: "wholeUnit202 sums all six batches; batches0406Only sums only the unfrozen batches. Learning-point readiness (evidenceReadiness) is never mixed with evidence status, structural satisfaction, retirement, exemplar readiness or learner-facing asset readiness -- see technicalEvidenceExemplarAndAssetDependenciesSeparated below for those.",
+    wholeUnit202: { total: wholeUnit.learningPointCount, readinessTotals: wholeUnit.lpReadiness },
+    batches0406Only: { total: batches0406.learningPointCount, readinessTotals: batches0406.lpReadiness },
     byBatch: Object.fromEntries(batchSummaries.map((b) => [b.id, { count: b.learningPointCount, readiness: b.learningPointReadiness, identityStatus: b.identityStatus }])),
   },
   technicalEvidenceExemplarAndAssetDependenciesSeparated: {
@@ -167,13 +187,13 @@ const pack = {
   },
   crossBatchSatisfaction: allCrossBatchSatisfactions,
   remainingGenuineGaps: {
-    battery: "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail. Headline remaining items after this pass: (1) Batch 04 -- 5 SYMBOL_OR_CONVENTION quantity/unit-symbol letters (power factor x2, frequency, capacitance, inductance) have no in-permitted-class source following the electronics-tutorials.ws reclassification; (2) Batch 05 -- Fleming's right-hand (generator) rule's finger mapping remains unverified in text form (SOURCE_GAP, honestly undisclosed rather than invented); (3) Batch 06 -- AC6.2 schematic-symbol currency against IEC 60617 remains genuinely unresolved (the current database is subscription-gated); no photographic component-recognition evidence exists; three exemplar circuits (dimmer RC values, heating relay/transistor topology, security-alarm exact topology) are retired/transformed as documented, with the alarm circuit specifically needing a downstream authored-and-validated representative exemplar before final lesson production.",
+    battery: "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail. Headline remaining items after the final correction pass: (1) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY / PROFESSIONAL_BODY / AUTHORITATIVE_TECHNICAL_REFERENCE) source despite a genuine re-sourcing attempt; the ohmmeter-measures-resistance device-level definition likewise remains genuinely unresolved (Wikipedia found but not itself a permitted-class source); (2) Batch 05 -- Fleming's right-hand (generator) rule's finger mapping remains unverified in directly-read text form (the strongest lead, Hughes' textbook p.145 cited by Wikipedia, could not be directly read); the single-loop-alternator-generator-parts diagram genuinely lacks one source both captioned single-loop and fully labelled with slip rings/brushes; (3) Batch 06 -- AC6.2 schematic-symbol currency against the current IEC 60617 database remains genuinely unresolved (independently re-verified: the free preview explains its own data model but exposes no specific numbered symbol entry without a paid login); no photographic component-recognition evidence exists; three exemplar circuits (dimmer RC values, heating relay/transistor topology, security-alarm exact topology) remain retired/transformed as documented, with the alarm circuit specifically needing a downstream authored-and-validated representative exemplar before final lesson production.",
   },
   remainingProductArchitectQuestions: [
-    "Is the corrected 211-requirement count (down from the historical 213, both integration targets now structurally satisfied) accepted, given full traceability is preserved?",
-    "Is the CC-24-Correction-A / directional-rule-authority staleness discovered during this pass (the committed frozen plan predates several already-adopted adapter corrections for ~20 Batch 06 AC6.1/6.2 targets and the Fleming rules' own recorded sourceAuthorityClasses) accepted as an explicitly out-of-scope, separately-flagged item for a dedicated follow-up pass, given that fixing it now would require re-verifying authority-class compliance for real, already-completed acquisition work?",
+    "Is the corrected 211-requirement count (down from the historical 213, both integration targets structurally satisfied) accepted, given full traceability is preserved via the amendment ledger's requirementIdMigrations?",
     "Does the security-alarm learning point's transformation (retained transferable roles as READY content, exact circuit as an explicit REPRESENTATIVE_EXEMPLAR_AUTHORING dependency) satisfy the intent of Stage 5 exemplar decision 3, or is a different disposition preferred?",
-    "Are the 5 Batch 04 symbol-letter gaps (power factor, frequency, capacitance, inductance) worth a small dedicated re-sourcing pass (e.g. IEC 60027-1, a professional body style guide) before Batch 04 is frozen?",
+    "Is the disclosed judgment call classifying Instrumentation Tools and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
+    "Are the 4 remaining Batch 04 quantity-symbol gaps (power factor, frequency, capacitance, inductance) and the Fleming right-hand-rule finger-mapping gap worth a further dedicated re-sourcing pass (e.g. paid access to IEC 60027-1/ISO 80000-6, or the Hughes textbook) before Batch 04/05 are frozen?",
   ],
   explicitNonClaims: [
     "This pack does not claim Batches 04-06 are accepted, complete for lesson production, or identity-frozen.",
@@ -202,20 +222,33 @@ ${pack.statusMeaning}
 - Corrected frozen-plan count: **${originalRequirementCount}** (2 requirements converted to structural satisfactions by the corrected generic planner; see the amendment ledger for the full per-requirement disposition trace -- the original 213 remain fully traceable)
 - Total accounted for across all six batches: **${totalAccountedFor}**
 
-## Disposition totals (across Batches 04-06, the batches this pass corrected)
+## Disposition totals -- WHOLE UNIT 202 (all six batches)
 
-- Evidence-status totals: ${JSON.stringify(aggregateStatusTotals)}
-- Structurally satisfied (integration targets, zero independent requirement): **${aggregateStructSat}**
-- Retired out of scope (non-canonical exemplar detail): **${aggregateRetired}**
+- Evidence-status totals: ${JSON.stringify(wholeUnit.statusTotals)}
+- Requirement count: **${wholeUnit.requirementCount}**
+- Structurally satisfied (integration targets, zero independent requirement): **${wholeUnit.structSat}**
+- Retired out of scope (non-canonical exemplar detail): **${wholeUnit.retired}**
+
+## Disposition totals -- BATCHES 04-06 ONLY (the batches this pass corrects; Batches 01-03 are frozen and excluded from this scope)
+
+- Evidence-status totals: ${JSON.stringify(batches0406.statusTotals)}
+- Requirement count: **${batches0406.requirementCount}**
+- Structurally satisfied: **${batches0406.structSat}**
+- Retired out of scope: **${batches0406.retired}**
 
 ## Per-batch evidence status
 
 ${batchSummaries.map((b) => `- **${b.id} (${b.name})** -- ${b.frozen ? "FROZEN" : "unfrozen, proposed"}: ${b.requirementCount} requirements, status ${JSON.stringify(b.statusTotals)}, structurally satisfied ${b.structurallySatisfiedCount}, retired ${b.retiredOutOfScopeCount}`).join("\n")}
 
-## Learning points
+## Learning points -- WHOLE UNIT 202 (all six batches)
 
-- Total proposed/accepted across all six batches: **${totalLearningPoints}**
-- Readiness totals: ${JSON.stringify(aggregateLpReadiness)}
+- Total: **${wholeUnit.learningPointCount}**
+- Readiness totals: ${JSON.stringify(wholeUnit.lpReadiness)}
+
+## Learning points -- BATCHES 04-06 ONLY
+
+- Total: **${batches0406.learningPointCount}**
+- Readiness totals: ${JSON.stringify(batches0406.lpReadiness)}
 
 ${batchSummaries.map((b) => `- **${b.id}**: ${b.learningPointCount} learning points, readiness ${JSON.stringify(b.learningPointReadiness)}, identity status ${b.identityStatus}`).join("\n")}
 

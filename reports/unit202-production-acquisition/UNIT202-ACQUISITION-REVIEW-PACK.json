@@ -12,12 +12,25 @@
     "totalAccountedForAcrossBatches": 213
   },
   "dispositionTotals": {
-    "verifiedOrPartiallyVerifiedOrGap": {
-      "VERIFIED": 187,
-      "PARTIALLY_VERIFIED": 21
+    "scopeNote": "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums only the unfrozen batches this correction pass touches. Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
+    "wholeUnit202": {
+      "verifiedOrPartiallyVerifiedOrGap": {
+        "VERIFIED": 188,
+        "PARTIALLY_VERIFIED": 20
+      },
+      "structurallySatisfied": 2,
+      "retiredOutOfScope": 3,
+      "requirementCount": 213
     },
-    "structurallySatisfied": 2,
-    "retiredOutOfScope": 3
+    "batches0406Only": {
+      "verifiedOrPartiallyVerifiedOrGap": {
+        "VERIFIED": 116,
+        "PARTIALLY_VERIFIED": 20
+      },
+      "structurallySatisfied": 2,
+      "retiredOutOfScope": 3,
+      "requirementCount": 141
+    }
   },
   "evidenceStatusTotalsByBatch": {
     "batch-01": {
@@ -39,15 +52,15 @@
       "requirementCount": 28
     },
     "batch-04": {
-      "VERIFIED": 45,
-      "PARTIALLY_VERIFIED": 12,
+      "VERIFIED": 47,
+      "PARTIALLY_VERIFIED": 10,
       "STRUCTURALLY_SATISFIED": 0,
       "RETIRED_OUT_OF_SCOPE": 0,
       "requirementCount": 57
     },
     "batch-05": {
-      "VERIFIED": 40,
-      "PARTIALLY_VERIFIED": 2,
+      "VERIFIED": 39,
+      "PARTIALLY_VERIFIED": 3,
       "STRUCTURALLY_SATISFIED": 2,
       "RETIRED_OUT_OF_SCOPE": 0,
       "requirementCount": 44
@@ -61,11 +74,22 @@
     }
   },
   "learningPoints": {
-    "totalProposedOrAccepted": 133,
-    "readinessTotals": {
-      "READY": 115,
-      "HELD_PENDING_EVIDENCE_CORRECTION": 16,
-      "RETIRED_OUT_OF_SCOPE": 2
+    "scopeNote": "wholeUnit202 sums all six batches; batches0406Only sums only the unfrozen batches. Learning-point readiness (evidenceReadiness) is never mixed with evidence status, structural satisfaction, retirement, exemplar readiness or learner-facing asset readiness -- see technicalEvidenceExemplarAndAssetDependenciesSeparated below for those.",
+    "wholeUnit202": {
+      "total": 133,
+      "readinessTotals": {
+        "READY": 115,
+        "HELD_PENDING_EVIDENCE_CORRECTION": 16,
+        "RETIRED_OUT_OF_SCOPE": 2
+      }
+    },
+    "batches0406Only": {
+      "total": 70,
+      "readinessTotals": {
+        "READY": 52,
+        "HELD_PENDING_EVIDENCE_CORRECTION": 16,
+        "RETIRED_OUT_OF_SCOPE": 2
+      }
     },
     "byBatch": {
       "batch-01": {
@@ -185,13 +209,13 @@
     }
   ],
   "remainingGenuineGaps": {
-    "battery": "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail. Headline remaining items after this pass: (1) Batch 04 -- 5 SYMBOL_OR_CONVENTION quantity/unit-symbol letters (power factor x2, frequency, capacitance, inductance) have no in-permitted-class source following the electronics-tutorials.ws reclassification; (2) Batch 05 -- Fleming's right-hand (generator) rule's finger mapping remains unverified in text form (SOURCE_GAP, honestly undisclosed rather than invented); (3) Batch 06 -- AC6.2 schematic-symbol currency against IEC 60617 remains genuinely unresolved (the current database is subscription-gated); no photographic component-recognition evidence exists; three exemplar circuits (dimmer RC values, heating relay/transistor topology, security-alarm exact topology) are retired/transformed as documented, with the alarm circuit specifically needing a downstream authored-and-validated representative exemplar before final lesson production."
+    "battery": "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail. Headline remaining items after the final correction pass: (1) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY / PROFESSIONAL_BODY / AUTHORITATIVE_TECHNICAL_REFERENCE) source despite a genuine re-sourcing attempt; the ohmmeter-measures-resistance device-level definition likewise remains genuinely unresolved (Wikipedia found but not itself a permitted-class source); (2) Batch 05 -- Fleming's right-hand (generator) rule's finger mapping remains unverified in directly-read text form (the strongest lead, Hughes' textbook p.145 cited by Wikipedia, could not be directly read); the single-loop-alternator-generator-parts diagram genuinely lacks one source both captioned single-loop and fully labelled with slip rings/brushes; (3) Batch 06 -- AC6.2 schematic-symbol currency against the current IEC 60617 database remains genuinely unresolved (independently re-verified: the free preview explains its own data model but exposes no specific numbered symbol entry without a paid login); no photographic component-recognition evidence exists; three exemplar circuits (dimmer RC values, heating relay/transistor topology, security-alarm exact topology) remain retired/transformed as documented, with the alarm circuit specifically needing a downstream authored-and-validated representative exemplar before final lesson production."
   },
   "remainingProductArchitectQuestions": [
-    "Is the corrected 211-requirement count (down from the historical 213, both integration targets now structurally satisfied) accepted, given full traceability is preserved?",
-    "Is the CC-24-Correction-A / directional-rule-authority staleness discovered during this pass (the committed frozen plan predates several already-adopted adapter corrections for ~20 Batch 06 AC6.1/6.2 targets and the Fleming rules' own recorded sourceAuthorityClasses) accepted as an explicitly out-of-scope, separately-flagged item for a dedicated follow-up pass, given that fixing it now would require re-verifying authority-class compliance for real, already-completed acquisition work?",
+    "Is the corrected 211-requirement count (down from the historical 213, both integration targets structurally satisfied) accepted, given full traceability is preserved via the amendment ledger's requirementIdMigrations?",
     "Does the security-alarm learning point's transformation (retained transferable roles as READY content, exact circuit as an explicit REPRESENTATIVE_EXEMPLAR_AUTHORING dependency) satisfy the intent of Stage 5 exemplar decision 3, or is a different disposition preferred?",
-    "Are the 5 Batch 04 symbol-letter gaps (power factor, frequency, capacitance, inductance) worth a small dedicated re-sourcing pass (e.g. IEC 60027-1, a professional body style guide) before Batch 04 is frozen?"
+    "Is the disclosed judgment call classifying Instrumentation Tools and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
+    "Are the 4 remaining Batch 04 quantity-symbol gaps (power factor, frequency, capacitance, inductance) and the Fleming right-hand-rule finger-mapping gap worth a further dedicated re-sourcing pass (e.g. paid access to IEC 60027-1/ISO 80000-6, or the Hughes textbook) before Batch 04/05 are frozen?"
   ],
   "explicitNonClaims": [
     "This pack does not claim Batches 04-06 are accepted, complete for lesson production, or identity-frozen.",
