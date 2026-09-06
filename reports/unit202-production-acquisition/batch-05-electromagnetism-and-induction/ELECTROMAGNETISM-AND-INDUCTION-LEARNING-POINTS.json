@@ -4,7 +4,8 @@
   "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
   "learningPointCount": 22,
   "readinessCounts": {
-    "READY": 20,
+    "READY": 19,
+    "DEFERRED_CONTEXT_ONLY": 1,
     "HELD_PENDING_EVIDENCE_CORRECTION": 2
   },
   "instructionalSequence": [
@@ -232,7 +233,7 @@
         "SRC-MIT802-CH8-MAGFIELDS: cross = into page",
         "SRC-OPENSTAX-PHYSICS-20-1: dot as an approaching arrow head"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "DEFERRED_CONTEXT_ONLY",
       "depthJustification": "A pure notation-reading skill, kept as its own learning point because it is a prerequisite for interpreting almost every subsequent directional diagram (Fleming's rules, the grip rule, motor and generator figures) yet is diagnosably separate from any of the physics. A learner who misreads a cross as \"out of the page\" will get every direction question wrong for a reason that has nothing to do with electromagnetism.",
       "explicitExclusions": [
         "Any physics of the quantity being represented -- this is notation only",
@@ -240,11 +241,11 @@
         "Right-hand/left-hand rules themselves (see EMI-LP-05, EMI-LP-13, EMI-LP-16)"
       ],
       "applicationTypes": [],
-      "evidenceReadinessNote": "Underlying evidence is a SOURCE_GAP on AUTHORITY CLASS, not on content. The convention was genuinely retrieved and read from MIT 8.02 (which states both directions verbatim) and OpenStax, but this requirement's frozen sourceAuthorityClasses are PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY and AUTHORITATIVE_TECHNICAL_REFERENCE -- ACADEMIC_OR_RESEARCH_INSTITUTION is excluded, and no in-class source could be obtained (IEC Electropedia returned 403). The knowledge statement above reflects what was actually read and should NOT be treated as evidenced until an in-class source is acquired or the frozen requirement's permitted classes are reconsidered at plan level.",
+      "evidenceReadinessNote": "[Corrected] This convention's content (dot=out of page, cross=into page) was genuinely read from MIT 8.02 and OpenStax (both real, registered sources) but neither is a permitted authority class for this SYMBOL_OR_CONVENTION requirement, and no in-class source was found after a fresh bounded search (IEC Electropedia, IEEE Std 315-1975/ANSI Y32.2-1975). This is a genuine SOURCE_GAP, not fabricated closed. Because this LP is CONTEXTUAL_SUPPORT_ONLY, this does not block core Unit 202 release.",
       "underlyingEvidenceStatuses": {
-        "dot-cross-page-convention::SYMBOL_OR_CONVENTION": "VERIFIED"
+        "dot-cross-page-convention::SYMBOL_OR_CONVENTION": "SOURCE_GAP"
       },
-      "correctionNote": "[Correction, Stage 1.2/2.1/4.3] Previously held as a SOURCE_GAP on authority class. Corrected coverage dimension (SCHEMATIC_SYMBOL, not QUANTITY_SYMBOL) plus a one-off, disclosed PA authority adjudication (CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001) accepting academic evidence for this low-risk, non-safety directional/pictorial convention -- the same treatment already given to the right-hand grip rule and Fleming's rules. Now VERIFIED on three genuinely-read academic sources.",
+      "correctionNote": "[Correction, Stage 1.2/2.1/4.3] Previously held as a SOURCE_GAP on authority class. Corrected coverage dimension (SCHEMATIC_SYMBOL, not QUANTITY_SYMBOL) plus a one-off, disclosed PA authority adjudication (CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001) accepting academic evidence for this low-risk, non-safety directional/pictorial convention -- the same treatment already given to the right-hand grip rule and Fleming's rules. Now VERIFIED on three genuinely-read academic sources. [Stage A reversion, narrow correction pass] The prior VERIFIED status rested on an ungoverned, self-declared paAuthorityPolicyAdjudication with no genuine external Product Architect record (unlike the legitimate, code-enforced widening covering the two Fleming rules and the right-hand grip rule). Reverted to a genuine SOURCE_GAP against this row's actually-frozen permitted authority classes, after a fresh bounded re-search found nothing on point. Reclassified DEFERRED_CONTEXT_ONLY (Stage 5 schema): this LP is CONTEXTUAL_SUPPORT_ONLY and CONTEXT_ONLY_NOT_ASSESSED, so this is a non-blocking V1 context deferral, not a core release blocker -- the underlying content (genuinely, if unofficially, correct per the read academic sources) may still be taught as unassessed context, disclosed honestly as not evidenced to the qualification's own permitted-authority bar.",
       "curriculumRole": "CONTEXTUAL_SUPPORT_ONLY",
       "requiredMasteryEvidenceRequirementIds": [],
       "contextualEvidenceRequirementIds": [

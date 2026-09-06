@@ -470,7 +470,7 @@
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
-        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "PARTIALLY_VERIFIED"
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "SOURCE_GAP"
       },
       "curriculumRole": "REQUIRED_MASTERY",
       "requiredMasteryEvidenceRequirementIds": [
@@ -732,8 +732,8 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-IMPEDANCE: Z, ohms, 'R+X does not equal Z', vector sum",
-        "SRC-EOLSS-ELECQUANT: complex impedance R+jX, vector diagram"
+        "SRC-EOLSS-ELECQUANT: Z, complex impedance R+jX, vector diagram",
+        "SRC-BIPM-BROCHURE: ohm (Ω) as impedance's unit symbol, same as resistance"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Sequenced (via its own prerequisites) after capacitive reactance (EQCT-LP-10) and inductive reactance (EQCT-LP-12), since impedance's own distinction outcome explicitly presupposes both reactance concepts; also carries a genuine cross-domain prerequisite on the accepted Batch 02 EFS-LP-05 (Resistance), since the distinction explicitly requires already knowing what resistance is. Definition, distinction and both symbol facets are combined into one learning point as a single coherent comparison, consistent with this batch's other combined-comparison points. Deliberately excludes teaching R+jX complex-number arithmetic or phasor calculation as a mastery/calculation outcome, since no frozen requirement demands it beyond DEFINITION/DISTINCTION/QUANTITY_SYMBOL/UNIT_SYMBOL.",
@@ -760,7 +760,8 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "contextualEvidenceRequirementIds": [],
-      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "evidenceReadinessNote": "[Stage A re-adjudication, narrow correction pass] SRC-ETW-IMPEDANCE's embedded authorityClass was corrected from AUTHORITATIVE_TECHNICAL_REFERENCE to the canonical AUTHORITATIVE_EDUCATIONAL_REFERENCE (SOURCE-REGISTER-authoritative), which is not permitted for this LP's SYMBOL_OR_CONVENTION dimensions. Re-adjudicated: DEFINITION/DISTINCTION remain VERIFIED (CONCEPT_DEFINITION mode permits AUTHORITATIVE_EDUCATIONAL_REFERENCE); QUANTITY_SYMBOL and UNIT_SYMBOL remain independently VERIFIED via SRC-EOLSS-ELECQUANT and SRC-BIPM-BROCHURE respectively (both genuinely permitted-class, both already present as candidate evidence). This LP genuinely remains READY -- the ETW citation was never load-bearing once its duplicate/redundant claims are removed."
     },
     {
       "id": "EQCT-LP-14",

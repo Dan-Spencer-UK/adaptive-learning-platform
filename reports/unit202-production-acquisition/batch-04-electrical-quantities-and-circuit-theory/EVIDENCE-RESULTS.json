@@ -11,7 +11,7 @@
   },
   "statusTotals": {
     "VERIFIED": 56,
-    "PARTIALLY_VERIFIED": 1
+    "SOURCE_GAP": 1
   },
   "reusedFromBatch01": [],
   "reusedFromBatch02": [
@@ -404,7 +404,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-DC1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
             "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page",
             "retrievedPassage": "Current: \"the movement or flow of electrical charge in the form of electrons through a wire conductor.\""
@@ -454,13 +454,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-DC1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
-            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
-            "retrievedPassage": "\"Current has symbol I measured in Amperes (A)\"."
-          },
-          {
             "sourceId": "SRC-EOLSS-ELECQUANT",
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
@@ -480,7 +473,17 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
+            "retrievedPassage": "\"Current has symbol I measured in Amperes (A)\".",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          }
+        ]
       }
     },
     {
@@ -583,13 +586,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-DC1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
-            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
-            "retrievedPassage": "\"Voltage has symbol V or E measured in Volts (V)\"."
-          },
-          {
             "sourceId": "SRC-EOLSS-ELECQUANT",
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
@@ -598,10 +594,6 @@
           }
         ],
         "normalizedClaims": [
-          {
-            "claimText": "Voltage's quantity symbol is given as V or E.",
-            "sourceId": "SRC-ETW-DC1"
-          },
           {
             "claimText": "Voltage's quantity symbol is given as V, or sometimes U (lower-case v or u where the voltage is a time-varying quantity).",
             "sourceId": "SRC-EOLSS-ELECQUANT"
@@ -620,7 +612,20 @@
           "Authoritative technical references genuinely differ on the letter used for voltage's quantity symbol: SRC-ETW-DC1 gives 'V or E'; SRC-EOLSS-ELECQUANT gives 'V or sometimes U'. Reported rather than harmonised."
         ],
         "gaps": [],
-        "scopeNote": "CURRICULUM DECISION (not attributed to any source, and moved out of normalizedClaims in the internal audit pass): this qualification teaches V as its working quantity symbol, matching the accepted Batch 02 Ohm's-law and voltage-drop formulae (V=IR, Vdrop=IR). U and E are disclosed to learners as documented alternative conventions that exist, not taught as a second, conflicting formula system. The previous record placed this pedagogy inside a normalizedClaim attributed to SRC-ETW-DC1, and additionally asserted that 'U is common in IEC/European practice' -- a characterisation that appears in NO retrieved passage in this batch and has been removed. SRC-ETW-DC1's page does not mention U at all; the U convention comes solely from the EOLSS candidate, which is now cited for it directly."
+        "scopeNote": "CURRICULUM DECISION (not attributed to any source, and moved out of normalizedClaims in the internal audit pass): this qualification teaches V as its working quantity symbol, matching the accepted Batch 02 Ohm's-law and voltage-drop formulae (V=IR, Vdrop=IR). U and E are disclosed to learners as documented alternative conventions that exist, not taught as a second, conflicting formula system. The previous record placed this pedagogy inside a normalizedClaim attributed to SRC-ETW-DC1, and additionally asserted that 'U is common in IEC/European practice' -- a characterisation that appears in NO retrieved passage in this batch and has been removed. SRC-ETW-DC1's page does not mention U at all; the U convention comes solely from the EOLSS candidate, which is now cited for it directly.",
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
+            "retrievedPassage": "\"Voltage has symbol V or E measured in Volts (V)\".",
+            "exclusionReason": "[Stage A re-adjudication, narrow correction pass] Embedded authorityClass label corrected to the canonical SOURCE-REGISTER value; that canonical class is not permitted for this requirement, and no kept normalizedClaim cites this source. Moved out of counted evidence; retained here for the audit trail."
+          }
+        ],
+        "disclosures": [
+          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-DC1. Remaining permitted-class claim(s) still fully support this requirement."
+        ]
       }
     },
     {
@@ -763,13 +768,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-DC1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
-            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
-            "retrievedPassage": "\"Resistance has symbol R measured in Ohms (Ω)\"."
-          },
-          {
             "sourceId": "SRC-EOLSS-ELECQUANT",
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
@@ -778,10 +776,6 @@
           }
         ],
         "normalizedClaims": [
-          {
-            "claimText": "The quantity symbol for resistance is R.",
-            "sourceId": "SRC-ETW-DC1"
-          },
           {
             "claimText": "Resistance's quantity symbol is R, defined by R = V/I.",
             "sourceId": "SRC-EOLSS-ELECQUANT"
@@ -797,6 +791,19 @@
         "scopeNote": "Reused mastery -- already implicit in EFS-LP-05's own stated formula (R=V/I, ohms); this result supplies the Batch 04 requirement's own dedicated, correctly-authority-classed symbol evidence.",
         "satisfiedByExistingLearningPointIds": [
           "EFS-LP-05"
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
+            "retrievedPassage": "\"Resistance has symbol R measured in Ohms (Ω)\".",
+            "exclusionReason": "[Stage A re-adjudication, narrow correction pass] Embedded authorityClass label corrected to the canonical SOURCE-REGISTER value; that canonical class is not permitted for this requirement, and no kept normalizedClaim cites this source. Moved out of counted evidence; retained here for the audit trail."
+          }
+        ],
+        "disclosures": [
+          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-DC1. Remaining permitted-class claim(s) still fully support this requirement."
         ]
       }
     },
@@ -816,18 +823,14 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-DC1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
-            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
-            "retrievedPassage": "\"Resistance has symbol R measured in Ohms (Ω)\"."
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 2",
+            "retrievedPassage": "\"electric resistance | ohm | Ω | V/A = kg m^2 s^-3 A^-2\"."
           }
         ],
         "normalizedClaims": [
-          {
-            "claimText": "The unit symbol for the ohm (resistance's SI unit) is Ω.",
-            "sourceId": "SRC-ETW-DC1"
-          },
           {
             "claimText": "The SI Brochure's Table 2 (coherent derived units with special names) lists the ohm (symbol Ω) as the SI unit of electric resistance; the same unit and symbol are used for impedance, since impedance is measured in the same unit as resistance.",
             "sourceId": "SRC-BIPM-BROCHURE"
@@ -843,6 +846,20 @@
         "scopeNote": "Reused mastery -- see EFS-LP-05.",
         "satisfiedByExistingLearningPointIds": [
           "EFS-LP-05"
+        ],
+        "disclosures": [
+          "[Stage A data-integrity correction, narrow correction pass] SRC-BIPM-BROCHURE was cited in this row's own normalizedClaims but was never registered in this row's candidateSources array (unlike the sibling impedance/capacitance/inductance UNIT_SYMBOL rows, which correctly register it) -- corrected by registering the candidate; no new evidence acquired, since BIPM's SI Brochure Table 2 entry for the ohm is already read and used identically elsewhere in this batch.",
+          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-DC1. Remaining permitted-class claim(s) still fully support this requirement."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-DC1",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
+            "sourceLocator": "electronics-tutorials.ws, DC Circuit Theory page, summary table",
+            "retrievedPassage": "\"Resistance has symbol R measured in Ohms (Ω)\".",
+            "exclusionReason": "[Stage A re-adjudication, narrow correction pass] Embedded authorityClass label corrected to the canonical SOURCE-REGISTER value; that canonical class is not permitted for this requirement, and no kept normalizedClaim cites this source. Moved out of counted evidence; retained here for the audit trail."
+          }
         ]
       }
     },
@@ -1044,7 +1061,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-DC3",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_3.html",
             "sourceLocator": "electronics-tutorials.ws, Ohms Law and Power page",
             "retrievedPassage": "\"Unit of Power P = V x I or I^2 x R\", SI unit Watt [W]."
@@ -1091,14 +1108,14 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-ENERGY",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/electrical-energy.html",
             "sourceLocator": "electronics-tutorials.ws, Electrical Energy page",
             "retrievedPassage": "\"Power (P, measured in Watts): the rate at which work is performed\" vs \"Energy: the cumulative work over time...Work equals Power multiplied by Time.\""
           },
           {
             "sourceId": "SRC-ETW-POWERTRIANGLE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
             "retrievedPassage": "\"Power factor is defined as the ratio of real power (P) to apparent power (S), and is generally expressed as either a decimal value\"; \"Power factor defines the phase angle between the current and voltage waveforms\"; \"When the power factor equals 1 (unity) or 100%, that is when the real power consumed equals the circuits apparent power.\" The page ALSO gives Cos(phi) = Real/Apparent = P/S = W/VA = power factor. VERIFIED IN THE INTERNAL AUDIT PASS BY RE-FETCHING THE PAGE: the page does NOT anywhere use the words 'unitless' or 'dimensionless', and does not state that power factor has no unit."
@@ -1153,13 +1170,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-DC3",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_3.html",
-            "sourceLocator": "electronics-tutorials.ws, Ohms Law and Power page",
-            "retrievedPassage": "\"Unit of Power P = V x I\" -- P used throughout as power's quantity symbol."
-          },
-          {
             "sourceId": "SRC-EOLSS-ELECQUANT",
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
@@ -1179,7 +1189,17 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-DC3",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/dcp_3.html",
+            "sourceLocator": "electronics-tutorials.ws, Ohms Law and Power page",
+            "retrievedPassage": "\"Unit of Power P = V x I\" -- P used throughout as power's quantity symbol.",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          }
+        ]
       }
     },
     {
@@ -1238,7 +1258,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-ENERGY",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/electrical-energy.html",
             "sourceLocator": "electronics-tutorials.ws, Electrical Energy page",
             "retrievedPassage": "\"the ability of an electrical circuit to produce work by creating an action\"; joule defined as \"one ampere at one volt, moving in one second\"; kWh = 3.6 MJ."
@@ -1284,7 +1304,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-ENERGY",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/dccircuits/electrical-energy.html",
             "sourceLocator": "electronics-tutorials.ws, Electrical Energy page",
             "retrievedPassage": "\"Work equals Power multiplied by Time, (V*I*t joules)\"; \"1 watt = 1 joule per second (J/s)\"."
@@ -1400,7 +1420,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-POWERTRIANGLE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
             "retrievedPassage": "\"Cos(phi) = Real/Apparent = P/S = W/VA = power factor, p.f.\"; expressed as a decimal (e.g. 0.95) or percentage (95%)."
@@ -1440,7 +1460,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-POWERTRIANGLE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
             "retrievedPassage": "\"Power factor is defined as the ratio of real power (P) to apparent power (S), and is generally expressed as either a decimal value\"; \"Power factor defines the phase angle between the current and voltage waveforms\"; \"When the power factor equals 1 (unity) or 100%, that is when the real power consumed equals the circuits apparent power.\" The page ALSO gives Cos(phi) = Real/Apparent = P/S = W/VA = power factor. VERIFIED IN THE INTERNAL AUDIT PASS BY RE-FETCHING THE PAGE: the page does NOT anywhere use the words 'unitless' or 'dimensionless', and does not state that power factor has no unit."
@@ -1487,13 +1507,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-POWERTRIANGLE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
-            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
-            "retrievedPassage": "\"Cos(phi)...= power factor, p.f.\""
-          },
-          {
             "sourceId": "SRC-IEC-IEV-131-11-46",
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
             "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-11-46",
@@ -1516,6 +1529,16 @@
         "gaps": [],
         "disclosures": [
           "[Correction, Stage 2 re-sourcing, materially corrects the prior claim] The prior electronics-tutorials.ws-derived claim asserted power factor has no single-letter symbol and is denoted \"cos(phi)\" or \"p.f.\". IEC 60050 (permitted class for this SYMBOL_OR_CONVENTION-mode requirement) shows this is incomplete: IEC formally assigns power factor the symbol λ, with \"under sinusoidal conditions, the power factor is the absolute value of the active factor\" (cos φ being that sinusoidal special case). Downstream content must present λ as the general IEC-attested symbol, with cos φ taught as the sinusoidal special case, not the general symbol."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
+            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
+            "retrievedPassage": "\"Cos(phi)...= power factor, p.f.\"",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          }
         ]
       }
     },
@@ -1535,13 +1558,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-POWERTRIANGLE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
-            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
-            "retrievedPassage": "power factor \"generally expressed as either a decimal value...or as a percentage\"; ratio of two power quantities (P/S) so the watt units cancel."
-          },
-          {
             "sourceId": "SRC-IEC-IEV-131-11-46",
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
             "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-11-46",
@@ -1549,20 +1565,28 @@
             "retrievedPassage": "Full entry read (Area, IEV reference, Symbol, English/French term, definition, notes, translations). The entry carries NO \"coherent SI unit\" statement of any kind -- unlike, e.g., the frequency (103-06-02), capacitance (131-12-13) and inductance (131-12-19) entries, each of which explicitly states its own coherent SI unit. Power factor's entry is simply silent on unit."
           }
         ],
-        "normalizedClaims": [
-          {
-            "claimText": "Power factor is dimensionless and has no unit symbol at all -- it is expressed as a plain ratio/decimal (e.g. 0.95) or a percentage; there is no unit such as 'unity' and no watt-like symbol attached to it.",
-            "sourceId": "SRC-ETW-POWERTRIANGLE"
-          }
-        ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
-        "coverageDimensionsSatisfied": [
+        "normalizedClaims": [],
+        "verificationStatus": "SOURCE_GAP",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": [
           "UNIT_SYMBOL"
         ],
-        "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
           "[Correction, Stage 2 re-sourcing attempted, genuinely NOT resolved] No source within this requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) was found that explicitly states power factor is unitless/dimensionless/carries the unit one. IEC Electropedia's own dedicated power-factor entry (IEV 131-11-46) is silent on unit -- it states a symbol (λ) but, unlike sibling IEV entries for other quantities in this batch, gives no \"coherent SI unit\" note at all; this silence is suggestive but is not itself a positive statement. The BIPM SI Brochure (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, already registered in this batch) states the general principle that \"there are quantities with the unit one, symbol 1, that are ratios of two quantities of the same kind ... when expressing the values of quantities with the unit one, the unit symbol 1 is not written\" -- power factor (λ=|P|/S, a ratio of two power-dimensioned quantities) fits this general rule, but BIPM does not itself name power factor as an example, so applying the rule to power factor is a disclosed inference from a permitted-class source, not a directly retrieved statement about power factor specifically. A directly-worded permitted-class statement (e.g. IEEE Std 100, an ISO 80000-6 clause, or an IEC 60050 unit note on a revised power-factor entry) was searched for and not found in this pass. LibreTexts explicitly states \"power factor ... is a unitless quantity\" but AUTHORITATIVE_EDUCATIONAL_REFERENCE is not a permitted class for this SYMBOL_OR_CONVENTION-mode requirement. This remains a genuine, bounded, honestly-disclosed residual gap -- not fabricated closed."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
+            "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
+            "retrievedPassage": "power factor \"generally expressed as either a decimal value...or as a percentage\"; ratio of two power quantities (P/S) so the watt units cancel.",
+            "exclusionReason": "[Stage A re-adjudication, narrow correction pass] Embedded authorityClass label corrected to the canonical SOURCE-REGISTER value; that canonical class is not permitted for this requirement, and no kept normalizedClaim cites this source. Moved out of counted evidence; retained here for the audit trail."
+          }
+        ],
+        "disclosures": [
+          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-POWERTRIANGLE. No permitted-class claim remains; this row is genuinely re-adjudicated as SOURCE_GAP, not fabricated closed."
         ]
       }
     },
@@ -1584,7 +1608,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-ACWAVEFORM",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/ac-waveform.html",
             "sourceLocator": "electronics-tutorials.ws, AC Waveform page",
             "retrievedPassage": "\"The number of complete cycles that are produced within one second (cycles/second) is called the Frequency, symbol f, of the alternating waveform. Frequency is measured in Hertz, (Hz).\""
@@ -1621,13 +1645,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-ACWAVEFORM",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/ac-waveform.html",
-            "sourceLocator": "electronics-tutorials.ws, AC Waveform page",
-            "retrievedPassage": "\"...is called the Frequency, symbol f, of the alternating waveform.\""
-          },
-          {
             "sourceId": "SRC-IEC-IEV-103-06-02",
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
             "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=103-06-02",
@@ -1650,6 +1667,16 @@
         "gaps": [],
         "disclosures": [
           "[Correction, Stage 2 re-sourcing] Re-sourced to a permitted-class authority (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) after the prior electronics-tutorials.ws citation was found to be an unpermitted authority class for this SYMBOL_OR_CONVENTION-mode requirement. IEC Electropedia (the IEC's own free public IEV 60050 database) independently confirms the same symbol f already reported."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-ACWAVEFORM",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/ac-waveform.html",
+            "sourceLocator": "electronics-tutorials.ws, AC Waveform page",
+            "retrievedPassage": "\"...is called the Frequency, symbol f, of the alternating waveform.\"",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          }
         ]
       }
     },
@@ -1709,7 +1736,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-IMPEDANCE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
             "sourceLocator": "electronics-tutorials.ws, Impedance page",
             "retrievedPassage": "\"Impedance is the total opposition to the flow of alternating electrical current in an AC circuit and is expressed in Ohms.\""
@@ -1764,7 +1791,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-IMPEDANCE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
             "sourceLocator": "electronics-tutorials.ws, Impedance page",
             "retrievedPassage": "\"Impedance combines resistance (R) and reactance (X) into one single complex number\"...\"R + X does not equal Z\" because reactance is \"90 degrees out-of-phase with the resistive component\"...impedance is \"the vector sum\" of R and X."
@@ -1813,13 +1840,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-IMPEDANCE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
-            "sourceLocator": "electronics-tutorials.ws, Impedance page",
-            "retrievedPassage": "\"the letter symbol 'Z' represents impedance in AC circuits, while 'R' denotes resistance in DC circuits.\""
-          },
-          {
             "sourceId": "SRC-EOLSS-ELECQUANT",
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.eolss.net/sample-chapters/c05/E6-08-29.pdf",
@@ -1828,10 +1848,6 @@
           }
         ],
         "normalizedClaims": [
-          {
-            "claimText": "The quantity symbol for impedance is Z.",
-            "sourceId": "SRC-ETW-IMPEDANCE"
-          },
           {
             "claimText": "Impedance's quantity symbol is Z.",
             "sourceId": "SRC-EOLSS-ELECQUANT"
@@ -1843,7 +1859,20 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-IMPEDANCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
+            "sourceLocator": "electronics-tutorials.ws, Impedance page",
+            "retrievedPassage": "\"the letter symbol 'Z' represents impedance in AC circuits, while 'R' denotes resistance in DC circuits.\"",
+            "exclusionReason": "[Stage A re-adjudication, narrow correction pass] Embedded authorityClass label corrected to the canonical SOURCE-REGISTER value; that canonical class is not permitted for this requirement, and no kept normalizedClaim cites this source. Moved out of counted evidence; retained here for the audit trail."
+          }
+        ],
+        "disclosures": [
+          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-IMPEDANCE. Remaining permitted-class claim(s) still fully support this requirement."
+        ]
       }
     },
     {
@@ -1862,18 +1891,14 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-IMPEDANCE",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
-            "sourceLocator": "electronics-tutorials.ws, Impedance page",
-            "retrievedPassage": "\"Impedance...is expressed in Ohms\", the same unit symbol (Ω) as resistance."
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
+            "sourceLocator": "BIPM SI concise brochure, Table 2",
+            "retrievedPassage": "\"electric resistance | ohm | Ω | V/A = kg m^2 s^-3 A^-2\" -- the same coherent SI unit and symbol apply to impedance, since impedance is measured in the same unit as resistance."
           }
         ],
         "normalizedClaims": [
-          {
-            "claimText": "Impedance's unit symbol is the ohm (Ω) -- the same unit symbol used for resistance and for reactance, even though impedance, resistance and reactance are not the same quantity.",
-            "sourceId": "SRC-ETW-IMPEDANCE"
-          },
           {
             "claimText": "The SI Brochure's Table 2 (coherent derived units with special names) lists the ohm (symbol Ω) as the SI unit of electric resistance; the same unit and symbol are used for impedance, since impedance is measured in the same unit as resistance.",
             "sourceId": "SRC-BIPM-BROCHURE"
@@ -1885,7 +1910,20 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-IMPEDANCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
+            "sourceLocator": "electronics-tutorials.ws, Impedance page",
+            "retrievedPassage": "\"Impedance...is expressed in Ohms\", the same unit symbol (Ω) as resistance.",
+            "exclusionReason": "[Stage A re-adjudication, narrow correction pass] Embedded authorityClass label corrected to the canonical SOURCE-REGISTER value (AUTHORITATIVE_EDUCATIONAL_REFERENCE); that canonical class is not permitted for this requirement. Moved out of counted evidence; retained here for the audit trail."
+          }
+        ],
+        "disclosures": [
+          "[Stage A data-integrity + authority-class correction, narrow correction pass] TWO defects on this row corrected: (1) SRC-BIPM-BROCHURE was cited in normalizedClaims but was never registered in this row's own candidateSources array (unlike the sibling capacitance/inductance UNIT_SYMBOL rows, which correctly register it) -- now corrected by registering the candidate; no new evidence acquired. (2) SRC-ETW-IMPEDANCE's embedded authorityClass (AUTHORITATIVE_TECHNICAL_REFERENCE) was corrected to the canonical SOURCE-REGISTER value (AUTHORITATIVE_EDUCATIONAL_REFERENCE), which is not permitted for this SYMBOL_OR_CONVENTION requirement; its claim is removed from counted evidence. This row remains genuinely VERIFIED throughout on BIPM's own permitted-class evidence, once correctly registered."
+        ]
       }
     },
     {
@@ -1906,14 +1944,14 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-CAP1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/capacitor/cap_1.html",
             "sourceLocator": "electronics-tutorials.ws, Capacitance page",
             "retrievedPassage": "\"Capacitance is the electrical property of a capacitor and is the measure of a capacitor's ability to store an electrical charge onto its two plates with the unit of capacitance being the Farad\"; \"a capacitor has the capacitance of One Farad when a charge of One Coulomb is stored on the plates by a voltage of One volt.\""
           },
           {
             "sourceId": "SRC-ETW-FILTER1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
             "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
             "retrievedPassage": "capacitive reactance \"limits the flow of alternating current (AC)\" through a capacitor; \"measured in Ohms, the same unit as resistance\"; Xc = 1/(2.pi.f.C)."
@@ -1956,7 +1994,7 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-FILTER1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
             "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
             "retrievedPassage": "\"Unlike resistance which has a fixed value...Capacitive Reactance varies inversely proportional with the applied frequency\"; capacitance itself (farads) is a fixed physical property of the capacitor (per SRC-ETW-CAP1)."
@@ -1993,20 +2031,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-CAP1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/capacitor/cap_1.html",
-            "sourceLocator": "electronics-tutorials.ws, Capacitance page",
-            "retrievedPassage": "capacitance's \"letter symbol: C (always positive in value)\"."
-          },
-          {
-            "sourceId": "SRC-ETW-FILTER1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
-            "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
-            "retrievedPassage": "\"Xc = 1/(2.pi.f.C)\" -- Xc used throughout as capacitive reactance's symbol."
-          },
-          {
             "sourceId": "SRC-IEC-IEV-131-12-13",
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
             "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-13",
@@ -2029,6 +2053,24 @@
         "gaps": [],
         "disclosures": [
           "[Correction, Stage 2 re-sourcing] Re-sourced to a permitted-class authority (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) after the prior electronics-tutorials.ws citation was found to be an unpermitted authority class for this SYMBOL_OR_CONVENTION-mode requirement. Capacitive reactance's own symbol (Xc) is not independently re-attested here; only capacitance's own symbol C is IEC-attested by this source -- the requirement's QUANTITY_SYMBOL dimension is satisfied for capacitance, which is the coverage this row is bound to (capacitive reactance's distinct unit, ohms, is separately verified under UNIT_SYMBOL)."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-CAP1",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/capacitor/cap_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Capacitance page",
+            "retrievedPassage": "capacitance's \"letter symbol: C (always positive in value)\".",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          },
+          {
+            "sourceId": "SRC-ETW-FILTER1",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
+            "retrievedPassage": "\"Xc = 1/(2.pi.f.C)\" -- Xc used throughout as capacitive reactance's symbol.",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          }
         ]
       }
     },
@@ -2053,13 +2095,6 @@
             "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
             "sourceLocator": "BIPM SI concise brochure, Table 2",
             "retrievedPassage": "\"capacitance | farad | F | C/V = kg^-1 m^-2 s^4 A^2\"."
-          },
-          {
-            "sourceId": "SRC-ETW-FILTER1",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
-            "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
-            "retrievedPassage": "capacitive reactance is \"measured in Ohms, the same unit as resistance\"."
           }
         ],
         "normalizedClaims": [
@@ -2074,7 +2109,17 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-FILTER1",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
+            "retrievedPassage": "capacitive reactance is \"measured in Ohms, the same unit as resistance\".",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          }
+        ]
       }
     },
     {
@@ -2095,14 +2140,14 @@
         "candidateSources": [
           {
             "sourceId": "SRC-ETW-INDUCTOR",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/inductor/inductor.html",
             "sourceLocator": "electronics-tutorials.ws, Inductance page",
             "retrievedPassage": "\"This ability of an inductor to resist changes in current...is called Inductance which is given the symbol L with units of Henry, (H)\"."
           },
           {
             "sourceId": "SRC-ETW-ACINDUCTORS",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
             "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
             "retrievedPassage": "\"Inductive Reactance, which is given the symbol XL, is the property in an AC circuit which opposes the change in the current\"; \"Just like resistance, the value of reactance is also measured in Ohm's\"; XL=2*pi*f*L."
@@ -2196,20 +2241,6 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-INDUCTOR",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/inductor/inductor.html",
-            "sourceLocator": "electronics-tutorials.ws, Inductance page",
-            "retrievedPassage": "inductance \"is given the symbol L\"."
-          },
-          {
-            "sourceId": "SRC-ETW-ACINDUCTORS",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
-            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
-            "retrievedPassage": "inductive reactance \"is given the symbol XL\"."
-          },
-          {
             "sourceId": "SRC-IEC-IEV-131-12-19",
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
             "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-19",
@@ -2250,6 +2281,24 @@
         "gaps": [],
         "disclosures": [
           "[Correction, Stage 2 re-sourcing] Re-sourced to permitted-class authorities (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) after the prior electronics-tutorials.ws citation was found to be an unpermitted authority class. IMPORTANT DISCLOSED CORRECTION: IEC 60050 assigns inductance its own dedicated symbol L (IEV 131-12-19), and assigns the general term \"reactance\" the symbol X (IEV 131-12-46), but its dedicated \"inductive reactance\" entry (IEV 131-12-47) carries NO separate symbol field -- it is defined only as \"reactance having a positive value.\" The customary engineering subscript notation \"X_L\" (as opposed to the general symbol X) is therefore a widespread engineering convention, not itself an independently IEC-attested letter symbol. This requirement's core testable fact -- that inductance and inductive reactance are two distinct quantities with two distinct symbols (L vs X) -- IS fully IEC-attested; the customary subscript \"X_L\" beyond bare \"X\" is a disclosed, undisputed engineering convention layered on top, not a fabricated claim."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-INDUCTOR",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/inductor.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductance page",
+            "retrievedPassage": "inductance \"is given the symbol L\".",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          },
+          {
+            "sourceId": "SRC-ETW-ACINDUCTORS",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
+            "retrievedPassage": "inductive reactance \"is given the symbol XL\".",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          }
         ]
       }
     },
@@ -2274,13 +2323,6 @@
             "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
             "sourceLocator": "BIPM SI concise brochure, Table 2",
             "retrievedPassage": "\"inductance | henry | H | Wb/A = kg m^2 s^-2 A^-2\"."
-          },
-          {
-            "sourceId": "SRC-ETW-ACINDUCTORS",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
-            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
-            "retrievedPassage": "\"Just like resistance, the value of reactance is also measured in Ohm's\"."
           }
         ],
         "normalizedClaims": [
@@ -2295,7 +2337,17 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-ETW-ACINDUCTORS",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
+            "retrievedPassage": "\"Just like resistance, the value of reactance is also measured in Ohm's\".",
+            "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
+          }
+        ]
       }
     },
     {

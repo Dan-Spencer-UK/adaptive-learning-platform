@@ -4,7 +4,7 @@
 
 Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
 
-**Readiness:** 20 READY, 2 HELD_PENDING_EVIDENCE_CORRECTION. **Curriculum role:** 20 REQUIRED_MASTERY, 2 CONTEXTUAL_SUPPORT_ONLY.
+**Readiness:** 19 READY, 2 HELD_PENDING_EVIDENCE_CORRECTION, 1 DEFERRED_CONTEXT_ONLY. **Curriculum role:** 20 REQUIRED_MASTERY, 2 CONTEXTUAL_SUPPORT_ONLY.
 
 ## Instructional sequence
 
@@ -112,9 +112,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-03` -- The dot-and-cross page convention for field and current direction
 
-**Evidence readiness:** READY
+**Evidence readiness:** DEFERRED_CONTEXT_ONLY
 
-**Evidence readiness note (Stage 1.2/2.1/4.3 correction):** Previously held as a SOURCE_GAP on authority class, not content -- the generic planner's now-corrected default had also mislabelled this requirement's coverage dimension as QUANTITY_SYMBOL, when a page-direction/pictorial convention is genuinely SCHEMATIC_SYMBOL. With that corrected, and with a one-off, disclosed PA authority adjudication (`CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001`, mirroring Batch 01's own precedent) accepting academic evidence for this specific low-risk, non-safety directional/pictorial convention -- the same treatment this qualification already gives the right-hand grip rule and Fleming's rules -- the three genuinely-read academic sources (two MIT 8.02 passages, one OpenStax) now stand as valid evidence. VERIFIED; see `EVIDENCE-RESULTS.json`.
+**Evidence readiness note (Stage A reversion, narrow correction pass):** A prior pass's `CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001` field is REMOVED: unlike the genuine, code-enforced, fail-closed `UNIT202_SOURCE_AUTHORITY_POLICY` widening that legitimately covers Unit 202's three `OPERATIONAL_USE_RULE` hand-rule targets (the right-hand grip rule and the two Fleming rules, traced to real Product Architect review of CC-24 pilot-001), this field applied to a different, unauthorised mode (`SYMBOL_OR_CONVENTION`), had no code-level backing, and is directly contradicted by PROJECT-STATUS.md's own batch-05 entry ("No frozen requirement's permitted authority classes were widened to make a result green"). This requirement's genuinely frozen permitted classes (`PRIMARY_NORMATIVE_OR_STANDARDS_BODY`, `PROFESSIONAL_BODY`, `AUTHORITATIVE_TECHNICAL_REFERENCE`) are not met by MIT 8.02 or OpenStax (both `ACADEMIC_OR_RESEARCH_INSTITUTION`/`AUTHORITATIVE_EDUCATIONAL_REFERENCE`). A fresh bounded re-search (IEC Electropedia, IEEE Std 315-1975/ANSI Y32.2-1975) found no in-class source. Genuinely re-adjudicated as `SOURCE_GAP`; reclassified `DEFERRED_CONTEXT_ONLY` since this LP is `CONTEXTUAL_SUPPORT_ONLY`/`CONTEXT_ONLY_NOT_ASSESSED` and this is therefore a non-blocking V1 deferral, not a core release blocker. See `EVIDENCE-RESULTS.json`.
 
 **Learner outcome:** The learner will be able to interpret the dot and cross symbols used on diagrams to show a field or current directed out of, or into, the page.
 

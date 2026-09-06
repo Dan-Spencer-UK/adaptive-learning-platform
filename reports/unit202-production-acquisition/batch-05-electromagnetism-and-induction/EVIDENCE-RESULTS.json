@@ -11,8 +11,9 @@
   },
   "authorityClassDiscipline": "Every candidate source cited as verifying evidence was checked against its OWN requirement's frozen sourceAuthorityClasses. Sources that were genuinely retrieved and read but whose authority class is not permitted for that requirement are preserved under `evaluatedButOutOfPermittedAuthorityClass` on the result, and NO normalized claim rests on them. No frozen requirement's permitted authority classes were widened to accommodate an available source.",
   "statusTotals": {
-    "VERIFIED": 40,
-    "PARTIALLY_VERIFIED": 2
+    "VERIFIED": 39,
+    "PARTIALLY_VERIFIED": 2,
+    "SOURCE_GAP": 1
   },
   "results": [
     {
@@ -644,37 +645,44 @@
       "requirementText": "Dot/cross page convention.",
       "result": {
         "candidateSources": [],
-        "normalizedClaims": [
-          {
-            "claimText": "In a circuit/field diagram, a dot (•) represents a vector (e.g. current or magnetic field) pointing OUT of the page, toward the reader.",
-            "sourceId": "SRC-MIT802-CH9-SOURCES"
-          },
-          {
-            "claimText": "In a circuit/field diagram, a cross (X) represents a vector (e.g. current or magnetic field) pointing INTO the page, away from the reader.",
-            "sourceId": "SRC-MIT802-CH8-MAGFIELDS"
-          },
-          {
-            "claimText": "The dot symbol's rationale is that it represents the head (tip) of a vector arrow coming out of the page toward the viewer.",
-            "sourceId": "SRC-OPENSTAX-PHYSICS-20-1"
-          }
-        ],
-        "verificationStatus": "VERIFIED",
-        "coverageDimensionsSatisfied": [
+        "normalizedClaims": [],
+        "verificationStatus": "SOURCE_GAP",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": [
           "SCHEMATIC_SYMBOL"
         ],
-        "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "evaluatedButOutOfPermittedAuthorityClass": [],
-        "paAuthorityPolicyAdjudication": {
-          "id": "CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001",
-          "scope": "dot-cross-page-convention::SYMBOL_OR_CONVENTION only",
-          "decision": "ACADEMIC_OR_RESEARCH_INSTITUTION accepted as permitted authority for this one directional/pictorial-convention requirement binding, per the qualification's risk-based source-authority policy for low-risk, non-safety directional conventions.",
-          "doesNotModify": "The generic planner's SYMBOL_OR_CONVENTION authority-class policy; any other requirement in this or any other batch."
-        },
+        "evaluatedButOutOfPermittedAuthorityClass": [
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "(see prior candidateSources entry)",
+            "sourceLocator": "",
+            "retrievedPassage": "In a circuit/field diagram, a dot (•) represents a vector (e.g. current or magnetic field) pointing OUT of the page, toward the reader.",
+            "exclusionReason": "[Stage A reversion, narrow correction pass] This requirement's genuinely frozen sourceAuthorityClasses (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) were never actually widened at the plan level; a separate, ungoverned paAuthorityPolicyAdjudication object had been layered on top of this row to admit ACADEMIC_OR_RESEARCH_INSTITUTION/AUTHORITATIVE_EDUCATIONAL_REFERENCE sources without a genuine, externally recorded Product Architect decision (unlike the code-enforced, fail-closed UNIT202_SOURCE_AUTHORITY_POLICY widening that legitimately covers Unit 202's three OPERATIONAL_USE_RULE hand-rule targets). That field is removed. Genuinely retrieved and read; retained here for the audit trail only."
+          },
+          {
+            "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "(see prior candidateSources entry)",
+            "sourceLocator": "",
+            "retrievedPassage": "In a circuit/field diagram, a cross (X) represents a vector (e.g. current or magnetic field) pointing INTO the page, away from the reader.",
+            "exclusionReason": "[Stage A reversion, narrow correction pass] This requirement's genuinely frozen sourceAuthorityClasses (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) were never actually widened at the plan level; a separate, ungoverned paAuthorityPolicyAdjudication object had been layered on top of this row to admit ACADEMIC_OR_RESEARCH_INSTITUTION/AUTHORITATIVE_EDUCATIONAL_REFERENCE sources without a genuine, externally recorded Product Architect decision (unlike the code-enforced, fail-closed UNIT202_SOURCE_AUTHORITY_POLICY widening that legitimately covers Unit 202's three OPERATIONAL_USE_RULE hand-rule targets). That field is removed. Genuinely retrieved and read; retained here for the audit trail only."
+          },
+          {
+            "sourceId": "SRC-OPENSTAX-PHYSICS-20-1",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "(see prior candidateSources entry)",
+            "sourceLocator": "",
+            "retrievedPassage": "The dot symbol's rationale is that it represents the head (tip) of a vector arrow coming out of the page toward the viewer.",
+            "exclusionReason": "[Stage A reversion, narrow correction pass] This requirement's genuinely frozen sourceAuthorityClasses (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) were never actually widened at the plan level; a separate, ungoverned paAuthorityPolicyAdjudication object had been layered on top of this row to admit ACADEMIC_OR_RESEARCH_INSTITUTION/AUTHORITATIVE_EDUCATIONAL_REFERENCE sources without a genuine, externally recorded Product Architect decision (unlike the code-enforced, fail-closed UNIT202_SOURCE_AUTHORITY_POLICY widening that legitimately covers Unit 202's three OPERATIONAL_USE_RULE hand-rule targets). That field is removed. Genuinely retrieved and read; retained here for the audit trail only."
+          }
+        ],
         "disclosures": [
           "[Correction, Stage 1.2 + Stage 2.1/4.3 PA authority adjudication] (1) DIMENSION: this requirement's coverage dimension is corrected from the generic planner's prior default QUANTITY_SYMBOL to SCHEMATIC_SYMBOL -- the dot/cross convention is a page-direction/pictorial convention for showing a vector into/out of the page in a diagram, never a physical-quantity letter symbol, so it was never trying to meet a quantity-symbol acceptance bar. (2) AUTHORITY: per the qualification's risk-based source-authority policy (normative sources required where a current standard is itself material; academic/authoritative-educational sources accepted for low-risk teaching conventions and directional rules), this is exactly the same class of low-risk, non-safety, non-regulated directional/pictorial teaching convention as the right-hand grip rule and Fleming's rules, for which this qualification already accepts ACADEMIC_OR_RESEARCH_INSTITUTION evidence. A one-off, disclosed PA authority adjudication (id CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001, mirroring Batch 01's own CC-BATCH01-PA-AUTHORITY-ADJUDICATION-001 precedent) accepts the three already-genuinely-read academic sources below for this ONE requirement binding only -- it does not modify the generic planner's SYMBOL_OR_CONVENTION authority-class policy, and does not extend to any schematic circuit symbol or any other requirement.",
-          "No source read in this session gave the complementary 'arrow fletching/tail' rationale for the cross symbol as a verbatim sentence (only the dot's arrow-head rationale, OpenStax Figure 20.20, was found in those terms); the cross = into-page mapping itself is independently and verbatim stated by two MIT sources, so this omission does not weaken the mapping itself."
+          "No source read in this session gave the complementary 'arrow fletching/tail' rationale for the cross symbol as a verbatim sentence (only the dot's arrow-head rationale, OpenStax Figure 20.20, was found in those terms); the cross = into-page mapping itself is independently and verbatim stated by two MIT sources, so this omission does not weaken the mapping itself.",
+          "[Stage A reversion, narrow correction pass] The ad hoc paAuthorityPolicyAdjudication (id CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001) is removed: it was self-declared by a prior acquisition/correction pass, not a genuine, externally recorded Product Architect decision -- it has no code-level backing (unlike the genuine, fail-closed UNIT202_SOURCE_AUTHORITY_POLICY covering Unit 202's three OPERATIONAL_USE_RULE hand-rule targets), and PROJECT-STATUS.md's own batch-05 entry explicitly states no frozen authority class was widened. A fresh, bounded re-search for a permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY/PROFESSIONAL_BODY/AUTHORITATIVE_TECHNICAL_REFERENCE) source for this vector-into/out-of-page convention was attempted in this pass (IEC Electropedia search, IEEE Std 315-1975/ANSI Y32.2-1975 search) and found nothing on point -- this convention is a general physics teaching notation, not itself a normalized engineering standard symbol. Genuinely re-adjudicated as SOURCE_GAP, not fabricated closed. The three academic sources (MIT 8.02, OpenStax) remain genuinely read and are preserved under evaluatedButOutOfPermittedAuthorityClass."
         ]
       }
     },
@@ -755,6 +763,13 @@
             "sourceRef": "https://engr.siu.edu/staff/spezia/Web332b/Lecture%20Notes/Lesson%2017_et332b.pdf",
             "sourceLocator": "Slide 'Synchronous Motor Operation' (handout page 4, lower slide)",
             "retrievedPassage": "\"Motor speed constant at synchronous speed, n_s\"; the boxed equation \"n_s = 120·f / P\"; \"Where   f = power system frequency (Hz)   P = number of motor poles\"; and the note \"Speed can only be changed by changing system f or number of poles in machine\"."
+          },
+          {
+            "sourceId": "SRC-MITOCW-6685-CH8",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "(already registered for the sibling rotational-frequency-pole-pairs-relationship requirement in this batch)",
+            "sourceLocator": "MIT 6.685 Class Notes 8 -- pole-pairs definition and angular-form relation, reused here via algebraic substitution, not independently re-read for this specific rpm form",
+            "retrievedPassage": "(see the sibling rotational-frequency-pole-pairs-relationship requirement's own candidateSources for the genuinely retrieved passage)"
           }
         ],
         "normalizedClaims": [
@@ -789,7 +804,8 @@
         "disclosures": [
           "[Correction, Stage 4 item 11] Restored to VERIFIED via disclosed derivation rather than left PARTIALLY_VERIFIED for want of a source stating this exact rpm form: this is the already-verified pole-pairs relationship (rotational-frequency-pole-pairs-relationship, above) with the rev/s-to-rpm unit conversion (N = n_rpm / 60) substituted in -- ordinary algebra, the same foundational rearrangement/substitution capability already accepted for this qualification's other formula targets (Batch 01's formula-transposition mastery), not a second technical-domain source requirement. The total-poles form found in several sources (f = P_total x N / 120) is recorded as an equivalent alternative once P_total = 2 x P_pairs is applied -- not a technical conflict, per the Product Architect's pole-pair-convention decision -- and remains excluded as a distinct-quantity form, not merged into this claim.",
           "The n_rpm-with-pole-pairs form (f = n_rpm × P_pole-pairs / 60) was not directly evidenced by any read passage; four further candidates (IEC Electropedia, Britannica, ScienceDirect topic pages, University of Tennessee ECE 522 notes) were all inaccessible - see accessFailures.",
-          "1 normalized claim(s) were REMOVED because their only support came from a source outside this requirement's permitted authority classes: SRC-LIBRETEXTS-FLINN-3-05 (AUTHORITATIVE_EDUCATIONAL_REFERENCE). The removed claim text(s): \"For an alternator, output frequency in hertz equals (number of poles / 2) multiplied by (rotational speed in rev/min divided by 60), i.e. f = PN/120 with P the TOTAL number of poles and N in RPM. Sinc\". The passages remain under evaluatedButOutOfPermittedAuthorityClass."
+          "1 normalized claim(s) were REMOVED because their only support came from a source outside this requirement's permitted authority classes: SRC-LIBRETEXTS-FLINN-3-05 (AUTHORITATIVE_EDUCATIONAL_REFERENCE). The removed claim text(s): \"For an alternator, output frequency in hertz equals (number of poles / 2) multiplied by (rotational speed in rev/min divided by 60), i.e. f = PN/120 with P the TOTAL number of poles and N in RPM. Sinc\". The passages remain under evaluatedButOutOfPermittedAuthorityClass.",
+          "[Stage A data-integrity correction, narrow correction pass] The claim attributed to SRC-MITOCW-6685-CH8 is a disclosed algebraic derivation (N_rpm/60 substitution) from the sibling rotational-frequency-pole-pairs-relationship requirement, which already reads this exact source -- it was never independently re-read for this specific rpm-per-minute form. Registered as a reused/derived candidate so the claim's source resolves against this row's own candidateSources, consistent with this project's structured-satisfaction pattern; no new evidence acquired and no status change."
         ]
       }
     },
@@ -1783,6 +1799,27 @@
             "sourceRef": "https://etc.usf.edu/clipart/35600/35667/rhp_35667.htm",
             "sourceLocator": "ClipArt ETC illustration ID 35667 'Right Hand Rule'; cited source Hawkins and Staff, Hawkins Electrical Guide Number One (New York: Theo. Audel and Company, 1917), page 114",
             "retrievedPassage": "\"Right hand palm rule to determine the direction of the magnetic field around a conductor carrying a current.\" -Hawkins, 1917"
+          },
+          {
+            "sourceId": "SRC-MIT802-CH9-SOURCES",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
+            "sourceLocator": "§9.1 Biot-Savart Law, Example 9.1 (doc p. 6), Figure 9.1.4 'Magnetic field lines due to an infinite wire carrying current I' and Figure 9.1.5 'Direction of the magnetic field due to an infinite straight wire'; §9.4 Solenoid (doc pp. 19-20), Figure 9.4.1 'Magnetic field lines of a solenoid'; §9.4 (doc p. 22), Figure 9.4.4",
+            "retrievedPassage": "If you direct your right thumb along the direction of the (conventional) current in a straight wire, the fingers of your right hand curl in the direction of the magnetic field around it."
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-CONVCURRENT",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://phys.libretexts.org/Courses/Coalinga_College/Physical_Science_for_Educators_(CID%3A_PHYS_14)/12%3A_Magnetism/12.03%3A_Magnetic_Fields",
+            "sourceLocator": "Section 12.3 'Magnetic Fields', heading 'Magnetic Field Around a Current Carrying Wire'",
+            "retrievedPassage": "Curl your right hand around the wire such that your thumb points in the direction of the conventional current; your fingers curl around the wire in the direction of the magnetic field. The rule is for CONVENTIONAL current -- for an electron-flow current, the charges flow in the opposite direction, so the LEFT hand must be used instead."
+          },
+          {
+            "sourceId": "SRC-HYPERPHYSICS-MAGCUR",
+            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magcur.html",
+            "sourceLocator": "Page 'Magnetic Field of Current', section heading 'Magnetic Field of Current', body text accompanying figure imgmag/magcur.gif",
+            "retrievedPassage": "The direction of the magnetic field is perpendicular to the wire and is in the direction the fingers of the right hand curl when wrapped around the wire with the thumb in the direction of the current."
           }
         ],
         "normalizedClaims": [
@@ -1821,7 +1858,8 @@
         "disclosures": [
           "[Correction, Stage 2.1/4.4 PA authority adjudication] This requirement's recorded sourceAuthorityClasses was the generic OPERATIONAL_USE_RULE default (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR), never updated to reflect this qualification's own widened directional-rule policy (already adopted for this exact target's peers, the two Fleming rules, but not propagated into this specific acquired result). Corrected to include ACADEMIC_OR_RESEARCH_INSTITUTION and AUTHORITATIVE_EDUCATIONAL_REFERENCE, per the risk-based policy that academic sources are acceptable for low-risk, non-safety directional physics rules. The three previously-excluded academic sources (MIT 8.02, LibreTexts, HyperPhysics) are promoted to genuine evidence.",
           "The clearest and best-corroborated statements of this rule -- including the explicit warning that an ELECTRON-flow convention requires the LEFT hand instead -- came from LibreTexts 12.3, MIT 8.02 §9.1 and HyperPhysics, ALL of which are outside this requirement's permitted authority classes (ACADEMIC_OR_RESEARCH_INSTITUTION / AUTHORITATIVE_EDUCATIONAL_REFERENCE are not among GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Their passages are retained under evaluatedButOutOfPermittedAuthorityClass. This is an authority-tier gap, not a content gap.",
-          "CAUTION FOR CONTENT AUTHORS: the second in-class figure cited here, SRC-USF-ETC-RHR-CONDUCTOR-35667 (Hawkins 1917, p. 114), depicts the right-hand PALM rule, which is a DIFFERENT rule from the grip rule. It is retained as a candidate because it is genuine in-class retrieved material about determining field direction around a conductor, but NO grip-rule mapping claim rests on it and it must not be conflated with the grip rule."
+          "CAUTION FOR CONTENT AUTHORS: the second in-class figure cited here, SRC-USF-ETC-RHR-CONDUCTOR-35667 (Hawkins 1917, p. 114), depicts the right-hand PALM rule, which is a DIFFERENT rule from the grip rule. It is retained as a candidate because it is genuine in-class retrieved material about determining field direction around a conductor, but NO grip-rule mapping claim rests on it and it must not be conflated with the grip rule.",
+          "[Stage A data-integrity correction, narrow correction pass] Three normalizedClaims (SRC-MIT802-CH9-SOURCES, SRC-LIBRETEXTS-COALINGA-CONVCURRENT, SRC-HYPERPHYSICS-MAGCUR) cited sources that were never registered in this row's own candidateSources array, even though all three are genuinely registered in this batch's SOURCE-REGISTER.json and their authority classes ARE permitted here under the genuine, code-enforced UNIT202_SOURCE_AUTHORITY_POLICY widening (unit202-adapter.ts, fail-closed invariant assertUnit202DirectionalRuleInvariant, traced to real PA review of CC-24 pilot-001) -- this is a distinct, legitimate widening from the dot-cross-page-convention row's ungoverned one, since it (a) covers only the correct OPERATIONAL_USE_RULE mode, (b) is structurally enforced with a fail-closed premise check, and (c) is corroborated by the CC-24 PROJECT-STATUS.md record. Corrected by registering the three candidates; no verificationStatus change, since all three claims were always genuinely permitted-class evidence."
         ]
       }
     },
