@@ -1,0 +1,915 @@
+{
+  "batchId": "batch-06",
+  "sourceCount": 46,
+  "reusedSourceCount": 0,
+  "newSourceCount": 46,
+  "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
+  "reusedSourceIds": [],
+  "sources": [
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ENERGYEDU-CAPACITOR",
+      "publisher": "Energy Education, University of Calgary",
+      "title": "Capacitor",
+      "url": "https://energyeducation.ca/encyclopedia/Capacitor",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Energy Education is an educational encyclopedia authored and maintained by the University of Calgary (Faculty of Science / Energy Education project), an academic institution.",
+      "locator": "Article 'Capacitor', opening/lead section",
+      "supportsRequirementSuffixes": [
+        "capacitor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-CAPACITOR-ENERGY",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C.R. Nave)",
+      "title": "Energy Stored on a Capacitor",
+      "url": "https://hyperphysics.gsu.edu/hbase/electric/capeng.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
+      "locator": "Page 'Energy Stored on a Capacitor', body text",
+      "supportsRequirementSuffixes": [
+        "capacitor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-DIELECTRIC",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C.R. Nave)",
+      "title": "Parallel Plate with Dielectric",
+      "url": "https://hyperphysics.gsu.edu/hbase/electric/dielec.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
+      "locator": "Page 'Parallel Plate with Dielectric', body text",
+      "supportsRequirementSuffixes": [
+        "capacitor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-PN-DIODE",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C.R. Nave)",
+      "title": "The P-N Junction Diode",
+      "url": "https://hyperphysics.gsu.edu/hbase/Solids/diod.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
+      "locator": "Page 'The P-N Junction Diode', body text (forward-bias and reverse-bias paragraphs)",
+      "supportsRequirementSuffixes": [
+        "diode-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ENERGYEDU-DIODE",
+      "publisher": "Energy Education, University of Calgary",
+      "title": "Diode",
+      "url": "https://energyeducation.ca/encyclopedia/Diode",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Energy Education is an educational encyclopedia authored and maintained by the University of Calgary.",
+      "locator": "Article 'Diode', opening/lead section",
+      "supportsRequirementSuffixes": [
+        "diode-basic-operating-principle::EXACT_FACT",
+        "rectifier-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-DOE-EERE-INVERTERS",
+      "publisher": "U.S. Department of Energy, Office of Energy Efficiency and Renewable Energy (Solar Energy Technologies Office)",
+      "title": "Solar Integration: Inverters and Grid Services Basics",
+      "url": "https://www.energy.gov/eere/solar/solar-integration-inverters-and-grid-services-basics",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "Published by the United States Department of Energy, a national government department.",
+      "locator": "Section heading 'What are Inverters?', first definitional sentence",
+      "supportsRequirementSuffixes": [
+        "inverter-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NAPIER-LDR",
+      "publisher": "Edinburgh Napier University (School of Computing; B. Davison, Internet of Things module notes)",
+      "title": "Light-dependent resistor - Internet of Things (component notes)",
+      "url": "https://bdavison.napier.ac.uk/iot/Notes/components/ldr/",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University teaching notes hosted on Edinburgh Napier University's academic domain (napier.ac.uk).",
+      "locator": "Page heading 'Light-dependent resistor', opening definition sentence",
+      "supportsRequirementSuffixes": [
+        "ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-LED",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C.R. Nave)",
+      "title": "Light Emitting Diodes",
+      "url": "https://hyperphysics.gsu.edu/hbase/Electronic/led.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
+      "locator": "Page 'Light Emitting Diodes', sub-heading 'Light Emitting Diode Structure', body text",
+      "supportsRequirementSuffixes": [
+        "led-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-SANDIEGO-CENTROVISION-PHOTODIODE",
+      "publisher": "Hosted by University of San Diego (home.sandiego.edu/~ekim); document authored as 'A Primer on Photodiode Technology' by Centro Vision Inc. (photodiode manufacturer)",
+      "title": "Photodiode Technology: A Primer on Photodiode Technology",
+      "url": "https://home.sandiego.edu/~ekim/photodiode/pdtech.html",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "A manufacturer technical primer on photodiodes (Centro Vision) republished as course reference material on a University of San Diego academic web space. Classified as an authoritative technical reference rather than as a purely academic publication because the underlying authorship is the device manufacturer.",
+      "locator": "Sections 'Photodiode Construction', 'Zero Bias Operation' and 'Photoconductive Operation'",
+      "supportsRequirementSuffixes": [
+        "photodiode-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-FIORE-RECTIFICATION",
+      "publisher": "Engineering LibreTexts (LibreTexts open-textbook project, University of California Davis-led consortium); text by James M. Fiore, Mohawk Valley Community College",
+      "title": "Semiconductor Devices - Theory and Application (Fiore), 3.2: Rectification",
+      "url": "https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Electronics/Semiconductor_Devices_-_Theory_and_Application_(Fiore)/03:_Diode_Applications/3.2:_Rectification",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-adopted open engineering textbook authored by a college engineering faculty member and hosted on the academic LibreTexts platform.",
+      "locator": "Section 3.2 'Rectification' opening paragraph; sub-section 3.2.1 'Half-Wave Rectifier'",
+      "supportsRequirementSuffixes": [
+        "rectifier-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ENERGYEDU-RESISTOR",
+      "publisher": "Energy Education, University of Calgary",
+      "title": "Resistor",
+      "url": "https://energyeducation.ca/encyclopedia/Resistor",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Energy Education is an educational encyclopedia authored and maintained by the University of Calgary.",
+      "locator": "Article 'Resistor', opening/lead section",
+      "supportsRequirementSuffixes": [
+        "resistor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-RESISTANCE",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C.R. Nave)",
+      "title": "Resistance and Resistivity",
+      "url": "https://hyperphysics.gsu.edu/hbase/electric/resis.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
+      "locator": "Page 'Resistance and Resistivity', body text",
+      "supportsRequirementSuffixes": [
+        "resistor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MURATA-NTC-OVERVIEW",
+      "publisher": "Murata Manufacturing Co., Ltd.",
+      "title": "NTC Thermistors (product overview)",
+      "url": "https://www.murata.com/en-us/products/thermistor/ntc",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Technical product documentation from Murata Manufacturing, an established global manufacturer of thermistors and passive electronic components.",
+      "locator": "Page heading 'NTC Thermistors', introductory definition sentence",
+      "supportsRequirementSuffixes": [
+        "thermistor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MURATA-PTC-RT",
+      "publisher": "Murata Manufacturing Co., Ltd.",
+      "title": "Resistance-Temperature Characteristics | Basic Knowledge of PTC Thermistor (POSISTOR)",
+      "url": "https://www.murata.com/en-us/products/thermistor/ptc/overview/basic/resistance-temperature",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Technical product documentation from Murata Manufacturing, an established global manufacturer of thermistors and passive electronic components.",
+      "locator": "Section 'Resistance - Temperature Characteristics (R-T characteristics)'",
+      "supportsRequirementSuffixes": [
+        "thermistor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-MURATA-PTC-ABOUT",
+      "publisher": "Murata Manufacturing Co., Ltd.",
+      "title": "What are PTC Thermistors (POSISTOR)? Operating Principle | Basic Knowledge of PTC Thermistor",
+      "url": "https://www.murata.com/en-us/products/thermistor/ptc/overview/basic/about",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Technical product documentation from Murata Manufacturing, an established global manufacturer of thermistors and passive electronic components.",
+      "locator": "Section 'What are PTC Thermistors (POSISTOR)?' / 'Operating Principle'",
+      "supportsRequirementSuffixes": [
+        "thermistor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ENERGYEDU-TRANSISTOR",
+      "publisher": "Energy Education, University of Calgary",
+      "title": "Transistor",
+      "url": "https://energyeducation.ca/encyclopedia/Transistor",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Energy Education is an educational encyclopedia authored and maintained by the University of Calgary.",
+      "locator": "Article 'Transistor', opening/lead section and structure paragraph",
+      "supportsRequirementSuffixes": [
+        "transistor-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-ZENER",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C.R. Nave)",
+      "title": "Zener effect and Zener diodes",
+      "url": "https://hyperphysics.gsu.edu/hbase/solids/zener.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "HyperPhysics is a physics reference resource authored and hosted by Georgia State University's Department of Physics and Astronomy.",
+      "locator": "Page 'Zener effect and Zener diodes', 'Zener Diode' paragraph",
+      "supportsRequirementSuffixes": [
+        "zener-diode-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-DUKE-PRATTWIKI-COLOR-CODES",
+      "publisher": "PrattWiki, Pratt School of Engineering, Duke University",
+      "title": "Resistor Color Codes",
+      "url": "https://pundit.pratt.duke.edu/wiki/Resistor_Color_Codes",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Course reference wiki maintained by the Pratt School of Engineering at Duke University for its undergraduate engineering courses.",
+      "locator": "Article 'Resistor Color Codes' — 4-band reading procedure text, colour code table, and worked example",
+      "supportsRequirementSuffixes": [
+        "4-band-resistor-colour-code::PROCEDURE_COVERAGE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-UCF-EEL3123-COLOR-CODE",
+      "publisher": "Department of Electrical and Computer Engineering, University of Central Florida",
+      "title": "III. Standard Resistor Color Code — EEL 3123 Linear Circuits II Lab Manual",
+      "url": "https://www.ece.ucf.edu/labs/EEL3123/appendix/standard-resistor-color-code/",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Official laboratory manual appendix published by a university electrical and computer engineering department.",
+      "locator": "Appendix section 'III. Standard Resistor Color Code'; Figure A-1; Table A-1 'Electronic Color Code'",
+      "supportsRequirementSuffixes": [
+        "4-band-resistor-colour-code::PROCEDURE_COVERAGE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-GRINNELL-CSC211-RESISTORS",
+      "publisher": "Grinnell College, Department of Computer Science (CSC 211 course materials, J. Weinman)",
+      "title": "Resistors — CSC 211 course notes",
+      "url": "https://weinman.cs.grinnell.edu/courses/CSC211/2025S/electricity/resistors.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Course reference material hosted on a Grinnell College faculty academic web space. Note: the wording closely follows a widely reproduced vendor tutorial, so it is treated as corroborating rather than primary.",
+      "locator": "Section 'Decoding the color bands' — orientation note, band meanings, colour table, 4.7 kilohm worked example",
+      "supportsRequirementSuffixes": [
+        "4-band-resistor-colour-code::PROCEDURE_COVERAGE"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS",
+      "publisher": "Littelfuse, Inc. (Teccor brand Thyristors application note AN1001), copyright 2008 Littelfuse, Inc.; PDF copy hosted by Iowa State University Department of Electrical and Computer Engineering (EE 330 course handouts)",
+      "title": "Teccor brand Thyristors AN1001 - Fundamental Characteristics of Thyristors",
+      "url": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Application note authored and copyrighted by Littelfuse, Inc., an established semiconductor manufacturer and the original manufacturer of the Teccor thyristor product family described; the document carries Littelfuse branding, page footers and the (c)2008 Littelfuse, Inc. notice on every page. It therefore qualifies as an authoritative technical reference (and equally as original-manufacturer documentation). DISCLOSURE: the littelfuse.com copy of this application note returned HTTP 403 to the fetch tool; the identical Littelfuse-branded PDF was retrieved instead from an Iowa State University ECE course handout directory. The host is a university, not Littelfuse, but the document content, branding and copyright notice are Littelfuse's own.",
+      "locator": "AN1001 'Fundamental Characteristics of Thyristors': Introduction and 'SCR / Basic Operation' (p.1, Figures AN1001.1-AN1001.3); 'Triac / Basic Operation' (p.2, Figures AN1001.4-AN1001.5); 'DIAC / Basic Operation' (p.3, Figures AN1001.9-AN1001.11); 'Methods of Switching on Thyristors / Application Of Gate Signal' and 'Voltage Breakover Turn-on' (pp.4-5, Figures AN1001.12-AN1001.14)",
+      "supportsRequirementSuffixes": [
+        "diac-basic-operating-principle::EXACT_FACT",
+        "schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
+        "thyristor-scr-basic-operating-principle::EXACT_FACT",
+        "triac-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING",
+      "publisher": "Littelfuse, Inc. (Teccor brand Thyristors application note AN1002), copyright 2008 Littelfuse, Inc.; PDF copy hosted by Iowa State University Department of Electrical and Computer Engineering (EE 330 course handouts)",
+      "title": "Teccor brand Thyristors AN1002 - Gating, Latching, and Holding of SCRs and Triacs",
+      "url": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Second application note (AN1002) within the same Littelfuse-copyrighted Teccor thyristor application-note collection; same authority and same host disclosure as SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS.",
+      "locator": "AN1002 'Gating, Latching, and Holding of SCRs and Triacs': 'Gating of SCRs and Triacs' (p.7, Figures AN1002.1-AN1002.2) and 'Latching Current of SCRs and Triacs' (p.8, Figures AN1002.5-AN1002.6)",
+      "supportsRequirementSuffixes": [
+        "thyristor-scr-basic-operating-principle::EXACT_FACT",
+        "triac-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LITTELFUSE-AN1004-MOUNTING-AND-PACKAGES",
+      "publisher": "Littelfuse, Inc. (Teccor brand Thyristors application note AN1004), copyright 2008 Littelfuse, Inc.; PDF copy hosted by Iowa State University Department of Electrical and Computer Engineering (EE 330 course handouts)",
+      "title": "Teccor brand Thyristors AN1004 - Mounting and Handling of Semiconductor Devices (lead forming and package guidance)",
+      "url": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Third application note (AN1004) within the same Littelfuse-copyrighted Teccor thyristor application-note collection; the original manufacturer's own statement of which physical packages its thyristor products are supplied in. Same host disclosure as above.",
+      "locator": "AN1004, 'Introduction' and 'Lead Forming -- Typical Configurations' / 'Lead Bending Method' (Figures AN1004.1-AN1004.2), plus 'Hardware And Methods / TO-220' and 'TO-218' subsections",
+      "supportsRequirementSuffixes": [
+        "physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HYPERPHYSICS-GSU-DIAC-TRIAC-THYRISTOR",
+      "publisher": "HyperPhysics, Department of Physics and Astronomy, Georgia State University (C. R. Nave)",
+      "title": "Diacs, Triacs and Thyristers (HyperPhysics, Electronics section)",
+      "url": "http://hyperphysics.gsu.edu/hbase/Electronic/diac.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "HyperPhysics is a physics/electronics reference resource authored and maintained within the Department of Physics and Astronomy at Georgia State University, a degree-granting research university; it is not a forum, blog or user-generated content farm.",
+      "locator": "Page 'Diacs, Triacs and Thyristers'; headed sections 'Diac', 'Triac', 'Thyristers' and 'Silicon Controlled Rectifier'",
+      "supportsRequirementSuffixes": [
+        "diac-basic-operating-principle::EXACT_FACT",
+        "thyristor-scr-basic-operating-principle::EXACT_FACT",
+        "triac-basic-operating-principle::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS",
+      "publisher": "Institute of Electrical and Electronics Engineers, Inc. / American National Standards Institute / Canadian Standards Association. Standard designations on the title page: ANSI Y32.2-1975, CSA Z99-1975, IEEE Std 315-1975. Sponsor: IEEE Standards Coordinating Committee 11, Graphic Symbols; Secretariat for American National Standards Committee Y32: American Society of Mechanical Engineers. PDF copy hosted at mohandesbiaziat.ir (third-party, non-official host).",
+      "title": "American National Standard / Canadian Standard / IEEE Standard - Graphic Symbols for Electrical and Electronics Diagrams (Including Reference Designation Letters), ANSI Y32.2-1975 / CSA Z99-1975 / IEEE Std 315-1975",
+      "url": "https://mohandesbiaziat.ir/wp-content/uploads/2018/10/ANSI-Y32.2-1975.pdf",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "The document is the graphic-symbol standard itself, approved by ANSI (31 October 1975), CSA (4 September 1975) and the IEEE Standards Board, i.e. a primary normative standards-body publication. DISCLOSURE 1: the copy read was a 111-page scanned/OCR'd PDF on a third-party host (mohandesbiaziat.ir), not an IEEE/ANSI server; the title page, foreword, committee rosters and copyright page were read and are internally consistent with the genuine standard, and the symbol pages were read as page images. DISCLOSURE 2: this is a US/Canadian standard of 1975 vintage, whose Foreword states it was made compatible with IEC Publication 117; it is NOT the current UK normative symbol standard. The current normative symbol standard for the UK is BS EN 60617 / IEC 60617, whose official database at std.iec.ch was NOT reachable (HTTP 403) - see accessFailures. Rights note recorded from the standard's own copyright page (p.4 of PDF): 'The individual symbols contained in this standard may be copied, reproduced, or employed in any fashion without permission of the IEEE. Any statement that the symbols used are in conformance with this standard shall be on the user's own responsibility.'",
+      "locator": "Section 2 'Graphic Symbols for Fundamental Items' pp.27-28 (items 2.1.1, 2.1.12, 2.1.13, 2.2.1, 2.2.2); Section 4 'Contacts, Switches, Contactors, and Relays' p.42 (items 4.30, 4.30.1, 4.30.2); Section 8 'Graphic Symbols for Semiconductor Devices' pp.55-58 (items 8.5.1, 8.5.4, 8.5.4.1, 8.5.4.2, 8.5.6, 8.5.6.1, 8.5.6.2, 8.5.6.4, 8.5.8, 8.5.9, 8.6.1, 8.6.2, 8.6.12, 8.6.13, 8.6.15, 8.7.2); Section 11 'Lamps and Visual-Signaling Devices' p.63 (item 11.1.1 and NOTE 11.1.1B); Section 16 'Composite Assemblies' p.74 (items 16.1.1.2, 16.3, 16.3.1, 16.3.3)",
+      "supportsRequirementSuffixes": [
+        "schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-VISHAY-1N4001-DO41-PLASTIC-RECTIFIER",
+      "publisher": "Vishay General Semiconductor (Vishay Intertechnology, Inc.)",
+      "title": "1N4001, 1N4002, 1N4003, 1N4004, 1N4005, 1N4006, 1N4007 - General Purpose Plastic Rectifier (Document Number 88503, Revision 29-Apr-2020)",
+      "url": "https://www.vishay.com/docs/88503/1n4001.pdf",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Datasheet published on vishay.com by Vishay General Semiconductor, the original manufacturer of the part; carries the manufacturer's document number (88503) and revision date.",
+      "locator": "Page 1, header 'DO-41 (DO-204AL)' and the 'MECHANICAL DATA' block (fields 'Case:', 'Terminals:', 'Polarity:'); 'PRIMARY CHARACTERISTICS' table row 'Package'",
+      "supportsRequirementSuffixes": [
+        "physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-VISHAY-048RML-ALU-ELECTROLYTIC-CAPACITOR",
+      "publisher": "Vishay BCcomponents (Vishay Intertechnology, Inc.)",
+      "title": "048 RML - Aluminum Electrolytic Capacitors, Radial Miniature Long Life",
+      "url": "https://www.vishay.com/docs/28318/048rml.pdf",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Datasheet published on vishay.com by Vishay BCcomponents, the original manufacturer of the capacitor series described.",
+      "locator": "Page 1, 'FEATURES' bullet list and the 'MARKING' block ('The capacitors are marked (where possible) with the following information:'); 'QUICK REFERENCE DATA' row 'Nominal case sizes'",
+      "supportsRequirementSuffixes": [
+        "physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ONSEMI-2N3903-2N3904-TO92",
+      "publisher": "onsemi (Semiconductor Components Industries, LLC)",
+      "title": "2N3903, 2N3904 - General Purpose Transistors, NPN Silicon (onsemi data sheet)",
+      "url": "https://www.onsemi.com/download/data-sheet/pdf/2n3903-d.pdf",
+      "authorityClass": "ORIGINAL_MANUFACTURER_OR_VENDOR",
+      "authorityRationale": "Data sheet published on onsemi.com by Semiconductor Components Industries, LLC (onsemi), the original manufacturer of the part.",
+      "locator": "Page 1: package illustration block labelled 'TO-92 / CASE 29 / STYLE 1' with pin callouts, and the 'MARKING DIAGRAMS' block with its legend",
+      "supportsRequirementSuffixes": [
+        "physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+      "publisher": "Teccor Electronics / Littelfuse (Teccor brand Thyristors)",
+      "title": "AN1003 - Phase Control Using Thyristors",
+      "url": "https://kicad-info.s3.dualstack.us-west-2.amazonaws.com/original/3X/c/8/c8af5906aec3e1c5628ed3c4ac809b3ae91f6125.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Semiconductor manufacturer application note from an established thyristor maker (Teccor Electronics, now Littelfuse). PROVENANCE CAVEAT: littelfuse.com returned HTTP 403 and the learnabout-electronics.org mirror returned HTTP 429, so the document was retrieved from a third-party rehost. The retrieved PDF is internally self-identifying as the genuine Teccor/Littelfuse AN1003 (Teccor Electronics footer, +1 972 580-7777, running head 'Phase Control Using Thyristors', pagination 16-1 to 16-8). A human reviewer should re-verify against the publisher-hosted copy before publication.",
+      "locator": "Pages 16-1 to 16-8; sections 'Introduction', 'Output Power Characteristics', 'Control Characteristics', 'Triac Phase Control', 'Permanent Magnet Motor Control', 'SCR Phase Control', 'Microcontroller Phase Control', 'Summary'; Figures 16.1-16.24",
+      "supportsRequirementSuffixes": [
+        "dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
+        "dimmer-diac-triggering::EXACT_FACT",
+        "dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
+        "dimmer-switches-application-category-function::EXACT_FACT",
+        "dimmer-triac-ac-switching-control::EXACT_FACT",
+        "heating-boiler-controls-application-category-function::EXACT_FACT",
+        "heating-thermistor-sensing-role::EXACT_FACT",
+        "motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
+        "motor-control-application-category-function::EXACT_FACT",
+        "motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+      "publisher": "SGS-Thomson Microelectronics (now STMicroelectronics)",
+      "title": "APPLICATION NOTE - MICROCONTROLLER AND TRIACS ON THE 110/240V MAINS (AN392), Philippe Rabier / Laurent Perier",
+      "url": "https://docs.rs-online.com/6723/0900766b800250bc.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Semiconductor manufacturer application note from an established maker (SGS-Thomson / STMicroelectronics). PROVENANCE CAVEAT: both st.com URLs for AN392 timed out after 60s on repeated attempts, so the document was retrieved from the RS Components document mirror. The retrieved PDF is internally self-identifying (SGS-Thomson Microelectronics masthead, document reference 'ANA392 / 09,92', running head 'MCU AND TRIAC ON THE MAINS', pagination 1/12 to 11/12). A human reviewer should re-verify against the publisher-hosted copy before publication.",
+      "locator": "Pages 1/12 to 11/12; sections 'INTRODUCTION', 'UNIVERSAL MOTOR DRIVE - Basic function / Power control / Triac drive', 'AC SWITCH', 'LIGHT DIMMER - Basic function / Power control / Hardware', 'PRACTICAL RESULTS'; Figures 1-8",
+      "supportsRequirementSuffixes": [
+        "dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
+        "dimmer-switches-application-category-function::EXACT_FACT",
+        "dimmer-triac-ac-switching-control::EXACT_FACT",
+        "heating-boiler-controls-application-category-function::EXACT_FACT",
+        "motor-control-application-category-function::EXACT_FACT",
+        "motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-VISHAY-AN29053-NTC-THERMISTORS",
+      "publisher": "Vishay BCcomponents (Vishay Intertechnology)",
+      "title": "Application Note - NTC Thermistors (Resistive Products), Document Number 29053, Revision 27-Jan-2021",
+      "url": "https://www.vishay.com/docs/29053/ntcappnote.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Application note published on the manufacturer's own domain (vishay.com) by an established passive-component maker; retrieved directly from the publisher, no mirror involved.",
+      "locator": "Document 29053, page 1 sections 'APPLICATIONS / DOMESTIC APPLIANCES' and 'APPLICATIONS / INDUSTRIAL, TELECOMMUNICATIONS, CONSUMER'; page 3 section 'HOW NTC TEMPERATURE SENSORS WORK' and Fig. 1",
+      "supportsRequirementSuffixes": [
+        "heating-boiler-controls-application-category-function::EXACT_FACT",
+        "heating-thermistor-sensing-role::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-VISHAY-NTCASCW78A-IMMERSION-SENSOR",
+      "publisher": "Vishay Intertechnology",
+      "title": "NTCASCW78A - NTC Thermistors, Immersion Temperature Sensor, Screw Threaded, Document Number 29252, Revision 07-Oct-2025",
+      "url": "https://www.vishay.com/docs/29252/ntcascw78a.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Product datasheet published on the manufacturer's own domain (vishay.com) by an established sensor/passive-component maker; retrieved directly from the publisher, no mirror involved.",
+      "locator": "Document 29252, page 1, sections 'DESCRIPTION' and 'APPLICATIONS'",
+      "supportsRequirementSuffixes": [
+        "heating-boiler-controls-application-category-function::EXACT_FACT",
+        "heating-thermistor-sensing-role::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ONSEMI-AND8116D-RELAY-DRIVERS",
+      "publisher": "ON Semiconductor (onsemi) / Semiconductor Components Industries, LLC",
+      "title": "AND8116/D - Integrated Relay/Inductive Load Drivers for Industrial and Automotive Applications (Application Note), May 2015 Rev. 2",
+      "url": "https://www.onsemi.com/download/application-notes/pdf/and8116-d.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Application note published on the manufacturer's own domain (onsemi.com) by an established semiconductor maker; retrieved directly from the publisher, no mirror involved.",
+      "locator": "AND8116/D page 2, section 'STANDARD DISCRETE RELAY DRIVERS', Figure 1 'Typical Discrete Relay Driver'",
+      "supportsRequirementSuffixes": [
+        "heating-exact-transistor-relay-topology::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-ONSEMI-HB214D-RECTIFIER-HANDBOOK",
+      "publisher": "ON Semiconductor (onsemi) / Semiconductor Components Industries, LLC; Technical Editor William D. Roehr",
+      "title": "HB214/D - Rectifier Applications Handbook, Rev. 2, Nov-2001",
+      "url": "https://www.thierry-lequeu.fr/data/HB214.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Established engineering handbook published by a major semiconductor manufacturer. PROVENANCE CAVEAT: retrieved from a third-party academic-staff mirror (Thierry Lequeu, Universite de Tours) because no directly fetchable onsemi-hosted copy was reachable; the onsemi rectifier product page returned only JavaScript navigation with no technical content. The retrieved PDF is internally self-identifying (ON Semiconductor / SCILLC front matter, running head 'Rectifier Applications', http://onsemi.com page footers). A human reviewer should re-verify against the publisher-hosted copy before publication.",
+      "locator": "Chapter 5 'Basic Single-Phase Rectifying Circuits', page 91 (section 'Basic Operation' and Table 16 'Characteristics of Basic Single-Phase Rectifier Circuit with Resistive Loads') and page 92 (section 'Current Relationships')",
+      "supportsRequirementSuffixes": [
+        "motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-GSU-HYPERPHYSICS-BRIDGE-RECTIFIER",
+      "publisher": "Georgia State University, Department of Physics and Astronomy (HyperPhysics, C. R. Nave)",
+      "title": "HyperPhysics - Bridge Rectifier",
+      "url": "https://hyperphysics.gsu.edu/hbase/Electronic/rectbr.html",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University-hosted physics reference resource maintained by the Georgia State University Department of Physics and Astronomy; retrieved directly from the institutional domain.",
+      "locator": "HyperPhysics concept page titled 'Bridge Rectifier' (hbase/Electronic/rectbr.html)",
+      "supportsRequirementSuffixes": [
+        "motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENREACH-SIN351",
+      "publisher": "Openreach / British Telecommunications plc",
+      "title": "SIN 351 Issue 5.0 - PSTN: technical characteristics of the single analogue line interface (Direct Exchange Line) at the Network Termination Point",
+      "url": "https://www.openreach.co.uk/cpportal/content/dam/cpportal/public/images-and-documents/home/help-and-support/sins/documents/SIN_351.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Official Suppliers' Information Note published by Openreach/BT, the UK incumbent access network operator; it is the normative operator specification for the UK analogue PSTN line interface and is explicitly cited as such by Openreach's own product documentation. Issue 5.0 dated August 2020, last annual review September 2023 with no changes (section 13 History, pages 21-22).",
+      "locator": "Section 1 Scope (p.4); Section 2 The Network Termination Point (p.4); Section 2.1 Connections Used In Openreach Master Sockets, Table 1 (p.4) and Note 1 (p.5); Section 2.2.1 Extension Wiring Connection, Table 2 and Notes 1-2 (p.5); Section 6.1 Call Arrival Indication (p.10); Section 10 Routine Testing Of The Local Network and 10.1 Line Test Conditions (p.16), Table 7 (p.17); Annex A Call Arrival Indication (Ringing) (p.23); Section 13 History (pp.21-22)",
+      "supportsRequirementSuffixes": [
+        "telephone-capacitor-ringer::EXACT_FACT",
+        "telephone-legacy-pstn-framing::EXACT_FACT",
+        "telephone-master-secondary-socket-details::EXACT_FACT",
+        "telephone-resistor-line-testing::EXACT_FACT",
+        "telephone-surge-protector::EXACT_FACT",
+        "telephones-application-category-function::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OPENREACH-COPPER-HANDBOOK",
+      "publisher": "Openreach",
+      "title": "Openreach Developer Guide - How to build a copper network, Version 3.1, October 2019",
+      "url": "https://www.openreach.com/content/dam/openreach/openreach-dam-files/images/fibre-broadband/fibre-for-developers/guides-and-handbooks/oct-2019-update/amends/Copper%20handbook%20V3.1%20web.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Official installation/design guide issued by Openreach, the UK access network operator, for developers building copper telephony networks in UK premises.",
+      "locator": "'Basic materials' (p.4); 'Home wiring' bullet list (p.5); 'Extension wiring from the Openreach master socket (NTE)' and 'Customer connection point at the back of the removable front plate of the master NTE5', with wiring diagram (p.6)",
+      "supportsRequirementSuffixes": [
+        "telephone-master-secondary-socket-details::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OFCOM-PSTN-LETTER-2026",
+      "publisher": "Ofcom (Office of Communications, UK communications regulator)",
+      "title": "Letter to Providers of legacy PSTN services: 'PSTN switch off and migration to Voice over IP (VoIP)', 29 January 2026, from Cristina Luna-Esteban, Director, Consumers and Retail Markets",
+      "url": "https://www.ofcom.org.uk/siteassets/resources/documents/consumers/2024/published-letter-to-business-on-pstn-switch-off-deadline.pdf?v=412769",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "Ofcom is the UK statutory regulator for electronic communications; this is a signed regulatory letter published on ofcom.org.uk.",
+      "locator": "Page 1: addressee block 'Providers of legacy PSTN services'; heading 'PSTN switch off and migration to Voice over IP (VoIP)'; opening two paragraphs. Page 2: heading 'Businesses and CNI', first paragraph.",
+      "supportsRequirementSuffixes": [
+        "telephone-legacy-pstn-framing::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OFCOM-LANDLINE-CONSUMER",
+      "publisher": "Ofcom (Office of Communications, UK communications regulator)",
+      "title": "Moving landline phones to digital technology: what you need to know",
+      "url": "https://www.ofcom.org.uk/phones-and-broadband/landline-phones/future-of-landline-calls",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "Consumer guidance page published by Ofcom, the UK statutory communications regulator.",
+      "locator": "Body text of the consumer guidance page (no numbered sections). Passages returned by the fetch tool under the page's landline-digitalisation explanation.",
+      "supportsRequirementSuffixes": [
+        "telephone-legacy-pstn-framing::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OFCOM-IR2030",
+      "publisher": "Ofcom (Office of Communications, UK communications regulator)",
+      "title": "UK Interface Requirement (IR) 2030 - Short Range Devices, published 7 April 2026",
+      "url": "https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir-2030.pdf",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "Statutory UK Radio Interface Requirement issued by Ofcom under the Wireless Telegraphy Act 2006 framework; the authoritative UK definition set for licence-exempt short range device categories.",
+      "locator": "Section 3 'Equipment Definitions': IR2030/1 Non-Specific Short-Range Device and IR2030/2 Industrial / Commercial Telemetry and Telecommand (printed p.3); IR2030/15 Inductive, IR2030/17 Reliable Alarm Devices, IR2030/18 Social Alarm Devices, IR2030/20 Alarms (printed p.5)",
+      "supportsRequirementSuffixes": [
+        "security-alarms-application-category-function::EXACT_FACT",
+        "wireless-control-systems-application-category-function::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-SBD-POLICE-HANDBOOK",
+      "publisher": "Secured by Design / Police Crime Prevention Initiatives (UK police-owned crime prevention initiative)",
+      "title": "The Police Crime Prevention Handbook - Home Security (Secured by Design handbook, June 2024 edition)",
+      "url": "https://hillington-pc.gov.uk/wp-content/uploads/2025/05/SBD-HANDBOOK-HOME-SECURITY-JUNE-24.pdf",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "Authored by Secured by Design, the official police security initiative owned by the UK police service (Police Crime Prevention Initiatives Ltd). PROVENANCE CAVEAT: the copy actually read was a mirror hosted on a UK parish council .gov.uk site, not on securedbydesign.com (which was not reached in this session); the document's own branding, content and June 2024 date were confirmed on reading.",
+      "locator": "Section 'Burglar alarms', printed page 15",
+      "supportsRequirementSuffixes": [
+        "security-alarms-application-category-function::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LITTELFUSE-THYRISTOR-APPNOTES",
+      "publisher": "Littelfuse, Inc. (Teccor brand Thyristors application-note compendium), copy hosted by Iowa State University, Department of Electrical and Computer Engineering (EE 330 course handouts)",
+      "title": "Teccor brand Thyristors Application Notes - AN1001 'Fundamental Characteristics of Thyristors' and AN1002 'Gating, Latching, and Holding of SCRs and Triacs' (c)2008 Littelfuse, Inc.",
+      "url": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Manufacturer application notes from Littelfuse/Teccor, an established thyristor manufacturer; the copy read is hosted as course material by Iowa State University's ECE department. Both the manufacturer origin and the academic host are stated on the document.",
+      "locator": "AN1001 'Fundamental Characteristics of Thyristors', section 'SCR - Basic Operation' (p.1); AN1001 thyristor terminology definitions (Holding Current (IH), Latching Current (IL)); AN1002 'Gating, Latching, and Holding of SCRs and Triacs', text beneath Figure AN1002.1 'SCR Current Flow' (p.7) and section 'Holding Current of SCRs and Triacs' (p.9)",
+      "supportsRequirementSuffixes": [
+        "security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
+        "security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-OSU-ECE322-BJT",
+      "publisher": "Oregon State University, School of Electrical Engineering and Computer Science",
+      "title": "ECE 322 Electronics I - Section 2: Bipolar Junction Transistors (course lecture slides, K. Webb)",
+      "url": "https://web.engr.oregonstate.edu/~webbky/ECE322_files/Section%202%20Bipolar%20Junction%20Transistors.pdf",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "University course teaching material hosted on Oregon State University's engineering faculty web space, authored and attributed to the course instructor (K. Webb).",
+      "locator": "Slide 13 'BJT Operating Regions'; slide 54 'Saturation/Cutoff Region Models'",
+      "supportsRequirementSuffixes": [
+        "security-alarm-transistor-switching::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-WNCS-SURVEY",
+      "publisher": "Pangun Park, Sinem Coleri Ergen, Carlo Fischione, Chenyang Lu, Karl Henrik Johansson (KTH Royal Institute of Technology, Koc University, Washington University in St. Louis); arXiv preprint of an IEEE Communications Surveys & Tutorials survey",
+      "title": "Wireless Network Design for Control Systems: A Survey (arXiv:1708.07353v1 [cs.SY], 24 Aug 2017)",
+      "url": "https://arxiv.org/pdf/1708.07353",
+      "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
+      "authorityRationale": "Peer-reviewed survey article authored by named academic researchers at established universities; read in its arXiv preprint form.",
+      "locator": "Abstract (p.1); Section II-C 'Building Automation' (p.3)",
+      "supportsRequirementSuffixes": [
+        "wireless-control-systems-application-category-function::EXACT_FACT",
+        "wireless-practical-advantages-applications::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-UKSI-2003-1904-USO",
+      "publisher": "The National Archives / legislation.gov.uk (UK Government)",
+      "title": "The Electronic Communications (Universal Service) Order 2003 (S.I. 2003 No. 1904)",
+      "url": "https://www.legislation.gov.uk/uksi/2003/1904/made?view=plain",
+      "authorityClass": "GOVERNMENT_OR_REGULATOR",
+      "authorityRationale": "UK statutory instrument published on the official UK legislation website.",
+      "locator": "Article 2 (Interpretation), definitions of 'publicly available telephone service' and 'public telephone network'; Schedule, paragraph 1(1) and 1(2)",
+      "supportsRequirementSuffixes": [
+        "telephones-application-category-function::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-BSI-EN50131-SERIES",
+      "publisher": "BSI (British Standards Institution)",
+      "title": "BS EN 50131 series landing page - Alarm systems. Intrusion and hold-up systems",
+      "url": "https://landingpage.bsigroup.com/LandingPage/Series?UPI=BS+EN+50131",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "Official BSI catalogue page for the British adoption of the EN 50131 European standard series for intrusion and hold-up alarm systems.",
+      "locator": "Series part listing (part numbers and full part titles). IMPORTANT LIMITATION: only the part titles were retrievable; no scope, clause or definition text was behind the paywall-free page, so this source is recorded as contextual corroboration only and is not treated as satisfying any acceptance criterion on its own.",
+      "supportsRequirementSuffixes": [
+        "security-alarms-application-category-function::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    }
+  ]
+}

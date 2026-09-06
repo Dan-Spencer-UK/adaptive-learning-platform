@@ -1,0 +1,532 @@
+{
+  "domain": "electronic-devices-and-applications",
+  "batch": "batch-06",
+  "selectedRequirementCount": 40,
+  "selectionNote": "40 requirements / 40 unique evidenceRequirementIds were taken from the frozen UNIT202-EVIDENCE-REQUIREMENT-PLAN.json (all with canonicalRequirementKey containing ::electronic-devices-and-applications::). Requirement metadata (mode, specification mode, coverage dimensions, permitted authority classes, requirement text) is copied MECHANICALLY from the frozen plan during assembly, never transcribed by hand, so it cannot drift. No requirement was added, removed, renamed, merged or reinterpreted.",
+  "sourceIsolationBoundary": {
+    "declaration": "This acquisition was conducted as fresh, independent public-source research. The following were NOT inspected or used as research leads, answer sources, or search-query seeds: the sealed historical Unit 202 source benchmark; historical Unit 202 source manifests or verification dossiers; pilot evidence-acquisition results or repair artifacts; pre-existing Unit 202 assertions or claim sets; existing lessons, storyboards or other instructional content; private course material; private calibration material; historical clean-room outputs (including the unit202-cleanroom CC-19R reports elsewhere in this repository, left untouched and unread); and reports/instructional-visuals (left untouched and unread).",
+    "accessedForStructuralPrecedentOnly": [
+      "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory/*.json (read only for output-format precedent, not for evidence)"
+    ]
+  },
+  "boundedResearchDiscipline": {
+    "maxCandidatesPerUnresolvedRequirement": 4,
+    "note": "No unresolved requirement bundle was pursued past four genuinely-evaluated candidates before an adequate source was accepted or an honest gap recorded. Blocked, paywalled and unreadable candidates were abandoned and logged rather than substituted with a search-summary or snippet as evidence."
+  },
+  "accessFailuresAndWorkarounds": [
+    {
+      "cluster": "B06-A",
+      "url": "https://www.britannica.com/technology/capacitor",
+      "issue": "HTTP 403 Forbidden - Encyclopaedia Britannica blocks the fetch tool entirely.",
+      "workaround": "Substituted Energy Education (University of Calgary) and HyperPhysics (Georgia State University) academic sources."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.britannica.com/technology/resistor",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Substituted Energy Education (University of Calgary) 'Resistor' and HyperPhysics 'Resistance and Resistivity'."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.britannica.com/technology/diode",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Substituted HyperPhysics 'The P-N Junction Diode' and Energy Education 'Diode'."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.britannica.com/technology/transistor",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Substituted Energy Education (University of Calgary) 'Transistor'."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.britannica.com/technology/rectifier",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Substituted Engineering LibreTexts (Fiore) section 3.2 'Rectification'."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-16",
+      "issue": "HTTP 403 Forbidden - IEC Electropedia (the online IEV) blocks the fetch tool, so no PRIMARY_NORMATIVE_OR_STANDARDS_BODY definitions could be obtained for any requirement in this cluster.",
+      "workaround": "None found. All twelve requirements are therefore evidenced from ACADEMIC_OR_RESEARCH_INSTITUTION, GOVERNMENT_OR_REGULATOR or AUTHORITATIVE_TECHNICAL_REFERENCE sources, all of which are within the permitted authority classes."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/capac.html",
+      "issue": "TLS error - 'Hostname/IP does not match certificate's altnames: Host: hyperphysics.phy-astr.gsu.edu is not in the cert's altnames: DNS:hyperphysics.gsu.edu'. The legacy HyperPhysics hostname no longer has a valid certificate.",
+      "workaround": "Refetched everything under the current hostname https://hyperphysics.gsu.edu/... which works."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://valenciacollege.edu/academics/departments/engineering/documents/understanding-the-resistor-color-code.pdf",
+      "issue": "PDF returned as compressed binary streams; the fetch tool could not extract text.",
+      "workaround": "Used HTML academic sources instead (Duke PrattWiki, UCF ECE lab manual, Grinnell College course notes)."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.tdk-electronics.tdk.com/download/531116/19643b7ea798d7c4670141a88cd993f9/pdf-general-technical-information.pdf",
+      "issue": "PDF returned as compressed binary streams; text not extractable.",
+      "workaround": "Used Murata HTML thermistor pages instead."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://product.tdk.com/en/techlibrary/productoverview/ntc-thermistor.html",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used Murata NTC thermistor overview page."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://product.tdk.com/en/techlibrary/productoverview/ptc-thermistor.html",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used Murata PTC thermistor basic-knowledge pages."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.murata.com/en-us/products/thermistor/ntc/overview/basic",
+      "issue": "Page returned section headings only ('What are NTC thermistors? And its principle of operation') with no body text rendered; the deeper sub-page URL guessed from it returned HTTP 404.",
+      "workaround": "Used the Murata NTC product overview page, which does carry a full definitional sentence."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.vishay.com/en/thermistors/ntc/",
+      "issue": "Page rendered as a product-catalogue filter table with no descriptive prose about the resistance-temperature relationship.",
+      "workaround": "Used Murata pages instead."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.sciencedirect.com/topics/engineering/photoresistors",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used Edinburgh Napier University component notes for the LDR."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.rp-photonics.com/photodiodes.html",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used the Centro Vision photodiode primer hosted at the University of San Diego."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=6076",
+      "issue": "Page fetched but returned only the 'Thorlabs' header - tutorial body is client-side rendered and did not reach the fetch tool.",
+      "workaround": "Used the Centro Vision photodiode primer instead."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.hamamatsu.com/eu/en/product/optical-sensors/photodiodes/si-photodiodes/what_is_a_si_photodiode.html",
+      "issue": "HTTP 403 Forbidden on the EU path; the equivalent /us/ path returned HTTP 404.",
+      "workaround": "Used the Centro Vision photodiode primer instead."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-3/rectifier-circuits/",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used the same Kuphaldt/Fiore open-textbook material via Engineering LibreTexts, which is reachable."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://energyeducation.ca/encyclopedia/Rectifier",
+      "issue": "HTTP 404 Not Found - no such article exists.",
+      "workaround": "Used Engineering LibreTexts (Fiore) 3.2 Rectification; Energy Education's 'Diode' article supplies corroborating AC-to-DC framing."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://energyeducation.ca/encyclopedia/Inverter",
+      "issue": "HTTP 404 Not Found - no such article exists.",
+      "workaround": "Used the US Department of Energy EERE inverters page."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://www.uspto.gov/web/offices/ac/ido/oeip/taf/def/363.htm",
+      "issue": "HTTP 404 Not Found.",
+      "workaround": "Not needed once the LibreTexts rectification section was obtained."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://hyperphysics.gsu.edu/hbase/Electronic/trans.html",
+      "issue": "HTTP 404 Not Found; the electronics concepts index page did not list a transistor-definition page either.",
+      "workaround": "Used Energy Education (University of Calgary) 'Transistor'."
+    },
+    {
+      "cluster": "B06-A",
+      "url": "https://hyperphysics.gsu.edu/hbase/electronic/rect.html and .../rectifier.html",
+      "issue": "HTTP 404 Not Found for both guessed filenames; the only reachable rectifier page (rectct.html, 'Center-Tap Full-Wave Rectifier') contained ripple-calculation material but no AC-to-DC definitional text.",
+      "workaround": "Used Engineering LibreTexts (Fiore) 3.2 Rectification."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform=&ievref=521-04-63",
+      "issue": "HTTP 403 Forbidden. Target was the IEC 60050 International Electrotechnical Vocabulary entry 521-04-63 'reverse blocking triode thyristor' (the IEV term for an SCR) - would have been the PRIMARY_NORMATIVE definition for the thyristor requirement.",
+      "workaround": "Fell back to Littelfuse Teccor AN1001/AN1002 (AUTHORITATIVE_TECHNICAL_REFERENCE) and HyperPhysics/Georgia State University (ACADEMIC_OR_RESEARCH_INSTITUTION). The normative IEV definition itself was NOT obtained and is not claimed."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform=&ievref=521-04-67",
+      "issue": "HTTP 403 Forbidden. Target was IEV entry 521-04-67 'bidirectional triode thyristor' (the IEV term for a TRIAC).",
+      "workaround": "Same fallback as above; the normative IEV definition was NOT obtained and is not claimed. The related IEV entry 521-04-66 'bidirectional diode thyristor' (DIAC) was not attempted separately because the same host was already returning 403."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "https://std.iec.ch/iec60617",
+      "issue": "HTTP 403 Forbidden. Target was the official IEC 60617 'Graphical symbols for diagrams' database - the normative symbol standard, and the direct parent of BS EN 60617 used in UK practice.",
+      "workaround": "Fell back to ANSI Y32.2-1975 / CSA Z99-1975 / IEEE Std 315-1975, an approved primary standards-body graphic-symbol standard whose Foreword states it was made compatible with IEC Publication 117. This is disclosed in the source's authorityRationale and in the conflicts for the symbol requirement: the normative IEC 60617 / BS EN 60617 text was NOT reachable and no symbol is claimed to be verified against it."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "https://www.jedec.org/standards-documents/dictionary/terms/thyristor-bidirectional-diode",
+      "issue": "HTTP 403 Forbidden. Target was the JEDEC dictionary definition of 'thyristor, bidirectional diode' (a standards-body definition of the DIAC device class).",
+      "workaround": "Not obtained; the DIAC requirement was satisfied from Littelfuse AN1001 and HyperPhysics instead. Note that Littelfuse AN1001's 'General Terminology' section states its terms conform to existing EIA-JEDEC standards, but the JEDEC text itself was not read and is not quoted."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "https://www.britannica.com/technology/thyristor",
+      "issue": "HTTP 403 Forbidden. Target was the Encyclopaedia Britannica article on thyristors (AUTHORITATIVE_TECHNICAL_REFERENCE).",
+      "workaround": "Not obtained; not needed, as the thyristor requirement was satisfied from Littelfuse AN1002 with HyperPhysics corroboration."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "https://www.littelfuse.com/assetdocs/thyristor-fundamental-characteristics-of-thyristors-application-note?assetguid=143cd979-ea0a-47e3-8766-b7d593f3ba72",
+      "issue": "HTTP 403 Forbidden on the manufacturer's own host for the Littelfuse Teccor thyristor application notes.",
+      "workaround": "The identical Littelfuse-branded, Littelfuse-copyrighted PDF (AN1001/AN1002/AN1004, (c)2008 Littelfuse, Inc., Littelfuse page footers throughout) was retrieved from an Iowa State University ECE course-handout directory at http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf and read in full (text extraction plus direct reading of pages 1-3 as images). The non-manufacturer host is disclosed on every affected source record."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/Electronic/diac.html",
+      "issue": "TLS failure - 'Hostname/IP does not match certificate's altnames: Host: hyperphysics.phy-astr.gsu.edu is not in the cert's altnames: DNS:hyperphysics.gsu.edu'.",
+      "workaround": "Refetched successfully at the certificate-matching host http://hyperphysics.gsu.edu/hbase/Electronic/diac.html - same Georgia State University HyperPhysics page."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "https://www.st.com/resource/en/application_note/an4363-how-to-select-the-triac-acs-or-acst-that-fits-your-application-stmicroelectronics.pdf",
+      "issue": "Fetch timed out (60000 ms exceeded). Target was an STMicroelectronics TRIAC selection application note.",
+      "workaround": "Not retried; the TRIAC requirement was already satisfied by Littelfuse AN1001/AN1002 plus HyperPhysics."
+    },
+    {
+      "cluster": "B06-B",
+      "url": "https://www.vishay.com/docs/28725/mrs25.pdf",
+      "issue": "HTTP 404 Not Found. Target was a Vishay metal-film axial resistor datasheet, intended to supply manufacturer evidence for axial resistor physical appearance and colour-band coding.",
+      "workaround": "No substitute retrieved within the bounded candidate limit; resistor physical appearance is recorded as an explicit gap on the appearance requirement."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.st.com/resource/en/application_note/an392-microcontrollers-and-triacbased-dimmers-stmicroelectronics.pdf",
+      "issue": "First attempt failed with read ECONNRESET; second attempt exceeded the 60000ms fetch timeout. Publisher-hosted copy of ST AN392 could not be opened.",
+      "workaround": "Retrieved the same application note (SGS-Thomson AN392, 'Microcontroller and Triacs on the 110/240V Mains', doc ref ANA392/09,92) from the RS Components document mirror at https://docs.rs-online.com/6723/0900766b800250bc.pdf and read pages 1/12-11/12 as PDF images. Provenance caveat recorded on SRC-ST-AN392-MCU-TRIAC-MAINS."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.st.com/resource/en/application_note/cd00003820-microcontrollers-and-triacbased-dimmers-stmicroelectronics.pdf",
+      "issue": "Exceeded the 60000ms fetch timeout (alternate ST document ID for the same note).",
+      "workaround": "Same as above; RS Components mirror used."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.learnabout-electronics.org/Downloads/Littelfuse_App_Note_AN1003.pdf.pdf",
+      "issue": "HTTP 429 Too Many Requests.",
+      "workaround": "Obtained Littelfuse/Teccor AN1003 from an alternative host and read it as PDF images. See next entry for the publisher attempt."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.littelfuse.com/assetdocs/phase-control-using-thyristors-application-note?assetguid=25e75e60-0ec6-4c68-8ae6-e2d5e01e59f0",
+      "issue": "HTTP 403 Forbidden. Publisher-hosted copy of AN1003 could not be opened.",
+      "workaround": "Retrieved AN1003 from a third-party rehost (kicad-info S3) and verified from the document's own front matter that it is the genuine Teccor Electronics / Littelfuse AN1003 (running head, Teccor footer and phone number, pagination 16-1 to 16-8). Provenance caveat recorded on SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.digikey.gr/en/pdf/l/littelfuse/lft-an1003",
+      "issue": "Returned only the DigiKey product-catalogue page shell (navigation and support links); the AN1003 document text was not present in the fetched HTML.",
+      "workaround": "Used the PDF host instead."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.britannica.com/technology/thermistor",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used Vishay application note 29053 and datasheet 29252 (manufacturer technical references, retrieved from vishay.com directly) for the thermistor sensing role instead."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.britannica.com/technology/rectifier",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Used onsemi Rectifier Applications Handbook HB214/D and the Georgia State University HyperPhysics 'Bridge Rectifier' page instead."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform=&ievref=551-12-07",
+      "issue": "HTTP 403 Forbidden (IEV 551-12-07 'rectifier'). The http:// variant of the same URL also returned HTTP 403.",
+      "workaround": "No workaround found. This is the principal reason the 'motor: bridge rectifier converts AC to DC' requirement is recorded PARTIAL rather than VERIFIED: an IEC 60050 normative definition would very likely have closed it in a single passage. A reviewer with IEC access should retrieve IEV 551-12-07."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.mouser.com/pdfdocs/Littelfuse_Triac_Quadrac_LEDDimming_appnote.pdf",
+      "issue": "read ECONNRESET on both attempts.",
+      "workaround": "Not required in the end; the dimmer application-category requirement was satisfied from ST AN392 and Littelfuse AN1003. Noted because it would have been the best source for modern LED-dimmer load compatibility, which remains a gap."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.mouser.com/pdfdocs/Littelfuse_Power_Thyristor_DataSheets.pdf",
+      "issue": "Exceeded the 60000ms fetch timeout.",
+      "workaround": "Not required in the end; the same application-category statements were obtained from AN1003 figure captions and ST AN392."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/Electronic/rectct.html",
+      "issue": "TLS failure: hostname/IP does not match the certificate's altnames (cert covers DNS:hyperphysics.gsu.edu only).",
+      "workaround": "Refetched via https://hyperphysics.gsu.edu/... which succeeded. All HyperPhysics content used was retrieved through the working hostname."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://hyperphysics.gsu.edu/hbase/Electronic/rectifier.html",
+      "issue": "HTTP 404 Not Found. Two further guessed HyperPhysics paths (rectha.html, diorec.html) also returned HTTP 404.",
+      "workaround": "The correct page, hbase/Electronic/rectbr.html ('Bridge Rectifier'), was located and read successfully."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.onsemi.com/products/discrete-power-modules/rectifiers",
+      "issue": "Page returned only navigation/header template markup; no rectifier definition or technical content present in the fetched HTML (client-rendered).",
+      "workaround": "Used the onsemi Rectifier Applications Handbook HB214/D instead, read as PDF images."
+    },
+    {
+      "cluster": "B06-C",
+      "url": "https://www.thierry-lequeu.fr/data/HB214.pdf",
+      "issue": "Not a failure but a handling note: the fetch tool could not extract text from the compressed PDF and returned only PDF stream markers.",
+      "workaround": "The tool saved the binary locally; the handbook's table of contents and Chapter 5 pages 91-92 were then read directly as PDF page images. The same PDF-image route was used for AN1003, ST AN392, Vishay 29053, Vishay 29252 and onsemi AND8116/D."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://www.britannica.com/technology/ringer-telephone",
+      "issue": "HTTP 403 Forbidden. This was the strongest candidate for an authoritative statement of the telephone ringer's series capacitor blocking d.c. and passing the a.c. ringing signal.",
+      "workaround": "Attempted ETSI ETS 300 001 (cited by SIN 351 for GB national requirements) - also 403. Attempted academic/standards searches restricted to ac.uk, edu, itu.int, etsi.org, nist.gov - no source stating the mechanism. Requirement recorded as PARTIAL with the mechanism explicitly unresolved."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://www.britannica.com/technology/security-and-protection-system",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Substituted the Secured by Design / Police Crime Prevention Handbook (June 2024) and Ofcom IR 2030 for the security-alarm application category."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-9471/",
+      "issue": "HTTP 403 Forbidden. UK Parliament research briefing 'The switch to digital landlines'.",
+      "workaround": "Used the Ofcom letter of 29 January 2026 and Ofcom consumer guidance instead; legacy PSTN framing reached VERIFIED without it."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://www.npsa.gov.uk/specialised-guidance/personal-safety-security-high-risk-individuals/home-security-systems",
+      "issue": "HTTP 403 Forbidden. NPSA (National Protective Security Authority) page defining an Intruder Alarm System.",
+      "workaround": "Substituted the Secured by Design / Police Crime Prevention Handbook."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://www.police.uk/cp/crime-prevention/protect-home-crime/keep-burglars-out-property/",
+      "issue": "HTTP 403 Forbidden.",
+      "workaround": "Substituted the Secured by Design / Police Crime Prevention Handbook PDF, which was readable."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://www.onsemi.com/download/application-notes/pdf/hbd855-d.pdf and https://www.onsemi.com/pub/Collateral/HBD855-D.PDF",
+      "issue": "Both URLs returned only the onsemi Technical Documentation navigation shell, not the 'Thyristor Theory and Design Considerations' handbook. This handbook was the best remaining candidate for an SCR alarm/sounder application circuit from a first-party manufacturer.",
+      "workaround": "Used the Littelfuse/Teccor application-note compendium hosted by Iowa State University for the latching/holding-current fact. Mirrors of the onsemi handbook were found on academia.edu, slideshare, scribd, docplayer and component-distributor sites but were rejected on provenance grounds. The alarm/sounder role remains unevidenced."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://www.etsi.org/deliver/etsi_i_ets/300001_300099/300001/02_60/ets_300001e02p.pdf",
+      "issue": "HTTP 403 Forbidden. ETS 300 001 is cited by SIN 351 itself (section 3.4 note and section 6.1) for the GB national analogue-attachment requirements, and its GB annex was the most likely normative home for the ringer/bell-capacitor arrangement.",
+      "workaround": "None found. Recorded as a gap against telephone-capacitor-ringer."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://landingpage.bsigroup.com/LandingPage/Series?UPI=BS+EN+50131",
+      "issue": "Page loaded but contains only series and part titles; the standard's scope, terms and definitions are behind the BSI paywall.",
+      "workaround": "Recorded as contextual corroboration only, explicitly not counted toward any acceptance criterion."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "http://www.lscollege.ac.in/sites/default/files/e-content/Silicon%20Controlled%20Rectifier%20(SCR),%20Lecture%20-%202,%20TDC%20Part%20-%20I,%20Paper%20-%20II,%20(Group%20-%20B),%20Chapter%20-%205,%20By%20-%20Dr.%20Niraj%20Kumar.pdf",
+      "issue": "TLS error: certificate could not be verified (WebFetch upgrades http to https).",
+      "workaround": "Tried arsdcollege.ac.in and hep.ucsb.edu alternatives; both also failed to connect."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "https://www.arsdcollege.ac.in/wp-content/uploads/2020/04/SCR-Applications-notes.pdf",
+      "issue": "connect ECONNREFUSED.",
+      "workaround": "None. Counted as one of the four bounded candidates for the SCR alarm application."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "http://hep.ucsb.edu/people/sburke/cms/SCR.pdf",
+      "issue": "connect ECONNREFUSED.",
+      "workaround": "None. Counted as one of the four bounded candidates for the SCR alarm application."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "http://web.eng.ucsd.edu/ece/groups/electromagnetics/Classes/ECE65Spring2012/FN-Notes/main/BJT.pdf",
+      "issue": "TLS error: unable to verify the first certificate.",
+      "workaround": "Substituted Oregon State University ECE 322 lecture slides, which were readable and gave a stronger amplifier-vs-switch contrast."
+    },
+    {
+      "cluster": "B06-D",
+      "url": "Multiple PDFs (SIN 351, IR 2030, Copper handbook, Ofcom letter, SBD handbook, thyristor notes, BJT slides, WNCS survey)",
+      "issue": "WebFetch could not read the PDF text layer for any of these and returned only a 'binary content' notice.",
+      "workaround": "Each PDF was saved locally by the fetch tool; text was recovered with pdftotext and, where the embedded font encoding was broken (SIN 351 in particular, whose extracted text was almost entirely unmapped glyphs), the pages were rendered and read as images. All SIN 351, IR 2030 and Copper handbook quotations in this file were verified against the rendered page images, not against the corrupt text layer."
+    }
+  ],
+  "clusterLogs": [
+    {
+      "cluster": "B06-A -- Passive and basic semiconductor component operating principles + resistor colour code",
+      "requirementCount": 12,
+      "requirementIds": [
+        "ER::provisional::unit202::electronic-devices-and-applications::4-band-resistor-colour-code::PROCEDURE_COVERAGE",
+        "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT"
+      ],
+      "notes": "SCOPE AND HONESTY NOTES.\n\n(1) Authority. IEC Electropedia (the online IEV) is hard-blocked (HTTP 403) from this environment and IEC 60062 itself is paywalled, so NO PRIMARY_NORMATIVE_OR_STANDARDS_BODY source was obtained for any requirement in this cluster. Every recorded passage was actually opened and read; nothing rests on a search snippet, title or URL. All sources used fall within each requirement's own permitted sourceAuthorityClasses.\n\n(2) Guardrail compliance, item by item. CAPACITOR - charge/energy storage is tied explicitly to two conductors separated by a dielectric and to the electric field between them ('This energy is stored in the electric field'); no vague 'stores electricity' claim. RESISTOR - 'slow down current' plus 'deliberately lose energy in the form of heat', with Ohm's law recorded under its stated condition ('If the resistance is constant over a considerable range of voltage') and with resistance noted as temperature dependent, so ideal linearity is not overclaimed. LDR - the direction is explicit in the source's own words: 'resistance decreases as light increases'. THERMISTOR - NTC and PTC are both evidenced and are recorded in OPPOSITE directions; because that required three separate Murata pages the status is PARTIAL with the compounding disclosed, and the PTC rise is preserved with its Curie-point scope rather than presented as a uniform rise. PHOTODIODE - both operating modes are recorded with their own qualifications (zero-bias/photovoltaic: linear, low noise, leakage almost eliminated; photoconductive/reverse-biased: high speed of response but higher leakage and noise); neither mode is presented as the whole story. LED - the forward-bias condition is retained verbatim. ZENER - regulation is scoped to reverse-bias breakdown throughout. DIODE - the source's own reverse-direction qualification ('the current will cease except for the small thermal current') is preserved instead of an absolute one-way-valve claim; no forward threshold voltage is claimed because no read source stated one. TRANSISTOR - the source's own framing (amplifier and switch, three doped regions, small base current controlling a larger collector-emitter current) is used, with no descent into bias design or device physics, and the BJT-specific scope of the terminal names is flagged. RECTIFIER - stated as AC-to-DC, with the source's honest 'pulsating DC waveform' qualification retained. INVERTER - the DC-to-AC conversion definition was obtained from the US DOE; no motor-drive-only framing was accepted or recorded.\n\n(3) The 4-band colour code has full procedural coverage: orientation, band 1 and 2 significant digits, band 3 multiplier, band 4 tolerance, the complete black-0-to-white-9 mapping, gold/silver as x0.1 and x0.01 multipliers and as +/-5% and +/-10% tolerances, and three independent worked examples, all read from three academic sources. Two divergent orientation cues were found and are recorded as a conflict rather than harmonised.\n\n(4) Provenance caveats deliberately left visible: the photodiode primer is manufacturer-authored (Centro Vision) though hosted on a University of San Diego academic web space; the Grinnell College colour-code page closely follows a widely reproduced vendor tutorial and is therefore treated as corroborating rather than primary.\n\n(5) No gaps were papered over and no evidence was invented. One requirement (thermistor) is PARTIAL; the remaining eleven are VERIFIED."
+    },
+    {
+      "cluster": "B06-B -- Thyristor family principles and component recognition (symbols and physical appearance)",
+      "requirementCount": 5,
+      "requirementIds": [
+        "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+        "ER::provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
+        "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT"
+      ],
+      "notes": "SCHEMATIC-SYMBOL COVERAGE (requirement 5, PARTIAL). Symbol evidence was obtained by directly reading page images of ANSI Y32.2-1975 / CSA Z99-1975 / IEEE Std 315-1975 (printed pages 27, 28, 42, 55, 56, 57, 58, 63, 74) plus page images of Littelfuse AN1001 (pages 1-3). COVERED with a named, directly-read graphic symbol (13 of 15 families): resistor (item 2.1.1); capacitor (2.2.1, polarized 2.2.2); diode (8.5.1); Zener/breakdown diode (8.5.6, 8.5.6.1 - note the standard does not use the word 'Zener'); photodiode (8.5.4, 8.5.4.1); LDR (2.1.13 'symmetrical photoconductive transducer (resistive)', cross-referenced from 8.7.2); thermistor (2.1.12, with +t / -t variants); transistor (8.6.1 PNP, 8.6.2 NPN); thyristor/SCR (8.6.12, 8.6.13, plus two-terminal 8.5.8; corroborated by Littelfuse Fig. AN1001.1); TRIAC (8.6.15 'Thyristor, bidirectional triode-type; triac; gated switch'; corroborated by Littelfuse Fig. AN1001.4); DIAC (8.5.6.4 'Bidirectional negative resistance breakdown diode; trigger diac' and 8.5.9 'Thyristor, bidirectional diode type; bi-switch'; corroborated by Littelfuse Fig. AN1001.9); rectifier (16.3, 16.3.1); bridge rectifier (16.3.3); relay (4.30, 4.30.1 basic, 4.30.2 with transfer contacts). NOT COVERED as a dedicated named graphic symbol (2 of 15 families): LED - the retrieved standard carries no symbol named 'light-emitting diode'; the nearest graphic is item 8.5.4.2 'Photoemissive type' (diode with arrows directed away), and the literal term appears only as the letter code 'LED' applied to the general lamp symbol 11.1.1 per NOTE 11.1.1B. INVERTER - represented only by the letter combination 'ST-INV Static inverter' placed inside the general circuit-element rectangle of item 16.1.1, with no dedicated symbol. IMPORTANT STANDARD-CURRENCY CAVEAT: the normative IEC 60617 / BS EN 60617 database was NOT reachable (HTTP 403 on both std.iec.ch and Electropedia). All symbol claims therefore trace to a 1975 ANSI/CSA/IEEE standard that states it was harmonised with IEC Publication 117; none is verified against the current BS EN 60617 text. PHYSICAL/PHOTO APPEARANCE COVERAGE (requirement 4, PARTIAL). COVERED: diode/rectifier diode (Vishay 1N4001-1N4007, doc 88503: DO-41 / DO-204AL molded epoxy axial body, 'Polarity: color band denotes cathode end'); aluminium electrolytic capacitor (Vishay 048 RML: radial leads, cylindrical aluminium case with pressure relief, insulated with a blue sleeve, case sizes 10x12 to 18x35 mm, marking list including 'Negative terminal identification', explicitly qualified by the source as applying 'where possible'); transistor (onsemi 2N3903/2N3904: TO-92 CASE 29 STYLE 1 with EMITTER/BASE/COLLECTOR pin callouts and a body MARKING DIAGRAM '2N 390x / YWWG'); thyristor family - SCR, TRIAC and DIAC - at PACKAGE-NAME level only (Littelfuse AN1004: TO-92, DO-15, TO-220, TO-218, with DO-35 also referenced). NOT COVERED by any retrieved appearance source: resistor (no evidence retrieved for axial colour-band appearance - the intended Vishay resistor datasheet returned HTTP 404), LED, Zener diode, photodiode, LDR, thermistor, bridge rectifier assembly, inverter, relay. NO PHOTOGRAPHS were retrieved for any component: all appearance evidence is manufacturer mechanical-data text, package-outline drawings and marking diagrams, and this is stated precisely rather than described as photographic. APPEARANCE-ALONE CAVEAT (evidenced, not asserted): the retrieved sources jointly demonstrate that package outline does not determine device family - onsemi supplies NPN bipolar transistors in TO-92 while Littelfuse lists TO-92 among the packages for its power thyristors - so identification depends on the printed type marking plus circuit context, not on physical appearance alone. TECHNICAL GUARDRAILS: SCR is evidenced as unidirectional ('unilateral device', 'allows current in only one direction') and latching (must exceed latching current IL to latch; remains on until anode-to-cathode current drops below holding current IH). TRIAC is evidenced as bidirectional ('control power bilaterally in an AC circuit', 'operates in both directions', single gate triggerable by either polarity) and is nowhere described as unidirectional. DIAC is evidenced as a two-terminal bidirectional device with NO gate that turns on by voltage breakover (VBO) and whose single major application is to trigger TRIACs; it is kept distinct from the TRIAC (which has a gate) and from plain diodes. No symbol, figure or photograph was generated, drawn or described from memory; every symbol claim traces to a specific numbered item on a page image actually read."
+    },
+    {
+      "cluster": "B06-C -- Dimmer, heating/boiler control and motor-control applications",
+      "requirementCount": 11,
+      "requirementIds": [
+        "ER::provisional::unit202::electronic-devices-and-applications::dimmer-basic-timing-control-delivered-power-relationship::RELATIONSHIP",
+        "ER::provisional::unit202::electronic-devices-and-applications::dimmer-diac-triggering::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::dimmer-triac-ac-switching-control::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::heating-thermistor-sensing-role::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::motor-controlled-electronic-switching-at-general-level-2-depth::EXACT_FACT"
+      ],
+      "notes": "SCOPE AND METHOD. Eleven requirements in cluster B06-C. Seven sources were opened and read in full-page form (not snippets): Littelfuse/Teccor AN1003, SGS-Thomson/ST AN392, Vishay AN 29053, Vishay NTCASCW78A datasheet, onsemi AND8116/D, onsemi HB214/D Rectifier Applications Handbook, and the Georgia State University HyperPhysics 'Bridge Rectifier' page. Every retrievedPassage in this file was transcribed from a page actually rendered and read during this session. No passage was taken from a search-result snippet, page title or URL. Where a fetch tool returned only PDF stream markers, the saved binary was read back as page images and the passages transcribed from those images; figure annotations and table cells are marked as such in the passage text rather than being presented as running prose.\n\nOUTCOME. VERIFIED 8, PARTIAL 3, GAP 0.\n\nTHE THREE HIGH-RISK 'EXACT' ITEMS. Two of the three PARTIALs are the exact-implementation requirements the brief flagged, and both are PARTIAL for the same structural reason rather than for want of searching. (1) 'Dimmer: exact RC timing implementation/component values.' Exact values WERE found, and are recorded verbatim, but they belong to four different named Littelfuse reference circuits (Figures 16.9, 16.11, 16.14, 16.15) that disagree with one another because they differ in supply voltage, load current, control range and hysteresis behaviour; and ST AN392's dimmer has no RC timing network at all because the timing is done in MCU firmware. The frozen requirement text names no figure and no circuit, so there is no way to test which, if any, of these is the intended one. (2) 'Heating: exact transistor/relay topology.' The only authoritative topology found is onsemi's generic discrete relay driver -- a bipolar transistor, two bias resistors and a free-wheeling diode -- which the source itself scopes to industrial and automotive applications and never connects to heating or boiler control. Notably, the authoritative heating circuits that were found (AN1003 Figures 16.13 and 16.23) are thyristor-switched, not relay-switched, so the generic relay evidence cannot even be assumed to be the right device family for this requirement. In both cases the specification ambiguity is recorded explicitly in the requirement's `conflicts` array as an item needing human adjudication, and the reason the generic evidence does not substitute for the exact claim is spelled out in `gaps`. Both requirements are marked acquisitionPriority OPTIONAL_CONTEXT in the source data, so descoping is a legitimate reviewer option. No topology or component value has been derived from generic component behaviour or from unsourced electronics knowledge anywhere in this file.\n\nThe third PARTIAL, 'Motor: bridge rectifier converts AC to DC', is a different and milder case: the evidence is complete and authoritative but is a disclosed compounding of three passages across two documents (onsemi HB214/D for 'the function of rectification is to convert alternating current to direct current' and for the four-diode full-wave bridge; HyperPhysics for the four-diode bridge independently; AN1003 for the motor application context). Per the status vocabulary supplied, disclosed compounding is PARTIAL. IEC Electropedia IEV 551-12-07 ('rectifier') would probably close this in one passage but returned HTTP 403 on every attempt.\n\nGUARDRAILS OBSERVED. Dimmer content is restricted to function and conceptual topology. No construction, installation or DIY mains wiring instructions were captured from any source; the component-value tables recorded are manufacturer design-reference data attached to published figures, and this is flagged in the relevant `gaps` so they are not presented to learners as build instructions. The TRIAC is recorded as a bidirectional AC switch and the DIAC as the bidirectional breakover trigger firing the TRIAC gate, exactly as the sources state. The timing-to-power relationship is recorded as the real phase-angle mechanism with the sources' own load-type qualification preserved -- AN1003 explicitly warns that incandescent lamps and motors change impedance with applied voltage and so do not follow the plotted relative-power curve precisely, and ST AN392 contrasts the dimmer's resistive load with the motor's inductive load. Thermistor evidence is recorded as NTC-specific throughout, with an explicit warning in `gaps` that PTC devices behave in the opposite direction and that no source read here licenses an unqualified claim about all thermistors. Motor switching is held at Level-2 depth: no PWM, no field-oriented control, no drive design. One retrieved academic paper (a four-quadrant reversible DC series motor drive using a class-E chopper) was read and then deliberately discarded as exceeding that depth boundary; this is recorded rather than silently dropped. Semiconductor physics, bias design detail, commutation dI/dt and dV/dt engineering and snubber design were all present in the sources and were all deliberately excluded.\n\nPROVENANCE HONESTY. Three of the seven sources (AN1003, ST AN392, onsemi HB214/D) were read from third-party mirrors because the publishers' own hosts returned 403, 429 or timeouts. In each case the retrieved document self-identifies through its own front matter, running heads, document reference numbers and page footers, and a provenance caveat asking for re-verification against the publisher copy is recorded on the source object. This is disclosed rather than glossed because a reviewer should not treat a mirrored copy as equivalent to a publisher-hosted one.\n\nCROSS-CUTTING GAP. No PRIMARY_NORMATIVE_OR_STANDARDS_BODY or GOVERNMENT_OR_REGULATOR source was successfully read for any requirement in this cluster: IEC Electropedia returned 403 throughout and no gov.uk document was opened. Every source used is an academic institution or an authoritative technical reference, both of which are within the permitted authority classes for these requirements, but it means the cluster is evidenced entirely from the semiconductor-device viewpoint rather than the UK electrical-installation viewpoint that Unit 202 sits in. This matters most for three requirements where the two viewpoints diverge substantively: 'Dimmer switches: application category/function' (device application vs installation accessory), 'Heating/boiler controls: application category/function' (electronic sensing and power switching vs the UK control set of programmer, room thermostat, cylinder thermostat, boiler interlock and TRVs), and 'Motor control: application category/function' (speed regulation by phase control vs starters, contactors and overload protection under BS EN 60947-4-1). Each of these is flagged in its own `gaps`. A reviewer should decide which reading the qualification intends before the content is written."
+    },
+    {
+      "cluster": "B06-D -- Security alarm, legacy PSTN telephone, and wireless-control applications",
+      "requirementCount": 12,
+      "requirementIds": [
+        "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::telephone-legacy-pstn-framing::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::telephone-master-secondary-socket-details::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::telephone-surge-protector::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
+        "ER::provisional::unit202::electronic-devices-and-applications::wireless-practical-advantages-applications::EXACT_FACT"
+      ],
+      "notes": "STATUS SUMMARY: 5 VERIFIED (security-alarms-application-category-function; telephone-legacy-pstn-framing; telephone-surge-protector; wireless-control-systems-application-category-function; wireless-practical-advantages-applications), 6 PARTIAL (security-alarm-scr-thyristor-latching-sounder-role; security-alarm-transistor-switching; telephone-capacitor-ringer; telephone-master-secondary-socket-details; telephone-resistor-line-testing; telephones-application-category-function), 1 GAP (security-alarm-exact-nc-contact-bias-topology). 11 sources actually opened and read; 12 access failures logged.\n\nRISK 1 - EXACT ALARM TOPOLOGY. Recorded as a GAP, deliberately. The frozen requirement text names no circuit, no figure and no source document, so there is no determinate topology to verify; that specification ambiguity is recorded as a conflict on the requirement itself and flagged as propagating to the SCR and transistor requirements that presuppose the same circuit. No topology was inferred, derived from generic alarm-circuit knowledge, or substituted from a 'typical example'. The generic NC-loop-plus-end-of-line-resistor pattern was found only on excluded sources (vendor blogs, installer marketing, DIY sites) and has not been recorded anywhere in this file. The SCR requirement is PARTIAL: its latching behaviour is fully evidenced from Littelfuse AN1001/AN1002 including the holding-current condition and persistence after gate removal, but NO read source states that an SCR keeps a sounder energised in a security alarm, so the sounder role is recorded as unevidenced and the compound claim must not be presented as sourced. The transistor requirement is likewise PARTIAL: the required framing (switch operating in saturation/cutoff, explicitly contrasted by the source with linear-amplifier operation) is verbatim-evidenced from Oregon State ECE 322, but nothing ties it to an alarm circuit.\n\nRISK 2 - LEGACY PSTN JURISDICTION. Every telephone claim is UK-specific and legacy-analogue-PSTN-specific, sourced from Openreach's own SIN 351 Issue 5.0 (August 2020, annual-reviewed September 2023) and the Openreach copper developer guide. No US RJ11 practice was used anywhere; no non-UK telephone source appears in this file. The era qualification is carried explicitly: Ofcom's 29 January 2026 letter establishes that BT plans to retire the PSTN by 31 January 2027 and addresses its recipients as 'Providers of legacy PSTN services', and this is recorded as an era/scope qualification on the socket, capacitor, resistor and surge-protector claims rather than presenting legacy wiring as current practice. Nothing has been generalised to VoIP or digital voice; Ofcom's statement that a digital landline plugs into the broadband router rather than the wall socket is recorded as the contrast.\n\nWHAT COULD BE AUTHORITATIVELY SOURCED ON LEGACY PSTN: the master socket contact assignment (SIN 351 Table 1); the extension-wiring IDC assignment and the fact that IDC 3 is the 'Shunt connection (Bell wire)' while the same connection is master socket contact 4 (Table 2, Notes 1-2); the presence, values and series connection of the 470 kilohm resistor and 1.8 microfarad capacitor across the A and B wires with the shunt taken from their centre point (Note 1); the presence of an over-voltage protection device across the A and B wires (Note 1); the ringing characteristics (40-100 V a.c. r.m.s. between A and B, 25 Hz +1/-5 Hz, cadences in Annex A); BS 6312 Part 1:1994 plug compatibility; Openreach's automatic line test regime and its exact test conditions (section 10, Table 7); and the physical master-vs-extension socket arrangement, non-star wiring, and cable specification (Copper handbook pp.4-6).\n\nWHAT COULD NOT BE AUTHORITATIVELY SOURCED: (a) the FUNCTION of the ring capacitor - no authoritative source states it blocks d.c. and passes the a.c. ringing current to the ringer; (b) the FUNCTION of the 470 kilohm resistor - no authoritative source states it is a test resistor enabling remote line testing; (c) the internals of a secondary/extension socket; (d) the term 'secondary socket' itself, which Openreach never uses (it says 'extension socket') - flagged as a terminology mismatch; (e) the widely repeated claim that master sockets have omitted the surge arrester since around 2012, which directly conflicts with the current SIN and is recorded as an unresolved currency conflict rather than harmonised.\n\nMETHOD NOTE: WebFetch could not read the text layer of any PDF in this session. Every PDF was recovered from the local copy the fetch tool saved, using pdftotext; where the embedded font encoding was corrupt - SIN 351 extracted as almost entirely unmapped glyphs - the pages were rendered and read as images. All SIN 351, Ofcom IR 2030, Ofcom letter and Openreach Copper handbook quotations were verified against rendered page images. Quotations reproduce the sources' own spacing anomalies (for example 'radiodevices', 'datafrom', 'functionality,at' in IR 2030) rather than silently correcting them."
+    }
+  ],
+  "stoppingRationale": "Research stopped at the evidence genuinely needed for each requirement's own acceptance criteria. For the four exact-topology/exact-value requirements, additional searching would not have helped: the obstacle is that the requirement does not identify its own subject, not that sources are scarce. Recurring access blockers were IEC Electropedia (403 on every attempt throughout the batch), Britannica (403), the BSI paywall for BS EN 50131, and manufacturer sites returning 403/429 -- several manufacturer application notes were consequently read from third-party university-hosted mirrors, with the host disclosed on every affected source record and a re-verify-before-publication caveat attached.",
+  "unresolvedGaps": [
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT",
+      "requirementText": "Dimmer: exact RC timing implementation/component values.",
+      "status": "PARTIAL",
+      "summary": "What is missing is authoritative evidence identifying the specific dimmer circuit the qualification content refers to. Until that circuit is identified (by figure reference, awarding-body specification extract, or the course's own source document), no external source can supply 'the exact' RC values."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT",
+      "requirementText": "Heating: exact transistor/relay topology.",
+      "status": "PARTIAL",
+      "summary": "What is missing is authoritative evidence of the exact transistor/relay arrangement in the specific heating circuit the qualification refers to: which transistor type and configuration (common-emitter low-side switch vs high-side vs Darlington), the exact base/bias resistor arrangement, whether the relay contacts switch the boiler/heating load directly or via a further contactor, and the exact protection components. None of this was found for a heating application."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT",
+      "requirementText": "Motor: bridge rectifier converts AC to DC.",
+      "status": "PARTIAL",
+      "summary": "DISCLOSED COMPOUNDING: no single retrieved passage states the complete claim 'in a motor application, a bridge rectifier converts AC to DC'. The claim is assembled from three passages in two documents: (a) onsemi HB214/D p.92 gives 'the function of rectification is to convert alternating current to direct current'; (b) onsemi HB214/D Table 16 p.91 and HyperPhysics identify the bridge as a four-diode full-wave rectifier circuit; (c) Littelfuse AN1003 p.16-5 places a rectifier bridge between the AC supply and a DC motor. Per the status vocabulary, a claim resting on disclosed compounding of more than one passage is PARTIAL, not VERIFIED."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "requirementText": "Physical/photo appearance recognition of each component.",
+      "status": "PARTIAL",
+      "summary": "BREADTH GAP. Retrieved physical-appearance / package / marking evidence covers only 4 of the 15 Unit 202 component families, and covers the thyristor family only at the level of package names: COVERED = diode / rectifier diode (DO-41 axial molded epoxy body, colour band denotes cathode - Vishay 88503); capacitor, specifically aluminium electrolytic (radial leads, cylindrical aluminium case with pressure relief, blue sleeve, negative terminal identification in the marking - Vishay 048 RML); transistor (TO-92 CASE 29 STYLE 1 with pin callouts and a body marking diagram - onsemi 2N3903/2N3904); thyristor (SCR), TRIAC and DIAC (package names TO-92, DO-15, TO-220, TO-218, DO-35 only - Littelfuse AN1004). NOT COVERED by any retrieved appearance source: resistor (no retrieved source for axial colour-band appearance or E-series body coding), LED, Zener diode, photodiode, LDR, thermistor, bridge rectifier assembly, inverter, relay."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
+      "requirementText": "Schematic-symbol recognition for each named AC6.2 component/device family at qualification depth.",
+      "status": "PARTIAL",
+      "summary": "13 of the 15 Unit 202 component families have a named, directly-read graphic symbol in the retrieved standard: resistor (2.1.1), capacitor (2.2.1 / 2.2.2), diode (8.5.1), Zener/breakdown diode (8.5.6 / 8.5.6.1), photodiode (8.5.4 / 8.5.4.1), LDR (2.1.13, via 8.7.2), thermistor (2.1.12), transistor (8.6.1 / 8.6.2), thyristor SCR (8.6.12 / 8.6.13, and 8.5.8), TRIAC (8.6.15), DIAC (8.5.6.4 and 8.5.9), rectifier including bridge rectifier (16.3, 16.3.1, 16.3.3), relay (4.30, 4.30.1, 4.30.2)."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
+      "requirementText": "Security alarm: exact NC/contact/bias topology.",
+      "status": "GAP",
+      "summary": "No authoritative source was found and read that states an exact normally-closed contact / bias topology for any specific, identified security alarm circuit. Nothing was recorded."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
+      "requirementText": "Security alarm: SCR/thyristor latching + sounder role.",
+      "status": "PARTIAL",
+      "summary": "The LATCHING half of the requirement is fully and explicitly supported, including the holding-current condition and the fact that latching persists after the gate signal is removed."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT",
+      "requirementText": "Security alarm: transistor switching.",
+      "status": "PARTIAL",
+      "summary": "The generic framing required by the guardrail - the transistor operating as a switch (saturated/off), NOT as a linear amplifier - is explicitly and verbatim supported, and the source itself makes the amplifier-vs-switch contrast."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+      "requirementText": "Telephone: capacitor -> ringer.",
+      "status": "PARTIAL",
+      "summary": "What IS evidenced: the existence, value (1.8 microfarad), series partner (470 kilohm resistor), connection point (across 'A' and 'B' wires) and Openreach's own naming of the resulting shunt as the 'Bell wire'; and separately that ringing is a 25 Hz alternating signal of 40-100 V a.c. r.m.s."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-master-secondary-socket-details::EXACT_FACT",
+      "requirementText": "Telephone: master/secondary socket details.",
+      "status": "PARTIAL",
+      "summary": "Status is PARTIAL because the full picture rests on a disclosed compounding of two separate Openreach documents (SIN 351 for the electrical/contact detail, the Copper handbook for the physical master-vs-extension arrangement)."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT",
+      "requirementText": "Telephone: resistor -> line testing.",
+      "status": "PARTIAL",
+      "summary": "The two halves of this requirement are each evidenced, but the CAUSAL LINK between them is not. SIN 351 establishes (a) that a 470 kilohm resistor exists in the master socket in that exact configuration, and (b) that Openreach runs automatic line test routines on the local line plant roughly every 24 hours, with specified test conditions. It nowhere states that the resistor is there in order to permit or support line testing."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
+      "requirementText": "Telephones: application category/function.",
+      "status": "PARTIAL",
+      "summary": "PARTIAL because the answer rests on a disclosed compounding of two sources, AND because both define the SERVICE and the NETWORK rather than the DEVICE. No read authoritative source gives a device-level definition of a telephone (an instrument for converting speech to an electrical signal and back, for two-way voice communication at a distance)."
+    },
+    {
+      "requirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
+      "requirementText": "Thermistor: basic operating principle.",
+      "status": "PARTIAL",
+      "summary": "COMPOUNDING DISCLOSED: no single read passage covers both NTC and PTC behaviour with their directions. The complete NTC-versus-PTC picture is assembled from three separate Murata pages — the NTC product overview for the NTC direction, the PTC 'about'/operating-principle page for the mechanism and the statement that PTC thermistors, like NTC thermistors, sense temperature via resistance change, and the PTC resistance-temperature page for the direction and its Curie-point scope. Status is therefore PARTIAL, not VERIFIED."
+    }
+  ],
+  "internalAuditPass": {
+    "performed": "Internal adversarial audit of Batch 06, conducted after assembly and before any Product Architect review.",
+    "authorityClassEnforcement": "Every cited candidate source was checked mechanically against its own requirement's frozen sourceAuthorityClasses. Batch 06 returned ZERO authority-class violations -- unlike Batch 05, every citation here already sat within its requirement's permitted classes.",
+    "exactTopologyDiscipline": "The four exact-topology/exact-value requirements (dimmer RC values, heating transistor/relay topology, security-alarm NC/bias topology, and by propagation the alarm SCR and transistor roles) were held to the rule that an EXACT requirement is only satisfied by a source stating that exact topology for the specific circuit in question. Generic manufacturer reference circuits were recorded as evidence of what IS authoritatively known, but were explicitly NOT presented as satisfying the exact requirement. The generic NC-loop alarm pattern found on vendor blogs, installer marketing and DIY sites was excluded entirely as outside the permitted authority classes and appears nowhere in the artifacts.",
+    "jurisdictionDiscipline": "All six telephone requirements are treated as UK legacy analogue PSTN specific. Jurisdiction and era qualifications are carried on every claim and into the learning points. Nothing is generalised to VoIP, digital voice or non-UK practice, and no US RJ11 material was used.",
+    "functionVersusPresence": "For the master-socket components, a distinction was enforced between what Openreach authoritatively establishes (that the components are present, their values, and how they are connected) and the widely repeated FUNCTIONAL attributions (capacitor passes ringing current to the ringer; 470 kohm resistor serves line testing). The functional attributions were NOT authoritatively evidenced and are excluded from taught content rather than assumed.",
+    "learningPointReadiness": "No learning point is marked READY over PARTIAL or GAP evidence; readiness is derived mechanically during generation. Four learning points (EDA-LP-19, -21, -25, and the held parts of others) deliberately carry NO taught content, so that unevidenced exact circuits do not contaminate the well-evidenced conceptual content they sit beside.",
+    "statusOfBatch": "Remains PROPOSED_FOR_PA_REVIEW and unfrozen. An internal audit is a progression gate, not acceptance, and confers no Product Architect approval."
+  }
+}
