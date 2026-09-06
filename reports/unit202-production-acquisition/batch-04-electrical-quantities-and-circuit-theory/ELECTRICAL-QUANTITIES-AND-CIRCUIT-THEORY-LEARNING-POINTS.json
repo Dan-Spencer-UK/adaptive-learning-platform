@@ -454,7 +454,7 @@
       "normalizedClaimRefs": [
         "SRC-ETW-POWERTRIANGLE: cos(phi)=P/S=power factor, dimensionless, distinct from power"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Definition, distinction, and both symbol facets combined into one learning point (the same single-comparison rationale as power and energy above). Scoped explicitly and narrowly to the sinusoidal displacement-power-factor case (cos phi) that the evidence source actually demonstrates -- distortion/harmonic power-factor components are not addressed by the evidence and are excluded as mastery content, per the guardrail against over-generalising cos phi to all waveforms.",
       "explicitExclusions": [
         "Power factor under non-sinusoidal/distorted waveforms (distortion power factor) -- out of scope at this depth and unsupported by the evidence",
@@ -465,12 +465,12 @@
         "State whether power factor has a unit.",
         "Explain why a power factor of 0.8 does not mean '0.8 watts'."
       ],
-      "evidenceReadinessNote": "[Narrowed, Stage 2 re-sourcing] Three of the four required dimensions are now resolved: DISTINCTION is directly evidenced by an explicit LibreTexts passage (\"power factor ... is a unitless quantity\"); QUANTITY_SYMBOL is now IEC-attested (IEV 131-11-46: symbol λ -- correcting the prior assumption of \"cos φ\"/\"p.f.\" as the general symbol; cos φ is the IEC-defined sinusoidal special case). ONE required dimension remains genuinely unresolved: UNIT_SYMBOL (power factor's formal \"no unit\"/dimensionless status) has no permitted-class source (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) that explicitly states it -- IEC's own power-factor entry is silent on unit (unlike sibling entries), and the only source that says it explicitly (LibreTexts) is not a permitted class for SYMBOL_OR_CONVENTION mode. This is recorded as a genuine, bounded, honestly-disclosed unresolved external blocker, not a fabricated closure -- see the evidence row's own gaps for the full disclosed reasoning attempted (including the BIPM general \"unit one\" principle, which is permitted-class but does not itself name power factor).",
+      "evidenceReadinessNote": "[Resolved, Stage D bounded acquisition, narrow correction pass] The genuinely final gap (power factor's UNIT_SYMBOL / dimensionless attestation) is now closed via IEC 60050's general \"factor\" entry (IEV 112-03-04), whose own Note 2 states \"a factor is a quantity of dimension one\" and explicitly names power factor among its examples -- a permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) source stating the fact directly, not an inference. All four required dimensions (DEFINITION, DISTINCTION, QUANTITY_SYMBOL, UNIT_SYMBOL) are now VERIFIED.",
       "underlyingEvidenceStatuses": {
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
-        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "SOURCE_GAP"
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
       },
       "curriculumRole": "REQUIRED_MASTERY",
       "requiredMasteryEvidenceRequirementIds": [
@@ -667,7 +667,7 @@
       "id": "EQCT-LP-12",
       "title": "Inductive reactance: meaning, unit, and distinction from inductance",
       "learnerOutcome": "The learner will be able to state what inductive reactance is, its unit (ohms), and explain how it differs from inductance itself.",
-      "knowledgeOrProcedure": "Inductive reactance (symbol XL) is the frequency-dependent opposition an inductor presents to alternating current, given conceptually by XL=2.pi.f.L -- it RISES as frequency rises (the opposite frequency behaviour to capacitive reactance). Unlike inductance (a fixed coil property, henries), inductive reactance is measured in ohms (the same unit symbol as resistance and capacitive reactance) and varies with both frequency and inductance. Inductance and inductive reactance are related but are not the same quantity, and do not share a unit (henry vs ohms).",
+      "knowledgeOrProcedure": "Inductive reactance (symbol XL) is the opposition an inductor presents to alternating current; in the ideal/basic-component model appropriate at this level, XL = 2*pi*f*L, so for a given inductance L, XL RISES as frequency f rises (the opposite frequency behaviour to capacitive reactance). Inductance (L) is treated at this level as a basic parameter of the component/circuit -- its own definition carries no frequency term -- while inductive reactance is explicitly the frequency-dependent AC opposition associated with that inductance; this is the ideal/basic-component model appropriate here, not a claim that a real inductor's inductance can never be affected by anything (e.g. core saturation in a real device) -- that further nuance is out of scope for this qualification. Inductive reactance is measured in ohms (the same unit symbol as resistance and capacitive reactance), not henries -- inductance and inductive reactance are related but are not the same quantity, and do not share a unit.",
       "prerequisiteLearningPointIds": [
         "EQCT-LP-11",
         "EQCT-LP-08"
@@ -695,7 +695,7 @@
         "Explain why an inductor presents more opposition to a higher-frequency AC signal (the opposite behaviour to a capacitor).",
         "State the unit in which inductive reactance is measured."
       ],
-      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] DISTINCTION is now VERIFIED via a disclosed valid multi-source composition of two separately-read IEC Electropedia entries (inductance IEV 131-12-19, containing no frequency term; reactance IEV 131-12-46, whose own formula X = ωL − 1/(ωC) contains an explicit angular-frequency multiplier on L) -- the frequency-independence-vs-dependence contrast follows deductively from IEC's own definitions read together, not from an unevidenced inference. QUANTITY_SYMBOL is re-sourced the same way as the sibling EQCT-LP-11 row (shared evidence requirement) -- see its disclosure re the X vs X_L convention. All required dimensions are VERIFIED.",
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] DISTINCTION is now VERIFIED via a disclosed valid multi-source composition of two separately-read IEC Electropedia entries (inductance IEV 131-12-19, containing no frequency term; reactance IEV 131-12-46, whose own formula X = ωL − 1/(ωC) contains an explicit angular-frequency multiplier on L) -- the frequency-independence-vs-dependence contrast follows deductively from IEC's own definitions read together, not from an unevidenced inference. QUANTITY_SYMBOL is re-sourced the same way as the sibling EQCT-LP-11 row (shared evidence requirement) -- see its disclosure re the X vs X_L convention. All required dimensions are VERIFIED. [Stage C wording-precision correction, narrow correction pass] Corrected 'a fixed coil property' to the same precise, ideal/basic-component-model qualification already used for the sibling EQCT-LP-11 (inductance itself), removing any implication that inductance is universally fixed for a real component under all conditions -- the genuinely evidenced claim is only that inductance's own IEC definition carries no frequency term, not that real inductance is frequency-independent under all real-world conditions (core saturation etc., explicitly out of scope).",
       "underlyingEvidenceStatuses": {
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
@@ -1008,8 +1008,7 @@
   ],
   "correctionNote": "Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIALLY_VERIFIED; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen.",
   "readinessCounts": {
-    "READY": 18,
-    "HELD_PENDING_EVIDENCE_CORRECTION": 1
+    "READY": 19
   },
   "curriculumRoleCounts": {
     "REQUIRED_MASTERY": 18,

@@ -21,14 +21,14 @@ Batches 01-03 are accepted and identity-frozen. Batches 04-06 have received the 
 
 ## Disposition totals -- WHOLE UNIT 202 (all six batches)
 
-- Evidence-status totals: {"VERIFIED":197,"SOURCE_GAP":2,"PARTIALLY_VERIFIED":9}
+- Evidence-status totals: {"VERIFIED":199,"SOURCE_GAP":1,"PARTIALLY_VERIFIED":8}
 - Requirement count: **213**
 - Structurally satisfied (integration targets, zero independent requirement): **2**
 - Retired out of scope (non-canonical exemplar detail): **3**
 
 ## Disposition totals -- BATCHES 04-06 ONLY (the batches this pass corrects; Batches 01-03 are frozen and excluded from this scope)
 
-- Evidence-status totals: {"VERIFIED":125,"SOURCE_GAP":2,"PARTIALLY_VERIFIED":9}
+- Evidence-status totals: {"VERIFIED":127,"SOURCE_GAP":1,"PARTIALLY_VERIFIED":8}
 - Requirement count: **141**
 - Structurally satisfied: **2**
 - Retired out of scope: **3**
@@ -38,34 +38,34 @@ Batches 01-03 are accepted and identity-frozen. Batches 04-06 have received the 
 - **batch-01 (foundational-mathematics)** -- FROZEN: 16 requirements, status {"VERIFIED":16}, structurally satisfied 0, retired 0
 - **batch-02 (electrical-fundamentals-and-safety)** -- FROZEN: 28 requirements, status {"VERIFIED":28}, structurally satisfied 0, retired 0
 - **batch-03 (mechanics-and-machines)** -- FROZEN: 28 requirements, status {"VERIFIED":28}, structurally satisfied 0, retired 0
-- **batch-04 (electrical-quantities-and-circuit-theory)** -- unfrozen, proposed: 57 requirements, status {"VERIFIED":56,"SOURCE_GAP":1}, structurally satisfied 0, retired 0
-- **batch-05 (electromagnetism-and-induction)** -- unfrozen, proposed: 44 requirements, status {"VERIFIED":39,"PARTIALLY_VERIFIED":2,"SOURCE_GAP":1}, structurally satisfied 2, retired 0
+- **batch-04 (electrical-quantities-and-circuit-theory)** -- unfrozen, proposed: 57 requirements, status {"VERIFIED":57}, structurally satisfied 0, retired 0
+- **batch-05 (electromagnetism-and-induction)** -- unfrozen, proposed: 44 requirements, status {"VERIFIED":40,"SOURCE_GAP":1,"PARTIALLY_VERIFIED":1}, structurally satisfied 2, retired 0
 - **batch-06 (electronic-devices-and-applications)** -- unfrozen, proposed: 40 requirements, status {"VERIFIED":30,"PARTIALLY_VERIFIED":7}, structurally satisfied 0, retired 3
 
 ## Learning points -- WHOLE UNIT 202 (all six batches)
 
 - Total: **133**
-- Readiness totals: {"READY":122,"HELD_PENDING_EVIDENCE_CORRECTION":6,"DEFERRED_CONTEXT_ONLY":3,"RETIRED_OUT_OF_SCOPE":2}
+- Readiness totals: {"READY":124,"DEFERRED_CONTEXT_ONLY":3,"HELD_PENDING_EVIDENCE_CORRECTION":4,"RETIRED_OUT_OF_SCOPE":2}
 - Curriculum-role totals (Batches 04-06 only carry this Stage-6 field): {"REQUIRED_MASTERY":59,"CONTEXTUAL_SUPPORT_ONLY":7,"MIXED_REQUIRED_AND_CONTEXT":4}
 
 ## Learning points -- BATCHES 04-06 ONLY
 
 - Total: **70**
-- Readiness totals: {"READY":59,"HELD_PENDING_EVIDENCE_CORRECTION":6,"DEFERRED_CONTEXT_ONLY":3,"RETIRED_OUT_OF_SCOPE":2}
+- Readiness totals: {"READY":61,"DEFERRED_CONTEXT_ONLY":3,"HELD_PENDING_EVIDENCE_CORRECTION":4,"RETIRED_OUT_OF_SCOPE":2}
 - Curriculum-role totals: {"REQUIRED_MASTERY":59,"CONTEXTUAL_SUPPORT_ONLY":7,"MIXED_REQUIRED_AND_CONTEXT":4} -- i.e. required-only, mixed and context-only learning points are reported separately here rather than as one undifferentiated "held" total; a context-only or mixed-but-context-facet gap does not by itself block core course production.
 
 - **batch-01**: 25 learning points, readiness {"READY":25}, curriculum role {}, identity status ACCEPTED_AND_FROZEN
 - **batch-02**: 20 learning points, readiness {"READY":20}, curriculum role {}, identity status ACCEPTED_AND_FROZEN
 - **batch-03**: 18 learning points, readiness {"READY":18}, curriculum role {}, identity status ACCEPTED_AND_FROZEN
-- **batch-04**: 19 learning points, readiness {"READY":18,"HELD_PENDING_EVIDENCE_CORRECTION":1}, curriculum role {"REQUIRED_MASTERY":18,"CONTEXTUAL_SUPPORT_ONLY":1}, identity status PROPOSED_FOR_PA_REVIEW
-- **batch-05**: 22 learning points, readiness {"READY":19,"DEFERRED_CONTEXT_ONLY":1,"HELD_PENDING_EVIDENCE_CORRECTION":2}, curriculum role {"REQUIRED_MASTERY":20,"CONTEXTUAL_SUPPORT_ONLY":2}, identity status PROPOSED_FOR_PA_REVIEW
+- **batch-04**: 19 learning points, readiness {"READY":19}, curriculum role {"REQUIRED_MASTERY":18,"CONTEXTUAL_SUPPORT_ONLY":1}, identity status PROPOSED_FOR_PA_REVIEW
+- **batch-05**: 22 learning points, readiness {"READY":20,"DEFERRED_CONTEXT_ONLY":1,"HELD_PENDING_EVIDENCE_CORRECTION":1}, curriculum role {"REQUIRED_MASTERY":20,"CONTEXTUAL_SUPPORT_ONLY":2}, identity status PROPOSED_FOR_PA_REVIEW
 - **batch-06**: 29 learning points, readiness {"READY":22,"HELD_PENDING_EVIDENCE_CORRECTION":3,"DEFERRED_CONTEXT_ONLY":2,"RETIRED_OUT_OF_SCOPE":2}, curriculum role {"REQUIRED_MASTERY":21,"CONTEXTUAL_SUPPORT_ONLY":4,"MIXED_REQUIRED_AND_CONTEXT":4}, identity status PROPOSED_FOR_PA_REVIEW
 
 ## Technical evidence vs. exemplar vs. asset dependencies (Stage 1.5 separation)
 
 Stage 1.5: technical-evidence readiness (verificationStatus), learning-point identity readiness (evidenceReadiness), representative-exemplar readiness (exemplarObjectIdentity / RETIRED_OUT_OF_SCOPE / TRANSFORMED_TO_EXEMPLAR disposition), and learner-facing visual/recognition-asset readiness (outstandingProductionDependencies) are tracked as four separate concerns, never conflated.
 
-Representative-exemplar production dependencies (learning points): batch-05::EMI-LP-17, batch-06::EDA-LP-25
+Representative-exemplar production dependencies (learning points): batch-06::EDA-LP-25
 
 Known asset gaps:
 - No photographic material for component physical-appearance recognition exists in Batch 06's evidence (component identity is accepted; photographs remain a LEARNER_FACING_VISUAL_ASSET production dependency, not a technical-evidence gap).
@@ -89,22 +89,22 @@ Known asset gaps:
 Stage 1/6 (2026-09-06 continuation pass): every number below is read directly from UNIT202-HELD-POINT-COMPLETION-LEDGER.json and cross-checked against the live learning-point readiness data above -- never hand-retyped. That ledger independently enumerated all 16 learning points HELD_PENDING_EVIDENCE_CORRECTION at the start of the pass (confirmed to exactly match the operator-supplied expected list) and records, for each, its curriculum role, why it was held, its resolution route (one of seven mandated categories), and its final disposition.
 
 - Total held at pass start: **16**
-- Resolved to READY: **8**
+- Resolved to READY: **10**
 - Reclassified DEFERRED_CONTEXT_ONLY (non-blocking): **2**
-- Remaining core release blockers: **6**
+- Remaining core release blockers: **4**
 
 | Learning point | Batch | Curriculum role | Before | After | Core blocker before | Core blocker after | Resolution route |
 |---|---|---|---|---|---|---|---|
 | `EQCT-LP-02` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | STRUCTURED_SATISFACTION_FROM_VERIFIED_REQUIREMENTS |
 | `EQCT-LP-05` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | TARGETED_EXTERNAL_EVIDENCE_ACQUISITION |
-| `EQCT-LP-07` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | HELD_PENDING_EVIDENCE_CORRECTION | yes | yes | UNRESOLVED_EXTERNAL_BLOCKER |
+| `EQCT-LP-07` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | TARGETED_EXTERNAL_EVIDENCE_ACQUISITION |
 | `EQCT-LP-08` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | TARGETED_EXTERNAL_EVIDENCE_ACQUISITION |
 | `EQCT-LP-09` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | TARGETED_EXTERNAL_EVIDENCE_ACQUISITION |
 | `EQCT-LP-11` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | TARGETED_EXTERNAL_EVIDENCE_ACQUISITION |
 | `EQCT-LP-12` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | VALID_MULTI_SOURCE_COMPOSITION |
 | `EQCT-LP-15` | batch-04 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | TARGETED_EXTERNAL_EVIDENCE_ACQUISITION |
 | `EMI-LP-16` | batch-05 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | HELD_PENDING_EVIDENCE_CORRECTION | yes | yes | UNRESOLVED_EXTERNAL_BLOCKER |
-| `EMI-LP-17` | batch-05 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | HELD_PENDING_EVIDENCE_CORRECTION | yes | yes | UNRESOLVED_EXTERNAL_BLOCKER |
+| `EMI-LP-17` | batch-05 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | READY | yes | no | VALID_MULTI_SOURCE_COMPOSITION |
 | `EDA-LP-16` | batch-06 | REQUIRED_MASTERY | HELD_PENDING_EVIDENCE_CORRECTION | HELD_PENDING_EVIDENCE_CORRECTION | yes | yes | UNRESOLVED_EXTERNAL_BLOCKER |
 | `EDA-LP-17` | batch-06 | CONTEXTUAL_SUPPORT_ONLY | HELD_PENDING_EVIDENCE_CORRECTION | DEFERRED_CONTEXT_ONLY | no | no | OPTIONAL_CONTEXT_DEFERRED_FROM_V1 |
 | `EDA-LP-25` | batch-06 | MIXED_REQUIRED_AND_CONTEXT | HELD_PENDING_EVIDENCE_CORRECTION | HELD_PENDING_EVIDENCE_CORRECTION | yes | yes | UNRESOLVED_EXTERNAL_BLOCKER |
@@ -116,18 +116,18 @@ Full detail (why held, resolution narrative, sources used) is in `reports/unit20
 
 ## Core release blockers vs. contextual deferrals
 
-- **Core release blocker count: 6** -- EQCT-LP-07, EMI-LP-16, EMI-LP-17, EDA-LP-16, EDA-LP-25, EDA-LP-28
+- **Core release blocker count: 4** -- EMI-LP-16, EDA-LP-16, EDA-LP-25, EDA-LP-28
 - **Contextual deferral count: 3** -- EMI-LP-03, EDA-LP-17, EDA-LP-27
 
 ## Product Architect freeze readiness
 
 **NOT YET READY**
 
-6 core release blocker(s) remain across Batches 04-06 (EQCT-LP-07, EMI-LP-16, EMI-LP-17, EDA-LP-16, EDA-LP-25, EDA-LP-28). Each is a required-mastery or mixed required/context learning point with a genuinely unresolved required facet after real, bounded, permitted-class-respecting acquisition attempts -- see heldPointCompletionLedger and each requirement's own EVIDENCE-RESULTS.json gaps for detail. Unit 202 is NOT yet a full freeze candidate while these remain; 3 additional learning point(s) are correctly excluded from this blocker count as non-blocking DEFERRED_CONTEXT_ONLY optional-context deferrals, not core gaps.
+4 core release blocker(s) remain across Batches 04-06 (EMI-LP-16, EDA-LP-16, EDA-LP-25, EDA-LP-28). Each is a required-mastery or mixed required/context learning point with a genuinely unresolved required facet after real, bounded, permitted-class-respecting acquisition attempts -- see heldPointCompletionLedger and each requirement's own EVIDENCE-RESULTS.json gaps for detail. Unit 202 is NOT yet a full freeze candidate while these remain; 3 additional learning point(s) are correctly excluded from this blocker count as non-blocking DEFERRED_CONTEXT_ONLY optional-context deferrals, not core gaps.
 
 ## Remaining genuine gaps
 
-See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail (every VERIFIED row has an empty `gaps` array -- resolved history lives in `disclosures`, genuine open items below). CORE (required-mastery) blockers remaining after this pass's re-sourcing (6 total, see coreReleaseBlockerLearningPointIds): EQCT-LP-07 (power factor's formal UNIT_SYMBOL/dimensionless attestation -- IEC's own entry is silent on unit; only a general BIPM "unit one" principle applies via disclosed inference, not a permitted-class statement naming power factor); EMI-LP-16 (Fleming's right-hand-rule finger mapping -- a confirmed-genuine Hughes textbook citation trail could not be rendered by available tooling); EMI-LP-17 (the coil's own standardised schematic-symbol geometry -- IEC 60617 login-gated; a real IEEE Std 315-1975/ANSI Y32.2-1975 lead's only located copy is truncated before the relevant page; note the single-loop generator diagram gap itself is now RESOLVED via DOE Handbook Module ES-07); EDA-LP-16 (2 of 15 AC6.2 families -- LED, inverter -- have no dedicated symbol in the retrieved 1975 standard, and 6 identities are confirmed by ID/name only, not geometry, in the current IEC 60617 database preview); EDA-LP-25 (the SCR-to-sounder alarm-specific application, already correctly isolated as the sole required facet and BLOCKED pending representative-exemplar authoring); EDA-LP-28 (the ringer capacitor's DC-block/AC-pass functional mechanism). OPTIONAL-CONTEXT-ONLY, non-blocking (DEFERRED_CONTEXT_ONLY, see contextualDeferralLearningPointIds): EDA-LP-17 (component physical-appearance recognition -- evidence covers only 4 of 15 families, no photographs); EDA-LP-27 (UK master/extension socket terminology and internals). Other non-blocking items: the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority).
+See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail (every VERIFIED row has an empty `gaps` array -- resolved history lives in `disclosures`, genuine open items below). CORE (required-mastery) blockers remaining after this pass's re-sourcing (4 total, see coreReleaseBlockerLearningPointIds): EQCT-LP-07 (power factor's formal UNIT_SYMBOL/dimensionless attestation -- IEC's own entry is silent on unit; only a general BIPM "unit one" principle applies via disclosed inference, not a permitted-class statement naming power factor); EMI-LP-16 (Fleming's right-hand-rule finger mapping -- a confirmed-genuine Hughes textbook citation trail could not be rendered by available tooling); EMI-LP-17 (the coil's own standardised schematic-symbol geometry -- IEC 60617 login-gated; a real IEEE Std 315-1975/ANSI Y32.2-1975 lead's only located copy is truncated before the relevant page; note the single-loop generator diagram gap itself is now RESOLVED via DOE Handbook Module ES-07); EDA-LP-16 (2 of 15 AC6.2 families -- LED, inverter -- have no dedicated symbol in the retrieved 1975 standard, and 6 identities are confirmed by ID/name only, not geometry, in the current IEC 60617 database preview); EDA-LP-25 (the SCR-to-sounder alarm-specific application, already correctly isolated as the sole required facet and BLOCKED pending representative-exemplar authoring); EDA-LP-28 (the ringer capacitor's DC-block/AC-pass functional mechanism). OPTIONAL-CONTEXT-ONLY, non-blocking (DEFERRED_CONTEXT_ONLY, see contextualDeferralLearningPointIds): EDA-LP-17 (component physical-appearance recognition -- evidence covers only 4 of 15 families, no photographs); EDA-LP-27 (UK master/extension socket terminology and internals). Other non-blocking items: the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority).
 
 ## Remaining Product Architect questions
 

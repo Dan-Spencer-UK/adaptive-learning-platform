@@ -4,7 +4,7 @@
 
 Learning point count: **19** (`EQCT-LP-01` through `EQCT-LP-19`).
 
-**Readiness:** 18 READY, 1 HELD_PENDING_EVIDENCE_CORRECTION. **Curriculum role:** 18 REQUIRED_MASTERY, 1 CONTEXTUAL_SUPPORT_ONLY.
+**Readiness:** 19 READY, 0 HELD_PENDING_EVIDENCE_CORRECTION. **Curriculum role:** 18 REQUIRED_MASTERY, 1 CONTEXTUAL_SUPPORT_ONLY.
 
 ## Instructional sequence
 
@@ -305,9 +305,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-07` -- Power factor: meaning, notation, dimensionless nature, and distinction from power
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note (internal audit pass):** Underlying power-factor::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement.
+**Evidence readiness note:** [Resolved, Stage D bounded acquisition, narrow correction pass] The genuinely final gap (power factor's UNIT_SYMBOL / dimensionless attestation) is now closed via IEC 60050's general "factor" entry (IEV 112-03-04), whose own Note 2 states "a factor is a quantity of dimension one" and explicitly names power factor among its examples -- a permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) source stating the fact directly, not an inference. All four required dimensions (DEFINITION, DISTINCTION, QUANTITY_SYMBOL, UNIT_SYMBOL) are now VERIFIED.
 
 **Learner outcome:** The learner will be able to state what power factor is, its conventional notation (cos phi / p.f.), that it is dimensionless with no unit, and explain how it differs from power.
 
@@ -486,11 +486,11 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** READY
 
-**Evidence readiness note (internal audit pass):** Underlying inductance::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch.
+**Evidence readiness note:** [Resolved, Stage 2 re-sourcing] DISTINCTION is now VERIFIED via a disclosed valid multi-source composition of two separately-read IEC Electropedia entries (inductance IEV 131-12-19, containing no frequency term; reactance IEV 131-12-46, whose own formula X = ωL − 1/(ωC) contains an explicit angular-frequency multiplier on L) -- the frequency-independence-vs-dependence contrast follows deductively from IEC's own definitions read together, not from an unevidenced inference. QUANTITY_SYMBOL is re-sourced the same way as the sibling EQCT-LP-11 row (shared evidence requirement) -- see its disclosure re the X vs X_L convention. All required dimensions are VERIFIED. [Stage C wording-precision correction, narrow correction pass] Corrected 'a fixed coil property' to the same precise, ideal/basic-component-model qualification already used for the sibling EQCT-LP-11 (inductance itself), removing any implication that inductance is universally fixed for a real component under all conditions -- the genuinely evidenced claim is only that inductance's own IEC definition carries no frequency term, not that real inductance is frequency-independent under all real-world conditions (core saturation etc., explicitly out of scope).
 
 **Learner outcome:** The learner will be able to state what inductive reactance is, its unit (ohms), and explain how it differs from inductance itself.
 
-**Knowledge / procedure:** Inductive reactance (symbol XL) is the frequency-dependent opposition an inductor presents to alternating current, given conceptually by XL=2.pi.f.L -- it RISES as frequency rises (the opposite frequency behaviour to capacitive reactance). Unlike inductance (a fixed coil property, henries), inductive reactance is measured in ohms (the same unit symbol as resistance and capacitive reactance) and varies with both frequency and inductance. Inductance and inductive reactance are related but are not the same quantity, and do not share a unit (henry vs ohms).
+**Knowledge / procedure:** Inductive reactance (symbol XL) is the opposition an inductor presents to alternating current; in the ideal/basic-component model appropriate at this level, XL = 2*pi*f*L, so for a given inductance L, XL RISES as frequency f rises (the opposite frequency behaviour to capacitive reactance). Inductance (L) is treated at this level as a basic parameter of the component/circuit -- its own definition carries no frequency term -- while inductive reactance is explicitly the frequency-dependent AC opposition associated with that inductance; this is the ideal/basic-component model appropriate here, not a claim that a real inductor's inductance can never be affected by anything (e.g. core saturation in a real device) -- that further nuance is out of scope for this qualification. Inductive reactance is measured in ohms (the same unit symbol as resistance and capacitive reactance), not henries -- inductance and inductive reactance are related but are not the same quantity, and do not share a unit.
 
 **Within-domain prerequisites:** `EQCT-LP-11`, `EQCT-LP-08`
 

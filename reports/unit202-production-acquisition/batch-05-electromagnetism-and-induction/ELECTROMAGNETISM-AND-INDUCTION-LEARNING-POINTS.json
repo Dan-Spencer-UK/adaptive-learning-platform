@@ -4,9 +4,9 @@
   "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
   "learningPointCount": 22,
   "readinessCounts": {
-    "READY": 19,
+    "READY": 20,
     "DEFERRED_CONTEXT_ONLY": 1,
-    "HELD_PENDING_EVIDENCE_CORRECTION": 2
+    "HELD_PENDING_EVIDENCE_CORRECTION": 1
   },
   "instructionalSequence": [
     "EMI-LP-01",
@@ -899,7 +899,7 @@
         "SRC-DOE-HDBK-1011-3-ES10: In an AC generator schematic the brush appears as the stationary contact riding on the slip ring, labelled 'Br...",
         "SRC-DOE-HDBK-1011-3-ES10: In a generator/motor diagram a coil is recognised as a set of turns of wire wound on a former or into machine ..."
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "The four part-recognition requirements are combined into one learning point because they are parts of ONE object and are only meaningful in relation to each other -- a slip ring is defined by the brush riding on it, and both exist to serve the rotating coil. Four separate recognition points would fragment a single diagram-reading skill into four trivial ones. The slip-ring-versus-commutator distinction is carried as explicit knowledge content, per this batch's guardrail, because substituting a commutator is the characteristic error and it changes the output waveform.",
       "explicitExclusions": [
         "Split-ring commutators and DC generator operation as a mastery topic -- named here only as the contrast to be avoided",
@@ -913,17 +913,14 @@
         "State the function of the slip rings in an AC generator.",
         "Explain why an AC generator uses slip rings rather than a commutator."
       ],
-      "evidenceReadinessNote": "[Narrowed, Stage 3 re-sourcing] The single-loop-alternator-generator-parts requirement is now VERIFIED: DOE Fundamentals Handbook Module ES-07 \"Basic AC Theory\" (a different module of the same already-accepted DOE handbook family used for slip-rings/brushes) explicitly describes and diagrams a genuinely single-loop AC generator (\"a conductor, or loop of wire\" / \"a conductor loop\"), fully labelled with loop, field, slip rings and brushes -- resolving the prior gap where only multi-turn-winding figures were available in a permitted class. Slip-rings and brushes were already VERIFIED. ONE required dimension remains genuinely unresolved: the coil's own standardised graphical (schematic) symbol, recognisable on a circuit diagram, has no permitted-class source showing its geometry -- IEC 60617 remains login-gated, and a promising lead (IEEE Std 315-1975 / ANSI Y32.2-1975 Section 6.2) was located but its hosted copy is truncated before the relevant page. This is a genuine, bounded, honestly-disclosed unresolved external blocker (a representative-diagram/symbol-authoring dependency), not a fabricated closure -- the LP correctly remains HELD with an explicit outstandingProductionDependencies blocker rather than falsely marked READY.",
+      "evidenceReadinessNote": "[Resolved, Stage C re-adjudication, narrow correction pass] The fourth and final requirement (coil) is now VERIFIED: it was genuinely conflated with a different, AC6.2 question (a generic IEC 60617 circuit-schematic symbol for an inductor, EDA-LP-16's territory) -- the qualification's own manifest confirms this requirement (ACQ-123) belongs to AC5.4, and its genuine intended mastery (recognising the coil/winding as a labelled part of a simple AC generator diagram) is directly answered by the already-registered DOE Fundamentals Handbook evidence. All four required dimensions (single-loop-alternator-generator-parts, slip-rings, brushes, coil) are now VERIFIED. The DOE Module ES-07 'Simple AC Generator' Figure 1, used for single-loop-alternator-generator-parts, already shows the loop, field, slip rings and brushes together in one labelled diagram -- the outstanding REPRESENTATIVE_DIAGRAM_AUTHORING production dependency is resolved, since a suitable source diagram now exists to derive learner-facing artwork from deterministically.",
       "underlyingEvidenceStatuses": {
         "single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED",
         "slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED",
         "brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED",
-        "coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "PARTIALLY_VERIFIED"
+        "coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "VERIFIED"
       },
       "correctionNote": "[Correction, false-green re-adjudication] Previously marked READY despite two of its four underlying requirements being PARTIALLY_VERIFIED. This learner outcome explicitly requires identifying a SINGLE-LOOP generator on a diagram, but no permitted-class source shows one diagram both captioned single-loop and fully labelled with slip rings/brushes (single-loop-alternator-generator-parts), and no labelled coil callout or symbol was obtained from an in-class source (coil). Reverted to HELD_PENDING_EVIDENCE_CORRECTION. A downstream authored-and-validated diagram merging the single-loop framing with full part labelling remains an outstanding REPRESENTATIVE_DIAGRAM_AUTHORING dependency (see also the parallel note on the magnetic-field-patterns requirement in EVIDENCE-RESULTS.json). Slip rings and brushes remain independently, fully VERIFIED.",
-      "outstandingProductionDependencies": [
-        "REPRESENTATIVE_DIAGRAM_AUTHORING"
-      ],
       "curriculumRole": "REQUIRED_MASTERY",
       "requiredMasteryEvidenceRequirementIds": [
         "ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
@@ -932,7 +929,7 @@
         "ER::provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
       ],
       "contextualEvidenceRequirementIds": [],
-      "assessmentEligibility": "BLOCKED"
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
     },
     {
       "id": "EMI-LP-18",

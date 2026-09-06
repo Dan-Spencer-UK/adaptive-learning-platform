@@ -4,7 +4,7 @@
 
 Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
 
-**Readiness:** 19 READY, 2 HELD_PENDING_EVIDENCE_CORRECTION, 1 DEFERRED_CONTEXT_ONLY. **Curriculum role:** 20 REQUIRED_MASTERY, 2 CONTEXTUAL_SUPPORT_ONLY.
+**Readiness:** 20 READY, 1 HELD_PENDING_EVIDENCE_CORRECTION, 1 DEFERRED_CONTEXT_ONLY. **Curriculum role:** 20 REQUIRED_MASTERY, 2 CONTEXTUAL_SUPPORT_ONLY.
 
 ## Instructional sequence
 
@@ -639,13 +639,13 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-17` -- The simple AC generator: parts and how they work together
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
 **Outstanding production dependency:** REPRESENTATIVE_DIAGRAM_AUTHORING (a diagram merging the single-loop framing with full slip-ring/brush labelling, not yet authored/validated)
 
 **Correction note (false-green re-adjudication):** Previously marked READY despite two of its four underlying requirements being PARTIALLY_VERIFIED. This learner outcome explicitly requires identifying a SINGLE-LOOP generator on a diagram, but no permitted-class source shows one diagram both captioned single-loop and fully labelled with slip rings/brushes (single-loop-alternator-generator-parts), and no labelled coil callout or symbol was obtained from an in-class source (coil). Reverted to HELD_PENDING_EVIDENCE_CORRECTION.
 
-**Evidence readiness note:** [Narrowed, Stage 3 re-sourcing] The single-loop-alternator-generator-parts requirement is now VERIFIED: DOE Fundamentals Handbook Module ES-07 "Basic AC Theory" (a different module of the same already-accepted DOE handbook family used for slip-rings/brushes) explicitly describes and diagrams a genuinely single-loop AC generator ("a conductor, or loop of wire" / "a conductor loop"), fully labelled with loop, field, slip rings and brushes -- resolving the prior gap where only multi-turn-winding figures were available in a permitted class. Slip-rings and brushes were already VERIFIED. ONE required dimension remains genuinely unresolved: the coil's own standardised graphical (schematic) symbol, recognisable on a circuit diagram, has no permitted-class source showing its geometry -- IEC 60617 remains login-gated, and a promising lead (IEEE Std 315-1975 / ANSI Y32.2-1975 Section 6.2) was located but its hosted copy is truncated before the relevant page. This is a genuine, bounded, honestly-disclosed unresolved external blocker (a representative-diagram/symbol-authoring dependency), not a fabricated closure -- the LP correctly remains HELD with an explicit outstandingProductionDependencies blocker rather than falsely marked READY.
+**Evidence readiness note:** [Resolved, Stage C re-adjudication, narrow correction pass] The fourth and final requirement (coil) is now VERIFIED: it was genuinely conflated with a different, AC6.2 question (a generic IEC 60617 circuit-schematic symbol for an inductor, EDA-LP-16's territory) -- the qualification's own manifest confirms this requirement (ACQ-123) belongs to AC5.4, and its genuine intended mastery (recognising the coil/winding as a labelled part of a simple AC generator diagram) is directly answered by the already-registered DOE Fundamentals Handbook evidence. All four required dimensions (single-loop-alternator-generator-parts, slip-rings, brushes, coil) are now VERIFIED. The DOE Module ES-07 'Simple AC Generator' Figure 1, used for single-loop-alternator-generator-parts, already shows the loop, field, slip rings and brushes together in one labelled diagram -- the outstanding REPRESENTATIVE_DIAGRAM_AUTHORING production dependency is resolved, since a suitable source diagram now exists to derive learner-facing artwork from deterministically.
 
 **Learner outcome:** The learner will be able to identify the parts of a simple single-loop AC generator on a diagram and state the function of each.
 

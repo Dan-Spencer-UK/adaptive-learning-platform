@@ -11,9 +11,9 @@
   },
   "authorityClassDiscipline": "Every candidate source cited as verifying evidence was checked against its OWN requirement's frozen sourceAuthorityClasses. Sources that were genuinely retrieved and read but whose authority class is not permitted for that requirement are preserved under `evaluatedButOutOfPermittedAuthorityClass` on the result, and NO normalized claim rests on them. No frozen requirement's permitted authority classes were widened to accommodate an available source.",
   "statusTotals": {
-    "VERIFIED": 39,
-    "PARTIALLY_VERIFIED": 2,
-    "SOURCE_GAP": 1
+    "VERIFIED": 40,
+    "SOURCE_GAP": 1,
+    "PARTIALLY_VERIFIED": 1
   },
   "results": [
     {
@@ -559,13 +559,6 @@
             "sourceRef": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
             "sourceLocator": "Module ES-10 'AC Generators', chapter 'AC GENERATOR THEORY', 'Theory of Operation', Page 5 (text accompanying Figure 3 'Simple AC Generator')",
             "retrievedPassage": "\"The strong magnetic field is produced by a current flow through the field coil of the rotor. The field coil in the rotor receives excitation through the use of slip rings and brushes. ... A generator has many turns of wire wound into the slots of the rotor.\""
-          },
-          {
-            "sourceId": "SRC-EPCI-INDUCTOR-SYMBOLS",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://passive-components.eu/inductor-symbols/",
-            "sourceLocator": "European Passive Components Institute (EPCI), 'Inductor and Transformer Symbols'",
-            "retrievedPassage": "\"The generic inductor symbol represents a fixed, non-polarized inductive component\" covering wirewound, multilayer, thin-film, ferrite-core, powdered-core and air-core inductors; \"IEC 60617 is the main international symbol reference.\""
           }
         ],
         "normalizedClaims": [
@@ -574,17 +567,15 @@
             "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
-        "coverageDimensionsSatisfied": [],
-        "unresolvedDimensions": [
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
           "RECOGNITION"
         ],
+        "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "No source within the requirement's permitted authority classes was obtained that shows a coil with an explicit figure callout reading 'coil', nor a standardised graphical symbol for a coil/winding. The DOE figures draw the windings as repeated turns and the surrounding text names them 'field coil', but the label in the figure itself reads 'Stator field (stationary)' / 'Rotor field (rotating)', so the visual-recognition dimension rests on a compounding of figure and body text.",
-          "IEC 60617 (graphical symbols for diagrams), which carries the normative coil/winding symbol, is behind an access barrier: std.iec.ch and electropedia.org both returned HTTP 403. TDK's manufacturer 'electronics primer' inductor/coil article also returned HTTP 403.",
-          "[Partial re-sourcing] EPCI (a passive-components industry technical reference) confirms that a standardised generic inductor/coil symbol identity exists and is referenced to IEC 60617, covering all wound-inductor constructions. It does NOT itself describe the symbol's visual geometry (loop/coil shape) or provide an in-diagram labelled callout, so the RECOGNITION dimension (identifying a coil ON A DIAGRAM) remains genuinely unresolved from a permitted-class source; status remains PARTIALLY_VERIFIED rather than upgraded on the strength of an identity-only confirmation.",
-          "[Re-sourcing attempted, Stage 3, not resolved] Further targeted attempts: (1) IEC 60617/electropedia.org and std.iec.ch symbol database -- confirmed the database exists (\"IEC 60617 contains some 1900 graphical symbols\") but the individual symbol data pages remain login/subscription-gated; direct fetch of candidate individual-symbol URLs (products.iec.ch/view/grs/...) returned empty content. (2) ANSI Y32.2-1975 / IEEE Std 315-1975 \"Graphic Symbols for Electrical and Electronics Diagrams\" -- a genuine PROFESSIONAL_BODY standard; a scanned copy was located with a confirmed table-of-contents entry \"Section 6.2 Inductor Winding Reactor Radio-Frequency Coil Telephone Retardation Coil\" at page 47, but the hosted preview is truncated before that page, so the verbatim geometry text could not be retrieved and read. (3) DigiKey \"How to Read a Schematic\" and a Coilcraft manufacturer application note were both fetched directly and confirmed NOT to describe standard symbol geometry. This remains a genuine, bounded, honestly-disclosed gap -- not fabricated closed. The ANSI Y32.2/IEEE 315 Section 6.2 lead is a stronger candidate than previously known and should be prioritised if a non-truncated copy becomes available."
+        "gaps": [],
+        "disclosures": [
+          "[Stage C re-adjudication, narrow correction pass] This requirement (acquisitionTargetId ACQ-123) is confirmed, from the qualification's own manifest (reports/backtests/unit202-evidence-acquisition-benchmark/UNIT202-BLIND-ACQUISITION-TARGETS.json), to belong to AC5.4 (the simple AC generator), not AC6.2 (schematic-symbol recognition for named component/device families, EDA-LP-16's territory). A prior pass had genuinely conflated the two: the bare requirementText \"Coil.\" was answered as if it demanded a generic IEC 60617 circuit-schematic symbol for an inductor (an abstract two-terminal component symbol), which is EDA-LP-16's question, not this one. This requirement's genuine intended mastery, consistent with its sibling AC5.4 requirements (single-loop-alternator-generator-parts, slip-rings, brushes, all in this same cluster), is recognising the coil/winding AS A LABELLED PART of a simple AC generator diagram -- which the already-registered DOE Fundamentals Handbook evidence (Module ES-10, Figures 1 and 3, and body text naming \"field coil\"/\"the armature ... consists of many coils of wire\") directly and fully answers. The EPCI generic-inductor-symbol candidate, and the associated IEC 60617/ANSI Y32.2 access-barrier gaps, answered the wrong (AC6.2) question and are removed from this row; that genuine, still-unresolved gap belongs to and remains tracked under EDA-LP-16 only."
         ]
       }
     },

@@ -10,8 +10,7 @@
     "SOURCE_GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
   },
   "statusTotals": {
-    "VERIFIED": 56,
-    "SOURCE_GAP": 1
+    "VERIFIED": 57
   },
   "reusedFromBatch01": [],
   "reusedFromBatch02": [
@@ -1563,18 +1562,28 @@
             "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-11-46",
             "sourceLocator": "IEC Electropedia, IEV 131-11-46 \"power factor\"",
             "retrievedPassage": "Full entry read (Area, IEV reference, Symbol, English/French term, definition, notes, translations). The entry carries NO \"coherent SI unit\" statement of any kind -- unlike, e.g., the frequency (103-06-02), capacitance (131-12-13) and inductance (131-12-19) entries, each of which explicitly states its own coherent SI unit. Power factor's entry is simply silent on unit."
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-112-03-04",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=112-03-04",
+            "sourceLocator": "IEC Electropedia, IEV 112-03-04 \"factor\", Note 2",
+            "retrievedPassage": "Definition: \"ratio of two quantities, used as a multiplier to express the proportionality equation between them.\" Note 2: \"A factor is a quantity of dimension one\", with examples explicitly including \"coupling factor, quality factor, peak factor, and power factor.\""
           }
         ],
-        "normalizedClaims": [],
-        "verificationStatus": "SOURCE_GAP",
-        "coverageDimensionsSatisfied": [],
-        "unresolvedDimensions": [
+        "normalizedClaims": [
+          {
+            "claimText": "IEC 60050 explicitly and by name classifies power factor as \"a quantity of dimension one\" (IEC's formal term for dimensionless) -- power factor therefore carries no unit symbol (the coherent SI \"unit one\", conventionally not written, per the general BIPM SI Brochure principle already registered in this batch).",
+            "sourceId": "SRC-IEC-IEV-112-03-04"
+          }
+        ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
           "UNIT_SYMBOL"
         ],
+        "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 2 re-sourcing attempted, genuinely NOT resolved] No source within this requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) was found that explicitly states power factor is unitless/dimensionless/carries the unit one. IEC Electropedia's own dedicated power-factor entry (IEV 131-11-46) is silent on unit -- it states a symbol (λ) but, unlike sibling IEV entries for other quantities in this batch, gives no \"coherent SI unit\" note at all; this silence is suggestive but is not itself a positive statement. The BIPM SI Brochure (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, already registered in this batch) states the general principle that \"there are quantities with the unit one, symbol 1, that are ratios of two quantities of the same kind ... when expressing the values of quantities with the unit one, the unit symbol 1 is not written\" -- power factor (λ=|P|/S, a ratio of two power-dimensioned quantities) fits this general rule, but BIPM does not itself name power factor as an example, so applying the rule to power factor is a disclosed inference from a permitted-class source, not a directly retrieved statement about power factor specifically. A directly-worded permitted-class statement (e.g. IEEE Std 100, an ISO 80000-6 clause, or an IEC 60050 unit note on a revised power-factor entry) was searched for and not found in this pass. LibreTexts explicitly states \"power factor ... is a unitless quantity\" but AUTHORITATIVE_EDUCATIONAL_REFERENCE is not a permitted class for this SYMBOL_OR_CONVENTION-mode requirement. This remains a genuine, bounded, honestly-disclosed residual gap -- not fabricated closed."
-        ],
+        "gaps": [],
         "evaluatedButOutOfPermittedAuthorityClass": [
           {
             "sourceId": "SRC-ETW-POWERTRIANGLE",
@@ -1586,7 +1595,8 @@
           }
         ],
         "disclosures": [
-          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-POWERTRIANGLE. No permitted-class claim remains; this row is genuinely re-adjudicated as SOURCE_GAP, not fabricated closed."
+          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-POWERTRIANGLE. No permitted-class claim remains; this row is genuinely re-adjudicated as SOURCE_GAP, not fabricated closed.",
+          "[Stage D bounded acquisition, narrow correction pass] Genuinely resolved via a permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) source that directly and explicitly names power factor: IEC 60050's general entry for \"factor\" (IEV 112-03-04) states in its own Note 2 that \"a factor is a quantity of dimension one\", explicitly listing power factor by name among its examples (alongside coupling factor, quality factor, peak factor). This closes the prior genuine gap (IEC's dedicated power-factor entry, IEV 131-11-46, is itself silent on unit) without inference, without widening any authority policy, and without altering this requirement's mode/dimension -- the requirement genuinely IS answerable, and the answer is \"no unit (dimension one)\", not a missing printed symbol."
         ]
       }
     },
