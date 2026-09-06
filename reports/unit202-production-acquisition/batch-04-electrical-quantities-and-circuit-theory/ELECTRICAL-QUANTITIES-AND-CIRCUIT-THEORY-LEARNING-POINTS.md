@@ -4,7 +4,7 @@
 
 Learning point count: **19** (`EQCT-LP-01` through `EQCT-LP-19`).
 
-**Readiness:** 11 READY, 8 HELD_PENDING_EVIDENCE_CORRECTION. **Curriculum role:** 18 REQUIRED_MASTERY, 1 CONTEXTUAL_SUPPORT_ONLY.
+**Readiness:** 18 READY, 1 HELD_PENDING_EVIDENCE_CORRECTION. **Curriculum role:** 18 REQUIRED_MASTERY, 1 CONTEXTUAL_SUPPORT_ONLY.
 
 ## Instructional sequence
 
@@ -131,7 +131,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-02` -- Practical unit conversion, including squared and cubed quantities
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
 **Evidence readiness note (internal audit pass):** Underlying practical-unit-conversion evidence downgraded to PARTIALLY_VERIFIED: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced.
 
@@ -233,7 +233,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-05` -- Power: meaning, quantity symbol, unit, and distinction from energy and power factor
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
 **Evidence readiness note (internal audit pass):** Underlying power::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification.
 
@@ -342,7 +342,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-08` -- Frequency: meaning, quantity symbol and unit
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
 **Evidence readiness note (Stage 2.2 correction):** Moved from READY: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter (f) sourcing is outstanding.
 
@@ -377,7 +377,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-09` -- Capacitance: meaning, quantity symbol and unit
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
 **Evidence readiness note (Stage 2.2 correction):** Moved from READY: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter (C) sourcing is outstanding.
 
@@ -449,7 +449,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-11` -- Inductance: meaning, quantity symbol and unit
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
 **Evidence readiness note (Stage 2.2 correction):** Moved from READY: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter (L) sourcing is outstanding.
 
@@ -484,7 +484,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-12` -- Inductive reactance: meaning, unit, and distinction from inductance
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
 **Evidence readiness note (internal audit pass):** Underlying inductance::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch.
 
@@ -588,7 +588,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-15` -- Ohmmeter: measures resistance
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
 **Evidence readiness note (internal audit pass):** Underlying ohmmeter-measures-resistance evidence downgraded to PARTIALLY_VERIFIED (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed.
 

@@ -4,7 +4,7 @@
 
 Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EDA-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 29 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
 
-**Readiness:** 21 READY, 6 HELD_PENDING_EVIDENCE_CORRECTION, 2 RETIRED_OUT_OF_SCOPE. **Curriculum role:** 21 REQUIRED_MASTERY, 4 CONTEXTUAL_SUPPORT_ONLY, 4 MIXED_REQUIRED_AND_CONTEXT.
+**Readiness:** 22 READY, 3 HELD_PENDING_EVIDENCE_CORRECTION, 2 DEFERRED_CONTEXT_ONLY, 2 RETIRED_OUT_OF_SCOPE. **Curriculum role:** 21 REQUIRED_MASTERY, 4 CONTEXTUAL_SUPPORT_ONLY, 4 MIXED_REQUIRED_AND_CONTEXT. DEFERRED_CONTEXT_ONLY (Stage 5) marks a CONTEXTUAL_SUPPORT_ONLY learning point whose optional-context evidence remains incomplete -- an explicit non-blocking V1 deferral, never counted as a core release blocker alongside a HELD REQUIRED_MASTERY or MIXED_REQUIRED_AND_CONTEXT learning point.
 
 ## Instructional sequence
 
@@ -635,9 +635,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EDA-LP-17` -- Recognising components by their physical appearance
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** DEFERRED_CONTEXT_ONLY
 
-**Evidence readiness note:** Underlying evidence is PARTIALLY_VERIFIED on BREADTH, and this learning point covers only part of the component set. Appearance evidence was obtained for 4 of 15 families (diode/rectifier, aluminium electrolytic capacitor, bipolar transistor, and thyristor-family devices at PACKAGE-NAME level only). NO appearance evidence was obtained for: resistor, LED, Zener diode, photodiode, LDR, thermistor, bridge-rectifier assembly, inverter or relay. Furthermore NO PHOTOGRAPHS were retrieved at all -- all evidence is manufacturer mechanical data, package-outline drawings and marking diagrams, and none was invented. A Product Architect decision is needed on whether to commission or license photographic material before this outcome can be delivered.
+**Evidence readiness note:** [Stage 5 schema correction] Reclassified from HELD_PENDING_EVIDENCE_CORRECTION to DEFERRED_CONTEXT_ONLY. This learning point is CONTEXTUAL_SUPPORT_ONLY (curriculumRole) and CONTEXT_ONLY_NOT_ASSESSED (assessmentEligibility): it carries no required-mastery evidence requirement and exposes no assessable application type. Its underlying evidence genuinely remains incomplete on breadth (see below, retained for full traceability), but that incompleteness is a V1 scope/production question for optional context material, NOT a core Unit 202 release blocker. Underlying evidence is PARTIALLY_VERIFIED on BREADTH, and this learning point covers only part of the component set. Appearance evidence was obtained for 4 of 15 families (diode/rectifier, aluminium electrolytic capacitor, bipolar transistor, and thyristor-family devices at PACKAGE-NAME level only). NO appearance evidence was obtained for: resistor, LED, Zener diode, photodiode, LDR, thermistor, bridge-rectifier assembly, inverter or relay. Furthermore NO PHOTOGRAPHS were retrieved at all -- all evidence is manufacturer mechanical data, package-outline drawings and marking diagrams, and none was invented. A Product Architect decision is needed on whether to commission or license photographic material before this outcome can be delivered.
 
 **Learner outcome:** The learner will be able to recognise common components from their typical physical appearance and markings, and explain why appearance alone is not conclusive.
 
@@ -1023,9 +1023,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EDA-LP-26` -- The legacy UK analogue PSTN and what a telephone service is
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** The legacy-PSTN framing requirement is fully VERIFIED from Ofcom and Openreach sources. The telephones-application-category requirement is PARTIALLY_VERIFIED: the UK regulatory definition of the telephone SERVICE and the network's role at the termination point are well evidenced, but no retrieved source gives a device-level definition of a telephone (Encyclopaedia Britannica returned 403 throughout, and legislation.gov.uk defines the service rather than the device).
+**Evidence readiness note:** [Resolved, Stage 4 re-sourcing] The required telephones-application-category-function requirement is now VERIFIED: a permitted-class general science reference (Gale Encyclopedia of Science, AUTHORITATIVE_TECHNICAL_REFERENCE) supplies the device-level definition of a telephone that was previously missing (the prior compounding of SIN 351 and UK statutory instrument material covered only the line interface and the service/network, never the device itself). The contextual telephone-legacy-pstn-framing facet was already VERIFIED. Required mastery is now fully evidenced; the contextual facet remains correctly deferred/non-assessed per its own classification.
 
 **Learner outcome:** The learner will be able to explain what the legacy PSTN is, describe its current status in the UK, and state what the telephone service provides.
 
@@ -1071,9 +1071,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EDA-LP-27` -- The UK master socket and extension sockets
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** DEFERRED_CONTEXT_ONLY
 
-**Evidence readiness note:** Underlying evidence is PARTIALLY_VERIFIED on TERMINOLOGY and BREADTH. The master socket is very well evidenced from Openreach SIN 351, including the full contact table, the IDC map and the cable specification. However: (1) TERMINOLOGY MISMATCH -- the frozen requirement says "secondary socket", but Openreach only ever uses the term "extension socket"; a reviewer must adjudicate whether these are intended as the same thing. (2) NO retrieved source describes the INTERNALS of a secondary/extension socket, so only the master socket is genuinely evidenced at component level.
+**Evidence readiness note:** [Stage 5 schema correction] Reclassified from HELD_PENDING_EVIDENCE_CORRECTION to DEFERRED_CONTEXT_ONLY. This learning point is CONTEXTUAL_SUPPORT_ONLY (curriculumRole) and CONTEXT_ONLY_NOT_ASSESSED (assessmentEligibility): it carries no required-mastery evidence requirement and exposes no assessable application type. Its underlying evidence genuinely remains incomplete (see below, retained for full traceability), but that incompleteness is a V1 scope/production question for optional context material, NOT a core Unit 202 release blocker. Underlying evidence is PARTIALLY_VERIFIED on TERMINOLOGY and BREADTH. The master socket is very well evidenced from Openreach SIN 351, including the full contact table, the IDC map and the cable specification. However: (1) TERMINOLOGY MISMATCH -- the frozen requirement says "secondary socket", but Openreach only ever uses the term "extension socket"; a reviewer must adjudicate whether these are intended as the same thing. (2) NO retrieved source describes the INTERNALS of a secondary/extension socket, so only the master socket is genuinely evidenced at component level.
 
 **Learner outcome:** The learner will be able to describe the UK master socket arrangement, state where the customer boundary lies, and explain the contact and IDC numbering hazard.
 

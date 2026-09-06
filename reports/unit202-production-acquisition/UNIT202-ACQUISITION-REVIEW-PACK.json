@@ -90,7 +90,8 @@
       "total": 133,
       "readinessTotals": {
         "READY": 123,
-        "HELD_PENDING_EVIDENCE_CORRECTION": 8,
+        "HELD_PENDING_EVIDENCE_CORRECTION": 6,
+        "DEFERRED_CONTEXT_ONLY": 2,
         "RETIRED_OUT_OF_SCOPE": 2
       }
     },
@@ -98,7 +99,8 @@
       "total": 70,
       "readinessTotals": {
         "READY": 60,
-        "HELD_PENDING_EVIDENCE_CORRECTION": 8,
+        "HELD_PENDING_EVIDENCE_CORRECTION": 6,
+        "DEFERRED_CONTEXT_ONLY": 2,
         "RETIRED_OUT_OF_SCOPE": 2
       }
     },
@@ -168,7 +170,8 @@
         "count": 29,
         "readiness": {
           "READY": 22,
-          "HELD_PENDING_EVIDENCE_CORRECTION": 5,
+          "HELD_PENDING_EVIDENCE_CORRECTION": 3,
+          "DEFERRED_CONTEXT_ONLY": 2,
           "RETIRED_OUT_OF_SCOPE": 2
         },
         "curriculumRole": {

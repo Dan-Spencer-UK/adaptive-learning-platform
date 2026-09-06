@@ -5,7 +5,8 @@
   "learningPointCount": 29,
   "readinessCounts": {
     "READY": 22,
-    "HELD_PENDING_EVIDENCE_CORRECTION": 5,
+    "HELD_PENDING_EVIDENCE_CORRECTION": 3,
+    "DEFERRED_CONTEXT_ONLY": 2,
     "RETIRED_OUT_OF_SCOPE": 2
   },
   "instructionalSequence": [
@@ -875,7 +876,7 @@
         "SRC-LITTELFUSE-AN1004-MOUNTING-AND-PACKAGES: Thyristor-family devices (SCRs, TRIACs, DIACs and related Littelfuse Teccor power semiconductors) are supplied...",
         "SRC-ONSEMI-2N3903-2N3904-TO92: IMPORTANT RECOGNITION CAVEAT supported by cross-reading the retrieved manufacturer sources: package outline al..."
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "DEFERRED_CONTEXT_ONLY",
       "depthJustification": "A practical bench-recognition skill, separate from symbol recognition (EDA-LP-16) because one is about reading a drawing and the other about identifying a physical object. The \"appearance alone is not conclusive\" caveat is carried as central knowledge content rather than a footnote, because it is both evidenced by cross-reading the manufacturer sources and the single most important safeguard against confident misidentification.",
       "explicitExclusions": [
         "Identifying a component's exact value or rating from its appearance",
@@ -884,7 +885,7 @@
         "Decoding manufacturer date and lot codes"
       ],
       "applicationTypes": [],
-      "evidenceReadinessNote": "Underlying evidence is PARTIALLY_VERIFIED on BREADTH, and this learning point covers only part of the component set. Appearance evidence was obtained for 4 of 15 families (diode/rectifier, aluminium electrolytic capacitor, bipolar transistor, and thyristor-family devices at PACKAGE-NAME level only). NO appearance evidence was obtained for: resistor, LED, Zener diode, photodiode, LDR, thermistor, bridge-rectifier assembly, inverter or relay. Furthermore NO PHOTOGRAPHS were retrieved at all -- all evidence is manufacturer mechanical data, package-outline drawings and marking diagrams, and none was invented. A Product Architect decision is needed on whether to commission or license photographic material before this outcome can be delivered.",
+      "evidenceReadinessNote": "[Stage 5 schema correction] Reclassified from HELD_PENDING_EVIDENCE_CORRECTION to DEFERRED_CONTEXT_ONLY. This learning point is CONTEXTUAL_SUPPORT_ONLY (curriculumRole) and CONTEXT_ONLY_NOT_ASSESSED (assessmentEligibility): it carries no required-mastery evidence requirement and exposes no assessable application type. Its underlying evidence genuinely remains incomplete on breadth (see the note below, retained for full traceability), but that incompleteness is a V1 scope/production question for optional context material, NOT a core Unit 202 release blocker, and must never be counted alongside a REQUIRED_MASTERY or MIXED_REQUIRED_AND_CONTEXT learning point's held required facet. Underlying evidence is PARTIALLY_VERIFIED on BREADTH, and this learning point covers only part of the component set. Appearance evidence was obtained for 4 of 15 families (diode/rectifier, aluminium electrolytic capacitor, bipolar transistor, and thyristor-family devices at PACKAGE-NAME level only). NO appearance evidence was obtained for: resistor, LED, Zener diode, photodiode, LDR, thermistor, bridge-rectifier assembly, inverter or relay. Furthermore NO PHOTOGRAPHS were retrieved at all -- all evidence is manufacturer mechanical data, package-outline drawings and marking diagrams, and none was invented. A Product Architect decision is needed on whether to commission or license photographic material before this outcome can be delivered.",
       "underlyingEvidenceStatuses": {
         "physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION": "PARTIALLY_VERIFIED"
       },
@@ -1389,7 +1390,7 @@
         "SRC-OPENREACH-COPPER-HANDBOOK: Openreach fits the master socket (Network Terminating Equipment, NTE), which remains Openreach property; the c...",
         "SRC-OPENREACH-COPPER-HANDBOOK: Internal wiring beyond the Openreach master socket is normally the responsibility of the customer/developer; e..."
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "DEFERRED_CONTEXT_ONLY",
       "depthJustification": "Its own point because it is a distinct practical/installation mastery rather than a conceptual one, and because the contact-versus-IDC numbering hazard is a specific, high-consequence, diagnosable error that deserves to be taught deliberately rather than buried inside a broader telephony point.",
       "explicitExclusions": [
         "Wiring or installation instruction for work on the Openreach side of the boundary",
@@ -1400,7 +1401,7 @@
         "Non-UK socket types including RJ11"
       ],
       "applicationTypes": [],
-      "evidenceReadinessNote": "Underlying evidence is PARTIALLY_VERIFIED on TERMINOLOGY and BREADTH. The master socket is very well evidenced from Openreach SIN 351, including the full contact table, the IDC map and the cable specification. However: (1) TERMINOLOGY MISMATCH -- the frozen requirement says \"secondary socket\", but Openreach only ever uses the term \"extension socket\"; a reviewer must adjudicate whether these are intended as the same thing. (2) NO retrieved source describes the INTERNALS of a secondary/extension socket, so only the master socket is genuinely evidenced at component level.",
+      "evidenceReadinessNote": "[Stage 5 schema correction] Reclassified from HELD_PENDING_EVIDENCE_CORRECTION to DEFERRED_CONTEXT_ONLY. This learning point is CONTEXTUAL_SUPPORT_ONLY (curriculumRole) and CONTEXT_ONLY_NOT_ASSESSED (assessmentEligibility): it carries no required-mastery evidence requirement and exposes no assessable application type. Its underlying evidence genuinely remains incomplete on breadth (see the note below, retained for full traceability), but that incompleteness is a V1 scope/production question for optional context material, NOT a core Unit 202 release blocker, and must never be counted alongside a REQUIRED_MASTERY or MIXED_REQUIRED_AND_CONTEXT learning point's held required facet. Underlying evidence is PARTIALLY_VERIFIED on TERMINOLOGY and BREADTH. The master socket is very well evidenced from Openreach SIN 351, including the full contact table, the IDC map and the cable specification. However: (1) TERMINOLOGY MISMATCH -- the frozen requirement says \"secondary socket\", but Openreach only ever uses the term \"extension socket\"; a reviewer must adjudicate whether these are intended as the same thing. (2) NO retrieved source describes the INTERNALS of a secondary/extension socket, so only the master socket is genuinely evidenced at component level.",
       "underlyingEvidenceStatuses": {
         "telephone-master-secondary-socket-details::EXACT_FACT": "PARTIALLY_VERIFIED"
       },
